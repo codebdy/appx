@@ -79,7 +79,7 @@ const AppHeader = memo((props: {
         }>
           {getMessage("Template")}
         </Button> */}
-        <Dropdown overlay={menu} trigger="click">
+        <Dropdown overlay={menu} trigger={['click']}>
           <Button shape="round" className='nav-button' icon={
             <SvgIcon>
               <svg className='nav-icon' viewBox="0 0 24 24">
