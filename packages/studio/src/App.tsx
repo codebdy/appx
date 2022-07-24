@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from './Login';
 import AppDesigner from './AppDesigner';
 import AppConfig from './AppConfig/index';
-import { useQuery, EntRoot } from '@apper/enthooks';
+import { useQuery, EntRoot } from '@appx/enthooks';
 
 const App = memo(() => {
   useQuery()

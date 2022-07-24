@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useCallback } from "react"
 import { memo } from "react"
 import { createForm } from '@formily/core'
 import { createSchemaField } from '@formily/react'
@@ -6,6 +6,7 @@ import { Form, FormItem, Input, Password, Submit } from '@formily/antd'
 import { Card } from 'antd'
 import * as ICONS from '@ant-design/icons'
 import { getMessage } from "../AppDesigner/widgets"
+import { useLogin } from "@appx/enthooks"
 
 const normalForm = createForm({
   validateFirst: true,
@@ -52,7 +53,15 @@ const normalSchema = () => ({
   },
 })
 
-const Login = memo(() => {
+const Login = memo((values: {
+  username: string;
+  password: string;
+}) => {
+  const login = useLogin();
+  const handleLogin = useCallback(() => {
+
+  }, []);
+
   return (
     <div style={{
       display: "flex",
@@ -71,7 +80,7 @@ const Login = memo(() => {
           form={normalForm}
           layout="vertical"
           size="large"
-          onAutoSubmit={console.log}
+          onAutoSubmit={handleLogin}
         >
           <SchemaField schema={normalSchema()} />
           <Submit block size="large">

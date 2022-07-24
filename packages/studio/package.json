@@ -1,5 +1,5 @@
 {
-  "name": "@apper/studio",
+  "name": "@appx/studio",
   "version": "0.0.1",
   "license": "MIT",
   "private": true,
@@ -16,6 +16,6 @@
     "array-move": "^4.0.0",
     "react-router-dom": "^6.3.0",
     "uuid": "^8.3.2",
-    "@apper/enthooks": "^0.1.0"
+    "@appx/enthooks": "^0.1.0"
   }
 }

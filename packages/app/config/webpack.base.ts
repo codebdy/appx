@@ -26,7 +26,7 @@ const getAlias = () => {
       const name = path.basename(_path)
       return {
         ...buf,
-        [`@apper/${name}$`]: `${_path}/src`,
+        [`@appx/${name}$`]: `${_path}/src`,
       }
     }, deps)
   return alias
