@@ -1,8 +1,6 @@
-import { ClientError, gql } from "graphql-request";
 import { useCallback, useState } from "react";
-import { parseErrorMessage } from "./parseErrorMessage";
-import { ServerError } from "./ServerError";
-import { useCreateGQLClient } from "./useCreateGQLClient";
+import { useEndpoint, useSetToken } from "../context";
+import { AwesomeGraphQLClient, GraphQLRequestError, gql } from 'awesome-graphql-client'
 
 const logoutMutation = gql`
   mutation {
@@ -12,41 +10,41 @@ const logoutMutation = gql`
 export interface LogoutOptions {
   serverUrl?: string;
   onCompleted?: () => void;
-  onError?: (error?: ServerError) => void;
+  onError?: (error?: Error) => void;
 }
 
 export function useLogout(
   options?: LogoutOptions
 ): [
   () => void,
-  { token?: string; loading?: boolean; error?: ServerError }
+  { loading?: boolean; error?: Error }
 ] {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<ServerError | undefined>();
-  const createClient = useCreateGQLClient();
-
+  const [error, setError] = useState<Error | undefined>();
+  const endpoint = useEndpoint();
+  const setConfigToken = useSetToken();
+  
   const logout = useCallback(
     () => {
-      const graphQLClient = createClient(options?.serverUrl);
+      const graphQLClient = new AwesomeGraphQLClient({ endpoint })
+      setConfigToken(undefined);
 
       setLoading(true);
       setError(undefined);
       graphQLClient
         .request(logoutMutation)
-        .then((data) => {
+        .then(() => {
           setLoading(false);
           options?.onCompleted && options?.onCompleted();
         })
-        .catch((err: ClientError) => {
-          const message = parseErrorMessage(err);
+        .catch((err: GraphQLRequestError) => {
           setLoading(false);
-          const serverError:ServerError = { message: message, serverUrl:options?.serverUrl }
-          setError(serverError);
+          setError(err);
           console.error(err);
-          options?.onError && options?.onError(serverError);
+          options?.onError && options?.onError(err);
         });
     },
-    [createClient, options]
+    [options]
   );
 
   return [logout, { loading, error }];

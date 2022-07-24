@@ -1,4 +1,4 @@
-import { AwesomeGraphQLClient, GraphQLRequestError } from 'awesome-graphql-client'
+import { AwesomeGraphQLClient, GraphQLRequestError, gql } from 'awesome-graphql-client'
 import { useCallback, useState } from "react";
 import { useEndpoint, useSetToken } from '../context';
 
@@ -17,10 +17,11 @@ export interface LoginOptions {
 export function useLogin(
   options?: LoginOptions
 ): [
-  (loginName: string, password: string) => void,
-  { token?: string; loading?: boolean; error?: Error }
-] {
-  const setToken = useSetToken();
+    (loginName: string, password: string) => void,
+    { token?: string; loading?: boolean; error?: Error }
+  ] {
+  const [token, setToken] = useState<string>()
+  const setConfigToken = useSetToken();
   const endpoint = useEndpoint();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | undefined>();
@@ -36,18 +37,19 @@ export function useLogin(
         .then((data) => {
           setLoading(false);
           setToken(data.login);
+          setConfigToken(data.login);
           options?.onCompleted && options?.onCompleted(data.login);
         })
-        .catch((err: ClientError) => {
-          const message = parseErrorMessage(err);
+        .catch((err: GraphQLRequestError) => {
+          //const message = parseErrorMessage(err);
           setLoading(false);
-          const serverError:ServerError = { message: message, serverUrl:options?.serverUrl }
-          setError(serverError);
+          //const serverError:ServerError = { message: message, serverUrl:options?.serverUrl }
+          setError(err);
           console.error(err);
-          options?.onError && options?.onError(serverError);
+          options?.onError && options?.onError(err);
         });
     },
-    [createClient, options]
+    [options]
   );
 
   return [login, { token, loading, error }];
