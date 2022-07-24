@@ -1,3 +1,3 @@
 export function useQuery(){
-  console.log("useQuery 嘿嘿 ")
+  console.log("useQuery haha ")
 }
