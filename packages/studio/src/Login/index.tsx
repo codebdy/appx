@@ -44,7 +44,7 @@ const normalSchema = () => ({
     password: {
       type: 'string',
       title: getMessage("Password"),
-      default: "admin",
+      default: "123456",
       required: true,
       'x-decorator': 'FormItem',
       'x-component': 'Password',
