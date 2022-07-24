@@ -5,14 +5,9 @@ import { createSchemaField } from '@formily/react'
 import { Form, FormItem, Input, Password, Submit } from '@formily/antd'
 import { Card } from 'antd'
 import * as ICONS from '@ant-design/icons'
-import { VerifyCode } from './VerifyCode'
 import { getMessage } from "../AppDesigner/widgets"
 
 const normalForm = createForm({
-  validateFirst: true,
-})
-
-const phoneForm = createForm({
   validateFirst: true,
 })
 
@@ -21,7 +16,6 @@ const SchemaField = createSchemaField({
     FormItem,
     Input,
     Password,
-    VerifyCode,
   },
   scope: {
     icon(name) {
@@ -36,6 +30,7 @@ const normalSchema = () => ({
     username: {
       type: 'string',
       title: getMessage("UserName"),
+      default: "admin",
       required: true,
       'x-decorator': 'FormItem',
       'x-component': 'Input',
@@ -46,6 +41,7 @@ const normalSchema = () => ({
     password: {
       type: 'string',
       title: getMessage("Password"),
+      default: "admin",
       required: true,
       'x-decorator': 'FormItem',
       'x-component': 'Password',
@@ -57,7 +53,6 @@ const normalSchema = () => ({
 })
 
 const Login = memo(() => {
-  const height = "500px"
   return (
     <div style={{
       display: "flex",
