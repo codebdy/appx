@@ -1,3 +1,1 @@
-const test = ""
-
-export {test}
+export * from "./hooks"
