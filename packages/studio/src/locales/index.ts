@@ -17,6 +17,9 @@ GlobalRegistry.registerDesignerLocales({
     Description: "描述",
     Image: "图片",
     AppName: "应用名称",
+    Login: "登录",
+    UserName: "用户名",
+    Password: "密码",
     panels: {
       Page: "页面",
       OutlinedTree: "大纲",

@@ -6,6 +6,7 @@ import { Form, FormItem, Input, Password, Submit } from '@formily/antd'
 import { Card } from 'antd'
 import * as ICONS from '@ant-design/icons'
 import { VerifyCode } from './VerifyCode'
+import { getMessage } from "../AppDesigner/widgets"
 
 const normalForm = createForm({
   validateFirst: true,
@@ -29,12 +30,12 @@ const SchemaField = createSchemaField({
   },
 })
 
-const normalSchema = {
+const normalSchema = () => ({
   type: 'object',
   properties: {
     username: {
       type: 'string',
-      title: '用户名',
+      title: getMessage("UserName"),
       required: true,
       'x-decorator': 'FormItem',
       'x-component': 'Input',
@@ -44,7 +45,7 @@ const normalSchema = {
     },
     password: {
       type: 'string',
-      title: '密码',
+      title: getMessage("Password"),
       required: true,
       'x-decorator': 'FormItem',
       'x-component': 'Password',
@@ -53,45 +54,7 @@ const normalSchema = {
       },
     },
   },
-}
-
-const phoneSchema = {
-  type: 'object',
-  properties: {
-    phone: {
-      type: 'string',
-      title: '手机号',
-      required: true,
-      'x-validator': 'phone',
-      'x-decorator': 'FormItem',
-      'x-component': 'Input',
-      'x-component-props': {
-        prefix: "{{icon('PhoneOutlined')}}",
-      },
-    },
-    verifyCode: {
-      type: 'string',
-      title: '验证码',
-      required: true,
-      'x-decorator': 'FormItem',
-      'x-component': 'VerifyCode',
-      'x-component-props': {
-        prefix: "{{icon('LockOutlined')}}",
-      },
-      'x-reactions': [
-        {
-          dependencies: ['.phone#value', '.phone#valid'],
-          fulfill: {
-            state: {
-              'component[1].readyPost': '{{$deps[0] && $deps[1]}}',
-              'component[1].phoneNumber': '{{$deps[0]}}',
-            },
-          },
-        },
-      ],
-    },
-  },
-}
+})
 
 const Login = memo(() => {
   const height = "500px"
@@ -108,16 +71,16 @@ const Login = memo(() => {
       backgroundSize: "cover",
     }}>
       <Card style={{ width: 400 }}>
-        <h3>登录</h3>
+        <h3>{getMessage("Login")}</h3>
         <Form
           form={normalForm}
           layout="vertical"
           size="large"
           onAutoSubmit={console.log}
         >
-          <SchemaField schema={normalSchema} />
+          <SchemaField schema={normalSchema()} />
           <Submit block size="large">
-            登录
+            {getMessage("Login")}
           </Submit>
         </Form>
       </Card>
