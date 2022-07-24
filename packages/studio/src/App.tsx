@@ -6,11 +6,12 @@ import Login from './Login';
 import AppDesigner from './AppDesigner';
 import AppConfig from './AppConfig/index';
 import { useQuery, EntiRoot } from '@appx/enthooks';
+import { SERVER_URL } from './consts';
 
 const App = memo(() => {
   useQuery()
   return (
-    <EntiRoot>
+    <EntiRoot config={{ endpoint: SERVER_URL }} >
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<AppManager />} />
@@ -20,7 +21,7 @@ const App = memo(() => {
           <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
-    </EntiRoot>
+    </EntiRoot >
   )
 });
 
