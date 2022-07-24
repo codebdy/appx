@@ -1,3 +1,3 @@
-export default function useQuery(){
-  
+export function useQuery(){
+  console.log("useQuery haha ")
 }
