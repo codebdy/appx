@@ -1,3 +1,6 @@
+import { useToken } from "../context";
+
 export function useQuery(){
-  console.log("useQuery haha3 ")
+  const token = useToken()
+  console.log(token)
 }
