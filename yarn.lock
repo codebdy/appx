@@ -2437,10 +2437,10 @@ ansi-styles@^5.0.0:
   resolved "https://registry.npmmirror.com/ansi-styles/-/ansi-styles-5.2.0.tgz#07449690ad45777d1924ac2abb2fc8895dba836b"
   integrity sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==
 
-antd@>=4.0, antd@^4.21.5:
-  version "4.21.6"
-  resolved "https://registry.npmmirror.com/antd/-/antd-4.21.6.tgz#ab8441e132dca4e1418d7b3fba8caf9c93d9f74d"
-  integrity sha512-6sizu/2CT0ofxl0nEvWUg5x2z7UOXZV+OqNcnQvrp+nGYI3ySAyzu8rxPvWIoA7NIa3TYnbrFayGy2gAqDGpuA==
+antd@>=4.0, antd@^4.15.2, antd@^4.21.5:
+  version "4.21.7"
+  resolved "https://registry.npmmirror.com/antd/-/antd-4.21.7.tgz#a542cbd46539c4de426245efa7bb459ae25cbcf5"
+  integrity sha512-rwPtY2tcMpckAbkQjI7EFtJoa13wog29vKcCJEcWUp8ePhszJI2JUVB67IJxs8ZdvwFmKijl0OSwOKnSkDOgJw==
   dependencies:
     "@ant-design/colors" "^6.0.0"
     "@ant-design/icons" "^4.7.0"
@@ -2462,7 +2462,7 @@ antd@>=4.0, antd@^4.21.5:
     rc-image "~5.7.0"
     rc-input "~0.0.1-alpha.5"
     rc-input-number "~7.3.0"
-    rc-mentions "~1.8.0"
+    rc-mentions "~1.9.0"
     rc-menu "~9.6.0"
     rc-motion "^2.5.1"
     rc-notification "~4.6.0"
@@ -2479,7 +2479,7 @@ antd@>=4.0, antd@^4.21.5:
     rc-table "~7.25.0"
     rc-tabs "~11.16.0"
     rc-textarea "~0.3.0"
-    rc-tooltip "~5.1.1"
+    rc-tooltip "~5.2.0"
     rc-tree "~5.6.5"
     rc-tree-select "~5.4.0"
     rc-trigger "^5.2.10"
@@ -9274,6 +9274,18 @@ rc-mentions@~1.8.0:
     rc-trigger "^5.0.4"
     rc-util "^5.0.1"
 
+rc-mentions@~1.9.0:
+  version "1.9.0"
+  resolved "https://registry.npmmirror.com/rc-mentions/-/rc-mentions-1.9.0.tgz#0ddff6ab442dce58efa7b9f5ae561b0051173334"
+  integrity sha512-CSC2t8WxK8daS8lylJcquzCgKz4bXLAVNrSHXlTI8fNUy4toot8Sv79wT4fcP/bYgdt07/e3RXzkZfX6xjYYow==
+  dependencies:
+    "@babel/runtime" "^7.10.1"
+    classnames "^2.2.6"
+    rc-menu "~9.6.0"
+    rc-textarea "^0.3.0"
+    rc-trigger "^5.0.4"
+    rc-util "^5.22.5"
+
 rc-menu@~9.6.0:
   version "9.6.0"
   resolved "https://registry.npmmirror.com/rc-menu/-/rc-menu-9.6.0.tgz#3263a729a81ae49cfdadee112e97d3c702922829"
@@ -9460,6 +9472,15 @@ rc-tooltip@^5.0.1, rc-tooltip@~5.1.1:
     "@babel/runtime" "^7.11.2"
     rc-trigger "^5.0.0"
 
+rc-tooltip@~5.2.0:
+  version "5.2.2"
+  resolved "https://registry.npmmirror.com/rc-tooltip/-/rc-tooltip-5.2.2.tgz#e5cafa8ecebf78108936a0bcb93c150fa81ac93b"
+  integrity sha512-jtQzU/18S6EI3lhSGoDYhPqNpWajMtS5VV/ld1LwyfrDByQpYmw/LW6U7oFXXLukjfDHQ7Ju705A82PRNFWYhg==
+  dependencies:
+    "@babel/runtime" "^7.11.2"
+    classnames "^2.3.1"
+    rc-trigger "^5.0.0"
+
 rc-tree-select@~5.4.0:
   version "5.4.0"
   resolved "https://registry.npmmirror.com/rc-tree-select/-/rc-tree-select-5.4.0.tgz#c94b961aca68689f5ee3a43e33881cf693d195ef"
@@ -9559,7 +9580,7 @@ react-display-name@^0.2.4:
   resolved "https://registry.yarnpkg.com/react-display-name/-/react-display-name-0.2.5.tgz#304c7cbfb59ee40389d436e1a822c17fe27936c6"
   integrity sha512-I+vcaK9t4+kypiSgaiVWAipqHRXYmZIuAiS8vzFvXHHXVigg/sMKwlRgLy6LH2i3rmP+0Vzfl5lFsFRwF1r3pg==
 
-react-dom@^17.0.1:
+react-dom@^17.0.1, react-dom@^17.0.2:
   version "17.0.2"
   resolved "https://registry.npmmirror.com/react-dom/-/react-dom-17.0.2.tgz#ecffb6845e3ad8dbfcdc498f0d0a939736502c23"
   integrity sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==
@@ -9660,7 +9681,7 @@ react-tiny-popover@^6.0.5:
   resolved "https://registry.npmmirror.com/react-tiny-popover/-/react-tiny-popover-6.0.10.tgz#6167a1b4a1ae6cf847d2909057defd00d95d726c"
   integrity sha512-ECMucd701SxWHGa+2YuVvccCxxTjmhomcD0ZYTF+Qmi5qNAj8pdlExFN+k+p1G78QTYIGPGNLocxRb9f6cZ0Mw==
 
-react@^17.0.1:
+react@^17.0.1, react@^17.0.2:
   version "17.0.2"
   resolved "https://registry.npmmirror.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
   integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==
@@ -11555,14 +11576,9 @@ uuid@^3.3.2:
   resolved "https://registry.npmmirror.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
 
-uuid@^8.3.0:
+uuid@^8.3.0, uuid@^8.3.2:
   version "8.3.2"
   resolved "https://registry.npmmirror.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
-  integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
-
-uuid@^8.3.2:
-  version "8.3.2"
-  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
 
 v8-compile-cache@^2.0.3, v8-compile-cache@^2.1.1:
