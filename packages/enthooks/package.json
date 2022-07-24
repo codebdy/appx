@@ -1,8 +1,10 @@
 {
   "name": "@apper/enthooks",
+  "version": "0.1.0",
   "description": "存取entx的类库",
   "author": "Water.li",
   "license": "商业授权",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rxdrag/appx.git"
