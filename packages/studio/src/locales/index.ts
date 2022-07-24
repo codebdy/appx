@@ -20,6 +20,7 @@ GlobalRegistry.registerDesignerLocales({
     Login: "登录",
     UserName: "用户名",
     Password: "密码",
+    RememberMe:"记住我",
     panels: {
       Page: "页面",
       OutlinedTree: "大纲",

@@ -2,11 +2,12 @@ import React, { useCallback } from "react"
 import { memo } from "react"
 import { createForm } from '@formily/core'
 import { createSchemaField } from '@formily/react'
-import { Form, FormItem, Input, Password, Submit } from '@formily/antd'
+import { Checkbox, Form, FormItem, Input, Password, Submit } from '@formily/antd'
 import { Card } from 'antd'
 import * as ICONS from '@ant-design/icons'
 import { getMessage } from "../AppDesigner/widgets"
 import { useLogin } from "@appx/enthooks"
+import { TOKEN_NAME } from "@appx/shared"
 
 const normalForm = createForm({
   validateFirst: true,
@@ -17,6 +18,7 @@ const SchemaField = createSchemaField({
     FormItem,
     Input,
     Password,
+    Checkbox
   },
   scope: {
     icon(name) {
@@ -50,16 +52,44 @@ const normalSchema = () => ({
         prefix: "{{icon('LockOutlined')}}",
       },
     },
+    rememberMe: {
+      type: 'string',
+      default: true,
+      'x-decorator': 'FormItem',
+      'x-component': 'Checkbox',
+      "x-component-props": {
+        children: getMessage("RememberMe"),
+      }
+    }
   },
 })
 
-const Login = memo((values: {
-  username: string;
-  password: string;
-}) => {
-  const login = useLogin();
-  const handleLogin = useCallback(() => {
+const Login = memo(() => {
+  const [login, { loading }] = useLogin({
+    onCompleted(atoken: string) {
+      if (atoken) {
+        // if (rememberMe) {
+        //   localStorage.setItem(TOKEN_NAME, atoken);
+        // } else {
+        //   localStorage.removeItem(TOKEN_NAME);
+        // }
+        //history.push(INDEX_URL);
+      }
+    },
+    onError(error: any) {
+      if (error?.response?.status === 401) {
+        //setErroMessage(intl.get("login-failure"));
+      } else {
+        //setErroMessage(error?.message);
+      }
+    },
+  });
 
+  const handleLogin = useCallback((values: {
+    username: string;
+    password: string;
+  }) => {
+    login()
   }, []);
 
   return (

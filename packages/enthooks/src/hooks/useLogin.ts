@@ -9,7 +9,6 @@ const loginMutation = gql`
 `;
 
 export interface LoginOptions {
-  serverUrl?: string;
   onCompleted?: (access_token: string) => void;
   onError?: (error?: Error) => void;
 }
