@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect, useState } from "react"
 import { memo } from "react"
-import { EntxContext, IEntxConfig } from "./context"
+import { empertyConfig, EntxContext, IEntxConfig } from "./context"
 
 export const EntRoot = memo((
   props: {
-    config?: {
+    config: {
       token?: string;
+      endpoint: string;
     },
     children: React.ReactNode,
   }
@@ -14,18 +15,23 @@ export const EntRoot = memo((
   const [value, setValue] = useState<IEntxConfig>()
 
   const setToken = useCallback((token: string | undefined) => {
-    setValue((config) => ({ ...config, token }))
+    setValue((config) => ({ ...config, token } as any))
+  }, [])
+
+  const setEndpoint = useCallback((endpoint: string | undefined) => {
+    setValue((config) => ({ ...config, endpoint } as any))
   }, [])
 
   useEffect(() => {
     setValue({
-      token: config?.token,
-      setToken
+      ...config,
+      setToken,
+      setEndpoint
     })
-  }, [])
+  }, [config])
 
   return (
-    <EntxContext.Provider value={value}>
+    <EntxContext.Provider value={value || empertyConfig}>
       {
         children
       }

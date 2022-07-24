@@ -45,6 +45,7 @@
     "entx"
   ],
   "dependencies": {
+    "awesome-graphql-client": "^0.12.1",
     "lodash": "^4.17.21",
     "prop-types": "^15.7.2"
   },
