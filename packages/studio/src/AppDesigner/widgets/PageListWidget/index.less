@@ -1,0 +1,35 @@
+.ant-formily-layout{
+  form{
+    height: 100%;
+  }
+}
+
+.page-list-shell{
+  display: flex;
+  flex:1;
+  height: 100%;
+  flex-flow: column;
+  .page-list-action{
+    padding: 16px 0;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+
+  .page-list-tree{
+    flex: 1;
+    overflow: auto;
+    .ant-tree-node-content-wrapper{
+      display: flex;
+      .ant-tree-title{
+        flex:1;
+        .tree-node-label{
+          display: flex;
+          flex:1;
+          justify-content: space-between;
+          align-items: center;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "@apper/studio",
+  "version": "0.0.1",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "npm": ">=3.0.0"
+  },
+  "scripts": {
+    "build": "rimraf dist && webpack-cli --config config/webpack.prod.ts",
+    "start": "webpack-dev-server --config config/webpack.dev.ts"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "@designable/formily-antd": "^1.0.0-beta.45",
+    "array-move": "^4.0.0",
+    "react-router-dom": "^6.3.0",
+    "uuid": "^8.3.2"
+  }
+}
