@@ -4,7 +4,24 @@ import { memo } from "react"
 const ModelBoard = memo(() => {
   return (
     <div>
-      ModelBoard
+      ModelBoard<br />
+      ModelBoard<br />
+      ModelBoard<br />
+      ModelBoard<br />
+      ModelBoard<br />
+      ModelBoard<br />
+      ModelBoard<br />
+      ModelBoard<br />
+      ModelBoard<br />
+      ModelBoard<br />
+      ModelBoard<br />
+      ModelBoard<br />
+      ModelBoard<br />
+      ModelBoard<br />
+      ModelBoard<br />
+      ModelBoard<br />
+      ModelBoard<br />
+      ModelBoard<br />
     </div>
   )
 })
