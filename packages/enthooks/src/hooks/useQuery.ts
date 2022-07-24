@@ -1,3 +1,3 @@
 export function useQuery(){
-  console.log("useQuery haha12 ")
+  console.log("useQuery haha3 ")
 }
