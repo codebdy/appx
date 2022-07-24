@@ -5,12 +5,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from './Login';
 import AppDesigner from './AppDesigner';
 import AppConfig from './AppConfig/index';
-import { useQuery, EntRoot } from '@appx/enthooks';
+import { useQuery, EntiRoot } from '@appx/enthooks';
 
 const App = memo(() => {
   useQuery()
   return (
-    <EntRoot>
+    <EntiRoot>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<AppManager />} />
@@ -20,7 +20,7 @@ const App = memo(() => {
           <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
-    </EntRoot>
+    </EntiRoot>
   )
 });
 

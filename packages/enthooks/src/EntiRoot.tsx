@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react"
 import { memo } from "react"
-import { empertyConfig, EntxContext, IEntxConfig } from "./context"
+import { empertyConfig, EntixContext, IEntxConfig } from "./context"
 
-export const EntRoot = memo((
+export const EntiRoot = memo((
   props: {
     config: {
       token?: string;
@@ -31,10 +31,10 @@ export const EntRoot = memo((
   }, [config])
 
   return (
-    <EntxContext.Provider value={value || empertyConfig}>
+    <EntixContext.Provider value={value || empertyConfig}>
       {
         children
       }
-    </EntxContext.Provider>
+    </EntixContext.Provider>
   )
 })

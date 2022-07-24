@@ -89,7 +89,7 @@ const Login = memo(() => {
     username: string;
     password: string;
   }) => {
-    login()
+    login(values.username, values.password)
   }, []);
 
   return (

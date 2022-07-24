@@ -17,26 +17,26 @@ export const empertyConfig = {
   }
 }
 
-export const EntxContext = createContext<IEntxConfig>(empertyConfig);
+export const EntixContext = createContext<IEntxConfig>(empertyConfig);
 
-export const useEntx = (): IEntxConfig => useContext(EntxContext);
+export const useEntix = (): IEntxConfig => useContext(EntixContext);
 
 export const useToken = () => {
-  const iEntx = useEntx();
+  const iEntx = useEntix();
   return iEntx?.token
 }
 
 export const useSetToken = () => {
-  const iEntx = useEntx();
+  const iEntx = useEntix();
   return iEntx?.setToken
 }
 
 export const useEndpoint = () => {
-  const iEntx = useEntx();
+  const iEntx = useEntix();
   return iEntx?.endpoint
 }
 
 export const useSetEndpoint = () => {
-  const iEntx = useEntx();
+  const iEntx = useEntix();
   return iEntx?.setEndpoint;
 }
