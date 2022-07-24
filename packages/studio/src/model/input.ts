@@ -12,6 +12,7 @@ export interface IAppInput {
   title: string;
   description?: string;
   image?: IFileInput
+  serverUrl?: string;
 }
 
 export interface IPageCategoryInput{
