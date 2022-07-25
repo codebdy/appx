@@ -3,12 +3,13 @@ import { Graph, Node } from "@antv/x6";
 import { selectedDiagramState, selectedElementState, x6NodesState } from "../recoil/atoms";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
+import { ID } from "../../shared";
 
-export function useNodeChange(graph: Graph | undefined, serviceId: number) {
-  const selectedDiagram = useRecoilValue(selectedDiagramState(serviceId));
-  const setNodes = useSetRecoilState(x6NodesState(serviceId));
-  const backupSnapshot = useBackupSnapshot(serviceId);
-  const setSelectedElement = useSetRecoilState(selectedElementState(serviceId));
+export function useNodeChange(graph: Graph | undefined, appId: ID) {
+  const selectedDiagram = useRecoilValue(selectedDiagramState(appId));
+  const setNodes = useSetRecoilState(x6NodesState(appId));
+  const backupSnapshot = useBackupSnapshot(appId);
+  const setSelectedElement = useSetRecoilState(selectedElementState(appId));
 
   const handleNodeChanged = useCallback(
     (arg: { node: Node<Node.Properties> }) => {

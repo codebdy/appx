@@ -4,12 +4,13 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { selectedDiagramState, selectedElementState } from "../recoil/atoms";
 import { useGetDiagramNode } from "../hooks/useGetDiagramNode";
 import { CONST_CANVAS_CLICK } from "../consts";
+import { ID } from "../../shared";
 
-export function useNodeSelect(graph: Graph | undefined, serviceId: number) {
+export function useNodeSelect(graph: Graph | undefined, appId: ID) {
   const [selectedElement, setSelectedElement] =
-    useRecoilState(selectedElementState(serviceId));
-  const selectedDiagram = useRecoilValue(selectedDiagramState(serviceId));
-  const getDiagramNode = useGetDiagramNode(serviceId);
+    useRecoilState(selectedElementState(appId));
+  const selectedDiagram = useRecoilValue(selectedDiagramState(appId));
+  const getDiagramNode = useGetDiagramNode(appId);
 
   useEffect(() => {
     if (selectedElement) {

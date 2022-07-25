@@ -18,28 +18,28 @@ import { useGetNode } from "../hooks/useGetNode";
 import { useChangeClass } from "../hooks/useChangeClass";
 import { useCreateClassAttribute } from "../hooks/useCreateClassAttribute";
 import { ClassNodeData } from "./ClassView/ClassNodeData";
-import { themeModeState } from "recoil/atoms";
 import { useDeleteClass } from "../hooks/useDeleteClass";
 import { useCreateClassMethod } from "../hooks/useCreateClassMethod";
+import { ID } from "../../shared";
+import React from "react";
 
-export function useNodesShow(graph: Graph | undefined, serviceId: number) {
-  const selectedDiagram = useRecoilValue(selectedDiagramState(serviceId));
+export function useNodesShow(graph: Graph | undefined, appId: ID) {
+  const selectedDiagram = useRecoilValue(selectedDiagramState(appId));
   const [selectedElement, setSelectedElement] = useRecoilState(
-    selectedElementState(serviceId)
+    selectedElementState(appId)
   );
-  const setNodes = useSetRecoilState(x6NodesState(serviceId));
-  const nodes = useDiagramNodes(selectedDiagram || "", serviceId);
-  const getClass = useGetClass(serviceId);
-  const getNode = useGetNode(serviceId);
-  const getDiagramNode = useGetDiagramNode(serviceId);
-  const pressedLineType = useRecoilValue(pressedLineTypeState(serviceId));
-  const changeClass = useChangeClass(serviceId);
-  const createAttribute = useCreateClassAttribute(serviceId);
-  const createMethod = useCreateClassMethod(serviceId);
-  const themeMode = useRecoilValue(themeModeState);
-  const drawingLine = useRecoilValue(drawingLineState(serviceId));
+  const setNodes = useSetRecoilState(x6NodesState(appId));
+  const nodes = useDiagramNodes(selectedDiagram || "", appId);
+  const getClass = useGetClass(appId);
+  const getNode = useGetNode(appId);
+  const getDiagramNode = useGetDiagramNode(appId);
+  const pressedLineType = useRecoilValue(pressedLineTypeState(appId));
+  const changeClass = useChangeClass(appId);
+  const createAttribute = useCreateClassAttribute(appId);
+  const createMethod = useCreateClassMethod(appId);
+  const drawingLine = useRecoilValue(drawingLineState(appId));
   const getClassRef = useRef(getClass);
-  const deleteClass = useDeleteClass(serviceId);
+  const deleteClass = useDeleteClass(appId);
   getClassRef.current = getClass;
 
   const changeClassRef = useRef(changeClass);
@@ -145,7 +145,7 @@ export function useNodesShow(graph: Graph | undefined, serviceId: number) {
         //selectedId: selectedElement,
         //pressedLineType: pressedLineType,
         //drawingLine: drawingLine,
-        themeMode: themeMode,
+        //themeMode: themeMode,
       };
       if (grahpNode) {
         //Update by diff
@@ -205,7 +205,6 @@ export function useNodesShow(graph: Graph | undefined, serviceId: number) {
     selectedDiagram,
     selectedElement,
     setSelectedElement,
-    themeMode,
     drawingLine,
     handelDeleteClass,
     handleMethodCreate,

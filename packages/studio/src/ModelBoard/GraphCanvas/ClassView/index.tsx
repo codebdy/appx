@@ -283,9 +283,9 @@ export const ClassView = memo(
             )}
 
             <div className={"nameItem"}>{data?.name}</div>
-            {data?.serviceName && (
+            {data?.appName && (
               <div className={classNames("nameItem", "smFont")}>
-                <em>{data?.serviceName}</em>
+                <em>{data?.appName}</em>
               </div>
             )}
             {hover && !disableHover && (

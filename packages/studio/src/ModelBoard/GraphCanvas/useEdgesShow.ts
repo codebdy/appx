@@ -16,15 +16,14 @@ import {
   selectedElementState,
 } from "../recoil/atoms";
 import { useDiagramEdges } from "../hooks/useDiagramEdges";
-import { useTheme } from "@mui/material";
+import { ID } from "../../shared";
 
-export function useEdgesShow(graph: Graph | undefined, serviceId: number) {
-  const selectedDiagram = useRecoilValue(selectedDiagramState(serviceId));
-  const selectedElement = useRecoilValue(selectedElementState(serviceId));
-  const drawingLine = useRecoilValue(drawingLineState(serviceId));
-  const theme = useTheme();
+export function useEdgesShow(graph: Graph | undefined, appId: ID) {
+  const selectedDiagram = useRecoilValue(selectedDiagramState(appId));
+  const selectedElement = useRecoilValue(selectedElementState(appId));
+  const drawingLine = useRecoilValue(drawingLineState(appId));
 
-  const edges = useDiagramEdges(selectedDiagram || "", serviceId);
+  const edges = useDiagramEdges(selectedDiagram || "", appId);
 
   useEffect(() => {
     edges?.forEach((edgeMeta) => {
@@ -42,18 +41,18 @@ export function useEdgesShow(graph: Graph | undefined, serviceId: number) {
         if (grahpEdge.data.relationType !== edgeMeta.relationType) {
           grahpEdge.setData({ relationType: edgeMeta.relationType });
           grahpEdge.setAttrs(
-            getRelationGraphAttrs(theme, edgeMeta.relationType)
+            getRelationGraphAttrs(edgeMeta.relationType)
           );
         }
       } else {
         grahpEdge = graph?.addEdge({
           id: edgeMeta.id,
-          source: { 
+          source: {
             cell: edgeMeta.sourceId,
             anchor: edgeMeta.sourceAnchor,
           },
-          target: { 
-            cell: edgeMeta.targetId, 
+          target: {
+            cell: edgeMeta.targetId,
             anchor: edgeMeta.targetAnchor,
           },
           vertices: edgeMeta.vertices,
@@ -80,7 +79,7 @@ export function useEdgesShow(graph: Graph | undefined, serviceId: number) {
                 },
               ]
               : [],
-          attrs: getRelationGraphAttrs(theme, edgeMeta.relationType),
+          attrs: getRelationGraphAttrs(edgeMeta.relationType),
           data: { relationType: edgeMeta.relationType },
         });
       }
@@ -106,7 +105,7 @@ export function useEdgesShow(graph: Graph | undefined, serviceId: number) {
             attrs: {
               text: {
                 text: edgeMeta.roleOfSource || "",
-                fill: theme.palette.text.primary,
+                //fill: theme.palette.text.primary,
               },
               rect: {
                 fill: "transparent",
@@ -119,7 +118,7 @@ export function useEdgesShow(graph: Graph | undefined, serviceId: number) {
             attrs: {
               text: {
                 text: edgeMeta.sourceMutiplicity,
-                fill: theme.palette.text.primary,
+                //fill: theme.palette.text.primary,
               },
               rect: {
                 fill: "transparent",
@@ -132,7 +131,7 @@ export function useEdgesShow(graph: Graph | undefined, serviceId: number) {
             attrs: {
               text: {
                 text: edgeMeta.roleOfTarget,
-                fill: theme.palette.text.primary,
+                //fill: theme.palette.text.primary,
               },
               rect: {
                 fill: "transparent",
@@ -144,7 +143,7 @@ export function useEdgesShow(graph: Graph | undefined, serviceId: number) {
             attrs: {
               text: {
                 text: edgeMeta.targetMultiplicity,
-                fill: theme.palette.text.primary,
+                //fill: theme.palette.text.primary,
               },
               rect: {
                 fill: "transparent",
@@ -164,5 +163,5 @@ export function useEdgesShow(graph: Graph | undefined, serviceId: number) {
         graph?.removeEdge(edge.id);
       }
     });
-  }, [drawingLine?.tempEdgeId, edges, graph, selectedElement, theme]);
+  }, [drawingLine?.tempEdgeId, edges, graph, selectedElement]);
 }

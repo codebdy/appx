@@ -2,8 +2,6 @@ import React, { useCallback, useEffect } from "react";
 import { LineAction } from "../recoil/LineAction";
 import { Edge, Graph, Node } from "@antv/x6";
 import { getRelationGraphAttrs } from "./getRelationGraphAttrs";
-import { createId } from "util/createId";
-import { seedId } from "util/seedId";
 import { RelationMultiplicity, RelationType } from "../meta/RelationMeta";
 import {
   drawingLineState,
@@ -17,27 +15,28 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { useGetClass } from "../hooks/useGetClass";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
 import { useCreateRelationInnerId } from "../hooks/useCreateRelationInnerId";
-import { useTheme } from "@mui/material";
 import { canStartLink } from "./canStartLink";
 import { EVENT_PREPARE_LINK_TO, triggerCanvasEvent } from "./events";
 import { useCheckCanLinkTo } from "./useCheckCanLinkTo";
+import { createUuid, ID } from "../../shared";
+import { seedId } from "../../shared/seedId";
 
-export function useEdgeLineDraw(graph: Graph | undefined, serviceId: number) {
+export function useEdgeLineDraw(graph: Graph | undefined, appId: ID) {
   const [drawingLine, setDrawingLine] = useRecoilState(
-    drawingLineState(serviceId)
+    drawingLineState(appId)
   );
-  const selectedDiagram = useRecoilValue(selectedDiagramState(serviceId));
-  const setRelations = useSetRecoilState(relationsState(serviceId));
-  const selectedElement = useSetRecoilState(selectedElementState(serviceId));
-  const setEdges = useSetRecoilState(x6EdgesState(serviceId));
-  const getClass = useGetClass(serviceId);
-  const backupSnapshot = useBackupSnapshot(serviceId);
+  const selectedDiagram = useRecoilValue(selectedDiagramState(appId));
+  const setRelations = useSetRecoilState(relationsState(appId));
+  const selectedElement = useSetRecoilState(selectedElementState(appId));
+  const setEdges = useSetRecoilState(x6EdgesState(appId));
+  const getClass = useGetClass(appId);
+  const backupSnapshot = useBackupSnapshot(appId);
   const [pressedLineType, setPressedLineType] = useRecoilState(
-    pressedLineTypeState(serviceId)
+    pressedLineTypeState(appId)
   );
-  const theme = useTheme();
-  const createRelationInnerId = useCreateRelationInnerId(serviceId);
-  const canLinkTo = useCheckCanLinkTo(serviceId);
+
+  const createRelationInnerId = useCreateRelationInnerId(appId);
+  const canLinkTo = useCheckCanLinkTo(appId);
 
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {
@@ -89,7 +88,7 @@ export function useEdgeLineDraw(graph: Graph | undefined, serviceId: number) {
       }
 
       if (drawingLine && targetNode && drawingLine?.tempEdgeId) {
-        const relationId = createId();
+        const relationId = createUuid();
         const source = getClass(drawingLine.sourceNodeId);
         const target = getClass(targetNode.id);
         const isInherit = drawingLine.relationType === RelationType.INHERIT;
@@ -201,12 +200,12 @@ export function useEdgeLineDraw(graph: Graph | undefined, serviceId: number) {
           source: node.id,
           target: p,
           connector: { name: "rounded" },
-          attrs: getRelationGraphAttrs(theme, pressedLineType),
+          attrs: getRelationGraphAttrs(pressedLineType),
         }).id,
       };
       setDrawingLine(lineAction);
     },
-    [graph, pressedLineType, setDrawingLine, theme]
+    [graph, pressedLineType, setDrawingLine]
   );
 
   useEffect(() => {

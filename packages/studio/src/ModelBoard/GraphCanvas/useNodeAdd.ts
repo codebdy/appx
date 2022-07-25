@@ -10,14 +10,15 @@ import {
 } from "../recoil/atoms";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
 import { useCreateClassInnerId } from "../hooks/useCreateClassInnerId";
+import { ID } from "../../shared";
 
-export function useNodeAdd(graph: Graph | undefined, serviceId: number) {
-  const selectedDiagramUuid = useRecoilValue(selectedDiagramState(serviceId));
-  const setNodes = useSetRecoilState(x6NodesState(serviceId));
-  const setEntities = useSetRecoilState(classesState(serviceId));
-  const backupSnapshot = useBackupSnapshot(serviceId);
-  const createInnerId = useCreateClassInnerId(serviceId);
-  const setSelectedElement = useSetRecoilState(selectedElementState(serviceId));
+export function useNodeAdd(graph: Graph | undefined, appId: ID) {
+  const selectedDiagramUuid = useRecoilValue(selectedDiagramState(appId));
+  const setNodes = useSetRecoilState(x6NodesState(appId));
+  const setEntities = useSetRecoilState(classesState(appId));
+  const backupSnapshot = useBackupSnapshot(appId);
+  const createInnerId = useCreateClassInnerId(appId);
+  const setSelectedElement = useSetRecoilState(selectedElementState(appId));
   const nodeAdded = useCallback(
     (arg: { node: Node<Node.Properties> }) => {
       const node = arg.node;
