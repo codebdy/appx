@@ -23,11 +23,11 @@ export const ModelContent = memo(
     const selectedDiagram = useRecoilValue(selectedDiagramState(appId));
     const minMap = useRecoilValue(minMapState(appId));
 
-    const { meta, error } = usePublishedMeta();
-    useShowError(error);
-    useEffect(() => {
-      setPublishedId(meta?.id || undefined);
-    }, [meta?.id, setPublishedId]);
+    // const { meta, error } = usePublishedMeta();
+    // useShowError(error);
+    // useEffect(() => {
+    //   setPublishedId(meta?.id || undefined);
+    // }, [meta?.id, setPublishedId]);
 
     return (
       <div
