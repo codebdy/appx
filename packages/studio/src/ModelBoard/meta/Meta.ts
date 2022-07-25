@@ -1,5 +1,7 @@
 import { RelationMeta } from "./RelationMeta";
 import { PackageMeta } from "./PackageMeta";
+import { ClassMeta } from "./ClassMeta";
+import { DiagramMeta } from "./DiagramMeta";
 
 export const EntityNameMeta = "Meta";
 
@@ -14,6 +16,8 @@ export interface Meta {
   id?: number;
   content: {
     packages: PackageMeta[];
+    classes?: ClassMeta[];
+    diagrams?: DiagramMeta[];
     relations: RelationMeta[];
   };
   status?: MetaStatus;

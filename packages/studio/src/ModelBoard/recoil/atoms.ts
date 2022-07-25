@@ -7,9 +7,11 @@ import { X6EdgeMeta } from "../meta/X6EdgeMeta";
 import { X6NodeMeta } from "../meta/X6NodeMeta";
 import { LineAction } from "./LineAction";
 import { ID } from "../../shared";
+import { PackageMeta } from "../meta/PackageMeta";
 
 export interface Snapshot {
   diagrams: DiagramMeta[];
+  packages: PackageMeta[];
   classes: ClassMeta[];
   relations: RelationMeta[];
   x6Nodes: X6NodeMeta[];
