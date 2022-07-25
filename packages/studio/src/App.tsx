@@ -12,28 +12,31 @@ import AppsContent from './AppManager/AppsContent';
 import ApiBoard from './ApiBoard';
 import AuthBoard from './AuthBoard';
 import { AppManagerRoutes } from './AppManager/AppHeader';
+import { RecoilRoot } from 'recoil';
 
 const App = memo(() => {
   useQuery()
   return (
-    <EntiRoot config={{ endpoint: SERVER_URL }} >
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<AppManager />}>
-            <Route
-              path={AppManagerRoutes.Root}
-              element={<AppsContent />}
-            />
-            <Route path={AppManagerRoutes.Model} element={<ModelBoard />} />
-            <Route path={AppManagerRoutes.Api} element={<ApiBoard />} />
-            <Route path={AppManagerRoutes.Auth} element={<AuthBoard />} />
-          </Route>
-          <Route path="/config-app/:appId" element={<AppConfig />} />
-          <Route path="/design-app/:deviceSlug/:appId" element={<AppDesigner />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-      </BrowserRouter>
-    </EntiRoot >
+    <RecoilRoot>
+      <EntiRoot config={{ endpoint: SERVER_URL }} >
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<AppManager />}>
+              <Route
+                path={AppManagerRoutes.Root}
+                element={<AppsContent />}
+              />
+              <Route path={AppManagerRoutes.Model} element={<ModelBoard />} />
+              <Route path={AppManagerRoutes.Api} element={<ApiBoard />} />
+              <Route path={AppManagerRoutes.Auth} element={<AuthBoard />} />
+            </Route>
+            <Route path="/config-app/:appId" element={<AppConfig />} />
+            <Route path="/design-app/:deviceSlug/:appId" element={<AppDesigner />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </BrowserRouter>
+      </EntiRoot >
+    </RecoilRoot>
   )
 });
 

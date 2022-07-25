@@ -1,16 +1,16 @@
 import { ImportOutlined, SearchOutlined } from "@ant-design/icons";
 import { Button, Input, Space } from "antd";
 import React from "react";
-import { getMessage, TextWidget } from "../AppDesigner/widgets";
+import { TextWidget } from "../AppDesigner/widgets";
 import CreateDialog from "./CreateDialog";
-import { GlobalRegistry } from '@designable/core'
+import { getLocalMessage } from "../locales/getLocalMessage";
 
 const AppManagebar = () => {
   return (
     <div className="app-manage-bar">
       <Input
         className="search hover-float"
-        placeholder={getMessage("appManager.SearchPlaceHolder")}
+        placeholder={getLocalMessage("appManager.SearchPlaceHolder")}
         suffix={
           <SearchOutlined className="search-icon" />
         }

@@ -2,7 +2,7 @@ import { Row, Col, Card, Button, Skeleton } from "antd"
 import Meta from "antd/lib/card/Meta"
 import React from "react"
 import { memo } from "react"
-import { getMessage } from "../AppDesigner/widgets"
+import { getLocalMessage } from "../locales/getLocalMessage"
 import { Device, IApp } from "../model"
 
 const DeviceList = memo((props: {
@@ -18,7 +18,7 @@ const DeviceList = memo((props: {
   return (
     <div className="content-show-block">
       <div className="config-content">
-        <h2>{getMessage("appManager.AppDesign")}</h2>
+        <h2>{getLocalMessage("appManager.AppDesign")}</h2>
         {
           loading ?
             <Skeleton active={true}></Skeleton>
@@ -39,13 +39,13 @@ const DeviceList = memo((props: {
                       type="primary"
                       href={`/design-app/${Device.PC}/${app?.id}`}
                     >
-                      {getMessage("appManager.ToDesign")}
+                      {getLocalMessage("appManager.ToDesign")}
                     </Button>,
-                    <Button key="preview" shape="round" >{getMessage("appManager.ToPreview")}</Button>,
+                    <Button key="preview" shape="round" >{getLocalMessage("appManager.ToPreview")}</Button>,
                   ]}
                 >
                   <Meta
-                    title={getMessage("appManager.PCDesign")}
+                    title={getLocalMessage("appManager.PCDesign")}
                   />
                 </Card>
               </Col>
@@ -64,13 +64,13 @@ const DeviceList = memo((props: {
                       type="primary"
                       href={`/design-app/${Device.H5}/${app?.id}`}
                     >
-                      {getMessage("appManager.ToDesign")}
+                      {getLocalMessage("appManager.ToDesign")}
                     </Button>,
-                    <Button key="preview" shape="round" >{getMessage("appManager.ToPreview")}</Button>,
+                    <Button key="preview" shape="round" >{getLocalMessage("appManager.ToPreview")}</Button>,
                   ]}
                 >
                   <Meta
-                    title={getMessage("appManager.H5Design")}
+                    title={getLocalMessage("appManager.H5Design")}
                   />
                 </Card>
               </Col>
@@ -89,13 +89,13 @@ const DeviceList = memo((props: {
                       type="primary"
                       href={`/design-app/${Device.Admin}/${app?.id}`}
                     >
-                      {getMessage("appManager.ToDesign")}
+                      {getLocalMessage("appManager.ToDesign")}
                     </Button>,
-                    <Button key="preview" shape="round" >{getMessage("appManager.ToPreview")}</Button>,
+                    <Button key="preview" shape="round" >{getLocalMessage("appManager.ToPreview")}</Button>,
                   ]}
                 >
                   <Meta
-                    title={getMessage("appManager.AdminDesign")}
+                    title={getLocalMessage("appManager.AdminDesign")}
                   />
                 </Card>
               </Col>

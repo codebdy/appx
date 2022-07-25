@@ -2,8 +2,9 @@ import { CloudUploadOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, UploadProps, Form, Input, Modal, message } from 'antd';
 import Dragger from 'antd/lib/upload/Dragger';
 import React, { memo, useState } from 'react';
-import { getMessage, TextWidget } from '../AppDesigner/widgets';
+import { TextWidget } from '../AppDesigner/widgets';
 import { useCreateApp } from '../hooks/useCreateApp';
+import { getLocalMessage } from '../locales/getLocalMessage';
 import { IAppInput } from '../model/input';
 import { useShowError } from './../hooks/useShowError';
 
@@ -99,22 +100,22 @@ const CreateDialog = memo(() => {
           autoComplete="off"
         >
           <Form.Item
-            label={getMessage("AppName")}
+            label={getLocalMessage("AppName")}
             name="title"
-            rules={[{ required: true, message: getMessage("Required") }]}
+            rules={[{ required: true, message: getLocalMessage("Required") }]}
           >
             <Input />
           </Form.Item>
 
           {/* <Form.Item
-            label={getMessage("Description")}
+            label={getLocalMessage("Description")}
             name="description"
           >
             <Input.TextArea />
           </Form.Item> */}
 
           < Form.Item
-            label={getMessage("Image")}
+            label={getLocalMessage("Image")}
             name="image"
             valuePropName="fileList"
             // 如果没有下面这一句会报错

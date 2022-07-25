@@ -5,8 +5,8 @@ import React, { memo, useCallback } from "react"
 import SvgIcon from "../common/SvgIcon"
 import AvatarMenu from "./AvatarMenu"
 import clx from "classnames"
-import { getMessage } from "../AppDesigner/widgets"
 import { useMatch, useNavigate } from "react-router-dom"
+import { getLocalMessage } from "../locales/getLocalMessage"
 
 export enum AppManagerRoutes {
   Root = "/",
@@ -53,7 +53,7 @@ const AppHeader = memo((props: {
 
         onClick={handleGotoModel}
       >
-        {getMessage("System.Model")}
+        {getLocalMessage("System.Model")}
       </Menu.Item>
       <Menu.Item key={AppManagerRoutes.Api}
         icon={
@@ -63,7 +63,7 @@ const AppHeader = memo((props: {
         }
         onClick={handleGotoApi}
       >
-        {getMessage("System.API")}
+        {getLocalMessage("System.API")}
       </Menu.Item>
       <Menu.Item key={AppManagerRoutes.Auth}
         icon={
@@ -73,7 +73,7 @@ const AppHeader = memo((props: {
         }
         onClick={handleGotoAuth}
       >
-        {getMessage("System.Auth")}
+        {getLocalMessage("System.Auth")}
       </Menu.Item>
     </Menu>
   );
@@ -105,7 +105,7 @@ const AppHeader = memo((props: {
           className='nav-button'
           onClick={handleGotoRoot}
         >
-          {getMessage("App")}
+          {getLocalMessage("App")}
         </Button>
         <Button shape="round" className='nav-button' icon={
           <SvgIcon>
@@ -114,7 +114,7 @@ const AppHeader = memo((props: {
             </svg>
           </SvgIcon>
         }>
-          {getMessage("Engines")}
+          {getLocalMessage("Engines")}
         </Button>
         {/* <Button shape="round" className='nav-button' icon={
           <SvgIcon>
@@ -124,7 +124,7 @@ const AppHeader = memo((props: {
           </SvgIcon>
 
         }>
-          {getMessage("Model")}
+          {getLocalMessage("Model")}
         </Button>
         <Button shape="round" className='nav-button' icon={
           <SvgIcon>
@@ -134,7 +134,7 @@ const AppHeader = memo((props: {
           </SvgIcon>
 
         }>
-          {getMessage("Template")}
+          {getLocalMessage("Template")}
         </Button> */}
         <Dropdown overlay={menu} trigger={['click']}>
           <Button
@@ -156,7 +156,7 @@ const AppHeader = memo((props: {
                 undefined
             }
           >
-            {getMessage("SystemConfig")}
+            {getLocalMessage("SystemConfig")}
             <DownOutlined style={{ fontSize: 12 }} />
           </Button>
         </Dropdown>

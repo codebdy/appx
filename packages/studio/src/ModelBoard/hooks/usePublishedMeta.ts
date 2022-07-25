@@ -2,10 +2,9 @@
 // import { gql } from "graphql-request";
 import { useMemo } from "react";
 import { EntityNameMeta, Meta } from "../meta/Meta";
-import { useSelectedService } from "./useSelectedService";
 
 export function usePublishedMeta() {
-  const selecedService = useSelectedService();
+  //const selecedService = useSelectedService();
   const queryName = useMemo(() => "one" + EntityNameMeta, []);
 
   // const queryPubishedGql = useMemo(() => {
