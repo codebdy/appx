@@ -1,19 +1,34 @@
-import React, { memo, useMemo } from "react";
+import React, { memo, useCallback, useMemo, } from "react";
 import { Graph } from "@antv/x6";
-import { Button, Dropdown, Menu, Tree } from "antd";
+import { Tree } from "antd";
 import { DataNode } from "antd/lib/tree";
-import { DownloadOutlined, FolderAddOutlined, ImportOutlined, MoreOutlined, UploadOutlined } from "@ant-design/icons";
 import SvgIcon from "../../common/SvgIcon";
 import { getLocalMessage } from "../../locales/getLocalMessage";
 import RootAction from "./RootAction";
+import { useRecoilValue } from 'recoil';
+import { packagesState } from './../recoil/atoms';
+import { useSelectedAppId } from './../hooks/useSelectedAppId';
+const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
   const { graph } = props;
+  const appId = useSelectedAppId()
+  const packages = useRecoilValue(packagesState(appId))
 
-  const { DirectoryTree } = Tree;
+  const getPackageNodes = useCallback(() => {
+    return packages.map((pkg) => {
+      return {
+        title: pkg.name,
+        key: pkg.uuid,
+        children: [
+          { title: 'leaf 0-0', key: '0-0-0', isLeaf: true },
+          { title: 'leaf 0-1', key: '0-0-1', isLeaf: true },
+        ],
+      }
+    })
+  }, [packages]);
 
-
-  const treeData: DataNode[] = [
+  const treeData: DataNode[] = useMemo(() => [
     {
       icon: <SvgIcon>
         <svg style={{ width: "16px", height: "16px" }} viewBox="0 0 1024 1024" fill="currentColor">
@@ -23,31 +38,13 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
       title:
         <div className='tree-node-label'>
           <div>{getLocalMessage("model.DomainModel")}</div>
-          <RootAction/>
+          <RootAction />
         </div>,
-      key: '0-0',
-
-      children: [
-        {
-          title: '系统',
-          key: '0-1',
-          children: [
-            { title: 'leaf 0-0', key: '0-0-0', isLeaf: true },
-            { title: 'leaf 0-1', key: '0-0-1', isLeaf: true },
-          ],
-        },
-        {
-          title: '用户',
-          key: '0-2',
-          children: [
-            { title: 'leaf 1-0', key: '0-1-0', isLeaf: true },
-            { title: 'leaf 1-1', key: '0-1-1', isLeaf: true },
-          ],
-        },
-      ]
+      key: "0",
+      children: getPackageNodes()
     },
 
-  ];
+  ], [getPackageNodes]);
 
   return (
 
