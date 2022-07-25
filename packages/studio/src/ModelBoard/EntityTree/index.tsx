@@ -10,21 +10,26 @@ import { packagesState } from './../recoil/atoms';
 import { useSelectedAppId } from './../hooks/useSelectedAppId';
 import TreeNodeLabel from "./TreeNodeLabel";
 import PackageLabel from "./PackageLabel";
+import { PackageMeta } from "../meta/PackageMeta";
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
   const { graph } = props;
   const appId = useSelectedAppId()
   const packages = useRecoilValue(packagesState(appId))
+  const getPackageChildren =  useCallback((pkg:PackageMeta)=>{
+    return [
+      { title: pkg.name + 'leaf 0-0', key: '0-0-0' + pkg.uuid, isLeaf: true },
+      { title: pkg.name + 'leaf 0-1', key: '0-0-1' + pkg.uuid, isLeaf: true },
+    ];
+  }, [])
+
   const getPackageNodes = useCallback(() => {
     return packages.map((pkg) => {
       return {
         title:<PackageLabel pkg = {pkg} />,
         key: pkg.uuid,
-        children: [
-          { title: 'leaf 0-0', key: '0-0-0', isLeaf: true },
-          { title: 'leaf 0-1', key: '0-0-1', isLeaf: true },
-        ],
+        children: getPackageChildren(pkg),
       }
     })
   }, [packages]);
@@ -44,7 +49,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
       children: getPackageNodes()
     },
 
-  ], [getPackageNodes]);
+  ], [getPackageNodes, packages]);
 
   return (
 
@@ -71,6 +76,5 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
         treeData={treeData}
       />
     </div>
-
   );
 });
