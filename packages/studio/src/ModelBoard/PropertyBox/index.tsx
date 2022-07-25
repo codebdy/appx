@@ -1,8 +1,6 @@
 import React from "react";
-import { Grid, Box } from "@mui/material";
 import ToolbarArea from "./ToolbarArea";
 import ToolbarTitle from "./ToolbarTitle";
-import intl from "react-intl-universal";
 import { ClassPanel } from "./ClassPanel";
 import { AttributePanel } from "./AttributePanel";
 import { RelationPanel } from "./RelationPanel";
@@ -12,9 +10,9 @@ import { useClass } from "../hooks/useClass";
 import { useAttribute } from "../hooks/useAttribute";
 import { useRelation } from "../hooks/useRelation";
 import { useSelectedAppId } from "../hooks/useSelectedAppId";
-import { useScrollbarStyles } from "theme/useScrollbarStyles";
 import { useMethod } from "../hooks/useMethod";
 import { MethodPanel } from "./MethodPanel";
+import { getLocalMessage } from "../../locales/getLocalMessage";
 
 export const PropertyBox = () => {
   const serviceId = useSelectedAppId();
@@ -29,26 +27,22 @@ export const PropertyBox = () => {
     serviceId
   );
   const relation = useRelation(selectedElement || "", serviceId);
-  const scrollStyles = useScrollbarStyles(true);
 
   return (
-    <Box
-      sx={{
+    <div
+      style={{
         display: "flex",
         flexFlow: "column",
-        borderLeft: (theme) => `solid 1px ${theme.palette.divider}`,
         width: "260px",
       }}
     >
       <ToolbarArea>
-        <ToolbarTitle>{intl.get("properties")}</ToolbarTitle>
+        <ToolbarTitle>{getLocalMessage("model.properties")}</ToolbarTitle>
       </ToolbarArea>
-      <Box
-        sx={{
+      <div
+        style={{
           flex: 1,
           overflow: "auto",
-          color: (theme) => theme.palette.text.secondary,
-          ...scrollStyles,
         }}
       >
         {selectedEntity && <ClassPanel cls={selectedEntity} />}
@@ -58,11 +52,11 @@ export const PropertyBox = () => {
         {method && methodCls && <MethodPanel method={method} cls={methodCls} />}
         {relation && <RelationPanel relation={relation} />}
         {!selectedElement && (
-          <Grid item sx={{ p: 2 }}>
-            {intl.get("no-selected")}
-          </Grid>
+          <div>
+            {getLocalMessage("no-selected")}
+          </div>
         )}
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 };

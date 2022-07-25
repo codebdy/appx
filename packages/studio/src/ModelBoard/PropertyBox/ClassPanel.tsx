@@ -1,7 +1,4 @@
 import React, { useCallback } from "react";
-import intl from "react-intl-universal";
-import { Checkbox, FormControlLabel, Grid } from "@mui/material";
-import LazyTextField from "components/ModelBoard/PropertyBox/LazyTextField";
 import { ClassMeta, StereoType } from "../meta/ClassMeta";
 import { useChangeClass } from "../hooks/useChangeClass";
 import { useSelectedAppId } from "../hooks/useSelectedAppId";
@@ -50,53 +47,6 @@ export const ClassPanel = (props: { cls: ClassMeta }) => {
   );
 
   return (
-    <Grid container spacing={2} sx={{ p: 2 }}>
-      <Grid item xs={12}>
-        <LazyTextField
-          label={intl.get("name")}
-          value={cls.name || ""}
-          onChange={handleNameChange}
-        />
-      </Grid>
-      {
-        cls.stereoType === StereoType.Partial &&
-        <Grid item xs={12}>
-          <LazyTextField
-            label={intl.get("partial-name")}
-            value={cls.partialName || ""}
-            onChange={handlePartialNameChange}
-          />
-        </Grid>
-      }
-
-      {cls.stereoType !== StereoType.Enum &&
-        cls.stereoType !== StereoType.ValueObject &&
-        cls.stereoType !== StereoType.External &&
-        (
-          <>
-            <Grid item xs={6}>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={cls.root || false}
-                    onChange={handleRootChange}
-                    color="primary"
-                  />
-                }
-                label={intl.get("root-node")}
-              />
-            </Grid>
-          </>
-        )}
-      <Grid item xs={12}>
-        <LazyTextField
-          label={intl.get("description")}
-          value={cls.description || ""}
-          multiline
-          rows={4}
-          onChange={handleDescriptionChange}
-        />
-      </Grid>
-    </Grid>
+    <div>ClassPanel</div>
   );
 };

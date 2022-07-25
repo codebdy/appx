@@ -1,23 +1,10 @@
 import React, { useCallback } from "react";
-import intl from "react-intl-universal";
-import {
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-} from "@mui/material";
-import LazyTextField from "components/ModelBoard/PropertyBox/LazyTextField";
 import { ArgMeta, MethodMeta, MethodImplementType, MethodOperateType } from "../meta/MethodMeta";
 import { Type } from "../meta/Type";
 import { ClassMeta } from "../meta/ClassMeta";
 import { useSelectedAppId } from "../hooks/useSelectedAppId";
-import { TypeInput } from "./TypeInput";
 import { useChangeMethod } from "../hooks/useChangeMethod";
 import { useGetTypeLabel } from "../hooks/useGetTypeLabel";
-import { FieldList } from "./FieldList";
-import { ScriptInput } from "./ScriptInput";
 
 export const MethodPanel = (props: { method: MethodMeta; cls: ClassMeta }) => {
   const { method, cls } = props;
@@ -85,7 +72,7 @@ export const MethodPanel = (props: { method: MethodMeta; cls: ClassMeta }) => {
   );
 
   const handleMethodTypeChange = useCallback(
-    (event: SelectChangeEvent<MethodImplementType>) => {
+    (event: any) => {
       changeMethod(
         {
           ...method,
@@ -98,7 +85,7 @@ export const MethodPanel = (props: { method: MethodMeta; cls: ClassMeta }) => {
   );
 
   const handleMethodOperateChange = useCallback(
-    (event: SelectChangeEvent<MethodOperateType>) => {
+    (event: any) => {
       changeMethod(
         {
           ...method,
@@ -124,77 +111,6 @@ export const MethodPanel = (props: { method: MethodMeta; cls: ClassMeta }) => {
   );
 
   return (
-    <Grid container spacing={2} sx={{ p: 2 }}>
-      <Grid item xs={12}>
-        <LazyTextField
-          label={intl.get("name")}
-          value={method.name || ""}
-          onChange={handleStringChange("name")}
-        />
-      </Grid>
-
-      <TypeInput
-        valueType={method.type}
-        typeUuid={method.typeUuid}
-        onTypeChange={handleTypeChange}
-        onTypeUuidChange={handleValueObjectChange}
-        withEntityType={true}
-      />
-
-      <FieldList
-        fields={method.args || []}
-        onChange={handleArgsChange}
-        title={intl.get("arg-list")}
-        prefix="arg"
-      />
-      <Grid item xs={12}>
-        <FormControl variant="outlined" fullWidth size="small">
-          <InputLabel>{intl.get("operate-type")}</InputLabel>
-          <Select
-            value={method.operateType || ""}
-            onChange={handleMethodOperateChange}
-            label={intl.get("operate-type")}
-          >
-            <MenuItem value={MethodOperateType.Query}>
-              QUERY
-            </MenuItem>
-            <MenuItem value={MethodOperateType.Mutation}>
-              MUTATION
-            </MenuItem>
-          </Select>
-        </FormControl>
-      </Grid>
-      <Grid item xs={12}>
-        <FormControl variant="outlined" fullWidth size="small">
-          <InputLabel>{intl.get("implement-type")}</InputLabel>
-          <Select
-            value={method.implementType || MethodImplementType.Script}
-            onChange={handleMethodTypeChange}
-            label={intl.get("implement-type")}
-          >
-            <MenuItem value={MethodImplementType.Script}>
-              {intl.get("script")}
-            </MenuItem>
-            <MenuItem value={MethodImplementType.CloudFunction}>
-              {intl.get("cloud-function")}
-            </MenuItem>
-            <MenuItem value={MethodImplementType.MicroService}>
-              {intl.get("micro-service")}
-            </MenuItem>
-          </Select>
-        </FormControl>
-      </Grid>
-      {(!method.implementType ||
-        method.implementType === MethodImplementType.Script) && (
-        <Grid item xs={12}>
-          <ScriptInput
-            label={intl.get("script")}
-            value={method.methodImplements || ""}
-            onChange={hangdleMethodImplementsChange}
-            title={intl.get("edit-script")}
-          />
-        </Grid>
-      )}
-    </Grid>
+    <div>MethodPanel</div>
   );
 };
