@@ -29,7 +29,10 @@ const RootAction = memo(() => {
           icon: <FolderAddOutlined />,
           label: getLocalMessage("model.AddPackage"),
           key: '0',
-          onClick: handleAddPackage
+          onClick: e=>{
+            e.domEvent.stopPropagation();
+            handleAddPackage();
+          }
         },
         {
           icon: <DownloadOutlined />,

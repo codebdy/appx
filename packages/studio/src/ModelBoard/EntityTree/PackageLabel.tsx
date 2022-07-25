@@ -17,9 +17,15 @@ const PackageLabel = memo((
   const { pkg } = props;
   const [name, setName] = useState(pkg.name);
   const [editing, setEditing] = useState(false);
+  const [visible, setVisible] = useState(false);
+
   const appId = useSelectedAppId();
   const backup = useBackupSnapshot(appId);
   const setPackages = useSetRecoilState(packagesState(appId));
+
+  const handleVisableChange = useCallback((visible) => {
+    setVisible(visible)
+  }, []);
 
   const handleEdit = useCallback(() => {
     setEditing(true);
@@ -42,7 +48,13 @@ const PackageLabel = memo((
   };
 
   return (
-    <TreeNodeLabel fixedAction action={!editing ? <PackageAction pkg={pkg} onEdit={handleEdit} /> : undefined}>
+    <TreeNodeLabel
+      fixedAction={visible}
+      action={!editing ?
+        <PackageAction pkg={pkg}
+          onEdit={handleEdit}
+          onVisibleChange={handleVisableChange} /> : undefined}
+    >
       {
         editing ?
           <Input

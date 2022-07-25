@@ -12,15 +12,17 @@ const PackageAction = memo((
   props: {
     pkg: PackageMeta,
     onEdit: () => void,
+    onVisibleChange: (visible:boolean) => void,
   }
 ) => {
-  const { pkg, onEdit } = props;
+  const { pkg, onEdit, onVisibleChange } = props;
   const appId = useSelectedAppId()
   const setPackages = useSetRecoilState(packagesState(appId))
   const deletePackage = useDeletePackage(appId)
 
   const handleDelete = useCallback(() => {
     deletePackage(pkg.uuid)
+    onVisibleChange(false);
   }, [setPackages]);
 
   const menu = useMemo(() => (
@@ -66,7 +68,8 @@ const PackageAction = memo((
             key: '5',
             onClick: e => {
               e.domEvent.stopPropagation();
-              onEdit()
+              onEdit();
+              onVisibleChange(false);
             }
           },
           {
@@ -75,7 +78,8 @@ const PackageAction = memo((
             key: '6',
             onClick: e => {
               e.domEvent.stopPropagation();
-              handleDelete()
+              handleDelete();
+              onVisibleChange(false);
             }
           },
         ]}
@@ -84,7 +88,11 @@ const PackageAction = memo((
   ), [handleDelete]);
 
   return (
-    <Dropdown overlay={menu} trigger={['click']}>
+    <Dropdown
+      overlay={menu}
+      onVisibleChange = {onVisibleChange}
+      trigger={['click']}
+    >
       <Button className='no-border' shape='circle' size='small' onClick={e => e.stopPropagation()}>
         <MoreOutlined />
       </Button>
