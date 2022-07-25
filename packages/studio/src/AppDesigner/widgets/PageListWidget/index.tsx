@@ -4,8 +4,8 @@ import React, { memo } from 'react';
 import "./index.less"
 import { DataNode } from 'antd/lib/tree';
 import { TextWidget } from '../TextWidget';
-import { getMessage } from "../takeLocale";
 import { EditOutlined } from '@ant-design/icons';
+import { getLocalMessage } from '../../../locales/getLocalMessage';
 
 const { DirectoryTree } = Tree;
 
@@ -57,7 +57,7 @@ const PageListWidget = () => {
             </SvgIcon>
           }
         >
-          {getMessage("pages.NewCategory")}
+          {getLocalMessage("pages.NewCategory")}
         </Button>
         <Button
           type='primary'
@@ -69,7 +69,7 @@ const PageListWidget = () => {
             </SvgIcon>
           }
         >
-          {getMessage("pages.NewPage")}
+          {getLocalMessage("pages.NewPage")}
         </Button>
       </div>
       <DirectoryTree

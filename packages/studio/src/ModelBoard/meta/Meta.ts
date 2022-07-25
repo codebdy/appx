@@ -1,8 +1,5 @@
-import { DiagramMeta } from "./DiagramMeta";
-import { ClassMeta } from "./ClassMeta";
 import { RelationMeta } from "./RelationMeta";
-import { X6EdgeMeta } from "./X6EdgeMeta";
-import { X6NodeMeta } from "./X6NodeMeta";
+import { PackageMeta } from "./PackageMeta";
 
 export const EntityNameMeta = "Meta";
 
@@ -16,11 +13,8 @@ export enum MetaStatus {
 export interface Meta {
   id?: number;
   content: {
-    classes: ClassMeta[];
-    diagrams: DiagramMeta[];
+    packages: PackageMeta[];
     relations: RelationMeta[];
-    x6Nodes: X6NodeMeta[];
-    x6Edges: X6EdgeMeta[];
   };
   status?: MetaStatus;
   publishedAt?: Date;
