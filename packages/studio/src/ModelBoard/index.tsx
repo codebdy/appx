@@ -3,6 +3,7 @@ import { EntityTree } from "./EntityTree";
 import { Graph } from "@antv/x6";
 import "@antv/x6-react-shape";
 import { ModelContent } from "./ModelContent";
+import "./index.less"
 
 const ModelsBoard = memo(() => {
   const [graph, setGraph] = useState<Graph>();
@@ -17,7 +18,10 @@ const ModelsBoard = memo(() => {
         height: "100%",
       }}
     >
-      <EntityTree graph={graph}></EntityTree>
+      <div className="model-tree-shell">
+        <EntityTree graph={graph}></EntityTree>
+      </div>
+      
       <ModelContent graph={graph} onSetGraph={setGraph} />
     </div>
   );

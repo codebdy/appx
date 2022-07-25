@@ -42,36 +42,29 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   ];
 
   return (
+
     <div
       style={{
-        display: "flex",
-        flexFlow: "column",
-        //borderRight: (theme) => `solid 1px ${theme.palette.divider}`,
-        width: "280px",
+        flex: 1,
+        overflow: "auto",
+        padding: 8,
       }}
     >
-      <div
-        style={{
-          flex: 1,
-          overflow: "auto",
-          padding: 8,
-        }}
-      >
-        <DirectoryTree
-          //className='page-list-tree'
-          // allowDrop={()=>{
-          //   return true
-          // }}
-          // draggable={
-          //   ()=>{
-          //     return true
-          //   }
-          // }
-          //defaultExpandAll
-          //onSelect={onSelect}
-          treeData={treeData}
-        />
-      </div>
+      <DirectoryTree
+        //className='page-list-tree'
+        // allowDrop={()=>{
+        //   return true
+        // }}
+        // draggable={
+        //   ()=>{
+        //     return true
+        //   }
+        // }
+        //defaultExpandAll
+        //onSelect={onSelect}
+        treeData={treeData}
+      />
     </div>
+
   );
 });

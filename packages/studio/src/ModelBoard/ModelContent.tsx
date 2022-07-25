@@ -35,7 +35,6 @@ export const ModelContent = memo(
           flex: 1,
           display: "flex",
           flexFlow: "column",
-          background: "red",
         }}
       >
         <ModelToolbar />
