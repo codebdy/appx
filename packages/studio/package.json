@@ -12,6 +12,7 @@
   },
   "devDependencies": {},
   "dependencies": {
+    "@antv/x6": "^1.32.10",
     "@appx/enthooks": "^0.1.0",
     "@designable/formily-antd": "^1.0.0-beta.45",
     "array-move": "^4.0.0",
