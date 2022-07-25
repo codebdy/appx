@@ -11,6 +11,7 @@ import ModelBoard from './ModelBoard';
 import AppsContent from './AppManager/AppsContent';
 import ApiBoard from './ApiBoard';
 import AuthBoard from './AuthBoard';
+import { AppManagerRoutes } from './AppManager/AppHeader';
 
 const App = memo(() => {
   useQuery()
@@ -20,12 +21,12 @@ const App = memo(() => {
         <Routes>
           <Route path="/" element={<AppManager />}>
             <Route
-              path="/"
+              path={AppManagerRoutes.Root}
               element={<AppsContent />}
             />
-            <Route path="system-model" element={<ModelBoard />} />
-            <Route path="system-api" element={<ApiBoard />} />
-            <Route path="system-auth" element={<AuthBoard />} />
+            <Route path={AppManagerRoutes.Model} element={<ModelBoard />} />
+            <Route path={AppManagerRoutes.Api} element={<ApiBoard />} />
+            <Route path={AppManagerRoutes.Auth} element={<AuthBoard />} />
           </Route>
           <Route path="/config-app/:appId" element={<AppConfig />} />
           <Route path="/design-app/:deviceSlug/:appId" element={<AppDesigner />} />
