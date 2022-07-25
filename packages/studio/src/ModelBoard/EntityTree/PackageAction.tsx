@@ -5,18 +5,35 @@ import { getLocalMessage } from "../../locales/getLocalMessage";
 import { useSelectedAppId } from "../hooks/useSelectedAppId";
 import { useCreateNewPackage } from './../hooks/useCreateNewPackage';
 import { useSetRecoilState } from 'recoil';
-import { packagesState } from "../recoil/atoms";
+import { classesState, packagesState } from "../recoil/atoms";
+import { PackageMeta } from "../meta/PackageMeta";
+import { useBackupSnapshot } from './../hooks/useBackupSnapshot';
+import { diagramsState } from './../recoil/atoms';
+import { useDeletePackage } from './../hooks/useDeletePackage';
 
-const PackageAction = memo(() => {
+const PackageAction = memo((
+  props: {
+    pkg: PackageMeta,
+    onEdit: () => void,
+  }
+) => {
+  const { pkg, onEdit } = props;
   const appId = useSelectedAppId()
   const setPackages = useSetRecoilState(packagesState(appId))
   const createNewPackage = useCreateNewPackage(appId)
+  const backup = useBackupSnapshot(appId)
+  const deletePackage = useDeletePackage(appId)
   const handleAddPackage = useCallback(
     () => {
-      setPackages(packages => [...packages, createNewPackage()])
+      backup();
+      setPackages(packages => [...packages, createNewPackage()]);
     },
-    [],
+    [setPackages],
   )
+
+  const handleDelete = useCallback(() => {
+    deletePackage(pkg.uuid)
+  }, [setPackages]);
 
   const menu = useMemo(() => (
     <div style={{ backgroundColor: "#000" }}>
@@ -36,22 +53,22 @@ const PackageAction = memo(() => {
               {
                 label: getLocalMessage("model.AddEntity"),
                 key: '1',
-                onClick:  e => e.domEvent.stopPropagation(),
+                onClick: e => e.domEvent.stopPropagation(),
               },
               {
                 label: getLocalMessage("model.AddAbstract"),
                 key: '2',
-                onClick:  e => e.domEvent.stopPropagation(),
+                onClick: e => e.domEvent.stopPropagation(),
               },
               {
                 label: getLocalMessage("model.AddEnum"),
                 key: '3',
-                onClick:  e => e.domEvent.stopPropagation(),
+                onClick: e => e.domEvent.stopPropagation(),
               },
               {
                 label: getLocalMessage("model.AddValueObject"),
                 key: '4',
-                onClick:  e => e.domEvent.stopPropagation(),
+                onClick: e => e.domEvent.stopPropagation(),
               },
             ]
           },
@@ -59,11 +76,19 @@ const PackageAction = memo(() => {
             icon: <EditOutlined />,
             label: getLocalMessage("Edit"),
             key: '5',
+            onClick: e => {
+              e.domEvent.stopPropagation();
+              onEdit()
+            }
           },
           {
             icon: <DeleteOutlined />,
             label: getLocalMessage("Delete"),
             key: '6',
+            onClick: e => {
+              e.domEvent.stopPropagation();
+              handleDelete()
+            }
           },
         ]}
       />

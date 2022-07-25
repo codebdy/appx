@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { memo } from "react";
 import { PackageMeta } from "../meta/PackageMeta";
 import PackageAction from "./PackageAction";
@@ -10,8 +10,12 @@ const PackageLabel = memo((
   }
 ) => {
   const {pkg} = props;
+  const handleEdit = useCallback(()=>{
+
+  }, [])
+  
   return (
-    <TreeNodeLabel fixedAction action={<PackageAction />}>
+    <TreeNodeLabel fixedAction action={<PackageAction pkg={pkg} onEdit={handleEdit} />}>
       <div>{pkg.name}</div>
     </TreeNodeLabel>
   )
