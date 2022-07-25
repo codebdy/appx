@@ -12,6 +12,7 @@ import TreeNodeLabel from "./TreeNodeLabel";
 import PackageLabel from "./PackageLabel";
 import { PackageMeta } from "../meta/PackageMeta";
 import { ClassMeta, StereoType } from "../meta/ClassMeta";
+import { classSvg } from "./svgs";
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
@@ -23,24 +24,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
 
   const getClassNode = useCallback((cls: ClassMeta) => {
     return {
-      icon: <SvgIcon>
-        <svg style={{ width: "20px", height: "20px", marginTop: "2px" }} viewBox="0 0 24 24">
-          <path
-            d="
-              M 1,6
-              L 14,6
-              L 14,19
-              L 1,19
-              L 1,6
-              M 1,11
-              L 14,11
-            "
-            stroke="currentColor"
-            strokeWidth="1"
-            fill="transparent"
-          ></path>
-        </svg>
-      </SvgIcon>,
+      icon: <SvgIcon>{classSvg}</SvgIcon>,
       title: cls.stereoType === StereoType.Enum ? <div style={{ fontStyle: "italic" }}>{cls.name}</div> : cls.name,
       key: cls.uuid,
     }
