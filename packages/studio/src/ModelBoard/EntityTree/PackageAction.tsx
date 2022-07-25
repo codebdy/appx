@@ -1,14 +1,11 @@
-import { FolderAddOutlined, DownloadOutlined, ImportOutlined, MoreOutlined, EditOutlined, DeleteOutlined, FileAddOutlined, PlusSquareOutlined } from "@ant-design/icons";
+import { MoreOutlined, EditOutlined, DeleteOutlined, FileAddOutlined, PlusSquareOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
 import { getLocalMessage } from "../../locales/getLocalMessage";
 import { useSelectedAppId } from "../hooks/useSelectedAppId";
-import { useCreateNewPackage } from './../hooks/useCreateNewPackage';
 import { useSetRecoilState } from 'recoil';
-import { classesState, packagesState } from "../recoil/atoms";
+import { packagesState } from "../recoil/atoms";
 import { PackageMeta } from "../meta/PackageMeta";
-import { useBackupSnapshot } from './../hooks/useBackupSnapshot';
-import { diagramsState } from './../recoil/atoms';
 import { useDeletePackage } from './../hooks/useDeletePackage';
 
 const PackageAction = memo((
@@ -20,16 +17,7 @@ const PackageAction = memo((
   const { pkg, onEdit } = props;
   const appId = useSelectedAppId()
   const setPackages = useSetRecoilState(packagesState(appId))
-  const createNewPackage = useCreateNewPackage(appId)
-  const backup = useBackupSnapshot(appId)
   const deletePackage = useDeletePackage(appId)
-  const handleAddPackage = useCallback(
-    () => {
-      backup();
-      setPackages(packages => [...packages, createNewPackage()]);
-    },
-    [setPackages],
-  )
 
   const handleDelete = useCallback(() => {
     deletePackage(pkg.uuid)
@@ -93,7 +81,7 @@ const PackageAction = memo((
         ]}
       />
     </div>
-  ), [handleAddPackage]);
+  ), [handleDelete]);
 
   return (
     <Dropdown overlay={menu} trigger={['click']}>

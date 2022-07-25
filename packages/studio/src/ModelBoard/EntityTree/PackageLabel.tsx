@@ -1,22 +1,62 @@
-import React, { useCallback } from "react";
+import { Input } from "antd";
+import React, { ChangeEvent, useCallback, useState } from "react";
 import { memo } from "react";
+import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
+import { useSelectedAppId } from "../hooks/useSelectedAppId";
 import { PackageMeta } from "../meta/PackageMeta";
 import PackageAction from "./PackageAction";
 import TreeNodeLabel from "./TreeNodeLabel";
+import { useSetRecoilState } from 'recoil';
+import { packagesState } from './../recoil/atoms';
 
 const PackageLabel = memo((
   props: {
     pkg: PackageMeta
   }
 ) => {
-  const {pkg} = props;
-  const handleEdit = useCallback(()=>{
+  const { pkg } = props;
+  const [name, setName] = useState(pkg.name);
+  const [editing, setEditing] = useState(false);
+  const appId = useSelectedAppId();
+  const backup = useBackupSnapshot(appId);
+  const setPackages = useSetRecoilState(packagesState(appId));
 
-  }, [])
-  
+  const handleEdit = useCallback(() => {
+    setEditing(true);
+  }, []);
+
+  const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value);
+  }, []);
+
+  const handleEditFinish = useCallback(() => {
+    backup()
+    setEditing(false);
+    setPackages(packages => packages.map(pg => pg.uuid === pkg.uuid ? { ...pkg, name } : pg))
+  }, [backup])
+
+  const handleKeyEnter = (event: React.KeyboardEvent<HTMLElement>) => {
+    if (event.key === "Enter") {
+      handleEditFinish();
+    }
+  };
+
   return (
-    <TreeNodeLabel fixedAction action={<PackageAction pkg={pkg} onEdit={handleEdit} />}>
-      <div>{pkg.name}</div>
+    <TreeNodeLabel fixedAction action={!editing ? <PackageAction pkg={pkg} onEdit={handleEdit} /> : undefined}>
+      {
+        editing ?
+          <Input
+            size="small"
+            value={name}
+            onClick={e => e.stopPropagation()}
+            onChange={handleChange}
+            onBlur={handleEditFinish}
+            onKeyUp={handleKeyEnter}
+          />
+          :
+          <div>{name}</div>
+      }
+
     </TreeNodeLabel>
   )
 })
