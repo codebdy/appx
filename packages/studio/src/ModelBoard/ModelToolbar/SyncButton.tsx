@@ -18,7 +18,7 @@ import { useShowServerError } from "hooks/useShowServerError";
 import { usePublishMeta } from "do-ents/usePublishMeta";
 import { successAlertState } from "recoil/atoms";
 import { Meta, MetaStatus } from "../meta/Meta";
-import { useSelectedServiceId } from "../hooks/useSelectedServiceId";
+import { useSelectedAppId } from "../hooks/useSelectedAppId";
 import { useSelectedService } from "../hooks/useSelectedService";
 import {
   diagramsState,
@@ -48,7 +48,7 @@ export const SyncButton = memo(() => {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLDivElement>(null);
   const setSuccessAlertState = useSetRecoilState(successAlertState);
-  const serviceId = useSelectedServiceId();
+  const serviceId = useSelectedAppId();
   const service = useSelectedService();
   const publishedId = useRecoilValue(publishedIdState(serviceId));
   const changed = useRecoilValue(changedState(serviceId));

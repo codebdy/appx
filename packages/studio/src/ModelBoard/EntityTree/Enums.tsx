@@ -2,7 +2,7 @@ import TreeItem from "@mui/lab/TreeItem";
 import { TREE_ROOT_ID } from "util/consts";
 import { TreeNodeLabel } from "./TreeNodeLabel";
 import FolderOutlinedIcon from "@mui/icons-material/FolderOutlined";
-import { useSelectedServiceId } from "../hooks/useSelectedServiceId";
+import { useSelectedAppId } from "../hooks/useSelectedAppId";
 import { NodeText } from "./NodeText";
 import { ClassNode } from "./ClassNode";
 import intl from "react-intl-universal";
@@ -12,7 +12,7 @@ import { useEnums } from "../hooks/useEnums";
 
 export const Enums = memo((props: { graph?: Graph }) => {
   const { graph } = props;
-  const serviceId = useSelectedServiceId();
+  const serviceId = useSelectedAppId();
   const enums = useEnums(serviceId);
 
   return enums.length > 0 ? (

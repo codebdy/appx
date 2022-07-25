@@ -8,7 +8,7 @@ import { useCreateNewDiagram } from "../hooks/useCreateNewDiagram";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
 import { useSetRecoilState } from "recoil";
 import { classesState, selectedDiagramState } from "../recoil/atoms";
-import { useSelectedServiceId } from "../hooks/useSelectedServiceId";
+import { useSelectedAppId } from "../hooks/useSelectedAppId";
 import { StereoType } from "../meta/ClassMeta";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
@@ -35,7 +35,7 @@ export const RootMenu = memo(
     const { anchorEl, onClose, onDelete } = props;
     const classes = useStyles();
     const isMenuOpen = Boolean(anchorEl);
-    const serviceId = useSelectedServiceId();
+    const serviceId = useSelectedAppId();
     const createNewClass = useCreateNewClass(serviceId);
     const createNewDiagram = useCreateNewDiagram(serviceId);
     const setEntities = useSetRecoilState(classesState(serviceId));

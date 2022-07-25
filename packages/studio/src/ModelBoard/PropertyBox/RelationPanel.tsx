@@ -16,12 +16,12 @@ import {
 } from "../meta/RelationMeta";
 import { useClass } from "../hooks/useClass";
 import { useChangeRelation } from "../hooks/useChangeRelation";
-import { useSelectedServiceId } from "../hooks/useSelectedServiceId";
+import { useSelectedAppId } from "../hooks/useSelectedAppId";
 import { PropertyBlockCollapse } from "./PropertyBlockCollapse";
 
 export const RelationPanel = (props: { relation: RelationMeta }) => {
   const { relation } = props;
-  const serviceId = useSelectedServiceId();
+  const serviceId = useSelectedAppId();
   const source = useClass(relation.sourceId, serviceId);
   const target = useClass(relation.targetId, serviceId);
   const changeRelation = useChangeRelation(serviceId);

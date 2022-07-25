@@ -3,7 +3,6 @@ import { useExplorerScrollbarHide } from "./useExplorerScrollbarHide";
 import { useEdgeLineDraw } from "./useEdgeLineDraw";
 import { useEdgeChange } from "./useEdgeChange";
 import { Graph } from "@antv/x6";
-import { Box, useTheme } from "@mui/material";
 import { getGraphConfig } from "./getGraphConfig";
 import { useNodesShow } from "./useNodesShow";
 import { useNodeAdd } from "./useNodeAdd";
@@ -11,38 +10,38 @@ import { useNodeChange } from "./useNodeChange";
 import { useNodeSelect } from "./useNodeSelect";
 import { useEdgesShow } from "./useEdgesShow";
 import { useEdgeSelect } from "./useEdgeSelect";
-import { useSelectedServiceId } from "../hooks/useSelectedServiceId";
 import { useTriggerSelectedEvent } from "./useTriggerSelectedEvent";
 import { useEdgeHover } from "./useEdgeHover";
 import { useTriggerPressedLineTypeEvent } from "./useTriggerPressedLineTypeEvent";
+import { useSelectedAppId } from "../hooks/useSelectedAppId";
 
 export const GraphCanvas = memo(
   (props: { graph?: Graph; onSetGraph: (graph?: Graph) => void }) => {
     const { graph, onSetGraph } = props;
-    const serviceId = useSelectedServiceId();
-    const theme = useTheme();
+    const appId = useSelectedAppId();
+
     useEffect(() => {
-      const config = getGraphConfig(theme);
+      const config = getGraphConfig();
       const aGraph = new Graph(config as any);
       onSetGraph(aGraph);
       return () => {
         aGraph?.dispose();
         onSetGraph(undefined);
       };
-    }, [onSetGraph, theme]);
+    }, [onSetGraph]);
 
     useExplorerScrollbarHide();
-    useTriggerSelectedEvent(serviceId);
-    useTriggerPressedLineTypeEvent(serviceId);
-    useNodeSelect(graph, serviceId);
-    useEdgeSelect(graph, serviceId);
-    useNodesShow(graph, serviceId);
-    useEdgeLineDraw(graph, serviceId);
-    useEdgesShow(graph, serviceId);
-    useNodeChange(graph, serviceId);
-    useEdgeChange(graph, serviceId);
-    useNodeAdd(graph, serviceId);
-    useEdgeHover(graph, serviceId);
+    useTriggerSelectedEvent(appId);
+    useTriggerPressedLineTypeEvent(appId);
+    useNodeSelect(graph, appId);
+    useEdgeSelect(graph, appId);
+    useNodesShow(graph, appId);
+    useEdgeLineDraw(graph, appId);
+    useEdgesShow(graph, appId);
+    useNodeChange(graph, appId);
+    useEdgeChange(graph, appId);
+    useNodeAdd(graph, appId);
+    useEdgeHover(graph, appId);
 
     return (
       <Box

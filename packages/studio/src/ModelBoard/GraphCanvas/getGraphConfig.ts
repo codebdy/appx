@@ -1,7 +1,6 @@
-import { alpha, Theme } from "@mui/material";
 import { getGraphSize } from "./getGraphSize";
 
-export const getGraphConfig = (theme:Theme)=>{
+export const getGraphConfig = ()=>{
   const containerDiv = document.getElementById('container')||undefined;
   containerDiv?.getBoundingClientRect()
   const graphSize = getGraphSize();
@@ -24,11 +23,11 @@ export const getGraphConfig = (theme:Theme)=>{
       type: 'doubleMesh',
       args: [
         { 
-          color: alpha(theme.palette.divider, 0.2), // 主网格线颜色
+          //color: alpha(theme.palette.divider, 0.2), // 主网格线颜色
           thickness: 1,     // 主网格线宽度
         },
         { 
-          color: alpha(theme.palette.divider, 0.1), // 次网格线颜色
+          //color: alpha(theme.palette.divider, 0.1), // 次网格线颜色
           thickness: 1,     // 次网格线宽度
           factor: 4,        // 主次网格线间隔
         },

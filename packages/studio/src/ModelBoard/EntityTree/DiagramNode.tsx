@@ -11,13 +11,13 @@ import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { useDeleteDiagram } from "../hooks/useDeleteDiagram";
 import { useChangeDiagram } from "../hooks/useChangeDiagram";
-import { useSelectedServiceId } from "../hooks/useSelectedServiceId";
+import { useSelectedAppId } from "../hooks/useSelectedAppId";
 
 export const DiagramNode = memo(
   (props: { key?: string; diagram: DiagramMeta }) => {
     const { diagram } = props;
     const [editing, setEditing] = useState(false);
-    const serviceId = useSelectedServiceId();
+    const serviceId = useSelectedAppId();
     const setSelectedDiagram = useSetRecoilState(
       selectedDiagramState(serviceId)
     );

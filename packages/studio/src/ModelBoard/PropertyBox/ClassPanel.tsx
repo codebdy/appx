@@ -4,11 +4,11 @@ import { Checkbox, FormControlLabel, Grid } from "@mui/material";
 import LazyTextField from "components/ModelBoard/PropertyBox/LazyTextField";
 import { ClassMeta, StereoType } from "../meta/ClassMeta";
 import { useChangeClass } from "../hooks/useChangeClass";
-import { useSelectedServiceId } from "../hooks/useSelectedServiceId";
+import { useSelectedAppId } from "../hooks/useSelectedAppId";
 
 export const ClassPanel = (props: { cls: ClassMeta }) => {
   const { cls } = props;
-  const serviceId = useSelectedServiceId();
+  const serviceId = useSelectedAppId();
 
   const changeClass = useChangeClass(serviceId);
 

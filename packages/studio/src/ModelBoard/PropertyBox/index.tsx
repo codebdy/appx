@@ -11,13 +11,13 @@ import { selectedElementState } from "../recoil/atoms";
 import { useClass } from "../hooks/useClass";
 import { useAttribute } from "../hooks/useAttribute";
 import { useRelation } from "../hooks/useRelation";
-import { useSelectedServiceId } from "../hooks/useSelectedServiceId";
+import { useSelectedAppId } from "../hooks/useSelectedAppId";
 import { useScrollbarStyles } from "theme/useScrollbarStyles";
 import { useMethod } from "../hooks/useMethod";
 import { MethodPanel } from "./MethodPanel";
 
 export const PropertyBox = () => {
-  const serviceId = useSelectedServiceId();
+  const serviceId = useSelectedAppId();
   const selectedElement = useRecoilValue(selectedElementState(serviceId));
   const selectedEntity = useClass(selectedElement || "", serviceId);
   const { cls: attributeCls, attribute } = useAttribute(

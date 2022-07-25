@@ -8,7 +8,7 @@ import { useMemo } from "react";
 import { useSetRecoilState } from "recoil";
 import { selectedElementState } from "../recoil/atoms";
 import { useDeleteAttribute } from "../hooks/useDeleteAttribute";
-import { useSelectedServiceId } from "../hooks/useSelectedServiceId";
+import { useSelectedAppId } from "../hooks/useSelectedAppId";
 import { CONST_ID } from "../meta/Meta";
 import { StereoType } from "../meta/ClassMeta";
 
@@ -17,7 +17,7 @@ export const AttributeNode = (props: {
   stereoType: StereoType;
 }) => {
   const { attribute, stereoType } = props;
-  const serviceId = useSelectedServiceId();
+  const serviceId = useSelectedAppId();
   const setSelectedElement = useSetRecoilState(selectedElementState(serviceId));
   const isId = useMemo(
     () => attribute.name === CONST_ID,

@@ -32,7 +32,7 @@ import { LoadingButton } from "@mui/lab";
 import { usePostOne } from "do-ents/usePostOne";
 import { CONST_ID, EntityNameMeta, Meta, MetaStatus } from "../meta/Meta";
 import { SyncButton } from "./SyncButton";
-import { useSelectedServiceId } from "../hooks/useSelectedServiceId";
+import { useSelectedAppId } from "../hooks/useSelectedAppId";
 import { useValidate } from "../hooks/useValidate";
 import { useSelectedService } from "../hooks/useSelectedService";
 
@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const ModelToolbar = memo(() => {
   const classes = useStyles();
-  const serviceId = useSelectedServiceId();
+  const serviceId = useSelectedAppId();
   const service = useSelectedService();
   const [meta, setMeta] = useRecoilState(metaState(serviceId));
   const classeMetas = useRecoilValue(classesState(serviceId));
