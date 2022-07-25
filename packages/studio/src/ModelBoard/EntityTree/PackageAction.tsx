@@ -30,7 +30,7 @@ const PackageAction = memo((
   const setSelectedDiagram = useSetRecoilState(
     selectedDiagramState(appId)
   );
-  
+
   const handleDelete = useCallback(() => {
     deletePackage(pkg.uuid)
     onVisibleChange(false);
@@ -49,7 +49,7 @@ const PackageAction = memo((
   const handleAddDiagram = useCallback(
     () => {
       backupSnapshot();
-      const newDiagram = createNewDiagram();
+      const newDiagram = createNewDiagram(pkg.uuid);
       setSelectedDiagram(newDiagram.uuid);
       onVisibleChange(false);
     },
@@ -64,7 +64,7 @@ const PackageAction = memo((
             icon: <FileAddOutlined />,
             label: getLocalMessage("model.AddDiagram"),
             key: '0',
-            onClick: e=>{
+            onClick: e => {
               e.domEvent.stopPropagation();
               handleAddDiagram();
             }

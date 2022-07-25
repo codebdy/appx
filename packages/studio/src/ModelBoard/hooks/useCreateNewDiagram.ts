@@ -10,7 +10,7 @@ export function useCreateNewDiagram(appId: ID) {
   const getDiagramByName = useGetDiagramByName(appId);
 
   const getNewDiagramName = useCallback(() => {
-    const prefix = getLocalMessage("model.add-diagram");
+    const prefix = getLocalMessage("model.NewDiagram");
     let index = 1;
     while (getDiagramByName(prefix + index)) {
       index++;
@@ -19,10 +19,11 @@ export function useCreateNewDiagram(appId: ID) {
     return prefix + index;
   }, [getDiagramByName]);
 
-  const createNewDiagram = useCallback(() => {
+  const createNewDiagram = useCallback((packageUuid) => {
     const newDiagram = {
       uuid: createUuid(),
       name: getNewDiagramName(),
+      packageUuid,
       nodes: [],
       edges: [],
     };

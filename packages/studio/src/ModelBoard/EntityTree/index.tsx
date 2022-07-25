@@ -6,7 +6,7 @@ import SvgIcon from "../../common/SvgIcon";
 import { getLocalMessage } from "../../locales/getLocalMessage";
 import RootAction from "./RootAction";
 import { useRecoilValue } from 'recoil';
-import { packagesState } from './../recoil/atoms';
+import { packagesState, diagramsState } from './../recoil/atoms';
 import { useSelectedAppId } from './../hooks/useSelectedAppId';
 import TreeNodeLabel from "./TreeNodeLabel";
 import PackageLabel from "./PackageLabel";
@@ -15,24 +15,32 @@ const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
   const { graph } = props;
-  const appId = useSelectedAppId()
-  const packages = useRecoilValue(packagesState(appId))
-  const getPackageChildren =  useCallback((pkg:PackageMeta)=>{
-    return [
-      { title: pkg.name + 'leaf 0-0', key: '0-0-0' + pkg.uuid, isLeaf: true },
-      { title: pkg.name + 'leaf 0-1', key: '0-0-1' + pkg.uuid, isLeaf: true },
-    ];
-  }, [])
+  const appId = useSelectedAppId();
+  const packages = useRecoilValue(packagesState(appId));
+  const diagrams = useRecoilValue(diagramsState(appId));
+
+  const getPackageChildren = useCallback((pkg: PackageMeta) => {
+    const packageChildren: DataNode[] = []
+    for (const diagram of diagrams.filter(diagram => diagram.packageUuid === pkg.uuid)) {
+        packageChildren.push({
+        title: diagram.name,
+        key: diagram.uuid,
+        isLeaf: true,
+      })
+    }
+
+    return packageChildren;
+  }, [diagrams])
 
   const getPackageNodes = useCallback(() => {
     return packages.map((pkg) => {
       return {
-        title:<PackageLabel pkg = {pkg} />,
+        title: <PackageLabel pkg={pkg} />,
         key: pkg.uuid,
         children: getPackageChildren(pkg),
       }
     })
-  }, [packages]);
+  }, [packages, getPackageChildren]);
 
   const treeData: DataNode[] = useMemo(() => [
     {

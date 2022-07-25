@@ -1,4 +1,5 @@
 import { useCallback } from "react";
+import { getLocalMessage } from "../../locales/getLocalMessage";
 import { createUuid, ID } from "../../shared";
 import { PackageMeta } from "../meta/PackageMeta";
 
@@ -7,7 +8,7 @@ export function useCreateNewPackage(appId: ID) {
     () => {
       const newPackage: PackageMeta = {
         uuid: createUuid(),
-        name: "New Package",
+        name: getLocalMessage("model.NewPackage"),
       };
       return newPackage;
     },
