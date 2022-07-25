@@ -17,7 +17,7 @@ export function useDeleteClass(appId: ID) {
 
   const backupSnapshot = useBackupSnapshot(appId);
 
-  const deleteEntity = useCallback(
+  const deleteClasses = useCallback(
     (classUuid: string) => {
       backupSnapshot();
       setEntites((clses) =>
@@ -40,5 +40,5 @@ export function useDeleteClass(appId: ID) {
     [backupSnapshot, relations, setEdges, setEntites, setNodes, setRelations]
   );
 
-  return deleteEntity;
+  return deleteClasses;
 }

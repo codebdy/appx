@@ -16,7 +16,6 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   const { graph } = props;
   const appId = useSelectedAppId()
   const packages = useRecoilValue(packagesState(appId))
-
   const getPackageNodes = useCallback(() => {
     return packages.map((pkg) => {
       return {
