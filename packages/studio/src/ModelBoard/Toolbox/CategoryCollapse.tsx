@@ -1,7 +1,5 @@
+import React from "react";
 import { memo, useCallback, useMemo, useState } from "react";
-import { Box, Collapse, Paper, Typography, useTheme } from "@mui/material";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 export const CategoryCollapse = memo(
   (props: {
@@ -16,44 +14,43 @@ export const CategoryCollapse = memo(
       setExpanded((a) => !a);
     }, []);
 
-    const theme = useTheme();
-    const color = useMemo(() => {
-      return disabled
-        ? theme.palette.action.disabled
-        : theme.palette.text.secondary;
-    }, [disabled, theme.palette.action.disabled, theme.palette.text.secondary]);
+    // const color = useMemo(() => {
+    //   return disabled
+    //     ? theme.palette.action.disabled
+    //     : theme.palette.text.secondary;
+    // }, [disabled, theme.palette.action.disabled, theme.palette.text.secondary]);
 
     return (
-      <Box
-        sx={{
+      <div
+        style={{
           width: "100%",
           display: "flex",
           flexFlow: "column",
         }}
       >
-        <Paper
-          sx={{
+        <div
+          style={{
             cursor: "pointer",
             display: "flex",
             flexFlow: "row",
             justifyContent: "space-between",
             alignItems: "center",
             zIndex: 1,
-            p: 0.5,
-            pl: 1,
+            padding: 4,
+            paddingRight: 8,
           }}
-          square
+          //square
           onClick={handleToggle}
         >
-          <Typography
-            variant="subtitle1"
-            sx={{
-              color: color,
-            }}
+          <div
+            //variant="subtitle1"
+            // sx={{
+            //   color: color,
+            // }}
           >
             {title}
-          </Typography>
-          {expanded && !disabled ? (
+          </div>
+          {/* {expanded && !disabled ? (
             <KeyboardArrowDownIcon
               sx={{
                 color: color,
@@ -67,17 +64,17 @@ export const CategoryCollapse = memo(
               }}
               fontSize="small"
             />
-          )}
-        </Paper>
-        <Collapse
-          in={expanded && !disabled}
-          timeout="auto"
-          unmountOnExit
-          sx={{ p: 2 }}
+          )} */}
+        </div>
+        <div
+          //in={expanded && !disabled}
+          //timeout="auto"
+          //unmountOnExit
+          style={{ padding: "16px" }}
         >
           {children}
-        </Collapse>
-      </Box>
+        </div>
+      </div>
     );
   }
 );
