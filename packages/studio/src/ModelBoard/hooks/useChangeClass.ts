@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useAlertError } from "../../hooks/useAlertError";
-import { getMessage } from "../../locales/getMessage";
+import { getLocalMessage } from "../../locales/getLocalMessage";
 import { ID } from "../../shared";
 import { EVENT_CLASS_CHANGED, triggerCanvasEvent } from "../GraphCanvas/events";
 import { ClassMeta } from "../meta/ClassMeta";
@@ -21,7 +21,7 @@ export function useChangeClass(appId: ID) {
           .filter((cl) => cl.uuid !== cls.uuid)
           .find((cl) => cl.name === cls.name)
       ) {
-        alertError(getMessage("model.error-name-repeat"));
+        alertError(getLocalMessage("model.error-name-repeat"));
         return;
       }
       backupSnapshot();

@@ -1,11 +1,12 @@
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
+import { ID } from "../../shared";
 import { relationsState } from "../recoil/atoms";
 import { useGetClass } from "./useGetClass";
 
-export function useCheckClassProperyName(serviceId: number) {
-  const getClass = useGetClass(serviceId);
-  const relations = useRecoilValue(relationsState(serviceId));
+export function useCheckClassProperyName(appId: ID) {
+  const getClass = useGetClass(appId);
+  const relations = useRecoilValue(relationsState(appId));
 
   /**
    * propertyUuid 如果关联性质，为类UUID+关联UUID

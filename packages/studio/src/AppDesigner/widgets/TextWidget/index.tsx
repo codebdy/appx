@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { IDesignerMiniLocales } from '@designable/core'
 import { observer } from '@formily/reactive-react'
-import { takeMessage } from '../../../locales/getMessage'
+import { takeMessage } from '../../../locales/getLocalMessage'
 
 export interface ITextWidgetProps {
   componentName?: string

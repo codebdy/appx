@@ -1,11 +1,12 @@
 import { useCallback } from "react";
+import { ID } from "../../shared";
 import { ClassMeta } from "../meta/ClassMeta";
 import { useChangeClass } from "./useChangeClass";
 import { useCreateAttribute } from "./useCreateAttribute";
 
-export function useCreateClassAttribute(serviceId: number) {
-  const changeClass = useChangeClass(serviceId);
-  const createAttribute = useCreateAttribute(serviceId);
+export function useCreateClassAttribute(appId: ID) {
+  const changeClass = useChangeClass(appId);
+  const createAttribute = useCreateAttribute(appId);
   const createClassAttribute = useCallback(
     (cls: ClassMeta) => {
       const attr = createAttribute(cls.attributes);

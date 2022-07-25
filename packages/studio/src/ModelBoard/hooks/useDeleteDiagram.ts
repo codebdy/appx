@@ -1,14 +1,15 @@
 import { useCallback } from "react";
 import { useSetRecoilState } from "recoil";
+import { ID } from "../../shared";
 import { diagramsState, x6EdgesState, x6NodesState } from "../recoil/atoms";
 import { useBackupSnapshot } from "./useBackupSnapshot";
 
-export function useDeleteDiagram(serviceId: number) {
-  const setDiagrams = useSetRecoilState(diagramsState(serviceId));
-  const setNodes = useSetRecoilState(x6NodesState(serviceId));
-  const setEdges = useSetRecoilState(x6EdgesState(serviceId));
+export function useDeleteDiagram(appId: ID) {
+  const setDiagrams = useSetRecoilState(diagramsState(appId));
+  const setNodes = useSetRecoilState(x6NodesState(appId));
+  const setEdges = useSetRecoilState(x6EdgesState(appId));
 
-  const backupSnapshot = useBackupSnapshot(serviceId);
+  const backupSnapshot = useBackupSnapshot(appId);
 
   const deleteDiagram = useCallback(
     (diagramUuid: string) => {

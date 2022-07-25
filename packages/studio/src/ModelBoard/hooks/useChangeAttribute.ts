@@ -5,7 +5,7 @@ import { useChangeClass } from "./useChangeClass";
 import { useCheckClassProperyName } from "./useCheckClassProperyName";
 import { ID } from "../../shared";
 import { useAlertError } from "../../hooks/useAlertError";
-import { getMessage } from "../../locales/getMessage";
+import { getLocalMessage } from "../../locales/getLocalMessage";
 
 export function useChangeAttribute(appId: ID) {
   const changeEntity = useChangeClass(appId);
@@ -15,7 +15,7 @@ export function useChangeAttribute(appId: ID) {
   const changeAttribute = useCallback(
     (attr: AttributeMeta, cls: ClassMeta) => {
       if (!chackName(cls.uuid, attr.name, attr.uuid)) {
-        alertError(getMessage("model.error-name-repeat"));
+        alertError(getLocalMessage("model.error-name-repeat"));
         return;
       }
       changeEntity({

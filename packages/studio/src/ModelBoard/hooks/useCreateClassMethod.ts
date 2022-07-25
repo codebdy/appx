@@ -1,11 +1,12 @@
 import { useCallback } from "react";
+import { ID } from "../../shared";
 import { ClassMeta } from "../meta/ClassMeta";
 import { useChangeClass } from "./useChangeClass";
 import { useCreateMethod } from "./useCreateMethod";
 
-export function useCreateClassMethod(serviceId: number) {
-  const changeClass = useChangeClass(serviceId);
-  const createMethod = useCreateMethod(serviceId);
+export function useCreateClassMethod(appId: ID) {
+  const changeClass = useChangeClass(appId);
+  const createMethod = useCreateMethod(appId);
   const createClassMethod = useCallback(
     (cls: ClassMeta) => {
       const method = createMethod(cls.methods);

@@ -1,19 +1,20 @@
 import { useCallback } from "react";
+import { useAlertError } from "../../hooks/useAlertError";
+import { getLocalMessage } from "../../locales/getLocalMessage";
+import { ID } from "../../shared";
 import { ClassMeta } from "../meta/ClassMeta";
 import { MethodMeta } from "../meta/MethodMeta";
 import { useChangeClass } from "./useChangeClass";
 import { useCheckClassProperyName } from "./useCheckClassProperyName";
-import intl from "react-intl-universal";
-import { useAlertError } from "hooks/useAlertError";
 
-export function useChangeMethod(serviceId: number) {
-  const changeClass = useChangeClass(serviceId);
+export function useChangeMethod(appId: ID) {
+  const changeClass = useChangeClass(appId);
   const alertError = useAlertError();
-  const chackName = useCheckClassProperyName(serviceId);
+  const chackName = useCheckClassProperyName(appId);
   const changeMethod = useCallback(
     (method: MethodMeta, cls: ClassMeta) => {
       if (!chackName(cls.uuid, method.name, method.uuid)) {
-        alertError(intl.get("error-name-repeat"));
+        alertError(getLocalMessage("model.error-name-repeat"));
         return;
       }
 

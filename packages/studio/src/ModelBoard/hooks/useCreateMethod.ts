@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { createId } from "util/createId";
+import { createUuid, ID } from "../../shared";
 import {
   MethodMeta,
   MethodImplementType,
@@ -8,8 +8,8 @@ import {
 import { Type } from "../meta/Type";
 import { useGetTypeLabel } from "./useGetTypeLabel";
 
-export function useCreateMethod(serviceId: number) {
-  const getTypeName = useGetTypeLabel(serviceId);
+export function useCreateMethod(appId: ID) {
+  const getTypeName = useGetTypeLabel(appId);
 
   const createMethod = useCallback(
     (methods: MethodMeta[]) => {
@@ -23,7 +23,7 @@ export function useCreateMethod(serviceId: number) {
       }
 
       const method = {
-        uuid: createId(),
+        uuid: createUuid(),
         name: namePrefix + index,
         args: [],
         type: Type.String,

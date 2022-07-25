@@ -1,14 +1,14 @@
 import { useCallback } from "react";
-import { createId } from "util/createId";
 import { Type } from "../meta/Type";
 import { ClassMeta, StereoType } from "../meta/ClassMeta";
 import { CONST_ID } from "../meta/Meta";
 import { useCreateClassInnerId } from "./useCreateClassInnerId";
 import { useGetClassByName } from "./useGetClassByName";
+import { ID } from "../../shared";
 
-export function useCreateNewClass(serviceId: number) {
-  const getClassByName = useGetClassByName(serviceId);
-  const createInnerId = useCreateClassInnerId(serviceId);
+export function useCreateNewClass(appId: ID) {
+  const getClassByName = useGetClassByName(appId);
+  const createInnerId = useCreateClassInnerId(appId);
 
   const getNewClassName = useCallback(() => {
     const prefix = "NewClass";

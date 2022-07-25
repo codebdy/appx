@@ -28,6 +28,6 @@ export const takeMessage = (token: any) => {
   return token;
 };
 
-export function getMessage(message: string | IDesignerMiniLocales) {
+export function getLocalMessage(message: string | IDesignerMiniLocales) {
   return takeMessage(message);
 }

@@ -1,16 +1,16 @@
 import { useSetRecoilState } from "recoil";
-import { createId } from "util/createId";
 import { diagramsState } from "../recoil/atoms";
-import intl from "react-intl-universal";
 import { useGetDiagramByName } from "./useGetDiagramByName";
 import { useCallback } from "react";
+import { createUuid, ID } from "../../shared";
+import { getLocalMessage } from "../../locales/getLocalMessage";
 
-export function useCreateNewDiagram(serviceId: number) {
-  const setDiagrams = useSetRecoilState(diagramsState(serviceId));
-  const getDiagramByName = useGetDiagramByName(serviceId);
+export function useCreateNewDiagram(appId: ID) {
+  const setDiagrams = useSetRecoilState(diagramsState(appId));
+  const getDiagramByName = useGetDiagramByName(appId);
 
   const getNewDiagramName = useCallback(() => {
-    const prefix = intl.get("add-diagram");
+    const prefix = getLocalMessage("model.add-diagram");
     let index = 1;
     while (getDiagramByName(prefix + index)) {
       index++;
@@ -21,7 +21,7 @@ export function useCreateNewDiagram(serviceId: number) {
 
   const createNewDiagram = useCallback(() => {
     const newDiagram = {
-      uuid: createId(),
+      uuid: createUuid(),
       name: getNewDiagramName(),
       nodes: [],
       edges: [],

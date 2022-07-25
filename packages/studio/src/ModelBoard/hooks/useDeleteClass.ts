@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
+import { ID } from "../../shared";
 import {
   classesState,
   relationsState,
@@ -8,13 +9,13 @@ import {
 } from "../recoil/atoms";
 import { useBackupSnapshot } from "./useBackupSnapshot";
 
-export function useDeleteClass(serviceId: number) {
-  const setEntites = useSetRecoilState(classesState(serviceId));
-  const [relations, setRelations] = useRecoilState(relationsState(serviceId));
-  const setNodes = useSetRecoilState(x6NodesState(serviceId));
-  const setEdges = useSetRecoilState(x6EdgesState(serviceId));
+export function useDeleteClass(appId: ID) {
+  const setEntites = useSetRecoilState(classesState(appId));
+  const [relations, setRelations] = useRecoilState(relationsState(appId));
+  const setNodes = useSetRecoilState(x6NodesState(appId));
+  const setEdges = useSetRecoilState(x6EdgesState(appId));
 
-  const backupSnapshot = useBackupSnapshot(serviceId);
+  const backupSnapshot = useBackupSnapshot(appId);
 
   const deleteEntity = useCallback(
     (classUuid: string) => {

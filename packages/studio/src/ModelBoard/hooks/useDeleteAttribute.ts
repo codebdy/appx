@@ -1,11 +1,12 @@
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
+import { ID } from "../../shared";
 import { classesState } from "../recoil/atoms";
 import { useChangeClass } from "./useChangeClass";
 
-export function useDeleteAttribute(serviceId: number) {
-  const changeClass = useChangeClass(serviceId);
-  const clses = useRecoilValue(classesState(serviceId))
+export function useDeleteAttribute(appId: ID) {
+  const changeClass = useChangeClass(appId);
+  const clses = useRecoilValue(classesState(appId))
 
   const deleteAttribute = useCallback(
     (attributeUuid: string) => {

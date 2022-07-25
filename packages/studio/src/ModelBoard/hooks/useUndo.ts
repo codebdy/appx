@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
+import { ID } from "../../shared";
 import { EVENT_UNDO_REDO, triggerCanvasEvent } from "../GraphCanvas/events";
 import {
   changedState,
@@ -14,20 +15,20 @@ import {
   x6NodesState,
 } from "../recoil/atoms";
 
-export function useUndo(serviceId: number) {
-  const [undoList, setUndoList] = useRecoilState(undoListState(serviceId));
-  const setRedoList = useSetRecoilState(redoListState(serviceId));
-  const [diagrams, setDiagrams] = useRecoilState(diagramsState(serviceId));
-  const [entities, setEntities] = useRecoilState(classesState(serviceId));
-  const [relations, setRelations] = useRecoilState(relationsState(serviceId));
-  const [x6Nodes, setX6Nodes] = useRecoilState(x6NodesState(serviceId));
-  const [x6Edges, setX6Edges] = useRecoilState(x6EdgesState(serviceId));
-  const setChanged = useSetRecoilState(changedState(serviceId));
+export function useUndo(appId: ID) {
+  const [undoList, setUndoList] = useRecoilState(undoListState(appId));
+  const setRedoList = useSetRecoilState(redoListState(appId));
+  const [diagrams, setDiagrams] = useRecoilState(diagramsState(appId));
+  const [entities, setEntities] = useRecoilState(classesState(appId));
+  const [relations, setRelations] = useRecoilState(relationsState(appId));
+  const [x6Nodes, setX6Nodes] = useRecoilState(x6NodesState(appId));
+  const [x6Edges, setX6Edges] = useRecoilState(x6EdgesState(appId));
+  const setChanged = useSetRecoilState(changedState(appId));
 
   const [selectedDiagram, setSelectedDiagram] =
-    useRecoilState(selectedDiagramState(serviceId));
+    useRecoilState(selectedDiagramState(appId));
   const [selectedElement, setSelectedElement] =
-    useRecoilState(selectedElementState(serviceId));
+    useRecoilState(selectedElementState(appId));
 
   const undo = useCallback(() => {
     const snapshot = undoList[undoList.length - 1];

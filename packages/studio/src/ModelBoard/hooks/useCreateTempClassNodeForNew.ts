@@ -4,8 +4,8 @@ import { NODE_INIT_SIZE } from "../GraphCanvas/nodeInitSize";
 import { StereoType } from "../meta/ClassMeta";
 import { ID } from "../../shared";
 
-export function useCreateTempClassNodeForNew(serviceId: ID) {
-  const creatNewClassMeta = useCreateNewClass(serviceId);
+export function useCreateTempClassNodeForNew(appId: ID) {
+  const creatNewClassMeta = useCreateNewClass(appId);
   const createTempClassNodeForNew = useCallback(
     (stereoType: StereoType) => {
       const classMeta = creatNewClassMeta(stereoType);

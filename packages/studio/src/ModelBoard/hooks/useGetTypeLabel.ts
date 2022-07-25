@@ -1,9 +1,10 @@
 import { useCallback } from "react";
+import { ID } from "../../shared";
 import { Type } from "../meta/Type";
 import { useGetClass } from "./useGetClass";
 
-export function useGetTypeLabel(serviceId: number) {
-  const getClass = useGetClass(serviceId);
+export function useGetTypeLabel(appId: ID) {
+  const getClass = useGetClass(appId);
 
   const typeName = useCallback(
     (type: Type, typeUuid?: string): string => {

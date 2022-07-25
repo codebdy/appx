@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
+import { ID } from "../../shared";
 import { RelationMeta, RelationType } from "../meta/RelationMeta";
 import { relationsState } from "../recoil/atoms";
 
@@ -8,8 +9,8 @@ export interface Association {
   relation: RelationMeta;
 }
 
-export function useGetClassAssociations(serviceId: number) {
-  const relations = useRecoilValue(relationsState(serviceId));
+export function useGetClassAssociations(appId: ID) {
+  const relations = useRecoilValue(relationsState(appId));
 
   const getClassAssociations = useCallback(
     (classUuid: string) => {

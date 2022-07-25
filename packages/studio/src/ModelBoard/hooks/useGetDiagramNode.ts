@@ -1,9 +1,10 @@
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
+import { ID } from "../../shared";
 import { x6NodesState } from "../recoil/atoms";
 
-export function useGetDiagramNode(serviceId: number) {
-  const nodes = useRecoilValue(x6NodesState(serviceId));
+export function useGetDiagramNode(appId: ID) {
+  const nodes = useRecoilValue(x6NodesState(appId));
 
   const getNode = useCallback(
     (uuid: string, diagramUuid: string) => {

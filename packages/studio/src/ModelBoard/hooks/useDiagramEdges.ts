@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { useRecoilValue } from "recoil";
+import { ID } from "../../shared";
 import { RelationMeta } from "../meta/RelationMeta";
 import { X6EdgeMeta } from "../meta/X6EdgeMeta";
 import { relationsState, x6EdgesState } from "../recoil/atoms";
@@ -7,10 +8,10 @@ import { useDiagramNodes } from "./useDiagramNodes";
 
 export type EdgeConfig = X6EdgeMeta & RelationMeta;
 
-export function useDiagramEdges(diagramUuid: string, serviceId: number) {
-  const diagramEdges = useRecoilValue(x6EdgesState(serviceId));
-  const relations = useRecoilValue(relationsState(serviceId));
-  const existsNodes = useDiagramNodes(diagramUuid, serviceId);
+export function useDiagramEdges(diagramUuid: string, appId: ID) {
+  const diagramEdges = useRecoilValue(x6EdgesState(appId));
+  const relations = useRecoilValue(relationsState(appId));
+  const existsNodes = useDiagramNodes(diagramUuid, appId);
 
   const existsDiagramEdges = useMemo(() => {
     return diagramEdges.filter((edge) => edge.diagramUuid === diagramUuid);

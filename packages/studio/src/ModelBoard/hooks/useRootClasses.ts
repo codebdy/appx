@@ -1,12 +1,13 @@
 import { useMemo } from "react";
 import { useRecoilValue } from "recoil";
+import { ID } from "../../shared";
 import { StereoType } from "../meta/ClassMeta";
 import { classesState } from "../recoil/atoms";
 import { useGetFirstParentUuids } from "./useGetFirstParentUuids";
 
-export function useRootClasses(serviceId: number) {
-  const classes = useRecoilValue(classesState(serviceId));
-  const getParentuuids = useGetFirstParentUuids(serviceId);
+export function useRootClasses(appId: ID) {
+  const classes = useRecoilValue(classesState(appId));
+  const getParentuuids = useGetFirstParentUuids(appId);
   const entities = useMemo(() => {
     return classes.filter(
       (cls) =>

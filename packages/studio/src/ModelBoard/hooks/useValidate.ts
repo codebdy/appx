@@ -1,10 +1,11 @@
 import _ from "lodash";
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
-import { useAlertError } from "hooks/useAlertError";
+import { useAlertError } from "../../hooks/useAlertError";
+import { getLocalMessage } from "../../locales/getLocalMessage";
+import { ID } from "../../shared";
 import { classesState } from "../recoil/atoms";
 import { useGetClassAssociations } from "./useGetClassAssociations";
-import intl from "react-intl-universal";
 
 function hasDuplicates(array: string[]) {
   return _.some(array, function (elt, index) {
@@ -12,10 +13,10 @@ function hasDuplicates(array: string[]) {
   });
 }
 
-export function useValidate(serviceId: number) {
-  const classes = useRecoilValue(classesState(serviceId));
+export function useValidate(appId: ID) {
+  const classes = useRecoilValue(classesState(appId));
   const alertError = useAlertError();
-  const getClassAssociations = useGetClassAssociations(serviceId);
+  const getClassAssociations = useGetClassAssociations(appId);
   const validate = useCallback(() => {
     //检查属性名重复
     for (const cls of classes) {
@@ -25,7 +26,7 @@ export function useValidate(serviceId: number) {
         ...(getClassAssociations(cls.uuid)?.map((aso) => aso.name) || [])
       );
       if (hasDuplicates(names.filter((name) => !!name))) {
-        alertError(intl.get("duplicated-property-error", { cls: cls.name }));
+        alertError(getLocalMessage("model.duplicated-property-error"));
         return false;
       }
     }

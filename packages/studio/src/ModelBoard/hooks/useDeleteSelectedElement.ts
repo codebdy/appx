@@ -9,23 +9,24 @@ import { useClass } from "./useClass";
 import { useRelation } from "./useRelation";
 import { useMethod } from "./useMethod";
 import { useDeleteMethod } from "./useDeleteMethod";
+import { ID } from "../../shared";
 
 /**
  * 本方法不需要备份状态
  */
-export function useDeleteSelectedElement(serviceId: number) {
+export function useDeleteSelectedElement(appId: ID) {
   const [selectedElement, setSelectedElement] = useRecoilState(
-    selectedElementState(serviceId)
+    selectedElementState(appId)
   );
-  const cls = useClass(selectedElement || "", serviceId);
-  const deleteClass = useDeleteClass(serviceId);
-  const relation = useRelation(selectedElement || "", serviceId);
-  const deleteRelation = useDeleteRelation(serviceId);
+  const cls = useClass(selectedElement || "", appId);
+  const deleteClass = useDeleteClass(appId);
+  const relation = useRelation(selectedElement || "", appId);
+  const deleteRelation = useDeleteRelation(appId);
 
-  const { attribute } = useAttribute(selectedElement || "", serviceId);
-  const { method } = useMethod(selectedElement || "", serviceId);
-  const deletedAttribute = useDeleteAttribute(serviceId);
-  const deleteMethod = useDeleteMethod(serviceId);
+  const { attribute } = useAttribute(selectedElement || "", appId);
+  const { method } = useMethod(selectedElement || "", appId);
+  const deletedAttribute = useDeleteAttribute(appId);
+  const deleteMethod = useDeleteMethod(appId);
 
   const deleteSelectedElement = useCallback(() => {
     if (cls) {

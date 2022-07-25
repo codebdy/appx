@@ -1,11 +1,11 @@
 import { useCallback } from "react";
-import { createId } from "util/createId";
+import { createUuid, ID } from "../../shared";
 import { AttributeMeta } from "../meta/AttributeMeta";
 import { Type } from "../meta/Type";
 import { useGetTypeLabel } from "./useGetTypeLabel";
 
-export function useCreateAttribute(serviceId: number, prefix?: string) {
-  const getTypeName = useGetTypeLabel(serviceId);
+export function useCreateAttribute(appId: ID, prefix?: string) {
+  const getTypeName = useGetTypeLabel(appId);
 
   const createAttribute = useCallback(
     (attributes: AttributeMeta[]) => {
@@ -19,7 +19,7 @@ export function useCreateAttribute(serviceId: number, prefix?: string) {
       }
 
       const attr = {
-        uuid: createId(),
+        uuid: createUuid(),
         name: namePrefix + index,
         type: Type.String,
         typeLabel: getTypeName(Type.String),

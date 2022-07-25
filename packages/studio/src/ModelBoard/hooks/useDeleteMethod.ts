@@ -1,11 +1,12 @@
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
+import { ID } from "../../shared";
 import { classesState } from "../recoil/atoms";
 import { useChangeClass } from "./useChangeClass";
 
-export function useDeleteMethod(serviceId: number) {
-  const changeClass = useChangeClass(serviceId);
-  const clses = useRecoilValue(classesState(serviceId))
+export function useDeleteMethod(appId: ID) {
+  const changeClass = useChangeClass(appId);
+  const clses = useRecoilValue(classesState(appId))
 
   const deleteMethod = useCallback(
     (methodUuid: string) => {
