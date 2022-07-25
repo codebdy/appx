@@ -8,6 +8,8 @@ import RootAction from "./RootAction";
 import { useRecoilValue } from 'recoil';
 import { packagesState } from './../recoil/atoms';
 import { useSelectedAppId } from './../hooks/useSelectedAppId';
+import TreeNodeLabel from "./TreeNodeLabel";
+import PackageLabel from "./PackageLabel";
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
@@ -18,7 +20,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   const getPackageNodes = useCallback(() => {
     return packages.map((pkg) => {
       return {
-        title: pkg.name,
+        title:<PackageLabel pkg = {pkg} />,
         key: pkg.uuid,
         children: [
           { title: 'leaf 0-0', key: '0-0-0', isLeaf: true },
@@ -36,10 +38,9 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
         </svg>
       </SvgIcon>,
       title:
-        <div className='tree-node-label'>
+        <TreeNodeLabel fixedAction action={<RootAction />}>
           <div>{getLocalMessage("model.DomainModel")}</div>
-          <RootAction />
-        </div>,
+        </TreeNodeLabel>,
       key: "0",
       children: getPackageNodes()
     },

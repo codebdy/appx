@@ -6,16 +6,14 @@ import { useSelectedAppId } from "../hooks/useSelectedAppId";
 import { useCreateNewPackage } from './../hooks/useCreateNewPackage';
 import { useSetRecoilState } from 'recoil';
 import { packagesState } from "../recoil/atoms";
-import {MenuInfo} from "rc-menu/lib/interface";
 
-const RootAction = memo(() => {
+const PackageAction = memo(() => {
   const appId = useSelectedAppId()
   const setPackages = useSetRecoilState(packagesState(appId))
   const createNewPackage = useCreateNewPackage(appId)
   const handleAddPackage = useCallback(
-    (event:MenuInfo) => {
-      setPackages(packages=>[...packages, createNewPackage()]);
-      event?.domEvent.stopPropagation();
+    () => {
+      setPackages(packages=>[...packages, createNewPackage()])
     },
     [],
   )
@@ -52,4 +50,4 @@ const RootAction = memo(() => {
   )
 })
 
-export default RootAction;
+export default PackageAction;
