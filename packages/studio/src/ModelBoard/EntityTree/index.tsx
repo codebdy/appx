@@ -5,14 +5,15 @@ import { DataNode } from "antd/lib/tree";
 import SvgIcon from "../../common/SvgIcon";
 import { getLocalMessage } from "../../locales/getLocalMessage";
 import RootAction from "./RootAction";
-import { useRecoilValue } from 'recoil';
-import { packagesState, diagramsState, classesState } from './../recoil/atoms';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { packagesState, diagramsState, classesState, selectedDiagramState, selectedElementState } from './../recoil/atoms';
 import { useSelectedAppId } from './../hooks/useSelectedAppId';
 import TreeNodeLabel from "./TreeNodeLabel";
 import PackageLabel from "./PackageLabel";
 import { PackageMeta } from "../meta/PackageMeta";
 import { ClassMeta, StereoType } from "../meta/ClassMeta";
 import { classSvg } from "./svgs";
+import { useIsDiagram } from "../hooks/useIsDiagram";
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
@@ -21,6 +22,9 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   const packages = useRecoilValue(packagesState(appId));
   const diagrams = useRecoilValue(diagramsState(appId));
   const classes = useRecoilValue(classesState(appId));
+  const isDiagram = useIsDiagram(appId)
+  const [selectedDiagramId, setSelecteDiagramId] = useRecoilState(selectedDiagramState(appId))
+  const [selectedElement, setSelectedElement] = useRecoilState(selectedElementState(appId))
 
   const getClassAttributesNode = useCallback((cls: ClassMeta) => {
     return {
@@ -113,6 +117,14 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
 
   ], [getPackageNodes, packages]);
 
+  const handleSelect = useCallback((keys: string[]) => {
+    for (const uuid of keys) {
+      if (isDiagram(uuid)) {
+        setSelecteDiagramId(uuid);
+      }
+    }
+  }, [isDiagram])
+
   return (
 
     <div
@@ -123,7 +135,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
       }}
     >
       <DirectoryTree
-        selectedKeys={[]}
+        selectedKeys={[selectedDiagramId, selectedElement]}
         //className='page-list-tree'
         // allowDrop={()=>{
         //   return true
@@ -134,7 +146,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
         //   }
         // }
         //defaultExpandAll
-        //onSelect={onSelect}
+        onSelect={handleSelect}
         treeData={treeData}
       />
     </div>
