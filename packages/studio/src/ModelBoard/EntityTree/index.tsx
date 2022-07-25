@@ -14,6 +14,8 @@ import { PackageMeta } from "../meta/PackageMeta";
 import { ClassMeta, StereoType } from "../meta/ClassMeta";
 import { classSvg } from "./svgs";
 import { useIsDiagram } from "../hooks/useIsDiagram";
+import { useIsElement } from "../hooks/useIsElement";
+import { PRIMARY_COLOR } from "../../consts";
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
@@ -22,9 +24,10 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   const packages = useRecoilValue(packagesState(appId));
   const diagrams = useRecoilValue(diagramsState(appId));
   const classes = useRecoilValue(classesState(appId));
-  const isDiagram = useIsDiagram(appId)
-  const [selectedDiagramId, setSelecteDiagramId] = useRecoilState(selectedDiagramState(appId))
-  const [selectedElement, setSelectedElement] = useRecoilState(selectedElementState(appId))
+  const isDiagram = useIsDiagram(appId);
+  const isElement = useIsElement(appId);
+  const [selectedDiagramId, setSelecteDiagramId] = useRecoilState(selectedDiagramState(appId));
+  const [selectedElement, setSelectedElement] = useRecoilState(selectedElementState(appId));
 
   const getClassAttributesNode = useCallback((cls: ClassMeta) => {
     return {
@@ -81,14 +84,14 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
 
     for (const diagram of diagrams.filter(diagram => diagram.packageUuid === pkg.uuid)) {
       packageChildren.push({
-        title: diagram.name,
+        title: <div style={{ color: selectedDiagramId === diagram.uuid ? PRIMARY_COLOR : undefined }} >{diagram.name}</div>,
         key: diagram.uuid,
         isLeaf: true,
       })
     }
 
     return packageChildren;
-  }, [diagrams, classes, getClassCategoryNode])
+  }, [selectedDiagramId, diagrams, classes, getClassCategoryNode])
 
   const getPackageNodes = useCallback(() => {
     return packages.map((pkg) => {
@@ -121,9 +124,11 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     for (const uuid of keys) {
       if (isDiagram(uuid)) {
         setSelecteDiagramId(uuid);
+      } else if (isElement(uuid)) {
+        setSelectedElement(uuid);
       }
     }
-  }, [isDiagram])
+  }, [isDiagram, isElement])
 
   return (
 
@@ -135,7 +140,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
       }}
     >
       <DirectoryTree
-        selectedKeys={[selectedDiagramId, selectedElement]}
+        selectedKeys={[selectedElement]}
         //className='page-list-tree'
         // allowDrop={()=>{
         //   return true
