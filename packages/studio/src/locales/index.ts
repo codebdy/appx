@@ -68,6 +68,9 @@ GlobalRegistry.registerDesignerLocales({
       PCDesign: "PC设计",
       H5Design: "H5设计",
       AdminDesign: "管理端设计"
+    },
+    model: {
+      DomainModel: "业务模型"
     }
   },
   'en-US': {
