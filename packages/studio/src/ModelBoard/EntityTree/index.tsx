@@ -22,11 +22,28 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   const diagrams = useRecoilValue(diagramsState(appId));
   const classes = useRecoilValue(classesState(appId));
 
+  const getClassAttributesNode = useCallback((cls: ClassMeta) => {
+    return {
+      title: getLocalMessage("model.Atrributes"),
+      key: cls.uuid + "attributes",
+      //children: clses.map(cls => getClassNode(cls))
+    }
+  }, [])
+
+  const getClassRelationsNode = useCallback((cls: ClassMeta) => {
+    return {
+      title: getLocalMessage("model.Relationships"),
+      key: cls.uuid + "relations",
+      //children: clses.map(cls => getClassNode(cls))
+    }
+  }, [])
+
   const getClassNode = useCallback((cls: ClassMeta) => {
     return {
       icon: <SvgIcon>{classSvg}</SvgIcon>,
       title: cls.stereoType === StereoType.Enum ? <div style={{ fontStyle: "italic" }}>{cls.name}</div> : cls.name,
       key: cls.uuid,
+      children: [getClassAttributesNode(cls), getClassRelationsNode(cls)]
     }
   }, [])
 
