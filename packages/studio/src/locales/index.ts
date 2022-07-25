@@ -2,10 +2,11 @@ import { GlobalRegistry } from '@designable/core'
 
 GlobalRegistry.registerDesignerLocales({
   'zh-CN': {
+    Edit: "编辑",
+    Delete: "删除",
     Confirm: "确定",
     Cancel: "取消",
     Settings: "设置",
-    Delete: "删除",
     App: "应用",
     Engines: "引擎中心",
     Model: "模型",
@@ -71,9 +72,15 @@ GlobalRegistry.registerDesignerLocales({
     },
     model: {
       DomainModel: "业务模型",
-      AddPackage:"添加包",
-      ExportModel:"导出模型",
-      ImportModel:"导入模型"
+      AddPackage: "添加包",
+      ExportModel: "导出模型",
+      ImportModel: "导入模型",
+      AddDiagram: "添加类图",
+      AddClass: "添加类",
+      AddEntity: "添加实体类",
+      AddAbstract: "添加抽象类",
+      AddEnum: "添加枚举",
+      AddValueObject: "添加值类",
     }
   },
   'en-US': {

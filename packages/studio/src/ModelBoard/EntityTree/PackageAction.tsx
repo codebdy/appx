@@ -1,4 +1,4 @@
-import { FolderAddOutlined, DownloadOutlined, ImportOutlined, MoreOutlined } from "@ant-design/icons";
+import { FolderAddOutlined, DownloadOutlined, ImportOutlined, MoreOutlined, EditOutlined, DeleteOutlined, FileAddOutlined, PlusSquareOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
 import { getLocalMessage } from "../../locales/getLocalMessage";
@@ -13,33 +13,62 @@ const PackageAction = memo(() => {
   const createNewPackage = useCreateNewPackage(appId)
   const handleAddPackage = useCallback(
     () => {
-      setPackages(packages=>[...packages, createNewPackage()])
+      setPackages(packages => [...packages, createNewPackage()])
     },
     [],
   )
 
   const menu = useMemo(() => (
-    <Menu
-      items={[
-        {
-          icon: <FolderAddOutlined />,
-          label: getLocalMessage("model.AddPackage"),
-          key: '0',
-          onClick: handleAddPackage
-        },
-        {
-          icon: <DownloadOutlined />,
-          label: getLocalMessage("model.ExportModel"),
-          key: '1',
-        },
-        {
-          icon: <ImportOutlined />,
-          label: getLocalMessage("model.ImportModel"),
-          key: '2',
-        },
-      ]}
-    />
-  ), []);
+    <div style={{ backgroundColor: "#000" }}>
+      <Menu
+        items={[
+          {
+            icon: <FileAddOutlined />,
+            label: getLocalMessage("model.AddDiagram"),
+            key: '0',
+          },
+          {
+            icon: <PlusSquareOutlined />,
+            label: getLocalMessage("model.AddClass"),
+            key: '1',
+            onClick: e => e.domEvent.stopPropagation(),
+            children: [
+              {
+                label: getLocalMessage("model.AddEntity"),
+                key: '1',
+                onClick:  e => e.domEvent.stopPropagation(),
+              },
+              {
+                label: getLocalMessage("model.AddAbstract"),
+                key: '2',
+                onClick:  e => e.domEvent.stopPropagation(),
+              },
+              {
+                label: getLocalMessage("model.AddEnum"),
+                key: '3',
+                onClick:  e => e.domEvent.stopPropagation(),
+              },
+              {
+                label: getLocalMessage("model.AddValueObject"),
+                key: '4',
+                onClick:  e => e.domEvent.stopPropagation(),
+              },
+            ]
+          },
+          {
+            icon: <EditOutlined />,
+            label: getLocalMessage("Edit"),
+            key: '5',
+          },
+          {
+            icon: <DeleteOutlined />,
+            label: getLocalMessage("Delete"),
+            key: '6',
+          },
+        ]}
+      />
+    </div>
+  ), [handleAddPackage]);
 
   return (
     <Dropdown overlay={menu} trigger={['click']}>

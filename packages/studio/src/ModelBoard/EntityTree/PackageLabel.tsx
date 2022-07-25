@@ -11,7 +11,7 @@ const PackageLabel = memo((
 ) => {
   const {pkg} = props;
   return (
-    <TreeNodeLabel action={<PackageAction />}>
+    <TreeNodeLabel fixedAction action={<PackageAction />}>
       <div>{pkg.name}</div>
     </TreeNodeLabel>
   )
