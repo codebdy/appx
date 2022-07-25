@@ -6,23 +6,9 @@ import {
   offCanvasEvent,
   onCanvasEvent,
 } from "../events";
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    hover: {
-      background: "rgba(80,111,226,0.05)",
-    },
-    selected: {
-      background: "rgba(80,111,226,0.1)",
-    },
-    property: {
-      position: "relative",
-      fontSize: "0.9rem",
-      padding: "2px 0",
-      display: "flex",
-    },
-  })
-);
+import { MethodMeta } from "../../meta/MethodMeta";
+import { Button } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
 
 export default function MethodView(props: {
   method: MethodMeta;
@@ -30,7 +16,6 @@ export default function MethodView(props: {
   onDelete: (id: string) => void;
 }) {
   const { method, onClick, onDelete } = props;
-  const classes = useStyles();
   const [hover, setHover] = useState(false);
   const [isSelected, setIsSelected] = React.useState(false);
   const mountRef = useMountRef();
@@ -62,22 +47,22 @@ export default function MethodView(props: {
 
   return (
     <div
-      className={classNames(classes.property, {
-        [classes.hover]: hover,
-        [classes.selected]: isSelected,
+      className={classNames('property', {
+        ['hover']: hover,
+        ['selected']: isSelected,
       })}
       onMouseOver={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       onClick={handleClick}
     >
-      <Box
-        sx={{
+      <div
+        style={{
           display: "flex",
           alignItems: "center",
         }}
       >
-        <Typography
-          sx={{
+        <div
+          style={{
             marginLeft: "3px",
           }}
         >
@@ -89,39 +74,35 @@ export default function MethodView(props: {
             //   : ""
           }
           )
-        </Typography>
+        </div>
         :
-        <Typography
-          sx={{
+        <div
+          style={{
             fontSize: "0.8rem",
             marginLeft: "5px",
           }}
         >
           {method.typeLabel}
-        </Typography>
-      </Box>
+        </div>
+      </div>
       {hover && (
-        <Box
-          sx={{
+        <div
+          style={{
             zIndex: 1,
             position: "absolute",
             right: "4px",
             top: "0",
             borderRadius: "50%",
-            background: (theme) => theme.palette.background.paper,
+            //background: (theme) => theme.palette.background.paper,
           }}
         >
-          <IconButton
-            sx={{
-              width: "24px",
-              height: "24px",
-            }}
+          <Button
             onClick={handleDeleteClick}
-            size="large"
+            shape="circle"
           >
-            <DeleteOutlineOutlinedIcon sx={{ fontSize: 16 }} />
-          </IconButton>
-        </Box>
+            <DeleteOutlined />
+          </Button>
+        </div>
       )}
     </div>
   );
