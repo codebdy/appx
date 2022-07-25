@@ -3,7 +3,8 @@ import SvgIcon from '../../../common/SvgIcon';
 import React, { memo } from 'react';
 import "./index.less"
 import { DataNode } from 'antd/lib/tree';
-import { getMessage, TextWidget } from '../TextWidget';
+import { TextWidget } from '../TextWidget';
+import { getMessage } from "../takeLocale";
 import { EditOutlined } from '@ant-design/icons';
 
 const { DirectoryTree } = Tree;

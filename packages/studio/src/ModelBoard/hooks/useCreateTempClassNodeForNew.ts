@@ -2,8 +2,9 @@ import { useCallback } from "react";
 import { useCreateNewClass } from "./useCreateNewClass";
 import { NODE_INIT_SIZE } from "../GraphCanvas/nodeInitSize";
 import { StereoType } from "../meta/ClassMeta";
+import { ID } from "../../shared";
 
-export function useCreateTempClassNodeForNew(serviceId: number) {
+export function useCreateTempClassNodeForNew(serviceId: ID) {
   const creatNewClassMeta = useCreateNewClass(serviceId);
   const createTempClassNodeForNew = useCallback(
     (stereoType: StereoType) => {

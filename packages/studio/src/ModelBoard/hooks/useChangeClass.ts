@@ -1,16 +1,17 @@
 import { useCallback } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { useAlertError } from "hooks/useAlertError";
+import { useAlertError } from "../../hooks/useAlertError";
+import { getMessage } from "../../locales/getMessage";
+import { ID } from "../../shared";
 import { EVENT_CLASS_CHANGED, triggerCanvasEvent } from "../GraphCanvas/events";
 import { ClassMeta } from "../meta/ClassMeta";
 import { classesState } from "../recoil/atoms";
 import { useBackupSnapshot } from "./useBackupSnapshot";
-import intl from "react-intl-universal";
 
-export function useChangeClass(serviceId: number) {
-  const backupSnapshot = useBackupSnapshot(serviceId);
-  const setClasses = useSetRecoilState(classesState(serviceId));
-  const classes = useRecoilValue(classesState(serviceId));
+export function useChangeClass(appId: ID) {
+  const backupSnapshot = useBackupSnapshot(appId);
+  const setClasses = useSetRecoilState(classesState(appId));
+  const classes = useRecoilValue(classesState(appId));
   const alertError = useAlertError();
 
   const changeClass = useCallback(
@@ -20,7 +21,7 @@ export function useChangeClass(serviceId: number) {
           .filter((cl) => cl.uuid !== cls.uuid)
           .find((cl) => cl.name === cls.name)
       ) {
-        alertError(intl.get("error-name-repeat"));
+        alertError(getMessage("model.error-name-repeat"));
         return;
       }
       backupSnapshot();

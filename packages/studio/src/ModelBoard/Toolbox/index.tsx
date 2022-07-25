@@ -1,5 +1,4 @@
 import React, { memo, useCallback } from "react";
-import intl from "react-intl-universal";
 import { Addon, Graph } from "@antv/x6";
 import { useEffect } from "react";
 import { ClassView } from "../GraphCanvas/ClassView";
@@ -13,8 +12,6 @@ import { RelationType } from "../meta/RelationMeta";
 import { pressedLineTypeState } from "../recoil/atoms";
 import { useRecoilState } from "recoil";
 import { useCreateTempClassNodeForNew } from "../hooks/useCreateTempClassNodeForNew";
-import { useScrollbarStyles } from "theme/useScrollbarStyles";
-import { Box } from "@mui/material";
 import { useSelectedServiceId } from "../hooks/useSelectedServiceId";
 import { ClassRect } from "./ClassRect";
 import { StereoType } from "../meta/ClassMeta";
@@ -30,14 +27,14 @@ export const ToolItem = memo(
   }) => {
     const { children, onMouseDown, onClick, selected } = props;
     return (
-      <Box
-        sx={{
+      <div
+        style={{
           display: "flex",
           flexFlow: "column",
           alignItems: "center",
-          marginBottom: (theme) => theme.spacing(2),
-          color: (theme) =>
-            selected ? theme.palette.primary.main : theme.palette.text.primary,
+          // marginBottom: (theme) => theme.spacing(2),
+          // color: (theme) =>
+          //   selected ? theme.palette.primary.main : theme.palette.text.primary,
           cursor: onClick ? "pointer" : "move",
         }}
         data-type="rect"
@@ -45,7 +42,7 @@ export const ToolItem = memo(
         onClick={onClick}
       >
         {children}
-      </Box>
+      </div>
     );
   }
 );
@@ -63,10 +60,10 @@ export const Toolbox = memo((props: { graph?: Graph }) => {
   useEffect(() => {
     const theDnd = graph
       ? new Dnd({
-          target: graph,
-          scaled: false,
-          animation: true,
-        })
+        target: graph,
+        scaled: false,
+        animation: true,
+      })
       : undefined;
     setDnd(theDnd);
   }, [graph]);

@@ -1,20 +1,21 @@
 import { useCallback } from "react";
-import { useAlertError } from "hooks/useAlertError";
 import { AttributeMeta } from "../meta/AttributeMeta";
 import { ClassMeta } from "../meta/ClassMeta";
 import { useChangeClass } from "./useChangeClass";
-import intl from "react-intl-universal";
 import { useCheckClassProperyName } from "./useCheckClassProperyName";
+import { ID } from "../../shared";
+import { useAlertError } from "../../hooks/useAlertError";
+import { getMessage } from "../../locales/getMessage";
 
-export function useChangeAttribute(serviceId: number) {
-  const changeEntity = useChangeClass(serviceId);
+export function useChangeAttribute(appId: ID) {
+  const changeEntity = useChangeClass(appId);
   const alertError = useAlertError();
-  const chackName = useCheckClassProperyName(serviceId);
+  const chackName = useCheckClassProperyName(appId);
 
   const changeAttribute = useCallback(
     (attr: AttributeMeta, cls: ClassMeta) => {
       if (!chackName(cls.uuid, attr.name, attr.uuid)) {
-        alertError(intl.get("error-name-repeat"));
+        alertError(getMessage("model.error-name-repeat"));
         return;
       }
       changeEntity({
