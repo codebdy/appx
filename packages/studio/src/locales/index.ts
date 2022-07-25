@@ -85,7 +85,7 @@ GlobalRegistry.registerDesignerLocales({
       NewDiagram: "新建类图",
       AbstractClass:"抽象类",
       EntityClass:"实体类",
-      EnumtClass:"枚举类",
+      EnumClass:"枚举类",
       ValueClass:"值类"
     }
   },
