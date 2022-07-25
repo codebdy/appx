@@ -6,11 +6,12 @@ import SvgIcon from "../../common/SvgIcon";
 import { getLocalMessage } from "../../locales/getLocalMessage";
 import RootAction from "./RootAction";
 import { useRecoilValue } from 'recoil';
-import { packagesState, diagramsState } from './../recoil/atoms';
+import { packagesState, diagramsState, classesState } from './../recoil/atoms';
 import { useSelectedAppId } from './../hooks/useSelectedAppId';
 import TreeNodeLabel from "./TreeNodeLabel";
 import PackageLabel from "./PackageLabel";
 import { PackageMeta } from "../meta/PackageMeta";
+import { ClassMeta, StereoType } from "../meta/ClassMeta";
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
@@ -18,11 +19,37 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   const appId = useSelectedAppId();
   const packages = useRecoilValue(packagesState(appId));
   const diagrams = useRecoilValue(diagramsState(appId));
+  const classes = useRecoilValue(classesState(appId));
+
+  const getClassCategoryNode = useCallback((title: string, key: string, clses: ClassMeta[]) => {
+    return {
+      title: title,
+      key: key,
+    }
+  }, [])
 
   const getPackageChildren = useCallback((pkg: PackageMeta) => {
     const packageChildren: DataNode[] = []
+    const abstracts = classes.filter(cls => cls.stereoType === StereoType.Abstract)
+    const entities = classes.filter(cls => cls.stereoType === StereoType.Entity)
+    const enums = classes.filter(cls => cls.stereoType === StereoType.Enum)
+    const valueObjects = classes.filter(cls => cls.stereoType === StereoType.ValueObject)
+
+    if (abstracts.length > 0) {
+      packageChildren.push(getClassCategoryNode(getLocalMessage("model.AbstractClass"), pkg.uuid + "abstracts", abstracts))
+    }
+    if (entities.length > 0) {
+      packageChildren.push(getClassCategoryNode(getLocalMessage("model.EntityClass"), pkg.uuid + "entities", entities))
+    }
+    if (enums.length > 0) {
+      packageChildren.push(getClassCategoryNode(getLocalMessage("model.EnumClass"), pkg.uuid + "enums", enums))
+    }
+    if (valueObjects.length > 0) {
+      packageChildren.push(getClassCategoryNode(getLocalMessage("model.ValueClass"), pkg.uuid + "valueObjects", valueObjects))
+    }
+
     for (const diagram of diagrams.filter(diagram => diagram.packageUuid === pkg.uuid)) {
-        packageChildren.push({
+      packageChildren.push({
         title: diagram.name,
         key: diagram.uuid,
         isLeaf: true,
@@ -30,7 +57,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     }
 
     return packageChildren;
-  }, [diagrams])
+  }, [diagrams, classes])
 
   const getPackageNodes = useCallback(() => {
     return packages.map((pkg) => {

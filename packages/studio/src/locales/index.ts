@@ -82,7 +82,11 @@ GlobalRegistry.registerDesignerLocales({
       AddEnum: "添加枚举",
       AddValueObject: "添加值类",
       NewPackage: "新建包",
-      NewDiagram: "新建类图"
+      NewDiagram: "新建类图",
+      AbstractClass:"抽象类",
+      EntityClass:"实体类",
+      EnumtClass:"枚举类",
+      ValueClass:"值类"
     }
   },
   'en-US': {
