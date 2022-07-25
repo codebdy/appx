@@ -1,6 +1,6 @@
-import React, { memo } from "react";
+import React, { memo, useMemo } from "react";
 import { Graph } from "@antv/x6";
-import { Button, Tree } from "antd";
+import { Button, Dropdown, Menu, Tree } from "antd";
 import { DataNode } from "antd/lib/tree";
 import { EditOutlined, MoreOutlined } from "@ant-design/icons";
 import SvgIcon from "../../common/SvgIcon";
@@ -10,6 +10,27 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   const { graph } = props;
 
   const { DirectoryTree } = Tree;
+  const menu = useMemo(() => (
+    <Menu
+      items={[
+        {
+          label: <a href="https://www.antgroup.com">1st menu item</a>,
+          key: '0',
+        },
+        {
+          label: <a href="https://www.aliyun.com">2nd menu item</a>,
+          key: '1',
+        },
+        {
+          type: 'divider',
+        },
+        {
+          label: '3rd menu item',
+          key: '3',
+        },
+      ]}
+    />
+  ), []);
 
   const treeData: DataNode[] = [
     {
@@ -21,11 +42,11 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
       title:
         <div className='tree-node-label'>
           <div>{getLocalMessage("model.DomainModel")}</div>
-          <div>
-            <Button className='no-border' shape='circle' size='small'>
+          <Dropdown overlay={menu} trigger={['click']}>
+            <Button className='no-border' shape='circle' size='small'onClick={e => e.stopPropagation()}>
               <MoreOutlined />
             </Button>
-          </div>
+          </Dropdown>
         </div>,
       key: '0-0',
 
