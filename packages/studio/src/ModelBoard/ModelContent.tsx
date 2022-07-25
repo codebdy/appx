@@ -17,7 +17,7 @@ import { useShowError } from "../hooks/useShowError";
 import React from "react";
 
 export const ModelContent = memo(
-  (props: { appId?:ID; graph?: Graph; onSetGraph: (graph?: Graph) => void }) => {
+  (props: { appId?: ID; graph?: Graph; onSetGraph: (graph?: Graph) => void }) => {
     const { appId, graph, onSetGraph } = props;
     const setPublishedId = useSetRecoilState(publishedIdState(appId));
     const selectedDiagram = useRecoilValue(selectedDiagramState(appId));
@@ -35,6 +35,7 @@ export const ModelContent = memo(
           flex: 1,
           display: "flex",
           flexFlow: "column",
+          background: "red",
         }}
       >
         <ModelToolbar />

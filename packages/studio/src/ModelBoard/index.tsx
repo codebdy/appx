@@ -14,7 +14,7 @@ const ModelsBoard = memo(() => {
         flex: 1,
         display: "flex",
         flexFlow: "row",
-        height: "0",
+        height: "100%",
       }}
     >
       <EntityTree graph={graph}></EntityTree>
