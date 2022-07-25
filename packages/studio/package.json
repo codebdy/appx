@@ -12,10 +12,11 @@
   },
   "devDependencies": {},
   "dependencies": {
+    "@appx/enthooks": "^0.1.0",
     "@designable/formily-antd": "^1.0.0-beta.45",
     "array-move": "^4.0.0",
     "react-router-dom": "^6.3.0",
-    "uuid": "^8.3.2",
-    "@appx/enthooks": "^0.1.0"
+    "recoil": "^0.7.4",
+    "uuid": "^8.3.2"
   }
 }
