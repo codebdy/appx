@@ -5,9 +5,9 @@ import { createSchemaField } from '@formily/react'
 import { Checkbox, Form, FormItem, Input, Password, Submit } from '@formily/antd'
 import { Card } from 'antd'
 import * as ICONS from '@ant-design/icons'
-import { getMessage } from "../AppDesigner/widgets"
 import { useLogin } from "@appx/enthooks"
 import { TOKEN_NAME } from "@appx/shared"
+import { getLocalMessage } from "../locales/getLocalMessage"
 
 const normalForm = createForm({
   validateFirst: true,
@@ -32,7 +32,7 @@ const normalSchema = () => ({
   properties: {
     username: {
       type: 'string',
-      title: getMessage("UserName"),
+      title: getLocalMessage("UserName"),
       default: "admin",
       required: true,
       'x-decorator': 'FormItem',
@@ -43,7 +43,7 @@ const normalSchema = () => ({
     },
     password: {
       type: 'string',
-      title: getMessage("Password"),
+      title: getLocalMessage("Password"),
       default: "123456",
       required: true,
       'x-decorator': 'FormItem',
@@ -58,7 +58,7 @@ const normalSchema = () => ({
       'x-decorator': 'FormItem',
       'x-component': 'Checkbox',
       "x-component-props": {
-        children: getMessage("RememberMe"),
+        children: getLocalMessage("RememberMe"),
       }
     }
   },
@@ -105,7 +105,7 @@ const Login = memo(() => {
       backgroundSize: "cover",
     }}>
       <Card style={{ width: 400 }}>
-        <h3>{getMessage("Login")}</h3>
+        <h3>{getLocalMessage("Login")}</h3>
         <Form
           form={normalForm}
           layout="vertical"
@@ -114,7 +114,7 @@ const Login = memo(() => {
         >
           <SchemaField schema={normalSchema()} />
           <Submit block size="large">
-            {getMessage("Login")}
+            {getLocalMessage("Login")}
           </Submit>
         </Form>
       </Card>
