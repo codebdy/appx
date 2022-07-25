@@ -4,7 +4,7 @@ import { ClassMeta, StereoType } from "../meta/ClassMeta";
 import { CONST_ID } from "../meta/Meta";
 import { useCreateClassInnerId } from "./useCreateClassInnerId";
 import { useGetClassByName } from "./useGetClassByName";
-import { ID } from "../../shared";
+import { createUuid, ID } from "../../shared";
 
 export function useCreateNewClass(appId: ID) {
   const getClassByName = useGetClassByName(appId);
@@ -21,25 +21,26 @@ export function useCreateNewClass(appId: ID) {
   }, [getClassByName]);
 
   const createNewClass = useCallback(
-    (stereoType: StereoType) => {
+    (stereoType: StereoType, packageUuid: string) => {
       const newClass: ClassMeta = {
-        uuid: createId(),
+        uuid: createUuid(),
         innerId: createInnerId(),
         name: getNewClassName(),
         stereoType: stereoType,
+        packageUuid,
         attributes:
           stereoType === StereoType.Enum ||
-          stereoType === StereoType.ValueObject 
+            stereoType === StereoType.ValueObject
             ? []
             : [
-                {
-                  uuid: createId(),
-                  name: CONST_ID,
-                  type: Type.ID,
-                  primary: true,
-                  typeLabel: Type.ID,
-                },
-              ],
+              {
+                uuid: createUuid(),
+                name: CONST_ID,
+                type: Type.ID,
+                primary: true,
+                typeLabel: Type.ID,
+              },
+            ],
         methods: [],
       };
       //setEntities((entites) => [...entites, newEntity]);

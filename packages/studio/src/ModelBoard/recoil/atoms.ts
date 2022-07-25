@@ -52,6 +52,11 @@ export const metaState = atomFamily<Meta | undefined, ID>({
   default: undefined,
 });
 
+export const packagesState = atomFamily<PackageMeta[], ID>({
+  key: "local.packages",
+  default: [],
+})
+
 export const classesState = atomFamily<ClassMeta[], ID>({
   key: "local.classes",
   default: [],

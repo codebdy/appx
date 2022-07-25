@@ -15,7 +15,7 @@ export interface DiagramMeta {
    */
   name: string;
 
-  packageuuid: string;
+  packageUuid: string;
 
   /**
    * 节点

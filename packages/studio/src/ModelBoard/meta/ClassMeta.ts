@@ -39,6 +39,6 @@ export interface ClassMeta {
   methods: MethodMeta[];
 
   root?: boolean;
-  packageuuid: string;
+  packageUuid: string;
   description?: string;
 }
