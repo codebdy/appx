@@ -14,8 +14,8 @@ export enum StereoType {
   Entity = "Entity",
   //GQLInterface = "GQLInterface",
   //Association = "Association",
-  External = "External",//外部实体
-  Partial = "Partial"
+  //External = "External",//外部实体
+  //Partial = "Partial"
 }
 
 /**

@@ -78,22 +78,34 @@ const PackageAction = memo((
               {
                 label: getLocalMessage("model.AddEntity"),
                 key: '1',
-                onClick: e => e.domEvent.stopPropagation(),
+                onClick: e => {
+                  e.domEvent.stopPropagation();
+                  addClass(StereoType.Entity)
+                },
               },
               {
                 label: getLocalMessage("model.AddAbstract"),
                 key: '2',
-                onClick: e => e.domEvent.stopPropagation(),
+                onClick: e =>  {
+                  e.domEvent.stopPropagation();
+                  addClass(StereoType.Abstract)
+                },
               },
               {
                 label: getLocalMessage("model.AddEnum"),
                 key: '3',
-                onClick: e => e.domEvent.stopPropagation(),
+                onClick: e =>  {
+                  e.domEvent.stopPropagation();
+                  addClass(StereoType.Enum)
+                },
               },
               {
                 label: getLocalMessage("model.AddValueObject"),
                 key: '4',
-                onClick: e => e.domEvent.stopPropagation(),
+                onClick: e =>  {
+                  e.domEvent.stopPropagation();
+                  addClass(StereoType.ValueObject)
+                },
               },
             ]
           },
