@@ -48,11 +48,14 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   const getClassNode = useCallback((cls: ClassMeta) => {
     return {
       icon: <SvgIcon>{classSvg}</SvgIcon>,
-      title: cls.stereoType === StereoType.Enum ? <div style={{ fontStyle: "italic" }}>{cls.name}</div> : cls.name,
+      title:
+        <div style={{ color: selectedElement === cls.uuid ? PRIMARY_COLOR : undefined }} >
+          {cls.name}
+        </div>,
       key: cls.uuid,
       children: [getClassAttributesNode(cls), getClassRelationsNode(cls)]
     }
-  }, [])
+  }, [selectedElement])
 
   const getClassCategoryNode = useCallback((title: string, key: string, clses: ClassMeta[]) => {
     return {
@@ -84,14 +87,14 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
 
     for (const diagram of diagrams.filter(diagram => diagram.packageUuid === pkg.uuid)) {
       packageChildren.push({
-        title: <div style={{ color: selectedDiagramId === diagram.uuid ? PRIMARY_COLOR : undefined }} >{diagram.name}</div>,
+        title: diagram.name,
         key: diagram.uuid,
         isLeaf: true,
       })
     }
 
     return packageChildren;
-  }, [selectedDiagramId, diagrams, classes, getClassCategoryNode])
+  }, [diagrams, classes, getClassCategoryNode])
 
   const getPackageNodes = useCallback(() => {
     return packages.map((pkg) => {
@@ -140,7 +143,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
       }}
     >
       <DirectoryTree
-        selectedKeys={[selectedElement]}
+        selectedKeys={[selectedDiagramId]}
         //className='page-list-tree'
         // allowDrop={()=>{
         //   return true
