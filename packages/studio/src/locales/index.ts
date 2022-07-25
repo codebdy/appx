@@ -70,7 +70,10 @@ GlobalRegistry.registerDesignerLocales({
       AdminDesign: "管理端设计"
     },
     model: {
-      DomainModel: "业务模型"
+      DomainModel: "业务模型",
+      AddPackage:"添加包",
+      ExportModel:"导出模型",
+      ImportModel:"导入模型"
     }
   },
   'en-US': {

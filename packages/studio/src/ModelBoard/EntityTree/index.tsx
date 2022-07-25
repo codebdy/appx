@@ -2,35 +2,16 @@ import React, { memo, useMemo } from "react";
 import { Graph } from "@antv/x6";
 import { Button, Dropdown, Menu, Tree } from "antd";
 import { DataNode } from "antd/lib/tree";
-import { EditOutlined, MoreOutlined } from "@ant-design/icons";
+import { DownloadOutlined, FolderAddOutlined, ImportOutlined, MoreOutlined, UploadOutlined } from "@ant-design/icons";
 import SvgIcon from "../../common/SvgIcon";
 import { getLocalMessage } from "../../locales/getLocalMessage";
+import RootAction from "./RootAction";
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
   const { graph } = props;
 
   const { DirectoryTree } = Tree;
-  const menu = useMemo(() => (
-    <Menu
-      items={[
-        {
-          label: <a href="https://www.antgroup.com">1st menu item</a>,
-          key: '0',
-        },
-        {
-          label: <a href="https://www.aliyun.com">2nd menu item</a>,
-          key: '1',
-        },
-        {
-          type: 'divider',
-        },
-        {
-          label: '3rd menu item',
-          key: '3',
-        },
-      ]}
-    />
-  ), []);
+
 
   const treeData: DataNode[] = [
     {
@@ -42,17 +23,13 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
       title:
         <div className='tree-node-label'>
           <div>{getLocalMessage("model.DomainModel")}</div>
-          <Dropdown overlay={menu} trigger={['click']}>
-            <Button className='no-border' shape='circle' size='small'onClick={e => e.stopPropagation()}>
-              <MoreOutlined />
-            </Button>
-          </Dropdown>
+          <RootAction/>
         </div>,
       key: '0-0',
 
       children: [
         {
-          title: '列表页',
+          title: '系统',
           key: '0-1',
           children: [
             { title: 'leaf 0-0', key: '0-0-0', isLeaf: true },
@@ -60,7 +37,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
           ],
         },
         {
-          title: '表单页',
+          title: '用户',
           key: '0-2',
           children: [
             { title: 'leaf 1-0', key: '0-1-0', isLeaf: true },
