@@ -6,35 +6,11 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import {
-  Theme,
-  IconButton,
-  Box,
-  createTheme,
-  ThemeProvider,
-  Menu,
-  MenuItem,
-  SvgIcon,
-  Typography,
-  Divider,
-  alpha,
-} from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
-import createStyles from "@mui/styles/createStyles";
 import classNames from "classnames";
 import AttributeView from "./AttributeView";
-import { StereoType } from "components/ModelBoard/meta/ClassMeta";
 import { ClassNodeData } from "./ClassNodeData";
-import { PRIMARY_COLOR } from "util/consts";
-import useShadows from "util/useShadows";
-import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import intl from "react-intl-universal";
-import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
-import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 import MethodView from "./MethodView";
-import { CONST_ID } from "components/ModelBoard/meta/Meta";
 import { canStartLink } from "../canStartLink";
-import { green } from "@mui/material/colors";
 import {
   EVENT_CLASS_CHANGED,
   EVENT_PREPARE_LINK_TO,
@@ -43,29 +19,13 @@ import {
   offCanvasEvent,
   onCanvasEvent,
 } from "../events";
-import { RelationType } from "components/ModelBoard/meta/RelationMeta";
 import { useMountRef } from "./useMountRef";
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    nameItem: {
-      display: "flex",
-      width: "100%",
-      justifyContent: "center",
-    },
-    smFont: {
-      fontSize: "0.9rem",
-    },
-    columnPuls: {
-      display: "flex",
-      justifyContent: "center",
-    },
-    columnButton: {
-      width: "24px",
-      height: "24px",
-    },
-  })
-);
+import "./index.less"
+import { RelationType } from "../../meta/RelationMeta";
+import { StereoType } from "../../meta/ClassMeta";
+import { Button, Menu } from "antd";
+import { MenuOutlined } from "@ant-design/icons";
+import { CONST_ID } from "../../meta/Meta";
 
 export const ClassView = memo(
   (props: {
@@ -79,7 +39,6 @@ export const ClassView = memo(
     onDelete?: (uuid: string) => void;
     node?: any;
   }) => {
-    const classes = useStyles();
     const {
       node,
       onAttributeSelect,
@@ -102,17 +61,6 @@ export const ClassView = memo(
     useEffect(() => {
       setData(node?.data);
     }, [node?.data]);
-
-    const theme = createTheme({
-      palette: {
-        mode: data?.themeMode || "dark",
-        primary: {
-          main: PRIMARY_COLOR,
-        },
-      },
-
-      shadows: [...useShadows()] as any,
-    });
 
     const handleChangePrepareToLink = useCallback(
       (event: Event) => {
@@ -251,14 +199,14 @@ export const ClassView = memo(
 
     const boxShadow = useMemo(() => {
       const shadowConst = "0 0 0 3px ";
-      const greenShadow = shadowConst + alpha(green[500], 0.7);
+      const greenShadow = shadowConst /*+ alpha(green[500], 0.7)*/;
       if (hover) {
         if (!pressedLineType) {
           return (
-            shadowConst +
-            (theme.palette.mode === "light"
-              ? alpha(theme.palette.text.primary, 0.2)
-              : alpha(theme.palette.text.primary, 0.4))
+            shadowConst //+
+            // (theme.palette.mode === "light"
+            //   ? alpha(theme.palette.text.primary, 0.2)
+            //   : alpha(theme.palette.text.primary, 0.4))
           );
         } else {
           return canLinkFrom ? greenShadow : "";
@@ -275,228 +223,145 @@ export const ClassView = memo(
       hover,
       pressedLineType,
       showLinkTo,
-      theme.palette.mode,
-      theme.palette.text.primary,
+      // theme.palette.mode,
+      // theme.palette.text.primary,
     ]);
 
     return (
-      <ThemeProvider theme={theme}>
-        <Box
-          sx={{
-            height: "100%",
-            width: "100%",
+      <div
+        style={{
+          height: "100%",
+          width: "100%",
+          display: "flex",
+          flexFlow: "column",
+          //background: theme.palette.background.paper,
+          overflow: "hidden",
+          cursor: canLinkFrom ? "crosshair" : undefined,
+          boxShadow: boxShadow,
+          borderRadius: "5px",
+        }}
+        onMouseOver={handleMouseOver}
+        onMouseLeave={handleMouseLeave}
+      >
+        <div
+          style={{
+            flex: 1,
+            border: "solid 2px",
+            borderRadius: "5px",
             display: "flex",
             flexFlow: "column",
-            background: theme.palette.background.paper,
+            // background: theme.palette.background.paper,
+            // color: data?.root
+            //   ? theme.palette.primary.main
+            //   : theme.palette.text.primary,
+            fontStyle:
+              data?.stereoType === StereoType.Abstract ? "italic" : undefined,
             overflow: "hidden",
-            cursor: canLinkFrom ? "crosshair" : undefined,
-            boxShadow: boxShadow,
-            borderRadius: "5px",
           }}
-          onMouseOver={handleMouseOver}
-          onMouseLeave={handleMouseLeave}
         >
-          <Box
-            sx={{
-              flex: 1,
-              border: "solid 2px",
-              borderRadius: "5px",
+          <div
+            style={{
+              width: "100%",
+              padding: "2px 0",
               display: "flex",
               flexFlow: "column",
-              background: theme.palette.background.paper,
-              color: data?.root
-                ? theme.palette.primary.main
-                : theme.palette.text.primary,
-              fontStyle:
-                data?.stereoType === StereoType.Abstract ? "italic" : undefined,
-              overflow: "hidden",
+              position: "relative",
             }}
           >
-            <Box
-              sx={{
-                width: "100%",
-                padding: "2px 0",
-                display: "flex",
-                flexFlow: "column",
-                position: "relative",
-              }}
-            >
-              {data?.stereoType !== StereoType.Entity && (
-                <Box
-                  sx={{
-                    display: "flex",
-                    width: "100%",
-                    justifyContent: "center",
-                    fontSize: "0.9rem",
-                    opacity: 0.8,
-                  }}
-                >
-                  &lt;&lt; {data?.stereoType} &gt;&gt;
-                </Box>
-              )}
-
-              <div className={classes.nameItem}>{data?.name}</div>
-              {data?.serviceName && (
-                <div className={classNames(classes.nameItem, classes.smFont)}>
-                  <em>{data?.serviceName}</em>
-                </div>
-              )}
-              {hover && !disableHover && (
-                <>
-                  <IconButton
-                    sx={{
-                      width: "24px",
-                      height: "24px",
-                      zIndex: 1,
-                      position: "absolute",
-                      right: "0",
-                      top: "0",
-                    }}
-                    onClick={handleMenuOpen}
-                    size="large"
-                  >
-                    <MenuOutlinedIcon sx={{ fontSize: 16 }} />
-                  </IconButton>
-                  <Menu
-                    anchorEl={anchorEl}
-                    anchorOrigin={{
-                      vertical: "bottom",
-                      horizontal: "left",
-                    }}
-                    transformOrigin={{
-                      vertical: "top",
-                      horizontal: "left",
-                    }}
-                    open={isMenuOpen}
-                    onClose={handleMenuClose}
-                  >
-                    <MenuItem
-                      sx={{
-                        padding: theme.spacing(1, 3),
-                      }}
-                      disabled = {data?.stereoType === StereoType.External}
-                      onClick={handleAttributeCreate}
-                    >
-                      <SvgIcon fontSize="small">
-                        <path
-                          fill="currentColor"
-                          d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"
-                        />
-                      </SvgIcon>
-                      <Typography sx={{ marginLeft: "16px" }}>
-                        {intl.get("add-attribute")}
-                      </Typography>
-                    </MenuItem>
-                    <MenuItem
-                      sx={{
-                        padding: theme.spacing(1, 3),
-                      }}
-                      disabled={true
-                        // data?.stereoType === StereoType.Enum ||
-                        // data?.stereoType === StereoType.ValueObject
-                      }
-                      onClick={handleMethodCreate}
-                    >
-                      <SvgIcon fontSize="small">
-                        <path
-                          fill="currentColor"
-                          d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"
-                        />
-                      </SvgIcon>
-                      <Typography sx={{ marginLeft: "16px" }}>
-                        {intl.get("add-method")}
-                      </Typography>
-                    </MenuItem>
-                    <MenuItem
-                      sx={{
-                        padding: theme.spacing(1, 3),
-                      }}
-                      onClick={handleHidden}
-                    >
-                      <VisibilityOffOutlinedIcon fontSize="small" />
-                      <Typography sx={{ marginLeft: "16px" }}>
-                        {intl.get("hide-class")}
-                      </Typography>
-                    </MenuItem>
-                    <Divider />
-                    <MenuItem
-                      sx={{
-                        padding: theme.spacing(1, 3),
-                      }}
-                      onClick={handleDelete}
-                    >
-                      <DeleteForeverOutlinedIcon fontSize="small" />
-                      <Typography sx={{ marginLeft: "16px" }}>
-                        {intl.get("delete")}
-                      </Typography>
-                    </MenuItem>
-                  </Menu>
-                </>
-              )}
-            </Box>
-
-            <Box
-              sx={{
-                display: "flex",
-                flex: 1,
-                flexFlow: "column",
-                cursor: canLinkFrom ? "crosshair" : "default",
-              }}
-            >
-
-              <Box
-                sx={{
+            {data?.stereoType !== StereoType.Entity && (
+              <div
+                style={{
                   display: "flex",
-                  flexFlow: "column",
-                  borderTop: "solid 1px",
-                  minHeight: (theme) => theme.spacing(1),
+                  width: "100%",
+                  justifyContent: "center",
+                  fontSize: "0.9rem",
+                  opacity: 0.8,
                 }}
               >
-                {data?.attributes?.map((attr) => {
-                  return attr.name === CONST_ID &&
-                    data?.stereoType === StereoType.Abstract &&
-                    !data?.root ? (
-                    <Fragment key={attr.uuid}></Fragment>
-                  ) : (
-                    <AttributeView
-                      key={attr.uuid}
-                      attr={attr}
-                      stereoType={data.stereoType}
-                      onClick={handleAttributeClick}
-                      onDelete={handleAttributeDelete}
-                      readOnly={disableHover}
-                    />
-                  );
-                })}
-              </Box>
+                &lt;&lt; {data?.stereoType} &gt;&gt;
+              </div>
+            )}
+
+            <div className={"nameItem"}>{data?.name}</div>
+            {data?.serviceName && (
+              <div className={classNames("nameItem", "smFont")}>
+                <em>{data?.serviceName}</em>
+              </div>
+            )}
+            {hover && !disableHover && (
+              <>
+                <Button
+                  shape="circle"
+                  onClick={handleMenuOpen}
+                  size="large"
+                >
+                  <MenuOutlined />
+                </Button>
+              </>
+            )}
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              flex: 1,
+              flexFlow: "column",
+              cursor: canLinkFrom ? "crosshair" : "default",
+            }}
+          >
+
+            <div
+              style={{
+                display: "flex",
+                flexFlow: "column",
+                borderTop: "solid 1px",
+                minHeight: "8px",
+              }}
+            >
+              {data?.attributes?.map((attr) => {
+                return attr.name === CONST_ID &&
+                  data?.stereoType === StereoType.Abstract &&
+                  !data?.root ? (
+                  <Fragment key={attr.uuid}></Fragment>
+                ) : (
+                  <AttributeView
+                    key={attr.uuid}
+                    attr={attr}
+                    stereoType={data.stereoType}
+                    onClick={handleAttributeClick}
+                    onDelete={handleAttributeDelete}
+                    readOnly={disableHover}
+                  />
+                );
+              })}
+            </div>
 
 
-              {data?.stereoType !== StereoType.Enum &&
-                data?.stereoType !== StereoType.ValueObject && (
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexFlow: "column",
-                      borderTop: "solid 1px",
-                      minHeight: (theme) => theme.spacing(3),
-                    }}
-                  >
-                    {data?.methods?.map((method) => {
-                      return (
-                        <MethodView
-                          key={method.uuid}
-                          method={method}
-                          onClick={handleMethodClick}
-                          onDelete={handleMethodDelete}
-                        />
-                      );
-                    })}
-                  </Box>
-                )}
-            </Box>
-          </Box>
-        </Box>
-      </ThemeProvider>
+            {data?.stereoType !== StereoType.Enum &&
+              data?.stereoType !== StereoType.ValueObject && (
+                <div
+                  style={{
+                    display: "flex",
+                    flexFlow: "column",
+                    borderTop: "solid 1px",
+                    minHeight: "24px",
+                  }}
+                >
+                  {data?.methods?.map((method) => {
+                    return (
+                      <MethodView
+                        key={method.uuid}
+                        method={method}
+                        onClick={handleMethodClick}
+                        onDelete={handleMethodDelete}
+                      />
+                    );
+                  })}
+                </div>
+              )}
+          </div>
+        </div>
+      </div>
     );
   }
 );

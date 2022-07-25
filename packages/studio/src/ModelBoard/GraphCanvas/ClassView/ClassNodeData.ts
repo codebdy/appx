@@ -1,5 +1,5 @@
-import { ClassMeta } from "components/ModelBoard/meta/ClassMeta"
-import { X6NodeMeta } from "components/ModelBoard/meta/X6NodeMeta"
+import { ClassMeta } from "../../meta/ClassMeta";
+import { X6NodeMeta } from "../../meta/X6NodeMeta";
 
 export type ClassNodeData = X6NodeMeta & ClassMeta &{
   serviceName?: string;

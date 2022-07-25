@@ -1,45 +1,17 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Theme, IconButton, Typography, Box, alpha } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
-import createStyles from "@mui/styles/createStyles";
 import classNames from "classnames";
-import { AttributeMeta } from "components/ModelBoard/meta/AttributeMeta";
-import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
-import { CONST_ID } from "components/ModelBoard/meta/Meta";
+
 import {
   EVENT_ELEMENT_SELECTED_CHANGE,
   offCanvasEvent,
   onCanvasEvent,
 } from "../events";
-import { StereoType } from "components/ModelBoard/meta/ClassMeta";
 import { useMountRef } from "./useMountRef";
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    hover: {
-      background: alpha(theme.palette.primary.main, 0.1),
-    },
-    selected: {
-      background: alpha(theme.palette.primary.main, 0.3),
-    },
-    property: {
-      position: "relative",
-      fontSize: "0.9rem",
-      padding: "2px 0",
-      display: "flex",
-    },
-    propertyTools: {
-      zIndex: 1,
-      position: "absolute",
-      right: "4px",
-      top: "0",
-    },
-    propertyButton: {
-      width: "24px",
-      height: "24px",
-    },
-  })
-);
+import { CONST_ID } from "../../meta/Meta";
+import { AttributeMeta } from "../../meta/AttributeMeta";
+import { StereoType } from "../../meta/ClassMeta";
+import { DeleteOutlined } from "@ant-design/icons";
+import { Button } from "antd";
 
 export default function AttributeView(props: {
   attr: AttributeMeta;
@@ -49,7 +21,6 @@ export default function AttributeView(props: {
   readOnly?: boolean;
 }) {
   const { attr, stereoType, onClick, onDelete, readOnly = false } = props;
-  const classes = useStyles();
   const [hover, setHover] = useState(false);
   const [isSelected, setIsSelected] = React.useState(false);
   const mountRef = useMountRef();
@@ -83,64 +54,61 @@ export default function AttributeView(props: {
 
   return (
     <div
-      className={classNames(classes.property, {
-        [classes.hover]: !readOnly && hover,
-        [classes.selected]: isSelected,
+      className={classNames('property', {
+        ['hover']: !readOnly && hover,
+        ['selected']: isSelected,
       })}
       onMouseOver={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       onClick={handleClick}
     >
-      <Box
-        sx={{
+      <div
+        style={{
           display: "flex",
           alignItems: "center",
-          opacity: (theme) => (isId ? 0.8 : undefined),
+          //opacity: (theme) => (isId ? 0.8 : undefined),
         }}
       >
-        <Typography
-          sx={{
+        <div
+          style={{
             marginLeft: "3px",
           }}
         >
           {attr.name}
-        </Typography>
+        </div>
         {stereoType !== StereoType.Enum && (
           <>
             :
-            <Typography
-              sx={{
+            <div
+              style={{
                 fontSize: "0.8rem",
                 marginLeft: "5px",
               }}
             >
               {attr.typeLabel}
-            </Typography>
+            </div>
           </>
         )}
-      </Box>
+      </div>
       {hover && !readOnly && !isId && (
-        <Box
-          sx={{
+        <div
+          style={{
             zIndex: 1,
             position: "absolute",
             right: "4px",
             top: "0",
-            borderRadius:"50%",
-            background: (theme) => theme.palette.background.paper,
+            borderRadius: "50%",
+            //background: (theme) => theme.palette.background.paper,
           }}
         >
-          <IconButton
-            sx={{
-              width: "24px",
-              height: "24px",
-            }}
+          <Button
+            shape="circle"
             onClick={handleDeleteClick}
             size="large"
           >
-            <DeleteOutlineOutlinedIcon sx={{ fontSize: 16 }} />
-          </IconButton>
-        </Box>
+            <DeleteOutlined />
+          </Button>
+        </div>
       )}
     </div>
   );

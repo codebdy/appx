@@ -1,10 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Theme, IconButton, Typography, Box } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
-import createStyles from "@mui/styles/createStyles";
 import classNames from "classnames";
-import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
-import { MethodMeta } from "components/ModelBoard/meta/MethodMeta";
 import { useMountRef } from "./useMountRef";
 import {
   EVENT_ELEMENT_SELECTED_CHANGE,
