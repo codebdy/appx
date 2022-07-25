@@ -97,13 +97,13 @@ export const drawingLineState = atomFamily<LineAction | undefined, ID>({
 
 export const pressedLineTypeState = atomFamily<
   RelationType | undefined,
-  number
+  ID
 >({
   key: "local.pressedLineType",
   default: undefined,
 });
 
-export const prepareLinkToNodeState = atomFamily<string | undefined, number>({
+export const prepareLinkToNodeState = atomFamily<string | undefined, ID>({
   key: "local.prepareLinkToNode",
   default: undefined,
 });

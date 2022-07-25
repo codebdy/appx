@@ -63,7 +63,7 @@ export function useEdgeSelect(graph: Graph|undefined, appId :ID) {
         ]);
       }
     });
-  }, [graph, selectedElement, selectedRelation]);
+  }, [graph, selectedElement, selectedRelation ]);
 
   const handleBlankClick = useCallback(() => {
     const clickEnvent = new CustomEvent(CONST_CANVAS_CLICK);

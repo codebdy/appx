@@ -44,16 +44,16 @@ export const GraphCanvas = memo(
     useEdgeHover(graph, appId);
 
     return (
-      <Box
+      <div
         id="container"
-        sx={{
+        style={{
           display: "flex",
           flex: 1,
           flexFlow: "column",
           overflow: "auto",
           position: "relative",
         }}
-      ></Box>
+      ></div>
     );
   }
 );
