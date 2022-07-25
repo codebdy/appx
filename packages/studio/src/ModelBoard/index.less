@@ -1,9 +1,17 @@
 @import "../variables.less";
 
-.model-tree-shell{
+.system-model-board{
+  flex: 1;
   display: flex;
-  flex-flow: column;
-  background-color: @backgrounColor;
-  border-right: solid 1px @borderColor;
-  width: 280px;
+  flex-flow: row;
+  height: calc(100vh - @toolbarHeight);
+  .model-tree-shell{
+    display: flex;
+    flex-flow: column;
+    background-color: @backgrounColor;
+    border-right: solid 1px @borderColor;
+    width: 280px;
+    height: 100%;
+    overflow: auto;
+  }
 }

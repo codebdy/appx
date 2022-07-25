@@ -10,18 +10,11 @@ const ModelsBoard = memo(() => {
   //const selectedService = useSelectedService();
 
   return (
-    <div
-      style={{
-        flex: 1,
-        display: "flex",
-        flexFlow: "row",
-        height: "100%",
-      }}
-    >
+    <div className="system-model-board">
       <div className="model-tree-shell">
         <EntityTree graph={graph}></EntityTree>
       </div>
-      
+
       <ModelContent graph={graph} onSetGraph={setGraph} />
     </div>
   );
