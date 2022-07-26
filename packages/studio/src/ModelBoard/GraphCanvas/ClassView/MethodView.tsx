@@ -86,21 +86,14 @@ export default function MethodView(props: {
         </div>
       </div>
       {hover && (
-        <div
-          style={{
-            zIndex: 1,
-            position: "absolute",
-            right: "4px",
-            top: "0",
-            borderRadius: "50%",
-            //background: (theme) => theme.palette.background.paper,
-          }}
-        >
+        <div className="property-action">
           <Button
-            onClick={handleDeleteClick}
+            type="text"
             shape="circle"
+            size="small"
+            onClick={handleDeleteClick}
           >
-            <DeleteOutlined />
+            <DeleteOutlined size={10} />
           </Button>
         </div>
       )}

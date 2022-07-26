@@ -1,4 +1,4 @@
-@primary-color:#5d78ff;
+@primary-color:rgba(93, 120, 255, 0.7);
 
 .model-class-view{
   .property {
@@ -32,6 +32,16 @@
   .columnButton {
     width: 24px;
     height: 24px;
+  };
+  .property-action {
+    z-index: 1;
+    position: absolute;
+    right: 0;
+    top: 2px;
+    border-radius: 50%;
+  }
+  .hover {
+    background-color:rgba(150, 150, 150, 0.1);
   };
   .selected {
     background-color:@primary-color;

@@ -91,16 +91,7 @@ export default function AttributeView(props: {
         )}
       </div>
       {hover && !readOnly && !isId && (
-        <div
-          style={{
-            zIndex: 1,
-            position: "absolute",
-            right: "0",
-            top: "2px",
-            borderRadius: "50%",
-            //background: (theme) => theme.palette.background.paper,
-          }}
-        >
+        <div className="property-action">
           <Button
             type="text"
             shape="circle"
