@@ -26,6 +26,8 @@ import { StereoType } from "../../meta/ClassMeta";
 import { Button, Menu } from "antd";
 import { MenuOutlined } from "@ant-design/icons";
 import { CONST_ID } from "../../meta/Meta";
+import { CANVAS_BACKGROUND_COLOR } from "../../consts";
+import ClassMenu from "./ClassMenu";
 
 export const ClassView = memo(
   (props: {
@@ -250,7 +252,7 @@ export const ClassView = memo(
             borderRadius: "5px",
             display: "flex",
             flexFlow: "column",
-            // background: theme.palette.background.paper,
+            background: CANVAS_BACKGROUND_COLOR,
             // color: data?.root
             //   ? theme.palette.primary.main
             //   : theme.palette.text.primary,
@@ -289,15 +291,7 @@ export const ClassView = memo(
               </div>
             )}
             {hover && !disableHover && (
-              <>
-                <Button
-                  shape="circle"
-                  onClick={handleMenuOpen}
-                  size="large"
-                >
-                  <MenuOutlined />
-                </Button>
-              </>
+              <ClassMenu/>
             )}
           </div>
 
