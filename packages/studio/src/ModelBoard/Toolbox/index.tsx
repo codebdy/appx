@@ -17,6 +17,8 @@ import { ClassRect } from "./ClassRect";
 import { StereoType } from "../meta/ClassMeta";
 import { Collapse } from "antd";
 import { getLocalMessage } from "../../locales/getLocalMessage";
+import "./index.less";
+
 const { Dnd } = Addon;
 const { Panel } = Collapse;
 
@@ -100,18 +102,8 @@ export const Toolbox = memo((props: { graph?: Graph }) => {
   );
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexFlow: "column",
-        //borderRight: (theme) => `solid 1px ${theme.palette.divider}`,
-        width: "100px",
-        alignItems: "center",
-        overflowY: "auto",
-        overflowX: "hidden",
-      }}
-    >
-      <Collapse defaultActiveKey={['1']}>
+    <div className="appx-model-toolbox">
+      <Collapse style={{ width: "100%" }} defaultActiveKey={['1']}>
         <Panel header={getLocalMessage("model.Class")} key="1">
           <ToolItem onMouseDown={startDragFn(StereoType.Entity)}>
             <ClassRect oneBorder={false} />
@@ -150,7 +142,7 @@ export const Toolbox = memo((props: { graph?: Graph }) => {
             onClick={handleRelationClick(RelationType.TWO_WAY_AGGREGATION)}
           >
             {svgTwoWayAggregation}
-            {getLocalMessage("model.Aggregation ")}
+            {getLocalMessage("model.Aggregation")}
           </ToolItem>
           <ToolItem
             selected={pressedLineType === RelationType.TWO_WAY_COMBINATION}
