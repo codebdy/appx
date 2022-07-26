@@ -16,6 +16,7 @@ import { classSvg } from "./svgs";
 import { useIsDiagram } from "../hooks/useIsDiagram";
 import { useIsElement } from "../hooks/useIsElement";
 import ClassLabel from "./ClassLabel";
+import InterfaceIcon from '../../icons/InterfaceIcon';
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
@@ -47,8 +48,8 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
 
   const getClassNode = useCallback((cls: ClassMeta) => {
     return {
-      icon: <SvgIcon>{classSvg}</SvgIcon>,
-      title:<ClassLabel cls={cls} graph={graph} />,
+      icon: cls.root ? <InterfaceIcon size={"12px"} /> : <SvgIcon>{classSvg}</SvgIcon>,
+      title: <ClassLabel cls={cls} graph={graph} />,
       key: cls.uuid,
       children: [getClassAttributesNode(cls), getClassRelationsNode(cls)]
     }
