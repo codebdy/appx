@@ -15,8 +15,10 @@ import { useCreateTempClassNodeForNew } from "../hooks/useCreateTempClassNodeFor
 import { useSelectedAppId } from "../hooks/useSelectedAppId";
 import { ClassRect } from "./ClassRect";
 import { StereoType } from "../meta/ClassMeta";
-import { CategoryCollapse } from "./CategoryCollapse";
+import { Collapse } from "antd";
+import { getLocalMessage } from "../../locales/getLocalMessage";
 const { Dnd } = Addon;
+const { Panel } = Collapse;
 
 export const ToolItem = memo(
   (props: {
@@ -54,7 +56,6 @@ export const Toolbox = memo((props: { graph?: Graph }) => {
   const [pressedLineType, setPressedLineType] = useRecoilState(
     pressedLineTypeState(serviceId)
   );
-  const scrollStyles = useScrollbarStyles(true);
   const createTempClassNodeForNew = useCreateTempClassNodeForNew(serviceId);
 
   useEffect(() => {
@@ -99,74 +100,67 @@ export const Toolbox = memo((props: { graph?: Graph }) => {
   );
 
   return (
-    <Box
-      sx={{
+    <div
+      style={{
         display: "flex",
         flexFlow: "column",
-        borderRight: (theme) => `solid 1px ${theme.palette.divider}`,
+        //borderRight: (theme) => `solid 1px ${theme.palette.divider}`,
         width: "100px",
         alignItems: "center",
         overflowY: "auto",
         overflowX: "hidden",
-        ...scrollStyles,
       }}
     >
-      <CategoryCollapse title={intl.get("class")} defaultOpen>
-        <ToolItem onMouseDown={startDragFn(StereoType.Entity)}>
-          <ClassRect oneBorder={false} />
-          {intl.get("entity-class")}
-        </ToolItem>
-        <ToolItem onMouseDown={startDragFn(StereoType.Abstract)}>
-          <ClassRect stereoChar="A" oneBorder={false} />
-          {intl.get("abstract-class")}
-        </ToolItem>
-        <ToolItem onMouseDown={startDragFn(StereoType.Enum)}>
-          <ClassRect stereoChar="E" oneBorder={true} />
-          {intl.get("enum")}
-        </ToolItem>
-        <ToolItem onMouseDown={startDragFn(StereoType.ValueObject)}>
-          <ClassRect stereoChar="V" oneBorder={true} />
-          {intl.get("value-object")}
-        </ToolItem>
-        <ToolItem onMouseDown={startDragFn(StereoType.External)}>
-          <ClassRect stereoChar="X" oneBorder={true} />
-          {intl.get("external-class")}
-        </ToolItem>
-        <ToolItem onMouseDown={startDragFn(StereoType.Partial)}>
-          <ClassRect stereoChar="P" oneBorder={false} />
-          {intl.get("partial-class")}
-        </ToolItem>
-        <ToolItem
-          selected={pressedLineType === RelationType.INHERIT}
-          onClick={handleRelationClick(RelationType.INHERIT)}
-        >
-          {svgInherit}
-          {intl.get("inherit")}
-        </ToolItem>
-      </CategoryCollapse>
-      <CategoryCollapse title={intl.get("relations")}>
-        <ToolItem
-          selected={pressedLineType === RelationType.TWO_WAY_ASSOCIATION}
-          onClick={handleRelationClick(RelationType.TWO_WAY_ASSOCIATION)}
-        >
-          {svgTwoWayAssociation}
-          {intl.get("association")}
-        </ToolItem>
-        <ToolItem
-          selected={pressedLineType === RelationType.TWO_WAY_AGGREGATION}
-          onClick={handleRelationClick(RelationType.TWO_WAY_AGGREGATION)}
-        >
-          {svgTwoWayAggregation}
-          {intl.get("aggregation")}
-        </ToolItem>
-        <ToolItem
-          selected={pressedLineType === RelationType.TWO_WAY_COMBINATION}
-          onClick={handleRelationClick(RelationType.TWO_WAY_COMBINATION)}
-        >
-          {svgTwoWayCombination}
-          {intl.get("combination")}
-        </ToolItem>
-      </CategoryCollapse>
+      <Collapse defaultActiveKey={['1']}>
+        <Panel header={getLocalMessage("model.Class")} key="1">
+          <ToolItem onMouseDown={startDragFn(StereoType.Entity)}>
+            <ClassRect oneBorder={false} />
+            {getLocalMessage("model.EntityClass")}
+          </ToolItem>
+          <ToolItem onMouseDown={startDragFn(StereoType.Abstract)}>
+            <ClassRect stereoChar="A" oneBorder={false} />
+            {getLocalMessage("model.AbstractClass")}
+          </ToolItem>
+          <ToolItem onMouseDown={startDragFn(StereoType.Enum)}>
+            <ClassRect stereoChar="E" oneBorder={true} />
+            {getLocalMessage("model.EnumClass")}
+          </ToolItem>
+          <ToolItem onMouseDown={startDragFn(StereoType.ValueObject)}>
+            <ClassRect stereoChar="V" oneBorder={true} />
+            {getLocalMessage("model.ValueClass")}
+          </ToolItem>
+          <ToolItem
+            selected={pressedLineType === RelationType.INHERIT}
+            onClick={handleRelationClick(RelationType.INHERIT)}
+          >
+            {svgInherit}
+            {getLocalMessage("model.Inherit")}
+          </ToolItem>
+        </Panel>
+        <Panel header={getLocalMessage("model.Relationships")} key="2">
+          <ToolItem
+            selected={pressedLineType === RelationType.TWO_WAY_ASSOCIATION}
+            onClick={handleRelationClick(RelationType.TWO_WAY_ASSOCIATION)}
+          >
+            {svgTwoWayAssociation}
+            {getLocalMessage("model.Association")}
+          </ToolItem>
+          <ToolItem
+            selected={pressedLineType === RelationType.TWO_WAY_AGGREGATION}
+            onClick={handleRelationClick(RelationType.TWO_WAY_AGGREGATION)}
+          >
+            {svgTwoWayAggregation}
+            {getLocalMessage("model.Aggregation ")}
+          </ToolItem>
+          <ToolItem
+            selected={pressedLineType === RelationType.TWO_WAY_COMBINATION}
+            onClick={handleRelationClick(RelationType.TWO_WAY_COMBINATION)}
+          >
+            {svgTwoWayCombination}
+            {getLocalMessage("model.Combination")}
+          </ToolItem>
+        </Panel>
+      </Collapse>
       {/* <CategoryCollapse title={intl.get("one-way-relation")}>
         <ToolItem
           selected={pressedLineType === RelationType.ONE_WAY_ASSOCIATION}
@@ -205,6 +199,6 @@ export const Toolbox = memo((props: { graph?: Graph }) => {
           {intl.get("link-line")}
         </ToolItem>
       </CategoryCollapse> */}
-    </Box>
+    </div>
   );
 });
