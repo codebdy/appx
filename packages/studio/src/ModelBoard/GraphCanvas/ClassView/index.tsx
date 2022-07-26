@@ -26,6 +26,7 @@ import { StereoType } from "../../meta/ClassMeta";
 import { CONST_ID } from "../../meta/Meta";
 import { CANVAS_BACKGROUND_COLOR } from "../../consts";
 import ClassMenu from "./ClassMenu";
+import InterfaceIcon from "../../../icons/InterfaceIcon";
 
 export const ClassView = memo(
   (props: {
@@ -198,7 +199,7 @@ export const ClassView = memo(
 
     return (
       <div
-        className = "model-class-view"
+        className="model-class-view"
         style={{
           height: "100%",
           width: "100%",
@@ -229,6 +230,18 @@ export const ClassView = memo(
             overflow: "hidden",
           }}
         >
+          {
+            data?.root &&
+            <div style={{
+              position: "absolute",
+              left: "8px",
+              top: "4px",
+              color: "green"
+            }}>
+              <InterfaceIcon size="14px" />
+            </div>
+          }
+
           <div
             style={{
               width: "100%",
