@@ -41,6 +41,7 @@ export function useNodeAdd(graph: Graph | undefined, appId: ID) {
             methods: classMeta.methods,
             stereoType: classMeta.stereoType,
             root: classMeta.root,
+            packageUuid: classMeta.packageUuid,
           },
         ]);
         node.remove({ disconnectEdges: true });

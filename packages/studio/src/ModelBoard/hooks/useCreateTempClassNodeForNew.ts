@@ -3,15 +3,16 @@ import { useCreateNewClass } from "./useCreateNewClass";
 import { NODE_INIT_SIZE } from "../GraphCanvas/nodeInitSize";
 import { StereoType } from "../meta/ClassMeta";
 import { ID } from "../../shared";
+import { useSelectedDiagramPackageUuid } from "./useSelectedDiagramPackage";
 
 export function useCreateTempClassNodeForNew(appId: ID) {
+  const packageUuid = useSelectedDiagramPackageUuid(appId)
   const creatNewClassMeta = useCreateNewClass(appId);
   const createTempClassNodeForNew = useCallback(
     (stereoType: StereoType) => {
-      const classMeta = creatNewClassMeta(stereoType);
+      const classMeta = creatNewClassMeta(stereoType, packageUuid);
       if (
         stereoType === StereoType.ValueObject ||
-        stereoType === StereoType.External ||
         stereoType === StereoType.Enum
       ) {
         classMeta.methods = [];
@@ -23,7 +24,7 @@ export function useCreateTempClassNodeForNew(appId: ID) {
         shape: "react-shape",
         data: {
           ...classMeta,
-          root: stereoType === StereoType.Partial,
+          //root: stereoType === StereoType.Partial,
           isTempForNew: true,
         },
       };

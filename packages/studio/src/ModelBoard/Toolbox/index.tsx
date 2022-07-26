@@ -10,8 +10,8 @@ import {
   svgTwoWayCombination,
 } from "./constSvg";
 import { RelationType } from "../meta/RelationMeta";
-import { pressedLineTypeState } from "../recoil/atoms";
-import { useRecoilState } from "recoil";
+import { pressedLineTypeState, selectedElementState } from "../recoil/atoms";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { useCreateTempClassNodeForNew } from "../hooks/useCreateTempClassNodeForNew";
 import { useSelectedAppId } from "../hooks/useSelectedAppId";
 import { ClassRect } from "./ClassRect";
@@ -56,6 +56,8 @@ export const ToolItem = memo(
 export const Toolbox = memo((props: { graph?: Graph }) => {
   const { graph } = props;
   const [dnd, setDnd] = React.useState<any>();
+  const appId = useSelectedAppId();
+  const setSelemedElement = useSetRecoilState(selectedElementState(appId))
   const serviceId = useSelectedAppId();
   const [pressedLineType, setPressedLineType] = useRecoilState(
     pressedLineTypeState(serviceId)
@@ -78,6 +80,7 @@ export const Toolbox = memo((props: { graph?: Graph }) => {
       if (!graph) {
         return;
       }
+      setSelemedElement(undefined);
       const nodeConfig = createTempClassNodeForNew(stereoType) as any;
       nodeConfig.component = <ClassView />;
       const node = graph.createNode(nodeConfig);
