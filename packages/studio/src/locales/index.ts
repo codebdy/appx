@@ -97,7 +97,8 @@ GlobalRegistry.registerDesignerLocales({
       Combination: "组合",
       OneWanAssociation: "单向关联",
       AddAttribute: "添加属性",
-      AddMethod: "添加方法"
+      AddMethod: "添加方法",
+      Properties: "属性"
     }
   },
   'en-US': {

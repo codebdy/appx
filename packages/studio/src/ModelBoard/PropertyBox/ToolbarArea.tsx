@@ -4,7 +4,7 @@ export default function ToolbarArea(props: {
   children?: any
 }) {
   return (
-    <div style={{
+    <div className="bottom-border" style={{
       display: 'flex',
       width: '100%',
       height: '40px',

@@ -38,7 +38,7 @@ export const PropertyBox = () => {
       }}
     >
       <ToolbarArea>
-        <ToolbarTitle>{getLocalMessage("model.properties")}</ToolbarTitle>
+        <ToolbarTitle>{getLocalMessage("model.Properties")}</ToolbarTitle>
       </ToolbarArea>
       <div
         style={{
