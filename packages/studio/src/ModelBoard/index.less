@@ -16,10 +16,14 @@
   }
   .property-box-area{
     display: flex;
+    height: 100%;
     flex-flow: column;
     background-color: @backgrounColor;
     .property-box{
-      border-top: solid 1px @borderColor;
+      flex:1;
+      display: flex;
+      flex-flow: column;
+      width: 260px;
     }
   }
 }

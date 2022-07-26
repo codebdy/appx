@@ -30,12 +30,7 @@ export const PropertyBox = () => {
 
   return (
     <div
-      className="property-box"
-      style={{
-        display: "flex",
-        flexFlow: "column",
-        width: "260px",
-      }}
+      className="property-box border"
     >
       <ToolbarArea>
         <ToolbarTitle>{getLocalMessage("model.Properties")}</ToolbarTitle>
