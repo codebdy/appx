@@ -1,4 +1,4 @@
-import { UserOutlined } from '@ant-design/icons';
+import { DownOutlined, UserOutlined } from '@ant-design/icons';
 import { Dropdown, Menu, message } from 'antd';
 import React from 'react';
 
@@ -36,7 +36,7 @@ const menu = (
 );
 
 const SyncButton = () => (
-  <Dropdown.Button overlay={menu} placement="bottom" icon={<UserOutlined />}>
+  <Dropdown.Button overlay={menu} placement="bottom" icon={<DownOutlined />}>
     发布
   </Dropdown.Button>
 );
