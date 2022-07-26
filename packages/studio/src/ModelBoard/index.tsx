@@ -4,10 +4,12 @@ import { Graph } from "@antv/x6";
 import "@antv/x6-react-shape";
 import { ModelContent } from "./ModelContent";
 import "./index.less"
+import { useSelectedAppId } from './hooks/useSelectedAppId';
 
 const ModelsBoard = memo(() => {
   const [graph, setGraph] = useState<Graph>();
   //const selectedService = useSelectedService();
+  const appId = useSelectedAppId();
 
   return (
     <div className="system-model-board">
@@ -15,7 +17,7 @@ const ModelsBoard = memo(() => {
         <EntityTree graph={graph}></EntityTree>
       </div>
 
-      <ModelContent graph={graph} onSetGraph={setGraph} />
+      <ModelContent appId= {appId} graph={graph} onSetGraph={setGraph} />
     </div>
   );
 });
