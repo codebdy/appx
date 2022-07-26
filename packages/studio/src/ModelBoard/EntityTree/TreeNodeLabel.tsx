@@ -5,7 +5,7 @@ const TreeNodeLabel = memo((
   props: {
     action?: React.ReactNode,
     children?: React.ReactNode,
-    fixedAction?:boolean,
+    fixedAction?: boolean,
   }
 ) => {
   const { action, children, fixedAction } = props;
@@ -24,7 +24,12 @@ const TreeNodeLabel = memo((
       onMouseLeave={handleMouseLeave}
     >
       {children}
-      {(hover || fixedAction) && action}
+      {
+        (hover || fixedAction) &&
+        <div className="node-actions">
+          {action}
+        </div>
+      }
     </div>
   )
 })

@@ -118,11 +118,17 @@
   .ant-tree-title{
     flex:1;
     .tree-node-label{
+      position: relative;
       display: flex;
       flex:1;
       justify-content: space-between;
       align-items: center;
       padding-right: 8px;
+      .node-actions{
+        position: absolute;
+        right:0;
+        z-index: 1;
+      }
     }
   }
 }
