@@ -7,7 +7,7 @@ import AvatarMenu from "./AvatarMenu"
 import clx from "classnames"
 import { useMatch, useNavigate } from "react-router-dom"
 import { getLocalMessage } from "../locales/getLocalMessage"
-import InterfaceIcon from "../icons/InterfaceIcon"
+import { InerfaceSvg } from "../icons/InterfaceIcon"
 
 export enum AppManagerRoutes {
   Root = "/",
@@ -57,9 +57,7 @@ const AppHeader = memo((props: {
         {getLocalMessage("System.Model")}
       </Menu.Item>
       <Menu.Item key={AppManagerRoutes.Api}
-        icon={
-          <InterfaceIcon />
-        }
+        icon={InerfaceSvg}
         onClick={handleGotoApi}
       >
         {getLocalMessage("System.API")}
