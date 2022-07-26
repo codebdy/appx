@@ -30,6 +30,7 @@ export const PropertyBox = () => {
 
   return (
     <div
+      className="property-box"
       style={{
         display: "flex",
         flexFlow: "column",

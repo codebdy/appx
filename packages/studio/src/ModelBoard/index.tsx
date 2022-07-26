@@ -5,11 +5,15 @@ import "@antv/x6-react-shape";
 import { ModelContent } from "./ModelContent";
 import "./index.less"
 import { useSelectedAppId } from './hooks/useSelectedAppId';
+import { useRecoilValue } from "recoil";
+import { selectedDiagramState } from "./recoil/atoms";
+import SavaActions from "./SavaActions";
 
 const ModelsBoard = memo(() => {
   const [graph, setGraph] = useState<Graph>();
   //const selectedService = useSelectedService();
   const appId = useSelectedAppId();
+  const selectedDiagram = useRecoilValue(selectedDiagramState(appId));
 
   return (
     <div className="system-model-board">
@@ -17,7 +21,11 @@ const ModelsBoard = memo(() => {
         <EntityTree graph={graph}></EntityTree>
       </div>
 
-      <ModelContent appId= {appId} graph={graph} onSetGraph={setGraph} />
+      {
+        selectedDiagram &&
+        <ModelContent appId={appId} graph={graph} onSetGraph={setGraph} saveActions ={<SavaActions />} />
+      }
+
     </div>
   );
 });
