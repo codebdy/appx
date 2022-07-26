@@ -7,6 +7,8 @@ import {
 import { useClass } from "../hooks/useClass";
 import { useChangeRelation } from "../hooks/useChangeRelation";
 import { useSelectedAppId } from "../hooks/useSelectedAppId";
+import { Form, Input } from "antd";
+import { getLocalMessage } from "../../locales/getLocalMessage";
 
 
 export const RelationPanel = (props: { relation: RelationMeta }) => {
@@ -126,7 +128,44 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
     [relation.relationType]
   );
 
+  const handleChange = useCallback((form) => {
+
+  }, [])
+
   return (
-    <div>RelationPanel</div>
+    <div className="property-pannel">
+      {
+        isInherit ?
+          <div style={{
+            width: "100%",
+            padding: "8px",
+          }}>{getLocalMessage("model.Inherit")}</div>
+          : <Form
+            name="classForm"
+            colon={false}
+            labelAlign="left"
+            labelCol={{ span: 9 }}
+            wrapperCol={{ span: 15 }}
+            //initialValues={cls}
+            autoComplete="off"
+            onValuesChange={handleChange}
+          >
+            <Form.Item
+              label={getLocalMessage("model.Name")}
+              name="name"
+            >
+              <Input />
+            </Form.Item>
+
+            <Form.Item
+              label={getLocalMessage("model.Description")}
+              name="description"
+            >
+              <Input.TextArea />
+            </Form.Item>
+          </Form>
+      }
+
+    </div>
   );
 };
