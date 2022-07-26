@@ -55,6 +55,7 @@ export const ClassView = memo(
     const [showLinkTo, setShowLinkTo] = React.useState(false);
     const mountRef = useMountRef();
     const [data, setData] = useState<ClassNodeData>();
+    const [menuOpened, setMenuOpend] = useState(false);
     const [pressedLineType, setPressedLineType] = useState<RelationType>();
 
     useEffect(() => {
@@ -174,6 +175,10 @@ export const ClassView = memo(
       onDelete && onDelete(data?.uuid || "");
     }, [data?.uuid, onDelete]);
 
+    const handleMenuVisible = useCallback((visable: boolean) => {
+      setMenuOpend(visable)
+    }, []);
+
     const boxShadow = useMemo(() => {
       const shadowConst = "0 0 0 3px ";
       const greenShadow = shadowConst + "rgba(93, 120, 255, 0.2)";
@@ -271,12 +276,13 @@ export const ClassView = memo(
                 <em>{data?.appName}</em>
               </div>
             )}
-            {hover && !disableHover && (
+            {((hover && !disableHover) || menuOpened) && (
               <ClassMenu
                 onAddAttribute={handleAttributeCreate}
                 onAddMethod={handleMethodCreate}
                 onHidden={handleHidden}
                 onDelete={handleDelete}
+                onVisible={handleMenuVisible}
               />
             )}
           </div>

@@ -10,13 +10,15 @@ const ClassMenu = memo((
     onAddMethod: () => void,
     onHidden: () => void,
     onDelete: () => void,
+    onVisible: (visible:boolean) => void,
   }
 ) => {
-  const { onAddAttribute, onAddMethod, onHidden, onDelete } = props;
+  const { onAddAttribute, onAddMethod, onHidden, onDelete, onVisible } = props;
   const [visible, setVisible] = useState(false);
 
   const handleMenuClick = useCallback((e) => {
     setVisible(false);
+    onVisible(false);
     if (e.key === 'addAttribute') {
       onAddAttribute();
     }
@@ -33,6 +35,7 @@ const ClassMenu = memo((
 
   const handleVisibleChange = useCallback((flag) => {
     setVisible(flag);
+    onVisible(flag);
   }, []);
 
   const menu = (
