@@ -126,7 +126,7 @@ export const AttributePanel = (props: {
           label={getLocalMessage("model.Name")}
           name="name"
         >
-          <Input />
+          <Input  disabled = {isId} />
         </Form.Item>
 
         {cls.stereoType !== StereoType.Enum && (
@@ -135,11 +135,35 @@ export const AttributePanel = (props: {
               label={getLocalMessage("model.DataType")}
               name="type"
             >
-              <Select>
-                <Option value="jack">Jack</Option>
-                <Option value="lucy">Lucy</Option>
-                <Option value="disabled">Disabled</Option>
-                <Option value="Yiminghe">yiminghe</Option>
+              <Select disabled = {isId}>
+                <Option value={Type.ID}>ID</Option>
+                <Option value={Type.Int}>Int</Option>
+                <Option value={Type.Float}>Float</Option>
+                <Option value={Type.Boolean}>Boolean</Option>
+                <Option value={Type.String}>String</Option>
+                <Option value={Type.Date}>Date</Option>
+                <Option value={Type.Enum}>{getLocalMessage("model.Enum")}</Option>
+                <Option value={Type.JSON}>JSON</Option>
+                <Option value={Type.ValueObject}>{getLocalMessage("model.ValueClass")}</Option>
+                <Option value={Type.Entity}>{getLocalMessage("model.Entity")}</Option>
+                <Option value={Type.File}>{getLocalMessage("File")}</Option>
+                <Option value={Type.IDArray}>ID {getLocalMessage("model.Array")}</Option>
+                <Option value={Type.IntArray}>Int {getLocalMessage("model.Array")}</Option>
+                <Option value={Type.FloatArray}>Float {getLocalMessage("model.Array")}</Option>
+                <Option value={Type.StringArray}>String {getLocalMessage("model.Array")}</Option>
+                <Option value={Type.DateArray}>Date {getLocalMessage("model.Array")}</Option>
+                <Option value={Type.EnumArray}>
+                  {getLocalMessage("model.Enum")}
+                  {getLocalMessage("model.Array")}
+                </Option>
+                <Option value={Type.ValueObjectArray}>
+                  {getLocalMessage("model.ValueClass")}
+                  {getLocalMessage("model.Array")}
+                </Option>
+                <Option value={Type.EntityArray}>
+                  {getLocalMessage("model.Entity")}
+                  {getLocalMessage("model.Array")}
+                </Option>
               </Select>
             </Form.Item>
           </>

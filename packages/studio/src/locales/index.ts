@@ -23,6 +23,7 @@ GlobalRegistry.registerDesignerLocales({
     UserName: "用户名",
     Password: "密码",
     RememberMe: "记住我",
+    File: "文件",
     System: {
       Model: "系统模型",
       API: "系统接口",
@@ -102,7 +103,10 @@ GlobalRegistry.registerDesignerLocales({
       Name: "名称",
       RootNode: "根节点",
       Description: "描述",
-      DataType: "数据类型"
+      DataType: "数据类型",
+      Entity: "实体",
+      Array: "数组",
+      Enum: "枚举"
     }
   },
   'en-US': {
