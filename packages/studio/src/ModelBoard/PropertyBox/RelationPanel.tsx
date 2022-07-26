@@ -7,10 +7,11 @@ import {
 import { useClass } from "../hooks/useClass";
 import { useChangeRelation } from "../hooks/useChangeRelation";
 import { useSelectedAppId } from "../hooks/useSelectedAppId";
-import { Collapse, Form, Input } from "antd";
+import { Collapse, Form, Input, Select } from "antd";
 import { getLocalMessage } from "../../locales/getLocalMessage";
 
 const { Panel } = Collapse;
+const { Option } = Select;
 
 export const RelationPanel = (props: { relation: RelationMeta }) => {
   const { relation } = props;
@@ -78,52 +79,6 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
     [changeRelation, relation]
   );
 
-  // const handleEnableAssociationClass = useCallback(
-  //   (event: React.ChangeEvent<HTMLInputElement>) => {
-  //     const enabled = event.target.checked;
-  //     changeRelation({
-  //       ...relation,
-  //       enableAssociaitonClass: enabled,
-  //       associationClass:
-  //         enabled && !relation.associationClass
-  //           ? {
-  //               name: "AssociationClass",
-  //               attributes: [],
-  //             }
-  //           : relation.associationClass,
-  //     });
-  //   },
-  //   [changeRelation, relation]
-  // );
-
-  // const handleAssociationClassNameChange = useCallback(
-  //   (event: React.ChangeEvent<{ value: string }>) => {
-  //     relation.associationClass &&
-  //       changeRelation({
-  //         ...relation,
-  //         associationClass: {
-  //           ...relation.associationClass,
-  //           name: event.target.value,
-  //         },
-  //       });
-  //   },
-  //   [changeRelation, relation]
-  // );
-
-  // const handleAssociationFieldsChange = useCallback(
-  //   (attrs: AttributeMeta[]) => {
-  //     relation.associationClass &&
-  //       changeRelation({
-  //         ...relation,
-  //         associationClass: {
-  //           ...relation.associationClass,
-  //           attributes: attrs,
-  //         },
-  //       });
-  //   },
-  //   [changeRelation, relation]
-  // );
-
   const isInherit = useMemo(
     () => RelationType.INHERIT === relation.relationType,
     [relation.relationType]
@@ -147,28 +102,70 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
             labelAlign="left"
             labelCol={{ span: 9 }}
             wrapperCol={{ span: 15 }}
-            //initialValues={cls}
+            initialValues={relation}
             autoComplete="off"
             onValuesChange={handleChange}
           >
             <Collapse className="no-border" defaultActiveKey={['1']}>
               <Panel header={source?.name + getLocalMessage("model.Side")} key="1">
                 <Form.Item
-                  label={getLocalMessage("model.Name")}
-                  name="name"
+                  label={getLocalMessage("model.Multiplicity")}
+                  name="sourceMutiplicity"
                 >
-                  <Input />
-                </Form.Item>
+                  <Select>
+                    <Option value={RelationMultiplicity.ZERO_ONE}> {RelationMultiplicity.ZERO_ONE}</Option>
+                    {relation.relationType !==
+                      RelationType.ONE_WAY_COMBINATION &&
+                      relation.relationType !==
+                      RelationType.TWO_WAY_COMBINATION && (
+                        <Option value={RelationMultiplicity.ZERO_MANY}> {RelationMultiplicity.ZERO_MANY}</Option>
+                      )}
+                  </Select>
 
+                </Form.Item>
+                {
+                  relation.relationType !== RelationType.ONE_WAY_AGGREGATION &&
+                  relation.relationType !== RelationType.ONE_WAY_ASSOCIATION &&
+                  relation.relationType !== RelationType.ONE_WAY_COMBINATION &&
+                  <>
+                    <Form.Item
+                      label={getLocalMessage("model.RoleName")}
+                      name="roleOfSource"
+                    >
+                      <Input />
+                    </Form.Item>
+                    <Form.Item
+                      label={getLocalMessage("model.Description")}
+                      name="descriptionOnSource"
+                    >
+                      <Input />
+                    </Form.Item>
+                  </>
+                }
+
+              </Panel>
+              <Panel header={target?.name + getLocalMessage("model.Side")} key="2">
                 <Form.Item
-                  label={getLocalMessage("model.Description")}
-                  name="description"
+                  label={getLocalMessage("model.Multiplicity")}
+                  name="targetMultiplicity"
+                >
+                  <Select>
+                    <Option value={RelationMultiplicity.ZERO_ONE}> {RelationMultiplicity.ZERO_ONE}</Option>
+                    <Option value={RelationMultiplicity.ZERO_MANY}> {RelationMultiplicity.ZERO_MANY}</Option>
+                  </Select>
+                </Form.Item>
+                <Form.Item
+                  label={getLocalMessage("model.RoleName")}
+                  name="roleOfTarget"
                 >
                   <Input.TextArea />
                 </Form.Item>
-              </Panel>
-              <Panel header={target?.name + getLocalMessage("model.Side")} key="2">
-                <p>text</p>
+                <Form.Item
+                  label={getLocalMessage("model.Description")}
+                  name="descriptionOnTarget"
+                >
+                  <Input.TextArea />
+                </Form.Item>
               </Panel>
             </Collapse>
           </Form>

@@ -116,7 +116,9 @@ GlobalRegistry.registerDesignerLocales({
       CreateDate: "创建时间",
       UpdateDate: "更新时间",
       DeleteDate: "删除时间",
-      Side: "端"
+      Side: "端",
+      RoleName: "角色名",
+      Multiplicity: "重数"
     }
   },
   'en-US': {
