@@ -7,7 +7,8 @@ import { useSelectedAppId } from "../hooks/useSelectedAppId";
 import { CONST_ID } from "../meta/Meta";
 import { useGetTypeLabel } from "../hooks/useGetTypeLabel";
 import { getLocalMessage } from "../../locales/getLocalMessage";
-import { Form, Input, Switch } from "antd";
+import { Form, Input, Select } from "antd";
+const { Option } = Select;
 
 export const AttributePanel = (props: {
   attribute: AttributeMeta;
@@ -128,6 +129,21 @@ export const AttributePanel = (props: {
           <Input />
         </Form.Item>
 
+        {cls.stereoType !== StereoType.Enum && (
+          <>
+            <Form.Item
+              label={getLocalMessage("model.DataType")}
+              name="type"
+            >
+              <Select>
+                <Option value="jack">Jack</Option>
+                <Option value="lucy">Lucy</Option>
+                <Option value="disabled">Disabled</Option>
+                <Option value="Yiminghe">yiminghe</Option>
+              </Select>
+            </Form.Item>
+          </>
+        )}
         <Form.Item
           label={getLocalMessage("model.Description")}
           name="description"

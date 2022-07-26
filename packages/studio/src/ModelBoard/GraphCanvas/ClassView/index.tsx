@@ -24,7 +24,7 @@ import "./index.less"
 import { RelationType } from "../../meta/RelationMeta";
 import { StereoType } from "../../meta/ClassMeta";
 import { CONST_ID } from "../../meta/Meta";
-import { CANVAS_BACKGROUND_COLOR } from "../../consts";
+import { CANVAS_BACKGROUND_COLOR, CLASS_BACKGROUND_COLOR } from "../../consts";
 import ClassMenu from "./ClassMenu";
 import InterfaceIcon from "../../../icons/InterfaceIcon";
 
@@ -226,7 +226,7 @@ export const ClassView = memo(
             borderRadius: "5px",
             display: "flex",
             flexFlow: "column",
-            background: CANVAS_BACKGROUND_COLOR,
+            background: CLASS_BACKGROUND_COLOR,
             // color: data?.root
             //   ? theme.palette.primary.main
             //   : theme.palette.text.primary,

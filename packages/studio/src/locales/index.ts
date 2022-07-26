@@ -101,7 +101,8 @@ GlobalRegistry.registerDesignerLocales({
       Properties: "属性",
       Name: "名称",
       RootNode: "根节点",
-      Description: "描述"
+      Description: "描述",
+      DataType: "数据类型"
     }
   },
   'en-US': {
