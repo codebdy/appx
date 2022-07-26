@@ -103,7 +103,7 @@ export const Toolbox = memo((props: { graph?: Graph }) => {
 
   return (
     <div className="appx-model-toolbox">
-      <Collapse style={{ width: "100%" }} defaultActiveKey={['1']}>
+      <Collapse style={{ width: "100%", border: 0 }} defaultActiveKey={['1']}>
         <Panel header={getLocalMessage("model.Class")} key="1">
           <ToolItem onMouseDown={startDragFn(StereoType.Entity)}>
             <ClassRect oneBorder={false} />
