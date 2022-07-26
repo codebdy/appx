@@ -16,6 +16,7 @@ const ClassMenu = memo((
   const [visible, setVisible] = useState(false);
 
   const handleMenuClick = useCallback((e) => {
+    setVisible(false);
     if (e.key === 'addAttribute') {
       onAddAttribute();
     }
@@ -62,7 +63,12 @@ const ClassMenu = memo((
     />
   );
   return (
-    <Dropdown overlay={menu} onVisibleChange={handleVisibleChange} visible={visible}>
+    <Dropdown
+      trigger={["click"]}
+      overlay={menu}
+      onVisibleChange={handleVisibleChange}
+      visible={visible}
+    >
       <Button
         style={{
           position: "absolute",
