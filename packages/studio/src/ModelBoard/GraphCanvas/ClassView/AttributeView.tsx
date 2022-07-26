@@ -66,7 +66,7 @@ export default function AttributeView(props: {
         style={{
           display: "flex",
           alignItems: "center",
-          //opacity: (theme) => (isId ? 0.8 : undefined),
+          opacity: isId ? 0.8 : undefined,
         }}
       >
         <div
@@ -95,18 +95,19 @@ export default function AttributeView(props: {
           style={{
             zIndex: 1,
             position: "absolute",
-            right: "4px",
-            top: "0",
+            right: "0",
+            top: "2px",
             borderRadius: "50%",
             //background: (theme) => theme.palette.background.paper,
           }}
         >
           <Button
+            type="text"
             shape="circle"
+            size = "small"
             onClick={handleDeleteClick}
-            size="large"
           >
-            <DeleteOutlined />
+            <DeleteOutlined size={10} />
           </Button>
         </div>
       )}

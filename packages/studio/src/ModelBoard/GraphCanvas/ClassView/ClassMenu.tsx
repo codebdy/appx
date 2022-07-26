@@ -69,18 +69,23 @@ const ClassMenu = memo((
       onVisibleChange={handleVisibleChange}
       visible={visible}
     >
-      <Button
+      <div
         style={{
           position: "absolute",
-          right: 0,
+          right: "-16px",
           top: "-4px",
+          paddingRight: "16px",
         }}
-        shape="circle"
-        type="text"
-        onClick={(e) => e.preventDefault()}
       >
-        <MenuOutlined />
-      </Button>
+        <Button
+          shape="circle"
+          type="text"
+          onClick={(e) => e.preventDefault()}
+        >
+          <MenuOutlined />
+        </Button>
+      </div>
+
     </Dropdown>
   );
 });
