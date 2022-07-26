@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useEffect, useMemo, } from "react";
 import { Graph } from "@antv/x6";
-import { Tree } from "antd";
+import { Button, Tree } from "antd";
 import { DataNode } from "antd/lib/tree";
 import SvgIcon from "../../common/SvgIcon";
 import { getLocalMessage } from "../../locales/getLocalMessage";
@@ -17,6 +17,8 @@ import { useIsDiagram } from "../hooks/useIsDiagram";
 import { useIsElement } from "../hooks/useIsElement";
 import ClassLabel from "./ClassLabel";
 import InterfaceIcon from '../../icons/InterfaceIcon';
+import { PlusOutlined } from "@ant-design/icons";
+import { useCreateClassAttribute } from './../hooks/useCreateClassAttribute';
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
@@ -25,14 +27,36 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   const packages = useRecoilValue(packagesState(appId));
   const diagrams = useRecoilValue(diagramsState(appId));
   const classes = useRecoilValue(classesState(appId));
+  const addAttribute = useCreateClassAttribute(appId)
   const isDiagram = useIsDiagram(appId);
   const isElement = useIsElement(appId);
   const [selectedDiagramId, setSelecteDiagramId] = useRecoilState(selectedDiagramState(appId));
   const [selectedElement, setSelectedElement] = useRecoilState(selectedElementState(appId));
 
+  const handleAddAttribute = useCallback((cls: ClassMeta)=>{
+    addAttribute(cls)
+  }, [])
+
   const getClassAttributesNode = useCallback((cls: ClassMeta) => {
     return {
-      title: getLocalMessage("model.Atrributes"),
+      title:
+        <TreeNodeLabel
+          action={
+            <Button
+              type="text"
+              shape="circle"
+              size="small"
+              onClick={(e)=>{
+                e.stopPropagation()
+                handleAddAttribute(cls)
+              }}
+            >
+              <PlusOutlined />
+            </Button>
+          }
+        >
+          {getLocalMessage("model.Atrributes")}
+        </TreeNodeLabel>,
       key: cls.uuid + "attributes",
       //children: clses.map(cls => getClassNode(cls))
     }
