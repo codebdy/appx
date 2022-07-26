@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useMemo, } from "react";
+import React, { memo, useCallback, useMemo, } from "react";
 import { Graph } from "@antv/x6";
 import { Button, Tree } from "antd";
 import { DataNode } from "antd/lib/tree";
@@ -17,8 +17,11 @@ import { useIsDiagram } from "../hooks/useIsDiagram";
 import { useIsElement } from "../hooks/useIsElement";
 import ClassLabel from "./ClassLabel";
 import InterfaceIcon from '../../icons/InterfaceIcon';
-import { PlusOutlined } from "@ant-design/icons";
+import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { useCreateClassAttribute } from './../hooks/useCreateClassAttribute';
+import { AttributeMeta } from './../meta/AttributeMeta';
+import { useDeleteAttribute } from './../hooks/useDeleteAttribute';
+import { CONST_ID } from "../meta/Meta";
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
@@ -27,15 +30,44 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   const packages = useRecoilValue(packagesState(appId));
   const diagrams = useRecoilValue(diagramsState(appId));
   const classes = useRecoilValue(classesState(appId));
-  const addAttribute = useCreateClassAttribute(appId)
+  const addAttribute = useCreateClassAttribute(appId);
+  const removeAttribute = useDeleteAttribute(appId);
   const isDiagram = useIsDiagram(appId);
   const isElement = useIsElement(appId);
   const [selectedDiagramId, setSelecteDiagramId] = useRecoilState(selectedDiagramState(appId));
   const [selectedElement, setSelectedElement] = useRecoilState(selectedElementState(appId));
 
-  const handleAddAttribute = useCallback((cls: ClassMeta)=>{
-    addAttribute(cls)
-  }, [])
+  const getAttributeNode = useCallback((attr: AttributeMeta) => {
+    return {
+      icon: <SvgIcon>
+        <svg style={{ width: "12px", height: "12px" }} viewBox="0 0 24 24" fill="currentColor"><path
+          fill="currentColor"
+          d="M12 2C11.5 2 11 2.19 10.59 2.59L2.59 10.59C1.8 11.37 1.8 12.63 2.59 13.41L10.59 21.41C11.37 22.2 12.63 22.2 13.41 21.41L21.41 13.41C22.2 12.63 22.2 11.37 21.41 10.59L13.41 2.59C13 2.19 12.5 2 12 2M12 4L20 12L12 20L4 12Z"
+        /></svg>
+      </SvgIcon>,
+      title:
+        <TreeNodeLabel
+          action={
+            attr.name !== CONST_ID &&
+            <Button
+              type="text"
+              shape="circle"
+              size="small"
+              onClick={(e) => {
+                e.stopPropagation()
+                removeAttribute(attr.uuid);
+              }}
+            >
+              <DeleteOutlined />
+            </Button>
+          }
+        >
+          {attr.name}
+        </TreeNodeLabel>,
+      key: attr.uuid,
+      isLeaf: true,
+    }
+  }, [removeAttribute]);
 
   const getClassAttributesNode = useCallback((cls: ClassMeta) => {
     return {
@@ -46,9 +78,9 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
               type="text"
               shape="circle"
               size="small"
-              onClick={(e)=>{
-                e.stopPropagation()
-                handleAddAttribute(cls)
+              onClick={(e) => {
+                e.stopPropagation();
+                addAttribute(cls);
               }}
             >
               <PlusOutlined />
@@ -58,9 +90,9 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
           {getLocalMessage("model.Atrributes")}
         </TreeNodeLabel>,
       key: cls.uuid + "attributes",
-      //children: clses.map(cls => getClassNode(cls))
+      children: cls.attributes.map(attr => getAttributeNode(attr))
     }
-  }, [])
+  }, [getAttributeNode, addAttribute])
 
   const getClassRelationsNode = useCallback((cls: ClassMeta) => {
     return {
