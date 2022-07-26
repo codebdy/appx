@@ -57,7 +57,7 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
             autoComplete="off"
             onValuesChange={handleChange}
           >
-            <Collapse className="no-border" defaultActiveKey={['1']}>
+            <Collapse className="no-border"  defaultActiveKey={['1', '2']}>
               <Panel header={source?.name + getLocalMessage("model.Side")} key="1">
                 <Form.Item
                   label={getLocalMessage("model.Multiplicity")}
