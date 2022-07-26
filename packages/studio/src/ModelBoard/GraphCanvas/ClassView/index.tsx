@@ -204,7 +204,7 @@ export const ClassView = memo(
       const greenShadow = shadowConst + "rgba(93, 120, 255, 0.2)";
       if (hover) {
         if (!pressedLineType) {
-          return (shadowConst + "rgba(78, 188, 39, 0.2)");
+          return (shadowConst + "rgba(93, 120, 255, 0.2)");
         } else {
           return canLinkFrom ? greenShadow : "";
         }
