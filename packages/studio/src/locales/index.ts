@@ -98,7 +98,10 @@ GlobalRegistry.registerDesignerLocales({
       OneWanAssociation: "单向关联",
       AddAttribute: "添加属性",
       AddMethod: "添加方法",
-      Properties: "属性"
+      Properties: "属性",
+      Name: "名称",
+      RootNode: "根节点",
+      Description: "描述"
     }
   },
   'en-US': {
