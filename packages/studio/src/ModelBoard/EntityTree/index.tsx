@@ -22,6 +22,7 @@ import { useCreateClassAttribute } from './../hooks/useCreateClassAttribute';
 import { AttributeMeta } from './../meta/AttributeMeta';
 import { useDeleteAttribute } from './../hooks/useDeleteAttribute';
 import { CONST_ID } from "../meta/Meta";
+import { useParseRelationUuid } from "../hooks/useParseRelationUuid";
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
@@ -34,6 +35,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   const removeAttribute = useDeleteAttribute(appId);
   const isDiagram = useIsDiagram(appId);
   const isElement = useIsElement(appId);
+  const parseRelationUuid = useParseRelationUuid(appId);
   const [selectedDiagramId, setSelecteDiagramId] = useRecoilState(selectedDiagramState(appId));
   const [selectedElement, setSelectedElement] = useRecoilState(selectedElementState(appId));
 
@@ -95,10 +97,11 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   }, [getAttributeNode, addAttribute])
 
   const getClassRelationsNode = useCallback((cls: ClassMeta) => {
+    const children = [];
     return {
       title: getLocalMessage("model.Relationships"),
       key: cls.uuid + "relations",
-      //children: clses.map(cls => getClassNode(cls))
+      children: children,
     }
   }, [])
 
@@ -183,6 +186,11 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
         setSelecteDiagramId(uuid);
       } else if (isElement(uuid)) {
         setSelectedElement(uuid);
+      } else {
+        const relationUuid = parseRelationUuid(uuid);
+        if(relationUuid){
+          setSelectedElement(relationUuid);
+        }
       }
     }
   }, [isDiagram, isElement])

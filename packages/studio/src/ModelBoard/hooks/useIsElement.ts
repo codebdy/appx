@@ -4,10 +4,20 @@ import { classesState } from "../recoil/atoms";
 import { useCallback } from 'react';
 
 export function useIsElement(appId: ID) {
-  const classes = useRecoilValue(classesState(appId))
+  const classes = useRecoilValue(classesState(appId));
 
   const isElement = useCallback((uuid: string) => {
-    return classes.find(cls => cls.uuid === uuid)
+    for (const cls of classes) {
+      if (cls.uuid === uuid) {
+        return true;
+      }
+      for (const attr of cls.attributes) {
+        if (attr.uuid === uuid) {
+          return true;
+        }
+      }
+    }
+    return false
   }, [classes])
 
   return isElement
