@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo } from "react";
 import {
   RelationMeta,
   RelationMultiplicity,
@@ -20,73 +20,23 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
   const target = useClass(relation.targetId, serviceId);
   const changeRelation = useChangeRelation(serviceId);
 
-  const handleSourceMultiplicityChange = useCallback(
-    (event: any) => {
-      changeRelation({
-        ...relation,
-        sourceMutiplicity: event.target.value as RelationMultiplicity,
-      });
-    },
-    [changeRelation, relation]
-  );
+  const [form] = Form.useForm()
 
-  const handleTargetMultiplicityChange = useCallback(
-    (event: any) => {
-      changeRelation({
-        ...relation,
-        targetMultiplicity: event.target.value as RelationMultiplicity,
-      });
-    },
-    [changeRelation, relation]
-  );
-
-  const handleSourceRoleChange = useCallback(
-    (event: React.ChangeEvent<{ value: string }>) => {
-      changeRelation({
-        ...relation,
-        roleOfTarget: event.target.value.trim(),
-      });
-    },
-    [changeRelation, relation]
-  );
-
-  const handleSourceDescriptionChange = useCallback(
-    (event: React.ChangeEvent<{ value: string }>) => {
-      changeRelation({
-        ...relation,
-        descriptionOnSource: event.target.value,
-      });
-    },
-    [changeRelation, relation]
-  );
-  const handleTargetRoleChange = useCallback(
-    (event: React.ChangeEvent<{ value: string }>) => {
-      changeRelation({
-        ...relation,
-        roleOfSource: event.target.value.trim(),
-      });
-    },
-    [changeRelation, relation]
-  );
-
-  const handleTargetDescriptionChange = useCallback(
-    (event: React.ChangeEvent<{ value: string }>) => {
-      changeRelation({
-        ...relation,
-        descriptionOnTarget: event.target.value,
-      });
-    },
-    [changeRelation, relation]
-  );
+  useEffect(() => {
+    form.resetFields();
+  }, [relation.uuid])
 
   const isInherit = useMemo(
     () => RelationType.INHERIT === relation.relationType,
     [relation.relationType]
   );
 
-  const handleChange = useCallback((form) => {
-
-  }, [])
+  const handleChange = useCallback((values) => {
+    changeRelation({
+      ...relation,
+      ...values,
+    });
+  }, [relation, changeRelation])
 
   return (
     <div className="property-pannel no-border" style={{ padding: 0 }}>
@@ -98,6 +48,7 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
           }}>{getLocalMessage("model.Inherit")}</div>
           : <Form
             name="classForm"
+            form={form}
             colon={false}
             labelAlign="left"
             labelCol={{ span: 9 }}
@@ -138,7 +89,7 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
                       label={getLocalMessage("model.Description")}
                       name="descriptionOnSource"
                     >
-                      <Input />
+                      <Input.TextArea />
                     </Form.Item>
                   </>
                 }
@@ -158,7 +109,7 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
                   label={getLocalMessage("model.RoleName")}
                   name="roleOfTarget"
                 >
-                  <Input.TextArea />
+                  <Input />
                 </Form.Item>
                 <Form.Item
                   label={getLocalMessage("model.Description")}
