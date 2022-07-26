@@ -18,25 +18,15 @@ import { useUndo } from "../hooks/useUndo";
 import { useRedo } from "../hooks/useRedo";
 import { useAttribute } from "../hooks/useAttribute";
 import { useDeleteSelectedElement } from "../hooks/useDeleteSelectedElement";
-import { CONST_ID, EntityNameMeta, Meta, MetaStatus } from "../meta/Meta";
-import SyncButton from "./SyncButton";
+import { CONST_ID } from "../meta/Meta";
 import { useSelectedAppId } from "../hooks/useSelectedAppId";
 import { useValidate } from "../hooks/useValidate";
-import { useShowError } from "../../hooks/useShowError";
-import { getLocalMessage } from "../../locales/getLocalMessage";
-import { Button, Divider, Space } from "antd";
-import SvgIcon from "../../common/SvgIcon";
+import { Button, Divider } from "antd";
 import { DeleteOutlined, RedoOutlined, UndoOutlined } from "@ant-design/icons";
 import "./index.less";
 
 export const ModelToolbar = memo(() => {
   const appId = useSelectedAppId();
-  const [meta, setMeta] = useRecoilState(metaState(appId));
-  const classeMetas = useRecoilValue(classesState(appId));
-  const relations = useRecoilValue(relationsState(appId));
-  const diagrams = useRecoilValue(diagramsState(appId));
-  const x6Nodes = useRecoilValue(x6NodesState(appId));
-  const x6Edges = useRecoilValue(x6EdgesState(appId));
   const [changed, setChanged] = useRecoilState(changedState(appId));
   const undoList = useRecoilValue(undoListState(appId));
   const redoList = useRecoilValue(redoListState(appId));
@@ -73,38 +63,6 @@ export const ModelToolbar = memo(() => {
   const handleDelete = useCallback(() => {
     deleteSelectedElement();
   }, [deleteSelectedElement]);
-
-  const handleSave = useCallback(() => {
-    if (!validate()) {
-      return;
-    }
-    const content = {
-      classes: classeMetas,
-      relations,
-      diagrams,
-      x6Nodes,
-      x6Edges,
-    };
-
-    const data: Meta =
-      meta?.status === MetaStatus.META_STATUS_PUBLISHED || !meta
-        ? {
-          content,
-        }
-        : {
-          ...meta,
-          content,
-        };
-    // excuteSave(data, service?.url);
-  }, [
-    classeMetas,
-    diagrams,
-    meta,
-    relations,
-    validate,
-    x6Edges,
-    x6Nodes,
-  ]);
 
   return (
     <div className={"model-toolbar"}>
@@ -158,18 +116,6 @@ export const ModelToolbar = memo(() => {
           <DeleteOutlined />
         </Button>
         <div style={{ flex: 1 }} />
-
-        <Space>
-          <Button
-            color="primary"
-            disabled={!changed}
-            loading={false}
-            onClick={handleSave}
-          >
-            {getLocalMessage("save")}
-          </Button>
-          <SyncButton />
-        </Space>
       </div>
     </div >
   );

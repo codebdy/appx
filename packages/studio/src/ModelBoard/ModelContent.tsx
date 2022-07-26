@@ -1,4 +1,4 @@
-import { memo, useEffect } from "react";
+import { memo } from "react";
 import { Graph } from "@antv/x6";
 import { GraphCanvas } from "./GraphCanvas";
 import { ModelToolbar } from "./ModelToolbar";
@@ -11,10 +11,9 @@ import {
   selectedDiagramState,
 } from "./recoil/atoms";
 import { PropertyBox } from "./PropertyBox";
-import { usePublishedMeta } from "./hooks/usePublishedMeta";
 import { ID } from "../shared";
-import { useShowError } from "../hooks/useShowError";
 import React from "react";
+import SavaActions from "./SavaActions";
 
 export const ModelContent = memo(
   (props: { appId: ID; graph?: Graph; onSetGraph: (graph?: Graph) => void }) => {
@@ -37,7 +36,6 @@ export const ModelContent = memo(
           flexFlow: "column",
         }}
       >
-        <ModelToolbar />
         <div style={{ width: "100%", flex: 1, display: "flex", height: "0" }}>
           {selectedDiagram ? (
             <>
@@ -46,8 +44,10 @@ export const ModelContent = memo(
                 style={{
                   flex: 1,
                   display: "flex",
+                  flexFlow: "column",
                 }}
               >
+                <ModelToolbar />
                 <div
                   style={{
                     flex: 1,
@@ -90,7 +90,19 @@ export const ModelContent = memo(
           ) : (
             <EmpertyCanvas></EmpertyCanvas>
           )}
-          <PropertyBox></PropertyBox>
+          <div className="property-box-area">
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "flex-end"
+              }}
+            >
+              <SavaActions />
+            </div>
+            <PropertyBox></PropertyBox>
+          </div>
+
         </div>
       </div>
     );
