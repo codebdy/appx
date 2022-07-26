@@ -13,6 +13,7 @@ import { useSelectedAppId } from "../hooks/useSelectedAppId";
 import { useMethod } from "../hooks/useMethod";
 import { MethodPanel } from "./MethodPanel";
 import { getLocalMessage } from "../../locales/getLocalMessage";
+import { Empty } from "antd";
 
 export const PropertyBox = () => {
   const serviceId = useSelectedAppId();
@@ -48,8 +49,8 @@ export const PropertyBox = () => {
         {method && methodCls && <MethodPanel method={method} cls={methodCls} />}
         {relation && <RelationPanel relation={relation} />}
         {!selectedElement && (
-          <div>
-            {getLocalMessage("no-selected")}
+          <div style={{padding:"16px"}}>
+            <Empty />
           </div>
         )}
       </div>
