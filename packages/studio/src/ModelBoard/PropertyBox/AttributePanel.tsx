@@ -6,6 +6,8 @@ import { useChangeAttribute } from "../hooks/useChangeAttribute";
 import { useSelectedAppId } from "../hooks/useSelectedAppId";
 import { CONST_ID } from "../meta/Meta";
 import { useGetTypeLabel } from "../hooks/useGetTypeLabel";
+import { getLocalMessage } from "../../locales/getLocalMessage";
+import { Form, Input, Switch } from "antd";
 
 export const AttributePanel = (props: {
   attribute: AttributeMeta;
@@ -102,9 +104,37 @@ export const AttributePanel = (props: {
   );
 
   const isId = useMemo(() => attribute.name === CONST_ID, [attribute.name]);
+
+  const handleChange = useCallback((form) => {
+
+  }, [])
+
   return (
-    <div>
-      AttributePanel
+    <div className="property-pannel">
+      <Form
+        name="attributeForm"
+        colon={false}
+        labelAlign="left"
+        labelCol={{ span: 9 }}
+        wrapperCol={{ span: 15 }}
+        initialValues={attribute}
+        autoComplete="off"
+        onValuesChange={handleChange}
+      >
+        <Form.Item
+          label={getLocalMessage("model.Name")}
+          name="name"
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          label={getLocalMessage("model.Description")}
+          name="description"
+        >
+          <Input.TextArea />
+        </Form.Item>
+      </Form>
     </div>
   );
 };
