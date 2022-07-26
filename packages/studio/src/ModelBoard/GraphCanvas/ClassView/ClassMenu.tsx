@@ -1,17 +1,34 @@
-import { DeleteOutlined, DownOutlined, EyeInvisibleOutlined, MenuOutlined, PlusOutlined } from '@ant-design/icons';
-import { Button, Dropdown, Menu, Space } from 'antd';
+import { DeleteOutlined, EyeInvisibleOutlined, MenuOutlined, PlusOutlined } from '@ant-design/icons';
+import { Button, Dropdown, Menu } from 'antd';
 import { getLocalMessage } from '../../../locales/getLocalMessage';
 import React, { memo, useState } from 'react';
 import { useCallback } from 'react';
 
-const ClassMenu = memo(() => {
+const ClassMenu = memo((
+  props: {
+    onAddAttribute: () => void,
+    onAddMethod: () => void,
+    onHidden: () => void,
+    onDelete: () => void,
+  }
+) => {
+  const { onAddAttribute, onAddMethod, onHidden, onDelete } = props;
   const [visible, setVisible] = useState(false);
 
   const handleMenuClick = useCallback((e) => {
-    if (e.key === '3') {
-      //setVisible(false);
+    if (e.key === 'addAttribute') {
+      onAddAttribute();
     }
-  }, []);
+    if (e.key === 'addMethod') {
+      onAddMethod();
+    }
+    if (e.key === 'hidden') {
+      onHidden();
+    }
+    if (e.key === 'delete') {
+      onDelete();
+    }
+  }, [onAddAttribute, onAddMethod, onHidden, onDelete]);
 
   const handleVisibleChange = useCallback((flag) => {
     setVisible(flag);

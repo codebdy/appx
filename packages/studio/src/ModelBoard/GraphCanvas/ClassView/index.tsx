@@ -23,8 +23,6 @@ import { useMountRef } from "./useMountRef";
 import "./index.less"
 import { RelationType } from "../../meta/RelationMeta";
 import { StereoType } from "../../meta/ClassMeta";
-import { Button, Menu } from "antd";
-import { MenuOutlined } from "@ant-design/icons";
 import { CONST_ID } from "../../meta/Meta";
 import { CANVAS_BACKGROUND_COLOR } from "../../consts";
 import ClassMenu from "./ClassMenu";
@@ -53,9 +51,7 @@ export const ClassView = memo(
       onHide,
     } = props;
     const [hover, setHover] = useState(false);
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [showLinkTo, setShowLinkTo] = React.useState(false);
-    const isMenuOpen = Boolean(anchorEl);
     const mountRef = useMountRef();
     const [data, setData] = useState<ClassNodeData>();
     const [pressedLineType, setPressedLineType] = useState<RelationType>();
@@ -128,7 +124,6 @@ export const ClassView = memo(
 
     const handleHidden = useCallback(() => {
       onHide && onHide(node.id);
-      setAnchorEl(null);
     }, [node.id, onHide]);
 
     const handleAttributeClick = useCallback(
@@ -147,7 +142,6 @@ export const ClassView = memo(
 
     const handleAttributeCreate = useCallback(() => {
       onAttributeCreate && onAttributeCreate(node.id);
-      setAnchorEl(null);
     }, [node.id, onAttributeCreate]);
 
     const handleMethodClick = useCallback(
@@ -165,38 +159,18 @@ export const ClassView = memo(
     );
     const handleMethodCreate = useCallback(() => {
       onMethodCreate && onMethodCreate(node.id);
-      setAnchorEl(null);
     }, [node.id, onMethodCreate]);
-
-    const handleMenuOpen = useCallback(
-      (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
-        event.stopPropagation();
-      },
-      []
-    );
 
     const handleMouseOver = useCallback(() => {
       setHover(true);
     }, []);
 
     const handleMouseLeave = useCallback(() => {
-      setAnchorEl(null);
       setHover(false);
     }, []);
 
-    const handleMenuClose = useCallback(
-      (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(null);
-        setHover(false);
-        event.stopPropagation();
-      },
-      []
-    );
-
     const handleDelete = useCallback(() => {
       onDelete && onDelete(data?.uuid || "");
-      setAnchorEl(null);
     }, [data?.uuid, onDelete]);
 
     const boxShadow = useMemo(() => {
@@ -220,8 +194,6 @@ export const ClassView = memo(
       hover,
       pressedLineType,
       showLinkTo,
-      // theme.palette.mode,
-      // theme.palette.text.primary,
     ]);
 
     return (
@@ -286,7 +258,12 @@ export const ClassView = memo(
               </div>
             )}
             {hover && !disableHover && (
-              <ClassMenu />
+              <ClassMenu
+                onAddAttribute={handleAttributeCreate}
+                onAddMethod={handleMethodCreate}
+                onHidden={handleHidden}
+                onDelete={handleDelete}
+              />
             )}
           </div>
 
