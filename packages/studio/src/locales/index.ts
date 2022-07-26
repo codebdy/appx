@@ -83,7 +83,7 @@ GlobalRegistry.registerDesignerLocales({
       AddValueObject: "添加值类",
       NewPackage: "新建包",
       NewDiagram: "新建类图",
-      Class:"类",
+      Class: "类",
       AbstractClass: "抽象类",
       EntityClass: "实体类",
       EnumClass: "枚举类",
@@ -93,7 +93,8 @@ GlobalRegistry.registerDesignerLocales({
       Inherit: "继承",
       Association: "关联",
       Aggregation: "聚合",
-      Combination: "组合"
+      Combination: "组合",
+      OneWanAssociation: "单向关联"
     }
   },
   'en-US': {

@@ -1,9 +1,10 @@
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useState } from "react";
 import { Addon, Graph } from "@antv/x6";
 import { useEffect } from "react";
 import { ClassView } from "../GraphCanvas/ClassView";
 import {
   svgInherit,
+  svgOneWayAssociation,
   svgTwoWayAggregation,
   svgTwoWayAssociation,
   svgTwoWayCombination,
@@ -104,7 +105,11 @@ export const Toolbox = memo((props: { graph?: Graph }) => {
 
   return (
     <div className="appx-model-toolbox">
-      <Collapse style={{ width: "100%", border: 0 }} defaultActiveKey={['1']}>
+      <Collapse
+        className="full-width no-border"
+        accordion
+        defaultActiveKey={["1"]}
+      >
         <Panel header={getLocalMessage("model.Class")} key="1">
           <ToolItem onMouseDown={startDragFn(StereoType.Entity)}>
             <ClassRect oneBorder={false} />
@@ -151,6 +156,13 @@ export const Toolbox = memo((props: { graph?: Graph }) => {
           >
             {svgTwoWayCombination}
             {getLocalMessage("model.Combination")}
+          </ToolItem>
+          <ToolItem
+            selected={pressedLineType === RelationType.ONE_WAY_ASSOCIATION}
+            onClick={handleRelationClick(RelationType.ONE_WAY_ASSOCIATION)}
+          >
+            {svgOneWayAssociation}
+            {getLocalMessage("model.OneWanAssociation")}
           </ToolItem>
         </Panel>
       </Collapse>
