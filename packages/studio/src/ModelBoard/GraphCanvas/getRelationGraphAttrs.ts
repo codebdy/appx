@@ -1,3 +1,4 @@
+import { CANVAS_BACKGROUND_COLOR } from "../consts";
 import { RelationType } from "../meta/RelationMeta";
 
 const inheritMarker = "M 0,0 L 12,8 L 12,-8 L 0,0";
@@ -14,7 +15,7 @@ export function getRelationGraphAttrs(
         strokeWidth: 1,
         targetMarker: {
           tagName: "path",
-          //fill: theme.palette.background.default,
+          fill: CANVAS_BACKGROUND_COLOR,
           //stroke: theme.palette.text.primary,
           strokeWidth: 1,
           d: inheritMarker,
@@ -36,7 +37,7 @@ export function getRelationGraphAttrs(
         strokeWidth: 1,
         sourceMarker: {
           tagName: "path",
-          //fill: theme.palette.background.default,
+          fill: CANVAS_BACKGROUND_COLOR,
           //stroke: theme.palette.text.primary,
           strokeWidth: 1,
           d: diamondMarker,
@@ -51,7 +52,7 @@ export function getRelationGraphAttrs(
         strokeWidth: 1,
         sourceMarker: {
           tagName: "path",
-          //fill: theme.palette.text.primary,
+          //fill: CANVAS_BACKGROUND_COLOR,
           //stroke: theme.palette.text.primary,
           strokeWidth: 1,
           d: diamondMarker,
@@ -73,7 +74,7 @@ export function getRelationGraphAttrs(
         strokeWidth: 1,
         sourceMarker: {
           tagName: "path",
-          //fill: theme.palette.background.default,
+          fill: CANVAS_BACKGROUND_COLOR,
           //stroke: theme.palette.text.primary,
           strokeWidth: 1,
           d: diamondMarker,
