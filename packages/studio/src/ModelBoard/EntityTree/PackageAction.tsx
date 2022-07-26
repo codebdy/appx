@@ -140,7 +140,7 @@ const PackageAction = memo((
       onVisibleChange={onVisibleChange}
       trigger={['click']}
     >
-      <Button className='no-border' shape='circle' size='small' onClick={e => e.stopPropagation()}>
+      <Button type="text" shape='circle' size='small' onClick={e => e.stopPropagation()}>
         <MoreOutlined />
       </Button>
     </Dropdown>

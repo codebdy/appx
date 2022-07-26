@@ -9,6 +9,9 @@ import { ClassView } from "../GraphCanvas/ClassView";
 import { useSelectedAppId } from "../hooks/useSelectedAppId"
 import { useRecoilValue } from 'recoil';
 import { selectedElementState, classesState } from './../recoil/atoms';
+import { Button } from "antd"
+import { DeleteOutlined } from "@ant-design/icons"
+import { useDeleteClass } from "../hooks/useDeleteClass"
 const { Dnd } = Addon;
 
 const ClassLabel = memo((
@@ -22,6 +25,7 @@ const ClassLabel = memo((
   const appId = useSelectedAppId();
   const classes = useRecoilValue(classesState(appId));
   const selectedElement = useRecoilValue(selectedElementState(appId));
+  const deleteClass = useDeleteClass(appId);
 
   useEffect(() => {
     const theDnd = graph
@@ -52,8 +56,24 @@ const ClassLabel = memo((
     [dnd, graph, classes]
   );
 
+  const handleDelete = useCallback((event: React.MouseEvent) => {
+    event.stopPropagation();
+    deleteClass(cls.uuid);
+  }, []);
+
   return (
-    <TreeNodeLabel>
+    <TreeNodeLabel
+      action={
+        <Button
+          type="text"
+          shape='circle'
+          size='small'
+          onClick={handleDelete}
+        >
+          <DeleteOutlined />
+        </Button>
+      }
+    >
       <div style={{ color: selectedElement === cls.uuid ? PRIMARY_COLOR : undefined }}
         draggable
         onDragStart={e => startDragHandle(e, cls)}

@@ -50,7 +50,7 @@ const RootAction = memo(() => {
 
   return (
     <Dropdown overlay={menu} trigger={['click']}>
-      <Button className='no-border' shape='circle' size='small' onClick={e => e.stopPropagation()}>
+      <Button shape='circle' type="text" size='small' onClick={e => e.stopPropagation()}>
         <MoreOutlined />
       </Button>
     </Dropdown>
