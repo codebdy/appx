@@ -2,13 +2,12 @@ import React, { useCallback } from "react";
 import { ClassMeta, StereoType } from "../meta/ClassMeta";
 import { useChangeClass } from "../hooks/useChangeClass";
 import { useSelectedAppId } from "../hooks/useSelectedAppId";
-import { Checkbox, Form, Input, Switch } from "antd";
+import { Form, Input, Switch } from "antd";
 import { getLocalMessage } from "../../locales/getLocalMessage";
 
 export const ClassPanel = (props: { cls: ClassMeta }) => {
   const { cls } = props;
   const serviceId = useSelectedAppId();
-
   const changeClass = useChangeClass(serviceId);
 
   const handleNameChange = useCallback(
@@ -48,16 +47,21 @@ export const ClassPanel = (props: { cls: ClassMeta }) => {
     [changeClass, cls]
   );
 
+  const handleChange = useCallback((form) => {
+    changeClass({ ...cls, ...form });
+  }, [changeClass, cls])
+
   return (
     <div className="property-pannel">
       <Form
         name="classForm"
-        colon = {false}
-        labelAlign = "left"
+        colon={false}
+        labelAlign="left"
         labelCol={{ span: 9 }}
         wrapperCol={{ span: 15 }}
-        initialValues={{ remember: true }}
+        initialValues={cls}
         autoComplete="off"
+        onValuesChange={handleChange}
       >
         <Form.Item
           label={getLocalMessage("model.Name")}
