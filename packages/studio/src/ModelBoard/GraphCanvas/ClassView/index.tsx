@@ -198,6 +198,7 @@ export const ClassView = memo(
 
     return (
       <div
+        className = "model-class-view"
         style={{
           height: "100%",
           width: "100%",
