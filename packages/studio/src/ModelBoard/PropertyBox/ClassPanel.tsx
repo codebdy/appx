@@ -32,7 +32,7 @@ export const ClassPanel = (props: { cls: ClassMeta }) => {
           <Input />
         </Form.Item>
 
-        {cls.stereoType !== StereoType.Enum &&
+        {/* {cls.stereoType !== StereoType.Enum &&
           cls.stereoType !== StereoType.ValueObject &&
           (
             <Form.Item
@@ -42,7 +42,7 @@ export const ClassPanel = (props: { cls: ClassMeta }) => {
             >
               <Switch />
             </Form.Item>
-          )}
+          )} */}
         <Form.Item
           label={getLocalMessage("model.Description")}
           name="description"
