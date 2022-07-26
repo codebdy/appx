@@ -7,9 +7,10 @@ import {
 import { useClass } from "../hooks/useClass";
 import { useChangeRelation } from "../hooks/useChangeRelation";
 import { useSelectedAppId } from "../hooks/useSelectedAppId";
-import { Form, Input } from "antd";
+import { Collapse, Form, Input } from "antd";
 import { getLocalMessage } from "../../locales/getLocalMessage";
 
+const { Panel } = Collapse;
 
 export const RelationPanel = (props: { relation: RelationMeta }) => {
   const { relation } = props;
@@ -133,7 +134,7 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
   }, [])
 
   return (
-    <div className="property-pannel">
+    <div className="property-pannel no-border" style={{ padding: 0 }}>
       {
         isInherit ?
           <div style={{
@@ -150,22 +151,28 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
             autoComplete="off"
             onValuesChange={handleChange}
           >
-            <Form.Item
-              label={getLocalMessage("model.Name")}
-              name="name"
-            >
-              <Input />
-            </Form.Item>
+            <Collapse className="no-border" defaultActiveKey={['1']}>
+              <Panel header={source?.name + getLocalMessage("model.Side")} key="1">
+                <Form.Item
+                  label={getLocalMessage("model.Name")}
+                  name="name"
+                >
+                  <Input />
+                </Form.Item>
 
-            <Form.Item
-              label={getLocalMessage("model.Description")}
-              name="description"
-            >
-              <Input.TextArea />
-            </Form.Item>
+                <Form.Item
+                  label={getLocalMessage("model.Description")}
+                  name="description"
+                >
+                  <Input.TextArea />
+                </Form.Item>
+              </Panel>
+              <Panel header={target?.name + getLocalMessage("model.Side")} key="2">
+                <p>text</p>
+              </Panel>
+            </Collapse>
           </Form>
       }
-
     </div>
   );
 };

@@ -116,6 +116,7 @@ GlobalRegistry.registerDesignerLocales({
       CreateDate: "创建时间",
       UpdateDate: "更新时间",
       DeleteDate: "删除时间",
+      Side: "端"
     }
   },
   'en-US': {
