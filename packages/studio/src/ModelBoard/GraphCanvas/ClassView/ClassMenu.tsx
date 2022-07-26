@@ -1,5 +1,6 @@
-import { DownOutlined, MenuOutlined } from '@ant-design/icons';
+import { DeleteOutlined, DownOutlined, EyeInvisibleOutlined, MenuOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Menu, Space } from 'antd';
+import { getLocalMessage } from '../../../locales/getLocalMessage';
 import React, { memo, useState } from 'react';
 import { useCallback } from 'react';
 
@@ -21,12 +22,24 @@ const ClassMenu = memo(() => {
       onClick={handleMenuClick}
       items={[
         {
-          label: 'Clicking me will not close the menu.',
-          key: '1',
+          icon: <PlusOutlined />,
+          label: getLocalMessage("model.AddAttribute"),
+          key: 'addAttribute',
         },
         {
-          label: 'Clicking me will not close the menu also.',
-          key: '2',
+          icon: <PlusOutlined />,
+          label: getLocalMessage("model.AddMethod"),
+          key: 'addMethod',
+        },
+        {
+          icon: <EyeInvisibleOutlined />,
+          label: getLocalMessage("Hidden"),
+          key: 'hidden',
+        },
+        {
+          icon: <DeleteOutlined />,
+          label: getLocalMessage("Delete"),
+          key: 'delete',
         },
       ]}
     />

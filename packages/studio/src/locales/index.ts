@@ -7,6 +7,7 @@ GlobalRegistry.registerDesignerLocales({
     Confirm: "确定",
     Cancel: "取消",
     Settings: "设置",
+    Hidden: "隐藏",
     App: "应用",
     Engines: "引擎中心",
     Model: "模型",
@@ -94,7 +95,9 @@ GlobalRegistry.registerDesignerLocales({
       Association: "关联",
       Aggregation: "聚合",
       Combination: "组合",
-      OneWanAssociation: "单向关联"
+      OneWanAssociation: "单向关联",
+      AddAttribute: "添加属性",
+      AddMethod: "添加方法"
     }
   },
   'en-US': {
