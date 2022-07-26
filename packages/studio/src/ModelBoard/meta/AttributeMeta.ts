@@ -57,7 +57,7 @@ export interface AttributeMeta {
    * 是否可以在查询时被选择，如果这是为false，则查询时隐藏。
    * 密码字段会使用它
    */
-  select?: boolean;
+  hidden?: boolean;
 
   /**
    * 长度

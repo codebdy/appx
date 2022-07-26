@@ -24,6 +24,7 @@ GlobalRegistry.registerDesignerLocales({
     Password: "密码",
     RememberMe: "记住我",
     File: "文件",
+    Length: "长度",
     System: {
       Model: "系统模型",
       API: "系统接口",
@@ -106,7 +107,15 @@ GlobalRegistry.registerDesignerLocales({
       DataType: "数据类型",
       Entity: "实体",
       Array: "数组",
-      Enum: "枚举"
+      Enum: "枚举",
+      Nullable: "可空",
+      Unique: "唯一",
+      Index: "索引",
+      HiddenField: "隐藏",
+      DefaultValue: "默认",
+      CreateDate: "创建时间",
+      UpdateDate: "更新时间",
+      DeleteDate: "删除时间",
     }
   },
   'en-US': {
