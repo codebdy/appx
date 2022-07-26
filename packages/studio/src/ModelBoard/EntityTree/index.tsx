@@ -67,10 +67,10 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
 
   const getPackageChildren = useCallback((pkg: PackageMeta) => {
     const packageChildren: DataNode[] = []
-    const abstracts = classes.filter(cls => cls.stereoType === StereoType.Abstract)
-    const entities = classes.filter(cls => cls.stereoType === StereoType.Entity)
-    const enums = classes.filter(cls => cls.stereoType === StereoType.Enum)
-    const valueObjects = classes.filter(cls => cls.stereoType === StereoType.ValueObject)
+    const abstracts = classes.filter(cls => cls.stereoType === StereoType.Abstract && cls.packageUuid === pkg.uuid)
+    const entities = classes.filter(cls => cls.stereoType === StereoType.Entity && cls.packageUuid === pkg.uuid)
+    const enums = classes.filter(cls => cls.stereoType === StereoType.Enum && cls.packageUuid === pkg.uuid)
+    const valueObjects = classes.filter(cls => cls.stereoType === StereoType.ValueObject && cls.packageUuid === pkg.uuid)
 
     if (abstracts.length > 0) {
       packageChildren.push(getClassCategoryNode(getLocalMessage("model.AbstractClass"), pkg.uuid + "abstracts", abstracts))
