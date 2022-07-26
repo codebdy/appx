@@ -47,9 +47,7 @@ export const GraphCanvas = memo(
       <div
         id="container"
         style={{
-          display: "flex",
           flex: 1,
-          flexFlow: "column",
           overflow: "auto",
           position: "relative",
         }}
