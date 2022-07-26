@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useMemo, } from "react";
-import { Addon, Graph } from "@antv/x6";
+import { Graph } from "@antv/x6";
 import { Tree } from "antd";
 import { DataNode } from "antd/lib/tree";
 import SvgIcon from "../../common/SvgIcon";
@@ -15,15 +15,11 @@ import { ClassMeta, StereoType } from "../meta/ClassMeta";
 import { classSvg } from "./svgs";
 import { useIsDiagram } from "../hooks/useIsDiagram";
 import { useIsElement } from "../hooks/useIsElement";
-import { PRIMARY_COLOR } from "../../consts";
-import { NODE_INIT_SIZE } from "../GraphCanvas/nodeInitSize";
-import { ClassView } from "../GraphCanvas/ClassView";
-const { Dnd } = Addon;
+import ClassLabel from "./ClassLabel";
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
   const { graph } = props;
-  const [dnd, setDnd] = React.useState<any>();
   const appId = useSelectedAppId();
   const packages = useRecoilValue(packagesState(appId));
   const diagrams = useRecoilValue(diagramsState(appId));
@@ -32,35 +28,6 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   const isElement = useIsElement(appId);
   const [selectedDiagramId, setSelecteDiagramId] = useRecoilState(selectedDiagramState(appId));
   const [selectedElement, setSelectedElement] = useRecoilState(selectedElementState(appId));
-
-  useEffect(() => {
-    const theDnd = graph
-      ? new Dnd({
-        target: graph,
-        scaled: false,
-        animation: true,
-      })
-      : undefined;
-    setDnd(theDnd);
-  }, [graph, classes]);
-
-  const startDragHandle = useCallback(
-    (e: React.MouseEvent<HTMLDivElement, MouseEvent>, cls: ClassMeta) => {
-      if (!graph) {
-        return;
-      }
-      const node = graph.createNode({
-        ...NODE_INIT_SIZE,
-        height: 70 + (cls?.attributes.length || 0) * 26,
-        isTempForDrag: true,
-        shape: "react-shape",
-        component: <ClassView />,
-        data: { ...cls, isTempForDrag: true },
-      });
-      dnd?.start(node, e.nativeEvent as any);
-    },
-    [dnd, graph, classes]
-  );
 
   const getClassAttributesNode = useCallback((cls: ClassMeta) => {
     return {
@@ -81,17 +48,11 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   const getClassNode = useCallback((cls: ClassMeta) => {
     return {
       icon: <SvgIcon>{classSvg}</SvgIcon>,
-      title:
-        <div style={{ color: selectedElement === cls.uuid ? PRIMARY_COLOR : undefined }}
-          draggable
-          onDragStart={e => startDragHandle(e, cls)}
-        >
-          {cls.name}
-        </div>,
+      title:<ClassLabel cls={cls} graph={graph} />,
       key: cls.uuid,
       children: [getClassAttributesNode(cls), getClassRelationsNode(cls)]
     }
-  }, [selectedElement, startDragHandle])
+  }, [selectedElement, classes])
 
   const getClassCategoryNode = useCallback((title: string, key: string, clses: ClassMeta[]) => {
     return {
@@ -180,16 +141,6 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     >
       <DirectoryTree
         selectedKeys={[selectedDiagramId]}
-        //className='page-list-tree'
-        // allowDrop={()=>{
-        //   return true
-        // }}
-        // draggable={
-        //   ()=>{
-        //     return true
-        //   }
-        // }
-        //defaultExpandAll
         onSelect={handleSelect}
         treeData={treeData}
       />
