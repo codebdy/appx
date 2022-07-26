@@ -201,15 +201,10 @@ export const ClassView = memo(
 
     const boxShadow = useMemo(() => {
       const shadowConst = "0 0 0 3px ";
-      const greenShadow = shadowConst /*+ alpha(green[500], 0.7)*/;
+      const greenShadow = shadowConst + "rgba(93, 120, 255, 0.2)";
       if (hover) {
         if (!pressedLineType) {
-          return (
-            shadowConst //+
-            // (theme.palette.mode === "light"
-            //   ? alpha(theme.palette.text.primary, 0.2)
-            //   : alpha(theme.palette.text.primary, 0.4))
-          );
+          return (shadowConst + "rgba(78, 188, 39, 0.2)");
         } else {
           return canLinkFrom ? greenShadow : "";
         }
@@ -291,7 +286,7 @@ export const ClassView = memo(
               </div>
             )}
             {hover && !disableHover && (
-              <ClassMenu/>
+              <ClassMenu />
             )}
           </div>
 
