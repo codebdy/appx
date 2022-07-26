@@ -18,6 +18,7 @@ import { StereoType } from "../meta/ClassMeta";
 import { Collapse } from "antd";
 import { getLocalMessage } from "../../locales/getLocalMessage";
 import "./index.less";
+import { PRIMARY_COLOR } from "../../consts";
 
 const { Dnd } = Addon;
 const { Panel } = Collapse;
@@ -36,9 +37,9 @@ export const ToolItem = memo(
           display: "flex",
           flexFlow: "column",
           alignItems: "center",
-          // marginBottom: (theme) => theme.spacing(2),
-          // color: (theme) =>
-          //   selected ? theme.palette.primary.main : theme.palette.text.primary,
+          marginBottom: "16px",
+          fontSize: "13px",
+          color: selected ? PRIMARY_COLOR : undefined,
           cursor: onClick ? "pointer" : "move",
         }}
         data-type="rect"
