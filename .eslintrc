@@ -6,7 +6,8 @@
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",
-    "plugin:markdown/recommended"
+    "plugin:markdown/recommended",
+    "plugin:react-hooks/recommended"
   ],
   "globals": {
     "sleep": true,
@@ -20,7 +21,7 @@
     }
   },
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "react", "prettier", "markdown"],
+  "plugins": ["@typescript-eslint", "react", "prettier", "markdown", "react-hooks"],
   "settings": {
     "react": {
       "version": "detect"

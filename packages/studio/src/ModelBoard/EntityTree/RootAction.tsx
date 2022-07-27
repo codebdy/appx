@@ -6,7 +6,6 @@ import { useSelectedAppId } from "../hooks/useSelectedAppId";
 import { useCreateNewPackage } from './../hooks/useCreateNewPackage';
 import { useSetRecoilState } from 'recoil';
 import { packagesState } from "../recoil/atoms";
-import { MenuInfo } from "rc-menu/lib/interface";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
 
 const RootAction = memo(() => {
@@ -19,7 +18,7 @@ const RootAction = memo(() => {
       backup();
       setPackages(packages => [...packages, createNewPackage()]);
     },
-    [setPackages],
+    [setPackages, createNewPackage],
   );
 
   const menu = useMemo(() => (
@@ -46,7 +45,7 @@ const RootAction = memo(() => {
         },
       ]}
     />
-  ), []);
+  ), [handleAddPackage]);
 
   return (
     <Dropdown overlay={menu} trigger={['click']}>
