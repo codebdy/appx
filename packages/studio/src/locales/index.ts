@@ -4,6 +4,7 @@ GlobalRegistry.registerDesignerLocales({
   'zh-CN': {
     Edit: "编辑",
     Delete: "删除",
+    Share: "共享",
     Confirm: "确定",
     Cancel: "取消",
     Settings: "设置",

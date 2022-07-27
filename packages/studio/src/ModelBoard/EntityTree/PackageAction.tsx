@@ -1,4 +1,4 @@
-import { MoreOutlined, EditOutlined, DeleteOutlined, FileAddOutlined, PlusSquareOutlined } from "@ant-design/icons";
+import { MoreOutlined, EditOutlined, DeleteOutlined, FileAddOutlined, PlusSquareOutlined, ShareAltOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
 import { getLocalMessage } from "../../locales/getLocalMessage";
@@ -118,9 +118,19 @@ const PackageAction = memo((
             ]
           },
           {
+            icon: <ShareAltOutlined />,
+            label: getLocalMessage("Share"),
+            key: '5',
+            onClick: e => {
+              e.domEvent.stopPropagation();
+              //onEdit();
+              onVisibleChange(false);
+            }
+          },
+          {
             icon: <EditOutlined />,
             label: getLocalMessage("Edit"),
-            key: '5',
+            key: '6',
             onClick: e => {
               e.domEvent.stopPropagation();
               onEdit();
@@ -130,7 +140,7 @@ const PackageAction = memo((
           {
             icon: <DeleteOutlined />,
             label: getLocalMessage("Delete"),
-            key: '6',
+            key: '7',
             onClick: e => {
               e.domEvent.stopPropagation();
               handleDelete();
