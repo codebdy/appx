@@ -29,7 +29,8 @@ export function useCheckCanLinkTo(appId: ID) {
 
       if (
         target.stereoType === StereoType.Enum ||
-        target.stereoType === StereoType.ValueObject 
+        target.stereoType === StereoType.ValueObject ||
+        target.stereoType === StereoType.Service
       ) {
         return false;
       }
@@ -41,6 +42,11 @@ export function useCheckCanLinkTo(appId: ID) {
 
       //非虚类不接受子类
       if (isInherit && target.stereoType !== StereoType.Abstract) {
+        return false;
+      }
+
+      //虚类不接受关联
+      if (!isInherit && target.stereoType === StereoType.Abstract) {
         return false;
       }
 
