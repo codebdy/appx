@@ -80,31 +80,39 @@ const PackageAction = memo((
                 key: '1',
                 onClick: e => {
                   e.domEvent.stopPropagation();
-                  addClass(StereoType.Entity)
+                  addClass(StereoType.Entity);
                 },
               },
               {
                 label: getLocalMessage("model.AddAbstract"),
                 key: '2',
-                onClick: e =>  {
+                onClick: e => {
                   e.domEvent.stopPropagation();
-                  addClass(StereoType.Abstract)
+                  addClass(StereoType.Abstract);
                 },
               },
               {
                 label: getLocalMessage("model.AddEnum"),
                 key: '3',
-                onClick: e =>  {
+                onClick: e => {
                   e.domEvent.stopPropagation();
-                  addClass(StereoType.Enum)
+                  addClass(StereoType.Enum);
                 },
               },
               {
                 label: getLocalMessage("model.AddValueObject"),
                 key: '4',
-                onClick: e =>  {
+                onClick: e => {
                   e.domEvent.stopPropagation();
-                  addClass(StereoType.ValueObject)
+                  addClass(StereoType.ValueObject);
+                },
+              },
+              {
+                label: getLocalMessage("model.AddService"),
+                key: '5',
+                onClick: e => {
+                  e.domEvent.stopPropagation();
+                  addClass(StereoType.Service);
                 },
               },
             ]

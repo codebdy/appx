@@ -84,6 +84,7 @@ GlobalRegistry.registerDesignerLocales({
       AddAbstract: "添加抽象类",
       AddEnum: "添加枚举",
       AddValueObject: "添加值类",
+      AddService: "添加服务类",
       NewPackage: "新建包",
       NewDiagram: "新建类图",
       Class: "类",
