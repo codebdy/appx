@@ -23,6 +23,9 @@ import { AttributeMeta } from './../meta/AttributeMeta';
 import { useDeleteAttribute } from './../hooks/useDeleteAttribute';
 import { CONST_ID } from "../meta/Meta";
 import { useParseRelationUuid } from "../hooks/useParseRelationUuid";
+import { useGetSourceRelations } from './../hooks/useGetSourceRelations';
+import { useGetTargetRelations } from './../hooks/useGetTargetRelations';
+import { useGetClass } from "../hooks/useGetClass";
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
@@ -38,6 +41,9 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   const parseRelationUuid = useParseRelationUuid(appId);
   const [selectedDiagramId, setSelecteDiagramId] = useRecoilState(selectedDiagramState(appId));
   const [selectedElement, setSelectedElement] = useRecoilState(selectedElementState(appId));
+  const getSourceRelations = useGetSourceRelations(appId);
+  const getTargetRelations = useGetTargetRelations(appId);
+  const getClass = useGetClass(appId);
 
   const getAttributeNode = useCallback((attr: AttributeMeta) => {
     return {
@@ -98,12 +104,40 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
 
   const getClassRelationsNode = useCallback((cls: ClassMeta) => {
     const children = [];
+    const sourceRelations = getSourceRelations(cls.uuid);
+    const targetRelations = getTargetRelations(cls.uuid);
+    const icon = <SvgIcon>
+      <svg style={{ width: "12px", height: "12px" }} viewBox="0 0 24 24" fill="currentColor"><path
+        fill="currentColor"
+        d="M22 13V19H21L19 17H11V9H5L3 11H2V5H3L5 7H13V15H19L21 13Z"
+      /></svg>
+    </SvgIcon>;
+    for (const relation of sourceRelations) {
+      children.push(
+        {
+          icon,
+          title: relation.roleOfTarget + ":" + getClass(relation.targetId)?.name,
+          key: cls.uuid + "," + relation.uuid,
+          isLeaf: true,
+        }
+      )
+    }
+    for (const relation of targetRelations) {
+      children.push(
+        {
+          icon,
+          title: relation.roleOfSource + ":" + getClass(relation.sourceId)?.name,
+          key: cls.uuid + "," + relation.uuid,
+          isLeaf: true,
+        }
+      )
+    }
     return {
       title: getLocalMessage("model.Relationships"),
       key: cls.uuid + "relations",
       children: children,
     }
-  }, [])
+  }, [getSourceRelations, getTargetRelations])
 
   const getClassMethodsNode = useCallback((cls: ClassMeta) => {
     const children = [];
@@ -122,7 +156,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
 
     if (cls.stereoType == StereoType.Entity) {
       const relations = getClassRelationsNode(cls);
-      relations.children?.length >0 && children.push(relations)
+      relations.children?.length > 0 && children.push(relations)
     }
     return {
       icon: cls.root ? <InterfaceIcon size={"12px"} /> : <SvgIcon>{classSvg}</SvgIcon>,

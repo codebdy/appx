@@ -1,19 +1,20 @@
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { useRecoilValue } from "recoil";
 import { ID } from "../../shared";
 import { RelationType } from "../meta/RelationMeta";
 import { relationsState } from "../recoil/atoms";
 
-export function useSourceRelations(entityUuid: string, appId: ID) {
+export function useGetTargetRelations(appId: ID) {
   const relations = useRecoilValue(relationsState(appId));
 
-  const sourceRelations = useMemo(() => {
+  const getTargetRelations = useCallback((entityUuid: string,)=>{
     return relations.filter(
       (relation) =>
-        relation.sourceId === entityUuid &&
+        relation.targetId === entityUuid &&
         relation.relationType !== RelationType.INHERIT
     );
-  }, [entityUuid, relations]);
+  }, [relations])
 
-  return sourceRelations;
+
+  return getTargetRelations;
 }

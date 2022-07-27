@@ -9,8 +9,8 @@ export function useParseRelationUuid(appId: ID) {
   const relastions = useRecoilValue(relationsState(appId));
 
   const parseUuid = useCallback((uuid: string):string => {
-
-    return "false"
+    const [clsuuid, relationUuid] = uuid.split(",");
+    return relationUuid
   }, [classes])
 
   return parseUuid
