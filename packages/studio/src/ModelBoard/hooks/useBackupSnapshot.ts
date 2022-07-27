@@ -12,12 +12,14 @@ import {
   undoListState,
   x6EdgesState,
   x6NodesState,
+  packagesState,
 } from "../recoil/atoms";
 
 export function useBackupSnapshot(appId: ID) {
   const diagrams = useRecoilValue(diagramsState(appId));
   const entities = useRecoilValue(classesState(appId));
   const relations = useRecoilValue(relationsState(appId));
+  const packages = useRecoilValue(packagesState(appId))
   const x6Nodes = useRecoilValue(x6NodesState(appId));
   const x6Edges = useRecoilValue(x6EdgesState(appId));
   const selectedDiagram = useRecoilValue(selectedDiagramState(appId));
@@ -32,6 +34,7 @@ export function useBackupSnapshot(appId: ID) {
     setUndoList((undoList) => [
       ...undoList,
       {
+        packages,
         diagrams,
         classes: entities,
         relations,
@@ -43,6 +46,7 @@ export function useBackupSnapshot(appId: ID) {
     ]);
     setRedoList([]);
   }, [
+    packages,
     diagrams,
     entities,
     relations,

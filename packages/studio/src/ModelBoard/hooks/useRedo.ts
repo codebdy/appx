@@ -13,11 +13,13 @@ import {
   undoListState,
   x6EdgesState,
   x6NodesState,
+  packagesState,
 } from "../recoil/atoms";
 
 export function useRedo(appId: ID) {
   const setUndoList = useSetRecoilState(undoListState(appId));
   const [redoList, setRedoList] = useRecoilState(redoListState(appId));
+  const [packages, setPackages] = useRecoilState(packagesState(appId))
   const [diagrams, setDiagrams] = useRecoilState(diagramsState(appId));
   const [entities, setEntities] = useRecoilState(classesState(appId));
   const [relations, setRelations] = useRecoilState(relationsState(appId));
@@ -38,6 +40,7 @@ export function useRedo(appId: ID) {
     setUndoList((snapshots) => [
       ...snapshots,
       {
+        packages,
         diagrams,
         classes: entities,
         relations,
@@ -48,6 +51,7 @@ export function useRedo(appId: ID) {
       },
     ]);
     setRedoList((snapshots) => snapshots.slice(0, snapshots.length - 1));
+    setPackages(snapshot.packages);
     setDiagrams(snapshot.diagrams);
     setEntities(snapshot.classes);
     setRelations(snapshot.relations);
@@ -59,6 +63,7 @@ export function useRedo(appId: ID) {
       name: EVENT_UNDO_REDO,
     });
   }, [
+    packages,
     diagrams,
     entities,
     redoList,
