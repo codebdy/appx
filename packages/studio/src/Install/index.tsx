@@ -1,4 +1,4 @@
-import { Button, Card, Space } from 'antd';
+import { Button, Card, Checkbox, Form, Input, Space } from 'antd';
 import React, { memo, useCallback, useState } from 'react';
 import { getLocalMessage } from '../locales/getLocalMessage';
 
@@ -38,6 +38,36 @@ const Install = memo(() => {
               <p>Appx 低代码平台，强大、高效！</p>
               <p>请点击“下一步”，开始安装。</p>
             </>
+          }
+          {
+            current === 1 &&
+            <Form
+              name="install"
+              labelCol={{ span: 7 }}
+              wrapperCol={{ span: 14 }}
+              initialValues={{ remember: true }}
+              autoComplete="off"
+            >
+              <Form.Item
+                label={getLocalMessage("install.Account")}
+                name="username"
+                rules={[{ required: true, message: getLocalMessage("Requried") }]}
+              >
+                <Input />
+              </Form.Item>
+
+              <Form.Item
+                label={getLocalMessage("install.Password")}
+                name="password"
+                rules={[{ required: true, message: getLocalMessage("Requried") }]}
+              >
+                <Input.Password />
+              </Form.Item>
+
+              <Form.Item name="withDemo" valuePropName="checked" wrapperCol={{ offset: 7, span: 16 }}>
+                <Checkbox>{getLocalMessage("install.WithDemo")}</Checkbox>
+              </Form.Item>
+            </Form>
           }
 
         </div>

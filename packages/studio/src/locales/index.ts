@@ -29,6 +29,9 @@ GlobalRegistry.registerDesignerLocales({
       Title: "安装Appx",
       Next: "下一步",
       Previous: "上一步",
+      Account: "管理员账号",
+      Password: "管理员密码",
+      WithDemo: "安装演示账号",
     },
     System: {
       Model: "系统模型",
