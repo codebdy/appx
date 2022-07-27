@@ -4,32 +4,30 @@ import TreeNodeLabel from "./TreeNodeLabel"
 import { PRIMARY_COLOR } from "../../consts";
 import { useSelectedAppId } from "../hooks/useSelectedAppId"
 import { useRecoilValue } from 'recoil';
-import { selectedElementState } from './../recoil/atoms';
+import { selectedElementState } from '../recoil/atoms';
 import { Button } from "antd"
 import { DeleteOutlined } from "@ant-design/icons"
-import { AttributeMeta } from './../meta/AttributeMeta';
-import { useDeleteAttribute } from "../hooks/useDeleteAttribute";
-import { CONST_ID } from "../meta/Meta";
+import { MethodMeta } from "../meta/MethodMeta";
+import { useDeleteMethod } from "../hooks/useDeleteMethod";
 
-const AttributeLabel = memo((
+const MethodLabel = memo((
   props: {
-    attr: AttributeMeta
+    method: MethodMeta
   }
 ) => {
-  const { attr } = props;
+  const { method } = props;
   const appId = useSelectedAppId();
   const selectedElement = useRecoilValue(selectedElementState(appId));
-  const removeAttribute = useDeleteAttribute(appId);
+  const removeMethod = useDeleteMethod(appId);
 
   const handleDelete = useCallback((event: React.MouseEvent) => {
     event.stopPropagation();
-    removeAttribute(attr.uuid);
-  }, [removeAttribute]);
+    removeMethod(method.uuid);
+  }, [removeMethod]);
 
   return (
     <TreeNodeLabel
       action={
-        attr.name !== CONST_ID &&
         <Button
           type="text"
           shape='circle'
@@ -40,11 +38,11 @@ const AttributeLabel = memo((
         </Button>
       }
     >
-      <div style={{ color: selectedElement === attr.uuid ? PRIMARY_COLOR : undefined }}>
-        {attr.name}
+      <div style={{ color: selectedElement === method.uuid ? PRIMARY_COLOR : undefined }}>
+        {method.name}
       </div>
     </TreeNodeLabel>
   )
 })
 
-export default AttributeLabel
+export default MethodLabel

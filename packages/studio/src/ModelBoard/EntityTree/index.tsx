@@ -28,6 +28,7 @@ import { MethodMeta } from "../meta/MethodMeta";
 import { useDeleteMethod } from './../hooks/useDeleteMethod';
 import AttributeLabel from "./AttributeLabel";
 import { PRIMARY_COLOR } from "../../consts";
+import MethodLabel from "./MethodLabel";
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
@@ -132,38 +133,21 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     return {
       icon: <SvgIcon>
         <svg style={{ width: "12px", height: "12px" }} viewBox="0 0 24 24" fill="currentColor">
-          <path fill="currentColor" d="M16 7V3H14V7H10V3H8V7C7 7 6 8 6 9V14.5L9.5 18V21H14.5V18L18 14.5V9C18 8 17 7 16 7M16 13.67L13.09 16.59L12.67 17H11.33L10.92 16.59L8 13.67V9.09C8 9.06 8.06 9 8.09 9H15.92C15.95 9 16 9.06 16 9.09V13.67Z" />
+          <path fill={selectedElement === method.uuid ? PRIMARY_COLOR : undefined} d="M16 7V3H14V7H10V3H8V7C7 7 6 8 6 9V14.5L9.5 18V21H14.5V18L18 14.5V9C18 8 17 7 16 7M16 13.67L13.09 16.59L12.67 17H11.33L10.92 16.59L8 13.67V9.09C8 9.06 8.06 9 8.09 9H15.92C15.95 9 16 9.06 16 9.09V13.67Z" />
         </svg>
       </SvgIcon>,
-      title:
-        <TreeNodeLabel
-          action={
-            <Button
-              type="text"
-              shape="circle"
-              size="small"
-              onClick={(e) => {
-                e.stopPropagation()
-                removeMethod(method.uuid);
-              }}
-            >
-              <DeleteOutlined />
-            </Button>
-          }
-        >
-          {method.name}
-        </TreeNodeLabel>,
+      title:<MethodLabel method={method} />,
       key: method.uuid,
       isLeaf: true,
     }
-  }, [removeMethod]);
+  }, [selectedElement]);
   const getClassMethodsNode = useCallback((cls: ClassMeta) => {
     return {
       title: getLocalMessage("model.Methods"),
       key: cls.uuid + "methods",
       children: cls.methods?.map(method => getMethodNode(method)),
     }
-  }, [selectedElement])
+  }, [selectedElement, getMethodNode])
 
   const getClassNode = useCallback((cls: ClassMeta) => {
     const children = [getClassAttributesNode(cls)];
