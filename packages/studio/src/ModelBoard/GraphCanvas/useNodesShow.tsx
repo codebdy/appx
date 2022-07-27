@@ -23,6 +23,7 @@ import { useCreateClassMethod } from "../hooks/useCreateClassMethod";
 import { ID } from "../../shared";
 import React from "react";
 import { useGetPackage } from "../hooks/useGetPackage";
+import { useSelectedDiagramPackageUuid } from "../hooks/useSelectedDiagramPackage";
 
 export function useNodesShow(graph: Graph | undefined, appId: ID) {
   const selectedDiagram = useRecoilValue(selectedDiagramState(appId));
@@ -43,6 +44,7 @@ export function useNodesShow(graph: Graph | undefined, appId: ID) {
   const deleteClass = useDeleteClass(appId);
   const getPackage = useGetPackage(appId);
   getClassRef.current = getClass;
+  const selectedDiagramPackageUuid = useSelectedDiagramPackageUuid(appId)
 
   const changeClassRef = useRef(changeClass);
   changeClassRef.current = changeClass;
@@ -141,10 +143,11 @@ export function useNodesShow(graph: Graph | undefined, appId: ID) {
         console.error("cant not find entity by node id :" + node.id);
         return;
       }
+
       const data: ClassNodeData = {
         ...cls,
         ...node,
-        packageName: selectedDiagram !== cls.packageUuid ? getPackage(cls.packageUuid)?.name : undefined,
+        packageName: selectedDiagramPackageUuid !== cls.packageUuid ? getPackage(cls.packageUuid)?.name : undefined,
         //selectedId: selectedElement,
         //pressedLineType: pressedLineType,
         //drawingLine: drawingLine,
@@ -213,5 +216,6 @@ export function useNodesShow(graph: Graph | undefined, appId: ID) {
     handleMethodCreate,
     handleMethodSelect,
     handleMothodDelete,
+    selectedDiagramPackageUuid,
   ]);
 }
