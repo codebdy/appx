@@ -16,9 +16,13 @@
     "@antv/x6-react-shape": "^1.6.1",
     "@appx/enthooks": "^0.1.0",
     "@designable/formily-antd": "^1.0.0-beta.45",
+    "@graphiql/toolkit": "^0.6.0",
     "array-move": "^4.0.0",
+    "graphiql": "^1.10.0",
+    "graphql": "^16.5.0",
     "react-router-dom": "^6.3.0",
     "recoil": "^0.7.4",
+    "subscriptions-transport-ws": "^0.11.0",
     "uuid": "^8.3.2"
   }
 }
