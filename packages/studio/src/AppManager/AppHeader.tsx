@@ -13,7 +13,7 @@ export enum AppManagerRoutes {
   Root = "/",
   Model = "system-model",
   Api = "system-api",
-  Auth = "system=auth"
+  Auth = "system-auth",
 }
 
 const AppHeader = memo((props: {

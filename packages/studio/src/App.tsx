@@ -12,6 +12,9 @@ import ApiBoard from './ApiBoard';
 import AuthBoard from './AuthBoard';
 import { AppManagerRoutes } from './AppManager/AppHeader';
 import { RecoilRoot } from 'recoil';
+import Install from './Install';
+import InstallCheck from './Install/InstallCheck';
+import LoginCheck from './Login/LoginCheck';
 
 const App = memo(() => {
   useQuery()
@@ -32,6 +35,7 @@ const App = memo(() => {
             <Route path="/config-app/:appId" element={<AppConfig />} />
             <Route path="/design-app/:deviceSlug/:appId" element={<AppDesigner />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/install" element={<Install />} />
           </Routes>
         </BrowserRouter>
       </EntiRoot >
