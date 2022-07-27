@@ -32,6 +32,8 @@ GlobalRegistry.registerDesignerLocales({
       Account: "管理员账号",
       Password: "管理员密码",
       WithDemo: "安装演示账号",
+      Install: "安装",
+      Finished: "完成"
     },
     System: {
       Model: "系统模型",

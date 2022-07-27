@@ -6,11 +6,11 @@ const Install = memo(() => {
   const [current, setCurrent] = useState(0);
 
   const next = useCallback(() => {
-    setCurrent(current + 1);
+    setCurrent(current => current + 1);
   }, []);
 
   const prev = useCallback(() => {
-    setCurrent(current - 1);
+    setCurrent(current => current - 1);
   }, []);
 
   return (
@@ -29,7 +29,7 @@ const Install = memo(() => {
         title={getLocalMessage("install.Title")}
       >
         <div style={{
-          minHeight: 200,
+          minHeight: 160,
           width: 400
         }}>
           {
@@ -81,14 +81,30 @@ const Install = memo(() => {
           <Space>
             {
               current === 1 &&
-              <Button onClick={() => next()}>
+              <Button onClick={prev}>
                 {getLocalMessage("install.Previous")}
               </Button>
             }
 
-            <Button type="primary" onClick={() => next()}>
-              {getLocalMessage("install.next")}
-            </Button>
+            {
+              current === 0 &&
+              <Button type="primary" onClick={next}>
+                {getLocalMessage("install.next")}
+              </Button>
+            }
+
+            {
+              current === 1 &&
+              <Button type="primary" onClick={next}>
+                {getLocalMessage("install.Install")}
+              </Button>
+            }
+            {
+              current === 2 &&
+              <Button type="primary">
+                {getLocalMessage("install.Finished")}
+              </Button>
+            }
           </Space>
         </div>
       </Card>
