@@ -4,6 +4,7 @@ import React from "react";
 export interface ISvgIconProps {
   children: React.ReactElement;
 }
+
 const SvgIcon: React.FC<ISvgIconProps> = (props: ISvgIconProps) => {
   return (
     <Icon

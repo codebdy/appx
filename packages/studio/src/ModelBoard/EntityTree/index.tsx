@@ -12,7 +12,7 @@ import TreeNodeLabel from "./TreeNodeLabel";
 import PackageLabel from "./PackageLabel";
 import { PackageMeta } from "../meta/PackageMeta";
 import { ClassMeta, StereoType } from "../meta/ClassMeta";
-import { classSvg } from "./svgs";
+import { ClassIcon } from "./svgs";
 import { useIsDiagram } from "../hooks/useIsDiagram";
 import { useIsElement } from "../hooks/useIsElement";
 import ClassLabel from "./ClassLabel";
@@ -20,14 +20,14 @@ import InterfaceIcon from '../../icons/InterfaceIcon';
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { useCreateClassAttribute } from './../hooks/useCreateClassAttribute';
 import { AttributeMeta } from './../meta/AttributeMeta';
-import { useDeleteAttribute } from './../hooks/useDeleteAttribute';
-import { CONST_ID } from "../meta/Meta";
 import { useParseRelationUuid } from "../hooks/useParseRelationUuid";
 import { useGetSourceRelations } from './../hooks/useGetSourceRelations';
 import { useGetTargetRelations } from './../hooks/useGetTargetRelations';
 import { useGetClass } from "../hooks/useGetClass";
 import { MethodMeta } from "../meta/MethodMeta";
 import { useDeleteMethod } from './../hooks/useDeleteMethod';
+import AttributeLabel from "./AttributeLabel";
+import { PRIMARY_COLOR } from "../../consts";
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
@@ -37,7 +37,6 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   const diagrams = useRecoilValue(diagramsState(appId));
   const classes = useRecoilValue(classesState(appId));
   const addAttribute = useCreateClassAttribute(appId);
-  const removeAttribute = useDeleteAttribute(appId);
   const removeMethod = useDeleteMethod(appId);
   const isDiagram = useIsDiagram(appId);
   const isElement = useIsElement(appId);
@@ -51,34 +50,21 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   const getAttributeNode = useCallback((attr: AttributeMeta) => {
     return {
       icon: <SvgIcon>
-        <svg style={{ width: "12px", height: "12px" }} viewBox="0 0 24 24" fill="currentColor"><path
-          fill="currentColor"
-          d="M12 2C11.5 2 11 2.19 10.59 2.59L2.59 10.59C1.8 11.37 1.8 12.63 2.59 13.41L10.59 21.41C11.37 22.2 12.63 22.2 13.41 21.41L21.41 13.41C22.2 12.63 22.2 11.37 21.41 10.59L13.41 2.59C13 2.19 12.5 2 12 2M12 4L20 12L12 20L4 12Z"
-        /></svg>
-      </SvgIcon>,
-      title:
-        <TreeNodeLabel
-          action={
-            attr.name !== CONST_ID &&
-            <Button
-              type="text"
-              shape="circle"
-              size="small"
-              onClick={(e) => {
-                e.stopPropagation()
-                removeAttribute(attr.uuid);
-              }}
-            >
-              <DeleteOutlined />
-            </Button>
-          }
+        <svg
+          style={{ width: "12px", height: "12px" }}
+          viewBox="0 0 24 24"
         >
-          {attr.name}
-        </TreeNodeLabel>,
+          <path
+            fill={selectedElement === attr.uuid ? PRIMARY_COLOR : undefined}
+            d="M12 2C11.5 2 11 2.19 10.59 2.59L2.59 10.59C1.8 11.37 1.8 12.63 2.59 13.41L10.59 21.41C11.37 22.2 12.63 22.2 13.41 21.41L21.41 13.41C22.2 12.63 22.2 11.37 21.41 10.59L13.41 2.59C13 2.19 12.5 2 12 2M12 4L20 12L12 20L4 12Z"
+          />
+        </svg>
+      </SvgIcon>,
+      title: <AttributeLabel attr={attr} />,
       key: attr.uuid,
       isLeaf: true,
     }
-  }, [removeAttribute]);
+  }, [selectedElement]);
 
   const getClassAttributesNode = useCallback((cls: ClassMeta) => {
     return {
@@ -177,7 +163,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
       key: cls.uuid + "methods",
       children: cls.methods?.map(method => getMethodNode(method)),
     }
-  }, [])
+  }, [selectedElement])
 
   const getClassNode = useCallback((cls: ClassMeta) => {
     const children = [getClassAttributesNode(cls)];
@@ -189,13 +175,16 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
       const relations = getClassRelationsNode(cls);
       relations.children?.length > 0 && children.push(relations)
     }
+    const color = selectedElement === cls.uuid ? PRIMARY_COLOR : undefined;
     return {
-      icon: cls.root ? <InterfaceIcon size={"12px"} /> : <SvgIcon>{classSvg}</SvgIcon>,
+      icon: cls.root ?
+        <InterfaceIcon size={"12px"} color={color} />
+        : <SvgIcon><ClassIcon color={color} /></SvgIcon>,
       title: <ClassLabel cls={cls} graph={graph} />,
       key: cls.uuid,
       children: children,
     }
-  }, [selectedElement, classes, getClassAttributesNode, getClassRelationsNode, getClassMethodsNode])
+  }, [selectedElement, selectedDiagramId, classes, getClassAttributesNode, getClassRelationsNode, getClassMethodsNode])
 
   const getClassCategoryNode = useCallback((title: string, key: string, clses: ClassMeta[]) => {
     return {
