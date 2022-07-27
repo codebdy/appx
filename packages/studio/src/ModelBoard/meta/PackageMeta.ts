@@ -12,4 +12,5 @@ export enum PackageStatus{
 export interface PackageMeta{
   uuid: string;
   name: string;
+  isSystem?: boolean;
 }

@@ -42,4 +42,5 @@ export interface ClassMeta {
   root?: boolean;
   packageUuid: string;
   description?: string;
+  isSystem?: boolean;
 }

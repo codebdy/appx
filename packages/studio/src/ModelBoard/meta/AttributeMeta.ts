@@ -80,4 +80,6 @@ export interface AttributeMeta {
    * 渲染图形元素用的label，其他地方毫无用处
    */
   typeLabel:string;
+
+  isSystem?: boolean;
 }

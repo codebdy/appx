@@ -69,4 +69,6 @@ export interface RelationMeta {
     name: string;
     attributes: AttributeMeta[];
   };
+
+  isSystem?: boolean;
 }
