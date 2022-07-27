@@ -2,6 +2,7 @@ import { RelationMeta } from "./RelationMeta";
 import { PackageMeta } from "./PackageMeta";
 import { ClassMeta } from "./ClassMeta";
 import { DiagramMeta } from "./DiagramMeta";
+import { ID } from "../../shared";
 
 export const EntityNameMeta = "Meta";
 
@@ -9,11 +10,11 @@ export enum MetaStatus {
   META_STATUS_PUBLISHED = "published",
   META_STATUS_CANCELLED = "cancelled",
   META_STATUS_MIGRATION_ERROR = "migrationError",
-  META_STATUS_ROLLBACK_ERROR = "rollbackError",
 }
 
 export interface Meta {
-  id?: number;
+  id?: ID;
+  appId?: ID;
   content: {
     packages: PackageMeta[];
     classes?: ClassMeta[];
