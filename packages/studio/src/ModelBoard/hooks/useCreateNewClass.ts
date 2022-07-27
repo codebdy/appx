@@ -28,9 +28,11 @@ export function useCreateNewClass(appId: ID) {
         name: getNewClassName(),
         stereoType: stereoType,
         packageUuid,
+        root: stereoType === StereoType.Service,
         attributes:
           stereoType === StereoType.Enum ||
-            stereoType === StereoType.ValueObject
+            stereoType === StereoType.ValueObject ||
+            stereoType === StereoType.Service
             ? []
             : [
               {

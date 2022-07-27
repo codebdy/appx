@@ -91,6 +91,7 @@ GlobalRegistry.registerDesignerLocales({
       EntityClass: "实体类",
       EnumClass: "枚举类",
       ValueClass: "值类",
+      ServiceClass: "服务类",
       Atrributes: "属性",
       Relationships: "关系",
       Methods:"方法",

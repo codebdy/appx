@@ -40,7 +40,7 @@ export const ClassPanel = (props: { cls: ClassMeta }) => {
               valuePropName="checked"
               label={getLocalMessage("model.RootNode")}
             >
-              <Switch />
+              <Switch disabled={cls.stereoType === StereoType.Service} />
             </Form.Item>
           )}
         <Form.Item

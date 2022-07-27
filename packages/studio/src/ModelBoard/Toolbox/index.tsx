@@ -130,6 +130,10 @@ export const Toolbox = memo((props: { graph?: Graph }) => {
             <ClassRect stereoChar="V" oneBorder={true} />
             {getLocalMessage("model.ValueClass")}
           </ToolItem>
+          <ToolItem onMouseDown={startDragFn(StereoType.Service)}>
+            <ClassRect stereoChar="V" oneBorder={true} />
+            {getLocalMessage("model.ServiceClass")}
+          </ToolItem>
           <ToolItem
             selected={pressedLineType === RelationType.INHERIT}
             onClick={handleRelationClick(RelationType.INHERIT)}
