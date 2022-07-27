@@ -29,6 +29,7 @@ import { PRIMARY_COLOR } from "../../consts";
 import MethodLabel from "./MethodLabel";
 import AttributesLabel from "./AttributesLabel";
 import MethodsLabel from "./MethodsLabel";
+import RelationLabel from "./RelationLabel";
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
@@ -78,17 +79,21 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     const children = [];
     const sourceRelations = getSourceRelations(cls.uuid);
     const targetRelations = getTargetRelations(cls.uuid);
-    const icon = <SvgIcon>
-      <svg style={{ width: "12px", height: "12px" }} viewBox="0 0 24 24" fill="currentColor"><path
-        fill="currentColor"
-        d="M22 13V19H21L19 17H11V9H5L3 11H2V5H3L5 7H13V15H19L21 13Z"
-      /></svg>
+    const icon = (color?: string) => <SvgIcon>
+      <svg style={{ width: "12px", height: "12px" }} viewBox="0 0 24 24" fill="currentColor">
+        <path
+          fill={color || "currentColor"}
+          d="M22 13V19H21L19 17H11V9H5L3 11H2V5H3L5 7H13V15H19L21 13Z"
+        /></svg>
     </SvgIcon>;
     for (const relation of sourceRelations) {
       children.push(
         {
-          icon,
-          title: relation.roleOfTarget + ":" + getClass(relation.targetId)?.name,
+          icon:icon(selectedElement === relation.uuid ? PRIMARY_COLOR : undefined),
+          title: <RelationLabel
+            title={relation.roleOfTarget + ":" + getClass(relation.targetId)?.name}
+            relation={relation}
+          />,
           key: cls.uuid + "," + relation.uuid,
           isLeaf: true,
         }
@@ -97,8 +102,11 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     for (const relation of targetRelations) {
       children.push(
         {
-          icon,
-          title: relation.roleOfSource + ":" + getClass(relation.sourceId)?.name,
+          icon:icon(selectedElement === relation.uuid ? PRIMARY_COLOR : undefined),
+          title: <RelationLabel
+            title={relation.roleOfSource + ":" + getClass(relation.sourceId)?.name}
+            relation={relation}
+          />,
           key: cls.uuid + "," + relation.uuid,
           isLeaf: true,
         }
@@ -136,7 +144,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     if (cls.stereoType !== StereoType.Service) {
       children.push(getClassAttributesNode(cls))
     }
-    if (cls.stereoType === StereoType.Abstract || 
+    if (cls.stereoType === StereoType.Abstract ||
       cls.stereoType === StereoType.Entity ||
       cls.stereoType === StereoType.Service) {
       children.push(getClassMethodsNode(cls))
