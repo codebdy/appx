@@ -75,7 +75,13 @@ const Install = memo(() => {
               </Form.Item>
             </Form>
           }
-
+          {
+            current === 2 &&
+            <>
+              <p>您已经成功安装Appx</p>
+              <p>马上开启神奇之旅吧！</p>
+            </>
+          }
         </div>
         <div
           style={{
