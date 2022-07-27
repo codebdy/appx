@@ -1,10 +1,12 @@
 import { Button, Card, Checkbox, Form, Input, Space } from 'antd';
 import React, { memo, useCallback, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getLocalMessage } from '../locales/getLocalMessage';
 
 const Install = memo(() => {
   const [current, setCurrent] = useState(0);
-
+  const navigate = useNavigate()
+  
   const next = useCallback(() => {
     setCurrent(current => current + 1);
   }, []);
@@ -12,6 +14,10 @@ const Install = memo(() => {
   const prev = useCallback(() => {
     setCurrent(current => current - 1);
   }, []);
+
+  const handleFinished = useCallback(()=>{
+    navigate("/login");
+  }, [navigate])
 
   return (
     <div style={{
@@ -101,7 +107,7 @@ const Install = memo(() => {
             }
             {
               current === 2 &&
-              <Button type="primary">
+              <Button type="primary" onClick = {handleFinished}>
                 {getLocalMessage("install.Finished")}
               </Button>
             }
