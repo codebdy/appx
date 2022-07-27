@@ -25,6 +25,11 @@ GlobalRegistry.registerDesignerLocales({
     RememberMe: "记住我",
     File: "文件",
     Length: "长度",
+    install: {
+      Title: "安装Appx",
+      Next: "下一步",
+      Previous: "上一步",
+    },
     System: {
       Model: "系统模型",
       API: "系统接口",
@@ -95,7 +100,7 @@ GlobalRegistry.registerDesignerLocales({
       ServiceClass: "服务类",
       Atrributes: "属性",
       Relationships: "关系",
-      Methods:"方法",
+      Methods: "方法",
       Inherit: "继承",
       Association: "关联",
       Aggregation: "聚合",

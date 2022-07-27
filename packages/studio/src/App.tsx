@@ -13,8 +13,6 @@ import AuthBoard from './AuthBoard';
 import { AppManagerRoutes } from './AppManager/AppHeader';
 import { RecoilRoot } from 'recoil';
 import Install from './Install';
-import InstallCheck from './Install/InstallCheck';
-import LoginCheck from './Login/LoginCheck';
 
 const App = memo(() => {
   useQuery()
