@@ -5,13 +5,13 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { getLocalMessage } from "../../locales/getLocalMessage";
 import SyncButton from "./SyncButton";
 import { changedState, classesState, diagramsState, metaState, relationsState, x6EdgesState, x6NodesState } from "../recoil/atoms";
-import { useSelectedAppId } from './../hooks/useSelectedAppId';
+import { useSelectedAppUuid } from '../hooks/useSelectedAppUuid';
 import { Meta, MetaStatus } from "../meta/Meta";
 import { useValidate } from "../hooks/useValidate";
 
 
 const SavaActions = memo(() => {
-  const appId = useSelectedAppId();
+  const appId = useSelectedAppUuid();
   const [meta, setMeta] = useRecoilState(metaState(appId));
   const classeMetas = useRecoilValue(classesState(appId));
   const relations = useRecoilValue(relationsState(appId));

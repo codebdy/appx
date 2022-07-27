@@ -2,14 +2,14 @@ import { FolderAddOutlined, DownloadOutlined, ImportOutlined, MoreOutlined } fro
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
 import { getLocalMessage } from "../../locales/getLocalMessage";
-import { useSelectedAppId } from "../hooks/useSelectedAppId";
+import { useSelectedAppUuid } from "../hooks/useSelectedAppUuid";
 import { useCreateNewPackage } from './../hooks/useCreateNewPackage';
 import { useSetRecoilState } from 'recoil';
 import { packagesState } from "../recoil/atoms";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
 
 const RootAction = memo(() => {
-  const appId = useSelectedAppId();
+  const appId = useSelectedAppUuid();
   const setPackages = useSetRecoilState(packagesState(appId));
   const createNewPackage = useCreateNewPackage(appId);
   const backup = useBackupSnapshot(appId);

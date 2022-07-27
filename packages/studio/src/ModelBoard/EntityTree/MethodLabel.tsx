@@ -2,7 +2,7 @@ import React, { useCallback } from "react"
 import { memo } from "react"
 import TreeNodeLabel from "./TreeNodeLabel"
 import { PRIMARY_COLOR } from "../../consts";
-import { useSelectedAppId } from "../hooks/useSelectedAppId"
+import { useSelectedAppUuid } from "../hooks/useSelectedAppUuid"
 import { useRecoilValue } from 'recoil';
 import { selectedElementState } from '../recoil/atoms';
 import { Button } from "antd"
@@ -16,7 +16,7 @@ const MethodLabel = memo((
   }
 ) => {
   const { method } = props;
-  const appId = useSelectedAppId();
+  const appId = useSelectedAppUuid();
   const selectedElement = useRecoilValue(selectedElementState(appId));
   const removeMethod = useDeleteMethod(appId);
 

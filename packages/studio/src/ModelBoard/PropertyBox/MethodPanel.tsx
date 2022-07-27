@@ -2,13 +2,13 @@ import React, { useCallback } from "react";
 import { ArgMeta, MethodMeta, MethodImplementType, MethodOperateType } from "../meta/MethodMeta";
 import { Type } from "../meta/Type";
 import { ClassMeta } from "../meta/ClassMeta";
-import { useSelectedAppId } from "../hooks/useSelectedAppId";
+import { useSelectedAppUuid } from "../hooks/useSelectedAppUuid";
 import { useChangeMethod } from "../hooks/useChangeMethod";
 import { useGetTypeLabel } from "../hooks/useGetTypeLabel";
 
 export const MethodPanel = (props: { method: MethodMeta; cls: ClassMeta }) => {
   const { method, cls } = props;
-  const serviceId = useSelectedAppId();
+  const serviceId = useSelectedAppUuid();
   const changeMethod = useChangeMethod(serviceId);
   const getTypeLabel = useGetTypeLabel(serviceId);
 

@@ -6,7 +6,7 @@ import {
 } from "../meta/RelationMeta";
 import { useClass } from "../hooks/useClass";
 import { useChangeRelation } from "../hooks/useChangeRelation";
-import { useSelectedAppId } from "../hooks/useSelectedAppId";
+import { useSelectedAppUuid } from "../hooks/useSelectedAppUuid";
 import { Collapse, Form, Input, Select } from "antd";
 import { getLocalMessage } from "../../locales/getLocalMessage";
 
@@ -15,7 +15,7 @@ const { Option } = Select;
 
 export const RelationPanel = (props: { relation: RelationMeta }) => {
   const { relation } = props;
-  const serviceId = useSelectedAppId();
+  const serviceId = useSelectedAppUuid();
   const source = useClass(relation.sourceId, serviceId);
   const target = useClass(relation.targetId, serviceId);
   const changeRelation = useChangeRelation(serviceId);

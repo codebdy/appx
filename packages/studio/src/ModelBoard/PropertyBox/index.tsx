@@ -9,14 +9,14 @@ import { selectedElementState } from "../recoil/atoms";
 import { useClass } from "../hooks/useClass";
 import { useAttribute } from "../hooks/useAttribute";
 import { useRelation } from "../hooks/useRelation";
-import { useSelectedAppId } from "../hooks/useSelectedAppId";
+import { useSelectedAppUuid } from "../hooks/useSelectedAppUuid";
 import { useMethod } from "../hooks/useMethod";
 import { MethodPanel } from "./MethodPanel";
 import { getLocalMessage } from "../../locales/getLocalMessage";
 import { Empty } from "antd";
 
 export const PropertyBox = () => {
-  const serviceId = useSelectedAppId();
+  const serviceId = useSelectedAppUuid();
   const selectedElement = useRecoilValue(selectedElementState(serviceId));
   const selectedEntity = useClass(selectedElement || "", serviceId);
   const { cls: attributeCls, attribute } = useAttribute(

@@ -19,14 +19,14 @@ import { useRedo } from "../hooks/useRedo";
 import { useAttribute } from "../hooks/useAttribute";
 import { useDeleteSelectedElement } from "../hooks/useDeleteSelectedElement";
 import { CONST_ID } from "../meta/Meta";
-import { useSelectedAppId } from "../hooks/useSelectedAppId";
+import { useSelectedAppUuid } from "../hooks/useSelectedAppUuid";
 import { useValidate } from "../hooks/useValidate";
 import { Button, Divider } from "antd";
 import { DeleteOutlined, RedoOutlined, UndoOutlined } from "@ant-design/icons";
 import "./index.less";
 
 export const ModelToolbar = memo(() => {
-  const appId = useSelectedAppId();
+  const appId = useSelectedAppUuid();
   const [changed, setChanged] = useRecoilState(changedState(appId));
   const undoList = useRecoilValue(undoListState(appId));
   const redoList = useRecoilValue(redoListState(appId));

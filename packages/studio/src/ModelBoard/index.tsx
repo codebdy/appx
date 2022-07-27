@@ -4,13 +4,13 @@ import { Graph } from "@antv/x6";
 import "@antv/x6-react-shape";
 import { ModelContent } from "./ModelContent";
 import "./index.less"
-import { useSelectedAppId } from './hooks/useSelectedAppId';
+import { useSelectedAppUuid } from './hooks/useSelectedAppUuid';
 import SavaActions from "./SavaActions";
 
 const ModelsBoard = memo(() => {
   const [graph, setGraph] = useState<Graph>();
   //const selectedService = useSelectedService();
-  const appId = useSelectedAppId();
+  const appId = useSelectedAppUuid();
 
   return (
     <div className="system-model-board">

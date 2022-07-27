@@ -2,7 +2,7 @@ import { MoreOutlined, EditOutlined, DeleteOutlined, FileAddOutlined, PlusSquare
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
 import { getLocalMessage } from "../../locales/getLocalMessage";
-import { useSelectedAppId } from "../hooks/useSelectedAppId";
+import { useSelectedAppUuid } from "../hooks/useSelectedAppUuid";
 import { useSetRecoilState } from 'recoil';
 import { packagesState, classesState, selectedDiagramState } from "../recoil/atoms";
 import { PackageMeta } from "../meta/PackageMeta";
@@ -20,7 +20,7 @@ const PackageAction = memo((
   }
 ) => {
   const { pkg, onEdit, onVisibleChange } = props;
-  const appId = useSelectedAppId()
+  const appId = useSelectedAppUuid()
   const setPackages = useSetRecoilState(packagesState(appId))
   const deletePackage = useDeletePackage(appId)
   const createNewClass = useCreateNewClass(appId);

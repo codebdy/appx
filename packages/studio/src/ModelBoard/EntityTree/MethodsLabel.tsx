@@ -1,7 +1,7 @@
 import React, { useCallback } from "react"
 import { memo } from "react"
 import TreeNodeLabel from "./TreeNodeLabel"
-import { useSelectedAppId } from "../hooks/useSelectedAppId"
+import { useSelectedAppUuid } from "../hooks/useSelectedAppUuid"
 import { Button } from "antd"
 import { ClassMeta } from "../meta/ClassMeta";
 import { PlusOutlined } from "@ant-design/icons";
@@ -14,7 +14,7 @@ const MethodsLabel = memo((
   }
 ) => {
   const { cls } = props;
-  const appId = useSelectedAppId();
+  const appId = useSelectedAppUuid();
   const addMethod = useCreateClassMethod(appId);
 
   return (

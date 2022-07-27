@@ -2,7 +2,7 @@ import { Input } from "antd";
 import React, { ChangeEvent, useCallback, useState } from "react";
 import { memo } from "react";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
-import { useSelectedAppId } from "../hooks/useSelectedAppId";
+import { useSelectedAppUuid } from "../hooks/useSelectedAppUuid";
 import { PackageMeta } from "../meta/PackageMeta";
 import PackageAction from "./PackageAction";
 import TreeNodeLabel from "./TreeNodeLabel";
@@ -19,7 +19,7 @@ const PackageLabel = memo((
   const [editing, setEditing] = useState(false);
   const [visible, setVisible] = useState(false);
 
-  const appId = useSelectedAppId();
+  const appId = useSelectedAppUuid();
   const backup = useBackupSnapshot(appId);
   const setPackages = useSetRecoilState(packagesState(appId));
 

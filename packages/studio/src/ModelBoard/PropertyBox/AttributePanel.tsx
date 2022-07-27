@@ -3,7 +3,7 @@ import { AttributeMeta } from "../meta/AttributeMeta";
 import { Type } from "../meta/Type";
 import { ClassMeta, StereoType } from "../meta/ClassMeta";
 import { useChangeAttribute } from "../hooks/useChangeAttribute";
-import { useSelectedAppId } from "../hooks/useSelectedAppId";
+import { useSelectedAppUuid } from "../hooks/useSelectedAppUuid";
 import { CONST_ID } from "../meta/Meta";
 import { useGetTypeLabel } from "../hooks/useGetTypeLabel";
 import { getLocalMessage } from "../../locales/getLocalMessage";
@@ -15,7 +15,7 @@ export const AttributePanel = (props: {
   cls: ClassMeta;
 }) => {
   const { attribute, cls } = props;
-  const serviceId = useSelectedAppId();
+  const serviceId = useSelectedAppUuid();
   const changeAttribute = useChangeAttribute(serviceId);
   const getTypeLabel = useGetTypeLabel(serviceId);
 

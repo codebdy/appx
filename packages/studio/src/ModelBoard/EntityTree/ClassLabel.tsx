@@ -6,7 +6,7 @@ import TreeNodeLabel from "./TreeNodeLabel"
 import { PRIMARY_COLOR } from "../../consts";
 import { NODE_INIT_SIZE } from "../GraphCanvas/nodeInitSize";
 import { ClassView } from "../GraphCanvas/ClassView";
-import { useSelectedAppId } from "../hooks/useSelectedAppId"
+import { useSelectedAppUuid } from "../hooks/useSelectedAppUuid"
 import { useRecoilValue } from 'recoil';
 import { selectedElementState, classesState } from './../recoil/atoms';
 import { Button } from "antd"
@@ -22,7 +22,7 @@ const ClassLabel = memo((
 ) => {
   const { cls, graph } = props;
   const [dnd, setDnd] = React.useState<any>();
-  const appId = useSelectedAppId();
+  const appId = useSelectedAppUuid();
   const classes = useRecoilValue(classesState(appId));
   const selectedElement = useRecoilValue(selectedElementState(appId));
   const deleteClass = useDeleteClass(appId);

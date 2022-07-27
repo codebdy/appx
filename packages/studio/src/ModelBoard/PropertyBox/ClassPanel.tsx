@@ -1,13 +1,13 @@
 import React, { useCallback } from "react";
 import { ClassMeta, StereoType } from "../meta/ClassMeta";
 import { useChangeClass } from "../hooks/useChangeClass";
-import { useSelectedAppId } from "../hooks/useSelectedAppId";
+import { useSelectedAppUuid } from "../hooks/useSelectedAppUuid";
 import { Form, Input, Switch } from "antd";
 import { getLocalMessage } from "../../locales/getLocalMessage";
 
 export const ClassPanel = (props: { cls: ClassMeta }) => {
   const { cls } = props;
-  const serviceId = useSelectedAppId();
+  const serviceId = useSelectedAppUuid();
   const changeClass = useChangeClass(serviceId);
   const handleChange = useCallback((form) => {
     changeClass({ ...cls, ...form });

@@ -13,7 +13,7 @@ import { RelationType } from "../meta/RelationMeta";
 import { pressedLineTypeState, selectedElementState } from "../recoil/atoms";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { useCreateTempClassNodeForNew } from "../hooks/useCreateTempClassNodeForNew";
-import { useSelectedAppId } from "../hooks/useSelectedAppId";
+import { useSelectedAppUuid } from "../hooks/useSelectedAppUuid";
 import { ClassRect } from "./ClassRect";
 import { StereoType } from "../meta/ClassMeta";
 import { Collapse } from "antd";
@@ -56,7 +56,7 @@ export const ToolItem = memo(
 export const Toolbox = memo((props: { graph?: Graph }) => {
   const { graph } = props;
   const [dnd, setDnd] = React.useState<any>();
-  const appId = useSelectedAppId();
+  const appId = useSelectedAppUuid();
   const setSelemedElement = useSetRecoilState(selectedElementState(appId))
   const [pressedLineType, setPressedLineType] = useRecoilState(
     pressedLineTypeState(appId)
