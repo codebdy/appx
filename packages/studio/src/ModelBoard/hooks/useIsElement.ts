@@ -16,6 +16,11 @@ export function useIsElement(appId: ID) {
           return true;
         }
       }
+      for (const method of cls.methods) {
+        if (method.uuid === uuid) {
+          return true;
+        }
+      }
     }
     return false
   }, [classes])

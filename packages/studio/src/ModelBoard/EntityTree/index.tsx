@@ -27,6 +27,7 @@ import { useGetSourceRelations } from './../hooks/useGetSourceRelations';
 import { useGetTargetRelations } from './../hooks/useGetTargetRelations';
 import { useGetClass } from "../hooks/useGetClass";
 import { MethodMeta } from "../meta/MethodMeta";
+import { useDeleteMethod } from './../hooks/useDeleteMethod';
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
@@ -37,6 +38,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   const classes = useRecoilValue(classesState(appId));
   const addAttribute = useCreateClassAttribute(appId);
   const removeAttribute = useDeleteAttribute(appId);
+  const removeMethod = useDeleteMethod(appId);
   const isDiagram = useIsDiagram(appId);
   const isElement = useIsElement(appId);
   const parseRelationUuid = useParseRelationUuid(appId);
@@ -156,7 +158,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
               size="small"
               onClick={(e) => {
                 e.stopPropagation()
-                //removeAttribute(method.uuid);
+                removeMethod(method.uuid);
               }}
             >
               <DeleteOutlined />
@@ -168,7 +170,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
       key: method.uuid,
       isLeaf: true,
     }
-  }, [removeAttribute]);
+  }, [removeMethod]);
   const getClassMethodsNode = useCallback((cls: ClassMeta) => {
     return {
       title: getLocalMessage("model.Methods"),
