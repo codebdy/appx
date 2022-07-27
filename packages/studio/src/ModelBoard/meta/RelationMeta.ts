@@ -70,5 +70,5 @@ export interface RelationMeta {
     attributes: AttributeMeta[];
   };
 
-  isSystem?: boolean;
+  system?: boolean;
 }

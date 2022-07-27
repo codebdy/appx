@@ -81,5 +81,5 @@ export interface AttributeMeta {
    */
   typeLabel:string;
 
-  isSystem?: boolean;
+  system?: boolean;
 }

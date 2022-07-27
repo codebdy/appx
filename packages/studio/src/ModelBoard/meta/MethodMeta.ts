@@ -55,5 +55,5 @@ export interface MethodMeta {
   implementType: MethodImplementType;
   methodImplements?: string;
 
-  isSystem?: boolean;
+  system?: boolean;
 }
