@@ -3,10 +3,9 @@ import { Graph } from "@antv/x6";
 import { GraphCanvas } from "./GraphCanvas";
 import { ModelToolbar } from "./ModelToolbar";
 import { Toolbox } from "./Toolbox";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import {
   minMapState,
-  publishedIdState,
   selectedDiagramState,
 } from "./recoil/atoms";
 import { PropertyBox } from "./PropertyBox";
@@ -23,11 +22,7 @@ export const ModelContent = memo(
   ) => {
     const { appId, graph, onSetGraph, saveActions } = props;
     const minMap = useRecoilValue(minMapState(appId));
-    // const { meta, error } = usePublishedMeta();
-    // useShowError(error);
-    // useEffect(() => {
-    //   setPublishedId(meta?.id || undefined);
-    // }, [meta?.id, setPublishedId]);
+    const selectedDiagram = useRecoilValue(selectedDiagramState(appId));
 
     return (
       <div
@@ -38,17 +33,17 @@ export const ModelContent = memo(
         }}
       >
         <div style={{ width: "100%", flex: 1, display: "flex", height: "0" }}>
-
-          <>
-            <Toolbox graph={graph}></Toolbox>
-            <div
-              style={{
-                flex: 1,
-                display: "flex",
-                flexFlow: "column",
-              }}
-            >
-              <ModelToolbar />
+          {selectedDiagram && <Toolbox graph={graph}></Toolbox>}
+          <div
+            style={{
+              flex: 1,
+              display: "flex",
+              flexFlow: "column",
+            }}
+          >
+            <ModelToolbar />
+            {
+              selectedDiagram &&
               <div
                 style={{
                   flex: 1,
@@ -56,13 +51,6 @@ export const ModelContent = memo(
                   flexFlow: "column",
                   overflow: "auto",
                   position: "relative",
-                  // "& .x6-widget-minimap": {
-                  //   backgroundColor: (theme) =>
-                  //     theme.palette.background.paper,
-                  //   "& .x6-graph": {
-                  //     boxShadow: (theme) => theme.shadows[0],
-                  //   },
-                  // },
                 }}
               >
                 <GraphCanvas
@@ -86,8 +74,9 @@ export const ModelContent = memo(
                   id="mini-map"
                 ></div>
               </div>
-            </div>
-          </>
+            }
+
+          </div>
           <div className="property-box-area">
             {
               saveActions &&
@@ -102,7 +91,7 @@ export const ModelContent = memo(
                 {saveActions}
               </div>
             }
-            <PropertyBox></PropertyBox>
+            {selectedDiagram && <PropertyBox />}
           </div>
 
         </div>
