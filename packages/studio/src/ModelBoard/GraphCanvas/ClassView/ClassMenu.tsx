@@ -3,17 +3,19 @@ import { Button, Dropdown, Menu } from 'antd';
 import { getLocalMessage } from '../../../locales/getLocalMessage';
 import React, { memo, useState } from 'react';
 import { useCallback } from 'react';
+import { ClassMeta, StereoType } from '../../meta/ClassMeta';
 
 const ClassMenu = memo((
   props: {
+    cls: ClassMeta,
     onAddAttribute: () => void,
     onAddMethod: () => void,
     onHidden: () => void,
     onDelete: () => void,
-    onVisible: (visible:boolean) => void,
+    onVisible: (visible: boolean) => void,
   }
 ) => {
-  const { onAddAttribute, onAddMethod, onHidden, onDelete, onVisible } = props;
+  const { cls, onAddAttribute, onAddMethod, onHidden, onDelete, onVisible } = props;
   const [visible, setVisible] = useState(false);
 
   const handleMenuClick = useCallback((e) => {
@@ -46,11 +48,13 @@ const ClassMenu = memo((
           icon: <PlusOutlined />,
           label: getLocalMessage("model.AddAttribute"),
           key: 'addAttribute',
+          disabled: cls.stereoType === StereoType.Service,
         },
         {
           icon: <PlusOutlined />,
           label: getLocalMessage("model.AddMethod"),
           key: 'addMethod',
+          disabled: cls.stereoType === StereoType.Enum || cls.stereoType === StereoType.ValueObject,
         },
         {
           icon: <EyeInvisibleOutlined />,

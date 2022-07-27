@@ -278,6 +278,7 @@ export const ClassView = memo(
             )}
             {((hover && !disableHover) || menuOpened) && (
               <ClassMenu
+                cls={data}
                 onAddAttribute={handleAttributeCreate}
                 onAddMethod={handleMethodCreate}
                 onHidden={handleHidden}
