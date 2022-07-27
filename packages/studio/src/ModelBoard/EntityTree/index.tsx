@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useMemo, } from "react";
 import { Graph } from "@antv/x6";
-import { Button, Tree } from "antd";
+import { Tree } from "antd";
 import { DataNode } from "antd/lib/tree";
 import SvgIcon from "../../common/SvgIcon";
 import { getLocalMessage } from "../../locales/getLocalMessage";
@@ -17,7 +17,6 @@ import { useIsDiagram } from "../hooks/useIsDiagram";
 import { useIsElement } from "../hooks/useIsElement";
 import ClassLabel from "./ClassLabel";
 import InterfaceIcon from '../../icons/InterfaceIcon';
-import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { useCreateClassAttribute } from './../hooks/useCreateClassAttribute';
 import { AttributeMeta } from './../meta/AttributeMeta';
 import { useParseRelationUuid } from "../hooks/useParseRelationUuid";
@@ -25,7 +24,6 @@ import { useGetSourceRelations } from './../hooks/useGetSourceRelations';
 import { useGetTargetRelations } from './../hooks/useGetTargetRelations';
 import { useGetClass } from "../hooks/useGetClass";
 import { MethodMeta } from "../meta/MethodMeta";
-import { useDeleteMethod } from './../hooks/useDeleteMethod';
 import AttributeLabel from "./AttributeLabel";
 import { PRIMARY_COLOR } from "../../consts";
 import MethodLabel from "./MethodLabel";
@@ -40,7 +38,6 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   const diagrams = useRecoilValue(diagramsState(appId));
   const classes = useRecoilValue(classesState(appId));
   const addAttribute = useCreateClassAttribute(appId);
-  const removeMethod = useDeleteMethod(appId);
   const isDiagram = useIsDiagram(appId);
   const isElement = useIsElement(appId);
   const parseRelationUuid = useParseRelationUuid(appId);
@@ -135,8 +132,13 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   }, [selectedElement, getMethodNode])
 
   const getClassNode = useCallback((cls: ClassMeta) => {
-    const children = [getClassAttributesNode(cls)];
-    if (cls.stereoType === StereoType.Abstract || cls.stereoType === StereoType.Entity) {
+    const children = [];
+    if (cls.stereoType !== StereoType.Service) {
+      children.push(getClassAttributesNode(cls))
+    }
+    if (cls.stereoType === StereoType.Abstract || 
+      cls.stereoType === StereoType.Entity ||
+      cls.stereoType === StereoType.Service) {
       children.push(getClassMethodsNode(cls))
     }
 
@@ -169,6 +171,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     const entities = classes.filter(cls => cls.stereoType === StereoType.Entity && cls.packageUuid === pkg.uuid)
     const enums = classes.filter(cls => cls.stereoType === StereoType.Enum && cls.packageUuid === pkg.uuid)
     const valueObjects = classes.filter(cls => cls.stereoType === StereoType.ValueObject && cls.packageUuid === pkg.uuid)
+    const services = classes.filter(cls => cls.stereoType === StereoType.Service && cls.packageUuid === pkg.uuid)
 
     if (abstracts.length > 0) {
       packageChildren.push(getClassCategoryNode(getLocalMessage("model.AbstractClass"), pkg.uuid + "abstracts", abstracts))
@@ -181,6 +184,9 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     }
     if (valueObjects.length > 0) {
       packageChildren.push(getClassCategoryNode(getLocalMessage("model.ValueClass"), pkg.uuid + "valueObjects", valueObjects))
+    }
+    if (services.length > 0) {
+      packageChildren.push(getClassCategoryNode(getLocalMessage("model.ServiceClass"), pkg.uuid + "services", services))
     }
 
     for (const diagram of diagrams.filter(diagram => diagram.packageUuid === pkg.uuid)) {
