@@ -22,6 +22,7 @@ import { useDeleteClass } from "../hooks/useDeleteClass";
 import { useCreateClassMethod } from "../hooks/useCreateClassMethod";
 import { ID } from "../../shared";
 import React from "react";
+import { useGetPackage } from "../hooks/useGetPackage";
 
 export function useNodesShow(graph: Graph | undefined, appId: ID) {
   const selectedDiagram = useRecoilValue(selectedDiagramState(appId));
@@ -40,6 +41,7 @@ export function useNodesShow(graph: Graph | undefined, appId: ID) {
   const drawingLine = useRecoilValue(drawingLineState(appId));
   const getClassRef = useRef(getClass);
   const deleteClass = useDeleteClass(appId);
+  const getPackage = useGetPackage(appId);
   getClassRef.current = getClass;
 
   const changeClassRef = useRef(changeClass);
@@ -142,6 +144,7 @@ export function useNodesShow(graph: Graph | undefined, appId: ID) {
       const data: ClassNodeData = {
         ...cls,
         ...node,
+        packageName: selectedDiagram !== cls.packageUuid ? getPackage(cls.packageUuid)?.name : undefined,
         //selectedId: selectedElement,
         //pressedLineType: pressedLineType,
         //drawingLine: drawingLine,

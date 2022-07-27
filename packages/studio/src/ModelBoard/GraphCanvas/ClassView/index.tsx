@@ -24,7 +24,7 @@ import "./index.less"
 import { RelationType } from "../../meta/RelationMeta";
 import { StereoType } from "../../meta/ClassMeta";
 import { CONST_ID } from "../../meta/Meta";
-import { CANVAS_BACKGROUND_COLOR, CLASS_BACKGROUND_COLOR } from "../../consts";
+import { CLASS_BACKGROUND_COLOR } from "../../consts";
 import ClassMenu from "./ClassMenu";
 import InterfaceIcon from "../../../icons/InterfaceIcon";
 
