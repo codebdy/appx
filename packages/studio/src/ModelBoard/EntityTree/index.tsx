@@ -80,7 +80,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     const sourceRelations = getSourceRelations(cls.uuid);
     const targetRelations = getTargetRelations(cls.uuid);
     const icon = (color?: string) => <SvgIcon>
-      <svg style={{ width: "12px", height: "12px" }} viewBox="0 0 24 24" fill="currentColor">
+      <svg style={{ width: "12px", height: "12px" }} viewBox="0 0 24 24" fill={color || "currentColor"}>
         <path
           fill={color || "currentColor"}
           d="M22 13V19H21L19 17H11V9H5L3 11H2V5H3L5 7H13V15H19L21 13Z"
@@ -117,7 +117,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
       key: cls.uuid + "relations",
       children: children,
     }
-  }, [getSourceRelations, getTargetRelations])
+  }, [getSourceRelations, getTargetRelations, selectedElement])
 
   const getMethodNode = useCallback((method: MethodMeta) => {
     return {
