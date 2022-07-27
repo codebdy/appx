@@ -29,6 +29,7 @@ import { useDeleteMethod } from './../hooks/useDeleteMethod';
 import AttributeLabel from "./AttributeLabel";
 import { PRIMARY_COLOR } from "../../consts";
 import MethodLabel from "./MethodLabel";
+import AttributesLabel from "./AttributesLabel";
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
@@ -69,24 +70,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
 
   const getClassAttributesNode = useCallback((cls: ClassMeta) => {
     return {
-      title:
-        <TreeNodeLabel
-          action={
-            <Button
-              type="text"
-              shape="circle"
-              size="small"
-              onClick={(e) => {
-                e.stopPropagation();
-                addAttribute(cls);
-              }}
-            >
-              <PlusOutlined />
-            </Button>
-          }
-        >
-          {getLocalMessage("model.Atrributes")}
-        </TreeNodeLabel>,
+      title:<AttributesLabel cls = {cls} />,
       key: cls.uuid + "attributes",
       children: cls.attributes.map(attr => getAttributeNode(attr))
     }
