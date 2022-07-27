@@ -105,14 +105,32 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     }
   }, [])
 
+  const getClassMethodsNode = useCallback((cls: ClassMeta) => {
+    const children = [];
+    return {
+      title: getLocalMessage("model.Methods"),
+      key: cls.uuid + "methods",
+      children: children,
+    }
+  }, [])
+
   const getClassNode = useCallback((cls: ClassMeta) => {
+    const children = [getClassAttributesNode(cls)];
+    if (cls.stereoType === StereoType.Abstract || cls.stereoType === StereoType.Entity) {
+      children.push(getClassMethodsNode(cls))
+    }
+
+    if (cls.stereoType == StereoType.Entity) {
+      const relations = getClassRelationsNode(cls);
+      relations.children?.length >0 && children.push(relations)
+    }
     return {
       icon: cls.root ? <InterfaceIcon size={"12px"} /> : <SvgIcon>{classSvg}</SvgIcon>,
       title: <ClassLabel cls={cls} graph={graph} />,
       key: cls.uuid,
-      children: [getClassAttributesNode(cls), getClassRelationsNode(cls)]
+      children: children,
     }
-  }, [selectedElement, classes])
+  }, [selectedElement, classes, getClassAttributesNode, getClassRelationsNode, getClassMethodsNode])
 
   const getClassCategoryNode = useCallback((title: string, key: string, clses: ClassMeta[]) => {
     return {
@@ -188,7 +206,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
         setSelectedElement(uuid);
       } else {
         const relationUuid = parseRelationUuid(uuid);
-        if(relationUuid){
+        if (relationUuid) {
           setSelectedElement(relationUuid);
         }
       }

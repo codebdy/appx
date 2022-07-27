@@ -93,6 +93,7 @@ GlobalRegistry.registerDesignerLocales({
       ValueClass: "值类",
       Atrributes: "属性",
       Relationships: "关系",
+      Methods:"方法",
       Inherit: "继承",
       Association: "关联",
       Aggregation: "聚合",
