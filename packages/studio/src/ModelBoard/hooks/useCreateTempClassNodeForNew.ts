@@ -29,7 +29,7 @@ export function useCreateTempClassNodeForNew(appId: ID) {
         },
       };
     },
-    [creatNewClassMeta]
+    [creatNewClassMeta, packageUuid]
   );
   return createTempClassNodeForNew;
 }
