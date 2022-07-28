@@ -11,6 +11,7 @@ import AuthBoard from './AuthBoard';
 import { AppManagerRoutes } from './AppManager/AppHeader';
 import Install from './Install';
 import { useLoginCheck } from './hooks/useLoginCheck';
+import { INSTALL_URL, LOGIN_URL } from './consts';
 
 const App = memo(() => {
   useLoginCheck()
@@ -27,8 +28,8 @@ const App = memo(() => {
       </Route>
       <Route path="/config-app/:appId" element={<AppConfig />} />
       <Route path="/design-app/:deviceSlug/:appId" element={<AppDesigner />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/install" element={<Install />} />
+      <Route path={LOGIN_URL} element={<Login />} />
+      <Route path={INSTALL_URL} element={<Install />} />
     </Routes>
   )
 });

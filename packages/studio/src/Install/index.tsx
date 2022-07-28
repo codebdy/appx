@@ -1,6 +1,7 @@
 import { Button, Card, Checkbox, Form, Input, Space } from 'antd';
 import React, { memo, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { LOGIN_URL } from '../consts';
 import { getLocalMessage } from '../locales/getLocalMessage';
 
 const Install = memo(() => {
@@ -16,7 +17,7 @@ const Install = memo(() => {
   }, []);
 
   const handleFinished = useCallback(()=>{
-    navigate("/login");
+    navigate(LOGIN_URL);
   }, [navigate])
 
   return (
