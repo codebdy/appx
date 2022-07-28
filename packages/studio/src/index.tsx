@@ -6,8 +6,8 @@ import './index.less'
 import "./locales"
 import { SERVER_URL } from "./consts";
 import { RecoilRoot } from "recoil";
-import { EntiRoot } from "@appx/enthooks";
 import { BrowserRouter } from "react-router-dom";
+import { EntiRoot } from "./enthooks";
 
 const AppRoot = () => {
   return (

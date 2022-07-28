@@ -13,7 +13,6 @@ export const EntiRoot = memo((
 ) => {
   const { config, children } = props;
   const [value, setValue] = useState<IEntxConfig>()
-
   const setToken = useCallback((token: string | undefined) => {
     setValue((config) => ({ ...config, token } as any))
   }, [])

@@ -1,5 +1,5 @@
-import { useToken } from "@appx/enthooks";
 import { useMatch, useNavigate } from "react-router-dom";
+import { useToken } from "../enthooks";
 
 export function useLoginCheck(){
   const navigate = useNavigate();

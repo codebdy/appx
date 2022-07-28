@@ -4,7 +4,6 @@ import { Routes, Route } from "react-router-dom";
 import Login from './Login';
 import AppDesigner from './AppDesigner';
 import AppConfig from './AppConfig/index';
-import { useQuery, EntiRoot } from '@appx/enthooks';
 import ModelBoard from './ModelBoard';
 import AppsContent from './AppManager/AppsContent';
 import ApiBoard from './ApiBoard';
@@ -14,7 +13,6 @@ import Install from './Install';
 import { useLoginCheck } from './hooks/useLoginCheck';
 
 const App = memo(() => {
-  useQuery()
   useLoginCheck()
   return (
     <Routes>

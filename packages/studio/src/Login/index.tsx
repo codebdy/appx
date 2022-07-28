@@ -5,10 +5,10 @@ import { createSchemaField } from '@formily/react'
 import { Checkbox, Form, FormItem, Input, Password, Submit } from '@formily/antd'
 import { Card } from 'antd'
 import * as ICONS from '@ant-design/icons'
-import { useLogin } from "@appx/enthooks"
 import { TOKEN_NAME } from "@appx/shared"
 import { getLocalMessage } from "../locales/getLocalMessage"
 import { observer } from "@formily/reactive-react"
+import { useLogin } from "../enthooks"
 
 const SchemaField = createSchemaField({
   components: {
@@ -86,6 +86,7 @@ const Login = observer(() => {
       }
     },
     onError(error: any) {
+      console.log("呵呵呵", error)
       if (error?.response?.status === 401) {
         //setErroMessage(intl.get("login-failure"));
       } else {
@@ -100,7 +101,7 @@ const Login = observer(() => {
     rememberMe: boolean;
   }) => {
     rememberMeRef.current = values.rememberMe;
-    //login(values.username, values.password)
+    login(values.username, values.password)
     console.log("哈哈", values)
   }, []);
 
@@ -125,7 +126,8 @@ const Login = observer(() => {
             onAutoSubmit={handleLogin}
           >
             <SchemaField schema={schema()} />
-            <Submit block size="large">
+            <div>error</div>
+            <Submit block size="large" loading={loading}>
               {getLocalMessage("Login")}
             </Submit>
           </Form>

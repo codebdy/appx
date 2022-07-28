@@ -24,11 +24,12 @@ export function useLogin(
   const endpoint = useEndpoint();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | undefined>();
-
+  console.log("endpoint", endpoint)
   const login = useCallback(
     (loginName: string, password: string) => {
+      console.log("嘿嘿1")
       const graphQLClient = new AwesomeGraphQLClient({ endpoint })
-
+      console.log("嘿嘿2")
       setLoading(true);
       setError(undefined);
       graphQLClient
@@ -40,6 +41,7 @@ export function useLogin(
           options?.onCompleted && options?.onCompleted(data.login);
         })
         .catch((err: GraphQLRequestError) => {
+          console.log("呵呵", err)
           //const message = parseErrorMessage(err);
           setLoading(false);
           //const serverError:ServerError = { message: message, serverUrl:options?.serverUrl }

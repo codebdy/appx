@@ -4,11 +4,11 @@ import { createGraphiQLFetcher } from "@graphiql/toolkit";
 import { memo, useMemo } from "react";
 import { SubscriptionClient } from "subscriptions-transport-ws";
 import React from "react";
-import { useToken } from "@appx/enthooks";
 import { HEADER_AUTHORIZATION, SERVER_SUBSCRIPTION_URL, SERVER_URL, TOKEN_PREFIX, HEADER_APPX_APPUUID } from "../consts";
 import { useSelectedAppUuid } from '../ModelBoard/hooks/useSelectedAppUuid';
 import { SYSTEM_APP_UUID } from "../ModelBoard/recoil/atoms";
 import "./index.less";
+import { useToken } from "../enthooks";
 
 //例子連接
 //https://github.com/graphql/graphiql/blob/main/packages/graphiql-toolkit/docs/create-fetcher.md#subscriptionurl

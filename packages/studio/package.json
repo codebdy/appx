@@ -14,10 +14,10 @@
   "dependencies": {
     "@antv/x6": "^1.32.10",
     "@antv/x6-react-shape": "^1.6.1",
-    "@appx/enthooks": "^0.1.0",
     "@designable/formily-antd": "^1.0.0-beta.45",
     "@graphiql/toolkit": "^0.6.0",
     "array-move": "^4.0.0",
+    "awesome-graphql-client": "^0.12.1",
     "graphiql": "^1.10.0",
     "graphql": "^16.5.0",
     "graphql-ws": "^5.9.1",
