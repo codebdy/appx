@@ -1,6 +1,7 @@
-import { AwesomeGraphQLClient, GraphQLRequestError, gql } from 'awesome-graphql-client'
-import { useCallback, useState } from "react";
-import { useEndpoint, useSetToken } from '../context';
+import { gql } from 'awesome-graphql-client'
+import { useState } from "react";
+import { useSetToken } from '../context';
+import { useLazyRequest } from './useLazyRequest';
 
 const loginMutation = gql`
   mutation login($loginName: String!, $password: String!) {
@@ -13,41 +14,29 @@ export interface LoginOptions {
   onError?: (error?: Error) => void;
 }
 
+export interface LoginInput {
+  loginName: string;
+  password: string;
+}
+
 export function useLogin(
   options?: LoginOptions
 ): [
-    (loginName: string, password: string) => void,
+    (input:LoginInput) => void,
     { token?: string; loading?: boolean; error?: Error }
   ] {
   const [token, setToken] = useState<string>()
   const setConfigToken = useSetToken();
-  const endpoint = useEndpoint();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<Error | undefined>();
-  const login = useCallback(
-    (loginName: string, password: string) => {
-      const graphQLClient = new AwesomeGraphQLClient({ endpoint })
-      setLoading(true);
-      setError(undefined);
-      graphQLClient
-        .request(loginMutation, { loginName, password })
-        .then((data) => {
-          setLoading(false);
-          setToken(data.login);
-          setConfigToken(data.login);
-          options?.onCompleted && options?.onCompleted(data.login);
-        })
-        .catch((err: GraphQLRequestError) => {
-          //const message = parseErrorMessage(err);
-          setLoading(false);
-          //const serverError:ServerError = { message: message, serverUrl:options?.serverUrl }
-          setError(err);
-          console.error(err);
-          options?.onError && options?.onError(err);
-        });
+  const [login, { error, loading }] = useLazyRequest<LoginInput, any>(loginMutation, {
+    onCompleted: (data: any) => {
+      setToken(data.login);
+      setConfigToken(data.login);
+      options?.onCompleted && options?.onCompleted(data.login);
     },
-    [endpoint, setConfigToken, options]
-  );
+    onError: (error) => {
+      options?.onError && options?.onError(error);
+    }
+  })
 
   return [login, { token, loading, error }];
 }

@@ -1,6 +1,3 @@
-import { ClassMeta } from "./ClassMeta";
-import { DiagramMeta } from "./DiagramMeta";
-
 export enum PackageStatus{
   EDITING = 'EDITING',
   SYNCED = 'SYNCED'

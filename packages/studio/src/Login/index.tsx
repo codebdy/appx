@@ -27,7 +27,7 @@ const SchemaField = createSchemaField({
 const schema = () => ({
   type: 'object',
   properties: {
-    username: {
+    loginName: {
       type: 'string',
       title: getLocalMessage("UserName"),
       required: true,
@@ -65,7 +65,7 @@ const Login = observer(() => {
     () =>
       createForm({
         values: {
-          username: "admin",
+          loginName: "admin",
           password: "123456",
           rememberMe: true,
         },
@@ -96,12 +96,12 @@ const Login = observer(() => {
   });
 
   const handleLogin = useCallback((values: {
-    username: string;
+    loginName: string;
     password: string;
     rememberMe: boolean;
   }) => {
     rememberMeRef.current = values.rememberMe;
-    login(values.username, values.password)
+    login(values)
   }, [login]);
 
   return (
