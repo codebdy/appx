@@ -11,9 +11,11 @@ import ApiBoard from './ApiBoard';
 import AuthBoard from './AuthBoard';
 import { AppManagerRoutes } from './AppManager/AppHeader';
 import Install from './Install';
+import { useLoginCheck } from './hooks/useLoginCheck';
 
 const App = memo(() => {
   useQuery()
+  useLoginCheck()
   return (
     <Routes>
       <Route path="/" element={<AppManager />}>
