@@ -5,7 +5,8 @@ export function useLoginCheck(){
   const navigate = useNavigate();
   const token = useToken();
   const match = useMatch("/login")
-  if (!token && !match) {
+  const matchInstall = useMatch("/install")
+  if (!token && !match && !matchInstall) {
     navigate("/login");
   }
 }
