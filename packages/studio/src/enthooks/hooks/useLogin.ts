@@ -46,7 +46,7 @@ export function useLogin(
           options?.onError && options?.onError(err);
         });
     },
-    [options, endpoint]
+    [endpoint, setConfigToken, options]
   );
 
   return [login, { token, loading, error }];

@@ -10,7 +10,15 @@
     "build": "rimraf dist && webpack-cli --config config/webpack.prod.ts",
     "start": "webpack-dev-server --config config/webpack.dev.ts"
   },
-  "devDependencies": {},
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "devDependencies": {
+    "eslint-config-react-app": "^7.0.1"
+  },
   "dependencies": {
     "@antv/x6": "^1.32.10",
     "@antv/x6-react-shape": "^1.6.1",
