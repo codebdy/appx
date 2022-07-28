@@ -1,5 +1,5 @@
-import React, { useCallback } from "react"
-import { memo } from "react"
+import React, { useCallback, useRef } from "react"
+import { useMemo } from "react"
 import { createForm } from '@formily/core'
 import { createSchemaField } from '@formily/react'
 import { Checkbox, Form, FormItem, Input, Password, Submit } from '@formily/antd'
@@ -8,10 +8,7 @@ import * as ICONS from '@ant-design/icons'
 import { useLogin } from "@appx/enthooks"
 import { TOKEN_NAME } from "@appx/shared"
 import { getLocalMessage } from "../locales/getLocalMessage"
-
-const normalForm = createForm({
-  validateFirst: true,
-})
+import { observer } from "@formily/reactive-react"
 
 const SchemaField = createSchemaField({
   components: {
@@ -21,19 +18,18 @@ const SchemaField = createSchemaField({
     Checkbox
   },
   scope: {
-    icon(name) {
+    icon(name: string | number) {
       return React.createElement(ICONS[name])
     },
   },
 })
 
-const normalSchema = () => ({
+const schema = () => ({
   type: 'object',
   properties: {
     username: {
       type: 'string',
       title: getLocalMessage("UserName"),
-      default: "admin",
       required: true,
       'x-decorator': 'FormItem',
       'x-component': 'Input',
@@ -44,7 +40,6 @@ const normalSchema = () => ({
     password: {
       type: 'string',
       title: getLocalMessage("Password"),
-      default: "123456",
       required: true,
       'x-decorator': 'FormItem',
       'x-component': 'Password',
@@ -54,7 +49,6 @@ const normalSchema = () => ({
     },
     rememberMe: {
       type: 'string',
-      default: true,
       'x-decorator': 'FormItem',
       'x-component': 'Checkbox',
       "x-component-props": {
@@ -64,15 +58,30 @@ const normalSchema = () => ({
   },
 })
 
-const Login = memo(() => {
+const Login = observer(() => {
+  const rememberMeRef = useRef(true);
+
+  const form = useMemo(
+    () =>
+      createForm({
+        values: {
+          username: "admin",
+          password: "123456",
+          rememberMe: true,
+        },
+      }),
+    []
+  )
+  form.submit()
+
   const [login, { loading }] = useLogin({
     onCompleted(atoken: string) {
       if (atoken) {
-        // if (rememberMe) {
-        //   localStorage.setItem(TOKEN_NAME, atoken);
-        // } else {
-        //   localStorage.removeItem(TOKEN_NAME);
-        // }
+        if (rememberMeRef.current) {
+          localStorage.setItem(TOKEN_NAME, atoken);
+        } else {
+          localStorage.removeItem(TOKEN_NAME);
+        }
         //history.push(INDEX_URL);
       }
     },
@@ -88,8 +97,11 @@ const Login = memo(() => {
   const handleLogin = useCallback((values: {
     username: string;
     password: string;
+    rememberMe: boolean;
   }) => {
-    login(values.username, values.password)
+    rememberMeRef.current = values.rememberMe;
+    //login(values.username, values.password)
+    console.log("哈哈", values)
   }, []);
 
   return (
@@ -106,17 +118,17 @@ const Login = memo(() => {
     }}>
       <Card style={{ width: 400 }}>
         <h3>{getLocalMessage("Login")}</h3>
-        <Form
-          form={normalForm}
-          layout="vertical"
-          size="large"
-          onAutoSubmit={handleLogin}
-        >
-          <SchemaField schema={normalSchema()} />
-          <Submit block size="large">
-            {getLocalMessage("Login")}
-          </Submit>
-        </Form>
+          <Form
+            form={form}
+            layout="vertical"
+            size="large"
+            onAutoSubmit={handleLogin}
+          >
+            <SchemaField schema={schema()} />
+            <Submit block size="large">
+              {getLocalMessage("Login")}
+            </Submit>
+          </Form>
       </Card>
     </div>
   )

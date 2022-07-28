@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import AppManager from './AppManager';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Login from './Login';
 import AppDesigner from './AppDesigner';
 import AppConfig from './AppConfig/index';
@@ -15,23 +15,21 @@ import Install from './Install';
 const App = memo(() => {
   useQuery()
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<AppManager />}>
-          <Route
-            path={AppManagerRoutes.Root}
-            element={<AppsContent />}
-          />
-          <Route path={AppManagerRoutes.Model} element={<ModelBoard />} />
-          <Route path={AppManagerRoutes.Api} element={<ApiBoard />} />
-          <Route path={AppManagerRoutes.Auth} element={<AuthBoard />} />
-        </Route>
-        <Route path="/config-app/:appId" element={<AppConfig />} />
-        <Route path="/design-app/:deviceSlug/:appId" element={<AppDesigner />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/install" element={<Install />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path="/" element={<AppManager />}>
+        <Route
+          path={AppManagerRoutes.Root}
+          element={<AppsContent />}
+        />
+        <Route path={AppManagerRoutes.Model} element={<ModelBoard />} />
+        <Route path={AppManagerRoutes.Api} element={<ApiBoard />} />
+        <Route path={AppManagerRoutes.Auth} element={<AuthBoard />} />
+      </Route>
+      <Route path="/config-app/:appId" element={<AppConfig />} />
+      <Route path="/design-app/:deviceSlug/:appId" element={<AppDesigner />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/install" element={<Install />} />
+    </Routes>
   )
 });
 

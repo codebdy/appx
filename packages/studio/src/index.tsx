@@ -7,12 +7,15 @@ import "./locales"
 import { SERVER_URL } from "./consts";
 import { RecoilRoot } from "recoil";
 import { EntiRoot } from "@appx/enthooks";
+import { BrowserRouter } from "react-router-dom";
 
 const AppRoot = () => {
   return (
     <RecoilRoot>
       <EntiRoot config={{ endpoint: SERVER_URL }} >
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </EntiRoot>
     </RecoilRoot>
   )
