@@ -3,7 +3,7 @@ import { useMemo } from "react"
 import { createForm } from '@formily/core'
 import { createSchemaField } from '@formily/react'
 import { Checkbox, Form, FormItem, Input, Password, Submit } from '@formily/antd'
-import { Card } from 'antd'
+import { Card, message } from 'antd'
 import * as ICONS from '@ant-design/icons'
 import { TOKEN_NAME } from "@appx/shared"
 import { getLocalMessage } from "../locales/getLocalMessage"
@@ -86,12 +86,12 @@ const Login = observer(() => {
       }
     },
     onError(error: any) {
-      console.log("呵呵呵", error)
-      if (error?.response?.status === 401) {
-        //setErroMessage(intl.get("login-failure"));
-      } else {
-        //setErroMessage(error?.message);
-      }
+      message.error(error.message)
+      // if (error?.response?.status === 401) {
+      //   //setErroMessage(intl.get("login-failure"));
+      // } else {
+      //   //setErroMessage(error?.message);
+      // }
     },
   });
 
@@ -102,8 +102,7 @@ const Login = observer(() => {
   }) => {
     rememberMeRef.current = values.rememberMe;
     login(values.username, values.password)
-    console.log("哈哈", values)
-  }, []);
+  }, [login]);
 
   return (
     <div style={{
@@ -126,7 +125,6 @@ const Login = observer(() => {
             onAutoSubmit={handleLogin}
           >
             <SchemaField schema={schema()} />
-            <div>error</div>
             <Submit block size="large" loading={loading}>
               {getLocalMessage("Login")}
             </Submit>
