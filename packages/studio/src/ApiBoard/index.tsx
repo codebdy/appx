@@ -7,7 +7,7 @@ import React from "react";
 import { useToken } from "@appx/enthooks";
 import { HEADER_AUTHORIZATION, SERVER_SUBSCRIPTION_URL, SERVER_URL, TOKEN_PREFIX, HEADER_APPX_APPUUID } from "../consts";
 import { useSelectedAppUuid } from '../ModelBoard/hooks/useSelectedAppUuid';
-import { NON_APP_UUID } from "../ModelBoard/recoil/atoms";
+import { SYSTEM_APP_UUID } from "../ModelBoard/recoil/atoms";
 import "./index.less";
 
 //例子連接
@@ -21,7 +21,7 @@ const ApiBoard = memo(() => {
       legacyWsClient: new SubscriptionClient(SERVER_SUBSCRIPTION_URL),
       headers: {
         [HEADER_AUTHORIZATION]: token ? `${TOKEN_PREFIX}${token}` : "",
-        [HEADER_APPX_APPUUID]: NON_APP_UUID !== appId ? appId : undefined,
+        [HEADER_APPX_APPUUID]: SYSTEM_APP_UUID !== appId ? appId : undefined,
       }
     });
 

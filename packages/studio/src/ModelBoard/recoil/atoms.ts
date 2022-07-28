@@ -20,11 +20,11 @@ export interface Snapshot {
   selectedDiagram?: string;
 }
 
-export const NON_APP_UUID = "0"
+export const SYSTEM_APP_UUID = "SYSTEM"
 
 export const selectedAppUuidState = atom<string>({
   key: "selectedAppId",
-  default: NON_APP_UUID,
+  default: SYSTEM_APP_UUID,
 });
 
 export const minMapState = atomFamily<boolean, string>({
