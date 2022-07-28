@@ -52,12 +52,12 @@ const Install = memo(() => {
               name="install"
               labelCol={{ span: 7 }}
               wrapperCol={{ span: 14 }}
-              initialValues={{ remember: true }}
+              initialValues={{ admin:"admin", password:"123456", withDemo: true }}
               autoComplete="off"
             >
               <Form.Item
                 label={getLocalMessage("install.Account")}
-                name="username"
+                name="admin"
                 rules={[{ required: true, message: getLocalMessage("Requried") }]}
               >
                 <Input />
