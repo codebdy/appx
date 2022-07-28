@@ -5,7 +5,7 @@ export interface InstallInput {
   admin: string;
   password: string;
   withDemo: boolean;
-  meta: JSON;
+  meta: any;
 }
 
 const installMutation = gql`

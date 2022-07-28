@@ -2,13 +2,24 @@ import { Button, Card, Checkbox, Form, Input, Space } from 'antd';
 import React, { memo, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LOGIN_URL } from '../consts';
+import { useInstall } from '../enthooks/hooks/useInstall';
+import { useShowError } from '../hooks/useShowError';
 import { getLocalMessage } from '../locales/getLocalMessage';
 import * as meta from './data.json';
 
 const Install = memo(() => {
   const [current, setCurrent] = useState(0);
   const navigate = useNavigate()
-  
+  const [install, { loading, error }] = useInstall({
+    onCompleted: (data) => {
+      if (data?.install) {
+        next()
+      }
+    }
+  })
+
+  useShowError(error)
+
   const next = useCallback(() => {
     setCurrent(current => current + 1);
   }, []);
@@ -17,7 +28,16 @@ const Install = memo(() => {
     setCurrent(current => current - 1);
   }, []);
 
-  const handleFinished = useCallback(()=>{
+  const handleInstall = useCallback(() => {
+    install({
+      meta,
+      admin: "",
+      password: "",
+      withDemo: false,
+    })
+  }, [install])
+
+  const handleFinished = useCallback(() => {
     navigate(LOGIN_URL);
   }, [navigate])
 
@@ -53,7 +73,7 @@ const Install = memo(() => {
               name="install"
               labelCol={{ span: 7 }}
               wrapperCol={{ span: 14 }}
-              initialValues={{ admin:"admin", password:"123456", withDemo: true }}
+              initialValues={{ admin: "admin", password: "123456", withDemo: true }}
               autoComplete="off"
             >
               <Form.Item
@@ -109,13 +129,13 @@ const Install = memo(() => {
 
             {
               current === 1 &&
-              <Button type="primary" onClick={next}>
+              <Button type="primary" onClick={handleInstall} loading = {loading}>
                 {getLocalMessage("install.Install")}
               </Button>
             }
             {
               current === 2 &&
-              <Button type="primary" onClick = {handleFinished}>
+              <Button type="primary" onClick={handleFinished}>
                 {getLocalMessage("install.Finished")}
               </Button>
             }
