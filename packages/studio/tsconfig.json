@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "resolveJsonModule":true,
     "jsx": "react" //使用react-jsx时，运行会出问题
   },
   "include": ["./src/**/*.ts", "./src/**/*.tsx"],

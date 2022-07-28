@@ -3,6 +3,7 @@ import React, { memo, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LOGIN_URL } from '../consts';
 import { getLocalMessage } from '../locales/getLocalMessage';
+import * as meta from './data.json';
 
 const Install = memo(() => {
   const [current, setCurrent] = useState(0);
