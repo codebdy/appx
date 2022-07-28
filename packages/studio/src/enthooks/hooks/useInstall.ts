@@ -1,5 +1,5 @@
-import { useCallback } from "react";
-import { RequestOptions } from "./useLazyRequest";
+import { gql } from "awesome-graphql-client";
+import { RequestOptions, useLazyRequest } from "./useLazyRequest";
 
 export interface InstallInput {
   admin: string;
@@ -7,6 +7,12 @@ export interface InstallInput {
   withDemo: boolean;
   meta: JSON;
 }
+
+const installMutation = gql`
+  mutation install($input: InstallInput!) {
+    install(input: $input)
+  }
+`;
 
 export function useInstall(options?:RequestOptions<any>) :[
   (input:InstallInput)=>void,
@@ -16,12 +22,7 @@ export function useInstall(options?:RequestOptions<any>) :[
   }
 ]
 {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<Error | undefined>();
+  const [install, {error, loading}] = useLazyRequest(installMutation, options)
 
-  const install = useCallback((input:InstallInput) => {
-
-  }, [])
-
-  return [install, {}];
+  return [install, {error, loading}];
 }

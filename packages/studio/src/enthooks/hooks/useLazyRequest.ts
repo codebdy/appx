@@ -7,7 +7,7 @@ export interface RequestOptions<T> {
   onError?: (error: Error) => void;
 }
 
-export function useLazyRequest<T1, T2>(gql: string | undefined, options?: RequestOptions<T2>)
+export function useLazyRequest<T1>(gql: string | undefined, options?: RequestOptions<any>)
   : [
     (input: T1) => void,
     {

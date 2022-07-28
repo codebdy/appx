@@ -27,7 +27,7 @@ export function useLogin(
   ] {
   const [token, setToken] = useState<string>()
   const setConfigToken = useSetToken();
-  const [login, { error, loading }] = useLazyRequest<LoginInput, any>(loginMutation, {
+  const [login, { error, loading }] = useLazyRequest<LoginInput>(loginMutation, {
     onCompleted: (data: any) => {
       setToken(data.login);
       setConfigToken(data.login);
