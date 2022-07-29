@@ -41,7 +41,7 @@ const AvatarMenu = memo(() => {
         loading
           ?
           <Avatar><Skeleton.Avatar active={true} /></Avatar>
-          : ((!error) ? <Avatar className="avatar" icon={!me && <UserOutlined />} >{me?.name?.substring(0,1)?.toUpperCase()}</Avatar> : <div></div>)
+          : ((!error) ? <Avatar className="avatar" icon={!me && <UserOutlined />} >{me?.name?.substring(0, 1)?.toUpperCase()}</Avatar> : <div></div>)
       }
 
     </Dropdown>
