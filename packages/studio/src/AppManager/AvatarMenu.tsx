@@ -156,6 +156,7 @@ const AvatarMenu = memo(() => {
           labelCol={6}
           wrapperCol={16}
           size="large"
+          onAutoSubmit={console.log}
         >
           <SchemaField schema={schema()} />
           <FormButtonGroup.FormItem>
