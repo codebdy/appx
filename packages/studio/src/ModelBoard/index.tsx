@@ -7,6 +7,8 @@ import "./index.less"
 import { useSelectedAppUuid } from './hooks/useSelectedAppUuid';
 import SavaActions from "./SavaActions";
 import { useReadMeta } from "./hooks/useReadMeta";
+import { useShowError } from "../hooks/useShowError";
+import { Spin } from "antd";
 
 const ModelsBoard = memo(() => {
   const [graph, setGraph] = useState<Graph>();
@@ -15,14 +17,17 @@ const ModelsBoard = memo(() => {
 
   const { loading, error } = useReadMeta(appUuid);
 
-  return (
-    <div className="system-model-board">
-      <div className="model-tree-shell">
-        <EntityTree graph={graph}></EntityTree>
-      </div>
-      <ModelContent appUuid={appUuid} graph={graph} onSetGraph={setGraph} saveActions ={<SavaActions />} />
+  useShowError(error);
 
-    </div>
+  return (
+    <Spin tip="Loading..." spinning={loading} >
+      <div className="system-model-board">
+        <div className="model-tree-shell">
+          <EntityTree graph={graph}></EntityTree>
+        </div>
+        <ModelContent appUuid={appUuid} graph={graph} onSetGraph={setGraph} saveActions={<SavaActions />} />
+      </div>
+    </Spin>
   );
 });
 
