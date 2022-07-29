@@ -1,9 +1,24 @@
 {
   "appUuid": "SYSTEM",
   "content": {
+    "packages": [
+      {
+        "uuid": "PACKAGE_USER_UUID",
+        "name": "用户",
+        "system": true,
+        "sharable": true
+      },
+      {
+        "uuid": "PACKAGE_APPX_UUID",
+        "name": "Appx",
+        "system": true,
+        "sharable": false
+      }
+    ],
     "classes": [
       {
         "name": "User",
+        "packageUuid":"PACKAGE_USER_UUID",
         "root": true,
         "uuid": "META_USER_UUID",
         "System": true,
@@ -78,6 +93,7 @@
       },
       {
         "name": "Role",
+        "packageUuid":"PACKAGE_USER_UUID",
         "root": true,
         "uuid": "META_ROLE_UUID",
         "System": true,
