@@ -36,12 +36,12 @@ const AvatarMenu = memo(() => {
   ), [handleLogout]);
 
   return (
-    <Dropdown overlay={menu} disabled={!!error || !me} placement="bottomRight" arrow trigger={['click']}>
+    <Dropdown overlay={menu} disabled={!!error} placement="bottomRight" arrow trigger={['click']}>
       {
         loading
           ?
           <Avatar><Skeleton.Avatar active={true} /></Avatar>
-          : ((!error && me) ? <Avatar className="avatar" icon={<UserOutlined />} /> : <div></div>)
+          : ((!error) ? <Avatar className="avatar" icon={!me && <UserOutlined />} >{me?.name?.substring(0,1)?.toUpperCase()}</Avatar> : <div></div>)
       }
 
     </Dropdown>
