@@ -1,28 +1,21 @@
 import { AwesomeGraphQLClient, GraphQLRequestError } from "awesome-graphql-client";
-import { useCallback, useState } from "react";
+import { useEffect, useState } from "react";
 import { useEndpoint } from "../context";
 
-export interface RequestOptions<T> {
-  onCompleted?: (data: T) => void;
-  onError?: (error: Error) => void;
-}
 
-export function useLazyRequest<T1>(gql: string | undefined, options?: RequestOptions<any>)
-  : [
-    (input: T1) => void,
-    {
-      error?: Error,
-      loading?: boolean,
-      data?:any,
-    }
-  ] {
+export function useRequest(gql: string | undefined, params: { [key: string]: any })
+  : {
+    error?: Error,
+    loading?: boolean,
+    data?: any,
+  } {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<any>(false);
   const [error, setError] = useState<Error | undefined>();
   const endpoint = useEndpoint();
 
-  const request = useCallback(
-    (params: T1) => {
+  useEffect(
+    () => {
       if (!gql) {
         return;
       }
@@ -33,18 +26,16 @@ export function useLazyRequest<T1>(gql: string | undefined, options?: RequestOpt
         .request(gql, params)
         .then((data) => {
           setLoading(false);
-          options?.onCompleted && options?.onCompleted(data);
           setData(data);
         })
         .catch((err: GraphQLRequestError) => {
           setLoading(false);
           setError(err);
           console.error(err);
-          options?.onError && options?.onError(err);
         });
     },
-    [gql, endpoint, options]
+    [gql, endpoint, params]
   );
 
-  return [request, {loading, error, data}]
+  return { loading, error, data }
 }
