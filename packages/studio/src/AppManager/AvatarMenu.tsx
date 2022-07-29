@@ -66,6 +66,7 @@ const AvatarMenu = memo(() => {
         visible={isModalVisible}
         okText={getLocalMessage("Confirm")}
         cancelText={getLocalMessage("Cancel")}
+        width={360}
         onOk={handleOk}
         onCancel={handleCancel}
       >
