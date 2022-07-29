@@ -10,7 +10,6 @@ import { BrowserRouter } from "react-router-dom";
 import { EntiRoot } from "./enthooks";
 
 const AppRoot = () => {
-  console.log("Approot")
   return (
     <RecoilRoot>
       <EntiRoot config={{ endpoint: SERVER_URL }} >
