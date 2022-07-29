@@ -2,8 +2,8 @@ import { gql } from 'awesome-graphql-client'
 import { RequestOptions, useLazyRequest } from './useLazyRequest';
 
 const changePasswordMutation = gql`
-  mutation changePassword($loginName: String!, $oldPassword: String!, $password: String!) {
-    changePassword(loginName: $loginName, oldPassword: $oldPassword!,  password: $password)
+  mutation changePassword($loginName: String!, $oldPassword: String!, $newPassword: String!) {
+    changePassword(loginName: $loginName, oldPassword: $oldPassword,  newPassword: $newPassword)
   }
 `;
 

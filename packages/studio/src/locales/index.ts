@@ -30,6 +30,7 @@ GlobalRegistry.registerDesignerLocales({
     ConfirmPassword: "确认密码",
     PasswordDisaccord: "确认密码不匹配",
     ConfirmChange: "确认变更",
+    OperateSuccess: "操作成功",
     Logout: "退出",
     File: "文件",
     Length: "长度",

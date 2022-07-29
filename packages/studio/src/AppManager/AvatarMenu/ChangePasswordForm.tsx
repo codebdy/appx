@@ -6,6 +6,7 @@ import { useChangePassword } from "../../enthooks/hooks/useChangePassword";
 import { Form, FormButtonGroup, FormItem, Password, Submit } from "@formily/antd";
 import { getLocalMessage } from "../../locales/getLocalMessage";
 import { useShowError } from "../../hooks/useShowError";
+import { message } from "antd";
 
 const SchemaField = createSchemaField({
   components: {
@@ -91,6 +92,7 @@ const ChangePasswordForm = memo((
   const [change, { error, loading }] = useChangePassword({
     onCompleted:(success?:boolean)=>{
       if(success){
+        message.success(getLocalMessage("OperateSuccess"))
         onClose()
       }
     }
