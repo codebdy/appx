@@ -24,8 +24,12 @@ GlobalRegistry.registerDesignerLocales({
     UserName: "用户名",
     Password: "密码",
     RememberMe: "记住我",
-    ChangePassword:"修改密码",
-    Logout:"退出",
+    ChangePassword: "修改密码",
+    OldPassword: "旧密码",
+    NewPassword: "新密码",
+    ConfirmPassword: "确认密码",
+    PasswordDisaccord:"确认密码不匹配",
+    Logout: "退出",
     File: "文件",
     Length: "长度",
     install: {
@@ -37,7 +41,7 @@ GlobalRegistry.registerDesignerLocales({
       WithDemo: "安装演示账号",
       Install: "安装",
       Finished: "完成",
-      InstalledMessage:"应用已经安装，请直接登录"
+      InstalledMessage: "应用已经安装，请直接登录"
     },
     System: {
       Model: "系统模型",

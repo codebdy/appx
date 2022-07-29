@@ -24,63 +24,66 @@ const SchemaField = createSchemaField({
   },
 })
 
-const schema = () => ({
-  type: 'object',
-  properties: {
-    oldPassword: {
-      type: 'string',
-      title: getLocalMessage("Password"),
-      required: true,
-      'x-decorator': 'FormItem',
-      'x-component': 'Password',
-      'x-component-props': {
-        prefix: "{{icon('LockOutlined')}}",
+const schema = () => {
+  const confirmMessage = getLocalMessage("PasswordDisaccord");
+  return ({
+    type: 'object',
+    properties: {
+      oldPassword: {
+        type: 'string',
+        title: getLocalMessage("OldPassword"),
+        required: true,
+        'x-decorator': 'FormItem',
+        'x-component': 'Password',
+        'x-component-props': {
+          prefix: "{{icon('LockOutlined')}}",
+        },
       },
-    },
-    newPassword: {
-      type: 'string',
-      title: '密码',
-      required: true,
-      'x-decorator': 'FormItem',
-      'x-component': 'Password',
-      'x-component-props': {
-        checkStrength: true,
-      },
-      'x-reactions': [
-        {
-          dependencies: ['.confirm_password'],
-          fulfill: {
-            state: {
-              selfErrors:
-                '{{$deps[0] && $self.value && $self.value !== $deps[0] ? "确认密码不匹配" : ""}}',
+      newPassword: {
+        type: 'string',
+        title: getLocalMessage("NewPassword"),
+        required: true,
+        'x-decorator': 'FormItem',
+        'x-component': 'Password',
+        'x-component-props': {
+          checkStrength: true,
+        },
+        'x-reactions': [
+          {
+            dependencies: ['.confirmPassword'],
+            fulfill: {
+              state: {
+                selfErrors:
+                `{{$deps[0] && $self.value && $self.value !== $deps[0] ? "${confirmMessage}" : ""}}`,
+              },
             },
           },
-        },
-      ],
-    },
-    confirmPassword: {
-      type: 'string',
-      title: '确认密码',
-      required: true,
-      'x-decorator': 'FormItem',
-      'x-component': 'Password',
-      'x-component-props': {
-        checkStrength: true,
+        ],
       },
-      'x-reactions': [
-        {
-          dependencies: ['.password'],
-          fulfill: {
-            state: {
-              selfErrors:
-                '{{$deps[0] && $self.value && $self.value !== $deps[0] ? "确认密码不匹配" : ""}}',
+      confirmPassword: {
+        type: 'string',
+        title: getLocalMessage("ConfirmPassword"),
+        required: true,
+        'x-decorator': 'FormItem',
+        'x-component': 'Password',
+        'x-component-props': {
+          checkStrength: true,
+        },
+        'x-reactions': [
+          {
+            dependencies: ['.newPassword'],
+            fulfill: {
+              state: {
+                selfErrors:
+                  `{{$deps[0] && $self.value && $self.value !== $deps[0] ? "${confirmMessage}" : ""}}`,
+              },
             },
           },
-        },
-      ],
+        ],
+      },
     },
-  },
-})
+  })
+}
 
 const AvatarMenu = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
