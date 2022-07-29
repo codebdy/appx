@@ -1,5 +1,4 @@
-import { LoadingOutlined } from '@ant-design/icons';
-import { Card } from 'antd';
+import { Card, Spin } from 'antd';
 import { gql } from 'awesome-graphql-client';
 import React, { memo } from 'react';
 import { useRequest } from '../enthooks/hooks/useRequest';
@@ -43,7 +42,7 @@ const Install = memo(() => {
         }}>
           {
             loading ?
-              <LoadingOutlined style={{ fontSize: 50, color: "blue" }} />
+              <Spin size="large" />
               : (
                 data?.installed ?
                   <Installed />
