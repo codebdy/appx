@@ -1,5 +1,5 @@
-import { AppstoreOutlined, QuestionCircleOutlined, GithubOutlined, HomeOutlined } from "@ant-design/icons"
-import { Button, Divider, Menu, MenuProps, Space, Tabs } from "antd"
+import { QuestionCircleOutlined, GithubOutlined, HomeOutlined } from "@ant-design/icons"
+import { Button, Divider, Menu,  Space } from "antd"
 import { Header } from "antd/lib/layout/layout"
 import React, { useCallback } from "react"
 import { memo } from "react"
@@ -14,7 +14,7 @@ const ConifgHeader = memo((props: {
   const navigate = useNavigate()
   const handleBack = useCallback(() => {
     navigate("/")
-  }, []);
+  }, [navigate]);
   const onChange = useCallback((key: string) => {
     console.log(key);
   }, []);
