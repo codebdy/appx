@@ -54,7 +54,7 @@ const schema = () => {
             fulfill: {
               state: {
                 selfErrors:
-                `{{$deps[0] && $self.value && $self.value !== $deps[0] ? "${confirmMessage}" : ""}}`,
+                  `{{$deps[0] && $self.value && $self.value !== $deps[0] ? "${confirmMessage}" : ""}}`,
               },
             },
           },
@@ -121,6 +121,10 @@ const AvatarMenu = memo(() => {
     []
   )
 
+  const handleSubmitPassword = useCallback((values) => {
+    console.log("哈哈", values)
+  }, [])
+
   const menu = useMemo(() => (
     <Menu>
       <Menu.Item key="changepPassword"
@@ -160,7 +164,7 @@ const AvatarMenu = memo(() => {
           labelCol={6}
           wrapperCol={16}
           size="large"
-        //onAutoSubmit={handleLogin}
+          onAutoSubmit={handleSubmitPassword}
         >
           <SchemaField schema={schema()} />
         </Form>
