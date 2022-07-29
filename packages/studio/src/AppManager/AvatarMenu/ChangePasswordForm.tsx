@@ -7,6 +7,8 @@ import { Form, FormButtonGroup, FormItem, Password, Submit } from "@formily/antd
 import { getLocalMessage } from "../../locales/getLocalMessage";
 import { useShowError } from "../../hooks/useShowError";
 import { message } from "antd";
+import { useSetToken } from "../../enthooks";
+import { TOKEN_NAME } from "../../consts";
 
 const SchemaField = createSchemaField({
   components: {
@@ -85,14 +87,19 @@ const schema = () => {
 const ChangePasswordForm = memo((
   props: {
     onClose: () => void,
-    loginName:string,
+    loginName: string,
   }
 ) => {
   const { loginName, onClose } = props;
+  const setToken = useSetToken();
   const [change, { error, loading }] = useChangePassword({
-    onCompleted:(success?:boolean)=>{
-      if(success){
+    onCompleted: (token?: string) => {
+      if (token) {
         message.success(getLocalMessage("OperateSuccess"))
+        setToken(token);
+        if (localStorage.getItem(TOKEN_NAME)) {
+          localStorage.setItem(TOKEN_NAME, token)
+        }
         onClose()
       }
     }
@@ -109,7 +116,7 @@ const ChangePasswordForm = memo((
   )
 
   const handleSubmit = useCallback((values: { oldPassword: string, newPassword: string }) => {
-    const {oldPassword, newPassword} = values;
+    const { oldPassword, newPassword } = values;
     change({
       loginName,
       oldPassword,
@@ -127,7 +134,7 @@ const ChangePasswordForm = memo((
     >
       <SchemaField schema={schema()} />
       <FormButtonGroup.FormItem>
-        <Submit block size="large" loading = {loading}>
+        <Submit block size="large" loading={loading}>
           {getLocalMessage("ConfirmChange")}
         </Submit>
       </FormButtonGroup.FormItem>

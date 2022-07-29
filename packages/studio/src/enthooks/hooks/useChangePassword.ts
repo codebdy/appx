@@ -15,10 +15,10 @@ export interface ChangeInput {
 }
 
 export function useChangePassword(
-  options?: RequestOptions<boolean>
+  options?: RequestOptions<string>
 ): [
     (input: ChangeInput) => void,
-    { success?: boolean; loading?: boolean; error?: Error }
+    { token?: string; loading?: boolean; error?: Error }
   ] {
   const [change, { data, error, loading }] = useLazyRequest<ChangeInput>(changePasswordMutation, {
     onCompleted: (data: any) => {
@@ -29,5 +29,5 @@ export function useChangePassword(
     }
   })
 
-  return [change, { success:data?.changePassword, loading, error }];
+  return [change, { token:data?.changePassword, loading, error }];
 }
