@@ -14,15 +14,15 @@ import React from "react";
 
 export const ModelContent = memo(
   (props: {
-    appId: ID;
+    appUuid: ID;
     graph?: Graph;
     onSetGraph: (graph?: Graph) => void;
     saveActions?: React.ReactNode;
   }
   ) => {
-    const { appId, graph, onSetGraph, saveActions } = props;
-    const minMap = useRecoilValue(minMapState(appId));
-    const selectedDiagram = useRecoilValue(selectedDiagramState(appId));
+    const { appUuid, graph, onSetGraph, saveActions } = props;
+    const minMap = useRecoilValue(minMapState(appUuid));
+    const selectedDiagram = useRecoilValue(selectedDiagramState(appUuid));
 
     return (
       <div
