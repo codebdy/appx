@@ -27,7 +27,8 @@ export function useLazyRequest<T1>(options?: RequestOptions<any>)
   
   const request = useCallback(
     (gql: string | undefined, params?: T1) => {
-      if (!gql) {
+      if (!gql || !endpoint) {
+        console.log("gql or endpoint is null")
         return;
       }
       const graphQLClient = new AwesomeGraphQLClient({ endpoint })
