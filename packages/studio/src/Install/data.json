@@ -4,7 +4,7 @@
     "packages": [
       {
         "uuid": "PACKAGE_USER_UUID",
-        "name": "用户",
+        "name": "System",
         "system": true,
         "sharable": true
       },
