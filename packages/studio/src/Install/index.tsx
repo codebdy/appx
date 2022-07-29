@@ -5,6 +5,7 @@ import React, { memo } from 'react';
 import { useRequest } from '../enthooks/hooks/useRequest';
 import { useShowError } from '../hooks/useShowError';
 import { getLocalMessage } from '../locales/getLocalMessage';
+import Installed from './Installed';
 import InstallForm from './InstallForm';
 
 const queryGql = gql`
@@ -45,7 +46,7 @@ const Install = memo(() => {
               <LoadingOutlined style={{ fontSize: 50, color: "blue" }} />
               : (
                 data?.installed ?
-                  getLocalMessage("install.InstalledMessage")
+                  <Installed />
                   :
                   (!error && <InstallForm />)
               )
