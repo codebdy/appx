@@ -1,5 +1,5 @@
 import { gql } from 'awesome-graphql-client'
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useSetToken } from '../context';
 import { useLazyRequest } from './useLazyRequest';
 
@@ -22,12 +22,12 @@ export interface LoginInput {
 export function useLogin(
   options?: LoginOptions
 ): [
-    (input:LoginInput) => void,
+    (input: LoginInput) => void,
     { token?: string; loading?: boolean; error?: Error }
   ] {
   const [token, setToken] = useState<string>()
   const setConfigToken = useSetToken();
-  const [login, { error, loading }] = useLazyRequest<LoginInput>(loginMutation, {
+  const [doLogin, { error, loading }] = useLazyRequest<LoginInput>({
     onCompleted: (data: any) => {
       setToken(data.login);
       setConfigToken(data.login);
@@ -37,6 +37,10 @@ export function useLogin(
       options?.onError && options?.onError(error);
     }
   })
+
+  const login = useCallback((input: LoginInput) => {
+    doLogin(loginMutation, input)
+  }, [doLogin])
 
   return [login, { token, loading, error }];
 }

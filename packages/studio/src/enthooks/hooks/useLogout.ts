@@ -1,6 +1,7 @@
 import { useSetToken } from "../context";
 import { gql } from 'awesome-graphql-client'
 import { useLazyRequest } from "./useLazyRequest";
+import { useCallback } from "react";
 
 const logoutMutation = gql`
   mutation {
@@ -9,17 +10,21 @@ const logoutMutation = gql`
 `;
 
 export function useLogout(): [
-  (data?: any) => void,
+  () => void,
   { loading?: boolean; error?: Error }
 ] {
 
   const setConfigToken = useSetToken();
 
-  const [logout, { loading, error }] = useLazyRequest(logoutMutation, {
+  const [doLogout, { loading, error }] = useLazyRequest({
     onCompleted: (data: any) => {
       setConfigToken(undefined);
     },
   })
+
+  const logout = useCallback(()=>{
+    doLogout(logoutMutation)
+  }, [doLogout])
 
   return [logout, { loading, error }];
 }

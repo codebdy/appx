@@ -15,17 +15,17 @@ export function useQueryOne<T>(gql: string): {
   error?: Error;
 } {
 
-  const [query, { data, error, loading }] = useLazyRequest(gql)
+  const [query, { data, error, loading }] = useLazyRequest()
   useEffect(() => {
     if (gql) {
-      query();
+      query(gql);
     }
   }, [gql, query]);
 
   const mutate = useCallback((data?: T) => {
     console.log("执行Mutate");
-    query()
-  }, [query]);
+    query(gql)
+  }, [gql, query]);
 
   return { data, loading, error, mutate };
 }

@@ -1,65 +1,47 @@
-import { CONST_ID } from "components/ModelBoard/meta/Meta";
-import { ClientError, gql } from "graphql-request";
-import { useCallback, useState } from "react";
-import { useCreateGQLClient } from "./useCreateGQLClient";
-import { ServerError } from "./ServerError";
-import { parseErrorMessage } from "./parseErrorMessage";
+import { gql } from "awesome-graphql-client";
+import { useCallback, useMemo } from "react";
+import { CONST_ID } from "../../ModelBoard/meta/Meta";
+import { useLazyRequest } from "./useLazyRequest";
 
 export interface IPostOptions<T> {
   onCompleted?: (data: T) => void;
-  onError?: (error: ServerError) => void;
+  onError?: (error: Error) => void;
   noRefresh?: boolean;
-  serverUrl?:string;
+  serverUrl?: string;
 }
 
 export function usePostOne<T>(
   __type: string,
   options?: IPostOptions<T>
 ): [
-  (data: T, serverUrl?: string) => void,
-  { loading?: boolean; error?: ServerError }
-] {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<ServerError | undefined>();
-  const createClient = useCreateGQLClient();
+    (data: T, serverUrl?: string) => void,
+    { loading?: boolean; error?: Error }
+  ] {
+  const postName = useMemo(() => ("upsertOne" + __type), [__type]);
+
+  const [doPost, { error, loading }] = useLazyRequest({
+    onCompleted: (data) => {
+      options?.onCompleted && data && options?.onCompleted(data[postName]);
+    },
+    onError: options?.onError
+  })
 
   const post = useCallback(
-    (object: T, serverUrl?: string) => {
-      const graphQLClient = createClient(serverUrl);
-      const postName = "upsertOne" + __type;
-      const typeName = __type + "Input";
+    (object: T) => {
+      const inputType = __type + "Input";
       const postMutation = gql`
-        mutation ${postName} ($object: ${typeName}!) {
+        mutation ${postName} ($object: ${inputType}!) {
           ${postName}(object: $object){
             id
             ${Object.keys(object)
-              .filter((key) => key !== CONST_ID && key !== "__type")
-              .join("\n")}
+          .filter((key) => key !== CONST_ID && key !== "__type")
+          .join("\n")}
           }
         }
       `;
-
-      setLoading(true);
-      setError(undefined);
-      graphQLClient
-        .request(postMutation, { object })
-        .then((data) => {
-          setLoading(false);
-          options?.onCompleted && options?.onCompleted(data[postName]);
-        })
-        .catch((err: ClientError) => {
-          const message = parseErrorMessage(err);
-          setLoading(false);
-          const serverError: ServerError = {
-            message: message,
-            serverUrl: serverUrl,
-          };
-          setError(serverError);
-          console.error(err);
-          error && options?.onError && options?.onError(serverError);
-        });
+      doPost(postMutation, {object});
     },
-    [__type, createClient, error, options]
+    [__type, doPost, postName]
   );
 
   return [post, { loading, error }];

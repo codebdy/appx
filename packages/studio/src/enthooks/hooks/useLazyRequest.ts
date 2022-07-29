@@ -9,9 +9,9 @@ export interface RequestOptions<T> {
   onError?: (error: Error) => void;
 }
 
-export function useLazyRequest<T1>(gql: string | undefined, options?: RequestOptions<any>)
+export function useLazyRequest<T1>(options?: RequestOptions<any>)
   : [
-    (input?: T1) => void,
+    (gql: string | undefined, input?: T1) => void,
     {
       error?: Error,
       loading?: boolean,
@@ -26,7 +26,7 @@ export function useLazyRequest<T1>(gql: string | undefined, options?: RequestOpt
   const mountRef = useMountRef();
   
   const request = useCallback(
-    (params?: T1) => {
+    (gql: string | undefined, params?: T1) => {
       if (!gql) {
         return;
       }
@@ -50,7 +50,7 @@ export function useLazyRequest<T1>(gql: string | undefined, options?: RequestOpt
           options?.onError && options?.onError(err);
         });
     },
-    [gql, endpoint, token, mountRef, options]
+    [endpoint, token, mountRef, options]
   );
 
   return [request, {loading, error, data}]

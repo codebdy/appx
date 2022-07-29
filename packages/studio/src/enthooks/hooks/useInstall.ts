@@ -22,10 +22,10 @@ export function useInstall(options?: RequestOptions<any>): [
     loading?: boolean,
   }
 ] {
-  const [doInstall, { error, loading }] = useLazyRequest(installMutation, options)
+  const [doInstall, { error, loading }] = useLazyRequest(options)
 
   const install = useCallback((input: InstallInput) => {
-    doInstall({ input })
+    doInstall(installMutation, { input })
   }, [doInstall]);
 
   return [install, { error, loading }];
