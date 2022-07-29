@@ -31,7 +31,7 @@ export function useLazyRequest<T1>(gql: string | undefined, options?: RequestOpt
         .request(gql, params)
         .then((data) => {
           setLoading(false);
-          options?.onCompleted && options?.onCompleted(data.login);
+          options?.onCompleted && options?.onCompleted(data);
         })
         .catch((err: GraphQLRequestError) => {
           setLoading(false);
