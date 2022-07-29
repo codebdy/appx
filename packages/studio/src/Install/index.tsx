@@ -1,48 +1,24 @@
-import { Button, Card, Checkbox, Form, Input, Space } from 'antd';
-import React, { memo, useCallback, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { LOGIN_URL } from '../consts';
-import { useInstall } from '../enthooks/hooks/useInstall';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Card } from 'antd';
+import { gql } from 'awesome-graphql-client';
+import React, { memo } from 'react';
+import { useEndpoint } from '../enthooks';
+import { useRequest } from '../enthooks/hooks/useRequest';
 import { useShowError } from '../hooks/useShowError';
 import { getLocalMessage } from '../locales/getLocalMessage';
-import * as meta from './data.json';
+import InstallForm from './InstallForm';
+
+const queryGql = gql`
+  query installed() {
+    installed()
+  }
+`;
 
 const Install = memo(() => {
-  const [current, setCurrent] = useState(0);
-  const navigate = useNavigate()
-  const [form] = Form.useForm()
-
-  const [install, { loading, error }] = useInstall({
-    onCompleted: (data) => {
-      if (data?.install) {
-        next()
-      }
-    }
-  })
-
+  const { data, error, loading } = useRequest(queryGql);
+  const endpoint = useEndpoint();
+  console.log("呵呵", endpoint)
   useShowError(error)
-
-  const next = useCallback(() => {
-    setCurrent(current => current + 1);
-  }, []);
-
-  const prev = useCallback(() => {
-    setCurrent(current => current - 1);
-  }, []);
-
-  const handleInstall = useCallback(() => {
-    form.validateFields().then((values)=>{
-      install({
-        meta,
-        ...values
-      })
-    })
-
-  }, [form, install])
-
-  const handleFinished = useCallback(() => {
-    navigate(LOGIN_URL);
-  }, [navigate])
 
   return (
     <div style={{
@@ -59,92 +35,30 @@ const Install = memo(() => {
       <Card
         title={getLocalMessage("install.Title")}
       >
-        <div style={{
-          minHeight: 160,
-          width: 400
-        }}>
-          {
-            current === 0 &&
-            <>
-              <p>Appx 低代码平台，强大、高效！</p>
-              <p>请点击“下一步”，开始安装。</p>
-            </>
-          }
-          {
-            current === 1 &&
-            <Form
-              name="install"
-              form = {form}
-              labelCol={{ span: 7 }}
-              wrapperCol={{ span: 14 }}
-              initialValues={{ admin: "admin", password: "123456", withDemo: true }}
-              autoComplete="off"
-            >
-              <Form.Item
-                label={getLocalMessage("install.Account")}
-                name="admin"
-                rules={[{ required: true, message: getLocalMessage("Requried") }]}
-              >
-                <Input />
-              </Form.Item>
+        {
+          loading ?
+            <div style={{
+              minHeight: 160,
+              width: 400,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center"
+            }}>
+              <LoadingOutlined style={{ fontSize: 50, color: "blue" }} />
+            </div>
+            : (
+              data?.installed ?
+                getLocalMessage("install.InstalledMessage")
+                :
+                (!error && <InstallForm />)
+            )
 
-              <Form.Item
-                label={getLocalMessage("install.Password")}
-                name="password"
-                rules={[{ required: true, message: getLocalMessage("Requried") }]}
-              >
-                <Input.Password />
-              </Form.Item>
+        }
+        {
+          error && <div style={{ color: "red" }}>{error.message}</div>
+        }
 
-              <Form.Item name="withDemo" valuePropName="checked" wrapperCol={{ offset: 7, span: 16 }}>
-                <Checkbox>{getLocalMessage("install.WithDemo")}</Checkbox>
-              </Form.Item>
-            </Form>
-          }
-          {
-            current === 2 &&
-            <>
-              <p>您已经成功安装Appx</p>
-              <p>马上开启神奇之旅吧！</p>
-            </>
-          }
-        </div>
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "flex-end",
-          }}
-        >
-          <Space>
-            {
-              current === 1 &&
-              <Button onClick={prev}>
-                {getLocalMessage("install.Previous")}
-              </Button>
-            }
 
-            {
-              current === 0 &&
-              <Button type="primary" onClick={next}>
-                {getLocalMessage("install.next")}
-              </Button>
-            }
-
-            {
-              current === 1 &&
-              <Button type="primary" onClick={handleInstall} loading = {loading}>
-                {getLocalMessage("install.Install")}
-              </Button>
-            }
-            {
-              current === 2 &&
-              <Button type="primary" onClick={handleFinished}>
-                {getLocalMessage("install.Finished")}
-              </Button>
-            }
-          </Space>
-        </div>
       </Card>
     </div>
   );
