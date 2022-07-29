@@ -2,6 +2,7 @@ import { AwesomeGraphQLClient, GraphQLRequestError } from "awesome-graphql-clien
 import { useCallback, useState } from "react";
 import { HEADER_AUTHORIZATION, TOKEN_PREFIX } from "../../consts";
 import { useEndpoint, useToken } from "../context";
+import { useMountRef } from "./useMountRef";
 
 export interface RequestOptions<T> {
   onCompleted?: (data: T) => void;
@@ -10,7 +11,7 @@ export interface RequestOptions<T> {
 
 export function useLazyRequest<T1>(gql: string | undefined, options?: RequestOptions<any>)
   : [
-    (input: T1) => void,
+    (input?: T1) => void,
     {
       error?: Error,
       loading?: boolean,
@@ -22,9 +23,10 @@ export function useLazyRequest<T1>(gql: string | undefined, options?: RequestOpt
   const [error, setError] = useState<Error | undefined>();
   const endpoint = useEndpoint();
   const token = useToken();
-
+  const mountRef = useMountRef();
+  
   const request = useCallback(
-    (params: T1) => {
+    (params?: T1) => {
       if (!gql) {
         return;
       }
@@ -34,6 +36,9 @@ export function useLazyRequest<T1>(gql: string | undefined, options?: RequestOpt
       graphQLClient
         .request(gql, params, { headers: { [HEADER_AUTHORIZATION]: token ? `${TOKEN_PREFIX}${token}` : "" } })
         .then((data) => {
+          if (!mountRef.current) {
+            return;
+          }
           setLoading(false);
           options?.onCompleted && options?.onCompleted(data);
           setData(data);
@@ -45,7 +50,7 @@ export function useLazyRequest<T1>(gql: string | undefined, options?: RequestOpt
           options?.onError && options?.onError(err);
         });
     },
-    [gql, endpoint, token, options]
+    [gql, endpoint, token, mountRef, options]
   );
 
   return [request, {loading, error, data}]
