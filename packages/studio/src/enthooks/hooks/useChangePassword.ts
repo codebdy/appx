@@ -2,7 +2,7 @@ import { gql } from 'awesome-graphql-client'
 import { useCallback } from 'react';
 import { RequestOptions, useLazyRequest } from './useLazyRequest';
 
-const changePasswordMutation = gql`
+const changePasswordGql = gql`
   mutation changePassword($loginName: String!, $oldPassword: String!, $newPassword: String!) {
     changePassword(loginName: $loginName, oldPassword: $oldPassword,  newPassword: $newPassword)
   }
@@ -30,8 +30,8 @@ export function useChangePassword(
     }
   })
 
-  const change = useCallback(()=>{
-    doChange(changePasswordMutation)
+  const change = useCallback((input: ChangeInput)=>{
+    doChange(changePasswordGql, input)
   }, [doChange])
   return [change, { token:data?.changePassword, loading, error }];
 }
