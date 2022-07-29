@@ -75,7 +75,6 @@ const Login = observer(() => {
       }),
     []
   )
-  form.submit()
 
   const [login, { loading }] = useLogin({
     onCompleted(atoken: string) {
