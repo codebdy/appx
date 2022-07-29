@@ -148,13 +148,13 @@ const AvatarMenu = memo(() => {
         visible={isModalVisible}
         okText={getLocalMessage("Confirm")}
         cancelText={getLocalMessage("Cancel")}
-        width={400}
+        width={460}
         onOk={handleOk}
         onCancel={handleCancel}
       >
         <Form
           form={form}
-          labelCol={5}
+          labelCol={6}
           wrapperCol={16}
           size="large"
         //onAutoSubmit={handleLogin}
