@@ -1,6 +1,7 @@
 import { AwesomeGraphQLClient, GraphQLRequestError } from "awesome-graphql-client";
 import { useEffect, useState } from "react";
-import { useEndpoint } from "../context";
+import { HEADER_AUTHORIZATION, TOKEN_PREFIX } from "../../consts";
+import { useEndpoint, useToken } from "../context";
 
 
 export function useRequest(gql: string | undefined, params?: { [key: string]: any })
@@ -13,6 +14,7 @@ export function useRequest(gql: string | undefined, params?: { [key: string]: an
   const [data, setData] = useState<any>(false);
   const [error, setError] = useState<Error | undefined>();
   const endpoint = useEndpoint();
+  const token = useToken();
   useEffect(
     () => {
       if (!gql || !endpoint) {
@@ -22,7 +24,7 @@ export function useRequest(gql: string | undefined, params?: { [key: string]: an
       setLoading(true);
       setError(undefined);
       graphQLClient
-        .request(gql, params)
+        .request(gql, params,  { headers: { [HEADER_AUTHORIZATION]: token ? `${TOKEN_PREFIX}${token}` : "" } })
         .then((data) => {
           setLoading(false);
           setData(data);
@@ -33,7 +35,7 @@ export function useRequest(gql: string | undefined, params?: { [key: string]: an
           console.error(err);
         });
     },
-    [gql, endpoint, params]
+    [gql, endpoint, params, token]
   );
 
   return { loading, error, data }

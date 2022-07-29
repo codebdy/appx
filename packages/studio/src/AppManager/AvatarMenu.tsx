@@ -10,19 +10,19 @@ import { getLocalMessage } from "../locales/getLocalMessage";
 
 const AvatarMenu = memo(() => {
   const setToken = useSetToken();
-  const { loading, error } = useMe()
+  const { me, loading, error } = useMe()
   const navigate = useNavigate();
   useShowError(error);
   const [logout] = useLogout()
 
-  const handleLogout = useCallback(()=>{
+  const handleLogout = useCallback(() => {
     setToken(undefined);
     localStorage.removeItem(TOKEN_NAME);
     navigate(LOGIN_URL)
     logout();
   }, [logout, navigate, setToken])
 
-  const menu = useMemo(()=>(
+  const menu = useMemo(() => (
     <Menu>
       <Menu.Item key="changepPassword"
         icon={<LockOutlined />}
@@ -36,12 +36,12 @@ const AvatarMenu = memo(() => {
   ), [handleLogout]);
 
   return (
-    <Dropdown overlay={menu} disabled={!!error} placement="bottomRight" arrow trigger={['click']}>
+    <Dropdown overlay={menu} disabled={!!error || !me} placement="bottomRight" arrow trigger={['click']}>
       {
         loading
           ?
           <Avatar><Skeleton.Avatar active={true} /></Avatar>
-          : (!error && <Avatar className="avatar" icon={<UserOutlined />} />)
+          : ((!error && me) ? <Avatar className="avatar" icon={<UserOutlined />} /> : <div></div>)
       }
 
     </Dropdown>

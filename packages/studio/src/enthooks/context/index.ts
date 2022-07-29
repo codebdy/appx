@@ -1,4 +1,5 @@
 import { createContext, useContext } from "react";
+import { TOKEN_NAME } from "../../consts";
 
 export interface IEntxConfig {
   token?: string,
@@ -23,7 +24,7 @@ export const useEntix = (): IEntxConfig => useContext(EntixContext);
 
 export const useToken = () => {
   const iEntx = useEntix();
-  return iEntx?.token
+  return iEntx?.token || localStorage.getItem(TOKEN_NAME)
 }
 
 export const useSetToken = () => {

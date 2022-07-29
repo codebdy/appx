@@ -122,7 +122,6 @@ export default () => {
       >
         <PageContainer
           content={content}
-          //header = {{title:"哈哈"}}
           tabList={[
             {
               tab: '基本信息',
