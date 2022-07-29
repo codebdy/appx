@@ -1,6 +1,143 @@
 {
   "appUuid": "SYSTEM",
   "content": {
-    "classes": []
+    "classes": [
+      {
+        "name": "User",
+        "root": true,
+        "uuid": "META_USER_UUID",
+        "System": true,
+        "innerId": 4,
+        "attributes": [
+          {
+            "name": "id",
+            "type": "ID",
+            "uuid": "RX_USER_ID_UUID",
+            "System": true,
+            "primary": true,
+            "typeLabel": "ID"
+          },
+          {
+            "name": "name",
+            "type": "String",
+            "uuid": "RX_USER_NAME_UUID",
+            "System": true,
+            "nullable": true,
+            "typeLabel": "String"
+          },
+          {
+            "name": "loginName",
+            "type": "String",
+            "uuid": "RX_USER_LOGINNAME_UUID",
+            "System": true,
+            "length": 128,
+            "typeLabel": "String"
+          },
+          {
+            "name": "password",
+            "type": "String",
+            "uuid": "RX_USER_PASSWORD_UUID",
+            "System": true,
+            "length": 256,
+            "typeLabel": "String"
+          },
+          {
+            "name": "isSupper",
+            "type": "Boolean",
+            "uuid": "RX_USER_ISSUPPER_UUID",
+            "System": true,
+            "nullable": true,
+            "typeLabel": "Boolean"
+          },
+          {
+            "name": "isDemo",
+            "type": "Boolean",
+            "uuid": "RX_USER_ISDEMO_UUID",
+            "System": true,
+            "nullable": true,
+            "typeLabel": "Boolean"
+          },
+          {
+            "name": "createdAt",
+            "type": "Date",
+            "uuid": "RX_USER_CREATEDAT_UUID",
+            "System": true,
+            "typeLabel": "Date",
+            "createDate": true
+          },
+          {
+            "name": "updatedAt",
+            "type": "Date",
+            "uuid": "RX_USER_UPDATEDAT_UUID",
+            "System": true,
+            "typeLabel": "Date",
+            "updateDate": true
+          }
+        ],
+        "stereoType": "Entity"
+      },
+      {
+        "name": "Role",
+        "root": true,
+        "uuid": "META_ROLE_UUID",
+        "System": true,
+        "innerId": 5,
+        "attributes": [
+          {
+            "name": "id",
+            "type": "ID",
+            "uuid": "RX_ROLE_ID_UUID",
+            "System": true,
+            "primary": true,
+            "typeLabel": "ID"
+          },
+          {
+            "name": "name",
+            "type": "String",
+            "uuid": "RX_ROLE_NAME_UUID",
+            "System": true,
+            "typeLabel": "String"
+          },
+          {
+            "name": "description",
+            "type": "String",
+            "uuid": "RX_ROLE_DESCRIPTION_UUID",
+            "System": true,
+            "nullable": true,
+            "typeLabel": "String"
+          },
+          {
+            "name": "createdAt",
+            "type": "Date",
+            "uuid": "RX_ROLE_CREATEDAT_UUID",
+            "System": true,
+            "typeLabel": "Date",
+            "createDate": true
+          },
+          {
+            "name": "updatedAt",
+            "type": "Date",
+            "uuid": "RX_ROLE_META_UPDATEDAT_UUID",
+            "System": true,
+            "typeLabel": "Date",
+            "updateDate": true
+          }
+        ],
+        "stereoType": "Entity"
+      }
+    ],
+    "relations": [
+      {
+        "uuid": "META_RELATION_USER_ROLE_UUID",
+        "innerId": 101,
+        "sourceId": "META_ROLE_UUID",
+        "targetId": "META_USER_UUID",
+        "relationType": "twoWayAssociation",
+        "roleOfSource": "roles",
+        "roleOfTarget": "users",
+        "sourceMutiplicity": "0..*",
+        "targetMultiplicity": "0..*"
+      }
+    ]
   }
 }
