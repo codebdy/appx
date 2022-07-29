@@ -27,7 +27,7 @@ export const EntiRoot = memo((
       setToken,
       setEndpoint
     })
-  }, [config])
+  }, [config, setEndpoint, setToken])
 
   return (
     <EntixContext.Provider value={value || empertyConfig}>
