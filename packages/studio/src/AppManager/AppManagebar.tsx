@@ -20,7 +20,7 @@ const AppManagebar = () => {
           <TextWidget>appManager.ImportApp</TextWidget>
         </Button>
         <CreateDialog />
-        <Button type="primary" danger icon={<AppstoreOutlined />}>
+        <Button type="primary" className="hover-float" danger icon={<AppstoreOutlined />}>
         <TextWidget>appManager.AppStore</TextWidget>
         </Button>
       </Space>
