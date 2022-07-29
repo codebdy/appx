@@ -114,6 +114,11 @@ const AvatarMenu = memo(() => {
     setIsModalVisible(true);
   }, []);
 
+  const handleCancel = useCallback(() => {
+    setIsModalVisible(false);
+  }, []);
+
+
   const menu = useMemo(() => (
     <Menu>
       <Menu.Item key="changepPassword"
@@ -144,6 +149,7 @@ const AvatarMenu = memo(() => {
         visible={isModalVisible}
         footer={null}
         width={460}
+        onCancel={handleCancel}
       >
         <Form
           form={form}
