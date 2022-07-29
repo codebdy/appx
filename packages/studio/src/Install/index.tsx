@@ -10,6 +10,8 @@ import * as meta from './data.json';
 const Install = memo(() => {
   const [current, setCurrent] = useState(0);
   const navigate = useNavigate()
+  const [form] = Form.useForm()
+
   const [install, { loading, error }] = useInstall({
     onCompleted: (data) => {
       if (data?.install) {
@@ -29,13 +31,14 @@ const Install = memo(() => {
   }, []);
 
   const handleInstall = useCallback(() => {
-    install({
-      meta,
-      admin: "",
-      password: "",
-      withDemo: false,
+    form.validateFields().then((values)=>{
+      install({
+        meta,
+        ...values
+      })
     })
-  }, [install])
+
+  }, [form, install])
 
   const handleFinished = useCallback(() => {
     navigate(LOGIN_URL);
@@ -71,6 +74,7 @@ const Install = memo(() => {
             current === 1 &&
             <Form
               name="install"
+              form = {form}
               labelCol={{ span: 7 }}
               wrapperCol={{ span: 14 }}
               initialValues={{ admin: "admin", password: "123456", withDemo: true }}
