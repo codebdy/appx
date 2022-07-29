@@ -1,5 +1,5 @@
 import { LockOutlined, LogoutOutlined, UserOutlined } from "@ant-design/icons"
-import { Form, FormItem, Password } from "@formily/antd";
+import { Form, FormButtonGroup, FormItem, Password, Submit } from "@formily/antd";
 import { Avatar, Dropdown, Menu, Modal, Skeleton } from "antd"
 import React, { memo, useCallback, useMemo, useState } from "react"
 import { useNavigate } from "react-router-dom";
@@ -94,6 +94,15 @@ const AvatarMenu = memo(() => {
   useShowError(error);
   const [logout] = useLogout()
 
+
+  const form = useMemo(
+    () =>
+      createForm({
+        values: {},
+      }),
+    []
+  )
+
   const handleLogout = useCallback(() => {
     setToken(undefined);
     localStorage.removeItem(TOKEN_NAME);
@@ -104,26 +113,6 @@ const AvatarMenu = memo(() => {
   const showModal = useCallback(() => {
     setIsModalVisible(true);
   }, []);
-
-  const handleOk = useCallback(() => {
-    setIsModalVisible(false);
-  }, []);
-
-  const handleCancel = useCallback(() => {
-    setIsModalVisible(false);
-  }, []);
-
-  const form = useMemo(
-    () =>
-      createForm({
-        values: {},
-      }),
-    []
-  )
-
-  const handleSubmitPassword = useCallback((values) => {
-    console.log("哈哈", values)
-  }, [])
 
   const menu = useMemo(() => (
     <Menu>
@@ -153,20 +142,21 @@ const AvatarMenu = memo(() => {
       <Modal
         title={getLocalMessage("ChangePassword")}
         visible={isModalVisible}
-        okText={getLocalMessage("Confirm")}
-        cancelText={getLocalMessage("Cancel")}
+        footer={null}
         width={460}
-        onOk={handleOk}
-        onCancel={handleCancel}
       >
         <Form
           form={form}
           labelCol={6}
           wrapperCol={16}
           size="large"
-          onAutoSubmit={handleSubmitPassword}
         >
           <SchemaField schema={schema()} />
+          <FormButtonGroup.FormItem>
+            <Submit block size="large">
+              {getLocalMessage("ConfirmChange")}
+            </Submit>
+          </FormButtonGroup.FormItem>
         </Form>
       </Modal>
     </>
