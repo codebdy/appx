@@ -1,4 +1,4 @@
-import { ImportOutlined, SearchOutlined } from "@ant-design/icons";
+import { AppstoreOutlined, ImportOutlined, SearchOutlined } from "@ant-design/icons";
 import { Button, Input, Space } from "antd";
 import React from "react";
 import { TextWidget } from "../AppDesigner/widgets";
@@ -20,6 +20,9 @@ const AppManagebar = () => {
           <TextWidget>appManager.ImportApp</TextWidget>
         </Button>
         <CreateDialog />
+        <Button type="primary" danger icon={<AppstoreOutlined />}>
+        <TextWidget>appManager.AppStore</TextWidget>
+        </Button>
       </Space>
     </div>
   )
