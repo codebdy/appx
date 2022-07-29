@@ -19,9 +19,9 @@ const PackageLabel = memo((
   const [editing, setEditing] = useState(false);
   const [visible, setVisible] = useState(false);
 
-  const appId = useSelectedAppUuid();
-  const backup = useBackupSnapshot(appId);
-  const setPackages = useSetRecoilState(packagesState(appId));
+  const appUuid = useSelectedAppUuid();
+  const backup = useBackupSnapshot(appUuid);
+  const setPackages = useSetRecoilState(packagesState(appUuid));
 
   const handleVisableChange = useCallback((visible) => {
     setVisible(visible)

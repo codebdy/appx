@@ -12,13 +12,13 @@ import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
 import { useCreateClassInnerId } from "../hooks/useCreateClassInnerId";
 import { ID } from "../../shared";
 
-export function useNodeAdd(graph: Graph | undefined, appId: ID) {
-  const selectedDiagramUuid = useRecoilValue(selectedDiagramState(appId));
-  const setNodes = useSetRecoilState(x6NodesState(appId));
-  const setEntities = useSetRecoilState(classesState(appId));
-  const backupSnapshot = useBackupSnapshot(appId);
-  const createInnerId = useCreateClassInnerId(appId);
-  const setSelectedElement = useSetRecoilState(selectedElementState(appId));
+export function useNodeAdd(graph: Graph | undefined, appUuid: ID) {
+  const selectedDiagramUuid = useRecoilValue(selectedDiagramState(appUuid));
+  const setNodes = useSetRecoilState(x6NodesState(appUuid));
+  const setEntities = useSetRecoilState(classesState(appUuid));
+  const backupSnapshot = useBackupSnapshot(appUuid);
+  const createInnerId = useCreateClassInnerId(appUuid);
+  const setSelectedElement = useSetRecoilState(selectedElementState(appUuid));
   const nodeAdded = useCallback(
     (arg: { node: Node<Node.Properties> }) => {
       const node = arg.node;

@@ -6,9 +6,9 @@ import { PackageMeta } from "../meta/PackageMeta";
 import { useGetPackageByName } from "./useGetPackageByName";
 import { packagesState } from './../recoil/atoms';
 
-export function useCreateNewPackage(appId: ID) {
-  const packages = useRecoilValue(packagesState(appId));
-  const getPackageByName = useGetPackageByName(appId);
+export function useCreateNewPackage(appUuid: ID) {
+  const packages = useRecoilValue(packagesState(appUuid));
+  const getPackageByName = useGetPackageByName(appUuid);
   const getNewPackageName = useCallback(() => {
     const prefix = getLocalMessage("model.NewPackage");
     let index = 1;

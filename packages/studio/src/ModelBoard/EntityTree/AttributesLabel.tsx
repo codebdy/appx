@@ -14,8 +14,8 @@ const AttributesLabel = memo((
   }
 ) => {
   const { cls } = props;
-  const appId = useSelectedAppUuid();
-  const addAttribute = useCreateClassAttribute(appId);
+  const appUuid = useSelectedAppUuid();
+  const addAttribute = useCreateClassAttribute(appUuid);
   
   return (
     <TreeNodeLabel

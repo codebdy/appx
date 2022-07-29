@@ -7,10 +7,10 @@ import { ID } from "../../shared";
 import { useAlertError } from "../../hooks/useAlertError";
 import { getLocalMessage } from "../../locales/getLocalMessage";
 
-export function useChangeAttribute(appId: ID) {
-  const changeEntity = useChangeClass(appId);
+export function useChangeAttribute(appUuid: ID) {
+  const changeEntity = useChangeClass(appUuid);
   const alertError = useAlertError();
-  const chackName = useCheckClassProperyName(appId);
+  const chackName = useCheckClassProperyName(appUuid);
 
   const changeAttribute = useCallback(
     (attr: AttributeMeta, cls: ClassMeta) => {

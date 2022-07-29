@@ -26,18 +26,18 @@ import { DeleteOutlined, RedoOutlined, UndoOutlined } from "@ant-design/icons";
 import "./index.less";
 
 export const ModelToolbar = memo(() => {
-  const appId = useSelectedAppUuid();
-  const [changed, setChanged] = useRecoilState(changedState(appId));
-  const undoList = useRecoilValue(undoListState(appId));
-  const redoList = useRecoilValue(redoListState(appId));
-  const selectedDiagram = useRecoilValue(selectedDiagramState(appId));
-  const selectedElement = useRecoilValue(selectedElementState(appId));
-  const { attribute } = useAttribute(selectedElement || "", appId);
-  const undo = useUndo(appId);
-  const redo = useRedo(appId);
-  const deleteSelectedElement = useDeleteSelectedElement(appId);
-  const [minMap, setMinMap] = useRecoilState(minMapState(appId));
-  const validate = useValidate(appId);
+  const appUuid = useSelectedAppUuid();
+  const [changed, setChanged] = useRecoilState(changedState(appUuid));
+  const undoList = useRecoilValue(undoListState(appUuid));
+  const redoList = useRecoilValue(redoListState(appUuid));
+  const selectedDiagram = useRecoilValue(selectedDiagramState(appUuid));
+  const selectedElement = useRecoilValue(selectedElementState(appUuid));
+  const { attribute } = useAttribute(selectedElement || "", appUuid);
+  const undo = useUndo(appUuid);
+  const redo = useRedo(appUuid);
+  const deleteSelectedElement = useDeleteSelectedElement(appUuid);
+  const [minMap, setMinMap] = useRecoilState(minMapState(appUuid));
+  const validate = useValidate(appUuid);
   // const [excuteSave, { loading, error }] = usePostOne<Meta>(EntityNameMeta, {
   //   onCompleted(data: Meta) {
   //     setSuccessAlertState(true);

@@ -9,13 +9,13 @@ import {
 } from "../recoil/atoms";
 import { useBackupSnapshot } from "./useBackupSnapshot";
 
-export function useDeleteClass(appId: ID) {
-  const setEntites = useSetRecoilState(classesState(appId));
-  const [relations, setRelations] = useRecoilState(relationsState(appId));
-  const setNodes = useSetRecoilState(x6NodesState(appId));
-  const setEdges = useSetRecoilState(x6EdgesState(appId));
+export function useDeleteClass(appUuid: ID) {
+  const setEntites = useSetRecoilState(classesState(appUuid));
+  const [relations, setRelations] = useRecoilState(relationsState(appUuid));
+  const setNodes = useSetRecoilState(x6NodesState(appUuid));
+  const setEdges = useSetRecoilState(x6EdgesState(appUuid));
 
-  const backupSnapshot = useBackupSnapshot(appId);
+  const backupSnapshot = useBackupSnapshot(appUuid);
 
   const deleteClasses = useCallback(
     (classUuid: string) => {

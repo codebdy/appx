@@ -16,9 +16,9 @@ const MethodLabel = memo((
   }
 ) => {
   const { method } = props;
-  const appId = useSelectedAppUuid();
-  const selectedElement = useRecoilValue(selectedElementState(appId));
-  const removeMethod = useDeleteMethod(appId);
+  const appUuid = useSelectedAppUuid();
+  const selectedElement = useRecoilValue(selectedElementState(appUuid));
+  const removeMethod = useDeleteMethod(appUuid);
 
   const handleDelete = useCallback((event: React.MouseEvent) => {
     event.stopPropagation();

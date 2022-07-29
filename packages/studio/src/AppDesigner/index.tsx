@@ -39,8 +39,8 @@ import PageListWidget from './widgets/PageListWidget'
 setNpmCDNRegistry('//unpkg.com')
 
 const AppDesigner = observer(() => {
-  const { appId } = useParams();
-  const { data: app, loading, error } = useApp(appId)
+  const { appUuid } = useParams();
+  const { data: app, loading, error } = useApp(appUuid)
 
   useShowError(error);
 

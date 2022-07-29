@@ -56,12 +56,12 @@ export const ToolItem = memo(
 export const Toolbox = memo((props: { graph?: Graph }) => {
   const { graph } = props;
   const [dnd, setDnd] = React.useState<any>();
-  const appId = useSelectedAppUuid();
-  const setSelemedElement = useSetRecoilState(selectedElementState(appId))
+  const appUuid = useSelectedAppUuid();
+  const setSelemedElement = useSetRecoilState(selectedElementState(appUuid))
   const [pressedLineType, setPressedLineType] = useRecoilState(
-    pressedLineTypeState(appId)
+    pressedLineTypeState(appUuid)
   );
-  const createTempClassNodeForNew = useCreateTempClassNodeForNew(appId);
+  const createTempClassNodeForNew = useCreateTempClassNodeForNew(appUuid);
 
   useEffect(() => {
     const theDnd = graph

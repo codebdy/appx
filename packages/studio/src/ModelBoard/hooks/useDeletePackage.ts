@@ -6,12 +6,12 @@ import { diagramsState, packagesState } from './../recoil/atoms';
 
 /**
  * 并没有删除包下面的元素，保存数据时需要过滤一下
- * @param appId 
+ * @param appUuid 
  * @returns 
  */
-export function useDeletePackage(appId: ID) {
-  const setPackages = useSetRecoilState(packagesState(appId));
-  const backup = useBackupSnapshot(appId);
+export function useDeletePackage(appUuid: ID) {
+  const setPackages = useSetRecoilState(packagesState(appUuid));
+  const backup = useBackupSnapshot(appUuid);
 
   const deletePackage = useCallback((uuid: string) => {
     backup()

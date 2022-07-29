@@ -3,8 +3,8 @@ import { ID } from "../../shared";
 import { RelationType } from "../meta/RelationMeta";
 import { relationsState } from "../recoil/atoms";
 
-export function useFirstChildrenUuids(uuid: string, appId: ID) {
-  const relations = useRecoilValue(relationsState(appId));
+export function useFirstChildrenUuids(uuid: string, appUuid: ID) {
+  const relations = useRecoilValue(relationsState(appUuid));
 
   const children: string[] = [];
   for (const relation of relations) {

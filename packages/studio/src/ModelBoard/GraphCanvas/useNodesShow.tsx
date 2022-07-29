@@ -25,26 +25,26 @@ import React from "react";
 import { useGetPackage } from "../hooks/useGetPackage";
 import { useSelectedDiagramPackageUuid } from "../hooks/useSelectedDiagramPackage";
 
-export function useNodesShow(graph: Graph | undefined, appId: ID) {
-  const selectedDiagram = useRecoilValue(selectedDiagramState(appId));
+export function useNodesShow(graph: Graph | undefined, appUuid: ID) {
+  const selectedDiagram = useRecoilValue(selectedDiagramState(appUuid));
   const [selectedElement, setSelectedElement] = useRecoilState(
-    selectedElementState(appId)
+    selectedElementState(appUuid)
   );
-  const setNodes = useSetRecoilState(x6NodesState(appId));
-  const nodes = useDiagramNodes(selectedDiagram || "", appId);
-  const getClass = useGetClass(appId);
-  const getNode = useGetNode(appId);
-  const getDiagramNode = useGetDiagramNode(appId);
-  const pressedLineType = useRecoilValue(pressedLineTypeState(appId));
-  const changeClass = useChangeClass(appId);
-  const createAttribute = useCreateClassAttribute(appId);
-  const createMethod = useCreateClassMethod(appId);
-  const drawingLine = useRecoilValue(drawingLineState(appId));
+  const setNodes = useSetRecoilState(x6NodesState(appUuid));
+  const nodes = useDiagramNodes(selectedDiagram || "", appUuid);
+  const getClass = useGetClass(appUuid);
+  const getNode = useGetNode(appUuid);
+  const getDiagramNode = useGetDiagramNode(appUuid);
+  const pressedLineType = useRecoilValue(pressedLineTypeState(appUuid));
+  const changeClass = useChangeClass(appUuid);
+  const createAttribute = useCreateClassAttribute(appUuid);
+  const createMethod = useCreateClassMethod(appUuid);
+  const drawingLine = useRecoilValue(drawingLineState(appUuid));
   const getClassRef = useRef(getClass);
-  const deleteClass = useDeleteClass(appId);
-  const getPackage = useGetPackage(appId);
+  const deleteClass = useDeleteClass(appUuid);
+  const getPackage = useGetPackage(appUuid);
   getClassRef.current = getClass;
-  const selectedDiagramPackageUuid = useSelectedDiagramPackageUuid(appId)
+  const selectedDiagramPackageUuid = useSelectedDiagramPackageUuid(appUuid)
 
   const changeClassRef = useRef(changeClass);
   changeClassRef.current = changeClass;

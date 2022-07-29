@@ -5,9 +5,9 @@ import { useCallback } from "react";
 import { createUuid, ID } from "../../shared";
 import { getLocalMessage } from "../../locales/getLocalMessage";
 
-export function useCreateNewDiagram(appId: ID) {
-  const setDiagrams = useSetRecoilState(diagramsState(appId));
-  const getDiagramByName = useGetDiagramByName(appId);
+export function useCreateNewDiagram(appUuid: ID) {
+  const setDiagrams = useSetRecoilState(diagramsState(appUuid));
+  const getDiagramByName = useGetDiagramByName(appUuid);
 
   const getNewDiagramName = useCallback(() => {
     const prefix = getLocalMessage("model.NewDiagram");

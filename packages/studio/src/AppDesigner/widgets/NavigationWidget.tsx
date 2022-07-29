@@ -60,10 +60,10 @@ export const NavigationWidget = memo((
   }
 ) => {
   const { app, loading } = props;
-  const { appId } = useParams();
+  const { appUuid } = useParams();
   const navigate = useNavigate()
   const handleBack = useCallback(() => {
-    navigate("/config-app/" + appId)
+    navigate("/config-app/" + appUuid)
   }, []);
 
   return (

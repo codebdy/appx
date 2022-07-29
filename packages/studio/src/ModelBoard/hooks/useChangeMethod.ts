@@ -7,10 +7,10 @@ import { MethodMeta } from "../meta/MethodMeta";
 import { useChangeClass } from "./useChangeClass";
 import { useCheckClassProperyName } from "./useCheckClassProperyName";
 
-export function useChangeMethod(appId: ID) {
-  const changeClass = useChangeClass(appId);
+export function useChangeMethod(appUuid: ID) {
+  const changeClass = useChangeClass(appUuid);
   const alertError = useAlertError();
-  const chackName = useCheckClassProperyName(appId);
+  const chackName = useCheckClassProperyName(appUuid);
   const changeMethod = useCallback(
     (method: MethodMeta, cls: ClassMeta) => {
       if (!chackName(cls.uuid, method.name, method.uuid)) {

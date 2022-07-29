@@ -3,8 +3,8 @@ import { useRecoilValue } from "recoil";
 import { ID } from "../../shared";
 import { classesState } from "../recoil/atoms";
 
-export function useMethod(uuid: string, appId: ID) {
-  const classes = useRecoilValue(classesState(appId));
+export function useMethod(uuid: string, appUuid: ID) {
+  const classes = useRecoilValue(classesState(appUuid));
 
   const rt = useMemo(() => {
     for (const cls of classes) {

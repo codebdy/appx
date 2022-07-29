@@ -5,9 +5,9 @@ import { StereoType } from "../meta/ClassMeta";
 import { classesState } from "../recoil/atoms";
 import { useGetFirstParentUuids } from "./useGetFirstParentUuids";
 
-export function useRootClasses(appId: ID) {
-  const classes = useRecoilValue(classesState(appId));
-  const getParentuuids = useGetFirstParentUuids(appId);
+export function useRootClasses(appUuid: ID) {
+  const classes = useRecoilValue(classesState(appUuid));
+  const getParentuuids = useGetFirstParentUuids(appUuid);
   const entities = useMemo(() => {
     return classes.filter(
       (cls) =>

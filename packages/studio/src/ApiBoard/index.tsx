@@ -13,7 +13,7 @@ import { useToken } from "../enthooks";
 //例子連接
 //https://github.com/graphql/graphiql/blob/main/packages/graphiql-toolkit/docs/create-fetcher.md#subscriptionurl
 const ApiBoard = memo(() => {
-  const appId = useSelectedAppUuid();
+  const appUuid = useSelectedAppUuid();
   const token = useToken();
   const fetcher = useMemo(() => {
     const fetcher = createGraphiQLFetcher({
@@ -21,12 +21,12 @@ const ApiBoard = memo(() => {
       legacyWsClient: new SubscriptionClient(SERVER_SUBSCRIPTION_URL),
       headers: {
         [HEADER_AUTHORIZATION]: token ? `${TOKEN_PREFIX}${token}` : "",
-        [HEADER_APPX_APPUUID]: SYSTEM_APP_UUID !== appId ? appId : undefined,
+        [HEADER_APPX_APPUUID]: SYSTEM_APP_UUID !== appUuid ? appUuid : undefined,
       }
     });
 
     return fetcher;
-  }, [appId, token]);
+  }, [appUuid, token]);
 
   return (
     <div className="api-board">

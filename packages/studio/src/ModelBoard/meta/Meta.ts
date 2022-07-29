@@ -16,7 +16,7 @@ export enum MetaStatus {
 
 export interface Meta {
   id?: ID;
-  appId?: ID;
+  appUuid?: ID;
   content: {
     packages: PackageMeta[];
     classes?: ClassMeta[];

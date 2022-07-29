@@ -3,8 +3,8 @@ import { useRecoilValue } from "recoil";
 import { ID } from "../../shared";
 import { classesState } from "../recoil/atoms";
 
-export function useCreateClassInnerId(appId: ID) {
-  const entities = useRecoilValue(classesState(appId));
+export function useCreateClassInnerId(appUuid: ID) {
+  const entities = useRecoilValue(classesState(appUuid));
   const findEntityByInnerId = useCallback((id:number)=>{
     for (const entity of entities) {
       if(entity.innerId === id ){

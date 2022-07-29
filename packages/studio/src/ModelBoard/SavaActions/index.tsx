@@ -11,15 +11,15 @@ import { useValidate } from "../hooks/useValidate";
 
 
 const SavaActions = memo(() => {
-  const appId = useSelectedAppUuid();
-  const [meta, setMeta] = useRecoilState(metaState(appId));
-  const classeMetas = useRecoilValue(classesState(appId));
-  const relations = useRecoilValue(relationsState(appId));
-  const diagrams = useRecoilValue(diagramsState(appId));
-  const x6Nodes = useRecoilValue(x6NodesState(appId));
-  const x6Edges = useRecoilValue(x6EdgesState(appId));
-  const [changed, setChanged] = useRecoilState(changedState(appId));
-  const validate = useValidate(appId);
+  const appUuid = useSelectedAppUuid();
+  const [meta, setMeta] = useRecoilState(metaState(appUuid));
+  const classeMetas = useRecoilValue(classesState(appUuid));
+  const relations = useRecoilValue(relationsState(appUuid));
+  const diagrams = useRecoilValue(diagramsState(appUuid));
+  const x6Nodes = useRecoilValue(x6NodesState(appUuid));
+  const x6Edges = useRecoilValue(x6EdgesState(appUuid));
+  const [changed, setChanged] = useRecoilState(changedState(appUuid));
+  const validate = useValidate(appUuid);
   
   const handleSave = useCallback(() => {
     if (!validate()) {

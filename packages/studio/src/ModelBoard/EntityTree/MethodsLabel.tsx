@@ -14,8 +14,8 @@ const MethodsLabel = memo((
   }
 ) => {
   const { cls } = props;
-  const appId = useSelectedAppUuid();
-  const addMethod = useCreateClassMethod(appId);
+  const appUuid = useSelectedAppUuid();
+  const addMethod = useCreateClassMethod(appUuid);
 
   return (
     <TreeNodeLabel

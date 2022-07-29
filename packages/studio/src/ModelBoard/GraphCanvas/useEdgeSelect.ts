@@ -6,11 +6,11 @@ import { useSelectedRelation } from "../hooks/useSelectedRelation";
 import { CONST_CANVAS_CLICK } from "../consts";
 import { ID } from "../../shared";
 
-export function useEdgeSelect(graph: Graph|undefined, appId :ID) {
-  const drawingLine = useRecoilValue(drawingLineState(appId));
+export function useEdgeSelect(graph: Graph|undefined, appUuid :ID) {
+  const drawingLine = useRecoilValue(drawingLineState(appUuid));
   const [selectedElement, setSelectedElement] =
-    useRecoilState(selectedElementState(appId));
-  const selectedRelation = useSelectedRelation(appId);
+    useRecoilState(selectedElementState(appUuid));
+  const selectedRelation = useSelectedRelation(appUuid);
 
   useEffect(() => {
     if (selectedRelation) {

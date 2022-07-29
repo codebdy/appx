@@ -21,22 +21,22 @@ import { useCheckCanLinkTo } from "./useCheckCanLinkTo";
 import { createUuid, ID } from "../../shared";
 import { seedId } from "../../shared/seedId";
 
-export function useEdgeLineDraw(graph: Graph | undefined, appId: ID) {
+export function useEdgeLineDraw(graph: Graph | undefined, appUuid: ID) {
   const [drawingLine, setDrawingLine] = useRecoilState(
-    drawingLineState(appId)
+    drawingLineState(appUuid)
   );
-  const selectedDiagram = useRecoilValue(selectedDiagramState(appId));
-  const setRelations = useSetRecoilState(relationsState(appId));
-  const selectedElement = useSetRecoilState(selectedElementState(appId));
-  const setEdges = useSetRecoilState(x6EdgesState(appId));
-  const getClass = useGetClass(appId);
-  const backupSnapshot = useBackupSnapshot(appId);
+  const selectedDiagram = useRecoilValue(selectedDiagramState(appUuid));
+  const setRelations = useSetRecoilState(relationsState(appUuid));
+  const selectedElement = useSetRecoilState(selectedElementState(appUuid));
+  const setEdges = useSetRecoilState(x6EdgesState(appUuid));
+  const getClass = useGetClass(appUuid);
+  const backupSnapshot = useBackupSnapshot(appUuid);
   const [pressedLineType, setPressedLineType] = useRecoilState(
-    pressedLineTypeState(appId)
+    pressedLineTypeState(appUuid)
   );
 
-  const createRelationInnerId = useCreateRelationInnerId(appId);
-  const canLinkTo = useCheckCanLinkTo(appId);
+  const createRelationInnerId = useCreateRelationInnerId(appUuid);
+  const canLinkTo = useCheckCanLinkTo(appUuid);
 
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {

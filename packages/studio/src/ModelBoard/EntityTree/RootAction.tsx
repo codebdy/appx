@@ -9,10 +9,10 @@ import { packagesState } from "../recoil/atoms";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
 
 const RootAction = memo(() => {
-  const appId = useSelectedAppUuid();
-  const setPackages = useSetRecoilState(packagesState(appId));
-  const createNewPackage = useCreateNewPackage(appId);
-  const backup = useBackupSnapshot(appId);
+  const appUuid = useSelectedAppUuid();
+  const setPackages = useSetRecoilState(packagesState(appUuid));
+  const createNewPackage = useCreateNewPackage(appUuid);
+  const backup = useBackupSnapshot(appUuid);
   const handleAddPackage = useCallback(
     () => {
       backup();

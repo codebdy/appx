@@ -9,8 +9,8 @@ export interface Association {
   relation: RelationMeta;
 }
 
-export function useGetClassAssociations(appId: ID) {
-  const relations = useRecoilValue(relationsState(appId));
+export function useGetClassAssociations(appUuid: ID) {
+  const relations = useRecoilValue(relationsState(appUuid));
 
   const getClassAssociations = useCallback(
     (classUuid: string) => {

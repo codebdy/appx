@@ -20,15 +20,15 @@ const PackageAction = memo((
   }
 ) => {
   const { pkg, onEdit, onVisibleChange } = props;
-  const appId = useSelectedAppUuid()
-  const setPackages = useSetRecoilState(packagesState(appId))
-  const deletePackage = useDeletePackage(appId)
-  const createNewClass = useCreateNewClass(appId);
-  const createNewDiagram = useCreateNewDiagram(appId);
-  const setClasses = useSetRecoilState(classesState(appId));
-  const backupSnapshot = useBackupSnapshot(appId);
+  const appUuid = useSelectedAppUuid()
+  const setPackages = useSetRecoilState(packagesState(appUuid))
+  const deletePackage = useDeletePackage(appUuid)
+  const createNewClass = useCreateNewClass(appUuid);
+  const createNewDiagram = useCreateNewDiagram(appUuid);
+  const setClasses = useSetRecoilState(classesState(appUuid));
+  const backupSnapshot = useBackupSnapshot(appUuid);
   const setSelectedDiagram = useSetRecoilState(
-    selectedDiagramState(appId)
+    selectedDiagramState(appUuid)
   );
 
   const handleDelete = useCallback(() => {

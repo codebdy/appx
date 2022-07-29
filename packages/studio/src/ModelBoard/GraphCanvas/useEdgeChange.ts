@@ -17,12 +17,12 @@ import {
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
 import { ID } from "../../shared";
 
-export function useEdgeChange(graph: Graph | undefined, appId: ID) {
-  const selectedDiagram = useRecoilValue(selectedDiagramState(appId));
-  const drawingLine = useRecoilValue(drawingLineState(appId));
-  const setEdges = useSetRecoilState(x6EdgesState(appId));
-  const getEdge = useGetEdge(appId);
-  const backupSnapshot = useBackupSnapshot(appId);
+export function useEdgeChange(graph: Graph | undefined, appUuid: ID) {
+  const selectedDiagram = useRecoilValue(selectedDiagramState(appUuid));
+  const drawingLine = useRecoilValue(drawingLineState(appUuid));
+  const setEdges = useSetRecoilState(x6EdgesState(appUuid));
+  const getEdge = useGetEdge(appUuid);
+  const backupSnapshot = useBackupSnapshot(appUuid);
 
   const handleEdgeChange = useCallback(
     (arg: { edge: Edge<Edge.Properties> }) => {

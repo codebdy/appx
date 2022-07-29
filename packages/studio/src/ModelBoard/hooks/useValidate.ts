@@ -13,10 +13,10 @@ function hasDuplicates(array: string[]) {
   });
 }
 
-export function useValidate(appId: ID) {
-  const classes = useRecoilValue(classesState(appId));
+export function useValidate(appUuid: ID) {
+  const classes = useRecoilValue(classesState(appUuid));
   const alertError = useAlertError();
-  const getClassAssociations = useGetClassAssociations(appId);
+  const getClassAssociations = useGetClassAssociations(appUuid);
   const validate = useCallback(() => {
     //检查属性名重复
     for (const cls of classes) {

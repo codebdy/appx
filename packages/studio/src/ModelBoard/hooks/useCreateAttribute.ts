@@ -4,8 +4,8 @@ import { AttributeMeta } from "../meta/AttributeMeta";
 import { Type } from "../meta/Type";
 import { useGetTypeLabel } from "./useGetTypeLabel";
 
-export function useCreateAttribute(appId: ID, prefix?: string) {
-  const getTypeName = useGetTypeLabel(appId);
+export function useCreateAttribute(appUuid: ID, prefix?: string) {
+  const getTypeName = useGetTypeLabel(appUuid);
 
   const createAttribute = useCallback(
     (attributes: AttributeMeta[]) => {
