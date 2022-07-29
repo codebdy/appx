@@ -11,13 +11,13 @@ import AuthBoard from './AuthBoard';
 import { AppManagerRoutes } from './AppManager/AppHeader';
 import Install from './Install';
 import { useLoginCheck } from './hooks/useLoginCheck';
-import { INSTALL_URL, LOGIN_URL } from './consts';
+import { INDEX_URL, INSTALL_URL, LOGIN_URL } from './consts';
 
 const App = memo(() => {
   useLoginCheck()
   return (
     <Routes>
-      <Route path="/" element={<AppManager />}>
+      <Route path={INDEX_URL} element={<AppManager />}>
         <Route
           path={AppManagerRoutes.Root}
           element={<AppsContent />}

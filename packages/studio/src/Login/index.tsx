@@ -5,10 +5,11 @@ import { createSchemaField } from '@formily/react'
 import { Checkbox, Form, FormItem, Input, Password, Submit } from '@formily/antd'
 import { Card, message } from 'antd'
 import * as ICONS from '@ant-design/icons'
-import { TOKEN_NAME } from "@appx/shared"
 import { getLocalMessage } from "../locales/getLocalMessage"
 import { observer } from "@formily/reactive-react"
-import { useLogin } from "../enthooks"
+import { useLogin, useSetToken } from "../enthooks"
+import { INDEX_URL, TOKEN_NAME } from "../consts"
+import { useNavigate } from "react-router-dom"
 
 const SchemaField = createSchemaField({
   components: {
@@ -60,6 +61,8 @@ const schema = () => ({
 
 const Login = observer(() => {
   const rememberMeRef = useRef(true);
+  const setToken = useSetToken();
+  const navigate = useNavigate()
 
   const form = useMemo(
     () =>
@@ -82,7 +85,8 @@ const Login = observer(() => {
         } else {
           localStorage.removeItem(TOKEN_NAME);
         }
-        //history.push(INDEX_URL);
+        setToken(atoken);
+        navigate(INDEX_URL);
       }
     },
     onError(error: any) {

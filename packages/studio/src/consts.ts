@@ -7,9 +7,13 @@ export const UPLOAD_SERVER = "http://localhost:4000";
 export const HEADER_AUTHORIZATION = "Authorization"
 export const TOKEN_PREFIX= "Bearer "
 export const HEADER_APPX_APPUUID ="Appx-appuuid"
+export const TOKEN_NAME = "EntifyToken";
 
 //普通角色的ID永远不会是1
 export const GUEST_ROLE_ID = "1"
 
 export const LOGIN_URL = "/login"
 export const INSTALL_URL = "/install"
+export const INDEX_URL = "/"
+
+
