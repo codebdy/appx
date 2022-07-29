@@ -22,7 +22,7 @@ const AppManager = memo(() => {
     return () => {
       document.removeEventListener("scroll", handleScroll);
     }
-  }, [])
+  }, [handleScroll])
 
   return (
     <Layout className="rx-studio">

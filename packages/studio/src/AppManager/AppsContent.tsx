@@ -5,7 +5,6 @@ import AppList from "./AppList"
 import AppManagebar from "./AppManagebar"
 import { useApps } from './../hooks/useApps';
 import { useShowError } from "../hooks/useShowError"
-import Meta from "antd/lib/card/Meta"
 import { Card, Col, Row, Skeleton } from "antd"
 
 const AppsSkeleton = () => {

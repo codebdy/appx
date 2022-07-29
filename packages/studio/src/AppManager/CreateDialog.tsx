@@ -127,7 +127,7 @@ const CreateDialog = memo(() => {
               </p>
               <p className="ant-upload-hint">
                 <TextWidget>UploadHint1</TextWidget>
-                <a><TextWidget>UploadHint2</TextWidget></a>
+                <Button type = "link"><TextWidget>UploadHint2</TextWidget></Button>
               </p>
             </Dragger>
           </Form.Item>

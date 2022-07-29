@@ -19,11 +19,11 @@ const AppCard = memo((props: {
 
   const handleEdit = useCallback(() => {
     navigate("/config-app/" + app.id)
-  }, [navigate])
+  }, [app.id, navigate])
 
   const handleRemove = useCallback(() => {
     remove(app.id)
-  }, [])
+  }, [app.id, remove])
 
 
   return (
