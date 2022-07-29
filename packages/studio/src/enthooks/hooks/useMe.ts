@@ -4,7 +4,13 @@ import { useRequest } from "./useRequest";
 
 const queryGql = gql`
   query{
-    me
+    me{
+      id
+      name
+      loginName
+      isSupper
+      isDemo
+    }
   }
 `;
 

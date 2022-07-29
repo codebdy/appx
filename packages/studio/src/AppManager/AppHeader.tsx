@@ -26,19 +26,19 @@ const AppHeader = memo((props: {
 
   const handleGotoRoot = useCallback(() => {
     navigate(AppManagerRoutes.Root)
-  }, [])
+  }, [navigate])
 
   const handleGotoModel = useCallback(() => {
     navigate(AppManagerRoutes.Model)
-  }, [])
+  }, [navigate])
 
   const handleGotoApi = useCallback(() => {
     navigate(AppManagerRoutes.Api)
-  }, [])
+  }, [navigate])
 
   const handleGotoAuth = useCallback(() => {
     navigate(AppManagerRoutes.Auth)
-  }, [])
+  }, [navigate])
 
 
   const menu = (
@@ -75,7 +75,7 @@ const AppHeader = memo((props: {
     </Menu>
   );
   return (
-    <Header className={clx("header", { ["float"]: scrolled })}>
+    <Header className={clx("header", { "float": scrolled })}>
       <div className='logo'>
         <svg style={{ width: "40px", height: "40px" }} viewBox="0 0 24 24">
           <defs>

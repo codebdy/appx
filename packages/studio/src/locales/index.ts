@@ -24,6 +24,8 @@ GlobalRegistry.registerDesignerLocales({
     UserName: "用户名",
     Password: "密码",
     RememberMe: "记住我",
+    ChangePassword:"修改密码",
+    Logout:"退出",
     File: "文件",
     Length: "长度",
     install: {
