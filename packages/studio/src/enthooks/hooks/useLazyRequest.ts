@@ -1,6 +1,7 @@
 import { AwesomeGraphQLClient, GraphQLRequestError } from "awesome-graphql-client";
 import { useCallback, useState } from "react";
-import { HEADER_AUTHORIZATION, TOKEN_PREFIX } from "../../consts";
+import { HEADER_APPX_APPUUID, HEADER_AUTHORIZATION, TOKEN_PREFIX } from "../../consts";
+import { useSelectedAppUuid } from "../../ModelBoard/hooks/useSelectedAppUuid";
 import { useEndpoint, useToken } from "../context";
 import { useMountRef } from "./useMountRef";
 
@@ -24,7 +25,8 @@ export function useLazyRequest<T1>(options?: RequestOptions<any>)
   const endpoint = useEndpoint();
   const token = useToken();
   const mountRef = useMountRef();
-  
+  const appUuid = useSelectedAppUuid();
+
   const request = useCallback(
     (gql: string | undefined, params?: T1) => {
       if (!gql || !endpoint) {
@@ -35,7 +37,12 @@ export function useLazyRequest<T1>(options?: RequestOptions<any>)
       setLoading(true);
       setError(undefined);
       graphQLClient
-        .request(gql, params, { headers: { [HEADER_AUTHORIZATION]: token ? `${TOKEN_PREFIX}${token}` : "" } })
+        .request(gql, params, { 
+          headers: { 
+            [HEADER_AUTHORIZATION]: token ? `${TOKEN_PREFIX}${token}` : "" ,
+            [HEADER_APPX_APPUUID]: appUuid,
+          } 
+        })
         .then((data) => {
           if (!mountRef.current) {
             return;
@@ -51,7 +58,7 @@ export function useLazyRequest<T1>(options?: RequestOptions<any>)
           options?.onError && options?.onError(err);
         });
     },
-    [endpoint, token, mountRef, options]
+    [endpoint, token, appUuid, mountRef, options]
   );
 
   return [request, {loading, error, data}]

@@ -1,6 +1,7 @@
 import { AwesomeGraphQLClient, GraphQLRequestError } from "awesome-graphql-client";
 import { useEffect, useState } from "react";
-import { HEADER_AUTHORIZATION, TOKEN_PREFIX } from "../../consts";
+import { HEADER_APPX_APPUUID, HEADER_AUTHORIZATION, TOKEN_PREFIX } from "../../consts";
+import { useSelectedAppUuid } from "../../ModelBoard/hooks/useSelectedAppUuid";
 import { useEndpoint, useToken } from "../context";
 
 
@@ -15,6 +16,8 @@ export function useRequest(gql: string | undefined, params?: { [key: string]: an
   const [error, setError] = useState<Error | undefined>();
   const endpoint = useEndpoint();
   const token = useToken();
+  const appUuid = useSelectedAppUuid();
+
   useEffect(
     () => {
       if (!gql || !endpoint) {
@@ -24,7 +27,12 @@ export function useRequest(gql: string | undefined, params?: { [key: string]: an
       setLoading(true);
       setError(undefined);
       graphQLClient
-        .request(gql, params,  { headers: { [HEADER_AUTHORIZATION]: token ? `${TOKEN_PREFIX}${token}` : "" } })
+        .request(gql, params, {
+          headers: {
+            [HEADER_AUTHORIZATION]: token ? `${TOKEN_PREFIX}${token}` : "",
+            [HEADER_APPX_APPUUID]: appUuid,
+          }
+        })
         .then((data) => {
           setLoading(false);
           setData(data);
@@ -35,7 +43,7 @@ export function useRequest(gql: string | undefined, params?: { [key: string]: an
           console.error(err);
         });
     },
-    [gql, endpoint, params, token]
+    [gql, endpoint, params, token, appUuid]
   );
 
   return { loading, error, data }
