@@ -209,6 +209,7 @@
         "name": "Device",
         "root": false,
         "stereoType": "Enum",
+        "packageUuid":"PACKAGE_APPX_UUID",
         "uuid": "096f252a-5e35-4e49-8dce-297b2f16374f"
       },
       {
