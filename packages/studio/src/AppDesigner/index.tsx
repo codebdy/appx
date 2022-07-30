@@ -147,7 +147,7 @@ const AppDesigner = memo(() => {
             </CompositePanel.Item>
           </CompositePanel>
           {
-            (activedKey === "pages" || activedKey === "outlinedTree"|| activedKey === "coms") &&
+            (activedKey === "pages" || activedKey === "outlinedTree" || activedKey === "coms") &&
             <>
               <Workspace id="form">
                 <WorkspacePanel>
@@ -184,6 +184,10 @@ const AppDesigner = memo(() => {
                 <SettingsForm uploadAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" />
               </SettingsPanel>
             </>
+          }
+          {
+            activedKey === "model" &&
+            <div>哈哈</div>
           }
 
         </StudioPanel>
