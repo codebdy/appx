@@ -12,5 +12,5 @@ query {
 `
 
 export function useApps() {
-  return useQuery<{ app: IApp[] }>(appsGql, "App")
+  return useQuery<{ app: IApp[] }>(appsGql, ["App"])
 }
