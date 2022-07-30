@@ -13,7 +13,7 @@ import { useShowError } from "../../hooks/useShowError";
 import { useGetMeta } from "../hooks/useGetMeta";
 
 
-const SavaActions = memo(() => {
+const SaveActions = memo(() => {
   const appUuid = useSelectedAppUuid();
   const [changed, setChanged] = useRecoilState(changedState(appUuid));
   const setMeta = useSetRecoilState(metaState(appUuid));
@@ -54,4 +54,4 @@ const SavaActions = memo(() => {
   )
 })
 
-export default SavaActions;
+export default SaveActions;

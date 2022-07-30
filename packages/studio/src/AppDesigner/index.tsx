@@ -35,6 +35,7 @@ import { useShowError } from '../hooks/useShowError'
 import PageListWidget from './widgets/PageListWidget'
 import { Spin } from 'antd'
 import ModelsBoard from '../ModelBoard'
+import SaveActions from '../ModelBoard/SaveActions'
 
 setNpmCDNRegistry('//unpkg.com')
 
@@ -78,7 +79,9 @@ const AppDesigner = memo(() => {
   return (
     <Spin style={{ height: "100vh" }} spinning={loading}>
       <Designer engine={engine}>
-        <StudioPanel logo={<NavigationWidget app={data?.oneApp} />} actions={<ActionsWidget />}>
+        <StudioPanel logo={<NavigationWidget app={data?.oneApp} />} 
+          actions={ activedKey === "model" ? <SaveActions />: <ActionsWidget />}
+        >
           <CompositePanel showNavTitle activeKey={activedKey} onChange={hanclePannelChange}>
             <CompositePanel.Item
               key="pages"
