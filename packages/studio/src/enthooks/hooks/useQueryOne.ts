@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef } from "react";
 import { useEndpoint } from "../context";
+import { EVENT_DATA_POSTED_ONE, EVENT_DATA_REMOVED, off, on } from "../events";
 import { useLazyRequest } from "./useLazyRequest";
 
 export type MutateFn<T> = (data?: T) => void;
@@ -16,22 +17,35 @@ export type QueryOneResponse<T> = {
   error?: Error;
 }
 
-export function useQueryOne<T>(gql: string, params:any = {} ,entityName?: string): QueryOneResponse<T> {
+export function useQueryOne<T>(gql: string, params: any = {}, entityNames?: string[]): QueryOneResponse<T> {
   const loadedRef = useRef(false);
   const endpoint = useEndpoint();
 
   const [query, { data, error, loading }] = useLazyRequest()
-  useEffect(() => {
-    if (!error && !loading && gql && !loadedRef.current && endpoint) {
-      loadedRef.current = true;
-      query(gql);
-    }
-  }, [endpoint, error, gql, loading, query]);
 
   const refresh = useCallback((data?: T) => {
     console.log("执行 refresh");
     query(gql, params)
   }, [gql, params, query]);
+
+  const eventHandler = useCallback((event: CustomEvent) => {
+    if (entityNames?.find(entity => entity === event.detail?.entity)) {
+      refresh()
+    }
+  }, [entityNames, refresh]);
+
+  useEffect(() => {
+    if (!error && !loading && gql && !loadedRef.current && endpoint) {
+      loadedRef.current = true;
+      query(gql);
+    }
+    on(EVENT_DATA_POSTED_ONE, eventHandler);
+    on(EVENT_DATA_REMOVED, eventHandler);
+    return () => {
+      off(EVENT_DATA_POSTED_ONE, eventHandler);
+      off(EVENT_DATA_REMOVED, eventHandler);
+    }
+  }, [endpoint, error, eventHandler, gql, loading, query]);
 
   return { data, loading, error, refresh };
 }

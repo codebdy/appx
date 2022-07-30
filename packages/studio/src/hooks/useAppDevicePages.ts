@@ -1,21 +1,30 @@
 import { ID } from "../shared";
-import { useApp } from "./useApp";
-import { useEffect, useState } from 'react';
-import { Device, IApp, IPage } from "../model";
-import { IMenu } from '../model/index';
+import { Device, IApp } from "../model";
+import { gql } from "awesome-graphql-client";
+import { useQueryOne } from "../enthooks/hooks/useQueryOne";
+
+const appsGql = gql`
+query queryApp($device:DeviceEnumComparisonExp!, id:ID!){
+  oneApp(where:{
+    id:{
+      _eq:$id
+    }
+  }){
+    id
+    title
+    pages(where:{
+      device:{
+        _eq:$device
+      }
+    }){
+      id
+      schema
+      title
+    }
+  }
+}
+`
 
 export function useAppDevicePages(id: ID, device: Device) {
-  const [app, setApp] = useState<IApp>();
-  const { data, loading, error } = useApp(id);
-  useEffect(() => {
-    if (data) {
-      data.pages = getMockeData<IPage[]>(STORAGE_KEY_PAGES)?.filter(
-        page => page.app?.id === id && page.device === device
-      ) || [];
-      data.menus = getMockeData<IMenu[]>(STORAGE_KEY_PAGES)?.filter(
-        menu => menu.app?.id === id && menu.device === device
-      ) || [];
-    }
-  }, [data, device, id])
-  return { data: app, loading, error }
+  return useQueryOne<IApp>(appsGql, {id, device}, ["App", "Page"])
 }

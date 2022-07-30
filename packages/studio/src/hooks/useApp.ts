@@ -17,5 +17,5 @@ query queryApp($id:ID!){
 `
 
 export function useApp(id: ID){
-  return useQueryOne<IApp>(appsGql, {id}, "App")
+  return useQueryOne<IApp>(appsGql, {id}, ["App"])
 }
