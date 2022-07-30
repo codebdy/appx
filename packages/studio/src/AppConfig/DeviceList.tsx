@@ -37,7 +37,7 @@ const DeviceList = memo((props: {
                       key="design"
                       shape="round"
                       type="primary"
-                      href={`/design-app/${Device.PC}/${app?.id}`}
+                      href={`/design-app/${Device.PC}/${app?.uuid}`}
                     >
                       {getLocalMessage("appManager.ToDesign")}
                     </Button>,
@@ -62,7 +62,7 @@ const DeviceList = memo((props: {
                       key="design"
                       shape="round"
                       type="primary"
-                      href={`/design-app/${Device.H5}/${app?.id}`}
+                      href={`/design-app/${Device.H5}/${app?.uuid}`}
                     >
                       {getLocalMessage("appManager.ToDesign")}
                     </Button>,
@@ -87,7 +87,7 @@ const DeviceList = memo((props: {
                       key="design"
                       shape="round"
                       type="primary"
-                      href={`/design-app/${Device.Admin}/${app?.id}`}
+                      href={`/design-app/${Device.Admin}/${app?.uuid}`}
                     >
                       {getLocalMessage("appManager.ToDesign")}
                     </Button>,

@@ -38,8 +38,8 @@ import { Spin } from 'antd'
 setNpmCDNRegistry('//unpkg.com')
 
 const AppDesigner = memo(() => {
-  const { appId } = useParams();
-  const { data, loading, error } = useApp(appId)
+  const { appUuid } = useParams();
+  const { data, loading, error } = useApp(appUuid)
   const [activedKey, setActivedKey] = useState<string>("pages");
 
   useShowError(error);

@@ -6,6 +6,7 @@ const appsGql = gql`
 query {
   app{
     id
+    uuid
     title
   }
 }

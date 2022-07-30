@@ -1,13 +1,12 @@
 import { gql } from "awesome-graphql-client";
 import { useQueryOne } from "../enthooks/hooks/useQueryOne";
 import { IApp } from "../model";
-import { ID } from "../shared";
 
 const appsGql = gql`
-query queryApp($id:ID!){
+query queryApp($uuid:String!){
   oneApp(where:{
-    id:{
-      _eq:$id
+    uuid:{
+      _eq:$uuid
     }
   }){
     id
@@ -17,6 +16,6 @@ query queryApp($id:ID!){
 }
 `
 
-export function useApp(id: ID){
-  return useQueryOne<IApp>(appsGql, {id}, ["App"])
+export function useApp(uuid: string){
+  return useQueryOne<IApp>(appsGql, {uuid}, ["App"])
 }

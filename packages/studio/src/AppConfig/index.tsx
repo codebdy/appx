@@ -11,8 +11,8 @@ import { useShowError } from './../hooks/useShowError';
 const { Content } = Layout;
 
 const AppConfig = memo(() => {
-  const { appId } = useParams();
-  const { data, loading, error } = useApp(appId)
+  const { appUuid } = useParams();
+  const { data, loading, error } = useApp(appUuid)
 
   useShowError(error);
 
