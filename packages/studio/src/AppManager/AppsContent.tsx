@@ -41,7 +41,7 @@ const AppsContent = memo(() => {
             ?
             <AppsSkeleton />
             :
-            <AppList apps={data || []} />
+            <AppList apps={data?.app || []} />
         }
         <AppFooter />
       </div>

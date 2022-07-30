@@ -12,6 +12,6 @@ query {
 }
 `
 
-export function useApps(): IQueryResponse<IApp[]> {
-  return useQuery<IApp[]>(appsGql, "App")
+export function useApps(): IQueryResponse<{ app: IApp[] }> {
+  return useQuery<{ app: IApp[] }>(appsGql, "App")
 }
