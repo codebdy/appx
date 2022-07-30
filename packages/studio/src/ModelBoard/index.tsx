@@ -1,19 +1,29 @@
-import React, { memo, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { EntityTree } from "./EntityTree";
 import { Graph } from "@antv/x6";
 import "@antv/x6-react-shape";
 import { ModelContent } from "./ModelContent";
 import "./index.less"
-import { useSelectedAppUuid } from './hooks/useSelectedAppUuid';
 import SavaActions from "./SavaActions";
 import { useReadMeta } from "./hooks/useReadMeta";
 import { useShowError } from "../hooks/useShowError";
 import { Spin } from "antd";
+import { useSetRecoilState } from "recoil";
+import { selectedAppUuidState } from "./recoil/atoms";
 
-const ModelsBoard = memo(() => {
+const ModelsBoard = memo((
+  props: {
+    appUuid: string,
+  }
+) => {
+  const { appUuid } = props
   const [graph, setGraph] = useState<Graph>();
   //const selectedService = useSelectedService();
-  const appUuid = useSelectedAppUuid();
+  const setAppUuid = useSetRecoilState(selectedAppUuidState);
+
+  useEffect(()=>{
+    setAppUuid(appUuid)
+  }, [appUuid, setAppUuid]);
 
   const { loading, error } = useReadMeta(appUuid);
 
