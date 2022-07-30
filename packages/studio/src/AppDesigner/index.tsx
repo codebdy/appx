@@ -36,6 +36,7 @@ import PageListWidget from './widgets/PageListWidget'
 import { Spin } from 'antd'
 import ModelsBoard from '../ModelBoard'
 import SaveActions from '../ModelBoard/SaveActions'
+import ApiBoard from '../ApiBoard'
 
 setNpmCDNRegistry('//unpkg.com')
 
@@ -199,7 +200,16 @@ const AppDesigner = memo(() => {
               </WorkspacePanel>
             </Workspace>
           }
-
+          {
+            activedKey === "api" && appUuid &&
+            <Workspace id="api">
+              <WorkspacePanel>
+                <ViewportPanel style={{ height: '100%' }}>
+                  <ApiBoard appUuid={appUuid} />
+                </ViewportPanel>
+              </WorkspacePanel>
+            </Workspace>
+          }
         </StudioPanel>
       </Designer>
     </Spin>

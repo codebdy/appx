@@ -12,6 +12,7 @@ import Install from './Install';
 import { useLoginCheck } from './hooks/useLoginCheck';
 import { INDEX_URL, INSTALL_URL, LOGIN_URL } from './consts';
 import SystemModelBoard from './ModelBoard/SystemModelBoard';
+import { SYSTEM_APP_UUID } from './ModelBoard/recoil/atoms';
 
 const App = memo(() => {
   useLoginCheck()
@@ -23,7 +24,7 @@ const App = memo(() => {
           element={<AppsContent />}
         />
         <Route path={AppManagerRoutes.Model} element={<SystemModelBoard />} />
-        <Route path={AppManagerRoutes.Api} element={<ApiBoard />} />
+        <Route path={AppManagerRoutes.Api} element={<ApiBoard appUuid={SYSTEM_APP_UUID}/>} />
         <Route path={AppManagerRoutes.Auth} element={<AuthBoard />} />
       </Route>
       <Route path="/config-app/:appUuid" element={<AppConfig />} />
