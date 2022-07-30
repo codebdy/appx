@@ -2,9 +2,9 @@ import { IPosted } from "./IPosted";
 import { IRemoved } from "./IRemoved";
 import { IUpdated } from "./IUpdated";
 
-export const EVENT_DATA_CREATED = "apper:created";
-export const EVENT_DATA_REMOVED = "apper:removed";
-export const EVENT_DATA_UPDATED = "apper:updated";
+export const EVENT_DATA_POSTED_ONE = "appx:posted-one";
+export const EVENT_DATA_REMOVED = "appx:removed";
+export const EVENT_DATA_UPDATED = "appx:updated";
 
 export type Handler = (event: CustomEvent) => void;
 
@@ -25,7 +25,7 @@ function once(eventType: string, listener: EventListener) {
   on(eventType, handleEventOnce as any);
 }
 
-function trigger(eventType: string, data: any/*IPosted | IRemoved | IUpdated*/) {
+function trigger(eventType: string, data: IPosted | IRemoved | IUpdated) {
   console.log('trigger事件', eventType, data);
   const event = new CustomEvent(eventType, { detail: data });
   document.dispatchEvent(event);

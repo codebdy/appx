@@ -1,6 +1,7 @@
 import { gql } from "awesome-graphql-client";
 import { useCallback, useMemo } from "react";
 import { CONST_ID } from "../../ModelBoard/meta/Meta";
+import { EVENT_DATA_POSTED_ONE, trigger } from "../events";
 import { useLazyRequest } from "./useLazyRequest";
 
 export interface IPostOptions<T> {
@@ -10,7 +11,7 @@ export interface IPostOptions<T> {
   serverUrl?: string;
 }
 
-export function usePostOne<T,T2>(
+export function usePostOne<T, T2>(
   __type: string,
   options?: IPostOptions<T2>
 ): [
@@ -21,6 +22,7 @@ export function usePostOne<T,T2>(
 
   const [doPost, { error, loading }] = useLazyRequest({
     onCompleted: (data) => {
+      trigger(EVENT_DATA_POSTED_ONE, { entity: __type })
       options?.onCompleted && data && options?.onCompleted(data[postName]);
     },
     onError: options?.onError
@@ -39,8 +41,7 @@ export function usePostOne<T,T2>(
           }
         }
       `;
-      console.log("哈哈", object)
-      doPost(postMutation, {object});
+      doPost(postMutation, { object });
     },
     [__type, doPost, postName]
   );

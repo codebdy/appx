@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { createUuid } from "../shared";
-import { EVENT_DATA_CREATED, trigger } from "./events";
+import { EVENT_DATA_POSTED_ONE, trigger } from "./events";
 import { IMutationResponse } from "./IMutationResponse";
 import { mockCreateRequest } from "./mutation";
 
@@ -19,7 +19,7 @@ export function useCreate<T1, T2>(key: string, onComplate?: (data: T2) => void):
         setLoading(false);
         setData(data)
         onComplate && onComplate(data)
-        trigger(EVENT_DATA_CREATED, key)
+        trigger(EVENT_DATA_POSTED_ONE, key)
       })
   }, [key, onComplate])
 

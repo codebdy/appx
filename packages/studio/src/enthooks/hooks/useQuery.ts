@@ -2,9 +2,9 @@ import { IQueryResponse } from "../../hooks/IQueryResponse";
 import { useRef, useState } from 'react';
 import { useCallback } from 'react';
 import { useEffect } from 'react';
-import { EVENT_DATA_CREATED, on, off, EVENT_DATA_REMOVED } from "../../hooks/events";
 import { useLazyRequest } from "./useLazyRequest";
 import { useEndpoint } from "../context";
+import { EVENT_DATA_POSTED_ONE, EVENT_DATA_REMOVED, off, on } from "../events";
 
 export interface QueryResult<T> {
   [key: string]: T[] | undefined;
@@ -45,10 +45,10 @@ export function useQuery<T>(gql: string | undefined, entityName?: string): IQuer
 
   useEffect(() => {
     load();
-    on(EVENT_DATA_CREATED, eventHandler);
+    on(EVENT_DATA_POSTED_ONE, eventHandler);
     on(EVENT_DATA_REMOVED, eventHandler);
     return () => {
-      off(EVENT_DATA_CREATED, eventHandler);
+      off(EVENT_DATA_POSTED_ONE, eventHandler);
       off(EVENT_DATA_REMOVED, eventHandler);
     }
   }, [eventHandler, gql, load]);
