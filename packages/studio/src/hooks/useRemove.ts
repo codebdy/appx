@@ -1,8 +1,5 @@
 import { useCallback, useState } from "react";
 import { ID } from "../shared";
-import { EVENT_DATA_REMOVED, trigger } from "./events";
-import { IMutationResponse } from "./IMutationResponse";
-import { mockRemoveRequest } from "./mutation";
 
 type RemoveFn = (id:ID) => void;
 

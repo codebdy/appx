@@ -1,9 +1,7 @@
-import { ID } from "../model";
-import { STORAGE_KEY_MENUS } from "./consts";
-import { IQueryResponse } from "./IQueryResponse";
+import { ID } from '../shared';
 import { IMenu } from './../model/index';
 
-export function useAppMenu(pageId: ID, deviceSlug: string): IQueryResponse<IMenu> {
+export function useAppMenu(pageId: ID, deviceSlug: string){
   const menusStr = localStorage.getItem(STORAGE_KEY_MENUS)
   if (menusStr) {
     const allMenus: IMenu[] = JSON.parse(menusStr)

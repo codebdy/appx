@@ -2,8 +2,6 @@ import { ID } from "../shared";
 import { useApp } from "./useApp";
 import { useEffect, useState } from 'react';
 import { Device, IApp, IPage } from "../model";
-import { STORAGE_KEY_PAGES } from "./consts";
-import { getMockeData } from "./getMockeData";
 import { IMenu } from '../model/index';
 
 export function useAppDevicePages(id: ID, device: Device) {

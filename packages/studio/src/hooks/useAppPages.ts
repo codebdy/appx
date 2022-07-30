@@ -1,5 +1,3 @@
-import { STORAGE_KEY_PAGES } from "./consts";
-import { IQueryResponse } from "./IQueryResponse";
 import { IPage } from './../model/index';
 import { ID } from "../shared";
 
