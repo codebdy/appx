@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useEndpoint } from "../context";
 import { EVENT_DATA_POSTED_ONE, EVENT_DATA_REMOVED, off, on } from "../events";
 import { useLazyRequest } from "./useLazyRequest";
@@ -20,11 +20,20 @@ export type QueryOneResponse<T> = {
 export function useQueryOne<T>(gql: string, params: any = {}, entityNames?: string[]): QueryOneResponse<T> {
   const loadedRef = useRef(false);
   const endpoint = useEndpoint();
+  const [revalidating, setRevalidating] = useState<boolean>();
 
-  const [query, { data, error, loading }] = useLazyRequest()
+  const [query, { data, error, loading }] = useLazyRequest({
+    onCompleted: () => {
+      setRevalidating(false)
+    },
+    onError: () => {
+      setRevalidating(false)
+    }
+  })
 
   const refresh = useCallback((data?: T) => {
     console.log("执行 refresh");
+    setRevalidating(true);
     query(gql, params)
   }, [gql, params, query]);
 
@@ -47,5 +56,5 @@ export function useQueryOne<T>(gql: string, params: any = {}, entityNames?: stri
     }
   }, [endpoint, error, eventHandler, gql, loading, query]);
 
-  return { data, loading, error, refresh };
+  return { data, loading: (revalidating ? false : loading), revalidating, error, refresh };
 }

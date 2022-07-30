@@ -46,7 +46,7 @@ export function useQuery<T>(gql: string | undefined, entityNames?: string[]): Qu
   }, [doLoad, gql])
 
   const eventHandler = useCallback((event: CustomEvent) => {
-    if (entityNames?.find(entity=>entity === event.detail?.entity )) {
+    if (entityNames?.find(entity => entity === event.detail?.entity)) {
       refresh()
     }
   }, [entityNames, refresh]);
@@ -61,5 +61,5 @@ export function useQuery<T>(gql: string | undefined, entityNames?: string[]): Qu
     }
   }, [eventHandler, gql, load]);
 
-  return { data, loading, revalidating, error, refresh }
+  return { data, loading: (revalidating ? false : loading), revalidating, error, refresh }
 }
