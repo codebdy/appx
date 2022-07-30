@@ -57,7 +57,8 @@ GlobalRegistry.registerDesignerLocales({
       Menu: "菜单",
       Model: "模型",
       Flow: "流程",
-      API: "接口"
+      API: "接口",
+      Auth:"权限",
     },
     sources: {
       Inputs: '输入控件',
