@@ -1,7 +1,7 @@
 import { ID } from "../model";
-import { STORAGE_KEY_MENUS, STORAGE_KEY_PAGES } from "./consts";
+import { STORAGE_KEY_MENUS } from "./consts";
 import { IQueryResponse } from "./IQueryResponse";
-import { IPage, IMenu } from './../model/index';
+import { IMenu } from './../model/index';
 
 export function useAppMenu(pageId: ID, deviceSlug: string): IQueryResponse<IMenu> {
   const menusStr = localStorage.getItem(STORAGE_KEY_MENUS)

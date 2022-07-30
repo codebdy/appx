@@ -21,7 +21,7 @@ export function useCreate<T1, T2>(key: string, onComplate?: (data: T2) => void):
         onComplate && onComplate(data)
         trigger(EVENT_DATA_CREATED, key)
       })
-  }, [])
+  }, [key, onComplate])
 
   return [create, { data, loading, error }];
 }

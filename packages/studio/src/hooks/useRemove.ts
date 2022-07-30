@@ -1,8 +1,8 @@
 import { useCallback, useState } from "react";
 import { ID } from "../shared";
-import { EVENT_DATA_CREATED, EVENT_DATA_REMOVED, trigger } from "./events";
+import { EVENT_DATA_REMOVED, trigger } from "./events";
 import { IMutationResponse } from "./IMutationResponse";
-import { mockCreateRequest, mockRemoveRequest } from "./mutation";
+import { mockRemoveRequest } from "./mutation";
 
 type RemoveFn = (id:ID) => void;
 
@@ -20,7 +20,7 @@ export function useRemove<T>(key: string, onComplate?: (data: T) => void): [remo
         onComplate && onComplate(data)
         trigger(EVENT_DATA_REMOVED, key)
       })
-  }, [])
+  }, [key, onComplate])
 
   return [remove, { data, loading, error }];
 }

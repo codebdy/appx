@@ -1,7 +1,7 @@
+import { message } from "antd";
 import _ from "lodash";
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
-import { useAlertError } from "../../hooks/useAlertError";
 import { getLocalMessage } from "../../locales/getLocalMessage";
 import { ID } from "../../shared";
 import { classesState } from "../recoil/atoms";
@@ -15,7 +15,6 @@ function hasDuplicates(array: string[]) {
 
 export function useValidate(appUuid: ID) {
   const classes = useRecoilValue(classesState(appUuid));
-  const alertError = useAlertError();
   const getClassAssociations = useGetClassAssociations(appUuid);
   const validate = useCallback(() => {
     //检查属性名重复
@@ -26,13 +25,13 @@ export function useValidate(appUuid: ID) {
         ...(getClassAssociations(cls.uuid)?.map((aso) => aso.name) || [])
       );
       if (hasDuplicates(names.filter((name) => !!name))) {
-        alertError(getLocalMessage("model.duplicated-property-error"));
+        message.error(getLocalMessage("model.duplicated-property-error"));
         return false;
       }
     }
     //检查关联类属性名冲突
     return true;
-  }, [alertError, classes, getClassAssociations]);
+  }, [classes, getClassAssociations]);
 
   return validate;
 }

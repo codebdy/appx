@@ -1,8 +1,17 @@
+import { gql } from "awesome-graphql-client";
 import { IApp } from "../model";
-import { STORAGE_KEY_APPS } from "./consts";
 import { IQueryResponse } from "./IQueryResponse";
-import { useQuery } from "./useQuery";
+import { useQuery } from "../enthooks/hooks/useQuery";
+
+const appsGql = gql`
+query {
+  app{
+    id
+    title
+  }
+}
+`
 
 export function useApps(): IQueryResponse<IApp[]> {
-  return useQuery<IApp[]>(STORAGE_KEY_APPS)
+  return useQuery<IApp[]>(appsGql, "App")
 }

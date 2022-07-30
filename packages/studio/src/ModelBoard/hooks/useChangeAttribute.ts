@@ -4,18 +4,17 @@ import { ClassMeta } from "../meta/ClassMeta";
 import { useChangeClass } from "./useChangeClass";
 import { useCheckClassProperyName } from "./useCheckClassProperyName";
 import { ID } from "../../shared";
-import { useAlertError } from "../../hooks/useAlertError";
 import { getLocalMessage } from "../../locales/getLocalMessage";
+import { message } from "antd";
 
 export function useChangeAttribute(appUuid: ID) {
   const changeEntity = useChangeClass(appUuid);
-  const alertError = useAlertError();
   const chackName = useCheckClassProperyName(appUuid);
 
   const changeAttribute = useCallback(
     (attr: AttributeMeta, cls: ClassMeta) => {
       if (!chackName(cls.uuid, attr.name, attr.uuid)) {
-        alertError(getLocalMessage("model.error-name-repeat"));
+        message.error(getLocalMessage("model.error-name-repeat"));
         return;
       }
       changeEntity({

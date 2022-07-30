@@ -18,6 +18,6 @@ export function useAppDevicePages(id: ID, device: Device) {
         menu => menu.app?.id === id && menu.device === device
       ) || [];
     }
-  }, [data])
+  }, [data, device, id])
   return { data: app, loading, error }
 }

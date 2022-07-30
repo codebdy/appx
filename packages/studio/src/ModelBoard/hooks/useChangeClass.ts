@@ -1,6 +1,6 @@
+import { message } from "antd";
 import { useCallback } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { useAlertError } from "../../hooks/useAlertError";
 import { getLocalMessage } from "../../locales/getLocalMessage";
 import { ID } from "../../shared";
 import { EVENT_CLASS_CHANGED, triggerCanvasEvent } from "../GraphCanvas/events";
@@ -12,7 +12,6 @@ export function useChangeClass(appUuid: ID) {
   const backupSnapshot = useBackupSnapshot(appUuid);
   const setClasses = useSetRecoilState(classesState(appUuid));
   const classes = useRecoilValue(classesState(appUuid));
-  const alertError = useAlertError();
 
   const changeClass = useCallback(
     (cls: ClassMeta) => {
@@ -21,7 +20,7 @@ export function useChangeClass(appUuid: ID) {
           .filter((cl) => cl.uuid !== cls.uuid)
           .find((cl) => cl.name === cls.name)
       ) {
-        alertError(getLocalMessage("model.error-name-repeat"));
+        message.error(getLocalMessage("model.error-name-repeat"));
         return;
       }
       backupSnapshot();

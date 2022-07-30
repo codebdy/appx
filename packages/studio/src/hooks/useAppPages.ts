@@ -1,7 +1,7 @@
-import { ID } from "../model";
 import { STORAGE_KEY_PAGES } from "./consts";
 import { IQueryResponse } from "./IQueryResponse";
 import { IPage } from './../model/index';
+import { ID } from "../shared";
 
 export function useAppPages(pageId: ID, deviceSlug: string): IQueryResponse<IPage[]> {
   const pagesStr = localStorage.getItem(STORAGE_KEY_PAGES)

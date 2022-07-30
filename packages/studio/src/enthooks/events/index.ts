@@ -1,7 +1,3 @@
-import { IPosted } from "./IPosted";
-import { IRemoved } from "./IRemoved";
-import { IUpdated } from "./IUpdated";
-
 export const EVENT_DATA_CREATED = "apper:created";
 export const EVENT_DATA_REMOVED = "apper:removed";
 export const EVENT_DATA_UPDATED = "apper:updated";
