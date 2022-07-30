@@ -1,7 +1,6 @@
 import { useCallback } from "react";
-import { useRecoilValue } from "recoil";
-import { Meta, MetaStatus } from "../meta/Meta";
-import { metaState, classesState, relationsState, diagramsState, x6NodesState, x6EdgesState, packagesState } from "../recoil/atoms";
+import { Meta } from "../meta/Meta";
+import { useGetMeta } from "./useGetMeta";
 
 export const downloadFile = function (filename: string, content: string) {
   // 创建隐藏的可下载链接
@@ -20,36 +19,12 @@ export const downloadFile = function (filename: string, content: string) {
 
 
 export function useExportJson(appUuid: string) {
-  const meta = useRecoilValue(metaState(appUuid));
-  const packages = useRecoilValue(packagesState(appUuid))
-  const classes = useRecoilValue(classesState(appUuid));
-  const relations = useRecoilValue(relationsState(appUuid));
-  const diagrams = useRecoilValue(diagramsState(appUuid));
-  const x6Nodes = useRecoilValue(x6NodesState(appUuid));
-  const x6Edges = useRecoilValue(x6EdgesState(appUuid));
-
+  const getMeta = useGetMeta(appUuid)
   const doExport = useCallback(() => {
-    const content = {
-      packages,
-      classes,
-      relations,
-      diagrams,
-      x6Nodes,
-      x6Edges,
-    };
 
-    const data: Meta =
-      meta?.status === MetaStatus.META_STATUS_PUBLISHED || !meta
-        ? {
-          appUuid,
-          content,
-        }
-        : {
-          ...meta,
-          content,
-        };
+    const data: Meta =getMeta();
     downloadFile(appUuid + '.json', JSON.stringify(data, null, 2));
-  }, [appUuid, classes, diagrams, meta, packages, relations, x6Edges, x6Nodes]);
+  }, [appUuid, getMeta]);
 
   return doExport
 }

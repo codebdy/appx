@@ -11,7 +11,7 @@ const SyncButton = memo(() => {
   const appUuid = useSelectedAppUuid();
   const changed = useRecoilValue(changedState(appUuid))
   const expotJson = useExportJson(appUuid)
-  
+
   const menu = useMemo(() => (
     <Menu
       items={[
