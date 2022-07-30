@@ -12,20 +12,14 @@ const SyncButton = memo(() => {
   const changed = useRecoilValue(changedState(appUuid))
   const expotJson = useExportJson(appUuid)
   
-  const handleMenuClick = useCallback((e) => {
-    if(e.key === "export"){
-      expotJson()
-    }
-  }, [expotJson]);
-
   const menu = useMemo(() => (
     <Menu
-      onClick={handleMenuClick}
       items={[
         {
           icon: <DownloadOutlined />,
           label: getLocalMessage("model.ExportModel"),
           key: 'export',
+          onClick: expotJson,
         },
         {
           icon: <ImportOutlined />,
@@ -34,7 +28,7 @@ const SyncButton = memo(() => {
         },
       ]}
     />
-  ), [handleMenuClick]);
+  ), [expotJson]);
 
   return (
     <Dropdown.Button disabled={changed} overlay={menu} placement="bottom" icon={<DownOutlined />}>

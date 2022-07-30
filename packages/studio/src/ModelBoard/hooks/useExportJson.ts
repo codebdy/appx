@@ -48,7 +48,7 @@ export function useExportJson(appUuid: string) {
           ...meta,
           content,
         };
-    downloadFile('model.json', JSON.stringify(data, null, 2));
+    downloadFile(appUuid + '.json', JSON.stringify(data, null, 2));
   }, [appUuid, classes, diagrams, meta, packages, relations, x6Edges, x6Nodes]);
 
   return doExport
