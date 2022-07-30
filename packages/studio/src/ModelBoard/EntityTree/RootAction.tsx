@@ -7,12 +7,14 @@ import { useCreateNewPackage } from './../hooks/useCreateNewPackage';
 import { useSetRecoilState } from 'recoil';
 import { packagesState } from "../recoil/atoms";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
+import { useExportJson } from "../hooks/useExportJson";
 
 const RootAction = memo(() => {
   const appUuid = useSelectedAppUuid();
   const setPackages = useSetRecoilState(packagesState(appUuid));
   const createNewPackage = useCreateNewPackage(appUuid);
   const backup = useBackupSnapshot(appUuid);
+  const expotJson = useExportJson(appUuid)
   const handleAddPackage = useCallback(
     () => {
       backup();
@@ -37,6 +39,7 @@ const RootAction = memo(() => {
           icon: <DownloadOutlined />,
           label: getLocalMessage("model.ExportModel"),
           key: '1',
+          onClick:expotJson
         },
         {
           icon: <ImportOutlined />,
@@ -45,7 +48,7 @@ const RootAction = memo(() => {
         },
       ]}
     />
-  ), [handleAddPackage]);
+  ), [expotJson, handleAddPackage]);
 
   return (
     <Dropdown overlay={menu} trigger={['click']}>

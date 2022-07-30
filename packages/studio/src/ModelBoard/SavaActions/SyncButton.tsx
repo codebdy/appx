@@ -1,18 +1,22 @@
 import { DownloadOutlined, DownOutlined, ImportOutlined } from '@ant-design/icons';
-import { Dropdown, Menu, message } from 'antd';
+import { Dropdown, Menu } from 'antd';
 import React, { memo, useCallback, useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 import { getLocalMessage } from '../../locales/getLocalMessage';
+import { useExportJson } from '../hooks/useExportJson';
 import { useSelectedAppUuid } from '../hooks/useSelectedAppUuid';
 import { changedState } from '../recoil/atoms';
 
 const SyncButton = memo(() => {
   const appUuid = useSelectedAppUuid();
   const changed = useRecoilValue(changedState(appUuid))
+  const expotJson = useExportJson(appUuid)
+  
   const handleMenuClick = useCallback((e) => {
-    message.info('Click on menu item.');
-    console.log('click', e);
-  }, []);
+    if(e.key === "export"){
+      expotJson()
+    }
+  }, [expotJson]);
 
   const menu = useMemo(() => (
     <Menu
