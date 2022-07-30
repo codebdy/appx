@@ -8,16 +8,18 @@ export interface QueryOneResult<T> {
   [key: string]: T | undefined;
 }
 
-export function useQueryOne<T>(gql: string, entityName?:string): {
+export type QueryOneResponse<T> = {
   data?: QueryOneResult<T>;
   refresh: MutateFn<T>;
   loading?: boolean;
   revalidating?: boolean;
   error?: Error;
-} {
+}
+
+export function useQueryOne<T>(gql: string, entityName?: string): QueryOneResponse<T> {
   const loadedRef = useRef(false);
   const endpoint = useEndpoint();
-  
+
   const [query, { data, error, loading }] = useLazyRequest()
   useEffect(() => {
     if (!error && !loading && gql && !loadedRef.current && endpoint) {

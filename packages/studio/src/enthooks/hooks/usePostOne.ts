@@ -11,13 +11,15 @@ export interface IPostOptions<T> {
   serverUrl?: string;
 }
 
+export type PostResponse<T> = [
+  (data: T, serverUrl?: string) => void,
+  { loading?: boolean; error?: Error }
+]
+
 export function usePostOne<T, T2>(
   __type: string,
   options?: IPostOptions<T2>
-): [
-    (data: T, serverUrl?: string) => void,
-    { loading?: boolean; error?: Error }
-  ] {
+): PostResponse<T> {
   const postName = useMemo(() => ("upsertOne" + __type), [__type]);
 
   const [doPost, { error, loading }] = useLazyRequest({

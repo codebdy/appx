@@ -10,13 +10,15 @@ export interface QueryResult<T> {
   [key: string]: T[] | undefined;
 }
 
-export function useQuery<T>(gql: string | undefined, entityName?: string): {
+export type QueryResponse<T> = {
   data?: QueryResult<T>;
   refresh: MutateFn<T>;
   loading?: boolean;
   revalidating?: boolean;
   error?: Error;
-} {
+}
+
+export function useQuery<T>(gql: string | undefined, entityName?: string): QueryResponse<T> {
   const [revalidating, setRevalidating] = useState<boolean>();
   const loadedRef = useRef(false);
   const endpoint = useEndpoint();
