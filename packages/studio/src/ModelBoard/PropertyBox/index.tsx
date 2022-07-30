@@ -31,7 +31,7 @@ export const PropertyBox = () => {
 
   return (
     <div
-      className="property-box border"
+      className="property-box left-border"
     >
       <ToolbarArea>
         <ToolbarTitle>{getLocalMessage("model.Properties")}</ToolbarTitle>

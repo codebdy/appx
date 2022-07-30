@@ -7,6 +7,9 @@
   .appx-model-board{
     height: calc(100vh - @toolbarHeight);
   }
+  .property-box{
+    border-top: solid 1px @borderColor;
+  }
 }
 
 .appx-model-board{
@@ -28,6 +31,7 @@
     display: flex;
     height: 100%;
     flex-flow: column;
+    width: 260px;
     background-color: @backgrounColor;
     .property-box{
       flex:1;
@@ -35,7 +39,7 @@
       flex-flow: column;
       height: 0;
       overflow: auto;
-      width: 260px;
+      width: 100%;
       .property-pannel{
         padding: 8px 16px;
       }
