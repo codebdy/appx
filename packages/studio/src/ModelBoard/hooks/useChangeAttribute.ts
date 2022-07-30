@@ -24,7 +24,7 @@ export function useChangeAttribute(appUuid: ID) {
         ),
       });
     },
-    [alertError, chackName, changeEntity]
+    [chackName, changeEntity]
   );
 
   return changeAttribute;

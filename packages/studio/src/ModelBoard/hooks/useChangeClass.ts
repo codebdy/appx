@@ -29,7 +29,7 @@ export function useChangeClass(appUuid: ID) {
       );
       triggerCanvasEvent({ name: EVENT_CLASS_CHANGED, detail: cls });
     },
-    [alertError, backupSnapshot, classes, setClasses]
+    [backupSnapshot, classes, setClasses]
   );
 
   return changeClass;
