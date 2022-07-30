@@ -163,7 +163,8 @@
         "root": true,
         "stereoType": "Entity",
         "packageUuid":"PACKAGE_APPX_UUID",
-        "uuid": "2082d665-e503-402a-a089-678115c5ed3e"
+        "uuid": "2082d665-e503-402a-a089-678115c5ed3e",
+        "idNoShift": true
       },
       {
         "attributes": [

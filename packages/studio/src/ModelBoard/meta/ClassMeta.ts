@@ -43,4 +43,5 @@ export interface ClassMeta {
   packageUuid: string;
   description?: string;
   system?: boolean;
+  idNoShift?: boolean;
 }
