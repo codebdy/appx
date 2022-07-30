@@ -34,6 +34,7 @@ import { useApp } from '../hooks/useApp'
 import { useShowError } from '../hooks/useShowError'
 import PageListWidget from './widgets/PageListWidget'
 import { Spin } from 'antd'
+import ModelsBoard from '../ModelBoard'
 
 setNpmCDNRegistry('//unpkg.com')
 
@@ -186,8 +187,14 @@ const AppDesigner = memo(() => {
             </>
           }
           {
-            activedKey === "model" &&
-            <div>哈哈</div>
+            activedKey === "model" && appUuid &&
+            <Workspace id="model">
+              <WorkspacePanel>
+                <ViewportPanel style={{ height: '100%' }}>
+                  <ModelsBoard appUuid={appUuid} />
+                </ViewportPanel>
+              </WorkspacePanel>
+            </Workspace>
           }
 
         </StudioPanel>

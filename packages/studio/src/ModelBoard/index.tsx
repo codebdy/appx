@@ -30,8 +30,8 @@ const ModelsBoard = memo((
   useShowError(error);
 
   return (
-    <Spin tip="Loading..." spinning={loading} >
-      <div className="system-model-board">
+    <Spin tip="Loading..." spinning={loading}>
+      <div className="appx-model-board">
         <div className="model-tree-shell">
           <EntityTree graph={graph}></EntityTree>
         </div>

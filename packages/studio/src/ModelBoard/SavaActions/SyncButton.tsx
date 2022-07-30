@@ -58,6 +58,7 @@ const SyncButton = memo(() => {
       disabled={disablePublished}
       overlay={menu}
       placement="bottom"
+      type='primary'
       loading = {loading}
       icon={<DownOutlined />}
       onClick={handlePublish}

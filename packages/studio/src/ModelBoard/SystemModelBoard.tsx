@@ -6,7 +6,10 @@ import { SYSTEM_APP_UUID } from "./recoil/atoms";
 
 const SystemModelBoard = memo(() => {
   return (
-    <ModelsBoard appUuid={SYSTEM_APP_UUID} />
+    <div className="system-model-border">
+      <ModelsBoard appUuid={SYSTEM_APP_UUID} />    
+    </div>
+
   );
 });
 
