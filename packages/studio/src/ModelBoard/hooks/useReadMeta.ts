@@ -31,6 +31,8 @@ export function useReadMeta(appUuid: string): { error?: Error; loading?: boolean
   useEffect(() => {
     if (data) {
       const meta = data[queryName];
+      console.log("哈哈哈", meta?.content?.relations)
+
       setMeta(meta);
       setPackages(meta?.content?.packages || []);
       setEntities(meta?.content?.classes || []);

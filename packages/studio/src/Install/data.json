@@ -321,6 +321,95 @@
         "roleOfTarget": "users",
         "sourceMutiplicity": "0..*",
         "targetMultiplicity": "0..*"
+      },
+      {
+        "innerId": 0,
+        "relationType": "inherit",
+        "sourceId": "e90f69e9-1be0-45e2-95a6-269da4d2fada",
+        "sourceMutiplicity": "0..1",
+        "targetId": "6be09899-afed-4115-b214-4511adc0e813",
+        "targetMultiplicity": "0..1",
+        "uuid": "88369e47-ace7-4486-9f76-de36f2810447"
+      },
+      {
+        "innerId": 0,
+        "relationType": "inherit",
+        "sourceId": "2082d665-e503-402a-a089-678115c5ed3e",
+        "sourceMutiplicity": "0..1",
+        "targetId": "6be09899-afed-4115-b214-4511adc0e813",
+        "targetMultiplicity": "0..1",
+        "uuid": "77e5f307-a1c1-4022-a1bf-9f6004889e8a"
+      },
+      {
+        "innerId": 0,
+        "relationType": "inherit",
+        "sourceId": "f9288fd0-2747-4fa0-8b3d-4c8bdaeb5dd8",
+        "sourceMutiplicity": "0..1",
+        "targetId": "6be09899-afed-4115-b214-4511adc0e813",
+        "targetMultiplicity": "0..1",
+        "uuid": "ae68f127-5d2d-41a3-a905-bc5279ea0520"
+      },
+      {
+        "innerId": 0,
+        "relationType": "inherit",
+        "sourceId": "f9288fd0-2747-4fa0-8b3d-4c8bdaeb5dd8",
+        "sourceMutiplicity": "0..1",
+        "targetId": "087b2915-5582-496d-bafb-ae2f5623a70d",
+        "targetMultiplicity": "0..1",
+        "uuid": "c921aa03-3be8-4650-91ad-e7f8cb552b8b"
+      },
+      {
+        "innerId": 0,
+        "relationType": "inherit",
+        "sourceId": "660a55fe-c2f1-4b17-921e-38aa14737a1c",
+        "sourceMutiplicity": "0..1",
+        "targetId": "087b2915-5582-496d-bafb-ae2f5623a70d",
+        "targetMultiplicity": "0..1",
+        "uuid": "0b456cb0-ffcf-4bb6-a0c9-84524bbdc7b3"
+      },
+      {
+        "innerId": 1001,
+        "relationType": "twoWayCombination",
+        "roleOfSource": "app",
+        "roleOfTarget": "pages",
+        "sourceId": "2082d665-e503-402a-a089-678115c5ed3e",
+        "sourceMutiplicity": "0..1",
+        "targetId": "f9288fd0-2747-4fa0-8b3d-4c8bdaeb5dd8",
+        "targetMultiplicity": "0..*",
+        "uuid": "5563d5ee-2846-4360-8f39-cfa18864ac2e"
+      },
+      {
+        "innerId": 1002,
+        "relationType": "twoWayCombination",
+        "roleOfSource": "app",
+        "roleOfTarget": "menus",
+        "sourceId": "2082d665-e503-402a-a089-678115c5ed3e",
+        "sourceMutiplicity": "0..1",
+        "targetId": "660a55fe-c2f1-4b17-921e-38aa14737a1c",
+        "targetMultiplicity": "0..*",
+        "uuid": "963e03f6-c6c8-4e91-8912-4f64697a9b1f"
+      },
+      {
+        "innerId": 1003,
+        "relationType": "twoWayCombination",
+        "roleOfSource": "app",
+        "roleOfTarget": "categories",
+        "sourceId": "2082d665-e503-402a-a089-678115c5ed3e",
+        "sourceMutiplicity": "0..1",
+        "targetId": "e90f69e9-1be0-45e2-95a6-269da4d2fada",
+        "targetMultiplicity": "0..*",
+        "uuid": "3ad27c5f-73b1-4064-8f39-86381e35457a"
+      },
+      {
+        "innerId": 1004,
+        "relationType": "twoWayAggregation",
+        "roleOfSource": "category",
+        "roleOfTarget": "pages",
+        "sourceId": "e90f69e9-1be0-45e2-95a6-269da4d2fada",
+        "sourceMutiplicity": "0..1",
+        "targetId": "f9288fd0-2747-4fa0-8b3d-4c8bdaeb5dd8",
+        "targetMultiplicity": "0..*",
+        "uuid": "45f80498-8b76-453e-b73b-b0f05d6de218"
       }
     ],
     "diagrams": [
