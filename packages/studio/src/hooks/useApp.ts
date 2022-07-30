@@ -5,12 +5,13 @@ import { ID } from "../shared";
 
 const appsGql = gql`
 query queryApp($id:ID!){
-  app(where:{
+  oneApp(where:{
     id:{
       _eq:$id
     }
   }){
     id
+    uuid
     title
   }
 }

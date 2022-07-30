@@ -46,7 +46,7 @@ export function useQueryOne<T>(gql: string, params: any = {}, entityNames?: stri
   useEffect(() => {
     if (!error && !loading && gql && !loadedRef.current && endpoint) {
       loadedRef.current = true;
-      query(gql);
+      query(gql, params);
     }
     on(EVENT_DATA_POSTED_ONE, eventHandler);
     on(EVENT_DATA_REMOVED, eventHandler);
@@ -54,7 +54,7 @@ export function useQueryOne<T>(gql: string, params: any = {}, entityNames?: stri
       off(EVENT_DATA_POSTED_ONE, eventHandler);
       off(EVENT_DATA_REMOVED, eventHandler);
     }
-  }, [endpoint, error, eventHandler, gql, loading, query]);
+  }, [endpoint, error, eventHandler, gql, loading, params, query]);
 
   return { data, loading: (revalidating ? false : loading), revalidating, error, refresh };
 }

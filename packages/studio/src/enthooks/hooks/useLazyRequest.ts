@@ -20,7 +20,7 @@ export function useLazyRequest<T1>(options?: RequestOptions<any>)
     }
   ] {
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<any>(false);
+  const [data, setData] = useState<any>(undefined);
   const [error, setError] = useState<Error | undefined>();
   const endpoint = useEndpoint();
   const token = useToken();

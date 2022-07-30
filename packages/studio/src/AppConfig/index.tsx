@@ -8,20 +8,20 @@ import { useParams } from "react-router-dom";
 import { useApp } from "../hooks/useApp";
 import { useShowError } from './../hooks/useShowError';
 
-const { Header, Content } = Layout;
+const { Content } = Layout;
 
 const AppConfig = memo(() => {
   const { appUuid } = useParams();
-  const { data: app, loading, error } = useApp(appUuid)
+  const { data, loading, error } = useApp(appUuid)
 
   useShowError(error);
 
   return (
     <Layout className="rx-studio">
-      <ConifgHeader app={app} />
+      <ConifgHeader app={data?.oneApp} />
       <Content className='content'>
         <div className='content-inner'>
-          <DeviceList loading={loading} app={app} />
+          <DeviceList loading={loading} app={data?.oneApp} />
           <AppFooter />
         </div>
       </Content>
