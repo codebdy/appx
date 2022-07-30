@@ -58,18 +58,9 @@ export const ModelContent = memo(
                   onSetGraph={onSetGraph}
                 ></GraphCanvas>
                 <div
+                  className="model-minimap"
                   style={{
-                    position: "absolute",
-                    zIndex: 1,
-                    bottom: 3,
-                    left: 3,
-                    width: 140,
-                    height: 110,
-                    borderRadius: "5px",
-                    overflow: "hidden",
-                    display: minMap ? "block" : "none",
-                    // border: (theme) => `solid 2px ${theme.palette.divider}`,
-                    //boxShadow: 5,
+                    display: minMap ? "block" : "none"
                   }}
                   id="mini-map"
                 ></div>
