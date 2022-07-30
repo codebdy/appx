@@ -1,5 +1,5 @@
 import { DownloadOutlined, DownOutlined, ImportOutlined } from '@ant-design/icons';
-import { Dropdown, Menu } from 'antd';
+import { Dropdown, Menu, message } from 'antd';
 import React, { memo, useCallback, useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 import { getLocalMessage } from '../../locales/getLocalMessage';
@@ -11,6 +11,9 @@ const SyncButton = memo(() => {
   const appUuid = useSelectedAppUuid();
   const changed = useRecoilValue(changedState(appUuid))
   const expotJson = useExportJson(appUuid)
+  const handlePublish = useCallback(() => {
+    message.info("尚未添加Publish代码")
+  }, [])
 
   const menu = useMemo(() => (
     <Menu
@@ -31,7 +34,13 @@ const SyncButton = memo(() => {
   ), [expotJson]);
 
   return (
-    <Dropdown.Button disabled={changed} overlay={menu} placement="bottom" icon={<DownOutlined />}>
+    <Dropdown.Button
+      disabled={changed}
+      overlay={menu}
+      placement="bottom"
+      icon={<DownOutlined />}
+      onClick = {handlePublish}
+    >
       {getLocalMessage("Publish")}
     </Dropdown.Button>
   )
