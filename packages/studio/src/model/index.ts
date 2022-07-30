@@ -13,7 +13,6 @@ export interface IApp {
   // image?: IFile;
   pages?: IPage[];
   menus?: IMenu[];
-  // serverUrl?: string;
 }
 
 export enum Device {

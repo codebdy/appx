@@ -8,11 +8,10 @@ export interface IPostOptions<T> {
   onCompleted?: (data: T) => void;
   onError?: (error: Error) => void;
   noRefresh?: boolean;
-  serverUrl?: string;
 }
 
 export type PostResponse<T> = [
-  (data: T, serverUrl?: string) => void,
+  (data: T) => void,
   { loading?: boolean; error?: Error }
 ]
 
