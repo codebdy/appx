@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
-import { ArrowLeftOutlined, DeploymentUnitOutlined, FileOutlined, PartitionOutlined, SettingOutlined } from '@ant-design/icons'
-import { Breadcrumb, Button, Divider, Menu, Skeleton } from 'antd'
+import { ArrowLeftOutlined } from '@ant-design/icons'
+import { Breadcrumb, Button, Divider } from 'antd'
 import { useNavigate, useParams } from "react-router-dom"
 import { IApp } from '../../model';
 
