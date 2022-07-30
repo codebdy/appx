@@ -16,7 +16,7 @@ export type QueryOneResponse<T> = {
   error?: Error;
 }
 
-export function useQueryOne<T>(gql: string, entityName?: string): QueryOneResponse<T> {
+export function useQueryOne<T>(gql: string, params:any = {} ,entityName?: string): QueryOneResponse<T> {
   const loadedRef = useRef(false);
   const endpoint = useEndpoint();
 
@@ -30,8 +30,8 @@ export function useQueryOne<T>(gql: string, entityName?: string): QueryOneRespon
 
   const refresh = useCallback((data?: T) => {
     console.log("执行 refresh");
-    query(gql)
-  }, [gql, query]);
+    query(gql, params)
+  }, [gql, params, query]);
 
   return { data, loading, error, refresh };
 }
