@@ -25,7 +25,6 @@ const AppCard = memo((props: {
     remove(app.id)
   }, [app.id, remove])
 
-
   return (
     <Card
       className="hover-float app-card"
