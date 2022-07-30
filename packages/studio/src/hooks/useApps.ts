@@ -1,6 +1,5 @@
 import { gql } from "awesome-graphql-client";
 import { IApp } from "../model";
-import { IQueryResponse } from "./IQueryResponse";
 import { useQuery } from "../enthooks/hooks/useQuery";
 
 const appsGql = gql`
@@ -12,6 +11,6 @@ query {
 }
 `
 
-export function useApps(): IQueryResponse<{ app: IApp[] }> {
+export function useApps() {
   return useQuery<{ app: IApp[] }>(appsGql, "App")
 }
