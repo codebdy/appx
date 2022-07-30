@@ -17,7 +17,6 @@ import { useIsDiagram } from "../hooks/useIsDiagram";
 import { useIsElement } from "../hooks/useIsElement";
 import ClassLabel from "./ClassLabel";
 import InterfaceIcon from '../../icons/InterfaceIcon';
-import { useCreateClassAttribute } from './../hooks/useCreateClassAttribute';
 import { AttributeMeta } from './../meta/AttributeMeta';
 import { useParseRelationUuid } from "../hooks/useParseRelationUuid";
 import { useGetSourceRelations } from './../hooks/useGetSourceRelations';
@@ -38,7 +37,6 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   const packages = useRecoilValue(packagesState(appUuid));
   const diagrams = useRecoilValue(diagramsState(appUuid));
   const classes = useRecoilValue(classesState(appUuid));
-  const addAttribute = useCreateClassAttribute(appUuid);
   const isDiagram = useIsDiagram(appUuid);
   const isElement = useIsElement(appUuid);
   const parseRelationUuid = useParseRelationUuid(appUuid);
@@ -73,7 +71,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
       key: cls.uuid + "attributes",
       children: cls.attributes.map(attr => getAttributeNode(attr))
     }
-  }, [getAttributeNode, addAttribute])
+  }, [getAttributeNode])
 
   const getClassRelationsNode = useCallback((cls: ClassMeta) => {
     const children = [];
@@ -117,7 +115,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
       key: cls.uuid + "relations",
       children: children,
     }
-  }, [getSourceRelations, getTargetRelations, selectedElement])
+  }, [getClass, getSourceRelations, getTargetRelations, selectedElement])
 
   const getMethodNode = useCallback((method: MethodMeta) => {
     return {
@@ -137,7 +135,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
       key: cls.uuid + "methods",
       children: cls.methods?.map(method => getMethodNode(method)),
     }
-  }, [selectedElement, getMethodNode])
+  }, [getMethodNode])
 
   const getClassNode = useCallback((cls: ClassMeta) => {
     const children = [];
@@ -150,7 +148,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
       children.push(getClassMethodsNode(cls))
     }
 
-    if (cls.stereoType == StereoType.Entity) {
+    if (cls.stereoType === StereoType.Entity) {
       const relations = getClassRelationsNode(cls);
       relations.children?.length > 0 && children.push(relations)
     }
@@ -163,7 +161,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
       key: cls.uuid,
       children: children,
     }
-  }, [selectedElement, selectedDiagramId, classes, getClassAttributesNode, getClassRelationsNode, getClassMethodsNode])
+  }, [selectedElement, graph, getClassAttributesNode, getClassMethodsNode, getClassRelationsNode])
 
   const getClassCategoryNode = useCallback((title: string, key: string, clses: ClassMeta[]) => {
     return {
@@ -233,7 +231,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
       children: getPackageNodes()
     },
 
-  ], [getPackageNodes, packages]);
+  ], [getPackageNodes]);
 
   const handleSelect = useCallback((keys: string[]) => {
     for (const uuid of keys) {
@@ -248,7 +246,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
         }
       }
     }
-  }, [isDiagram, isElement])
+  }, [isDiagram, isElement, parseRelationUuid, setSelecteDiagramId, setSelectedElement])
 
   return (
 

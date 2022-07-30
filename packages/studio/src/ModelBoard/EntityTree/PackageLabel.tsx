@@ -39,7 +39,7 @@ const PackageLabel = memo((
     backup()
     setEditing(false);
     setPackages(packages => packages.map(pg => pg.uuid === pkg.uuid ? { ...pkg, name } : pg))
-  }, [backup])
+  }, [backup, name, pkg, setPackages])
 
   const handleKeyEnter = (event: React.KeyboardEvent<HTMLElement>) => {
     if (event.key === "Enter") {

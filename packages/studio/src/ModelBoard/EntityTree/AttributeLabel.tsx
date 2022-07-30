@@ -24,7 +24,7 @@ const AttributeLabel = memo((
   const handleDelete = useCallback((event: React.MouseEvent) => {
     event.stopPropagation();
     removeAttribute(attr.uuid);
-  }, [removeAttribute]);
+  }, [attr.uuid, removeAttribute]);
 
   return (
     <TreeNodeLabel

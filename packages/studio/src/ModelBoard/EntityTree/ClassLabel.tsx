@@ -53,13 +53,13 @@ const ClassLabel = memo((
       });
       dnd?.start(node, e.nativeEvent as any);
     },
-    [dnd, graph, classes]
+    [dnd, graph]
   );
 
   const handleDelete = useCallback((event: React.MouseEvent) => {
     event.stopPropagation();
     deleteClass(cls.uuid);
-  }, []);
+  }, [cls.uuid, deleteClass]);
 
   return (
     <TreeNodeLabel

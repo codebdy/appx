@@ -4,7 +4,7 @@ import React, { memo, useCallback, useMemo } from "react"
 import { getLocalMessage } from "../../locales/getLocalMessage";
 import { useSelectedAppUuid } from "../hooks/useSelectedAppUuid";
 import { useSetRecoilState } from 'recoil';
-import { packagesState, classesState, selectedDiagramState } from "../recoil/atoms";
+import { classesState, selectedDiagramState } from "../recoil/atoms";
 import { PackageMeta } from "../meta/PackageMeta";
 import { useDeletePackage } from './../hooks/useDeletePackage';
 import { useCreateNewClass } from "../hooks/useCreateNewClass";
@@ -21,7 +21,6 @@ const PackageAction = memo((
 ) => {
   const { pkg, onEdit, onVisibleChange } = props;
   const appUuid = useSelectedAppUuid()
-  const setPackages = useSetRecoilState(packagesState(appUuid))
   const deletePackage = useDeletePackage(appUuid)
   const createNewClass = useCreateNewClass(appUuid);
   const createNewDiagram = useCreateNewDiagram(appUuid);
@@ -34,7 +33,7 @@ const PackageAction = memo((
   const handleDelete = useCallback(() => {
     deletePackage(pkg.uuid)
     onVisibleChange(false);
-  }, [setPackages]);
+  }, [deletePackage, onVisibleChange, pkg.uuid]);
 
   const addClass = useCallback(
     (stereoType: StereoType) => {
@@ -43,7 +42,7 @@ const PackageAction = memo((
       setClasses((classes) => [...classes, newClass]);
       onVisibleChange(false);
     },
-    [backupSnapshot, createNewClass, onVisibleChange, setClasses]
+    [backupSnapshot, createNewClass, onVisibleChange, pkg.uuid, setClasses]
   );
 
   const handleAddDiagram = useCallback(
@@ -53,7 +52,7 @@ const PackageAction = memo((
       setSelectedDiagram(newDiagram.uuid);
       onVisibleChange(false);
     },
-    [backupSnapshot, createNewDiagram, onVisibleChange, setSelectedDiagram]
+    [backupSnapshot, createNewDiagram, onVisibleChange, pkg.uuid, setSelectedDiagram]
   );
 
   const menu = useMemo(() => (
@@ -150,7 +149,7 @@ const PackageAction = memo((
         ]}
       />
     </div>
-  ), [handleDelete]);
+  ), [addClass, handleAddDiagram, handleDelete, onEdit, onVisibleChange]);
 
   return (
     <Dropdown

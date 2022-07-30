@@ -23,7 +23,7 @@ const MethodLabel = memo((
   const handleDelete = useCallback((event: React.MouseEvent) => {
     event.stopPropagation();
     removeMethod(method.uuid);
-  }, [removeMethod]);
+  }, [method.uuid, removeMethod]);
 
   return (
     <TreeNodeLabel

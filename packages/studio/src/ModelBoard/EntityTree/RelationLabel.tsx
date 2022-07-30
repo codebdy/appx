@@ -24,7 +24,7 @@ const RelationLabel = memo((
   const handleDelete = useCallback((event: React.MouseEvent) => {
     event.stopPropagation();
     removeRelation(relation.uuid);
-  }, [removeRelation]);
+  }, [relation.uuid, removeRelation]);
 
   return (
     <TreeNodeLabel

@@ -18,7 +18,7 @@ const RootAction = memo(() => {
       backup();
       setPackages(packages => [...packages, createNewPackage()]);
     },
-    [setPackages, createNewPackage],
+    [backup, setPackages, createNewPackage],
   );
 
   const menu = useMemo(() => (
