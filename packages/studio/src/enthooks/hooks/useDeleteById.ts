@@ -15,7 +15,7 @@ export type DeleteResponse = [
   { loading?: boolean; error?: Error }
 ]
 
-export function useDeleteById<T>(__type: string, options:IDeleteOptions<T>): DeleteResponse {
+export function useDeleteById<T>(__type: string, options?:IDeleteOptions<T>): DeleteResponse {
   const methodName = useMemo(() => (`delete${__type}ById`), [__type]);
 
   const [doRemove, { error, loading }] = useLazyRequest({

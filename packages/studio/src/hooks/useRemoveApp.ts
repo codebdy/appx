@@ -1,6 +1,6 @@
+import { IDeleteOptions, useDeleteById } from "../enthooks/hooks/useDeleteById";
 import { IApp } from "../model";
-import { useRemove } from "./useRemove";
 
-export function useRemoveApp(){
-    return useRemove<IApp>(STORAGE_KEY_APPS)
+export function useRemoveApp(options: IDeleteOptions<IApp>) {
+    return useDeleteById<IApp>("App", options)
 }
