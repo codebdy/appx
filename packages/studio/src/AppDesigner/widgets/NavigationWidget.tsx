@@ -10,61 +10,17 @@ import { IApp } from '../../model';
 //     '//img.alicdn.com/imgextra/i2/O1CN01Kq3OHU1fph6LGqjIz_!!6000000004056-55-tps-1141-150.svg',
 // }
 
-const menu = (
-  <Menu
-    items={[
-      {
-        key: '1',
-        label: (
-          <a target="_blank" rel="noopener noreferrer" href="#">
-            页面管理
-          </a>
-        ),
-        icon: <FileOutlined />
-      },
-      {
-        key: '2',
-        label: (
-          <a target="_blank" rel="noopener noreferrer" href="#">
-            导航菜单
-          </a>
-        ),
-        icon: <PartitionOutlined />,
-      },
-      {
-        key: '3',
-        label: (
-          <a target="_blank" rel="noopener noreferrer" href="#">
-            领域模型
-          </a>
-        ),
-        icon: <DeploymentUnitOutlined />
-      },
-      {
-        key: '3',
-        label: (
-          <a target="_blank" rel="noopener noreferrer" href="#">
-            设置
-          </a>
-        ),
-        icon: <SettingOutlined />
-      },
-    ]}
-  />
-);
-
 export const NavigationWidget = memo((
   props: {
     app?: IApp,
-    loading?: boolean
   }
 ) => {
-  const { app, loading } = props;
+  const { app } = props;
   const { appUuid } = useParams();
   const navigate = useNavigate()
   const handleBack = useCallback(() => {
     navigate("/config-app/" + appUuid)
-  }, []);
+  }, [appUuid, navigate]);
 
   return (
     <div style={{ display: 'flex', alignItems: 'center', fontSize: 14, paddingLeft: "8px" }}>
@@ -85,18 +41,12 @@ export const NavigationWidget = memo((
         />
       </svg> */}
       <Divider type="vertical" />
-      {
-        loading
-          ?
-          <Skeleton.Input active></Skeleton.Input>
-          :
-          <Breadcrumb>
-            <Breadcrumb.Item>
-              {app?.title}
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>订单编辑</Breadcrumb.Item>
-          </Breadcrumb>
-      }
+      <Breadcrumb>
+        <Breadcrumb.Item>
+          {app?.title}
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>订单编辑</Breadcrumb.Item>
+      </Breadcrumb>
     </div>
   )
 })
