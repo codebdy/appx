@@ -10,7 +10,7 @@ export interface QueryOneResult<T> {
 
 export function useQueryOne<T>(gql: string, entityName?:string): {
   data?: QueryOneResult<T>;
-  mutate: MutateFn<T>;
+  refresh: MutateFn<T>;
   loading?: boolean;
   revalidating?: boolean;
   error?: Error;
@@ -26,10 +26,10 @@ export function useQueryOne<T>(gql: string, entityName?:string): {
     }
   }, [endpoint, error, gql, loading, query]);
 
-  const mutate = useCallback((data?: T) => {
-    console.log("执行Mutate");
+  const refresh = useCallback((data?: T) => {
+    console.log("执行 refresh");
     query(gql)
   }, [gql, query]);
 
-  return { data, loading, error, mutate };
+  return { data, loading, error, refresh };
 }

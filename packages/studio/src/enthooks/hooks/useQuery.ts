@@ -1,16 +1,22 @@
-import { IQueryResponse } from "../../hooks/IQueryResponse";
 import { useRef, useState } from 'react';
 import { useCallback } from 'react';
 import { useEffect } from 'react';
 import { useLazyRequest } from "./useLazyRequest";
 import { useEndpoint } from "../context";
 import { EVENT_DATA_POSTED_ONE, EVENT_DATA_REMOVED, off, on } from "../events";
+import { MutateFn } from './useQueryOne';
 
 export interface QueryResult<T> {
   [key: string]: T[] | undefined;
 }
 
-export function useQuery<T>(gql: string | undefined, entityName?: string): IQueryResponse<T> {
+export function useQuery<T>(gql: string | undefined, entityName?: string): {
+  data?: QueryResult<T>;
+  refresh: MutateFn<T>;
+  loading?: boolean;
+  revalidating?: boolean;
+  error?: Error;
+} {
   const [revalidating, setRevalidating] = useState<boolean>();
   const loadedRef = useRef(false);
   const endpoint = useEndpoint();
