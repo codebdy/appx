@@ -9,7 +9,9 @@ import { Card, Col, Row, Skeleton } from "antd"
 
 const AppsSkeleton = () => {
   return (
-    <Row gutter={[24, 24]}>
+    <Row gutter={[24, 24]} style={{
+      minHeight: "calc(100vh - 240px)"
+    }}>
       {
         new Array(4).fill(null).map((item, index) => {
           return (
