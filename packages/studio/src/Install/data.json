@@ -151,7 +151,7 @@
             "uuid": "c0702129-6e3a-4549-bd7b-c87f2129db3a"
           },
           {
-            "name": "schema",
+            "name": "uuid",
             "type": "String",
             "typeLabel": "String",
             "uuid": "83b44412-a76d-4c9d-baeb-84d4c1c62665"

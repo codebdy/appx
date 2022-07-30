@@ -11,8 +11,8 @@ export interface IAppInput {
   uuid?: string;
   title: string;
   description?: string;
-  image?: IFileInput
-  serverUrl?: string;
+  // image?: IFileInput
+  // serverUrl?: string;
 }
 
 export interface IPageCategoryInput{

@@ -10,9 +10,9 @@ export interface IPostOptions<T> {
   serverUrl?: string;
 }
 
-export function usePostOne<T>(
+export function usePostOne<T,T2>(
   __type: string,
-  options?: IPostOptions<T>
+  options?: IPostOptions<T2>
 ): [
     (data: T, serverUrl?: string) => void,
     { loading?: boolean; error?: Error }
@@ -39,6 +39,7 @@ export function usePostOne<T>(
           }
         }
       `;
+      console.log("哈哈", object)
       doPost(postMutation, {object});
     },
     [__type, doPost, postName]

@@ -6,14 +6,18 @@ import { TextWidget } from '../AppDesigner/widgets';
 import { useCreateApp } from '../hooks/useCreateApp';
 import { getLocalMessage } from '../locales/getLocalMessage';
 import { IAppInput } from '../model/input';
+import { createUuid } from '../shared';
 import { useShowError } from './../hooks/useShowError';
 
 const CreateDialog = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [form] = Form.useForm<IAppInput>();
 
-  const [create, { loading, error }] = useCreateApp(() => {
-    setIsModalVisible(false);
+  const [create, { loading, error }] = useCreateApp({
+    onCompleted: () => {
+      message.success(getLocalMessage("OperateSuccess"))
+      setIsModalVisible(false);
+    }
   });
 
   useShowError(error);
@@ -24,7 +28,8 @@ const CreateDialog = memo(() => {
 
   const handleOk = () => {
     form.validateFields().then((formData) => {
-      create(formData)
+      console.log("uuid:", createUuid())
+      create({ title: formData.title, uuid: createUuid() })
       form.setFieldsValue({ title: "", description: "" })
     }).catch((err) => {
       console.error("form validate error", err);
@@ -127,7 +132,7 @@ const CreateDialog = memo(() => {
               </p>
               <p className="ant-upload-hint">
                 <TextWidget>UploadHint1</TextWidget>
-                <Button type = "link"><TextWidget>UploadHint2</TextWidget></Button>
+                <Button type="link"><TextWidget>UploadHint2</TextWidget></Button>
               </p>
             </Dragger>
           </Form.Item>

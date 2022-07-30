@@ -10,10 +10,10 @@ export interface IApp {
   uuid: string;
   title: string;
   description?: string;
-  image?: IFile;
+  // image?: IFile;
   pages?: IPage[];
   menus?: IMenu[];
-  serverUrl?: string;
+  // serverUrl?: string;
 }
 
 export enum Device {
