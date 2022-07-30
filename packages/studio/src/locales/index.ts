@@ -34,6 +34,7 @@ GlobalRegistry.registerDesignerLocales({
     Logout: "退出",
     File: "文件",
     Length: "长度",
+    Publish:"发布",
     install: {
       Title: "安装Appx",
       Next: "下一步",
