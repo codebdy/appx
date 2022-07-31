@@ -7,6 +7,7 @@ export const EntiRoot = memo((
     config: {
       token?: string;
       endpoint: string;
+      appUuid: string;
     },
     children: React.ReactNode,
   }

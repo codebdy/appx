@@ -1,15 +1,18 @@
 import { createContext, useContext } from "react";
 import { TOKEN_NAME } from "../../consts";
+import { SYSTEM_APP_UUID } from "../../ModelBoard/recoil/atoms";
 
 export interface IEntxConfig {
   token?: string,
   endpoint: string,
+  appUuid: string,
   setToken: (token: string | undefined) => void,
   setEndpoint: (endpoint: string) => void,
 }
 
 export const empertyConfig = {
   endpoint: "",
+  appUuid:SYSTEM_APP_UUID,
   setToken: () => {
     throw new Error("Not implement setToken")
   },
@@ -35,6 +38,11 @@ export const useSetToken = () => {
 export const useEndpoint = () => {
   const iEntx = useEntix();
   return iEntx?.endpoint
+}
+
+export const useAppUuid = ()=>{
+  const iEntx = useEntix();
+  return iEntx?.appUuid
 }
 
 export const useSetEndpoint = () => {

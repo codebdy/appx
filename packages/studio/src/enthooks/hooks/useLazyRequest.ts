@@ -1,8 +1,7 @@
 import { AwesomeGraphQLClient, GraphQLRequestError } from "awesome-graphql-client";
 import { useCallback, useState } from "react";
 import { HEADER_APPX_APPUUID, HEADER_AUTHORIZATION, TOKEN_PREFIX } from "../../consts";
-import { useSelectedAppUuid } from "../../ModelBoard/context";
-import { useEndpoint, useToken } from "../context";
+import { useAppUuid, useEndpoint, useToken } from "../context";
 import { useMountRef } from "./useMountRef";
 
 export interface RequestOptions<T> {
@@ -25,7 +24,7 @@ export function useLazyRequest<T1>(options?: RequestOptions<any>)
   const endpoint = useEndpoint();
   const token = useToken();
   const mountRef = useMountRef();
-  const appUuid = useSelectedAppUuid();
+  const appUuid = useAppUuid();
 
   const request = useCallback(
     (gql: string | undefined, params?: T1) => {

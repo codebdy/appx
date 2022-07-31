@@ -1,8 +1,7 @@
 import { AwesomeGraphQLClient, GraphQLRequestError } from "awesome-graphql-client";
 import { useEffect, useState } from "react";
 import { HEADER_APPX_APPUUID, HEADER_AUTHORIZATION, TOKEN_PREFIX } from "../../consts";
-import { useSelectedAppUuid } from "../../ModelBoard//context";
-import { useEndpoint, useToken } from "../context";
+import { useAppUuid, useEndpoint, useToken } from "../context";
 
 
 export function useRequest(gql: string | undefined, params?: { [key: string]: any })
@@ -16,7 +15,7 @@ export function useRequest(gql: string | undefined, params?: { [key: string]: an
   const [error, setError] = useState<Error | undefined>();
   const endpoint = useEndpoint();
   const token = useToken();
-  const appUuid = useSelectedAppUuid();
+  const appUuid = useAppUuid();
 
   useEffect(
     () => {

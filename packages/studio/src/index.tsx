@@ -8,11 +8,12 @@ import { SERVER_URL } from "./consts";
 import { RecoilRoot } from "recoil";
 import { BrowserRouter } from "react-router-dom";
 import { EntiRoot } from "./enthooks";
+import { SYSTEM_APP_UUID } from "./ModelBoard/recoil/atoms";
 
 const AppRoot = () => {
   return (
     <RecoilRoot>
-      <EntiRoot config={{ endpoint: SERVER_URL }} >
+      <EntiRoot config={{ endpoint: SERVER_URL, appUuid: SYSTEM_APP_UUID }} >
         <BrowserRouter>
           <App />
         </BrowserRouter>
