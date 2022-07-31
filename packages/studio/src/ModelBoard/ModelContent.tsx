@@ -56,17 +56,21 @@ export const ModelContent = memo(
                   position: "relative",
                 }}
               >
-                <GraphCanvas
-                  graph={graph}
-                  onSetGraph={onSetGraph}
-                ></GraphCanvas>
-                <div
-                  className="model-minimap"
-                  style={{
-                    display: minMap ? "block" : "none"
-                  }}
-                  id="mini-map"
-                ></div>
+                {
+                  selectedDiagram && <>
+                    <GraphCanvas
+                      graph={graph}
+                      onSetGraph={onSetGraph}
+                    ></GraphCanvas>
+                    <div
+                      className="model-minimap"
+                      style={{
+                        display: minMap ? "block" : "none"
+                      }}
+                      id="mini-map"
+                    ></div>
+                  </>
+                }
               </div>
 
               <div className="property-box-area">
