@@ -153,7 +153,7 @@ const PackageAction = memo((
 
   return (
     pkg.sharable && appUuid !== SYSTEM_APP_UUID ?
-      <Button type="text" shape='circle' size='small' disabled>
+      <Button type="text" shape='circle' size='small'>
         <LockOutlined />
       </Button>
       :
