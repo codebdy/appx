@@ -55,7 +55,7 @@ GlobalRegistry.registerDesignerLocales({
       BaseConfig: "基础配置",
       AplicationDesign: "应用设计",
       DomainModel: "领域模型",
-      ApiTest: "接口测试",
+      AppApi: "应用接口",
       ModelAuth: "模型权限"
     },
     panels: {

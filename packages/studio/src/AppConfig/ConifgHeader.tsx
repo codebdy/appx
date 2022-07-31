@@ -47,7 +47,7 @@ const ConifgHeader = memo((props: {
           },
           {
             key: AppConfigRouts.Api,
-            label: getLocalMessage("AppConfig.ApiTest"),
+            label: getLocalMessage("AppConfig.AppApi"),
           },
           {
             key: AppConfigRouts.Auth,
