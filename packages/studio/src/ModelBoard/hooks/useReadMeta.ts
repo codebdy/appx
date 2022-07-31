@@ -37,25 +37,23 @@ export function useReadMeta(appUuid: string): { error?: Error; loading?: boolean
   );
 
   useEffect(() => {
-    if (data) {
+    if (data && systemData) {
       const meta = data[queryName];
+      const systemMeta = systemData[queryName];
+      const getPackage = (packageUuid: string) => {
+        return systemMeta?.content?.packages?.find(pkg => pkg.uuid === packageUuid);
+      }
+      const systemPackages = systemMeta?.content?.packages?.filter(pkg => pkg.sharable) || [];
+      const systemClasses = systemMeta?.content?.classes?.filter(cls => getPackage(cls.packageUuid).sharable) || []
       setMeta(meta);
-      setPackages((packages) => ([...packages, ...meta?.content?.packages || []]));
-      setClasses((clses) => ([...clses, ...meta?.content?.classes || []]));
+      setPackages([...systemPackages, ...meta?.content?.packages || []]);
+      setClasses([...systemClasses, ...meta?.content?.classes || []]);
       setRelations(meta?.content?.relations || []);
       setDiagrams(meta?.content?.diagrams || []);
       setX6Nodes(meta?.content?.x6Nodes || []);
       setX6Edges(meta?.content?.x6Edges || []);
     }
-  }, [data, queryName, setDiagrams, setClasses, setMeta, setPackages, setRelations, setX6Edges, setX6Nodes]);
-
-  useEffect(() => {
-    if (systemData) {
-      const meta = systemData[queryName];
-      setPackages((packages) => ([...meta?.content?.packages?.filter(pkg => pkg.sharable) || [], ...packages]));
-      setClasses((clses) => ([...meta?.content?.classes || [], ...clses]));
-    }
-  }, [queryName, setClasses, setPackages, systemData])
+  }, [data, queryName, setDiagrams, setClasses, setMeta, setPackages, setRelations, setX6Edges, setX6Nodes, systemData]);
 
   return { error: error || systemError, loading: loading || systemLoading };
 }
