@@ -15,7 +15,7 @@ const ModelsBoard = memo((
     actions?: React.ReactNode,
   }
 ) => {
-  const { appUuid, actions } = props
+  const { appUuid } = props
   const [graph, setGraph] = useState<Graph>();
 
   const { loading, error } = useReadMeta(appUuid);
@@ -29,7 +29,7 @@ const ModelsBoard = memo((
           <div className="model-tree-shell">
             <EntityTree graph={graph}></EntityTree>
           </div>
-          <ModelContent appUuid={appUuid} graph={graph} onSetGraph={setGraph} saveActions={actions} />
+          <ModelContent appUuid={appUuid} graph={graph} onSetGraph={setGraph} />
         </div>
       </Spin>
     </AppContext.Provider>

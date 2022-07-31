@@ -17,10 +17,9 @@ export const ModelContent = memo(
     appUuid: ID;
     graph?: Graph;
     onSetGraph: (graph?: Graph) => void;
-    saveActions?: React.ReactNode;
   }
   ) => {
-    const { appUuid, graph, onSetGraph, saveActions } = props;
+    const { appUuid, graph, onSetGraph } = props;
     const minMap = useRecoilValue(minMapState(appUuid));
     const selectedDiagram = useRecoilValue(selectedDiagramState(appUuid));
 
@@ -42,8 +41,12 @@ export const ModelContent = memo(
             }}
           >
             <ModelToolbar />
-            {
-              selectedDiagram &&
+            <div
+              style={{
+                flex: 1,
+                display: "flex",
+                height: 0,
+              }}>
               <div
                 style={{
                   flex: 1,
@@ -65,26 +68,12 @@ export const ModelContent = memo(
                   id="mini-map"
                 ></div>
               </div>
-            }
 
-          </div>
-          <div className="property-box-area">
-            {
-              saveActions &&
-              <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  padding: "8px",
-                }}
-              >
-                {saveActions}
+              <div className="property-box-area">
+                {selectedDiagram && <PropertyBox />}
               </div>
-            }
-            {selectedDiagram && <PropertyBox />}
+            </div>
           </div>
-
         </div>
       </div>
     );
