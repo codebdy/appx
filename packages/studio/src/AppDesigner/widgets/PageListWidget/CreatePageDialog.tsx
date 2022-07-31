@@ -1,9 +1,10 @@
-import { Button, Col, Form, Input, Modal, Row } from "antd";
+import { Button, Col, Form, Input, Modal, Row, Tabs } from "antd";
 import SvgIcon from "../../../common/SvgIcon";
 import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React, { useCallback, useState } from "react";
 import { memo } from "react";
 import { useForm } from "antd/lib/form/Form";
+const { TabPane } = Tabs;
 
 const CreateCategoryDialog = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -21,6 +22,9 @@ const CreateCategoryDialog = memo(() => {
     form.validateFields();
   }, [form]);
 
+  const onChange =  useCallback((key: string) => {
+    console.log(key);
+  }, []);
   return (
     <>
       <Button
@@ -72,6 +76,18 @@ const CreateCategoryDialog = memo(() => {
               </Form.Item>
             </Col>
           </Row>
+          <Tabs defaultActiveKey="1" onChange={onChange}>
+            <TabPane tab="表单类" key="1">
+              Content of Tab Pane 1
+            </TabPane>
+            <TabPane tab="门户类" key="2">
+              Content of Tab Pane 2
+            </TabPane>
+            <TabPane tab="流程类" key="3">
+              Content of Tab Pane 3
+            </TabPane>
+            
+          </Tabs>
         </Form>
       </Modal>
     </>
