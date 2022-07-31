@@ -4,6 +4,7 @@ import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React, { useCallback, useState } from "react";
 import { memo } from "react";
 import { useForm } from "antd/lib/form/Form";
+import FormTemplates from "./FormTemplates";
 const { TabPane } = Tabs;
 
 const CreateCategoryDialog = memo(() => {
@@ -78,7 +79,7 @@ const CreateCategoryDialog = memo(() => {
           </Row>
           <Tabs defaultActiveKey="1" onChange={onChange}>
             <TabPane tab="表单类" key="1">
-              Content of Tab Pane 1
+              <FormTemplates />
             </TabPane>
             <TabPane tab="门户类" key="2">
               Content of Tab Pane 2
@@ -86,7 +87,6 @@ const CreateCategoryDialog = memo(() => {
             <TabPane tab="流程类" key="3">
               Content of Tab Pane 3
             </TabPane>
-            
           </Tabs>
         </Form>
       </Modal>
