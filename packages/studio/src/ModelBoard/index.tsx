@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useState } from "react";
 import { EntityTree } from "./EntityTree";
 import { Graph } from "@antv/x6";
 import "@antv/x6-react-shape";
@@ -7,8 +7,6 @@ import "./index.less"
 import { useReadMeta } from "./hooks/useReadMeta";
 import { useShowError } from "../hooks/useShowError";
 import { Spin } from "antd";
-import { useSetRecoilState } from "recoil";
-import { selectedAppUuidState } from "./recoil/atoms";
 
 const ModelsBoard = memo((
   props: {
@@ -18,12 +16,6 @@ const ModelsBoard = memo((
 ) => {
   const { appUuid, actions } = props
   const [graph, setGraph] = useState<Graph>();
-  //const selectedService = useSelectedService();
-  const setAppUuid = useSetRecoilState(selectedAppUuidState);
-
-  useEffect(()=>{
-    setAppUuid(appUuid)
-  }, [appUuid, setAppUuid]);
 
   const { loading, error } = useReadMeta(appUuid);
 
