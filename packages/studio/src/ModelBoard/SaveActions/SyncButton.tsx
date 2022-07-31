@@ -21,7 +21,7 @@ const SyncButton = memo(() => {
     return !!meta?.publishedAt || (publishedId === meta?.id && !changed);
   }, [changed, meta?.id, meta?.publishedAt, publishedId]);
 
-  const [publish, { loading, error }] = usePublishMeta({
+  const [publish, { loading, error }] = usePublishMeta(appUuid, {
     onCompleted() {
       setPublishedId(meta?.id);
       setMeta(meta => (meta ? { ...meta, status: MetaStatus.META_STATUS_PUBLISHED } : undefined));
@@ -30,7 +30,7 @@ const SyncButton = memo(() => {
   });
 
   useShowError(error);
-  
+
   const handlePublish = useCallback(() => {
     publish()
   }, [publish])
@@ -59,7 +59,7 @@ const SyncButton = memo(() => {
       overlay={menu}
       placement="bottom"
       type='primary'
-      loading = {loading}
+      loading={loading}
       icon={<DownOutlined />}
       onClick={handlePublish}
     >

@@ -3,6 +3,7 @@ import { ArrowLeftOutlined } from '@ant-design/icons'
 import { Breadcrumb, Button, Divider } from 'antd'
 import { useNavigate, useParams } from "react-router-dom"
 import { IApp } from '../../model';
+import { AppConfigRouts } from '../../AppConfig/AppConfigRouts';
 
 // const logo = {
 //   dark: '//img.alicdn.com/imgextra/i2/O1CN01NTUDi81fHLQvZCPnc_!!6000000003981-55-tps-1141-150.svg',
@@ -19,7 +20,7 @@ export const NavigationWidget = memo((
   const { appUuid } = useParams();
   const navigate = useNavigate()
   const handleBack = useCallback(() => {
-    navigate("/config-app/" + appUuid)
+    navigate(`/config-app/${appUuid}/${AppConfigRouts.App}`)
   }, [appUuid, navigate]);
 
   return (

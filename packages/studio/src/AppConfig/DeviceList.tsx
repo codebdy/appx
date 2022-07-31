@@ -2,18 +2,18 @@ import { Row, Col, Card, Button, Skeleton } from "antd"
 import Meta from "antd/lib/card/Meta"
 import React from "react"
 import { memo } from "react"
+import { useParams } from "react-router-dom"
 import { getLocalMessage } from "../locales/getLocalMessage"
-import { Device, IApp } from "../model"
+import { Device } from "../model"
 
 const DeviceList = memo((props: {
-  loading?: boolean,
-  app?: IApp
+  loading?: boolean
 }) => {
-  const { loading, app } = props;
+  const { loading } = props;
   const pcImage = "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png";
   const h5Image = pcImage;
   const adminImage = h5Image;
-
+  const { appUuid } = useParams();
 
   return (
     <div className='content-inner'>
@@ -38,7 +38,7 @@ const DeviceList = memo((props: {
                         key="design"
                         shape="round"
                         type="primary"
-                        href={`/design-app/${Device.PC}/${app?.uuid}`}
+                        href={`/design-app/${Device.PC}/${appUuid}`}
                       >
                         {getLocalMessage("appManager.ToDesign")}
                       </Button>,
@@ -63,7 +63,7 @@ const DeviceList = memo((props: {
                         key="design"
                         shape="round"
                         type="primary"
-                        href={`/design-app/${Device.H5}/${app?.uuid}`}
+                        href={`/design-app/${Device.H5}/${appUuid}`}
                       >
                         {getLocalMessage("appManager.ToDesign")}
                       </Button>,
@@ -88,7 +88,7 @@ const DeviceList = memo((props: {
                         key="design"
                         shape="round"
                         type="primary"
-                        href={`/design-app/${Device.Admin}/${app?.uuid}`}
+                        href={`/design-app/${Device.Admin}/${appUuid}`}
                       >
                         {getLocalMessage("appManager.ToDesign")}
                       </Button>,
