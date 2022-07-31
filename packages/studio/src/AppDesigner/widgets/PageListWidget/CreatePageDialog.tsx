@@ -33,7 +33,7 @@ const CreateCategoryDialog = memo(() => {
         title={getLocalMessage("pages.NewPage")}
         visible={isModalVisible}
         footer={null}
-        width={460}
+        width={580}
         onCancel={handleCancel}
       >
         哈哈
