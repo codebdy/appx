@@ -3,16 +3,19 @@ import SvgIcon from "../../../common/SvgIcon";
 import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React, { useCallback, useState } from "react";
 import { memo } from "react";
+import { useForm } from "antd/lib/form/Form";
 
 const CreateCategoryDialog = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [form] = useForm()
   const showModal = useCallback(() => {
     setIsModalVisible(true);
   }, []);
 
   const handleCancel = useCallback(() => {
+    form.resetFields();
     setIsModalVisible(false);
-  }, []);
+  }, [form]);
 
   const onFinish = useCallback((values: any) => {
     console.log('Success:', values);
@@ -40,13 +43,14 @@ const CreateCategoryDialog = memo(() => {
         title={getLocalMessage("pages.NewCategory")}
         visible={isModalVisible}
         footer={null}
-        width={460}
+        width={400}
         onCancel={handleCancel}
       >
         <Form
           name="addCategory"
-          labelCol={{ span: 8 }}
+          labelCol={{ span: 6 }}
           wrapperCol={{ span: 16 }}
+          form={form}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
           autoComplete="off"
@@ -59,7 +63,7 @@ const CreateCategoryDialog = memo(() => {
             <Input />
           </Form.Item>
 
-          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+          <Form.Item wrapperCol={{ offset: 6, span: 16 }}>
             <Button type="primary" htmlType="submit">
               {getLocalMessage("Add")}
             </Button>
