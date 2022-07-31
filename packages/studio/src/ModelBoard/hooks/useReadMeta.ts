@@ -31,14 +31,17 @@ export function useReadMeta(appUuid: string): { error?: Error; loading?: boolean
   `;
   }, [queryName]);
   const { data, error, loading } = useQueryOne<Meta>(queryGql, { appUuid });
-  const { data: systemData, error: systemError, loading: systemLoading } = useQueryOne<Meta>(queryGql, { appUuid: SYSTEM_APP_UUID });
+  const { data: systemData, error: systemError, loading: systemLoading } = useQueryOne<Meta>(
+    appUuid !== SYSTEM_APP_UUID ? queryGql : undefined,
+    { appUuid: SYSTEM_APP_UUID }
+  );
 
   useEffect(() => {
     if (data) {
       const meta = data[queryName];
       setMeta(meta);
-      setPackages((packages)=>([...packages, ...meta?.content?.packages || []]));
-      setClasses((clses)=>([...clses, ...meta?.content?.classes || []]));
+      setPackages((packages) => ([...packages, ...meta?.content?.packages || []]));
+      setClasses((clses) => ([...clses, ...meta?.content?.classes || []]));
       setRelations(meta?.content?.relations || []);
       setDiagrams(meta?.content?.diagrams || []);
       setX6Nodes(meta?.content?.x6Nodes || []);
@@ -46,13 +49,13 @@ export function useReadMeta(appUuid: string): { error?: Error; loading?: boolean
     }
   }, [data, queryName, setDiagrams, setClasses, setMeta, setPackages, setRelations, setX6Edges, setX6Nodes]);
 
-  useEffect(()=>{
-    if(systemData){
+  useEffect(() => {
+    if (systemData) {
       const meta = systemData[queryName];
-      setPackages((packages)=>([...meta?.content?.packages?.filter(pkg=>pkg.sharable) || [], ...packages]));
-      setClasses((clses)=>([ ...meta?.content?.classes || [], ...clses]));
+      setPackages((packages) => ([...meta?.content?.packages?.filter(pkg => pkg.sharable) || [], ...packages]));
+      setClasses((clses) => ([...meta?.content?.classes || [], ...clses]));
     }
-  },[queryName, setClasses, setPackages, systemData] )
+  }, [queryName, setClasses, setPackages, systemData])
 
-  return { error:error||systemError, loading:loading ||systemLoading };
+  return { error: error || systemError, loading: loading || systemLoading };
 }
