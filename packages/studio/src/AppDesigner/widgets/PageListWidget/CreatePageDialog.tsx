@@ -1,10 +1,19 @@
-import { Button } from "antd";
+import { Button, Modal } from "antd";
 import SvgIcon from "../../../common/SvgIcon";
 import { getLocalMessage } from "../../../locales/getLocalMessage";
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { memo } from "react";
 
-const CreatePageDialog = memo(() => {
+const CreateCategoryDialog = memo(() => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const showModal = useCallback(() => {
+    setIsModalVisible(true);
+  }, []);
+
+  const handleCancel = useCallback(() => {
+    setIsModalVisible(false);
+  }, []);
+
   return (
     <>
       <Button
@@ -16,11 +25,21 @@ const CreatePageDialog = memo(() => {
             </svg>
           </SvgIcon>
         }
+        onClick={showModal}
       >
         {getLocalMessage("pages.NewPage")}
       </Button>
+      <Modal
+        title={getLocalMessage("pages.NewPage")}
+        visible={isModalVisible}
+        footer={null}
+        width={460}
+        onCancel={handleCancel}
+      >
+        哈哈
+      </Modal>
     </>
   )
 })
 
-export default CreatePageDialog;
+export default CreateCategoryDialog;
