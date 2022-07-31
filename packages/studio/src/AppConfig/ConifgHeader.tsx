@@ -1,5 +1,5 @@
 import { QuestionCircleOutlined, GithubOutlined, HomeOutlined } from "@ant-design/icons"
-import { Button, Divider, Menu,  Space } from "antd"
+import { Button, Divider, Menu, Space } from "antd"
 import { Header } from "antd/lib/layout/layout"
 import React, { useCallback } from "react"
 import { memo } from "react"
@@ -9,16 +9,18 @@ import { IApp } from "../model"
 import { getLocalMessage } from "../locales/getLocalMessage"
 
 const ConifgHeader = memo((props: {
-  app?: IApp
+  app?: IApp,
+  onChange: (key: string) => void,
 }) => {
-  const { app } = props;
+  const { app, onChange } = props;
   const navigate = useNavigate()
   const handleBack = useCallback(() => {
     navigate("/")
   }, [navigate]);
-  const onChange = useCallback((key: string) => {
-    console.log(key);
-  }, []);
+
+  const handleSelect = useCallback((info) => {
+    onChange(info.key)
+  }, [onChange]);
 
   return (
     <Header className="header">
@@ -28,27 +30,28 @@ const ConifgHeader = memo((props: {
       <Menu
         className="app-config-menu"
         mode="horizontal"
-        defaultSelectedKeys={['2']}
+        defaultSelectedKeys={["app"]}
+        onSelect={handleSelect}
         items={[
           {
-            key: 1,
-            label: "基础配置",
+            key: "base",
+            label: getLocalMessage("AppConfig.BaseConfig"),
           },
           {
-            key: 2,
-            label: "应用设计",
+            key: "app",
+            label: getLocalMessage("AppConfig.AplicationDesign"),
           },
           {
             key: "model",
-            label: getLocalMessage("panels.DomainModel"),
+            label: getLocalMessage("AppConfig.DomainModel"),
           },
           {
             key: "api",
-            label: getLocalMessage("panels.ApiTest"),
+            label: getLocalMessage("AppConfig.ApiTest"),
           },
           {
             key: "auth",
-            label: getLocalMessage("panels.ModelAuth"),
+            label: getLocalMessage("AppConfig.ModelAuth"),
           },
         ]}
       />

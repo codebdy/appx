@@ -34,7 +34,7 @@ GlobalRegistry.registerDesignerLocales({
     Logout: "退出",
     File: "文件",
     Length: "长度",
-    Publish:"发布",
+    Publish: "发布",
     install: {
       Title: "安装Appx",
       Next: "下一步",
@@ -51,17 +51,19 @@ GlobalRegistry.registerDesignerLocales({
       API: "系统接口",
       Auth: "系统权限"
     },
+    AppConfig:{
+      BaseConfig: "基础配置",
+      AplicationDesign: "应用设计",
+      DomainModel: "领域模型",
+      ApiTest: "接口测试",
+      ModelAuth: "模型权限"
+    },
     panels: {
       Page: "页面",
       OutlinedTree: "大纲",
       Menu: "菜单",
       Model: "模型",
       Flow: "流程",
-      API: "接口",
-      Auth:"权限",
-      DomainModel:"领域模型",
-      ApiTest:"接口测试",
-      ModelAuth:"模型权限"
     },
     sources: {
       Inputs: '输入控件',
