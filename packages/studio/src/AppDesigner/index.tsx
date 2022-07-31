@@ -85,7 +85,11 @@ const AppDesigner = memo(() => {
           content={
             (activeKey === "model" || activeKey === "api" || activeKey === "auth")
             && <ModelNavMenu activeKey={activeKey} onActiveKeyChange={setActiveKey} />}
-          actions={activeKey === "model" ? <SaveActions appUuid={appUuid} /> : <ActionsWidget />}
+          actions={
+            activeKey === "model" || activeKey === "api" || activeKey === "auth"
+              ? <SaveActions appUuid={appUuid} />
+              : <ActionsWidget />
+          }
         >
           <CompositePanel showNavTitle activeKey={activeKey} onChange={hanclePannelChange}>
             <CompositePanel.Item
