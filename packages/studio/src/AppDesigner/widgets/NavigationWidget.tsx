@@ -23,7 +23,7 @@ export const NavigationWidget = memo((
   }, [appUuid, navigate]);
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', fontSize: 14, paddingLeft: "8px" }}>
+    <div className='navigation-widget'>
       <Button className='no-border' shape='circle' onClick={handleBack}>
         <ArrowLeftOutlined />
       </Button>

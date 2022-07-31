@@ -1,3 +1,5 @@
+import "./index.less"
+
 export * from './NavigationWidget'
 export * from './ActionsWidget'
 export * from './PreviewWidget'

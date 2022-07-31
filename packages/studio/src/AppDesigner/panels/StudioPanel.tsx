@@ -1,15 +1,12 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Layout, usePrefix, usePosition } from "@designable/react"
-import {
-  useCurrentNode,
-  useWorkbench,
-} from '@designable/react'
 
 import cls from 'classnames'
 export interface IStudioPanelProps {
   style?: React.CSSProperties
   className?: string
   logo?: React.ReactNode
+  content?: React.ReactNode
   actions?: React.ReactNode
   prefixCls?: string
   theme?: string
@@ -18,16 +15,12 @@ export interface IStudioPanelProps {
 
 const StudioPanelInternal: React.FC<IStudioPanelProps> = ({
   logo,
+  content,
   actions,
   ...props
 }) => {
   const prefix = usePrefix('main-panel')
   const position = usePosition()
-  const workbench = useWorkbench()
-  const currentWorkspace =
-    workbench?.activeWorkspace || workbench?.currentWorkspace
-  const currentWorkspaceId = currentWorkspace?.id
-  const node = useCurrentNode(currentWorkspaceId)
   const classNameBase = cls('root', position, props.className)
   if (logo || actions) {
     return (
@@ -37,6 +30,7 @@ const StudioPanelInternal: React.FC<IStudioPanelProps> = ({
       >
         <div className={prefix + '-header'}>
           <div className={prefix + '-header-logo'}>{logo}</div>
+          <div className={prefix + '-header-content'}>{content}</div>
           <div className={prefix + '-header-actions'}>{actions}</div>
         </div>
         <div className={prefix}>{props.children}</div>
