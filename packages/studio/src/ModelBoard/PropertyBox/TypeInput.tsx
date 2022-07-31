@@ -10,7 +10,7 @@ import { memo, useCallback } from "react";
 import intl from "react-intl-universal";
 import { useEntities } from "../hooks/useEntities";
 import { useEnums } from "../hooks/useEnums";
-import { useSelectedAppUuid } from "../hooks/useSelectedAppUuid";
+import { useSelectedAppUuid } from "../ModelBoard/context";
 import { useValueObjects } from "../hooks/useValueObjects";
 import { Type } from "../meta/Type";
 import { useSelectedService } from 'components/ModelBoard/hooks/useSelectedService';

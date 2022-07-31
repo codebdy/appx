@@ -13,7 +13,7 @@ import { useEdgeSelect } from "./useEdgeSelect";
 import { useTriggerSelectedEvent } from "./useTriggerSelectedEvent";
 import { useEdgeHover } from "./useEdgeHover";
 import { useTriggerPressedLineTypeEvent } from "./useTriggerPressedLineTypeEvent";
-import { useSelectedAppUuid } from "../hooks/useSelectedAppUuid";
+import { useSelectedAppUuid } from "../context";
 
 export const GraphCanvas = memo(
   (props: { graph?: Graph; onSetGraph: (graph?: Graph) => void }) => {

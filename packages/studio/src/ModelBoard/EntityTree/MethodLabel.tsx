@@ -2,13 +2,13 @@ import React, { useCallback } from "react"
 import { memo } from "react"
 import TreeNodeLabel from "./TreeNodeLabel"
 import { PRIMARY_COLOR } from "../../consts";
-import { useSelectedAppUuid } from "../hooks/useSelectedAppUuid"
 import { useRecoilValue } from 'recoil';
 import { selectedElementState } from '../recoil/atoms';
 import { Button } from "antd"
 import { DeleteOutlined } from "@ant-design/icons"
 import { MethodMeta } from "../meta/MethodMeta";
 import { useDeleteMethod } from "../hooks/useDeleteMethod";
+import { useSelectedAppUuid } from "../context";
 
 const MethodLabel = memo((
   props: {

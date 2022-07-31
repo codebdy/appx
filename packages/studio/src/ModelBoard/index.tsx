@@ -7,6 +7,7 @@ import "./index.less"
 import { useReadMeta } from "./hooks/useReadMeta";
 import { useShowError } from "../hooks/useShowError";
 import { Spin } from "antd";
+import { AppContext } from "./context";
 
 const ModelsBoard = memo((
   props: {
@@ -22,14 +23,16 @@ const ModelsBoard = memo((
   useShowError(error);
 
   return (
-    <Spin tip="Loading..." spinning={loading}>
-      <div className="appx-model-board">
-        <div className="model-tree-shell">
-          <EntityTree graph={graph}></EntityTree>
+    <AppContext.Provider value={appUuid} >
+      <Spin tip="Loading..." spinning={loading}>
+        <div className="appx-model-board">
+          <div className="model-tree-shell">
+            <EntityTree graph={graph}></EntityTree>
+          </div>
+          <ModelContent appUuid={appUuid} graph={graph} onSetGraph={setGraph} saveActions={actions} />
         </div>
-        <ModelContent appUuid={appUuid} graph={graph} onSetGraph={setGraph} saveActions={actions} />
-      </div>
-    </Spin>
+      </Spin>
+    </AppContext.Provider>
   );
 });
 

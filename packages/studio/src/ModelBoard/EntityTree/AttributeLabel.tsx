@@ -2,7 +2,6 @@ import React, { useCallback } from "react"
 import { memo } from "react"
 import TreeNodeLabel from "./TreeNodeLabel"
 import { PRIMARY_COLOR } from "../../consts";
-import { useSelectedAppUuid } from "../hooks/useSelectedAppUuid"
 import { useRecoilValue } from 'recoil';
 import { selectedElementState } from './../recoil/atoms';
 import { Button } from "antd"
@@ -10,6 +9,7 @@ import { DeleteOutlined } from "@ant-design/icons"
 import { AttributeMeta } from './../meta/AttributeMeta';
 import { useDeleteAttribute } from "../hooks/useDeleteAttribute";
 import { CONST_ID } from "../meta/Meta";
+import { useSelectedAppUuid } from "../context";
 
 const AttributeLabel = memo((
   props: {

@@ -6,12 +6,12 @@ import TreeNodeLabel from "./TreeNodeLabel"
 import { PRIMARY_COLOR } from "../../consts";
 import { NODE_INIT_SIZE } from "../GraphCanvas/nodeInitSize";
 import { ClassView } from "../GraphCanvas/ClassView";
-import { useSelectedAppUuid } from "../hooks/useSelectedAppUuid"
 import { useRecoilValue } from 'recoil';
 import { selectedElementState, classesState } from './../recoil/atoms';
 import { Button } from "antd"
 import { DeleteOutlined } from "@ant-design/icons"
 import { useDeleteClass } from "../hooks/useDeleteClass"
+import { useSelectedAppUuid } from "../context"
 const { Dnd } = Addon;
 
 const ClassLabel = memo((

@@ -1,9 +1,9 @@
 import React, { useCallback } from "react";
 import { ClassMeta, StereoType } from "../meta/ClassMeta";
 import { useChangeClass } from "../hooks/useChangeClass";
-import { useSelectedAppUuid } from "../hooks/useSelectedAppUuid";
 import { Form, Input, Switch } from "antd";
 import { getLocalMessage } from "../../locales/getLocalMessage";
+import { useSelectedAppUuid } from "../context";
 
 export const ClassPanel = (props: { cls: ClassMeta }) => {
   const { cls } = props;

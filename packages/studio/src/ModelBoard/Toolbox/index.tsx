@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from "react";
+import React, { memo, useCallback } from "react";
 import { Addon, Graph } from "@antv/x6";
 import { useEffect } from "react";
 import { ClassView } from "../GraphCanvas/ClassView";
@@ -13,13 +13,13 @@ import { RelationType } from "../meta/RelationMeta";
 import { pressedLineTypeState, selectedElementState } from "../recoil/atoms";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { useCreateTempClassNodeForNew } from "../hooks/useCreateTempClassNodeForNew";
-import { useSelectedAppUuid } from "../hooks/useSelectedAppUuid";
 import { ClassRect } from "./ClassRect";
 import { StereoType } from "../meta/ClassMeta";
 import { Collapse } from "antd";
 import { getLocalMessage } from "../../locales/getLocalMessage";
 import "./index.less";
 import { PRIMARY_COLOR } from "../../consts";
+import { useSelectedAppUuid } from "../context";
 
 const { Dnd } = Addon;
 const { Panel } = Collapse;

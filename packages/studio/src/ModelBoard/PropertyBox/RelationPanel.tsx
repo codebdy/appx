@@ -6,9 +6,9 @@ import {
 } from "../meta/RelationMeta";
 import { useClass } from "../hooks/useClass";
 import { useChangeRelation } from "../hooks/useChangeRelation";
-import { useSelectedAppUuid } from "../hooks/useSelectedAppUuid";
 import { Collapse, Form, Input, Select } from "antd";
 import { getLocalMessage } from "../../locales/getLocalMessage";
+import { useSelectedAppUuid } from "../context";
 
 const { Panel } = Collapse;
 const { Option } = Select;
@@ -24,7 +24,7 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
 
   useEffect(() => {
     form.resetFields();
-  }, [relation.uuid])
+  }, [form, relation.uuid])
 
   const isInherit = useMemo(
     () => RelationType.INHERIT === relation.relationType,

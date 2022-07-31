@@ -1,4 +1,4 @@
-import { atom, atomFamily } from "recoil";
+import { atomFamily } from "recoil";
 import { DiagramMeta } from "../meta/DiagramMeta";
 import { ClassMeta } from "../meta/ClassMeta";
 import { Meta } from "../meta/Meta";
@@ -21,11 +21,6 @@ export interface Snapshot {
 }
 
 export const SYSTEM_APP_UUID = "SYSTEM"
-
-export const selectedAppUuidState = atom<string>({
-  key: "selectedAppId",
-  default: SYSTEM_APP_UUID,
-});
 
 export const minMapState = atomFamily<boolean, string>({
   key: "local.minMap",

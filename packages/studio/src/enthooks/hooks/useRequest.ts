@@ -1,7 +1,7 @@
 import { AwesomeGraphQLClient, GraphQLRequestError } from "awesome-graphql-client";
 import { useEffect, useState } from "react";
 import { HEADER_APPX_APPUUID, HEADER_AUTHORIZATION, TOKEN_PREFIX } from "../../consts";
-import { useSelectedAppUuid } from "../../ModelBoard/hooks/useSelectedAppUuid";
+import { useSelectedAppUuid } from "../../ModelBoard//context";
 import { useEndpoint, useToken } from "../context";
 
 

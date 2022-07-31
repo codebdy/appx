@@ -2,7 +2,6 @@ import { MoreOutlined, EditOutlined, DeleteOutlined, FileAddOutlined, PlusSquare
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
 import { getLocalMessage } from "../../locales/getLocalMessage";
-import { useSelectedAppUuid } from "../hooks/useSelectedAppUuid";
 import { useSetRecoilState } from 'recoil';
 import { classesState, selectedDiagramState } from "../recoil/atoms";
 import { PackageMeta } from "../meta/PackageMeta";
@@ -11,6 +10,7 @@ import { useCreateNewClass } from "../hooks/useCreateNewClass";
 import { useCreateNewDiagram } from "../hooks/useCreateNewDiagram";
 import { StereoType } from "../meta/ClassMeta";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
+import { useSelectedAppUuid } from "../context";
 
 const PackageAction = memo((
   props: {

@@ -4,9 +4,9 @@ import React, { memo, useCallback, useMemo } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useShowError } from '../../hooks/useShowError';
 import { getLocalMessage } from '../../locales/getLocalMessage';
+import { useSelectedAppUuid } from '../context';
 import { useExportJson } from '../hooks/useExportJson';
 import { usePublishMeta } from '../hooks/usePublishMeta';
-import { useSelectedAppUuid } from '../hooks/useSelectedAppUuid';
 import { MetaStatus } from '../meta/Meta';
 import { changedState, publishedIdState, metaState } from '../recoil/atoms';
 

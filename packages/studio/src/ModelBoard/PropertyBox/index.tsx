@@ -9,11 +9,11 @@ import { selectedElementState } from "../recoil/atoms";
 import { useClass } from "../hooks/useClass";
 import { useAttribute } from "../hooks/useAttribute";
 import { useRelation } from "../hooks/useRelation";
-import { useSelectedAppUuid } from "../hooks/useSelectedAppUuid";
 import { useMethod } from "../hooks/useMethod";
 import { MethodPanel } from "./MethodPanel";
 import { getLocalMessage } from "../../locales/getLocalMessage";
 import { Empty } from "antd";
+import { useSelectedAppUuid } from "../context";
 
 export const PropertyBox = () => {
   const serviceId = useSelectedAppUuid();

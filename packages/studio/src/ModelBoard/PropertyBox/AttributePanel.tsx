@@ -3,11 +3,11 @@ import { AttributeMeta } from "../meta/AttributeMeta";
 import { Type } from "../meta/Type";
 import { ClassMeta, StereoType } from "../meta/ClassMeta";
 import { useChangeAttribute } from "../hooks/useChangeAttribute";
-import { useSelectedAppUuid } from "../hooks/useSelectedAppUuid";
 import { CONST_ID } from "../meta/Meta";
 import { useGetTypeLabel } from "../hooks/useGetTypeLabel";
 import { getLocalMessage } from "../../locales/getLocalMessage";
 import { Form, Input, Select, Switch } from "antd";
+import { useSelectedAppUuid } from "../context";
 const { Option } = Select;
 
 export const AttributePanel = (props: {
@@ -30,7 +30,7 @@ export const AttributePanel = (props: {
       },
       cls
     )
-  }, [changeAttribute, attribute, cls])
+  }, [changeAttribute, attribute, getTypeLabel, cls])
 
   return (
     <div className="property-pannel">

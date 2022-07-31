@@ -7,7 +7,6 @@ import { getLocalMessage } from "../../locales/getLocalMessage";
 import RootAction from "./RootAction";
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { packagesState, diagramsState, classesState, selectedDiagramState, selectedElementState } from './../recoil/atoms';
-import { useSelectedAppUuid } from '../hooks/useSelectedAppUuid';
 import TreeNodeLabel from "./TreeNodeLabel";
 import PackageLabel from "./PackageLabel";
 import { PackageMeta } from "../meta/PackageMeta";
@@ -29,6 +28,7 @@ import MethodLabel from "./MethodLabel";
 import AttributesLabel from "./AttributesLabel";
 import MethodsLabel from "./MethodsLabel";
 import RelationLabel from "./RelationLabel";
+import { useSelectedAppUuid } from "../context";
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {

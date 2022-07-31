@@ -12,11 +12,11 @@ import { useRedo } from "../hooks/useRedo";
 import { useAttribute } from "../hooks/useAttribute";
 import { useDeleteSelectedElement } from "../hooks/useDeleteSelectedElement";
 import { CONST_ID } from "../meta/Meta";
-import { useSelectedAppUuid } from "../hooks/useSelectedAppUuid";
 import { Button, Divider } from "antd";
 import { DeleteOutlined, RedoOutlined, UndoOutlined } from "@ant-design/icons";
 import "./index.less";
 import { PRIMARY_COLOR } from "../../consts";
+import { useSelectedAppUuid } from "../context";
 
 export const ModelToolbar = memo(() => {
   const appUuid = useSelectedAppUuid();
