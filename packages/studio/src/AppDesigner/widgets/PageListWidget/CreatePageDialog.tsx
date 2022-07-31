@@ -56,7 +56,7 @@ const CreateCategoryDialog = memo(() => {
           form={form}
           autoComplete="off"
         >
-          <Row gutter={24}>
+          <Row gutter={12}>
             <Col span={12}>
               <Form.Item
                 label={getLocalMessage("pages.PageName")}
