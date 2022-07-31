@@ -6,13 +6,15 @@
         "uuid": "PACKAGE_SYSTEM_UUID",
         "name": "System",
         "system": true,
-        "sharable": true
+        "sharable": true,
+        "appUuid":"SYSTEM"
       },
       {
         "uuid": "PACKAGE_APPX_UUID",
         "name": "Appx",
         "system": true,
-        "sharable": false
+        "sharable": false,
+        "appUuid":"SYSTEM"
       }
     ],
     "classes": [

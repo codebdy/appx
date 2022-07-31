@@ -62,26 +62,6 @@ export function useRedo(appUuid: ID) {
     triggerCanvasEvent({
       name: EVENT_UNDO_REDO,
     });
-  }, [
-    packages,
-    diagrams,
-    entities,
-    redoList,
-    relations,
-    selectedDiagram,
-    selectedElement,
-    setChanged,
-    setDiagrams,
-    setEntities,
-    setRedoList,
-    setRelations,
-    setSelectedDiagram,
-    setSelectedElement,
-    setUndoList,
-    setX6Edges,
-    setX6Nodes,
-    x6Edges,
-    x6Nodes,
-  ]);
+  }, [redoList, setChanged, setUndoList, setRedoList, setPackages, setDiagrams, setEntities, setRelations, setX6Nodes, setX6Edges, setSelectedDiagram, setSelectedElement, packages, diagrams, entities, relations, x6Nodes, x6Edges, selectedDiagram, selectedElement]);
   return undo;
 }

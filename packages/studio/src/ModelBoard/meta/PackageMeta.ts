@@ -11,4 +11,5 @@ export interface PackageMeta{
   name: string;
   system?: boolean;
   sharable?: boolean;
+  appUuid: string;
 }
