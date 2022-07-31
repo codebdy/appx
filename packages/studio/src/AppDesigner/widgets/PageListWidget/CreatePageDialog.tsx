@@ -1,11 +1,13 @@
-import { Button, Modal } from "antd";
+import { Button, Form, Input, Modal } from "antd";
 import SvgIcon from "../../../common/SvgIcon";
 import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React, { useCallback, useState } from "react";
 import { memo } from "react";
+import { useForm } from "antd/lib/form/Form";
 
 const CreateCategoryDialog = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [form] = useForm()
   const showModal = useCallback(() => {
     setIsModalVisible(true);
   }, []);
@@ -13,6 +15,11 @@ const CreateCategoryDialog = memo(() => {
   const handleCancel = useCallback(() => {
     setIsModalVisible(false);
   }, []);
+
+
+  const handleConfirm = useCallback((values: any) => {
+    form.validateFields();
+  }, [form]);
 
   return (
     <>
@@ -32,11 +39,27 @@ const CreateCategoryDialog = memo(() => {
       <Modal
         title={getLocalMessage("pages.NewPage")}
         visible={isModalVisible}
-        footer={null}
         width={580}
+        cancelText={getLocalMessage("Cancel")}
+        okText={getLocalMessage("Confirm")}
         onCancel={handleCancel}
+        onOk={handleConfirm}
       >
-        哈哈
+        <Form
+          name="addPage"
+          labelCol={{ span: 6 }}
+          wrapperCol={{ span: 16 }}
+          form={form}
+          autoComplete="off"
+        >
+          <Form.Item
+            label={getLocalMessage("Name")}
+            name="name"
+            rules={[{ required: true, message: getLocalMessage("Required") }]}
+          >
+            <Input />
+          </Form.Item>
+        </Form>
       </Modal>
     </>
   )
