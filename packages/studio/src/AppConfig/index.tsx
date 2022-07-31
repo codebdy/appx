@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { memo } from "react"
 import { Layout } from 'antd';
 import ConifgHeader from "./ConifgHeader";
@@ -9,7 +9,6 @@ import { useShowError } from './../hooks/useShowError';
 const { Content } = Layout;
 
 const AppConfig = memo(() => {
-  const [activeKey, setActiveKey] = useState<string>("app")
   const { appUuid } = useParams();
   const { data, error } = useApp(appUuid)
 
@@ -17,7 +16,7 @@ const AppConfig = memo(() => {
 
   return (
     <Layout className="rx-studio">
-      <ConifgHeader app={data?.oneApp} activeKey={activeKey} onChange={setActiveKey} />
+      <ConifgHeader app={data?.oneApp} />
       <Content className='content'>
         <Outlet />
       </Content>

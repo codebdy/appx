@@ -19,7 +19,7 @@ const AppCard = memo((props: {
   useShowError(error)
 
   const handleEdit = useCallback(() => {
-    navigate(`/config-app/${app.uuid}/${AppConfigRouts.Root}` )
+    navigate(`/config-app/${app.uuid}/${AppConfigRouts.App}` )
   }, [app.uuid, navigate])
 
   const handleRemove = useCallback(() => {

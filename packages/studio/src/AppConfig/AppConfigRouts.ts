@@ -1,6 +1,6 @@
 export enum AppConfigRouts{
   Base = "base",
-  Root = "app",
+  App = "app",
   Model = "model",
   Api = "api",
   Auth = "auth",

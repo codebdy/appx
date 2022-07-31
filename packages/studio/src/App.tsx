@@ -31,7 +31,7 @@ const App = memo(() => {
       </Route>
       <Route path="/config-app/:appUuid" element={<AppConfig />}>
         <Route path={AppConfigRouts.Base} element={<div>基础配置</div>} />
-        <Route path={AppConfigRouts.Root} element={<DeviceList />} />
+        <Route path={AppConfigRouts.App} element={<DeviceList />} />
         <Route path={AppConfigRouts.Model} element={<ModelBoard />} />
         <Route path={AppConfigRouts.Api} element={<ApiBoard />} />
         <Route path={AppConfigRouts.Auth} element={<AuthBoard />} />

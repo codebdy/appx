@@ -7,21 +7,20 @@ import AvatarMenu from "../AppManager/AvatarMenu"
 import { useNavigate } from "react-router-dom"
 import { IApp } from "../model"
 import { getLocalMessage } from "../locales/getLocalMessage"
+import { AppConfigRouts } from "./AppConfigRouts"
 
 const ConifgHeader = memo((props: {
   app?: IApp,
-  activeKey?: string,
-  onChange: (key: string) => void,
 }) => {
-  const { app, activeKey, onChange } = props;
+  const { app } = props;
   const navigate = useNavigate()
   const handleBack = useCallback(() => {
     navigate("/")
   }, [navigate]);
 
   const handleSelect = useCallback((info) => {
-    onChange(info.key)
-  }, [onChange]);
+    navigate(`/config-app/${app?.uuid}/${info.key}`)
+  }, [app?.uuid, navigate]);
 
   return (
     <Header className="header">
@@ -31,27 +30,27 @@ const ConifgHeader = memo((props: {
       <Menu
         className="app-config-menu"
         mode="horizontal"
-        defaultSelectedKeys={[activeKey]}
+        defaultSelectedKeys={[AppConfigRouts.App]}
         onSelect={handleSelect}
         items={[
           {
-            key: "base",
+            key: AppConfigRouts.Base,
             label: getLocalMessage("AppConfig.BaseConfig"),
           },
           {
-            key: "app",
+            key: AppConfigRouts.App,
             label: getLocalMessage("AppConfig.AplicationDesign"),
           },
           {
-            key: "model",
+            key: AppConfigRouts.Model,
             label: getLocalMessage("AppConfig.DomainModel"),
           },
           {
-            key: "api",
+            key: AppConfigRouts.Api,
             label: getLocalMessage("AppConfig.ApiTest"),
           },
           {
-            key: "auth",
+            key: AppConfigRouts.Auth,
             label: getLocalMessage("AppConfig.ModelAuth"),
           },
         ]}
