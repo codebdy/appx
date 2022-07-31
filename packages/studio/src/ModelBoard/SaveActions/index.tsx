@@ -10,15 +10,15 @@ import { useValidate } from "../hooks/useValidate";
 import { usePostOne } from "../../enthooks/hooks/usePostOne";
 import { useShowError } from "../../hooks/useShowError";
 import { useGetMeta } from "../hooks/useGetMeta";
-import { useSelectedAppUuid } from "../context";
 
-
-const SaveActions = memo(() => {
-  const appUuid = useSelectedAppUuid();
+const SaveActions = memo((props: {
+  appUuid: string
+}) => {
+  const {appUuid} = props;
   const [changed, setChanged] = useRecoilState(changedState(appUuid));
   const setMeta = useSetRecoilState(metaState(appUuid));
   const getMeta = useGetMeta(appUuid);
-  
+
   const validate = useValidate(appUuid);
   const [excuteSave, { loading, error }] = usePostOne<Meta, any>(EntityNameMeta, {
     onCompleted(data: Meta) {
@@ -29,12 +29,12 @@ const SaveActions = memo(() => {
   });
 
   useShowError(error);
-  
+
   const handleSave = useCallback(() => {
     if (!validate()) {
       return;
     }
-    const data =getMeta()
+    const data = getMeta()
     excuteSave(data);
   }, [excuteSave, getMeta, validate]);
 

@@ -1,9 +1,9 @@
-import { MoreOutlined, EditOutlined, DeleteOutlined, FileAddOutlined, PlusSquareOutlined, ShareAltOutlined } from "@ant-design/icons";
+import { MoreOutlined, EditOutlined, DeleteOutlined, FileAddOutlined, PlusSquareOutlined, ShareAltOutlined, LockOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
 import { getLocalMessage } from "../../locales/getLocalMessage";
 import { useSetRecoilState } from 'recoil';
-import { classesState, selectedDiagramState } from "../recoil/atoms";
+import { classesState, selectedDiagramState, SYSTEM_APP_UUID } from "../recoil/atoms";
 import { PackageMeta } from "../meta/PackageMeta";
 import { useDeletePackage } from './../hooks/useDeletePackage';
 import { useCreateNewClass } from "../hooks/useCreateNewClass";
@@ -152,15 +152,20 @@ const PackageAction = memo((
   ), [addClass, handleAddDiagram, handleDelete, onEdit, onVisibleChange]);
 
   return (
-    <Dropdown
-      overlay={menu}
-      onVisibleChange={onVisibleChange}
-      trigger={['click']}
-    >
-      <Button type="text" shape='circle' size='small' onClick={e => e.stopPropagation()}>
-        <MoreOutlined />
+    pkg.sharable && appUuid !== SYSTEM_APP_UUID ?
+      <Button type="text" shape='circle' size='small' disabled>
+        <LockOutlined />
       </Button>
-    </Dropdown>
+      :
+      <Dropdown
+        overlay={menu}
+        onVisibleChange={onVisibleChange}
+        trigger={['click']}
+      >
+        <Button type="text" shape='circle' size='small' onClick={e => e.stopPropagation()}>
+          <MoreOutlined />
+        </Button>
+      </Dropdown>
   )
 })
 

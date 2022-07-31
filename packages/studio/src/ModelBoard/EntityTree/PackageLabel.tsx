@@ -6,7 +6,7 @@ import { PackageMeta } from "../meta/PackageMeta";
 import PackageAction from "./PackageAction";
 import TreeNodeLabel from "./TreeNodeLabel";
 import { useSetRecoilState } from 'recoil';
-import { packagesState } from './../recoil/atoms';
+import { packagesState, SYSTEM_APP_UUID } from './../recoil/atoms';
 import { useSelectedAppUuid } from "../context";
 
 const PackageLabel = memo((
@@ -49,7 +49,7 @@ const PackageLabel = memo((
 
   return (
     <TreeNodeLabel
-      fixedAction={visible}
+      fixedAction={visible || (pkg.sharable && appUuid !== SYSTEM_APP_UUID)}
       action={!editing ?
         <PackageAction pkg={pkg}
           onEdit={handleEdit}
