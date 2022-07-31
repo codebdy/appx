@@ -9,7 +9,7 @@ import { useEndpoint, useToken } from "../enthooks";
 
 //例子連接
 //https://github.com/graphql/graphiql/blob/main/packages/graphiql-toolkit/docs/create-fetcher.md#subscriptionurl
-const ApiBoard = memo((props: { appUuid: string }) => {
+const ApiBoard = memo((props: { appUuid?: string }) => {
   const { appUuid } = props
   const token = useToken();
   const endppoint = useEndpoint();

@@ -11,7 +11,7 @@ import { AppContext } from "./context";
 
 const ModelsBoard = memo((
   props: {
-    appUuid: string,
+    appUuid?: string,
     actions?: React.ReactNode,
   }
 ) => {

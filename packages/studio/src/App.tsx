@@ -13,6 +13,8 @@ import { useLoginCheck } from './hooks/useLoginCheck';
 import { INDEX_URL, INSTALL_URL, LOGIN_URL } from './consts';
 import { SYSTEM_APP_UUID } from './ModelBoard/recoil/atoms';
 import ModelBoard from './ModelBoard';
+import { AppConfigRouts } from './AppConfig/AppConfigRouts';
+import DeviceList from './AppConfig/DeviceList';
 
 const App = memo(() => {
   useLoginCheck()
@@ -24,10 +26,16 @@ const App = memo(() => {
           element={<AppsContent />}
         />
         <Route path={AppManagerRoutes.Model} element={<ModelBoard appUuid={SYSTEM_APP_UUID} />} />
-        <Route path={AppManagerRoutes.Api} element={<ApiBoard appUuid={SYSTEM_APP_UUID}/>} />
+        <Route path={AppManagerRoutes.Api} element={<ApiBoard appUuid={SYSTEM_APP_UUID} />} />
         <Route path={AppManagerRoutes.Auth} element={<AuthBoard />} />
       </Route>
-      <Route path="/config-app/:appUuid" element={<AppConfig />} />
+      <Route path="/config-app/:appUuid" element={<AppConfig />}>
+        <Route path={AppConfigRouts.Base} element={<div>基础配置</div>} />
+        <Route path={AppConfigRouts.Root} element={<DeviceList />} />
+        <Route path={AppConfigRouts.Model} element={<ModelBoard />} />
+        <Route path={AppConfigRouts.Api} element={<ApiBoard />} />
+        <Route path={AppConfigRouts.Auth} element={<AuthBoard />} />
+      </Route>
       <Route path="/design-app/:deviceSlug/:appUuid" element={<AppDesigner />} />
       <Route path={LOGIN_URL} element={<Login />} />
       <Route path={INSTALL_URL} element={<Install />} />

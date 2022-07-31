@@ -3,6 +3,7 @@ import { Card, Dropdown, Menu } from "antd"
 import Meta from "antd/lib/card/Meta"
 import React, { memo, useCallback } from "react"
 import { useNavigate } from "react-router-dom"
+import { AppConfigRouts } from "../AppConfig/AppConfigRouts"
 import { TextWidget } from "../AppDesigner/widgets"
 import { useRemoveApp } from "../hooks/useRemoveApp"
 import { IApp } from "../model"
@@ -18,7 +19,7 @@ const AppCard = memo((props: {
   useShowError(error)
 
   const handleEdit = useCallback(() => {
-    navigate("/config-app/" + app.uuid)
+    navigate(`/config-app/${app.uuid}/${AppConfigRouts.Root}` )
   }, [app.uuid, navigate])
 
   const handleRemove = useCallback(() => {
