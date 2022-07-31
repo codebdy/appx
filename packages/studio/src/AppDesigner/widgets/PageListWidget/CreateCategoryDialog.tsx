@@ -17,13 +17,9 @@ const CreateCategoryDialog = memo(() => {
     setIsModalVisible(false);
   }, [form]);
 
-  const onFinish = useCallback((values: any) => {
-    console.log('Success:', values);
-  }, []);
-
-  const onFinishFailed = useCallback((errorInfo: any) => {
-    console.log('Failed:', errorInfo);
-  }, []);
+  const handleConfirm = useCallback((values: any) => {
+    form.validateFields();
+  }, [form]);
 
   return (
     <>
@@ -42,17 +38,17 @@ const CreateCategoryDialog = memo(() => {
       <Modal
         title={getLocalMessage("pages.NewCategory")}
         visible={isModalVisible}
-        footer={null}
         width={400}
+        cancelText={getLocalMessage("Cancel")}
+        okText={getLocalMessage("Confirm")}
         onCancel={handleCancel}
+        onOk = {handleConfirm}
       >
         <Form
           name="addCategory"
           labelCol={{ span: 6 }}
           wrapperCol={{ span: 16 }}
           form={form}
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
           <Form.Item
@@ -61,12 +57,6 @@ const CreateCategoryDialog = memo(() => {
             rules={[{ required: true, message: getLocalMessage("Required") }]}
           >
             <Input />
-          </Form.Item>
-
-          <Form.Item wrapperCol={{ offset: 6, span: 16 }}>
-            <Button type="primary" htmlType="submit">
-              {getLocalMessage("Add")}
-            </Button>
           </Form.Item>
         </Form>
       </Modal>
