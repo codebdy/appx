@@ -37,9 +37,9 @@ export function useReadMeta(appUuid: string): { error?: Error; loading?: boolean
   );
 
   useEffect(() => {
-    if (data && systemData) {
+    if (data && (systemData || appUuid === SYSTEM_APP_UUID)) {
       const meta = data[queryName];
-      const systemMeta = systemData[queryName];
+      const systemMeta = systemData?.[queryName];
       const getPackage = (packageUuid: string) => {
         return systemMeta?.content?.packages?.find(pkg => pkg.uuid === packageUuid);
       }
@@ -53,7 +53,7 @@ export function useReadMeta(appUuid: string): { error?: Error; loading?: boolean
       setX6Nodes(meta?.content?.x6Nodes || []);
       setX6Edges(meta?.content?.x6Edges || []);
     }
-  }, [data, queryName, setDiagrams, setClasses, setMeta, setPackages, setRelations, setX6Edges, setX6Nodes, systemData]);
+  }, [data, queryName, setDiagrams, setClasses, setMeta, setPackages, setRelations, setX6Edges, setX6Nodes, systemData, appUuid]);
 
   return { error: error || systemError, loading: loading || systemLoading };
 }
