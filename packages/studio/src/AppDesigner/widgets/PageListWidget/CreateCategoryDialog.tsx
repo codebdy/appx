@@ -1,4 +1,4 @@
-import { Button, Modal } from "antd";
+import { Button, Form, Input, Modal } from "antd";
 import SvgIcon from "../../../common/SvgIcon";
 import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React, { useCallback, useState } from "react";
@@ -14,6 +14,14 @@ const CreateCategoryDialog = memo(() => {
     setIsModalVisible(false);
   }, []);
 
+  const onFinish = useCallback((values: any) => {
+    console.log('Success:', values);
+  }, []);
+
+  const onFinishFailed = useCallback((errorInfo: any) => {
+    console.log('Failed:', errorInfo);
+  }, []);
+
   return (
     <>
       <Button
@@ -24,7 +32,7 @@ const CreateCategoryDialog = memo(() => {
             </svg>
           </SvgIcon>
         }
-        onClick = {showModal}
+        onClick={showModal}
       >
         {getLocalMessage("pages.NewCategory")}
       </Button>
@@ -35,7 +43,28 @@ const CreateCategoryDialog = memo(() => {
         width={460}
         onCancel={handleCancel}
       >
-        哈哈
+        <Form
+          name="addCategory"
+          labelCol={{ span: 8 }}
+          wrapperCol={{ span: 16 }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          autoComplete="off"
+        >
+          <Form.Item
+            label={getLocalMessage("Name")}
+            name="name"
+            rules={[{ required: true, message: getLocalMessage("Required") }]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+            <Button type="primary" htmlType="submit">
+              {getLocalMessage("Add")}
+            </Button>
+          </Form.Item>
+        </Form>
       </Modal>
     </>
   )

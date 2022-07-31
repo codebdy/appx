@@ -8,6 +8,8 @@ GlobalRegistry.registerDesignerLocales({
     Confirm: "确定",
     Cancel: "取消",
     Settings: "设置",
+    Name: "名称",
+    Add: "添加",
     Hidden: "隐藏",
     App: "应用",
     Engines: "引擎中心",
@@ -51,7 +53,7 @@ GlobalRegistry.registerDesignerLocales({
       API: "系统接口",
       Auth: "系统权限"
     },
-    AppConfig:{
+    AppConfig: {
       BaseConfig: "基础配置",
       AplicationDesign: "应用设计",
       DomainModel: "领域模型",
