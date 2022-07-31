@@ -17,8 +17,12 @@ export function useReadMeta(appUuid: string): { error?: Error; loading?: boolean
   const queryName = useMemo(() => "oneMeta", []);
   const queryGql = useMemo(() => {
     return gql`
-    query ${queryName} {
-      ${queryName}{
+    query ${queryName}($appUuid:String!) {
+      ${queryName}(where:{
+        appUuid:{
+          _eq:$appUuid
+        }
+      }){
         id
         content
         status
@@ -26,7 +30,7 @@ export function useReadMeta(appUuid: string): { error?: Error; loading?: boolean
     }
   `;
   }, [queryName]);
-  const { data, error, loading } = useQueryOne<Meta>(queryGql);
+  const { data, error, loading } = useQueryOne<Meta>(queryGql, {appUuid});
 
   useEffect(() => {
     if (data) {
