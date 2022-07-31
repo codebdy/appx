@@ -81,7 +81,7 @@ const AppDesigner = memo(() => {
     <Spin style={{ height: "100vh" }} spinning={loading}>
       <Designer engine={engine}>
         <StudioPanel logo={<NavigationWidget app={data?.oneApp} />} 
-          actions={ activedKey === "model" ? <SaveActions />: <ActionsWidget />}
+          actions={ activedKey === "model" ? <SaveActions appUuid={appUuid} />: <ActionsWidget />}
         >
           <CompositePanel showNavTitle activeKey={activedKey} onChange={hanclePannelChange}>
             <CompositePanel.Item

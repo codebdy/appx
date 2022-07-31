@@ -9,7 +9,7 @@ const SystemModelBoard = memo(() => {
 
   return (
     <div className="system-model-border">
-      <ModelsBoard appUuid={SYSTEM_APP_UUID} actions={<SaveActions />} />    
+      <ModelsBoard appUuid={SYSTEM_APP_UUID} actions={<SaveActions appUuid={SYSTEM_APP_UUID} />} />    
     </div>
 
   );
