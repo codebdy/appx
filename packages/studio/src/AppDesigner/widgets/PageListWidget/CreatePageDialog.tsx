@@ -1,4 +1,4 @@
-import { Button, Form, Input, Modal } from "antd";
+import { Button, Col, Form, Input, Modal, Row } from "antd";
 import SvgIcon from "../../../common/SvgIcon";
 import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React, { useCallback, useState } from "react";
@@ -47,18 +47,31 @@ const CreateCategoryDialog = memo(() => {
       >
         <Form
           name="addPage"
-          labelCol={{ span: 6 }}
+          labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
           form={form}
           autoComplete="off"
         >
-          <Form.Item
-            label={getLocalMessage("Name")}
-            name="name"
-            rules={[{ required: true, message: getLocalMessage("Required") }]}
-          >
-            <Input />
-          </Form.Item>
+          <Row gutter={24}>
+            <Col span={12}>
+              <Form.Item
+                label={getLocalMessage("pages.PageName")}
+                name="name"
+                rules={[{ required: true, message: getLocalMessage("Required") }]}
+              >
+                <Input />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item
+                label={getLocalMessage("pages.SelectCategory")}
+                name="name"
+                rules={[{ required: true, message: getLocalMessage("Required") }]}
+              >
+                <Input />
+              </Form.Item>
+            </Col>
+          </Row>
         </Form>
       </Modal>
     </>

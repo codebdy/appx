@@ -52,7 +52,7 @@ const CreateCategoryDialog = memo(() => {
           autoComplete="off"
         >
           <Form.Item
-            label={getLocalMessage("Name")}
+            label={getLocalMessage("pages.CagegoryName")}
             name="name"
             rules={[{ required: true, message: getLocalMessage("Required") }]}
           >

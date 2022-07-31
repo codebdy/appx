@@ -76,7 +76,10 @@ GlobalRegistry.registerDesignerLocales({
     },
     pages: {
       NewPage: "新建页面",
-      NewCategory: "新建分组"
+      NewCategory: "新建分组",
+      CagegoryName:"分组名称",
+      PageName:"页面名称",
+      SelectCategory:"选择分组"
     },
     materials: {
       ModuleList: "物料管理",
