@@ -10,9 +10,10 @@ import { getLocalMessage } from "../locales/getLocalMessage"
 
 const ConifgHeader = memo((props: {
   app?: IApp,
+  activeKey?: string,
   onChange: (key: string) => void,
 }) => {
-  const { app, onChange } = props;
+  const { app, activeKey, onChange } = props;
   const navigate = useNavigate()
   const handleBack = useCallback(() => {
     navigate("/")
@@ -30,7 +31,7 @@ const ConifgHeader = memo((props: {
       <Menu
         className="app-config-menu"
         mode="horizontal"
-        defaultSelectedKeys={["app"]}
+        defaultSelectedKeys={[activeKey]}
         onSelect={handleSelect}
         items={[
           {
