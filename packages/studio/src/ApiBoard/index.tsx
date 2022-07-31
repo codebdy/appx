@@ -6,11 +6,14 @@ import React from "react";
 import { HEADER_AUTHORIZATION, TOKEN_PREFIX, HEADER_APPX_APPUUID } from "../consts";
 import "./index.less";
 import { useEndpoint, useToken } from "../enthooks";
+import { useParams } from "react-router-dom";
 
 //例子連接
 //https://github.com/graphql/graphiql/blob/main/packages/graphiql-toolkit/docs/create-fetcher.md#subscriptionurl
 const ApiBoard = memo((props: { appUuid?: string }) => {
   const { appUuid } = props
+  const { appUuid: appUuidFromUrl } = useParams();
+  const realAppUuid = useMemo(()=>appUuid||appUuidFromUrl, [appUuid, appUuidFromUrl])
   const token = useToken();
   const endppoint = useEndpoint();
   const fetcher = useMemo(() => {
@@ -19,12 +22,12 @@ const ApiBoard = memo((props: { appUuid?: string }) => {
       // legacyWsClient: new SubscriptionClient(SERVER_SUBSCRIPTION_URL),
       headers: {
         [HEADER_AUTHORIZATION]: token ? `${TOKEN_PREFIX}${token}` : "",
-        [HEADER_APPX_APPUUID]: appUuid,
+        [HEADER_APPX_APPUUID]: realAppUuid,
       }
     });
 
     return fetcher;
-  }, [appUuid, endppoint, token]);
+  }, [endppoint, realAppUuid, token]);
 
   return (
     <div className="api-board">
