@@ -6,7 +6,6 @@ export interface IStudioPanelProps {
   style?: React.CSSProperties
   className?: string
   logo?: React.ReactNode
-  content?: React.ReactNode
   actions?: React.ReactNode
   prefixCls?: string
   theme?: string
@@ -15,7 +14,6 @@ export interface IStudioPanelProps {
 
 const StudioPanelInternal: React.FC<IStudioPanelProps> = ({
   logo,
-  content,
   actions,
   ...props
 }) => {
@@ -30,7 +28,6 @@ const StudioPanelInternal: React.FC<IStudioPanelProps> = ({
       >
         <div className={prefix + '-header'}>
           <div className={prefix + '-header-logo'}>{logo}</div>
-          <div className={prefix + '-header-content'}>{content}</div>
           <div className={prefix + '-header-actions'}>{actions}</div>
         </div>
         <div className={prefix}>{props.children}</div>

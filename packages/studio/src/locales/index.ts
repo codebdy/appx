@@ -59,6 +59,9 @@ GlobalRegistry.registerDesignerLocales({
       Flow: "流程",
       API: "接口",
       Auth:"权限",
+      DomainModel:"领域模型",
+      ApiTest:"接口测试",
+      ModelAuth:"模型权限"
     },
     sources: {
       Inputs: '输入控件',

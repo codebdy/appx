@@ -6,6 +6,7 @@ import { memo } from "react"
 import AvatarMenu from "../AppManager/AvatarMenu"
 import { useNavigate } from "react-router-dom"
 import { IApp } from "../model"
+import { getLocalMessage } from "../locales/getLocalMessage"
 
 const ConifgHeader = memo((props: {
   app?: IApp
@@ -38,8 +39,16 @@ const ConifgHeader = memo((props: {
             label: "应用设计",
           },
           {
-            key: 3,
-            label: "权限管理",
+            key: "model",
+            label: getLocalMessage("panels.DomainModel"),
+          },
+          {
+            key: "api",
+            label: getLocalMessage("panels.ApiTest"),
+          },
+          {
+            key: "auth",
+            label: getLocalMessage("panels.ModelAuth"),
           },
         ]}
       />
