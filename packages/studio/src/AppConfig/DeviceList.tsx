@@ -2,7 +2,7 @@ import { Row, Col, Card, Button, Skeleton } from "antd"
 import Meta from "antd/lib/card/Meta"
 import React from "react"
 import { memo } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { getLocalMessage } from "../locales/getLocalMessage"
 import { Device } from "../model"
 
@@ -14,6 +14,7 @@ const DeviceList = memo((props: {
   const h5Image = pcImage;
   const adminImage = h5Image;
   const { appUuid } = useParams();
+  const navigate = useNavigate();
 
   return (
     <div className='content-inner'>
@@ -38,7 +39,7 @@ const DeviceList = memo((props: {
                         key="design"
                         shape="round"
                         type="primary"
-                        href={`/design-app/${Device.PC}/${appUuid}`}
+                        onClick ={()=>{navigate(`/design-app/${Device.PC}/${appUuid}`)}}
                       >
                         {getLocalMessage("appManager.ToDesign")}
                       </Button>,
@@ -63,7 +64,7 @@ const DeviceList = memo((props: {
                         key="design"
                         shape="round"
                         type="primary"
-                        href={`/design-app/${Device.H5}/${appUuid}`}
+                        onClick ={()=>{navigate(`/design-app/${Device.H5}/${appUuid}`)}}
                       >
                         {getLocalMessage("appManager.ToDesign")}
                       </Button>,
@@ -88,7 +89,7 @@ const DeviceList = memo((props: {
                         key="design"
                         shape="round"
                         type="primary"
-                        href={`/design-app/${Device.Admin}/${appUuid}`}
+                        onClick ={()=>{navigate(`/design-app/${Device.Admin}/${appUuid}`)}}
                       >
                         {getLocalMessage("appManager.ToDesign")}
                       </Button>,

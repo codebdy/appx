@@ -70,7 +70,7 @@ const Login = observer(() => {
         values: {
           loginName: "admin",
           password: "123456",
-          rememberMe: true,
+          rememberMe: false,
         },
       }),
     []
