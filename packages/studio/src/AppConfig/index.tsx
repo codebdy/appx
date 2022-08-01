@@ -10,13 +10,13 @@ const { Content } = Layout;
 
 const AppConfig = memo(() => {
   const { appUuid } = useParams();
-  const { data, error } = useApp(appUuid)
+  const { app, error } = useApp(appUuid)
 
   useShowError(error);
 
   return (
     <Layout className="rx-studio">
-      <ConifgHeader app={data?.oneApp} />
+      <ConifgHeader app={app} />
       <Content className='content'>
         <Outlet />
       </Content>

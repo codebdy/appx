@@ -1,4 +1,4 @@
-import { Device, IApp } from ".";
+import { Device } from ".";
 import { ID } from "../shared";
 
 export interface IFileInput {
@@ -9,7 +9,7 @@ export interface IFileInput {
 export interface IAppInput {
   id?: ID;
   uuid?: string;
-  title: string;
+  title?: string;
   description?: string;
   // image?: IFileInput
 }
@@ -18,7 +18,7 @@ export interface IPageListInput {
   id?: ID;
   schemaJson: any;
   device: Device;
-  app: IApp;
+  app: IAppInput;
 }
 
 export interface IPageInput {
@@ -26,5 +26,5 @@ export interface IPageInput {
   title: string;
   schema: JSON;
   device: Device;
-  app: IApp;
+  app: IAppInput;
 }

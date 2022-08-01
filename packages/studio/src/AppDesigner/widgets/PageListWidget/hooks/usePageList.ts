@@ -34,7 +34,11 @@ query queryPageList($appUuid:String!, $device:String!){
 export function usePageList() {
   const params = useDesignerParams();
 
-  const { data, error, loading } = useQueryOne<IPageList>(appsGql, { ...params }, ["PageList"])
+  const { data, error, loading } = useQueryOne<IPageList>(
+    appsGql,
+    { device: params.device, appUuid: params.app.uuid },
+    ["PageList"]
+  )
 
   return { pageList: data?.onePageList, error, loading }
 }

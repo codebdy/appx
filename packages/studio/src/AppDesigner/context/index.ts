@@ -1,8 +1,8 @@
 import { createContext, useContext, useMemo } from "react";
-import { Device } from "../../model";
+import { Device, IApp } from "../../model";
 
 export interface IDesignerParams {
-  appUuid: string,
+  app: IApp,
   device: Device
 }
 
@@ -15,7 +15,7 @@ export const useDesingerKey = () => {
   const params = useDesignerParams()
 
   const key = useMemo(() => {
-    return params ? params.device + params.appUuid : ""
+    return params ? params.device + params.app.uuid : ""
   }, [params])
 
   return key;

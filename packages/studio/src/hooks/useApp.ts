@@ -16,6 +16,8 @@ query queryApp($uuid:String!){
 }
 `
 
-export function useApp(uuid: string){
-  return useQueryOne<IApp>(appsGql, {uuid}, ["App"])
+export function useApp(uuid: string) {
+  const { data, error, loading } = useQueryOne<IApp>(appsGql, { uuid }, ["App"])
+
+  return { app: data?.oneApp, error, loading }
 }

@@ -1,10 +1,10 @@
 import { gql } from "awesome-graphql-client";
 import { useCallback, useMemo } from "react";
-import { CONST_ID } from "../../ModelBoard/meta/Meta";
 import { EVENT_DATA_POSTED_ONE, trigger } from "../events";
 import { useLazyRequest } from "./useLazyRequest";
 
 export interface IPostOptions<T> {
+  fieldsGql?:string,
   onCompleted?: (data: T) => void;
   onError?: (error: Error) => void;
   noRefresh?: boolean;
@@ -36,15 +36,13 @@ export function usePostOne<T, T2>(
         mutation ${postName} ($object: ${inputType}!) {
           ${postName}(object: $object){
             id
-            ${Object.keys(object)
-          .filter((key) => key !== CONST_ID && key !== "__type")
-          .join("\n")}
+            ${options?.fieldsGql || ""}
           }
         }
       `;
       doPost(postMutation, { object });
     },
-    [__type, doPost, postName]
+    [__type, doPost, options?.fieldsGql, postName]
   );
 
   return [post, { loading, error }];
