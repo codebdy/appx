@@ -1,15 +1,13 @@
-import { Button, Col, Form, Input, Modal, Row, Tabs } from "antd";
+import { Button, Form, Modal } from "antd";
 import SvgIcon from "../../../common/SvgIcon";
 import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React, { useCallback, useState } from "react";
 import { memo } from "react";
-import { useForm } from "antd/lib/form/Form";
-import FormTemplates from "./FormTemplates";
-const { TabPane } = Tabs;
+import CreatePageForm from "./CreatePageForm";
 
 const CreateCategoryDialog = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [form] = useForm()
+  const [form] = Form.useForm()
   const showModal = useCallback(() => {
     setIsModalVisible(true);
   }, []);
@@ -23,9 +21,6 @@ const CreateCategoryDialog = memo(() => {
     form.validateFields();
   }, [form]);
 
-  const onChange =  useCallback((key: string) => {
-    console.log(key);
-  }, []);
   return (
     <>
       <Button
@@ -50,44 +45,7 @@ const CreateCategoryDialog = memo(() => {
         onCancel={handleCancel}
         onOk={handleConfirm}
       >
-        <Form
-          name="addPage"
-          labelCol={{ span: 8 }}
-          wrapperCol={{ span: 16 }}
-          form={form}
-          autoComplete="off"
-        >
-          <Row gutter={12}>
-            <Col span={12}>
-              <Form.Item
-                label={getLocalMessage("pages.PageName")}
-                name="name"
-                rules={[{ required: true, message: getLocalMessage("Required") }]}
-              >
-                <Input />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
-                label={getLocalMessage("pages.SelectCategory")}
-                name="name"
-              >
-                <Input />
-              </Form.Item>
-            </Col>
-          </Row>
-          <Tabs defaultActiveKey="1" onChange={onChange}>
-            <TabPane tab="表单类" key="1">
-              <FormTemplates />
-            </TabPane>
-            <TabPane tab="门户类" key="2">
-              Content of Tab Pane 2
-            </TabPane>
-            <TabPane tab="流程类" key="3">
-              Content of Tab Pane 3
-            </TabPane>
-          </Tabs>
-        </Form>
+        <CreatePageForm form = {form} />
       </Modal>
     </>
   )
