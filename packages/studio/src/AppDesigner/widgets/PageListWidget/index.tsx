@@ -104,6 +104,7 @@ const PageListWidget = memo(() => {
         </div>
         <DirectoryTree
           className='page-list-tree'
+          selectedKeys={[]}
           allowDrop={() => {
             return true
           }}
