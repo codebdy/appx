@@ -6,7 +6,7 @@ import FormTemplates from "./FormTemplates";
 import { IPageInput } from "packages/studio/src/model/input";
 const { TabPane } = Tabs;
 
-const CreatePageForm = memo((props: {
+const PageForm = memo((props: {
   form: FormInstance<IPageInput>
 }) => {
   const {form} = props;
@@ -56,4 +56,4 @@ const CreatePageForm = memo((props: {
   )
 })
 
-export default CreatePageForm;
+export default PageForm;

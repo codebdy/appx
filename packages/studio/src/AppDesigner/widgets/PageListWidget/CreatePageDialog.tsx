@@ -3,9 +3,9 @@ import SvgIcon from "../../../common/SvgIcon";
 import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React, { useCallback, useState } from "react";
 import { memo } from "react";
-import CreatePageForm from "./CreatePageForm";
+import PageForm from "./PageForm";
 
-const CreateCategoryDialog = memo(() => {
+const CreatePageDialog = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [form] = Form.useForm()
   const showModal = useCallback(() => {
@@ -45,10 +45,10 @@ const CreateCategoryDialog = memo(() => {
         onCancel={handleCancel}
         onOk={handleConfirm}
       >
-        <CreatePageForm form = {form} />
+        <PageForm form = {form} />
       </Modal>
     </>
   )
 })
 
-export default CreateCategoryDialog;
+export default CreatePageDialog;
