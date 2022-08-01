@@ -5,13 +5,15 @@ import { memo } from "react";
 import FormTemplates from "./FormTemplates";
 import { IPageInput } from "packages/studio/src/model/input";
 import { useCagegories } from "./hooks/useCagegories";
+import { IListNode } from "./recoil/IListNode";
 const { TabPane } = Tabs;
 const { Option } = Select;
 
 const PageForm = memo((props: {
+  category?: IListNode,
   form: FormInstance<IPageInput>
 }) => {
-  const { form } = props;
+  const { category, form } = props;
   const categories = useCagegories();
 
   const handleChange = useCallback((key: string) => {
@@ -41,7 +43,7 @@ const PageForm = memo((props: {
             label={getLocalMessage("pages.SelectCategory")}
             name="categoryUuid"
           >
-            <Select defaultValue="" onChange={handleChange}>
+            <Select defaultValue={category?.uuid || ""} onChange={handleChange}>
               <Option value=""><em>None</em></Option>
               {
                 categories.map((category) => {

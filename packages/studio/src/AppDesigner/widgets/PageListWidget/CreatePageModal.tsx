@@ -36,7 +36,7 @@ const CreatePageModal = memo((
       onCancel={handleCancel}
       onOk={handleConfirm}
     >
-      <PageForm form={form} />
+      <PageForm category={category} form={form} />
     </Modal>
   )
 })
