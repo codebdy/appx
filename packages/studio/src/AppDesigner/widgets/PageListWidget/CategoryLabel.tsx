@@ -3,6 +3,7 @@ import React, { useCallback, useState } from "react"
 import CategoryActions from "./CategoryActions"
 import { IListNode } from "./recoil/IListNode"
 import EditCategoryDialog from "./EditCategoryDialog"
+import CreatePageModal from "./CreatePageModal"
 
 const CategoryLabel = (
   props: {
@@ -12,6 +13,7 @@ const CategoryLabel = (
   const { category } = props;
   const [visible, setVisible] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [pageModalOpen, setPageModalOpen] = useState(false);
 
   const handleVisableChange = useCallback((visible) => {
     setVisible(visible)
@@ -25,6 +27,14 @@ const CategoryLabel = (
     setModalOpen(true);
   }, [])
 
+  const handleAddPage =  useCallback(() => {
+    setPageModalOpen(true);
+  }, [])
+
+  const handleClosePageModal = useCallback(()=>{
+    setPageModalOpen(false);
+  }, []);
+
 
   return (
     <TreeNodeLabel
@@ -34,14 +44,19 @@ const CategoryLabel = (
           uuid={category.uuid}
           onVisibleChange={handleVisableChange}
           onEdit={handleEdit}
+          onAddPage={handleAddPage}
         />
       }
     >
-      {category.title} 
+      {category.title}
       <EditCategoryDialog
         category={category}
         isModalVisible={modalOpen}
         onClose={handleCloseModal}
+      />
+      <CreatePageModal
+        isModalVisible={pageModalOpen}
+        onClose={handleClosePageModal}
       />
     </TreeNodeLabel>
   )

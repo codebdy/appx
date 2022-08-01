@@ -12,9 +12,10 @@ const CategoryActions = memo((
     uuid: string,
     onVisibleChange: (visible: boolean) => void,
     onEdit: () => void,
+    onAddPage: () => void,
   }
 ) => {
-  const { uuid, onVisibleChange, onEdit } = props;
+  const { uuid, onVisibleChange, onEdit, onAddPage } = props;
   const init = useInit();
 
   const [remove, { loading, error }] = useDeleteCategory({
@@ -27,8 +28,9 @@ const CategoryActions = memo((
   useShowError(error);
 
   const handleAdd = useCallback(() => {
-
-  }, []);
+    onVisibleChange(false);
+    onAddPage()
+  }, [onAddPage, onVisibleChange]);
 
   const handleEdit = useCallback(() => {
     onVisibleChange(false);
