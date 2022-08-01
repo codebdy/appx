@@ -4,7 +4,7 @@ import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React, { useCallback, useState } from "react";
 import { memo } from "react";
 import { useForm } from "antd/lib/form/Form";
-import { useCreateCategory } from "../../hooks/useCreateCategory";
+import { useCreateCategory } from "./hooks/useCreateCategory";
 import { useShowError } from "../../../hooks/useShowError";
 
 const CreateCategoryDialog = memo(() => {

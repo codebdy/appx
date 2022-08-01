@@ -1,7 +1,7 @@
 import { ID } from "../../../../shared";
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
-import {pagesState} from "./atoms";
+import {pagesState} from "../recoil/atoms";
 
 export function useGetPage(key: string) {
   const pages = useRecoilValue(pagesState(key));

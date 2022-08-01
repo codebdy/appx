@@ -9,7 +9,7 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import { nodesState, pagesState } from './recoil/atoms';
 import { useDesingerKey } from '../../context';
 import { ListNodeType } from './recoil/IListNode';
-import { useGetPage } from './recoil/useGetPage';
+import { useGetPage } from './hooks/useGetPage';
 
 const { DirectoryTree } = Tree;
 
