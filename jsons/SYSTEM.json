@@ -227,7 +227,7 @@
         ],
         "innerId": 1004,
         "methods": [],
-        "name": "PageCategory",
+        "name": "PageList",
         "packageUuid": "PACKAGE_APPX_UUID",
         "root": true,
         "stereoType": "Entity",
@@ -390,7 +390,7 @@
         "innerId": 1003,
         "relationType": "twoWayCombination",
         "roleOfSource": "app",
-        "roleOfTarget": "pageCategory",
+        "roleOfTarget": "pageList",
         "sourceId": "2082d665-e503-402a-a089-678115c5ed3e",
         "sourceMutiplicity": "0..1",
         "targetId": "e90f69e9-1be0-45e2-95a6-269da4d2fada",
@@ -735,6 +735,5 @@
         ]
       }
     ]
-  },
-  "id": "1507236403010867253"
+  }
 }
