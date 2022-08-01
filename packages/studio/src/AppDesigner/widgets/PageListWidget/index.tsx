@@ -13,6 +13,7 @@ import { useGetPage } from './hooks/useGetPage';
 import { usePageList } from './hooks/usePageList';
 import { useInit } from './hooks/useInit';
 import { useShowError } from '../../../hooks/useShowError';
+import CategoryLabel from './CategoryLabel';
 
 const { DirectoryTree } = Tree;
 
@@ -73,7 +74,7 @@ const PageListWidget = memo(() => {
         })
       } else if (node.nodeType === ListNodeType.Category) {
         dataNodes.push({
-          title: node.title,
+          title: <CategoryLabel category={node} />,
           key: node.uuid,
           children: node?.children.map((childId) => {
             const page = getPage(childId)
