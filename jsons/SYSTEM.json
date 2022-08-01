@@ -285,7 +285,7 @@
             "uuid": "9416ad58-4c54-4c81-8839-2fd9b9eabd20"
           },
           {
-            "name": "schema",
+            "name": "schemaJson",
             "type": "JSON",
             "typeLabel": "JSON",
             "uuid": "94f1a640-4279-409e-b1aa-340093028ea0"
@@ -398,23 +398,23 @@
         "uuid": "3ad27c5f-73b1-4064-8f39-86381e35457a"
       },
       {
-        "uuid": "2b499cf1-f6b5-4ea6-bebf-e50ce165cb03",
         "innerId": 1005,
         "relationType": "oneWayAssociation",
-        "sourceId": "2082d665-e503-402a-a089-678115c5ed3e",
-        "targetId": "META_USER_UUID",
         "roleOfTarget": "owner",
+        "sourceId": "2082d665-e503-402a-a089-678115c5ed3e",
         "sourceMutiplicity": "0..*",
-        "targetMultiplicity": "0..1"
+        "targetId": "META_USER_UUID",
+        "targetMultiplicity": "0..1",
+        "uuid": "2b499cf1-f6b5-4ea6-bebf-e50ce165cb03"
       },
       {
-        "uuid": "dab87ed4-a67c-44c9-aa94-876393eb4ca6",
         "innerId": 0,
         "relationType": "inherit",
         "sourceId": "e90f69e9-1be0-45e2-95a6-269da4d2fada",
-        "targetId": "087b2915-5582-496d-bafb-ae2f5623a70d",
         "sourceMutiplicity": "0..1",
-        "targetMultiplicity": "0..1"
+        "targetId": "087b2915-5582-496d-bafb-ae2f5623a70d",
+        "targetMultiplicity": "0..1",
+        "uuid": "dab87ed4-a67c-44c9-aa94-876393eb4ca6"
       }
     ],
     "diagrams": [
@@ -460,12 +460,12 @@
         "y": 0
       },
       {
-        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
-        "height": 120,
         "id": "660a55fe-c2f1-4b17-921e-38aa14737a1c",
-        "width": 180,
         "x": 400,
-        "y": 30
+        "y": 30,
+        "width": 180,
+        "height": 120,
+        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc"
       },
       {
         "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
@@ -484,12 +484,12 @@
         "y": -210
       },
       {
-        "id": "META_USER_UUID",
-        "x": -800.0000000000002,
-        "y": 10,
-        "width": 160,
+        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
         "height": 80,
-        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc"
+        "id": "META_USER_UUID",
+        "width": 160,
+        "x": -800.0000000000002,
+        "y": 10
       }
     ],
     "x6Edges": [
@@ -651,7 +651,43 @@
         ]
       },
       {
+        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
         "id": "3ad27c5f-73b1-4064-8f39-86381e35457a",
+        "roleOnSourcePosition": {
+          "angle": 0,
+          "distance": 0.14898755516065196,
+          "offset": 19.812403259985917
+        },
+        "roleOnTargetPosition": {
+          "angle": 0,
+          "distance": 0.9596412625335536,
+          "offset": 80
+        },
+        "sourceAnchor": {
+          "args": {
+            "dx": "89%",
+            "dy": "50%",
+            "rotate": true
+          },
+          "name": "topLeft"
+        },
+        "sourceMultiplicityPosition": {
+          "angle": 0,
+          "distance": 0.14926167625347575,
+          "offset": -20.187401428944604
+        },
+        "targetAnchor": {
+          "args": {
+            "dx": "50%",
+            "dy": "50%",
+            "rotate": true
+          },
+          "name": "topLeft"
+        },
+        "targetMultiplicityPosition": {
+          "distance": -40,
+          "offset": -20
+        },
         "vertices": [
           {
             "x": -320,
@@ -661,66 +697,31 @@
             "x": -120,
             "y": 240
           }
-        ],
-        "roleOnSourcePosition": {
-          "angle": 0,
-          "distance": 0.14898755516065196,
-          "offset": 19.812403259985917
-        },
-        "sourceMultiplicityPosition": {
-          "angle": 0,
-          "distance": 0.14926167625347575,
-          "offset": -20.187401428944604
-        },
-        "roleOnTargetPosition": {
-          "angle": 0,
-          "distance": 0.9596412625335536,
-          "offset": 80
-        },
-        "targetMultiplicityPosition": {
-          "distance": -40,
-          "offset": -20
-        },
+        ]
+      },
+      {
         "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
-        "sourceAnchor": {
-          "args": {
-            "dx": "89%",
-            "dy": "50%",
-            "rotate": true
-          },
-          "name": "topLeft"
-        },
-        "targetAnchor": {
-          "args": {
-            "dx": "50%",
-            "dy": "50%",
-            "rotate": true
-          },
-          "name": "topLeft"
-        }
-      },
-      {
         "id": "2b499cf1-f6b5-4ea6-bebf-e50ce165cb03",
-        "vertices": [],
         "roleOnSourcePosition": {
           "distance": 40,
+          "offset": 20
+        },
+        "roleOnTargetPosition": {
+          "distance": -40,
           "offset": 20
         },
         "sourceMultiplicityPosition": {
           "distance": 40,
           "offset": -20
         },
-        "roleOnTargetPosition": {
-          "distance": -40,
-          "offset": 20
-        },
         "targetMultiplicityPosition": {
           "distance": -40,
           "offset": -20
         },
-        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc"
+        "vertices": []
       },
       {
+        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
         "id": "dab87ed4-a67c-44c9-aa94-876393eb4ca6",
         "vertices": [
           {
@@ -731,10 +732,9 @@
             "x": 80,
             "y": -150
           }
-        ],
-        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc"
+        ]
       }
     ]
   },
-  "id": "1507236403010867254"
+  "id": "1507236403010867253"
 }
