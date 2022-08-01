@@ -24,22 +24,22 @@ export enum Device {
 export interface IPage {
   id: ID;
   title: string;
-  schema: JSON;
+  schemaJson: any;
   device: Device;
   app: IApp;
-  category?: IPageCategory;
+  pageList?: IPageList;
 }
 
-export interface IPageCategory {
+export interface IPageList {
   id: ID;
-  title: string;
+  schemaJson: any;
   device: Device;
   app: IApp;
 }
 
 export interface IMenu {
   id: ID;
-  schema: JSON;
+  schemaJson: any;
   device: Device;
   app: IApp;
 }
