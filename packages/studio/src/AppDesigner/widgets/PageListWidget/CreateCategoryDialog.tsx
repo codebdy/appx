@@ -1,4 +1,4 @@
-import { Button, Form, Input, Modal } from "antd";
+import { Button, Modal } from "antd";
 import SvgIcon from "../../../common/SvgIcon";
 import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React, { useCallback, useState } from "react";
@@ -8,6 +8,7 @@ import { useCreateCategory } from "./hooks/useCreateCategory";
 import { useShowError } from "../../../hooks/useShowError";
 import { IPageList } from "../../../model";
 import { useInit } from "./hooks/useInit";
+import CategoryForm from "./CategoryForm";
 
 const CreateCategoryDialog = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -62,21 +63,7 @@ const CreateCategoryDialog = memo(() => {
         onOk={handleConfirm}
         confirmLoading={loading}
       >
-        <Form
-          name="addCategory"
-          labelCol={{ span: 6 }}
-          wrapperCol={{ span: 16 }}
-          form={form}
-          autoComplete="off"
-        >
-          <Form.Item
-            label={getLocalMessage("pages.CagegoryName")}
-            name="name"
-            rules={[{ required: true, message: getLocalMessage("Required") }]}
-          >
-            <Input />
-          </Form.Item>
-        </Form>
+        <CategoryForm form = {form} />
       </Modal>
     </>
   )
