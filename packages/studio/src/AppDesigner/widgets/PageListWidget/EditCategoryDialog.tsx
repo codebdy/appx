@@ -30,9 +30,9 @@ const EditCategoryDialog = memo((
 
   useShowError(error);
 
-  const handleConfirm = useCallback((values: any) => {
+  const handleConfirm = useCallback((values) => {
     form.validateFields().then((values) => {
-      update(category.uuid, values.name)
+      update(category.uuid, values.title)
     });
   }, [form, update, category.uuid]);
 

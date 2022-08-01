@@ -37,7 +37,7 @@ const CategoryLabel = (
         />
       }
     >
-      {category.title}
+      {category.title} 
       <EditCategoryDialog
         category={category}
         isModalVisible={modalOpen}
