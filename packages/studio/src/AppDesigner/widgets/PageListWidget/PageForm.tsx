@@ -4,6 +4,7 @@ import React, { useCallback } from "react";
 import { memo } from "react";
 import FormTemplates from "./FormTemplates";
 import { IPageInput } from "packages/studio/src/model/input";
+import { useCagegories } from "./hooks/useCagegories";
 const { TabPane } = Tabs;
 const { Option } = Select;
 
@@ -11,6 +12,8 @@ const PageForm = memo((props: {
   form: FormInstance<IPageInput>
 }) => {
   const { form } = props;
+  const categories = useCagegories();
+
   const handleChange = useCallback((key: string) => {
     console.log(key);
   }, []);
@@ -40,8 +43,15 @@ const PageForm = memo((props: {
           >
             <Select defaultValue="" onChange={handleChange}>
               <Option value=""><em>None</em></Option>
-              <Option value="lucy">Lucy</Option>
-              <Option value="Yiminghe">yiminghe</Option>
+              {
+                categories.map((category) => {
+                  return (
+                    <Option key={category.uuid} value={category.uuid}>
+                      {category.title}
+                    </Option>
+                  )
+                })
+              }
             </Select>
           </Form.Item>
         </Col>
