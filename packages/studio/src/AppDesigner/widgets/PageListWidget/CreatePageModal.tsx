@@ -20,6 +20,12 @@ const CreatePageModal = memo((
     form.validateFields();
   }, [form]);
 
+  const handleCancel = useCallback((values: any) => {
+    form.resetFields();
+    onClose()
+  }, [form, onClose]);
+
+
   return (
     <Modal
       title={getLocalMessage("pages.NewPage")}
@@ -27,7 +33,7 @@ const CreatePageModal = memo((
       width={580}
       cancelText={getLocalMessage("Cancel")}
       okText={getLocalMessage("Confirm")}
-      onCancel={onClose}
+      onCancel={handleCancel}
       onOk={handleConfirm}
     >
       <PageForm form={form} />
