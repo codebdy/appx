@@ -30,8 +30,8 @@ const CategoryActions = memo((
   }, []);
 
   const handleEdit = useCallback(() => {
-
-  }, []);
+    onVisibleChange(false);
+  }, [onVisibleChange]);
 
   const handleDelete = useCallback(() => {
     remove(uuid)
