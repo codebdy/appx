@@ -1,25 +1,19 @@
-import { Button, Form, Modal } from "antd";
+import { Button } from "antd";
 import SvgIcon from "../../../common/SvgIcon";
 import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React, { useCallback, useState } from "react";
 import { memo } from "react";
-import PageForm from "./PageForm";
+import CreatePageModal from "./CreatePageModal";
 
 const CreatePageDialog = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [form] = Form.useForm()
   const showModal = useCallback(() => {
     setIsModalVisible(true);
   }, []);
 
-  const handleCancel = useCallback(() => {
+  const handleClose = useCallback(() => {
     setIsModalVisible(false);
   }, []);
-
-
-  const handleConfirm = useCallback((values: any) => {
-    form.validateFields();
-  }, [form]);
 
   return (
     <>
@@ -36,17 +30,7 @@ const CreatePageDialog = memo(() => {
       >
         {getLocalMessage("pages.NewPage")}
       </Button>
-      <Modal
-        title={getLocalMessage("pages.NewPage")}
-        visible={isModalVisible}
-        width={580}
-        cancelText={getLocalMessage("Cancel")}
-        okText={getLocalMessage("Confirm")}
-        onCancel={handleCancel}
-        onOk={handleConfirm}
-      >
-        <PageForm form = {form} />
-      </Modal>
+      <CreatePageModal isModalVisible={isModalVisible} onClose={handleClose} />
     </>
   )
 })
