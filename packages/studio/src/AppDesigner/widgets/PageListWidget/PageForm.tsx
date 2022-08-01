@@ -1,16 +1,17 @@
-import { FormInstance, Col, Form, Input, Row, Tabs } from "antd";
+import { FormInstance, Col, Form, Input, Row, Tabs, Select } from "antd";
 import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React, { useCallback } from "react";
 import { memo } from "react";
 import FormTemplates from "./FormTemplates";
 import { IPageInput } from "packages/studio/src/model/input";
 const { TabPane } = Tabs;
+const { Option } = Select;
 
 const PageForm = memo((props: {
   form: FormInstance<IPageInput>
 }) => {
-  const {form} = props;
-  const onChange = useCallback((key: string) => {
+  const { form } = props;
+  const handleChange = useCallback((key: string) => {
     console.log(key);
   }, []);
 
@@ -35,13 +36,17 @@ const PageForm = memo((props: {
         <Col span={12}>
           <Form.Item
             label={getLocalMessage("pages.SelectCategory")}
-            name="name"
+            name="categoryUuid"
           >
-            <Input />
+            <Select defaultValue="" onChange={handleChange}>
+              <Option value=""><em>None</em></Option>
+              <Option value="lucy">Lucy</Option>
+              <Option value="Yiminghe">yiminghe</Option>
+            </Select>
           </Form.Item>
         </Col>
       </Row>
-      <Tabs defaultActiveKey="1" onChange={onChange}>
+      <Tabs defaultActiveKey="1" >
         <TabPane tab="表单类" key="1">
           <FormTemplates />
         </TabPane>
