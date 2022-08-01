@@ -36,7 +36,7 @@ const App = memo(() => {
         <Route path={AppConfigRouts.Api} element={<ApiBoard />} />
         <Route path={AppConfigRouts.Auth} element={<AuthBoard />} />
       </Route>
-      <Route path="/design-app/:deviceSlug/:appUuid" element={<AppDesigner />} />
+      <Route path="/design-app/:device/:appUuid" element={<AppDesigner />} />
       <Route path={LOGIN_URL} element={<Login />} />
       <Route path={INSTALL_URL} element={<Install />} />
     </Routes>

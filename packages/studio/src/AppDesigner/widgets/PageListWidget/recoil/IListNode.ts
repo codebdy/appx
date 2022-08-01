@@ -1,3 +1,5 @@
+import { ID } from "../../../../shared";
+
 export enum ListNodeType {
   Category = "Category",
   Page = "Page"
@@ -5,7 +7,7 @@ export enum ListNodeType {
 
 export interface IListNode {
   nodeType: ListNodeType,
-  pageUuid?: string,
+  pageId?: ID,
   title: string,
   children: string[],
 }

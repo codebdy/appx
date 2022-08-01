@@ -1,4 +1,4 @@
-import { IPage } from "packages/studio/src/model";
+import { IPage } from "../../../../model";
 import { atomFamily } from "recoil";
 import { IListNode } from "./IListNode";
 
