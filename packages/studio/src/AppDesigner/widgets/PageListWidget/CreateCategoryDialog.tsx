@@ -15,7 +15,9 @@ const CreateCategoryDialog = memo(() => {
   const init = useInit();
   const [create, { loading, error }] = useCreateCategory({
     onCompleted:(data:IPageList)=>{
-      init(data)
+      init(data);
+      form.resetFields();
+      setIsModalVisible(false);
     }
   });
 
