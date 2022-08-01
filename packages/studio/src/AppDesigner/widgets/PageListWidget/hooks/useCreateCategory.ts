@@ -25,7 +25,7 @@ export function useCreateCategory(options?: IPostOptions<any>): [
       title: title,
       children: [],
     }
-    post({ ...pageList, device: params.device, schemaJson: [...nodes, newNode] })
+    post({ ...pageList, device: params.device, schemaJson: { data: [...nodes, newNode] } })
   }, [nodes, pageList, params.device, post])
 
   return [create, { error, loading }]

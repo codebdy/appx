@@ -12,14 +12,14 @@ export function useInit() {
   const setNodes = useSetRecoilState(nodesState(key));
 
   const init = useCallback((pageList?: IPageList) => {
-    const nodes: IListNode[] = pageList?.schemaJson||[]
-    const pageIsInSchema = (pageId: ID)=>{
-      for (const nd of nodes){
-        if(nd.pageId === pageId){
+    const nodes: IListNode[] = pageList?.schemaJson?.data || []
+    const pageIsInSchema = (pageId: ID) => {
+      for (const nd of nodes) {
+        if (nd.pageId === pageId) {
           return true;
-        }else if(nd.nodeType === ListNodeType.Category){
-          for (const pgd of nd.children){
-            if (pgd === pageId){
+        } else if (nd.nodeType === ListNodeType.Category) {
+          for (const pgd of nd.children) {
+            if (pgd === pageId) {
               return true;
             }
           }
@@ -28,12 +28,12 @@ export function useInit() {
       return false;
     }
 
-    for (const page of pages){
-      if(!pageIsInSchema(page.id)){
+    for (const page of pages) {
+      if (!pageIsInSchema(page.id)) {
         nodes.push({
           title: page.title,
           nodeType: ListNodeType.Page,
-          children:[]
+          children: []
         })
       }
     }
