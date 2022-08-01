@@ -1,6 +1,6 @@
 import React, { useCallback } from "react"
 import { memo } from "react"
-import TreeNodeLabel from "./TreeNodeLabel"
+import TreeNodeLabel from "../../common/TreeNodeLabel"
 import { PRIMARY_COLOR } from "../../consts";
 import { useRecoilValue } from 'recoil';
 import { selectedElementState } from './../recoil/atoms';

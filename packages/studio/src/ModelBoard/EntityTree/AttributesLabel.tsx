@@ -1,6 +1,6 @@
 import React from "react"
 import { memo } from "react"
-import TreeNodeLabel from "./TreeNodeLabel"
+import TreeNodeLabel from "../../common/TreeNodeLabel"
 import { Button } from "antd"
 import { ClassMeta } from "../meta/ClassMeta";
 import { PlusOutlined } from "@ant-design/icons";

@@ -7,7 +7,7 @@ import { getLocalMessage } from "../../locales/getLocalMessage";
 import RootAction from "./RootAction";
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { packagesState, diagramsState, classesState, selectedDiagramState, selectedElementState } from './../recoil/atoms';
-import TreeNodeLabel from "./TreeNodeLabel";
+import TreeNodeLabel from "../../common/TreeNodeLabel";
 import PackageLabel from "./PackageLabel";
 import { PackageMeta } from "../meta/PackageMeta";
 import { ClassMeta, StereoType } from "../meta/ClassMeta";

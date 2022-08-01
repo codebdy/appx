@@ -71,7 +71,6 @@ const CreateCategoryDialog = memo(() => {
               <Form.Item
                 label={getLocalMessage("pages.SelectCategory")}
                 name="name"
-                rules={[{ required: true, message: getLocalMessage("Required") }]}
               >
                 <Input />
               </Form.Item>
