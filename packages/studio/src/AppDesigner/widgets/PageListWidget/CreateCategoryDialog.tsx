@@ -4,10 +4,16 @@ import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React, { useCallback, useState } from "react";
 import { memo } from "react";
 import { useForm } from "antd/lib/form/Form";
+import { useCreateCategory } from "../../hooks/useCreateCategory";
+import { useShowError } from "../../../hooks/useShowError";
 
 const CreateCategoryDialog = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [form] = useForm()
+  const [create, { loading, error }] = useCreateCategory();
+
+  useShowError(error);
+
   const showModal = useCallback(() => {
     setIsModalVisible(true);
   }, []);
@@ -18,8 +24,10 @@ const CreateCategoryDialog = memo(() => {
   }, [form]);
 
   const handleConfirm = useCallback((values: any) => {
-    form.validateFields();
-  }, [form]);
+    form.validateFields().then((values) => {
+      create(values.name)
+    });
+  }, [create, form]);
 
   return (
     <>
@@ -42,7 +50,7 @@ const CreateCategoryDialog = memo(() => {
         cancelText={getLocalMessage("Cancel")}
         okText={getLocalMessage("Confirm")}
         onCancel={handleCancel}
-        onOk = {handleConfirm}
+        onOk={handleConfirm}
       >
         <Form
           name="addCategory"

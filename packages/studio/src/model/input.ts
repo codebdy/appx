@@ -14,10 +14,11 @@ export interface IAppInput {
   // image?: IFileInput
 }
 
-export interface IPageCategoryInput{
+export interface IPageListInput {
   id?: ID;
-  title: string;
-  device?: Device;
+  schemaJson: any;
+  device: Device;
+  app: IApp;
 }
 
 export interface IPageInput {
