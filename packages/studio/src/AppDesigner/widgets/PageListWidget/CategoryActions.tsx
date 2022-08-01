@@ -1,4 +1,4 @@
-import { FolderAddOutlined, DownloadOutlined, ImportOutlined, MoreOutlined } from "@ant-design/icons";
+import { MoreOutlined, FileAddOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Button } from "antd";
 import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React, { memo, useCallback, useMemo } from "react"
@@ -9,30 +9,53 @@ const CategoryActions = memo((
   }
 ) => {
   const { onVisibleChange } = props;
+  const handleAdd = useCallback(() => {
+
+  }, []);
+
+  const handleEdit = useCallback(() => {
+
+  }, []);
+
+  const handleDelete = useCallback(() => {
+
+  }, []);
 
   const menu = useMemo(() => (
     <Menu
       items={[
         {
-          icon: <FolderAddOutlined />,
+          icon: <FileAddOutlined />,
           label: getLocalMessage("pages.NewPage"),
           key: '0',
-          //onClick:
+          onClick: (e => {
+            e.domEvent.stopPropagation();
+            onVisibleChange(false);
+            handleAdd();
+          })
         },
         {
-          icon: <DownloadOutlined />,
+          icon: <EditOutlined />,
           label: getLocalMessage("Edit"),
           key: '1',
-          //onClick:expotJson
+          onClick: (e => {
+            e.domEvent.stopPropagation();
+            handleEdit();
+          })
         },
         {
-          icon: <ImportOutlined />,
+          icon: <DeleteOutlined />,
           label: getLocalMessage("Delete"),
           key: '2',
+          onClick: (e => {
+            e.domEvent.stopPropagation();
+            onVisibleChange(false);
+            handleDelete();
+          })
         },
       ]}
     />
-  ), []);
+  ), [handleAdd, handleDelete, handleEdit, onVisibleChange]);
 
   return (
     <Dropdown
