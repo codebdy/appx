@@ -26,16 +26,16 @@ const CategoryActions = memo((
   useShowError(error);
 
   const handleAdd = useCallback(() => {
-    remove(uuid)
-  }, [remove, uuid]);
+
+  }, []);
 
   const handleEdit = useCallback(() => {
 
   }, []);
 
   const handleDelete = useCallback(() => {
-
-  }, []);
+    remove(uuid)
+  }, [remove, uuid]);
 
   const menu = useMemo(() => (
     <Menu
