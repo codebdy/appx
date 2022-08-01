@@ -15,7 +15,12 @@ const CategoryLabel = (
   }, []);
 
   return (
-    <TreeNodeLabel fixedAction={visible} action={<CategoryActions onVisibleChange={handleVisableChange} />}>
+    <TreeNodeLabel
+      fixedAction={visible}
+      action={
+        <CategoryActions uuid={category.uuid} onVisibleChange={handleVisableChange} />
+      }
+    >
       {category.title}
     </TreeNodeLabel>
   )

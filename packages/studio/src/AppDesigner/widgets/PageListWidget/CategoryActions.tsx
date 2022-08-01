@@ -1,17 +1,33 @@
-import { MoreOutlined, FileAddOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { MoreOutlined, FileAddOutlined, EditOutlined, DeleteOutlined, LoadingOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Button } from "antd";
 import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React, { memo, useCallback, useMemo } from "react"
+import { useDeleteCategory } from "./hooks/useDeleteCategory";
+import { useShowError } from "../../../hooks/useShowError";
+import { IPageList } from "../../../model";
+import { useInit } from "./hooks/useInit";
 
 const CategoryActions = memo((
   props: {
+    uuid: string,
     onVisibleChange: (visible: boolean) => void,
   }
 ) => {
-  const { onVisibleChange } = props;
-  const handleAdd = useCallback(() => {
+  const { uuid, onVisibleChange } = props;
+  const init = useInit();
 
-  }, []);
+  const [remove, { loading, error }] = useDeleteCategory({
+    onCompleted: (data: IPageList) => {
+      onVisibleChange(false);
+      init(data);
+    }
+  });
+
+  useShowError(error);
+
+  const handleAdd = useCallback(() => {
+    remove(uuid)
+  }, [remove, uuid]);
 
   const handleEdit = useCallback(() => {
 
@@ -49,7 +65,6 @@ const CategoryActions = memo((
           key: '2',
           onClick: (e => {
             e.domEvent.stopPropagation();
-            onVisibleChange(false);
             handleDelete();
           })
         },
@@ -62,9 +77,15 @@ const CategoryActions = memo((
       overlay={menu}
       trigger={['click']}
       onVisibleChange={onVisibleChange}
+      disabled={loading}
     >
       <Button shape='circle' type="text" size='small' onClick={e => e.stopPropagation()}>
-        <MoreOutlined />
+        {
+          loading ?
+            <LoadingOutlined />
+            : <MoreOutlined />
+        }
+
       </Button>
     </Dropdown>
   )

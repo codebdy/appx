@@ -1,7 +1,7 @@
 import TreeNodeLabel from "../../../common/TreeNodeLabel"
 import React, { useCallback, useState } from "react"
-import CategoryActions from "./CategoryActions"
 import { IPage } from "../../../model"
+import PageActions from "./PageActions"
 
 const PageLabel = (
   props: {
@@ -15,7 +15,7 @@ const PageLabel = (
   }, []);
 
   return (
-    <TreeNodeLabel fixedAction={visible} action={<CategoryActions onVisibleChange={handleVisableChange} />}>
+    <TreeNodeLabel fixedAction={visible} action={<PageActions onVisibleChange={handleVisableChange} />}>
       {page.title}
     </TreeNodeLabel>
   )
