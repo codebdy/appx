@@ -17,11 +17,11 @@ const CategoryLabel = (
     setVisible(visible)
   }, []);
 
-  const handleCloseModal = useCallback(()=>{
+  const handleCloseModal = useCallback(() => {
     setModalOpen(false);
   }, [])
 
-  const handleEdit =  useCallback(()=>{
+  const handleEdit = useCallback(() => {
     setModalOpen(true);
   }, [])
 
@@ -33,12 +33,16 @@ const CategoryLabel = (
         <CategoryActions
           uuid={category.uuid}
           onVisibleChange={handleVisableChange}
-          onEdit= {handleEdit}
+          onEdit={handleEdit}
         />
       }
     >
       {category.title}
-      <EditCategoryDialog isModalVisible={modalOpen} onClose= {handleCloseModal} />
+      <EditCategoryDialog
+        category={category}
+        isModalVisible={modalOpen}
+        onClose={handleCloseModal}
+      />
     </TreeNodeLabel>
   )
 }

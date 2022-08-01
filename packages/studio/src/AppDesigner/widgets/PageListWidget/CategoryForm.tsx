@@ -4,11 +4,12 @@ import React from "react";
 import { memo } from "react";
 
 const CategoryForm = memo((
-  props:{
-    form :FormInstance<any>
+  props: {
+    title?: string,
+    form: FormInstance<any>
   }
 ) => {
-  const {form} = props;
+  const { title, form } = props;
 
   return (
     <Form
@@ -17,10 +18,11 @@ const CategoryForm = memo((
       wrapperCol={{ span: 16 }}
       form={form}
       autoComplete="off"
+      initialValues={{ title: title }}
     >
       <Form.Item
         label={getLocalMessage("pages.CagegoryName")}
-        name="name"
+        name="title"
         rules={[{ required: true, message: getLocalMessage("Required") }]}
       >
         <Input />

@@ -1,23 +1,24 @@
-import { Modal } from "antd";
+import { Form, Modal } from "antd";
 import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React, { useCallback } from "react";
 import { memo } from "react";
-import { useForm } from "antd/lib/form/Form";
 import { useCreateCategory } from "./hooks/useCreateCategory";
 import { useShowError } from "../../../hooks/useShowError";
 import { IPageList } from "../../../model";
 import { useInit } from "./hooks/useInit";
 import CategoryForm from "./CategoryForm";
+import { IListNode } from "./recoil/IListNode";
 
 const EditCategoryDialog = memo((
-  props:{
+  props: {
+    category: IListNode,
     isModalVisible: boolean,
-    onClose: ()=>void,
+    onClose: () => void,
   }
 ) => {
-  const {isModalVisible, onClose} = props;
+  const { category, isModalVisible, onClose } = props;
 
-  const [form] = useForm()
+  const [form] = Form.useForm()
   const init = useInit();
   const [create, { loading, error }] = useCreateCategory({
     onCompleted: (data: IPageList) => {
@@ -46,7 +47,7 @@ const EditCategoryDialog = memo((
       onOk={handleConfirm}
       confirmLoading={loading}
     >
-      <CategoryForm form={form} />
+      <CategoryForm title={category.title} form={form} />
     </Modal>
   )
 })

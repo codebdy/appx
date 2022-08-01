@@ -35,7 +35,7 @@ const CreateCategoryDialog = memo(() => {
 
   const handleConfirm = useCallback((values: any) => {
     form.validateFields().then((values) => {
-      create(values.name)
+      create(values.title)
     });
   }, [create, form]);
 
