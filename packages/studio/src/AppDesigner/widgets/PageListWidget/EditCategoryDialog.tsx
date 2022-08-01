@@ -2,12 +2,12 @@ import { Form, Modal } from "antd";
 import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React, { useCallback } from "react";
 import { memo } from "react";
-import { useCreateCategory } from "./hooks/useCreateCategory";
 import { useShowError } from "../../../hooks/useShowError";
 import { IPageList } from "../../../model";
 import { useInit } from "./hooks/useInit";
 import CategoryForm from "./CategoryForm";
 import { IListNode } from "./recoil/IListNode";
+import { useUpdateCategory } from "./hooks/useUpdateCategory";
 
 const EditCategoryDialog = memo((
   props: {
@@ -20,7 +20,7 @@ const EditCategoryDialog = memo((
 
   const [form] = Form.useForm()
   const init = useInit();
-  const [create, { loading, error }] = useCreateCategory({
+  const [update, { loading, error }] = useUpdateCategory({
     onCompleted: (data: IPageList) => {
       init(data);
       form.resetFields();
@@ -32,9 +32,9 @@ const EditCategoryDialog = memo((
 
   const handleConfirm = useCallback((values: any) => {
     form.validateFields().then((values) => {
-      create(values.name)
+      update(category.uuid, values.name)
     });
-  }, [create, form]);
+  }, [form, update, category.uuid]);
 
   return (
     <Modal
