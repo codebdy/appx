@@ -6,6 +6,7 @@ export enum ListNodeType {
 }
 
 export interface IListNode {
+  uuid: string,
   nodeType: ListNodeType,
   pageId?: ID,
   title: string,
