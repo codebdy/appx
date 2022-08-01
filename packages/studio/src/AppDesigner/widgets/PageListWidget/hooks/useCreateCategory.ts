@@ -17,7 +17,7 @@ export function useCreateCategory(options?: IPostOptions<any>): [
   const nodes = useRecoilValue(nodesState(key))
   const pageList = useRecoilValue(pageListState(key));
   const [post, { error, loading }] = usePostOne<IPageListInput, IPageList>("PageList",
-    { ...options, fieldsGql:"app{id uuid} schemaJson" }
+    { ...options, fieldsGql: "app{id uuid} schemaJson" }
   )
 
   const create = useCallback((title: string) => {
@@ -27,7 +27,14 @@ export function useCreateCategory(options?: IPostOptions<any>): [
       title: title,
       children: [],
     }
-    post({ ...pageList, device: params.device, app: { id: params.app.id }, schemaJson: { data: [...nodes, newNode] } })
+    post({
+      ...pageList,
+      device: params.device,
+      app: { 
+        sync:{id: params.app.id} 
+      },
+      schemaJson: { data: [...nodes, newNode] },
+    })
   }, [nodes, pageList, params.app.id, params.device, post])
 
   return [create, { error, loading }]

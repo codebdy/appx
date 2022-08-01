@@ -18,7 +18,7 @@ export interface IPageListInput {
   id?: ID;
   schemaJson: any;
   device: Device;
-  app: IAppInput;
+  app: { sync: IAppInput };
 }
 
 export interface IPageInput {
