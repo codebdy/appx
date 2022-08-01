@@ -11,9 +11,10 @@ const CategoryActions = memo((
   props: {
     uuid: string,
     onVisibleChange: (visible: boolean) => void,
+    onEdit:()=>void,
   }
 ) => {
-  const { uuid, onVisibleChange } = props;
+  const { uuid, onVisibleChange, onEdit } = props;
   const init = useInit();
 
   const [remove, { loading, error }] = useDeleteCategory({
@@ -31,7 +32,8 @@ const CategoryActions = memo((
 
   const handleEdit = useCallback(() => {
     onVisibleChange(false);
-  }, [onVisibleChange]);
+    onEdit()
+  }, [onEdit, onVisibleChange]);
 
   const handleDelete = useCallback(() => {
     remove(uuid)
