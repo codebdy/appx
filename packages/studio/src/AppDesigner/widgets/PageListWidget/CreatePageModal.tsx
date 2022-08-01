@@ -3,14 +3,16 @@ import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React, { useCallback } from "react";
 import { memo } from "react";
 import PageForm from "./PageForm";
+import { IListNode } from "./recoil/IListNode";
 
 const CreatePageModal = memo((
   props:{
+    category?: IListNode,
     isModalVisible: boolean,
     onClose:()=>void,
   }
 ) => {
-  const {isModalVisible, onClose} = props;
+  const {category, isModalVisible, onClose} = props;
   const [form] = Form.useForm()
 
 

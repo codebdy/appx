@@ -27,11 +27,11 @@ const CategoryLabel = (
     setModalOpen(true);
   }, [])
 
-  const handleAddPage =  useCallback(() => {
+  const handleAddPage = useCallback(() => {
     setPageModalOpen(true);
   }, [])
 
-  const handleClosePageModal = useCallback(()=>{
+  const handleClosePageModal = useCallback(() => {
     setPageModalOpen(false);
   }, []);
 
@@ -55,6 +55,7 @@ const CategoryLabel = (
         onClose={handleCloseModal}
       />
       <CreatePageModal
+        category={category}
         isModalVisible={pageModalOpen}
         onClose={handleClosePageModal}
       />
