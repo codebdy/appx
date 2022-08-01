@@ -6,11 +6,18 @@ import { memo } from "react";
 import { useForm } from "antd/lib/form/Form";
 import { useCreateCategory } from "./hooks/useCreateCategory";
 import { useShowError } from "../../../hooks/useShowError";
+import { IPageList } from "../../../model";
+import { useInit } from "./hooks/useInit";
 
 const CreateCategoryDialog = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [form] = useForm()
-  const [create, { loading, error }] = useCreateCategory();
+  const init = useInit();
+  const [create, { loading, error }] = useCreateCategory({
+    onCompleted:(data:IPageList)=>{
+      init(data)
+    }
+  });
 
   useShowError(error);
 
@@ -51,6 +58,7 @@ const CreateCategoryDialog = memo(() => {
         okText={getLocalMessage("Confirm")}
         onCancel={handleCancel}
         onOk={handleConfirm}
+        confirmLoading={loading}
       >
         <Form
           name="addCategory"
