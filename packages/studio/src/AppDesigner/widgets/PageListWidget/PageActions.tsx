@@ -23,6 +23,7 @@ const PageActions = memo((
 
   const menu = useMemo(() => (
     <Menu
+      onClick={e => e.domEvent.stopPropagation()}
       items={[
         {
           icon: <FileAddOutlined />,

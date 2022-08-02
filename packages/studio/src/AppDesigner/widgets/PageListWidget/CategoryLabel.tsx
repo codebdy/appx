@@ -49,16 +49,20 @@ const CategoryLabel = (
       }
     >
       {category.title}
-      <EditCategoryDialog
-        category={category}
-        isModalVisible={modalOpen}
-        onClose={handleCloseModal}
-      />
-      <CreatePageModal
-        category={category}
-        isModalVisible={pageModalOpen}
-        onClose={handleClosePageModal}
-      />
+      <div
+        onClick={e => e.stopPropagation()}
+      >
+        <EditCategoryDialog
+          category={category}
+          isModalVisible={modalOpen}
+          onClose={handleCloseModal}
+        />
+        <CreatePageModal
+          category={category}
+          isModalVisible={pageModalOpen}
+          onClose={handleClosePageModal}
+        />
+      </div>
     </TreeNodeLabel>
   )
 }
