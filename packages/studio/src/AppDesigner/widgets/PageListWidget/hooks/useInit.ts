@@ -33,7 +33,9 @@ export function useInit() {
       (node: IListNode) => node.nodeType &&
         (
           node.nodeType === ListNodeType.Category ||
-          (node.nodeType === ListNodeType.Page && pages.find(page => page.id === node.pageId)
+          (node.nodeType === ListNodeType.Page &&
+            node.pageId &&
+            pages.find(page => page.id === node.pageId)
           )
         )
     )
@@ -46,8 +48,8 @@ export function useInit() {
       if (!pageIsInSchema(page.id)) {
         nodes.push({
           title: page.title,
+          pageId: page.id,
           nodeType: ListNodeType.Page,
-          children: []
         })
       }
     }

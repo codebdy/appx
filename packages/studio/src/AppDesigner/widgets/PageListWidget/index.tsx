@@ -57,7 +57,6 @@ const PageListWidget = memo(() => {
   const { pageList, loading, error } = usePageList()
   const { pages, loading: pagesLoading, error: pagesError } = usePages();
   const init = useInit()
-  console.log("哈哈", nodes)
   useEffect(() => {
     setPages(pages || []);
   }, [pages, setPages])
@@ -73,7 +72,6 @@ const PageListWidget = memo(() => {
     for (const node of nodes) {
       if (node.nodeType === ListNodeType.Page) {
         const page = getPage(node.pageId)
-        console.log("呵呵呵page",node.pageId, page);
         dataNodes.push({
           title: page?.title,
           key: node.pageId,
