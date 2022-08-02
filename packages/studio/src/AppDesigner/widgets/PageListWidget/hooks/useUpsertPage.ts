@@ -18,26 +18,38 @@ export function useUpsertPage(options?: IPostOptions<any>): [
   const categoryUuidRef = useRef<string | undefined>();
   const nodes = useRecoilValue(nodesState(key))
   const pageList = useRecoilValue(pageListState(key));
+  const isInsertRef = useRef<boolean>(false);
+
   const [postList, { error: listError, loading: listLoading }] = usePostOne<IPageListInput, IPageList>("PageList",
-    { 
+    {
       ...options,
       fieldsGql: "app{id uuid} schemaJson",
-     }
+    }
   )
 
   const [post, { error, loading }] = usePostOne<IPageInput, IPage>("Page",
     {
       onCompleted: (page?: IPage) => {
         const newNodes = JSON.parse(JSON.stringify(nodes));
-        setPages((pages) => [...pages, page]);
+        setPages((pages) => {
+          if (!isInsertRef.current) {
+            return pages.map(pg => pg.id === page.id ? page : pg)
+          } else {
+            return [...pages, page];
+          }
+        });
         if (categoryUuidRef.current) {
-          for (const node of newNodes) {
-            if (node.uuid === categoryUuidRef.current) {
-              node.children = [...node.children, page.id];
+          if (isInsertRef.current) {
+            for (const node of newNodes) {
+              if (node.uuid === categoryUuidRef.current) {
+                node.children = [...node.children, page.id];
+              }
             }
           }
         } else {
-          newNodes.push({ pageId: page.id, nodeType: ListNodeType.Page })
+          if (isInsertRef.current) {
+            newNodes.push({ pageId: page.id, nodeType: ListNodeType.Page })
+          }
         }
         postList({
           ...pageList,
@@ -53,6 +65,7 @@ export function useUpsertPage(options?: IPostOptions<any>): [
   )
 
   const upsert = useCallback((page: IPageInput, categoryUuid?: string) => {
+    isInsertRef.current = !page.id;
     categoryUuidRef.current = categoryUuid;
     post({
       ...page,
