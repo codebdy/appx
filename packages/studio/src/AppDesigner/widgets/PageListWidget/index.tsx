@@ -68,7 +68,6 @@ const PageListWidget = memo(() => {
   }, [getPage, nodes])
 
   const onSelect = (selectedKeys) => {
-    console.log("哈哈", selectedKeys);
     const page = getPage(selectedKeys?.[0]);
     setSelectedPageId(page?.id);
   };
