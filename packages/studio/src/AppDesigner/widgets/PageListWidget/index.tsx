@@ -42,7 +42,7 @@ const PageListWidget = memo(() => {
       if (node.nodeType === ListNodeType.Page) {
         const page = getPage(node.pageId)
         dataNodes.push({
-          title: <PageLabel page={page} />,
+          title: page && <PageLabel page={page} />,
           key: node.pageId,
           isLeaf: true,
         })
@@ -53,7 +53,7 @@ const PageListWidget = memo(() => {
           children: node?.children.map((childId) => {
             const page = getPage(childId)
             return {
-              title: <PageLabel page={page} categoryUuid={node.uuid} />,
+              title: page && <PageLabel page={page} categoryUuid={node.uuid} />,
               key: node.pageId,
               isLeaf: true,
             }

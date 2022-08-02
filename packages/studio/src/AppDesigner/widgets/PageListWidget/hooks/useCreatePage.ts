@@ -19,7 +19,10 @@ export function useCreatePage(options?: IPostOptions<any>): [
   const nodes = useRecoilValue(nodesState(key))
   const pageList = useRecoilValue(pageListState(key));
   const [postList, { error: listError, loading: listLoading }] = usePostOne<IPageListInput, IPageList>("PageList",
-    { ...options, fieldsGql: "app{id uuid} schemaJson" }
+    { 
+      ...options,
+      fieldsGql: "app{id uuid} schemaJson",
+     }
   )
 
   const [post, { error, loading }] = usePostOne<IPageInput, IPage>("Page",

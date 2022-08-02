@@ -57,13 +57,12 @@ const PageActions = memo((
           key: '2',
           onClick: (e => {
             e.domEvent.stopPropagation();
-            onVisibleChange(false);
             handleDelete();
           })
         },
       ]}
     />
-  ), [handleDelete, handleEdit, onVisibleChange]);
+  ), [handleDelete, handleEdit]);
 
   return (
     <Dropdown
