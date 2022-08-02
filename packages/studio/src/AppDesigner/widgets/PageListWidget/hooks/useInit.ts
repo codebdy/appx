@@ -14,7 +14,7 @@ export function useInit() {
 
   const init = useCallback((pageList?: IPageList) => {
     setPageList(pageList);
-    const nodes: IListNode[] = pageList?.schemaJson?.data || []
+    const nodes: IListNode[] = JSON.parse(JSON.stringify(pageList?.schemaJson?.data || []))
     const pageIsInSchema = (pageId: ID) => {
       for (const nd of nodes) {
         if (nd.pageId === pageId) {
