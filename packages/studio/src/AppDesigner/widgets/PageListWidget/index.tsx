@@ -1,7 +1,7 @@
 import { Spin, Tree } from 'antd';
 import React, { memo, useCallback, useEffect } from 'react';
 import "./index.less"
-import { DataNode } from 'antd/lib/tree';
+import { DataNode, TreeProps } from 'antd/lib/tree';
 import CreateCategoryDialog from './CreateCategoryDialog';
 import CreatePageDialog from './CreatePageDialog';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
@@ -16,6 +16,7 @@ import CategoryLabel from './CategoryLabel';
 import { usePages } from './hooks/usePages';
 import PageLabel from './PageLabel';
 import { selectedPageIdState } from '../../recoil/atom';
+import { useGetPageCategory } from './hooks/useGetPageCategory';
 
 const { DirectoryTree } = Tree;
 
@@ -24,6 +25,7 @@ const PageListWidget = memo(() => {
   const setPages = useSetRecoilState(pagesState(key));
   const nodes = useRecoilValue(nodesState(key));
   const getPage = useGetPage(key);
+  const getPageCategory = useGetPageCategory();
   const { pageList, loading, error } = usePageList()
   const { pages, loading: pagesLoading, error: pagesError } = usePages();
   const [selectedPageId, setSelectedPageId] = useRecoilState(selectedPageIdState(key));
@@ -72,6 +74,38 @@ const PageListWidget = memo(() => {
     setSelectedPageId(page?.id);
   };
 
+  const onDragEnter: TreeProps['onDragEnter'] = info => {
+    console.log(info);
+    // expandedKeys 需要受控时设置
+    // setExpandedKeys(info.expandedKeys)
+  };
+
+  const onDrop: TreeProps['onDrop'] = info => {
+    console.log(info);
+    const dropKey = info.node.key;
+    const dragKey = info.dragNode.key;
+    const dropPos = info.node.pos.split('-');
+    const dropPosition = info.dropPosition - Number(dropPos[dropPos.length - 1]);
+
+    const loop = (
+      data: DataNode[],
+      key: React.Key,
+      callback: (node: DataNode, i: number, data: DataNode[]) => void,
+    ) => {
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].key === key) {
+          return callback(data[i], i, data);
+        }
+        if (data[i].children) {
+          loop(data[i].children!, key, callback);
+        }
+      }
+    };
+
+    //setGData(data);
+  };
+
+
   return (
     <Spin spinning={loading || pagesLoading}>
       <div className='page-list-shell'>
@@ -82,7 +116,22 @@ const PageListWidget = memo(() => {
         <DirectoryTree
           className='page-list-tree'
           selectedKeys={[selectedPageId]}
-          allowDrop={() => {
+          allowDrop={(options) => {
+            if(!options.dragNode.isLeaf){
+              if (options.dropPosition === 0){
+                return false;
+              }
+
+              if (getPageCategory(options.dropNode?.key as any)){
+                return false;
+              }
+            }else{
+              if(options.dropNode.isLeaf){
+                if (options.dropPosition === 0){
+                  return false;
+                }
+              }
+            }
             return true
           }}
           draggable={
@@ -90,7 +139,8 @@ const PageListWidget = memo(() => {
               return true
             }
           }
-          //defaultExpandAll
+          onDragEnter={onDragEnter}
+          onDrop={onDrop}
           onSelect={onSelect}
           treeData={getTreeData()}
         />
