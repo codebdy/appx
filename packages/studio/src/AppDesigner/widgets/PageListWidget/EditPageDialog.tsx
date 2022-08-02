@@ -3,14 +3,16 @@ import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React, { useCallback } from "react";
 import { memo } from "react";
 import PageForm from "./PageForm";
+import { IPage } from "../../../model";
 
 const EditPageDialog = memo((
   props: {
+    page:IPage
     isModalVisible: boolean,
     onClose:()=>void,
   }
 ) => {
-  const { isModalVisible, onClose } = props;
+  const { page, isModalVisible, onClose } = props;
   const [form] = Form.useForm()
 
 

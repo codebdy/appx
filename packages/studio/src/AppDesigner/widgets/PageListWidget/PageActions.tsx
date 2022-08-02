@@ -1,21 +1,21 @@
-import { MoreOutlined, FileAddOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { MoreOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Button } from "antd";
 import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React, { memo, useCallback, useMemo } from "react"
+import { ID } from "../../../shared";
 
 const PageActions = memo((
   props: {
+    pageId: ID,
     onVisibleChange: (visible: boolean) => void,
+    onEdit: () => void,
   }
 ) => {
-  const { onVisibleChange } = props;
-  const handleAdd = useCallback(() => {
-
-  }, []);
-
+  const { pageId, onVisibleChange, onEdit } = props;
   const handleEdit = useCallback(() => {
-
-  }, []);
+    onEdit();
+    onVisibleChange(false);
+  }, [onEdit, onVisibleChange]);
 
   const handleDelete = useCallback(() => {
 
@@ -25,16 +25,6 @@ const PageActions = memo((
     <Menu
       onClick={e => e.domEvent.stopPropagation()}
       items={[
-        {
-          icon: <FileAddOutlined />,
-          label: getLocalMessage("pages.NewPage"),
-          key: '0',
-          onClick: (e => {
-            e.domEvent.stopPropagation();
-            onVisibleChange(false);
-            handleAdd();
-          })
-        },
         {
           icon: <EditOutlined />,
           label: getLocalMessage("Edit"),
@@ -56,7 +46,7 @@ const PageActions = memo((
         },
       ]}
     />
-  ), [handleAdd, handleDelete, handleEdit, onVisibleChange]);
+  ), [handleDelete, handleEdit, onVisibleChange]);
 
   return (
     <Dropdown
