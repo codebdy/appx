@@ -1,8 +1,14 @@
-import { MoreOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { MoreOutlined, EditOutlined, DeleteOutlined, LoadingOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Button } from "antd";
 import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React, { memo, useCallback, useMemo } from "react"
 import { ID } from "../../../shared";
+import { useDeletePage } from "./hooks/useDeletePage";
+import { IPage } from "../../../model";
+import { useShowError } from "../../../hooks/useShowError";
+import { useSetRecoilState } from "recoil";
+import { pagesState } from "./recoil/atoms";
+import { useDesingerKey } from "../../context";
 
 const PageActions = memo((
   props: {
@@ -12,14 +18,25 @@ const PageActions = memo((
   }
 ) => {
   const { pageId, onVisibleChange, onEdit } = props;
+  const key = useDesingerKey();
+  const setPages = useSetRecoilState(pagesState(key))
+  const [remove, { loading, error }] = useDeletePage({
+    onCompleted: (data: IPage) => {
+      onVisibleChange(false);
+      setPages((pages) => pages.filter(page => page.id !== data?.id));
+    }
+  });
+
+  useShowError(error);
+
   const handleEdit = useCallback(() => {
     onEdit();
     onVisibleChange(false);
   }, [onEdit, onVisibleChange]);
 
   const handleDelete = useCallback(() => {
-
-  }, []);
+    remove(pageId);
+  }, [pageId, remove]);
 
   const menu = useMemo(() => (
     <Menu
@@ -53,9 +70,15 @@ const PageActions = memo((
       overlay={menu}
       trigger={['click']}
       onVisibleChange={onVisibleChange}
+      disabled={loading}
     >
       <Button shape='circle' type="text" size='small' onClick={e => e.stopPropagation()}>
-        <MoreOutlined />
+        {
+          loading ?
+            <LoadingOutlined />
+            : <MoreOutlined />
+        }
+
       </Button>
     </Dropdown>
   )
