@@ -18,7 +18,7 @@ export type QueryResponse<T> = {
   error?: Error;
 }
 
-export function useQuery<T>(gql: string | undefined, entityNames?: string[]): QueryResponse<T> {
+export function useQuery<T>(gql: string | undefined, params: any = {}, entityNames?: string[]): QueryResponse<T> {
   const [revalidating, setRevalidating] = useState<boolean>();
   const loadedRef = useRef(false);
   const endpoint = useEndpoint();
@@ -37,13 +37,13 @@ export function useQuery<T>(gql: string | undefined, entityNames?: string[]): Qu
       return
     }
     loadedRef.current = true;
-    doLoad(gql)
-  }, [doLoad, endpoint, gql]);
+    doLoad(gql, params)
+  }, [doLoad, endpoint, gql, params]);
 
   const refresh = useCallback(() => {
     setRevalidating(true)
-    doLoad(gql)
-  }, [doLoad, gql])
+    doLoad(gql, params)
+  }, [doLoad, gql, params])
 
   const eventHandler = useCallback((event: CustomEvent) => {
     if (entityNames?.find(entity => entity === event.detail?.entity)) {

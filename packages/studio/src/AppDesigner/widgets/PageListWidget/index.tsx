@@ -5,7 +5,7 @@ import { DataNode } from 'antd/lib/tree';
 import { EditOutlined } from '@ant-design/icons';
 import CreateCategoryDialog from './CreateCategoryDialog';
 import CreatePageDialog from './CreatePageDialog';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { nodesState, pagesState } from './recoil/atoms';
 import { useDesingerKey } from '../../context';
 import { ListNodeType } from './recoil/IListNode';
@@ -14,6 +14,7 @@ import { usePageList } from './hooks/usePageList';
 import { useInit } from './hooks/useInit';
 import { useShowError } from '../../../hooks/useShowError';
 import CategoryLabel from './CategoryLabel';
+import { usePages } from './hooks/usePages';
 
 const { DirectoryTree } = Tree;
 
@@ -51,12 +52,17 @@ const treeData: DataNode[] = [
 const PageListWidget = memo(() => {
   const key = useDesingerKey();
   const setPages = useSetRecoilState(pagesState(key));
-  const [nodes, setNodes] = useRecoilState(nodesState(key));
+  const nodes = useRecoilValue(nodesState(key));
   const getPage = useGetPage(key);
   const { pageList, loading, error } = usePageList()
+  const { pages, loading: pagesLoading, error: pagesError } = usePages();
   const init = useInit()
 
-  useShowError(error);
+  useEffect(() => {
+    setPages(pages || []);
+  }, [pages, setPages])
+
+  useShowError(error || pagesError);
 
   useEffect(() => {
     init(pageList);
@@ -96,7 +102,7 @@ const PageListWidget = memo(() => {
   };
 
   return (
-    <Spin spinning={loading}>
+    <Spin spinning={loading || pagesLoading}>
       <div className='page-list-shell'>
         <div className="page-list-action">
           <CreateCategoryDialog />

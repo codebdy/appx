@@ -1,9 +1,9 @@
 import { gql } from "awesome-graphql-client";
 import { useQueryOne } from "../../../../enthooks/hooks/useQueryOne";
-import { IPageList } from "packages/studio/src/model";
+import { IPageList } from "../../../../model";
 import { useDesignerParams } from "../../../context";
 
-const appsGql = gql`
+const listGql = gql`
 query queryPageList($appUuid:String!, $device:String!){
   onePageList(where:{
     _and:[
@@ -35,7 +35,7 @@ export function usePageList() {
   const params = useDesignerParams();
 
   const { data, error, loading } = useQueryOne<IPageList>(
-    appsGql,
+    listGql,
     { device: params.device, appUuid: params.app.uuid },
     ["PageList"]
   )

@@ -11,7 +11,7 @@ export function useInit() {
   const setPageList = useSetRecoilState(pageListState(key));
   const pages = useRecoilValue(pagesState(key));
   const setNodes = useSetRecoilState(nodesState(key));
-
+  console.log("哈哈", pages)
   const init = useCallback((pageList?: IPageList) => {
     setPageList(pageList);
     const nodes: IListNode[] = JSON.parse(JSON.stringify(pageList?.schemaJson?.data || []))
