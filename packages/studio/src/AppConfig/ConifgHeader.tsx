@@ -39,7 +39,7 @@ const ConifgHeader = memo((props: {
           },
           {
             key: AppConfigRouts.App,
-            label: getLocalMessage("AppConfig.AplicationDesign"),
+            label: getLocalMessage("AppConfig.UIDesign"),
           },
           {
             key: AppConfigRouts.Flow,
