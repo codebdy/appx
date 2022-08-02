@@ -1,23 +1,17 @@
-import { usePostOne } from "../../../../enthooks/hooks/usePostOne";
-import { IPageListInput } from "../../../../model/input";
 import { useRecoilValue } from "recoil";
 import { IDeleteOptions, useDeleteById } from "../../../../enthooks/hooks/useDeleteById";
-import { IPage, IPageList } from "../../../../model";
+import { IPage } from "../../../../model";
 import { useDesignerParams, useDesingerKey } from "../../../context";
 import { nodesState, pageListState } from "../recoil/atoms";
 import { IListNode } from "../recoil/IListNode";
+import { usePostPageList } from "./usePostPageList";
 
 export function useDeletePage(options?: IDeleteOptions<IPage>) {
   const key = useDesingerKey();
   const params = useDesignerParams();
   const nodes = useRecoilValue(nodesState(key))
   const pageList = useRecoilValue(pageListState(key));
-  const [postList, { error: listError, loading: listLoading }] = usePostOne<IPageListInput, IPageList>("PageList",
-    {
-      ...options,
-      fieldsGql: "app{id uuid} schemaJson",
-    }
-  )
+  const [postList, { error: listError, loading: listLoading }] = usePostPageList(options)
 
   const [doDelete, { error, loading }] = useDeleteById<IPage>("Page", {
     ...options,

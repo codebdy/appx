@@ -5,9 +5,9 @@ import { DataNode, TreeProps } from 'antd/lib/tree';
 import CreateCategoryDialog from './CreateCategoryDialog';
 import CreatePageDialog from './CreatePageDialog';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { nodesState, pagesState } from './recoil/atoms';
-import { useDesingerKey } from '../../context';
-import { ListNodeType } from './recoil/IListNode';
+import { nodesState, pageListState, pagesState } from './recoil/atoms';
+import { useDesignerParams, useDesingerKey } from '../../context';
+import { IListNode, ListNodeType } from './recoil/IListNode';
 import { useGetPage } from './hooks/useGetPage';
 import { usePageList } from './hooks/usePageList';
 import { useInit } from './hooks/useInit';
@@ -17,25 +17,29 @@ import { usePages } from './hooks/usePages';
 import PageLabel from './PageLabel';
 import { selectedPageIdState } from '../../recoil/atom';
 import { useGetPageCategory } from './hooks/useGetPageCategory';
+import { usePostPageList } from './hooks/usePostPageList';
 
 const { DirectoryTree } = Tree;
 
 const PageListWidget = memo(() => {
   const key = useDesingerKey();
   const setPages = useSetRecoilState(pagesState(key));
-  const nodes = useRecoilValue(nodesState(key));
+  const params = useDesignerParams();
+  const nodes = useRecoilValue(nodesState(key))
+  const pageList2 = useRecoilValue(pageListState(key));
   const getPage = useGetPage(key);
   const getPageCategory = useGetPageCategory();
   const { pageList, loading, error } = usePageList()
   const { pages, loading: pagesLoading, error: pagesError } = usePages();
   const [selectedPageId, setSelectedPageId] = useRecoilState(selectedPageIdState(key));
+  const [post, { error: postError, loading: posting }] = usePostPageList()
 
   const init = useInit()
   useEffect(() => {
     setPages(pages || []);
   }, [pages, setPages])
 
-  useShowError(error || pagesError);
+  useShowError(error || pagesError || postError);
 
   useEffect(() => {
     init(pageList);
@@ -74,34 +78,70 @@ const PageListWidget = memo(() => {
     setSelectedPageId(page?.id);
   };
 
-  const onDrop: TreeProps['onDrop'] = info => {
+  const onDrop: TreeProps['onDrop'] = useCallback(info => {
     console.log(info);
-    const dropKey = info.node.key;
     const dragKey = info.dragNode.key;
+    const dropKey = info.node.key;
     const dropPos = info.node.pos.split('-');
     const dropPosition = info.dropPosition - Number(dropPos[dropPos.length - 1]);
+    let newNodes: IListNode[] = JSON.parse(JSON.stringify(nodes || []));
 
-    const loop = (
-      data: DataNode[],
-      key: React.Key,
-      callback: (node: DataNode, i: number, data: DataNode[]) => void,
-    ) => {
-      for (let i = 0; i < data.length; i++) {
-        if (data[i].key === key) {
-          return callback(data[i], i, data);
-        }
-        if (data[i].children) {
-          loop(data[i].children!, key, callback);
+    const draggedNode = newNodes.find(node => node.uuid === dragKey || node.pageId === dragKey);
+    let draggedPageId = "";
+
+    //从根目录删除被拖拽的节点
+    if (draggedNode) {
+      newNodes = newNodes.filter(node => !(node.uuid === dragKey || node.pageId === dragKey));
+    }
+
+    for (const node of newNodes) {
+      for (const childId of node.children || []) {
+        if (childId === dragKey) {
+          draggedPageId = dragKey;
+          //从子目录删除被拖拽的节点
+          node.children = node.children.filter(id => id !== dragKey)
+          break;
         }
       }
+    }
+    const theNode = draggedNode ? draggedNode : {
+      pageId: draggedPageId,
+      nodeType: ListNodeType.Page,
     };
+    const theId = draggedNode ? draggedNode.pageId : draggedPageId;
 
-    //setGData(data);
-  };
+    for (let i = 0; i < newNodes.length; i++) {
+      const node = newNodes[i];
+      if (node.pageId === dropKey || node.uuid === dropKey) {
+
+        if (dropPosition === -1 || dropPosition === 1) {
+          newNodes.splice(i + dropPosition, 0, theNode)
+        } else {
+          node.children = [theId, ...node.children]
+        }
+        break;
+      }
+
+      for (let j = 0; j < node.children?.length || 0; j++) {
+        if (node.children[i] === theId) {
+          node.children.splice(i + dropPosition, 0, theId)
+        }
+      }
+    }
+
+    post({
+      ...pageList2,
+      device: params.device,
+      app: {
+        sync: { id: params.app.id }
+      },
+      schemaJson: { data: newNodes },
+    })
+  }, [nodes, pageList2, params.app.id, params.device, post]);
 
 
   return (
-    <Spin spinning={loading || pagesLoading}>
+    <Spin spinning={loading || pagesLoading || posting}>
       <div className='page-list-shell'>
         <div className="page-list-action">
           <CreateCategoryDialog />
@@ -111,16 +151,16 @@ const PageListWidget = memo(() => {
           className='page-list-tree'
           selectedKeys={[selectedPageId]}
           allowDrop={(options) => {
-            if(!options.dragNode.isLeaf){
-              if (options.dropPosition === 0){
+            if (!options.dragNode.isLeaf) {
+              if (options.dropPosition === 0) {
                 return false;
               }
-              if (getPageCategory(options.dropNode?.key as any)){
+              if (getPageCategory(options.dropNode?.key as any)) {
                 return false;
               }
-            }else{
-              if(options.dropNode.isLeaf){
-                if (options.dropPosition === 0){
+            } else {
+              if (options.dropNode.isLeaf) {
+                if (options.dropPosition === 0) {
                   return false;
                 }
               }

@@ -1,12 +1,11 @@
 import { createUuid } from "../../../../shared";
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
-import { IPostOptions, usePostOne } from "../../../../enthooks/hooks/usePostOne";
-import { IPageList } from "../../../../model";
-import { IPageListInput } from "../../../../model/input";
+import { IPostOptions } from "../../../../enthooks/hooks/usePostOne";
 import { useDesignerParams, useDesingerKey } from "../../../context";
 import { nodesState, pageListState } from "../recoil/atoms";
 import { IListNode, ListNodeType } from "../recoil/IListNode";
+import { usePostPageList } from "./usePostPageList";
 
 export function useCreateCategory(options?: IPostOptions<any>): [
   (title: string) => void,
@@ -16,9 +15,7 @@ export function useCreateCategory(options?: IPostOptions<any>): [
   const params = useDesignerParams();
   const nodes = useRecoilValue(nodesState(key))
   const pageList = useRecoilValue(pageListState(key));
-  const [post, { error, loading }] = usePostOne<IPageListInput, IPageList>("PageList",
-    { ...options, fieldsGql: "app{id uuid} schemaJson" }
-  )
+  const [post, { error, loading }] = usePostPageList(options)
 
   const create = useCallback((title: string) => {
     const newNode: IListNode = {

@@ -1,11 +1,9 @@
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
-import { IPostOptions, usePostOne } from "../../../../enthooks/hooks/usePostOne";
-import { IPageList } from "../../../../model";
-import { IPageListInput } from "../../../../model/input";
+import { IPostOptions } from "../../../../enthooks/hooks/usePostOne";
 import { useDesignerParams, useDesingerKey } from "../../../context";
 import { nodesState, pageListState } from "../recoil/atoms";
-import { useInit } from "./useInit";
+import { usePostPageList } from "./usePostPageList";
 
 export function useUpdateCategory(options?: IPostOptions<any>): [
   (uuid: string, title: string) => void,
@@ -15,17 +13,7 @@ export function useUpdateCategory(options?: IPostOptions<any>): [
   const params = useDesignerParams();
   const nodes = useRecoilValue(nodesState(key))
   const pageList = useRecoilValue(pageListState(key));
-  const init = useInit();
-
-  const [post, { error, loading }] = usePostOne<IPageListInput, IPageList>("PageList",
-    {
-      onCompleted: (data: IPageList) => {
-        init(data);
-        options && options.onCompleted(data);
-      }
-      , fieldsGql: "app{id uuid} schemaJson"
-    }
-  )
+  const [post, { error, loading }] = usePostPageList(options)
 
   const update = useCallback((uuid: string, title: string) => {
     post({
