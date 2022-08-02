@@ -4,7 +4,6 @@ import React, { useCallback } from "react";
 import { memo } from "react";
 import { useShowError } from "../../../hooks/useShowError";
 import { IPageList } from "../../../model";
-import { useInit } from "./hooks/useInit";
 import CategoryForm from "./CategoryForm";
 import { IListNode } from "./recoil/IListNode";
 import { useUpdateCategory } from "./hooks/useUpdateCategory";
@@ -19,10 +18,8 @@ const EditCategoryDialog = memo((
   const { category, isModalVisible, onClose } = props;
 
   const [form] = Form.useForm()
-  const init = useInit();
   const [update, { loading, error }] = useUpdateCategory({
     onCompleted: (data: IPageList) => {
-      init(data);
       form.resetFields();
       onClose();
     }

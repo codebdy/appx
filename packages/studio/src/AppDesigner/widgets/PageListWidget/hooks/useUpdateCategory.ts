@@ -5,6 +5,7 @@ import { IPageList } from "../../../../model";
 import { IPageListInput } from "../../../../model/input";
 import { useDesignerParams, useDesingerKey } from "../../../context";
 import { nodesState, pageListState } from "../recoil/atoms";
+import { useInit } from "./useInit";
 
 export function useUpdateCategory(options?: IPostOptions<any>): [
   (uuid: string, title: string) => void,
@@ -14,8 +15,16 @@ export function useUpdateCategory(options?: IPostOptions<any>): [
   const params = useDesignerParams();
   const nodes = useRecoilValue(nodesState(key))
   const pageList = useRecoilValue(pageListState(key));
+  const init = useInit();
+
   const [post, { error, loading }] = usePostOne<IPageListInput, IPageList>("PageList",
-    { ...options, fieldsGql: "app{id uuid} schemaJson" }
+    {
+      onCompleted: (data: IPageList) => {
+        init(data);
+        options && options.onCompleted(data);
+      }
+      , fieldsGql: "app{id uuid} schemaJson"
+    }
   )
 
   const update = useCallback((uuid: string, title: string) => {

@@ -9,7 +9,7 @@ import { nodesState, pageListState } from "../recoil/atoms";
 import { IListNode, ListNodeType } from "../recoil/IListNode";
 
 export function useCreateCategory(options?: IPostOptions<any>): [
-  (name: string) => void,
+  (title: string) => void,
   { loading?: boolean; error?: Error }
 ] {
   const key = useDesingerKey();

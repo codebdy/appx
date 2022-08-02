@@ -4,6 +4,8 @@ import React, { useCallback } from "react";
 import { memo } from "react";
 import PageForm from "./PageForm";
 import { IListNode } from "./recoil/IListNode";
+import { useCreatePage } from "./hooks/useCreatePage";
+import { useShowError } from "../../../hooks/useShowError";
 
 const CreatePageModal = memo((
   props:{
@@ -13,12 +15,19 @@ const CreatePageModal = memo((
   }
 ) => {
   const {category, isModalVisible, onClose} = props;
-  const [form] = Form.useForm()
+  const [form] = Form.useForm();
+  const [createPage, {loading, error}] = useCreatePage({
+    onCompleted:()=>{
+      onClose();
+    }
+  });
 
+  useShowError(error);
 
   const handleConfirm = useCallback((values: any) => {
     form.validateFields();
-  }, [form]);
+    createPage(values.title, values.categoryUuid);
+  }, [createPage, form]);
 
   const handleCancel = useCallback((values: any) => {
     form.resetFields();
@@ -35,6 +44,7 @@ const CreatePageModal = memo((
       okText={getLocalMessage("Confirm")}
       onCancel={handleCancel}
       onOk={handleConfirm}
+      confirmLoading = {loading}
     >
       <PageForm category={category} form={form} />
     </Modal>
