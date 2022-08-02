@@ -42,10 +42,6 @@ const ConifgHeader = memo((props: {
             label: getLocalMessage("AppConfig.UIDesign"),
           },
           {
-            key: AppConfigRouts.Flow,
-            label: getLocalMessage("AppConfig.FlowDesign"),
-          },
-          {
             key: AppConfigRouts.Model,
             label: getLocalMessage("AppConfig.DomainModel"),
           },
@@ -56,6 +52,10 @@ const ConifgHeader = memo((props: {
           {
             key: AppConfigRouts.Auth,
             label: getLocalMessage("AppConfig.ModelAuth"),
+          },
+          {
+            key: AppConfigRouts.Flow,
+            label: getLocalMessage("AppConfig.FlowDesign"),
           },
         ]}
       />
