@@ -1,8 +1,7 @@
-import { Button, Spin, Tree } from 'antd';
+import { Spin, Tree } from 'antd';
 import React, { memo, useCallback, useEffect } from 'react';
 import "./index.less"
 import { DataNode } from 'antd/lib/tree';
-import { EditOutlined } from '@ant-design/icons';
 import CreateCategoryDialog from './CreateCategoryDialog';
 import CreatePageDialog from './CreatePageDialog';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
