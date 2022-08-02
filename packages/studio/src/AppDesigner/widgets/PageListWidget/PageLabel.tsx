@@ -7,7 +7,7 @@ import EditPageDialog from "./EditPageDialog"
 const PageLabel = (
   props: {
     page: IPage,
-    categoryUuid?: string, 
+    categoryUuid?: string,
   }
 ) => {
   const { page, categoryUuid } = props;
@@ -35,7 +35,11 @@ const PageLabel = (
         />
       }>
       {page.title}
-      <EditPageDialog page={page} categoryUuid={categoryUuid} isModalVisible={modalOpen} onClose={handleClose} />
+      <div
+        onClick={e => e.stopPropagation()}
+      >
+        <EditPageDialog page={page} categoryUuid={categoryUuid} isModalVisible={modalOpen} onClose={handleClose} />
+      </div>
     </TreeNodeLabel>
   )
 }
