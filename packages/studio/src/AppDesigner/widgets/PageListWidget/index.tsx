@@ -26,7 +26,7 @@ const PageListWidget = memo(() => {
   const setPages = useSetRecoilState(pagesState(key));
   const params = useDesignerParams();
   const nodes = useRecoilValue(nodesState(key))
-  const pageList2 = useRecoilValue(pageListState(key));
+  const pageListGlabal = useRecoilValue(pageListState(key));
   const getPage = useGetPage(key);
   const getPageCategory = useGetPageCategory();
   const { pageList, loading, error } = usePageList()
@@ -131,14 +131,14 @@ const PageListWidget = memo(() => {
     }
 
     post({
-      ...pageList2,
+      ...pageListGlabal,
       device: params.device,
       app: {
         sync: { id: params.app.id }
       },
       schemaJson: { data: newNodes },
     })
-  }, [nodes, pageList2, params.app.id, params.device, post]);
+  }, [nodes, pageListGlabal, params.app.id, params.device, post]);
 
 
   return (
