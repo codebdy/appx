@@ -31,11 +31,18 @@ import { Designer, Workspace } from './containers'
 import PageListWidget from './widgets/PageListWidget'
 import { useDesignerParams } from './context'
 import { useSelectedPageId } from './hooks/useSelectedPageId'
+import MenuEditWidget from './widgets/MenuEditWidget'
 
+export enum DesignerRoutes {
+  Pages = "pages",
+  Components = "coms",
+  OutlinedTree = "outlinedTree",
+  Menu = "menu",
+}
 
 const AppDesignerContent = memo(() => {
   const app = useDesignerParams().app;
-  const [activeKey, setActiveKey] = useState<string>("pages");
+  const [activeKey, setActiveKey] = useState<string>(DesignerRoutes.Pages);
 
   const pageId = useSelectedPageId();
 
@@ -61,6 +68,7 @@ const AppDesignerContent = memo(() => {
     setActiveKey(activeKey)
   }, []);
 
+
   return (
     <Designer engine={engine}>
       <StudioPanel logo={<NavigationWidget app={app} />}
@@ -70,26 +78,26 @@ const AppDesignerContent = memo(() => {
       >
         <CompositePanel showNavTitle activeKey={activeKey} onChange={hanclePannelChange}>
           <CompositePanel.Item
-            key="pages"
+            key={DesignerRoutes.Pages}
             title="panels.Page" icon="Page"
           >
             <PageListWidget />
           </CompositePanel.Item>
           <CompositePanel.Item
-            key="coms"
+            key={DesignerRoutes.Components}
             title="panels.Component"
             icon="Component"
           >
             <MaterialWidget />
           </CompositePanel.Item>
           <CompositePanel.Item
-            key="outlinedTree"
+            key={DesignerRoutes.OutlinedTree}
             title="panels.OutlinedTree" icon="Outline"
           >
             <OutlineTreeWidget />
           </CompositePanel.Item>
           <CompositePanel.Item
-            key="menu"
+            key={DesignerRoutes.Menu}
             title="panels.Menu"
             icon={
               <svg style={{ width: "24px", height: "24px" }} viewBox="0 0 1024 1024">
@@ -108,7 +116,7 @@ const AppDesignerContent = memo(() => {
           </CompositePanel.Item> */}
         </CompositePanel>
         {
-          (activeKey === "pages" || activeKey === "outlinedTree" || activeKey === "coms") && pageId &&
+          (activeKey === DesignerRoutes.Pages || activeKey === DesignerRoutes.OutlinedTree || activeKey === DesignerRoutes.Components) && pageId &&
           <>
             <Workspace id="form">
               <WorkspacePanel>
@@ -146,16 +154,16 @@ const AppDesignerContent = memo(() => {
             </SettingsPanel>
           </>
         }
-        {/* {
-            activeKey === "model" && appUuid &&
-            <Workspace id="model">
-              <WorkspacePanel>
-                <ViewportPanel style={{ height: '100%' }}>
-                  <ModelsBoard appUuid={appUuid} />
-                </ViewportPanel>
-              </WorkspacePanel>
-            </Workspace>
-          } */}
+        {
+          activeKey === DesignerRoutes.Menu &&
+          <Workspace id="menu">
+            <WorkspacePanel>
+              <ViewportPanel style={{ height: '100%' }}>
+                <MenuEditWidget />
+              </ViewportPanel>
+            </WorkspacePanel>
+          </Workspace>
+        }
       </StudioPanel>
     </Designer>
   )
