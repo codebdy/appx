@@ -16,15 +16,15 @@ export interface IAppInput {
 
 export interface IPageListInput {
   id?: ID;
-  schemaJson: any;
-  device: Device;
-  app: { sync: IAppInput };
+  schemaJson?: any;
+  device?: Device;
+  app?: { sync: IAppInput };
 }
 
 export interface IPageInput {
   id?: ID;
   title: string;
   schema?: JSON;
-  device: Device;
-  app:  { sync: IAppInput };
+  device?: Device;
+  app?:  { sync: IAppInput };
 }

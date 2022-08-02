@@ -8,8 +8,8 @@ import { nodesState, pageListState, pagesState } from "../recoil/atoms";
 import { ListNodeType } from "../recoil/IListNode";
 
 
-export function useCreatePage(options?: IPostOptions<any>): [
-  (title: string, categoryUuid?: string) => void,
+export function useUpsertPage(options?: IPostOptions<any>): [
+  (page: IPageInput, categoryUuid?: string) => void,
   { loading?: boolean; error?: Error }
 ] {
   const params = useDesignerParams();
@@ -52,10 +52,10 @@ export function useCreatePage(options?: IPostOptions<any>): [
     }
   )
 
-  const create = useCallback((title: string, categoryUuid?: string) => {
+  const upsert = useCallback((page: IPageInput, categoryUuid?: string) => {
     categoryUuidRef.current = categoryUuid;
     post({
-      title: title,
+      ...page,
       device: params.device,
       app: {
         sync: { id: params.app.id }
@@ -63,5 +63,5 @@ export function useCreatePage(options?: IPostOptions<any>): [
     })
   }, [params.app.id, params.device, post]);
 
-  return [create, { error: error || listError, loading: loading || listLoading }]
+  return [upsert, { error: error || listError, loading: loading || listLoading }]
 }

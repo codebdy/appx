@@ -4,20 +4,20 @@ import React, { useCallback } from "react";
 import { memo } from "react";
 import PageForm from "./PageForm";
 import { IListNode } from "./recoil/IListNode";
-import { useCreatePage } from "./hooks/useCreatePage";
+import { useUpsertPage } from "./hooks/useUpsertPage";
 import { useShowError } from "../../../hooks/useShowError";
 
 const CreatePageModal = memo((
-  props:{
+  props: {
     category?: IListNode,
     isModalVisible: boolean,
-    onClose:()=>void,
+    onClose: () => void,
   }
 ) => {
-  const {category, isModalVisible, onClose} = props;
+  const { category, isModalVisible, onClose } = props;
   const [form] = Form.useForm();
-  const [createPage, {loading, error}] = useCreatePage({
-    onCompleted:()=>{
+  const [upsert, { loading, error }] = useUpsertPage({
+    onCompleted: () => {
       onClose();
     }
   });
@@ -25,10 +25,10 @@ const CreatePageModal = memo((
   useShowError(error);
 
   const handleConfirm = useCallback(() => {
-    form.validateFields().then((values: any)=>{
-      createPage(values.title, values.categoryUuid);
+    form.validateFields().then((values: any) => {
+      upsert({ title: values.title }, values.categoryUuid);
     });
-  }, [createPage, form]);
+  }, [upsert, form]);
 
   const handleCancel = useCallback((values: any) => {
     form.resetFields();
@@ -45,7 +45,7 @@ const CreatePageModal = memo((
       okText={getLocalMessage("Confirm")}
       onCancel={handleCancel}
       onOk={handleConfirm}
-      confirmLoading = {loading}
+      confirmLoading={loading}
     >
       <PageForm categoryUuid={category?.uuid} form={form} />
     </Modal>
