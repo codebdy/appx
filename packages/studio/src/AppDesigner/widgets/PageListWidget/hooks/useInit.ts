@@ -11,7 +11,6 @@ export function useInit() {
   const setPageList = useSetRecoilState(pageListState(key));
   const pages = useRecoilValue(pagesState(key));
   const setNodes = useSetRecoilState(nodesState(key));
-  console.log("哈哈", pages)
   const init = useCallback((pageList?: IPageList) => {
     setPageList(pageList);
     let nodes: IListNode[] = JSON.parse(JSON.stringify(pageList?.schemaJson?.data || []))
@@ -20,7 +19,7 @@ export function useInit() {
         if (nd.pageId === pageId) {
           return true;
         } else if (nd.nodeType === ListNodeType.Category) {
-          for (const pgd of nd.children||[]) {
+          for (const pgd of nd.children || []) {
             if (pgd === pageId) {
               return true;
             }
@@ -31,8 +30,12 @@ export function useInit() {
     }
 
     nodes = nodes.filter(
-      (node: IListNode) => node.nodeType === ListNodeType.Category ||
-        (node.nodeType === ListNodeType.Page && pages.find(page => page.id === node.pageId))
+      (node: IListNode) => node.nodeType &&
+        (
+          node.nodeType === ListNodeType.Category ||
+          (node.nodeType === ListNodeType.Page && pages.find(page => page.id === node.pageId)
+          )
+        )
     )
 
     for (const node of nodes) {
