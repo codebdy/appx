@@ -25,7 +25,7 @@ export function useCreatePage(options?: IPostOptions<any>): [
   const [post, { error, loading }] = usePostOne<IPageInput, IPage>("Page",
     {
       onCompleted: (page?: IPage) => {
-        const newNodes = [...nodes];
+        const newNodes = JSON.parse(JSON.stringify(nodes));
         setPages((pages) => [...pages, page]);
         if (categoryUuidRef.current) {
           for (const node of newNodes) {
