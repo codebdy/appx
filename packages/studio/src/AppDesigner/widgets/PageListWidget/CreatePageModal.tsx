@@ -47,7 +47,7 @@ const CreatePageModal = memo((
       onOk={handleConfirm}
       confirmLoading = {loading}
     >
-      <PageForm category={category} form={form} />
+      <PageForm categoryUuid={category?.uuid} form={form} />
     </Modal>
   )
 })

@@ -7,12 +7,13 @@ import { IPage } from "../../../model";
 
 const EditPageDialog = memo((
   props: {
-    page:IPage
+    page: IPage,
+    categoryUuid: string,
     isModalVisible: boolean,
-    onClose:()=>void,
+    onClose: () => void,
   }
 ) => {
-  const { page, isModalVisible, onClose } = props;
+  const { page, categoryUuid, isModalVisible, onClose } = props;
   const [form] = Form.useForm()
 
 
@@ -22,7 +23,7 @@ const EditPageDialog = memo((
 
   return (
     <Modal
-      title={getLocalMessage("pages.NewPage")}
+      title={getLocalMessage("pages.EidtPage")}
       visible={isModalVisible}
       width={580}
       cancelText={getLocalMessage("Cancel")}
@@ -30,7 +31,7 @@ const EditPageDialog = memo((
       onCancel={onClose}
       onOk={handleConfirm}
     >
-      <PageForm form={form} />
+      <PageForm page={page} categoryUuid={categoryUuid} form={form} />
     </Modal>
   )
 })

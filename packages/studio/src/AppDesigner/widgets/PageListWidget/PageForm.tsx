@@ -5,15 +5,16 @@ import { memo } from "react";
 import FormTemplates from "./FormTemplates";
 import { IPageInput } from "packages/studio/src/model/input";
 import { useCagegories } from "./hooks/useCagegories";
-import { IListNode } from "./recoil/IListNode";
+import { IPage } from "../../../model";
 const { TabPane } = Tabs;
 const { Option } = Select;
 
 const PageForm = memo((props: {
-  category?: IListNode,
+  categoryUuid?: string,
+  page?: IPage,
   form: FormInstance<IPageInput>
 }) => {
-  const { category, form } = props;
+  const { page, categoryUuid, form } = props;
   const categories = useCagegories();
 
   const handleChange = useCallback((key: string) => {
@@ -26,7 +27,7 @@ const PageForm = memo((props: {
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 16 }}
       form={form}
-      initialValues={{ categoryUuid: category?.uuid || "" }}
+      initialValues={{ title: page?.title || "", categoryUuid: categoryUuid || "" }}
       autoComplete="off"
     >
       <Row gutter={12}>
