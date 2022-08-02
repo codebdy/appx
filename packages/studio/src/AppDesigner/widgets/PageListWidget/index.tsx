@@ -75,7 +75,9 @@ const PageListWidget = memo(() => {
 
   const onSelect = (selectedKeys) => {
     const page = getPage(selectedKeys?.[0]);
-    setSelectedPageId(page?.id);
+    if (page?.id) {
+      setSelectedPageId(page?.id);
+    }
   };
 
   const onDrop: TreeProps['onDrop'] = useCallback(info => {
