@@ -15,6 +15,7 @@ import { SYSTEM_APP_UUID } from './ModelBoard/recoil/atoms';
 import ModelBoard from './ModelBoard';
 import { AppConfigRouts } from './AppConfig/AppConfigRouts';
 import DeviceList from './AppConfig/DeviceList';
+import FlowBoard from './FlowBoard';
 
 const App = memo(() => {
   useLoginCheck()
@@ -32,6 +33,7 @@ const App = memo(() => {
       <Route path="/config-app/:appUuid" element={<AppConfig />}>
         <Route path={AppConfigRouts.Base} element={<div>基础配置</div>} />
         <Route path={AppConfigRouts.App} element={<DeviceList />} />
+        <Route path={AppConfigRouts.Flow} element={<FlowBoard />} />
         <Route path={AppConfigRouts.Model} element={<ModelBoard />} />
         <Route path={AppConfigRouts.Api} element={<ApiBoard />} />
         <Route path={AppConfigRouts.Auth} element={<AuthBoard />} />

@@ -57,6 +57,7 @@ GlobalRegistry.registerDesignerLocales({
       BaseConfig: "基础配置",
       AplicationDesign: "应用设计",
       DomainModel: "领域模型",
+      FlowDesign: "流程设计",
       AppApi: "应用接口",
       ModelAuth: "模型权限"
     },
