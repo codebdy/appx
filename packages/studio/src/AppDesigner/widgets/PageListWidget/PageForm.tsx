@@ -26,6 +26,7 @@ const PageForm = memo((props: {
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 16 }}
       form={form}
+      initialValues={{ categoryUuid: category?.uuid || "" }}
       autoComplete="off"
     >
       <Row gutter={12}>
@@ -43,7 +44,7 @@ const PageForm = memo((props: {
             label={getLocalMessage("pages.SelectCategory")}
             name="categoryUuid"
           >
-            <Select defaultValue={category?.uuid || ""} onChange={handleChange}>
+            <Select onChange={handleChange}>
               <Option value=""><em>None</em></Option>
               {
                 categories.map((category) => {
