@@ -25,15 +25,16 @@ export function useCreatePage(options?: IPostOptions<any>): [
   const [post, { error, loading }] = usePostOne<IPageInput, IPage>("Page",
     {
       onCompleted: (page?: IPage) => {
+        const newNodes = [...nodes];
         setPages((pages) => [...pages, page]);
         if (categoryUuidRef.current) {
-          for(const node of nodes){
-            if (node.uuid === categoryUuidRef.current){
-              node.children.push(page.id);
+          for (const node of newNodes) {
+            if (node.uuid === categoryUuidRef.current) {
+              node.children = [...node.children, page.id];
             }
           }
-        }else{
-          nodes.push({pageId:page.id, nodeType:ListNodeType.Page})
+        } else {
+          newNodes.push({ pageId: page.id, nodeType: ListNodeType.Page })
         }
         postList({
           ...pageList,
@@ -41,7 +42,7 @@ export function useCreatePage(options?: IPostOptions<any>): [
           app: {
             sync: { id: params.app.id }
           },
-          schemaJson: { data: nodes },
+          schemaJson: { data: newNodes },
         })
       },
       fieldsGql: "id title"

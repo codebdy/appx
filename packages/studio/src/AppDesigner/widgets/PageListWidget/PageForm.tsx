@@ -32,7 +32,7 @@ const PageForm = memo((props: {
         <Col span={12}>
           <Form.Item
             label={getLocalMessage("pages.PageName")}
-            name="name"
+            name="title"
             rules={[{ required: true, message: getLocalMessage("Required") }]}
           >
             <Input />

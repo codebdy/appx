@@ -24,9 +24,10 @@ const CreatePageModal = memo((
 
   useShowError(error);
 
-  const handleConfirm = useCallback((values: any) => {
-    form.validateFields();
-    createPage(values.title, values.categoryUuid);
+  const handleConfirm = useCallback(() => {
+    form.validateFields().then((values: any)=>{
+      createPage(values.title, values.categoryUuid);
+    });
   }, [createPage, form]);
 
   const handleCancel = useCallback((values: any) => {
