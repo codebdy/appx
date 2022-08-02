@@ -24,7 +24,7 @@ export interface IPageListInput {
 export interface IPageInput {
   id?: ID;
   title: string;
-  schema: JSON;
+  schema?: JSON;
   device: Device;
-  app: IAppInput;
+  app:  { sync: IAppInput };
 }

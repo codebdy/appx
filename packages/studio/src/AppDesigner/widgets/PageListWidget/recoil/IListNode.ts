@@ -9,6 +9,6 @@ export interface IListNode {
   uuid?: string,
   nodeType: ListNodeType,
   pageId?: ID,
-  title: string,
-  children: string[],
+  title?: string,
+  children?: string[],
 }
