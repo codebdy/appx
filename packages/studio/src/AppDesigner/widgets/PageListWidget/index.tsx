@@ -4,7 +4,7 @@ import "./index.less"
 import { DataNode } from 'antd/lib/tree';
 import CreateCategoryDialog from './CreateCategoryDialog';
 import CreatePageDialog from './CreatePageDialog';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { nodesState, pagesState } from './recoil/atoms';
 import { useDesingerKey } from '../../context';
 import { ListNodeType } from './recoil/IListNode';
@@ -15,6 +15,7 @@ import { useShowError } from '../../../hooks/useShowError';
 import CategoryLabel from './CategoryLabel';
 import { usePages } from './hooks/usePages';
 import PageLabel from './PageLabel';
+import { selectedPageIdState } from '../../recoil/atom';
 
 const { DirectoryTree } = Tree;
 
@@ -25,6 +26,8 @@ const PageListWidget = memo(() => {
   const getPage = useGetPage(key);
   const { pageList, loading, error } = usePageList()
   const { pages, loading: pagesLoading, error: pagesError } = usePages();
+  const [selectedPageId, setSelectedPageId] = useRecoilState(selectedPageIdState(key));
+
   const init = useInit()
   useEffect(() => {
     setPages(pages || []);
@@ -54,7 +57,7 @@ const PageListWidget = memo(() => {
             const page = getPage(childId)
             return {
               title: page && <PageLabel page={page} categoryUuid={node.uuid} />,
-              key: node.pageId,
+              key: childId,
               isLeaf: true,
             }
           })
@@ -64,8 +67,10 @@ const PageListWidget = memo(() => {
     return dataNodes
   }, [getPage, nodes])
 
-  const onSelect = (selectedKeys, info) => {
-    console.log('selected', selectedKeys, info);
+  const onSelect = (selectedKeys) => {
+    console.log("哈哈", selectedKeys);
+    const page = getPage(selectedKeys?.[0]);
+    setSelectedPageId(page?.id);
   };
 
   return (
@@ -77,7 +82,7 @@ const PageListWidget = memo(() => {
         </div>
         <DirectoryTree
           className='page-list-tree'
-          selectedKeys={[]}
+          selectedKeys={[selectedPageId]}
           allowDrop={() => {
             return true
           }}
