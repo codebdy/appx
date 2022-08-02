@@ -74,12 +74,6 @@ const PageListWidget = memo(() => {
     setSelectedPageId(page?.id);
   };
 
-  const onDragEnter: TreeProps['onDragEnter'] = info => {
-    console.log(info);
-    // expandedKeys 需要受控时设置
-    // setExpandedKeys(info.expandedKeys)
-  };
-
   const onDrop: TreeProps['onDrop'] = info => {
     console.log(info);
     const dropKey = info.node.key;
@@ -121,7 +115,6 @@ const PageListWidget = memo(() => {
               if (options.dropPosition === 0){
                 return false;
               }
-
               if (getPageCategory(options.dropNode?.key as any)){
                 return false;
               }
@@ -139,7 +132,7 @@ const PageListWidget = memo(() => {
               return true
             }
           }
-          onDragEnter={onDragEnter}
+          //onDragEnter={onDragEnter}
           onDrop={onDrop}
           onSelect={onSelect}
           treeData={getTreeData()}
