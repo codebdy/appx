@@ -79,7 +79,6 @@ const PageListWidget = memo(() => {
   };
 
   const onDrop: TreeProps['onDrop'] = useCallback(info => {
-    console.log(info);
     const dragKey = info.dragNode.key;
     const dropKey = info.node.key;
     const dropPos = info.node.pos.split('-');
