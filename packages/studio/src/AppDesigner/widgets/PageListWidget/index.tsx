@@ -14,6 +14,7 @@ import { useInit } from './hooks/useInit';
 import { useShowError } from '../../../hooks/useShowError';
 import CategoryLabel from './CategoryLabel';
 import { usePages } from './hooks/usePages';
+import PageLabel from './PageLabel';
 
 const { DirectoryTree } = Tree;
 
@@ -41,7 +42,7 @@ const PageListWidget = memo(() => {
       if (node.nodeType === ListNodeType.Page) {
         const page = getPage(node.pageId)
         dataNodes.push({
-          title: page?.title,
+          title: <PageLabel page={page} />,
           key: node.pageId,
           isLeaf: true,
         })
@@ -52,7 +53,7 @@ const PageListWidget = memo(() => {
           children: node?.children.map((childId) => {
             const page = getPage(childId)
             return {
-              title: page?.title,
+              title: <PageLabel page={page} />,
               key: node.pageId,
               isLeaf: true,
             }
