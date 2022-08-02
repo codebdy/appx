@@ -14,13 +14,13 @@ export function useInit() {
   console.log("哈哈", pages)
   const init = useCallback((pageList?: IPageList) => {
     setPageList(pageList);
-    const nodes: IListNode[] = JSON.parse(JSON.stringify(pageList?.schemaJson?.data || []))
+    let nodes: IListNode[] = JSON.parse(JSON.stringify(pageList?.schemaJson?.data || []))
     const pageIsInSchema = (pageId: ID) => {
       for (const nd of nodes) {
         if (nd.pageId === pageId) {
           return true;
         } else if (nd.nodeType === ListNodeType.Category) {
-          for (const pgd of nd.children) {
+          for (const pgd of nd.children||[]) {
             if (pgd === pageId) {
               return true;
             }
@@ -28,6 +28,15 @@ export function useInit() {
         }
       }
       return false;
+    }
+
+    nodes = nodes.filter(
+      (node: IListNode) => node.nodeType === ListNodeType.Category ||
+        (node.nodeType === ListNodeType.Page && pages.find(page => page.id === node.pageId))
+    )
+
+    for (const node of nodes) {
+      node.children = node.children?.filter(id => pages.find(page => page.id === id))
     }
 
     for (const page of pages) {

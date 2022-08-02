@@ -92,7 +92,6 @@ const PageListWidget = memo(() => {
           })
         })
       }
-
     }
     return dataNodes
   }, [getPage, nodes])
