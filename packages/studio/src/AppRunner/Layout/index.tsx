@@ -25,7 +25,7 @@ const Layout = () => {
   const [settings, setSetting] = useState<Partial<ProSettings> | undefined>({
     fixSiderbar: true,
     fixedHeader: true,
-    layout: 'mix',
+    //layout: 'mix',
   });
   const [pathname, setPathname] = useState('/welcome');
   return (
