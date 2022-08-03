@@ -1,6 +1,7 @@
 import { AntDesignOutlined, CrownOutlined, SmileOutlined, TabletOutlined } from '@ant-design/icons';
+import React from 'react';
 
-export default {
+const data= {
   route: {
     path: '/',
     routes: [
@@ -93,3 +94,5 @@ export default {
     pathname: '/',
   },
 };
+
+export default data
