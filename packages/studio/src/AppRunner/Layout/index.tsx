@@ -105,14 +105,14 @@ const Layout = () => {
         // }}
         onMenuHeaderClick={(e) => console.log(e)}
         menuItemRender={(item, dom) => (
-          <Button
-            type='link'
+          // eslint-disable-next-line jsx-a11y/anchor-is-valid
+          <a
             onClick={() => {
               setPathname(item.path || '/welcome');
             }}
           >
             {dom}
-          </Button>
+          </a>
         )}
         // headerContentRender={() => (
         //   <div>外贸CRM</div>
