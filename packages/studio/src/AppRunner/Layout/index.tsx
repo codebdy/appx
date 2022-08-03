@@ -14,7 +14,7 @@ const Layout = memo(() => {
     fixedHeader: true,
     //layout: 'mix',
   });
-  const [pathname, setPathname] = useState('/welcome');
+  const [pathname, setPathname] = useState('/admin/sub-page1');
   return (
     <div
       id="apper-layout"
