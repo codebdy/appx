@@ -89,15 +89,6 @@ const TablePage = () => {
           extra={<Button type="primary">Back Home</Button>}
         />
       </div>
-      <FooterToolbar
-        style={{
-          left: 208,
-          width: `calc(100% - 208px)`,
-        }}
-      >
-        <Button key="3">重置</Button>,
-        <Button key="2" type="primary">提交</Button>
-      </FooterToolbar>
     </PageContainer>
   )
 }
