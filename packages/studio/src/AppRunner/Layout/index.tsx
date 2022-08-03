@@ -13,7 +13,7 @@ const content = (
   <Descriptions size="small" column={2}>
     <Descriptions.Item label="创建人">张三</Descriptions.Item>
     <Descriptions.Item label="联系方式">
-      <a>421421</a>
+      <a href="/#">421421</a>
     </Descriptions.Item>
     <Descriptions.Item label="创建时间">2017-01-10</Descriptions.Item>
     <Descriptions.Item label="更新时间">2017-10-10</Descriptions.Item>
@@ -21,7 +21,7 @@ const content = (
   </Descriptions>
 );
 
-export default () => {
+const Layout = () => {
   const [settings, setSetting] = useState<Partial<ProSettings> | undefined>({
     fixSiderbar: true,
     fixedHeader: true,
@@ -37,7 +37,7 @@ export default () => {
     >
       <ProLayout
         {...defaultProps}
-        onPageChange = {(location)=>console.log("onPageChange", location)}
+        onPageChange={(location) => console.log("onPageChange", location)}
         title="Apper"
         logo={
           <svg style={{ width: "40px", height: "40px" }} viewBox="0 0 24 24">
@@ -105,13 +105,14 @@ export default () => {
         // }}
         onMenuHeaderClick={(e) => console.log(e)}
         menuItemRender={(item, dom) => (
-          <a
+          <Button
+            type='link'
             onClick={() => {
               setPathname(item.path || '/welcome');
             }}
           >
             {dom}
-          </a>
+          </Button>
         )}
         // headerContentRender={() => (
         //   <div>外贸CRM</div>
@@ -170,12 +171,12 @@ export default () => {
               </Button>
             </Dropdown>,
           ]}
-          // footer={[
-          //   <Button key="3">重置</Button>,
-          //   <Button key="2" type="primary">
-          //     提交
-          //   </Button>,
-          // ]}
+        // footer={[
+        //   <Button key="3">重置</Button>,
+        //   <Button key="2" type="primary">
+        //     提交
+        //   </Button>,
+        // ]}
         >
           <div
             style={{
@@ -217,3 +218,5 @@ export default () => {
     </div>
   );
 };
+
+export default Layout
