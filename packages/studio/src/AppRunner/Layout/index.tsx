@@ -1,14 +1,14 @@
 
 import { ProSettings } from '@ant-design/pro-components';
 import { ProLayout, SettingDrawer } from '@ant-design/pro-components';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import defaultProps from './_defaultProps';
 import RightContent from '../components/RightContent';
 import 'antd/dist/antd.variable.min.css';
 import React from 'react';
-import { PageData } from './PageData';
+import TablePage from './TablePage';
 
-const Layout = () => {
+const Layout = memo(() => {
   const [settings, setSetting] = useState<Partial<ProSettings> | undefined>({
     fixSiderbar: true,
     fixedHeader: true,
@@ -44,52 +44,9 @@ const Layout = () => {
         location={{
           pathname,
         }}
-        // menuHeaderRender={(logo, title) => (
-        //   <div
-        //     id="customize_menu_header"
-        //     onClick={() => {
-        //       window.open('https://rxdrag.com/');
-        //     }}
-        //     style={{
-        //       display: "flex",
-        //       alignItems: "center",
-        //     }}
-        //   >
-        //     {logo}
-        //     {title}
-        //   </div>
-        // )}
         waterMarkProps={{
           content: 'Apper',
         }}
-        // menuFooterRender={(props) => {
-        //   return (
-        //     <a
-        //       style={{
-        //         lineHeight: '48rpx',
-        //         display: 'flex',
-        //         height: 48,
-        //         color: 'rgba(255, 255, 255, 0.65)',
-        //         alignItems: 'center',
-        //       }}
-        //       href="https://preview.pro.ant.design/dashboard/analysis"
-        //       target="_blank"
-        //       rel="noreferrer"
-        //     >
-        //       <img
-        //         alt="pro-logo"
-        //         src="https://procomponents.ant.design/favicon.ico"
-        //         style={{
-        //           width: 16,
-        //           height: 16,
-        //           margin: '0 16px',
-        //           marginRight: 10,
-        //         }}
-        //       />
-        //       {!props?.collapsed && 'Preview Pro'}
-        //     </a>
-        //   );
-        // }}
         onMenuHeaderClick={(e) => console.log(e)}
         menuItemRender={(item, dom) => (
           // eslint-disable-next-line jsx-a11y/anchor-is-valid
@@ -101,15 +58,12 @@ const Layout = () => {
             {dom}
           </a>
         )}
-        // headerContentRender={() => (
-        //   <div>外贸CRM</div>
-        // )}
         rightContentRender={() => (
           <RightContent />
         )}
         {...settings}
       >
-        <PageData />
+        <TablePage />
       </ProLayout>
       <SettingDrawer
         pathname={pathname}
@@ -123,6 +77,6 @@ const Layout = () => {
       />
     </div>
   );
-};
+});
 
 export default Layout
