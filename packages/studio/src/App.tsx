@@ -16,6 +16,7 @@ import ModelBoard from './ModelBoard';
 import { AppConfigRouts } from './AppConfig/AppConfigRouts';
 import DeviceList from './AppConfig/DeviceList';
 import FlowBoard from './FlowBoard';
+import AppRunner from './AppRunner';
 
 const App = memo(() => {
   useLoginCheck()
@@ -41,6 +42,7 @@ const App = memo(() => {
       <Route path="/design-app/:device/:appUuid" element={<AppDesigner />} />
       <Route path={LOGIN_URL} element={<Login />} />
       <Route path={INSTALL_URL} element={<Install />} />
+      <Route path ={"/app"} element={<AppRunner/>} />
     </Routes>
   )
 });
