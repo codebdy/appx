@@ -27,7 +27,7 @@ const HeightMenu = memo(() => {
     />
   );
   return (
-    <Dropdown overlay={menu} trigger={['click']} arrow>
+    <Dropdown overlay={menu} trigger={['click']}>
       <Tooltip title="密度">
         <Button shape="circle" size="large" type="text" onClick={e => e.preventDefault()}>
           <ColumnHeightOutlined />

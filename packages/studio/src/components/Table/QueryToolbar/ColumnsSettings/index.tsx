@@ -1,5 +1,5 @@
 import { SettingOutlined } from "@ant-design/icons";
-import { Button, Popover, Space, Tooltip, Tree, TreeProps } from "antd";
+import { Button, Divider, Popover, Space, Tooltip, Tree, TreeProps } from "antd";
 import { DataNode } from "antd/lib/tree";
 import React from "react"
 import { memo } from "react"
@@ -43,21 +43,21 @@ const ColumnsSettings = memo(() => {
         onCheck={handleCheck}
         treeData={treeData}
       />
+      <Divider style={{ margin: "8px 0" }} />
       <div
         style={{
           width: "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "flex-end",
-          padding: 8,
-          paddingBottom: 0,
+          padding: "0 8px",
         }}
       >
         <Space>
           <Button size="middle" type="text">
             取消
           </Button>
-          <Button type="primary"  size="middle">
+          <Button type="primary" size="middle">
             确定
           </Button>
         </Space>
@@ -71,6 +71,7 @@ const ColumnsSettings = memo(() => {
       trigger="click"
       placement="bottom"
       overlayClassName="table-column-settings"
+      showArrow={false}
     >
       <Tooltip title="列设置">
         <Button shape="circle" size="large" type="text" onClick={e => e.preventDefault()}>
