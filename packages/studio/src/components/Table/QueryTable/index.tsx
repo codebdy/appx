@@ -1,6 +1,6 @@
-import { Table } from 'antd';
+import { Button, Space, Table, Tag } from 'antd';
 import React from 'react';
-import QueryToolbar from '../QueryToolbar';
+
 const columns = [
   {
     title: 'Name',
@@ -30,6 +30,36 @@ const columns = [
       multiple: 1,
     },
   },
+  {
+    title: '标签',
+    key: 'tags',
+    dataIndex: 'tags',
+    render: (_, { tags }) => (
+      <>
+        {tags.map(tag => {
+          let color = tag.length > 5 ? 'geekblue' : 'green';
+          if (tag === 'loser') {
+            color = 'volcano';
+          }
+          return (
+            <Tag color={color} key={tag}>
+              {tag.toUpperCase()}
+            </Tag>
+          );
+        })}
+      </>
+    ),
+  },
+  {
+    title: '操作',
+    key: 'action',
+    render:()=>
+      <>
+        <Button type="link" size='small'>编辑</Button>
+        <Button type="link" size='small'>删除</Button>
+      </>
+    ,
+  },
 ];
 const data = [
   {
@@ -38,6 +68,7 @@ const data = [
     chinese: 98,
     math: 60,
     english: 70,
+    tags: ['cool', 'teacher'],
   },
   {
     key: '2',
@@ -45,6 +76,7 @@ const data = [
     chinese: 98,
     math: 66,
     english: 89,
+    tags: ['cool',],
   },
   {
     key: '3',
@@ -52,6 +84,7 @@ const data = [
     chinese: 98,
     math: 90,
     english: 70,
+    tags: ['cool', 'teacher'],
   },
   {
     key: '4',
@@ -59,6 +92,7 @@ const data = [
     chinese: 88,
     math: 99,
     english: 89,
+    tags: ['teacher'],
   },
 ];
 
@@ -66,10 +100,26 @@ const onChange = (pagination, filters, sorter, extra) => {
   console.log('params', pagination, filters, sorter, extra);
 };
 
+// rowSelection object indicates the need for row selection
+const rowSelection = {
+  onChange: (selectedRowKeys: React.Key[], selectedRows: any[]) => {
+    console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+  },
+  getCheckboxProps: (record: any) => ({
+    disabled: record.name === 'Disabled User', // Column configuration not to be checked
+    name: record.name,
+  }),
+};
+
+
 const QueryTable = () => {
   return (<Table
     columns={columns}
     dataSource={data}
+    rowSelection={{
+      type: 'checkbox',
+      ...rowSelection,
+    }}
     onChange={onChange} />
   )
 
