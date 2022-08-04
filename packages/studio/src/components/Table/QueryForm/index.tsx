@@ -79,7 +79,12 @@ const QueryForm: React.FC = observer((props) => {
       return (
         <Fragment>
           <FormButtonGroup>
-            <Button type="link" >
+            <Button type="link"
+              onClick={(e) => {
+                e.preventDefault()
+                toggle()
+              }}
+            >
               {expanded ? '收起' : '展开'}
             </Button>
           </FormButtonGroup>
@@ -178,4 +183,4 @@ const QueryFormExample = () => {
 }
 
 export default QueryForm
-export {QueryFormExample}
+export { QueryFormExample }
