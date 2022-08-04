@@ -11,7 +11,6 @@ import {
   Submit,
   Reset,
   FormButtonGroup,
-  FormLayout,
 } from '@formily/antd'
 import { Button } from 'antd'
 import { DownOutlined, UpOutlined } from '@ant-design/icons'
@@ -57,9 +56,12 @@ const useCollapseGrid = (maxRows: number, maxColumns = 4) => {
   }
 }
 
-const QueryForm: React.FC = observer((props) => {
+const QueryForm: React.FC = observer((props: {
+  layout?:"horizontal" | "vertical",
+  children?: React.ReactNode
+}) => {
+  const {layout="vertical"} = props;
   const { grid, expanded, toggle, type } = useCollapseGrid(1)
-
   const renderActions = () => {
     return (
       <Fragment>
@@ -82,7 +84,7 @@ const QueryForm: React.FC = observer((props) => {
         <>
           <FormButtonGroup align="right">{renderActions()}</FormButtonGroup>
           <FormButtonGroup>
-            <Button 
+            <Button
               type="link"
               onClick={(e) => {
                 e.preventDefault()
@@ -104,13 +106,17 @@ const QueryForm: React.FC = observer((props) => {
   }
 
   return (
-    <Form {...props} layout="horizontal" feedbackLayout="terse">
+    <Form {...props} layout = {layout} feedbackLayout="terse">
       <FormGrid grid={grid}>
 
         {props.children}
         <FormGrid.GridColumn
           gridSpan={expanded ? -1 : 1}
-          style={{ display: 'flex', justifyContent: 'right', alignItems:"flex-start" }}
+          style={{
+            display: 'flex',
+            justifyContent: 'right',
+            alignItems: layout === "horizontal" ? "flex-start" : "center"
+          }}
         >
           {renderButtonGroup()}
         </FormGrid.GridColumn>
