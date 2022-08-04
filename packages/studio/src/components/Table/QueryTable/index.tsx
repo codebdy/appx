@@ -69,11 +69,6 @@ const onChange = (pagination, filters, sorter, extra) => {
 const QueryTable = () => {
   return (<Table
     columns={columns}
-    title={
-      () => {
-        return (<QueryToolbar />)
-      }
-    }
     dataSource={data}
     onChange={onChange} />
   )

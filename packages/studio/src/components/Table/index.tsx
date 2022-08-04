@@ -3,6 +3,7 @@ import React, { memo } from "react"
 import "./index.less"
 import { QueryFormExample } from "./QueryForm"
 import QueryTable from "./QueryTable"
+import QueryToolbar from "./QueryToolbar"
 
 const ProTable = memo(() => {
   return (
@@ -11,6 +12,7 @@ const ProTable = memo(() => {
         <QueryFormExample />
       </Card>
       <Card style={{ marginTop: "16px" }}>
+        <QueryToolbar />
         <QueryTable />
       </Card>
     </div>
