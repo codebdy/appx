@@ -13,6 +13,7 @@ import {
   FormButtonGroup,
 } from '@formily/antd'
 import { Button } from 'antd'
+import { DownOutlined, UpOutlined } from '@ant-design/icons'
 
 const useCollapseGrid = (maxRows: number) => {
   const grid = useMemo(
@@ -86,6 +87,7 @@ const QueryForm: React.FC = observer((props) => {
               }}
             >
               {expanded ? '收起' : '展开'}
+              {expanded ? <UpOutlined /> : <DownOutlined /> }
             </Button>
           </FormButtonGroup>
           <FormButtonGroup align="right">{renderActions()}</FormButtonGroup>
