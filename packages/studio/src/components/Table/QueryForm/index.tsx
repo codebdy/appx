@@ -11,6 +11,7 @@ import {
   Submit,
   Reset,
   FormButtonGroup,
+  FormLayout,
 } from '@formily/antd'
 import { Button } from 'antd'
 import { DownOutlined, UpOutlined } from '@ant-design/icons'
@@ -63,7 +64,7 @@ const QueryForm: React.FC = observer((props) => {
     return (
       <Fragment>
         <Submit onSubmit={console.log}>查询</Submit>
-        <Reset>重置</Reset>
+        <Reset >重置</Reset>
       </Fragment>
     )
   }
@@ -81,7 +82,8 @@ const QueryForm: React.FC = observer((props) => {
         <>
           <FormButtonGroup align="right">{renderActions()}</FormButtonGroup>
           <FormButtonGroup>
-            <Button type="link"
+            <Button 
+              type="link"
               onClick={(e) => {
                 e.preventDefault()
                 toggle()
@@ -102,15 +104,17 @@ const QueryForm: React.FC = observer((props) => {
   }
 
   return (
-    <Form {...props} layout="vertical" feedbackLayout="terse">
+    <Form {...props} layout="horizontal" feedbackLayout="terse">
       <FormGrid grid={grid}>
+
         {props.children}
         <FormGrid.GridColumn
           gridSpan={expanded ? -1 : 1}
-          style={{ display: 'flex', justifyContent: 'right' }}
+          style={{ display: 'flex', justifyContent: 'right', alignItems:"flex-start" }}
         >
           {renderButtonGroup()}
         </FormGrid.GridColumn>
+
       </FormGrid>
     </Form>
   )
