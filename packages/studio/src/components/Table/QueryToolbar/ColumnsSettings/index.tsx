@@ -3,6 +3,7 @@ import { Button, Popover, Tooltip, Tree, TreeProps } from "antd";
 import { DataNode } from "antd/lib/tree";
 import React from "react"
 import { memo } from "react"
+import TitleBox from "./TitleBox";
 
 const treeData: DataNode[] = [
   {
@@ -45,7 +46,7 @@ const ColumnsSettings = memo(() => {
   return (
     <Popover
       content={content}
-      title="Title"
+      title={<TitleBox />}
       trigger="click"
       placement="bottom"
       overlayClassName ="table-column-settings"
