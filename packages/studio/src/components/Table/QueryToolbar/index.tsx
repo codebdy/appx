@@ -1,9 +1,23 @@
 import React, { memo } from "react"
-import "./index.less"
 
 const QueryToolbar = memo(()=>{
   return (
-    <div>
+    <div style={{
+      display:"flex",
+      alignItems:"center",
+      justifyContent:"space-between"
+    }}>
+      <div>
+        查询表格
+      </div>
+      <div
+        style={{
+          display:"flex",
+          alignItems:"center",
+        }}
+      >
+        ddd
+      </div>
     </div>
   )
 })

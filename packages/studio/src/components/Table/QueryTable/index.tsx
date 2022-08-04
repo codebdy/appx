@@ -1,5 +1,6 @@
 import { Table } from 'antd';
 import React from 'react';
+import QueryToolbar from '../QueryToolbar';
 const columns = [
   {
     title: 'Name',
@@ -70,7 +71,7 @@ const QueryTable = () => {
     columns={columns}
     title={
       () => {
-        return (<div>Tool bar</div>)
+        return (<QueryToolbar />)
       }
     }
     dataSource={data}
