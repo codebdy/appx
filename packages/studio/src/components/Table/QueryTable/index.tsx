@@ -1,4 +1,4 @@
-import { Button, Space, Table, Tag } from 'antd';
+import { Button, Table, Tag } from 'antd';
 import React from 'react';
 
 const columns = [
