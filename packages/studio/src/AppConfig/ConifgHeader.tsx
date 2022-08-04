@@ -4,7 +4,7 @@ import { Header } from "antd/lib/layout/layout"
 import React, { useCallback } from "react"
 import { memo } from "react"
 import AvatarMenu from "../AppManager/AvatarMenu"
-import { useNavigate } from "react-router-dom"
+import { useMatch, useNavigate, useParams } from "react-router-dom"
 import { IApp } from "../model"
 import { getLocalMessage } from "../locales/getLocalMessage"
 import { AppConfigRouts } from "./AppConfigRouts"
@@ -18,6 +18,9 @@ const ConifgHeader = memo((props: {
     navigate("/")
   }, [navigate]);
 
+  const {appUuid} = useParams();
+  const match = useMatch(`/config-app/${appUuid}/*`)
+
   const handleSelect = useCallback((info) => {
     navigate(`/config-app/${app?.uuid}/${info.key}`)
   }, [app?.uuid, navigate]);
@@ -30,7 +33,7 @@ const ConifgHeader = memo((props: {
       <Menu
         className="app-config-menu"
         mode="horizontal"
-        defaultSelectedKeys={[AppConfigRouts.App]}
+        defaultSelectedKeys={[match?.params?.["*"]]}
         onSelect={handleSelect}
         items={[
           {
