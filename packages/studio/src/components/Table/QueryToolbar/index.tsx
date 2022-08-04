@@ -1,6 +1,7 @@
-import { ColumnHeightOutlined, PlusOutlined, ReloadOutlined, SettingOutlined } from "@ant-design/icons"
+import { PlusOutlined, ReloadOutlined, SettingOutlined } from "@ant-design/icons"
 import { Button, Tooltip } from "antd"
 import React, { memo } from "react"
+import HeightMenu from "./HeightMenu"
 
 const QueryToolbar = memo(() => {
   return (
@@ -32,11 +33,7 @@ const QueryToolbar = memo(() => {
             <ReloadOutlined />
           </Button>
         </Tooltip>
-        <Tooltip title="密度">
-          <Button shape="circle" size="large" type="text">
-            <ColumnHeightOutlined />
-          </Button>
-        </Tooltip>
+        <HeightMenu />
         <Tooltip title="列设置">
           <Button shape="circle" size="large" type="text">
             <SettingOutlined />
