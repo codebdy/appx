@@ -15,20 +15,20 @@ import {
 import { Button } from 'antd'
 import { DownOutlined, UpOutlined } from '@ant-design/icons'
 
-const useCollapseGrid = (maxRows: number) => {
+const useCollapseGrid = (maxRows: number, maxColumns = 4) => {
   const grid = useMemo(
     () =>
       FormGrid.createFormGrid({
-        maxColumns: 4,
+        maxColumns: maxColumns,
         maxWidth: 240,
         maxRows: maxRows,
         shouldVisible: (node, grid) => {
           if (node.index === grid.childSize - 1) return true
           if (grid.maxRows === Infinity) return true
-          return node.shadowRow < maxRows + 1
+          return node.shadowRow < maxRows + 1 && node.index < maxColumns - 1
         },
       }),
-    [maxRows]
+    [maxColumns, maxRows]
   )
   const expanded = grid.maxRows === Infinity
   const realRows = grid.shadowRows
@@ -78,7 +78,8 @@ const QueryForm: React.FC = observer((props) => {
     }
     if (type === 'collapsible') {
       return (
-        <Fragment>
+        <>
+          <FormButtonGroup align="right">{renderActions()}</FormButtonGroup>
           <FormButtonGroup>
             <Button type="link"
               onClick={(e) => {
@@ -87,15 +88,14 @@ const QueryForm: React.FC = observer((props) => {
               }}
             >
               {expanded ? '收起' : '展开'}
-              {expanded ? <UpOutlined /> : <DownOutlined /> }
+              {expanded ? <UpOutlined /> : <DownOutlined />}
             </Button>
           </FormButtonGroup>
-          <FormButtonGroup align="right">{renderActions()}</FormButtonGroup>
-        </Fragment>
+        </>
       )
     }
     return (
-      <FormButtonGroup align="right" style={{ display: 'flex', width: '100%' }}>
+      <FormButtonGroup align="right" style={{ display: 'flex' }}>
         {renderActions()}
       </FormButtonGroup>
     )
@@ -106,8 +106,8 @@ const QueryForm: React.FC = observer((props) => {
       <FormGrid grid={grid}>
         {props.children}
         <FormGrid.GridColumn
-          gridSpan={-1}
-          style={{ display: 'flex', justifyContent: 'space-between' }}
+          gridSpan={expanded ? -1 : 1}
+          style={{ display: 'flex', justifyContent: 'right' }}
         >
           {renderButtonGroup()}
         </FormGrid.GridColumn>
