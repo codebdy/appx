@@ -1,5 +1,5 @@
 import { SettingOutlined } from "@ant-design/icons";
-import { Button, Popover, Tooltip, Tree, TreeProps } from "antd";
+import { Button, Popover, Space, Tooltip, Tree, TreeProps } from "antd";
 import { DataNode } from "antd/lib/tree";
 import React from "react"
 import { memo } from "react"
@@ -36,12 +36,33 @@ const ColumnsSettings = memo(() => {
     console.log('onCheck', checkedKeys, info);
   };
   const content = (
-    <Tree
-      checkable
-      draggable
-      onCheck={handleCheck}
-      treeData={treeData}
-    />
+    <div>
+      <Tree
+        checkable
+        draggable
+        onCheck={handleCheck}
+        treeData={treeData}
+      />
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-end",
+          padding: 8,
+          paddingBottom: 0,
+        }}
+      >
+        <Space>
+          <Button size="middle" type="text">
+            取消
+          </Button>
+          <Button type="primary"  size="middle">
+            确定
+          </Button>
+        </Space>
+      </div>
+    </div>
   );
   return (
     <Popover
@@ -49,7 +70,7 @@ const ColumnsSettings = memo(() => {
       title={<TitleBox />}
       trigger="click"
       placement="bottom"
-      overlayClassName ="table-column-settings"
+      overlayClassName="table-column-settings"
     >
       <Tooltip title="列设置">
         <Button shape="circle" size="large" type="text" onClick={e => e.preventDefault()}>
