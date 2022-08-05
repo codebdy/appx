@@ -1,5 +1,6 @@
 import { Button, Table, Tag } from 'antd';
-import React from 'react';
+import React, { useMemo } from 'react';
+import { useProTableParams } from '../context';
 
 const columns = [
   {
@@ -53,7 +54,7 @@ const columns = [
   {
     title: '操作',
     key: 'action',
-    render:()=>
+    render: () =>
       <>
         <Button type="link" size='small'>编辑</Button>
         <Button type="link" size='small'>删除</Button>
@@ -101,18 +102,22 @@ const onChange = (pagination, filters, sorter, extra) => {
 };
 
 // rowSelection object indicates the need for row selection
-const rowSelection = {
-  onChange: (selectedRowKeys: React.Key[], selectedRows: any[]) => {
-    console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-  },
-  getCheckboxProps: (record: any) => ({
-    disabled: record.name === 'Disabled User', // Column configuration not to be checked
-    name: record.name,
-  }),
-};
 
 
 const QueryTable = () => {
+  const {onSelectedChange} = useProTableParams();
+  const rowSelection = useMemo(() => ({
+    onChange: (selectedRowKeys: React.Key[], selectedRows: any[]) => {
+      onSelectedChange(selectedRowKeys);
+      //console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+    },
+    getCheckboxProps: (record: any) => ({
+      //disabled: record.name === 'Disabled User', // Column configuration not to be checked
+      name: record.name,
+    }),
+  }), [onSelectedChange]);
+
+
   return (<Table
     columns={columns}
     dataSource={data}

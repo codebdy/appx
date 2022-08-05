@@ -1,5 +1,5 @@
 import { Card } from "antd"
-import React, { memo, useState } from "react"
+import React, { memo, useCallback, useState } from "react"
 import { registerResourceBundle } from "../../i18n/registerResourceBundle"
 import { IProTableParams, ProTableContext } from "./context"
 import "./index.less"
@@ -14,8 +14,17 @@ registerResourceBundle(LOCALES_NS, locales);
 const ProTable = memo(() => {
   const [params, setParams] = useState<IProTableParams>();
 
+  const handleSelectedChange = useCallback((keys?: React.Key[]) => {
+    setParams(params => ({ ...params, selectedRowKeys: keys }))
+  }, [])
+
   return (
-    <ProTableContext.Provider value={params}>
+    <ProTableContext.Provider
+      value={{
+        ...params,
+        onSelectedChange: handleSelectedChange
+      }}
+    >
       <div className="appx-pro-table">
         <Card>
           <QueryFormExample />
