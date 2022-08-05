@@ -4,7 +4,8 @@ const locales = {
     "Search": "查询",
     "Reset": "重置",
     "Expand": "展开",
-    "PackUp":"收起"
+    "PackUp": "收起",
+    "New": "新建"
   },
   'en-US': {
   },

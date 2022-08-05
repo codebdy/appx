@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 import App from "./App";
 import 'antd/dist/antd.less'
 import './index.less'
-import "./locales"
 import { SERVER_URL } from "./consts";
 import { RecoilRoot } from "recoil";
 import { BrowserRouter } from "react-router-dom";
