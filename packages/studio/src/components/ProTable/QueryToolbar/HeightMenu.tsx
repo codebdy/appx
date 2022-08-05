@@ -14,15 +14,15 @@ const HeightMenu = memo(() => {
       }}
       items={[
         {
-          label: "默认",
+          label: t("Default"),
           key: '0',
         },
         {
-          label: "中等",
+          label: t("Middle"),
           key: '1',
         },
         {
-          label: '紧凑',
+          label: t("Dense"),
           key: '3',
         },
       ]}

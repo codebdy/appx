@@ -11,7 +11,10 @@ const locales = {
     "ColumnSetting": "列设置",
     "ShowColumns": "列展示",
     "Confirm": "确定",
-    "Cancel": "取消"
+    "Cancel": "取消",
+    "Default": "默认",
+    "Middle": "中等",
+    "Dense": "紧凑"
   },
   'en-US': {
   },
