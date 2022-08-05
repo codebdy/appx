@@ -3,12 +3,13 @@ import { PageContainer } from '@ant-design/pro-components';
 import ProTable from "../../components/ProTable";
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/react'
-import { FormItem } from "@formily/antd";
+import { ArrayTable, FormItem } from "@formily/antd";
 
 const SchemaField = createSchemaField({
   components: {
     ProTable,
-    FormItem
+    FormItem,
+    ArrayTable
   },
 })
 
@@ -28,6 +29,18 @@ const TablePage = () => {
               scroll: { x: '100%' },
             }}
           >
+            <SchemaField.Object>
+              <SchemaField.Void
+                x-component="ArrayTable.Column"
+                x-component-props={{ width: 50, title: 'Sort', align: 'center' }}
+              >
+                <SchemaField.Void
+                  x-decorator="FormItem"
+                  required
+                  x-component="ArrayTable.SortHandle"
+                />
+              </SchemaField.Void>
+            </SchemaField.Object>
           </SchemaField.Array>
         </SchemaField>
       </FormProvider>

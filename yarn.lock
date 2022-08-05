@@ -1878,15 +1878,6 @@
     "@formily/shared" "2.1.9"
     "@formily/validator" "2.1.9"
 
-"@formily/core@^1.3.17":
-  version "1.3.17"
-  resolved "https://registry.yarnpkg.com/@formily/core/-/core-1.3.17.tgz#85eb661cdf6f1921ceb4bd707e6d167e04de1e46"
-  integrity sha512-LbxQQmk0q9+ddJ1amV1NIrk8f0QTM66fA73Ki4kKdcNy6H1lzu7svn/wIDZQsVOaFG/cxysw4M9UBU8uJHzZEw==
-  dependencies:
-    "@formily/shared" "^1.3.17"
-    "@formily/validator" "^1.3.17"
-    immer "^8.0.1"
-
 "@formily/grid@2.1.9":
   version "2.1.9"
   resolved "https://registry.npmmirror.com/@formily/grid/-/grid-2.1.9.tgz#6fd32070fb78a7741ff71bb8fa56c19abac12eb1"
@@ -1909,18 +1900,6 @@
   resolved "https://registry.npmmirror.com/@formily/path/-/path-2.1.9.tgz#bba0ae4c2ce19e43cd3927f4b3a15865d50b99cb"
   integrity sha512-oMCKu6v5IoZiNAq7mKeXUDJagEquBhgkJ5kskvuMPjGCWBQQiAOCLtLMBSDWwTk7gAjpl6S9sxQmxHGvPzDGsg==
 
-"@formily/react-schema-renderer@^1.3.17":
-  version "1.3.17"
-  resolved "https://registry.yarnpkg.com/@formily/react-schema-renderer/-/react-schema-renderer-1.3.17.tgz#31ff8ed19b95d5d7fc266fe9fb19b8b3b94c56d6"
-  integrity sha512-WPPEcsRSZE4CFwmzPFPbW50ls2sI8OAcxdlT8jd5UG9ih4/esn7bTozVX9Mi5rLrAKCJHIatQUWB+FiMEk4Z/g==
-  dependencies:
-    "@formily/core" "^1.3.17"
-    "@formily/react" "^1.3.17"
-    "@formily/shared" "^1.3.17"
-    "@formily/validator" "^1.3.17"
-    hoist-non-react-statics "^3.3.2"
-    pascal-case "^2.0.1"
-
 "@formily/react@2.1.9":
   version "2.1.9"
   resolved "https://registry.npmmirror.com/@formily/react/-/react-2.1.9.tgz#232582f7336b78fceedab7ff3e064fd6fcf636a2"
@@ -1933,14 +1912,6 @@
     "@formily/shared" "2.1.9"
     "@formily/validator" "2.1.9"
     hoist-non-react-statics "^3.3.2"
-
-"@formily/react@^1.3.17":
-  version "1.3.17"
-  resolved "https://registry.yarnpkg.com/@formily/react/-/react-1.3.17.tgz#8b44716a006e19e45fcbb9e30d96caa65a6aad60"
-  integrity sha512-v2BDlgvnLvgnT6Bwdaxy3v1jaB+EGHZOHXU/wdoVZy6CSFbJjhEj4mUX3aF20IGSkUaQSvRBasHxCaQYSvGSFQ==
-  dependencies:
-    "@formily/core" "^1.3.17"
-    "@formily/shared" "^1.3.17"
 
 "@formily/reactive-react@2.1.9", "@formily/reactive-react@^2.0.2":
   version "2.1.9"
@@ -1968,30 +1939,12 @@
     pascal-case "^3.1.1"
     upper-case "^2.0.1"
 
-"@formily/shared@^1.3.17":
-  version "1.3.17"
-  resolved "https://registry.yarnpkg.com/@formily/shared/-/shared-1.3.17.tgz#a21cf68bb78dc9d993d7d8e7fa1ee4b8220c2194"
-  integrity sha512-sEyfhhr4B1kRcwdxKtJjjc2imf7w9t1SPEpYt0B/g8hujv2wzBniq7MjIoyAYChw1jgi/3jI9cw/vbSY/+AIJQ==
-  dependencies:
-    camel-case "~3.0.0"
-    cool-path "^0.1.31"
-    lower-case "~1.1.4"
-    scheduler "~0.19.0"
-    upper-case "~1.1.3"
-
 "@formily/validator@2.1.9":
   version "2.1.9"
   resolved "https://registry.npmmirror.com/@formily/validator/-/validator-2.1.9.tgz#2b8c082023fe34ddddf05e52f856349897343097"
   integrity sha512-BLiSvrPhE/qYpC770OzODILrjmFztUmKVo3HIwCA/6En58j3LScLXgI/IXbJDoHbOqzLkZF9hH8Ru2FA+PUQbg==
   dependencies:
     "@formily/shared" "2.1.9"
-
-"@formily/validator@^1.3.17":
-  version "1.3.17"
-  resolved "https://registry.yarnpkg.com/@formily/validator/-/validator-1.3.17.tgz#3a123b24f67279f530221a2b60bb8ffe748693e2"
-  integrity sha512-IariOaAK0uze7NyASZJaMeHv+wuPXtGtZHuz9EzQInPNalo+y7faSPFb/MDRG9mFGREUXh27d38GOsV2W2/zAA==
-  dependencies:
-    "@formily/shared" "^1.3.17"
 
 "@graphiql/react@^0.6.0":
   version "0.6.0"
@@ -3183,7 +3136,7 @@ ansi-styles@^5.0.0:
   resolved "https://registry.npmmirror.com/ansi-styles/-/ansi-styles-5.2.0.tgz#07449690ad45777d1924ac2abb2fc8895dba836b"
   integrity sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==
 
-"antd@^4.20.0 ":
+antd@^4.15.2, "antd@^4.20.0 ", antd@^4.21.5:
   version "4.22.3"
   resolved "https://registry.yarnpkg.com/antd/-/antd-4.22.3.tgz#c6d4ced17e9c21b55c6234595d962c5f9d6768db"
   integrity sha512-Nay1tO+G5Z9szmshK9TinOWclJnxOtSe7cr15EX64NGkZZyRoHX2xXOFQoYtBt4qfVfFvLf97m9on7fwgy1Svg==
@@ -3203,56 +3156,6 @@ ansi-styles@^5.0.0:
     rc-collapse "~3.3.0"
     rc-dialog "~8.9.0"
     rc-drawer "~5.1.0-alpha.1"
-    rc-dropdown "~4.0.0"
-    rc-field-form "~1.27.0"
-    rc-image "~5.7.0"
-    rc-input "~0.0.1-alpha.5"
-    rc-input-number "~7.3.5"
-    rc-mentions "~1.9.0"
-    rc-menu "~9.6.0"
-    rc-motion "^2.6.1"
-    rc-notification "~4.6.0"
-    rc-pagination "~3.1.17"
-    rc-picker "~2.6.10"
-    rc-progress "~3.3.2"
-    rc-rate "~2.9.0"
-    rc-resize-observer "^1.2.0"
-    rc-segmented "~2.1.0"
-    rc-select "~14.1.1"
-    rc-slider "~10.0.0"
-    rc-steps "~4.1.0"
-    rc-switch "~3.2.0"
-    rc-table "~7.25.3"
-    rc-tabs "~11.16.0"
-    rc-textarea "~0.3.0"
-    rc-tooltip "~5.2.0"
-    rc-tree "~5.6.5"
-    rc-tree-select "~5.4.0"
-    rc-trigger "^5.2.10"
-    rc-upload "~4.3.0"
-    rc-util "^5.22.5"
-    scroll-into-view-if-needed "^2.2.25"
-
-antd@^4.21.5:
-  version "4.22.1"
-  resolved "https://registry.npmmirror.com/antd/-/antd-4.22.1.tgz#c6faded93b79d25386eecb319c2f440fdc024303"
-  integrity sha512-DmIMwoC4g7n1Z7z2fPSQkcXSZHzO7uWqVen/9N3SaqGjkqyj8ho0PnZNf/mut4+yhhuIBQ+Xg25yDPy5KFGZvg==
-  dependencies:
-    "@ant-design/colors" "^6.0.0"
-    "@ant-design/icons" "^4.7.0"
-    "@ant-design/react-slick" "~0.29.1"
-    "@babel/runtime" "^7.18.3"
-    "@ctrl/tinycolor" "^3.4.0"
-    classnames "^2.2.6"
-    copy-to-clipboard "^3.2.0"
-    lodash "^4.17.21"
-    memoize-one "^6.0.0"
-    moment "^2.29.2"
-    rc-cascader "~3.6.0"
-    rc-checkbox "~2.3.0"
-    rc-collapse "~3.3.0"
-    rc-dialog "~8.9.0"
-    rc-drawer "~5.0.0-alpha.8"
     rc-dropdown "~4.0.0"
     rc-field-form "~1.27.0"
     rc-image "~5.7.0"
@@ -4078,7 +3981,7 @@ callsites@^3.0.0:
   resolved "https://registry.npmmirror.com/callsites/-/callsites-3.1.0.tgz#b3630abd8943432f54b3f0519238e33cd7df2f73"
   integrity sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==
 
-camel-case@3.0.x, camel-case@^3.0.0, camel-case@~3.0.0:
+camel-case@3.0.x:
   version "3.0.0"
   resolved "https://registry.npmmirror.com/camel-case/-/camel-case-3.0.0.tgz#ca3c3688a4e9cf3a4cda777dc4dcbc713249cf73"
   integrity sha512-+MbKztAYHXPr1jNTSKQF52VpcFjwY5RkR7fxksV8Doo4KAYc5Fl4UJRgthBbTmEx8C54DqahhbLJkDwjI3PI/w==
@@ -4584,11 +4487,6 @@ cookie@0.5.0:
   version "0.5.0"
   resolved "https://registry.npmmirror.com/cookie/-/cookie-0.5.0.tgz#d1f5d71adec6558c58f389987c366aa47e994f8b"
   integrity sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==
-
-cool-path@^0.1.31:
-  version "0.1.32"
-  resolved "https://registry.yarnpkg.com/cool-path/-/cool-path-0.1.32.tgz#abc427e612570602015af12b507596c270be760b"
-  integrity sha512-u8xxIqRoOP12uML/H3prx6kOhg+XxyIumz7nn6Kn2k/6sZ8BD4YyomPGGiiZhk0OObjY7QijmZJPskzUaSA8GA==
 
 copy-anything@^2.0.1:
   version "2.0.6"
@@ -7058,11 +6956,6 @@ image-size@~0.5.0:
   resolved "https://registry.npmmirror.com/image-size/-/image-size-0.5.5.tgz#09dfd4ab9d20e29eb1c3e80b8990378df9e3cb9c"
   integrity sha512-6TDAlDPZxUFCv+fuOkIoXT/V/f3Qbq8e37p+YOiYrUv3v9cc3/6x78VdfPgFVaB9dZYeLUfKgHRebpkm/oP2VQ==
 
-immer@^8.0.1:
-  version "8.0.4"
-  resolved "https://registry.yarnpkg.com/immer/-/immer-8.0.4.tgz#3a21605a4e2dded852fb2afd208ad50969737b7a"
-  integrity sha512-jMfL18P+/6P6epANRvRk6q8t+3gGhqsJ9EuJ25AXE+9bNTYtssvzeYbEd0mXRYWCmmXSIbnlpz6vd6iJlmGGGQ==
-
 immutable@^4.0.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.1.0.tgz#f795787f0db780183307b9eb2091fcac1f6fafef"
@@ -8929,7 +8822,7 @@ loud-rejection@^1.0.0:
     currently-unhandled "^0.4.1"
     signal-exit "^3.0.0"
 
-lower-case@^1.1.1, lower-case@~1.1.4:
+lower-case@^1.1.1:
   version "1.1.4"
   resolved "https://registry.npmmirror.com/lower-case/-/lower-case-1.1.4.tgz#9a2cabd1b9e8e0ae993a4bf7d5875c39c42e8eac"
   integrity sha512-2Fgx1Ycm599x+WGpIYwJOvsjmXFzTSc34IwDWALRA/8AopUKAVPwfJ+h5+f85BCp0PWmmJcWzEpxOpoXycMpdA==
@@ -10047,14 +9940,6 @@ parseurl@~1.3.2, parseurl@~1.3.3:
   version "1.3.3"
   resolved "https://registry.npmmirror.com/parseurl/-/parseurl-1.3.3.tgz#9da19e7bee8d12dff0513ed5b76957793bc2e8d4"
   integrity sha512-CiyeOxFT/JZyN5m0z9PfXw4SCBJ6Sygz1Dpl0wqjlhDEGGBP1GnsUVEL0p63hoG1fcj3fHynXi9NYO4nWOL+qQ==
-
-pascal-case@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/pascal-case/-/pascal-case-2.0.1.tgz#2d578d3455f660da65eca18ef95b4e0de912761e"
-  integrity sha512-qjS4s8rBOJa2Xm0jmxXiyh1+OFf6ekCWOvUaRgAQSktzlTbMotS0nmG9gyYAybCWBcuP4fsBeRCKNwGBnMe2OQ==
-  dependencies:
-    camel-case "^3.0.0"
-    upper-case-first "^1.1.0"
 
 pascal-case@^3.1.1, pascal-case@^3.1.2:
   version "3.1.2"
@@ -11250,9 +11135,9 @@ react-display-name@^0.2.4:
   resolved "https://registry.yarnpkg.com/react-display-name/-/react-display-name-0.2.5.tgz#304c7cbfb59ee40389d436e1a822c17fe27936c6"
   integrity sha512-I+vcaK9t4+kypiSgaiVWAipqHRXYmZIuAiS8vzFvXHHXVigg/sMKwlRgLy6LH2i3rmP+0Vzfl5lFsFRwF1r3pg==
 
-react-dom@^17.0.1:
+react-dom@^17.0.1, react-dom@^17.0.2:
   version "17.0.2"
-  resolved "https://registry.npmmirror.com/react-dom/-/react-dom-17.0.2.tgz#ecffb6845e3ad8dbfcdc498f0d0a939736502c23"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-17.0.2.tgz#ecffb6845e3ad8dbfcdc498f0d0a939736502c23"
   integrity sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==
   dependencies:
     loose-envify "^1.1.0"
@@ -11359,9 +11244,9 @@ react-tiny-popover@^6.0.5:
   resolved "https://registry.npmmirror.com/react-tiny-popover/-/react-tiny-popover-6.0.10.tgz#6167a1b4a1ae6cf847d2909057defd00d95d726c"
   integrity sha512-ECMucd701SxWHGa+2YuVvccCxxTjmhomcD0ZYTF+Qmi5qNAj8pdlExFN+k+p1G78QTYIGPGNLocxRb9f6cZ0Mw==
 
-react@^17.0.1:
+react@^17.0.1, react@^17.0.2:
   version "17.0.2"
-  resolved "https://registry.npmmirror.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
+  resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
   integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==
   dependencies:
     loose-envify "^1.1.0"
@@ -11966,7 +11851,7 @@ saxes@^5.0.1:
   dependencies:
     xmlchars "^2.2.0"
 
-scheduler@^0.19.1, scheduler@~0.19.0:
+scheduler@^0.19.1:
   version "0.19.1"
   resolved "https://registry.npmmirror.com/scheduler/-/scheduler-0.19.1.tgz#4f3e2ed2c1a7d65681f4c854fa8c5a1ccb40f196"
   integrity sha512-n/zwRWRYSUj0/3g/otKDRPMh6qv2SYMWNq85IEa8iZyAv8od9zDYpGSnpBEjNgcMNq6Scbu5KfIPxNF72R/2EA==
@@ -13389,14 +13274,7 @@ update-notifier@^2.2.0:
     semver-diff "^2.0.0"
     xdg-basedir "^3.0.0"
 
-upper-case-first@^1.1.0:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/upper-case-first/-/upper-case-first-1.1.2.tgz#5d79bedcff14419518fd2edb0a0507c9b6859115"
-  integrity sha512-wINKYvI3Db8dtjikdAqoBbZoP6Q+PZUyfMR7pmwHzjC2quzSkUq5DmPrTtPEqHaz8AGtmsB4TqwapMTM1QAQOQ==
-  dependencies:
-    upper-case "^1.1.1"
-
-upper-case@^1.1.1, upper-case@~1.1.3:
+upper-case@^1.1.1:
   version "1.1.3"
   resolved "https://registry.npmmirror.com/upper-case/-/upper-case-1.1.3.tgz#f6b4501c2ec4cdd26ba78be7222961de77621598"
   integrity sha512-WRbjgmYzgXkCV7zNVpy5YgrHgbBv126rMALQQMrmzOVC4GM2waQ9x7xtm8VU+1yF2kWyPzI9zbZ48n4vSxwfSA==

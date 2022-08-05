@@ -1,5 +1,5 @@
-import { Card } from "antd"
-import React, { useCallback, useState } from "react"
+import { Card, TableProps } from "antd"
+import React, { useCallback, useRef, useState } from "react"
 import { registerResourceBundle } from "../../i18n/registerResourceBundle"
 import { IProTableParams, ProTableContext } from "./context"
 import "./index.less"
@@ -8,16 +8,108 @@ import { QueryFormExample } from "./QueryForm"
 import QueryTable from "./QueryTable"
 import QueryToolbar from "./QueryToolbar"
 import SelectMessage from "./SelectMessage"
-import {ISchemaFieldComponentProps} from "@formily/react-schema-renderer"
 import { observer } from "@formily/reactive-react"
+import { ArrayBase } from "@formily/antd"
+import {
+  useField,
+  useFieldSchema,
+  RecursionField,
+  ReactFC,
+} from '@formily/react'
+import { GeneralField, FieldDisplayTypes, ArrayField } from '@formily/core'
+import { ColumnProps } from "antd/lib/table"
+import { Schema } from '@formily/json-schema'
+import { usePrefixCls } from "@formily/antd/esm/__builtins__"
 
 registerResourceBundle(LOCALES_NS, locales);
+interface ObservableColumnSource {
+  field: GeneralField
+  columnProps: ColumnProps<any>
+  schema: Schema
+  display: FieldDisplayTypes
+  name: string
+}
+
+const isColumnComponent = (schema: Schema) => {
+  return schema['x-component']?.indexOf('Column') > -1
+}
+
+const isOperationsComponent = (schema: Schema) => {
+  return schema['x-component']?.indexOf('Operations') > -1
+}
+
+const isAdditionComponent = (schema: Schema) => {
+  return schema['x-component']?.indexOf('Addition') > -1
+}
+
+const useArrayTableColumns = (
+  dataSource: any[],
+  sources: ObservableColumnSource[]
+): TableProps<any>['columns'] => {
+  return sources?.reduce((buf, { name, columnProps, schema, display }, key) => {
+    if (display !== 'visible') return buf
+    if (!isColumnComponent(schema)) return buf
+    return buf.concat({
+      ...columnProps,
+      key,
+      dataIndex: name,
+      render: (value: any, record: any) => {
+        const index = dataSource.indexOf(record)
+        const children = (
+          <ArrayBase.Item index={index} record={() => dataSource[index]}>
+            <RecursionField schema={schema} name={index} onlyRenderProperties />
+          </ArrayBase.Item>
+        )
+        return children
+      },
+    })
+  }, [])
+}
+
+const useArrayTableSources = () => {
+  const arrayField = useField()
+  const schema = useFieldSchema()
+  const parseSources = (schema: Schema): ObservableColumnSource[] => {
+    if (
+      isColumnComponent(schema) ||
+      isOperationsComponent(schema) ||
+      isAdditionComponent(schema)
+    ) {
+      if (!schema['x-component-props']?.['dataIndex'] && !schema['name'])
+        return []
+      const name = schema['x-component-props']?.['dataIndex'] || schema['name']
+      const field = arrayField.query(arrayField.address.concat(name)).take()
+      const columnProps =
+        field?.component?.[1] || schema['x-component-props'] || {}
+      const display = field?.display || schema['x-display']
+      return [
+        {
+          name,
+          display,
+          field,
+          schema,
+          columnProps,
+        },
+      ]
+    } else if (schema.properties) {
+      return schema.reduceProperties((buf, schema) => {
+        return buf.concat(parseSources(schema))
+      }, [])
+    }
+  }
+}
+
 
 const ProTable = observer((
-  props: ISchemaFieldComponentProps & { className: string }
+  props: TableProps<any>
 ) => {
   const [params, setParams] = useState<IProTableParams>();
-
+  const ref = useRef<HTMLDivElement>()
+  const field = useField<ArrayField>()
+  const prefixCls = usePrefixCls('appx-pro-table')
+  const dataSource = Array.isArray(field.value) ? field.value.slice() : []
+  const sources = useArrayTableSources()
+  const columns = useArrayTableColumns(dataSource, sources)
   console.log("哈哈", props)
 
   const handleSelectedChange = useCallback((keys?: React.Key[]) => {
