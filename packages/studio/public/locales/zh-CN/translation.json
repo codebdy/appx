@@ -91,7 +91,7 @@
     "RequiredUrl": "请输入调试地址",
     "Upload": "上传",
     "Debug": "调试",
-    "LinkAddress": "链接地址",
+    "LinkAddress": "链接地址"
   },
   "appManager": {
     "SearchPlaceHolder": "请输入应用名称或关键字",
