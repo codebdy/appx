@@ -20,6 +20,7 @@
     "eslint-config-react-app": "^7.0.1"
   },
   "dependencies": {
+    "@ant-design/pro-components": "^1.1.15",
     "@antv/x6": "^1.32.10",
     "@antv/x6-react-shape": "^1.6.1",
     "@designable/formily-antd": "^1.0.0-beta.45",
@@ -29,6 +30,10 @@
     "graphiql": "^1.10.0",
     "graphql": "^16.5.0",
     "graphql-ws": "^5.9.1",
+    "i18next": "^21.8.16",
+    "i18next-browser-languagedetector": "^6.1.4",
+    "i18next-http-backend": "^1.4.1",
+    "react-i18next": "^11.18.3",
     "react-router-dom": "^6.3.0",
     "recoil": "^0.7.4",
     "subscriptions-transport-ws": "^0.11.0",

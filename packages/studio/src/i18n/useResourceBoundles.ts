@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export function useLocales() {
+export function useResourceBoundles() {
   useEffect(() => {
 
   }, []);
