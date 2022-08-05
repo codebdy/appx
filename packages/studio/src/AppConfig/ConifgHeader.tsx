@@ -6,8 +6,8 @@ import { memo } from "react"
 import AvatarMenu from "../AppManager/AvatarMenu"
 import { useMatch, useNavigate, useParams } from "react-router-dom"
 import { IApp } from "../model"
-import { getLocalMessage } from "../locales/getLocalMessage"
 import { AppConfigRouts } from "./AppConfigRouts"
+import { useTranslation } from "react-i18next"
 
 const ConifgHeader = memo((props: {
   app?: IApp,
@@ -17,6 +17,8 @@ const ConifgHeader = memo((props: {
   const handleBack = useCallback(() => {
     navigate("/")
   }, [navigate]);
+
+  const {t} = useTranslation();
 
   const {appUuid} = useParams();
   const match = useMatch(`/config-app/${appUuid}/*`)
@@ -38,27 +40,27 @@ const ConifgHeader = memo((props: {
         items={[
           {
             key: AppConfigRouts.Base,
-            label: getLocalMessage("AppConfig.BaseConfig"),
+            label: t("AppConfig.BaseConfig"),
           },
           {
             key: AppConfigRouts.App,
-            label: getLocalMessage("AppConfig.UIDesign"),
+            label: t("AppConfig.UIDesign"),
           },
           {
             key: AppConfigRouts.Model,
-            label: getLocalMessage("AppConfig.DomainModel"),
+            label: t("AppConfig.DomainModel"),
           },
           {
             key: AppConfigRouts.Api,
-            label: getLocalMessage("AppConfig.AppApi"),
+            label: t("AppConfig.AppApi"),
           },
           {
             key: AppConfigRouts.Auth,
-            label: getLocalMessage("AppConfig.ModelAuth"),
+            label: t("AppConfig.ModelAuth"),
           },
           {
             key: AppConfigRouts.Flow,
-            label: getLocalMessage("AppConfig.FlowDesign"),
+            label: t("AppConfig.FlowDesign"),
           },
         ]}
       />

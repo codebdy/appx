@@ -1,11 +1,11 @@
 import { MoreOutlined, FileAddOutlined, EditOutlined, DeleteOutlined, LoadingOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Button } from "antd";
-import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React, { memo, useCallback, useMemo } from "react"
 import { useDeleteCategory } from "./hooks/useDeleteCategory";
 import { useShowError } from "../../../hooks/useShowError";
 import { IPageList } from "../../../model";
 import { useInit } from "./hooks/useInit";
+import { useTranslation } from "react-i18next";
 
 const CategoryActions = memo((
   props: {
@@ -17,7 +17,8 @@ const CategoryActions = memo((
 ) => {
   const { uuid, onVisibleChange, onEdit, onAddPage } = props;
   const init = useInit();
-
+  const { t } = useTranslation();
+  
   const [remove, { loading, error }] = useDeleteCategory({
     onCompleted: (data: IPageList) => {
       onVisibleChange(false);
@@ -46,7 +47,7 @@ const CategoryActions = memo((
       items={[
         {
           icon: <FileAddOutlined />,
-          label: getLocalMessage("pages.NewPage"),
+          label: t("pages.NewPage"),
           key: '0',
           onClick: (e => {
             e.domEvent.stopPropagation();
@@ -56,7 +57,7 @@ const CategoryActions = memo((
         },
         {
           icon: <EditOutlined />,
-          label: getLocalMessage("Edit"),
+          label: t("Edit"),
           key: '1',
           onClick: (e => {
             e.domEvent.stopPropagation();
@@ -65,7 +66,7 @@ const CategoryActions = memo((
         },
         {
           icon: <DeleteOutlined />,
-          label: getLocalMessage("Delete"),
+          label: t("Delete"),
           key: '2',
           onClick: (e => {
             e.domEvent.stopPropagation();

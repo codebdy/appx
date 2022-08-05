@@ -1,5 +1,4 @@
 import { Form, Modal } from "antd";
-import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React, { useCallback } from "react";
 import { memo } from "react";
 import PageForm from "./PageForm";
@@ -38,11 +37,11 @@ const CreatePageModal = memo((
 
   return (
     <Modal
-      title={getLocalMessage("pages.NewPage")}
+      title={t("pages.NewPage")}
       visible={isModalVisible}
       width={580}
-      cancelText={getLocalMessage("Cancel")}
-      okText={getLocalMessage("Confirm")}
+      cancelText={t("Cancel")}
+      okText={t("Confirm")}
       onCancel={handleCancel}
       onOk={handleConfirm}
       confirmLoading={loading}

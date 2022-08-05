@@ -30,7 +30,7 @@ const schema = () => ({
   properties: {
     loginName: {
       type: 'string',
-      title: getLocalMessage("UserName"),
+      title: t("UserName"),
       required: true,
       'x-decorator': 'FormItem',
       'x-component': 'Input',
@@ -40,7 +40,7 @@ const schema = () => ({
     },
     password: {
       type: 'string',
-      title: getLocalMessage("Password"),
+      title: t("Password"),
       required: true,
       'x-decorator': 'FormItem',
       'x-component': 'Password',
@@ -53,7 +53,7 @@ const schema = () => ({
       'x-decorator': 'FormItem',
       'x-component': 'Checkbox',
       "x-component-props": {
-        children: getLocalMessage("RememberMe"),
+        children: t("RememberMe"),
       }
     }
   },
@@ -120,7 +120,7 @@ const Login = observer(() => {
       backgroundSize: "cover",
     }}>
       <Card style={{ width: 400 }}>
-        <h3>{getLocalMessage("Login")}</h3>
+        <h3>{t("Login")}</h3>
           <Form
             form={form}
             layout="vertical"
@@ -129,7 +129,7 @@ const Login = observer(() => {
           >
             <SchemaField schema={schema()} />
             <Submit block size="large" loading={loading}>
-              {getLocalMessage("Login")}
+              {t("Login")}
             </Submit>
           </Form>
       </Card>

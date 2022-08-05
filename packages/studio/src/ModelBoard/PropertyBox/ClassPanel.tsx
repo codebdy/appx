@@ -26,7 +26,7 @@ export const ClassPanel = (props: { cls: ClassMeta }) => {
         onValuesChange={handleChange}
       >
         <Form.Item
-          label={getLocalMessage("model.Name")}
+          label={t("model.Name")}
           name="name"
         >
           <Input />
@@ -38,13 +38,13 @@ export const ClassPanel = (props: { cls: ClassMeta }) => {
             <Form.Item
               name="root"
               valuePropName="checked"
-              label={getLocalMessage("model.RootNode")}
+              label={t("model.RootNode")}
             >
               <Switch disabled={cls.stereoType === StereoType.Service} />
             </Form.Item>
           )}
         <Form.Item
-          label={getLocalMessage("model.Description")}
+          label={t("model.Description")}
           name="description"
         >
           <Input.TextArea />

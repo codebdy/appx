@@ -45,7 +45,7 @@ export const AttributePanel = (props: {
         onValuesChange={handleChange}
       >
         <Form.Item
-          label={getLocalMessage("model.Name")}
+          label={t("model.Name")}
           name="name"
         >
           <Input disabled={isId} />
@@ -54,7 +54,7 @@ export const AttributePanel = (props: {
         {cls.stereoType !== StereoType.Enum && (
           <>
             <Form.Item
-              label={getLocalMessage("model.DataType")}
+              label={t("model.DataType")}
               name="type"
             >
               <Select disabled={isId}>
@@ -64,27 +64,27 @@ export const AttributePanel = (props: {
                 <Option value={Type.Boolean}>Boolean</Option>
                 <Option value={Type.String}>String</Option>
                 <Option value={Type.Date}>Date</Option>
-                <Option value={Type.Enum}>{getLocalMessage("model.Enum")}</Option>
+                <Option value={Type.Enum}>{t("model.Enum")}</Option>
                 <Option value={Type.JSON}>JSON</Option>
-                <Option value={Type.ValueObject}>{getLocalMessage("model.ValueClass")}</Option>
-                <Option value={Type.Entity}>{getLocalMessage("model.Entity")}</Option>
-                <Option value={Type.File}>{getLocalMessage("File")}</Option>
-                <Option value={Type.IDArray}>ID {getLocalMessage("model.Array")}</Option>
-                <Option value={Type.IntArray}>Int {getLocalMessage("model.Array")}</Option>
-                <Option value={Type.FloatArray}>Float {getLocalMessage("model.Array")}</Option>
-                <Option value={Type.StringArray}>String {getLocalMessage("model.Array")}</Option>
-                <Option value={Type.DateArray}>Date {getLocalMessage("model.Array")}</Option>
+                <Option value={Type.ValueObject}>{t("model.ValueClass")}</Option>
+                <Option value={Type.Entity}>{t("model.Entity")}</Option>
+                <Option value={Type.File}>{t("File")}</Option>
+                <Option value={Type.IDArray}>ID {t("model.Array")}</Option>
+                <Option value={Type.IntArray}>Int {t("model.Array")}</Option>
+                <Option value={Type.FloatArray}>Float {t("model.Array")}</Option>
+                <Option value={Type.StringArray}>String {t("model.Array")}</Option>
+                <Option value={Type.DateArray}>Date {t("model.Array")}</Option>
                 <Option value={Type.EnumArray}>
-                  {getLocalMessage("model.Enum")}
-                  {getLocalMessage("model.Array")}
+                  {t("model.Enum")}
+                  {t("model.Array")}
                 </Option>
                 <Option value={Type.ValueObjectArray}>
-                  {getLocalMessage("model.ValueClass")}
-                  {getLocalMessage("model.Array")}
+                  {t("model.ValueClass")}
+                  {t("model.Array")}
                 </Option>
                 <Option value={Type.EntityArray}>
-                  {getLocalMessage("model.Entity")}
-                  {getLocalMessage("model.Array")}
+                  {t("model.Entity")}
+                  {t("model.Array")}
                 </Option>
               </Select>
             </Form.Item>
@@ -92,25 +92,25 @@ export const AttributePanel = (props: {
               !isId &&
               <>
                 <Form.Item
-                  label={getLocalMessage("model.Nullable")}
+                  label={t("model.Nullable")}
                   name="nullable"
                 >
                   <Switch />
                 </Form.Item>
                 <Form.Item
-                  label={getLocalMessage("model.Unique")}
+                  label={t("model.Unique")}
                   name="unique"
                 >
                   <Switch />
                 </Form.Item>
                 <Form.Item
-                  label={getLocalMessage("model.Index")}
+                  label={t("model.Index")}
                   name="index"
                 >
                   <Switch />
                 </Form.Item>
                 <Form.Item
-                  label={getLocalMessage("model.HiddenField")}
+                  label={t("model.HiddenField")}
                   name="hidden"
                 >
                   <Switch />
@@ -121,19 +121,19 @@ export const AttributePanel = (props: {
               attribute.type === Type.Date &&
               <>
                 <Form.Item
-                  label={getLocalMessage("model.CreateDate")}
+                  label={t("model.CreateDate")}
                   name="createDate"
                 >
                   <Switch />
                 </Form.Item>
                 <Form.Item
-                  label={getLocalMessage("model.UpdateDate")}
+                  label={t("model.UpdateDate")}
                   name="updateDate"
                 >
                   <Switch />
                 </Form.Item>
                 <Form.Item
-                  label={getLocalMessage("model.DeleteDate")}
+                  label={t("model.DeleteDate")}
                   name="deleteDate"
                 >
                   <Switch />
@@ -144,13 +144,13 @@ export const AttributePanel = (props: {
               !isId &&
               <>
                 <Form.Item
-                  label={getLocalMessage("model.DefaultValue")}
+                  label={t("model.DefaultValue")}
                   name="default"
                 >
                   <Input />
                 </Form.Item>
                 <Form.Item
-                  label={getLocalMessage("Length")}
+                  label={t("Length")}
                   name="length"
                 >
                   <Input type={"number"} />
@@ -161,7 +161,7 @@ export const AttributePanel = (props: {
           </>
         )}
         <Form.Item
-          label={getLocalMessage("model.Description")}
+          label={t("model.Description")}
           name="description"
         >
           <Input.TextArea />

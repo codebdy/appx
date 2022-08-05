@@ -61,7 +61,7 @@ const PackageAction = memo((
         items={[
           {
             icon: <FileAddOutlined />,
-            label: getLocalMessage("model.AddDiagram"),
+            label: t("model.AddDiagram"),
             key: '0',
             onClick: e => {
               e.domEvent.stopPropagation();
@@ -70,12 +70,12 @@ const PackageAction = memo((
           },
           {
             icon: <PlusSquareOutlined />,
-            label: getLocalMessage("model.AddClass"),
+            label: t("model.AddClass"),
             key: '1',
             onClick: e => e.domEvent.stopPropagation(),
             children: [
               {
-                label: getLocalMessage("model.AddEntity"),
+                label: t("model.AddEntity"),
                 key: '1',
                 onClick: e => {
                   e.domEvent.stopPropagation();
@@ -83,7 +83,7 @@ const PackageAction = memo((
                 },
               },
               {
-                label: getLocalMessage("model.AddAbstract"),
+                label: t("model.AddAbstract"),
                 key: '2',
                 onClick: e => {
                   e.domEvent.stopPropagation();
@@ -91,7 +91,7 @@ const PackageAction = memo((
                 },
               },
               {
-                label: getLocalMessage("model.AddEnum"),
+                label: t("model.AddEnum"),
                 key: '3',
                 onClick: e => {
                   e.domEvent.stopPropagation();
@@ -99,7 +99,7 @@ const PackageAction = memo((
                 },
               },
               {
-                label: getLocalMessage("model.AddValueObject"),
+                label: t("model.AddValueObject"),
                 key: '4',
                 onClick: e => {
                   e.domEvent.stopPropagation();
@@ -107,7 +107,7 @@ const PackageAction = memo((
                 },
               },
               {
-                label: getLocalMessage("model.AddService"),
+                label: t("model.AddService"),
                 key: '5',
                 onClick: e => {
                   e.domEvent.stopPropagation();
@@ -118,7 +118,7 @@ const PackageAction = memo((
           },
           {
             icon: <ShareAltOutlined />,
-            label: getLocalMessage("Share"),
+            label: t("Share"),
             key: '5',
             onClick: e => {
               e.domEvent.stopPropagation();
@@ -128,7 +128,7 @@ const PackageAction = memo((
           },
           {
             icon: <EditOutlined />,
-            label: getLocalMessage("Edit"),
+            label: t("Edit"),
             key: '6',
             onClick: e => {
               e.domEvent.stopPropagation();
@@ -138,7 +138,7 @@ const PackageAction = memo((
           },
           {
             icon: <DeleteOutlined />,
-            label: getLocalMessage("Delete"),
+            label: t("Delete"),
             key: '7',
             onClick: e => {
               e.domEvent.stopPropagation();

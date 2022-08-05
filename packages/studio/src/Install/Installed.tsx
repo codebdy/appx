@@ -16,11 +16,11 @@ const Installed = memo(() => {
       alignItems: "center",
     }}>
       <div style={{ marginTop: "-16px" }}>
-        {getLocalMessage("install.InstalledMessage")}
+        {t("install.InstalledMessage")}
       </div>
       <div style={{ marginTop: "16px" }}>
         <Button type="primary" onClick={handleLogin}>
-          {getLocalMessage("Login")}
+          {t("Login")}
         </Button>
       </div>
     </div>

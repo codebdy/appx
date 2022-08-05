@@ -1,12 +1,13 @@
 import { Button } from "antd";
 import SvgIcon from "../../../common/SvgIcon";
-import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React, { useCallback, useState } from "react";
 import { memo } from "react";
 import CreatePageModal from "./CreatePageModal";
+import { useTranslation } from "react-i18next";
 
 const CreatePageDialog = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const { t } = useTranslation();
   const showModal = useCallback(() => {
     setIsModalVisible(true);
   }, []);
@@ -28,7 +29,7 @@ const CreatePageDialog = memo(() => {
         }
         onClick={showModal}
       >
-        {getLocalMessage("pages.NewPage")}
+        {t("pages.NewPage")}
       </Button>
       <CreatePageModal isModalVisible={isModalVisible} onClose={handleClose} />
     </>

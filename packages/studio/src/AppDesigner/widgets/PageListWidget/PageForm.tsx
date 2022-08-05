@@ -1,11 +1,11 @@
 import { FormInstance, Col, Form, Input, Row, Tabs, Select } from "antd";
-import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React, { useCallback } from "react";
 import { memo } from "react";
 import FormTemplates from "./FormTemplates";
 import { IPageInput } from "packages/studio/src/model/input";
 import { useCagegories } from "./hooks/useCagegories";
 import { IPage } from "../../../model";
+import { useTranslation } from "react-i18next";
 const { TabPane } = Tabs;
 const { Option } = Select;
 
@@ -16,6 +16,7 @@ const PageForm = memo((props: {
 }) => {
   const { page, categoryUuid, form } = props;
   const categories = useCagegories();
+  const { t } = useTranslation();
 
   const handleChange = useCallback((key: string) => {
     console.log(key);
@@ -33,16 +34,16 @@ const PageForm = memo((props: {
       <Row gutter={12}>
         <Col span={12}>
           <Form.Item
-            label={getLocalMessage("pages.PageName")}
+            label={t("pages.PageName")}
             name="title"
-            rules={[{ required: true, message: getLocalMessage("Required") }]}
+            rules={[{ required: true, message: t("Required") }]}
           >
             <Input />
           </Form.Item>
         </Col>
         <Col span={12}>
           <Form.Item
-            label={getLocalMessage("pages.SelectCategory")}
+            label={t("pages.SelectCategory")}
             name="categoryUuid"
           >
             <Select onChange={handleChange}>

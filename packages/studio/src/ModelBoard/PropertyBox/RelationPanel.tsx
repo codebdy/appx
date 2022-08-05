@@ -45,7 +45,7 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
           <div style={{
             width: "100%",
             padding: "8px",
-          }}>{getLocalMessage("model.Inherit")}</div>
+          }}>{t("model.Inherit")}</div>
           : <Form
             name="classForm"
             form={form}
@@ -58,9 +58,9 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
             onValuesChange={handleChange}
           >
             <Collapse className="no-border"  defaultActiveKey={['1', '2']}>
-              <Panel header={source?.name + getLocalMessage("model.Side")} key="1">
+              <Panel header={source?.name + t("model.Side")} key="1">
                 <Form.Item
-                  label={getLocalMessage("model.Multiplicity")}
+                  label={t("model.Multiplicity")}
                   name="sourceMutiplicity"
                 >
                   <Select>
@@ -80,13 +80,13 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
                   relation.relationType !== RelationType.ONE_WAY_COMBINATION &&
                   <>
                     <Form.Item
-                      label={getLocalMessage("model.RoleName")}
+                      label={t("model.RoleName")}
                       name="roleOfSource"
                     >
                       <Input />
                     </Form.Item>
                     <Form.Item
-                      label={getLocalMessage("model.Description")}
+                      label={t("model.Description")}
                       name="descriptionOnSource"
                     >
                       <Input.TextArea />
@@ -95,9 +95,9 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
                 }
 
               </Panel>
-              <Panel header={target?.name + getLocalMessage("model.Side")} key="2">
+              <Panel header={target?.name + t("model.Side")} key="2">
                 <Form.Item
-                  label={getLocalMessage("model.Multiplicity")}
+                  label={t("model.Multiplicity")}
                   name="targetMultiplicity"
                 >
                   <Select>
@@ -106,13 +106,13 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
                   </Select>
                 </Form.Item>
                 <Form.Item
-                  label={getLocalMessage("model.RoleName")}
+                  label={t("model.RoleName")}
                   name="roleOfTarget"
                 >
                   <Input />
                 </Form.Item>
                 <Form.Item
-                  label={getLocalMessage("model.Description")}
+                  label={t("model.Description")}
                   name="descriptionOnTarget"
                 >
                   <Input.TextArea />

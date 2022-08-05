@@ -20,7 +20,7 @@ export function useChangeClass(appUuid: ID) {
           .filter((cl) => cl.uuid !== cls.uuid)
           .find((cl) => cl.name === cls.name)
       ) {
-        message.error(getLocalMessage("model.error-name-repeat"));
+        message.error(t("model.error-name-repeat"));
         return;
       }
       backupSnapshot();

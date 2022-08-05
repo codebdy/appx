@@ -25,7 +25,7 @@ const SyncButton = memo(() => {
     onCompleted() {
       setPublishedId(meta?.id);
       setMeta(meta => (meta ? { ...meta, status: MetaStatus.META_STATUS_PUBLISHED } : undefined));
-      message.success(getLocalMessage("OperateSuccess"));
+      message.success(t("OperateSuccess"));
     },
   });
 
@@ -40,13 +40,13 @@ const SyncButton = memo(() => {
       items={[
         {
           icon: <DownloadOutlined />,
-          label: getLocalMessage("model.ExportModel"),
+          label: t("model.ExportModel"),
           key: 'export',
           onClick: expotJson,
         },
         {
           icon: <ImportOutlined />,
-          label: getLocalMessage("model.ImportModel"),
+          label: t("model.ImportModel"),
           key: 'import',
         },
       ]}
@@ -63,7 +63,7 @@ const SyncButton = memo(() => {
       icon={<DownOutlined />}
       onClick={handlePublish}
     >
-      {getLocalMessage("Publish")}
+      {t("Publish")}
     </Dropdown.Button>
   )
 });

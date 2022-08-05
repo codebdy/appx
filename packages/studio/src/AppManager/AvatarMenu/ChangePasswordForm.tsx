@@ -4,11 +4,11 @@ import { createForm } from "@formily/core";
 import { createSchemaField } from '@formily/react'
 import { useChangePassword } from "../../enthooks/hooks/useChangePassword";
 import { Form, FormButtonGroup, FormItem, Password, Submit } from "@formily/antd";
-import { getLocalMessage } from "../../locales/getLocalMessage";
 import { useShowError } from "../../hooks/useShowError";
 import { message } from "antd";
 import { useSetToken } from "../../enthooks";
 import { TOKEN_NAME } from "../../consts";
+import { useTranslation } from "react-i18next";
 
 const SchemaField = createSchemaField({
   components: {
@@ -22,66 +22,6 @@ const SchemaField = createSchemaField({
   },
 })
 
-const schema = () => {
-  const confirmMessage = getLocalMessage("PasswordDisaccord");
-  return ({
-    type: 'object',
-    properties: {
-      oldPassword: {
-        type: 'string',
-        title: getLocalMessage("OldPassword"),
-        required: true,
-        'x-decorator': 'FormItem',
-        'x-component': 'Password',
-        'x-component-props': {
-          prefix: "{{icon('LockOutlined')}}",
-        },
-      },
-      newPassword: {
-        type: 'string',
-        title: getLocalMessage("NewPassword"),
-        required: true,
-        'x-decorator': 'FormItem',
-        'x-component': 'Password',
-        'x-component-props': {
-          checkStrength: true,
-        },
-        'x-reactions': [
-          {
-            dependencies: ['.confirmPassword'],
-            fulfill: {
-              state: {
-                selfErrors:
-                  `{{$deps[0] && $self.value && $self.value !== $deps[0] ? "${confirmMessage}" : ""}}`,
-              },
-            },
-          },
-        ],
-      },
-      confirmPassword: {
-        type: 'string',
-        title: getLocalMessage("ConfirmPassword"),
-        required: true,
-        'x-decorator': 'FormItem',
-        'x-component': 'Password',
-        'x-component-props': {
-          checkStrength: true,
-        },
-        'x-reactions': [
-          {
-            dependencies: ['.newPassword'],
-            fulfill: {
-              state: {
-                selfErrors:
-                  `{{$deps[0] && $self.value && $self.value !== $deps[0] ? "${confirmMessage}" : ""}}`,
-              },
-            },
-          },
-        ],
-      },
-    },
-  })
-}
 
 
 const ChangePasswordForm = memo((
@@ -92,10 +32,11 @@ const ChangePasswordForm = memo((
 ) => {
   const { loginName, onClose } = props;
   const setToken = useSetToken();
+  const { t } = useTranslation();
   const [change, { error, loading }] = useChangePassword({
     onCompleted: (token?: string) => {
       if (token) {
-        message.success(getLocalMessage("OperateSuccess"))
+        message.success(t("OperateSuccess"))
         setToken(token);
         if (localStorage.getItem(TOKEN_NAME)) {
           localStorage.setItem(TOKEN_NAME, token)
@@ -123,6 +64,64 @@ const ChangePasswordForm = memo((
       newPassword
     })
   }, [change, loginName])
+  const confirmMessage = useMemo(() => t("PasswordDisaccord"), [t]);
+  const schema = useMemo(() => ({
+    type: 'object',
+    properties: {
+      oldPassword: {
+        type: 'string',
+        title: t("OldPassword"),
+        required: true,
+        'x-decorator': 'FormItem',
+        'x-component': 'Password',
+        'x-component-props': {
+          prefix: "{{icon('LockOutlined')}}",
+        },
+      },
+      newPassword: {
+        type: 'string',
+        title: t("NewPassword"),
+        required: true,
+        'x-decorator': 'FormItem',
+        'x-component': 'Password',
+        'x-component-props': {
+          checkStrength: true,
+        },
+        'x-reactions': [
+          {
+            dependencies: ['.confirmPassword'],
+            fulfill: {
+              state: {
+                selfErrors:
+                  `{{$deps[0] && $self.value && $self.value !== $deps[0] ? "${confirmMessage}" : ""}}`,
+              },
+            },
+          },
+        ],
+      },
+      confirmPassword: {
+        type: 'string',
+        title: t("ConfirmPassword"),
+        required: true,
+        'x-decorator': 'FormItem',
+        'x-component': 'Password',
+        'x-component-props': {
+          checkStrength: true,
+        },
+        'x-reactions': [
+          {
+            dependencies: ['.newPassword'],
+            fulfill: {
+              state: {
+                selfErrors:
+                  `{{$deps[0] && $self.value && $self.value !== $deps[0] ? "${confirmMessage}" : ""}}`,
+              },
+            },
+          },
+        ],
+      },
+    },
+  }), [confirmMessage, t])
 
   return (
     <Form
@@ -132,10 +131,10 @@ const ChangePasswordForm = memo((
       size="large"
       onAutoSubmit={handleSubmit}
     >
-      <SchemaField schema={schema()} />
+      <SchemaField schema={schema} />
       <FormButtonGroup.FormItem>
         <Submit block size="large" loading={loading}>
-          {getLocalMessage("ConfirmChange")}
+          {t("ConfirmChange")}
         </Submit>
       </FormButtonGroup.FormItem>
     </Form>

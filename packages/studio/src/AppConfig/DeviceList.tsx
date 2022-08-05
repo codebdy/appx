@@ -2,8 +2,8 @@ import { Row, Col, Card, Button, Skeleton } from "antd"
 import Meta from "antd/lib/card/Meta"
 import React from "react"
 import { memo } from "react"
+import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
-import { getLocalMessage } from "../locales/getLocalMessage"
 import { Device } from "../model"
 
 const DeviceList = memo((props: {
@@ -15,12 +15,13 @@ const DeviceList = memo((props: {
   const adminImage = h5Image;
   const { appUuid } = useParams();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return (
     <div className='content-inner'>
       <div className="content-show-block">
         <div className="config-content">
-          <h2>{getLocalMessage("appManager.AppDesign")}</h2>
+          <h2>{t("appManager.AppDesign")}</h2>
           {
             loading ?
               <Skeleton active={true}></Skeleton>
@@ -39,15 +40,15 @@ const DeviceList = memo((props: {
                         key="design"
                         shape="round"
                         type="primary"
-                        onClick ={()=>{navigate(`/design-app/${Device.PC}/${appUuid}`)}}
+                        onClick={() => { navigate(`/design-app/${Device.PC}/${appUuid}`) }}
                       >
-                        {getLocalMessage("appManager.ToDesign")}
+                        {t("appManager.ToDesign")}
                       </Button>,
-                      <Button key="preview" shape="round" >{getLocalMessage("appManager.ToPreview")}</Button>,
+                      <Button key="preview" shape="round" >{t("appManager.ToPreview")}</Button>,
                     ]}
                   >
                     <Meta
-                      title={getLocalMessage("appManager.PCDesign")}
+                      title={t("appManager.PCDesign")}
                     />
                   </Card>
                 </Col>
@@ -64,15 +65,15 @@ const DeviceList = memo((props: {
                         key="design"
                         shape="round"
                         type="primary"
-                        onClick ={()=>{navigate(`/design-app/${Device.H5}/${appUuid}`)}}
+                        onClick={() => { navigate(`/design-app/${Device.H5}/${appUuid}`) }}
                       >
-                        {getLocalMessage("appManager.ToDesign")}
+                        {t("appManager.ToDesign")}
                       </Button>,
-                      <Button key="preview" shape="round" >{getLocalMessage("appManager.ToPreview")}</Button>,
+                      <Button key="preview" shape="round" >{t("appManager.ToPreview")}</Button>,
                     ]}
                   >
                     <Meta
-                      title={getLocalMessage("appManager.H5Design")}
+                      title={t("appManager.H5Design")}
                     />
                   </Card>
                 </Col>
@@ -89,15 +90,15 @@ const DeviceList = memo((props: {
                         key="design"
                         shape="round"
                         type="primary"
-                        onClick ={()=>{navigate(`/design-app/${Device.Admin}/${appUuid}`)}}
+                        onClick={() => { navigate(`/design-app/${Device.Admin}/${appUuid}`) }}
                       >
-                        {getLocalMessage("appManager.ToDesign")}
+                        {t("appManager.ToDesign")}
                       </Button>,
-                      <Button key="preview" shape="round" >{getLocalMessage("appManager.ToPreview")}</Button>,
+                      <Button key="preview" shape="round" >{t("appManager.ToPreview")}</Button>,
                     ]}
                   >
                     <Meta
-                      title={getLocalMessage("appManager.AdminDesign")}
+                      title={t("appManager.AdminDesign")}
                     />
                   </Card>
                 </Col>

@@ -30,7 +30,7 @@ const Install = memo(() => {
       backgroundSize: "cover",
     }}>
       <Card
-        title={getLocalMessage("install.Title")}
+        title={t("install.Title")}
       >
         <div style={{
           minHeight: 160,

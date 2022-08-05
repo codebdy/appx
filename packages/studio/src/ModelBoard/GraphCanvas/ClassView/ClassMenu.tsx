@@ -46,24 +46,24 @@ const ClassMenu = memo((
       items={[
         {
           icon: <PlusOutlined />,
-          label: getLocalMessage("model.AddAttribute"),
+          label: t("model.AddAttribute"),
           key: 'addAttribute',
           disabled: cls.stereoType === StereoType.Service,
         },
         {
           icon: <PlusOutlined />,
-          label: getLocalMessage("model.AddMethod"),
+          label: t("model.AddMethod"),
           key: 'addMethod',
           disabled: cls.stereoType === StereoType.Enum || cls.stereoType === StereoType.ValueObject,
         },
         {
           icon: <EyeInvisibleOutlined />,
-          label: getLocalMessage("Hidden"),
+          label: t("Hidden"),
           key: 'hidden',
         },
         {
           icon: <DeleteOutlined />,
-          label: getLocalMessage("Delete"),
+          label: t("Delete"),
           key: 'delete',
         },
       ]}

@@ -1,6 +1,5 @@
 import { MoreOutlined, EditOutlined, DeleteOutlined, LoadingOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Button } from "antd";
-import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React, { memo, useCallback, useMemo } from "react"
 import { ID } from "../../../shared";
 import { useDeletePage } from "./hooks/useDeletePage";
@@ -9,6 +8,7 @@ import { useShowError } from "../../../hooks/useShowError";
 import { useSetRecoilState } from "recoil";
 import { pagesState } from "./recoil/atoms";
 import { useDesingerKey } from "../../context";
+import { useTranslation } from "react-i18next";
 
 const PageActions = memo((
   props: {
@@ -20,6 +20,7 @@ const PageActions = memo((
   const { pageId, onVisibleChange, onEdit } = props;
   const key = useDesingerKey();
   const setPages = useSetRecoilState(pagesState(key))
+  const { t } = useTranslation();
   const [remove, { loading, error }] = useDeletePage({
     onCompleted: (data: IPage) => {
       onVisibleChange(false);
@@ -44,7 +45,7 @@ const PageActions = memo((
       items={[
         {
           icon: <EditOutlined />,
-          label: getLocalMessage("Edit"),
+          label: t("Edit"),
           key: '1',
           onClick: (e => {
             e.domEvent.stopPropagation();
@@ -53,7 +54,7 @@ const PageActions = memo((
         },
         {
           icon: <DeleteOutlined />,
-          label: getLocalMessage("Delete"),
+          label: t("Delete"),
           key: '2',
           onClick: (e => {
             e.domEvent.stopPropagation();

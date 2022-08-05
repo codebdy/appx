@@ -3,21 +3,22 @@ import { diagramsState } from "../recoil/atoms";
 import { useGetDiagramByName } from "./useGetDiagramByName";
 import { useCallback } from "react";
 import { createUuid, ID } from "../../shared";
-import { getLocalMessage } from "../../locales/getLocalMessage";
+import { useTranslation } from "react-i18next";
 
 export function useCreateNewDiagram(appUuid: ID) {
   const setDiagrams = useSetRecoilState(diagramsState(appUuid));
   const getDiagramByName = useGetDiagramByName(appUuid);
-
+  const { t } = useTranslation();
+  
   const getNewDiagramName = useCallback(() => {
-    const prefix = getLocalMessage("model.NewDiagram");
+    const prefix = t("model.NewDiagram");
     let index = 1;
     while (getDiagramByName(prefix + index)) {
       index++;
     }
 
     return prefix + index;
-  }, [getDiagramByName]);
+  }, [getDiagramByName, t]);
 
   const createNewDiagram = useCallback((packageUuid) => {
     const newDiagram = {

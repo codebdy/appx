@@ -2,9 +2,8 @@ import { CloudUploadOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, UploadProps, Form, Input, Modal, message } from 'antd';
 import Dragger from 'antd/lib/upload/Dragger';
 import React, { memo, useState } from 'react';
-import { TextWidget } from '../AppDesigner/widgets';
+import { useTranslation } from 'react-i18next';
 import { useCreateApp } from '../hooks/useCreateApp';
-import { getLocalMessage } from '../locales/getLocalMessage';
 import { IAppInput } from '../model/input';
 import { createUuid } from '../shared';
 import { useShowError } from './../hooks/useShowError';
@@ -12,10 +11,11 @@ import { useShowError } from './../hooks/useShowError';
 const CreateDialog = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [form] = Form.useForm<IAppInput>();
+  const { t } = useTranslation();
 
   const [create, { loading, error }] = useCreateApp({
     onCompleted: () => {
-      message.success(getLocalMessage("OperateSuccess"))
+      message.success(t("OperateSuccess"))
       setIsModalVisible(false);
     }
   });
@@ -81,12 +81,12 @@ const CreateDialog = memo(() => {
         icon={<PlusOutlined />}
         onClick={showModal}
       >
-        <TextWidget>appManager.CreateApp</TextWidget>
+        {t("appManager.CreateApp")}
       </Button>
       <Modal
-        title={<TextWidget>appManager.CreateApp</TextWidget>}
-        okText={<TextWidget>Confirm</TextWidget>}
-        cancelText={<TextWidget>Cancel</TextWidget>}
+        title={t("appManager.CreateApp")}
+        okText={t("Confirm")}
+        cancelText={t("Cancel")}
         okButtonProps={{
           loading: loading
         }}
@@ -105,22 +105,22 @@ const CreateDialog = memo(() => {
           autoComplete="off"
         >
           <Form.Item
-            label={getLocalMessage("AppName")}
+            label={t("AppName")}
             name="title"
-            rules={[{ required: true, message: getLocalMessage("Required") }]}
+            rules={[{ required: true, message: t("Required") }]}
           >
             <Input />
           </Form.Item>
 
           {/* <Form.Item
-            label={getLocalMessage("Description")}
+            label={t("Description")}
             name="description"
           >
             <Input.TextArea />
           </Form.Item> */}
 
           < Form.Item
-            label={getLocalMessage("Image")}
+            label={t("Image")}
             name="image"
             valuePropName="fileList"
             // 如果没有下面这一句会报错
@@ -131,8 +131,8 @@ const CreateDialog = memo(() => {
                 <CloudUploadOutlined />
               </p>
               <p className="ant-upload-hint">
-                <TextWidget>UploadHint1</TextWidget>
-                <Button type="link"><TextWidget>UploadHint2</TextWidget></Button>
+                t("UploadHint1")
+                <Button type="link">t("UploadHint2")</Button>
               </p>
             </Dragger>
           </Form.Item>

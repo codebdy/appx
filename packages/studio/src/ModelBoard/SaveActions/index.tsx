@@ -22,7 +22,7 @@ const SaveActions = memo((props: {
   const validate = useValidate(appUuid);
   const [excuteSave, { loading, error }] = usePostOne<Meta, any>(EntityNameMeta, {
     onCompleted(data: Meta) {
-      message.success(getLocalMessage("OperateSuccess"));
+      message.success(t("OperateSuccess"));
       setChanged(false);
       setMeta(data);
     },
@@ -47,7 +47,7 @@ const SaveActions = memo((props: {
         loading={loading}
         onClick={handleSave}
       >
-        {getLocalMessage("save")}
+        {t("save")}
       </Button>
       <SyncButton />
     </Space>

@@ -1,11 +1,12 @@
 import { Form, Modal } from "antd";
-import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React, { useCallback } from "react";
 import { memo } from "react";
 import PageForm from "./PageForm";
 import { IPage } from "../../../model";
 import { useUpsertPage } from "./hooks/useUpsertPage";
 import { useShowError } from "../../../hooks/useShowError";
+import { useTranslation } from "react-i18next";
+const { t } = useTranslation();
 
 const EditPageDialog = memo((
   props: {
@@ -33,11 +34,11 @@ const EditPageDialog = memo((
 
   return (
     <Modal
-      title={getLocalMessage("pages.EidtPage")}
+      title={t("pages.EidtPage")}
       visible={isModalVisible}
       width={580}
-      cancelText={getLocalMessage("Cancel")}
-      okText={getLocalMessage("Confirm")}
+      cancelText={t("Cancel")}
+      okText={t("Confirm")}
       onCancel={onClose}
       onOk={handleConfirm}
       confirmLoading={loading}

@@ -1,5 +1,4 @@
 import { Form, Modal } from "antd";
-import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React, { useCallback } from "react";
 import { memo } from "react";
 import { useShowError } from "../../../hooks/useShowError";
@@ -7,6 +6,7 @@ import { IPageList } from "../../../model";
 import CategoryForm from "./CategoryForm";
 import { IListNode } from "./recoil/IListNode";
 import { useUpdateCategory } from "./hooks/useUpdateCategory";
+import { useTranslation } from "react-i18next";
 
 const EditCategoryDialog = memo((
   props: {
@@ -16,7 +16,8 @@ const EditCategoryDialog = memo((
   }
 ) => {
   const { category, isModalVisible, onClose } = props;
-
+  const { t } = useTranslation();
+  
   const [form] = Form.useForm()
   const [update, { loading, error }] = useUpdateCategory({
     onCompleted: (data: IPageList) => {
@@ -35,11 +36,11 @@ const EditCategoryDialog = memo((
 
   return (
     <Modal
-      title={getLocalMessage("pages.EditCategory")}
+      title={t("pages.EditCategory")}
       visible={isModalVisible}
       width={400}
-      cancelText={getLocalMessage("Cancel")}
-      okText={getLocalMessage("Confirm")}
+      cancelText={t("Cancel")}
+      okText={t("Confirm")}
       onCancel={onClose}
       onOk={handleConfirm}
       confirmLoading={loading}

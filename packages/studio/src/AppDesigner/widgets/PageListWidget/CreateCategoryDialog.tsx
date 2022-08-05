@@ -1,6 +1,5 @@
 import { Button, Modal } from "antd";
 import SvgIcon from "../../../common/SvgIcon";
-import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React, { useCallback, useState } from "react";
 import { memo } from "react";
 import { useForm } from "antd/lib/form/Form";
@@ -9,11 +8,13 @@ import { useShowError } from "../../../hooks/useShowError";
 import { IPageList } from "../../../model";
 import { useInit } from "./hooks/useInit";
 import CategoryForm from "./CategoryForm";
+import { useTranslation } from "react-i18next";
 
 const CreateCategoryDialog = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [form] = useForm()
   const init = useInit();
+  const { t } = useTranslation();
   const [create, { loading, error }] = useCreateCategory({
     onCompleted:(data:IPageList)=>{
       init(data);
@@ -51,14 +52,14 @@ const CreateCategoryDialog = memo(() => {
         }
         onClick={showModal}
       >
-        {getLocalMessage("pages.NewCategory")}
+        {t("pages.NewCategory")}
       </Button>
       <Modal
-        title={getLocalMessage("pages.NewCategory")}
+        title={t("pages.NewCategory")}
         visible={isModalVisible}
         width={400}
-        cancelText={getLocalMessage("Cancel")}
-        okText={getLocalMessage("Confirm")}
+        cancelText={t("Cancel")}
+        okText={t("Confirm")}
         onCancel={handleCancel}
         onOk={handleConfirm}
         confirmLoading={loading}

@@ -33,7 +33,7 @@ const AttributesLabel = memo((
         </Button>
       }
     >
-      {getLocalMessage("model.Atrributes")}
+      {t("model.Atrributes")}
     </TreeNodeLabel>
   )
 })

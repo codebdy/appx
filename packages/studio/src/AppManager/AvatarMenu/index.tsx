@@ -39,10 +39,10 @@ const AvatarMenu = memo(() => {
         icon={<LockOutlined />}
         onClick={showModal}
       >
-        {getLocalMessage("ChangePassword")}
+        {t("ChangePassword")}
       </Menu.Item>
       <Menu.Item key="logout" icon={<LogoutOutlined />} onClick={handleLogout}>
-        {getLocalMessage("Logout")}
+        {t("Logout")}
       </Menu.Item>
     </Menu>
   ), [handleLogout, showModal]);
@@ -59,7 +59,7 @@ const AvatarMenu = memo(() => {
 
       </Dropdown>
       <Modal
-        title={getLocalMessage("ChangePassword")}
+        title={t("ChangePassword")}
         visible={isModalVisible}
         footer={null}
         width={460}

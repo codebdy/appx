@@ -33,7 +33,7 @@ const MethodsLabel = memo((
         </Button>
       }
     >
-      {getLocalMessage("model.Methods")}
+      {t("model.Methods")}
     </TreeNodeLabel>
   )
 })

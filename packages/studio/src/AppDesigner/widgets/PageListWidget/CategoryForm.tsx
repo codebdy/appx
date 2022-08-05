@@ -1,7 +1,7 @@
 import { Form, FormInstance, Input } from "antd";
-import { getLocalMessage } from "../../../locales/getLocalMessage";
 import React from "react";
 import { memo } from "react";
+import { useTranslation } from "react-i18next";
 
 const CategoryForm = memo((
   props: {
@@ -10,7 +10,8 @@ const CategoryForm = memo((
   }
 ) => {
   const { title, form } = props;
-
+  const { t } = useTranslation();
+  
   return (
     <Form
       name="eidtCategory"
@@ -21,9 +22,9 @@ const CategoryForm = memo((
       initialValues={{ title: title }}
     >
       <Form.Item
-        label={getLocalMessage("pages.CagegoryName")}
+        label={t("pages.CagegoryName")}
         name="title"
-        rules={[{ required: true, message: getLocalMessage("Required") }]}
+        rules={[{ required: true, message: t("Required") }]}
       >
         <Input />
       </Form.Item>

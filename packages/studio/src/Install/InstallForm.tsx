@@ -68,23 +68,23 @@ const InstallForm = memo(() => {
             autoComplete="off"
           >
             <Form.Item
-              label={getLocalMessage("install.Account")}
+              label={t("install.Account")}
               name="admin"
-              rules={[{ required: true, message: getLocalMessage("Requried") }]}
+              rules={[{ required: true, message: t("Requried") }]}
             >
               <Input />
             </Form.Item>
 
             <Form.Item
-              label={getLocalMessage("install.Password")}
+              label={t("install.Password")}
               name="password"
-              rules={[{ required: true, message: getLocalMessage("Requried") }]}
+              rules={[{ required: true, message: t("Requried") }]}
             >
               <Input.Password />
             </Form.Item>
 
             <Form.Item name="withDemo" valuePropName="checked" wrapperCol={{ offset: 7, span: 16 }}>
-              <Checkbox>{getLocalMessage("install.WithDemo")}</Checkbox>
+              <Checkbox>{t("install.WithDemo")}</Checkbox>
             </Form.Item>
           </Form>
         }
@@ -107,27 +107,27 @@ const InstallForm = memo(() => {
           {
             current === 1 &&
             <Button onClick={prev}>
-              {getLocalMessage("install.Previous")}
+              {t("install.Previous")}
             </Button>
           }
 
           {
             current === 0 &&
             <Button type="primary" onClick={next}>
-              {getLocalMessage("install.next")}
+              {t("install.next")}
             </Button>
           }
 
           {
             current === 1 &&
             <Button type="primary" onClick={handleInstall} loading={loading}>
-              {getLocalMessage("install.Install")}
+              {t("install.Install")}
             </Button>
           }
           {
             current === 2 &&
             <Button type="primary" onClick={handleFinished}>
-              {getLocalMessage("install.Finished")}
+              {t("install.Finished")}
             </Button>
           }
         </Space>
