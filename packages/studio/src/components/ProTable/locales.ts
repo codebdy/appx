@@ -14,7 +14,9 @@ const locales = {
     "Cancel": "取消",
     "Default": "默认",
     "Middle": "中等",
-    "Dense": "紧凑"
+    "Dense": "紧凑",
+    "SelecteMessage": "已选择 {{count}} 项",
+    "CancelSelect": "取消选择"
   },
   'en-US': {
   },

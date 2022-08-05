@@ -1,14 +1,16 @@
 import { Alert, Button, Space } from "antd"
-import React from "react";
+import React, { memo } from "react";
+import { useLocalTranslations } from "../hooks/useLocalTranslations";
 
-const SelectMessage = () => {
+const SelectMessage = memo(() => {
+  const { t } = useLocalTranslations()
   return (
     <Alert
       message={
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <div>
-            已选择 1 项
-            <Button type="link">取消选择</Button>
+            {t("SelecteMessage", { count: 3 })}
+            <Button type="link">{t("CancelSelect")}</Button>
           </div>
           <Space style={{ display: 'flex', alignItems: 'center' }}>
             <Button>批量删除</Button>
@@ -20,6 +22,6 @@ const SelectMessage = () => {
       style={{ marginTop: 16, marginBottom: 16 }}
     />
   )
-}
+})
 
 export default SelectMessage;
