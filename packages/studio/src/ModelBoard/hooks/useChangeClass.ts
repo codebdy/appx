@@ -1,7 +1,7 @@
 import { message } from "antd";
 import { useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { getLocalMessage } from "../../locales/getLocalMessage";
 import { ID } from "../../shared";
 import { EVENT_CLASS_CHANGED, triggerCanvasEvent } from "../GraphCanvas/events";
 import { ClassMeta } from "../meta/ClassMeta";
@@ -12,7 +12,8 @@ export function useChangeClass(appUuid: ID) {
   const backupSnapshot = useBackupSnapshot(appUuid);
   const setClasses = useSetRecoilState(classesState(appUuid));
   const classes = useRecoilValue(classesState(appUuid));
-
+  const { t } = useTranslation();
+  
   const changeClass = useCallback(
     (cls: ClassMeta) => {
       if (

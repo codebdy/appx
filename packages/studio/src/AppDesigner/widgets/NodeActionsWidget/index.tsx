@@ -1,11 +1,10 @@
 import React from 'react'
 import { Space, Typography, Divider, TypographyProps } from 'antd'
 import { observer } from '@formily/reactive-react'
-import { usePrefix, useTreeNode, useSelected } from '@designable/react'
-import { IconWidget } from '../IconWidget'
-import { TextWidget } from '../TextWidget'
+import { useTreeNode, useSelected } from '@designable/react'
 import cls from 'classnames'
 import './styles.less'
+import { usePrefix, IconWidget, TextWidget } from "@designable/react"
 
 export interface INodeActionsWidgetProps {
   className?: string
@@ -39,6 +38,7 @@ export const NodeActionsWidget: React.FC<INodeActionsWidgetProps> & {
 })
 
 NodeActionsWidget.Action = ({ icon, title, ...props }) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const prefix = usePrefix('node-actions-item')
   return (
     <Typography.Link

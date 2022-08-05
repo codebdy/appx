@@ -1,17 +1,18 @@
 import { Button, Checkbox, Form, Input, Space } from 'antd';
 import React, { memo, useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { LOGIN_URL } from '../consts';
 import { useInstall } from '../enthooks/hooks/useInstall';
 import { useShowError } from '../hooks/useShowError';
-import { getLocalMessage } from '../locales/getLocalMessage';
 import * as meta from './data.json';
 
 const InstallForm = memo(() => {
   const [current, setCurrent] = useState(0);
   const navigate = useNavigate()
   const [form] = Form.useForm()
-
+  const { t } = useTranslation();
+  
   const [install, { loading, error }] = useInstall({
     onCompleted: (data) => {
       if (data?.install) {

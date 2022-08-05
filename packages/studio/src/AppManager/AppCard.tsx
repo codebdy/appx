@@ -2,9 +2,9 @@ import { SettingOutlined, EditOutlined, EllipsisOutlined, SendOutlined, DeleteOu
 import { Card, Dropdown, Menu } from "antd"
 import Meta from "antd/lib/card/Meta"
 import React, { memo, useCallback } from "react"
+import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import { AppConfigRouts } from "../AppConfig/AppConfigRouts"
-import { TextWidget } from "../AppDesigner/widgets"
 import { useRemoveApp } from "../hooks/useRemoveApp"
 import { IApp } from "../model"
 import { useShowError } from './../hooks/useShowError';
@@ -15,11 +15,11 @@ const AppCard = memo((props: {
   const { app } = props;
   const navigate = useNavigate();
   const [remove, { loading, error }] = useRemoveApp();
-
+  const { t } = useTranslation();
   useShowError(error)
 
   const handleEdit = useCallback(() => {
-    navigate(`/config-app/${app.uuid}/${AppConfigRouts.App}` )
+    navigate(`/config-app/${app.uuid}/${AppConfigRouts.App}`)
   }, [app.uuid, navigate])
 
   const handleRemove = useCallback(() => {
@@ -44,10 +44,10 @@ const AppCard = memo((props: {
             <Menu.Item key="settings"
               icon={<SettingOutlined />}
             >
-              <TextWidget>Settings</TextWidget>
+              {t("Settings")}
             </Menu.Item>
             <Menu.Item key="remove" icon={<DeleteOutlined />} onClick={handleRemove}>
-              <TextWidget>Delete</TextWidget>
+              {t("Delete")}
             </Menu.Item>
           </Menu>
         } placement="bottomRight" arrow trigger={['click']} disabled={loading}>

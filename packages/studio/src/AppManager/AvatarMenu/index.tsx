@@ -1,12 +1,12 @@
 import { LockOutlined, LogoutOutlined, UserOutlined } from "@ant-design/icons"
 import { Avatar, Dropdown, Menu, Modal, Skeleton } from "antd"
 import React, { memo, useCallback, useMemo, useState } from "react"
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { LOGIN_URL, TOKEN_NAME } from "../../consts";
 import { useLogout, useSetToken } from "../../enthooks";
 import { useMe } from "../../enthooks/hooks/useMe";
 import { useShowError } from "../../hooks/useShowError";
-import { getLocalMessage } from "../../locales/getLocalMessage";
 import ChangePasswordForm from "./ChangePasswordForm";
 
 const AvatarMenu = memo(() => {
@@ -14,6 +14,7 @@ const AvatarMenu = memo(() => {
   const setToken = useSetToken();
   const { me, loading, error } = useMe()
   const navigate = useNavigate();
+  const { t } = useTranslation();
   useShowError(error);
   const [logout] = useLogout()
 

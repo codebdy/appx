@@ -7,8 +7,8 @@ import {
 import { useClass } from "../hooks/useClass";
 import { useChangeRelation } from "../hooks/useChangeRelation";
 import { Collapse, Form, Input, Select } from "antd";
-import { getLocalMessage } from "../../locales/getLocalMessage";
 import { useSelectedAppUuid } from "../context";
+import { useTranslation } from "react-i18next";
 
 const { Panel } = Collapse;
 const { Option } = Select;
@@ -19,7 +19,8 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
   const source = useClass(relation.sourceId, serviceId);
   const target = useClass(relation.targetId, serviceId);
   const changeRelation = useChangeRelation(serviceId);
-
+  const { t } = useTranslation();
+  
   const [form] = Form.useForm()
 
   useEffect(() => {

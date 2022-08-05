@@ -6,7 +6,6 @@ import { IPage } from "../../../model";
 import { useUpsertPage } from "./hooks/useUpsertPage";
 import { useShowError } from "../../../hooks/useShowError";
 import { useTranslation } from "react-i18next";
-const { t } = useTranslation();
 
 const EditPageDialog = memo((
   props: {
@@ -23,7 +22,7 @@ const EditPageDialog = memo((
       onClose();
     }
   });
-
+  const { t } = useTranslation();
   useShowError(error);
 
   const handleConfirm = useCallback((values: any) => {

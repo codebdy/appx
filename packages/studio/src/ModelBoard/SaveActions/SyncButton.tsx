@@ -1,9 +1,9 @@
 import { DownloadOutlined, DownOutlined, ImportOutlined } from '@ant-design/icons';
 import { Dropdown, Menu, message } from 'antd';
 import React, { memo, useCallback, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useShowError } from '../../hooks/useShowError';
-import { getLocalMessage } from '../../locales/getLocalMessage';
 import { useSelectedAppUuid } from '../context';
 import { useExportJson } from '../hooks/useExportJson';
 import { usePublishMeta } from '../hooks/usePublishMeta';
@@ -14,6 +14,7 @@ const SyncButton = memo(() => {
   const appUuid = useSelectedAppUuid();
   const changed = useRecoilValue(changedState(appUuid))
   const [meta, setMeta] = useRecoilState(metaState(appUuid));
+  const { t } = useTranslation();
   const expotJson = useExportJson(appUuid)
   const [publishedId, setPublishedId] = useRecoilState(publishedIdState(appUuid));
 
@@ -51,7 +52,7 @@ const SyncButton = memo(() => {
         },
       ]}
     />
-  ), [expotJson]);
+  ), [expotJson, t]);
 
   return (
     <Dropdown.Button

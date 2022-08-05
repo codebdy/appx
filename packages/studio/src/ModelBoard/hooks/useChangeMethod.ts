@@ -1,6 +1,6 @@
 import { message } from "antd";
 import { useCallback } from "react";
-import { getLocalMessage } from "../../locales/getLocalMessage";
+import { useTranslation } from "react-i18next";
 import { ID } from "../../shared";
 import { ClassMeta } from "../meta/ClassMeta";
 import { MethodMeta } from "../meta/MethodMeta";
@@ -10,6 +10,7 @@ import { useCheckClassProperyName } from "./useCheckClassProperyName";
 export function useChangeMethod(appUuid: ID) {
   const changeClass = useChangeClass(appUuid);
   const chackName = useCheckClassProperyName(appUuid);
+  const { t } = useTranslation();
   const changeMethod = useCallback(
     (method: MethodMeta, cls: ClassMeta) => {
       if (!chackName(cls.uuid, method.name, method.uuid)) {
@@ -24,7 +25,7 @@ export function useChangeMethod(appUuid: ID) {
         ),
       });
     },
-    [chackName, changeClass]
+    [chackName, changeClass, t]
   );
 
   return changeMethod;

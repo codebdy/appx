@@ -24,7 +24,7 @@ export const SettingsPanel: React.FC<ISettingPanelProps> = observer((props) => {
         })
       }
     }
-  }, [visible, workbench.type])
+  }, [innerVisible, visible, workbench.type])
   if (workbench.type !== 'DESIGNABLE') {
     if (innerVisible) setInnerVisible(false)
     return null

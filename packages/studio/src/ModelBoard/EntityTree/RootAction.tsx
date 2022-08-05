@@ -1,20 +1,21 @@
 import { FolderAddOutlined, DownloadOutlined, ImportOutlined, MoreOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
-import { getLocalMessage } from "../../locales/getLocalMessage";
 import { useCreateNewPackage } from './../hooks/useCreateNewPackage';
 import { useSetRecoilState } from 'recoil';
 import { packagesState } from "../recoil/atoms";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
 import { useExportJson } from "../hooks/useExportJson";
 import { useSelectedAppUuid } from "../context";
+import { useTranslation } from "react-i18next";
 
 const RootAction = memo(() => {
   const appUuid = useSelectedAppUuid();
   const setPackages = useSetRecoilState(packagesState(appUuid));
   const createNewPackage = useCreateNewPackage(appUuid);
   const backup = useBackupSnapshot(appUuid);
-  const expotJson = useExportJson(appUuid)
+  const expotJson = useExportJson(appUuid);
+  const { t } = useTranslation();
   const handleAddPackage = useCallback(
     () => {
       backup();

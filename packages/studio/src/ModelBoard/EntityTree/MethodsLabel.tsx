@@ -4,9 +4,9 @@ import TreeNodeLabel from "../../common/TreeNodeLabel"
 import { Button } from "antd"
 import { ClassMeta } from "../meta/ClassMeta";
 import { PlusOutlined } from "@ant-design/icons";
-import { getLocalMessage } from "../../locales/getLocalMessage";
 import { useCreateClassMethod } from './../hooks/useCreateClassMethod';
 import { useSelectedAppUuid } from "../context";
+import { useTranslation } from "react-i18next";
 
 const MethodsLabel = memo((
   props: {
@@ -16,7 +16,8 @@ const MethodsLabel = memo((
   const { cls } = props;
   const appUuid = useSelectedAppUuid();
   const addMethod = useCreateClassMethod(appUuid);
-
+  const { t } = useTranslation();
+  
   return (
     <TreeNodeLabel
       action={

@@ -11,14 +11,15 @@ import { useAttribute } from "../hooks/useAttribute";
 import { useRelation } from "../hooks/useRelation";
 import { useMethod } from "../hooks/useMethod";
 import { MethodPanel } from "./MethodPanel";
-import { getLocalMessage } from "../../locales/getLocalMessage";
 import { Empty } from "antd";
 import { useSelectedAppUuid } from "../context";
+import { useTranslation } from "react-i18next";
 
 export const PropertyBox = () => {
   const serviceId = useSelectedAppUuid();
   const selectedElement = useRecoilValue(selectedElementState(serviceId));
   const selectedEntity = useClass(selectedElement || "", serviceId);
+  const { t } = useTranslation();
   const { cls: attributeCls, attribute } = useAttribute(
     selectedElement || "",
     serviceId

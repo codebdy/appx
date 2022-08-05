@@ -16,10 +16,10 @@ import { useCreateTempClassNodeForNew } from "../hooks/useCreateTempClassNodeFor
 import { ClassRect } from "./ClassRect";
 import { StereoType } from "../meta/ClassMeta";
 import { Collapse } from "antd";
-import { getLocalMessage } from "../../locales/getLocalMessage";
 import "./index.less";
 import { PRIMARY_COLOR } from "../../consts";
 import { useSelectedAppUuid } from "../context";
+import { useTranslation } from "react-i18next";
 
 const { Dnd } = Addon;
 const { Panel } = Collapse;
@@ -56,6 +56,7 @@ export const ToolItem = memo(
 export const Toolbox = memo((props: { graph?: Graph }) => {
   const { graph } = props;
   const [dnd, setDnd] = React.useState<any>();
+  const { t } = useTranslation();
   const appUuid = useSelectedAppUuid();
   const setSelemedElement = useSetRecoilState(selectedElementState(appUuid))
   const [pressedLineType, setPressedLineType] = useRecoilState(

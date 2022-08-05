@@ -5,9 +5,9 @@ import { ClassMeta, StereoType } from "../meta/ClassMeta";
 import { useChangeAttribute } from "../hooks/useChangeAttribute";
 import { CONST_ID } from "../meta/Meta";
 import { useGetTypeLabel } from "../hooks/useGetTypeLabel";
-import { getLocalMessage } from "../../locales/getLocalMessage";
 import { Form, Input, Select, Switch } from "antd";
 import { useSelectedAppUuid } from "../context";
+import { useTranslation } from "react-i18next";
 const { Option } = Select;
 
 export const AttributePanel = (props: {
@@ -18,7 +18,8 @@ export const AttributePanel = (props: {
   const serviceId = useSelectedAppUuid();
   const changeAttribute = useChangeAttribute(serviceId);
   const getTypeLabel = useGetTypeLabel(serviceId);
-
+  const { t } = useTranslation();
+  
   const isId = useMemo(() => attribute.name === CONST_ID, [attribute.name]);
 
   const handleChange = useCallback((form) => {

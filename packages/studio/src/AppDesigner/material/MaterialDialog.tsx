@@ -1,11 +1,12 @@
 import { ToolOutlined } from '@ant-design/icons';
 import { Button, Modal } from 'antd';
 import React, { memo, useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { MaterialDialogTable } from './MaterialDialogTable';
-import { TextWidget } from "@designable/react"
 
 export const MaterialDialog = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const { t } = useTranslation();
 
   const showModal = useCallback(() => {
     setIsModalVisible(true);
@@ -27,11 +28,11 @@ export const MaterialDialog = memo(() => {
       />
 
       <Modal
-        title={<TextWidget>materials.ModuleList</TextWidget>}
+        title={t("materials.ModuleList")}
         className='material-module-modal'
         visible={isModalVisible}
-        okText={<TextWidget>Confirm</TextWidget>}
-        cancelText={<TextWidget>Cancel</TextWidget>}
+        okText={t("Confirm")}
+        cancelText={t("Cancel")}
         onOk={handleOk}
         onCancel={handleCancel}
       >

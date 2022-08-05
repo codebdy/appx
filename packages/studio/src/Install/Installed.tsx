@@ -1,10 +1,11 @@
 import { Button } from "antd"
 import React, { memo, useCallback } from "react"
+import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import { LOGIN_URL } from "../consts"
-import { getLocalMessage } from "../locales/getLocalMessage"
 
 const Installed = memo(() => {
+  const { t } = useTranslation();
   const navigate = useNavigate()
   const handleLogin = useCallback(() => {
     navigate(LOGIN_URL)

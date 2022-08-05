@@ -1,9 +1,9 @@
 import { Card, Spin } from 'antd';
 import { gql } from 'awesome-graphql-client';
 import React, { memo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useRequest } from '../enthooks/hooks/useRequest';
 import { useShowError } from '../hooks/useShowError';
-import { getLocalMessage } from '../locales/getLocalMessage';
 import Installed from './Installed';
 import InstallForm from './InstallForm';
 
@@ -15,6 +15,7 @@ const queryGql = gql`
 
 const Install = memo(() => {
   const { data, error, loading } = useRequest(queryGql);
+  const { t } = useTranslation();
   useShowError(error)
 
   return (

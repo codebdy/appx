@@ -3,7 +3,6 @@ import { Graph } from "@antv/x6";
 import { Tree } from "antd";
 import { DataNode } from "antd/lib/tree";
 import SvgIcon from "../../common/SvgIcon";
-import { getLocalMessage } from "../../locales/getLocalMessage";
 import RootAction from "./RootAction";
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { packagesState, diagramsState, classesState, selectedDiagramState, selectedElementState } from './../recoil/atoms';
@@ -29,6 +28,7 @@ import AttributesLabel from "./AttributesLabel";
 import MethodsLabel from "./MethodsLabel";
 import RelationLabel from "./RelationLabel";
 import { useSelectedAppUuid } from "../context";
+import { useTranslation } from "react-i18next";
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
@@ -45,6 +45,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   const getSourceRelations = useGetSourceRelations(appUuid);
   const getTargetRelations = useGetTargetRelations(appUuid);
   const getClass = useGetClass(appUuid);
+  const { t } = useTranslation();
 
   const getAttributeNode = useCallback((attr: AttributeMeta) => {
     return {

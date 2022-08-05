@@ -1,11 +1,11 @@
 import { CloudUploadOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Form, Input, message, Modal, Radio, RadioChangeEvent, UploadProps } from 'antd';
 import React, { memo, useCallback, useState } from 'react';
-import { TextWidget } from "@designable/react"
 import Dragger from 'antd/lib/upload/Dragger';
 import { MaterialModule, OperationType } from './model';
 import { loadDebugModule, transMaterialGroups } from './load';
 import { materialStore } from './global';
+import { useTranslation } from 'react-i18next';
 
 export interface IUploadModalProps {
   onAdded: (module: MaterialModule) => void
@@ -15,6 +15,7 @@ export const UploadDialog: React.FC<IUploadModalProps> = memo((props: IUploadMod
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [operationType, setOperationType] = useState(OperationType.Upload)
   const [form] = Form.useForm<MaterialModule>();
+  const { t } = useTranslation();
   const showModal = useCallback(() => {
     setIsModalVisible(true);
   }, []);
@@ -45,7 +46,7 @@ export const UploadDialog: React.FC<IUploadModalProps> = memo((props: IUploadMod
     });
 
     //setIsModalVisible(false);
-  }, []);
+  }, [form]);
 
   const handleCancel = useCallback(() => {
     setIsModalVisible(false);
@@ -96,16 +97,16 @@ export const UploadDialog: React.FC<IUploadModalProps> = memo((props: IUploadMod
         icon={<PlusOutlined />}
         onClick={showModal}
       >
-        <TextWidget>materials.Add</TextWidget>
+        {t("materials.Add")}
       </Button>
       <Modal
-        title={<TextWidget>materials.Cuszomized</TextWidget>}
+        title={t("materials.Cuszomized")}
         className='material-upoad-modal'
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
-        okText={<TextWidget>Confirm</TextWidget>}
-        cancelText={<TextWidget>Cancel</TextWidget>}
+        okText={t("nfirm")}
+        cancelText={t("Cancel")}
       >
         <Form
           name="upload-customized"
@@ -124,28 +125,28 @@ export const UploadDialog: React.FC<IUploadModalProps> = memo((props: IUploadMod
           autoComplete="off"
         >
           <Form.Item
-            label={<TextWidget>materials.ComponentTypeName</TextWidget>}
+            label={t("materials.ComponentTypeName")}
             name="name"
-            rules={[{ required: true, message: <TextWidget>materials.RequiredName</TextWidget> }]}
+            rules={[{ required: true, message: t("aterials.RequiredName") }]}
           >
             <Input />
           </Form.Item>
 
           <Form.Item
-            label={<TextWidget>materials.OperationType</TextWidget>}
+            label={t("materials.OperationType")}
             name="operationType"
           >
             <Radio.Group
               onChange={onTypeChange}
             >
-              <Radio value={OperationType.Upload}><TextWidget>materials.Upload</TextWidget></Radio>
-              <Radio value={OperationType.Debug}><TextWidget>materials.Debug</TextWidget></Radio>
+              <Radio value={OperationType.Upload}>t("materials.Upload")</Radio>
+              <Radio value={OperationType.Debug}>t("materials.Debug")</Radio>
             </Radio.Group>
           </Form.Item>
           {
             operationType === OperationType.Upload &&
             < Form.Item
-              label={<TextWidget>materials.UploadFile</TextWidget>}
+              label={t("materials.UploadFile")}
               name="file"
               valuePropName="fileList"
               // 如果没有下面这一句会报错
@@ -156,8 +157,8 @@ export const UploadDialog: React.FC<IUploadModalProps> = memo((props: IUploadMod
                   <CloudUploadOutlined />
                 </p>
                 <p className="ant-upload-hint">
-                  <TextWidget>UploadHint1</TextWidget>
-                  <a><TextWidget>UploadHint2</TextWidget></a>
+                  t("UploadHint1")
+                  <Button type="link">t("UploadHint2")</Button>
                 </p>
               </Dragger>
             </Form.Item>
@@ -165,9 +166,9 @@ export const UploadDialog: React.FC<IUploadModalProps> = memo((props: IUploadMod
           {
             operationType === OperationType.Debug &&
             <Form.Item
-              label={<TextWidget>materials.LinkAddress</TextWidget>}
+              label={t("materials.LinkAddress")}
               name="url"
-              rules={[{ required: true, message: <TextWidget>materials.RequiredUrl</TextWidget> }]}
+              rules={[{ required: true, message: t("materials.RequiredUrl") }]}
             >
               <Input />
             </Form.Item>

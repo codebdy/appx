@@ -1,8 +1,8 @@
 import { DeleteOutlined, EyeInvisibleOutlined, MenuOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Menu } from 'antd';
-import { getLocalMessage } from '../../../locales/getLocalMessage';
 import React, { memo, useState } from 'react';
 import { useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ClassMeta, StereoType } from '../../meta/ClassMeta';
 
 const ClassMenu = memo((
@@ -17,7 +17,8 @@ const ClassMenu = memo((
 ) => {
   const { cls, onAddAttribute, onAddMethod, onHidden, onDelete, onVisible } = props;
   const [visible, setVisible] = useState(false);
-
+  const { t } = useTranslation();
+  
   const handleMenuClick = useCallback((e) => {
     setVisible(false);
     onVisible(false);
@@ -33,12 +34,12 @@ const ClassMenu = memo((
     if (e.key === 'delete') {
       onDelete();
     }
-  }, [onAddAttribute, onAddMethod, onHidden, onDelete]);
+  }, [onVisible, onAddAttribute, onAddMethod, onHidden, onDelete]);
 
   const handleVisibleChange = useCallback((flag) => {
     setVisible(flag);
     onVisible(flag);
-  }, []);
+  }, [onVisible]);
 
   const menu = (
     <Menu

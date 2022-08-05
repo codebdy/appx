@@ -4,13 +4,14 @@ import { ClassMeta } from "../meta/ClassMeta";
 import { useChangeClass } from "./useChangeClass";
 import { useCheckClassProperyName } from "./useCheckClassProperyName";
 import { ID } from "../../shared";
-import { getLocalMessage } from "../../locales/getLocalMessage";
 import { message } from "antd";
+import { useTranslation } from "react-i18next";
 
 export function useChangeAttribute(appUuid: ID) {
   const changeEntity = useChangeClass(appUuid);
   const chackName = useCheckClassProperyName(appUuid);
-
+  const { t } = useTranslation();
+  
   const changeAttribute = useCallback(
     (attr: AttributeMeta, cls: ClassMeta) => {
       if (!chackName(cls.uuid, attr.name, attr.uuid)) {
@@ -24,7 +25,7 @@ export function useChangeAttribute(appUuid: ID) {
         ),
       });
     },
-    [chackName, changeEntity]
+    [chackName, changeEntity, t]
   );
 
   return changeAttribute;
