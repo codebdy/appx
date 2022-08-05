@@ -1,5 +1,5 @@
 import { Card } from "antd"
-import React, { memo, useCallback, useState } from "react"
+import React, { memo, useState } from "react"
 import { useResourceBundles } from "../../i18n/useResourceBundles"
 import { IProTableParams, ProTableContext } from "./context"
 import "./index.less"
@@ -11,9 +11,7 @@ import SelectMessage from "./SelectMessage"
 
 const ProTable = memo(() => {
   const [params, setParams] = useState<IProTableParams>();
-  useResourceBundles(LOCALES_NS, locales, ()=>{
-    setParams(params => ({ ...params, localesAdded: true }))
-  });
+  useResourceBundles(LOCALES_NS, locales);
 
   return (
     <ProTableContext.Provider value={params}>

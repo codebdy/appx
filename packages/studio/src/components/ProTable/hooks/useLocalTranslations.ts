@@ -1,8 +1,6 @@
-import { useTranslation } from "react-i18next";
-import { useProTableParams } from "../context";
+import { useBundleTranslations } from "../../../i18n/useBundleTranslations";
 import { LOCALES_NS } from "../locales";
 
 export function useLocalTranslations() {
-  const { localesAdded } = useProTableParams();
-  return useTranslation(localesAdded ? LOCALES_NS : undefined)
+  return useBundleTranslations(LOCALES_NS)
 }
