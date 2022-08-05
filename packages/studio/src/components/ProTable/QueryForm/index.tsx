@@ -110,7 +110,6 @@ const QueryForm: React.FC = observer((props: {
   return (
     <Form {...props} layout={layout} feedbackLayout="terse">
       <FormGrid grid={grid}>
-
         {props.children}
         <FormGrid.GridColumn
           gridSpan={expanded ? -1 : 1}
@@ -122,7 +121,6 @@ const QueryForm: React.FC = observer((props: {
         >
           {renderButtonGroup()}
         </FormGrid.GridColumn>
-
       </FormGrid>
     </Form>
   )

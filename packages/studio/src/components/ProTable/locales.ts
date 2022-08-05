@@ -5,7 +5,13 @@ const locales = {
     "Reset": "重置",
     "Expand": "展开",
     "PackUp": "收起",
-    "New": "新建"
+    "New": "新建",
+    "Refresh": "刷新",
+    "Density": "密度",
+    "ColumnSetting": "列设置",
+    "ShowColumns": "列展示",
+    "Confirm": "确定",
+    "Cancel": "取消"
   },
   'en-US': {
   },

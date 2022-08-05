@@ -3,6 +3,7 @@ import { Button, Divider, Popover, Space, Tooltip, Tree, TreeProps } from "antd"
 import { DataNode } from "antd/lib/tree";
 import React from "react"
 import { memo } from "react"
+import { useLocalTranslations } from "../../hooks/useLocalTranslations";
 import TitleBox from "./TitleBox";
 
 const treeData: DataNode[] = [
@@ -32,6 +33,7 @@ const treeData: DataNode[] = [
 ];
 
 const ColumnsSettings = memo(() => {
+  const { t } = useLocalTranslations();
   const handleCheck: TreeProps['onCheck'] = (checkedKeys, info) => {
     console.log('onCheck', checkedKeys, info);
   };
@@ -55,10 +57,10 @@ const ColumnsSettings = memo(() => {
       >
         <Space>
           <Button size="middle" type="text">
-            取消
+            {t("Cancel")}
           </Button>
           <Button type="primary" size="middle">
-            确定
+            {t("Confirm")}
           </Button>
         </Space>
       </div>
@@ -73,7 +75,7 @@ const ColumnsSettings = memo(() => {
       overlayClassName="table-column-settings"
       showArrow={false}
     >
-      <Tooltip title="列设置">
+      <Tooltip title={t("ColumnSetting")}>
         <Button shape="circle" size="large" type="text" onClick={e => e.preventDefault()}>
           <SettingOutlined />
         </Button>

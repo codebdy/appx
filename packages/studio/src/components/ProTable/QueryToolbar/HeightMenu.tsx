@@ -2,8 +2,10 @@ import { ColumnHeightOutlined } from "@ant-design/icons";
 import { Button, Dropdown, Menu, Tooltip } from "antd";
 import React from "react"
 import { memo } from "react"
+import { useLocalTranslations } from "../hooks/useLocalTranslations";
 
 const HeightMenu = memo(() => {
+  const { t } = useLocalTranslations();
   const menu = (
     <Menu
       selectedKeys={["1"]}
@@ -28,7 +30,7 @@ const HeightMenu = memo(() => {
   );
   return (
     <Dropdown overlay={menu} trigger={['click']}>
-      <Tooltip title="密度">
+      <Tooltip title={t("Density")}>
         <Button shape="circle" size="large" type="text" onClick={e => e.preventDefault()}>
           <ColumnHeightOutlined />
         </Button>

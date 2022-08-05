@@ -1,10 +1,13 @@
 import { PlusOutlined, ReloadOutlined } from "@ant-design/icons"
 import { Button, Tooltip } from "antd"
 import React, { memo } from "react"
+import { useLocalTranslations } from "../hooks/useLocalTranslations"
 import ColumnsSettings from "./ColumnsSettings"
 import HeightMenu from "./HeightMenu"
 
 const QueryToolbar = memo(() => {
+  const { t } = useLocalTranslations();
+
   return (
     <div style={{
       display: "flex",
@@ -27,9 +30,9 @@ const QueryToolbar = memo(() => {
             <PlusOutlined />
           }
         >
-          新建
+          {t("New")}
         </Button>
-        <Tooltip title="刷新">
+        <Tooltip title={t("Refresh")}>
           <Button shape="circle" size="large" type="text" style={{ marginLeft: 8 }}>
             <ReloadOutlined />
           </Button>
