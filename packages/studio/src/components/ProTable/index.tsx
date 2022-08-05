@@ -20,6 +20,7 @@ import { GeneralField, FieldDisplayTypes, ArrayField } from '@formily/core'
 import { ColumnProps } from "antd/lib/table"
 import { Schema } from '@formily/json-schema'
 import { usePrefixCls } from "@formily/antd/esm/__builtins__"
+import { isArr, isBool, isFn } from '@formily/shared'
 
 registerResourceBundle(LOCALES_NS, locales);
 interface ObservableColumnSource {
@@ -97,8 +98,24 @@ const useArrayTableSources = () => {
       }, [])
     }
   }
-}
 
+  const parseArrayItems = (schema: Schema['items']) => {
+    if (!schema) return []
+    const sources: ObservableColumnSource[] = []
+    const items = isArr(schema) ? schema : [schema]
+    return items.reduce((columns, schema) => {
+      const item = parseSources(schema)
+      if (item) {
+        return columns.concat(item)
+      }
+      return columns
+    }, sources)
+  }
+
+  if (!schema) throw new Error('can not found schema object')
+
+  return parseArrayItems(schema.items)
+}
 
 const ProTable = observer((
   props: TableProps<any>
@@ -110,7 +127,7 @@ const ProTable = observer((
   const dataSource = Array.isArray(field.value) ? field.value.slice() : []
   const sources = useArrayTableSources()
   const columns = useArrayTableColumns(dataSource, sources)
-  console.log("哈哈", props)
+  console.log("哈哈",sources,  columns)
 
   const handleSelectedChange = useCallback((keys?: React.Key[]) => {
     setParams(params => ({ ...params, selectedRowKeys: keys }))
