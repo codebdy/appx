@@ -1,5 +1,5 @@
 import { Card } from "antd"
-import React, { memo, useCallback, useState } from "react"
+import React, { useCallback, useState } from "react"
 import { registerResourceBundle } from "../../i18n/registerResourceBundle"
 import { IProTableParams, ProTableContext } from "./context"
 import "./index.less"
@@ -9,13 +9,16 @@ import QueryTable from "./QueryTable"
 import QueryToolbar from "./QueryToolbar"
 import SelectMessage from "./SelectMessage"
 import {ISchemaFieldComponentProps} from "@formily/react-schema-renderer"
+import { observer } from "@formily/reactive-react"
 
 registerResourceBundle(LOCALES_NS, locales);
 
-const ProTable = memo((
+const ProTable = observer((
   props: ISchemaFieldComponentProps & { className: string }
 ) => {
   const [params, setParams] = useState<IProTableParams>();
+
+  console.log("哈哈", props)
 
   const handleSelectedChange = useCallback((keys?: React.Key[]) => {
     setParams(params => ({ ...params, selectedRowKeys: keys }))

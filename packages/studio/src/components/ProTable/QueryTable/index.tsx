@@ -1,5 +1,5 @@
 import { Button, Table, Tag } from 'antd';
-import React, { useMemo } from 'react';
+import React, { memo, useMemo } from 'react';
 import { useProTableParams } from '../context';
 
 const columns = [
@@ -104,8 +104,8 @@ const onChange = (pagination, filters, sorter, extra) => {
 // rowSelection object indicates the need for row selection
 
 
-const QueryTable = () => {
-  const {onSelectedChange} = useProTableParams();
+const QueryTable = memo(() => {
+  const { onSelectedChange } = useProTableParams();
   const rowSelection = useMemo(() => ({
     onChange: (selectedRowKeys: React.Key[], selectedRows: any[]) => {
       onSelectedChange(selectedRowKeys);
@@ -128,6 +128,6 @@ const QueryTable = () => {
     onChange={onChange} />
   )
 
-};
+});
 
 export default QueryTable;
