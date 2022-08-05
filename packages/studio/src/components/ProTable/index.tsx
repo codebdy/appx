@@ -8,10 +8,13 @@ import { QueryFormExample } from "./QueryForm"
 import QueryTable from "./QueryTable"
 import QueryToolbar from "./QueryToolbar"
 import SelectMessage from "./SelectMessage"
+import {ISchemaFieldComponentProps} from "@formily/react-schema-renderer"
 
 registerResourceBundle(LOCALES_NS, locales);
 
-const ProTable = memo(() => {
+const ProTable = memo((
+  props: ISchemaFieldComponentProps & { className: string }
+) => {
   const [params, setParams] = useState<IProTableParams>();
 
   const handleSelectedChange = useCallback((keys?: React.Key[]) => {
