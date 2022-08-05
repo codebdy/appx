@@ -14,6 +14,7 @@ import {
 } from '@formily/antd'
 import { Button } from 'antd'
 import { DownOutlined, UpOutlined } from '@ant-design/icons'
+import { useLocalTranslations } from '../hooks/useLocalTranslations'
 
 const useCollapseGrid = (maxRows: number, maxColumns = 4) => {
   const grid = useMemo(
@@ -61,12 +62,13 @@ const QueryForm: React.FC = observer((props: {
   children?: React.ReactNode
 }) => {
   const {layout="vertical"} = props;
+  const {t} = useLocalTranslations();
   const { grid, expanded, toggle, type } = useCollapseGrid(1)
   const renderActions = () => {
     return (
       <Fragment>
-        <Submit onSubmit={console.log}>查询</Submit>
-        <Reset >重置</Reset>
+        <Submit onSubmit={console.log}>{t("Search")}</Submit>
+        <Reset >{t("Reset")}</Reset>
       </Fragment>
     )
   }
