@@ -3,7 +3,8 @@ const locales = {
   'zh-CN': {
     "Search": "查询",
     "Reset": "重置",
-    "Expand": "展开"
+    "Expand": "展开",
+    "PackUp":"收起"
   },
   'en-US': {
   },

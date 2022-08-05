@@ -58,11 +58,11 @@ const useCollapseGrid = (maxRows: number, maxColumns = 4) => {
 }
 
 const QueryForm: React.FC = observer((props: {
-  layout?:"horizontal" | "vertical",
+  layout?: "horizontal" | "vertical",
   children?: React.ReactNode
 }) => {
-  const {layout="vertical"} = props;
-  const {t} = useLocalTranslations();
+  const { layout = "vertical" } = props;
+  const { t } = useLocalTranslations();
   const { grid, expanded, toggle, type } = useCollapseGrid(1)
   const renderActions = () => {
     return (
@@ -93,7 +93,7 @@ const QueryForm: React.FC = observer((props: {
                 toggle()
               }}
             >
-              {expanded ? '收起' : '展开'}
+              {expanded ? t("PackUp") : t("Expand")}
               {expanded ? <UpOutlined /> : <DownOutlined />}
             </Button>
           </FormButtonGroup>
@@ -108,7 +108,7 @@ const QueryForm: React.FC = observer((props: {
   }
 
   return (
-    <Form {...props} layout = {layout} feedbackLayout="terse">
+    <Form {...props} layout={layout} feedbackLayout="terse">
       <FormGrid grid={grid}>
 
         {props.children}
