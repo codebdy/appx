@@ -5,6 +5,7 @@ import PageForm from "./PageForm";
 import { IListNode } from "./recoil/IListNode";
 import { useUpsertPage } from "./hooks/useUpsertPage";
 import { useShowError } from "../../../hooks/useShowError";
+import { useTranslation } from "react-i18next";
 
 const CreatePageModal = memo((
   props: {
@@ -15,6 +16,7 @@ const CreatePageModal = memo((
 ) => {
   const { category, isModalVisible, onClose } = props;
   const [form] = Form.useForm();
+  const { t } = useTranslation();
   const [upsert, { loading, error }] = useUpsertPage({
     onCompleted: () => {
       onClose();

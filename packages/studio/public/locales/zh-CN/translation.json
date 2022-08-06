@@ -58,7 +58,7 @@
     "AppApi": "应用接口",
     "ModelAuth": "模型权限"
   },
-  "panels": {
+  "Panels": {
     "Page": "页面",
     "OutlinedTree": "大纲",
     "Menu": "菜单",
