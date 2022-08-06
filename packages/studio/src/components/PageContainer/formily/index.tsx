@@ -14,13 +14,14 @@ import PageFooterToolbar, { IPageFooterToolbarProps } from "./PageFooterToolbar"
 
 const { TabPane } = Tabs;
 
-export interface IPageProps {
+export interface IPageContainerProps {
   title?: string;
   subtitle?: string;
   children?: React.ReactNode;
   hasBreadcrumb?: boolean;
   showGoback?: boolean;
   className?: string;
+  hasHeaderExtra?: boolean;
 }
 
 export const routesPlaceholder = [
@@ -34,13 +35,13 @@ export const routesPlaceholder = [
   }
 ];
 
-const Page:React.FC<IPageProps>& {
+const Page:React.FC<IPageContainerProps>& {
   HeaderExtra?: React.FC<IPageHeaderExtraProps>,
   HeaderContent?: React.FC<IPageHeaderContentProps>,
   Content?: React.FC<IPageContentProps>,
   TabPanel?: React.FC<IPageTabPanelProps>,
   FooterToolbar?: React.FC<IPageFooterToolbarProps>,
-} = (props: IPageProps) => {
+} = (props: IPageContainerProps) => {
   const { showGoback, title, subtitle, hasBreadcrumb, className, children, ...other } = props
   const [selectedTabKey, setSelectedTabKey] = useState("1")
   const fieldSchema = useFieldSchema()

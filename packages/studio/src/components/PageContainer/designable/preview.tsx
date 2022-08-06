@@ -14,7 +14,7 @@ import { useRemoveNode } from './hooks/useRemoveNode'
 import FooterToolbar from './FooterToolbar'
 import { observer } from '@formily/reactive-react'
 import './index.less'
-import { IPageProps, routesPlaceholder } from '../formily'
+import { IPageContainerProps, routesPlaceholder } from '../formily'
 import { IPageHeaderExtraProps } from '../formily/PageHeaderExtra'
 import { IPageHeaderContentProps } from '../formily/PageHeaderContent'
 import { IPageContentProps } from '../formily/PageContent'
@@ -28,7 +28,7 @@ import { createVoidFieldSchema } from "@designable/formily-antd/lib/components/F
 
 const { TabPane } = Tabs;
 
-export const PageContainerDesigner: DnFC<IPageProps> & {
+export const PageContainerDesigner: DnFC<IPageContainerProps> & {
   HeaderExtra?: React.FC<IPageHeaderExtraProps>,
   HeaderContent?: React.FC<IPageHeaderContentProps>,
   Content?: React.FC<IPageContentProps>,
