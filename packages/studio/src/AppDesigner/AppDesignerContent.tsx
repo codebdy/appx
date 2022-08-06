@@ -24,9 +24,9 @@ import {
   Field,
 } from '@designable/formily-antd'
 import { ViewPanel, CompositePanel, WorkspacePanel, ToolbarPanel, ViewportPanel, SettingsPanel, StudioPanel } from './panels'
-import { MaterialWidget } from './material/MaterialWidget'
-import { convertMaterialsToComponents } from './material/model'
-import { materialStore } from './material/global'
+import { MaterialWidget } from './widgets/MaterialWidget'
+import { convertMaterialsToComponents } from './widgets/MaterialWidget/model'
+import { materialStore } from './widgets/MaterialWidget/global'
 import { Designer, Workspace } from './containers'
 import PageListWidget from './widgets/PageListWidget'
 import { useDesignerParams } from './context'

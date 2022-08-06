@@ -5,7 +5,7 @@ import "./index.less"
 import { MaterialDialog } from "./MaterialDialog";
 import { observer } from "@formily/reactive-react";
 import { materialStore } from "./global";
-import { ResourceWidget } from "../widgets/ResourceWidget";
+import { ResourceWidget } from "../ResourceWidget";
 
 const { TabPane } = Tabs;
 
