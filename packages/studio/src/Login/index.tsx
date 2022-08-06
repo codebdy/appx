@@ -25,46 +25,45 @@ const SchemaField = createSchemaField({
   },
 })
 
-const schema = () => ({
-  type: 'object',
-  properties: {
-    loginName: {
-      type: 'string',
-      title: t("UserName"),
-      required: true,
-      'x-decorator': 'FormItem',
-      'x-component': 'Input',
-      'x-component-props': {
-        prefix: "{{icon('UserOutlined')}}",
-      },
-    },
-    password: {
-      type: 'string',
-      title: t("Password"),
-      required: true,
-      'x-decorator': 'FormItem',
-      'x-component': 'Password',
-      'x-component-props': {
-        prefix: "{{icon('LockOutlined')}}",
-      },
-    },
-    rememberMe: {
-      type: 'string',
-      'x-decorator': 'FormItem',
-      'x-component': 'Checkbox',
-      "x-component-props": {
-        children: t("RememberMe"),
-      }
-    }
-  },
-})
-
 const Login = observer(() => {
   const rememberMeRef = useRef(true);
   const setToken = useSetToken();
   const navigate = useNavigate()
   const { t } = useTranslation();
-  
+  const schema = useMemo(() => ({
+    type: 'object',
+    properties: {
+      loginName: {
+        type: 'string',
+        title: t("UserName"),
+        required: true,
+        'x-decorator': 'FormItem',
+        'x-component': 'Input',
+        'x-component-props': {
+          prefix: "{{icon('UserOutlined')}}",
+        },
+      },
+      password: {
+        type: 'string',
+        title: t("Password"),
+        required: true,
+        'x-decorator': 'FormItem',
+        'x-component': 'Password',
+        'x-component-props': {
+          prefix: "{{icon('LockOutlined')}}",
+        },
+      },
+      rememberMe: {
+        type: 'string',
+        'x-decorator': 'FormItem',
+        'x-component': 'Checkbox',
+        "x-component-props": {
+          children: t("RememberMe"),
+        }
+      }
+    },
+  }), [t])
+
   const form = useMemo(
     () =>
       createForm({
@@ -122,17 +121,17 @@ const Login = observer(() => {
     }}>
       <Card style={{ width: 400 }}>
         <h3>{t("Login")}</h3>
-          <Form
-            form={form}
-            layout="vertical"
-            size="large"
-            onAutoSubmit={handleLogin}
-          >
-            <SchemaField schema={schema()} />
-            <Submit block size="large" loading={loading}>
-              {t("Login")}
-            </Submit>
-          </Form>
+        <Form
+          form={form}
+          layout="vertical"
+          size="large"
+          onAutoSubmit={handleLogin}
+        >
+          <SchemaField schema={schema} />
+          <Submit block size="large" loading={loading}>
+            {t("Login")}
+          </Submit>
+        </Form>
       </Card>
     </div>
   )
