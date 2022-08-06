@@ -8,6 +8,6 @@ export interface MaterialStore {
 }
 
 export const materialStore:MaterialStore = observable.shallow({
-  modules: [],
+  modules: allMaterials,
 })
 

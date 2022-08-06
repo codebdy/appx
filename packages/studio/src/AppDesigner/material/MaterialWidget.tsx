@@ -1,45 +1,13 @@
 import { Tabs } from "antd"
-import React, { memo, useEffect, useState } from "react"
+import React from "react"
 import { MaterialSearchWidget } from "./MaterialSearchWidget";
 import "./index.less"
 import { MaterialDialog } from "./MaterialDialog";
-import { MaterialModule } from "./model";
 import { observer } from "@formily/reactive-react";
 import { materialStore } from "./global";
-import {
-  Input,
-  Select,
-  TreeSelect,
-  Cascader,
-  Radio,
-  Checkbox,
-  Slider,
-  Rate,
-  NumberPicker,
-  Transfer,
-  Password,
-  DatePicker,
-  TimePicker,
-  Upload,
-  Switch,
-  Text,
-  Card,
-  ArrayCards,
-  ObjectContainer,
-  ArrayTable,
-  Space,
-  FormTab,
-  FormCollapse,
-  FormLayout,
-  FormGrid,
-} from '@designable/formily-antd'
 import { ResourceWidget } from "../widgets/ResourceWidget";
-import {
-  useTree
-} from '@designable/react'
 
 const { TabPane } = Tabs;
-declare const window: Window & { materilaModules: MaterialModule[] };
 
 export const MaterialWidget: React.FC = observer(() => {
   const onChange = (key: string) => {
@@ -70,17 +38,6 @@ export const MaterialWidget: React.FC = observer(() => {
                     />)
                   })
                 }
-                {/* <ResourceWidget
-                  title="sources.Layouts"
-                  sources={[
-                    Card,
-                    FormGrid,
-                    FormTab,
-                    FormLayout,
-                    FormCollapse,
-                    Space,
-                  ]}
-                /> */}
               </TabPane>
             )
           })
