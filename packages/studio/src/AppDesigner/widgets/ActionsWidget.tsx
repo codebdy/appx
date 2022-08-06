@@ -9,19 +9,12 @@ export const ActionsWidget = observer(() => {
   return (
     <Space style={{ marginRight: 10 }}>
       <Button
-        onClick={() => {
-          saveSchema(designer)
-        }}
-      >
-        <TextWidget>Save</TextWidget>
-      </Button>
-      <Button
         type="primary"
         onClick={() => {
           saveSchema(designer)
         }}
       >
-        <TextWidget>Publish</TextWidget>
+        <TextWidget>Save</TextWidget>
       </Button>
     </Space>
   )
