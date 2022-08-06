@@ -39,10 +39,10 @@ export const PageContainerDesigner: DnFC<IPageProps> & {
   const [selectedTabKey, setSelectedTabKey] = useState("1")
   const node = useTreeNode()
   const handleRemoveNode = (target: TreeNode) => {
-    if (target.parent?.id === node.id && target?.props?.['x-component'] === 'Page.TabPanel') {
+    if (target.parent?.id === node.id && target?.props?.['x-component'] === 'PageContainer.TabPanel') {
       const length = queryNodesByComponentPath(node, [
-        'Page',
-        'Page.TabPanel',
+        'PageContainer',
+        'PageContainer.TabPanel',
       ]).length
       setSelectedTabKey("1")
       if (!length || length <= 1) {
@@ -50,7 +50,7 @@ export const PageContainerDesigner: DnFC<IPageProps> & {
           componentName: 'Field',
           props: {
             type: 'void',
-            'x-component': 'Page.Content',
+            'x-component': 'PageContainer.Content',
             'x-component-props': {
               title: `Title`,
             },
@@ -61,7 +61,7 @@ export const PageContainerDesigner: DnFC<IPageProps> & {
     }
   }
 
-  useRemoveNode('Page', (target) => {
+  useRemoveNode('PageContainer', (target) => {
     if (target && Array.isArray(target)) {
       for (const child of target) {
         handleRemoveNode(child)
@@ -72,23 +72,23 @@ export const PageContainerDesigner: DnFC<IPageProps> & {
   })
 
   const headerExtra = findNodeByComponentPath(node, [
-    'Page',
-    'Page.HeaderExtra',
+    'PageContainer',
+    'PageContainer.HeaderExtra',
   ])
 
   const headerContent = findNodeByComponentPath(node, [
-    'Page',
-    'Page.HeaderContent',
+    'PageContainer',
+    'PageContainer.HeaderContent',
   ])
 
   const footer = findNodeByComponentPath(node, [
-    'Page',
-    'Page.FooterToolbar',
+    'PageContainer',
+    'PageContainer.FooterToolbar',
   ])
 
   const tabs = queryNodesByComponentPath(node, [
-    'Page',
-    'Page.TabPanel',
+    'PageContainer',
+    'PageContainer.TabPanel',
   ])
 
   const otherChildrenNodes = node.children?.filter(child =>
@@ -114,8 +114,8 @@ export const PageContainerDesigner: DnFC<IPageProps> & {
             onClick: () => {
               if (
                 hasNodeByComponentPath(node, [
-                  'Page',
-                  'Page.HeaderExtra',
+                  'PageContainer',
+                  'PageContainer.HeaderExtra',
                 ])
               )
                 return
@@ -123,7 +123,7 @@ export const PageContainerDesigner: DnFC<IPageProps> & {
                 componentName: 'Field',
                 props: {
                   type: 'void',
-                  'x-component': 'Page.HeaderExtra',
+                  'x-component': 'PageContainer.HeaderExtra',
                   'x-component-props': {
                     title: `Title`,
                   },
@@ -138,8 +138,8 @@ export const PageContainerDesigner: DnFC<IPageProps> & {
             onClick: () => {
               if (
                 hasNodeByComponentPath(node, [
-                  'Page',
-                  'Page.HeaderContent',
+                  'PageContainer',
+                  'PageContainer.HeaderContent',
                 ])
               ) {
                 return
@@ -149,7 +149,7 @@ export const PageContainerDesigner: DnFC<IPageProps> & {
                 componentName: 'Field',
                 props: {
                   type: 'void',
-                  'x-component': 'Page.HeaderContent',
+                  'x-component': 'PageContainer.HeaderContent',
                   'x-component-props': {
                     title: `Title`,
                   },
@@ -163,8 +163,8 @@ export const PageContainerDesigner: DnFC<IPageProps> & {
             icon: "AddPanel",
             onClick: () => {
               const content = findNodeByComponentPath(node, [
-                'Page',
-                'Page.Content',
+                'PageContainer',
+                'PageContainer.Content',
               ])
 
               content?.remove()
@@ -172,7 +172,7 @@ export const PageContainerDesigner: DnFC<IPageProps> & {
                 componentName: 'Field',
                 props: {
                   type: 'void',
-                  'x-component': 'Page.TabPanel',
+                  'x-component': 'PageContainer.TabPanel',
                   'x-component-props': {
                     title: `Unnamed title`,
                   },
@@ -180,8 +180,8 @@ export const PageContainerDesigner: DnFC<IPageProps> & {
               })
               node.append(tabPanel)
               const tabs = queryNodesByComponentPath(node, [
-                'Page',
-                'Page.TabPanel',
+                'PageContainer',
+                'PageContainer.TabPanel',
               ])
               setSelectedTabKey(tabs.length + "")
             },
@@ -192,8 +192,8 @@ export const PageContainerDesigner: DnFC<IPageProps> & {
             onClick: () => {
               if (
                 hasNodeByComponentPath(node, [
-                  'Page',
-                  'Page.FooterToolbar',
+                  'PageContainer',
+                  'PageContainer.FooterToolbar',
                 ])
               ) {
                 return
@@ -203,7 +203,7 @@ export const PageContainerDesigner: DnFC<IPageProps> & {
                 componentName: 'Field',
                 props: {
                   type: 'void',
-                  'x-component': 'Page.FooterToolbar',
+                  'x-component': 'PageContainer.FooterToolbar',
                   'x-component-props': {
                     title: `Title`,
                   },
@@ -259,9 +259,9 @@ PageContainerDesigner.FooterToolbar = FooterToolbar
 
 PageContainerDesigner.Behavior = createBehavior(
   {
-    name: 'Page',
+    name: 'PageContainer',
     extends: [],
-    selector: (node) => node.props['x-component'] === 'Page',
+    selector: (node) => node.props['x-component'] === 'PageContainer',
     designerProps: {
       droppable: true,
       propsSchema: createVoidFieldSchema(Schema),
@@ -269,9 +269,9 @@ PageContainerDesigner.Behavior = createBehavior(
     designerLocales: Locales,
   },
   {
-    name: 'Page.HeaderExtra',
+    name: 'PageContainer.HeaderExtra',
     extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'Page.HeaderExtra',
+    selector: (node) => node.props['x-component'] === 'PageContainer.HeaderExtra',
     designerProps: {
       droppable: true,
       propsSchema: createVoidFieldSchema(Schema.HeaderExtra),
@@ -279,9 +279,9 @@ PageContainerDesigner.Behavior = createBehavior(
     designerLocales: Locales.HeaderExtra,
   },
   {
-    name: 'Page.HeaderContent',
+    name: 'PageContainer.HeaderContent',
     extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'Page.HeaderContent',
+    selector: (node) => node.props['x-component'] === 'PageContainer.HeaderContent',
     designerProps: {
       droppable: true,
       propsSchema: createVoidFieldSchema(Schema.HeaderContent),
@@ -289,9 +289,9 @@ PageContainerDesigner.Behavior = createBehavior(
     designerLocales: Locales.HeaderContent,
   },
   {
-    name: 'Page.Content',
+    name: 'PageContainer.Content',
     extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'Page.Content',
+    selector: (node) => node.props['x-component'] === 'PageContainer.Content',
     designerProps: {
       droppable: true,
       propsSchema: createVoidFieldSchema(Schema.Content),
@@ -299,9 +299,9 @@ PageContainerDesigner.Behavior = createBehavior(
     designerLocales: Locales.Content,
   },
   {
-    name: 'Page.TabPanel',
+    name: 'PageContainer.TabPanel',
     extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'Page.TabPanel',
+    selector: (node) => node.props['x-component'] === 'PageContainer.TabPanel',
     designerProps: {
       droppable: true,
       propsSchema: createVoidFieldSchema(Schema.TabPanel),
@@ -309,9 +309,9 @@ PageContainerDesigner.Behavior = createBehavior(
     designerLocales: Locales.TabPanel,
   },
   {
-    name: 'Page.FooterToolbar',
+    name: 'PageContainer.FooterToolbar',
     extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'Page.FooterToolbar',
+    selector: (node) => node.props['x-component'] === 'PageContainer.FooterToolbar',
     designerProps: {
       droppable: true,
       propsSchema: createVoidFieldSchema(Schema.FooterToolbar),
@@ -327,10 +327,10 @@ PageContainerDesigner.Resource = createResource({
       componentName: 'Field',
       props: {
         type: 'void',
-        'x-component': 'Page',
+        'x-component': 'PageContainer',
         'x-component-props': {
           title: "Page title",
-          subtitle: "Page subtitle",
+          subtitle: "PageContainer subtitle",
           hasBreadcrumb: true,
           showGoback: true,
         },
@@ -340,7 +340,7 @@ PageContainerDesigner.Resource = createResource({
           componentName: 'Field',
           props: {
             type: 'void',
-            'x-component': 'Page.HeaderExtra',
+            'x-component': 'PageContainer.HeaderExtra',
             'x-component-props': {
               title: "ddd",
             },
@@ -351,7 +351,7 @@ PageContainerDesigner.Resource = createResource({
           componentName: 'Field',
           props: {
             type: 'void',
-            'x-component': 'Page.HeaderContent',
+            'x-component': 'PageContainer.HeaderContent',
             'x-component-props': {
               title: "ddd",
             },
@@ -362,7 +362,7 @@ PageContainerDesigner.Resource = createResource({
           componentName: 'Field',
           props: {
             type: 'void',
-            'x-component': 'Page.Content',
+            'x-component': 'PageContainer.Content',
             'x-component-props': {
               title: "ddd",
             },

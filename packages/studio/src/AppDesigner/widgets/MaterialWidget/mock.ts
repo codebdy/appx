@@ -30,6 +30,7 @@ import {
 
 import { Input as ExecutableInput } from "@formily/antd";
 import { PageContainerDesigner } from "../../../components/PageContainer/designable";
+import { PageContainer } from "../../../components/PageContainer/formily/PageContainer";
 
 export const allMaterials: MaterialModule[] = [
   {
@@ -49,7 +50,7 @@ export const allMaterials: MaterialModule[] = [
           {
             name: "PageContainer",
             component: PageContainerDesigner,
-            xComponent: ExecutableInput,
+            xComponent: PageContainer,
           },
           // {
           //   name: "Rate2",
