@@ -79,7 +79,8 @@
     "CagegoryName": "分组名称",
     "EidtPage": "编辑页面",
     "PageName": "页面名称",
-    "SelectCategory": "选择分组"
+    "SelectCategory": "选择分组",
+    "PropertySettings": "属性设置"
   },
   "materials": {
     "ModuleList": "物料管理",

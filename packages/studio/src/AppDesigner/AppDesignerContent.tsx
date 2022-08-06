@@ -150,7 +150,7 @@ const AppDesignerContent = memo(() => {
                 </ViewportPanel>
               </WorkspacePanel>
             </Workspace>
-            <SettingsPanel title="panels.PropertySettings">
+            <SettingsPanel title={t("Panels.PropertySettings")}>
               <SettingsForm uploadAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" />
             </SettingsPanel>
           </>
