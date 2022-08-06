@@ -269,7 +269,6 @@ PageContainerDesigner.Resource = createResource({
             type: 'void',
             'x-component': 'PageContainer.HeaderExtra',
             'x-component-props': {
-              title: "ddd",
             },
 
           },
@@ -280,7 +279,6 @@ PageContainerDesigner.Resource = createResource({
             type: 'void',
             'x-component': 'PageContainer.HeaderContent',
             'x-component-props': {
-              title: "ddd",
             },
 
           },
@@ -291,7 +289,6 @@ PageContainerDesigner.Resource = createResource({
             type: 'void',
             'x-component': 'PageContainer.Content',
             'x-component-props': {
-              title: "ddd",
             },
 
           },
