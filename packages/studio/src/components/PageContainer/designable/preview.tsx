@@ -24,7 +24,7 @@ import { PageContainer } from '../formily/PageContainer'
 import { PageHeader } from '../formily/PageHeader'
 import { PageBody } from '../formily/PageBody'
 import { LoadTemplate } from "@designable/formily-antd/lib/common/LoadTemplate"
-import {createVoidFieldSchema} from "@designable/formily-antd/lib/components/Field/shared"
+import { createVoidFieldSchema } from "@designable/formily-antd/lib/components/Field/shared"
 
 const { TabPane } = Tabs;
 
@@ -106,114 +106,6 @@ export const PageContainerDesigner: DnFC<IPageProps> & {
 
   return (
     <PageContainer {...other} >
-      <LoadTemplate
-        actions={[
-          {
-            title: node.getMessage('addExtra'),
-            icon: 'AddOperation',
-            onClick: () => {
-              if (
-                hasNodeByComponentPath(node, [
-                  'PageContainer',
-                  'PageContainer.HeaderExtra',
-                ])
-              )
-                return
-              const extra = new TreeNode({
-                componentName: 'Field',
-                props: {
-                  type: 'void',
-                  'x-component': 'PageContainer.HeaderExtra',
-                  'x-component-props': {
-                    title: `Title`,
-                  },
-                },
-              })
-              node.append(extra)
-            },
-          },
-          {
-            title: node.getMessage('addHeaderContent'),
-            icon: <BookOutlined />,
-            onClick: () => {
-              if (
-                hasNodeByComponentPath(node, [
-                  'PageContainer',
-                  'PageContainer.HeaderContent',
-                ])
-              ) {
-                return
-              }
-
-              const headerContent = new TreeNode({
-                componentName: 'Field',
-                props: {
-                  type: 'void',
-                  'x-component': 'PageContainer.HeaderContent',
-                  'x-component-props': {
-                    title: `Title`,
-                  },
-                },
-              })
-              node.append(headerContent)
-            },
-          },
-          {
-            title: node.getMessage('addPanel'),
-            icon: "AddPanel",
-            onClick: () => {
-              const content = findNodeByComponentPath(node, [
-                'PageContainer',
-                'PageContainer.Content',
-              ])
-
-              content?.remove()
-              const tabPanel = new TreeNode({
-                componentName: 'Field',
-                props: {
-                  type: 'void',
-                  'x-component': 'PageContainer.TabPanel',
-                  'x-component-props': {
-                    title: `Unnamed title`,
-                  },
-                },
-              })
-              node.append(tabPanel)
-              const tabs = queryNodesByComponentPath(node, [
-                'PageContainer',
-                'PageContainer.TabPanel',
-              ])
-              setSelectedTabKey(tabs.length + "")
-            },
-          },
-          {
-            title: node.getMessage('addFooter'),
-            icon: "AddPanel",
-            onClick: () => {
-              if (
-                hasNodeByComponentPath(node, [
-                  'PageContainer',
-                  'PageContainer.FooterToolbar',
-                ])
-              ) {
-                return
-              }
-
-              const footer = new TreeNode({
-                componentName: 'Field',
-                props: {
-                  type: 'void',
-                  'x-component': 'PageContainer.FooterToolbar',
-                  'x-component-props': {
-                    title: `Title`,
-                  },
-                },
-              })
-              node.append(footer)
-            },
-          },
-        ]}
-      />
       <PageHeader
         onBack={showGoback ? () => window.history.back() : undefined}
         title={title}
@@ -244,6 +136,38 @@ export const PageContainerDesigner: DnFC<IPageProps> & {
             )
           })
         }
+        <LoadTemplate
+          actions={[
+            {
+              title: node.getMessage('addPanel'),
+              icon: "AddPanel",
+              onClick: () => {
+                const content = findNodeByComponentPath(node, [
+                  'PageContainer',
+                  'PageContainer.Content',
+                ])
+
+                content?.remove()
+                const tabPanel = new TreeNode({
+                  componentName: 'Field',
+                  props: {
+                    type: 'void',
+                    'x-component': 'PageContainer.TabPanel',
+                    'x-component-props': {
+                      title: `Unnamed title`,
+                    },
+                  },
+                })
+                node.append(tabPanel)
+                const tabs = queryNodesByComponentPath(node, [
+                  'PageContainer',
+                  'PageContainer.TabPanel',
+                ])
+                setSelectedTabKey(tabs.length + "")
+              },
+            },
+          ]}
+        />
         <div style={{ flex: 1 }}></div>
         <TreeNodeWidget node={footer} />
       </PageBody>
@@ -274,6 +198,7 @@ PageContainerDesigner.Behavior = createBehavior(
     selector: (node) => node.props['x-component'] === 'PageContainer.HeaderExtra',
     designerProps: {
       droppable: true,
+      deletable: false,
       propsSchema: createVoidFieldSchema(Schema.HeaderExtra),
     },
     designerLocales: Locales.HeaderExtra,
@@ -284,6 +209,7 @@ PageContainerDesigner.Behavior = createBehavior(
     selector: (node) => node.props['x-component'] === 'PageContainer.HeaderContent',
     designerProps: {
       droppable: true,
+      deletable: false,
       propsSchema: createVoidFieldSchema(Schema.HeaderContent),
     },
     designerLocales: Locales.HeaderContent,
@@ -314,6 +240,7 @@ PageContainerDesigner.Behavior = createBehavior(
     selector: (node) => node.props['x-component'] === 'PageContainer.FooterToolbar',
     designerProps: {
       droppable: true,
+      deletable: false,
       propsSchema: createVoidFieldSchema(Schema.FooterToolbar),
     },
     designerLocales: Locales.FooterToolbar,
