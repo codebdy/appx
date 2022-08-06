@@ -47,7 +47,7 @@ const CategoryActions = memo((
       items={[
         {
           icon: <FileAddOutlined />,
-          label: t("pages.NewPage"),
+          label: t("Pages.NewPage"),
           key: '0',
           onClick: (e => {
             e.domEvent.stopPropagation();

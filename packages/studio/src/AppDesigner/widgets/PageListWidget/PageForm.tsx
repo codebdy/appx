@@ -34,7 +34,7 @@ const PageForm = memo((props: {
       <Row gutter={12}>
         <Col span={12}>
           <Form.Item
-            label={t("pages.PageName")}
+            label={t("Pages.PageName")}
             name="title"
             rules={[{ required: true, message: t("Required") }]}
           >
@@ -43,7 +43,7 @@ const PageForm = memo((props: {
         </Col>
         <Col span={12}>
           <Form.Item
-            label={t("pages.SelectCategory")}
+            label={t("Pages.SelectCategory")}
             name="categoryUuid"
           >
             <Select onChange={handleChange}>

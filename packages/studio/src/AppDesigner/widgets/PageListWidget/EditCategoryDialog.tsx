@@ -36,7 +36,7 @@ const EditCategoryDialog = memo((
 
   return (
     <Modal
-      title={t("pages.EditCategory")}
+      title={t("Pages.EditCategory")}
       visible={isModalVisible}
       width={400}
       cancelText={t("Cancel")}

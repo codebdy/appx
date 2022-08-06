@@ -29,7 +29,7 @@ const CreatePageDialog = memo(() => {
         }
         onClick={showModal}
       >
-        {t("pages.NewPage")}
+        {t("Pages.NewPage")}
       </Button>
       <CreatePageModal isModalVisible={isModalVisible} onClose={handleClose} />
     </>

@@ -22,7 +22,7 @@ const CategoryForm = memo((
       initialValues={{ title: title }}
     >
       <Form.Item
-        label={t("pages.CagegoryName")}
+        label={t("Pages.CagegoryName")}
         name="title"
         rules={[{ required: true, message: t("Required") }]}
       >

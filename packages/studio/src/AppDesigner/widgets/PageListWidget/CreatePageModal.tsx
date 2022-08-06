@@ -39,7 +39,7 @@ const CreatePageModal = memo((
 
   return (
     <Modal
-      title={t("pages.NewPage")}
+      title={t("Pages.NewPage")}
       visible={isModalVisible}
       width={580}
       cancelText={t("Cancel")}
