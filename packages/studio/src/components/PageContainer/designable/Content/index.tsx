@@ -1,7 +1,7 @@
 import { DroppableWidget } from "@designable/react"
 import { observer } from "@formily/react"
-import PageContent, { IPageContentProps } from "../../../executable/Page/PageContent"
-import React, { Fragment } from "react"
+import React from "react"
+import PageContent, { IPageContentProps } from "../../formily/PageContent"
 import './locales'
 import './schema'
 

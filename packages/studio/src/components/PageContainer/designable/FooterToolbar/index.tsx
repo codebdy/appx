@@ -1,10 +1,10 @@
 import { DroppableWidget } from "@designable/react"
 import { observer } from "@formily/react"
-import PageFooterToolbar, { IPageFooterToolbarProps } from "../../../executable/Page/PageFooterToolbar"
-import React, { Fragment } from "react"
+import React from "react"
 import './locales'
 import './schema'
 import clx from "classnames"
+import { IPageFooterToolbarProps } from "../../formily/PageFooterToolbar"
 
 
 const FooterToolbar = observer((props: IPageFooterToolbarProps) => {
