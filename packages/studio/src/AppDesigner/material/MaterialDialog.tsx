@@ -1,4 +1,4 @@
-import { ToolOutlined } from '@ant-design/icons';
+import { SettingOutlined } from '@ant-design/icons';
 import { Button, Modal } from 'antd';
 import React, { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -20,11 +20,10 @@ export const MaterialDialog = memo(() => {
     setIsModalVisible(false);
   }, []);
 
-
   return (
     <>
-      <Button shape="circle" style={{ border: 0 }} onClick={showModal}
-        icon={<ToolOutlined style={{ fontSize: 14, transform: "rotateY(180deg)" }} />}
+      <Button shape="circle" type="text" onClick={showModal}
+        icon={<SettingOutlined style={{ fontSize: 14 }} />}
       />
 
       <Modal
