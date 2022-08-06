@@ -2,9 +2,7 @@ import React, { useState } from 'react'
 import { Tabs } from 'antd'
 import { createBehavior, createResource, TreeNode } from '@designable/core'
 import { DnFC, TreeNodeWidget, useTreeNode } from '@designable/react'
-import { createVoidFieldSchema } from '../../components/Field'
-import { createEnsureTypeItemsNode, findNodeByComponentPath, hasNodeByComponentPath, queryNodesByComponentPath } from '../../shared'
-import { LoadTemplate } from '../../common/LoadTemplate'
+import { findNodeByComponentPath, hasNodeByComponentPath, queryNodesByComponentPath } from './shared'
 import { Locales } from './locales'
 import { Schema } from './schema'
 import HeaderExtra from './HeaderExtra'
@@ -12,25 +10,25 @@ import HeaderContent from './HeaderContent'
 import { BookOutlined } from '@ant-design/icons'
 import Content from './Content'
 import TabPanel from './TabPanel'
-import { useRemoveNode } from '../hooks/useRemoveNode'
+import { useRemoveNode } from './hooks/useRemoveNode'
 import FooterToolbar from './FooterToolbar'
 import { observer } from '@formily/reactive-react'
 import './index.less'
-import { IPageProps, routesPlaceholder } from '../../formily/Page'
-import { PageContainer } from '../../formily/Page/PageContainer'
-import { PageHeader } from '../../formily/Page/PageHeader'
-import { PageBody } from '../../formily/Page/PageBody'
-import { IPageHeaderExtraProps } from '../../formily/Page/PageHeaderExtra'
-import { IPageHeaderContentProps } from '../../formily/Page/PageHeaderContent'
-import { IPageContentProps } from '../../formily/Page/PageContent'
-import { IPageTabPanelProps } from '../../formily/Page/PageTabPanel'
-import { IPageFooterToolbarProps } from '../../formily/Page/PageFooterToolbar'
-
-const ensureObjectItemsNode = createEnsureTypeItemsNode('object')
+import { IPageProps, routesPlaceholder } from '../formily'
+import { IPageHeaderExtraProps } from '../formily/PageHeaderExtra'
+import { IPageHeaderContentProps } from '../formily/PageHeaderContent'
+import { IPageContentProps } from '../formily/PageContent'
+import { IPageTabPanelProps } from '../formily/PageTabPanel'
+import { IPageFooterToolbarProps } from '../formily/PageFooterToolbar'
+import { PageContainer } from '../formily/PageContainer'
+import { PageHeader } from '../formily/PageHeader'
+import { PageBody } from '../formily/PageBody'
+import { LoadTemplate } from "@designable/formily-antd/lib/common/LoadTemplate"
+import {createVoidFieldSchema} from "@designable/formily-antd/lib/components/Field/shared"
 
 const { TabPane } = Tabs;
 
-export const Page: DnFC<IPageProps> & {
+export const PageContainerDesigner: DnFC<IPageProps> & {
   HeaderExtra?: React.FC<IPageHeaderExtraProps>,
   HeaderContent?: React.FC<IPageHeaderContentProps>,
   Content?: React.FC<IPageContentProps>,
@@ -253,13 +251,13 @@ export const Page: DnFC<IPageProps> & {
   )
 })
 
-Page.HeaderExtra = HeaderExtra
-Page.HeaderContent = HeaderContent
-Page.Content = Content
-Page.TabPanel = TabPanel
-Page.FooterToolbar = FooterToolbar
+PageContainerDesigner.HeaderExtra = HeaderExtra
+PageContainerDesigner.HeaderContent = HeaderContent
+PageContainerDesigner.Content = Content
+PageContainerDesigner.TabPanel = TabPanel
+PageContainerDesigner.FooterToolbar = FooterToolbar
 
-Page.Behavior = createBehavior(
+PageContainerDesigner.Behavior = createBehavior(
   {
     name: 'Page',
     extends: [],
@@ -322,7 +320,7 @@ Page.Behavior = createBehavior(
   }
 )
 
-Page.Resource = createResource({
+PageContainerDesigner.Resource = createResource({
   icon: 'CardSource',
   elements: [
     {

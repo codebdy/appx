@@ -28,6 +28,9 @@ import {
   FormGrid,
 } from '@designable/formily-antd'
 
+import { Input as ExecutableInput } from "@formily/antd";
+import { PageContainerDesigner } from "../../../components/PageContainer/designable";
+
 export const allMaterials: MaterialModule[] = [
   {
     name: "表单",
@@ -41,6 +44,12 @@ export const allMaterials: MaterialModule[] = [
           {
             name: "Input",
             component: Input,
+            xComponent: ExecutableInput,
+          },
+          {
+            name: "PageContainer",
+            component: PageContainerDesigner,
+            xComponent: ExecutableInput,
           },
           // {
           //   name: "Rate2",
