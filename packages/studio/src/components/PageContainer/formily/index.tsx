@@ -22,6 +22,7 @@ export interface IPageContainerProps {
   showGoback?: boolean;
   className?: string;
   hasHeaderExtra?: boolean;
+  hasTabs?: boolean;
 }
 
 export const routesPlaceholder = [
