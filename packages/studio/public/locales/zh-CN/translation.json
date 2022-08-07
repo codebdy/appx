@@ -156,5 +156,11 @@
     "Side": "端",
     "RoleName": "角色名",
     "Multiplicity": "重数"
+  },
+  "SettingsForm": {
+    "Properties": "属性",
+    "Styles": "样式",
+    "Data": "数据",
+    "Actions": "动作"
   }
 }

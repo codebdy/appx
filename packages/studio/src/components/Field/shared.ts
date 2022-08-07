@@ -4,7 +4,6 @@ import {
   DataSourceSetter,
   ValidatorSetter,
 } from '@designable/formily-setters'
-import { FormItemSwitcher } from '@designable/formily-antd/lib/common/FormItemSwitcher'
 import { AllSchemas } from '@designable/formily-antd/lib/schemas'
 
 export const createStyleSchemaTab = () => {
@@ -13,7 +12,7 @@ export const createStyleSchemaTab = () => {
       type: 'void',
       'x-component': 'FormTab.TabPane',
       'x-component-props': {
-        tab: '样式',
+        tab: 'settings.styles',
       },
       properties: {
         'component-style-group': {

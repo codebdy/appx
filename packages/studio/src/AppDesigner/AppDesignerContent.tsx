@@ -18,7 +18,6 @@ import {
 import { saveSchema } from './service'
 import {
   Form,
-  Field,
 } from '@designable/formily-antd'
 import { ViewPanel, CompositePanel, WorkspacePanel, ToolbarPanel, ViewportPanel, SettingsPanel, StudioPanel } from './panels'
 import { MaterialWidget } from './widgets/MaterialWidget'
@@ -31,6 +30,7 @@ import { useSelectedPageId } from './hooks/useSelectedPageId'
 import MenuEditWidget from './widgets/MenuEditWidget'
 import { useTranslation } from 'react-i18next'
 import { SettingsForm } from '../SettingsForm'
+import { Field } from '../components/Field'
 
 export enum DesignerRoutes {
   Pages = "pages",
