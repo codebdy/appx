@@ -15,10 +15,11 @@ import {
 import { SchemaField } from '@designable/react-settings-form'
 import { SettingsFormContext } from '@designable/react-settings-form/lib//shared/context'
 import { useLocales, useSnapshot } from '@designable/react-settings-form/lib//effects'
-import { Empty } from 'antd'
+import { Empty, Tooltip } from 'antd'
 import cls from 'classnames'
 import './styles.less'
 import { ISettingFormProps } from './types'
+import { QuestionCircleOutlined } from '@ant-design/icons'
 
 const GlobalState = {
   idleRequest: null,
@@ -92,7 +93,21 @@ export const SettingsForm: React.FC<ISettingFormProps> = observer(
     return (
       <IconWidget.Provider tooltip>
         <div className={prefix + '-wrapper'}>
-          {!isEmpty && <NodePathWidget workspaceId={currentWorkspaceId} />}
+          {!isEmpty &&
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                paddingRight: 8,
+              }}
+            >
+              <NodePathWidget workspaceId={currentWorkspaceId} />
+              <Tooltip placement="left" title={"Description"}>
+                <QuestionCircleOutlined />
+              </Tooltip>
+            </div>
+          }
           <div className={prefix + '-content'}>{render()}</div>
         </div>
       </IconWidget.Provider>
