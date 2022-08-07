@@ -2,12 +2,11 @@ import React, { useState } from 'react'
 import { Tabs } from 'antd'
 import { createBehavior, createResource, TreeNode } from '@designable/core'
 import { DnFC, TreeNodeWidget, useTreeNode } from '@designable/react'
-import { findNodeByComponentPath, hasNodeByComponentPath, queryNodesByComponentPath } from './shared'
+import { findNodeByComponentPath, queryNodesByComponentPath } from './shared'
 import { Locales } from './locales'
 import { Schema } from './schema'
 import HeaderExtra from './HeaderExtra'
 import HeaderContent from './HeaderContent'
-import { BookOutlined } from '@ant-design/icons'
 import Content from './Content'
 import TabPanel from './TabPanel'
 import { useRemoveNode } from './hooks/useRemoveNode'
@@ -24,7 +23,7 @@ import { PageContainer } from '../formily/PageContainer'
 import { PageHeader } from '../formily/PageHeader'
 import { PageBody } from '../formily/PageBody'
 import { LoadTemplate } from "@designable/formily-antd/lib/common/LoadTemplate"
-import { createVoidFieldSchema } from "@designable/formily-antd/lib/components/Field/shared"
+import { createVoidFieldSchema } from "../../Field/shared"
 
 const { TabPane } = Tabs;
 
