@@ -35,9 +35,9 @@ import {
   DisplayStyleSetter,
   FlexStyleSetter,
   DrawerSetter,
+  CollapseItem,
 } from '@designable/react-settings-form'
-import { CollapseItem } from './components/CollapseItem'
-import SettingsTab from './components/SettingsTab.tsx'
+import SettingsTab from './components/SettingsTab'
 
 export const SchemaField = createSchemaField({
   components: {

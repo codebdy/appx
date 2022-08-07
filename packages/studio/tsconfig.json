@@ -4,6 +4,6 @@
     "resolveJsonModule":true,
     "jsx": "react" //使用react-jsx时，运行会出问题,
   },
-  "include": ["./src/**/*.ts", "./src/**/*.tsx"],
+  "include": ["./src/**/*.ts", "./src/**/*.tsx", "src/SettingsForm/components/SettingsTab"],
   "exclude": ["./src/__tests__/*", "./esm/*", "./lib/*"]
 }
