@@ -12,13 +12,13 @@ import {
   IconWidget,
   NodePathWidget,
 } from '@designable/react'
-import { SchemaField } from './SchemaField'
-import { ISettingFormProps } from './types'
-import { SettingsFormContext } from './shared/context'
-import { useLocales, useSnapshot } from './effects'
+import { SchemaField } from '@designable/react-settings-form'
+import { SettingsFormContext } from '@designable/react-settings-form/lib//shared/context'
+import { useLocales, useSnapshot } from '@designable/react-settings-form/lib//effects'
 import { Empty } from 'antd'
 import cls from 'classnames'
 import './styles.less'
+import { ISettingFormProps } from './types'
 
 const GlobalState = {
   idleRequest: null,
@@ -45,7 +45,9 @@ export const SettingsForm: React.FC<ISettingFormProps> = observer(
         initialValues: node?.designerProps?.defaultProps,
         values: node?.props,
         effects(form) {
+          // eslint-disable-next-line react-hooks/rules-of-hooks
           useLocales(node)
+          // eslint-disable-next-line react-hooks/rules-of-hooks
           useSnapshot(operation)
           props.effects?.(form)
         },

@@ -1,9 +1,6 @@
 import 'antd/dist/antd.less'
 import React, { memo, useCallback, useMemo, useState } from 'react'
 import {
-  SettingsForm,
-} from '@designable/react-settings-form'
-import {
   createDesigner,
   Shortcut,
   KeyCode,
@@ -33,6 +30,7 @@ import { useDesignerParams } from './context'
 import { useSelectedPageId } from './hooks/useSelectedPageId'
 import MenuEditWidget from './widgets/MenuEditWidget'
 import { useTranslation } from 'react-i18next'
+import { SettingsForm } from '../SettingsForm'
 
 export enum DesignerRoutes {
   Pages = "pages",
