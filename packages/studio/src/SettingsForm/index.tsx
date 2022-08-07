@@ -12,7 +12,6 @@ import {
   IconWidget,
   NodePathWidget,
 } from '@designable/react'
-import { SchemaField } from '@designable/react-settings-form'
 import { SettingsFormContext } from '@designable/react-settings-form/lib//shared/context'
 import { useLocales, useSnapshot } from '@designable/react-settings-form/lib//effects'
 import { Empty, Tooltip } from 'antd'
@@ -20,6 +19,7 @@ import cls from 'classnames'
 import './styles.less'
 import { ISettingFormProps } from './types'
 import { QuestionCircleOutlined } from '@ant-design/icons'
+import { SchemaField } from './SchemaField'
 
 const GlobalState = {
   idleRequest: null,

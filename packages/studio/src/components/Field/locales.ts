@@ -24,6 +24,10 @@ export const FieldLocales = {
       'decorator-group': '容器属性',
       'component-style-group': '组件样式',
       'decorator-style-group': '容器样式',
+      'component-tab': '属性',
+      'style-tab': '样式',
+      'data-tab': '数据',
+      'action-tab': '动作',
       'x-component-props': {
         size: { title: '尺寸', dataSource: ['大', '小', '默认', '继承'] },
         allowClear: '允许清除内容',
@@ -95,7 +99,7 @@ export const FieldLocales = {
           opacity: '透明度',
         },
       },
-      'styles':"样式"
+      'styles': "样式"
     },
   },
   'en-US': {

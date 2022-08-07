@@ -10744,16 +10744,6 @@ rc-dialog@~8.9.0:
     rc-motion "^2.3.0"
     rc-util "^5.21.0"
 
-rc-drawer@~5.0.0-alpha.8:
-  version "5.0.0-alpha.8"
-  resolved "https://registry.npmmirror.com/rc-drawer/-/rc-drawer-5.0.0-alpha.8.tgz#de8f7ed5a1e2b4c1bc60a29f82edd75eb2fa9083"
-  integrity sha512-4ZhW8iZ7PDAnTRzprZv3zI8XEW/jQJkf+gvfnXXpx7Ik4TjKqzlf1yg33qEUm7uJgO1BQVITKGzlLUQlTSfrcQ==
-  dependencies:
-    "@babel/runtime" "^7.10.1"
-    classnames "^2.2.6"
-    rc-motion "^2.6.1"
-    rc-util "^5.21.2"
-
 rc-drawer@~5.1.0-alpha.1:
   version "5.1.0-alpha.3"
   resolved "https://registry.yarnpkg.com/rc-drawer/-/rc-drawer-5.1.0-alpha.3.tgz#a516131bd36f36b886c00ece027837050cbd3c68"

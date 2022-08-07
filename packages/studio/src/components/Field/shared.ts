@@ -8,13 +8,12 @@ import { FormItemSwitcher } from '@designable/formily-antd/lib/common/FormItemSw
 import { AllSchemas } from '@designable/formily-antd/lib/schemas'
 
 export const createStyleSchemaTab = () => {
+
   return {
     'style-tab': {
       type: 'void',
-      'x-component': 'FormTab.TabPane',
-      'x-component-props': {
-        tab: '样式',
-      },
+      'x-component': "SettingsTab.TabPane",
+      //'x-component-props': {tab:"哈哈"},
       properties: {
         'component-style-group': {
           type: 'void',
@@ -58,9 +57,8 @@ export const createComponentSchemaTab = (
   return {
     'component-tab': {
       type: 'void',
-      'x-component': 'FormTab.TabPane',
+      'x-component': 'SettingsTab.TabPane',
       'x-component-props': {
-        tab: '属性',
       },
       properties: {
         'component-group': component && {
@@ -232,27 +230,25 @@ export const createVoidFieldSchema = (
   return {
     type: 'object',
     properties: {
-      collapse: {
+      tabs: {
         type: 'void',
-        'x-component': 'FormTab',
+        'x-component': 'SettingsTab',
         'x-component-props': {
-          formTab: '{{formTab}}',
+
         },
         properties: {
           ...createComponentSchemaTab(component, decorator),
           ...createStyleSchemaTab(),
           'data-tab': {
             type: 'void',
-            'x-component': 'FormTab.TabPane',
+            'x-component': 'SettingsTab.TabPane',
             'x-component-props': {
-              tab: '数据',
             },
           },
           'action-tab': {
             type: 'void',
-            'x-component': 'FormTab.TabPane',
+            'x-component': 'SettingsTab.TabPane',
             'x-component-props': {
-              tab: '动作',
             },
           },
         }

@@ -156,5 +156,8 @@
     "Side": "端",
     "RoleName": "角色名",
     "Multiplicity": "重数"
+  },
+  "SettingsForm":{
+    "Styles":"样式"
   }
 }
