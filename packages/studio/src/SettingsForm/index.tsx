@@ -95,12 +95,7 @@ export const SettingsForm: React.FC<ISettingFormProps> = observer(
         <div className={prefix + '-wrapper'}>
           {!isEmpty &&
             <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                paddingRight: 8,
-              }}
+              className='node-path-area'
             >
               <NodePathWidget workspaceId={currentWorkspaceId} />
               <Tooltip placement="left" title={"Description"}>
