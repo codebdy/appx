@@ -1,10 +1,8 @@
-import React, { Fragment, useMemo } from 'react'
-import { Tabs, Badge } from 'antd'
-import { model, markRaw } from '@formily/reactive'
-import { TabPaneProps, TabsProps } from 'antd/lib/tabs'
+import React, { Fragment } from 'react'
+import { Tabs } from 'antd'
+import { TabsProps } from 'antd/lib/tabs'
 import {
   useField,
-  ReactFC,
   observer,
   useFieldSchema,
   RecursionField,
