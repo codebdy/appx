@@ -7,69 +7,92 @@ import {
 import { FormItemSwitcher } from '@designable/formily-antd/lib/common/FormItemSwitcher'
 import { AllSchemas } from '@designable/formily-antd/lib/schemas'
 
-export const createComponentSchema = (
+export const createStyleSchemaTab = () => {
+  return {
+    'style-tab': {
+      type: 'void',
+      'x-component': 'FormTab.TabPane',
+      'x-component-props': {
+        tab: '样式',
+      },
+      properties: {
+        'component-style-group': {
+          type: 'void',
+          'x-component': 'CollapseItem',
+          'x-component-props': { defaultExpand: true },
+          'x-reactions': {
+            fulfill: {
+              state: {
+                visible: '{{!!$form.values["x-component"]}}',
+              },
+            },
+          },
+          properties: {
+            'x-component-props.style': AllSchemas.CSSStyle,
+          },
+        },
+        'decorator-style-group': {
+          type: 'void',
+          'x-component': 'CollapseItem',
+          'x-component-props': { defaultExpand: false },
+          'x-reactions': {
+            fulfill: {
+              state: {
+                visible: '{{!!$form.values["x-decorator"]}}',
+              },
+            },
+          },
+          properties: {
+            'x-decorator-props.style': AllSchemas.CSSStyle,
+          },
+        },
+      }
+    },
+  }
+}
+
+export const createComponentSchemaTab = (
   component: ISchema,
   decorator: ISchema
 ) => {
   return {
-    'component-group': component && {
+    'component-tab': {
       type: 'void',
-      'x-component': 'CollapseItem',
-      'x-reactions': {
-        fulfill: {
-          state: {
-            visible: '{{!!$form.values["x-component"]}}',
-          },
-        },
+      'x-component': 'FormTab.TabPane',
+      'x-component-props': {
+        tab: '属性',
       },
       properties: {
-        'x-component-props': component,
-      },
-    },
-    'decorator-group': decorator && {
-      type: 'void',
-      'x-component': 'CollapseItem',
-      'x-component-props': { defaultExpand: false },
-      'x-reactions': {
-        fulfill: {
-          state: {
-            visible: '{{!!$form.values["x-decorator"]}}',
+        'component-group': component && {
+          type: 'void',
+          'x-component': 'CollapseItem',
+          'x-reactions': {
+            fulfill: {
+              state: {
+                visible: '{{!!$form.values["x-component"]}}',
+              },
+            },
+          },
+          properties: {
+            'x-component-props': component,
           },
         },
-      },
-      properties: {
-        'x-decorator-props': decorator,
-      },
-    },
-    'component-style-group': {
-      type: 'void',
-      'x-component': 'CollapseItem',
-      'x-component-props': { defaultExpand: false },
-      'x-reactions': {
-        fulfill: {
-          state: {
-            visible: '{{!!$form.values["x-component"]}}',
+        'decorator-group': decorator && {
+          type: 'void',
+          'x-component': 'CollapseItem',
+          'x-component-props': { defaultExpand: false },
+          'x-reactions': {
+            fulfill: {
+              state: {
+                visible: '{{!!$form.values["x-decorator"]}}',
+              },
+            },
+          },
+          properties: {
+            'x-decorator-props': decorator,
           },
         },
-      },
-      properties: {
-        'x-component-props.style': AllSchemas.CSSStyle,
-      },
-    },
-    'decorator-style-group': {
-      type: 'void',
-      'x-component': 'CollapseItem',
-      'x-component-props': { defaultExpand: false },
-      'x-reactions': {
-        fulfill: {
-          state: {
-            visible: '{{!!$form.values["x-decorator"]}}',
-          },
-        },
-      },
-      properties: {
-        'x-decorator-props.style': AllSchemas.CSSStyle,
-      },
+      }
     },
   }
 }
@@ -141,7 +164,7 @@ export const createFieldSchema = (
           },
         },
       },
-      ...createComponentSchema(component, decorator),
+      ...createComponentSchemaTab(component, decorator),
     },
   }
 }
@@ -160,20 +183,8 @@ export const createVoidFieldSchema = (
           formTab: '{{formTab}}',
         },
         properties: {
-          'property-tab': {
-            type: 'void',
-            'x-component': 'FormTab.TabPane',
-            'x-component-props': {
-              tab: '属性',
-            },
-          },
-          'style-tab': {
-            type: 'void',
-            'x-component': 'FormTab.TabPane',
-            'x-component-props': {
-              tab: '样式',
-            },
-          },
+          ...createComponentSchemaTab(component, decorator),
+          ...createStyleSchemaTab(),
           'data-tab': {
             type: 'void',
             'x-component': 'FormTab.TabPane',
