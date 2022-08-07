@@ -13,7 +13,9 @@ export const createStyleSchemaTab = () => {
     'style-tab': {
       type: 'void',
       'x-component': "SettingsTab.TabPane",
-      //'x-component-props': {tab:"哈哈"},
+      'x-component-props': {
+        tab:'SettingsForm.Styles'
+      },
       properties: {
         'component-style-group': {
           type: 'void',
@@ -59,6 +61,7 @@ export const createComponentSchemaTab = (
       type: 'void',
       'x-component': 'SettingsTab.TabPane',
       'x-component-props': {
+        tab:"SettingsForm.Properties"
       },
       properties: {
         'component-group': component && {
@@ -243,12 +246,14 @@ export const createVoidFieldSchema = (
             type: 'void',
             'x-component': 'SettingsTab.TabPane',
             'x-component-props': {
+              tab:"SettingsForm.Data"
             },
           },
           'action-tab': {
             type: 'void',
             'x-component': 'SettingsTab.TabPane',
             'x-component-props': {
+              tab:"SettingsForm.Actions"
             },
           },
         }

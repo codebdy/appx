@@ -12,6 +12,7 @@ import {
 import { Schema, SchemaKey } from '@formily/json-schema'
 import cls from 'classnames'
 import { usePrefixCls } from '@formily/antd/esm/__builtins__'
+import { useTranslation } from 'react-i18next'
 
 export interface ISettingsTab {
   activeKey: string
@@ -56,8 +57,7 @@ const SettingsTab: ComposedSettingsTab = observer((props: TabsProps) => {
   const tabs = useTabs()
   const prefixCls = usePrefixCls('settings-tab', props)
   const activeKey = props.activeKey
-  //const field = useField()
-  //console.log("哈哈", tabs)
+  const { t } = useTranslation();
 
   return (
     <Tabs
@@ -69,7 +69,14 @@ const SettingsTab: ComposedSettingsTab = observer((props: TabsProps) => {
       }}
     >
       {tabs.map(({ props, schema, name }, key) => (
-        <RecursionField key={key} schema={schema} name={name} />
+        <Tabs.TabPane
+          key={key}
+          {...props}
+          tab={t(props.tab)}
+          forceRender
+        >
+          <RecursionField schema={schema} name={name} />
+        </Tabs.TabPane>
       ))}
     </Tabs>
   )
@@ -81,15 +88,7 @@ const TabPane: React.FC<ISettingsTabPaneProps> = observer((
     children: React.ReactNode
   }
 ) => {
-
-  const field = useField()
-  console.log("呵呵呵呵", field.title)
-  return <Tabs.TabPane
-    key = {field.props?.name}
-    {...props}
-    tab={field.title}
-    forceRender
-  >{props.children}</Tabs.TabPane>
+  return <Fragment>{props.children}</Fragment>
 })
 
 SettingsTab.TabPane = TabPane

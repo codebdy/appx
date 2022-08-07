@@ -157,7 +157,10 @@
     "RoleName": "角色名",
     "Multiplicity": "重数"
   },
-  "SettingsForm":{
-    "Styles":"样式"
+  "SettingsForm": {
+    "Properties": "属性",
+    "Styles": "样式",
+    "Data": "数据",
+    "Actions": "动作"
   }
 }
