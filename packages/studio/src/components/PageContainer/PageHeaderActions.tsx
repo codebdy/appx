@@ -1,4 +1,3 @@
-import { Space } from "@formily/antd"
 import { observer } from "@formily/reactive-react"
 import React from "react"
 
@@ -8,9 +7,9 @@ export interface IHeaderActionsProps {
 
 const PageHeaderActions = observer((props: IHeaderActionsProps) => {
   return (
-    <Space className="rx-page-header-actions">
+    <div className="rx-page-header-actions">
       {props.children}
-    </Space>
+    </div>
   )
 })
 
