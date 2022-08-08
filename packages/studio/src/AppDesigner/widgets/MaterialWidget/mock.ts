@@ -31,6 +31,8 @@ import {
 import { Input as ExecutableInput } from "@formily/antd";
 import { PageContainerDesigner } from "../../../components/PageContainerDesigner";
 import PageContainer from "../../../components/PageContainer";
+import ButtonDesigner from "../../../components/ButtonDesigner";
+import Button from "../../../components/Button";
 
 export const allMaterials: MaterialModule[] = [
   {
@@ -52,6 +54,11 @@ export const allMaterials: MaterialModule[] = [
             component: PageContainerDesigner,
             xComponent: PageContainer,
           },
+          {
+            name: "Button",
+            component: ButtonDesigner,
+            xComponent: Button
+          }
           // {
           //   name: "Rate2",
           //   component: Rate,
