@@ -4,6 +4,7 @@ import { createVoidFieldSchema } from "../Field";
 import { createBehavior, createResource } from '@designable/core'
 import { ButtonSchema } from "./schema";
 import { ButtonLocales } from "./locales";
+import { ButtonSource } from "./icon";
 
 const ButtonDesigner = (
   props: IButtonProps
@@ -24,7 +25,7 @@ ButtonDesigner.Behavior = createBehavior({
 })
 
 ButtonDesigner.Resource = createResource({
-  icon: 'Command',
+  icon: ButtonSource,
   elements: [
     {
       componentName: 'Field',
