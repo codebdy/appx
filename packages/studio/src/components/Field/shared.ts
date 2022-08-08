@@ -211,7 +211,7 @@ export const createActionSchemaTab = () => {
   }
 }
 
-export const createFieldSchema = (
+export const createFieldSchemaOld = (
   component?: ISchema,
   decorator: ISchema = AllSchemas.FormItem
 ): ISchema => {
@@ -283,7 +283,7 @@ export const createFieldSchema = (
   }
 }
 
-export const createVoidFieldSchema = (
+export const createVoidFieldSchemaOld = (
   component?: ISchema,
   decorator: ISchema = AllSchemas.FormItem
 ) => {
@@ -305,4 +305,24 @@ export const createVoidFieldSchema = (
       },
     },
   }
+}
+
+
+export enum BindableType {
+  EntityArray = "EntityArray",
+  Entity = "Entity",
+  Attribute = "Attribute",
+  Void = "Void",
+}
+
+export const createFieldSchema = (
+  component: ISchema,
+  options: {
+    decorator?: ISchema,
+    actions?: string[],
+    bindable?: BindableType,
+    bindExtraSchema?: ISchema,
+  }
+) => {
+
 }

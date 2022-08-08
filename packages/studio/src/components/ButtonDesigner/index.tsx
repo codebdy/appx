@@ -1,6 +1,6 @@
 import React from "react"
 import Button, { IButtonProps } from "../Button";
-import { createVoidFieldSchema } from "../Field";
+import { createVoidFieldSchemaOld } from "../Field";
 import { createBehavior, createResource } from '@designable/core'
 import { ButtonSchema } from "./schema";
 import { ButtonLocales } from "./locales";
@@ -26,7 +26,7 @@ ButtonDesigner.Behavior = createBehavior({
   extends: ['Field'],
   selector: (node) => node.props['x-component'] === 'Button',
   designerProps: {
-    propsSchema: createVoidFieldSchema(ButtonSchema),
+    propsSchema: createVoidFieldSchemaOld(ButtonSchema),
   },
   designerLocales: ButtonLocales,
 })
