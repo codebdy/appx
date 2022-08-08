@@ -5,7 +5,7 @@ import { DnFC, TreeNodeWidget, useTreeNode } from '@designable/react'
 import { findNodeByComponentPath, queryNodesByComponentPath } from './shared'
 import { Locales } from './locales'
 import { Schema } from './schema'
-import HeaderExtra from './HeaderExtra'
+import HeaderActions from './HeaderActions'
 import HeaderContent from './HeaderContent'
 import Content from './Content'
 import TabPanel from './TabPanel'
@@ -14,7 +14,7 @@ import FooterToolbar from './FooterToolbar'
 import { observer } from '@formily/reactive-react'
 import './index.less'
 import { routesPlaceholder } from '../formily'
-import { IPageHeaderExtraProps } from '../formily/PageHeaderExtra'
+import { IHeaderActionsProps } from '../formily/PageHeaderActions'
 import { IPageHeaderContentProps } from '../formily/PageHeaderContent'
 import { IPageContentProps } from '../formily/PageContent'
 import { IPageTabPanelProps } from '../formily/PageTabPanel'
@@ -29,13 +29,25 @@ import { IPageContainerProps } from '../formily/IPageContainerProps'
 const { TabPane } = Tabs;
 
 export const PageContainerDesigner: DnFC<IPageContainerProps> & {
-  HeaderExtra?: React.FC<IPageHeaderExtraProps>,
+  HeaderActions?: React.FC<IHeaderActionsProps>,
   HeaderContent?: React.FC<IPageHeaderContentProps>,
   Content?: React.FC<IPageContentProps>,
   TabPanel?: React.FC<IPageTabPanelProps>,
   FooterToolbar?: React.FC<IPageFooterToolbarProps>,
 } = observer((props) => {
-  const { children, title, subtitle, hasBreadcrumb, hasGobackButton, ...other } = props;
+  const {
+    children,
+    title,
+    subtitle,
+    hasBreadcrumb,
+    hasGobackButton,
+    hasActions,
+    hasHeaderContent,
+    hasHeaderContentExtra,
+    hasTabs,
+    hasFooterToolbar,
+    ...other
+  } = props;
   const [selectedTabKey, setSelectedTabKey] = useState("1")
   const node = useTreeNode()
   const handleRemoveNode = (target: TreeNode) => {
@@ -71,9 +83,9 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
     }
   })
 
-  const headerExtra = findNodeByComponentPath(node, [
+  const headerActions = findNodeByComponentPath(node, [
     'PageContainer',
-    'PageContainer.HeaderExtra',
+    'PageContainer.HeaderActions',
   ])
 
   const headerContent = findNodeByComponentPath(node, [
@@ -92,7 +104,7 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
   ])
 
   const otherChildrenNodes = node.children?.filter(child =>
-    child.id !== headerExtra?.id &&
+    child.id !== headerActions?.id &&
     child.id !== headerContent?.id &&
     child.id !== footer?.id &&
     !tabs?.find(tab => tab.id === child.id)
@@ -110,7 +122,7 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
         onBack={hasGobackButton ? () => window.history.back() : undefined}
         title={title}
         subTitle={subtitle}
-        extra={headerExtra && <TreeNodeWidget node={headerExtra} />}
+        extra={headerActions && <TreeNodeWidget node={headerActions} />}
         footer={
           <Tabs activeKey={selectedTabKey} onChange={handleSelectTab}>
             {
@@ -175,7 +187,7 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
   )
 })
 
-PageContainerDesigner.HeaderExtra = HeaderExtra
+PageContainerDesigner.HeaderActions = HeaderActions
 PageContainerDesigner.HeaderContent = HeaderContent
 PageContainerDesigner.Content = Content
 PageContainerDesigner.TabPanel = TabPanel
@@ -193,15 +205,15 @@ PageContainerDesigner.Behavior = createBehavior(
     designerLocales: Locales,
   },
   {
-    name: 'PageContainer.HeaderExtra',
+    name: 'PageContainer.HeaderActions',
     extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'PageContainer.HeaderExtra',
+    selector: (node) => node.props['x-component'] === 'PageContainer.HeaderActions',
     designerProps: {
       droppable: true,
       deletable: false,
-      propsSchema: createVoidFieldSchema(Schema.HeaderExtra),
+      propsSchema: createVoidFieldSchema(Schema.HeaderActions),
     },
-    designerLocales: Locales.HeaderExtra,
+    designerLocales: Locales.HeaderActions,
   },
   {
     name: 'PageContainer.HeaderContent',
@@ -272,7 +284,7 @@ PageContainerDesigner.Resource = createResource({
           componentName: 'Field',
           props: {
             type: 'void',
-            'x-component': 'PageContainer.HeaderExtra',
+            'x-component': 'PageContainer.HeaderActions',
             'x-component-props': {
             },
 

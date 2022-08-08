@@ -1,7 +1,7 @@
 import { ISchema } from '@formily/react'
 
 export const Schema: ISchema & {
-  HeaderExtra?: ISchema,
+  HeaderActions?: ISchema,
   HeaderContent?: ISchema,
   Content?: ISchema,
   TabPanel?: ISchema,

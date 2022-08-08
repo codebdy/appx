@@ -1,8 +1,8 @@
 import { Locales } from "../locales";
 
-Locales.HeaderExtra = {
+Locales.HeaderActions = {
   'zh-CN': {
-    title: '页头扩展',
+    title: '操作区',
     settings: {
       'x-component-props': {
         gridSpan: '跨列栏数',

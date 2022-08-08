@@ -1,17 +1,17 @@
 import { DroppableWidget } from "@designable/react"
 import { observer } from "@formily/react"
 import React from "react"
-import PageHeaderExtra, { IPageHeaderExtraProps } from "../../formily/PageHeaderExtra"
+import PageHeaderActions, { IHeaderActionsProps } from "../../formily/PageHeaderActions"
 import './locales'
 import './schema'
 
-const HeaderExtra = observer((props: IPageHeaderExtraProps) => {
+const HeaderActions = observer((props: IHeaderActionsProps) => {
   return (
     props.children
       ?
-      <PageHeaderExtra {...props}>
+      <PageHeaderActions {...props}>
         {props.children}
-      </PageHeaderExtra>
+      </PageHeaderActions>
       :
       <DroppableWidget {...props}>
         {props.children}
@@ -19,4 +19,4 @@ const HeaderExtra = observer((props: IPageHeaderExtraProps) => {
   )
 })
 
-export default HeaderExtra
+export default HeaderActions

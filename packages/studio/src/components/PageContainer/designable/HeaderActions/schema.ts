@@ -1,6 +1,6 @@
 import { Schema } from "../schema";
 
-Schema.HeaderExtra = {
+Schema.HeaderActions = {
   type: 'object',
   properties: {
     gridSpan: {

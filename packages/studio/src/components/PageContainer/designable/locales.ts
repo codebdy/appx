@@ -1,5 +1,5 @@
 export const Locales: any & {
-  HeaderExtra: any,
+  HeaderActions: any,
   HeaderContent: any,
   Content: any,
   TabPanel: any,
@@ -32,7 +32,6 @@ export const Locales: any & {
       'x-component-props': {
         type: 'Type',
         title: 'Title',
-        extra: 'HeaderExtra',
         cardTypes: [
           { label: 'Inner', value: 'inner' },
           { label: 'Default', value: '' },

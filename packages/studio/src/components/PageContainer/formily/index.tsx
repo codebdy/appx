@@ -6,7 +6,7 @@ import "./index.less"
 import clx from "classnames"
 import { PageHeader } from "./PageHeader";
 import { PageBody } from "./PageBody";
-import PageHeaderExtra, { IPageHeaderExtraProps } from "./PageHeaderExtra";
+import PageHeaderActions, { IHeaderActionsProps } from "./PageHeaderActions";
 import PageHeaderContent, { IPageHeaderContentProps } from "./PageHeaderContent";
 import PageContent, { IPageContentProps } from "./PageContent";
 import PageTabPanel, { IPageTabPanelProps } from "./PageTabPanel";
@@ -27,7 +27,7 @@ export const routesPlaceholder = [
 ];
 
 const Page:React.FC<IPageContainerProps>& {
-  HeaderExtra?: React.FC<IPageHeaderExtraProps>,
+  HeaderActions?: React.FC<IHeaderActionsProps>,
   HeaderContent?: React.FC<IPageHeaderContentProps>,
   Content?: React.FC<IPageContentProps>,
   TabPanel?: React.FC<IPageTabPanelProps>,
@@ -46,7 +46,7 @@ const Page:React.FC<IPageContainerProps>& {
 
   for (const key of Object.keys(fieldSchema.properties || {})) {
     const childSchema = fieldSchema.properties[key]
-    if (childSchema["x-component"] === 'Page.HeaderExtra') {
+    if (childSchema["x-component"] === 'Page.HeaderActions') {
       slots.headerExtra = childSchema
     } else if (childSchema["x-component"] === 'Page.HeaderContent') {
       slots.headerContent = childSchema
@@ -106,7 +106,7 @@ const Page:React.FC<IPageContainerProps>& {
   )
 }
 
-Page.HeaderExtra = PageHeaderExtra
+Page.HeaderActions = PageHeaderActions
 Page.HeaderContent = PageHeaderContent
 Page.Content = PageContent
 Page.TabPanel = PageTabPanel
