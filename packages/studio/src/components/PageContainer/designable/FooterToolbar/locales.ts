@@ -2,10 +2,9 @@ import { Locales } from "../locales";
 
 Locales.FooterToolbar = {
   'zh-CN': {
-    title: '页脚',
+    title: '页脚工具栏',
     settings: {
       'x-component-props': {
-        gridSpan: '跨列栏数',
       },
     },
   },

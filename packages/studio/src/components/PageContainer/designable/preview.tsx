@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { Row, Tabs } from 'antd'
 import { createBehavior, createResource, TreeNode } from '@designable/core'
 import { DnFC, TreeNodeWidget, useTreeNode } from '@designable/react'
-import { findNodeByComponentPath, queryNodesByComponentPath } from './shared'
+import { queryNodesByComponentPath } from './shared'
 import { Locales } from './locales'
 import { Schema } from './schema'
 import HeaderActions from './HeaderActions'
@@ -87,11 +87,7 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
   const headerActions = useTriggerableNode(hasActions, 'HeaderActions');
   const headerContent = useTriggerableNode(hasHeaderContent, "HeaderContent", { gridSpan: 18 });
   const headerContentExtra = useTriggerableNode(hasHeaderContentExtra, "HeaderContentExtra", { gridSpan: 6 });
-
-  const footer = findNodeByComponentPath(node, [
-    'PageContainer',
-    'PageContainer.FooterToolbar',
-  ])
+  const footer = useTriggerableNode(hasFooterToolbar, 'FooterToolbar');
 
   const tabs = queryNodesByComponentPath(node, [
     'PageContainer',
@@ -132,14 +128,14 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
   }, [node])
 
 
-  useEffect(()=>{
-    if(hasTabs && !tabs.length){
-      for (const child of otherChildrenNodes){
+  useEffect(() => {
+    if (hasTabs && !tabs.length) {
+      for (const child of otherChildrenNodes) {
         child.remove()
       }
       handleAddPannel()
-    }else if(!hasTabs && tabs.length){
-      for (const tab of tabs){
+    } else if (!hasTabs && tabs.length) {
+      for (const tab of tabs) {
         tab.remove()
       }
     }
