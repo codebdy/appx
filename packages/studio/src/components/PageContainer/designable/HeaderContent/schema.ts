@@ -8,7 +8,7 @@ Schema.HeaderContent = {
       'x-decorator': 'FormItem',
       'x-component': 'NumberPicker',
       'x-component-props': {
-        defaultValue: 1,
+        defaultValue: 6,
       },
     },
   },

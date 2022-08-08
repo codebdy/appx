@@ -89,8 +89,8 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
 
   const headerActions = useTriggerableNode(hasActions, 'HeaderActions');
 
-  const headerContent = useTriggerableNode(hasHeaderContent, "HeaderContent");
-  const headerContentExtra = useTriggerableNode(hasHeaderContentExtra, "HeaderContentExtra");
+  const headerContent = useTriggerableNode(hasHeaderContent, "HeaderContent", { gridSpan: 18 });
+  const headerContentExtra = useTriggerableNode(hasHeaderContentExtra, "HeaderContentExtra", { gridSpan: 6 });
 
   const footer = findNodeByComponentPath(node, [
     'PageContainer',
@@ -252,7 +252,7 @@ PageContainerDesigner.Behavior = createBehavior(
     },
     designerLocales: Locales.Content,
   },
-  
+
   {
     name: 'PageContainer.TabPanel',
     extends: ['Field'],
@@ -286,7 +286,7 @@ PageContainerDesigner.Resource = createResource({
         'x-component': 'PageContainer',
         'x-component-props': {
           title: "Page title",
-          subtitle: "PageContainer subtitle",
+          //subtitle: "PageContainer subtitle",
           hasBreadcrumb: false,
           hasGobackButton: false,
           hasActions: false,

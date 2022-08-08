@@ -3,7 +3,7 @@ import { useTreeNode } from '@designable/react';
 import { useCallback, useEffect, useMemo } from "react";
 import { TreeNode } from '@designable/core';
 
-export function useTriggerableNode(show: boolean | undefined, name: string) {
+export function useTriggerableNode(show: boolean | undefined, name: string, props?: any) {
   const node = useTreeNode()
 
   const parentNodeName = useMemo(
@@ -30,13 +30,14 @@ export function useTriggerableNode(show: boolean | undefined, name: string) {
         props: {
           type: 'void',
           'x-component': path,
+          'x-component-props': props,
         },
       })
       node.append(extra)
     } else if (!show && headerActions) {
       headerActions.remove();
     }
-  }, [findAction, node, path, show])
+  }, [findAction, node, path, props, show])
 
   return findAction();
 }
