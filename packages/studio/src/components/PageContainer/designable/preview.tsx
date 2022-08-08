@@ -25,6 +25,7 @@ import { PageBody } from '../formily/PageBody'
 import { LoadTemplate } from "@designable/formily-antd/lib/common/LoadTemplate"
 import { createVoidFieldSchema } from "../../Field/shared"
 import { IPageContainerProps } from '../formily/IPageContainerProps'
+import { useTriggerableNode } from './hooks/useTriggerableNode'
 
 const { TabPane } = Tabs;
 
@@ -83,10 +84,7 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
     }
   })
 
-  const headerActions = findNodeByComponentPath(node, [
-    'PageContainer',
-    'PageContainer.HeaderActions',
-  ])
+  const headerActions = useTriggerableNode(hasActions, 'HeaderActions');
 
   const headerContent = findNodeByComponentPath(node, [
     'PageContainer',
@@ -132,7 +130,6 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
                 )
               })
             }
-
           </Tabs>
         }
         breadcrumb={hasBreadcrumb ? { routes: routesPlaceholder } : undefined}
