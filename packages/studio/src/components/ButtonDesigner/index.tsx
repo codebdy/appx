@@ -25,7 +25,7 @@ ButtonDesigner.Behavior = createBehavior({
 })
 
 ButtonDesigner.Resource = createResource({
-  icon: ButtonSource,
+  //icon: ButtonSource,
   elements: [
     {
       componentName: 'Field',
