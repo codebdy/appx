@@ -1,15 +1,18 @@
 import React from "react"
 import { Button as AntdButton, ButtonProps } from "antd"
 
-export type IButtonProps = ButtonProps & React.RefAttributes<HTMLElement> & { title?: string }
+export type IButtonProps = ButtonProps &
+  React.RefAttributes<HTMLElement> & {
+    title?: React.ReactElement
+  }
 
 const Button = (
   props: IButtonProps
 ) => {
-  const { title, children, ...other } = props;
+  const { title, ...other } = props;
   return (
     <AntdButton {...other}>
-      {title} {children}
+      {title}
     </AntdButton>
   )
 }

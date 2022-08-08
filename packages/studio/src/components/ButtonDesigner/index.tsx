@@ -4,13 +4,17 @@ import { createVoidFieldSchema } from "../Field";
 import { createBehavior, createResource } from '@designable/core'
 import { ButtonSchema } from "./schema";
 import { ButtonLocales } from "./locales";
-import { ButtonSource } from "./icon";
 
 const ButtonDesigner = (
   props: IButtonProps
 ) => {
+  const { title, ...other } = props;
   return (
-    <Button {...props} />
+    <Button {...other}
+      title={
+        <span data-content-editable="x-component-props.title">{title}</span> as any
+      }
+    />
   )
 }
 
