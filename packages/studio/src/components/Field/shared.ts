@@ -190,6 +190,37 @@ export const createComponentSchemaTab = (
   }
 }
 
+export const createActionSchemaTab = () => {
+
+  return {
+    'action-tab': {
+      type: 'void',
+      'x-component': "SettingsTab.TabPane",
+      'x-component-props': {
+        tab: 'SettingsForm.Actions'
+      },
+      properties: {
+        'component-style-group': {
+          type: 'void',
+          'x-component': 'CollapseItem',
+          'x-component-props': { defaultExpand: true },
+          'x-reactions': {
+            fulfill: {
+            },
+          },
+          properties: {
+            onClick: {
+              type: 'string',
+              'x-decorator': 'FormItem',
+              'x-component': 'Input',
+            },
+          }
+        },
+      }
+    },
+  }
+}
+
 export const createFieldSchema = (
   component?: ISchema,
   decorator: ISchema = AllSchemas.FormItem
@@ -279,15 +310,8 @@ export const createVoidFieldSchema = (
           ...createComponentSchemaTab(component, decorator),
           ...createStyleSchemaTab(),
           ...createDisplaySchemaTab(),
-          'action-tab': {
-            type: 'void',
-            'x-component': 'SettingsTab.TabPane',
-            'x-component-props': {
-              tab: "SettingsForm.Actions"
-            },
-          },
+          ...createActionSchemaTab(),
         }
-
       },
     },
   }
