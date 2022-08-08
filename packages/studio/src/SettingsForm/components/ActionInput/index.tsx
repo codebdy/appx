@@ -3,7 +3,7 @@ import {
   observer,
 } from '@formily/react'
 
-const IconInput = observer((props: {}) => {
+const ActionInput = observer((props: {}) => {
   //const tabs = useTabs()
 
 
@@ -13,4 +13,4 @@ const IconInput = observer((props: {}) => {
   )
 }) 
 
-export default IconInput
+export default ActionInput
