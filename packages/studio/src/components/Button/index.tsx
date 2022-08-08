@@ -1,12 +1,13 @@
 import React from "react"
 import { Button as AntdButton, ButtonProps } from "antd"
+import { observer } from "@formily/reactive-react"
 
 export type IButtonProps = ButtonProps &
   React.RefAttributes<HTMLElement> & {
     title?: React.ReactElement
   }
 
-const Button = (
+const Button = observer((
   props: IButtonProps
 ) => {
   const { title, ...other } = props;
@@ -15,6 +16,6 @@ const Button = (
       {title}
     </AntdButton>
   )
-}
+})
 
 export default Button

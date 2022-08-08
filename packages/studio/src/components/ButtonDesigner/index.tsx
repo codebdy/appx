@@ -4,11 +4,14 @@ import { createVoidFieldSchema } from "../Field";
 import { createBehavior, createResource } from '@designable/core'
 import { ButtonSchema } from "./schema";
 import { ButtonLocales } from "./locales";
+import { DnFC } from '@designable/react'
+import { observer } from "@formily/reactive-react";
 
-const ButtonDesigner = (
+const ButtonDesigner: DnFC<IButtonProps> = observer((
   props: IButtonProps
 ) => {
   const { title, ...other } = props;
+
   return (
     <Button {...other}
       title={
@@ -16,7 +19,7 @@ const ButtonDesigner = (
       }
     />
   )
-}
+})
 
 ButtonDesigner.Behavior = createBehavior({
   name: 'Button',
