@@ -2,7 +2,7 @@ import { DroppableWidget } from "@designable/react"
 import { observer } from "@formily/react"
 import { Col } from "antd"
 import React from "react"
-import PageHeaderContent, { IPageHeaderContentProps } from "../../formily/PageHeaderContent"
+import PageHeaderContent, { IPageHeaderContentProps } from "../../PageContainer/PageHeaderContent"
 import './locales'
 import './schema'
 

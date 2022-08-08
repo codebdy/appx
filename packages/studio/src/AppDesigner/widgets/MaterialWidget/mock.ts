@@ -29,15 +29,15 @@ import {
 } from '@designable/formily-antd'
 
 import { Input as ExecutableInput } from "@formily/antd";
-import { PageContainerDesigner } from "../../../components/PageContainer/designable";
-import { PageContainer } from "../../../components/PageContainer/formily/PageContainer";
+import { PageContainerDesigner } from "../../../components/PageContainerDesigner";
+import PageContainer from "../../../components/PageContainer";
 
 export const allMaterials: MaterialModule[] = [
   {
     name: "表单",
-    url:"",
-    operationType:OperationType.Upload,
-    scriptElements:[],
+    url: "",
+    operationType: OperationType.Upload,
+    scriptElements: [],
     groups: [
       {
         title: "输入组件",

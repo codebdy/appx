@@ -1,6 +1,6 @@
 import { Card, TableProps } from "antd"
 import React, { useCallback, useRef, useState } from "react"
-import { registerResourceBundle } from "../../../i18n/registerResourceBundle"
+import { registerResourceBundle } from "../../i18n/registerResourceBundle"
 import { IProTableParams, ProTableContext } from "./context"
 import "./index.less"
 import locales, { LOCALES_NS } from "./locales"

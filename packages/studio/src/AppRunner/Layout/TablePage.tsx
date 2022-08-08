@@ -3,7 +3,7 @@ import { PageContainer } from '@ant-design/pro-components';
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/react'
 import { ArrayTable, FormItem } from "@formily/antd";
-import ProTable from "../../components/ProTable/formily";
+import ProTable from "../../components/ProTable";
 
 const SchemaField = createSchemaField({
   components: {

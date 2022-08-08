@@ -1,6 +1,5 @@
 import { Tabs } from "antd";
 import React, { useState } from "react"
-import { PageContainer } from "./PageContainer";
 import { RecursionField, useFieldSchema } from '@formily/react';
 import "./index.less"
 import clx from "classnames"
@@ -11,6 +10,7 @@ import PageHeaderContent, { IPageHeaderContentProps } from "./PageHeaderContent"
 import PageTabPanel, { IPageTabPanelProps } from "./PageTabPanel";
 import PageFooterToolbar, { IPageFooterToolbarProps } from "./PageFooterToolbar";
 import { IPageContainerProps } from "./IPageContainerProps";
+import { PageContainerShell } from "./PageContainerShell";
 
 const { TabPane } = Tabs;
 
@@ -25,7 +25,7 @@ export const routesPlaceholder = [
   }
 ];
 
-const Page:React.FC<IPageContainerProps>& {
+const PageContainer: React.FC<IPageContainerProps> & {
   HeaderActions?: React.FC<IHeaderActionsProps>,
   HeaderContent?: React.FC<IPageHeaderContentProps>,
   TabPanel?: React.FC<IPageTabPanelProps>,
@@ -42,7 +42,7 @@ const Page:React.FC<IPageContainerProps>& {
     otherChildren: []
   }
 
-  for (const key of Object.keys(fieldSchema.properties || {})) {
+  for (const key of Object.keys(fieldSchema?.properties || {})) {
     const childSchema = fieldSchema.properties[key]
     if (childSchema["x-component"] === 'Page.HeaderActions') {
       slots.headerExtra = childSchema
@@ -64,13 +64,13 @@ const Page:React.FC<IPageContainerProps>& {
   const selectedTab = slots.tabs?.[parseInt(selectedTabKey) - 1]
 
   return (
-    <PageContainer>
+    <PageContainerShell>
       <PageHeader
         className={clx(className, "rx-page-header-responsive")}
         onBack={hasGobackButton ? () => window.history.back() : undefined}
         title={title}
         subTitle={subtitle}
-        extra={slots.headerExtra && <RecursionField schema={slots.headerExtra} name={slots.headerExtra.name}/>}
+        extra={slots.headerExtra && <RecursionField schema={slots.headerExtra} name={slots.headerExtra.name} />}
         footer={
           slots.tabs && <Tabs activeKey={selectedTabKey} onChange={handleSelectTab}>
             {
@@ -100,13 +100,13 @@ const Page:React.FC<IPageContainerProps>& {
         }
         {slots.footer && <RecursionField schema={slots.footer} name={slots.footer.name} />}
       </PageBody>
-    </PageContainer>
+    </PageContainerShell>
   )
 }
 
-Page.HeaderActions = PageHeaderActions
-Page.HeaderContent = PageHeaderContent
-Page.TabPanel = PageTabPanel
-Page.FooterToolbar = PageFooterToolbar
+PageContainer.HeaderActions = PageHeaderActions
+PageContainer.HeaderContent = PageHeaderContent
+PageContainer.TabPanel = PageTabPanel
+PageContainer.FooterToolbar = PageFooterToolbar
 
-export default Page
+export default PageContainer

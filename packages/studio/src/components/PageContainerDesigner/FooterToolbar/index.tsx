@@ -4,8 +4,7 @@ import React from "react"
 import './locales'
 import './schema'
 import clx from "classnames"
-import { IPageFooterToolbarProps } from "../../formily/PageFooterToolbar"
-
+import { IPageFooterToolbarProps } from "../../PageContainer/PageFooterToolbar"
 
 const FooterToolbar = observer((props: IPageFooterToolbarProps) => {
   const {className, ...other} = props

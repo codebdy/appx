@@ -12,20 +12,20 @@ import { useRemoveNode } from './hooks/useRemoveNode'
 import FooterToolbar from './FooterToolbar'
 import { observer } from '@formily/reactive-react'
 import './index.less'
-import { routesPlaceholder } from '../formily'
-import { IHeaderActionsProps } from '../formily/PageHeaderActions'
-import { IPageHeaderContentProps } from '../formily/PageHeaderContent'
-import { IPageTabPanelProps } from '../formily/PageTabPanel'
-import { IPageFooterToolbarProps } from '../formily/PageFooterToolbar'
-import { PageContainer } from '../formily/PageContainer'
-import { PageHeader } from '../formily/PageHeader'
-import { PageBody } from '../formily/PageBody'
 import { LoadTemplate } from "@designable/formily-antd/lib/common/LoadTemplate"
-import { createVoidFieldSchema } from "../../Field/shared"
-import { IPageContainerProps } from '../formily/IPageContainerProps'
+import { createVoidFieldSchema } from "../Field/shared"
 import { useTriggerableNode } from './hooks/useTriggerableNode'
-import { IPageHeaderContentExtraProps } from '../formily/PageHeaderContentExtra'
 import HeaderContentExtra from './HeaderContentExtra'
+import { IPageContainerProps } from '../PageContainer/IPageContainerProps'
+import { IHeaderActionsProps } from '../PageContainer/PageHeaderActions'
+import { IPageHeaderContentProps } from '../PageContainer/PageHeaderContent'
+import { IPageHeaderContentExtraProps } from '../PageContainer/PageHeaderContentExtra'
+import { IPageTabPanelProps } from '../PageContainer/PageTabPanel'
+import { IPageFooterToolbarProps } from '../PageContainer/PageFooterToolbar'
+import { routesPlaceholder } from '../PageContainer'
+import { PageHeader } from '../PageContainer/PageHeader'
+import { PageBody } from '../PageContainer/PageBody'
+import { PageContainerShell } from '../PageContainer/PageContainerShell'
 
 const { TabPane } = Tabs;
 
@@ -142,7 +142,7 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
   }, [handleAddPannel, hasTabs, otherChildrenNodes, tabs, tabs.length])
 
   return (
-    <PageContainer {...other} >
+    <PageContainerShell {...other} >
       <PageHeader
         onBack={hasGobackButton ? () => window.history.back() : undefined}
         title={<span data-content-editable="x-component-props.title">{title}</span>}
@@ -197,7 +197,7 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
         <div style={{ flex: 1 }}></div>
         <TreeNodeWidget node={footer} />
       </PageBody>
-    </PageContainer>
+    </PageContainerShell>
   )
 })
 
