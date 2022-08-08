@@ -60,7 +60,7 @@ export const createDisplaySchemaTab = () => {
         tab: 'SettingsForm.Display'
       },
       properties: {
-        "data-bind-group": {
+        "field-group": {
           type: 'void',
           'x-component': 'CollapseItem',
           'x-reactions': {
@@ -85,16 +85,6 @@ export const createDisplaySchemaTab = () => {
                 },
               },
             },
-          }
-        },
-        "display-group": {
-          type: 'void',
-          'x-component': 'CollapseItem',
-          'x-reactions': {
-            fulfill: {
-            },
-          },
-          properties: {
             'x-display': {
               type: 'string',
               enum: ['visible', 'hidden', 'none', ''],
