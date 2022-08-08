@@ -145,8 +145,8 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
     <PageContainer {...other} >
       <PageHeader
         onBack={hasGobackButton ? () => window.history.back() : undefined}
-        title={title}
-        subTitle={subtitle}
+        title={<span data-content-editable="x-component-props.title">{title}</span>}
+        subTitle={subtitle && <span data-content-editable="x-component-props.subtitle">{subtitle}</span>}
         extra={headerActions && <TreeNodeWidget node={headerActions} />}
         footer={
           <Tabs activeKey={selectedTabKey} onChange={handleSelectTab}>
