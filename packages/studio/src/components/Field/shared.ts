@@ -4,7 +4,6 @@ import {
   DataSourceSetter,
   ValidatorSetter,
 } from '@designable/formily-setters'
-import { FormItemSwitcher } from '@designable/formily-antd/lib/common/FormItemSwitcher'
 import { AllSchemas } from '@designable/formily-antd/lib/schemas'
 
 export const createStyleSchemaTab = () => {
@@ -14,7 +13,7 @@ export const createStyleSchemaTab = () => {
       type: 'void',
       'x-component': "SettingsTab.TabPane",
       'x-component-props': {
-        tab:'SettingsForm.Styles'
+        tab: 'SettingsForm.Styles'
       },
       properties: {
         'component-style-group': {
@@ -61,62 +60,80 @@ export const createDisplaySchemaTab = () => {
         tab: 'SettingsForm.Display'
       },
       properties: {
-        name: {
-          type: 'string',
-          'x-decorator': 'FormItem',
-          'x-component': 'Input',
-        },
-        title: {
-          type: 'string',
-          'x-decorator': 'FormItem',
-          'x-component': 'Input',
+        "data-bind-group": {
+          type: 'void',
+          'x-component': 'CollapseItem',
           'x-reactions': {
             fulfill: {
-              state: {
-                hidden: '{{$form.values["x-decorator"] !== "FormItem"}}',
-              },
             },
           },
+          properties: {
+            name: {
+              type: 'string',
+              'x-decorator': 'FormItem',
+              'x-component': 'Input',
+            },
+            title: {
+              type: 'string',
+              'x-decorator': 'FormItem',
+              'x-component': 'Input',
+              'x-reactions': {
+                fulfill: {
+                  state: {
+                    hidden: '{{$form.values["x-decorator"] !== "FormItem"}}',
+                  },
+                },
+              },
+            },
+          }
         },
-        description: {
-          type: 'string',
-          'x-decorator': 'FormItem',
-          'x-component': 'Input.TextArea',
+        "display-group": {
+          type: 'void',
+          'x-component': 'CollapseItem',
           'x-reactions': {
             fulfill: {
-              state: {
-                hidden: '{{$form.values["x-decorator"] !== "FormItem"}}',
-              },
             },
           },
+          properties: {
+            'x-display': {
+              type: 'string',
+              enum: ['visible', 'hidden', 'none', ''],
+              'x-decorator': 'FormItem',
+              'x-component': 'Select',
+              'x-component-props': {
+                defaultValue: 'visible',
+              },
+            },
+            'x-pattern': {
+              type: 'string',
+              enum: ['editable', 'disabled', 'readOnly', 'readPretty', ''],
+              'x-decorator': 'FormItem',
+              'x-component': 'Select',
+              'x-component-props': {
+                defaultValue: 'editable',
+              },
+            },
+            'x-reactions': {
+              'x-decorator': 'FormItem',
+              'x-component': ReactionsSetter,
+            },
+          }
         },
-        'x-display': {
-          type: 'string',
-          enum: ['visible', 'hidden', 'none', ''],
-          'x-decorator': 'FormItem',
-          'x-component': 'Select',
-          'x-component-props': {
-            defaultValue: 'visible',
+        "auth-group": {
+          type: 'void',
+          'x-component': 'CollapseItem',
+          'x-reactions': {
+            fulfill: {
+            },
           },
+          properties: {
+            auth: {
+              type: 'string',
+              'x-decorator': 'FormItem',
+              'x-component': 'Input',
+            },
+          }
         },
-        'x-pattern': {
-          type: 'string',
-          enum: ['editable', 'disabled', 'readOnly', 'readPretty', ''],
-          'x-decorator': 'FormItem',
-          'x-component': 'Select',
-          'x-component-props': {
-            defaultValue: 'editable',
-          },
-        },
-        'x-reactions': {
-          'x-decorator': 'FormItem',
-          'x-component': ReactionsSetter,
-        },
-        // 'x-decorator': {
-        //   type: 'string',
-        //   'x-decorator': 'FormItem',
-        //   'x-component': FormItemSwitcher,
-        // },
       },
     },
   }
@@ -131,7 +148,7 @@ export const createComponentSchemaTab = (
       type: 'void',
       'x-component': 'SettingsTab.TabPane',
       'x-component-props': {
-        tab:"SettingsForm.Properties"
+        tab: "SettingsForm.Properties"
       },
       properties: {
         'component-group': component && {
@@ -266,7 +283,7 @@ export const createVoidFieldSchema = (
             type: 'void',
             'x-component': 'SettingsTab.TabPane',
             'x-component-props': {
-              tab:"SettingsForm.Actions"
+              tab: "SettingsForm.Actions"
             },
           },
         }
