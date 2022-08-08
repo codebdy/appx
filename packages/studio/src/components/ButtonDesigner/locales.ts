@@ -3,7 +3,10 @@ export const ButtonLocales = {
     title: '按钮',
     settings: {
       'x-component-props': {
-        type: '类型',
+        type: {
+          title: '类型',
+          dataSource: ['填充', '透明', '虚线', '链接', '文本', '默认'],
+        },
         title: '标题',
       },
     },
