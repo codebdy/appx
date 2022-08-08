@@ -1,5 +1,5 @@
 import { Tabs } from "antd";
-import React, { useRef, useState } from "react"
+import React, { useState } from "react"
 import { PageContainer } from "./PageContainer";
 import { RecursionField, useFieldSchema } from '@formily/react';
 import "./index.less"
@@ -11,19 +11,9 @@ import PageHeaderContent, { IPageHeaderContentProps } from "./PageHeaderContent"
 import PageContent, { IPageContentProps } from "./PageContent";
 import PageTabPanel, { IPageTabPanelProps } from "./PageTabPanel";
 import PageFooterToolbar, { IPageFooterToolbarProps } from "./PageFooterToolbar";
+import { IPageContainerProps } from "./IPageContainerProps";
 
 const { TabPane } = Tabs;
-
-export interface IPageContainerProps {
-  title?: string;
-  subtitle?: string;
-  children?: React.ReactNode;
-  hasBreadcrumb?: boolean;
-  showGoback?: boolean;
-  className?: string;
-  hasHeaderExtra?: boolean;
-  hasTabs?: boolean;
-}
 
 export const routesPlaceholder = [
   {
@@ -43,7 +33,7 @@ const Page:React.FC<IPageContainerProps>& {
   TabPanel?: React.FC<IPageTabPanelProps>,
   FooterToolbar?: React.FC<IPageFooterToolbarProps>,
 } = (props: IPageContainerProps) => {
-  const { showGoback, title, subtitle, hasBreadcrumb, className, children, ...other } = props
+  const { hasGobackButton, title, subtitle, hasBreadcrumb, className, children, ...other } = props
   const [selectedTabKey, setSelectedTabKey] = useState("1")
   const fieldSchema = useFieldSchema()
   const slots = {
@@ -79,7 +69,7 @@ const Page:React.FC<IPageContainerProps>& {
     <PageContainer>
       <PageHeader
         className={clx(className, "rx-page-header-responsive")}
-        onBack={showGoback ? () => window.history.back() : undefined}
+        onBack={hasGobackButton ? () => window.history.back() : undefined}
         title={title}
         subTitle={subtitle}
         extra={slots.headerExtra && <RecursionField schema={slots.headerExtra} name={slots.headerExtra.name}/>}

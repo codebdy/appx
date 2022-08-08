@@ -17,7 +17,7 @@ export const Locales: any & {
         title: '标题',
         subtitle: '子标题',
         hasBreadcrumb: "面包屑导航",
-        showGoback: "返回按钮",
+        hasGobackButton: "返回按钮",
       },
     },
   },

@@ -13,7 +13,7 @@ import { useRemoveNode } from './hooks/useRemoveNode'
 import FooterToolbar from './FooterToolbar'
 import { observer } from '@formily/reactive-react'
 import './index.less'
-import { IPageContainerProps, routesPlaceholder } from '../formily'
+import { routesPlaceholder } from '../formily'
 import { IPageHeaderExtraProps } from '../formily/PageHeaderExtra'
 import { IPageHeaderContentProps } from '../formily/PageHeaderContent'
 import { IPageContentProps } from '../formily/PageContent'
@@ -24,6 +24,7 @@ import { PageHeader } from '../formily/PageHeader'
 import { PageBody } from '../formily/PageBody'
 import { LoadTemplate } from "@designable/formily-antd/lib/common/LoadTemplate"
 import { createVoidFieldSchema } from "../../Field/shared"
+import { IPageContainerProps } from '../formily/IPageContainerProps'
 
 const { TabPane } = Tabs;
 
@@ -34,7 +35,7 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
   TabPanel?: React.FC<IPageTabPanelProps>,
   FooterToolbar?: React.FC<IPageFooterToolbarProps>,
 } = observer((props) => {
-  const { children, title, subtitle, hasBreadcrumb, showGoback, ...other } = props;
+  const { children, title, subtitle, hasBreadcrumb, hasGobackButton, ...other } = props;
   const [selectedTabKey, setSelectedTabKey] = useState("1")
   const node = useTreeNode()
   const handleRemoveNode = (target: TreeNode) => {
@@ -106,7 +107,7 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
   return (
     <PageContainer {...other} >
       <PageHeader
-        onBack={showGoback ? () => window.history.back() : undefined}
+        onBack={hasGobackButton ? () => window.history.back() : undefined}
         title={title}
         subTitle={subtitle}
         extra={headerExtra && <TreeNodeWidget node={headerExtra} />}
@@ -258,7 +259,7 @@ PageContainerDesigner.Resource = createResource({
           title: "Page title",
           subtitle: "PageContainer subtitle",
           hasBreadcrumb: true,
-          showGoback: true,
+          hasGobackButton: true,
         },
       },
       children: [

@@ -24,7 +24,7 @@ export const Schema: ISchema & {
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
     },
-    showGoback: {
+    hasGobackButton: {
       type: 'boolean',
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
