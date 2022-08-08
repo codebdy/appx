@@ -127,7 +127,7 @@ export const createDisplaySchemaTab = () => {
             },
           },
           properties: {
-            auth: {
+            viewAuth: {
               type: 'string',
               'x-decorator': 'FormItem',
               'x-component': 'Input',

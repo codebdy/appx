@@ -31,6 +31,7 @@ export const FieldLocales = {
       'style-tab': '样式',
       'data-tab': '数据',
       'action-tab': '动作',
+      viewAuth:"权限",
       onClick: "鼠标点击",
       'x-component-props': {
         size: { title: '尺寸', dataSource: ['大', '小', '默认', '继承'] },
