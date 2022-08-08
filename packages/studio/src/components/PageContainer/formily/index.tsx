@@ -8,7 +8,6 @@ import { PageHeader } from "./PageHeader";
 import { PageBody } from "./PageBody";
 import PageHeaderActions, { IHeaderActionsProps } from "./PageHeaderActions";
 import PageHeaderContent, { IPageHeaderContentProps } from "./PageHeaderContent";
-import PageContent, { IPageContentProps } from "./PageContent";
 import PageTabPanel, { IPageTabPanelProps } from "./PageTabPanel";
 import PageFooterToolbar, { IPageFooterToolbarProps } from "./PageFooterToolbar";
 import { IPageContainerProps } from "./IPageContainerProps";
@@ -29,11 +28,10 @@ export const routesPlaceholder = [
 const Page:React.FC<IPageContainerProps>& {
   HeaderActions?: React.FC<IHeaderActionsProps>,
   HeaderContent?: React.FC<IPageHeaderContentProps>,
-  Content?: React.FC<IPageContentProps>,
   TabPanel?: React.FC<IPageTabPanelProps>,
   FooterToolbar?: React.FC<IPageFooterToolbarProps>,
 } = (props: IPageContainerProps) => {
-  const { hasGobackButton, title, subtitle, hasBreadcrumb, className, children, ...other } = props
+  const { hasGobackButton, title, subtitle, hasBreadcrumb, className } = props
   const [selectedTabKey, setSelectedTabKey] = useState("1")
   const fieldSchema = useFieldSchema()
   const slots = {
@@ -108,7 +106,6 @@ const Page:React.FC<IPageContainerProps>& {
 
 Page.HeaderActions = PageHeaderActions
 Page.HeaderContent = PageHeaderContent
-Page.Content = PageContent
 Page.TabPanel = PageTabPanel
 Page.FooterToolbar = PageFooterToolbar
 

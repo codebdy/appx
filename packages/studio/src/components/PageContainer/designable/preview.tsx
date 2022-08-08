@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { Row, Tabs } from 'antd'
 import { createBehavior, createResource, TreeNode } from '@designable/core'
 import { DnFC, TreeNodeWidget, useTreeNode } from '@designable/react'
@@ -7,7 +7,6 @@ import { Locales } from './locales'
 import { Schema } from './schema'
 import HeaderActions from './HeaderActions'
 import HeaderContent from './HeaderContent'
-import Content from './Content'
 import TabPanel from './PageTabPanel'
 import { useRemoveNode } from './hooks/useRemoveNode'
 import FooterToolbar from './FooterToolbar'
@@ -16,7 +15,6 @@ import './index.less'
 import { routesPlaceholder } from '../formily'
 import { IHeaderActionsProps } from '../formily/PageHeaderActions'
 import { IPageHeaderContentProps } from '../formily/PageHeaderContent'
-import { IPageContentProps } from '../formily/PageContent'
 import { IPageTabPanelProps } from '../formily/PageTabPanel'
 import { IPageFooterToolbarProps } from '../formily/PageFooterToolbar'
 import { PageContainer } from '../formily/PageContainer'
@@ -35,7 +33,6 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
   HeaderActions?: React.FC<IHeaderActionsProps>,
   HeaderContent?: React.FC<IPageHeaderContentProps>,
   HeaderContentExtra?: React.FC<IPageHeaderContentExtraProps>,
-  Content?: React.FC<IPageContentProps>,
   TabPanel?: React.FC<IPageTabPanelProps>,
   FooterToolbar?: React.FC<IPageFooterToolbarProps>,
 } = observer((props) => {
@@ -54,7 +51,7 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
   } = props;
   const [selectedTabKey, setSelectedTabKey] = useState("1")
   const node = useTreeNode()
-  const handleRemoveNode = (target: TreeNode) => {
+  const handleRemoveNode = useCallback((target: TreeNode) => {
     if (target.parent?.id === node.id && target?.props?.['x-component'] === 'PageContainer.TabPanel') {
       const length = queryNodesByComponentPath(node, [
         'PageContainer',
@@ -75,7 +72,7 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
         node.append(content)
       }
     }
-  }
+  }, [node])
 
   useRemoveNode('PageContainer', (target) => {
     if (target && Array.isArray(target)) {
@@ -88,7 +85,6 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
   })
 
   const headerActions = useTriggerableNode(hasActions, 'HeaderActions');
-
   const headerContent = useTriggerableNode(hasHeaderContent, "HeaderContent", { gridSpan: 18 });
   const headerContentExtra = useTriggerableNode(hasHeaderContentExtra, "HeaderContentExtra", { gridSpan: 6 });
 
@@ -102,19 +98,52 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
     'PageContainer.TabPanel',
   ])
 
-  const otherChildrenNodes = node.children?.filter(child =>
+  const otherChildrenNodes = useMemo(() => node.children?.filter(child =>
     child.id !== headerActions?.id &&
     child.id !== headerContent?.id &&
     child.id !== headerContentExtra?.id &&
     child.id !== footer?.id &&
     !tabs?.find(tab => tab.id === child.id)
-  )
+  ), [footer?.id, headerActions?.id, headerContent?.id, headerContentExtra?.id, node.children, tabs])
 
-  const handleSelectTab = (key: string) => {
+  const handleSelectTab = useCallback((key: string) => {
     setSelectedTabKey(key);
-  };
+  }, []);
 
-  const selectedTab = tabs?.[parseInt(selectedTabKey) - 1]
+  const selectedTab = useMemo(() => tabs?.[parseInt(selectedTabKey) - 1], [selectedTabKey, tabs])
+
+  const handleAddPannel = useCallback(() => {
+    const tabPanel = new TreeNode({
+      componentName: 'Field',
+      props: {
+        type: 'void',
+        'x-component': 'PageContainer.TabPanel',
+        'x-component-props': {
+          title: `Unnamed title`,
+        },
+      },
+    })
+    node.append(tabPanel)
+    const tabs = queryNodesByComponentPath(node, [
+      'PageContainer',
+      'PageContainer.TabPanel',
+    ])
+    setSelectedTabKey(tabs.length + "")
+  }, [node])
+
+
+  useEffect(()=>{
+    if(hasTabs && !tabs.length){
+      for (const child of otherChildrenNodes){
+        child.remove()
+      }
+      handleAddPannel()
+    }else if(!hasTabs && tabs.length){
+      for (const tab of tabs){
+        tab.remove()
+      }
+    }
+  }, [handleAddPannel, hasTabs, otherChildrenNodes, tabs, tabs.length])
 
   return (
     <PageContainer {...other} >
@@ -145,7 +174,7 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
         }
       </PageHeader>
       <PageBody>
-        <TreeNodeWidget node={selectedTab} />
+
         {
           otherChildrenNodes?.map((child) => {
             return (
@@ -153,38 +182,22 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
             )
           })
         }
-        <LoadTemplate
-          actions={[
-            {
-              title: node.getMessage('addPanel'),
-              icon: "AddPanel",
-              onClick: () => {
-                const content = findNodeByComponentPath(node, [
-                  'PageContainer',
-                  'PageContainer.Content',
-                ])
+        {
+          hasTabs &&
+          <>
+            <TreeNodeWidget node={selectedTab} />
+            <LoadTemplate
+              actions={[
+                {
+                  title: node.getMessage('addPanel'),
+                  icon: "AddPanel",
+                  onClick: handleAddPannel,
+                },
+              ]}
+            />
+          </>
+        }
 
-                content?.remove()
-                const tabPanel = new TreeNode({
-                  componentName: 'Field',
-                  props: {
-                    type: 'void',
-                    'x-component': 'PageContainer.TabPanel',
-                    'x-component-props': {
-                      title: `Unnamed title`,
-                    },
-                  },
-                })
-                node.append(tabPanel)
-                const tabs = queryNodesByComponentPath(node, [
-                  'PageContainer',
-                  'PageContainer.TabPanel',
-                ])
-                setSelectedTabKey(tabs.length + "")
-              },
-            },
-          ]}
-        />
         <div style={{ flex: 1 }}></div>
         <TreeNodeWidget node={footer} />
       </PageBody>
@@ -195,7 +208,6 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
 PageContainerDesigner.HeaderActions = HeaderActions
 PageContainerDesigner.HeaderContent = HeaderContent
 PageContainerDesigner.HeaderContentExtra = HeaderContentExtra
-PageContainerDesigner.Content = Content
 PageContainerDesigner.TabPanel = TabPanel
 PageContainerDesigner.FooterToolbar = FooterToolbar
 
