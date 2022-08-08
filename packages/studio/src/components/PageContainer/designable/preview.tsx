@@ -105,6 +105,7 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
   const otherChildrenNodes = node.children?.filter(child =>
     child.id !== headerActions?.id &&
     child.id !== headerContent?.id &&
+    child.id !== headerContentExtra?.id &&
     child.id !== footer?.id &&
     !tabs?.find(tab => tab.id === child.id)
   )
