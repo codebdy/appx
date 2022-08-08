@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Tabs } from 'antd'
+import { Row, Tabs } from 'antd'
 import { createBehavior, createResource, TreeNode } from '@designable/core'
 import { DnFC, TreeNodeWidget, useTreeNode } from '@designable/react'
 import { findNodeByComponentPath, queryNodesByComponentPath } from './shared'
@@ -8,7 +8,7 @@ import { Schema } from './schema'
 import HeaderActions from './HeaderActions'
 import HeaderContent from './HeaderContent'
 import Content from './Content'
-import TabPanel from './TabPanel'
+import TabPanel from './PageTabPanel'
 import { useRemoveNode } from './hooks/useRemoveNode'
 import FooterToolbar from './FooterToolbar'
 import { observer } from '@formily/reactive-react'
@@ -26,12 +26,14 @@ import { LoadTemplate } from "@designable/formily-antd/lib/common/LoadTemplate"
 import { createVoidFieldSchema } from "../../Field/shared"
 import { IPageContainerProps } from '../formily/IPageContainerProps'
 import { useTriggerableNode } from './hooks/useTriggerableNode'
+import HeaderContentExtra, { IPageHeaderContentExtraProps } from '../formily/PageHeaderContentExtra'
 
 const { TabPane } = Tabs;
 
 export const PageContainerDesigner: DnFC<IPageContainerProps> & {
   HeaderActions?: React.FC<IHeaderActionsProps>,
   HeaderContent?: React.FC<IPageHeaderContentProps>,
+  HeaderContentExtra?: React.FC<IPageHeaderContentExtraProps>,
   Content?: React.FC<IPageContentProps>,
   TabPanel?: React.FC<IPageTabPanelProps>,
   FooterToolbar?: React.FC<IPageFooterToolbarProps>,
@@ -86,10 +88,8 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
 
   const headerActions = useTriggerableNode(hasActions, 'HeaderActions');
 
-  const headerContent = findNodeByComponentPath(node, [
-    'PageContainer',
-    'PageContainer.HeaderContent',
-  ])
+  const headerContent = useTriggerableNode(hasHeaderContent, "HeaderContent");
+  const headerContentExtra = useTriggerableNode(hasHeaderContentExtra, "HeaderContentExtra");
 
   const footer = findNodeByComponentPath(node, [
     'PageContainer',
@@ -134,7 +134,13 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
         }
         breadcrumb={hasBreadcrumb ? { routes: routesPlaceholder } : undefined}
       >
-        {headerContent && <TreeNodeWidget node={headerContent} />}
+        {
+          (headerContent || headerContentExtra) &&
+          <Row>
+            {headerContent && <TreeNodeWidget node={headerContent} />}
+            {hasHeaderContentExtra && <TreeNodeWidget node={headerContentExtra} />}
+          </Row>
+        }
       </PageHeader>
       <PageBody>
         <TreeNodeWidget node={selectedTab} />
@@ -186,6 +192,7 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
 
 PageContainerDesigner.HeaderActions = HeaderActions
 PageContainerDesigner.HeaderContent = HeaderContent
+PageContainerDesigner.HeaderContentExtra = HeaderContentExtra
 PageContainerDesigner.Content = Content
 PageContainerDesigner.TabPanel = TabPanel
 PageContainerDesigner.FooterToolbar = FooterToolbar
