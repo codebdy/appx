@@ -26,7 +26,8 @@ import { LoadTemplate } from "@designable/formily-antd/lib/common/LoadTemplate"
 import { createVoidFieldSchema } from "../../Field/shared"
 import { IPageContainerProps } from '../formily/IPageContainerProps'
 import { useTriggerableNode } from './hooks/useTriggerableNode'
-import HeaderContentExtra, { IPageHeaderContentExtraProps } from '../formily/PageHeaderContentExtra'
+import { IPageHeaderContentExtraProps } from '../formily/PageHeaderContentExtra'
+import HeaderContentExtra from './HeaderContentExtra'
 
 const { TabPane } = Tabs;
 
@@ -231,6 +232,17 @@ PageContainerDesigner.Behavior = createBehavior(
     designerLocales: Locales.HeaderContent,
   },
   {
+    name: 'PageContainer.HeaderContentExtra',
+    extends: ['Field'],
+    selector: (node) => node.props['x-component'] === 'PageContainer.HeaderContentExtra',
+    designerProps: {
+      droppable: true,
+      deletable: false,
+      propsSchema: createVoidFieldSchema(Schema.HeaderContentExtra),
+    },
+    designerLocales: Locales.HeaderContentExtra,
+  },
+  {
     name: 'PageContainer.Content',
     extends: ['Field'],
     selector: (node) => node.props['x-component'] === 'PageContainer.Content',
@@ -240,6 +252,7 @@ PageContainerDesigner.Behavior = createBehavior(
     },
     designerLocales: Locales.Content,
   },
+  
   {
     name: 'PageContainer.TabPanel',
     extends: ['Field'],
@@ -288,30 +301,9 @@ PageContainerDesigner.Resource = createResource({
           componentName: 'Field',
           props: {
             type: 'void',
-            'x-component': 'PageContainer.HeaderActions',
-            'x-component-props': {
-            },
-
-          },
-        },
-        {
-          componentName: 'Field',
-          props: {
-            type: 'void',
-            'x-component': 'PageContainer.HeaderContent',
-            'x-component-props': {
-            },
-
-          },
-        },
-        {
-          componentName: 'Field',
-          props: {
-            type: 'void',
             'x-component': 'PageContainer.Content',
             'x-component-props': {
             },
-
           },
         }
       ]

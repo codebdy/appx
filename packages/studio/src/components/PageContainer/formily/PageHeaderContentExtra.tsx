@@ -5,7 +5,7 @@ export interface IPageHeaderContentExtraProps {
   children?: React.ReactNode
 }
 
-const HeaderContentExtra = observer((props: IPageHeaderContentExtraProps) => {
+const PageHeaderContentExtra = observer((props: IPageHeaderContentExtraProps) => {
   return (
     <div className="rx-page-header-content-extra">
       {props.children}
@@ -13,4 +13,4 @@ const HeaderContentExtra = observer((props: IPageHeaderContentExtraProps) => {
   )
 })
 
-export default HeaderContentExtra
+export default PageHeaderContentExtra

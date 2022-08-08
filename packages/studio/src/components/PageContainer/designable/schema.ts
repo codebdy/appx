@@ -3,6 +3,7 @@ import { ISchema } from '@formily/react'
 export const Schema: ISchema & {
   HeaderActions?: ISchema,
   HeaderContent?: ISchema,
+  HeaderContentExtra?: ISchema,
   Content?: ISchema,
   TabPanel?: ISchema,
   FooterToolbar?: ISchema,

@@ -1,6 +1,7 @@
 export const Locales: any & {
   HeaderActions: any,
   HeaderContent: any,
+  HeaderContentExtra: any,
   Content: any,
   TabPanel: any,
   FooterToolbar: any,
