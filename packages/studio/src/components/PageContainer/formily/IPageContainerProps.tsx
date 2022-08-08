@@ -8,6 +8,9 @@ export interface IPageContainerProps {
   className?: string;
   hasBreadcrumb?: boolean;
   hasGobackButton?: boolean;
-  hasHeaderExtra?: boolean;
+  hasActions?: boolean;
+  hasHeaderContent?: boolean;
+  hasHeaderContentExtra?: boolean;
   hasTabs?: boolean;
+  hasFooterToolbar?: boolean;
 }

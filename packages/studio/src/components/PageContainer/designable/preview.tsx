@@ -258,8 +258,13 @@ PageContainerDesigner.Resource = createResource({
         'x-component-props': {
           title: "Page title",
           subtitle: "PageContainer subtitle",
-          hasBreadcrumb: true,
-          hasGobackButton: true,
+          hasBreadcrumb: false,
+          hasGobackButton: false,
+          hasActions: false,
+          hasHeaderContent: false,
+          hasHeaderContentExtra: false,
+          hasTabs: false,
+          hasFooterToolbar: false,
         },
       },
       children: [
