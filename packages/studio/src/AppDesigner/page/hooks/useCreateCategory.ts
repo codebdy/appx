@@ -4,7 +4,7 @@ import { useRecoilValue } from "recoil";
 import { IPostOptions } from "../../../enthooks/hooks/usePostOne";
 import { useDesignerParams, useDesingerKey } from "../../context";
 import { usePostPageList } from "./usePostPageList";
-import { nodesState, pageListState } from "../recoil/atoms";
+import { pageListNodesState, pageListState } from "../recoil/atoms";
 import { IListNode, ListNodeType } from "../recoil/IListNode";
 
 export function useCreateCategory(options?: IPostOptions<any>): [
@@ -13,7 +13,7 @@ export function useCreateCategory(options?: IPostOptions<any>): [
 ] {
   const key = useDesingerKey();
   const params = useDesignerParams();
-  const nodes = useRecoilValue(nodesState(key))
+  const nodes = useRecoilValue(pageListNodesState(key))
   const pageList = useRecoilValue(pageListState(key));
   const [post, { error, loading }] = usePostPageList(options)
 

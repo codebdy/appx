@@ -3,14 +3,14 @@ import { ID } from "packages/studio/src/shared";
 import { useCallback } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useDesingerKey } from "../../context";
-import { nodesState, pagesState, pageListState } from "../recoil/atoms";
+import { pageListNodesState, pagesState, pageListState } from "../recoil/atoms";
 import { IListNode, ListNodeType } from "../recoil/IListNode";
 
 export function useInitPageList() {
   const key = useDesingerKey();
   const setPageList = useSetRecoilState(pageListState(key));
   const pages = useRecoilValue(pagesState(key));
-  const setNodes = useSetRecoilState(nodesState(key));
+  const setNodes = useSetRecoilState(pageListNodesState(key));
   const init = useCallback((pageList?: IPageList) => {
     setPageList(pageList);
     let nodes: IListNode[] = JSON.parse(JSON.stringify(pageList?.schemaJson?.data || []))

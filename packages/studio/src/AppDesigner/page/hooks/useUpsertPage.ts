@@ -4,7 +4,7 @@ import { IPageInput, IPageListInput } from "../../../model/input";
 import { IPage, IPageList } from "../../../model";
 import { useDesignerParams, useDesingerKey } from "../../context";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { nodesState, pageListState, pagesState } from "../recoil/atoms";
+import { pageListNodesState, pageListState, pagesState } from "../recoil/atoms";
 import { ListNodeType } from "../recoil/IListNode";
 
 
@@ -16,7 +16,7 @@ export function useUpsertPage(options?: IPostOptions<any>): [
   const key = useDesingerKey();
   const setPages = useSetRecoilState(pagesState(key));
   const categoryUuidRef = useRef<string | undefined>();
-  const nodes = useRecoilValue(nodesState(key))
+  const nodes = useRecoilValue(pageListNodesState(key))
   const pageList = useRecoilValue(pageListState(key));
   const isInsertRef = useRef<boolean>(false);
 

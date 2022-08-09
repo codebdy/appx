@@ -5,7 +5,7 @@ import { DataNode, TreeProps } from 'antd/lib/tree';
 import CreateCategoryDialog from './CreateCategoryDialog';
 import CreatePageDialog from './CreatePageDialog';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { nodesState, pageListState } from '../recoil/atoms';
+import { pageListNodesState, pageListState } from '../recoil/atoms';
 import { useDesignerParams, useDesingerKey } from '../../context';
 import { IListNode, ListNodeType } from '../recoil/IListNode';
 import { useGetPage } from '../hooks/useGetPage';
@@ -22,7 +22,7 @@ const PageListWidget = memo(() => {
   const key = useDesingerKey();
 
   const params = useDesignerParams();
-  const nodes = useRecoilValue(nodesState(key))
+  const nodes = useRecoilValue(pageListNodesState(key))
   const pageListGlabal = useRecoilValue(pageListState(key));
   const getPage = useGetPage(key);
   const getPageCategory = useGetPageCategory();

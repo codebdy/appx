@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
 import { IPostOptions } from "../../../enthooks/hooks/usePostOne";
 import { useDesignerParams, useDesingerKey } from "../../context";
-import { nodesState, pageListState } from "../recoil/atoms";
+import { pageListNodesState, pageListState } from "../recoil/atoms";
 import { usePostPageList } from "./usePostPageList";
 
 export function useUpdateCategory(options?: IPostOptions<any>): [
@@ -11,7 +11,7 @@ export function useUpdateCategory(options?: IPostOptions<any>): [
 ] {
   const key = useDesingerKey();
   const params = useDesignerParams();
-  const nodes = useRecoilValue(nodesState(key))
+  const nodes = useRecoilValue(pageListNodesState(key))
   const pageList = useRecoilValue(pageListState(key));
   const [post, { error, loading }] = usePostPageList(options)
 

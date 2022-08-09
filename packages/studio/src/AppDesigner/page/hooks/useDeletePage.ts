@@ -3,7 +3,7 @@ import { useRecoilValue } from "recoil";
 import { IDeleteOptions, useDeleteById } from "../../../enthooks/hooks/useDeleteById";
 import { IPage } from "../../../model";
 import { useDesignerParams, useDesingerKey } from "../../context";
-import { nodesState, pageListState } from "../recoil/atoms";
+import { pageListNodesState, pageListState } from "../recoil/atoms";
 import { IListNode } from "../recoil/IListNode";
 import { usePostPageList } from "./usePostPageList";
 
@@ -16,7 +16,7 @@ export function useDeletePage(options?: IDeleteOptions<IPage>): [
 ] {
   const key = useDesingerKey();
   const params = useDesignerParams();
-  const nodes = useRecoilValue(nodesState(key))
+  const nodes = useRecoilValue(pageListNodesState(key))
   const pageList = useRecoilValue(pageListState(key));
   const [postList, { error: listError, loading: listLoading }] = usePostPageList(options)
 

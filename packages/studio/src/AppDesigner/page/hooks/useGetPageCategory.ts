@@ -1,12 +1,12 @@
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
 import { useDesingerKey } from "../../context";
-import { nodesState } from "../recoil/atoms";
+import { pageListNodesState } from "../recoil/atoms";
 import { ListNodeType } from "../recoil/IListNode";
 
 export function useGetPageCategory() {
   const key = useDesingerKey();
-  const nodes = useRecoilValue(nodesState(key))
+  const nodes = useRecoilValue(pageListNodesState(key))
   const getPageCategory = useCallback((pageId?: string) => {
     if (!pageId) {
       return undefined;
