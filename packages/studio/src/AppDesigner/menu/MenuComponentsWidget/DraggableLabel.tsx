@@ -12,7 +12,7 @@ const DraggableLabel = React.forwardRef((
   const { title, dragId, ...other } = props;
 
   return (
-    <div ref={ref} className="page-label" {...other}>
+    <div ref={ref} className="draggable-label" {...other}>
       <div className="draggable-icon">
         <HolderOutlined />
       </div>
