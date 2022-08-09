@@ -7,7 +7,7 @@ import EditPageDialog from "./EditPageDialog"
 const PageLabel = (
   props: {
     page: IPage,
-    categories?: IPageCategory[]
+    categories: IPageCategory[]
   }
 ) => {
   const { page, categories } = props;

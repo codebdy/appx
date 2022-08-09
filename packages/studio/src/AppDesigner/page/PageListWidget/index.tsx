@@ -40,7 +40,7 @@ const PageListWidget = memo((
         key: category.id,
         children: getCategoryPages(category.id)?.map((page) => {
           return {
-            title: page && <PageLabel page={page} />,
+            title: page && <PageLabel page={page} categories={categories} />,
             key: page.id,
             isLeaf: true,
           }
@@ -50,7 +50,7 @@ const PageListWidget = memo((
 
     for (const page of pagesWithoutCategory) {
       dataNodes.push({
-        title: page && <PageLabel page={page} />,
+        title: page && <PageLabel page={page} categories={categories}/>,
         key: page.id,
         isLeaf: true,
       })
