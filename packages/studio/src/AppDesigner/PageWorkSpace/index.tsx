@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   PreviewWidget,
   SchemaEditorWidget,
@@ -20,13 +20,22 @@ import { Spin } from "antd";
 import { ID } from "../../shared";
 import { usePage } from "../../hooks/usePage";
 import { useShowError } from "../../hooks/useShowError";
+import { transformToTreeNode } from "../transformer";
+import { useDesigner } from '@designable/react'
 
 const PageWorkSpace = (props: {
   pageId: ID
 }) => {
   const { pageId } = props;
-  const {page, loading, error} = usePage(pageId);
+  const designer = useDesigner();
+  const { page, loading, error } = usePage(pageId);
   const { t } = useTranslation();
+
+  useEffect(() => {
+    designer.setCurrentTree(
+      transformToTreeNode(page?.schemaJson || {})
+    )
+  }, [designer, page?.schemaJson])
 
   useShowError(error);
 

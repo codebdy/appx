@@ -23,8 +23,8 @@ export interface IPageListInput {
 
 export interface IPageInput {
   id?: ID;
-  title: string;
-  schema?: JSON;
+  title?: string;
+  schemaJson?: any;
   device?: Device;
   app?:  { sync: IAppInput };
 }
