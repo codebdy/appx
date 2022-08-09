@@ -20,7 +20,11 @@ query queryCategories($appUuid:String!, $device:String!){
         }
       }
     ]
-  }){
+  },
+  orderBy:{
+    id:asc
+  }
+ ){
     id
     device
     title

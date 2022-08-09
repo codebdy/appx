@@ -18,10 +18,6 @@ const PageForm = memo((props: {
   const { categoryId, page, categories, form } = props;
   const { t } = useTranslation();
 
-  const handleChange = useCallback((key: string) => {
-    console.log(key);
-  }, []);
-
   return (
     <Form
       name="editPage"
@@ -44,9 +40,9 @@ const PageForm = memo((props: {
         <Col span={12}>
           <Form.Item
             label={t("Pages.SelectCategory")}
-            name="categoryUuid"
+            name="categoryId"
           >
-            <Select onChange={handleChange}>
+            <Select>
               <Option value=""><em>None</em></Option>
               {
                 categories.map((category) => {

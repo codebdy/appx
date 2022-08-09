@@ -7,7 +7,7 @@ import { IPageCategory } from "packages/studio/src/model"
 
 const CategoryLabel = (
   props: {
-    categories?: IPageCategory[],
+    categories: IPageCategory[],
     category: IPageCategory
   }
 ) => {
