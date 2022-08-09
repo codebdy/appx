@@ -5,7 +5,7 @@ import { IPageCategory } from "../../model";
 import { useDesignerParams } from "../context";
 
 export function useUpsertCategory(options?: IPostOptions<any>): [
-  (category: IPageCategoryInput, categoryUuid?: string) => void,
+  (category: IPageCategoryInput) => void,
   { loading?: boolean; error?: Error }
 ] {
   const params = useDesignerParams();

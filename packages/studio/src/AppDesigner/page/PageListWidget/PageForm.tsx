@@ -5,15 +5,17 @@ import FormTemplates from "./FormTemplates";
 import { IPageInput } from "packages/studio/src/model/input";
 import { IPage, IPageCategory } from "../../../model";
 import { useTranslation } from "react-i18next";
+import { ID } from "../../../shared";
 const { TabPane } = Tabs;
 const { Option } = Select;
 
 const PageForm = memo((props: {
+  categoryId?: ID,
   page?: IPage,
   categories?: IPageCategory[],
   form: FormInstance<IPageInput>
 }) => {
-  const { page, categories, form } = props;
+  const { categoryId, page, categories, form } = props;
   const { t } = useTranslation();
 
   const handleChange = useCallback((key: string) => {
@@ -26,7 +28,7 @@ const PageForm = memo((props: {
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 16 }}
       form={form}
-      initialValues={{ title: page?.title || "", categoryId: page.category?.id || "" }}
+      initialValues={{ title: page?.title || "", categoryId: page.category?.id || categoryId || "" }}
       autoComplete="off"
     >
       <Row gutter={12}>

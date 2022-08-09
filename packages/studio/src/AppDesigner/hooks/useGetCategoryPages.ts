@@ -4,7 +4,7 @@ import { ID } from "../../shared";
 
 export function useGetCategoryPages(pages?: IPage[]) {
   const getPages = useCallback((categoryId?: ID) => {
-    return pages?.find(page => page.category?.id === categoryId)
+    return pages?.filter(page => page.category?.id === categoryId)
   }, [pages]);
 
   return getPages

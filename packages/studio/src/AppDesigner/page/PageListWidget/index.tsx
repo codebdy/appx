@@ -34,33 +34,29 @@ const PageListWidget = memo((
 
   const getTreeData = useCallback(() => {
     const dataNodes: DataNode[] = []
-    for (const category of categories){
+    for (const category of categories) {
       dataNodes.push({
         title: <CategoryLabel category={category} />,
         key: category.id,
-        children: getCategoryPages((page) => {
+        children: getCategoryPages(category.id)?.map((page) => {
           return {
             title: page && <PageLabel page={page} />,
-            key: childId,
+            key: page.id,
             isLeaf: true,
           }
         })
       })
     }
-    for (const node of nodes) {
-      if (node.nodeType === ListNodeType.Page) {
-        const page = getPage(node.pageId)
-        dataNodes.push({
-          title: page && <PageLabel page={page} />,
-          key: node.pageId,
-          isLeaf: true,
-        })
-      } else if (node.nodeType === ListNodeType.Category) {
 
-      }
+    for (const page of pagesWithoutCategory) {
+      dataNodes.push({
+        title: page && <PageLabel page={page} />,
+        key: page.id,
+        isLeaf: true,
+      })
     }
     return dataNodes
-  }, [getPage, nodes])
+  }, [categories, getCategoryPages, pagesWithoutCategory])
 
   const onSelect = (selectedKeys) => {
     const page = getPage(selectedKeys?.[0]);

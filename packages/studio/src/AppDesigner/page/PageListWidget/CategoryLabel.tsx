@@ -7,10 +7,11 @@ import { IPageCategory } from "packages/studio/src/model"
 
 const CategoryLabel = (
   props: {
+    categories?: IPageCategory[],
     category: IPageCategory
   }
 ) => {
-  const { category } = props;
+  const { categories, category } = props;
   const [visible, setVisible] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [pageModalOpen, setPageModalOpen] = useState(false);
@@ -41,7 +42,7 @@ const CategoryLabel = (
       fixedAction={visible}
       action={
         <CategoryActions
-          uuid={category.uuid}
+          id={category.id}
           onVisibleChange={handleVisableChange}
           onEdit={handleEdit}
           onAddPage={handleAddPage}
@@ -58,7 +59,8 @@ const CategoryLabel = (
           onClose={handleCloseModal}
         />
         <CreatePageModal
-          category={category}
+          categories={categories}
+          categoryId={category?.id}
           isModalVisible={pageModalOpen}
           onClose={handleClosePageModal}
         />

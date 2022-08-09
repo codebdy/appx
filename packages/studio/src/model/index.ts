@@ -32,9 +32,9 @@ export interface IPage {
 
 export interface IPageCategory {
   id: ID;
-  title: string;
-  device: Device;
-  app: IApp;
+  title?: string;
+  device?: Device;
+  app?: IApp;
 }
 
 export interface IMenu {

@@ -2,12 +2,9 @@ import { MoreOutlined, EditOutlined, DeleteOutlined, LoadingOutlined } from "@an
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
 import { ID } from "../../../shared";
-import { useDeletePage } from "../hooks/useDeletePage";
+import { useDeletePage } from "../../hooks/useDeletePage";
 import { IPage } from "../../../model";
 import { useShowError } from "../../../hooks/useShowError";
-import { useSetRecoilState } from "recoil";
-import { pagesState } from "../recoil/atoms";
-import { useDesingerKey } from "../../context";
 import { useTranslation } from "react-i18next";
 
 const PageActions = memo((
@@ -18,13 +15,10 @@ const PageActions = memo((
   }
 ) => {
   const { pageId, onVisibleChange, onEdit } = props;
-  const key = useDesingerKey();
-  const setPages = useSetRecoilState(pagesState(key))
   const { t } = useTranslation();
   const [remove, { loading, error }] = useDeletePage({
     onCompleted: (data: IPage) => {
       onVisibleChange(false);
-      setPages((pages) => pages.filter(page => page.id !== data?.id));
     }
   });
 

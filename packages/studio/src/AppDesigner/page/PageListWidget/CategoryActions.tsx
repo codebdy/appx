@@ -1,26 +1,25 @@
 import { MoreOutlined, FileAddOutlined, EditOutlined, DeleteOutlined, LoadingOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
-import { useDeleteCategory } from "../hooks/useDeleteCategory";
+import { useDeleteCategory } from "../../hooks/useDeleteCategory";
 import { useShowError } from "../../../hooks/useShowError";
 import { useTranslation } from "react-i18next";
+import { ID } from "../../../shared";
 
 const CategoryActions = memo((
   props: {
-    uuid: string,
+    id: ID,
     onVisibleChange: (visible: boolean) => void,
     onEdit: () => void,
     onAddPage: () => void,
   }
 ) => {
-  const { uuid, onVisibleChange, onEdit, onAddPage } = props;
-  const init = useInitPageList();
+  const { id, onVisibleChange, onEdit, onAddPage } = props;
   const { t } = useTranslation();
-  
+
   const [remove, { loading, error }] = useDeleteCategory({
-    onCompleted: (data: IPageList) => {
+    onCompleted: () => {
       onVisibleChange(false);
-      init(data);
     }
   });
 
@@ -37,8 +36,8 @@ const CategoryActions = memo((
   }, [onEdit, onVisibleChange]);
 
   const handleDelete = useCallback(() => {
-    remove(uuid)
-  }, [remove, uuid]);
+    remove(id)
+  }, [remove, id]);
 
   const menu = useMemo(() => (
     <Menu
@@ -73,7 +72,7 @@ const CategoryActions = memo((
         },
       ]}
     />
-  ), [handleAdd, handleDelete, handleEdit, onVisibleChange]);
+  ), [handleAdd, handleDelete, handleEdit, onVisibleChange, t]);
 
   return (
     <Dropdown
