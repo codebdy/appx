@@ -17,7 +17,7 @@ i18n
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
     fallbackLng: 'zh-CN',
-    debug: true,
+    //debug: true,
     backend: {
       loadPath: () => {
         return '/public/locales/{{lng}}/{{ns}}.json';

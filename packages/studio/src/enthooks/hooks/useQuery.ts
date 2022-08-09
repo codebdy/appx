@@ -22,6 +22,7 @@ export function useQuery<T>(gql: string | undefined, params: any = {}, entityNam
   const [revalidating, setRevalidating] = useState<boolean>();
   const loadedRef = useRef(false);
   const endpoint = useEndpoint();
+  const refreshRef = useRef<() => void>();
 
   const [doLoad, { error, data, loading }] = useLazyRequest({
     onCompleted: () => {
@@ -45,13 +46,15 @@ export function useQuery<T>(gql: string | undefined, params: any = {}, entityNam
     doLoad(gql, params)
   }, [doLoad, gql, params])
 
+  refreshRef.current = refresh;
+
   const eventHandler = useCallback((event: CustomEvent) => {
-    console.log("呵呵", entityNames ,event.detail?.entity)
     if (entityNames?.find(entity => entity === event.detail?.entity)) {
-      console.log("哈哈", entityNames ,event.detail?.entity)
-      refresh()
+      if (refreshRef.current) {
+        refreshRef.current();
+      }
     }
-  }, [entityNames, refresh]);
+  }, [entityNames]);
 
   useEffect(() => {
     load();
@@ -61,7 +64,8 @@ export function useQuery<T>(gql: string | undefined, params: any = {}, entityNam
       off(EVENT_DATA_POSTED_ONE, eventHandler);
       off(EVENT_DATA_REMOVED, eventHandler);
     }
-  }, [eventHandler, gql, load]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return { data, loading: (revalidating ? false : loading), revalidating, error, refresh }
 }
