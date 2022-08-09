@@ -5,7 +5,7 @@ import { useDesingerKey } from '../../context';
 import { useGetPage } from '../../page/hooks/useGetPage';
 import { pageListNodesState } from '../../page/recoil/atoms';
 import { ListNodeType } from '../../page/recoil/IListNode';
-import PageLabel from './PageLabel';
+import DraggableLabel from './DraggableLabel';
 const { Panel } = Collapse;
 
 const PagesTree = memo(() => {
@@ -22,7 +22,7 @@ const PagesTree = memo(() => {
         nodes.map((node) => {
           if (node.nodeType === ListNodeType.Page) {
             return (
-              <PageLabel key={node.pageId} page={getPage(node.pageId)} />
+              <DraggableLabel key={node.pageId} dragId={node.pageId} title={getPage(node.pageId).title} />
             )
           } else {
             return (
@@ -30,7 +30,7 @@ const PagesTree = memo(() => {
                 {
                   node.children?.map(pageId => {
                     return (
-                      <PageLabel key={pageId} page={getPage(pageId)} />
+                      <DraggableLabel key={pageId} dragId={pageId} title={getPage(pageId).title} />
                     )
                   })
                 }

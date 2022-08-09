@@ -10,6 +10,7 @@ import { useInsertAt } from "./hooks/useInsertAt";
 import { IMenuNode, MenuItemType } from "./models/IMenuNode";
 import _ from "lodash"
 import { useTranslation } from "react-i18next";
+import "./index.less"
 
 const MenuDragRoot = memo((
   props: {

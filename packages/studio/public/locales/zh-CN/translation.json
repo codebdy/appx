@@ -163,5 +163,10 @@
     "Styles": "样式",
     "Display": "展示",
     "Actions": "动作"
+  },
+  "Menu": {
+    "HelpItems": "辅助项",
+    "CollapseGroup": "折叠组",
+    "Divider": "分隔符"
   }
 }

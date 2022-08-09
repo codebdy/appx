@@ -1,20 +1,64 @@
 import { Collapse } from "antd"
-import React, { memo } from "react"
+import React, { memo, useMemo } from "react"
+import { Draggable, Droppable } from "react-beautiful-dnd";
+import { useTranslation } from "react-i18next";
+import { COLLAPSE_GROUP_ID, DIVIDER, HELPER_LIST_ID } from "../consts";
+import DraggableLabel from "./DraggableLabel";
 import PagesTree from "./PagesTree";
 const { Panel } = Collapse;
 
 const MenuComponentsWidget = memo(() => {
+  const { t } = useTranslation();
+  const items = useMemo(() => [
+    {
+      id: COLLAPSE_GROUP_ID,
+      title: t("Menu.CollapseGroup"),
+    },
+    {
+      id: DIVIDER,
+      title: t("Menu.Divider"),
+    },
+  ], [t]);
 
   return (
-    <div>
+    <div className="menu-components">
       <Collapse
         style={{ border: 0 }}
         defaultActiveKey={[]}
         expandIconPosition="end"
       >
-        <Panel header="辅助项" key="1">
-          <p>折叠组</p>
-          <p>分隔符</p>
+        <Panel header={t("Menu.HelpItems")} key="1">
+          <Droppable droppableId={HELPER_LIST_ID} isDropDisabled={true}>
+            {(provided) => (
+              <div ref={provided.innerRef}>
+                {items.map((item, index) => {
+                  return (
+                    <Draggable key={item.id} draggableId={item.id} index={index}>
+                      {(provided, snapshot) => (
+                        <>
+                          <DraggableLabel
+                            dragId={item.id}
+                            title={item.title}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            ref={provided.innerRef}
+                          />
+                          {snapshot.isDragging && (
+                            <DraggableLabel
+                              dragId={item.id}
+                              title={item.title}
+                            />
+                          )}
+                        </>
+                      )}
+                    </Draggable>
+                  );
+                })}
+                <div style={{ display: "none" }}>{provided.placeholder}</div>
+              </div>
+            )}
+
+          </Droppable>
         </Panel>
         <Panel header="页面" key="2">
           <PagesTree />
@@ -25,3 +69,4 @@ const MenuComponentsWidget = memo(() => {
 })
 
 export default MenuComponentsWidget
+
