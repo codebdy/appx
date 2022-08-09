@@ -27,12 +27,12 @@ export interface IPage {
   schemaJson: any;
   device: Device;
   app: IApp;
-  pageList?: IPageList;
+  category?: IPageCategory;
 }
 
-export interface IPageList {
+export interface IPageCategory {
   id: ID;
-  schemaJson: any;
+  title: string;
   device: Device;
   app: IApp;
 }

@@ -3,7 +3,7 @@ import SvgIcon from "../../../common/SvgIcon";
 import React, { useCallback, useState } from "react";
 import { memo } from "react";
 import { useForm } from "antd/lib/form/Form";
-import { useCreateCategory } from "../hooks/useCreateCategory";
+import { useCreateCategory } from "../hooks/useUpsertCategory";
 import { useShowError } from "../../../hooks/useShowError";
 import { IPageList } from "../../../model";
 import { useInitPageList } from "../hooks/useInitPageList";

@@ -1,5 +1,5 @@
 import 'antd/dist/antd.less'
-import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
+import React, { memo, useCallback, useMemo, useState } from 'react'
 import {
   createDesigner,
   Shortcut,
@@ -15,20 +15,16 @@ import { CompositePanel, StudioPanel } from './panels'
 import { MaterialWidget } from './widgets/MaterialWidget'
 import { Designer } from './containers'
 import PageListWidget from './page/PageListWidget'
-import { useDesignerParams, useDesingerKey } from './context'
+import { useDesignerParams } from './context'
 import { useTranslation } from 'react-i18next'
 import PageWorkSpace from './page/PageWorkSpace'
 import MenuComponentsWidget from './menu/MenuComponentsWidget'
 import MenuWorkSpace from './menu/MenuWorkSpace'
 import { MenuActionsWidget } from './menu/MenuActionsWidget'
-import { usePageList } from './page/hooks/usePageList'
-import { useInitPageList } from './page/hooks/useInitPageList'
 import { useShowError } from '../hooks/useShowError'
 import { Spin } from 'antd'
 import { useSelectedPageId } from './hooks/useSelectedPageId'
-import { useSetRecoilState } from 'recoil'
-import { pagesState } from './page/recoil/atoms'
-import { usePages } from './page/hooks/usePages'
+import { useCagegories } from './hooks/useCagegories'
 
 export enum DesignerRoutes {
   Pages = "pages",
@@ -39,22 +35,12 @@ export enum DesignerRoutes {
 
 const AppDesignerContent = memo(() => {
   const app = useDesignerParams().app;
-  const key = useDesingerKey();
   const [activeKey, setActiveKey] = useState<string>(DesignerRoutes.Pages);
   const { t } = useTranslation();
   const pageId = useSelectedPageId();
-  const { pageList, loading, error } = usePageList()
-  const setPages = useSetRecoilState(pagesState(key));
+  const { categories, loading, error } = useCagegories();
   const { pages, loading: pagesLoading, error: pagesError } = usePages();
-  const pageListinit = useInitPageList()
   useShowError(error || pagesError);
-  useEffect(() => {
-    pageListinit(pageList);
-  }, [pageListinit, pageList])
-
-  useEffect(() => {
-    setPages(pages || []);
-  }, [pages, setPages])
 
   const engine = useMemo(
     () => createDesigner({
@@ -96,7 +82,7 @@ const AppDesignerContent = memo(() => {
               key={DesignerRoutes.Pages}
               title={t("Panels.Page")} icon="Page"
             >
-              <PageListWidget />
+              <PageListWidget pages={pages} categories={categories} />
             </CompositePanel.Item>
             <CompositePanel.Item
               key={DesignerRoutes.Components}
@@ -141,7 +127,7 @@ const AppDesignerContent = memo(() => {
 
           {
             activeKey === DesignerRoutes.Menu &&
-            <MenuWorkSpace />
+            <MenuWorkSpace pages={pages} categories={categories}/>
           }
         </StudioPanel>
       </Designer >

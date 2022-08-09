@@ -3,7 +3,7 @@ import React, { useCallback } from "react";
 import { memo } from "react";
 import FormTemplates from "./FormTemplates";
 import { IPageInput } from "packages/studio/src/model/input";
-import { useCagegories } from "../hooks/useCagegories";
+import { useCagegories } from "../../hooks/useCagegories";
 import { IPage } from "../../../model";
 import { useTranslation } from "react-i18next";
 const { TabPane } = Tabs;

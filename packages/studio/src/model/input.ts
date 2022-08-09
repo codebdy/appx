@@ -14,9 +14,9 @@ export interface IAppInput {
   // image?: IFileInput
 }
 
-export interface IPageListInput {
+export interface IPageCategoryInput {
   id?: ID;
-  schemaJson?: any;
+  title?: string;
   device?: Device;
   app?: { sync: IAppInput };
 }
@@ -27,4 +27,5 @@ export interface IPageInput {
   schemaJson?: any;
   device?: Device;
   app?:  { sync: IAppInput };
+  category?: { sync: IPageCategoryInput };
 }

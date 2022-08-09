@@ -3,11 +3,11 @@ import React, { useCallback, useState } from "react"
 import CategoryActions from "./CategoryActions"
 import EditCategoryDialog from "./EditCategoryDialog"
 import CreatePageModal from "./CreatePageModal"
-import { IListNode } from "../recoil/IListNode"
+import { IPageCategory } from "packages/studio/src/model"
 
 const CategoryLabel = (
   props: {
-    category: IListNode
+    category: IPageCategory
   }
 ) => {
   const { category } = props;
