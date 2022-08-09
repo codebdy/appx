@@ -1,41 +1,46 @@
-import { Tree } from 'antd';
-import { DataNode } from 'antd/lib/tree';
+import { Collapse } from 'antd';
 import React, { memo } from 'react';
-
-const treeData: DataNode[] = [
-  {
-    title: 'parent 1',
-    key: '0-0',
-  },
-  {
-    title: 'parent 1-0',
-    key: '0-0-0',
-  },
-  {
-    title: 'parent 1-1',
-    key: '0-0-1',
-    children: [{ title: <span style={{ color: '#1890ff' }}>sss</span>, key: '0-0-1-0' }],
-  },
-  {
-    title: 'leaf',
-    key: '0-0-0-0',
-    disableCheckbox: true,
-  },
-  {
-    title: 'leaf',
-    key: '0-0-0-1',
-  },
-];
+import { useRecoilValue } from 'recoil';
+import { useDesingerKey } from '../../context';
+import { useGetPage } from '../../page/hooks/useGetPage';
+import { pageListNodesState } from '../../page/recoil/atoms';
+import { ListNodeType } from '../../page/recoil/IListNode';
+import PageLabel from './PageLabel';
+const { Panel } = Collapse;
 
 const PagesTree = memo(() => {
+  const key = useDesingerKey();
+  const nodes = useRecoilValue(pageListNodesState(key));
+  const getPage = useGetPage(key);
 
   return (
-    <Tree
-      className="draggable-tree"
-      defaultExpandAll
-      blockNode
-      treeData={treeData}
-    />
+    <Collapse
+      bordered={false}
+      defaultActiveKey={[]}
+    >
+      {
+        nodes.map((node) => {
+          if (node.nodeType === ListNodeType.Page) {
+            return (
+              <PageLabel key={node.pageId} page={getPage(node.pageId)} />
+            )
+          } else {
+            return (
+              <Panel key={node.uuid} header={node.title}>
+                {
+                  node.children?.map(pageId => {
+                    return (
+                      <PageLabel key={pageId} page={getPage(pageId)} />
+                    )
+                  })
+                }
+              </Panel>
+            )
+          }
+        })
+      }
+
+    </Collapse>
   );
 });
 

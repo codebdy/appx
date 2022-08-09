@@ -8,9 +8,9 @@ const MenuComponentsWidget = memo(() => {
   return (
     <div>
       <Collapse
+        style={{ border: 0 }}
         defaultActiveKey={[]}
         expandIconPosition="end"
-        bordered={false}
       >
         <Panel header="辅助项" key="1">
           <p>折叠组</p>
