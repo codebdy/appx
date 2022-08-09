@@ -17,6 +17,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-beautiful-dnd": "^13.1.2",
     "eslint-config-react-app": "^7.0.1"
   },
   "dependencies": {
@@ -33,6 +34,8 @@
     "i18next": "^21.8.16",
     "i18next-browser-languagedetector": "^6.1.4",
     "i18next-http-backend": "^1.4.1",
+    "lodash": "^4.17.21",
+    "react-beautiful-dnd": "^13.1.0",
     "react-i18next": "^11.18.3",
     "react-router-dom": "^6.3.0",
     "recoil": "^0.7.4",
