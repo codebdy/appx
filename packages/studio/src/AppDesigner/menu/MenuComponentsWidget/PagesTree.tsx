@@ -1,17 +1,20 @@
 import { Collapse } from 'antd';
+import { IPage, IPageCategory } from '../../../model';
 import React, { memo } from 'react';
-import { useRecoilValue } from 'recoil';
-import { useDesingerKey } from '../../context';
-import { useGetPage } from '../../page/hooks/useGetPage';
-import { pageListNodesState } from '../../page/recoil/atoms';
-import { ListNodeType } from '../../page/recoil/IListNode';
 import DraggableLabel from './DraggableLabel';
+import { usePagesWithoutCategory } from '../../hooks/usePagesWithoutCategory';
+import { useGetCategoryPages } from '../../hooks/useGetCategoryPages';
 const { Panel } = Collapse;
 
-const PagesTree = memo(() => {
-  const key = useDesingerKey();
-  const nodes = useRecoilValue(pageListNodesState(key));
-  const getPage = useGetPage(key);
+const PagesTree = memo((
+  props: {
+    categories?: IPageCategory[],
+    pages?: IPage[]
+  }
+) => {
+  const { categories, pages } = props;
+  const pagesWithoutCategory = usePagesWithoutCategory(pages, categories);
+  const getCategoryPage = useGetCategoryPages(pages);
 
   return (
     <Collapse
@@ -19,24 +22,25 @@ const PagesTree = memo(() => {
       defaultActiveKey={[]}
     >
       {
-        nodes.map((node) => {
-          if (node.nodeType === ListNodeType.Page) {
-            return (
-              <DraggableLabel key={node.pageId} dragId={node.pageId} title={getPage(node.pageId).title} />
-            )
-          } else {
-            return (
-              <Panel key={node.uuid} header={node.title}>
-                {
-                  node.children?.map(pageId => {
-                    return (
-                      <DraggableLabel key={pageId} dragId={pageId} title={getPage(pageId).title} />
-                    )
-                  })
-                }
-              </Panel>
-            )
-          }
+        categories?.map((category) => {
+          return (
+            <Panel key={category.id} header={category.title}>
+              {
+                getCategoryPage(category.id)?.map(page => {
+                  return (
+                    <DraggableLabel key={page.id} dragId={page.id} title={page.title} />
+                  )
+                })
+              }
+            </Panel>
+          )
+        })
+      }
+      {
+        pagesWithoutCategory?.map(page => {
+          return (
+            <DraggableLabel key={page.id} dragId={page.id} title={page.title} />
+          )
         })
       }
 
