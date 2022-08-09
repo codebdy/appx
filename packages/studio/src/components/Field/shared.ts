@@ -190,21 +190,10 @@ export const createActionSchemaTab = () => {
         tab: 'SettingsForm.Actions'
       },
       properties: {
-        'component-style-group': {
-          type: 'void',
-          'x-component': 'CollapseItem',
-          'x-component-props': { defaultExpand: true },
-          'x-reactions': {
-            fulfill: {
-            },
-          },
-          properties: {
-            onClick: {
-              type: 'string',
-              'x-decorator': 'FormItem',
-              'x-component': 'Input',
-            },
-          }
+        onClick: {
+          type: 'string',
+          'x-decorator': 'FormItem',
+          'x-component': 'Input',
         },
       }
     },
