@@ -4,12 +4,13 @@ import "./index.less"
 import { DataNode } from 'antd/lib/tree';
 import CreateCategoryDialog from './CreateCategoryDialog';
 import CreatePageDialog from './CreatePageDialog';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { useDesingerKey } from '../../context';
 import CategoryLabel from './CategoryLabel';
 import PageLabel from './PageLabel';
 import { selectedPageIdState } from '../../recoil/atom';
 import { IPage, IPageCategory } from '../../../model';
+import { useGetPage } from '../../hooks/useGetPage';
 
 const { DirectoryTree } = Tree;
 
@@ -19,16 +20,14 @@ const PageListWidget = memo((
     pages?: IPage[]
   }
 ) => {
+  const { categories, pages } = props;
   const key = useDesingerKey();
 
-  // const params = useDesignerParams();
-  const nodes = useRecoilValue(pageListNodesState(key))
-  // const pageListGlabal = useRecoilValue(pageListState(key));
-  const getPage = useGetPage(key);
+  const getPage = useGetPage(pages);
+
   // const getPageCategory = useGetPageCategory();
   const [selectedPageId, setSelectedPageId] = useRecoilState(selectedPageIdState(key));
-  // const [post, { error: postError, loading: posting }] = usePostPageList()
-  // useShowError(postError);
+
 
   const getTreeData = useCallback(() => {
     const dataNodes: DataNode[] = []

@@ -1,8 +1,8 @@
 import { useCallback } from "react";
-import { IPostOptions, usePostOne } from "../../../enthooks/hooks/usePostOne";
-import { IPageCategoryInput } from "../../../model/input";
-import { IPageCategory } from "../../../model";
-import { useDesignerParams } from "../../context";
+import { IPostOptions, usePostOne } from "../../enthooks/hooks/usePostOne";
+import { IPageCategoryInput } from "../../model/input";
+import { IPageCategory } from "../../model";
+import { useDesignerParams } from "../context";
 
 export function useUpsertCategory(options?: IPostOptions<any>): [
   (category: IPageCategoryInput, categoryUuid?: string) => void,
