@@ -18,17 +18,23 @@ import { Field } from '../../../components/Field'
 import { useTranslation } from "react-i18next";
 import { Spin } from "antd";
 import { ID } from "../../../shared";
-import { usePage } from "../../../hooks/usePage";
 import { useShowError } from "../../../hooks/useShowError";
 import { transformToTreeNode } from "../../transformer";
 import { useDesigner } from '@designable/react'
+import { useLazyQueryPage } from "../../../hooks/useLazyQueryPage";
 
 const PageWorkSpace = (props: {
-  pageId: ID
+  pageId: ID,
+  visable: boolean | undefined,
 }) => {
-  const { pageId } = props;
+  const { pageId, visable } = props;
   const designer = useDesigner();
-  const { page, loading, error } = usePage(pageId);
+  const [query, { page, loading, error }] = useLazyQueryPage();
+
+  useEffect(() => {
+    query(pageId)
+  }, [pageId, query]);
+
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -40,48 +46,50 @@ const PageWorkSpace = (props: {
   useShowError(error);
 
   return (
-    loading ?
-      <Spin>
-        <div style={{ width: "calc(100vw - 280px)", height: "calc(100vh - 64px)" }}>
-        </div>
-      </Spin>
-      :
-      <>
-        <Workspace id="form">
-          <WorkspacePanel>
-            <ToolbarPanel>
-              <DesignerToolsWidget />
-              <ViewToolsWidget
-                use={['DESIGNABLE', 'JSONTREE', 'PREVIEW']}
-              />
-            </ToolbarPanel>
-            <ViewportPanel style={{ height: '100%' }}>
-              <ViewPanel type="DESIGNABLE">
-                {() => (
-                  <ComponentTreeWidget
-                    components={{
-                      Form,
-                      Field,
-                      ...convertMaterialsToComponents(materialStore.modules)
-                    }}
-                  />
-                )}
-              </ViewPanel>
-              <ViewPanel type="JSONTREE" scrollable={false}>
-                {(tree, onChange) => (
-                  <SchemaEditorWidget tree={tree} onChange={onChange} />
-                )}
-              </ViewPanel>
-              <ViewPanel type="PREVIEW">
-                {(tree) => <PreviewWidget tree={tree} />}
-              </ViewPanel>
-            </ViewportPanel>
-          </WorkspacePanel>
-        </Workspace>
-        <SettingsPanel title={t("Panels.PropertySettings")}>
-          <SettingsForm uploadAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" />
-        </SettingsPanel>
-      </>
+    visable && (
+      loading ?
+        <Spin>
+          <div style={{ width: "calc(100vw - 280px)", height: "calc(100vh - 64px)" }}>
+          </div>
+        </Spin>
+        :
+        <>
+          <Workspace id="form">
+            <WorkspacePanel>
+              <ToolbarPanel>
+                <DesignerToolsWidget />
+                <ViewToolsWidget
+                  use={['DESIGNABLE', 'JSONTREE', 'PREVIEW']}
+                />
+              </ToolbarPanel>
+              <ViewportPanel style={{ height: '100%' }}>
+                <ViewPanel type="DESIGNABLE">
+                  {() => (
+                    <ComponentTreeWidget
+                      components={{
+                        Form,
+                        Field,
+                        ...convertMaterialsToComponents(materialStore.modules)
+                      }}
+                    />
+                  )}
+                </ViewPanel>
+                <ViewPanel type="JSONTREE" scrollable={false}>
+                  {(tree, onChange) => (
+                    <SchemaEditorWidget tree={tree} onChange={onChange} />
+                  )}
+                </ViewPanel>
+                <ViewPanel type="PREVIEW">
+                  {(tree) => <PreviewWidget tree={tree} />}
+                </ViewPanel>
+              </ViewportPanel>
+            </WorkspacePanel>
+          </Workspace>
+          <SettingsPanel title={t("Panels.PropertySettings")}>
+            <SettingsForm uploadAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" />
+          </SettingsPanel>
+        </>
+    )
   )
 }
 

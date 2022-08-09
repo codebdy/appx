@@ -132,14 +132,13 @@ const AppDesignerContent = memo(() => {
           </CompositePanel.Item> */}
           </CompositePanel>
           {
-            (
+            pageId && <PageWorkSpace pageId={pageId} visable={
               activeKey === DesignerRoutes.Pages ||
               activeKey === DesignerRoutes.OutlinedTree ||
               activeKey === DesignerRoutes.Components
-            ) &&
-            pageId &&
-            <PageWorkSpace pageId={pageId} />
+            } />
           }
+
           {
             activeKey === DesignerRoutes.Menu &&
             <MenuWorkSpace />
