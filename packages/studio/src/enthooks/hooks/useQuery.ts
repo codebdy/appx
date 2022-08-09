@@ -46,7 +46,9 @@ export function useQuery<T>(gql: string | undefined, params: any = {}, entityNam
   }, [doLoad, gql, params])
 
   const eventHandler = useCallback((event: CustomEvent) => {
+    console.log("呵呵", entityNames ,event.detail?.entity)
     if (entityNames?.find(entity => entity === event.detail?.entity)) {
+      console.log("哈哈", entityNames ,event.detail?.entity)
       refresh()
     }
   }, [entityNames, refresh]);

@@ -16,19 +16,10 @@ function off(eventType: string, listener: EventListener) {
   document.removeEventListener(eventType, listener);
 }
 
-function once(eventType: string, listener: EventListener) {
-  const handleEventOnce = (event: CustomEvent) => {
-    listener(event);
-    off(eventType, handleEventOnce as any);
-  };
-
-  on(eventType, handleEventOnce as any);
-}
-
 function trigger(eventType: string, data: IPosted | IRemoved | IUpdated) {
   console.log('trigger事件', eventType, data);
   const event = new CustomEvent(eventType, { detail: data });
   document.dispatchEvent(event);
 }
 
-export { on, once, off, trigger };
+export { on, off, trigger };

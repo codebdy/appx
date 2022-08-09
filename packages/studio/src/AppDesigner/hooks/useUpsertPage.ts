@@ -13,7 +13,7 @@ export function useUpsertPage(options?: IPostOptions<any>): [
   const [post, { error, loading }] = usePostOne<IPageInput, IPage>("Page",
     {
       ...options,
-      fieldsGql: "id title"
+      fieldsGql: " title"
     }
   )
 
