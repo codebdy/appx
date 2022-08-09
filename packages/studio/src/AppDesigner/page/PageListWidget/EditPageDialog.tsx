@@ -2,20 +2,20 @@ import { Form, Modal } from "antd";
 import React, { useCallback } from "react";
 import { memo } from "react";
 import PageForm from "./PageForm";
-import { IPage } from "../../../model";
-import { useUpsertPage } from "../hooks/useUpsertPage";
+import { IPage, IPageCategory } from "../../../model";
 import { useShowError } from "../../../hooks/useShowError";
 import { useTranslation } from "react-i18next";
+import { useUpsertPage } from "../../hooks/useUpsertPage";
 
 const EditPageDialog = memo((
   props: {
     page: IPage,
-    categoryUuid: string,
+    categories?: IPageCategory[],
     isModalVisible: boolean,
     onClose: () => void,
   }
 ) => {
-  const { page, categoryUuid, isModalVisible, onClose } = props;
+  const { page, categories, isModalVisible, onClose } = props;
   const [form] = Form.useForm()
   const [upsert, { loading, error }] = useUpsertPage({
     onCompleted: () => {
@@ -42,7 +42,7 @@ const EditPageDialog = memo((
       onOk={handleConfirm}
       confirmLoading={loading}
     >
-      <PageForm page={page} categoryUuid={categoryUuid} form={form} />
+      <PageForm page={page} categories={categories} form={form} />
     </Modal>
   )
 })

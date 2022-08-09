@@ -3,19 +3,17 @@ import React, { useCallback } from "react";
 import { memo } from "react";
 import FormTemplates from "./FormTemplates";
 import { IPageInput } from "packages/studio/src/model/input";
-import { useCagegories } from "../../hooks/useCagegories";
-import { IPage } from "../../../model";
+import { IPage, IPageCategory } from "../../../model";
 import { useTranslation } from "react-i18next";
 const { TabPane } = Tabs;
 const { Option } = Select;
 
 const PageForm = memo((props: {
-  categoryUuid?: string,
   page?: IPage,
+  categories?: IPageCategory[],
   form: FormInstance<IPageInput>
 }) => {
-  const { page, categoryUuid, form } = props;
-  const categories = useCagegories();
+  const { page, categories, form } = props;
   const { t } = useTranslation();
 
   const handleChange = useCallback((key: string) => {
@@ -28,7 +26,7 @@ const PageForm = memo((props: {
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 16 }}
       form={form}
-      initialValues={{ title: page?.title || "", categoryUuid: categoryUuid || "" }}
+      initialValues={{ title: page?.title || "", categoryId: page.category?.id || "" }}
       autoComplete="off"
     >
       <Row gutter={12}>
@@ -51,7 +49,7 @@ const PageForm = memo((props: {
               {
                 categories.map((category) => {
                   return (
-                    <Option key={category.uuid} value={category.uuid}>
+                    <Option key={category.id} value={category.id}>
                       {category.title}
                     </Option>
                   )

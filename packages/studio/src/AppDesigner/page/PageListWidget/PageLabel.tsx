@@ -1,16 +1,16 @@
 import TreeNodeLabel from "../../../common/TreeNodeLabel"
 import React, { useCallback, useState } from "react"
-import { IPage } from "../../../model"
+import { IPage, IPageCategory } from "../../../model"
 import PageActions from "./PageActions"
 import EditPageDialog from "./EditPageDialog"
 
 const PageLabel = (
   props: {
     page: IPage,
-    categoryUuid?: string,
+    categories?: IPageCategory[]
   }
 ) => {
-  const { page, categoryUuid } = props;
+  const { page, categories } = props;
   const [visible, setVisible] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const handleVisableChange = useCallback((visible) => {
@@ -38,7 +38,7 @@ const PageLabel = (
       <div
         onClick={e => e.stopPropagation()}
       >
-        <EditPageDialog page={page} categoryUuid={categoryUuid} isModalVisible={modalOpen} onClose={handleClose} />
+        <EditPageDialog page={page} categories={categories} isModalVisible={modalOpen} onClose={handleClose} />
       </div>
     </TreeNodeLabel>
   )
