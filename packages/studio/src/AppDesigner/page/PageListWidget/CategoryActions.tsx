@@ -1,10 +1,10 @@
 import { MoreOutlined, FileAddOutlined, EditOutlined, DeleteOutlined, LoadingOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
-import { useDeleteCategory } from "./hooks/useDeleteCategory";
+import { useDeleteCategory } from "../hooks/useDeleteCategory";
 import { useShowError } from "../../../hooks/useShowError";
 import { IPageList } from "../../../model";
-import { useInit } from "./hooks/useInit";
+import { useInitPageList } from "../hooks/useInitPageList";
 import { useTranslation } from "react-i18next";
 
 const CategoryActions = memo((
@@ -16,7 +16,7 @@ const CategoryActions = memo((
   }
 ) => {
   const { uuid, onVisibleChange, onEdit, onAddPage } = props;
-  const init = useInit();
+  const init = useInitPageList();
   const { t } = useTranslation();
   
   const [remove, { loading, error }] = useDeleteCategory({

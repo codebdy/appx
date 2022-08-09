@@ -3,7 +3,7 @@ import React, { useCallback } from "react";
 import { memo } from "react";
 import PageForm from "./PageForm";
 import { IPage } from "../../../model";
-import { useUpsertPage } from "./hooks/useUpsertPage";
+import { useUpsertPage } from "../hooks/useUpsertPage";
 import { useShowError } from "../../../hooks/useShowError";
 import { useTranslation } from "react-i18next";
 

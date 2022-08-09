@@ -3,17 +3,17 @@ import SvgIcon from "../../../common/SvgIcon";
 import React, { useCallback, useState } from "react";
 import { memo } from "react";
 import { useForm } from "antd/lib/form/Form";
-import { useCreateCategory } from "./hooks/useCreateCategory";
+import { useCreateCategory } from "../hooks/useCreateCategory";
 import { useShowError } from "../../../hooks/useShowError";
 import { IPageList } from "../../../model";
-import { useInit } from "./hooks/useInit";
+import { useInitPageList } from "../hooks/useInitPageList";
 import CategoryForm from "./CategoryForm";
 import { useTranslation } from "react-i18next";
 
 const CreateCategoryDialog = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [form] = useForm()
-  const init = useInit();
+  const init = useInitPageList();
   const { t } = useTranslation();
   const [create, { loading, error }] = useCreateCategory({
     onCompleted:(data:IPageList)=>{

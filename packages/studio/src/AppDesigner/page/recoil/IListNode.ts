@@ -1,4 +1,4 @@
-import { ID } from "../../../../shared";
+import { ID } from "../../../shared";
 
 export enum ListNodeType {
   Category = "Category",

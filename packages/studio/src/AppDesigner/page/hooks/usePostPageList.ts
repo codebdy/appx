@@ -1,13 +1,13 @@
 import { IPageListInput } from "packages/studio/src/model/input";
-import { IPostOptions, usePostOne } from "../../../../enthooks/hooks/usePostOne";
-import { IPageList } from "../../../../model";
-import { useInit } from "./useInit";
+import { IPostOptions, usePostOne } from "../../../enthooks/hooks/usePostOne";
+import { IPageList } from "../../../model";
+import { useInitPageList } from "./useInitPageList";
 
 export function usePostPageList(options?: IPostOptions<any>) :[
   (pageList: IPageListInput) => void,
   { loading?: boolean; error?: Error }
 ] {
-  const init = useInit();
+  const init = useInitPageList();
   
   const [post, { error, loading }] = usePostOne<IPageListInput, IPageList>("PageList",
     {

@@ -2,11 +2,11 @@ import { MoreOutlined, EditOutlined, DeleteOutlined, LoadingOutlined } from "@an
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
 import { ID } from "../../../shared";
-import { useDeletePage } from "./hooks/useDeletePage";
+import { useDeletePage } from "../hooks/useDeletePage";
 import { IPage } from "../../../model";
 import { useShowError } from "../../../hooks/useShowError";
 import { useSetRecoilState } from "recoil";
-import { pagesState } from "./recoil/atoms";
+import { pagesState } from "../recoil/atoms";
 import { useDesingerKey } from "../../context";
 import { useTranslation } from "react-i18next";
 
@@ -63,7 +63,7 @@ const PageActions = memo((
         },
       ]}
     />
-  ), [handleDelete, handleEdit]);
+  ), [handleDelete, handleEdit, t]);
 
   return (
     <Dropdown

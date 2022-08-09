@@ -1,12 +1,19 @@
+import { ID } from "../../../shared";
 import { useRecoilValue } from "recoil";
-import { IDeleteOptions, useDeleteById } from "../../../../enthooks/hooks/useDeleteById";
-import { IPage } from "../../../../model";
-import { useDesignerParams, useDesingerKey } from "../../../context";
+import { IDeleteOptions, useDeleteById } from "../../../enthooks/hooks/useDeleteById";
+import { IPage } from "../../../model";
+import { useDesignerParams, useDesingerKey } from "../../context";
 import { nodesState, pageListState } from "../recoil/atoms";
 import { IListNode } from "../recoil/IListNode";
 import { usePostPageList } from "./usePostPageList";
 
-export function useDeletePage(options?: IDeleteOptions<IPage>) {
+export function useDeletePage(options?: IDeleteOptions<IPage>): [
+  (id: ID) => void,
+  {
+    error?: Error,
+    loading?: boolean,
+  }
+] {
   const key = useDesingerKey();
   const params = useDesignerParams();
   const nodes = useRecoilValue(nodesState(key))

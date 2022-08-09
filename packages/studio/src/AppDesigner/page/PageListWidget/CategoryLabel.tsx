@@ -1,9 +1,9 @@
 import TreeNodeLabel from "../../../common/TreeNodeLabel"
 import React, { useCallback, useState } from "react"
 import CategoryActions from "./CategoryActions"
-import { IListNode } from "./recoil/IListNode"
 import EditCategoryDialog from "./EditCategoryDialog"
 import CreatePageModal from "./CreatePageModal"
+import { IListNode } from "../recoil/IListNode"
 
 const CategoryLabel = (
   props: {

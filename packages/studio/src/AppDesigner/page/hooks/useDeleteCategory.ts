@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
-import { IPostOptions } from "../../../../enthooks/hooks/usePostOne";
-import { useDesignerParams, useDesingerKey } from "../../../context";
+import { IPostOptions } from "../../../enthooks/hooks/usePostOne";
+import { useDesignerParams, useDesingerKey } from "../../context";
 import { nodesState, pageListState } from "../recoil/atoms";
 import { usePostPageList } from "./usePostPageList";
 

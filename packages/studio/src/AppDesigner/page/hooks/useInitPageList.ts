@@ -2,11 +2,11 @@ import { IPageList } from "packages/studio/src/model";
 import { ID } from "packages/studio/src/shared";
 import { useCallback } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { useDesingerKey } from "../../../context";
+import { useDesingerKey } from "../../context";
 import { nodesState, pagesState, pageListState } from "../recoil/atoms";
 import { IListNode, ListNodeType } from "../recoil/IListNode";
 
-export function useInit() {
+export function useInitPageList() {
   const key = useDesingerKey();
   const setPageList = useSetRecoilState(pageListState(key));
   const pages = useRecoilValue(pagesState(key));

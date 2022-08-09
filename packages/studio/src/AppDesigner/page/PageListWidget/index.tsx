@@ -1,49 +1,34 @@
 import { Spin, Tree } from 'antd';
-import React, { memo, useCallback, useEffect } from 'react';
+import React, { memo, useCallback } from 'react';
 import "./index.less"
 import { DataNode, TreeProps } from 'antd/lib/tree';
 import CreateCategoryDialog from './CreateCategoryDialog';
 import CreatePageDialog from './CreatePageDialog';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { nodesState, pageListState, pagesState } from './recoil/atoms';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { nodesState, pageListState } from '../recoil/atoms';
 import { useDesignerParams, useDesingerKey } from '../../context';
-import { IListNode, ListNodeType } from './recoil/IListNode';
-import { useGetPage } from './hooks/useGetPage';
-import { usePageList } from './hooks/usePageList';
-import { useInit } from './hooks/useInit';
+import { IListNode, ListNodeType } from '../recoil/IListNode';
+import { useGetPage } from '../hooks/useGetPage';
 import { useShowError } from '../../../hooks/useShowError';
 import CategoryLabel from './CategoryLabel';
-import { usePages } from './hooks/usePages';
 import PageLabel from './PageLabel';
 import { selectedPageIdState } from '../../recoil/atom';
-import { useGetPageCategory } from './hooks/useGetPageCategory';
-import { usePostPageList } from './hooks/usePostPageList';
+import { useGetPageCategory } from '../hooks/useGetPageCategory';
+import { usePostPageList } from '../hooks/usePostPageList';
 
 const { DirectoryTree } = Tree;
 
 const PageListWidget = memo(() => {
   const key = useDesingerKey();
-  const setPages = useSetRecoilState(pagesState(key));
+
   const params = useDesignerParams();
   const nodes = useRecoilValue(nodesState(key))
   const pageListGlabal = useRecoilValue(pageListState(key));
   const getPage = useGetPage(key);
   const getPageCategory = useGetPageCategory();
-  const { pageList, loading, error } = usePageList()
-  const { pages, loading: pagesLoading, error: pagesError } = usePages();
   const [selectedPageId, setSelectedPageId] = useRecoilState(selectedPageIdState(key));
   const [post, { error: postError, loading: posting }] = usePostPageList()
-
-  const init = useInit()
-  useEffect(() => {
-    setPages(pages || []);
-  }, [pages, setPages])
-
-  useShowError(error || pagesError || postError);
-
-  useEffect(() => {
-    init(pageList);
-  }, [init, pageList])
+  useShowError(postError);
 
   const getTreeData = useCallback(() => {
     const dataNodes: DataNode[] = []
@@ -142,7 +127,7 @@ const PageListWidget = memo(() => {
 
 
   return (
-    <Spin spinning={loading || pagesLoading || posting}>
+    <Spin spinning={posting}>
       <div className='page-list-shell'>
         <div className="page-list-action">
           <CreateCategoryDialog />

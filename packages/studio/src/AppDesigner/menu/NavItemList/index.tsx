@@ -1,4 +1,3 @@
-import { alpha, List } from "@mui/material";
 import React, { Fragment } from "react";
 import {
   DroppableProvided,
@@ -77,7 +76,7 @@ export const NavItemList = (props: {
   node: IMenuNode;
   canDrop: boolean;
   isSubList?: boolean;
-  onParentDropable: (drapable: boolean) => void;
+  onParentDropable?: (drapable: boolean) => void;
 }) => {
   const { node, canDrop, isSubList, onParentDropable } = props;
 

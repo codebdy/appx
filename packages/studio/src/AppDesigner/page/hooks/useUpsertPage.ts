@@ -1,8 +1,8 @@
 import { useCallback, useRef } from "react";
-import { IPostOptions, usePostOne } from "../../../../enthooks/hooks/usePostOne";
-import { IPageInput, IPageListInput } from "../../../../model/input";
-import { IPage, IPageList } from "../../../../model";
-import { useDesignerParams, useDesingerKey } from "../../../context";
+import { IPostOptions, usePostOne } from "../../../enthooks/hooks/usePostOne";
+import { IPageInput, IPageListInput } from "../../../model/input";
+import { IPage, IPageList } from "../../../model";
+import { useDesignerParams, useDesingerKey } from "../../context";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { nodesState, pageListState, pagesState } from "../recoil/atoms";
 import { ListNodeType } from "../recoil/IListNode";

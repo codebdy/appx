@@ -4,9 +4,9 @@ import { memo } from "react";
 import { useShowError } from "../../../hooks/useShowError";
 import { IPageList } from "../../../model";
 import CategoryForm from "./CategoryForm";
-import { IListNode } from "./recoil/IListNode";
-import { useUpdateCategory } from "./hooks/useUpdateCategory";
+import { useUpdateCategory } from "../hooks/useUpdateCategory";
 import { useTranslation } from "react-i18next";
+import { IListNode } from "../recoil/IListNode";
 
 const EditCategoryDialog = memo((
   props: {

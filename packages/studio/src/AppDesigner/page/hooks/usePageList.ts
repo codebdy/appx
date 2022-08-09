@@ -1,7 +1,7 @@
 import { gql } from "awesome-graphql-client";
-import { useQueryOne } from "../../../../enthooks/hooks/useQueryOne";
-import { IPageList } from "../../../../model";
-import { useDesignerParams } from "../../../context";
+import { useQueryOne } from "../../../enthooks/hooks/useQueryOne";
+import { IPageList } from "../../../model";
+import { useDesignerParams } from "../../context";
 
 const listGql = gql`
 query queryPageList($appUuid:String!, $device:String!){

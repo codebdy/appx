@@ -1,4 +1,4 @@
-import { ID } from "../../../../shared";
+import { ID } from "../../../shared";
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
 import {pagesState} from "../recoil/atoms";
