@@ -69,6 +69,9 @@ export const TypeInput = memo(
               name="typeUuid"
             >
               <Select>
+                <Option key="" value="">
+                  <em>None</em>
+                </Option>
                 {enums.map((enumEntity) => {
                   return (
                     <Option key={enumEntity.uuid} value={enumEntity.uuid}>{enumEntity.name}</Option>
@@ -84,6 +87,9 @@ export const TypeInput = memo(
               name="typeUuid"
             >
               <Select>
+                <Option key="" value="">
+                  <em>None</em>
+                </Option>
                 {valueObjects.map((interfaceEntity) => {
                   return (
                     <Option key={interfaceEntity.uuid} value={interfaceEntity.uuid}>{interfaceEntity.name}</Option>
@@ -98,10 +104,10 @@ export const TypeInput = memo(
               label={t("model.EntityClass")}
               name="typeUuid"
             >
-              <Select
-                value={attribute.typeUuid || ""}
-
-              >
+              <Select>
+                <Option key="" value="">
+                  <em>None</em>
+                </Option>
                 {entities.map((entity) => {
                   return (
                     <Option key={entity.uuid} value={entity.uuid}>{entity.name}</Option>

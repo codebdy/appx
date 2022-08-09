@@ -197,25 +197,5 @@ export function useNodesShow(graph: Graph | undefined, appUuid: ID) {
         graph?.removeNode(node.id);
       }
     });
-  }, [
-    getDiagramNode,
-    getClass,
-    getNode,
-    graph,
-    handleAttributeCreate,
-    handleAttributeDelete,
-    handleAttributeSelect,
-    handleHideClass,
-    nodes,
-    pressedLineType,
-    selectedDiagram,
-    selectedElement,
-    setSelectedElement,
-    drawingLine,
-    handelDeleteClass,
-    handleMethodCreate,
-    handleMethodSelect,
-    handleMothodDelete,
-    selectedDiagramPackageUuid,
-  ]);
+  }, [getDiagramNode, getClass, getNode, graph, handleAttributeCreate, handleAttributeDelete, handleAttributeSelect, handleHideClass, nodes, pressedLineType, selectedDiagram, selectedElement, setSelectedElement, drawingLine, handelDeleteClass, handleMethodCreate, handleMethodSelect, handleMothodDelete, selectedDiagramPackageUuid, getPackage]);
 }
