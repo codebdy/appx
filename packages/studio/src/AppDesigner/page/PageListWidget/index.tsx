@@ -18,8 +18,8 @@ const { DirectoryTree } = Tree;
 
 const PageListWidget = memo((
   props: {
-    categories?: IPageCategory[],
-    pages?: IPage[]
+    categories: IPageCategory[],
+    pages: IPage[]
   }
 ) => {
   const { categories, pages } = props;
@@ -69,7 +69,7 @@ const PageListWidget = memo((
     <div className='page-list-shell'>
       <div className="page-list-action">
         <CreateCategoryDialog />
-        <CreatePageDialog />
+        <CreatePageDialog categories={categories} />
       </div>
       <DirectoryTree
         className='page-list-tree'

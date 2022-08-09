@@ -11,7 +11,7 @@ import { ID } from "../../../shared";
 const CreatePageModal = memo((
   props: {
     categoryId?: ID,
-    categories?: IPageCategory[],
+    categories: IPageCategory[],
     isModalVisible: boolean,
     onClose: () => void,
   }

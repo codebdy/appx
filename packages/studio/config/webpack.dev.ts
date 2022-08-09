@@ -27,7 +27,7 @@ for (const key in baseConfig.entry) {
   }
 }
 
-export default {
+const devConfig = {
   ...baseConfig,
   plugins: [
     new MiniCssExtractPlugin({
@@ -51,3 +51,5 @@ export default {
     historyApiFallback: true,
   },
 }
+
+export default devConfig

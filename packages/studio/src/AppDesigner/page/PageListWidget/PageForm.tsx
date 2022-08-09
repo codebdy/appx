@@ -12,7 +12,7 @@ const { Option } = Select;
 const PageForm = memo((props: {
   categoryId?: ID,
   page?: IPage,
-  categories?: IPageCategory[],
+  categories: IPageCategory[],
   form: FormInstance<IPageInput>
 }) => {
   const { categoryId, page, categories, form } = props;
@@ -28,7 +28,7 @@ const PageForm = memo((props: {
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 16 }}
       form={form}
-      initialValues={{ title: page?.title || "", categoryId: page.category?.id || categoryId || "" }}
+      initialValues={{ title: page?.title || "", categoryId: page?.category?.id || categoryId || "" }}
       autoComplete="off"
     >
       <Row gutter={12}>

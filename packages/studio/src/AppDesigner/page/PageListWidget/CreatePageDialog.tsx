@@ -4,8 +4,14 @@ import React, { useCallback, useState } from "react";
 import { memo } from "react";
 import CreatePageModal from "./CreatePageModal";
 import { useTranslation } from "react-i18next";
+import { IPageCategory } from "packages/studio/src/model";
 
-const CreatePageDialog = memo(() => {
+const CreatePageDialog = memo((
+  props: {
+    categories: IPageCategory[]
+  }
+) => {
+  const { categories } = props;
   const [isModalVisible, setIsModalVisible] = useState(false);
   const { t } = useTranslation();
   const showModal = useCallback(() => {
@@ -31,7 +37,7 @@ const CreatePageDialog = memo(() => {
       >
         {t("Pages.NewPage")}
       </Button>
-      <CreatePageModal isModalVisible={isModalVisible} onClose={handleClose} />
+      <CreatePageModal categories={categories} isModalVisible={isModalVisible} onClose={handleClose} />
     </>
   )
 })
