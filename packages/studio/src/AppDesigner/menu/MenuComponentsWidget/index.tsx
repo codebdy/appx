@@ -1,5 +1,6 @@
-import { Collapse, Divider } from "antd"
+import { Collapse } from "antd"
 import React, { memo } from "react"
+import PagesTree from "./PagesTree";
 const { Panel } = Collapse;
 
 const MenuComponentsWidget = memo(() => {
@@ -16,7 +17,7 @@ const MenuComponentsWidget = memo(() => {
           <p>分隔符</p>
         </Panel>
         <Panel header="页面" key="2">
-          <p>底色为</p>
+          <PagesTree />
         </Panel>
       </Collapse>
     </div>
