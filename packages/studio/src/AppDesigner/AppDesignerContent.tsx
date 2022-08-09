@@ -21,6 +21,7 @@ import { useTranslation } from 'react-i18next'
 import PageWorkSpace from './page/PageWorkSpace'
 import MenuComponentsWidget from './menu/MenuComponentsWidget'
 import MenuWorkSpace from './menu/MenuWorkSpace'
+import { MenuActionsWidget } from './menu/MenuActionsWidget'
 
 export enum DesignerRoutes {
   Pages = "pages",
@@ -62,7 +63,11 @@ const AppDesignerContent = memo(() => {
     <Designer engine={engine}>
       <StudioPanel logo={<NavigationWidget app={app} />}
         actions={
-          <ActionsWidget />
+          activeKey === DesignerRoutes.Menu
+            ?
+            <MenuActionsWidget />
+            :
+            <ActionsWidget />
         }
       >
         <CompositePanel showNavTitle activeKey={activeKey} onChange={hanclePannelChange}>
@@ -120,7 +125,7 @@ const AppDesignerContent = memo(() => {
           <MenuWorkSpace />
         }
       </StudioPanel>
-    </Designer>
+    </Designer >
   )
 })
 
