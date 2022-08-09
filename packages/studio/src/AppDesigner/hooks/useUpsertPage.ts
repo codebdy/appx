@@ -3,10 +3,9 @@ import { IPostOptions, usePostOne } from "../../enthooks/hooks/usePostOne";
 import { IPageInput } from "../../model/input";
 import { IPage } from "../../model";
 import { useDesignerParams } from "../context";
-import { ID } from "../../shared";
 
 export function useUpsertPage(options?: IPostOptions<any>): [
-  (page: IPageInput, categoryUuid?: string) => void,
+  (page: IPageInput) => void,
   { loading?: boolean; error?: Error }
 ] {
   const params = useDesignerParams();
@@ -18,7 +17,7 @@ export function useUpsertPage(options?: IPostOptions<any>): [
     }
   )
 
-  const upsert = useCallback((page: IPageInput, categoryId?: ID) => {
+  const upsert = useCallback((page: IPageInput) => {
     post({
       ...page,
       device: params.device,

@@ -1,5 +1,5 @@
 import { FormInstance, Col, Form, Input, Row, Tabs, Select } from "antd";
-import React, { useCallback } from "react";
+import React from "react";
 import { memo } from "react";
 import FormTemplates from "./FormTemplates";
 import { IPageInput } from "packages/studio/src/model/input";

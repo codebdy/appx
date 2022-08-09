@@ -29,7 +29,7 @@ const CreatePageModal = memo((
 
   const handleConfirm = useCallback(() => {
     form.validateFields().then((values: any) => {
-      upsert({ title: values.title }, values.categoryUuid);
+      upsert({ title: values.title, category: { sync: { id: values.categoryId } } });
     });
   }, [upsert, form]);
 
