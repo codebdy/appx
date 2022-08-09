@@ -17,15 +17,21 @@ import { SettingsForm } from '../../SettingsForm'
 import { Field } from '../../components/Field'
 import { useTranslation } from "react-i18next";
 import { Spin } from "antd";
+import { ID } from "../../shared";
+import { usePage } from "../../hooks/usePage";
+import { useShowError } from "../../hooks/useShowError";
 
 const PageWorkSpace = (props: {
-  pageId: string
+  pageId: ID
 }) => {
   const { pageId } = props;
-  // const {page, loading, error} = usePage(pageId);
+  const {page, loading, error} = usePage(pageId);
   const { t } = useTranslation();
+
+  useShowError(error);
+
   return (
-    true ?
+    loading ?
       <Spin>
         <div style={{ width: "calc(100vw - 280px)", height: "calc(100vh - 64px)" }}>
         </div>
