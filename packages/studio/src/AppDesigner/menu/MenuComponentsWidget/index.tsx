@@ -1,4 +1,5 @@
 import { Collapse } from "antd"
+import { IPage, IPageCategory } from "../../../model";
 import React, { memo, useMemo } from "react"
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import { useTranslation } from "react-i18next";
@@ -7,7 +8,12 @@ import DraggableLabel from "./DraggableLabel";
 import PagesTree from "./PagesTree";
 const { Panel } = Collapse;
 
-const MenuComponentsWidget = memo(() => {
+const MenuComponentsWidget = memo((
+  props: {
+    categories?: IPageCategory[],
+    pages?: IPage[]
+  }
+) => {
   const { t } = useTranslation();
   const items = useMemo(() => [
     {

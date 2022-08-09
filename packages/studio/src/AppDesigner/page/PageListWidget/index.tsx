@@ -6,14 +6,19 @@ import CreateCategoryDialog from './CreateCategoryDialog';
 import CreatePageDialog from './CreatePageDialog';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useDesingerKey } from '../../context';
-import { useGetPage } from '../hooks/useGetPage';
 import CategoryLabel from './CategoryLabel';
 import PageLabel from './PageLabel';
 import { selectedPageIdState } from '../../recoil/atom';
+import { IPage, IPageCategory } from '../../../model';
 
 const { DirectoryTree } = Tree;
 
-const PageListWidget = memo(() => {
+const PageListWidget = memo((
+  props: {
+    categories?: IPageCategory[],
+    pages?: IPage[]
+  }
+) => {
   const key = useDesingerKey();
 
   // const params = useDesignerParams();
