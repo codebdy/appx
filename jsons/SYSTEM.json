@@ -176,6 +176,13 @@
             "type": "ID",
             "typeLabel": "ID",
             "uuid": "6970a84b-a192-4431-9bd0-2e14e6b7e5f0"
+          },
+          {
+            "name": "orderNum",
+            "nullable": true,
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "b063950e-f5e1-4c9c-815b-f3e283cb5ed4"
           }
         ],
         "innerId": 1002,
@@ -223,11 +230,18 @@
             "type": "ID",
             "typeLabel": "ID",
             "uuid": "d41a058a-cef4-4444-bbb2-67d03bddf680"
+          },
+          {
+            "name": "orderNum",
+            "nullable": true,
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "cd3ef55a-ceaa-423c-9768-d1c6d3cc5df2"
           }
         ],
         "innerId": 1004,
         "methods": [],
-        "name": "PageList",
+        "name": "PageCategory",
         "packageUuid": "PACKAGE_APPX_UUID",
         "root": true,
         "stereoType": "Entity",
@@ -322,15 +336,6 @@
       {
         "innerId": 0,
         "relationType": "inherit",
-        "sourceId": "e90f69e9-1be0-45e2-95a6-269da4d2fada",
-        "sourceMutiplicity": "0..1",
-        "targetId": "6be09899-afed-4115-b214-4511adc0e813",
-        "targetMultiplicity": "0..1",
-        "uuid": "88369e47-ace7-4486-9f76-de36f2810447"
-      },
-      {
-        "innerId": 0,
-        "relationType": "inherit",
         "sourceId": "2082d665-e503-402a-a089-678115c5ed3e",
         "sourceMutiplicity": "0..1",
         "targetId": "6be09899-afed-4115-b214-4511adc0e813",
@@ -390,7 +395,7 @@
         "innerId": 1003,
         "relationType": "twoWayCombination",
         "roleOfSource": "app",
-        "roleOfTarget": "pageList",
+        "roleOfTarget": "pageCategories",
         "sourceId": "2082d665-e503-402a-a089-678115c5ed3e",
         "sourceMutiplicity": "0..1",
         "targetId": "e90f69e9-1be0-45e2-95a6-269da4d2fada",
@@ -412,9 +417,20 @@
         "relationType": "inherit",
         "sourceId": "e90f69e9-1be0-45e2-95a6-269da4d2fada",
         "sourceMutiplicity": "0..1",
-        "targetId": "087b2915-5582-496d-bafb-ae2f5623a70d",
+        "targetId": "6be09899-afed-4115-b214-4511adc0e813",
         "targetMultiplicity": "0..1",
-        "uuid": "dab87ed4-a67c-44c9-aa94-876393eb4ca6"
+        "uuid": "8071bddb-8af0-486f-9f3f-3b67e49a4540"
+      },
+      {
+        "innerId": 1004,
+        "relationType": "twoWayAssociation",
+        "roleOfSource": "category",
+        "roleOfTarget": "pages",
+        "sourceId": "e90f69e9-1be0-45e2-95a6-269da4d2fada",
+        "sourceMutiplicity": "0..1",
+        "targetId": "f9288fd0-2747-4fa0-8b3d-4c8bdaeb5dd8",
+        "targetMultiplicity": "0..*",
+        "uuid": "3547c38a-2780-4024-98e9-81b4e47d85e6"
       }
     ],
     "diagrams": [
@@ -456,16 +472,16 @@
         "height": 120,
         "id": "e90f69e9-1be0-45e2-95a6-269da4d2fada",
         "width": 180,
-        "x": -210,
+        "x": -220,
         "y": 0
       },
       {
-        "id": "660a55fe-c2f1-4b17-921e-38aa14737a1c",
-        "x": 400,
-        "y": 30,
-        "width": 180,
+        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
         "height": 120,
-        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc"
+        "id": "660a55fe-c2f1-4b17-921e-38aa14737a1c",
+        "width": 180,
+        "x": 400,
+        "y": 30
       },
       {
         "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
@@ -493,24 +509,6 @@
       }
     ],
     "x6Edges": [
-      {
-        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
-        "id": "88369e47-ace7-4486-9f76-de36f2810447",
-        "sourceAnchor": {
-          "args": {
-            "dx": "44%",
-            "dy": "50%",
-            "rotate": true
-          },
-          "name": "topLeft"
-        },
-        "vertices": [
-          {
-            "x": -130.8,
-            "y": -50
-          }
-        ]
-      },
       {
         "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
         "id": "77e5f307-a1c1-4022-a1bf-9f6004889e8a",
@@ -589,7 +587,7 @@
         },
         "targetAnchor": {
           "args": {
-            "dx": "78%",
+            "dx": "50%",
             "dy": "50%",
             "rotate": true
           },
@@ -605,7 +603,7 @@
             "y": 300
           },
           {
-            "x": 280,
+            "x": 230,
             "y": 300
           }
         ]
@@ -660,8 +658,8 @@
         },
         "roleOnTargetPosition": {
           "angle": 0,
-          "distance": 0.9596412625335536,
-          "offset": 80
+          "distance": 0.9816513793688436,
+          "offset": 50
         },
         "sourceAnchor": {
           "args": {
@@ -694,7 +692,7 @@
             "y": 240
           },
           {
-            "x": -120,
+            "x": -130,
             "y": 240
           }
         ]
@@ -722,17 +720,13 @@
       },
       {
         "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
-        "id": "dab87ed4-a67c-44c9-aa94-876393eb4ca6",
-        "vertices": [
-          {
-            "x": 80,
-            "y": 60
-          },
-          {
-            "x": 80,
-            "y": -150
-          }
-        ]
+        "id": "8071bddb-8af0-486f-9f3f-3b67e49a4540",
+        "vertices": []
+      },
+      {
+        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
+        "id": "3547c38a-2780-4024-98e9-81b4e47d85e6",
+        "vertices": []
       }
     ]
   }

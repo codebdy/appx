@@ -1,34 +1,31 @@
-import { Spin, Tree } from 'antd';
+import { Tree } from 'antd';
 import React, { memo, useCallback } from 'react';
 import "./index.less"
-import { DataNode, TreeProps } from 'antd/lib/tree';
+import { DataNode } from 'antd/lib/tree';
 import CreateCategoryDialog from './CreateCategoryDialog';
 import CreatePageDialog from './CreatePageDialog';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { pageListNodesState, pageListState } from '../recoil/atoms';
-import { useDesignerParams, useDesingerKey } from '../../context';
-import { IListNode, ListNodeType } from '../recoil/IListNode';
+import { pageListNodesState } from '../recoil/atoms';
+import { useDesingerKey } from '../../context';
+import { ListNodeType } from '../recoil/IListNode';
 import { useGetPage } from '../hooks/useGetPage';
-import { useShowError } from '../../../hooks/useShowError';
 import CategoryLabel from './CategoryLabel';
 import PageLabel from './PageLabel';
 import { selectedPageIdState } from '../../recoil/atom';
-import { useGetPageCategory } from '../hooks/useGetPageCategory';
-import { usePostPageList } from '../hooks/usePostPageList';
 
 const { DirectoryTree } = Tree;
 
 const PageListWidget = memo(() => {
   const key = useDesingerKey();
 
-  const params = useDesignerParams();
+  // const params = useDesignerParams();
   const nodes = useRecoilValue(pageListNodesState(key))
-  const pageListGlabal = useRecoilValue(pageListState(key));
+  // const pageListGlabal = useRecoilValue(pageListState(key));
   const getPage = useGetPage(key);
-  const getPageCategory = useGetPageCategory();
+  // const getPageCategory = useGetPageCategory();
   const [selectedPageId, setSelectedPageId] = useRecoilState(selectedPageIdState(key));
-  const [post, { error: postError, loading: posting }] = usePostPageList()
-  useShowError(postError);
+  // const [post, { error: postError, loading: posting }] = usePostPageList()
+  // useShowError(postError);
 
   const getTreeData = useCallback(() => {
     const dataNodes: DataNode[] = []
@@ -65,106 +62,104 @@ const PageListWidget = memo(() => {
     }
   };
 
-  const onDrop: TreeProps['onDrop'] = useCallback(info => {
-    const dragKey = info.dragNode.key;
-    const dropKey = info.node.key;
-    const dropPos = info.node.pos.split('-');
-    const dropPosition = info.dropPosition - Number(dropPos[dropPos.length - 1]);
-    let newNodes: IListNode[] = JSON.parse(JSON.stringify(nodes || []));
+  // const onDrop: TreeProps['onDrop'] = useCallback(info => {
+  //   const dragKey = info.dragNode.key;
+  //   const dropKey = info.node.key;
+  //   const dropPos = info.node.pos.split('-');
+  //   const dropPosition = info.dropPosition - Number(dropPos[dropPos.length - 1]);
+  //   let newNodes: IListNode[] = JSON.parse(JSON.stringify(nodes || []));
 
-    const draggedNode = newNodes.find(node => node.uuid === dragKey || node.pageId === dragKey);
-    let draggedPageId = "";
+  //   const draggedNode = newNodes.find(node => node.uuid === dragKey || node.pageId === dragKey);
+  //   let draggedPageId = "";
 
-    //从根目录删除被拖拽的节点
-    if (draggedNode) {
-      newNodes = newNodes.filter(node => !(node.uuid === dragKey || node.pageId === dragKey));
-    }
+  //   //从根目录删除被拖拽的节点
+  //   if (draggedNode) {
+  //     newNodes = newNodes.filter(node => !(node.uuid === dragKey || node.pageId === dragKey));
+  //   }
 
-    for (const node of newNodes) {
-      for (const childId of node.children || []) {
-        if (childId === dragKey) {
-          draggedPageId = dragKey;
-          //从子目录删除被拖拽的节点
-          node.children = node.children.filter(id => id !== dragKey)
-          break;
-        }
-      }
-    }
-    const theNode = draggedNode ? draggedNode : {
-      pageId: draggedPageId,
-      nodeType: ListNodeType.Page,
-    };
-    const theId = draggedNode ? draggedNode.pageId : draggedPageId;
+  //   for (const node of newNodes) {
+  //     for (const childId of node.children || []) {
+  //       if (childId === dragKey) {
+  //         draggedPageId = dragKey;
+  //         //从子目录删除被拖拽的节点
+  //         node.children = node.children.filter(id => id !== dragKey)
+  //         break;
+  //       }
+  //     }
+  //   }
+  //   const theNode = draggedNode ? draggedNode : {
+  //     pageId: draggedPageId,
+  //     nodeType: ListNodeType.Page,
+  //   };
+  //   const theId = draggedNode ? draggedNode.pageId : draggedPageId;
 
-    for (let i = 0; i < newNodes.length; i++) {
-      const node = newNodes[i];
-      if (node.pageId === dropKey || node.uuid === dropKey) {
+  //   for (let i = 0; i < newNodes.length; i++) {
+  //     const node = newNodes[i];
+  //     if (node.pageId === dropKey || node.uuid === dropKey) {
 
-        if (dropPosition === -1 || dropPosition === 1) {
-          newNodes.splice(i + dropPosition, 0, theNode)
-        } else {
-          node.children = [theId, ...node.children]
-        }
-        break;
-      }
+  //       if (dropPosition === -1 || dropPosition === 1) {
+  //         newNodes.splice(i + dropPosition, 0, theNode)
+  //       } else {
+  //         node.children = [theId, ...node.children]
+  //       }
+  //       break;
+  //     }
 
-      for (let j = 0; j < node.children?.length || 0; j++) {
-        if (node.children[i] === theId) {
-          node.children.splice(i + dropPosition, 0, theId)
-        }
-      }
-    }
+  //     for (let j = 0; j < node.children?.length || 0; j++) {
+  //       if (node.children[i] === theId) {
+  //         node.children.splice(i + dropPosition, 0, theId)
+  //       }
+  //     }
+  //   }
 
-    post({
-      ...pageListGlabal,
-      device: params.device,
-      app: {
-        sync: { id: params.app.id }
-      },
-      schemaJson: { data: newNodes },
-    })
-  }, [nodes, pageListGlabal, params.app.id, params.device, post]);
+  //   post({
+  //     ...pageListGlabal,
+  //     device: params.device,
+  //     app: {
+  //       sync: { id: params.app.id }
+  //     },
+  //     schemaJson: { data: newNodes },
+  //   })
+  // }, [nodes, pageListGlabal, params.app.id, params.device, post]);
 
 
   return (
-    <Spin spinning={posting}>
-      <div className='page-list-shell'>
-        <div className="page-list-action">
-          <CreateCategoryDialog />
-          <CreatePageDialog />
-        </div>
-        <DirectoryTree
-          className='page-list-tree'
-          selectedKeys={[selectedPageId]}
-          allowDrop={(options) => {
-            if (!options.dragNode.isLeaf) {
-              if (options.dropPosition === 0) {
-                return false;
-              }
-              if (getPageCategory(options.dropNode?.key as any)) {
-                return false;
-              }
-            } else {
-              if (options.dropNode.isLeaf) {
-                if (options.dropPosition === 0) {
-                  return false;
-                }
-              }
-            }
-            return true
-          }}
-          draggable={
-            () => {
-              return true
-            }
-          }
-          //onDragEnter={onDragEnter}
-          onDrop={onDrop}
-          onSelect={onSelect}
-          treeData={getTreeData()}
-        />
+    <div className='page-list-shell'>
+      <div className="page-list-action">
+        <CreateCategoryDialog />
+        <CreatePageDialog />
       </div>
-    </Spin>
+      <DirectoryTree
+        className='page-list-tree'
+        selectedKeys={[selectedPageId]}
+        // allowDrop={(options) => {
+        //   if (!options.dragNode.isLeaf) {
+        //     if (options.dropPosition === 0) {
+        //       return false;
+        //     }
+        //     if (getPageCategory(options.dropNode?.key as any)) {
+        //       return false;
+        //     }
+        //   } else {
+        //     if (options.dropNode.isLeaf) {
+        //       if (options.dropPosition === 0) {
+        //         return false;
+        //       }
+        //     }
+        //   }
+        //   return true
+        // }}
+        // draggable={
+        //   () => {
+        //     return true
+        //   }
+        // }
+        //onDragEnter={onDragEnter}
+        // onDrop={onDrop}
+        onSelect={onSelect}
+        treeData={getTreeData()}
+      />
+    </div>
   );
 });
 

@@ -1,14 +1,5 @@
-import { ID } from "../../../shared";
-
-export enum ListNodeType {
-  Category = "Category",
-  Page = "Page"
-}
-
-export interface IListNode {
+export interface ICategory {
   uuid?: string,
-  nodeType: ListNodeType,
-  pageId?: ID,
   title?: string,
   children?: string[],
 }

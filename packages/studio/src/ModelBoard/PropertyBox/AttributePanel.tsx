@@ -5,10 +5,10 @@ import { ClassMeta, StereoType } from "../meta/ClassMeta";
 import { useChangeAttribute } from "../hooks/useChangeAttribute";
 import { CONST_ID } from "../meta/Meta";
 import { useGetTypeLabel } from "../hooks/useGetTypeLabel";
-import { Form, Input, Select, Switch } from "antd";
+import { Form, Input, Switch } from "antd";
 import { useSelectedAppUuid } from "../context";
 import { useTranslation } from "react-i18next";
-const { Option } = Select;
+import { TypeInput } from "./TypeInput";
 
 export const AttributePanel = (props: {
   attribute: AttributeMeta;
@@ -19,7 +19,7 @@ export const AttributePanel = (props: {
   const changeAttribute = useChangeAttribute(serviceId);
   const getTypeLabel = useGetTypeLabel(serviceId);
   const { t } = useTranslation();
-  
+
   const isId = useMemo(() => attribute.name === CONST_ID, [attribute.name]);
 
   const handleChange = useCallback((form) => {
@@ -54,41 +54,7 @@ export const AttributePanel = (props: {
 
         {cls.stereoType !== StereoType.Enum && (
           <>
-            <Form.Item
-              label={t("model.DataType")}
-              name="type"
-            >
-              <Select disabled={isId}>
-                <Option value={Type.ID}>ID</Option>
-                <Option value={Type.Int}>Int</Option>
-                <Option value={Type.Float}>Float</Option>
-                <Option value={Type.Boolean}>Boolean</Option>
-                <Option value={Type.String}>String</Option>
-                <Option value={Type.Date}>Date</Option>
-                <Option value={Type.Enum}>{t("model.Enum")}</Option>
-                <Option value={Type.JSON}>JSON</Option>
-                <Option value={Type.ValueObject}>{t("model.ValueClass")}</Option>
-                <Option value={Type.Entity}>{t("model.Entity")}</Option>
-                <Option value={Type.File}>{t("File")}</Option>
-                <Option value={Type.IDArray}>ID {t("model.Array")}</Option>
-                <Option value={Type.IntArray}>Int {t("model.Array")}</Option>
-                <Option value={Type.FloatArray}>Float {t("model.Array")}</Option>
-                <Option value={Type.StringArray}>String {t("model.Array")}</Option>
-                <Option value={Type.DateArray}>Date {t("model.Array")}</Option>
-                <Option value={Type.EnumArray}>
-                  {t("model.Enum")}
-                  {t("model.Array")}
-                </Option>
-                <Option value={Type.ValueObjectArray}>
-                  {t("model.ValueClass")}
-                  {t("model.Array")}
-                </Option>
-                <Option value={Type.EntityArray}>
-                  {t("model.Entity")}
-                  {t("model.Array")}
-                </Option>
-              </Select>
-            </Form.Item>
+            <TypeInput attribute={attribute} />
             {
               !isId &&
               <>
