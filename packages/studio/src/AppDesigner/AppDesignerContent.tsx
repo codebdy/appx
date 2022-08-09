@@ -8,29 +8,18 @@ import {
 import {
   NavigationWidget,
   ActionsWidget,
-  PreviewWidget,
-  SchemaEditorWidget,
-  ViewToolsWidget,
-  DesignerToolsWidget,
   OutlineTreeWidget,
-  ComponentTreeWidget,
 } from './widgets'
 import { saveSchema } from './service'
-import {
-  Form,
-} from '@designable/formily-antd'
-import { ViewPanel, CompositePanel, WorkspacePanel, ToolbarPanel, ViewportPanel, SettingsPanel, StudioPanel } from './panels'
+import { CompositePanel, WorkspacePanel, ViewportPanel, StudioPanel } from './panels'
 import { MaterialWidget } from './widgets/MaterialWidget'
-import { convertMaterialsToComponents } from './widgets/MaterialWidget/model'
-import { materialStore } from './widgets/MaterialWidget/global'
 import { Designer, Workspace } from './containers'
 import PageListWidget from './widgets/PageListWidget'
 import { useDesignerParams } from './context'
 import { useSelectedPageId } from './hooks/useSelectedPageId'
 import MenuEditWidget from './widgets/MenuEditWidget'
 import { useTranslation } from 'react-i18next'
-import { SettingsForm } from '../SettingsForm'
-import { Field } from '../components/Field'
+import PageWorkSpace from './PageWorkSpace'
 
 export enum DesignerRoutes {
   Pages = "pages",
@@ -115,43 +104,13 @@ const AppDesignerContent = memo(() => {
           </CompositePanel.Item> */}
         </CompositePanel>
         {
-          (activeKey === DesignerRoutes.Pages || activeKey === DesignerRoutes.OutlinedTree || activeKey === DesignerRoutes.Components) && pageId &&
-          <>
-            <Workspace id="form">
-              <WorkspacePanel>
-                <ToolbarPanel>
-                  <DesignerToolsWidget />
-                  <ViewToolsWidget
-                    use={['DESIGNABLE', 'JSONTREE', 'PREVIEW']}
-                  />
-                </ToolbarPanel>
-                <ViewportPanel style={{ height: '100%' }}>
-                  <ViewPanel type="DESIGNABLE">
-                    {() => (
-                      <ComponentTreeWidget
-                        components={{
-                          Form,
-                          Field,
-                          ...convertMaterialsToComponents(materialStore.modules)
-                        }}
-                      />
-                    )}
-                  </ViewPanel>
-                  <ViewPanel type="JSONTREE" scrollable={false}>
-                    {(tree, onChange) => (
-                      <SchemaEditorWidget tree={tree} onChange={onChange} />
-                    )}
-                  </ViewPanel>
-                  <ViewPanel type="PREVIEW">
-                    {(tree) => <PreviewWidget tree={tree} />}
-                  </ViewPanel>
-                </ViewportPanel>
-              </WorkspacePanel>
-            </Workspace>
-            <SettingsPanel title={t("Panels.PropertySettings")}>
-              <SettingsForm uploadAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" />
-            </SettingsPanel>
-          </>
+          (
+            activeKey === DesignerRoutes.Pages ||
+            activeKey === DesignerRoutes.OutlinedTree ||
+            activeKey === DesignerRoutes.Components
+          ) &&
+          pageId &&
+          <PageWorkSpace pageId={pageId} />
         }
         {
           activeKey === DesignerRoutes.Menu &&
