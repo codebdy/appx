@@ -1,5 +1,5 @@
 import React from 'react'
-import { Breadcrumb } from 'antd'
+import { Breadcrumb, Button } from 'antd'
 import { useCurrentNode, useSelection, usePrefix, useHover } from '@designable/react'
 import { IconWidget } from '../IconWidget'
 import { NodeTitleWidget } from '../NodeTitleWidget'
@@ -32,8 +32,8 @@ export const NodePathWidget: React.FC<INodePathWidgetProps> = observer(
               {key === 0 && (
                 <IconWidget infer="Position" style={{ marginRight: 3 }} />
               )}
-              <a
-                href=""
+              <Button
+                type="text"
                 onMouseEnter={() => {
                   hover.setHover(node)
                 }}
@@ -44,7 +44,7 @@ export const NodePathWidget: React.FC<INodePathWidgetProps> = observer(
                 }}
               >
                 <NodeTitleWidget node={node} />
-              </a>
+              </Button>
             </Breadcrumb.Item>
           )
         })}
