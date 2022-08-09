@@ -13,7 +13,7 @@ const CreateCategoryDialog = memo(() => {
   const [form] = useForm()
   const { t } = useTranslation();
   const [create, { loading, error }] = useUpsertCategory({
-    onCompleted:()=>{
+    onCompleted: () => {
       form.resetFields();
       setIsModalVisible(false);
     }
@@ -32,7 +32,7 @@ const CreateCategoryDialog = memo(() => {
 
   const handleConfirm = useCallback((values: any) => {
     form.validateFields().then((values) => {
-      create(values.title)
+      create({ title: values.title })
     });
   }, [create, form]);
 
@@ -60,7 +60,7 @@ const CreateCategoryDialog = memo(() => {
         onOk={handleConfirm}
         confirmLoading={loading}
       >
-        <CategoryForm form = {form} />
+        <CategoryForm form={form} />
       </Modal>
     </>
   )

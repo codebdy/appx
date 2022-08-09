@@ -10,7 +10,7 @@ export function useUpsertCategory(options?: IPostOptions<any>): [
 ] {
   const params = useDesignerParams();
 
-  const [post, { error, loading }] = usePostOne<IPageCategoryInput, IPageCategory>("Page",
+  const [post, { error, loading }] = usePostOne<IPageCategoryInput, IPageCategory>("PageCategory",
     {
       ...options,
       fieldsGql: "id title"
