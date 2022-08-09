@@ -26,6 +26,7 @@ export function useGetTypeLabel(appUuid: ID) {
         return type;
       } else {
         const cls = getClass(typeUuid || "");
+
         if (!cls) {
           return "";
         }

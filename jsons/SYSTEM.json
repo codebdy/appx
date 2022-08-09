@@ -182,7 +182,8 @@
             "nullable": true,
             "type": "String",
             "typeLabel": "String",
-            "uuid": "b063950e-f5e1-4c9c-815b-f3e283cb5ed4"
+            "uuid": "b063950e-f5e1-4c9c-815b-f3e283cb5ed4",
+            "typeUuid": "096f252a-5e35-4e49-8dce-297b2f16374f"
           }
         ],
         "innerId": 1002,
@@ -237,6 +238,13 @@
             "type": "String",
             "typeLabel": "String",
             "uuid": "cd3ef55a-ceaa-423c-9768-d1c6d3cc5df2"
+          },
+          {
+            "name": "device",
+            "type": "Enum",
+            "typeLabel": "Device",
+            "typeUuid": "096f252a-5e35-4e49-8dce-297b2f16374f",
+            "uuid": "fcdbc399-e651-4b35-8b9b-bf3882324bf6"
           }
         ],
         "innerId": 1004,

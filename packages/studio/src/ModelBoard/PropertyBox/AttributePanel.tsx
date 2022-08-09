@@ -27,7 +27,7 @@ export const AttributePanel = (props: {
       {
         ...attribute,
         ...form,
-        typeLabel: getTypeLabel(attribute.type, attribute.uuid),
+        typeLabel: getTypeLabel(form.type || attribute.type, form.typeUuid),
       },
       cls
     )
