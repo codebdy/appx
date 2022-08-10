@@ -11,7 +11,8 @@ import { useDesingerKey } from "../../../context";
 import React from "react";
 import NavItemList from "./NavItemList";
 import { Collapse } from "antd";
-import { PRIMARY_COLOR } from "../../../../consts";
+import clx from "classnames";
+
 const { Panel } = Collapse;
 
 const CollpaseGroupInner = memo(
@@ -64,23 +65,15 @@ const CollpaseGroupInner = memo(
     return (
       <div
         ref={provided.innerRef}
-        style={{
-          outline: selected ? PRIMARY_COLOR + " solid 1px" : 0,
-          position: "relative",
-        }}
+        className={clx("menu-item", "menu-text-item", { selected: selected, float: snapshot.isDragging })}
         {...provided.draggableProps}
         {...provided.dragHandleProps}
         onClick={handleClick}
       >
-        <Collapse expandIconPosition="right">
+        <Collapse expandIconPosition="right" bordered={false} ghost>
           <Panel header={node.meta.title} key={node.id}>
             <div
-              style={{
-                display: "flex",
-                flexFlow: "column",
-                minHeight: 60,
-                borderTop: 0,
-              }}
+              className="collapse-inner"
               onMouseOver={handleMouseOver}
               onMouseLeave={handleMouseLeave}
             >
