@@ -1,10 +1,17 @@
+import { Card } from "antd";
+import { IApp } from "../../../../model";
 import React, { memo, useCallback, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { useDesingerKey } from "../../../context";
 import { navigationRootNodeState } from "../../atoms";
 import NavItemList from "./NavItemList";
 
-const MenuDesignView = memo(() => {
+const MenuDesignView = memo((
+  props: {
+    app: IApp,
+  }
+) => {
+  const {app} = props;
   const [canDrop, setCanDrop] = useState(true);
   const key = useDesingerKey();
   const rootNode = useRecoilValue(navigationRootNodeState(key));
@@ -14,7 +21,7 @@ const MenuDesignView = memo(() => {
 
   
   return (
-    <div className="design-view">
+    <Card className="design-view" title={app?.title}>
       {rootNode && (
         <NavItemList
           node={rootNode}
@@ -22,7 +29,7 @@ const MenuDesignView = memo(() => {
           canDrop={canDrop}
         />
       )}
-    </div>
+    </Card>
   );
 });
 

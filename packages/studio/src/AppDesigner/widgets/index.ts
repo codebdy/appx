@@ -1,6 +1,6 @@
 import "./index.less"
 
-export * from './NavigationWidget'
+export * from '../page/NavigationWidget'
 export * from '../page/ActionsWidget'
 export * from './PreviewWidget'
 export * from './SchemaEditorWidget'

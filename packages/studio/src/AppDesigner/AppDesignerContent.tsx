@@ -128,7 +128,7 @@ const AppDesignerContent = memo(() => {
 
           {
             activeKey === DesignerRoutes.Menu &&
-            <MenuWorkSpace />
+            <MenuWorkSpace app={app} />
           }
         </StudioPanel>
       </Designer >

@@ -1,3 +1,4 @@
+import { IApp } from "../../../model";
 import React, { memo } from "react";
 import { useTranslation } from "react-i18next";
 import { Workspace } from "../../containers";
@@ -6,7 +7,12 @@ import { MenuToolsWidget } from "../MenuToolsWidget";
 import MenuDesignView from "./MenuDesignView";
 import "./style.less"
 
-const MenuWorkSpace = memo(() => {
+const MenuWorkSpace = memo((
+  props: {
+    app: IApp,
+  }
+) => {
+  const { app } = props;
   const { t } = useTranslation();
 
   return (
@@ -18,7 +24,7 @@ const MenuWorkSpace = memo(() => {
           </ToolbarPanel>
           <ViewportPanel style={{ height: '100%' }}>
             <div className="menu-design-view-container">
-              <MenuDesignView />
+              <MenuDesignView app={app} />
             </div>
           </ViewportPanel>
         </WorkspacePanel>

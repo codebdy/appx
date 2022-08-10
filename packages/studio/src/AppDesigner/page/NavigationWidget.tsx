@@ -13,7 +13,7 @@ import { AppConfigRouts } from '../../AppConfig/AppConfigRouts';
 
 export const NavigationWidget = memo((
   props: {
-    app?: IApp,
+    app: IApp,
   }
 ) => {
   const { app } = props;
