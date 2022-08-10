@@ -7,10 +7,10 @@ import {
 import { CollapseGroup } from "./CollapseGroup";
 import { PageNav } from "./PageNav";
 import { Subheader } from "./Subheader";
-import { IMenuNode, MenuItemType } from "../models/IMenuNode";
-import { useGetMenuNode } from "../hooks/useGetMenuNode";
+import { IMenuNode, MenuItemType } from "../../models/IMenuNode";
+import { useGetMenuNode } from "../../hooks/useGetMenuNode";
 import { useSetRecoilState } from "recoil";
-import { navigationSelectedIdState } from "../atoms";
+import { navigationSelectedIdState } from "../../atoms";
 
 export const NavItemListInner = (props: {
   provided: DroppableProvided;
@@ -72,7 +72,7 @@ export const NavItemListInner = (props: {
   );
 };
 
-export const NavItemList = (props: {
+const MenuDesignView = (props: {
   node: IMenuNode;
   canDrop: boolean;
   isSubList?: boolean;
@@ -81,16 +81,20 @@ export const NavItemList = (props: {
   const { node, canDrop, isSubList, onParentDropable } = props;
 
   return (
-    <Droppable droppableId={node.id} isDropDisabled={!canDrop}>
-      {(provided, snapshot) => (
-        <NavItemListInner
-          provided={provided}
-          snapshot={snapshot}
-          node={node}
-          isSubList={isSubList}
-          onParentDropable={onParentDropable}
-        />
-      )}
-    </Droppable>
+    <div className="design-view">
+      <Droppable droppableId={node.id} isDropDisabled={!canDrop}>
+        {(provided, snapshot) => (
+          <NavItemListInner
+            provided={provided}
+            snapshot={snapshot}
+            node={node}
+            isSubList={isSubList}
+            onParentDropable={onParentDropable}
+          />
+        )}
+      </Droppable>
+    </div>
   );
 };
+
+export default MenuDesignView;

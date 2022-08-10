@@ -3,11 +3,11 @@ import { Fab } from "@mui/material";
 import {
   isNavigationDirtyState,
   navigationSelectedIdState,
-} from "../atoms";
+} from "../../atoms";
 import { memo, useCallback } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { useRemoveMenuNode } from "../hooks/useRemoveMenuNode";
-import { IMenuNode } from "../models/IMenuNode";
+import { useRemoveMenuNode } from "../../hooks/useRemoveMenuNode";
+import { IMenuNode } from "../../models/IMenuNode";
 
 export const DeleteFab = memo((props: { node: IMenuNode }) => {
   const { node } = props;

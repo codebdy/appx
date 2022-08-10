@@ -4,13 +4,14 @@ import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { useRecoilState } from "recoil";
 import { IPage } from "../../model";
 import { isNavigationDirtyState, navigationNodesState, navigationRootNodeState, navigationSelectedIdState, redoListState, undoListState } from "./atoms";
-import { COLLAPSE_GROUP_ID, PAGE_LIST_ID, SUBHEADER_ID } from "./consts";
+import { COLLAPSE_GROUP_ID, DIVIDER_ID, PAGE_LIST_ID } from "./consts";
 import { useGetMenuNode } from "./hooks/useGetMenuNode";
 import { useInsertAt } from "./hooks/useInsertAt";
 import { IMenuNode, MenuItemType } from "./models/IMenuNode";
 import _ from "lodash"
 import { useTranslation } from "react-i18next";
 import "./index.less"
+import { useDesingerKey } from "../context";
 
 const MenuDragRoot = memo((
   props: {
@@ -18,13 +19,14 @@ const MenuDragRoot = memo((
   }
 ) => {
   const [canDrop, setCanDrop] = useState(true);
+  const key = useDesingerKey();
   const [navigationId, setNavigationId] = useState<number>();
-  const [rootNode, setRootNode] = useRecoilState(navigationRootNodeState);
-  const [isDirty, setIsDirty] = useRecoilState(isNavigationDirtyState);
-  const [selectedId, setSelectedId] = useRecoilState(navigationSelectedIdState);
-  const [nodes, setNodes] = useRecoilState(navigationNodesState);
-  const [undoList, setUndoList] = useRecoilState(undoListState);
-  const [redoList, setRedoList] = useRecoilState(redoListState);
+  const [rootNode, setRootNode] = useRecoilState(navigationRootNodeState(key));
+  const [isDirty, setIsDirty] = useRecoilState(isNavigationDirtyState(key));
+  const [selectedId, setSelectedId] = useRecoilState(navigationSelectedIdState(key));
+  const [nodes, setNodes] = useRecoilState(navigationNodesState(key));
+  const [undoList, setUndoList] = useRecoilState(undoListState(key));
+  const [redoList, setRedoList] = useRecoilState(redoListState(key));
 
   const {t} = useTranslation();
   // const { navigation, error, loading } = useNavigationItems();
@@ -69,12 +71,12 @@ const MenuDragRoot = memo((
             },
             childIds: [],
           };
-        } else if (draggableId === SUBHEADER_ID) {
+        } else if (draggableId === DIVIDER_ID) {
           draggedNode = {
             id: _.uniqueId(),
             meta: {
-              type: MenuItemType.Subheader,
-              title: t("Title"),
+              type: MenuItemType.Divider,
+              title: t("MenuEditor.Divider"),
               icon: "groupIcon",
             },
             childIds: [],

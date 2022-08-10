@@ -1,4 +1,4 @@
-import { atom } from "recoil";
+import { atomFamily } from "recoil";
 import { IMenuNode } from "./models/IMenuNode";
 
 export interface INavigationSnapshot {
@@ -7,32 +7,32 @@ export interface INavigationSnapshot {
   selectedId: string | undefined;
 }
 
-export const isNavigationDirtyState = atom<boolean>({
+export const isNavigationDirtyState = atomFamily<boolean, string>({
   key: "navigationEditor.isDirty",
   default: false,
 });
 
-export const navigationNodesState = atom<IMenuNode[]>({
+export const navigationNodesState = atomFamily<IMenuNode[], string>({
   key: "navigationEditor.nodes",
   default: [],
 });
 
-export const navigationRootNodeState = atom<IMenuNode | undefined>({
+export const navigationRootNodeState = atomFamily<IMenuNode | undefined, string>({
   key: "navigationEditor.rootNode",
   default: undefined,
 });
 
-export const navigationSelectedIdState = atom<string | undefined>({
+export const navigationSelectedIdState = atomFamily<string | undefined, string>({
   key: "navigationEditor.selectedId",
   default: undefined,
 });
 
-export const undoListState = atom<INavigationSnapshot[]>({
+export const undoListState = atomFamily<INavigationSnapshot[], string>({
   key: "navigationEditor.undo",
   default: [],
 });
 
-export const redoListState = atom<INavigationSnapshot[]>({
+export const redoListState = atomFamily<INavigationSnapshot[], string>({
   key: "navigationEditor.redo",
   default: [],
 });

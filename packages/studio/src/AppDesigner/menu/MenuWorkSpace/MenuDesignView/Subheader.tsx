@@ -1,17 +1,16 @@
-import { ListItem, ListItemIcon, ListItemText, useTheme } from "@mui/material";
-import { SvgStringIcon } from "packages/rx-components/SvgStringIcon";
+import { ListSubheader, useTheme } from "@mui/material";
 import {
   Draggable,
   DraggableProvided,
   DraggableStateSnapshot,
 } from "react-beautiful-dnd";
 import { DeleteFab } from "./DeleteFab";
-import { IMenuNode } from "../models/IMenuNode";
-import { navigationSelectedIdState } from "../atoms";
+import { IMenuNode } from "../../models/IMenuNode";
 import { memo } from "react";
 import { useRecoilState } from "recoil";
+import { navigationSelectedIdState } from "../../atoms";
 
-const PageNavInner = memo(
+const SubheaderInner = memo(
   (props: {
     provided: DraggableProvided;
     snapshot: DraggableStateSnapshot;
@@ -30,10 +29,9 @@ const PageNavInner = memo(
 
     const selected = selectedId && selectedId === node.id;
     return (
-      <ListItem
+      <ListSubheader
+        component="div"
         ref={provided.innerRef}
-        button
-        disableRipple
         {...provided.draggableProps}
         {...provided.dragHandleProps}
         sx={{
@@ -43,31 +41,26 @@ const PageNavInner = memo(
           outline: selected ? theme.palette.primary.main + " solid 1px" : 0,
           mt: "1px",
           position: "relative",
+          "&:hover": {
+            background: theme.palette.action.hover,
+          },
         }}
         onClick={handleClick}
       >
-        {node.meta.icon?.trim() && (
-          <ListItemIcon>
-            <SvgStringIcon
-              icon={node.meta.icon}
-              sx={{ color: theme.palette.text.primary }}
-            />
-          </ListItemIcon>
-        )}
-        <ListItemText primary={node.meta?.title} />
+        {node.meta?.title}
         {!snapshot.isDragging && <DeleteFab node={node} />}
-      </ListItem>
+      </ListSubheader>
     );
   }
 );
 
-export const PageNav = memo((props: { node: IMenuNode; index: number }) => {
+export const Subheader = memo((props: { node: IMenuNode; index: number }) => {
   const { node, index } = props;
 
   return (
     <Draggable draggableId={node.id} index={index}>
       {(provided, snapshot) => (
-        <PageNavInner provided={provided} snapshot={snapshot} node={node} />
+        <SubheaderInner provided={provided} snapshot={snapshot} node={node} />
       )}
     </Draggable>
   );

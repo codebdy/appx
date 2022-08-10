@@ -17,9 +17,9 @@ import {
 } from "react-beautiful-dnd";
 import { NavItemList } from ".";
 import { DeleteFab } from "./DeleteFab";
-import { IMenuNode } from "../models/IMenuNode";
+import { IMenuNode } from "../../models/IMenuNode";
 import { useRecoilState } from "recoil";
-import { navigationSelectedIdState } from "../atoms";
+import { navigationSelectedIdState } from "../../atoms";
 
 const CollpaseGroupInner = memo(
   (props: {

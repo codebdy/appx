@@ -2,7 +2,8 @@ import { ID } from "../../../shared";
 
 export enum MenuItemType {
   Group = "Group",
-  Subheader = "Divider",
+  Divider = "Divider",
+  Link = "Link",
   Item = "Item",
 }
 
