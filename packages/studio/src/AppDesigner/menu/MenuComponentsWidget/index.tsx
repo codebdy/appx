@@ -10,10 +10,11 @@ const { Panel } = Collapse;
 
 const MenuComponentsWidget = memo((
   props: {
-    categories?: IPageCategory[],
-    pages?: IPage[]
+    categories: IPageCategory[],
+    pages: IPage[]
   }
 ) => {
+  const { categories, pages } = props;
   const { t } = useTranslation();
   const items = useMemo(() => [
     {
@@ -67,7 +68,7 @@ const MenuComponentsWidget = memo((
           </Droppable>
         </Panel>
         <Panel header={t("Menu.Pages")} key="2">
-          <PagesTree />
+          <PagesTree categories={categories} pages={pages} />
         </Panel>
       </Collapse>
     </div>

@@ -8,8 +8,8 @@ const { Panel } = Collapse;
 
 const PagesTree = memo((
   props: {
-    categories?: IPageCategory[],
-    pages?: IPage[]
+    categories: IPageCategory[],
+    pages: IPage[]
   }
 ) => {
   const { categories, pages } = props;
