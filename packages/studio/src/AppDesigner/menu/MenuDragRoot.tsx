@@ -1,39 +1,41 @@
-import React, { useCallback, useEffect, useState } from "react"
+import React, { useCallback, useEffect } from "react"
 import { memo } from "react"
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { IPage } from "../../model";
-import { isNavigationDirtyState, navigationNodesState, navigationRootNodeState, navigationSelectedIdState, redoListState, undoListState } from "./atoms";
+import { isNavigationDirtyState, navigationNodesState, navigationRootNodeState } from "./atoms";
 import { COLLAPSE_GROUP_ID, DIVIDER_ID, PAGE_LIST_ID } from "./consts";
 import { useGetMenuNode } from "./hooks/useGetMenuNode";
 import { useInsertAt } from "./hooks/useInsertAt";
-import { IMenuNode, MenuItemType } from "./models/IMenuNode";
+import { IMenuItem, IMenuNode, MenuItemType } from "./models/IMenuNode";
 import _ from "lodash"
 import { useTranslation } from "react-i18next";
 import "./index.less"
 import { useDesingerKey } from "../context";
+import { useMenu } from "../hooks/useMenu";
+import { useShowError } from "../../hooks/useShowError";
+import { cloneObject } from "./utils/cloneObject";
+import { parseMeta } from "./hooks/useParseMenuMeta";
+
+const rootMeta: IMenuItem = { type: MenuItemType.Group };
 
 const MenuDragRoot = memo((
   props: {
     children: React.ReactNode
   }
 ) => {
-  const [canDrop, setCanDrop] = useState(true);
   const key = useDesingerKey();
-  const [navigationId, setNavigationId] = useState<number>();
   const [rootNode, setRootNode] = useRecoilState(navigationRootNodeState(key));
-  const [isDirty, setIsDirty] = useRecoilState(isNavigationDirtyState(key));
-  const [selectedId, setSelectedId] = useRecoilState(navigationSelectedIdState(key));
-  const [nodes, setNodes] = useRecoilState(navigationNodesState(key));
-  const [undoList, setUndoList] = useRecoilState(undoListState(key));
-  const [redoList, setRedoList] = useRecoilState(redoListState(key));
+  const setIsDirty = useSetRecoilState(isNavigationDirtyState(key));
+  //const [selectedId, setSelectedId] = useRecoilState(navigationSelectedIdState(key));
+  const setNodes = useSetRecoilState(navigationNodesState(key));
 
-  const {t} = useTranslation();
-  // const { navigation, error, loading } = useNavigationItems();
+  const { t } = useTranslation();
+  const { menu, error } = useMenu();
 
-  // const { modules, loading: modulesLoading } = useModules();
+  useShowError(error);
 
-  // const navigationItems: IMenuItem[] | undefined | null = navigation?.content;
+  const navigationItems: IMenuItem[] | undefined | null = menu?.schemaJson?.items;
   // useShowError(error);
 
   const getNode = useGetMenuNode();
@@ -41,20 +43,17 @@ const MenuDragRoot = memo((
 
   useEffect(() => {
     if (!rootNode) {//防止保存编辑器刷新，并且保证主菜单刷新
-      // setNavigationId(navigation?.id);
-      // rootMeta.children = cloneObject(navigationItems || []);
-      // const nodes: IMenuNode[] = [];
-      // const node = parseMeta(rootMeta, nodes);
-      // setRootNode(node);
-      // setNodes(nodes);
-      // setIsDirty(false);
-      // setSelectedId(undefined);
+      //setNavigationId(navigation?.id);
+      rootMeta.children = cloneObject(navigationItems || []);
+      const nodes: IMenuNode[] = [];
+      const node = parseMeta(rootMeta, nodes);
+      setRootNode(node);
+      setNodes(nodes);
+      setIsDirty(false);
+      //setSelectedId(undefined);
     }
-  }, [navigationId, rootNode, setIsDirty, setNodes, setRootNode, setSelectedId]);
+  }, [navigationItems, rootNode, setIsDirty, setNodes, setRootNode]);
 
-  const handleDropable = useCallback((dropable: boolean) => {
-    setCanDrop(dropable);
-  }, []);
 
   const onDragEnd = useCallback(
     (result: DropResult) => {
@@ -120,57 +119,6 @@ const MenuDragRoot = memo((
     },
     [getNode, insertAt, t]
   );
-
-  const handleBlankClick = useCallback(() => {
-    setSelectedId(undefined);
-  }, [setSelectedId]);
-
-  const handleNotBlankClick = useCallback(
-    (event: React.MouseEvent<HTMLElement>) => {
-      event.stopPropagation();
-    },
-    []
-  );
-
-  const handleUndo = useCallback(() => {
-    const newUndoList = [...undoList];
-    const snapshot = newUndoList.pop();
-    setUndoList(newUndoList);
-    setRedoList((redoList) => [...redoList, { nodes, rootNode, selectedId }]);
-    setRootNode(snapshot?.rootNode);
-    setNodes(snapshot?.nodes || []);
-    setSelectedId(snapshot?.selectedId);
-  }, [
-    nodes,
-    rootNode,
-    selectedId,
-    setNodes,
-    setRedoList,
-    setRootNode,
-    setSelectedId,
-    setUndoList,
-    undoList,
-  ]);
-
-  const handleRedo = useCallback(() => {
-    const newRedoList = [...redoList];
-    const snapshot = newRedoList.pop();
-    setRedoList(newRedoList);
-    setUndoList((undoList) => [...undoList, { nodes, rootNode, selectedId }]);
-    setRootNode(snapshot?.rootNode);
-    setNodes(snapshot?.nodes || []);
-    setSelectedId(snapshot?.selectedId);
-  }, [
-    nodes,
-    redoList,
-    rootNode,
-    selectedId,
-    setNodes,
-    setRedoList,
-    setRootNode,
-    setSelectedId,
-    setUndoList,
-  ]);
 
 
   return (
