@@ -5,7 +5,7 @@ import DraggableLabel from './DraggableLabel';
 import { usePagesWithoutCategory } from '../../hooks/usePagesWithoutCategory';
 import { useGetCategoryPages } from '../../hooks/useGetCategoryPages';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
-import { OTHER_PAGES_ID } from '../consts';
+import { OTHER_PAGES_ID, PREFIX_CATEGORY } from '../consts';
 const { Panel } = Collapse;
 
 const PagesTree = memo((
@@ -27,13 +27,34 @@ const PagesTree = memo((
         categories?.map((category) => {
           return (
             <Panel key={category.id} header={category.title}>
-              {
-                getCategoryPage(category.id)?.map(page => {
-                  return (
-                    <DraggableLabel key={page.id} dragId={page.id} title={page.title} />
-                  )
-                })
-              }
+              <Droppable droppableId={PREFIX_CATEGORY + category.id} isDropDisabled={true}>
+                {(provided) => (
+                  <div ref={provided.innerRef}>
+                    {
+                      getCategoryPage(category.id)?.map((page, index) => {
+                        return (
+                          <Draggable key={page.id} draggableId={page.id} index={index}>
+                            {(provided, snapshot) => (
+                              <>
+                                <DraggableLabel
+                                  dragId={page.id}
+                                  title={page.title}
+                                  {...provided.draggableProps}
+                                  {...provided.dragHandleProps}
+                                  ref={provided.innerRef}
+                                />
+                                {snapshot.isDragging && (
+                                  <DraggableLabel key={page.id} dragId={page.id} title={page.title} />
+                                )}
+                              </>
+                            )}
+                          </Draggable>
+                        )
+                      })
+                    }
+                    <div style={{ display: "none" }}>{provided.placeholder}</div>
+                  </div>)}
+              </Droppable>
             </Panel>
           )
         })
