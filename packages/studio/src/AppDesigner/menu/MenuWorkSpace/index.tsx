@@ -1,11 +1,14 @@
 import { IApp } from "../../../model";
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { Workspace } from "../../containers";
 import { SettingsPanel, ToolbarPanel, ViewportPanel, WorkspacePanel } from "../../panels";
 import { MenuToolsWidget } from "../MenuToolsWidget";
 import MenuDesignView from "./MenuDesignView";
 import "./style.less"
+import { useSetRecoilState } from "recoil";
+import { navigationSelectedIdState } from "../atoms";
+import { useDesingerKey } from "../../context";
 
 const MenuWorkSpace = memo((
   props: {
@@ -14,6 +17,14 @@ const MenuWorkSpace = memo((
 ) => {
   const { app } = props;
   const { t } = useTranslation();
+  const key = useDesingerKey();
+  const setSelectedId = useSetRecoilState(
+    navigationSelectedIdState(key)
+  );
+
+  const handleClick = useCallback(()=>{
+    setSelectedId(undefined);
+  }, [setSelectedId])
 
   return (
     <>
@@ -23,7 +34,9 @@ const MenuWorkSpace = memo((
             <MenuToolsWidget />
           </ToolbarPanel>
           <ViewportPanel style={{ height: '100%' }}>
-            <div className="menu-design-view-container">
+            <div className="menu-design-view-container"
+              onClick={handleClick}
+            >
               <MenuDesignView app={app} />
             </div>
           </ViewportPanel>
