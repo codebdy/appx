@@ -62,17 +62,17 @@ const CollpaseGroupInner = memo(
       [node.id, selectedId]
     );
     return (
-      <Collapse expandIconPosition="right">
-        <div
-          ref={provided.innerRef}
-          style={{
-            outline: selected ? PRIMARY_COLOR + " solid 1px" : 0,
-            position: "relative",
-          }}
-          {...provided.draggableProps}
-          {...provided.dragHandleProps}
-          onClick={handleClick}
-        >
+      <div
+        ref={provided.innerRef}
+        style={{
+          outline: selected ? PRIMARY_COLOR + " solid 1px" : 0,
+          position: "relative",
+        }}
+        {...provided.draggableProps}
+        {...provided.dragHandleProps}
+        onClick={handleClick}
+      >
+        <Collapse expandIconPosition="right">
           <Panel header={node.meta.title} key={node.id}>
             <div
               style={{
@@ -92,8 +92,9 @@ const CollpaseGroupInner = memo(
               />
             </div>
           </Panel>
-        </div>
-      </Collapse>
+        </Collapse>
+      </div>
+
     );
   }
 );
