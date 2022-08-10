@@ -45,7 +45,12 @@ const PagesTree = memo((
                                   ref={provided.innerRef}
                                 />
                                 {snapshot.isDragging && (
-                                  <DraggableLabel key={page.id} dragId={page.id} title={page.title} />
+                                  <DraggableLabel
+                                    key={page.id}
+                                    dragId={page.id}
+                                    title={page.title}
+                                    fixed
+                                  />
                                 )}
                               </>
                             )}

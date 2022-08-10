@@ -59,6 +59,7 @@ const MenuComponentsWidget = memo((
                             <DraggableLabel
                               dragId={item.id}
                               title={item.title}
+                              fixed
                             />
                           )}
                         </>
