@@ -11,5 +11,3 @@ export function createId(): ID {
 export const createUuid = () => {
   return uuidv4();
 };
-
-const CONST_ID = "id"

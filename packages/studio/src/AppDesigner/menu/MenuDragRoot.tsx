@@ -4,11 +4,10 @@ import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { IPage } from "../../model";
 import { isNavigationDirtyState, navigationNodesState, navigationRootNodeState } from "./atoms";
-import { COLLAPSE_GROUP_ID, DIVIDER_ID, PAGE_LIST_ID } from "./consts";
+import { COLLAPSE_GROUP_ID, CUSTOMIZED_LINK_ID, DIVIDER_ID, PAGE_LIST_ID } from "./consts";
 import { useGetMenuNode } from "./hooks/useGetMenuNode";
 import { useInsertAt } from "./hooks/useInsertAt";
 import { IMenuItem, IMenuNode, MenuItemType } from "./models/IMenuNode";
-import _ from "lodash"
 import { useTranslation } from "react-i18next";
 import "./index.less"
 import { useDesingerKey } from "../context";
@@ -16,6 +15,7 @@ import { useMenu } from "../hooks/useMenu";
 import { useShowError } from "../../hooks/useShowError";
 import { cloneObject } from "./utils/cloneObject";
 import { parseMeta } from "./hooks/useParseMenuMeta";
+import { createId } from "../../shared";
 
 const rootMeta: IMenuItem = { type: MenuItemType.Group };
 
@@ -62,37 +62,39 @@ const MenuDragRoot = memo((
         let draggedNode: IMenuNode | undefined;
         if (draggableId === COLLAPSE_GROUP_ID) {
           draggedNode = {
-            id: _.uniqueId(),
+            id: createId(),
             meta: {
               type: MenuItemType.Group,
-              title: t("MenuEditor.CollapseGroup"),
+              title: t("Menu.CollapseGroup"),
               icon: "groupIcon",
             },
             childIds: [],
           };
         } else if (draggableId === DIVIDER_ID) {
           draggedNode = {
-            id: _.uniqueId(),
+            id: createId(),
             meta: {
               type: MenuItemType.Divider,
-              title: t("MenuEditor.Divider"),
+              title: t("Menu.Divider"),
               icon: "groupIcon",
             },
             childIds: [],
           };
-        } else if (source.droppableId.startsWith(PAGE_LIST_ID)) {
+        } else if(draggableId === CUSTOMIZED_LINK_ID){
+          draggedNode = {
+            id: createId(),
+            meta: {
+              type: MenuItemType.Link,
+              title: t("Menu.CustomerLink"),
+              icon: "groupIcon",
+            },
+            childIds: [],
+          };
+        }  else if (source.droppableId.startsWith(PAGE_LIST_ID)) {
           let page: IPage | undefined;
-          // for (const module of modules || []) {
-          //   for (const pg of module.pages || []) {
-          //     if (draggableId === pg.uuid) {
-          //       page = pg;
-          //       break;
-          //     }
-          //   }
-          // }
           if (page) {
             draggedNode = {
-              id: _.uniqueId(),
+              id: createId(),
               meta: {
                 type: MenuItemType.Item,
                 title: page.title,
@@ -104,7 +106,6 @@ const MenuDragRoot = memo((
           }
         } else {
           draggedNode = getNode(draggableId);
-          console.log("呵呵", draggableId, draggedNode)
         }
 
         if (draggedNode) {
