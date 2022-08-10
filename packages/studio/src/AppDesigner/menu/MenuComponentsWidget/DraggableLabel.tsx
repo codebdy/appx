@@ -17,7 +17,7 @@ const DraggableLabel = React.forwardRef((
     <div ref={ref} className="draggable-label" {...other}
       style={{
         ...style,
-        boxShadow: float ? "-8px 8px 14px 0 rgb(25 42 70 / 11%)" : undefined,
+        boxShadow: float ? "2px 2px 10px 1px rgb(25 42 70 / 11%)" : undefined,
       }}
     >
       <div className="draggable-icon">
