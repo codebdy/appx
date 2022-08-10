@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Draggable,
   DraggableProvided,
@@ -24,19 +24,31 @@ const CollpaseGroupInner = memo(
   }) => {
     const { provided, snapshot, node, onParentDropable } = props;
     const [hover, setHover] = useState(false);
+    const [opened, setOpend] = useState(false);
     const [canDrop, setCanDrop] = useState(true);
     const key = useDesingerKey();
     const [selectedId, setSelectedId] = useRecoilState(
       navigationSelectedIdState(key)
     );
 
-    const handleMouseOver = useCallback(() => {
-      setHover(true);
-    }, []);
+    const ref = useRef<HTMLDivElement>();
 
-    const handleMouseLeave = useCallback(() => {
-      setHover(false);
-    }, []);
+    const handleMouseMove = useCallback((event: MouseEvent) => {
+      const rect = ref.current?.getBoundingClientRect();
+      if (event.clientX >= rect.left && event.clientX <= rect.right &&
+        event.clientY >= rect.top && event.clientY <= rect.bottom) {
+        setHover(true && opened);
+      } else {
+        setHover(false)
+      }
+    }, [opened]);
+
+    useEffect(() => {
+      document.addEventListener("mousemove", handleMouseMove);
+      return () => {
+        document.removeEventListener("mousemove", handleMouseMove);
+      }
+    }, [handleMouseMove])
 
     const handleParentDropable = useCallback(
       (dropable: boolean) => {
@@ -58,6 +70,10 @@ const CollpaseGroupInner = memo(
       [node.id, setSelectedId]
     );
 
+    const handleColapse = useCallback((key?: string) => {
+      setOpend(!!key);
+    }, []);
+
     const selected = useMemo(
       () => selectedId && selectedId === node.id,
       [node.id, selectedId]
@@ -70,22 +86,20 @@ const CollpaseGroupInner = memo(
         {...provided.dragHandleProps}
         onClick={handleClick}
       >
-        <Collapse expandIconPosition="right" bordered={false} ghost>
-          <Panel header={node.meta.title} key={node.id}>
-            <div
-              className="collapse-inner"
-              onMouseOver={handleMouseOver}
-              onMouseLeave={handleMouseLeave}
-            >
-              <NavItemList
-                node={node}
-                onParentDropable={handleParentDropable}
-                canDrop={canDrop}
-                isSubList={true}
-              />
-            </div>
-          </Panel>
-        </Collapse>
+        <div ref={ref}>
+          <Collapse expandIconPosition="right" bordered={false} ghost accordion onChange={handleColapse}>
+            <Panel header={node.meta.title} key={node.id}>
+              <div className="collapse-inner">
+                <NavItemList
+                  node={node}
+                  onParentDropable={handleParentDropable}
+                  canDrop={canDrop}
+                  isSubList={true}
+                />
+              </div>
+            </Panel>
+          </Collapse>
+        </div>
       </div>
 
     );

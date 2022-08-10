@@ -27,6 +27,7 @@ const DraggableLabel = React.forwardRef((
       style={{
         ...style,
         boxShadow: float || (hover && !fixed) ? "2px 2px 10px 1px rgb(25 42 70 / 11%)" : undefined,
+        pointerEvents: float ? "none" : undefined,
       }}
       onMouseEnter={handleMouseEnter}
       onMouseOut={handleMouseLeave}
