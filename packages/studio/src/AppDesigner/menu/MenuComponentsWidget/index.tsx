@@ -52,6 +52,7 @@ const MenuComponentsWidget = memo((
                             title={item.title}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
+                            float={snapshot.isDragging}
                             ref={provided.innerRef}
                           />
                           {snapshot.isDragging && (
