@@ -21,6 +21,7 @@ const CreatePageModal = memo((
   const { t } = useTranslation();
   const [upsert, { loading, error }] = useUpsertPage({
     onCompleted: () => {
+      form.resetFields();
       onClose();
     }
   });

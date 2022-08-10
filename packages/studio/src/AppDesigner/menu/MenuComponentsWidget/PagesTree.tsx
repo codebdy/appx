@@ -36,13 +36,15 @@ const PagesTree = memo((
           )
         })
       }
-      {
-        pagesWithoutCategory?.map(page => {
-          return (
-            <DraggableLabel key={page.id} dragId={page.id} title={page.title} />
-          )
-        })
-      }
+      <div>
+        {
+          pagesWithoutCategory?.map(page => {
+            return (
+              <DraggableLabel key={page.id} dragId={page.id} title={page.title} />
+            )
+          })
+        }
+      </div>
 
     </Collapse>
   );

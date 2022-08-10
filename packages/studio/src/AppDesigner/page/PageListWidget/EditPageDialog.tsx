@@ -19,6 +19,7 @@ const EditPageDialog = memo((
   const [form] = Form.useForm()
   const [upsert, { loading, error }] = useUpsertPage({
     onCompleted: () => {
+      form.resetFields();
       onClose();
     }
   });
