@@ -4,13 +4,13 @@ import {
   DraggableStateSnapshot,
 } from "react-beautiful-dnd";
 import { IMenuNode } from "../../models/IMenuNode";
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import { useRecoilState } from "recoil";
 import { navigationSelectedIdState } from "../../atoms";
 import { useDesingerKey } from "../../../context";
 import React from "react";
-import { PRIMARY_COLOR } from "../../../../consts";
 import { Divider } from "antd";
+import clx from "classnames";
 
 const DividerInner = memo(
   (props: {
@@ -29,19 +29,16 @@ const DividerInner = memo(
       event.stopPropagation();
     };
 
-    const selected = selectedId && selectedId === node.id;
+    const selected = useMemo(() => selectedId && selectedId === node.id, [node.id, selectedId]);
     return (
       <div
+        className={clx("menu-item", "menu-divider", { selected: selected })}
         ref={provided.innerRef}
         {...provided.draggableProps}
         {...provided.dragHandleProps}
-        style={{
-          outline: selected ? PRIMARY_COLOR + " solid 1px" : 0,
-          position: "relative",
-        }}
         onClick={handleClick}
       >
-        <Divider />
+        <Divider style={{ margin: "4px 0" }} />
       </div>
     );
   }
@@ -49,7 +46,7 @@ const DividerInner = memo(
 
 export const MenuDivider = memo((props: { node: IMenuNode; index: number }) => {
   const { node, index } = props;
-
+  console.log("哈哈", node.id)
   return (
     <Draggable draggableId={node.id} index={index}>
       {(provided, snapshot) => (

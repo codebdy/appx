@@ -104,16 +104,11 @@ const MenuDragRoot = memo((
           }
         } else {
           draggedNode = getNode(draggableId);
+          console.log("呵呵", draggableId, draggedNode)
         }
 
         if (draggedNode) {
           insertAt(draggedNode, destination?.droppableId, destination.index);
-          //targetNode?.insertChildAt(draggedNode, destination.index);
-          //setNavEditor((oldData) => ({
-          //  ...oldData,
-          //  selectedId: draggedNode?.id,
-          //  isDirty: true,
-          //}));
         }
       }
     },
