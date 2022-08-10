@@ -10,7 +10,6 @@ import { Spin } from 'antd'
 import { DesignerContext } from './context'
 import { Device } from '../model'
 import AppDesignerContent from './AppDesignerContent'
-import MenuDragRoot from './menu/MenuDragRoot'
 
 setNpmCDNRegistry('//unpkg.com')
 
@@ -33,9 +32,7 @@ const AppDesigner = memo(() => {
     app ?
       <DesignerContext.Provider value={{ app: app, device: device as Device }}>
         <Spin style={{ height: "100vh" }} spinning={loading}>
-          <MenuDragRoot>
-            <AppDesignerContent />
-          </MenuDragRoot>
+          <AppDesignerContent />
         </Spin>
       </DesignerContext.Provider>
       : <></>

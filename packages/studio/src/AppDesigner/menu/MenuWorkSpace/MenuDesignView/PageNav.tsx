@@ -9,7 +9,7 @@ import { memo } from "react";
 import { useRecoilState } from "recoil";
 import { useDesingerKey } from "../../../context";
 import React from "react";
-import { PRIMARY_COLOR } from "../../../../consts";
+import clx from "classnames";
 
 const PageNavInner = memo(
   (props: {
@@ -32,15 +32,9 @@ const PageNavInner = memo(
     return (
       <div
         ref={provided.innerRef}
+        className={clx("menu-item", "menu-text-item", { selected: selected, float: snapshot.isDragging })}
         {...provided.draggableProps}
         {...provided.dragHandleProps}
-        style={{
-          // background: snapshot.isDragging
-          //   ? theme.palette.action.selected
-          //   : theme.palette.background.paper,
-          outline: selected ? PRIMARY_COLOR + " solid 1px" : 0,
-          position: "relative",
-        }}
         onClick={handleClick}
       >
         {/* {node.meta.icon?.trim() && (

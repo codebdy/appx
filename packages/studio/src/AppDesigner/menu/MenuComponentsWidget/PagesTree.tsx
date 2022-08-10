@@ -5,7 +5,7 @@ import DraggableLabel from './DraggableLabel';
 import { usePagesWithoutCategory } from '../../hooks/usePagesWithoutCategory';
 import { useGetCategoryPages } from '../../hooks/useGetCategoryPages';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
-import { OTHER_PAGES_ID, PREFIX_CATEGORY } from '../consts';
+import { OTHER_PAGES_ID, PAGE_LIST_ID } from '../consts';
 const { Panel } = Collapse;
 
 const PagesTree = memo((
@@ -28,7 +28,7 @@ const PagesTree = memo((
         categories?.map((category) => {
           return (
             <Panel key={category.id} header={category.title}>
-              <Droppable droppableId={PREFIX_CATEGORY + category.id} isDropDisabled={true}>
+              <Droppable droppableId={PAGE_LIST_ID + category.id} isDropDisabled={true}>
                 {(provided) => (
                   <div ref={provided.innerRef}>
                     {
@@ -65,7 +65,7 @@ const PagesTree = memo((
           )
         })
       }
-      <Droppable droppableId={OTHER_PAGES_ID} isDropDisabled={true}>
+      <Droppable droppableId={PAGE_LIST_ID + OTHER_PAGES_ID} isDropDisabled={true}>
         {(provided) => (
           <div ref={provided.innerRef}>
             {
