@@ -21,6 +21,7 @@ const PagesTree = memo((
   return (
     <Collapse
       bordered={false}
+      ghost
       defaultActiveKey={[]}
     >
       {
