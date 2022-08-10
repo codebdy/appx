@@ -15,7 +15,7 @@ import {
   DraggableProvided,
   DraggableStateSnapshot,
 } from "react-beautiful-dnd";
-import { NavItemList } from ".";
+import { NavItemList } from "./NavItemList";
 import { DeleteFab } from "./DeleteFab";
 import { IMenuNode } from "../../models/IMenuNode";
 import { useRecoilState } from "recoil";

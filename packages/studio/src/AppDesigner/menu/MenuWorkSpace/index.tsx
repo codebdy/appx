@@ -6,7 +6,7 @@ import { useDesingerKey } from "../../context";
 import { SettingsPanel, ToolbarPanel, ViewportPanel, WorkspacePanel } from "../../panels";
 import { navigationRootNodeState } from "../atoms";
 import { MenuToolsWidget } from "../MenuToolsWidget";
-import MenuDesignView from "./MenuDesignView";
+import MenuDesignView from "./MenuDesignView/NavItemList";
 import "./style.less"
 
 const MenuWorkSpace = memo(() => {
@@ -25,7 +25,7 @@ const MenuWorkSpace = memo(() => {
             <div className="menu-design-view-container">
               {
                 rootNode &&
-                <MenuDesignView />
+                <MenuDesignView/>
               }
 
             </div>

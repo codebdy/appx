@@ -10,7 +10,7 @@ import { memo } from "react";
 import { useRecoilState } from "recoil";
 import { navigationSelectedIdState } from "../../atoms";
 
-const SubheaderInner = memo(
+const DividerInner = memo(
   (props: {
     provided: DraggableProvided;
     snapshot: DraggableStateSnapshot;
@@ -54,13 +54,13 @@ const SubheaderInner = memo(
   }
 );
 
-export const Subheader = memo((props: { node: IMenuNode; index: number }) => {
+export const MenuDivider = memo((props: { node: IMenuNode; index: number }) => {
   const { node, index } = props;
 
   return (
     <Draggable draggableId={node.id} index={index}>
       {(provided, snapshot) => (
-        <SubheaderInner provided={provided} snapshot={snapshot} node={node} />
+        <DividerInner provided={provided} snapshot={snapshot} node={node} />
       )}
     </Draggable>
   );

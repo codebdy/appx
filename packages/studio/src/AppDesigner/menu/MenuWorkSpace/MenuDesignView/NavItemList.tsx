@@ -6,11 +6,12 @@ import {
 } from "react-beautiful-dnd";
 import { CollapseGroup } from "./CollapseGroup";
 import { PageNav } from "./PageNav";
-import { Subheader } from "./Subheader";
+import { MenuDivider } from "./MenuDivider";
 import { IMenuNode, MenuItemType } from "../../models/IMenuNode";
 import { useGetMenuNode } from "../../hooks/useGetMenuNode";
 import { useSetRecoilState } from "recoil";
 import { navigationSelectedIdState } from "../../atoms";
+import { useDesingerKey } from "../../../context";
 
 export const NavItemListInner = (props: {
   provided: DroppableProvided;
@@ -19,9 +20,10 @@ export const NavItemListInner = (props: {
   isSubList?: boolean;
   onParentDropable: (drapable: boolean) => void;
 }) => {
-  const { provided, snapshot, node, isSubList, onParentDropable } = props;
+  const { provided, snapshot, node, onParentDropable } = props;
+  const key = useDesingerKey();
   const nodeIds = node?.childIds;
-  const setSelectedId = useSetRecoilState(navigationSelectedIdState);
+  const setSelectedId = useSetRecoilState(navigationSelectedIdState(key));
   const getNode = useGetMenuNode();
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     if (!node.parentId) {
@@ -30,16 +32,12 @@ export const NavItemListInner = (props: {
     }
   };
   return (
-    <List
+    <div
       ref={provided.innerRef}
-      sx={{
+      style={{
         flex: 1,
         height: 0,
-        backgroundColor: snapshot.isDraggingOver
-          ? alpha("#000", 0.3)
-          : undefined,
-        p: 1,
-        pl: isSubList ? 4 : undefined,
+        flexFlow:"column",
       }}
       onClick={handleClick}
     >
@@ -58,8 +56,8 @@ export const NavItemListInner = (props: {
                 onParentDropable={onParentDropable}
               />
             )}
-            {item.meta.type === MenuItemType.Subheader && (
-              <Subheader key={item.id} node={item} index={index} />
+            {item.meta.type === MenuItemType.Divider && (
+              <MenuDivider key={item.id} node={item} index={index} />
             )}
             {item.meta.type === MenuItemType.Item && (
               <PageNav key={item.id} node={item} index={index} />
@@ -68,7 +66,7 @@ export const NavItemListInner = (props: {
         );
       })}
       {provided.placeholder}
-    </List>
+    </div>
   );
 };
 

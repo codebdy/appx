@@ -1,5 +1,3 @@
-import { ListItem, ListItemIcon, ListItemText, useTheme } from "@mui/material";
-import { SvgStringIcon } from "packages/rx-components/SvgStringIcon";
 import {
   Draggable,
   DraggableProvided,
