@@ -38,7 +38,7 @@ export function useCagegories() {
   const { data, error, loading } = useQuery<IPageCategory>(
     categoriesGql,
     { device: params.device, appUuid: params.app.uuid },
-    ["PageCategory", "Page"]
+    ["PageCategory"]
   )
 
   return { categories: data?.pageCategory, error, loading }
