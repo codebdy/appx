@@ -18,7 +18,7 @@ const DividerInner = memo(
     snapshot: DraggableStateSnapshot;
     node: IMenuNode;
   }) => {
-    const { provided, snapshot, node } = props;
+    const { provided, node } = props;
     const key = useDesingerKey();
     const [selectedId, setSelectedId] = useRecoilState(
       navigationSelectedIdState(key)
@@ -46,7 +46,6 @@ const DividerInner = memo(
 
 export const MenuDivider = memo((props: { node: IMenuNode; index: number }) => {
   const { node, index } = props;
-  console.log("哈哈", node.id)
   return (
     <Draggable draggableId={node.id} index={index}>
       {(provided, snapshot) => (
