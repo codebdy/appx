@@ -4,7 +4,7 @@ import { memo } from "react";
 const MenuDesignView = memo(() => {
   return (
 
-    <div>
+    <div className="design-view">
       哈哈哈fwe
     </div>
 
