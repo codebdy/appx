@@ -167,6 +167,7 @@
   "Menu": {
     "HelpItems": "辅助项",
     "CollapseGroup": "折叠组",
-    "Divider": "分隔符"
+    "Divider": "分隔符",
+    "Pages": "页面"
   }
 }

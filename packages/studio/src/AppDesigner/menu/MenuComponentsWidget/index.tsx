@@ -66,7 +66,7 @@ const MenuComponentsWidget = memo((
 
           </Droppable>
         </Panel>
-        <Panel header="页面" key="2">
+        <Panel header={t("Menu.Pages")} key="2">
           <PagesTree />
         </Panel>
       </Collapse>
