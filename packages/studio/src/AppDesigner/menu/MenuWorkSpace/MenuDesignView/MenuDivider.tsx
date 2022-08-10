@@ -1,14 +1,16 @@
-import { ListSubheader, useTheme } from "@mui/material";
 import {
   Draggable,
   DraggableProvided,
   DraggableStateSnapshot,
 } from "react-beautiful-dnd";
-import { DeleteFab } from "./DeleteFab";
 import { IMenuNode } from "../../models/IMenuNode";
 import { memo } from "react";
 import { useRecoilState } from "recoil";
 import { navigationSelectedIdState } from "../../atoms";
+import { useDesingerKey } from "../../../context";
+import React from "react";
+import { PRIMARY_COLOR } from "../../../../consts";
+import { Divider } from "antd";
 
 const DividerInner = memo(
   (props: {
@@ -17,9 +19,9 @@ const DividerInner = memo(
     node: IMenuNode;
   }) => {
     const { provided, snapshot, node } = props;
-    const theme = useTheme();
+    const key = useDesingerKey();
     const [selectedId, setSelectedId] = useRecoilState(
-      navigationSelectedIdState
+      navigationSelectedIdState(key)
     );
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -29,27 +31,18 @@ const DividerInner = memo(
 
     const selected = selectedId && selectedId === node.id;
     return (
-      <ListSubheader
-        component="div"
+      <div
         ref={provided.innerRef}
         {...provided.draggableProps}
         {...provided.dragHandleProps}
-        sx={{
-          background: snapshot.isDragging
-            ? theme.palette.action.selected
-            : theme.palette.background.paper,
-          outline: selected ? theme.palette.primary.main + " solid 1px" : 0,
-          mt: "1px",
+        style={{
+          outline: selected ? PRIMARY_COLOR + " solid 1px" : 0,
           position: "relative",
-          "&:hover": {
-            background: theme.palette.action.hover,
-          },
         }}
         onClick={handleClick}
       >
-        {node.meta?.title}
-        {!snapshot.isDragging && <DeleteFab node={node} />}
-      </ListSubheader>
+        <Divider />
+      </div>
     );
   }
 );
