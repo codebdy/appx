@@ -11,7 +11,7 @@ const MenuDesignView = memo((
     app: IApp,
   }
 ) => {
-  const {app} = props;
+  const { app } = props;
   const [canDrop, setCanDrop] = useState(true);
   const key = useDesingerKey();
   const rootNode = useRecoilValue(navigationRootNodeState(key));
@@ -19,7 +19,7 @@ const MenuDesignView = memo((
     setCanDrop(dropable);
   }, []);
 
-  
+
   return (
     <Card className="design-view" title={app?.title}>
       {rootNode && (
