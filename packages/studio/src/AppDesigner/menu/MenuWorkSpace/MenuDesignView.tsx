@@ -7,9 +7,9 @@ const MenuDesignView = memo(() => {
   return (
 
     <div className="design-view">
-      <Collapse>
+      <Collapse expandIconPosition="right">
         <Panel header="This is panel header 1" key="1">
-          <Collapse defaultActiveKey="1">
+          <Collapse expandIconPosition="right">
             <Panel header="This is panel nest panel" key="1">
               <p>text</p>
             </Panel>
