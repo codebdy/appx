@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import { Workspace } from "../../containers";
 import { SettingsPanel, ToolbarPanel, ViewportPanel, WorkspacePanel } from "../../panels";
 import { MenuToolsWidget } from "../MenuToolsWidget";
+import MenuDesignView from "./MenuDesignView";
+import "./style.less"
 
 const MenuWorkSpace = memo(() => {
   const { t } = useTranslation();
@@ -14,7 +16,9 @@ const MenuWorkSpace = memo(() => {
             <MenuToolsWidget />
           </ToolbarPanel>
           <ViewportPanel style={{ height: '100%' }}>
-            呵呵呵
+            <div className="menu-design-view-container">
+              <MenuDesignView />
+            </div>
           </ViewportPanel>
         </WorkspacePanel>
       </Workspace>
