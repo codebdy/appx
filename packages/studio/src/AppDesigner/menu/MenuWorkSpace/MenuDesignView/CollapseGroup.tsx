@@ -21,10 +21,11 @@ const CollpaseGroupInner = memo(
     snapshot: DraggableStateSnapshot;
     node: IMenuNode;
     onParentDropable: (drapable: boolean) => void;
+    opened: boolean,
+    onOpened: (open?: boolean) => void;
   }) => {
-    const { provided, snapshot, node, onParentDropable } = props;
+    const { provided, snapshot, node, onParentDropable, opened, onOpened } = props;
     const [hover, setHover] = useState(false);
-    const [opened, setOpend] = useState(false);
     const [canDrop, setCanDrop] = useState(true);
     const key = useDesingerKey();
     const [selectedId, setSelectedId] = useRecoilState(
@@ -37,11 +38,11 @@ const CollpaseGroupInner = memo(
       const rect = ref.current?.getBoundingClientRect();
       if (event.clientX >= rect.left && event.clientX <= rect.right &&
         event.clientY >= rect.top && event.clientY <= rect.bottom) {
-        setHover(true && opened);
+        setHover(true && opened && !snapshot.isDragging);
       } else {
         setHover(false)
       }
-    }, [opened]);
+    }, [opened, snapshot.isDragging]);
 
     useEffect(() => {
       document.addEventListener("mousemove", handleMouseMove);
@@ -71,8 +72,8 @@ const CollpaseGroupInner = memo(
     );
 
     const handleColapse = useCallback((key?: string) => {
-      setOpend(!!key);
-    }, []);
+      onOpened(!!key);
+    }, [onOpened]);
 
     const selected = useMemo(
       () => selectedId && selectedId === node.id,
@@ -120,15 +121,22 @@ export const CollapseGroup = memo(
     onParentDropable: (drapable: boolean) => void;
   }) => {
     const { node, index, onParentDropable } = props;
+    const [opened, setOpened] = useState(false);
 
     return (
-      <Draggable draggableId={node.id} index={index}>
+      <Draggable
+        draggableId={node.id}
+        index={index}
+        isDragDisabled={opened}
+      >
         {(provided, snapshot) => (
           <CollpaseGroupInner
             provided={provided}
             snapshot={snapshot}
             node={node}
             onParentDropable={onParentDropable}
+            opened={opened}
+            onOpened={setOpened}
           />
         )}
       </Draggable>

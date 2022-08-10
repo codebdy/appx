@@ -6,6 +6,9 @@ import {
 } from "@designable/react"
 import cls from 'classnames'
 import './styles.less'
+import { useDesingerKey } from '../../context'
+import { useRecoilValue } from 'recoil'
+import { navigationSelectedIdState } from '../atoms'
 
 export type IMenuToolsWidgetProps = {
   className?: string
@@ -14,6 +17,11 @@ export type IMenuToolsWidgetProps = {
 
 export const MenuToolsWidget: React.FC<IMenuToolsWidgetProps> =
   memo((props) => {
+    const key = useDesingerKey();
+    
+    const selectedId = useRecoilValue(
+      navigationSelectedIdState(key)
+    );
     const prefix = usePrefix('menu-tools')
 
     return (
@@ -40,9 +48,9 @@ export const MenuToolsWidget: React.FC<IMenuToolsWidgetProps> =
         <Button.Group size="small" style={{ marginRight: 20 }}>
           <Button
             size="small"
-            disabled={false}
+            disabled={!selectedId}
             onClick={() => {
-              
+
             }}
           >
             <IconWidget infer="Remove" />
