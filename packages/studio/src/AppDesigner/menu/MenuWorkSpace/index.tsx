@@ -6,9 +6,11 @@ import { SettingsPanel, ToolbarPanel, ViewportPanel, WorkspacePanel } from "../.
 import { MenuToolsWidget } from "../MenuToolsWidget";
 import MenuDesignView from "./MenuDesignView";
 import "./style.less"
-import { useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { navigationSelectedIdState } from "../atoms";
 import { useDesingerKey } from "../../context";
+import MenuSettingsForm from "./MenuSettingsForm";
+import { Empty } from "antd";
 
 const MenuWorkSpace = memo((
   props: {
@@ -18,11 +20,11 @@ const MenuWorkSpace = memo((
   const { app } = props;
   const { t } = useTranslation();
   const key = useDesingerKey();
-  const setSelectedId = useSetRecoilState(
+  const [selectedId, setSelectedId] = useRecoilState(
     navigationSelectedIdState(key)
   );
 
-  const handleClick = useCallback(()=>{
+  const handleClick = useCallback(() => {
     setSelectedId(undefined);
   }, [setSelectedId])
 
@@ -43,7 +45,13 @@ const MenuWorkSpace = memo((
         </WorkspacePanel>
       </Workspace>
       <SettingsPanel title={t("Panels.PropertySettings")}>
-        哈哈哈
+        {
+          selectedId
+            ?
+            <MenuSettingsForm />
+            :
+            <Empty />
+        }
       </SettingsPanel>
     </>
   )
