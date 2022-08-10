@@ -36,7 +36,10 @@ export const NavItemListInner = (props: {
       ref={provided.innerRef}
       style={{
         flex: 1,
-        flexFlow:"column",
+        flexFlow: "column",
+        backgroundColor: snapshot.isDraggingOver
+          ? "rgba(0,0,0, 0.05)"
+          : undefined,
       }}
       onClick={handleClick}
     >
