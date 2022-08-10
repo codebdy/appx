@@ -7,10 +7,12 @@ import { useCallback } from "react";
 import { useRecoilState } from "recoil";
 import { useBackupSnapshot } from "./useBackupSnapshot";
 import { IMenuItem } from "../models/IMenuNode";
+import { useDesingerKey } from "../../context";
 
 export function useSetMeta() {
-  const [rootNode, setRootNode] = useRecoilState(navigationRootNodeState);
-  const [nodes, setNodes] = useRecoilState(navigationNodesState);
+  const key = useDesingerKey();
+  const [rootNode, setRootNode] = useRecoilState(navigationRootNodeState(key));
+  const [nodes, setNodes] = useRecoilState(navigationNodesState(key));
   const backupSnapshot = useBackupSnapshot();
 
   const setmeta = useCallback(

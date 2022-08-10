@@ -6,7 +6,7 @@ import { useDesingerKey } from "../../context";
 import { SettingsPanel, ToolbarPanel, ViewportPanel, WorkspacePanel } from "../../panels";
 import { navigationRootNodeState } from "../atoms";
 import { MenuToolsWidget } from "../MenuToolsWidget";
-import MenuDesignView from "./MenuDesignView/NavItemList";
+import MenuDesignView from "./MenuDesignView";
 import "./style.less"
 
 const MenuWorkSpace = memo(() => {

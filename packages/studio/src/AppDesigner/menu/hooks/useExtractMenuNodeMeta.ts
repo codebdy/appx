@@ -4,9 +4,11 @@ import { useGetMenuNode } from "./useGetMenuNode";
 import { navigationNodesState } from "../atoms";
 import { cloneObject } from "../utils/cloneObject";
 import { IRxMeta } from "../models/IRxMeta";
+import { useDesingerKey } from "../../context";
 
 export function useExtractMenuNodeMeta() {
-  const nodes  = useRecoilValue(navigationNodesState);
+  const key = useDesingerKey();
+  const nodes  = useRecoilValue(navigationNodesState(key));
   const getNode = useGetMenuNode();
   const extractNodeMeta = useCallback(
     (nodeId: string) => {

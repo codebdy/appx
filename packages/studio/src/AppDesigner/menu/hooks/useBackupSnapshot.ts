@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 import { useSetRecoilState, useRecoilValue } from "recoil";
+import { useDesingerKey } from "../../context";
 import {
   isNavigationDirtyState,
   navigationNodesState,
@@ -10,12 +11,13 @@ import {
 } from "../atoms";
 
 export function useBackupSnapshot() {
-  const rootNode = useRecoilValue(navigationRootNodeState);
-  const setIsDirty = useSetRecoilState(isNavigationDirtyState);
-  const selectedId = useRecoilValue(navigationSelectedIdState);
-  const nodes = useRecoilValue(navigationNodesState);
-  const setUndoList = useSetRecoilState(undoListState);
-  const setRedoList = useSetRecoilState(redoListState);
+  const key = useDesingerKey();
+  const rootNode = useRecoilValue(navigationRootNodeState(key));
+  const setIsDirty = useSetRecoilState(isNavigationDirtyState(key));
+  const selectedId = useRecoilValue(navigationSelectedIdState(key));
+  const nodes = useRecoilValue(navigationNodesState(key));
+  const setUndoList = useSetRecoilState(undoListState(key));
+  const setRedoList = useSetRecoilState(redoListState(key));
 
   const backup = useCallback(() => {
     setIsDirty(true);

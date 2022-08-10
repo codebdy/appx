@@ -3,11 +3,13 @@ import {
   DraggableProvided,
   DraggableStateSnapshot,
 } from "react-beautiful-dnd";
-import { DeleteFab } from "./DeleteFab";
 import { IMenuNode } from "../../models/IMenuNode";
 import { navigationSelectedIdState } from "../../atoms";
 import { memo } from "react";
 import { useRecoilState } from "recoil";
+import { useDesingerKey } from "../../../context";
+import React from "react";
+import { PRIMARY_COLOR } from "../../../../consts";
 
 const PageNavInner = memo(
   (props: {
@@ -16,9 +18,9 @@ const PageNavInner = memo(
     node: IMenuNode;
   }) => {
     const { provided, snapshot, node } = props;
-    const theme = useTheme();
+    const key = useDesingerKey();
     const [selectedId, setSelectedId] = useRecoilState(
-      navigationSelectedIdState
+      navigationSelectedIdState(key)
     );
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -28,33 +30,29 @@ const PageNavInner = memo(
 
     const selected = selectedId && selectedId === node.id;
     return (
-      <ListItem
+      <div
         ref={provided.innerRef}
-        button
-        disableRipple
         {...provided.draggableProps}
         {...provided.dragHandleProps}
-        sx={{
-          background: snapshot.isDragging
-            ? theme.palette.action.selected
-            : theme.palette.background.paper,
-          outline: selected ? theme.palette.primary.main + " solid 1px" : 0,
-          mt: "1px",
+        style={{
+          // background: snapshot.isDragging
+          //   ? theme.palette.action.selected
+          //   : theme.palette.background.paper,
+          outline: selected ? PRIMARY_COLOR + " solid 1px" : 0,
           position: "relative",
         }}
         onClick={handleClick}
       >
-        {node.meta.icon?.trim() && (
+        {/* {node.meta.icon?.trim() && (
           <ListItemIcon>
             <SvgStringIcon
               icon={node.meta.icon}
               sx={{ color: theme.palette.text.primary }}
             />
           </ListItemIcon>
-        )}
-        <ListItemText primary={node.meta?.title} />
-        {!snapshot.isDragging && <DeleteFab node={node} />}
-      </ListItem>
+        )} */}
+        {node.meta?.title}
+      </div>
     );
   }
 );
