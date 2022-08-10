@@ -85,7 +85,7 @@ const MenuDragRoot = memo((
             id: createId(),
             meta: {
               type: MenuItemType.Link,
-              title: t("Menu.CustomerLink"),
+              title: t("Menu.CustomizedLink"),
               icon: "groupIcon",
             },
             childIds: [],

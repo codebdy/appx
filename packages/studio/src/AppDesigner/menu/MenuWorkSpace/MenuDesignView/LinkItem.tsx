@@ -31,7 +31,7 @@ const LinkItemInner = memo(
     const selected = useMemo(() => selectedId && selectedId === node.id, [node.id, selectedId]);
     return (
       <div
-        className={clx("menu-item", "menu-link", { selected: selected, float: snapshot.isDragging })}
+        className={clx("menu-item", "menu-text-item", { selected: selected, float: snapshot.isDragging })}
         ref={provided.innerRef}
         {...provided.draggableProps}
         {...provided.dragHandleProps}
