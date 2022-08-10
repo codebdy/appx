@@ -3,7 +3,7 @@ import { IPage, IPageCategory } from "../../../model";
 import React, { memo, useMemo } from "react"
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import { useTranslation } from "react-i18next";
-import { COLLAPSE_GROUP_ID, CUSTOMIZED_LINK_ID, DIVIDER, DIVIDER_ID, HELPER_LIST_ID } from "../consts";
+import { COLLAPSE_GROUP_ID, CUSTOMIZED_LINK_ID, DIVIDER_ID, HELPER_LIST_ID } from "../consts";
 import DraggableLabel from "./DraggableLabel";
 import PagesTree from "./PagesTree";
 const { Panel } = Collapse;
