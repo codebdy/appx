@@ -12,6 +12,7 @@ import { useGetMenuNode } from "../../hooks/useGetMenuNode";
 import { useSetRecoilState } from "recoil";
 import { navigationSelectedIdState } from "../../atoms";
 import { useDesingerKey } from "../../../context";
+import { LinkItem } from "./LinkItem";
 
 export const NavItemListInner = (props: {
   provided: DroppableProvided;
@@ -60,6 +61,9 @@ export const NavItemListInner = (props: {
             )}
             {item.meta.type === MenuItemType.Divider && (
               <MenuDivider key={item.id} node={item} index={index} />
+            )}
+            {item.meta.type === MenuItemType.Link && (
+              <LinkItem key={item.id} node={item} index={index} />
             )}
             {item.meta.type === MenuItemType.Item && (
               <PageNav key={item.id} node={item} index={index} />
