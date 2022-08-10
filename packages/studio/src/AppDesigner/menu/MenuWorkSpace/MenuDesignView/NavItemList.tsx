@@ -36,12 +36,10 @@ export const NavItemListInner = (props: {
       ref={provided.innerRef}
       style={{
         flex: 1,
-        //height: 0,
         flexFlow:"column",
       }}
       onClick={handleClick}
     >
-      哈哈
       {nodeIds?.map((nodId, index) => {
         const item = getNode(nodId);
         if (!item) {
