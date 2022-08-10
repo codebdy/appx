@@ -78,6 +78,7 @@ const CollpaseGroupInner = memo(
       () => selectedId && selectedId === node.id,
       [node.id, selectedId]
     );
+
     return (
       <div
         ref={provided.innerRef}
@@ -88,8 +89,15 @@ const CollpaseGroupInner = memo(
       >
         <div ref={ref}>
           <Collapse expandIconPosition="right" bordered={false} ghost accordion onChange={handleColapse}>
-            <Panel header={node.meta.title} key={node.id}>
-              <div className="collapse-inner">
+            <Panel
+              header={
+                <div onClick={handleClick}>
+                  {node.meta.title}
+                </div>
+              }
+              key={node.id}
+            >
+              <div className="collapse-inner" onClick={handleClick}>
                 <NavItemList
                   node={node}
                   onParentDropable={handleParentDropable}
