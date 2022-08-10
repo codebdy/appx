@@ -11,47 +11,38 @@ const MenuSettingsForm = memo(() => {
   };
 
   return (
-    <Form
-      name="menu-item-settings"
-      labelCol={{
-        span: 8,
-      }}
-      wrapperCol={{
-        span: 16,
-      }}
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      autoComplete="off"
-    >
-      <Form.Item
-        label="Username"
-        name="username"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your username!',
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
+    <div style={{ padding: "16px" }}>
+      <Form
+        name="menu-item-settings"
+        labelCol={{
+          span: 8,
+        }}
+        wrapperCol={{
+          span: 14,
+        }}
+        labelAlign = "left"
+        initialValues={{
 
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your password!',
-          },
-        ]}
+        }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        autoComplete="off"
       >
-        <Input.Password />
-      </Form.Item>
-    </Form>
+        <Form.Item
+          label="Username"
+          name="username"
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          label="Password"
+          name="password"
+        >
+          <Input.Password />
+        </Form.Item>
+      </Form>
+    </div>
   );
 });
 
