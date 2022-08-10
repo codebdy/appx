@@ -10,6 +10,7 @@ export const ToolbarPanel: React.FC<IWorkspaceItemProps> = (props) => {
         justifyContent: 'space-between',
         marginBottom: 4,
         padding: '0 4px',
+        paddingTop: "4px",
         ...props.style,
       }}
     >
