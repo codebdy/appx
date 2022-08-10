@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useCallback } from 'react'
 import { Button } from 'antd'
 import {
   usePrefix,
@@ -9,6 +9,9 @@ import './styles.less'
 import { useDesingerKey } from '../../context'
 import { useRecoilValue } from 'recoil'
 import { navigationSelectedIdState } from '../atoms'
+import { useRedo } from '../hooks/useRedo'
+import { useUndo } from '../hooks/useUndo'
+import { useRemoveMenuNode } from '../hooks/useRemoveMenuNode'
 
 export type IMenuToolsWidgetProps = {
   className?: string
@@ -18,29 +21,41 @@ export type IMenuToolsWidgetProps = {
 export const MenuToolsWidget: React.FC<IMenuToolsWidgetProps> =
   memo((props) => {
     const key = useDesingerKey();
-    
+    const { redoDisabled, redo } = useRedo();
+    const { undoDisabled, undo } = useUndo();
+    const remove = useRemoveMenuNode()
+
     const selectedId = useRecoilValue(
       navigationSelectedIdState(key)
     );
     const prefix = usePrefix('menu-tools')
+
+    const handleUndo = useCallback(() => {
+      undo();
+    }, [undo])
+
+    const handleRedo = useCallback(() => {
+      redo();
+    }, [redo])
+
+    const handleRemove = useCallback(()=>{
+      remove(selectedId);
+    }, [remove, selectedId]);
 
     return (
       <div style={props.style} className={cls(prefix, props.className)}>
         <Button.Group size="small" style={{ marginRight: 20 }}>
           <Button
             size="small"
-            disabled={false}
-            onClick={() => {
-
-            }}
+            disabled={undoDisabled}
+            onClick={handleUndo}
           >
             <IconWidget infer="Undo" />
           </Button>
           <Button
             size="small"
-            disabled={false}
-            onClick={() => {
-            }}
+            disabled={redoDisabled}
+            onClick={handleRedo}
           >
             <IconWidget infer="Redo" />
           </Button>
@@ -49,9 +64,7 @@ export const MenuToolsWidget: React.FC<IMenuToolsWidgetProps> =
           <Button
             size="small"
             disabled={!selectedId}
-            onClick={() => {
-
-            }}
+            onClick={handleRemove}
           >
             <IconWidget infer="Remove" />
           </Button>
