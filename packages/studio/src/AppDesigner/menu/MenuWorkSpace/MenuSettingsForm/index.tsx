@@ -7,6 +7,7 @@ import { useRecoilValue } from 'recoil';
 import { useMenuNode } from '../../hooks/useMenuNode';
 import { useSetMeta } from '../../hooks/useSetMeta';
 import { useDesingerKey } from '../../../context';
+import { MenuItemType } from '../../models/IMenuNode';
 
 const MenuSettingsForm = memo(() => {
   const { t } = useTranslation();
@@ -14,7 +15,7 @@ const MenuSettingsForm = memo(() => {
   const selectedId = useRecoilValue(navigationSelectedIdState(key));
   const node = useMenuNode(selectedId);
   const setMeta = useSetMeta();
-  
+
   const handleChange = useCallback((form) => {
     setMeta(node.id, { ...node.meta, ...form });
   }, [node.id, node.meta, setMeta])
@@ -37,19 +38,26 @@ const MenuSettingsForm = memo(() => {
         onValuesChange={handleChange}
         autoComplete="off"
       >
-        <Form.Item
-          label={t("Menu.Title")}
-          name="title"
-        >
-          <Input />
-        </Form.Item>
+        {
+          node.meta?.type !== MenuItemType.Divider ?
+            <>
+              <Form.Item
+                label={t("Menu.Title")}
+                name="title"
+              >
+                <Input />
+              </Form.Item>
 
-        <Form.Item
-          label={t("Icon")}
-          name="icon"
-        >
-          <IconInput />
-        </Form.Item>
+              <Form.Item
+                label={t("Icon")}
+                name="icon"
+              >
+                <IconInput />
+              </Form.Item>
+            </>
+            : <div>{t("Menu.Divider")}</div>
+        }
+
       </Form>
     </div>
   );
