@@ -1,6 +1,6 @@
 import { Form, Input, Select } from 'antd';
 import IconInput from '../../../../shared/icon/IconInput';
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { navigationSelectedIdState } from '../../atoms';
 import { useRecoilValue } from 'recoil';
@@ -25,6 +25,14 @@ const MenuSettingsForm = memo(() => {
   const selectedId = useRecoilValue(navigationSelectedIdState(key));
   const node = useMenuNode(selectedId);
   const setMeta = useSetMeta();
+  const [form] = Form.useForm()
+
+  useEffect(() => {
+    form.setFieldsValue({
+      title: node.meta?.title,
+      icon: node.meta?.icon
+    })
+  }, [form, node.meta])
 
   const handleChange = useCallback((form) => {
     setMeta(node.id, { ...node.meta, ...form });
@@ -34,6 +42,7 @@ const MenuSettingsForm = memo(() => {
     <div style={{ padding: "16px" }}>
       <Form
         name="menu-item-settings"
+        form={form}
         labelCol={{
           span: 8,
         }}
