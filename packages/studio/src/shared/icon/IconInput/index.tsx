@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { getIcon } from "../data";
 import { IIcon } from "../model";
 import { SvgStringIcon } from "../SvgStringIcon";
-import IconSelectForm from "./IconSelectForm";
+import IconSelectForm, { IconType } from "./IconSelectForm";
 import "./style.less"
 
 export const isEmpertyIcon = (icon?: IIcon) => {
@@ -46,6 +46,7 @@ const IconInput = memo((
   }
 ) => {
   const { value, onChange } = props;
+  const [iconType, setIconType] = useState<IconType>();
   const [inputValue, setInputValue] = useState(value);
   const [visible, setVisible] = useState(false);
   const [selectedIcon, setSelectedIcon] = useState<string>();
@@ -56,6 +57,7 @@ const IconInput = memo((
     setSelectedIcon(value?.iconKey)
     setCustomizedIcon(value?.svgString);
     setInputValue(value);
+    setIconType(!value?.iconKey && value?.svgString ? IconType.Customized : IconType.Normal)
   }, [value])
 
   useEffect(() => {
@@ -77,12 +79,15 @@ const IconInput = memo((
   }, [reset])
 
   const handleConfirm = useCallback(() => {
-    let newValue: IIcon = { iconKey: selectedIcon, svgString: customizedIcon }
+    let newValue: IIcon = {
+      iconKey: iconType === IconType.Normal ? selectedIcon : undefined,
+      svgString: iconType === IconType.Customized ? customizedIcon : undefined,
+    }
     newValue = isEmpertyIcon(newValue) ? undefined : newValue;
     setInputValue(newValue);
     onChange({ target: { value: newValue } });
     setVisible(false);
-  }, [customizedIcon, onChange, selectedIcon])
+  }, [customizedIcon, iconType, onChange, selectedIcon])
 
   return (
     <div
@@ -122,6 +127,8 @@ const IconInput = memo((
         width={800}
       >
         <IconSelectForm
+          iconType={iconType}
+          onTypeChange={setIconType}
           selectedIcon={selectedIcon}
           onSelected={setSelectedIcon}
           customizedIcon={customizedIcon}

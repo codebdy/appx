@@ -11,13 +11,15 @@ export enum IconType {
 
 const IconSelectForm = memo((
   props: {
+    iconType?: IconType,
     selectedIcon?: string,
     onSelected: (icon: string | undefined) => void,
     customizedIcon?: string,
     onChangeCustomizedIcon: (svgIcon: string | undefined) => void,
+    onTypeChange: (iconType: IconType) => void,
   }
 ) => {
-  const { selectedIcon, onSelected, customizedIcon, onChangeCustomizedIcon } = props;
+  const { iconType, selectedIcon, onSelected, customizedIcon, onChangeCustomizedIcon, onTypeChange } = props;
   const [keyword, setKeyWord] = useState("");
   const [categoryName, setCategoryName] = useState(iconCategories[0].name);
   const { t } = useTranslation();
@@ -38,12 +40,11 @@ const IconSelectForm = memo((
     }
   }), [t])
 
-  const handleChange = useCallback(() => {
-
-  }, []);
+  const handleChange = useCallback((key) => {
+    onTypeChange(key)
+  }, [onTypeChange]);
 
   const onCategoryChange = useCallback(({ target: { value } }: RadioChangeEvent) => {
-    console.log('radio4 checked', value);
     setCategoryName(value);
   }, []);
 
@@ -51,8 +52,12 @@ const IconSelectForm = memo((
     setKeyWord(event.target.value)
   }, [])
 
+  const handleCustomizedChange = useCallback((event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    onChangeCustomizedIcon(event.target.value)
+  }, [onChangeCustomizedIcon])
+
   return (
-    <Tabs defaultActiveKey={IconType.Normal} onChange={handleChange}>
+    <Tabs defaultActiveKey={iconType || IconType.Normal} onChange={handleChange}>
       <TabPane className='icon-pannel' tab={t("IconInput.IconLib")} key={IconType.Normal}>
         <div className='icon-lib-actions'>
           <Radio.Group
@@ -66,7 +71,7 @@ const IconSelectForm = memo((
         </div>
         {
           keyword &&
-          <Space style={{marginTop:16}} wrap>
+          <Space style={{ marginTop: 16 }} wrap>
             {
               findIcons(keyword, categoryName).map((icon) => {
                 return (
@@ -112,7 +117,11 @@ const IconSelectForm = memo((
 
       </TabPane>
       <TabPane className='icon-pannel' tab={t("IconInput.Customized")} key={IconType.Customized}>
-        Content of Tab Pane 2
+        <Input.TextArea
+          rows={16}
+          value={customizedIcon}
+          onChange={handleCustomizedChange}
+        />
       </TabPane>
     </Tabs>
   )
