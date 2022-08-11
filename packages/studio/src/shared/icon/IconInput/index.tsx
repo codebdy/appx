@@ -1,7 +1,8 @@
-import { BorderOutlined, CloseCircleFilled, StarOutlined } from "@ant-design/icons";
+import { BorderOutlined, CloseCircleFilled } from "@ant-design/icons";
 import { Badge, Button } from "antd";
 import React, { useCallback } from "react";
 import { memo } from "react"
+import "./style.less"
 
 const IconInput = memo(() => {
   const handelRemove = useCallback(() => {
@@ -9,14 +10,16 @@ const IconInput = memo(() => {
   }, []);
 
   return (
-    <div style={{
+    <div 
+      className="icon-input"
+    style={{
       display: "flex",
       alignItems: "center"
     }}>
       <Badge
         count={
           <Button
-            icon={<CloseCircleFilled style={{ color: "grey" }} />}
+            icon={<CloseCircleFilled className="icon-remove-button-icon" />}
             type="text"
             size="small"
             onClick={handelRemove}
