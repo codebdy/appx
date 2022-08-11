@@ -34,6 +34,7 @@
   "File": "文件",
   "Length": "长度",
   "Publish": "发布",
+  "Icon": "图标",
   "install": {
     "Title": "安装Appx",
     "Next": "下一步",
@@ -171,16 +172,15 @@
     "CustomizedLink": "自定义链接",
     "Pages": "页面",
     "Title": "名称",
-    "Icon": "图标",
     "DropTip": "请把子菜单项拖放到此处"
   },
-  "Icon": {
-    "Title": "图标",
+  "IconInput": {
     "Outlined": "线框风格",
     "Filled": "实底风格",
     "TwoTone": "双色风格",
     "Directional": "方向性图标",
     "Suggested": "提示建议性图标",
-    "Editor": "编辑类图标"
+    "Editor": "编辑类图标",
+    "DialogTitle": "请选择图标"
   }
 }

@@ -39,7 +39,7 @@ const MenuSettingsForm = memo(() => {
         </Form.Item>
 
         <Form.Item
-          label={t("Menu.Icon")}
+          label={t("Icon")}
           name="icon"
         >
           <IconInput />

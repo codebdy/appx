@@ -1,21 +1,33 @@
 import { BorderOutlined, CloseCircleFilled } from "@ant-design/icons";
-import { Badge, Button } from "antd";
-import React, { useCallback } from "react";
+import { Badge, Button, Modal } from "antd";
+import React, { useCallback, useState } from "react";
 import { memo } from "react"
+import { useTranslation } from "react-i18next";
 import "./style.less"
 
 const IconInput = memo(() => {
+  const [visible, setVisible] = useState(false);
+
+  const { t } = useTranslation();
+
   const handelRemove = useCallback(() => {
     console.log("哈哈哈shandiao ")
   }, []);
 
+  const handleShow = useCallback(() => {
+    setVisible(true);
+  }, [])
+  const hancleClose = useCallback(() => {
+    setVisible(false);
+  }, [])
+
   return (
-    <div 
+    <div
       className="icon-input"
-    style={{
-      display: "flex",
-      alignItems: "center"
-    }}>
+      style={{
+        display: "flex",
+        alignItems: "center"
+      }}>
       <Badge
         count={
           <Button
@@ -26,9 +38,23 @@ const IconInput = memo(() => {
           />
         }
       >
-        <Button icon={<BorderOutlined style={{ color: "transparent" }} />} />
+        <Button
+          icon={<BorderOutlined style={{ color: "transparent" }} />}
+          onClick={handleShow}
+        />
       </Badge>
-
+      <Modal
+        title={t("IconInput.DialogTitle")}
+        centered
+        visible={visible}
+        onOk={hancleClose}
+        onCancel={hancleClose}
+        width={1000}
+      >
+        <p>some contents...</p>
+        <p>some contents...</p>
+        <p>some contents...</p>
+      </Modal>
     </div>
   )
 })
