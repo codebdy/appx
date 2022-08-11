@@ -19,7 +19,7 @@ import { canStartLink } from "./canStartLink";
 import { EVENT_PREPARE_LINK_TO, triggerCanvasEvent } from "./events";
 import { useCheckCanLinkTo } from "./useCheckCanLinkTo";
 import { createUuid, ID } from "../../shared";
-import { seedId } from "../../shared/seedId";
+import { createId } from "../../shared";
 
 export function useEdgeLineDraw(graph: Graph | undefined, appUuid: ID) {
   const [drawingLine, setDrawingLine] = useRecoilState(
@@ -119,13 +119,14 @@ export function useEdgeLineDraw(graph: Graph | undefined, appUuid: ID) {
             targetId: target.uuid,
             roleOfTarget: isInherit
               ? undefined
-              : target.name.toLowerCase() + seedId(),
+              : target.name.toLowerCase() + createId(),
             roleOfSource:
               isInherit || isOneWay
                 ? undefined
-                : source.name.toLowerCase() + seedId(),
+                : source.name.toLowerCase() + createId(),
             sourceMutiplicity: RelationMultiplicity.ZERO_ONE,
             targetMultiplicity: RelationMultiplicity.ZERO_ONE,
+            appUuid
           },
         ]);
 
@@ -152,21 +153,7 @@ export function useEdgeLineDraw(graph: Graph | undefined, appUuid: ID) {
         addVertex({ x, y });
       }
     },
-    [
-      addVertex,
-      backupSnapshot,
-      canLinkTo,
-      createRelationInnerId,
-      drawingLine,
-      getClass,
-      graph,
-      selectedDiagram,
-      selectedElement,
-      setDrawingLine,
-      setEdges,
-      setPressedLineType,
-      setRelations,
-    ]
+    [addVertex, appUuid, backupSnapshot, canLinkTo, createRelationInnerId, drawingLine, getClass, graph, selectedDiagram, selectedElement, setDrawingLine, setEdges, setPressedLineType, setRelations]
   );
 
   const handleEdgeDbclick = useCallback(
