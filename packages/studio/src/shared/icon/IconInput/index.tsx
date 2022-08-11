@@ -3,41 +3,16 @@ import { Badge, Button, Modal } from "antd";
 import React, { useCallback, useEffect, useState } from "react";
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
-import { getIcon } from "../data";
 import { IIcon } from "../model";
-import { SvgStringIcon } from "../SvgStringIcon";
 import IconSelectForm, { IconType } from "./IconSelectForm";
+import { IconView } from "../IconView";
 import "./style.less"
 
 export const isEmpertyIcon = (icon?: IIcon) => {
   return !icon || (!icon.iconKey && !icon.svgString)
 }
 
-const empertyIcon = <BorderOutlined style={{ color: "transparent" }} />;
-
-export const IconView = (
-  props: {
-    icon?: IIcon
-  }
-) => {
-  const { icon } = props;
-  if (isEmpertyIcon(icon)) {
-    return empertyIcon
-  }
-
-  if (icon.iconKey) {
-    const realIcon = getIcon(icon.iconKey)
-    if (realIcon?.icon) {
-      return <realIcon.icon />
-    }
-  }
-
-  if (icon.svgString) {
-    return <SvgStringIcon icon={icon.svgString} />
-  }
-
-  return empertyIcon;
-}
+export const empertyIcon = <BorderOutlined style={{ color: "transparent" }} />;
 
 const IconInput = memo((
   props: {
