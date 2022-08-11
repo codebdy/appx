@@ -35,6 +35,7 @@
   "Length": "长度",
   "Publish": "发布",
   "Icon": "图标",
+  "AuthPoints":"权限点",
   "install": {
     "Title": "安装Appx",
     "Next": "下一步",
