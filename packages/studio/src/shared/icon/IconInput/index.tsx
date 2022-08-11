@@ -49,6 +49,8 @@ const IconInput = memo(() => {
         title={t("IconInput.DialogTitle")}
         centered
         visible={visible}
+        okText={t("Confirm")}
+        cancelText={t("Cancel")}
         onOk={hancleClose}
         onCancel={hancleClose}
         width={600}
