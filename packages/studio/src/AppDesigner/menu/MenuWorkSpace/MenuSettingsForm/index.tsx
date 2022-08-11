@@ -1,4 +1,5 @@
 import { Form, Input } from 'antd';
+import IconInput from '../../../../shared/icon/IconInput';
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -41,7 +42,7 @@ const MenuSettingsForm = memo(() => {
           label={t("Menu.Icon")}
           name="icon"
         >
-          <Input />
+          <IconInput />
         </Form.Item>
       </Form>
     </div>
