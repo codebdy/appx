@@ -171,6 +171,7 @@
     "CustomizedLink": "自定义链接",
     "Pages": "页面",
     "Title": "名称",
-    "Icon": "图标"
+    "Icon": "图标",
+    "DropTip":"请把子菜单项拖放到此处"
   }
 }

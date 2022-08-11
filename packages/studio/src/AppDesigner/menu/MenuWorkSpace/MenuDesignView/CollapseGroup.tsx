@@ -12,6 +12,7 @@ import React from "react";
 import NavItemList from "./NavItemList";
 import { Collapse } from "antd";
 import clx from "classnames";
+import { useTranslation } from "react-i18next";
 
 const { Panel } = Collapse;
 
@@ -32,6 +33,7 @@ const CollpaseGroupInner = memo(
     const [selectedId, setSelectedId] = useRecoilState(
       navigationSelectedIdState(key)
     );
+    const { t } = useTranslation();
 
     const ref = useRef<HTMLDivElement>();
 
@@ -109,7 +111,24 @@ const CollpaseGroupInner = memo(
               }
               key={node.id}
             >
-              <div className="collapse-inner" onClick={handleClick}>
+              <div className={clx("collapse-inner", { dashed: !node.childIds.length })} onClick={handleClick}>
+                {
+                  !node.childIds.length && !snapshot.draggingOver &&
+                  <div
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      opacity: 0.6,
+                      pointerEvents: "none",
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                    }}
+                  >{t("Menu.DropTip")}</div>
+                }
                 <NavItemList
                   node={node}
                   onParentDropable={handleParentDropable}
