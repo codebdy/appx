@@ -3,6 +3,7 @@ import { Badge, Button, Modal } from "antd";
 import React, { useCallback, useEffect, useState } from "react";
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
+import { getIcon } from "../data";
 import { IIcon } from "../model";
 import { SvgStringIcon } from "../SvgStringIcon";
 import IconSelectForm from "./IconSelectForm";
@@ -25,7 +26,10 @@ export const IconView = (
   }
 
   if (icon.iconKey) {
-    return <icon.iconKey />
+    const realIcon = getIcon(icon.iconKey)
+    if (realIcon?.icon) {
+      return <realIcon.icon />
+    }
   }
 
   if (icon.svgString) {
@@ -73,8 +77,12 @@ const IconInput = memo((
   }, [reset])
 
   const handleConfirm = useCallback(() => {
+    let newValue: IIcon = { iconKey: selectedIcon, svgString: customizedIcon }
+    newValue = isEmpertyIcon(newValue) ? undefined : newValue;
+    setInputValue(newValue);
+    onChange({ target: { value: newValue } });
     setVisible(false);
-  }, [])
+  }, [customizedIcon, onChange, selectedIcon])
 
   return (
     <div
