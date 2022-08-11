@@ -1,7 +1,7 @@
 import { Button, Input, Radio, RadioChangeEvent, Space, Tabs } from 'antd';
 import React, { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { iconCategories } from '../data';
+import { findIcons, iconCategories } from '../data';
 const { TabPane } = Tabs;
 
 export enum IconType {
@@ -18,6 +18,7 @@ const IconSelectForm = memo((
   }
 ) => {
   const { selectedIcon, onSelected, customizedIcon, onChangeCustomizedIcon } = props;
+  const [keyword, setKeyWord] = useState("");
   const [categoryName, setCategoryName] = useState(iconCategories[0].name);
   const { t } = useTranslation();
 
@@ -46,6 +47,10 @@ const IconSelectForm = memo((
     setCategoryName(value);
   }, []);
 
+  const handleKeywordChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    setKeyWord(event.target.value)
+  }, [])
+
   return (
     <Tabs defaultActiveKey={IconType.Normal} onChange={handleChange}>
       <TabPane className='icon-pannel' tab={t("IconInput.IconLib")} key={IconType.Normal}>
@@ -57,17 +62,35 @@ const IconSelectForm = memo((
             optionType="button"
             buttonStyle="solid"
           />
-          <Input.Search allowClear style={{ flex: 1, marginLeft: 8 }} />
+          <Input.Search allowClear style={{ flex: 1, marginLeft: 8 }} onChange={handleKeywordChange} />
         </div>
         {
-          getCategory(categoryName).iconGroups.map((group) => {
+          keyword &&
+          <Space style={{marginTop:16}} wrap>
+            {
+              findIcons(keyword, categoryName).map((icon) => {
+                return (
+                  <Button
+                    size='large'
+                    icon={<icon.icon />}
+                    type={icon.iconKey === selectedIcon ? "primary" : undefined}
+                    onClick={() => onSelected(icon.iconKey)}
+                  />
+
+                )
+              })
+            }
+          </Space>
+        }
+        {
+          !keyword && getCategory(categoryName).iconGroups.map((group) => {
             return (
               <div>
                 <h3 style={{ padding: "16px 0" }}>
                   {t("IconInput." + group.name)}
                 </h3>
                 <div>
-                  <Space>
+                  <Space wrap>
                     {
                       group.icons.map((icon) => {
                         return (
