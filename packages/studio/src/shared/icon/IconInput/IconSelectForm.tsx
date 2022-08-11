@@ -3,6 +3,11 @@ import React, { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 const { TabPane } = Tabs;
 
+export enum IconType {
+  Normal = "normal",
+  Customized = "Customized"
+}
+
 const IconSelectForm = memo(() => {
   const { t } = useTranslation();
 
@@ -12,10 +17,10 @@ const IconSelectForm = memo(() => {
 
   return (
     <Tabs defaultActiveKey="1" onChange={handleChange}>
-      <TabPane tab={t("IconInput.IconLib")} key="1">
+      <TabPane tab={t("IconInput.IconLib")} key={IconType.Normal}>
         Content of Tab Pane 1
       </TabPane>
-      <TabPane tab={t("IconInput.Customized")} key="2">
+      <TabPane tab={t("IconInput.Customized")} key={IconType.Customized}>
         Content of Tab Pane 2
       </TabPane>
     </Tabs>
