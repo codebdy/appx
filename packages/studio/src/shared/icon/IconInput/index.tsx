@@ -8,7 +8,7 @@ import "./style.less"
 
 const IconInput = memo(() => {
   const [visible, setVisible] = useState(false);
-
+  const [selectedIcon, setSelectedIcon] = useState<string>();
   const { t } = useTranslation();
 
   const handelRemove = useCallback(() => {
@@ -53,9 +53,9 @@ const IconInput = memo(() => {
         cancelText={t("Cancel")}
         onOk={hancleClose}
         onCancel={hancleClose}
-        width={600}
+        width={800}
       >
-        <IconSelectForm />
+        <IconSelectForm selectedIcon = {selectedIcon} onSelected={setSelectedIcon}/>
       </Modal>
     </div>
   )

@@ -1,4 +1,4 @@
-import { Input, Radio, RadioChangeEvent, Tabs } from 'antd';
+import { Button, Input, Radio, RadioChangeEvent, Space, Tabs } from 'antd';
 import React, { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { iconCategories } from '../data';
@@ -9,13 +9,27 @@ export enum IconType {
   Customized = "Customized"
 }
 
-const IconSelectForm = memo(() => {
-  const [category, setCategory] = useState(iconCategories[0].name);
+const IconSelectForm = memo((
+  props: {
+    selectedIcon: string,
+    onSelected: (icon: string | undefined) => void
+  }
+) => {
+  const { selectedIcon, onSelected } = props;
+  const [categoryName, setCategoryName] = useState(iconCategories[0].name);
   const { t } = useTranslation();
-  
+
+  const getCategory = useCallback((name: string) => {
+    for (const category of iconCategories) {
+      if (category.name === name) {
+        return category;
+      }
+    }
+  }, [])
+
   const categoryButtons = useMemo(() => iconCategories.map((category) => {
     return {
-      label: t("IconInput." + category.name),
+      label: <>{category.icon} {t("IconInput." + category.name)}</>,
       value: category.name,
       icon: category.icon,
     }
@@ -27,7 +41,7 @@ const IconSelectForm = memo(() => {
 
   const onCategoryChange = useCallback(({ target: { value } }: RadioChangeEvent) => {
     console.log('radio4 checked', value);
-    setCategory(value);
+    setCategoryName(value);
   }, []);
 
   return (
@@ -37,17 +51,40 @@ const IconSelectForm = memo(() => {
           <Radio.Group
             options={categoryButtons}
             onChange={onCategoryChange}
-            value={category}
+            value={categoryName}
             optionType="button"
             buttonStyle="solid"
           />
           <Input.Search allowClear style={{ flex: 1, marginLeft: 8 }} />
         </div>
-        Content of Tab <br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1
-        Content of Tab <br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1
-        Content of Tab <br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1
-        Content of Tab <br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1
-        Content of Tab <br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1
+        {
+          getCategory(categoryName).iconGroups.map((group) => {
+            return (
+              <div>
+                <h3 style={{ padding: "16px 0" }}>
+                  {t("IconInput." + group.name)}
+                </h3>
+                <div>
+                  <Space>
+                    {
+                      group.icons.map((icon) => {
+                        return (
+                          <Button
+                            size='large'
+                            icon={<icon.icon />}
+                            type={icon.iconKey === selectedIcon ? "primary" : undefined}
+                            onClick={() => onSelected(icon.iconKey)}
+                          />
+                        )
+                      })
+                    }
+                  </Space>
+                </div>
+              </div>
+            )
+          })
+        }
+
       </TabPane>
       <TabPane className='icon-pannel' tab={t("IconInput.Customized")} key={IconType.Customized}>
         Content of Tab Pane 2
