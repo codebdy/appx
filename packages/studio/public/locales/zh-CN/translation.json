@@ -169,6 +169,8 @@
     "CollapseGroup": "折叠组",
     "Divider": "分隔符",
     "CustomizedLink": "自定义链接",
-    "Pages": "页面"
+    "Pages": "页面",
+    "Title": "名称",
+    "Icon": "图标"
   }
 }

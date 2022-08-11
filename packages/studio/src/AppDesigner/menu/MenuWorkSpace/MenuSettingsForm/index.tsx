@@ -1,7 +1,9 @@
 import { Form, Input } from 'antd';
 import React, { memo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const MenuSettingsForm = memo(() => {
+  const { t } = useTranslation();
   const onFinish = (values) => {
     console.log('Success:', values);
   };
@@ -20,7 +22,7 @@ const MenuSettingsForm = memo(() => {
         wrapperCol={{
           span: 14,
         }}
-        labelAlign = "left"
+        labelAlign="left"
         initialValues={{
 
         }}
@@ -29,17 +31,17 @@ const MenuSettingsForm = memo(() => {
         autoComplete="off"
       >
         <Form.Item
-          label="Username"
-          name="username"
+          label={t("Menu.Title")}
+          name="title"
         >
           <Input />
         </Form.Item>
 
         <Form.Item
-          label="Password"
-          name="password"
+          label={t("Menu.Icon")}
+          name="icon"
         >
-          <Input.Password />
+          <Input />
         </Form.Item>
       </Form>
     </div>
