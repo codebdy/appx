@@ -5,5 +5,5 @@ import { suggested } from "./suggested";
 
 export const twoToneIcons: IIconCategory = {
   name: "Outlined",
-  icons: [directional, suggested, editor]
+  iconGroups: [directional, suggested, editor]
 }

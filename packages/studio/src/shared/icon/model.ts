@@ -17,5 +17,5 @@ export interface IIconGroup {
 
 export interface IIconCategory {
   name: string;
-  icons: IIconGroup[]
+  iconGroups: IIconGroup[]
 }
