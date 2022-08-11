@@ -1,35 +1,26 @@
 import React from "react";
-import JsxParser from "../../react-jsx-parser";
 
 export const SvgStringIcon = React.forwardRef((
-  props:{
-    icon?:string,
-    size?:number,
-    sx?: any,
+  props: {
+    icon?: string,
+    size?: number,
   },
-  ref:any
-)=>{
-  const {icon, size = 24, sx, ...rest} = props;
+  ref: any
+) => {
+  const { icon, size = 24, ...rest } = props;
 
   return (
     <div
       style={{
         width: size,
         height: size,
-        '& svg':{
-          width: size,
-          height: size,
-        },
-        ...sx,
       }}
       {...rest}
-      ref = {ref}
+      ref={ref}
+      dangerouslySetInnerHTML={{
+        __html: icon
+      }}
     >
-      <JsxParser
-        jsx = {icon}
-        renderInWrapper = {false}
-        blacklistedAttrs = {[]}
-      />
     </div>
   )
 })
