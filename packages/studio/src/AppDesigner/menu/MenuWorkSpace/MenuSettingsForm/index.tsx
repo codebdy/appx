@@ -1,17 +1,23 @@
 import { Form, Input } from 'antd';
 import IconInput from '../../../../shared/icon/IconInput';
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import { navigationSelectedIdState } from '../../atoms';
+import { useRecoilValue } from 'recoil';
+import { useMenuNode } from '../../hooks/useMenuNode';
+import { useSetMeta } from '../../hooks/useSetMeta';
+import { useDesingerKey } from '../../../context';
 
 const MenuSettingsForm = memo(() => {
   const { t } = useTranslation();
-  const onFinish = (values) => {
-    console.log('Success:', values);
-  };
-
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
+  const key = useDesingerKey();
+  const selectedId = useRecoilValue(navigationSelectedIdState(key));
+  const node = useMenuNode(selectedId);
+  const setMeta = useSetMeta();
+  
+  const handleChange = useCallback((form) => {
+    setMeta(node.id, { ...node.meta, ...form });
+  }, [node.id, node.meta, setMeta])
 
   return (
     <div style={{ padding: "16px" }}>
@@ -25,10 +31,10 @@ const MenuSettingsForm = memo(() => {
         }}
         labelAlign="left"
         initialValues={{
-
+          title: node.meta?.title,
+          icon: node.meta?.icon
         }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
+        onValuesChange={handleChange}
         autoComplete="off"
       >
         <Form.Item

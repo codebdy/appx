@@ -1,3 +1,4 @@
+import { IIcon } from "../../../shared/icon/model";
 import { ID } from "../../../shared";
 
 export enum MenuItemType {
@@ -16,7 +17,7 @@ export interface IMenuBadge {
 export interface IMenuItem {
   type: MenuItemType;
   title?: string;
-  icon?: string;
+  icon?: IIcon;
   badge?: IMenuBadge;
   //chip?:IMenuChip,
   children?: Array<IMenuItem>;
