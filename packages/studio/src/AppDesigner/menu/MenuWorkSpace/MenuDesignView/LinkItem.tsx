@@ -10,6 +10,8 @@ import { navigationSelectedIdState } from "../../atoms";
 import { useDesingerKey } from "../../../context";
 import React from "react";
 import clx from "classnames";
+import ItemIcon from "./ItemIcon";
+import { IconView } from "../../../../shared/icon/IconView";
 
 const LinkItemInner = memo(
   (props: {
@@ -31,12 +33,19 @@ const LinkItemInner = memo(
     const selected = useMemo(() => selectedId && selectedId === node.id, [node.id, selectedId]);
     return (
       <div
-        className={clx("menu-item", "menu-text-item", "menu-single-item", { selected: selected, float: snapshot.isDragging })}
+        className={clx("menu-item", "menu-text-item", "menu-single-item", "item-label", { selected: selected, float: snapshot.isDragging })}
         ref={provided.innerRef}
         {...provided.draggableProps}
         {...provided.dragHandleProps}
         onClick={handleClick}
       >
+        {node.meta.icon && (
+          <ItemIcon>
+            <IconView
+              icon={node.meta.icon}
+            />
+          </ItemIcon>
+        )}
         {node?.meta?.title}
       </div>
     );

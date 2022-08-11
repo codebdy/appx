@@ -13,6 +13,8 @@ import NavItemList from "./NavItemList";
 import { Collapse } from "antd";
 import clx from "classnames";
 import { useTranslation } from "react-i18next";
+import { IconView } from "../../../../shared/icon/IconView";
+import ItemIcon from "./ItemIcon";
 
 const { Panel } = Collapse;
 
@@ -105,7 +107,14 @@ const CollpaseGroupInner = memo(
           <Collapse expandIconPosition="right" bordered={false} ghost accordion onChange={handleColapse}>
             <Panel
               header={
-                <div onClick={handleClick}>
+                <div className="item-label" onClick={handleClick}>
+                  {node.meta.icon && (
+                    <ItemIcon>
+                      <IconView
+                        icon={node.meta.icon}
+                      />
+                    </ItemIcon>
+                  )}
                   {node.meta.title}
                 </div>
               }

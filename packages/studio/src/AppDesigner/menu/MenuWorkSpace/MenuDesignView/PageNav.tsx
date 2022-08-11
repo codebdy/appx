@@ -10,6 +10,8 @@ import { useRecoilState } from "recoil";
 import { useDesingerKey } from "../../../context";
 import React from "react";
 import clx from "classnames";
+import ItemIcon from "./ItemIcon";
+import { IconView } from "../../../../shared/icon/IconView";
 
 const PageNavInner = memo(
   (props: {
@@ -32,19 +34,18 @@ const PageNavInner = memo(
     return (
       <div
         ref={provided.innerRef}
-        className={clx("menu-item", "menu-text-item", "menu-single-item", { selected: selected, float: snapshot.isDragging })}
+        className={clx("menu-item", "menu-text-item", "menu-single-item", "item-label", { selected: selected, float: snapshot.isDragging })}
         {...provided.draggableProps}
         {...provided.dragHandleProps}
         onClick={handleClick}
       >
-        {/* {node.meta.icon?.trim() && (
-          <ListItemIcon>
-            <SvgStringIcon
+        {node.meta.icon && (
+          <ItemIcon>
+            <IconView
               icon={node.meta.icon}
-              sx={{ color: theme.palette.text.primary }}
             />
-          </ListItemIcon>
-        )} */}
+          </ItemIcon>
+        )}
         {node.meta?.title}
       </div>
     );
