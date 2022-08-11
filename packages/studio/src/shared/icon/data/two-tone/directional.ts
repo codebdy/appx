@@ -1,36 +1,37 @@
+import { DownCircleTwoTone, LeftCircleTwoTone, PlayCircleTwoTone, RightCircleTwoTone, UpCircleTwoTone, UpSquareTwoTone } from "@ant-design/icons";
 import { IIconGroup } from "../../model";
 
 export const directional: IIconGroup = {
   name: "Directional",
   icons: [
     {
-      iconKey: "StepBackwardOutlined",
-      icon: StepBackwardOutlined,
+      iconKey: "UpCircleTwoTone",
+      icon: UpCircleTwoTone,
       keywords: "",
     },
     {
-      iconKey: "StepForwardOutlined",
-      icon: StepForwardOutlined,
+      iconKey: "DownCircleTwoTone",
+      icon: DownCircleTwoTone,
       keywords: "",
     },
     {
-      iconKey: "FastBackwardOutlined",
-      icon: FastBackwardOutlined,
+      iconKey: "LeftCircleTwoTone",
+      icon: LeftCircleTwoTone,
       keywords: "",
     },
     {
-      iconKey: "FastForwardOutlined",
-      icon: FastForwardOutlined,
+      iconKey: "RightCircleTwoTone",
+      icon: RightCircleTwoTone,
       keywords: "",
     },
     {
-      iconKey: "ShrinkOutlined",
-      icon: ShrinkOutlined,
+      iconKey: "PlayCircleTwoTone",
+      icon: PlayCircleTwoTone,
       keywords: "",
     },
     {
-      iconKey: "ArrowsAltOutlined",
-      icon: ArrowsAltOutlined,
+      iconKey: "UpSquareTwoTone",
+      icon: UpSquareTwoTone,
       keywords: "",
     },
   ]

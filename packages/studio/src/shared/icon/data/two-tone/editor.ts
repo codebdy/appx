@@ -1,36 +1,37 @@
+import { EditTwoTone, CopyTwoTone, DeleteTwoTone, SnippetsTwoTone, DiffTwoTone, HighlightTwoTone } from "@ant-design/icons";
 import { IIconGroup } from "../../model";
 
 export const editor: IIconGroup = {
   name: "Editor",
   icons: [
     {
-      iconKey: "EditOutlined",
-      icon: EditOutlined,
+      iconKey: "EditTwoTone",
+      icon: EditTwoTone,
       keywords: "",
     },
     {
-      iconKey: "FormOutlined",
-      icon: FormOutlined,
+      iconKey: "CopyTwoTone",
+      icon: CopyTwoTone,
       keywords: "",
     },
     {
-      iconKey: "CopyOutlined",
-      icon: CopyOutlined,
+      iconKey: "DeleteTwoTone",
+      icon: DeleteTwoTone,
       keywords: "",
     },
     {
-      iconKey: "ScissorOutlined",
-      icon: ScissorOutlined,
+      iconKey: "SnippetsTwoTone",
+      icon: SnippetsTwoTone,
       keywords: "",
     },
     {
-      iconKey: "DeleteOutlined",
-      icon: DeleteOutlined,
+      iconKey: "DiffTwoTone",
+      icon: DiffTwoTone,
       keywords: "",
     },
     {
-      iconKey: "SnippetsOutlined",
-      icon: SnippetsOutlined,
+      iconKey: "HighlightTwoTone",
+      icon: HighlightTwoTone,
       keywords: "",
     },
   ]

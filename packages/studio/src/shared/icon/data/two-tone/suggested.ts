@@ -1,36 +1,37 @@
+import { MinusCircleTwoTone, MinusSquareTwoTone, PauseCircleTwoTone, PlusCircleTwoTone, PlusSquareTwoTone, QuestionCircleTwoTone } from "@ant-design/icons";
 import { IIconGroup } from "../../model";
 
 export const suggested: IIconGroup = {
   name: "Suggested",
   icons: [
     {
-      iconKey: "QuestionOutlined",
-      icon: QuestionOutlined,
+      iconKey: "QuestionCircleTwoTone",
+      icon: QuestionCircleTwoTone,
       keywords: "",
     },
     {
-      iconKey: "QuestionCircleOutlined",
-      icon: QuestionCircleOutlined,
+      iconKey: "PlusCircleTwoTone",
+      icon: PlusCircleTwoTone,
       keywords: "",
     },
     {
-      iconKey: "PlusOutlined",
-      icon: PlusOutlined,
+      iconKey: "PauseCircleTwoTone",
+      icon: PauseCircleTwoTone,
       keywords: "",
     },
     {
-      iconKey: "PlusCircleOutlined",
-      icon: PlusCircleOutlined,
+      iconKey: "MinusCircleTwoTone",
+      icon: MinusCircleTwoTone,
       keywords: "",
     },
     {
-      iconKey: "PauseOutlined",
-      icon: PauseOutlined,
+      iconKey: "PlusSquareTwoTone",
+      icon: PlusSquareTwoTone,
       keywords: "",
     },
     {
-      iconKey: "PauseCircleOutlined",
-      icon: PauseCircleOutlined,
+      iconKey: "MinusSquareTwoTone",
+      icon: MinusSquareTwoTone,
       keywords: "",
     },
   ]
