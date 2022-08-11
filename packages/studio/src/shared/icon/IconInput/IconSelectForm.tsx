@@ -1,14 +1,8 @@
 import { Input, Radio, RadioChangeEvent, Tabs } from 'antd';
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { iconCategories } from '../data';
 const { TabPane } = Tabs;
-
-const optionsWithDisabled = [
-  { label: 'Apple', value: 'Apple' },
-  { label: 'Pear', value: 'Pear' },
-];
-
 
 export enum IconType {
   Normal = "normal",
@@ -18,6 +12,14 @@ export enum IconType {
 const IconSelectForm = memo(() => {
   const [category, setCategory] = useState(iconCategories[0].name);
   const { t } = useTranslation();
+  
+  const categoryButtons = useMemo(() => iconCategories.map((category) => {
+    return {
+      label: t("IconInput." + category.name),
+      value: category.name,
+      icon: category.icon,
+    }
+  }), [t])
 
   const handleChange = useCallback(() => {
 
@@ -33,7 +35,7 @@ const IconSelectForm = memo(() => {
       <TabPane className='icon-pannel' tab={t("IconInput.IconLib")} key={IconType.Normal}>
         <div className='icon-lib-actions'>
           <Radio.Group
-            options={optionsWithDisabled}
+            options={categoryButtons}
             onChange={onCategoryChange}
             value={category}
             optionType="button"
