@@ -42,6 +42,7 @@ const PagesTree = memo((
                                   title={page.title}
                                   {...provided.draggableProps}
                                   {...provided.dragHandleProps}
+                                  float={snapshot.isDragging}
                                   ref={provided.innerRef}
                                 />
                                 {snapshot.isDragging && (
@@ -80,6 +81,7 @@ const PagesTree = memo((
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
                           ref={provided.innerRef}
+                          float={snapshot.isDragging}
                         />
                         {snapshot.isDragging && (
                           <DraggableLabel key={page.id} dragId={page.id} title={page.title} />
