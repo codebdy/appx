@@ -16,11 +16,15 @@ const IconSelectForm = memo(() => {
   }, []);
 
   return (
-    <Tabs defaultActiveKey="1" onChange={handleChange}>
-      <TabPane tab={t("IconInput.IconLib")} key={IconType.Normal}>
-        Content of Tab Pane 1
+    <Tabs defaultActiveKey={IconType.Normal} onChange={handleChange}>
+      <TabPane className='icon-pannel' tab={t("IconInput.IconLib")} key={IconType.Normal}>
+        Content of Tab <br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1
+        Content of Tab <br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1
+        Content of Tab <br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1
+        Content of Tab <br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1
+        Content of Tab <br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1<br />Pane 1
       </TabPane>
-      <TabPane tab={t("IconInput.Customized")} key={IconType.Customized}>
+      <TabPane className='icon-pannel' tab={t("IconInput.Customized")} key={IconType.Customized}>
         Content of Tab Pane 2
       </TabPane>
     </Tabs>
