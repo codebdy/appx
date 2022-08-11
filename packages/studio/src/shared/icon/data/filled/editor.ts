@@ -1,36 +1,37 @@
+import { CopyFilled, DeleteFilled, DiffFilled, EditFilled, HighlightFilled, SnippetsFilled } from "@ant-design/icons";
 import { IIconGroup } from "../../model";
 
 export const editor: IIconGroup = {
   name: "Editor",
   icons: [
     {
-      iconKey: "EditOutlined",
-      icon: EditOutlined,
+      iconKey: "EditFilled",
+      icon: EditFilled,
       keywords: "",
     },
     {
-      iconKey: "FormOutlined",
-      icon: FormOutlined,
+      iconKey: "CopyFilled",
+      icon: CopyFilled,
       keywords: "",
     },
     {
-      iconKey: "CopyOutlined",
-      icon: CopyOutlined,
+      iconKey: "DeleteFilled",
+      icon: DeleteFilled,
       keywords: "",
     },
     {
-      iconKey: "ScissorOutlined",
-      icon: ScissorOutlined,
+      iconKey: "SnippetsFilled",
+      icon: SnippetsFilled,
       keywords: "",
     },
     {
-      iconKey: "DeleteOutlined",
-      icon: DeleteOutlined,
+      iconKey: "DiffFilled",
+      icon: DiffFilled,
       keywords: "",
     },
     {
-      iconKey: "SnippetsOutlined",
-      icon: SnippetsOutlined,
+      iconKey: "HighlightFilled",
+      icon: HighlightFilled,
       keywords: "",
     },
   ]

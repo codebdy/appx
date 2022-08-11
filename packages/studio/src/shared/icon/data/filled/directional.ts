@@ -1,36 +1,37 @@
+import { CaretDownFilled, CaretUpFilled, FastBackwardFilled, FastForwardFilled, StepBackwardFilled, StepForwardFilled } from "@ant-design/icons";
 import { IIconGroup } from "../../model";
 
 export const directional: IIconGroup = {
   name: "Directional",
   icons: [
     {
-      iconKey: "StepBackwardOutlined",
-      icon: StepBackwardOutlined,
+      iconKey: "StepBackwardFilled",
+      icon: StepBackwardFilled,
       keywords: "",
     },
     {
-      iconKey: "StepForwardOutlined",
-      icon: StepForwardOutlined,
+      iconKey: "StepForwardFilled",
+      icon: StepForwardFilled,
       keywords: "",
     },
     {
-      iconKey: "FastBackwardOutlined",
-      icon: FastBackwardOutlined,
+      iconKey: "FastBackwardFilled",
+      icon: FastBackwardFilled,
       keywords: "",
     },
     {
-      iconKey: "FastForwardOutlined",
-      icon: FastForwardOutlined,
+      iconKey: "FastForwardFilled",
+      icon: FastForwardFilled,
       keywords: "",
     },
     {
-      iconKey: "ShrinkOutlined",
-      icon: ShrinkOutlined,
+      iconKey: "CaretUpFilled",
+      icon: CaretUpFilled,
       keywords: "",
     },
     {
-      iconKey: "ArrowsAltOutlined",
-      icon: ArrowsAltOutlined,
+      iconKey: "CaretDownFilled",
+      icon: CaretDownFilled,
       keywords: "",
     },
   ]

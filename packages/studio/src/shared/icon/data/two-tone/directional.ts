@@ -1,4 +1,3 @@
-import { ArrowsAltOutlined, FastBackwardOutlined, FastForwardOutlined, ShrinkOutlined, StepBackwardOutlined, StepForwardOutlined } from "@ant-design/icons";
 import { IIconGroup } from "../../model";
 
 export const directional: IIconGroup = {
