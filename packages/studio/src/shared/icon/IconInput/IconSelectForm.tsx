@@ -11,11 +11,13 @@ export enum IconType {
 
 const IconSelectForm = memo((
   props: {
-    selectedIcon: string,
-    onSelected: (icon: string | undefined) => void
+    selectedIcon?: string,
+    onSelected: (icon: string | undefined) => void,
+    customizedIcon?: string,
+    onChangeCustomizedIcon: (svgIcon: string | undefined) => void,
   }
 ) => {
-  const { selectedIcon, onSelected } = props;
+  const { selectedIcon, onSelected, customizedIcon, onChangeCustomizedIcon } = props;
   const [categoryName, setCategoryName] = useState(iconCategories[0].name);
   const { t } = useTranslation();
 
