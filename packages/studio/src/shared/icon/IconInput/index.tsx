@@ -3,6 +3,7 @@ import { Badge, Button, Modal } from "antd";
 import React, { useCallback, useState } from "react";
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
+import IconSelectForm from "./IconSelectForm";
 import "./style.less"
 
 const IconInput = memo(() => {
@@ -44,16 +45,15 @@ const IconInput = memo(() => {
         />
       </Badge>
       <Modal
+        className="icon-select-model"
         title={t("IconInput.DialogTitle")}
         centered
         visible={visible}
         onOk={hancleClose}
         onCancel={hancleClose}
-        width={1000}
+        width={600}
       >
-        <p>some contents...</p>
-        <p>some contents...</p>
-        <p>some contents...</p>
+        <IconSelectForm />
       </Modal>
     </div>
   )

@@ -181,6 +181,8 @@
     "Directional": "方向性图标",
     "Suggested": "提示建议性图标",
     "Editor": "编辑类图标",
-    "DialogTitle": "请选择图标"
+    "DialogTitle": "选择图标",
+    "IconLib": "图标库",
+    "Customized": "自定义"
   }
 }
