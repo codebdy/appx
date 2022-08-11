@@ -29,3 +29,10 @@ export interface IPageInput {
   app?:  { sync: IAppInput };
   category?: { sync: IPageCategoryInput };
 }
+
+export interface IMenuInput {
+  id?: ID;
+  device?: Device;
+  schemaJson?: any;
+  app?: { sync: IAppInput };
+}

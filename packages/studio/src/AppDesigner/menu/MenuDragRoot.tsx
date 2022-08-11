@@ -3,7 +3,7 @@ import { memo } from "react"
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { IPage } from "../../model";
-import { isNavigationDirtyState, navigationNodesState, navigationRootNodeState } from "./atoms";
+import { isNavigationDirtyState, menuIdState, navigationNodesState, navigationRootNodeState } from "./atoms";
 import { COLLAPSE_GROUP_ID, CUSTOMIZED_LINK_ID, DIVIDER_ID, PAGE_LIST_ID } from "./consts";
 import { useGetMenuNode } from "./hooks/useGetMenuNode";
 import { useInsertAt } from "./hooks/useInsertAt";
@@ -30,6 +30,7 @@ const MenuDragRoot = memo((
   const key = useDesingerKey();
   const [rootNode, setRootNode] = useRecoilState(navigationRootNodeState(key));
   const setIsDirty = useSetRecoilState(isNavigationDirtyState(key));
+  const setMenuId = useSetRecoilState(menuIdState(key))
   //const [selectedId, setSelectedId] = useRecoilState(navigationSelectedIdState(key));
   const setNodes = useSetRecoilState(navigationNodesState(key));
   const { t } = useTranslation();
@@ -43,6 +44,10 @@ const MenuDragRoot = memo((
 
   const getNode = useGetMenuNode();
   const insertAt = useInsertAt();
+
+  useEffect(() => {
+    setMenuId(menu?.id);
+  }, [menu?.id, setMenuId])
 
   useEffect(() => {
     if (!rootNode) {//防止保存编辑器刷新，并且保证主菜单刷新
@@ -69,7 +74,6 @@ const MenuDragRoot = memo((
             meta: {
               type: MenuItemType.Group,
               title: t("Menu.CollapseGroup"),
-              icon: "groupIcon",
             },
             childIds: [],
           };
@@ -79,7 +83,6 @@ const MenuDragRoot = memo((
             meta: {
               type: MenuItemType.Divider,
               title: t("Menu.Divider"),
-              icon: "groupIcon",
             },
             childIds: [],
           };
@@ -89,7 +92,6 @@ const MenuDragRoot = memo((
             meta: {
               type: MenuItemType.Link,
               title: t("Menu.CustomizedLink"),
-              icon: "groupIcon",
             },
             childIds: [],
           };
@@ -101,7 +103,6 @@ const MenuDragRoot = memo((
               meta: {
                 type: MenuItemType.Item,
                 title: page.title,
-                //icon: pageIcon,
                 route: { pageId: page.id },
               },
               childIds: [],

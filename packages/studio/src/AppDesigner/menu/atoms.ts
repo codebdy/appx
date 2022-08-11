@@ -1,4 +1,5 @@
 import { atomFamily } from "recoil";
+import { ID } from "../../shared";
 import { IMenuNode } from "./models/IMenuNode";
 
 export interface INavigationSnapshot {
@@ -6,6 +7,11 @@ export interface INavigationSnapshot {
   nodes: IMenuNode[];
   selectedId: string | undefined;
 }
+
+export const menuIdState= atomFamily<ID, string>({
+  key: "navigationEditor.MenuId",
+  default: undefined,
+});
 
 export const isNavigationDirtyState = atomFamily<boolean, string>({
   key: "navigationEditor.isDirty",
