@@ -172,6 +172,15 @@
     "Pages": "页面",
     "Title": "名称",
     "Icon": "图标",
-    "DropTip":"请把子菜单项拖放到此处"
+    "DropTip": "请把子菜单项拖放到此处"
+  },
+  "Icon": {
+    "Title": "图标",
+    "Outlined": "线框风格",
+    "Filled": "实底风格",
+    "TwoTone": "双色风格",
+    "Directional": "方向性图标",
+    "Suggested": "提示建议性图标",
+    "Editor": "编辑类图标"
   }
 }

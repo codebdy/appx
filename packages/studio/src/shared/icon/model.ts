@@ -7,8 +7,8 @@ export interface IIcon {
 
 export interface IPredefinedIcon {
   iconKey: string;
-  keywords?: string;
   icon: React.FC<any>;
+  keywords?: string;
 }
 export interface IIconGroup {
   name: string;
