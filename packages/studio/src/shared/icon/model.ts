@@ -17,5 +17,6 @@ export interface IIconGroup {
 
 export interface IIconCategory {
   name: string;
-  iconGroups: IIconGroup[]
+  icon?: React.ReactElement;
+  iconGroups: IIconGroup[];
 }
