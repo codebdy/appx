@@ -32,7 +32,7 @@ const DividerInner = memo(
     const selected = useMemo(() => selectedId && selectedId === node.id, [node.id, selectedId]);
     return (
       <div
-        className={clx("menu-item", { selected: selected, float: snapshot.isDragging })}
+        className={clx("menu-item", "menu-single-item", { selected: selected, float: snapshot.isDragging })}
         ref={provided.innerRef}
         {...provided.draggableProps}
         {...provided.dragHandleProps}

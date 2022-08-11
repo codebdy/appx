@@ -32,7 +32,7 @@ const PageNavInner = memo(
     return (
       <div
         ref={provided.innerRef}
-        className={clx("menu-item", "menu-text-item", { selected: selected, float: snapshot.isDragging })}
+        className={clx("menu-item", "menu-text-item", "menu-single-item", { selected: selected, float: snapshot.isDragging })}
         {...provided.draggableProps}
         {...provided.dragHandleProps}
         onClick={handleClick}

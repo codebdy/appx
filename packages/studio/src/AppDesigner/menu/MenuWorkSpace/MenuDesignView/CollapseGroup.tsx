@@ -25,6 +25,7 @@ const CollpaseGroupInner = memo(
     onOpened: (open?: boolean) => void;
   }) => {
     const { provided, snapshot, node, onParentDropable, opened, onOpened } = props;
+    const [mouseOver, setMouseHover] = useState(false);
     const [hover, setHover] = useState(false);
     const [canDrop, setCanDrop] = useState(true);
     const key = useDesingerKey();
@@ -38,9 +39,9 @@ const CollpaseGroupInner = memo(
       const rect = ref.current?.getBoundingClientRect();
       if (event.clientX >= rect.left && event.clientX <= rect.right &&
         event.clientY >= rect.top && event.clientY <= rect.bottom) {
-        setHover(true && opened && !snapshot.isDragging);
+        setMouseHover(true && opened && !snapshot.isDragging);
       } else {
-        setHover(false)
+        setMouseHover(false)
       }
     }, [opened, snapshot.isDragging]);
 
@@ -60,8 +61,8 @@ const CollpaseGroupInner = memo(
     );
 
     useEffect(() => {
-      onParentDropable && onParentDropable(!hover);
-    }, [hover, onParentDropable]);
+      onParentDropable && onParentDropable(!mouseOver);
+    }, [mouseOver, onParentDropable]);
 
     const handleClick = useCallback(
       (event: React.MouseEvent<HTMLElement>) => {
@@ -80,12 +81,22 @@ const CollpaseGroupInner = memo(
       [node.id, selectedId]
     );
 
+    const handleMouseEnter = useCallback(() => {
+      setHover(true);
+    }, [])
+
+    const handleMouseLeave = useCallback(() => {
+      setHover(false);
+    }, [])
+
     return (
       <div
         ref={provided.innerRef}
-        className={clx("menu-item", "menu-text-item", { selected: selected, float: snapshot.isDragging })}
+        className={clx("menu-item", "menu-text-item", { selected: selected, float: snapshot.isDragging || (hover && !opened) })}
         {...provided.draggableProps}
         {...provided.dragHandleProps}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
         onClick={handleClick}
       >
         <div ref={ref}>
