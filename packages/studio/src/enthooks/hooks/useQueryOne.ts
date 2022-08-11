@@ -17,7 +17,7 @@ export type QueryOneResponse<T> = {
   error?: Error;
 }
 
-export function useQueryOne<T>(gql: string, params: any = {}, entityNames?: string[]): QueryOneResponse<T> {
+export function useQueryOne<T>(gql: string, params: any = {}, depEntityNames?: string[]): QueryOneResponse<T> {
   const loadedRef = useRef(false);
   const endpoint = useEndpoint();
   const [revalidating, setRevalidating] = useState<boolean>();
@@ -38,10 +38,10 @@ export function useQueryOne<T>(gql: string, params: any = {}, entityNames?: stri
   }, [gql, params, query]);
 
   const eventHandler = useCallback((event: CustomEvent) => {
-    if (entityNames?.find(entity => entity === event.detail?.entity)) {
+    if (depEntityNames?.find(entity => entity === event.detail?.entity)) {
       refresh()
     }
-  }, [entityNames, refresh]);
+  }, [depEntityNames, refresh]);
 
   useEffect(() => {
     if (!error && !loading && gql && !loadedRef.current && endpoint) {

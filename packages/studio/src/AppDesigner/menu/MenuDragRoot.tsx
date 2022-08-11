@@ -36,11 +36,9 @@ const MenuDragRoot = memo((
   const { t } = useTranslation();
   const { menu, error } = useMenu();
   const getPage = useGetPage(pages);
-
   useShowError(error);
 
   const navigationItems: IMenuItem[] | undefined | null = menu?.schemaJson?.items;
-  // useShowError(error);
 
   const getNode = useGetMenuNode();
   const insertAt = useInsertAt();
@@ -50,17 +48,16 @@ const MenuDragRoot = memo((
   }, [menu?.id, setMenuId])
 
   useEffect(() => {
-    if (!rootNode) {//防止保存编辑器刷新，并且保证主菜单刷新
-      //setNavigationId(navigation?.id);
-      rootMeta.children = cloneObject(navigationItems || []);
-      const nodes: IMenuNode[] = [];
-      const node = parseMeta(rootMeta, nodes);
-      setRootNode(node);
-      setNodes(nodes);
-      setIsDirty(false);
-      //setSelectedId(undefined);
-    }
-  }, [navigationItems, rootNode, setIsDirty, setNodes, setRootNode]);
+    console.log("草莓子", menu?.schemaJson, navigationItems)
+    rootMeta.children = cloneObject(navigationItems || []);
+    const nodes: IMenuNode[] = [];
+    const node = parseMeta(rootMeta, nodes);
+    setRootNode(node);
+    setNodes(nodes);
+    setIsDirty(false);
+    //setSelectedId(undefined);
+
+  }, [menu, navigationItems, setIsDirty, setNodes, setRootNode]);
 
 
   const onDragEnd = useCallback(
