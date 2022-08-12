@@ -1,23 +1,23 @@
 
-import { ProSettings } from '@ant-design/pro-components';
 import { ProLayout } from '@ant-design/pro-components';
 import { memo, useState } from 'react';
-import defaultProps from './_defaultProps';
 import RightContent from '../components/RightContent';
 import 'antd/dist/antd.variable.min.css';
 import React from 'react';
 import TablePage from './TablePage';
-import { usePages } from '../../shared/AppRoot/hooks/usePages';
-import { useCagegories } from '../../shared/AppRoot/hooks/useCagegories';
 import { useShowError } from '../../hooks/useShowError';
 import { Spin } from 'antd';
 import { useAppParams } from '../../shared/AppRoot/context';
+import { useNavProps } from '../hooks/useNavProps';
+import { useCagegories } from '../../AppDesigner/hooks/useCagegories';
+import { usePages } from '../../AppDesigner/hooks/usePages';
 
 const Layout = memo(() => {
   const [pathname, setPathname] = useState('/admin/sub-page1');
   const { app } = useAppParams();
   const { categories, loading, error } = useCagegories();
   const { pages, loading: pagesLoading, error: pagesError } = usePages();
+  const navProps = useNavProps();
   useShowError(error || pagesError);
 
   return (
@@ -29,7 +29,7 @@ const Layout = memo(() => {
         }}
       >
         <ProLayout
-          {...defaultProps}
+          {...navProps}
           onPageChange={(location) => console.log("onPageChange", location)}
           title={app.title}
           logo={

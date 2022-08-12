@@ -6,6 +6,7 @@ import moment from 'moment';
 import NoticeIcon from './NoticeIcon';
 import './index.less';
 import { NOTICES } from './notices';
+import React from 'react';
 
 type NoticeIconList = {
   data?: NoticeIconItem[];

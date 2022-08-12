@@ -23,10 +23,10 @@ import { MenuActionsWidget } from './menu/MenuActionsWidget'
 import { useShowError } from '../hooks/useShowError'
 import { Spin } from 'antd'
 import { useSelectedPageId } from './hooks/useSelectedPageId'
-import { useCagegories } from '../shared/AppRoot/hooks/useCagegories'
 import MenuDragRoot from './menu/MenuDragRoot'
 import { useAppParams } from '../shared/AppRoot/context'
-import { usePages } from '../shared/AppRoot/hooks/usePages'
+import { useCagegories } from './hooks/useCagegories'
+import { usePages } from './hooks/usePages'
 
 export enum DesignerRoutes {
   Pages = "pages",
