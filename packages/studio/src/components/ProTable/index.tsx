@@ -127,7 +127,6 @@ const ProTable = observer((
   const dataSource = Array.isArray(field.value) ? field.value.slice() : []
   const sources = useArrayTableSources()
   const columns = useArrayTableColumns(dataSource, sources)
-  console.log("哈哈",sources,  columns)
 
   const handleSelectedChange = useCallback((keys?: React.Key[]) => {
     setParams(params => ({ ...params, selectedRowKeys: keys }))
