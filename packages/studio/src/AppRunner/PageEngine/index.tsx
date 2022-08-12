@@ -4,7 +4,7 @@ import { ArrayTable, FormItem } from "@formily/antd";
 import React from "react";
 import { memo, useMemo } from "react";
 
-const Page = memo(() => {
+const PageEngine = memo(() => {
 
   const SchemaField = useMemo(() => createSchemaField({
     components: {
@@ -45,4 +45,4 @@ const Page = memo(() => {
   )
 })
 
-export default Page;
+export default PageEngine;
