@@ -47,7 +47,6 @@ const MenuDragRoot = memo((
   }, [menu?.id, setMenuId])
 
   useEffect(() => {
-    console.log("草莓子", menu?.schemaJson, navigationItems)
     rootMeta.children = cloneObject(navigationItems || []);
     const nodes: IMenuNode[] = [];
     const node = parseMeta(rootMeta, nodes);

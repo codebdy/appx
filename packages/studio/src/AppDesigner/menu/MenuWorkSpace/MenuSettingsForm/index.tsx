@@ -1,4 +1,4 @@
-import { Form, Input, Select } from 'antd';
+import { Form, Input, Select, TreeSelect } from 'antd';
 import IconInput from '../../../../shared/icon/IconInput';
 import React, { memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -9,6 +9,7 @@ import { useSetMeta } from '../../hooks/useSetMeta';
 import { useDesingerKey } from '../../../context';
 import { MenuItemType } from '../../models/IMenuNode';
 const { Option } = Select;
+const { TreeNode } = TreeSelect;
 
 const children: React.ReactNode[] = [];
 for (let i = 10; i < 36; i++) {
@@ -76,6 +77,42 @@ const MenuSettingsForm = memo(() => {
             </>
             : <div>{t("Menu.Divider")}</div>
         }
+        {
+          node.meta?.type === MenuItemType.Item &&
+          <Form.Item
+            label={t("Menu.Page")}
+            name="page"
+          >
+            <TreeSelect
+              showSearch
+              style={{ width: '100%' }}
+              placeholder={t("Menu.PleaseSelectPage")}
+              allowClear
+              treeDefaultExpandAll
+            >
+              <TreeNode value="parent 1" title="parent 1">
+                <TreeNode value="parent 1-0" title="parent 1-0">
+                  <TreeNode value="leaf1" title="leaf1" />
+                  <TreeNode value="leaf2" title="leaf2" />
+                </TreeNode>
+                <TreeNode value="parent 1-1" title="parent 1-1">
+                  <TreeNode value="leaf3" title={<b style={{ color: '#08c' }}>leaf3</b>} />
+                </TreeNode>
+              </TreeNode>
+            </TreeSelect>
+          </Form.Item>
+        }
+        {
+
+          node.meta?.type === MenuItemType.Link &&
+          <Form.Item
+            label={t("Menu.Link")}
+            name="link"
+          >
+            <Input.TextArea rows={3} />
+          </Form.Item>
+        }
+
         <Form.Item
           label={t("AuthPoints")}
           name="authPoints"

@@ -21,7 +21,8 @@ export interface IMenuItem {
   icon?: IIcon;
   badge?: IMenuBadge;
   //chip?:IMenuChip,
-  children?: Array<IMenuItem>;
+  children?: IMenuItem[];
+  link?: string;
   //auths?: RxAuth[];
   route?: {
     pageId?: ID;
