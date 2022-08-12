@@ -15,8 +15,16 @@ const ProLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
   return (
     <Layout className='appx-pro-layout'>
-      <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className="logo" />
+      <Sider
+        className='sider-nav'
+        trigger={null}
+        collapsible
+        collapsed={collapsed}
+        collapsedWidth={56}
+      >
+        <div className="logo">
+          窝藏
+        </div>
         <Menu
           theme="dark"
           mode="inline"
