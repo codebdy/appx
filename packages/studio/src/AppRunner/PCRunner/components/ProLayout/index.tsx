@@ -45,7 +45,8 @@ const ProLayout = memo((
             onClick: handleTrigger,
           })}
         </Header>
-        <Content className="site-layout-background">
+        <Content>
+          wewfef 
           {children}
         </Content>
         <Footer>Footer</Footer>
