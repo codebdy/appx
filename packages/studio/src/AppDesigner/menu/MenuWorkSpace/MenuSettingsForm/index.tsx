@@ -8,6 +8,10 @@ import { useMenuNode } from '../../hooks/useMenuNode';
 import { useSetMeta } from '../../hooks/useSetMeta';
 import { useDesingerKey } from '../../../context';
 import { MenuItemType } from '../../models/IMenuNode';
+import { IPage, IPageCategory } from '../../../../model';
+import { usePagesWithoutCategory } from '../../../hooks/usePagesWithoutCategory';
+import { useGetCategoryPages } from '../../../hooks/useGetCategoryPages';
+import { useGetPage } from '../../../hooks/useGetPage';
 const { Option } = Select;
 const { TreeNode } = TreeSelect;
 
@@ -20,7 +24,17 @@ const handleAuthPointsChange = (value: string[]) => {
   console.log(`selected ${value}`);
 };
 
-const MenuSettingsForm = memo(() => {
+const MenuSettingsForm = memo((
+  props: {
+    categories: IPageCategory[],
+    pages: IPage[]
+  }
+) => {
+  const { categories, pages } = props;
+  const pagesWithoutCategory = usePagesWithoutCategory(pages, categories);
+  const getCategoryPages = useGetCategoryPages(pages);
+  const getPge = useGetPage(pages);
+
   const { t } = useTranslation();
   const key = useDesingerKey();
   const selectedId = useRecoilValue(navigationSelectedIdState(key));
@@ -30,13 +44,30 @@ const MenuSettingsForm = memo(() => {
 
   useEffect(() => {
     form.setFieldsValue({
-      ...node.meta
+      ...node.meta,
+      "route.pageId": node.meta?.route?.pageId,
+      "route.payload": node.meta?.route?.payload,
     })
   }, [form, node.meta])
 
+  const predetailForm = useCallback((form: any, key: string) => {
+    const path = "route." + key;
+    if (form[path]) {
+      const value = form[path]
+      delete form[path];
+      form.route = { ...form.route, [key]: value }
+    }
+  }, [])
+
   const handleChange = useCallback((form) => {
-    setMeta(node.meta.uuid, { ...node.meta, ...form });
-  }, [node.meta, setMeta])
+    let title = node.meta.title;
+    if (form["route.pageId"]) {
+      title = getPge(form["route.pageId"])?.title;
+    }
+    predetailForm(form, "pageId");
+    predetailForm(form, "payload");
+    setMeta(node.meta.uuid, { ...node.meta, title, ...form });
+  }, [getPge, node.meta, predetailForm, setMeta])
 
   return (
     <div style={{ padding: "16px" }}>
@@ -78,28 +109,49 @@ const MenuSettingsForm = memo(() => {
         }
         {
           node.meta?.type === MenuItemType.Item &&
-          <Form.Item
-            label={t("Menu.Page")}
-            name="page"
-          >
-            <TreeSelect
-              showSearch
-              style={{ width: '100%' }}
-              placeholder={t("Menu.PleaseSelectPage")}
-              allowClear
-              treeDefaultExpandAll
+          <>
+            <Form.Item
+              label={t("Menu.Page")}
+              name="route.pageId"
             >
-              <TreeNode value="parent 1" title="parent 1">
-                <TreeNode value="parent 1-0" title="parent 1-0">
-                  <TreeNode value="leaf1" title="leaf1" />
-                  <TreeNode value="leaf2" title="leaf2" />
-                </TreeNode>
-                <TreeNode value="parent 1-1" title="parent 1-1">
-                  <TreeNode value="leaf3" title={<b style={{ color: '#08c' }}>leaf3</b>} />
-                </TreeNode>
-              </TreeNode>
-            </TreeSelect>
-          </Form.Item>
+              <TreeSelect
+                showSearch
+                style={{ width: '100%' }}
+                placeholder={t("Menu.PleaseSelectPage")}
+                allowClear={false}
+                treeDefaultExpandAll
+              >
+                {
+                  categories.map(category => {
+                    return (
+                      <TreeNode value={category.title} title={category.title} selectable={false}>
+                        {
+                          getCategoryPages(category.id)?.map(page => {
+                            return (
+                              <TreeNode value={page.id} title={page.title} />
+                            )
+                          })
+                        }
+                      </TreeNode>
+                    )
+                  })
+                }
+                {
+                  pagesWithoutCategory?.map(page => {
+                    return (
+                      <TreeNode value={page.id} title={page.title} />
+                    )
+                  })
+                }
+              </TreeSelect>
+            </Form.Item>
+            <Form.Item
+              label={t("Menu.RouteParams")}
+              name="route.payload"
+            >
+              <Input.TextArea rows={3} />
+            </Form.Item>
+          </>
         }
         {
 
