@@ -30,8 +30,7 @@ const MenuSettingsForm = memo(() => {
 
   useEffect(() => {
     form.setFieldsValue({
-      title: node.meta?.title,
-      icon: node.meta?.icon
+      ...node.meta
     })
   }, [form, node.meta])
 
