@@ -1,4 +1,4 @@
-import { SettingOutlined, EditOutlined, EllipsisOutlined, DeleteOutlined, DownloadOutlined, LoadingOutlined } from "@ant-design/icons"
+import { SettingOutlined, EditOutlined, EllipsisOutlined, DeleteOutlined, DownloadOutlined, LoadingOutlined, SendOutlined } from "@ant-design/icons"
 import { Card, Dropdown, Menu } from "antd"
 import Meta from "antd/lib/card/Meta"
 import React, { memo, useCallback } from "react"
@@ -36,7 +36,7 @@ const AppCard = memo((props: {
         />
       }
       actions={[
-        // <SendOutlined key="view" />,
+        <SendOutlined key="view" />,
         <EditOutlined key="edit" onClick={handleEdit} />,
         <DownloadOutlined key="download" />,
         <Dropdown overlay={

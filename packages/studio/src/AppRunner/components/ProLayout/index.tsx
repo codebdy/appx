@@ -1,3 +1,4 @@
+import { Layout } from "antd";
 import React from "react";
 import NavMenu from "./NavMenu";
 import "./style.less";
@@ -10,9 +11,9 @@ const ProLayout = (
   }
 ) => {
   return (
-    <div className="appx-pro-layout">
+    <Layout className="appx-pro-layout">
       <NavMenu />
-    </div>
+    </Layout>
   )
 }
 

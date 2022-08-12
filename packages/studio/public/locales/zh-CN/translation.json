@@ -66,7 +66,8 @@
     "Menu": "菜单",
     "MenuComponents": "菜单组件",
     "Model": "模型",
-    "Flow": "流程"
+    "Flow": "流程",
+    "Settings": "设置"
   },
   "sources": {
     "Inputs": "输入控件",
