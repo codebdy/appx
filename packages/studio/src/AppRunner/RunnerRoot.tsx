@@ -7,10 +7,10 @@ const RunnerRoot = (
     children?: React.ReactNode,
   }
 ) => {
-  const [item, setItem] = useState<IMenuItem>()
+  const [mentItem, setMenuItem] = useState<IMenuItem>()
 
   return (
-    <RouteContext.Provider value={{ item, setItem: setItem }}>
+    <RouteContext.Provider value={{ menuItem: mentItem, setMenuItem: setMenuItem }}>
       {props.children}
     </RouteContext.Provider>
   )

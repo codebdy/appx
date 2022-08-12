@@ -2,8 +2,8 @@ import { createContext, useContext } from "react";
 import { IMenuItem } from "../../model/IMenuNode";
 
 export interface IMenuRoute {
-  item?: IMenuItem,
-  setItem?: React.Dispatch<React.SetStateAction<IMenuItem>>,
+  menuItem?: IMenuItem,
+  setMenuItem?: React.Dispatch<React.SetStateAction<IMenuItem>>,
 }
 
 

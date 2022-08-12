@@ -9,7 +9,7 @@ import { useMenuRoute } from "../../context/route";
 const MenuContent = memo(() => {
   const [key, setKey] = useState<string>();
   const { menu } = useRunnerParams();
-  const {setItem} = useMenuRoute();
+  const {setMenuItem: setItem} = useMenuRoute();
 
   const getMenuItem = useCallback((uuid: string, items?: IMenuItem[]) => {
     for (const item of items || menu?.schemaJson?.items || []) {
