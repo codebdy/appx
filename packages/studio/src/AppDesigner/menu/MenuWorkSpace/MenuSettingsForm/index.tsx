@@ -7,7 +7,7 @@ import { useRecoilValue } from 'recoil';
 import { useMenuNode } from '../../hooks/useMenuNode';
 import { useSetMeta } from '../../hooks/useSetMeta';
 import { useAppKey } from '../../../../shared/AppRoot/context';
-import { MenuItemType } from '../../models/IMenuNode';
+import { MenuItemType } from '../../../../model/IMenuNode';
 import { IPage, IPageCategory } from '../../../../model';
 import { usePagesWithoutCategory } from '../../../hooks/usePagesWithoutCategory';
 import { useGetCategoryPages } from '../../../hooks/useGetCategoryPages';

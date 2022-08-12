@@ -6,7 +6,7 @@ import {
 import { useCallback } from "react";
 import { useRecoilState } from "recoil";
 import { useBackupSnapshot } from "./useBackupSnapshot";
-import { IMenuItem } from "../models/IMenuNode";
+import { IMenuItem } from "../../../model/IMenuNode";
 import { useAppKey } from "../../../shared/AppRoot/context";
 
 export function useSetMeta() {

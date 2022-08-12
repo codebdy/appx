@@ -5,7 +5,7 @@ import {
 } from "../atoms";
 import { useCallback } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { IMenuNode } from "../models/IMenuNode";
+import { IMenuNode } from "../../../model/IMenuNode";
 import { useBackupSnapshot } from "./useBackupSnapshot";
 import { useGetMenuNode } from "./useGetMenuNode";
 import { useAppKey } from "../../../shared/AppRoot/context";

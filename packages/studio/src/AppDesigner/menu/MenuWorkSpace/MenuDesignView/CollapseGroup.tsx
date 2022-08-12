@@ -4,7 +4,7 @@ import {
   DraggableProvided,
   DraggableStateSnapshot,
 } from "react-beautiful-dnd";
-import { IMenuNode } from "../../models/IMenuNode";
+import { IMenuNode } from "../../../../model/IMenuNode";
 import { useRecoilState } from "recoil";
 import { navigationSelectedIdState } from "../../atoms";
 import { useAppKey } from "../../../../shared/AppRoot/context";

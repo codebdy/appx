@@ -9,19 +9,17 @@ import { useShowError } from '../../hooks/useShowError';
 import { Spin } from 'antd';
 import { useAppParams } from '../../shared/AppRoot/context';
 import { useNavProps } from '../hooks/useNavProps';
-import { useCagegories } from '../../AppDesigner/hooks/useCagegories';
-import { usePages } from '../../AppDesigner/hooks/usePages';
+import { useMenu } from '../../shared/AppRoot/hooks/useMenu';
 
 const Layout = memo(() => {
   const [pathname, setPathname] = useState('/admin/sub-page1');
   const { app } = useAppParams();
-  const { categories, loading, error } = useCagegories();
-  const { pages, loading: pagesLoading, error: pagesError } = usePages();
-  const navProps = useNavProps();
-  useShowError(error || pagesError);
+  const { menu, error, loading } = useMenu();
+  const navProps = useNavProps(menu);
+  useShowError(error);
 
   return (
-    <Spin spinning={loading || pagesLoading}>
+    <Spin spinning={loading}>
       <div
         id="apper-layout"
         style={{

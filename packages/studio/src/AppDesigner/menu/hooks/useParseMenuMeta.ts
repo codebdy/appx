@@ -5,7 +5,7 @@ import {
 } from "../atoms";
 import { useCallback } from "react";
 import { useSetRecoilState } from "recoil";
-import { IMenuItem, IMenuNode } from "../models/IMenuNode";
+import { IMenuItem, IMenuNode } from "../../../model/IMenuNode";
 import { useAppKey } from "../../../shared/AppRoot/context";
 
 export const parseMeta = (

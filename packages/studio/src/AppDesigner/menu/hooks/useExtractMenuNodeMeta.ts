@@ -4,7 +4,7 @@ import { useGetMenuNode } from "./useGetMenuNode";
 import { navigationNodesState } from "../atoms";
 import { cloneObject } from "../utils/cloneObject";
 import { useAppKey } from "../../../shared/AppRoot/context";
-import { IMenuItem } from "../models/IMenuNode";
+import { IMenuItem } from "../../../model/IMenuNode";
 
 export function useExtractMenuNodeMeta() {
   const key = useAppKey();

@@ -1,4 +1,5 @@
 import { ID } from "../shared";
+import { IMenuItem } from "./IMenuNode";
 
 export interface IFile {
   id: ID;
@@ -39,7 +40,7 @@ export interface IPageCategory {
 
 export interface IMenu {
   id: ID;
-  schemaJson: any;
+  schemaJson: { items: IMenuItem[] };
   device: Device;
   app: IApp;
 }

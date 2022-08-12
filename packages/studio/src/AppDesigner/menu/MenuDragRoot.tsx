@@ -7,11 +7,11 @@ import { isNavigationDirtyState, menuIdState, navigationNodesState, navigationRo
 import { COLLAPSE_GROUP_ID, CUSTOMIZED_LINK_ID, DIVIDER_ID, PAGE_LIST_ID } from "./consts";
 import { useGetMenuNode } from "./hooks/useGetMenuNode";
 import { useInsertAt } from "./hooks/useInsertAt";
-import { IMenuItem, IMenuNode, MenuItemType } from "./models/IMenuNode";
+import { IMenuItem, IMenuNode, MenuItemType } from "../../model/IMenuNode";
 import { useTranslation } from "react-i18next";
 import "./index.less"
 import { useAppKey } from "../../shared/AppRoot/context";
-import { useMenu } from "../hooks/useMenu";
+import { useMenu } from "../../shared/AppRoot/hooks/useMenu";
 import { useShowError } from "../../hooks/useShowError";
 import { cloneObject } from "./utils/cloneObject";
 import { parseMeta } from "./hooks/useParseMenuMeta";

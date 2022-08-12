@@ -1,7 +1,33 @@
 import { AntDesignOutlined, CrownOutlined, SmileOutlined, TabletOutlined } from "@ant-design/icons";
-import React from "react";
+import React, { useCallback, useMemo } from "react";
+import { IMenu } from "../../model";
+import { IMenuItem } from "../../model/IMenuNode";
 
-export function useNavProps(){
+export function useNavProps(menu?: IMenu) {
+  const makeItem = useCallback((item: IMenuItem) => {
+
+  }, []);
+
+  const navProps = useMemo(() => {
+    const route = {
+      path: '/',
+      routes: [],
+      location: {
+        pathname: '/',
+      },
+    }
+    for (const item of menu?.schemaJson?.items || []) {
+      const rut = {
+        path: item.route?.pageId,
+        name: '管理页',
+        icon: <CrownOutlined />,
+        //access: 'canAdmin',
+        //component: './Admin',
+      }
+    }
+    return route
+  }, [menu?.schemaJson?.items])
+
   return {
     route: {
       path: '/',
