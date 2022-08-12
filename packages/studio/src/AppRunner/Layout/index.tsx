@@ -1,7 +1,5 @@
 
-import { ProLayout } from '@ant-design/pro-components';
 import { memo, useState } from 'react';
-import RightContent from '../components/RightContent';
 import 'antd/dist/antd.variable.min.css';
 import React from 'react';
 import TablePage from './TablePage';
@@ -10,9 +8,9 @@ import { Spin } from 'antd';
 import { useAppParams } from '../../shared/AppRoot/context';
 import { useNavProps } from '../hooks/useNavProps';
 import { useMenu } from '../../shared/AppRoot/hooks/useMenu';
+import ProLayout from '../components/ProLayout';
 
 const Layout = memo(() => {
-  const [pathname, setPathname] = useState('/admin/sub-page1');
   const { app } = useAppParams();
   const { menu, error, loading } = useMenu();
   const navProps = useNavProps(menu);
@@ -27,8 +25,6 @@ const Layout = memo(() => {
         }}
       >
         <ProLayout
-          {...navProps}
-          onPageChange={(location) => console.log("onPageChange", location)}
           title={app.title}
           logo={
             <svg style={{ width: "40px", height: "40px" }} viewBox="0 0 24 24">
@@ -45,29 +41,6 @@ const Layout = memo(() => {
               />
             </svg>
           }
-          location={{
-            pathname,
-          }}
-          waterMarkProps={{
-            content: 'Appx',
-          }}
-          onMenuHeaderClick={(e) => console.log(e)}
-          menuItemRender={(item, dom) => (
-            // eslint-disable-next-line jsx-a11y/anchor-is-valid
-            <a
-              onClick={() => {
-                setPathname(item.path || '/welcome');
-              }}
-            >
-              {dom}
-            </a>
-          )}
-          rightContentRender={() => (
-            <RightContent />
-          )}
-
-          fixSiderbar={true}
-          fixedHeader={true}
 
         >
           <TablePage />

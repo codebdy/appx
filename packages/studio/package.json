@@ -21,7 +21,6 @@
     "eslint-config-react-app": "^7.0.1"
   },
   "dependencies": {
-    "@ant-design/pro-components": "^1.1.15",
     "@antv/x6": "^1.32.10",
     "@antv/x6-react-shape": "^1.6.1",
     "@designable/formily-antd": "^1.0.0-beta.45",
