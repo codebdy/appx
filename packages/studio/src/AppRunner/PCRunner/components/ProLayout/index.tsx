@@ -16,9 +16,10 @@ const ProLayout = memo((
     menu?: React.ReactNode,
     children?: React.ReactNode,
     fixedHeader?: boolean,
+    header?: React.ReactNode,
   }
 ) => {
-  const { logo, title, menu, children, fixedHeader } = props;
+  const { logo, title, menu, children, fixedHeader, header } = props;
   const [collapsed, setCollapsed] = useState(false);
 
   const handleTrigger = useCallback(() => {
@@ -42,6 +43,7 @@ const ProLayout = memo((
           fixed={fixedHeader}
           onTrigger={handleTrigger}
         >
+          {header}
         </ProHeader>
         <Content>
           wewfef

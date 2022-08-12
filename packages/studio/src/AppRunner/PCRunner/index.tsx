@@ -4,6 +4,7 @@ import React from "react";
 import { memo } from "react";
 import { useAppParams } from "../../shared/AppRoot/context";
 import TablePage from "../RunnerDistributer/TablePage";
+import HeaderContent from "./components/HeaderContent";
 import ProLayout from "./components/ProLayout";
 
 const PCRunner = memo(() => {
@@ -85,6 +86,7 @@ const PCRunner = memo(() => {
             ]}
           />
         }
+        header={<HeaderContent />}
       >
         fwfwewewe
         <TablePage />

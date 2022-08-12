@@ -11,7 +11,7 @@ import SelectLang from '../SelectLang';
 
 export type SiderTheme = 'light' | 'dark';
 
-const GlobalHeaderRight: React.FC = () => {
+const HeaderContent: React.FC = () => {
   //const { initialState } = useModel('@@initialState');
 
   // if (!initialState || !initialState.settings) {
@@ -67,4 +67,4 @@ const GlobalHeaderRight: React.FC = () => {
   );
 };
 
-export default GlobalHeaderRight;
+export default HeaderContent;
