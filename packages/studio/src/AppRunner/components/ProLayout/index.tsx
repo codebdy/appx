@@ -1,5 +1,6 @@
 import React from "react";
 import NavMenu from "./NavMenu";
+import "./style.less";
 
 const ProLayout = (
   props: {
@@ -9,8 +10,10 @@ const ProLayout = (
   }
 ) => {
   return (
-    <div>
-      <NavMenu />
+    <div className="appx-pro-layout">
+      <div className="left-area dark">
+        <NavMenu />
+      </div>
     </div>
   )
 }

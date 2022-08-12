@@ -45,11 +45,7 @@ const NavMenu = () => {
   };
 
   return (
-    <div
-      style={{
-        width: 280,
-      }}
-    >
+    <div>
       <Button
         type="primary"
         onClick={toggleCollapsed}
