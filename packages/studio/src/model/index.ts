@@ -25,7 +25,7 @@ export enum Device {
 export interface IPage {
   id: ID;
   title: string;
-  schemaJson: any;
+  schemaJson: { form: any, schema: any };
   device: Device;
   app: IApp;
   category?: IPageCategory;
