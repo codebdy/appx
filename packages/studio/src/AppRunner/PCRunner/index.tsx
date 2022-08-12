@@ -4,8 +4,8 @@ import React from "react";
 import { memo } from "react";
 import { useAppParams } from "../../shared/AppRoot/context";
 import TablePage from "../RunnerDistributer/TablePage";
-import HeaderContent from "./components/HeaderContent";
-import ProLayout from "./components/ProLayout";
+import HeaderContent from "./HeaderContent";
+import ProLayout from "./ProLayout";
 
 const PCRunner = memo(() => {
   const { app } = useAppParams();

@@ -4,9 +4,9 @@ import React from 'react';
 import Avatar from './AvatarDropdown';
 // import HeaderSearch from '../HeaderSearch';
 import './index.less';
-import HeaderSearch from '../HeaderSearch';
-import NoticeIconView from '../NoticeIcon';
-import SelectLang from '../SelectLang';
+import HeaderSearch from './HeaderSearch';
+import NoticeIconView from '../components/NoticeIcon';
+import SelectLang from '../components/SelectLang';
 // import { SelectLang } from '../SelectLang/SelectLang';
 
 export type SiderTheme = 'light' | 'dark';
