@@ -1,5 +1,5 @@
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
-import { Layout } from "antd";
+import { Button, Layout } from "antd";
 import React from "react";
 import { memo } from "react";
 import clx from "classnames";
@@ -18,13 +18,24 @@ const ProHeader = memo((
 
   return (
     <>
+      {
+        fixed &&
+        <Header
+          className={clx("site-layout-background toolbar")}
+        >
+        </Header>
+
+      }
       <Header
-        className={clx("site-layout-background toolbar header-toolbar", { fixedHeader: fixed })}
+        className={clx("site-layout-background toolbar", { fixedHeader: fixed })}
       >
-        {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-          className: 'trigger',
-          onClick: onTrigger,
-        })}
+        <Button type="text" shape="circle" onClick={onTrigger}
+          icon={
+            collapsed ?
+              <MenuUnfoldOutlined />
+              : <MenuFoldOutlined />
+          }
+        />
         <div className="header-content">
           {
             children
