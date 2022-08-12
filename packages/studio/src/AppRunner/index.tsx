@@ -1,13 +1,13 @@
 import React from "react"
 import { memo } from "react"
 import AppRoot from "../shared/AppRoot"
-import Layout from "./Layout"
+import RunnerDistributer from "./RunnerDistributer"
 
 const AppRunner = memo(() => {
 
   return (
     <AppRoot>
-      <Layout />
+      <RunnerDistributer />
     </AppRoot>
   )
 })

@@ -6,11 +6,11 @@ import TablePage from './TablePage';
 import { useShowError } from '../../hooks/useShowError';
 import { Spin } from 'antd';
 import { useAppParams } from '../../shared/AppRoot/context';
-import { useNavProps } from '../hooks/useNavProps';
+import { useNavProps } from '../AdminRunner/hooks/useNavProps';
 import { useMenu } from '../../shared/AppRoot/hooks/useMenu';
-import ProLayout from '../components/ProLayout';
+import ProLayout from '../AdminRunner/components/ProLayout';
 
-const Layout = memo(() => {
+const RunnerDistributer = memo(() => {
   const { app } = useAppParams();
   const { menu, error, loading } = useMenu();
   const navProps = useNavProps(menu);
@@ -50,4 +50,4 @@ const Layout = memo(() => {
   );
 });
 
-export default Layout
+export default RunnerDistributer

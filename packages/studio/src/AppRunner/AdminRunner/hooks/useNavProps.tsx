@@ -1,7 +1,7 @@
 import { AntDesignOutlined, CrownOutlined, SmileOutlined, TabletOutlined } from "@ant-design/icons";
+import { IMenu } from "../../../model";
+import { IMenuItem } from "../../../model/IMenuNode";
 import React, { useCallback, useMemo } from "react";
-import { IMenu } from "../../model";
-import { IMenuItem } from "../../model/IMenuNode";
 
 export function useNavProps(menu?: IMenu) {
   const makeItem = useCallback((item: IMenuItem) => {
