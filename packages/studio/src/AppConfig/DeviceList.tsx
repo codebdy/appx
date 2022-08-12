@@ -29,6 +29,7 @@ const DeviceList = memo((props: {
               <Row className="app-row" gutter={24}>
                 <Col span={6}>
                   <Card
+                    className="hover-float"
                     cover={
                       <img
                         alt="example"
@@ -54,6 +55,7 @@ const DeviceList = memo((props: {
                 </Col>
                 <Col span={6}>
                   <Card
+                    className="hover-float"
                     cover={
                       <img
                         alt="example"
@@ -79,6 +81,7 @@ const DeviceList = memo((props: {
                 </Col>
                 <Col span={6}>
                   <Card
+                    className="hover-float"
                     cover={
                       <img
                         alt="example"
