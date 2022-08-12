@@ -9,8 +9,16 @@ const MenuContent = memo(() => {
   const [key, setKey] = useState<string>();
   const { menu } = useRunnerParams();
 
-  const getMenuItem = useCallback((uuid: string) => {
-    return menu?.schemaJson?.items?.find(item => item.uuid === uuid);
+  const getMenuItem = useCallback((uuid: string, items?: IMenuItem[]) => {
+    for (const item of items || menu?.schemaJson?.items || []) {
+      if(item.uuid === uuid){
+        return item;
+      }
+      const child = getMenuItem(uuid, item?.children||[]);
+      if(child){
+        return child;
+      }
+    }
   }, [menu?.schemaJson?.items])
 
   const makeItem = useCallback((item: IMenuItem) => {
