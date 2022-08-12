@@ -2,13 +2,13 @@ import { useCallback } from "react";
 import { IPostOptions, usePostOne } from "../../enthooks/hooks/usePostOne";
 import { IPageInput } from "../../model/input";
 import { IPage } from "../../model";
-import { useDesignerParams } from "../context";
+import { useAppParams } from "../../shared/AppRoot/context";
 
 export function useUpsertPage(options?: IPostOptions<any>): [
   (page: IPageInput) => void,
   { loading?: boolean; error?: Error }
 ] {
-  const params = useDesignerParams();
+  const params = useAppParams();
 
   const [post, { error, loading }] = usePostOne<IPageInput, IPage>("Page",
     {

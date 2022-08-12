@@ -1,6 +1,6 @@
 import { gql } from "awesome-graphql-client";
 import { IMenu } from "../../model";
-import { useDesignerParams } from "../context";
+import { useAppParams } from "../../shared/AppRoot/context";
 import { useQueryOne } from "../../enthooks/hooks/useQueryOne";
 
 const menuGql = gql`
@@ -30,7 +30,7 @@ query queryMenu($appUuid:String!, $device:String!){
 `
 
 export function useMenu() {
-  const params = useDesignerParams();
+  const params = useAppParams();
 
   const { data, error, loading } = useQueryOne<IMenu>(
     menuGql,

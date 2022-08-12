@@ -15,7 +15,6 @@ import { CompositePanel, StudioPanel } from './panels'
 import { MaterialWidget } from './widgets/MaterialWidget'
 import { Designer } from './containers'
 import PageListWidget from './page/PageListWidget'
-import { useDesignerParams } from './context'
 import { useTranslation } from 'react-i18next'
 import PageWorkSpace from './page/PageWorkSpace'
 import MenuComponentsWidget from './menu/MenuComponentsWidget'
@@ -27,6 +26,7 @@ import { useSelectedPageId } from './hooks/useSelectedPageId'
 import { useCagegories } from './hooks/useCagegories'
 import { usePages } from './hooks/usePages'
 import MenuDragRoot from './menu/MenuDragRoot'
+import { useAppParams } from '../shared/AppRoot/context'
 
 export enum DesignerRoutes {
   Pages = "pages",
@@ -36,7 +36,7 @@ export enum DesignerRoutes {
 }
 
 const AppDesignerContent = memo(() => {
-  const app = useDesignerParams().app;
+  const { app } = useAppParams();
   const [activeKey, setActiveKey] = useState<string>(DesignerRoutes.Pages);
   const { t } = useTranslation();
   const pageId = useSelectedPageId();

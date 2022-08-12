@@ -6,7 +6,7 @@ import {
 import { useCallback } from "react";
 import { useSetRecoilState } from "recoil";
 import { IMenuItem, IMenuNode } from "../models/IMenuNode";
-import { useDesingerKey } from "../../context";
+import { useAppKey } from "../../../shared/AppRoot/context";
 
 export const parseMeta = (
   meta: IMenuItem,
@@ -28,7 +28,7 @@ export const parseMeta = (
 };
 
 export function useParseMenuMeta() {
-  const key = useDesingerKey();
+  const key = useAppKey();
   const setRootNode = useSetRecoilState(navigationRootNodeState(key));
   const setSelectedId = useSetRecoilState(navigationSelectedIdState(key));
   const setNodes = useSetRecoilState(navigationNodesState(key));

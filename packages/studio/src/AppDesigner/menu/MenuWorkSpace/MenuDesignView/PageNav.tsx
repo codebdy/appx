@@ -7,7 +7,7 @@ import { IMenuNode } from "../../models/IMenuNode";
 import { navigationSelectedIdState } from "../../atoms";
 import { memo } from "react";
 import { useRecoilState } from "recoil";
-import { useDesingerKey } from "../../../context";
+import { useAppKey } from "../../../../shared/AppRoot/context";
 import React from "react";
 import clx from "classnames";
 import ItemIcon from "./ItemIcon";
@@ -20,7 +20,7 @@ const PageNavInner = memo(
     node: IMenuNode;
   }) => {
     const { provided, snapshot, node } = props;
-    const key = useDesingerKey();
+    const key = useAppKey();
     const [selectedId, setSelectedId] = useRecoilState(
       navigationSelectedIdState(key)
     );

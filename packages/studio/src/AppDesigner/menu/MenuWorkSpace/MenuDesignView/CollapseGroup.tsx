@@ -7,7 +7,7 @@ import {
 import { IMenuNode } from "../../models/IMenuNode";
 import { useRecoilState } from "recoil";
 import { navigationSelectedIdState } from "../../atoms";
-import { useDesingerKey } from "../../../context";
+import { useAppKey } from "../../../../shared/AppRoot/context";
 import React from "react";
 import NavItemList from "./NavItemList";
 import { Collapse } from "antd";
@@ -31,7 +31,7 @@ const CollpaseGroupInner = memo(
     const [mouseOver, setMouseHover] = useState(false);
     const [hover, setHover] = useState(false);
     const [canDrop, setCanDrop] = useState(true);
-    const key = useDesingerKey();
+    const key = useAppKey();
     const [selectedId, setSelectedId] = useRecoilState(
       navigationSelectedIdState(key)
     );

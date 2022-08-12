@@ -2,13 +2,13 @@ import { useCallback } from "react";
 import { IPostOptions, usePostOne } from "../../enthooks/hooks/usePostOne";
 import { IMenuInput, IPageInput } from "../../model/input";
 import { IMenu } from "../../model";
-import { useDesignerParams } from "../context";
+import { useAppParams } from "../../shared/AppRoot/context";
 
 export function useUpsertMenu(options?: IPostOptions<any>): [
   (page: IPageInput) => void,
   { loading?: boolean; error?: Error }
 ] {
-  const params = useDesignerParams();
+  const params = useAppParams();
 
   const [post, { error, loading }] = usePostOne<IMenuInput, IMenu>("Menu",
     {

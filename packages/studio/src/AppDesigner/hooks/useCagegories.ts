@@ -1,6 +1,6 @@
 import { gql } from "awesome-graphql-client";
 import { IPageCategory } from "../../model";
-import { useDesignerParams } from "../context";
+import { useAppParams } from "../../shared/AppRoot/context";
 import { useQuery } from "../../enthooks/hooks/useQuery";
 
 const categoriesGql = gql`
@@ -33,7 +33,7 @@ query queryCategories($appUuid:String!, $device:String!){
 `
 
 export function useCagegories() {
-  const params = useDesignerParams();
+  const params = useAppParams();
 
   const { data, error, loading } = useQuery<IPageCategory>(
     categoriesGql,

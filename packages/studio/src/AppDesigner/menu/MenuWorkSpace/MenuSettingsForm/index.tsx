@@ -6,7 +6,7 @@ import { navigationSelectedIdState } from '../../atoms';
 import { useRecoilValue } from 'recoil';
 import { useMenuNode } from '../../hooks/useMenuNode';
 import { useSetMeta } from '../../hooks/useSetMeta';
-import { useDesingerKey } from '../../../context';
+import { useAppKey } from '../../../../shared/AppRoot/context';
 import { MenuItemType } from '../../models/IMenuNode';
 import { IPage, IPageCategory } from '../../../../model';
 import { usePagesWithoutCategory } from '../../../hooks/usePagesWithoutCategory';
@@ -36,7 +36,7 @@ const MenuSettingsForm = memo((
   const getPge = useGetPage(pages);
 
   const { t } = useTranslation();
-  const key = useDesingerKey();
+  const key = useAppKey();
   const selectedId = useRecoilValue(navigationSelectedIdState(key));
   const node = useMenuNode(selectedId);
   const setMeta = useSetMeta();

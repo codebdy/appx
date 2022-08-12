@@ -8,7 +8,7 @@ import MenuDesignView from "./MenuDesignView";
 import "./style.less"
 import { useRecoilState } from "recoil";
 import { navigationSelectedIdState } from "../atoms";
-import { useDesingerKey } from "../../context";
+import { useAppKey } from "../../../shared/AppRoot/context";
 import MenuSettingsForm from "./MenuSettingsForm";
 import { Empty } from "antd";
 
@@ -21,7 +21,7 @@ const MenuWorkSpace = memo((
 ) => {
   const { app, categories, pages } = props;
   const { t } = useTranslation();
-  const key = useDesingerKey();
+  const key = useAppKey();
   const [selectedId, setSelectedId] = useRecoilState(
     navigationSelectedIdState(key)
   );

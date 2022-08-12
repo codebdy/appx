@@ -5,7 +5,7 @@ import { DataNode } from 'antd/lib/tree';
 import CreateCategoryDialog from './CreateCategoryDialog';
 import CreatePageDialog from './CreatePageDialog';
 import { useRecoilState } from 'recoil';
-import { useDesingerKey } from '../../context';
+import { useAppKey } from '../../../shared/AppRoot/context';
 import CategoryLabel from './CategoryLabel';
 import PageLabel from './PageLabel';
 import { selectedPageIdState } from '../../recoil/atom';
@@ -23,7 +23,7 @@ const PageListWidget = memo((
   }
 ) => {
   const { categories, pages } = props;
-  const key = useDesingerKey();
+  const key = useAppKey();
 
   const getPage = useGetPage(pages);
 
