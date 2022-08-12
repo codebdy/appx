@@ -1,7 +1,8 @@
 import { Layout } from "antd";
 import React from "react";
-import NavMenu from "./NavMenu";
+import MenuSider from "./MenuSider";
 import "./style.less";
+const { Header, Content, Footer } = Layout;
 
 const ProLayout = (
   props: {
@@ -12,7 +13,18 @@ const ProLayout = (
 ) => {
   return (
     <Layout className="appx-pro-layout">
-      <NavMenu />
+      <MenuSider />
+      <Layout>
+        <Header>
+          Header
+        </Header>
+        <Content>
+          Content
+        </Content>
+        <Footer>
+          Footer
+        </Footer>
+      </Layout>
     </Layout>
   )
 }

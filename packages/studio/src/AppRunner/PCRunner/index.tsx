@@ -9,7 +9,7 @@ const PCRunner = memo(() => {
 
   return (
     <div
-      id="apper-layout"
+      id="appx-layout"
       style={{
         height: '100vh',
       }}

@@ -7,9 +7,10 @@ import {
   MenuUnfoldOutlined,
   PieChartOutlined,
 } from '@ant-design/icons';
-import { Button, Menu } from 'antd';
+import { Button, Layout, Menu } from 'antd';
 import React, { useState } from 'react';
 import clx from "classnames";
+const { Sider } = Layout;
 
 function getItem(label?: string, key?: string, icon?: any, children?: any, type?: any) {
   return {
@@ -38,7 +39,7 @@ const items = [
   ]),
 ];
 
-const NavMenu = () => {
+const MenuSider = () => {
   const [collapsed, setCollapsed] = useState(false);
 
   const toggleCollapsed = () => {
@@ -46,7 +47,7 @@ const NavMenu = () => {
   };
 
   return (
-    <div className={clx("appx-nav-menu-area", "dark", { collapsed: collapsed })}>
+    <Sider className={clx("appx-nav-menu-area", "dark", { collapsed: collapsed })}>
       <Button
         type="primary"
         onClick={toggleCollapsed}
@@ -64,8 +65,8 @@ const NavMenu = () => {
         inlineCollapsed={collapsed}
         items={items}
       />
-    </div>
+    </Sider>
   );
 };
 
-export default NavMenu;
+export default MenuSider;
