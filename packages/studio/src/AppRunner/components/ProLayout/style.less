@@ -1,17 +1,23 @@
 @import '~antd/lib/style/themes/default.less';
 
+@collapsedWidth:56px;
+
 .appx-pro-layout{
   height: 100%;
   width: 100%;
-  .left-area{
+  .appx-nav-menu-area{
     width: 280px;
     height: 100%;
+    transition: width .3s cubic-bezier(.2,0,0,1) 0s;
+  }
+  .appx-nav-menu-area.collapsed{
+    width: @collapsedWidth;
   }
   .ant-menu.ant-menu-inline-collapsed{
-    width: 56px;
+    width: @collapsedWidth;
   }
 }
 
-.appx-pro-layout.dark, .left-area.dark{
+.appx-pro-layout.dark, .appx-nav-menu-area.dark{
   background-color: #001529;
 }

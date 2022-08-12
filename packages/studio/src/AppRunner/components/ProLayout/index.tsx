@@ -11,9 +11,7 @@ const ProLayout = (
 ) => {
   return (
     <div className="appx-pro-layout">
-      <div className="left-area dark">
-        <NavMenu />
-      </div>
+      <NavMenu />
     </div>
   )
 }
