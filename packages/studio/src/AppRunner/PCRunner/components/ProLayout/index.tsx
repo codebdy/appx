@@ -70,7 +70,7 @@ const ProLayout = () => {
         />
       </Sider>
       <Layout className="site-layout">
-        <Header className="site-layout-background toolbar" >
+        <Header className="site-layout-background toolbar header-toolbar" >
           {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
             className: 'trigger',
             onClick: handleTrigger,
