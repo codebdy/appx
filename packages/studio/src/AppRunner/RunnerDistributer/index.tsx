@@ -9,7 +9,7 @@ import { Device } from '../../model';
 import PCRunner from '../PCRunner';
 import H5Runner from '../H5Runner';
 import WebsiteRunner from '../WebsiteRunner';
-import { RunnerContext } from '../context';
+import { RunnerContext } from '../context/runner';
 
 const RunnerDistributer = memo(() => {
   const { device } = useAppParams();
