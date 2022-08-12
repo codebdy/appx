@@ -8,6 +8,10 @@ import { ItemType } from "antd/lib/menu/hooks/useItems";
 const MenuContent = memo(() => {
   const { menu } = useRunnerParams();
 
+  const getMenuItem = useCallback((uuid: string) => {
+    return menu?.schemaJson?.items?.find(item => item.uuid === uuid);
+  }, [menu?.schemaJson?.items])
+
   const makeItem = useCallback((item: IMenuItem) => {
     return ({
       key: item.uuid,
@@ -26,6 +30,10 @@ const MenuContent = memo(() => {
     return rtValue
   }, [makeItem, menu?.schemaJson?.items]);
 
+  const handleSelect = useCallback(({ key }) => {
+    console.log("哈哈", getMenuItem(key));
+  }, [getMenuItem]);
+
   return (
     <>
       <Menu
@@ -33,6 +41,7 @@ const MenuContent = memo(() => {
         mode="inline"
         // defaultSelectedKeys={['1']}
         items={data}
+        onSelect={handleSelect}
       />
     </>
   )
