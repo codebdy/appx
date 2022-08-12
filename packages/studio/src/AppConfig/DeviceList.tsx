@@ -45,7 +45,13 @@ const DeviceList = memo((props: {
                       >
                         {t("appManager.ToDesign")}
                       </Button>,
-                      <Button key="preview" shape="round" >{t("appManager.ToPreview")}</Button>,
+                      <Button
+                        key="preview"
+                        shape="round"
+                        onClick={() => { window.open(`/app/${Device.PC}/${appUuid}`) }}
+                      >
+                        {t("appManager.ToPreview")}
+                      </Button>,
                     ]}
                   >
                     <Meta
@@ -71,7 +77,13 @@ const DeviceList = memo((props: {
                       >
                         {t("appManager.ToDesign")}
                       </Button>,
-                      <Button key="preview" shape="round" >{t("appManager.ToPreview")}</Button>,
+                      <Button
+                        key="preview"
+                        shape="round"
+                        onClick={() => { window.open(`/app/${Device.H5}/${appUuid}`) }}
+                      >
+                        {t("appManager.ToPreview")}
+                      </Button>,
                     ]}
                   >
                     <Meta
@@ -97,7 +109,13 @@ const DeviceList = memo((props: {
                       >
                         {t("appManager.ToDesign")}
                       </Button>,
-                      <Button key="preview" shape="round" >{t("appManager.ToPreview")}</Button>,
+                      <Button
+                        key="preview"
+                        shape="round"
+                        onClick={() => { window.open(`/app/${Device.Admin}/${appUuid}`) }}
+                      >
+                        {t("appManager.ToPreview")}
+                      </Button>,
                     ]}
                   >
                     <Meta
