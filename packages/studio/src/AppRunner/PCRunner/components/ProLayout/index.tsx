@@ -12,7 +12,13 @@ const { Header, Content, Footer } = Layout;
 const menuWidth = 260;
 const menuCollapsedWidth = 56;
 
-const ProLayout = memo(() => {
+const ProLayout = memo((
+  props: {
+    logo?: React.ReactNode,
+    title?: React.ReactNode
+  }
+) => {
+  const { logo, title } = props;
   const [collapsed, setCollapsed] = useState(false);
 
   const handleTrigger = useCallback(() => {
@@ -21,7 +27,13 @@ const ProLayout = memo(() => {
 
   return (
     <Layout className='appx-pro-layout'>
-      <MenuSider menuWidth={menuWidth} menuCollapsedWidth = {menuCollapsedWidth} collapsed = {collapsed} />
+      <MenuSider
+        menuWidth={menuWidth}
+        menuCollapsedWidth={menuCollapsedWidth}
+        collapsed={collapsed}
+        logo = {logo}
+        title={title}
+      />
       <Layout className="site-layout">
         <Header className="site-layout-background toolbar header-toolbar" >
           {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
