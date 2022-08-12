@@ -1,11 +1,12 @@
 import { Menu } from "antd";
 import { IMenuItem, MenuItemType } from "../../../model/IMenuNode";
-import React, { memo, useCallback, useMemo } from "react";
+import React, { memo, useCallback, useMemo, useState } from "react";
 import { useRunnerParams } from "../../context/runner";
 import { IconView } from "../../../shared/icon/IconView";
 import { ItemType } from "antd/lib/menu/hooks/useItems";
 
 const MenuContent = memo(() => {
+  const [key, setKey] = useState<string>();
   const { menu } = useRunnerParams();
 
   const getMenuItem = useCallback((uuid: string) => {
@@ -30,12 +31,14 @@ const MenuContent = memo(() => {
     return rtValue
   }, [makeItem, menu?.schemaJson?.items]);
 
-  const handleSelect = useCallback(({ key }) => {
+  const handleClick = useCallback(({ key }) => {
     const item = getMenuItem(key);
     console.log("哈哈", item);
 
-    if (item?.type === MenuItemType.Link){
+    if (item?.type === MenuItemType.Link) {
       item?.link && window.open(item?.link)
+    } else if (item?.type !== MenuItemType.Divider) {
+      setKey(key);
     }
 
   }, [getMenuItem]);
@@ -45,9 +48,9 @@ const MenuContent = memo(() => {
       <Menu
         theme="dark"
         mode="inline"
-        // defaultSelectedKeys={['1']}
+        selectedKeys={[key]}
         items={data}
-        onSelect={handleSelect}
+        onClick={handleClick}
       />
     </>
   )
