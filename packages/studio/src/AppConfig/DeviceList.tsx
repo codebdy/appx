@@ -21,7 +21,7 @@ const DeviceList = memo((props: {
     <div className='content-inner'>
       <div className="content-show-block">
         <div className="config-content">
-          <h2>{t("appManager.AppDesign")}</h2>
+          <h2>{t("AppManager.AppDesign")}</h2>
           {
             loading ?
               <Skeleton active={true}></Skeleton>
@@ -43,19 +43,19 @@ const DeviceList = memo((props: {
                         type="primary"
                         onClick={() => { navigate(`/design-app/${Device.PC}/${appUuid}`) }}
                       >
-                        {t("appManager.ToDesign")}
+                        {t("AppManager.ToDesign")}
                       </Button>,
                       <Button
                         key="preview"
                         shape="round"
                         onClick={() => { window.open(`/app/${Device.PC}/${appUuid}`) }}
                       >
-                        {t("appManager.ToPreview")}
+                        {t("AppManager.ToPreview")}
                       </Button>,
                     ]}
                   >
                     <Meta
-                      title={t("appManager.PCDesign")}
+                      title={t("AppManager.PCDesign")}
                     />
                   </Card>
                 </Col>
@@ -75,19 +75,19 @@ const DeviceList = memo((props: {
                         type="primary"
                         onClick={() => { navigate(`/design-app/${Device.H5}/${appUuid}`) }}
                       >
-                        {t("appManager.ToDesign")}
+                        {t("AppManager.ToDesign")}
                       </Button>,
                       <Button
                         key="preview"
                         shape="round"
                         onClick={() => { window.open(`/app/${Device.H5}/${appUuid}`) }}
                       >
-                        {t("appManager.ToPreview")}
+                        {t("AppManager.ToPreview")}
                       </Button>,
                     ]}
                   >
                     <Meta
-                      title={t("appManager.H5Design")}
+                      title={t("AppManager.H5Design")}
                     />
                   </Card>
                 </Col>
@@ -105,21 +105,21 @@ const DeviceList = memo((props: {
                         key="design"
                         shape="round"
                         type="primary"
-                        onClick={() => { navigate(`/design-app/${Device.Admin}/${appUuid}`) }}
+                        onClick={() => { navigate(`/design-app/${Device.WebSite}/${appUuid}`) }}
                       >
-                        {t("appManager.ToDesign")}
+                        {t("AppManager.ToDesign")}
                       </Button>,
                       <Button
                         key="preview"
                         shape="round"
-                        onClick={() => { window.open(`/app/${Device.Admin}/${appUuid}`) }}
+                        onClick={() => { window.open(`/app/${Device.WebSite}/${appUuid}`) }}
                       >
-                        {t("appManager.ToPreview")}
+                        {t("AppManager.ToPreview")}
                       </Button>,
                     ]}
                   >
                     <Meta
-                      title={t("appManager.AdminDesign")}
+                      title={t("AppManager.WebsiteDesign")}
                     />
                   </Card>
                 </Col>

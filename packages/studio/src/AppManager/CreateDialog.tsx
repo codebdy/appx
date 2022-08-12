@@ -81,10 +81,10 @@ const CreateDialog = memo(() => {
         icon={<PlusOutlined />}
         onClick={showModal}
       >
-        {t("appManager.CreateApp")}
+        {t("AppManager.CreateApp")}
       </Button>
       <Modal
-        title={t("appManager.CreateApp")}
+        title={t("AppManager.CreateApp")}
         okText={t("Confirm")}
         cancelText={t("Cancel")}
         okButtonProps={{

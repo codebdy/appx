@@ -19,7 +19,7 @@ export interface IApp {
 export enum Device {
   PC = "Pc",
   H5 = "H5",
-  Admin = "Admin"
+  WebSite = "WebSite"
 }
 
 export interface IPage {

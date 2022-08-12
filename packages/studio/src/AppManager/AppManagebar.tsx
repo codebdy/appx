@@ -10,18 +10,18 @@ const AppManagebar = () => {
     <div className="app-manage-bar">
       <Input
         className="search hover-float"
-        placeholder={t("appManager.SearchPlaceHolder")}
+        placeholder={t("AppManager.SearchPlaceHolder")}
         suffix={
           <SearchOutlined className="search-icon" />
         }
       />
       <Space className="actions">
         <Button className="hover-float" icon={<ImportOutlined />}>
-          {t("appManager.ImportApp")}
+          {t("AppManager.ImportApp")}
         </Button>
         <CreateDialog />
         <Button type="primary" className="hover-float" danger icon={<AppstoreOutlined />}>
-          {t("appManager.AppStore")}
+          {t("AppManager.AppStore")}
         </Button>
       </Space>
     </div>

@@ -1,13 +1,13 @@
 import React from "react";
 import { memo } from "react";
 
-const WebRunner = memo(() => {
+const WebsiteRunner = memo(() => {
 
   return (
     <div>
-      PCRunner
+      WebSiteRunner
     </div>
   )
 })
 
-export default WebRunner;
+export default WebsiteRunner;

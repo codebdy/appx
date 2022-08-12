@@ -6,12 +6,12 @@ import TablePage from './TablePage';
 import { useShowError } from '../../hooks/useShowError';
 import { Spin } from 'antd';
 import { useAppParams } from '../../shared/AppRoot/context';
-import { useNavProps } from '../AdminRunner/hooks/useNavProps';
+import { useNavProps } from '../WebsiteRunner/hooks/useNavProps';
 import { useMenu } from '../../shared/AppRoot/hooks/useMenu';
-import ProLayout from '../AdminRunner/components/ProLayout';
+import ProLayout from '../WebsiteRunner/components/ProLayout';
 
 const RunnerDistributer = memo(() => {
-  const { app } = useAppParams();
+  const { app, device } = useAppParams();
   const { menu, error, loading } = useMenu();
   const navProps = useNavProps(menu);
   useShowError(error);
