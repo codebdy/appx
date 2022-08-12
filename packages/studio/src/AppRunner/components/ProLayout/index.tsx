@@ -1,4 +1,5 @@
 import React from "react";
+import NavMenu from "./NavMenu";
 
 const ProLayout = (
   props: {
@@ -9,7 +10,7 @@ const ProLayout = (
 ) => {
   return (
     <div>
-
+      <NavMenu />
     </div>
   )
 }
