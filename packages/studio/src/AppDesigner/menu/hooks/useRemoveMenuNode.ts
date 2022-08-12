@@ -38,19 +38,19 @@ export function useRemoveMenuNode() {
       const newParent: IMenuNode = {
         ...parentNode,
         childIds: parentNode.childIds.filter(
-          (chilidId) => chilidId !== node.id
+          (chilidId) => chilidId !== node.meta.uuid
         ),
       };
 
-      if (newParent.id === rootNode?.id) {
+      if (newParent.meta.uuid === rootNode?.meta.uuid) {
         newRootNode = newParent;
       }
       setNodes(
         (nodes) =>
           nodes
-            ?.filter((nd) => nd.id !== node.id)
+            ?.filter((nd) => nd.meta.uuid !== node.meta.uuid)
             .map((nd) => {
-              if (nd.id === parentNode.id) {
+              if (nd.meta.uuid === parentNode.meta.uuid) {
                 return newParent;
               }
               return nd;

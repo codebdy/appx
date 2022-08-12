@@ -25,11 +25,11 @@ const DividerInner = memo(
     );
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-      setSelectedId(node.id);
+      setSelectedId(node.meta.uuid);
       event.stopPropagation();
     };
 
-    const selected = useMemo(() => selectedId && selectedId === node.id, [node.id, selectedId]);
+    const selected = useMemo(() => selectedId && selectedId === node.meta.uuid, [node.meta.uuid, selectedId]);
     return (
       <div
         className={clx("menu-item", "menu-single-item", { selected: selected, float: snapshot.isDragging })}
@@ -47,7 +47,7 @@ const DividerInner = memo(
 export const MenuDivider = memo((props: { node: IMenuNode; index: number }) => {
   const { node, index } = props;
   return (
-    <Draggable draggableId={node.id} index={index}>
+    <Draggable draggableId={node.meta.uuid} index={index}>
       {(provided, snapshot) => (
         <DividerInner provided={provided} snapshot={snapshot} node={node} />
       )}

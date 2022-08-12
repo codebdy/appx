@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from "react"
 import { memo } from "react"
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { IPage } from "../../model";
 import { isNavigationDirtyState, menuIdState, navigationNodesState, navigationRootNodeState } from "./atoms";
 import { COLLAPSE_GROUP_ID, CUSTOMIZED_LINK_ID, DIVIDER_ID, PAGE_LIST_ID } from "./consts";
@@ -15,10 +15,10 @@ import { useMenu } from "../hooks/useMenu";
 import { useShowError } from "../../hooks/useShowError";
 import { cloneObject } from "./utils/cloneObject";
 import { parseMeta } from "./hooks/useParseMenuMeta";
-import { createId } from "../../shared";
+import { createUuid } from "../../shared";
 import { useGetPage } from "../hooks/useGetPage";
 
-const rootMeta: IMenuItem = { type: MenuItemType.Group };
+const rootMeta: IMenuItem = { type: MenuItemType.Group, uuid: createUuid(), };
 
 const MenuDragRoot = memo((
   props: {
@@ -28,10 +28,9 @@ const MenuDragRoot = memo((
 ) => {
   const { pages } = props;
   const key = useDesingerKey();
-  const [rootNode, setRootNode] = useRecoilState(navigationRootNodeState(key));
+  const setRootNode = useSetRecoilState(navigationRootNodeState(key));
   const setIsDirty = useSetRecoilState(isNavigationDirtyState(key));
   const setMenuId = useSetRecoilState(menuIdState(key))
-  //const [selectedId, setSelectedId] = useRecoilState(navigationSelectedIdState(key));
   const setNodes = useSetRecoilState(navigationNodesState(key));
   const { t } = useTranslation();
   const { menu, error } = useMenu();
@@ -67,8 +66,8 @@ const MenuDragRoot = memo((
         let draggedNode: IMenuNode | undefined;
         if (draggableId === COLLAPSE_GROUP_ID) {
           draggedNode = {
-            id: createId(),
             meta: {
+              uuid: createUuid(),
               type: MenuItemType.Group,
               title: t("Menu.CollapseGroup"),
             },
@@ -76,8 +75,8 @@ const MenuDragRoot = memo((
           };
         } else if (draggableId === DIVIDER_ID) {
           draggedNode = {
-            id: createId(),
             meta: {
+              uuid: createUuid(),
               type: MenuItemType.Divider,
               title: t("Menu.Divider"),
             },
@@ -85,8 +84,8 @@ const MenuDragRoot = memo((
           };
         } else if (draggableId === CUSTOMIZED_LINK_ID) {
           draggedNode = {
-            id: createId(),
             meta: {
+              uuid: createUuid(),
               type: MenuItemType.Link,
               title: t("Menu.CustomizedLink"),
             },
@@ -96,8 +95,8 @@ const MenuDragRoot = memo((
           const page: IPage | undefined = getPage(draggableId);
           if (page) {
             draggedNode = {
-              id: createId(),
               meta: {
+                uuid: createUuid(),
                 type: MenuItemType.Item,
                 title: page.title,
                 route: { pageId: page.id },

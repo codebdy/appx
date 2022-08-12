@@ -35,8 +35,8 @@ const MenuSettingsForm = memo(() => {
   }, [form, node.meta])
 
   const handleChange = useCallback((form) => {
-    setMeta(node.id, { ...node.meta, ...form });
-  }, [node.id, node.meta, setMeta])
+    setMeta(node.meta.uuid, { ...node.meta, ...form });
+  }, [node.meta, setMeta])
 
   return (
     <div style={{ padding: "16px" }}>

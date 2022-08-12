@@ -3,7 +3,6 @@ import {
   navigationRootNodeState,
   navigationSelectedIdState,
 } from "../atoms";
-import _ from "lodash";
 import { useCallback } from "react";
 import { useSetRecoilState } from "recoil";
 import { IMenuItem, IMenuNode } from "../models/IMenuNode";
@@ -16,14 +15,13 @@ export const parseMeta = (
 ): IMenuNode => {
   const { children, ...metaData } = meta;
   const node: IMenuNode = {
-    id: _.uniqueId(),
     parentId: parentId,
     childIds: [],
     meta: metaData,
   };
   for (const child of children || []) {
-    const childNode = parseMeta(child, nodes, node.id);
-    node.childIds.push(childNode.id);
+    const childNode = parseMeta(child, nodes, node.meta.uuid);
+    node.childIds.push(childNode.meta.uuid);
   }
   nodes.push(node);
   return node;

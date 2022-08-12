@@ -15,6 +15,7 @@ export interface IMenuBadge {
 }
 
 export interface IMenuItem {
+  uuid: string;
   type: MenuItemType;
   title?: string;
   icon?: IIcon;
@@ -29,7 +30,6 @@ export interface IMenuItem {
 }
 
 export interface IMenuNode {
-  id: string;
   parentId?: string;
   childIds: string[];
   meta: IMenuItem;

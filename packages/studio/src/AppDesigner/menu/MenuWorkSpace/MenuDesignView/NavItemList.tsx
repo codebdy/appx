@@ -50,23 +50,23 @@ export const NavItemListInner = (props: {
           throw new Error("Cant find item by id:" + nodId);
         }
         return (
-          <Fragment key={item.id}>
+          <Fragment key={item.meta.uuid}>
             {item.meta.type === MenuItemType.Group && (
               <CollapseGroup
-                key={item.id}
+                key={item.meta.uuid}
                 node={item}
                 index={index}
                 onParentDropable={onParentDropable}
               />
             )}
             {item.meta.type === MenuItemType.Divider && (
-              <MenuDivider key={item.id} node={item} index={index} />
+              <MenuDivider key={item.meta.uuid} node={item} index={index} />
             )}
             {item.meta.type === MenuItemType.Link && (
-              <LinkItem key={item.id} node={item} index={index} />
+              <LinkItem key={item.meta.uuid} node={item} index={index} />
             )}
             {item.meta.type === MenuItemType.Item && (
-              <PageNav key={item.id} node={item} index={index} />
+              <PageNav key={item.meta.uuid} node={item} index={index} />
             )}
           </Fragment>
         );
@@ -85,7 +85,7 @@ const NavItemList = (props: {
   const { node, canDrop, isSubList, onParentDropable } = props;
 
   return (
-    <Droppable droppableId={node.id} isDropDisabled={!canDrop}>
+    <Droppable droppableId={node.meta.uuid} isDropDisabled={!canDrop}>
       {(provided, snapshot) => (
         <NavItemListInner
           provided={provided}

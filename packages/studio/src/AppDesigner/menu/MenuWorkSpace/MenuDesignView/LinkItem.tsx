@@ -26,11 +26,11 @@ const LinkItemInner = memo(
     );
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-      setSelectedId(node.id);
+      setSelectedId(node.meta.uuid);
       event.stopPropagation();
     };
 
-    const selected = useMemo(() => selectedId && selectedId === node.id, [node.id, selectedId]);
+    const selected = useMemo(() => selectedId && selectedId === node.meta.uuid, [node.meta.uuid, selectedId]);
     return (
       <div
         className={clx("menu-item", "menu-text-item", "menu-single-item", "item-label", { selected: selected, float: snapshot.isDragging })}
@@ -55,7 +55,7 @@ const LinkItemInner = memo(
 export const LinkItem = memo((props: { node: IMenuNode; index: number }) => {
   const { node, index } = props;
   return (
-    <Draggable draggableId={node.id} index={index}>
+    <Draggable draggableId={node.meta.uuid} index={index}>
       {(provided, snapshot) => (
         <LinkItemInner provided={provided} snapshot={snapshot} node={node} />
       )}

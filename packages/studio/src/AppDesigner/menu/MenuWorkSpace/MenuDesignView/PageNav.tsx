@@ -26,11 +26,11 @@ const PageNavInner = memo(
     );
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-      setSelectedId(node.id);
+      setSelectedId(node.meta.uuid);
       event.stopPropagation();
     };
 
-    const selected = selectedId && selectedId === node.id;
+    const selected = selectedId && selectedId === node.meta.uuid;
     return (
       <div
         ref={provided.innerRef}
@@ -56,7 +56,7 @@ export const PageNav = memo((props: { node: IMenuNode; index: number }) => {
   const { node, index } = props;
 
   return (
-    <Draggable draggableId={node.id} index={index}>
+    <Draggable draggableId={node.meta.uuid} index={index}>
       {(provided, snapshot) => (
         <PageNavInner provided={provided} snapshot={snapshot} node={node} />
       )}

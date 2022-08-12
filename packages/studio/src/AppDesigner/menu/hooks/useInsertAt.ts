@@ -20,7 +20,7 @@ export function useInsertAt() {
 
   const insertAt = useCallback(
     (node: IMenuNode, targetNodeId: string, index: number) => {
-      setSelectedId(node.id);
+      setSelectedId(node.meta.uuid);
       const newNode = { ...node };
       let newNodes = [...nodes];
       let newRootNode = rootNode;
@@ -40,38 +40,38 @@ export function useInsertAt() {
       const newParent: IMenuNode = {
         ...parentNode,
         childIds: parentNode.childIds.filter(
-          (chilidId) => chilidId !== node.id
+          (chilidId) => chilidId !== node.meta.uuid
         ),
       };
 
       newNodes = [
-        ...(newNodes?.filter((nd) => nd.id !== newParent.id) || []),
+        ...(newNodes?.filter((nd) => nd.meta.uuid !== newParent.meta.uuid) || []),
         newParent,
       ];
 
-      if (newParent.id === rootNode?.id) {
+      if (newParent.meta.uuid === rootNode?.meta.uuid) {
         newRootNode = newParent;
       }
 
       const newTargetNode: IMenuNode =
-        targetNode.id === newParent.id
+        targetNode.meta.uuid === newParent.meta.uuid
           ? { ...newParent, childIds: [...newParent.childIds] }
           : { ...targetNode, childIds: [...targetNode.childIds] };
 
       newNodes = [
-        ...(newNodes?.filter((nd) => nd.id !== newTargetNode.id) || []),
+        ...(newNodes?.filter((nd) => nd.meta.uuid !== newTargetNode.meta.uuid) || []),
         newTargetNode,
       ];
 
-      if (newTargetNode.id === rootNode?.id) {
+      if (newTargetNode.meta.uuid === rootNode?.meta.uuid) {
         newRootNode = newTargetNode;
       }
 
-      newNode.parentId = newTargetNode.id;
-      newTargetNode.childIds.splice(index, 0, newNode.id);
+      newNode.parentId = newTargetNode.meta.uuid;
+      newTargetNode.childIds.splice(index, 0, newNode.meta.uuid);
 
       newNodes = [
-        ...(newNodes?.filter((nd) => nd.id !== newNode.id) || []),
+        ...(newNodes?.filter((nd) => nd.meta.uuid !== newNode.meta.uuid) || []),
         newNode,
       ];
 

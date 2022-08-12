@@ -9,7 +9,7 @@ export function useGetMenuNode() {
 
   const getNode = useCallback(
     (id: string) => {
-      return nodes?.find((node) => node.id === id);
+      return nodes?.find((node) => node.meta.uuid === id);
     },
     [nodes]
   );

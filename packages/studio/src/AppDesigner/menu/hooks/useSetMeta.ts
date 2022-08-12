@@ -17,13 +17,13 @@ export function useSetMeta() {
 
   const setmeta = useCallback(
     (id: string, meta: IMenuItem) => {
-      const node = nodes?.find((nd) => nd.id === id);
+      const node = nodes?.find((nd) => nd.meta.uuid === id);
       if (!node) {
         throw new Error("Can not finde node to set meta:" + id);
       }
 
       const newNode = { ...node, meta: meta };
-      const parentNode = nodes?.find((nd) => nd.id === newNode.parentId);
+      const parentNode = nodes?.find((nd) => nd.meta.uuid === newNode.parentId);
       if (!parentNode) {
         throw new Error(
           "Can not finde node parent to set meta:" + newNode.parentId
@@ -33,10 +33,10 @@ export function useSetMeta() {
       backupSnapshot();
 
       const newParent = { ...parentNode };
-      setRootNode(newParent.id === rootNode?.id ? newParent : rootNode);
+      setRootNode(newParent.meta.uuid === rootNode?.meta.uuid ? newParent : rootNode);
       setNodes([
         ...nodes?.filter(
-          (nd) => nd.id !== newNode.id && nd.id !== newParent.id
+          (nd) => nd.meta.uuid !== newNode.meta.uuid && nd.meta.uuid !== newParent.meta.uuid
         ),
         newNode,
         newParent,

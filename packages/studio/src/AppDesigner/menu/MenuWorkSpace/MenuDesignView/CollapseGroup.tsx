@@ -70,10 +70,10 @@ const CollpaseGroupInner = memo(
 
     const handleClick = useCallback(
       (event: React.MouseEvent<HTMLElement>) => {
-        setSelectedId(node.id);
+        setSelectedId(node.meta.uuid);
         event.stopPropagation();
       },
-      [node.id, setSelectedId]
+      [node.meta.uuid, setSelectedId]
     );
 
     const handleColapse = useCallback((key?: string) => {
@@ -81,8 +81,8 @@ const CollpaseGroupInner = memo(
     }, [onOpened]);
 
     const selected = useMemo(
-      () => selectedId && selectedId === node.id,
-      [node.id, selectedId]
+      () => selectedId && selectedId === node.meta.uuid,
+      [node.meta.uuid, selectedId]
     );
 
     const handleMouseEnter = useCallback(() => {
@@ -118,7 +118,7 @@ const CollpaseGroupInner = memo(
                   {node.meta.title}
                 </div>
               }
-              key={node.id}
+              key={node.meta.uuid}
             >
               <div className={clx("collapse-inner", { dashed: !node.childIds.length })} onClick={handleClick}>
                 {
@@ -164,7 +164,7 @@ export const CollapseGroup = memo(
 
     return (
       <Draggable
-        draggableId={node.id}
+        draggableId={node.meta.uuid}
         index={index}
         isDragDisabled={opened}
       >
