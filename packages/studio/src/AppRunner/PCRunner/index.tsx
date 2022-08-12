@@ -5,13 +5,14 @@ import TablePage from "../RunnerDistributer/TablePage";
 import HeaderContent from "./HeaderContent";
 import MenuContent from "./MenuContent";
 import ProLayout from "./ProLayout";
+import "./style.less"
 
 const PCRunner = memo(() => {
   const { app } = useAppParams();
 
   return (
     <div
-      id="appx-layout"
+      className="appx-pc-layout"
       style={{
         height: '100vh',
       }}

@@ -1,5 +1,5 @@
 import { Menu } from "antd";
-import { IMenuItem } from "../../../model/IMenuNode";
+import { IMenuItem, MenuItemType } from "../../../model/IMenuNode";
 import React, { memo, useCallback, useMemo } from "react";
 import { useRunnerParams } from "../../context";
 import { IconView } from "../../../shared/icon/IconView";
@@ -14,6 +14,7 @@ const MenuContent = memo(() => {
       icon: <IconView icon={item.icon} />,
       label: item.title,
       children: !item.children?.length ? undefined : item.children?.map((child) => makeItem(child)),
+      type: item.type === MenuItemType.Divider ? "divider" : undefined
     })
   }, []);
 
