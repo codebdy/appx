@@ -1,13 +1,10 @@
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-} from '@ant-design/icons';
 import { Layout } from 'antd';
 import React, { memo, useCallback, useState } from 'react';
 import "./style.less";
 import MenuSider from './MenuSider';
+import ProHeader from './ProHeader';
 
-const { Header, Content, Footer } = Layout;
+const { Content, Footer } = Layout;
 
 const menuWidth = 260;
 const menuCollapsedWidth = 56;
@@ -18,9 +15,10 @@ const ProLayout = memo((
     title?: React.ReactNode,
     menu?: React.ReactNode,
     children?: React.ReactNode,
+    fixedHeader?: boolean,
   }
 ) => {
-  const { logo, title, menu, children } = props;
+  const { logo, title, menu, children, fixedHeader } = props;
   const [collapsed, setCollapsed] = useState(false);
 
   const handleTrigger = useCallback(() => {
@@ -39,14 +37,14 @@ const ProLayout = memo((
         {menu}
       </MenuSider>
       <Layout className="site-layout">
-        <Header className="site-layout-background toolbar header-toolbar" >
-          {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-            className: 'trigger',
-            onClick: handleTrigger,
-          })}
-        </Header>
+        <ProHeader
+          collapsed={collapsed}
+          fixed={fixedHeader}
+          onTrigger={handleTrigger}
+        >
+        </ProHeader>
         <Content>
-          wewfef 
+          wewfef
           {children}
         </Content>
         <Footer>Footer</Footer>
