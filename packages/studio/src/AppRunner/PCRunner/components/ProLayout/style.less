@@ -16,6 +16,18 @@
 
   .sider-nav{
     overflow-x: hidden;
+    .ant-layout-sider-children{
+      height: 100%;
+      display: flex;
+      flex-flow: column;      
+    }
+  }
+
+
+  .nav-menu{
+    overflow: auto;
+    flex: 1;
+    height: 0;
   }
   // .sider-nav{
   //     .ant-menu.ant-menu-inline-collapsed{
@@ -27,10 +39,18 @@
     color: #fff;
     overflow: hidden;
     min-width: 260px;
+    transition: all 0.3s;
     .logo-title{
       margin-left: 16px;
       font-weight: bold;
       font-size: 18px;
+      transition: all 0.3s;
+    }
+  }
+
+  .logo.collapsed{
+    .logo-title{
+      display: none;
     }
   }
 

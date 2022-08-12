@@ -6,12 +6,13 @@ import {
   VideoCameraOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
-import React, { useCallback, useState } from 'react';
-import "./style.less"
+import React, { memo, useCallback, useState } from 'react';
+import "./style.less";
+import clx from "classnames";
 
-const { Header, Sider, Content } = Layout;
+const { Header, Sider, Content, Footer } = Layout;
 
-const ProLayout = () => {
+const ProLayout = memo(() => {
   const [collapsed, setCollapsed] = useState(false);
 
   const handleTrigger = useCallback(() => {
@@ -26,8 +27,9 @@ const ProLayout = () => {
         collapsible
         collapsed={collapsed}
         collapsedWidth={56}
+        width={260}
       >
-        <div className="logo toolbar">
+        <div className={clx("logo toolbar", { collapsed })}>
           <svg style={{ width: "40px", height: "40px" }} viewBox="0 0 24 24">
             <defs>
               <linearGradient id="logo_color" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -44,9 +46,10 @@ const ProLayout = () => {
           <div className='logo-title'>
             Appx
           </div>
-          
+
         </div>
         <Menu
+          className='nav-menu'
           theme="dark"
           mode="inline"
           defaultSelectedKeys={['1']}
@@ -62,6 +65,34 @@ const ProLayout = () => {
               label: 'nav 2',
             },
             {
+              key: '3',
+              icon: <UploadOutlined />,
+              label: 'nav 3',
+            },            {
+              key: '3',
+              icon: <UploadOutlined />,
+              label: 'nav 3',
+            },            {
+              key: '3',
+              icon: <UploadOutlined />,
+              label: 'nav 3',
+            },            {
+              key: '3',
+              icon: <UploadOutlined />,
+              label: 'nav 3',
+            },            {
+              key: '3',
+              icon: <UploadOutlined />,
+              label: 'nav 3',
+            },            {
+              key: '3',
+              icon: <UploadOutlined />,
+              label: 'nav 3',
+            },            {
+              key: '3',
+              icon: <UploadOutlined />,
+              label: 'nav 3',
+            },            {
               key: '3',
               icon: <UploadOutlined />,
               label: 'nav 3',
@@ -86,9 +117,10 @@ const ProLayout = () => {
         >
           Content
         </Content>
+        <Footer>Footer</Footer>
       </Layout>
     </Layout>
   );
-};
+});
 
 export default ProLayout;
