@@ -1,10 +1,9 @@
-import { UserOutlined, VideoCameraOutlined, UploadOutlined } from "@ant-design/icons";
-import { Menu } from "antd";
 import React from "react";
 import { memo } from "react";
 import { useAppParams } from "../../shared/AppRoot/context";
 import TablePage from "../RunnerDistributer/TablePage";
 import HeaderContent from "./HeaderContent";
+import MenuContent from "./MenuContent";
 import ProLayout from "./ProLayout";
 
 const PCRunner = memo(() => {
@@ -34,58 +33,7 @@ const PCRunner = memo(() => {
             />
           </svg>
         }
-        menu={
-          <Menu
-            theme="dark"
-            mode="inline"
-            defaultSelectedKeys={['1']}
-            items={[
-              {
-                key: '1',
-                icon: <UserOutlined />,
-                label: 'nav 1',
-              },
-              {
-                key: '2',
-                icon: <VideoCameraOutlined />,
-                label: 'nav 2',
-              },
-              {
-                key: '3',
-                icon: <UploadOutlined />,
-                label: 'nav 3',
-              }, {
-                key: '3',
-                icon: <UploadOutlined />,
-                label: 'nav 3',
-              }, {
-                key: '3',
-                icon: <UploadOutlined />,
-                label: 'nav 3',
-              }, {
-                key: '3',
-                icon: <UploadOutlined />,
-                label: 'nav 3',
-              }, {
-                key: '3',
-                icon: <UploadOutlined />,
-                label: 'nav 3',
-              }, {
-                key: '3',
-                icon: <UploadOutlined />,
-                label: 'nav 3',
-              }, {
-                key: '3',
-                icon: <UploadOutlined />,
-                label: 'nav 3',
-              }, {
-                key: '3',
-                icon: <UploadOutlined />,
-                label: 'nav 3',
-              },
-            ]}
-          />
-        }
+        menu={<MenuContent />}
         header={<HeaderContent />}
         footer={"©Copyright 悠闲的水 2022"}
       >
