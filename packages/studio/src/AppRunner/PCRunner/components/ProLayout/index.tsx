@@ -15,10 +15,12 @@ const menuCollapsedWidth = 56;
 const ProLayout = memo((
   props: {
     logo?: React.ReactNode,
-    title?: React.ReactNode
+    title?: React.ReactNode,
+    menu?: React.ReactNode,
+    children?: React.ReactNode,
   }
 ) => {
-  const { logo, title } = props;
+  const { logo, title, menu, children } = props;
   const [collapsed, setCollapsed] = useState(false);
 
   const handleTrigger = useCallback(() => {
@@ -31,9 +33,11 @@ const ProLayout = memo((
         menuWidth={menuWidth}
         menuCollapsedWidth={menuCollapsedWidth}
         collapsed={collapsed}
-        logo = {logo}
+        logo={logo}
         title={title}
-      />
+      >
+        {menu}
+      </MenuSider>
       <Layout className="site-layout">
         <Header className="site-layout-background toolbar header-toolbar" >
           {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
@@ -41,15 +45,8 @@ const ProLayout = memo((
             onClick: handleTrigger,
           })}
         </Header>
-        <Content
-          className="site-layout-background"
-          style={{
-            margin: '24px 16px',
-            padding: 24,
-            minHeight: 280,
-          }}
-        >
-          Content
+        <Content className="site-layout-background">
+          {children}
         </Content>
         <Footer>Footer</Footer>
       </Layout>
