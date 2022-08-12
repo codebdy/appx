@@ -44,7 +44,12 @@ const MenuSettingsForm = memo((
 
   useEffect(() => {
     form.setFieldsValue({
-      ...node.meta,
+      uuid: node.meta?.uuid,
+      type: node.meta?.type,
+      title: node.meta?.title,
+      icon: node.meta?.icon,
+      badge: node.meta?.badge,
+      link: node.meta?.link,
       "route.pageId": node.meta?.route?.pageId,
       "route.payload": node.meta?.route?.payload,
     })
