@@ -10,6 +10,7 @@ import PCRunner from '../PCRunner';
 import H5Runner from '../H5Runner';
 import WebsiteRunner from '../WebsiteRunner';
 import { RunnerContext } from '../context/runner';
+import RunnerRoot from '../RunnerRoot';
 
 const RunnerDistributer = memo(() => {
   const { device } = useAppParams();
@@ -19,18 +20,20 @@ const RunnerDistributer = memo(() => {
   return (
     <RunnerContext.Provider value={{ menu }}>
       <Spin spinning={loading}>
-        {
-          device === Device.PC &&
-          <PCRunner />
-        }
-        {
-          device === Device.H5 &&
-          <H5Runner />
-        }
-        {
-          device === Device.WebSite &&
-          <WebsiteRunner />
-        }
+        <RunnerRoot>
+          {
+            device === Device.PC &&
+            <PCRunner />
+          }
+          {
+            device === Device.H5 &&
+            <H5Runner />
+          }
+          {
+            device === Device.WebSite &&
+            <WebsiteRunner />
+          }
+        </RunnerRoot>
       </Spin>
     </RunnerContext.Provider>
   );

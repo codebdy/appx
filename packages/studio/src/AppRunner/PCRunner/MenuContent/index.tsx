@@ -4,10 +4,12 @@ import React, { memo, useCallback, useMemo, useState } from "react";
 import { useRunnerParams } from "../../context/runner";
 import { IconView } from "../../../shared/icon/IconView";
 import { ItemType } from "antd/lib/menu/hooks/useItems";
+import { useMenuRoute } from "../../context/route";
 
 const MenuContent = memo(() => {
   const [key, setKey] = useState<string>();
   const { menu } = useRunnerParams();
+  const {setItem} = useMenuRoute();
 
   const getMenuItem = useCallback((uuid: string, items?: IMenuItem[]) => {
     for (const item of items || menu?.schemaJson?.items || []) {
@@ -46,10 +48,10 @@ const MenuContent = memo(() => {
     if (item?.type === MenuItemType.Link) {
       item?.link && window.open(item?.link)
     } else if (item?.type !== MenuItemType.Divider) {
+      setItem(item)
       setKey(key);
     }
-
-  }, [getMenuItem]);
+  }, [getMenuItem, setItem]);
 
   return (
     <>
