@@ -17,9 +17,10 @@ const ProLayout = memo((
     children?: React.ReactNode,
     fixedHeader?: boolean,
     header?: React.ReactNode,
+    footer?: React.ReactNode,
   }
 ) => {
-  const { logo, title, menu, children, fixedHeader, header } = props;
+  const { logo, title, menu, children, fixedHeader, header, footer } = props;
   const [collapsed, setCollapsed] = useState(false);
 
   const handleTrigger = useCallback(() => {
@@ -49,7 +50,9 @@ const ProLayout = memo((
           wewfef
           {children}
         </Content>
-        <Footer>Footer</Footer>
+        {
+          footer && <Footer>{footer}</Footer>
+        }
       </Layout>
     </Layout>
   );

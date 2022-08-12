@@ -87,6 +87,7 @@ const PCRunner = memo(() => {
           />
         }
         header={<HeaderContent />}
+        footer={"©Copyright 悠闲的水 2022"}
       >
         fwfwewewe
         <TablePage />
