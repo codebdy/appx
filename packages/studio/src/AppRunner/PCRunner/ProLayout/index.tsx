@@ -47,7 +47,6 @@ const ProLayout = memo((
           {header}
         </ProHeader>
         <Content>
-          wewfef
           {children}
         </Content>
         {
