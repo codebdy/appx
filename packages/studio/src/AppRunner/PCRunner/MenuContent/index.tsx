@@ -31,7 +31,13 @@ const MenuContent = memo(() => {
   }, [makeItem, menu?.schemaJson?.items]);
 
   const handleSelect = useCallback(({ key }) => {
-    console.log("哈哈", getMenuItem(key));
+    const item = getMenuItem(key);
+    console.log("哈哈", item);
+
+    if (item?.type === MenuItemType.Link){
+      item?.link && window.open(item?.link)
+    }
+
   }, [getMenuItem]);
 
   return (
