@@ -74,7 +74,7 @@ export const ModelContent = memo(
               </div>
 
               <div className="property-box-area">
-                {selectedDiagram && <PropertyBox />}
+                <PropertyBox />
               </div>
             </div>
           </div>
