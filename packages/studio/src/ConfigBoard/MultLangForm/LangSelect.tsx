@@ -79,50 +79,48 @@ const LangSelect = memo(() => {
       >
         <div style={{
           display: "flex",
-          position: "relative"
         }}>
-          <div className="lang-list" style={{ marginRight: 8, paddingTop: 56 }}>
+          <div style={{ marginRight: 8 }}>
             <div style={{
               width: 280,
-              paddingTop: 16,
               paddingBottom: 8,
-              position: "absolute",
-              top: 1,
-              left: 8,
               background: "#fff",
             }}>
-              <Input.Search allowClear style={{ flex: 1, marginLeft: 8 }} onChange={handleKeywordChange} />
+              <Input.Search allowClear style={{ flex: 1 }} onChange={handleKeywordChange} />
             </div>
-            <Droppable droppableId={ALL_LANGS_ID} isDropDisabled={true}>
-              {(provided) => (
-                <div ref={provided.innerRef}>
-                  {allLangs?.map((lang, index) => {
-                    return (
-                      <Draggable key={lang.key} draggableId={lang.key} index={index}>
-                        {(provided, snapshot) => (
-                          <>
-                            <LangLabel
-                              lang={lang}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                              float={snapshot.isDragging}
-                              ref={provided.innerRef}
-                            />
-                            {snapshot.isDragging && (
+            <div className="all-lang-list">
+              <Droppable droppableId={ALL_LANGS_ID} isDropDisabled={true}>
+                {(provided) => (
+                  <div ref={provided.innerRef}>
+                    {allLangs?.map((lang, index) => {
+                      return (
+                        <Draggable key={lang.key} draggableId={lang.key} index={index}>
+                          {(provided, snapshot) => (
+                            <>
                               <LangLabel
                                 lang={lang}
-                                fixed
+                                {...provided.draggableProps}
+                                {...provided.dragHandleProps}
+                                float={snapshot.isDragging}
+                                ref={provided.innerRef}
                               />
-                            )}
-                          </>
-                        )}
-                      </Draggable>
-                    );
-                  })}
-                  <div style={{ display: "none" }}>{provided.placeholder}</div>
-                </div>
-              )}
-            </Droppable>
+                              {snapshot.isDragging && (
+                                <LangLabel
+                                  lang={lang}
+                                  fixed
+                                />
+                              )}
+                            </>
+                          )}
+                        </Draggable>
+                      );
+                    })}
+                    <div style={{ display: "none" }}>{provided.placeholder}</div>
+                  </div>
+                )}
+              </Droppable>
+            </div>
+
           </div>
           <div className="lang-list" style={{ marginLeft: 8 }}>
             <Droppable droppableId={SELECTED_LANGS_ID} isDropDisabled={false}>
