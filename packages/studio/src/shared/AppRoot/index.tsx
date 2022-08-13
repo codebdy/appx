@@ -6,6 +6,7 @@ import { useApp } from '../../hooks/useApp'
 import { useShowError } from '../../hooks/useShowError'
 import { Device } from '../../model'
 import { AppContext } from './context'
+import { AppConfigContext } from './context/config'
 
 const AppRoot = memo((
   props: {
@@ -19,9 +20,11 @@ const AppRoot = memo((
   return (
     app ?
       <AppContext.Provider value={{ app: app, device: device as Device }}>
-        <Spin style={{ height: "100vh" }} spinning={loading}>
-          {app && props.children}
-        </Spin>
+        <AppConfigContext.Provider value={app.config}>
+          <Spin style={{ height: "100vh" }} spinning={loading}>
+            {app && props.children}
+          </Spin>
+        </AppConfigContext.Provider>
       </AppContext.Provider>
       : <></>
   )
