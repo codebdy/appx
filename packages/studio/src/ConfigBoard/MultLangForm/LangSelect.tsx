@@ -2,6 +2,7 @@ import { FormOutlined } from "@ant-design/icons";
 import { Button, Input, Modal, Tag } from "antd";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { memo } from "react";
+import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { useTranslation } from "react-i18next";
 import { ILang } from "../../model";
 import { useAppConfig } from "../../shared/AppRoot/context/config";
@@ -47,9 +48,14 @@ const LangSelect = memo(() => {
         t("Lang." + lang.key).toLocaleLowerCase().indexOf(keywd) > -1
     })
   }, [keyword, t])
+  const onDragEnd = useCallback(
+    (result: DropResult) => {
+      const { destination, source, draggableId } = result;
+    },
+    [])
 
   return (
-    <>
+    <DragDropContext onDragEnd={onDragEnd}>
       <Button onClick={showModal}>
         <div>
           <Tag>中文</Tag>
@@ -104,7 +110,7 @@ const LangSelect = memo(() => {
         </div>
 
       </Modal>
-    </>
+    </DragDropContext>
   )
 })
 
