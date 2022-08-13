@@ -10,6 +10,7 @@ import { usePostOne } from "../../enthooks/hooks/usePostOne";
 import { useShowError } from "../../hooks/useShowError";
 import { useGetMeta } from "../hooks/useGetMeta";
 import { useTranslation } from "react-i18next";
+import { SaveOutlined } from "@ant-design/icons";
 
 const SaveActions = memo((props: {
   appUuid: string
@@ -45,10 +46,11 @@ const SaveActions = memo((props: {
       <Button
         type="primary"
         disabled={!changed}
+        icon={<SaveOutlined />}
         loading={loading}
         onClick={handleSave}
       >
-        {t("save")}
+        {t("Save")}
       </Button>
       <SyncButton />
     </Space>

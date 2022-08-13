@@ -1,11 +1,10 @@
-import { DownloadOutlined, DownOutlined, ImportOutlined } from '@ant-design/icons';
-import { Dropdown, Menu, message } from 'antd';
-import React, { memo, useCallback, useMemo } from 'react';
+import { SyncOutlined } from '@ant-design/icons';
+import { Button, message } from 'antd';
+import React, { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useShowError } from '../../hooks/useShowError';
 import { useSelectedAppUuid } from '../context';
-import { useExportJson } from '../hooks/useExportJson';
 import { usePublishMeta } from '../hooks/usePublishMeta';
 import { MetaStatus } from '../meta/Meta';
 import { changedState, publishedIdState, metaState } from '../recoil/atoms';
@@ -15,7 +14,6 @@ const SyncButton = memo(() => {
   const changed = useRecoilValue(changedState(appUuid))
   const [meta, setMeta] = useRecoilState(metaState(appUuid));
   const { t } = useTranslation();
-  const expotJson = useExportJson(appUuid)
   const [publishedId, setPublishedId] = useRecoilState(publishedIdState(appUuid));
 
   const disablePublished = React.useMemo(() => {
@@ -36,36 +34,17 @@ const SyncButton = memo(() => {
     publish()
   }, [publish])
 
-  const menu = useMemo(() => (
-    <Menu
-      items={[
-        {
-          icon: <DownloadOutlined />,
-          label: t("model.ExportModel"),
-          key: 'export',
-          onClick: expotJson,
-        },
-        {
-          icon: <ImportOutlined />,
-          label: t("model.ImportModel"),
-          key: 'import',
-        },
-      ]}
-    />
-  ), [expotJson, t]);
 
   return (
-    <Dropdown.Button
+    <Button
       disabled={disablePublished}
-      overlay={menu}
-      placement="bottom"
       type='primary'
       loading={loading}
-      icon={<DownOutlined />}
+      icon={<SyncOutlined />}
       onClick={handlePublish}
     >
       {t("Publish")}
-    </Dropdown.Button>
+    </Button>
   )
 });
 
