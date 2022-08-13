@@ -4,7 +4,6 @@ import { ClassMeta } from "../meta/ClassMeta";
 import { useChangeClass } from "./useChangeClass";
 import { useCheckClassProperyName } from "./useCheckClassProperyName";
 import { ID } from "../../shared";
-import { message } from "antd";
 import { useTranslation } from "react-i18next";
 
 export function useChangeAttribute(appUuid: ID) {
@@ -15,8 +14,7 @@ export function useChangeAttribute(appUuid: ID) {
   const changeAttribute = useCallback(
     (attr: AttributeMeta, cls: ClassMeta) => {
       if (!chackName(cls.uuid, attr.name, attr.uuid)) {
-        message.error(t("ModelBoard.error-name-repeat"));
-        return;
+        return t("ModelBoard.ErrorNameRepeat");
       }
       changeEntity({
         ...cls,

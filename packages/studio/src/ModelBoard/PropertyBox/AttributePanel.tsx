@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { AttributeMeta } from "../meta/AttributeMeta";
 import { Type } from "../meta/Type";
 import { ClassMeta, StereoType } from "../meta/ClassMeta";
@@ -15,6 +15,7 @@ export const AttributePanel = (props: {
   cls: ClassMeta;
 }) => {
   const { attribute, cls } = props;
+  const [nameError, setNameError] = useState<string>();
   const serviceId = useSelectedAppUuid();
   const changeAttribute = useChangeAttribute(serviceId);
   const getTypeLabel = useGetTypeLabel(serviceId);
@@ -25,14 +26,15 @@ export const AttributePanel = (props: {
   const isId = useMemo(() => attribute.name === CONST_ID, [attribute.name]);
 
   const handleChange = useCallback((form) => {
-    changeAttribute(
+    const errMsg = changeAttribute(
       {
         ...attribute,
         ...form,
         typeLabel: getTypeLabel(form.type || attribute.type, form.typeUuid),
       },
       cls
-    )
+    );
+    setNameError(errMsg)
   }, [changeAttribute, attribute, getTypeLabel, cls])
 
   return (
@@ -51,6 +53,8 @@ export const AttributePanel = (props: {
         <Form.Item
           label={t("ModelBoard.Name")}
           name="name"
+          validateStatus={nameError ? "error" : undefined}
+          help={nameError}
         >
           <Input disabled={isId} />
         </Form.Item>

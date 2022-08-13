@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { ArgMeta, MethodMeta, MethodImplementType, MethodOperateType } from "../meta/MethodMeta";
 import { Type } from "../meta/Type";
 import { ClassMeta } from "../meta/ClassMeta";
@@ -8,6 +8,7 @@ import { useSelectedAppUuid } from "../context";
 
 export const MethodPanel = (props: { method: MethodMeta; cls: ClassMeta }) => {
   const { method, cls } = props;
+  const [nameError, setNameError] = useState<string>();
   const serviceId = useSelectedAppUuid();
   const changeMethod = useChangeMethod(serviceId);
   const getTypeLabel = useGetTypeLabel(serviceId);

@@ -162,7 +162,7 @@
     "Side": "端",
     "RoleName": "角色名",
     "Multiplicity": "重数",
-    "ErrorNameRepeat":"类名重复"
+    "ErrorNameRepeat":"名称重复"
   },
   "SettingsForm": {
     "Properties": "属性",

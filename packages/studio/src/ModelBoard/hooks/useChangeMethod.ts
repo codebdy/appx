@@ -1,4 +1,3 @@
-import { message } from "antd";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { ID } from "../../shared";
@@ -14,8 +13,7 @@ export function useChangeMethod(appUuid: ID) {
   const changeMethod = useCallback(
     (method: MethodMeta, cls: ClassMeta) => {
       if (!chackName(cls.uuid, method.name, method.uuid)) {
-        message.error(t("ModelBoard.error-name-repeat"));
-        return;
+        return t("ModelBoard.ErrorNameRepeat");
       }
 
       changeClass({
