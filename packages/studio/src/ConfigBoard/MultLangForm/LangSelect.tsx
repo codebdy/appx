@@ -1,5 +1,5 @@
 import { FormOutlined } from "@ant-design/icons";
-import { Button, Modal, Tag } from "antd";
+import { Button, Input, Modal, Tag } from "antd";
 import React, { useCallback, useState } from "react";
 import { memo } from "react";
 import { useTranslation } from "react-i18next";
@@ -21,6 +21,10 @@ const LangSelect = memo(() => {
     setIsModalVisible(false);
   }, []);
 
+  const handleKeywordChange = useCallback(() => {
+
+  }, [])
+
   return (
     <>
       <Button onClick={showModal}>
@@ -41,10 +45,23 @@ const LangSelect = memo(() => {
         onOk={handleOk}
         onCancel={handleCancel}
       >
+
         <div style={{
-          display: "flex"
+          display: "flex",
+          position: "relative"
         }}>
-          <div className="lang-list" style={{ marginRight: 8 }}>
+          <div className="lang-list" style={{ marginRight: 8, paddingTop: 56 }}>
+            <div style={{
+              width: 280,
+              paddingTop: 16,
+              paddingBottom: 8,
+              position: "absolute",
+              top: 1,
+              left: 8,
+              background: "#fff",
+            }}>
+              <Input.Search allowClear style={{ flex: 1, marginLeft: 8 }} onChange={handleKeywordChange} />
+            </div>
             {
               langs.map((lang) => {
                 return (
