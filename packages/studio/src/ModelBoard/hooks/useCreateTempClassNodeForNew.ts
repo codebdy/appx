@@ -3,7 +3,7 @@ import { useCreateNewClass } from "./useCreateNewClass";
 import { NODE_INIT_SIZE } from "../GraphCanvas/nodeInitSize";
 import { StereoType } from "../meta/ClassMeta";
 import { ID } from "../../shared";
-import { useSelectedDiagramPackageUuid } from "./useSelectedDiagramPackage";
+import { useSelectedDiagramPackageUuid } from "./useSelectedDiagramPackageUuid";
 
 export function useCreateTempClassNodeForNew(appUuid: ID) {
   const packageUuid = useSelectedDiagramPackageUuid(appUuid)

@@ -3,13 +3,12 @@ import { Graph, Node } from "@antv/x6";
 import { useCallback, useEffect, useRef } from "react";
 import { ClassView } from "./ClassView";
 import _ from "lodash";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import {
   drawingLineState,
   pressedLineTypeState,
   selectedDiagramState,
   selectedElementState,
-  x6NodesState,
 } from "../recoil/atoms";
 import { useDiagramNodes } from "../hooks/useDiagramNodes";
 import { useGetClass } from "../hooks/useGetClass";
@@ -23,14 +22,14 @@ import { useCreateClassMethod } from "../hooks/useCreateClassMethod";
 import { ID } from "../../shared";
 import React from "react";
 import { useGetPackage } from "../hooks/useGetPackage";
-import { useSelectedDiagramPackageUuid } from "../hooks/useSelectedDiagramPackage";
+import { useSelectedDiagramPackageUuid } from "../hooks/useSelectedDiagramPackageUuid";
+import { useHideClassFromDiagram } from "../hooks/useHideClassFromDiagram";
 
 export function useNodesShow(graph: Graph | undefined, appUuid: ID) {
   const selectedDiagram = useRecoilValue(selectedDiagramState(appUuid));
   const [selectedElement, setSelectedElement] = useRecoilState(
     selectedElementState(appUuid)
   );
-  const setNodes = useSetRecoilState(x6NodesState(appUuid));
   const nodes = useDiagramNodes(selectedDiagram || "", appUuid);
   const getClass = useGetClass(appUuid);
   const getNode = useGetNode(appUuid);
@@ -41,10 +40,16 @@ export function useNodesShow(graph: Graph | undefined, appUuid: ID) {
   const createMethod = useCreateClassMethod(appUuid);
   const drawingLine = useRecoilValue(drawingLineState(appUuid));
   const getClassRef = useRef(getClass);
-  const deleteClass = useDeleteClass(appUuid);
-  const getPackage = useGetPackage(appUuid);
   getClassRef.current = getClass;
-  const selectedDiagramPackageUuid = useSelectedDiagramPackageUuid(appUuid)
+  const deleteClass = useDeleteClass(appUuid);
+  const deleteClassRef = useRef(deleteClass);
+  deleteClassRef.current = deleteClass;
+  const getPackage = useGetPackage(appUuid);
+  
+  const selectedDiagramUuid = useSelectedDiagramPackageUuid(appUuid);
+  const hideClass = useHideClassFromDiagram(appUuid);
+  const hideClassRef = useRef(hideClass);
+  hideClassRef.current = hideClass;
 
   const changeClassRef = useRef(changeClass);
   changeClassRef.current = changeClass;
@@ -120,19 +125,16 @@ export function useNodesShow(graph: Graph | undefined, appUuid: ID) {
 
   const handleHideClass = useCallback(
     (entityId: string) => {
-      if (!selectedDiagram) {
-        return;
-      }
-      setNodes((nodes) => nodes.filter((node) => node.id !== entityId));
+      hideClassRef.current && hideClassRef.current(entityId)
     },
-    [selectedDiagram, setNodes]
+    []
   );
 
   const handelDeleteClass = useCallback(
     (uuid: string) => {
-      deleteClass(uuid);
+      deleteClassRef.current && deleteClassRef.current(uuid);
     },
-    [deleteClass]
+    []
   );
 
   useEffect(() => {
@@ -147,7 +149,7 @@ export function useNodesShow(graph: Graph | undefined, appUuid: ID) {
       const data: ClassNodeData = {
         ...cls,
         ...node,
-        packageName: selectedDiagramPackageUuid !== cls.packageUuid ? getPackage(cls.packageUuid)?.name : undefined,
+        packageName: selectedDiagramUuid !== cls.packageUuid ? getPackage(cls.packageUuid)?.name : undefined,
         //selectedId: selectedElement,
         //pressedLineType: pressedLineType,
         //drawingLine: drawingLine,
@@ -197,5 +199,5 @@ export function useNodesShow(graph: Graph | undefined, appUuid: ID) {
         graph?.removeNode(node.id);
       }
     });
-  }, [getDiagramNode, getClass, getNode, graph, handleAttributeCreate, handleAttributeDelete, handleAttributeSelect, handleHideClass, nodes, pressedLineType, selectedDiagram, selectedElement, setSelectedElement, drawingLine, handelDeleteClass, handleMethodCreate, handleMethodSelect, handleMothodDelete, selectedDiagramPackageUuid, getPackage]);
+  }, [getDiagramNode, getClass, getNode, graph, handleAttributeCreate, handleAttributeDelete, handleAttributeSelect, handleHideClass, nodes, pressedLineType, selectedDiagram, selectedElement, setSelectedElement, drawingLine, handelDeleteClass, handleMethodCreate, handleMethodSelect, handleMothodDelete, selectedDiagramUuid, getPackage]);
 }
