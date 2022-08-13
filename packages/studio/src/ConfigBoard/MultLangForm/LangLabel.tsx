@@ -1,19 +1,39 @@
-import React from "react";
+import React, { CSSProperties, useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ILang } from "../../model";
 
 const LangLabel = React.forwardRef((
   props: {
-    lang: ILang
+    lang: ILang,
+    fixed?: boolean,
+    style?: CSSProperties,
+    float?: boolean,
   },
   ref: any
 ) => {
 
-  const { lang } = props;
+  const { lang, fixed, float, style } = props;
+  const [hover, setHover] = useState(false);
   const { t } = useTranslation();
 
+  const handleMouseEnter = useCallback(() => {
+    setHover(true);
+  }, []);
+  const handleMouseLeave = useCallback(() => {
+    setHover(false);
+  }, []);
+  
   return (
-    <div ref={ref} className="lang-item">
+    <div ref={ref} className="lang-item"
+      style={{
+        ...style,
+        boxShadow: float || (hover && !fixed) ? "2px 2px 10px 1px rgb(25 42 70 / 11%)" : undefined,
+        pointerEvents: float ? "none" : undefined,
+      }}
+
+      onMouseEnter={handleMouseEnter}
+      onMouseOut={handleMouseLeave}
+    >
       <div className="lang-abbr">
         {lang.abbr.toUpperCase()}
       </div>

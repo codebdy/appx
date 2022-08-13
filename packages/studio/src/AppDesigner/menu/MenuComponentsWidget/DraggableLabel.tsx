@@ -1,18 +1,16 @@
 import React, { CSSProperties, useCallback, useState } from "react"
 import { HolderOutlined } from "@ant-design/icons"
-import { ID } from "../../../shared";
 
 const DraggableLabel = React.forwardRef((
   props: {
     title: string,
-    dragId: ID,
     float?: boolean,
     style?: CSSProperties,
     fixed?: boolean,
   },
   ref: any
 ) => {
-  const { title, dragId, float, style, fixed, ...other } = props;
+  const { title, float, style, fixed, ...other } = props;
   const [hover, setHover] = useState(false);
 
   const handleMouseEnter = useCallback(() => {

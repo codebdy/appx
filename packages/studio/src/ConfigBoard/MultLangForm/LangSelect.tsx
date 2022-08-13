@@ -2,12 +2,14 @@ import { FormOutlined } from "@ant-design/icons";
 import { Button, Input, Modal, Tag } from "antd";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { memo } from "react";
-import { DragDropContext, DropResult } from "react-beautiful-dnd";
+import { DragDropContext, Draggable, Droppable, DropResult } from "react-beautiful-dnd";
 import { useTranslation } from "react-i18next";
 import { ILang } from "../../model";
 import { useAppConfig } from "../../shared/AppRoot/context/config";
 import LangLabel from "./LangLabel";
 import { langs } from "./langs";
+
+const ALL_LANGS_ID = "ALL_LANGS_ID"
 
 const LangSelect = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -90,6 +92,37 @@ const LangSelect = memo(() => {
             }}>
               <Input.Search allowClear style={{ flex: 1, marginLeft: 8 }} onChange={handleKeywordChange} />
             </div>
+            <Droppable droppableId={ALL_LANGS_ID} isDropDisabled={true}>
+              {(provided) => (
+                <div ref={provided.innerRef}>
+                  {allLangs?.map((lang, index) => {
+                    return (
+                      <Draggable key={lang.key} draggableId={lang.key} index={index}>
+                        {(provided, snapshot) => (
+                          <>
+                            <LangLabel
+                              lang={lang}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              float={snapshot.isDragging}
+                              ref={provided.innerRef}
+                            />
+                            {snapshot.isDragging && (
+                              <LangLabel
+                                lang={lang}
+                                fixed
+                              />
+                            )}
+                          </>
+                        )}
+                      </Draggable>
+                    );
+                  })}
+                  <div style={{ display: "none" }}>{provided.placeholder}</div>
+                </div>
+              )}
+
+            </Droppable>
             {
               allLangs?.map((lang) => {
                 return (

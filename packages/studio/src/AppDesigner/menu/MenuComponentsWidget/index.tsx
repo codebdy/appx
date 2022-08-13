@@ -48,7 +48,6 @@ const MenuComponentsWidget = memo((
                       {(provided, snapshot) => (
                         <>
                           <DraggableLabel
-                            dragId={item.id}
                             title={item.title}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
@@ -57,7 +56,6 @@ const MenuComponentsWidget = memo((
                           />
                           {snapshot.isDragging && (
                             <DraggableLabel
-                              dragId={item.id}
                               title={item.title}
                               fixed
                             />
