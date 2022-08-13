@@ -327,6 +327,60 @@
         "root": false,
         "stereoType": "Abstract",
         "uuid": "087b2915-5582-496d-bafb-ae2f5623a70d"
+      },
+      {
+        "attributes": [
+          {
+            "name": "id",
+            "primary": true,
+            "type": "ID",
+            "typeLabel": "ID",
+            "uuid": "4414cf06-c3ee-4ecd-9ef9-6f83177ca2b7"
+          },
+          {
+            "name": "key",
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "4cfe85c6-38dc-4902-9f54-1d1c983488e0"
+          },
+          {
+            "name": "schemaJson",
+            "type": "JSON",
+            "typeLabel": "JSON",
+            "uuid": "2732ca02-363f-4782-b15e-aaa5a1e1c162"
+          }
+        ],
+        "innerId": 1008,
+        "methods": [],
+        "name": "LangLocales",
+        "packageUuid": "PACKAGE_APPX_UUID",
+        "root": true,
+        "stereoType": "Entity",
+        "uuid": "ddbecde2-3e2d-4391-a327-63d4c8c6a2c3"
+      },
+      {
+        "attributes": [
+          {
+            "name": "id",
+            "primary": true,
+            "type": "ID",
+            "typeLabel": "ID",
+            "uuid": "9c910040-cb77-4ada-a1f4-ccd582688a00"
+          },
+          {
+            "name": "schemaJson",
+            "type": "JSON",
+            "typeLabel": "JSON",
+            "uuid": "f46ca692-50de-4123-bd05-3a98732ba804"
+          }
+        ],
+        "innerId": 1009,
+        "methods": [],
+        "name": "AppConfig",
+        "packageUuid": "PACKAGE_APPX_UUID",
+        "root": false,
+        "stereoType": "Entity",
+        "uuid": "c19d7f61-6a73-408c-b272-284ee374d5ce"
       }
     ],
     "relations": [
@@ -439,6 +493,30 @@
         "targetId": "f9288fd0-2747-4fa0-8b3d-4c8bdaeb5dd8",
         "targetMultiplicity": "0..*",
         "uuid": "3547c38a-2780-4024-98e9-81b4e47d85e6"
+      },
+      {
+        "appUuid": "SYSTEM",
+        "innerId": 1006,
+        "relationType": "twoWayCombination",
+        "roleOfSource": "app",
+        "roleOfTarget": "langlocales",
+        "sourceId": "2082d665-e503-402a-a089-678115c5ed3e",
+        "sourceMutiplicity": "0..1",
+        "targetId": "ddbecde2-3e2d-4391-a327-63d4c8c6a2c3",
+        "targetMultiplicity": "0..1",
+        "uuid": "f5062411-08b9-4a35-b99c-4ccd94869eb1"
+      },
+      {
+        "appUuid": "SYSTEM",
+        "innerId": 1007,
+        "relationType": "twoWayCombination",
+        "roleOfSource": "app",
+        "roleOfTarget": "config",
+        "sourceId": "2082d665-e503-402a-a089-678115c5ed3e",
+        "sourceMutiplicity": "0..1",
+        "targetId": "c19d7f61-6a73-408c-b272-284ee374d5ce",
+        "targetMultiplicity": "0..1",
+        "uuid": "f3bf5e33-f9cb-4a87-946c-9ade1cc24790"
       }
     ],
     "diagrams": [
@@ -448,6 +526,13 @@
         "nodes": [],
         "packageUuid": "PACKAGE_APPX_UUID",
         "uuid": "8518245f-af73-43b5-a17f-468eefce5acc"
+      },
+      {
+        "edges": [],
+        "name": "MultiLang",
+        "nodes": [],
+        "packageUuid": "PACKAGE_APPX_UUID",
+        "uuid": "31fc35da-2b84-4108-bf1c-e701513db91a"
       }
     ],
     "x6Nodes": [
@@ -514,6 +599,30 @@
         "width": 160,
         "x": -800.0000000000002,
         "y": 10
+      },
+      {
+        "diagramUuid": "31fc35da-2b84-4108-bf1c-e701513db91a",
+        "height": 122,
+        "id": "2082d665-e503-402a-a089-678115c5ed3e",
+        "width": 180,
+        "x": -580,
+        "y": 120
+      },
+      {
+        "diagramUuid": "31fc35da-2b84-4108-bf1c-e701513db91a",
+        "height": 130,
+        "id": "ddbecde2-3e2d-4391-a327-63d4c8c6a2c3",
+        "width": 190,
+        "x": -190,
+        "y": 116
+      },
+      {
+        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
+        "height": 120,
+        "id": "c19d7f61-6a73-408c-b272-284ee374d5ce",
+        "width": 180,
+        "x": -790.0000000000002,
+        "y": 150
       }
     ],
     "x6Edges": [
@@ -582,7 +691,7 @@
         },
         "sourceAnchor": {
           "args": {
-            "dx": "50%",
+            "dx": "61%",
             "dy": "50%",
             "rotate": true
           },
@@ -607,7 +716,7 @@
         },
         "vertices": [
           {
-            "x": -390,
+            "x": -370,
             "y": 300
           },
           {
@@ -630,7 +739,7 @@
         },
         "sourceAnchor": {
           "args": {
-            "dx": "11%",
+            "dx": "39%",
             "dy": "50%",
             "rotate": true
           },
@@ -647,7 +756,7 @@
         },
         "vertices": [
           {
-            "x": -460,
+            "x": -410,
             "y": 360
           },
           {
@@ -735,6 +844,63 @@
         "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
         "id": "3547c38a-2780-4024-98e9-81b4e47d85e6",
         "vertices": []
+      },
+      {
+        "diagramUuid": "31fc35da-2b84-4108-bf1c-e701513db91a",
+        "id": "f5062411-08b9-4a35-b99c-4ccd94869eb1",
+        "roleOnSourcePosition": {
+          "distance": 40,
+          "offset": 20
+        },
+        "roleOnTargetPosition": {
+          "distance": -40,
+          "offset": 20
+        },
+        "sourceMultiplicityPosition": {
+          "distance": 40,
+          "offset": -20
+        },
+        "targetMultiplicityPosition": {
+          "distance": -40,
+          "offset": -20
+        },
+        "vertices": []
+      },
+      {
+        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
+        "id": "f3bf5e33-f9cb-4a87-946c-9ade1cc24790",
+        "roleOnSourcePosition": {
+          "angle": 0,
+          "distance": 0.1877904035122337,
+          "offset": 20.18353728771303
+        },
+        "roleOnTargetPosition": {
+          "distance": -40,
+          "offset": 20
+        },
+        "sourceAnchor": {
+          "args": {
+            "dx": "17%",
+            "dy": "50%",
+            "rotate": true
+          },
+          "name": "topLeft"
+        },
+        "sourceMultiplicityPosition": {
+          "angle": 0,
+          "distance": 0.18735992283477648,
+          "offset": -9.816260298675362
+        },
+        "targetMultiplicityPosition": {
+          "distance": -40,
+          "offset": -20
+        },
+        "vertices": [
+          {
+            "x": -450,
+            "y": 210
+          }
+        ]
       }
     ]
   }
