@@ -1,10 +1,10 @@
 import { Form, Input, Switch } from 'antd';
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import LangSelect from './LangSelect';
 
 const MultLangForm = memo(() => {
   const { t } = useTranslation();
-
 
   return (
     <Form
@@ -28,7 +28,7 @@ const MultLangForm = memo(() => {
         label={t("Config.MultiLang.Langs")}
         name="langs"
       >
-        <Input />
+        <LangSelect />
       </Form.Item>
       <Form.Item
         label={t("Config.MultiLang.Resources")}
