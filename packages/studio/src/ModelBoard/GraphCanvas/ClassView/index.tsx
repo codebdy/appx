@@ -25,7 +25,7 @@ import { RelationType } from "../../meta/RelationMeta";
 import { StereoType } from "../../meta/ClassMeta";
 import { CONST_ID } from "../../meta/Meta";
 import { CLASS_BACKGROUND_COLOR } from "../../consts";
-import ClassMenu from "./ClassMenu";
+import ClassActions from "./ClassActions";
 import PlugIcon from "../../../icons/PlugIcon";
 
 export const ClassView = memo(
@@ -239,7 +239,7 @@ export const ClassView = memo(
             data?.root &&
             <div style={{
               position: "absolute",
-              left: "8px",
+              left: "4px",
               top: "4px",
               color: "green"
             }}>
@@ -277,7 +277,7 @@ export const ClassView = memo(
               </div>
             )}
             {((hover && !disableHover) || menuOpened) && (
-              <ClassMenu
+              <ClassActions
                 cls={data}
                 onAddAttribute={handleAttributeCreate}
                 onAddMethod={handleMethodCreate}

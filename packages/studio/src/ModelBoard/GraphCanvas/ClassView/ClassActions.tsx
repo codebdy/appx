@@ -1,11 +1,11 @@
-import { DeleteOutlined, EyeInvisibleOutlined, MenuOutlined, PlusOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EyeInvisibleOutlined, MoreOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Menu } from 'antd';
 import React, { memo, useState } from 'react';
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ClassMeta, StereoType } from '../../meta/ClassMeta';
 
-const ClassMenu = memo((
+const ClassActions = memo((
   props: {
     cls: ClassMeta,
     onAddAttribute: () => void,
@@ -18,7 +18,7 @@ const ClassMenu = memo((
   const { cls, onAddAttribute, onAddMethod, onHidden, onDelete, onVisible } = props;
   const [visible, setVisible] = useState(false);
   const { t } = useTranslation();
-  
+
   const handleMenuClick = useCallback((e) => {
     setVisible(false);
     onVisible(false);
@@ -71,31 +71,48 @@ const ClassMenu = memo((
     />
   );
   return (
-    <Dropdown
-      trigger={["click"]}
-      overlay={menu}
-      onVisibleChange={handleVisibleChange}
-      visible={visible}
-    >
+    <div>
       <div
         style={{
           position: "absolute",
-          right: "-16px",
+          right: "16px",
           top: "-4px",
-          paddingRight: "16px",
         }}
       >
         <Button
           shape="circle"
           type="text"
-          onClick={(e) => e.preventDefault()}
+          onClick={onHidden}
         >
-          <MenuOutlined />
+          <EyeInvisibleOutlined />
         </Button>
       </div>
+      <Dropdown
+        trigger={["click"]}
+        overlay={menu}
+        onVisibleChange={handleVisibleChange}
+        visible={visible}
+      >
+        <div
+          style={{
+            position: "absolute",
+            right: "-20px",
+            top: "-4px",
+            paddingRight: "16px",
+          }}
+        >
+          <Button
+            shape="circle"
+            type="text"
+            onClick={(e) => e.preventDefault()}
+          >
+            <MoreOutlined />
+          </Button>
+        </div>
 
-    </Dropdown>
+      </Dropdown>
+    </div>
   );
 });
 
-export default ClassMenu;
+export default ClassActions;
