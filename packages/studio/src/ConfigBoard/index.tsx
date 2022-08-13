@@ -1,12 +1,8 @@
-import { Collapse, Switch } from 'antd';
+import { Collapse } from 'antd';
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import MultLangForm from './MultLangForm';
 const { Panel } = Collapse;
-const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
 
 const ConfigBoard = memo(() => {
   const { t } = useTranslation();
@@ -23,12 +19,10 @@ const ConfigBoard = memo(() => {
       >
         <Collapse defaultActiveKey={['muti-lang']}>
           <Panel header={t("Config.MultiLang.Title")} key="muti-lang">
-            多语言
-            <Switch defaultChecked />
-            多语言资源
+            <MultLangForm />
           </Panel>
           <Panel header={t("Config.Other")} key="other">
-            <p>{text}</p>
+            <p>Other config</p>
           </Panel>
         </Collapse>
       </div>
