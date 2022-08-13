@@ -3,13 +3,14 @@ import { Button, Input, Modal, Tag } from "antd";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { memo } from "react";
 import { useTranslation } from "react-i18next";
+import { ILang } from "../../model";
 import { useAppConfig } from "../../shared/AppRoot/context/config";
 import LangLabel from "./LangLabel";
 import { langs } from "./langs";
 
 const LangSelect = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [inputValue, setInputValue] = useState<string[]>([]);
+  const [inputValue, setInputValue] = useState<ILang[]>([]);
   const [changed, setChanged] = useState(false);
   const [keyword, setKeyWord] = useState("");
   const { t } = useTranslation();
@@ -42,8 +43,8 @@ const LangSelect = memo(() => {
 
     return langs.filter((lang) => {
       const keywd = keyword.toLocaleLowerCase();
-      return lang.toLocaleLowerCase().indexOf(keywd) > -1 ||
-        t("Lang." + lang).toLocaleLowerCase().indexOf(keywd) > -1
+      return lang.key.toLocaleLowerCase().indexOf(keywd) > -1 ||
+        t("Lang." + lang.key).toLocaleLowerCase().indexOf(keywd) > -1
     })
   }, [keyword, t])
 

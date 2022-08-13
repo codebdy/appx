@@ -1,6 +1,11 @@
 import { ID } from "../shared";
 import { IMenuItem } from "./IMenuNode";
 
+export interface ILang {
+  key: string,
+  abbr: string,
+}
+
 export interface IFile {
   id: ID;
   thumbUrl: string;
@@ -11,7 +16,7 @@ export interface IAppConfig {
   schemaJson?: {
     multiLang: {
       open?: boolean,
-      langs?: string[],
+      langs?: ILang[],
     }
   }
 }
