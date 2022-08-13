@@ -29,6 +29,7 @@ import RelationLabel from "./RelationLabel";
 import { useSelectedAppUuid } from "../context";
 import { useTranslation } from "react-i18next";
 import PlugIcon from "../../icons/PlugIcon";
+import DiagramLabel from "./DiagramLabel";
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
@@ -198,7 +199,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
 
     for (const diagram of diagrams.filter(diagram => diagram.packageUuid === pkg.uuid)) {
       packageChildren.push({
-        title: diagram.name,
+        title: <DiagramLabel diagram = {diagram} />,
         key: diagram.uuid,
         isLeaf: true,
       })

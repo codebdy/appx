@@ -151,7 +151,7 @@ const PackageAction = memo((
         ]}
       />
     </div>
-  ), [addClass, handleAddDiagram, handleDelete, onEdit, onVisibleChange]);
+  ), [addClass, handleAddDiagram, handleDelete, onEdit, onVisibleChange, t]);
 
   return (
     pkg.sharable && appUuid !== SYSTEM_APP_UUID ?
