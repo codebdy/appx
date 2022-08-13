@@ -3,6 +3,8 @@ import { Button, Modal, Tag } from "antd";
 import React, { useCallback, useState } from "react";
 import { memo } from "react";
 import { useTranslation } from "react-i18next";
+import LangLabel from "./LangLabel";
+import { langs } from "./langs";
 
 const LangSelect = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -42,12 +44,16 @@ const LangSelect = memo(() => {
         <div style={{
           display: "flex"
         }}>
-          <div className="lang-list" style={{marginRight: 8}}>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
+          <div className="lang-list" style={{ marginRight: 8 }}>
+            {
+              langs.map((lang) => {
+                return (
+                  <LangLabel lang={lang} />
+                )
+              })
+            }
           </div>
-          <div className="lang-list" style={{marginLeft: 8}}>
+          <div className="lang-list" style={{ marginLeft: 8 }}>
 
           </div>
         </div>
