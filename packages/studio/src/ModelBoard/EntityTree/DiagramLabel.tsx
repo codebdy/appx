@@ -1,5 +1,5 @@
 import { Input } from "antd";
-import React, { ChangeEvent, useCallback, useState } from "react";
+import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { memo } from "react";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
 import TreeNodeLabel from "../../common/TreeNodeLabel";
@@ -24,6 +24,11 @@ const DiagramLabel = memo((
   const backup = useBackupSnapshot(appUuid);
   const setDiagrams = useSetRecoilState(diagramsState(appUuid));
   const getPagcage = useGetPackage(appUuid)
+
+  useEffect(() => {
+    setName(diagram.name)
+  }, [diagram])
+
 
   const handleVisableChange = useCallback((visible) => {
     setVisible(visible)

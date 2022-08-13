@@ -89,7 +89,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     for (const relation of sourceRelations) {
       children.push(
         {
-          icon:icon(selectedElement === relation.uuid ? PRIMARY_COLOR : undefined),
+          icon: icon(selectedElement === relation.uuid ? PRIMARY_COLOR : undefined),
           title: <RelationLabel
             title={relation.roleOfTarget + ":" + getClass(relation.targetId)?.name}
             relation={relation}
@@ -102,7 +102,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     for (const relation of targetRelations) {
       children.push(
         {
-          icon:icon(selectedElement === relation.uuid ? PRIMARY_COLOR : undefined),
+          icon: icon(selectedElement === relation.uuid ? PRIMARY_COLOR : undefined),
           title: <RelationLabel
             title={relation.roleOfSource + ":" + getClass(relation.sourceId)?.name}
             relation={relation}
@@ -199,7 +199,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
 
     for (const diagram of diagrams.filter(diagram => diagram.packageUuid === pkg.uuid)) {
       packageChildren.push({
-        title: <DiagramLabel diagram = {diagram} />,
+        title: <DiagramLabel diagram={diagram} />,
         key: diagram.uuid,
         isLeaf: true,
       })
@@ -251,7 +251,6 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   }, [isDiagram, isElement, parseRelationUuid, setSelecteDiagramId, setSelectedElement])
 
   return (
-
     <div
       style={{
         flex: 1,

@@ -1,5 +1,5 @@
 import { Input } from "antd";
-import React, { ChangeEvent, useCallback, useState } from "react";
+import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { memo } from "react";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
 import { PackageMeta } from "../meta/PackageMeta";
@@ -18,6 +18,10 @@ const PackageLabel = memo((
   const [name, setName] = useState(pkg.name);
   const [editing, setEditing] = useState(false);
   const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    setName(pkg.name)
+  }, [pkg])
 
   const appUuid = useSelectedAppUuid();
   const backup = useBackupSnapshot(appUuid);
