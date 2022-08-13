@@ -14,7 +14,6 @@ import { ClassIcon } from "./svgs";
 import { useIsDiagram } from "../hooks/useIsDiagram";
 import { useIsElement } from "../hooks/useIsElement";
 import ClassLabel from "./ClassLabel";
-import InterfaceIcon from '../../icons/InterfaceIcon';
 import { AttributeMeta } from './../meta/AttributeMeta';
 import { useParseRelationUuid } from "../hooks/useParseRelationUuid";
 import { useGetSourceRelations } from './../hooks/useGetSourceRelations';
@@ -29,6 +28,7 @@ import MethodsLabel from "./MethodsLabel";
 import RelationLabel from "./RelationLabel";
 import { useSelectedAppUuid } from "../context";
 import { useTranslation } from "react-i18next";
+import PlugIcon from "../../icons/PlugIcon";
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
@@ -116,7 +116,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
       key: cls.uuid + "relations",
       children: children,
     }
-  }, [getClass, getSourceRelations, getTargetRelations, selectedElement])
+  }, [getClass, getSourceRelations, getTargetRelations, selectedElement, t])
 
   const getMethodNode = useCallback((method: MethodMeta) => {
     return {
@@ -156,7 +156,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     const color = selectedElement === cls.uuid ? PRIMARY_COLOR : undefined;
     return {
       icon: cls.root ?
-        <InterfaceIcon size={"12px"} color={color} />
+        <PlugIcon size={"14px"} color={color} />
         : <SvgIcon><ClassIcon color={color} /></SvgIcon>,
       title: <ClassLabel cls={cls} graph={graph} />,
       key: cls.uuid,
@@ -205,7 +205,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     }
 
     return packageChildren;
-  }, [diagrams, classes, getClassCategoryNode])
+  }, [classes, getClassCategoryNode, t, diagrams])
 
   const getPackageNodes = useCallback(() => {
     return packages.map((pkg) => {
@@ -232,7 +232,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
       children: getPackageNodes()
     },
 
-  ], [getPackageNodes]);
+  ], [getPackageNodes, t]);
 
   const handleSelect = useCallback((keys: string[]) => {
     for (const uuid of keys) {

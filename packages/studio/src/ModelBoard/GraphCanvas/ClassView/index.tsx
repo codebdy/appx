@@ -26,7 +26,7 @@ import { StereoType } from "../../meta/ClassMeta";
 import { CONST_ID } from "../../meta/Meta";
 import { CLASS_BACKGROUND_COLOR } from "../../consts";
 import ClassMenu from "./ClassMenu";
-import InterfaceIcon from "../../../icons/InterfaceIcon";
+import PlugIcon from "../../../icons/PlugIcon";
 
 export const ClassView = memo(
   (props: {
@@ -243,7 +243,7 @@ export const ClassView = memo(
               top: "4px",
               color: "green"
             }}>
-              <InterfaceIcon size="14px" />
+              <PlugIcon size="16px" />
             </div>
           }
 
