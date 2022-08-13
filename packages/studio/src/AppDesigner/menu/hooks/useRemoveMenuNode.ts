@@ -8,10 +8,10 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import { IMenuNode } from "../../../model/IMenuNode";
 import { useBackupSnapshot } from "./useBackupSnapshot";
 import { useGetMenuNode } from "./useGetMenuNode";
-import { useAppKey } from "../../../shared/AppRoot/context";
+import { useAppViewKey } from "../../../shared/AppRoot/context";
 
 export function useRemoveMenuNode() {
-  const key = useAppKey();
+  const key = useAppViewKey();
   const [rootNode, setRootNode] = useRecoilState(navigationRootNodeState(key));
   const setSelectedId = useSetRecoilState(navigationSelectedIdState(key));
   const setNodes = useSetRecoilState(navigationNodesState(key));

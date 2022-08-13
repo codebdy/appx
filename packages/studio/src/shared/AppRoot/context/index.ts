@@ -11,7 +11,7 @@ export const AppContext = createContext<IAppContextParams | undefined>(undefined
 
 export const useAppParams = (): IAppContextParams | undefined => useContext(AppContext);
 
-export const useAppKey = () => {
+export const useAppViewKey = () => {
   const params = useAppParams()
 
   const key = useMemo(() => {

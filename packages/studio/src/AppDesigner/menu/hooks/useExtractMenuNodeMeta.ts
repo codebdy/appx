@@ -3,11 +3,11 @@ import { useRecoilValue } from "recoil";
 import { useGetMenuNode } from "./useGetMenuNode";
 import { navigationNodesState } from "../atoms";
 import { cloneObject } from "../utils/cloneObject";
-import { useAppKey } from "../../../shared/AppRoot/context";
+import { useAppViewKey } from "../../../shared/AppRoot/context";
 import { IMenuItem } from "../../../model/IMenuNode";
 
 export function useExtractMenuNodeMeta() {
-  const key = useAppKey();
+  const key = useAppViewKey();
   const nodes  = useRecoilValue(navigationNodesState(key));
   const getNode = useGetMenuNode();
   const extractNodeMeta = useCallback(

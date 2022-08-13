@@ -2,7 +2,7 @@ import { Card } from "antd";
 import { IApp } from "../../../../model";
 import React, { memo, useCallback, useState } from "react";
 import { useRecoilValue } from "recoil";
-import { useAppKey } from "../../../../shared/AppRoot/context";
+import { useAppViewKey } from "../../../../shared/AppRoot/context";
 import { navigationRootNodeState } from "../../atoms";
 import NavItemList from "./NavItemList";
 
@@ -13,7 +13,7 @@ const MenuDesignView = memo((
 ) => {
   const { app } = props;
   const [canDrop, setCanDrop] = useState(true);
-  const key = useAppKey();
+  const key = useAppViewKey();
   const rootNode = useRecoilValue(navigationRootNodeState(key));
   const handleDropable = useCallback((dropable: boolean) => {
     setCanDrop(dropable);

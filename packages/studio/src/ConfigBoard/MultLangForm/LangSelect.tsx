@@ -8,6 +8,8 @@ import { langs } from "./langs";
 
 const LangSelect = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [inputValue, setInputValue] = useState<string[]>([]);
+  const [changed, setChanged] = useState(false);
   const [keyword, setKeyWord] = useState("");
   const { t } = useTranslation();
   const showModal = useCallback(() => {

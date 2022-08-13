@@ -1,8 +1,8 @@
 import { useRecoilValue } from "recoil";
-import { useAppKey } from "../../shared/AppRoot/context";
+import { useAppViewKey } from "../../shared/AppRoot/context";
 import { selectedPageIdState } from "../recoil/atom";
 
 export function useSelectedPageId(){
-  const key = useAppKey()
+  const key = useAppViewKey()
   return useRecoilValue(selectedPageIdState(key))
 }

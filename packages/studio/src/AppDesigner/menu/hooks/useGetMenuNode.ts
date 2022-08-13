@@ -1,10 +1,10 @@
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
-import { useAppKey } from "../../../shared/AppRoot/context";
+import { useAppViewKey } from "../../../shared/AppRoot/context";
 import { navigationNodesState } from "../atoms";
 
 export function useGetMenuNode() {
-  const key = useAppKey();
+  const key = useAppViewKey();
   const nodes = useRecoilValue(navigationNodesState(key));
 
   const getNode = useCallback(

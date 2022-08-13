@@ -1,10 +1,10 @@
 import { useCallback } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { useAppKey } from "../../../shared/AppRoot/context"
+import { useAppViewKey } from "../../../shared/AppRoot/context"
 import { isNavigationDirtyState, navigationNodesState, navigationRootNodeState, navigationSelectedIdState, redoListState, undoListState } from "../atoms";
 
 export function useRedo() {
-  const key = useAppKey();
+  const key = useAppViewKey();
   const setChanged = useSetRecoilState(isNavigationDirtyState(key));
   const setUndoList = useSetRecoilState(undoListState(key));
   const [reddoList, setRedoList] = useRecoilState(redoListState(key));

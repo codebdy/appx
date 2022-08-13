@@ -11,7 +11,7 @@ import { IMenuNode, MenuItemType } from "../../../../model/IMenuNode";
 import { useGetMenuNode } from "../../hooks/useGetMenuNode";
 import { useSetRecoilState } from "recoil";
 import { navigationSelectedIdState } from "../../atoms";
-import { useAppKey } from "../../../../shared/AppRoot/context";
+import { useAppViewKey } from "../../../../shared/AppRoot/context";
 import { LinkItem } from "./LinkItem";
 
 export const NavItemListInner = (props: {
@@ -22,7 +22,7 @@ export const NavItemListInner = (props: {
   onParentDropable: (drapable: boolean) => void;
 }) => {
   const { provided, snapshot, node, onParentDropable } = props;
-  const key = useAppKey();
+  const key = useAppViewKey();
   const nodeIds = node?.childIds;
   const setSelectedId = useSetRecoilState(navigationSelectedIdState(key));
   const getNode = useGetMenuNode();

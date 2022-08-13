@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useSetRecoilState, useRecoilValue } from "recoil";
-import { useAppKey } from "../../../shared/AppRoot/context";
+import { useAppViewKey } from "../../../shared/AppRoot/context";
 import {
   isNavigationDirtyState,
   navigationNodesState,
@@ -11,7 +11,7 @@ import {
 } from "../atoms";
 
 export function useBackupSnapshot() {
-  const key = useAppKey();
+  const key = useAppViewKey();
   const rootNode = useRecoilValue(navigationRootNodeState(key));
   const setIsDirty = useSetRecoilState(isNavigationDirtyState(key));
   const selectedId = useRecoilValue(navigationSelectedIdState(key));

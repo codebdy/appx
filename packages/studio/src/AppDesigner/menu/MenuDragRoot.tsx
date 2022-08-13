@@ -10,7 +10,7 @@ import { useInsertAt } from "./hooks/useInsertAt";
 import { IMenuItem, IMenuNode, MenuItemType } from "../../model/IMenuNode";
 import { useTranslation } from "react-i18next";
 import "./index.less"
-import { useAppKey } from "../../shared/AppRoot/context";
+import { useAppViewKey } from "../../shared/AppRoot/context";
 import { useMenu } from "../../shared/AppRoot/hooks/useMenu";
 import { useShowError } from "../../hooks/useShowError";
 import { cloneObject } from "./utils/cloneObject";
@@ -27,7 +27,7 @@ const MenuDragRoot = memo((
   }
 ) => {
   const { pages } = props;
-  const key = useAppKey();
+  const key = useAppViewKey();
   const setRootNode = useSetRecoilState(navigationRootNodeState(key));
   const setIsDirty = useSetRecoilState(isNavigationDirtyState(key));
   const setMenuId = useSetRecoilState(menuIdState(key))

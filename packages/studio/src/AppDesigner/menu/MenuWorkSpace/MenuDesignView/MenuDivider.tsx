@@ -7,7 +7,7 @@ import { IMenuNode } from "../../../../model/IMenuNode";
 import { memo, useMemo } from "react";
 import { useRecoilState } from "recoil";
 import { navigationSelectedIdState } from "../../atoms";
-import { useAppKey } from "../../../../shared/AppRoot/context";
+import { useAppViewKey } from "../../../../shared/AppRoot/context";
 import React from "react";
 import { Divider } from "antd";
 import clx from "classnames";
@@ -19,7 +19,7 @@ const DividerInner = memo(
     node: IMenuNode;
   }) => {
     const { provided, node, snapshot } = props;
-    const key = useAppKey();
+    const key = useAppViewKey();
     const [selectedId, setSelectedId] = useRecoilState(
       navigationSelectedIdState(key)
     );

@@ -12,12 +12,16 @@ query queryApp($uuid:String!){
     id
     uuid
     title
+    config{
+      id
+      schemaJson
+    }
   }
 }
 `
 
 export function useApp(uuid: string) {
-  const { data, error, loading } = useQueryOne<IApp>(appGql, { uuid }, ["App"])
+  const { data, error, loading } = useQueryOne<IApp>(appGql, { uuid }, ["App", "AppConfig"])
 
   return { app: data?.oneApp, error, loading }
 }
