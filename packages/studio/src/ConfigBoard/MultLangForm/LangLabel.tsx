@@ -12,7 +12,7 @@ const LangLabel = React.forwardRef((
   ref: any
 ) => {
 
-  const { lang, fixed, float, style } = props;
+  const { lang, fixed, float, style, ...other } = props;
   const [hover, setHover] = useState(false);
   const { t } = useTranslation();
 
@@ -25,6 +25,7 @@ const LangLabel = React.forwardRef((
 
   return (
     <div ref={ref} className="lang-item"
+      {...other}
       style={{
         ...style,
         boxShadow: float || (hover && !fixed) ? "2px 2px 10px 1px rgb(25 42 70 / 11%)" : undefined,
