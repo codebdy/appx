@@ -28,7 +28,7 @@ const DraggableLabel = React.forwardRef((
         pointerEvents: float ? "none" : undefined,
       }}
       onMouseEnter={handleMouseEnter}
-      onMouseOut={handleMouseLeave}
+      onMouseLeave={handleMouseLeave}
     >
       <div className="draggable-icon">
         <HolderOutlined />

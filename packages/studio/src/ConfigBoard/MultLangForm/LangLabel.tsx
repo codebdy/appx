@@ -22,7 +22,7 @@ const LangLabel = React.forwardRef((
   const handleMouseLeave = useCallback(() => {
     setHover(false);
   }, []);
-  
+
   return (
     <div ref={ref} className="lang-item"
       style={{
@@ -30,9 +30,8 @@ const LangLabel = React.forwardRef((
         boxShadow: float || (hover && !fixed) ? "2px 2px 10px 1px rgb(25 42 70 / 11%)" : undefined,
         pointerEvents: float ? "none" : undefined,
       }}
-
       onMouseEnter={handleMouseEnter}
-      onMouseOut={handleMouseLeave}
+      onMouseLeave={handleMouseLeave}
     >
       <div className="lang-abbr">
         {lang.abbr.toUpperCase()}
