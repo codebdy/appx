@@ -34,7 +34,7 @@ const MethodsLabel = memo((
         </Button>
       }
     >
-      {t("model.Methods")}
+      {t("ModelBoard.Methods")}
     </TreeNodeLabel>
   )
 })

@@ -113,7 +113,7 @@
     "H5Design": "H5设计",
     "WebsiteDesign": "网站设计"
   },
-  "model": {
+  "ModelBoard": {
     "DomainModel": "业务模型",
     "AddPackage": "添加包",
     "ExportModel": "导出模型",
@@ -161,7 +161,8 @@
     "DeleteDate": "删除时间",
     "Side": "端",
     "RoleName": "角色名",
-    "Multiplicity": "重数"
+    "Multiplicity": "重数",
+    "ErrorNameRepeat":"类名重复"
   },
   "SettingsForm": {
     "Properties": "属性",

@@ -26,7 +26,7 @@ export function useValidate(appUuid: ID) {
         ...(getClassAssociations(cls.uuid)?.map((aso) => aso.name) || [])
       );
       if (hasDuplicates(names.filter((name) => !!name))) {
-        message.error(t("model.duplicated-property-error"));
+        message.error(t("ModelBoard.duplicated-property-error"));
         return false;
       }
     }

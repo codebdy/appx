@@ -34,7 +34,7 @@ const AttributesLabel = memo((
         </Button>
       }
     >
-      {t("model.Atrributes")}
+      {t("ModelBoard.Atrributes")}
     </TreeNodeLabel>
   )
 })

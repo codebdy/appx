@@ -46,7 +46,7 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
           <div style={{
             width: "100%",
             padding: "8px",
-          }}>{t("model.Inherit")}</div>
+          }}>{t("ModelBoard.Inherit")}</div>
           : <Form
             name="classForm"
             form={form}
@@ -59,9 +59,9 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
             onValuesChange={handleChange}
           >
             <Collapse className="no-border" defaultActiveKey={['1', '2']}>
-              <Panel header={source?.name + t("model.Side")} key="1">
+              <Panel header={source?.name + t("ModelBoard.Side")} key="1">
                 <Form.Item
-                  label={t("model.Multiplicity")}
+                  label={t("ModelBoard.Multiplicity")}
                   name="sourceMutiplicity"
                 >
                   <Select>
@@ -81,13 +81,13 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
                   relation.relationType !== RelationType.ONE_WAY_COMBINATION &&
                   <>
                     <Form.Item
-                      label={t("model.RoleName")}
+                      label={t("ModelBoard.RoleName")}
                       name="roleOfSource"
                     >
                       <Input />
                     </Form.Item>
                     <Form.Item
-                      label={t("model.Description")}
+                      label={t("ModelBoard.Description")}
                       name="descriptionOnSource"
                     >
                       <Input.TextArea />
@@ -95,9 +95,9 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
                   </>
                 }
               </Panel>
-              <Panel header={target?.name + t("model.Side")} key="2">
+              <Panel header={target?.name + t("ModelBoard.Side")} key="2">
                 <Form.Item
-                  label={t("model.Multiplicity")}
+                  label={t("ModelBoard.Multiplicity")}
                   name="targetMultiplicity"
                 >
                   <Select>
@@ -106,13 +106,13 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
                   </Select>
                 </Form.Item>
                 <Form.Item
-                  label={t("model.RoleName")}
+                  label={t("ModelBoard.RoleName")}
                   name="roleOfTarget"
                 >
                   <Input />
                 </Form.Item>
                 <Form.Item
-                  label={t("model.Description")}
+                  label={t("ModelBoard.Description")}
                   name="descriptionOnTarget"
                 >
                   <Input.TextArea />

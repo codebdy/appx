@@ -28,7 +28,7 @@ export const TypeInput = memo(
     return (
       <>
         <Form.Item
-          label={t("model.DataType")}
+          label={t("ModelBoard.DataType")}
           name="type"
         >
           <Select disabled={isId}>
@@ -38,34 +38,34 @@ export const TypeInput = memo(
             <Option value={Type.Boolean}>Boolean</Option>
             <Option value={Type.String}>String</Option>
             <Option value={Type.Date}>Date</Option>
-            <Option value={Type.Enum}>{t("model.Enum")}</Option>
+            <Option value={Type.Enum}>{t("ModelBoard.Enum")}</Option>
             <Option value={Type.JSON}>JSON</Option>
-            <Option value={Type.ValueObject}>{t("model.ValueClass")}</Option>
-            <Option value={Type.Entity}>{t("model.Entity")}</Option>
+            <Option value={Type.ValueObject}>{t("ModelBoard.ValueClass")}</Option>
+            <Option value={Type.Entity}>{t("ModelBoard.Entity")}</Option>
             <Option value={Type.File}>{t("File")}</Option>
-            <Option value={Type.IDArray}>ID {t("model.Array")}</Option>
-            <Option value={Type.IntArray}>Int {t("model.Array")}</Option>
-            <Option value={Type.FloatArray}>Float {t("model.Array")}</Option>
-            <Option value={Type.StringArray}>String {t("model.Array")}</Option>
-            <Option value={Type.DateArray}>Date {t("model.Array")}</Option>
+            <Option value={Type.IDArray}>ID {t("ModelBoard.Array")}</Option>
+            <Option value={Type.IntArray}>Int {t("ModelBoard.Array")}</Option>
+            <Option value={Type.FloatArray}>Float {t("ModelBoard.Array")}</Option>
+            <Option value={Type.StringArray}>String {t("ModelBoard.Array")}</Option>
+            <Option value={Type.DateArray}>Date {t("ModelBoard.Array")}</Option>
             <Option value={Type.EnumArray}>
-              {t("model.Enum")}
-              {t("model.Array")}
+              {t("ModelBoard.Enum")}
+              {t("ModelBoard.Array")}
             </Option>
             <Option value={Type.ValueObjectArray}>
-              {t("model.ValueClass")}
-              {t("model.Array")}
+              {t("ModelBoard.ValueClass")}
+              {t("ModelBoard.Array")}
             </Option>
             <Option value={Type.EntityArray}>
-              {t("model.Entity")}
-              {t("model.Array")}
+              {t("ModelBoard.Entity")}
+              {t("ModelBoard.Array")}
             </Option>
           </Select>
         </Form.Item>
         {(attribute.type === Type.Enum ||
           attribute.type === Type.EnumArray) && (
             <Form.Item
-              label={t("model.EnumClass")}
+              label={t("ModelBoard.EnumClass")}
               name="typeUuid"
             >
               <Select>
@@ -83,7 +83,7 @@ export const TypeInput = memo(
         {(attribute.type === Type.ValueObject ||
           attribute.type === Type.ValueObjectArray) && (
             <Form.Item
-              label={t("model.ValueObject")}
+              label={t("ModelBoard.ValueObject")}
               name="typeUuid"
             >
               <Select>
@@ -101,7 +101,7 @@ export const TypeInput = memo(
         {(attribute.type === Type.Entity ||
           attribute.type === Type.EntityArray) && (
             <Form.Item
-              label={t("model.EntityClass")}
+              label={t("ModelBoard.EntityClass")}
               name="typeUuid"
             >
               <Select>

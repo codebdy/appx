@@ -9,7 +9,7 @@ export function useCreateNewPackage(appUuid: ID) {
   const packages = useRecoilValue(packagesState(appUuid));
   const { t } = useTranslation();
   const getNewPackageName = useCallback(() => {
-    const prefix = t("model.NewPackage");
+    const prefix = t("ModelBoard.NewPackage");
     let index = 1;
     // eslint-disable-next-line no-loop-func
     while (packages.find((pkg) => pkg.name === (prefix + index))) {

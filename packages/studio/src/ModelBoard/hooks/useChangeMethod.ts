@@ -14,7 +14,7 @@ export function useChangeMethod(appUuid: ID) {
   const changeMethod = useCallback(
     (method: MethodMeta, cls: ClassMeta) => {
       if (!chackName(cls.uuid, method.name, method.uuid)) {
-        message.error(t("model.error-name-repeat"));
+        message.error(t("ModelBoard.error-name-repeat"));
         return;
       }
 

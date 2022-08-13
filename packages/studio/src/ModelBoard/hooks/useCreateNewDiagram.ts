@@ -11,7 +11,7 @@ export function useCreateNewDiagram(appUuid: ID) {
   const { t } = useTranslation();
   
   const getNewDiagramName = useCallback(() => {
-    const prefix = t("model.NewDiagram");
+    const prefix = t("ModelBoard.NewDiagram");
     let index = 1;
     while (getDiagramByName(prefix + index)) {
       index++;

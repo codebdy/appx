@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { ClassMeta, StereoType } from "../meta/ClassMeta";
 import { useChangeClass } from "../hooks/useChangeClass";
 import { Form, Input, Switch } from "antd";
@@ -7,13 +7,15 @@ import { useTranslation } from "react-i18next";
 
 export const ClassPanel = (props: { cls: ClassMeta }) => {
   const { cls } = props;
+  const [nameError, setNameError] = useState<string>();
   const serviceId = useSelectedAppUuid();
   const changeClass = useChangeClass(serviceId);
   const { t } = useTranslation();
   const [form] = Form.useForm()
   useEffect(() => form.setFieldsValue({ ...cls }), [cls, form])
-  const handleChange = useCallback((form) => {
-    changeClass({ ...cls, ...form });
+  const handleChange = useCallback((formData) => {
+    const errMsg = changeClass({ ...cls, ...formData });
+    setNameError(errMsg)
   }, [changeClass, cls])
 
   return (
@@ -30,8 +32,10 @@ export const ClassPanel = (props: { cls: ClassMeta }) => {
         onValuesChange={handleChange}
       >
         <Form.Item
-          label={t("model.Name")}
+          label={t("ModelBoard.Name")}
           name="name"
+          validateStatus={nameError ? "error" : undefined}
+          help={nameError}
         >
           <Input />
         </Form.Item>
@@ -42,13 +46,13 @@ export const ClassPanel = (props: { cls: ClassMeta }) => {
             <Form.Item
               name="root"
               valuePropName="checked"
-              label={t("model.RootNode")}
+              label={t("ModelBoard.RootNode")}
             >
               <Switch disabled={cls.stereoType === StereoType.Service} />
             </Form.Item>
           )}
         <Form.Item
-          label={t("model.Description")}
+          label={t("ModelBoard.Description")}
           name="description"
         >
           <Input.TextArea />

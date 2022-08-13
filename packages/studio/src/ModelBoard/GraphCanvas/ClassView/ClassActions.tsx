@@ -47,13 +47,13 @@ const ClassActions = memo((
       items={[
         {
           icon: <PlusOutlined />,
-          label: t("model.AddAttribute"),
+          label: t("ModelBoard.AddAttribute"),
           key: 'addAttribute',
           disabled: cls.stereoType === StereoType.Service,
         },
         {
           icon: <PlusOutlined />,
-          label: t("model.AddMethod"),
+          label: t("ModelBoard.AddMethod"),
           key: 'addMethod',
           disabled: cls.stereoType === StereoType.Enum || cls.stereoType === StereoType.ValueObject,
         },

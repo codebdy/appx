@@ -29,7 +29,7 @@ const RootAction = memo(() => {
       items={[
         {
           icon: <FolderAddOutlined />,
-          label: t("model.AddPackage"),
+          label: t("ModelBoard.AddPackage"),
           key: '0',
           onClick: e=>{
             e.domEvent.stopPropagation();
@@ -38,13 +38,13 @@ const RootAction = memo(() => {
         },
         {
           icon: <DownloadOutlined />,
-          label: t("model.ExportModel"),
+          label: t("ModelBoard.ExportModel"),
           key: '1',
           onClick:expotJson
         },
         {
           icon: <ImportOutlined />,
-          label: t("model.ImportModel"),
+          label: t("ModelBoard.ImportModel"),
           key: '2',
         },
       ]}

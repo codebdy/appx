@@ -1,4 +1,3 @@
-import { message } from "antd";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilValue, useSetRecoilState } from "recoil";
@@ -13,7 +12,7 @@ export function useChangeClass(appUuid: ID) {
   const setClasses = useSetRecoilState(classesState(appUuid));
   const classes = useRecoilValue(classesState(appUuid));
   const { t } = useTranslation();
-  
+
   const changeClass = useCallback(
     (cls: ClassMeta) => {
       if (
@@ -21,16 +20,16 @@ export function useChangeClass(appUuid: ID) {
           .filter((cl) => cl.uuid !== cls.uuid)
           .find((cl) => cl.name === cls.name)
       ) {
-        message.error(t("model.error-name-repeat"));
-        return;
+        return t("ModelBoard.ErrorNameRepeat");
       }
       backupSnapshot();
       setClasses((entities) =>
         entities.map((ent) => (ent.uuid === cls.uuid ? cls : ent))
       );
       triggerCanvasEvent({ name: EVENT_CLASS_CHANGED, detail: cls });
+      return undefined;
     },
-    [backupSnapshot, classes, setClasses]
+    [backupSnapshot, classes, setClasses, t]
   );
 
   return changeClass;

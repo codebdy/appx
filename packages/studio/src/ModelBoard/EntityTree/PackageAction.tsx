@@ -63,7 +63,7 @@ const PackageAction = memo((
         items={[
           {
             icon: <FileAddOutlined />,
-            label: t("model.AddDiagram"),
+            label: t("ModelBoard.AddDiagram"),
             key: '0',
             onClick: e => {
               e.domEvent.stopPropagation();
@@ -72,12 +72,12 @@ const PackageAction = memo((
           },
           {
             icon: <PlusSquareOutlined />,
-            label: t("model.AddClass"),
+            label: t("ModelBoard.AddClass"),
             key: '1',
             onClick: e => e.domEvent.stopPropagation(),
             children: [
               {
-                label: t("model.AddEntity"),
+                label: t("ModelBoard.AddEntity"),
                 key: '1',
                 onClick: e => {
                   e.domEvent.stopPropagation();
@@ -85,7 +85,7 @@ const PackageAction = memo((
                 },
               },
               {
-                label: t("model.AddAbstract"),
+                label: t("ModelBoard.AddAbstract"),
                 key: '2',
                 onClick: e => {
                   e.domEvent.stopPropagation();
@@ -93,7 +93,7 @@ const PackageAction = memo((
                 },
               },
               {
-                label: t("model.AddEnum"),
+                label: t("ModelBoard.AddEnum"),
                 key: '3',
                 onClick: e => {
                   e.domEvent.stopPropagation();
@@ -101,7 +101,7 @@ const PackageAction = memo((
                 },
               },
               {
-                label: t("model.AddValueObject"),
+                label: t("ModelBoard.AddValueObject"),
                 key: '4',
                 onClick: e => {
                   e.domEvent.stopPropagation();
@@ -109,7 +109,7 @@ const PackageAction = memo((
                 },
               },
               {
-                label: t("model.AddService"),
+                label: t("ModelBoard.AddService"),
                 key: '5',
                 onClick: e => {
                   e.domEvent.stopPropagation();

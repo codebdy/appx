@@ -35,7 +35,7 @@ export const PropertyBox = () => {
       className="property-box left-border"
     >
       <ToolbarArea>
-        <ToolbarTitle>{t("model.Properties")}</ToolbarTitle>
+        <ToolbarTitle>{t("ModelBoard.Properties")}</ToolbarTitle>
       </ToolbarArea>
       <div
         style={{
