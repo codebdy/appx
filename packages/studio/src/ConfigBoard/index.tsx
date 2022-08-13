@@ -22,7 +22,7 @@ const ConfigBoard = memo(() => {
         }}
       >
         <Collapse defaultActiveKey={['muti-lang']}>
-          <Panel header={t("Config.MultiLang")} key="muti-lang">
+          <Panel header={t("Config.MultiLang.Title")} key="muti-lang">
             多语言
             <Switch defaultChecked />
             多语言资源

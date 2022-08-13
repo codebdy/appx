@@ -195,7 +195,9 @@
     "Customized": "自定义"
   },
   "Config": {
-    "MultiLang": "多语言配置",
+    "MultiLang": {
+      "Title": "多语言配置"
+    },
     "Other": "其他配置"
   }
 }
