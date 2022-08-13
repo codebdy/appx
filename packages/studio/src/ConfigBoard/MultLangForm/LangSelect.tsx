@@ -27,7 +27,13 @@ const LangSelect = memo(() => {
           <FormOutlined style={{ marginLeft: 8 }} />
         </div>
       </Button>
-      <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+      <Modal
+        title="Basic Modal"
+        width={700}
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
         <p>Some contents...</p>
         <p>Some contents...</p>
         <p>Some contents...</p>
