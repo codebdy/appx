@@ -196,7 +196,10 @@
   },
   "Config": {
     "MultiLang": {
-      "Title": "多语言配置"
+      "Title": "多语言配置",
+      "Open": "开启多语言",
+      "Langs": "语言种类",
+      "Resources": "语言资源"
     },
     "Other": "其他配置"
   }
