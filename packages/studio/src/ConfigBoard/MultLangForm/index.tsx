@@ -1,6 +1,7 @@
-import { Form, Input, Switch } from 'antd';
+import { Form, Switch } from 'antd';
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import LangResourceEditor from './LangResourceEditor';
 import LangSelect from './LangSelect';
 
 const MultLangForm = memo(() => {
@@ -34,7 +35,7 @@ const MultLangForm = memo(() => {
         label={t("Config.MultiLang.Resources")}
         name="langs"
       >
-        <Input />
+        <LangResourceEditor />
       </Form.Item>
 
     </Form>
