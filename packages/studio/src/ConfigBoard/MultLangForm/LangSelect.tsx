@@ -19,6 +19,9 @@ const LangSelect = memo(() => {
   const [keyword, setKeyWord] = useState("");
   const { t } = useTranslation();
   const appConfig = useAppConfig();
+  const getLang = useCallback((key) => {
+    return langs.find(lang => lang.key === key)
+  }, [])
 
   useEffect(() => {
     setInputValue(appConfig?.schemaJson?.multiLang?.langs || [])
@@ -54,8 +57,15 @@ const LangSelect = memo(() => {
   const onDragEnd = useCallback(
     (result: DropResult) => {
       const { destination, source, draggableId } = result;
+      if (destination?.droppableId) {
+        const lang = getLang(draggableId)
+        if(lang){
+          setInputValue(inputValue => [...inputValue, lang])
+        }
+        
+      }
     },
-    [])
+    [getLang])
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
