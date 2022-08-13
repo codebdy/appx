@@ -8,6 +8,7 @@ import clx from "classnames"
 import { useMatch, useNavigate } from "react-router-dom"
 import { InerfaceSvg } from "../icons/InterfaceIcon"
 import { useTranslation } from "react-i18next"
+import SelectLang from "../shared/SelectLang"
 
 export enum AppManagerRoutes {
   Root = "/",
@@ -171,6 +172,7 @@ const AppHeader = memo((props: {
           target="_blank"
         />
         <AvatarMenu />
+        <SelectLang />
       </Space>
     </Header>
   )

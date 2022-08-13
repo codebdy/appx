@@ -8,6 +8,7 @@ import { useMatch, useNavigate, useParams } from "react-router-dom"
 import { IApp } from "../model"
 import { AppConfigRouts } from "./AppConfigRouts"
 import { useTranslation } from "react-i18next"
+import SelectLang from "../shared/SelectLang"
 
 const ConifgHeader = memo((props: {
   app?: IApp,
@@ -76,6 +77,7 @@ const ConifgHeader = memo((props: {
           target="_blank"
         />
         <AvatarMenu />
+        <SelectLang />
       </Space>
     </Header >
   )

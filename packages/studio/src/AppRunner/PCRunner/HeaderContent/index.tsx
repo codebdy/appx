@@ -6,7 +6,7 @@ import Avatar from './AvatarDropdown';
 import './index.less';
 import HeaderSearch from './HeaderSearch';
 import NoticeIconView from './NoticeIcon';
-import SelectLang from './SelectLang';
+import SelectLang from '../../../shared/SelectLang';
 // import { SelectLang } from '../SelectLang/SelectLang';
 
 export type SiderTheme = 'light' | 'dark';
