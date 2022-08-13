@@ -1,9 +1,11 @@
 import { FormOutlined } from "@ant-design/icons";
-import { Button, Input, Modal, Tag } from "antd";
+import { Button, Input, message, Modal, Tag } from "antd";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { memo } from "react";
 import { DragDropContext, Draggable, Droppable, DropResult } from "react-beautiful-dnd";
 import { useTranslation } from "react-i18next";
+import { useShowError } from "../../hooks/useShowError";
+import { useUpsertAppConfig } from "../../hooks/useUpsertAppConfig";
 import { ILang } from "../../model";
 import { useAppConfig } from "../../shared/AppRoot/context/config";
 import LangLabel from "./LangLabel";
@@ -24,21 +26,44 @@ const LangSelect = memo(() => {
     return langs.find(lang => lang.key === key)
   }, [])
 
+  const [upsert, { loading, error }] = useUpsertAppConfig(
+    {
+      onCompleted: () => {
+        message.success(t("OperateSuccess"));
+        reset();
+        setIsModalVisible(false);
+      }
+    }
+  );
+
+  useShowError(error);
+
+  const reset = useCallback(() => {
+    setInputValue(appConfig?.schemaJson?.multiLang?.langs || []);
+  }, [appConfig?.schemaJson?.multiLang?.langs])
+
   useEffect(() => {
-    setInputValue(appConfig?.schemaJson?.multiLang?.langs || [])
-  }, [appConfig])
+    reset();
+  }, [reset])
 
   const showModal = useCallback(() => {
     setIsModalVisible(true);
   }, []);
 
   const handleOk = useCallback(() => {
-    setIsModalVisible(false);
-  }, []);
+    upsert({
+      ...appConfig,
+      schemaJson: {
+        ...appConfig?.schemaJson,
+        multiLang: { ...appConfig?.schemaJson?.multiLang, langs: inputValue }
+      }
+    })
+  }, [appConfig, inputValue, upsert]);
 
   const handleCancel = useCallback(() => {
+    reset();
     setIsModalVisible(false);
-  }, []);
+  }, [reset]);
 
   const handleKeywordChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setKeyWord(event.target.value);
@@ -116,7 +141,8 @@ const LangSelect = memo(() => {
         onOk={handleOk}
         onCancel={handleCancel}
         okButtonProps={{
-          disabled: !changed
+          disabled: !changed,
+          loading: loading
         }}
       >
         <div style={{
@@ -132,8 +158,17 @@ const LangSelect = memo(() => {
             </div>
             <div className="all-lang-list">
               <Droppable droppableId={ALL_LANGS_ID} isDropDisabled={false}>
-                {(provided) => (
-                  <div ref={provided.innerRef}>
+                {(provided, snapshot) => (
+                  <div ref={provided.innerRef}
+                    className="lang-list-inner"
+                    style={{
+                      flex: 1,
+                      height: "100%",
+                      backgroundColor: snapshot.isDraggingOver
+                      ? "rgba(0,0,0, 0.05)"
+                      : undefined,
+                    }}
+                  >
                     {allLangs?.map((lang, index) => {
                       return (
                         <Draggable key={lang.key} draggableId={lang.key} index={index}>

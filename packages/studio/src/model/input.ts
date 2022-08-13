@@ -1,4 +1,4 @@
-import { Device } from ".";
+import { Device, ILang } from ".";
 import { ID } from "../shared";
 
 export interface IFileInput {
@@ -6,11 +6,22 @@ export interface IFileInput {
   thumbUrl?: string;
 }
 
+export interface IAppConfigInput {
+  id?: ID;
+  schemaJson?: {
+    multiLang?: {
+      open?: boolean,
+      langs?: ILang[],
+    }
+  }
+}
+
 export interface IAppInput {
   id?: ID;
   uuid?: string;
   title?: string;
   description?: string;
+  config?:IAppConfigInput;
   // image?: IFileInput
 }
 
