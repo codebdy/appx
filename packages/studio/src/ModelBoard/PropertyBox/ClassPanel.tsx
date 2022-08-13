@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { ClassMeta, StereoType } from "../meta/ClassMeta";
 import { useChangeClass } from "../hooks/useChangeClass";
 import { Form, Input, Switch } from "antd";
@@ -10,6 +10,8 @@ export const ClassPanel = (props: { cls: ClassMeta }) => {
   const serviceId = useSelectedAppUuid();
   const changeClass = useChangeClass(serviceId);
   const { t } = useTranslation();
+  const [form] = Form.useForm()
+  useEffect(() => form.setFieldsValue({ ...cls }), [cls, form])
   const handleChange = useCallback((form) => {
     changeClass({ ...cls, ...form });
   }, [changeClass, cls])
@@ -18,6 +20,7 @@ export const ClassPanel = (props: { cls: ClassMeta }) => {
     <div className="property-pannel">
       <Form
         name="classForm"
+        form={form}
         colon={false}
         labelAlign="left"
         labelCol={{ span: 9 }}

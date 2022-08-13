@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo } from "react";
 import { AttributeMeta } from "../meta/AttributeMeta";
 import { Type } from "../meta/Type";
 import { ClassMeta, StereoType } from "../meta/ClassMeta";
@@ -19,6 +19,8 @@ export const AttributePanel = (props: {
   const changeAttribute = useChangeAttribute(serviceId);
   const getTypeLabel = useGetTypeLabel(serviceId);
   const { t } = useTranslation();
+  const [form] = Form.useForm()
+  useEffect(() => form.setFieldsValue({ ...attribute }), [attribute, form])
 
   const isId = useMemo(() => attribute.name === CONST_ID, [attribute.name]);
 
@@ -37,6 +39,7 @@ export const AttributePanel = (props: {
     <div className="property-pannel">
       <Form
         name="attributeForm"
+        form = {form}
         colon={false}
         labelAlign="left"
         labelCol={{ span: 9 }}

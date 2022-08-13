@@ -20,12 +20,12 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
   const target = useClass(relation.targetId, serviceId);
   const changeRelation = useChangeRelation(serviceId);
   const { t } = useTranslation();
-  
+
   const [form] = Form.useForm()
 
   useEffect(() => {
-    form.resetFields();
-  }, [form, relation.uuid])
+    form.setFieldsValue(relation);
+  }, [form, relation])
 
   const isInherit = useMemo(
     () => RelationType.INHERIT === relation.relationType,
@@ -58,7 +58,7 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
             autoComplete="off"
             onValuesChange={handleChange}
           >
-            <Collapse className="no-border"  defaultActiveKey={['1', '2']}>
+            <Collapse className="no-border" defaultActiveKey={['1', '2']}>
               <Panel header={source?.name + t("model.Side")} key="1">
                 <Form.Item
                   label={t("model.Multiplicity")}
@@ -94,7 +94,6 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
                     </Form.Item>
                   </>
                 }
-
               </Panel>
               <Panel header={target?.name + t("model.Side")} key="2">
                 <Form.Item
