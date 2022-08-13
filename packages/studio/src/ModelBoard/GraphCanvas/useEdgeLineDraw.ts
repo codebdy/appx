@@ -19,7 +19,7 @@ import { canStartLink } from "./canStartLink";
 import { EVENT_PREPARE_LINK_TO, triggerCanvasEvent } from "./events";
 import { useCheckCanLinkTo } from "./useCheckCanLinkTo";
 import { createUuid, ID } from "../../shared";
-import { createId } from "../../shared";
+import _ from "lodash";
 
 export function useEdgeLineDraw(graph: Graph | undefined, appUuid: ID) {
   const [drawingLine, setDrawingLine] = useRecoilState(
@@ -119,11 +119,11 @@ export function useEdgeLineDraw(graph: Graph | undefined, appUuid: ID) {
             targetId: target.uuid,
             roleOfTarget: isInherit
               ? undefined
-              : target.name.toLowerCase() + createId(),
+              : target.name.toLowerCase() + _.uniqueId(),
             roleOfSource:
               isInherit || isOneWay
                 ? undefined
-                : source.name.toLowerCase() + createId(),
+                : source.name.toLowerCase() + _.uniqueId(),
             sourceMutiplicity: RelationMultiplicity.ZERO_ONE,
             targetMultiplicity: RelationMultiplicity.ZERO_ONE,
             appUuid
