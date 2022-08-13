@@ -3,6 +3,7 @@ import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import LangResourceEditor from './LangResourceEditor';
 import LangSelect from './LangSelect';
+import "./style.less"
 
 const MultLangForm = memo(() => {
   const { t } = useTranslation();

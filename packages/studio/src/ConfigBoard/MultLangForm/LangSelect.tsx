@@ -31,6 +31,7 @@ const LangSelect = memo(() => {
       </Button>
       <Modal
         title={t("Config.MultiLang.LangsEdit")}
+        className="lang-select-dialog"
         width={700}
         visible={isModalVisible}
         okText={t("Confirm")}
@@ -38,9 +39,19 @@ const LangSelect = memo(() => {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        <div style={{
+          display: "flex"
+        }}>
+          <div className="lang-list" style={{marginRight: 8}}>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+          </div>
+          <div className="lang-list" style={{marginLeft: 8}}>
+
+          </div>
+        </div>
+
       </Modal>
     </>
   )
