@@ -51,7 +51,8 @@
   "System": {
     "Model": "系统模型",
     "API": "系统接口",
-    "Auth": "系统权限"
+    "Auth": "系统权限",
+    "Config": "系统配置"
   },
   "AppConfig": {
     "BaseConfig": "基础配置",

@@ -1,4 +1,4 @@
-import { AppstoreOutlined, QuestionCircleOutlined, GithubOutlined, DownOutlined } from "@ant-design/icons"
+import { AppstoreOutlined, QuestionCircleOutlined, GithubOutlined, DownOutlined, SettingOutlined } from "@ant-design/icons"
 import { Divider, Space, Button, Menu, Dropdown } from "antd"
 import { Header } from "antd/lib/layout/layout"
 import React, { memo, useCallback } from "react"
@@ -15,6 +15,7 @@ export enum AppManagerRoutes {
   Model = "system-model",
   Api = "system-api",
   Auth = "system-auth",
+  Config = "system-config"
 }
 
 const AppHeader = memo((props: {
@@ -41,6 +42,9 @@ const AppHeader = memo((props: {
     navigate(AppManagerRoutes.Auth)
   }, [navigate])
 
+  const handleGotoConfig = useCallback(() => {
+    navigate(AppManagerRoutes.Config)
+  }, [navigate])
 
   const menu = (
     <Menu
@@ -72,6 +76,12 @@ const AppHeader = memo((props: {
         onClick={handleGotoAuth}
       >
         {t("System.Auth")}
+      </Menu.Item>
+      <Menu.Item key={AppManagerRoutes.Config}
+        icon={<SettingOutlined style={{ fontSize: 16 }} />}
+        onClick={handleGotoConfig}
+      >
+        {t("System.Config")}
       </Menu.Item>
     </Menu>
   );
