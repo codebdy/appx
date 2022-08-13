@@ -390,7 +390,7 @@
           },
           {
             "uuid": "60345ded-53be-4070-a273-646cc67ff5f6",
-            "name": "key",
+            "name": "name",
             "type": "String",
             "typeLabel": "String"
           }
@@ -589,7 +589,7 @@
         "roleOfTarget": "config",
         "roleOfSource": "user",
         "sourceMutiplicity": "0..1",
-        "targetMultiplicity": "0..1",
+        "targetMultiplicity": "0..*",
         "appUuid": "SYSTEM"
       }
     ],
