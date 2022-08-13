@@ -372,7 +372,7 @@
         "methods": [],
         "name": "AppConfig",
         "packageUuid": "PACKAGE_APPX_UUID",
-        "root": false,
+        "root": true,
         "stereoType": "Entity",
         "uuid": "c19d7f61-6a73-408c-b272-284ee374d5ce"
       },
@@ -397,7 +397,7 @@
         ],
         "methods": [],
         "stereoType": "Entity",
-        "root": false,
+        "root": true,
         "packageUuid": "PACKAGE_APPX_UUID"
       },
       {
@@ -698,12 +698,12 @@
         "y": 116
       },
       {
-        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
-        "height": 120,
         "id": "c19d7f61-6a73-408c-b272-284ee374d5ce",
-        "width": 180,
         "x": -790.0000000000002,
-        "y": 150
+        "y": 150,
+        "width": 180,
+        "height": 120,
+        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc"
       },
       {
         "id": "META_USER_UUID",
