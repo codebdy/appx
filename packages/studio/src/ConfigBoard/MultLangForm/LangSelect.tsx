@@ -1,8 +1,9 @@
 import { FormOutlined } from "@ant-design/icons";
 import { Button, Input, Modal, Tag } from "antd";
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { memo } from "react";
 import { useTranslation } from "react-i18next";
+import { useAppConfig } from "../../shared/AppRoot/context/config";
 import LangLabel from "./LangLabel";
 import { langs } from "./langs";
 
@@ -12,6 +13,12 @@ const LangSelect = memo(() => {
   const [changed, setChanged] = useState(false);
   const [keyword, setKeyWord] = useState("");
   const { t } = useTranslation();
+  const appConfig = useAppConfig();
+
+  useEffect(() => {
+    setInputValue(appConfig?.schemaJson?.multiLang?.langs || [])
+  }, [appConfig])
+
   const showModal = useCallback(() => {
     setIsModalVisible(true);
   }, []);
@@ -85,7 +92,13 @@ const LangSelect = memo(() => {
             }
           </div>
           <div className="lang-list" style={{ marginLeft: 8 }}>
-
+            {
+              inputValue?.map((lang) => {
+                return (
+                  <LangLabel lang={lang} />
+                )
+              })
+            }
           </div>
         </div>
 
