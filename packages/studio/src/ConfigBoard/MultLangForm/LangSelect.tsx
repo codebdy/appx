@@ -9,7 +9,8 @@ import { useAppConfig } from "../../shared/AppRoot/context/config";
 import LangLabel from "./LangLabel";
 import { langs } from "./langs";
 
-const ALL_LANGS_ID = "ALL_LANGS_ID"
+const ALL_LANGS_ID = "ALL_LANGS_ID";
+const SELECTED_LANGS_ID = "SELECTED_LANGS_ID";
 
 const LangSelect = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -121,24 +122,48 @@ const LangSelect = memo(() => {
                   <div style={{ display: "none" }}>{provided.placeholder}</div>
                 </div>
               )}
-
             </Droppable>
-            {
-              allLangs?.map((lang) => {
-                return (
-                  <LangLabel lang={lang} />
-                )
-              })
-            }
           </div>
           <div className="lang-list" style={{ marginLeft: 8 }}>
-            {
-              inputValue?.map((lang) => {
-                return (
-                  <LangLabel lang={lang} />
-                )
-              })
-            }
+            <Droppable droppableId={SELECTED_LANGS_ID} isDropDisabled={false}>
+              {(provided, snapshot) => (
+                <div ref={provided.innerRef}
+                  style={{
+                    flex: 1,
+                    height: "100%",
+                    flexFlow: "column",
+                    backgroundColor: snapshot.isDraggingOver
+                      ? "rgba(0,0,0, 0.05)"
+                      : undefined,
+                  }}
+                >
+                  {inputValue?.map((lang, index) => {
+                    return (
+                      <Draggable key={lang.key} draggableId={lang.key} index={index}>
+                        {(provided, snapshot) => (
+                          <>
+                            <LangLabel
+                              lang={lang}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              float={snapshot.isDragging}
+                              ref={provided.innerRef}
+                            />
+                            {snapshot.isDragging && (
+                              <LangLabel
+                                lang={lang}
+                                fixed
+                              />
+                            )}
+                          </>
+                        )}
+                      </Draggable>
+                    );
+                  })}
+                  <div style={{ display: "none" }}>{provided.placeholder}</div>
+                </div>
+              )}
+            </Droppable>
           </div>
         </div>
 
