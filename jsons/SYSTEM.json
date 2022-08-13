@@ -499,7 +499,7 @@
         "innerId": 1006,
         "relationType": "twoWayCombination",
         "roleOfSource": "app",
-        "roleOfTarget": "langlocales",
+        "roleOfTarget": "langLocales",
         "sourceId": "2082d665-e503-402a-a089-678115c5ed3e",
         "sourceMutiplicity": "0..1",
         "targetId": "ddbecde2-3e2d-4391-a327-63d4c8c6a2c3",
