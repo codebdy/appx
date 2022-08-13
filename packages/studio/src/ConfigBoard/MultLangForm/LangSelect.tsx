@@ -11,6 +11,7 @@ import { langs } from "./langs";
 
 const ALL_LANGS_ID = "ALL_LANGS_ID";
 const SELECTED_LANGS_ID = "SELECTED_LANGS_ID";
+const SELECTED_PREFIX = "SELECTED-"
 
 const LangSelect = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -44,28 +45,56 @@ const LangSelect = memo(() => {
   }, [])
 
   const allLangs = useMemo(() => {
+    const notSelectedLangs = langs.filter(lang => !inputValue.find(lg => lg.key === lang.key));
     if (!keyword) {
-      return langs;
+      return notSelectedLangs;
     }
 
-    return langs.filter((lang) => {
+    return notSelectedLangs.filter((lang) => {
       const keywd = keyword.toLocaleLowerCase();
       return lang.key.toLocaleLowerCase().indexOf(keywd) > -1 ||
         t("Lang." + lang.key).toLocaleLowerCase().indexOf(keywd) > -1
     })
-  }, [keyword, t])
+  }, [inputValue, keyword, t])
+
+  const insertAt = useCallback((lang: ILang, index: number) => {
+    setChanged(true);
+    setInputValue(inputValue => {
+      const temp = [...inputValue]
+      temp.splice(index, 0, lang)
+      return temp
+    })
+  }, [])
+
+  const moveTo = useCallback((lang: ILang, index: number) => {
+    setChanged(true);
+    setInputValue(inputValue => {
+      const temp = inputValue.filter(lg => lg.key !== lang.key);
+      temp.splice(index, 0, lang)
+      return temp
+    })
+  }, [])
+
   const onDragEnd = useCallback(
     (result: DropResult) => {
       const { destination, source, draggableId } = result;
-      if (destination?.droppableId) {
+
+      if (source.droppableId === ALL_LANGS_ID && destination.droppableId === SELECTED_LANGS_ID) {
         const lang = getLang(draggableId)
-        if(lang){
-          setInputValue(inputValue => [...inputValue, lang])
+        if (lang && !inputValue.find(lang => lang.key === draggableId)) {
+          insertAt(lang, destination.index)
         }
-        
+      } else if (source.droppableId === SELECTED_LANGS_ID && destination.droppableId === ALL_LANGS_ID) {
+        setChanged(true);
+        setInputValue((inputValue) => inputValue.filter(lang => lang.key !== draggableId.substring(SELECTED_PREFIX.length)))
+      } else if (source.droppableId === SELECTED_LANGS_ID && destination.droppableId === SELECTED_LANGS_ID) {
+        const lang = getLang(draggableId.substring(SELECTED_PREFIX.length))
+        if (lang) {
+          moveTo(lang, destination.index)
+        }
       }
     },
-    [getLang])
+    [getLang, inputValue, insertAt, moveTo])
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
@@ -86,6 +115,9 @@ const LangSelect = memo(() => {
         cancelText={t("Cancel")}
         onOk={handleOk}
         onCancel={handleCancel}
+        okButtonProps={{
+          disabled: !changed
+        }}
       >
         <div style={{
           display: "flex",
@@ -99,7 +131,7 @@ const LangSelect = memo(() => {
               <Input.Search allowClear style={{ flex: 1 }} onChange={handleKeywordChange} />
             </div>
             <div className="all-lang-list">
-              <Droppable droppableId={ALL_LANGS_ID} isDropDisabled={true}>
+              <Droppable droppableId={ALL_LANGS_ID} isDropDisabled={false}>
                 {(provided) => (
                   <div ref={provided.innerRef}>
                     {allLangs?.map((lang, index) => {
@@ -147,7 +179,7 @@ const LangSelect = memo(() => {
                 >
                   {inputValue?.map((lang, index) => {
                     return (
-                      <Draggable key={lang.key} draggableId={lang.key} index={index}>
+                      <Draggable key={lang.key} draggableId={SELECTED_PREFIX + lang.key} index={index}>
                         {(provided, snapshot) => (
                           <>
                             <LangLabel
@@ -157,12 +189,6 @@ const LangSelect = memo(() => {
                               float={snapshot.isDragging}
                               ref={provided.innerRef}
                             />
-                            {snapshot.isDragging && (
-                              <LangLabel
-                                lang={lang}
-                                fixed
-                              />
-                            )}
                           </>
                         )}
                       </Draggable>
