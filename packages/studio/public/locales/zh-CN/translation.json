@@ -162,7 +162,7 @@
     "Side": "端",
     "RoleName": "角色名",
     "Multiplicity": "重数",
-    "ErrorNameRepeat":"名称重复"
+    "ErrorNameRepeat": "名称重复"
   },
   "SettingsForm": {
     "Properties": "属性",
@@ -193,5 +193,9 @@
     "DialogTitle": "选择图标",
     "IconLib": "图标库",
     "Customized": "自定义"
+  },
+  "Config": {
+    "MultiLang": "多语言配置",
+    "Other": "其他配置"
   }
 }
