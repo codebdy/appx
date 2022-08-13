@@ -55,8 +55,8 @@ export default function AttributeView(props: {
   return (
     <div
       className={classNames('property', {
-        ['hover']: !readOnly && hover,
-        ['selected']: isSelected,
+        'hover': !readOnly && hover,
+        'selected': isSelected,
       })}
       onMouseOver={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
@@ -95,7 +95,7 @@ export default function AttributeView(props: {
           <Button
             type="text"
             shape="circle"
-            size = "small"
+            size="small"
             onClick={handleDeleteClick}
           >
             <DeleteOutlined size={10} />
