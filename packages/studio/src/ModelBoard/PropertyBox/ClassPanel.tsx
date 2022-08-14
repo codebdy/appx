@@ -4,6 +4,7 @@ import { useChangeClass } from "../hooks/useChangeClass";
 import { Form, Input, Switch } from "antd";
 import { useSelectedAppUuid } from "../context";
 import { useTranslation } from "react-i18next";
+import MultiLangInput from "../../shared/MultiLangInput";
 
 export const ClassPanel = (props: { cls: ClassMeta }) => {
   const { cls } = props;
@@ -39,7 +40,12 @@ export const ClassPanel = (props: { cls: ClassMeta }) => {
         >
           <Input />
         </Form.Item>
-
+        <Form.Item
+          label={t("Label")}
+          name="label"
+        >
+          <MultiLangInput />
+        </Form.Item>
         {cls.stereoType !== StereoType.Enum &&
           cls.stereoType !== StereoType.ValueObject &&
           (

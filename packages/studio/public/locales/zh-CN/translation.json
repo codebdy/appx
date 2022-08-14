@@ -9,6 +9,7 @@
   "Settings": "设置",
   "New": "新建",
   "Name": "名称",
+  "Label": "标签",
   "Add": "添加",
   "Hidden": "隐藏",
   "App": "应用",
@@ -206,7 +207,7 @@
       "Resources": "语言资源",
       "LangResourcesList": "语言资源列表",
       "LangResourcesEdit": "编辑语言资源",
-      "NewLangResource":"新建语言资源"
+      "NewLangResource": "新建语言资源"
     },
     "Other": "其他配置"
   },
