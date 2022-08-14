@@ -52,20 +52,23 @@ const MultLangForm = memo(() => {
           onChange={handleOpenChange}
         />
       </Form.Item>
-
-      <Form.Item
-        label={t("Config.MultiLang.Langs")}
-        name="langs"
-      >
-        <LangSelect />
-      </Form.Item>
-      <Form.Item
-        label={t("Config.MultiLang.Resources")}
-        name="langs"
-      >
-        <LangResourceEditor />
-      </Form.Item>
-
+      {
+        appConfig?.schemaJson?.multiLang?.open &&
+        <>
+          <Form.Item
+            label={t("Config.MultiLang.Langs")}
+            name="langs"
+          >
+            <LangSelect />
+          </Form.Item>
+          <Form.Item
+            label={t("Config.MultiLang.Resources")}
+            name="langs"
+          >
+            <LangResourceEditor />
+          </Form.Item>
+        </>
+      }
     </Form>
   );
 });
