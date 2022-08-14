@@ -1,6 +1,7 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, Input, Space, Table } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
+import { useAppConfig } from '../../../shared/AppRoot/context';
 import React, { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -67,6 +68,7 @@ const data = [
 const ResourcesTable = memo(() => {
   const [keyword, setKeyWord] = useState("");
   const { t } = useTranslation();
+  const appConfig = useAppConfig();
   const columns = useMemo(() => {
     const cols: any[] = [
       {
@@ -75,6 +77,16 @@ const ResourcesTable = memo(() => {
         key: 'name',
       },
     ];
+
+    appConfig?.schemaJson?.multiLang?.langs?.forEach((lang, index) => {
+      if (index < 3) {
+        cols.push({
+          title: t("Lang." + lang.key),
+          dataIndex: lang.key,
+          key: lang.key,
+        })
+      }
+    })
 
     cols.push({
       title: t('Operation'),
