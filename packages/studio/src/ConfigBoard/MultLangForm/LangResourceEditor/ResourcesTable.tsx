@@ -75,7 +75,7 @@ const ResourcesTable = memo(() => {
   const data = useMemo(() => {
     return langLocales?.map((langLocal => {
       return {
-        key: langLocal.name,
+        key: langLocal.id,
         name: langLocal.name,
         ...langLocal.schemaJson
       }
