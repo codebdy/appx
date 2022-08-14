@@ -42,6 +42,8 @@
   "Operation": "操作",
   "AuthPoints": "权限点",
   "ErrorNameRepeat": "名称重复",
+  "Resource": "资源",
+  "Inline": "内联",
   "install": {
     "Title": "安装Appx",
     "Next": "下一步",

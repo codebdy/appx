@@ -6,23 +6,23 @@ import { useAppConfig, useAppParams } from "../../shared/AppRoot/context";
 import { useUpsertLangLocal } from "../../hooks/useUpsertLangLocal";
 import { useShowError } from "../../hooks/useShowError";
 
-const options = [
-  { label: 'Apple', value: 'Apple' },
-  { label: 'Pear', value: 'Pear' },
-  { label: 'Orange', value: 'Orange' },
-];
+export enum MultilangType {
+  Inline = "Inline",
+  Resource = "Resource"
+}
 
 const ResourceEditDialog = memo((
   props: {
     multiline?: boolean,
     value?: string,
     visiable?: boolean,
+    inline?: boolean,
     onClose: () => void,
   }
 ) => {
-  const { multiline, value, visiable, onClose } = props;
+  const { multiline, value, visiable, inline, onClose } = props;
   const [nameError, setNameError] = useState<string>();
-  const [value4, setValue4] = useState('Apple');
+  const [inputType, setInputType] = useState(MultilangType.Inline);
   const { t } = useTranslation()
   const appConfig = useAppConfig();
   const [form] = Form.useForm();
@@ -73,7 +73,7 @@ const ResourceEditDialog = memo((
 
   const onChange4 = ({ target: { value } }: RadioChangeEvent) => {
     console.log('radio4 checked', value);
-    setValue4(value);
+    setInputType(value);
   };
 
   const InputCtrl = useMemo(() => multiline ? Input.TextArea : Input, [multiline]);
@@ -90,15 +90,22 @@ const ResourceEditDialog = memo((
       onOk={handleOk}
       onCancel={handleCancel}
     >
-      <div style={{ paddingBottom: 16 }}>
-        <Radio.Group
-          onChange={onChange4}
-          options={options}
-          value={value4}
-          optionType="button"
-          buttonStyle="solid"
-        />
-      </div>
+      {
+        !inline &&
+        <div style={{ paddingBottom: 16 }}>
+          <Radio.Group
+            onChange={onChange4}
+            options={[
+              { label: t(MultilangType.Inline), value: MultilangType.Inline },
+              { label: t(MultilangType.Resource), value: MultilangType.Resource }
+            ]}
+            value={inputType}
+            optionType="button"
+            buttonStyle="solid"
+          />
+        </div>
+      }
+
       <div style={{ height: "calc(100vh - 400px)", overflow: "auto" }}>
         <Form
           name="edit-lang-local"
