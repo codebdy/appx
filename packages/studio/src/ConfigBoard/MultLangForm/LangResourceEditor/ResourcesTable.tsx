@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { ILangLocalInput } from '../../../model/input';
 import LangLocalEditDialog from './LangLocalEditDialog';
 import { ID } from '../../../shared';
-import { ILangLocal } from 'packages/studio/src/model';
+import { ILangLocal } from '../../../model';
 
 const ResourcesTable = memo(() => {
   const [keyword, setKeyWord] = useState("");
@@ -62,9 +62,19 @@ const ResourcesTable = memo(() => {
 
     return cols;
   }, [appConfig?.schemaJson?.multiLang?.langs, getLocal, t]);
+
   const matchKeyword = useCallback((lang: ILangLocal) => {
-    return lang.name?.indexOf(keyword) > -1 || JSON.stringify(lang.schemaJson).indexOf(keyword) > -1;
+    if (lang.name?.indexOf(keyword) > -1) {
+      return true;
+    }
+    for (const key of Object.keys(lang.schemaJson)) {
+      if (lang.schemaJson[key]?.indexOf(keyword) > -1) {
+        return true;
+      }
+    }
+    return false
   }, [keyword]);
+
   const data = useMemo(() => {
     return langLocales.filter(lang => matchKeyword(lang))?.map((langLocal => {
       return {
