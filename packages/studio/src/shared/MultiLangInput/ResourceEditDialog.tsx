@@ -1,6 +1,5 @@
 import { Form, Input, Modal } from "antd";
-import { ILangLocalInput } from "../../model/input";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
 import { useAppConfig, useAppParams } from "../../shared/AppRoot/context";
@@ -9,12 +8,13 @@ import { useShowError } from "../../hooks/useShowError";
 
 const ResourceEditDialog = memo((
   props: {
+    multiline?:boolean,
     value?: string,
     visiable?: boolean,
     onClose: () => void,
   }
 ) => {
-  const { value, visiable, onClose } = props;
+  const { multiline, value, visiable, onClose } = props;
   const [nameError, setNameError] = useState<string>();
   const { t } = useTranslation()
   const appConfig = useAppConfig();
@@ -64,6 +64,7 @@ const ResourceEditDialog = memo((
     resetForm();
   };
 
+  const InputCtrl = useMemo(() => multiline ? Input.TextArea : Input, [multiline]);
   return (
     <Modal
       title={t("Config.MultiLang.LangInput")}
@@ -77,7 +78,7 @@ const ResourceEditDialog = memo((
       onOk={handleOk}
       onCancel={handleCancel}
     >
-      <div style={{ height: "calc(100vh - 300px)", overflow: "auto" }}>
+      <div style={{ height: "calc(100vh - 400px)", overflow: "auto" }}>
         <Form
           name="edit-lang-local"
           form={form}
@@ -86,15 +87,6 @@ const ResourceEditDialog = memo((
           wrapperCol={{ span: 17 }}
           autoComplete="off"
         >
-          <Form.Item
-            label={t("Name")}
-            name="name"
-            rules={[{ required: true, message: t("Required") }]}
-            help={nameError}
-            validateStatus={nameError ? "error" : undefined}
-          >
-            <Input onChange={() => { setNameError(""); }} />
-          </Form.Item>
           {
             appConfig?.schemaJson?.multiLang?.langs.map((lang) => {
               return (
@@ -102,12 +94,11 @@ const ResourceEditDialog = memo((
                   label={t("Lang." + lang.key)}
                   name={lang.key}
                 >
-                  <Input.TextArea />
+                  <InputCtrl />
                 </Form.Item>
               )
             })
           }
-
         </Form>
       </div>
     </Modal>

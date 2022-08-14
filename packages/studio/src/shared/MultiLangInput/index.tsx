@@ -42,7 +42,7 @@ const MultiLangInput = (
         }
 
       </Input.Group>
-      <ResourceEditDialog visiable={visiable} value={value} onClose={handleClose} />
+      <ResourceEditDialog visiable={visiable} multiline={multiline} value={value} onClose={handleClose} />
     </>
   )
 }
