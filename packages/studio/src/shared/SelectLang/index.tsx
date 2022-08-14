@@ -7,10 +7,9 @@ const SelectLang = memo(() => {
   //const [selectedLang, setSelectedLang] = useState(() => getLocale());
 
   const appConfig = useAppConfig();
-  const { t } = useTranslation();
-  const handleClick = (): void => {
-    //setLocale(key, reload);
-    //setSelectedLang(getLocale())
+  const { t, i18n } = useTranslation();
+  const handleClick = ({ key }): void => {
+    i18n.changeLanguage(key)
   };
 
 
