@@ -27,7 +27,7 @@ const LangLocalEditDialog = memo((
       title={langLocal?.id ? t("Config.MultiLang.LangResourcesEdit") : t("Config.MultiLang.NewLangResource")}
       visible={!!langLocal}
       okText={t("Confirm")}
-      width={800}
+      width={600}
       cancelText={t("Cancel")}
       onOk={handleOk}
       onCancel={handleCancel}
@@ -35,9 +35,8 @@ const LangLocalEditDialog = memo((
       <Form
         name="edit-lang-local"
         labelCol={{ span: 6 }}
-        labelAlign="left"
         labelWrap
-        wrapperCol={{ span: 16 }}
+        wrapperCol={{ span: 17 }}
         initialValues={{ remember: true }}
         autoComplete="off"
       >
