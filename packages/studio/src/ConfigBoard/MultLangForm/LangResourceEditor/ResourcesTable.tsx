@@ -1,46 +1,9 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, Input, Space, Table } from 'antd';
-import { ColumnsType } from 'antd/lib/table';
-import { useAppConfig } from '../../../shared/AppRoot/context';
+import { useAppConfig, useAppParams } from '../../../shared/AppRoot/context';
 import React, { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-interface DataType {
-  key: React.Key;
-  name: string;
-  age: number;
-  address: string;
-}
-
-const columns22: ColumnsType<DataType> = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-  },
-  {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
-  },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
-  },
-
-  {
-    title: 'Operation',
-    key: 'pperation',
-    width: 100,
-    render: (_, record) => (
-      <Space>
-        <Button type="link">编辑</Button>
-        <Button type="link">删除</Button>
-      </Space>
-    ),
-  },
-];
 const data = [
   {
     key: '1',
@@ -69,6 +32,7 @@ const ResourcesTable = memo(() => {
   const [keyword, setKeyWord] = useState("");
   const { t } = useTranslation();
   const appConfig = useAppConfig();
+  const { langLocales } = useAppParams();
   const columns = useMemo(() => {
     const cols: any[] = [
       {
@@ -107,7 +71,16 @@ const ResourcesTable = memo(() => {
     })
 
     return cols;
-  }, [t])
+  }, [appConfig?.schemaJson?.multiLang?.langs, t])
+  const data = useMemo(() => {
+    return langLocales?.map((langLocal => {
+      return {
+        key: langLocal.name,
+        name: langLocal.name,
+        ...langLocal.schemaJson
+      }
+    }))
+  }, [langLocales])
 
   const handleKeywordChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setKeyWord(event.target.value);
