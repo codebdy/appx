@@ -1,4 +1,4 @@
-import { PlusOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Input, Space, Table } from 'antd';
 import { useAppConfig, useAppParams } from '../../../shared/AppRoot/context';
 import React, { memo, useCallback, useMemo, useState } from 'react';
@@ -55,7 +55,8 @@ const ResourcesTable = memo(() => {
       render: (_, record) => (
         <Space>
           <Button
-            type="link"
+            type="text"
+            icon={<EditOutlined />}
             onClick={() => {
               setEditingLocal(getLocal(record?.key) || {})
             }}
@@ -63,8 +64,9 @@ const ResourcesTable = memo(() => {
             {t("Edit")}
           </Button>
           <Button
-            type="link"
+            type="text"
             loading={record?.key === deletingId && loading}
+            icon={<DeleteOutlined />}
             onClick={() => {
               setDeletingId(record?.key)
               remove(record?.key);
