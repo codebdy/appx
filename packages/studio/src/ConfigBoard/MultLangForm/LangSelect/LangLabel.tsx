@@ -1,6 +1,6 @@
 import React, { CSSProperties, useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ILang } from "../../model";
+import { ILang } from "../../../model";
 
 const LangLabel = React.forwardRef((
   props: {

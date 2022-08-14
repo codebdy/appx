@@ -201,7 +201,8 @@
       "Open": "开启多语言",
       "Langs": "自持语言",
       "LangsEdit": "支持语言编辑",
-      "Resources": "语言资源"
+      "Resources": "语言资源",
+      "LangResourcesEdit": "编辑语言资源"
     },
     "Other": "其他配置"
   },
