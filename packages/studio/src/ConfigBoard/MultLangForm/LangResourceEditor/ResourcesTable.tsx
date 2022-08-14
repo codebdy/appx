@@ -1,7 +1,7 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, Input, Space, Table } from 'antd';
 import { useAppConfig, useAppParams } from '../../../shared/AppRoot/context';
-import React, { memo, useCallback, useMemo, useState } from 'react';
+import React, { memo, useCallback, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ILangLocalInput } from '../../../model/input';
 import LangLocalEditDialog from './LangLocalEditDialog';
@@ -17,6 +17,7 @@ const ResourcesTable = memo(() => {
   const getLocal = useCallback((id: ID) => {
     return langLocales.find(lang => lang.id === id);
   }, [langLocales])
+
   const columns = useMemo(() => {
     const cols: any[] = [
       {
@@ -60,7 +61,7 @@ const ResourcesTable = memo(() => {
     })
 
     return cols;
-  }, [appConfig?.schemaJson?.multiLang?.langs, t])
+  }, [appConfig?.schemaJson?.multiLang?.langs, getLocal, t])
   const data = useMemo(() => {
     return langLocales?.map((langLocal => {
       return {

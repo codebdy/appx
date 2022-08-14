@@ -44,6 +44,7 @@ const LangLocalEditDialog = memo((
     form.validateFields().then((formValues) => {
       const { name, ...schemaJson } = formValues
       upsert({
+        id: langLocal?.id,
         name: formValues.name,
         schemaJson: schemaJson
       })
