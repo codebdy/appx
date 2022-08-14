@@ -30,10 +30,19 @@ export function useReadMeta(appUuid: string): { error?: Error; loading?: boolean
     }
   `;
   }, [queryName]);
-  const { data, error, loading } = useQueryOne<Meta>(queryGql, { appUuid });
+  const { data, error, loading } = useQueryOne<Meta>(
+    {
+      gql: queryGql,
+      params: { appUuid }
+    }
+
+  );
   const { data: systemData, error: systemError, loading: systemLoading } = useQueryOne<Meta>(
-    appUuid !== SYSTEM_APP_UUID ? queryGql : undefined,
-    { appUuid: SYSTEM_APP_UUID }
+    {
+      gql: appUuid !== SYSTEM_APP_UUID ? queryGql : undefined,
+      params: { appUuid: SYSTEM_APP_UUID }
+    }
+
   );
 
   useEffect(() => {

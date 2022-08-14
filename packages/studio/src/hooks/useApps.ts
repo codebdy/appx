@@ -13,5 +13,10 @@ query {
 `
 
 export function useApps() {
-  return useQuery<IApp>(appsGql, ["App"])
+  return useQuery<IApp>(
+    {
+      gql: appsGql,
+      depEntityNames: ["App"]
+    }
+  )
 }

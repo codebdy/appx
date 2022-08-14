@@ -5,6 +5,7 @@ import { useLazyRequest } from "./useLazyRequest";
 import { useEndpoint } from "../context";
 import { EVENT_DATA_POSTED_ONE, EVENT_DATA_REMOVED, off, on } from "../events";
 import { MutateFn } from './useQueryOne';
+import { IQueryInput } from './IQueryInput';
 
 export interface QueryResult<T> {
   [key: string]: T[] | undefined;
@@ -18,7 +19,7 @@ export type QueryResponse<T> = {
   error?: Error;
 }
 
-export function useQuery<T>(gql: string | undefined, params: any = {}, entityNames?: string[]): QueryResponse<T> {
+export function useQuery<T>(input: IQueryInput): QueryResponse<T> {
   const [revalidating, setRevalidating] = useState<boolean>();
   const loadedRef = useRef(false);
   const endpoint = useEndpoint();
@@ -34,27 +35,27 @@ export function useQuery<T>(gql: string | undefined, params: any = {}, entityNam
   })
 
   const load = useCallback(() => {
-    if (!gql || !endpoint || loadedRef.current) {
+    if (!input.gql || !endpoint || loadedRef.current) {
       return
     }
     loadedRef.current = true;
-    doLoad(gql, params)
-  }, [doLoad, endpoint, gql, params]);
+    doLoad(input.gql, input.params)
+  }, [doLoad, endpoint, input.gql, input.params]);
 
   const refresh = useCallback(() => {
     setRevalidating(true)
-    doLoad(gql, params)
-  }, [doLoad, gql, params])
+    doLoad(input.gql, input.params)
+  }, [doLoad, input.gql, input.params])
 
   refreshRef.current = refresh;
 
   const eventHandler = useCallback((event: CustomEvent) => {
-    if (entityNames?.find(entity => entity === event.detail?.entity)) {
+    if (input.depEntityNames?.find(entity => entity === event.detail?.entity)) {
       if (refreshRef.current) {
         refreshRef.current();
       }
     }
-  }, [entityNames]);
+  }, [input.depEntityNames]);
 
   useEffect(() => {
     load();

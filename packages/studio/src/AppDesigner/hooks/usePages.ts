@@ -36,12 +36,14 @@ query queryPages($appUuid:String!, $device:String!){
 `
 
 export function usePages() {
-  const params = useAppParams();
+  const appParams = useAppParams();
 
   const { data, error, loading } = useQuery<IPage>(
-    pagesGql,
-    { device: params.device, appUuid: params.app.uuid },
-    ["Page"]
+    {
+      gql:pagesGql,
+      params:{device:appParams.device, appUuid: appParams.app.uuid },
+      depEntityNames: ["Page"]
+    }
   )
 
   return { pages: data?.page, error, loading }

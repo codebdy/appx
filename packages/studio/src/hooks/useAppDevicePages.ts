@@ -26,5 +26,10 @@ query queryApp($device:DeviceEnumComparisonExp!, id:ID!){
 `
 
 export function useAppDevicePages(id: ID, device: Device) {
-  return useQueryOne<IApp>(appsGql, {id, device}, ["App", "Page"])
+  return useQueryOne<IApp>(
+    {
+      gql: appsGql,
+      params: { id, device },
+      depEntityNames: ["App", "Page"]
+    })
 }

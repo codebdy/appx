@@ -43,7 +43,6 @@ const MenuContent = memo(() => {
 
   const handleClick = useCallback(({ key }) => {
     const item = getMenuItem(key);
-    console.log("哈哈", item);
 
     if (item?.type === MenuItemType.Link) {
       item?.link && window.open(item?.link)

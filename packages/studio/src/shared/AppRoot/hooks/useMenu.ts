@@ -33,9 +33,11 @@ export function useMenu() {
   const params = useAppParams();
 
   const { data, error, loading } = useQueryOne<IMenu>(
-    menuGql,
-    { device: params.device, appUuid: params.app.uuid },
-    ["Menu"]
+    {
+      gql: menuGql,
+      params: { device: params.device, appUuid: params.app.uuid },
+      depEntityNames: ["Menu"]
+    }
   )
 
   return { menu: data?.oneMenu, error, loading }

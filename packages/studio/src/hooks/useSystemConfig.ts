@@ -18,7 +18,6 @@ query queryAppConfig{
 `
 
 export function useSystemConfig() {
-  const { data, error, loading } = useQueryOne<IAppConfig>(configGql, ["AppConfig"])
-
+  const { data, error, loading } = useQueryOne<IAppConfig>({ gql: configGql, depEntityNames: ["AppConfig"] })
   return { config: data?.oneAppConfig, error, loading }
 }

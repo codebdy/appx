@@ -17,7 +17,13 @@ query queryPage($id:ID!){
 `
 
 export function usePage(id?: string) {
-  const { data, error, loading } = useQueryOne<IPage>(id && pageGql, { id }, ["Page"])
+  const { data, error, loading } = useQueryOne<IPage>(
+    {
+      gql: id && pageGql,
+      params: { id },
+      depEntityNames: ["Page"]
+    }
+  )
 
   return { page: data?.onePage, error, loading }
 }

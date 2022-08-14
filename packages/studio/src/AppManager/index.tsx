@@ -29,6 +29,7 @@ const AppManager = memo(() => {
     }
   }, [handleScroll])
 
+
   return (
     <AppConfigContext.Provider value={config}>
       <Layout className="rx-studio">
