@@ -6,7 +6,7 @@ import { useAppConfig } from "../AppRoot/context";
 const MultiLangInput = (
   props?: {
     multiline?: boolean,
-    onChange: (event: { target: { value: string } }) => void,
+    onChange?: (event: { target: { value: string } }) => void,
     value?: string,
   }
 ) => {
