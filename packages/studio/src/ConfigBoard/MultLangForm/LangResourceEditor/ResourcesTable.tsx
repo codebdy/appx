@@ -5,6 +5,7 @@ import React, { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ILangLocalInput } from '../../../model/input';
 import LangLocalEditDialog from './LangLocalEditDialog';
+import { ID } from '../../../shared';
 
 
 const ResourcesTable = memo(() => {
@@ -13,6 +14,9 @@ const ResourcesTable = memo(() => {
   const { t } = useTranslation();
   const appConfig = useAppConfig();
   const { langLocales } = useAppParams();
+  const getLocal = useCallback((id: ID) => {
+    return langLocales.find(lang => lang.id === id);
+  }, [langLocales])
   const columns = useMemo(() => {
     const cols: any[] = [
       {
@@ -38,7 +42,12 @@ const ResourcesTable = memo(() => {
       width: 100,
       render: (_, record) => (
         <Space>
-          <Button type="link">
+          <Button
+            type="link"
+            onClick={() => {
+              setEditingLocal(getLocal(record?.key) || {})
+            }}
+          >
             {t("Edit")}
           </Button>
           <Button type="link">
