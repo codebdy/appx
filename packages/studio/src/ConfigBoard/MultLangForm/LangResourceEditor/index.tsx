@@ -3,6 +3,7 @@ import { Button, Modal } from "antd";
 import React, { useCallback, useState } from "react";
 import { memo } from "react";
 import { useTranslation } from "react-i18next";
+import ResourcesTable from "./ResourcesTable";
 
 const LangResourceEditor = memo(() => {
   const [visible, setVisible] = useState(false);
@@ -29,9 +30,7 @@ const LangResourceEditor = memo(() => {
         footer={null}
         width={1000}
       >
-        <p>some contents...</p>
-        <p>some contents...</p>
-        <p>some contents...</p>
+        <ResourcesTable />
       </Modal>
     </>
   )
