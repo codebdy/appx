@@ -1,13 +1,21 @@
 import { PlusOutlined } from '@ant-design/icons';
-import { Button, Input, Space, Table, Tag } from 'antd';
+import { Button, Input, Space, Table } from 'antd';
+import { ColumnsType } from 'antd/lib/table';
 import React, { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-const columns = [
+
+interface DataType {
+  key: React.Key;
+  name: string;
+  age: number;
+  address: string;
+}
+
+const columns: ColumnsType<DataType> = [
   {
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
-    render: (text) => <a>{text}</a>,
   },
   {
     title: 'Age',
@@ -19,33 +27,13 @@ const columns = [
     dataIndex: 'address',
     key: 'address',
   },
-  {
-    title: 'Tags',
-    key: 'tags',
-    dataIndex: 'tags',
-    render: (_, { tags }) => (
-      <>
-        {tags.map((tag) => {
-          let color = tag.length > 5 ? 'geekblue' : 'green';
 
-          if (tag === 'loser') {
-            color = 'volcano';
-          }
-
-          return (
-            <Tag color={color} key={tag}>
-              {tag.toUpperCase()}
-            </Tag>
-          );
-        })}
-      </>
-    ),
-  },
   {
-    title: 'Action',
-    key: 'action',
+    title: 'Operation',
+    key: 'pperation',
+    width: 100,
     render: (_, record) => (
-      <Space size="middle">
+      <Space>
         <Button type="link">编辑</Button>
         <Button type="link">删除</Button>
       </Space>
