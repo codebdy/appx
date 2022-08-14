@@ -14,7 +14,7 @@ const SelectLang = memo(() => {
 
 
   const langMenu = (
-    <Menu selectedKeys={[]} onClick={handleClick}>
+    <Menu selectedKeys={[i18n.language]} onClick={handleClick}>
       {appConfig?.schemaJson?.multiLang?.langs.map((lang) => {
         return (
           <Menu.Item key={lang.key} >
