@@ -14,7 +14,7 @@ export function useChangeAttribute(appUuid: ID) {
   const changeAttribute = useCallback(
     (attr: AttributeMeta, cls: ClassMeta) => {
       if (!chackName(cls.uuid, attr.name, attr.uuid)) {
-        return t("ModelBoard.ErrorNameRepeat");
+        return t("ErrorNameRepeat");
       }
       changeEntity({
         ...cls,

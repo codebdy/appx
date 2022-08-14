@@ -1,9 +1,9 @@
 import { Form, Input, Modal } from "antd";
 import { ILangLocalInput } from "../../../model/input";
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
-import { useAppConfig } from "../../../shared/AppRoot/context";
+import { useAppConfig, useAppParams } from "../../../shared/AppRoot/context";
 import { useUpsertLangLocal } from "../../../hooks/useUpsertLangLocal";
 import { useShowError } from "../../../hooks/useShowError";
 
@@ -14,10 +14,14 @@ const LangLocalEditDialog = memo((
   }
 ) => {
   const { langLocal, onClose } = props;
+  const [nameError, setNameError] = useState<string>();
   const { t } = useTranslation()
   const appConfig = useAppConfig();
   const [form] = Form.useForm();
+  const { langLocales } = useAppParams();
+
   const resetForm = useCallback(() => {
+    setNameError("");
     form.resetFields();
     form.setFieldsValue({
       name: langLocal?.name,
@@ -42,6 +46,10 @@ const LangLocalEditDialog = memo((
 
   const handleOk = () => {
     form.validateFields().then((formValues) => {
+      if (langLocales.find(lang => lang.name === formValues.name && langLocal.id !== lang.id)) {
+        setNameError(t("ErrorNameRepeat"))
+        return;
+      }
       const { name, ...schemaJson } = formValues
       upsert({
         id: langLocal?.id,
@@ -83,8 +91,10 @@ const LangLocalEditDialog = memo((
             label={t("Name")}
             name="name"
             rules={[{ required: true, message: t("Required") }]}
+            help={nameError}
+            validateStatus={nameError ? "error" : undefined}
           >
-            <Input />
+            <Input onChange={() => { setNameError(""); }} />
           </Form.Item>
 
           {

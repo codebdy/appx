@@ -20,7 +20,7 @@ export function useChangeClass(appUuid: ID) {
           .filter((cl) => cl.uuid !== cls.uuid)
           .find((cl) => cl.name === cls.name)
       ) {
-        return t("ModelBoard.ErrorNameRepeat");
+        return t("ErrorNameRepeat");
       }
       backupSnapshot();
       setClasses((entities) =>

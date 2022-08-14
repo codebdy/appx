@@ -40,6 +40,7 @@
   "Icon": "图标",
   "Operation": "操作",
   "AuthPoints": "权限点",
+  "ErrorNameRepeat": "名称重复",
   "install": {
     "Title": "安装Appx",
     "Next": "下一步",
@@ -164,8 +165,7 @@
     "DeleteDate": "删除时间",
     "Side": "端",
     "RoleName": "角色名",
-    "Multiplicity": "重数",
-    "ErrorNameRepeat": "名称重复"
+    "Multiplicity": "重数"
   },
   "SettingsForm": {
     "Properties": "属性",
