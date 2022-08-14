@@ -70,7 +70,7 @@ const ResourcesTable = memo(() => {
     setEditingLocal(undefined);
   }, [])
 
-  const handleNew  = useCallback(() => {
+  const handleNew = useCallback(() => {
     setEditingLocal({});
   }, [])
 
@@ -86,6 +86,7 @@ const ResourcesTable = memo(() => {
             </div>
           )
         }}
+        scroll={{ y: 240, x: 500 }}
         columns={columns}
         dataSource={data}
         pagination={false}

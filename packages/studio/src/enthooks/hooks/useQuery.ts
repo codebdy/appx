@@ -26,7 +26,7 @@ export function useQuery<T>(input: IQueryInput): QueryResponse<T> {
   const refreshRef = useRef<() => void>();
 
   const [doLoad, { error, data, loading }] = useLazyRequest({
-    onCompleted: () => {
+    onCompleted: (data) => {
       setRevalidating(false)
     },
     onError: () => {
@@ -59,6 +59,9 @@ export function useQuery<T>(input: IQueryInput): QueryResponse<T> {
 
   useEffect(() => {
     load();
+  }, [load]);
+
+  useEffect(() => {
     on(EVENT_DATA_POSTED_ONE, eventHandler);
     on(EVENT_DATA_REMOVED, eventHandler);
     return () => {

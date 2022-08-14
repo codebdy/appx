@@ -1,4 +1,5 @@
 import { gql } from "awesome-graphql-client";
+import { useMemo } from "react";
 import { SYSTEM_APP_UUID } from "../consts";
 import { useQuery } from "../enthooks/hooks/useQuery";
 import { ILangLocal } from "../model";
@@ -19,10 +20,11 @@ query queryLangLocal($appUuid:String){
 `
 
 export function useQueryLangLocales(appUuid: string) {
-  const { data, error, loading } = useQuery<ILangLocal>({
+  const input = useMemo(() => ({
     gql: langLocalGql,
     params: { appUuid: appUuid || SYSTEM_APP_UUID },
     depEntityNames: ["LangLocal"]
-  })
+  }), [appUuid])
+  const { data, error, loading } = useQuery<ILangLocal>(input)
   return { langLocales: data?.langLocal, error, loading }
 }

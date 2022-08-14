@@ -18,6 +18,7 @@ const LangLocalEditDialog = memo((
   const appConfig = useAppConfig();
   const [form] = Form.useForm();
   const resetForm = useCallback(() => {
+    form.resetFields();
     form.setFieldsValue({
       name: langLocal?.name,
       ...langLocal?.schemaJson
