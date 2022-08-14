@@ -7,6 +7,8 @@ import { ILangLocalInput } from '../../../model/input';
 import LangLocalEditDialog from './LangLocalEditDialog';
 import { ID } from '../../../shared';
 import { ILangLocal } from '../../../model';
+import { useDeleteLangLocal } from '../../../hooks/useDeleteLangLocal';
+import { useShowError } from '../../../hooks/useShowError';
 
 const ResourcesTable = memo(() => {
   const [keyword, setKeyWord] = useState("");
@@ -14,9 +16,18 @@ const ResourcesTable = memo(() => {
   const { t } = useTranslation();
   const appConfig = useAppConfig();
   const { langLocales } = useAppParams();
+  const [deletingId, setDeletingId] = useState<ID>();
   const getLocal = useCallback((id: ID) => {
     return langLocales.find(lang => lang.id === id);
   }, [langLocales])
+
+  const [remove, { error, loading }] = useDeleteLangLocal({
+    onCompleted: () => {
+      setDeletingId(undefined);
+    }
+  });
+
+  useShowError(error);
 
   const columns = useMemo(() => {
     const cols: any[] = [
@@ -51,7 +62,14 @@ const ResourcesTable = memo(() => {
           >
             {t("Edit")}
           </Button>
-          <Button type="link">
+          <Button
+            type="link"
+            loading={record?.key === deletingId && loading}
+            onClick={() => {
+              setDeletingId(record?.key)
+              remove(record?.key);
+            }}
+          >
             {
               t("Delete")
             }
@@ -61,7 +79,7 @@ const ResourcesTable = memo(() => {
     })
 
     return cols;
-  }, [appConfig?.schemaJson?.multiLang?.langs, getLocal, t]);
+  }, [appConfig?.schemaJson?.multiLang?.langs, deletingId, getLocal, loading, remove, t]);
 
   const matchKeyword = useCallback((lang: ILangLocal) => {
     if (lang.name?.indexOf(keyword) > -1) {
