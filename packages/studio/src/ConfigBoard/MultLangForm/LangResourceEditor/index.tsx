@@ -4,6 +4,7 @@ import React, { useCallback, useState } from "react";
 import { memo } from "react";
 import { useTranslation } from "react-i18next";
 import ResourcesTable from "./ResourcesTable";
+import "./style.less"
 
 const LangResourceEditor = memo(() => {
   const [visible, setVisible] = useState(false);

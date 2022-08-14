@@ -1,5 +1,7 @@
-import { Button, Space, Table, Tag } from 'antd';
-import React, { memo } from 'react';
+import { PlusOutlined } from '@ant-design/icons';
+import { Button, Input, Space, Table, Tag } from 'antd';
+import React, { memo, useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 const columns = [
   {
     title: 'Name',
@@ -75,12 +77,20 @@ const data = [
 ];
 
 const ResourcesTable = memo(() => {
+  const [keyword, setKeyWord] = useState("");
+  const { t } = useTranslation();
+  const handleKeywordChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    setKeyWord(event.target.value);
+  }, [])
+
   return (
     <Table
+      className="lang-resource-table"
       title={() => {
         return (
-          <div>
-            哈哈
+          <div className='table-toolbar'>
+            <Input.Search className='search-input' allowClear onChange={handleKeywordChange} />
+            <Button type="primary" icon={<PlusOutlined />}>{t("New")}</Button>
           </div>
         )
       }}
