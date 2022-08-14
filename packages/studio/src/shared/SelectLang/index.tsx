@@ -18,7 +18,7 @@ const SelectLang = memo(() => {
       {appConfig?.schemaJson?.multiLang?.langs.map((lang) => {
         return (
           <Menu.Item key={lang.key} >
-            <span role="img">
+            <span role="img" style={{ marginRight: 8 }}>
               {lang.abbr}
             </span>
             {t("Lang." + lang.key)}
