@@ -1,5 +1,5 @@
 import { FormOutlined } from "@ant-design/icons";
-import { Button, Input, message, Modal, Tag } from "antd";
+import { Input, message, Modal, Tag } from "antd";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { memo } from "react";
 import { DragDropContext, Draggable, Droppable, DropResult } from "react-beautiful-dnd";
@@ -123,14 +123,21 @@ const LangSelect = memo(() => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <Button onClick={showModal}>
-        <div>
-          <Tag>中文</Tag>
-          <Tag>English</Tag>
-          <Tag>日本语</Tag>
+      <div onClick={showModal}>
+        <div className="hover-border lang-input-box">
+          {
+            appConfig?.schemaJson?.multiLang?.langs?.map(lang => {
+              return (
+                <Tag style={{ marginBottom: 4 }}>
+                  <span style={{ marginRight: 8 }}>{lang.abbr.toUpperCase()}</span>
+                  {t("Lang." + lang.key)}
+                </Tag>
+              )
+            })
+          }
           <FormOutlined style={{ marginLeft: 8 }} />
         </div>
-      </Button>
+      </div>
       <Modal
         title={t("Config.MultiLang.LangsEdit")}
         className="lang-select-dialog"
@@ -165,8 +172,8 @@ const LangSelect = memo(() => {
                       flex: 1,
                       height: "100%",
                       backgroundColor: snapshot.isDraggingOver
-                      ? "rgba(0,0,0, 0.05)"
-                      : undefined,
+                        ? "rgba(0,0,0, 0.05)"
+                        : undefined,
                     }}
                   >
                     {allLangs?.map((lang, index) => {
