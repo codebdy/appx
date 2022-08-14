@@ -24,7 +24,7 @@ const LangResourceEditor = memo(() => {
         {t("Edit")}
       </Button>
       <Modal
-        title={t("Config.MultiLang.LangResourcesEdit")}
+        title={t("Config.MultiLang.LangResourcesList")}
         centered
         visible={visible}
         onCancel={handleCancel}
