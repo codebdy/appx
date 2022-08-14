@@ -13,7 +13,7 @@ const SelectLang = memo(() => {
     i18n.changeLanguage(key)
   };
 
-
+  const isMultLang = appConfig?.schemaJson?.multiLang?.open;
   const langMenu = (
     <Menu selectedKeys={[i18n.language]} onClick={handleClick}>
       {appConfig?.schemaJson?.multiLang?.langs.map((lang) => {
@@ -31,17 +31,20 @@ const SelectLang = memo(() => {
 
 
   return (
-    <Dropdown
-      overlay={langMenu}
-      placement={'bottomLeft'}
-      trigger={["click"]}
-    >
-      <Button
-        type='text'
-        shape='circle'
-        icon={<TranslationOutlined />}>
-      </Button>
-    </Dropdown >
+    isMultLang ?
+      <Dropdown
+        overlay={langMenu}
+        placement={'bottomLeft'}
+        trigger={["click"]}
+      >
+        <Button
+          type='text'
+          shape='circle'
+          icon={<TranslationOutlined />}>
+        </Button>
+      </Dropdown >
+      :
+      <></>
   );
 });
 
