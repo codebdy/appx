@@ -1,4 +1,5 @@
-import { Input } from "antd";
+import { TranslationOutlined } from "@ant-design/icons";
+import { Button, Input } from "antd";
 import React, { useCallback, useState } from "react";
 
 const MultiLangInput = () => {
@@ -9,9 +10,10 @@ const MultiLangInput = () => {
   }, [])
 
   return (
-    <>
-      <Input addonAfter=".com" />
-    </>
+    <Input.Group compact>
+      <Input style={{ width: 'calc(100% - 32px)' }} />
+      <Button icon={<TranslationOutlined />} style={{ width: "32px" }}></Button>
+    </Input.Group>
   )
 }
 
