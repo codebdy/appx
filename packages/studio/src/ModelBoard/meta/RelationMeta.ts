@@ -57,6 +57,9 @@ export interface RelationMeta {
    */
   roleOfSource?: string;
 
+  labelOfTarget?:string;
+  labelOfSource?:string;
+
   descriptionOnSource?: string;
 
   descriptionOnTarget?: string;

@@ -32,6 +32,8 @@ export interface ClassMeta {
 
   name: string;
 
+  label?: string;
+
   partialName?: string;
 
   stereoType: StereoType;

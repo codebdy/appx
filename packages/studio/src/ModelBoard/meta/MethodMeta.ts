@@ -3,6 +3,7 @@ import { Type } from "./Type";
 export interface ArgMeta {
   uuid: string;
   name: string;
+  label?: string;
   type: Type;
   typeUuid?: string;
   /**

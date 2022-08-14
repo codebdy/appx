@@ -11,6 +11,8 @@ export interface AttributeMeta {
    */
   name: string;
 
+  label?: string;
+
   /**
    * 字段类型
    */
