@@ -1,12 +1,12 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, Input, Space, Table } from 'antd';
 import { useAppConfig, useAppParams } from '../../../shared/AppRoot/context';
-import React, { memo, useCallback, useMemo, useRef, useState } from 'react';
+import React, { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ILangLocalInput } from '../../../model/input';
 import LangLocalEditDialog from './LangLocalEditDialog';
 import { ID } from '../../../shared';
-
+import { ILangLocal } from 'packages/studio/src/model';
 
 const ResourcesTable = memo(() => {
   const [keyword, setKeyWord] = useState("");
@@ -61,16 +61,19 @@ const ResourcesTable = memo(() => {
     })
 
     return cols;
-  }, [appConfig?.schemaJson?.multiLang?.langs, getLocal, t])
+  }, [appConfig?.schemaJson?.multiLang?.langs, getLocal, t]);
+  const matchKeyword = useCallback((lang: ILangLocal) => {
+    return lang.name?.indexOf(keyword) > -1 || JSON.stringify(lang.schemaJson).indexOf(keyword) > -1;
+  }, [keyword]);
   const data = useMemo(() => {
-    return langLocales?.map((langLocal => {
+    return langLocales.filter(lang => matchKeyword(lang))?.map((langLocal => {
       return {
         key: langLocal.id,
         name: langLocal.name,
         ...langLocal.schemaJson
       }
     }))
-  }, [langLocales])
+  }, [langLocales, matchKeyword])
 
   const handleKeywordChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setKeyWord(event.target.value);
