@@ -5,9 +5,11 @@ import React, { useCallback, useMemo, useState } from "react";
 const MultiLangInput = (
   props?: {
     multiline?: boolean,
+    onChange: (event: { target: { value: string } }) => void,
+    value?: string,
   }
 ) => {
-  const { multiline } = props;
+  const { multiline, onChange, value } = props;
   const [visiable, setVisiable] = useState(false);
 
   const handleClose = useCallback(() => {
@@ -18,7 +20,7 @@ const MultiLangInput = (
 
   return (
     <Input.Group compact>
-      <InputCtrl style={{ width: 'calc(100% - 32px)' }} />
+      <InputCtrl style={{ width: 'calc(100% - 32px)' }} value={value} onChange={onChange} />
       <Button icon={<TranslationOutlined />} style={{ width: "32px" }}></Button>
     </Input.Group>
   )
