@@ -1,4 +1,4 @@
-import { Space, Table, Tag } from 'antd';
+import { Button, Space, Table, Tag } from 'antd';
 import React, { memo } from 'react';
 const columns = [
   {
@@ -44,8 +44,8 @@ const columns = [
     key: 'action',
     render: (_, record) => (
       <Space size="middle">
-        <a>Invite {record.name}</a>
-        <a>Delete</a>
+        <Button type="link">编辑</Button>
+        <Button type="link">删除</Button>
       </Space>
     ),
   },
@@ -76,7 +76,18 @@ const data = [
 
 const ResourcesTable = memo(() => {
   return (
-    <Table columns={columns} dataSource={data} />
+    <Table
+      title={() => {
+        return (
+          <div>
+            哈哈
+          </div>
+        )
+      }}
+      columns={columns}
+      dataSource={data}
+      pagination={false}
+    />
   )
 });
 
