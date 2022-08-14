@@ -3,11 +3,10 @@ import ReactDOM from 'react-dom'
 import App from "./App";
 import 'antd/dist/antd.less'
 import './index.less'
-import { SERVER_URL } from "./consts";
+import { SERVER_URL, SYSTEM_APP_UUID } from "./consts";
 import { RecoilRoot } from "recoil";
 import { BrowserRouter } from "react-router-dom";
 import { EntiRoot } from "./enthooks";
-import { SYSTEM_APP_UUID } from "./ModelBoard/recoil/atoms";
 import './i18n';
 
 const AppRoot = () => {

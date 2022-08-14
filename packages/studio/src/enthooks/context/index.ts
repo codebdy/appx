@@ -1,6 +1,5 @@
 import { createContext, useContext } from "react";
-import { TOKEN_NAME } from "../../consts";
-import { SYSTEM_APP_UUID } from "../../ModelBoard/recoil/atoms";
+import { SYSTEM_APP_UUID, TOKEN_NAME } from "../../consts";
 
 export interface IEntxConfig {
   token?: string,

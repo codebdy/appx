@@ -8,6 +8,7 @@ export interface IFileInput {
 
 export interface IAppConfigInput {
   id?: ID;
+  appUuid?: string;
   schemaJson?: {
     multiLang?: {
       open?: boolean,
@@ -21,7 +22,6 @@ export interface IAppInput {
   uuid?: string;
   title?: string;
   description?: string;
-  config?:IAppConfigInput;
   // image?: IFileInput
 }
 
@@ -37,7 +37,7 @@ export interface IPageInput {
   title?: string;
   schemaJson?: any;
   device?: Device;
-  app?:  { sync: IAppInput };
+  app?: { sync: IAppInput };
   category?: { sync: IPageCategoryInput };
 }
 

@@ -11,8 +11,16 @@ export interface IFile {
   thumbUrl: string;
 }
 
+export interface ILangLocal {
+  id: ID;
+  name: string;
+  appUuid?: string;
+  schemaJson?: any;
+}
+
 export interface IAppConfig {
   id: ID;
+  appUuid?: string;
   schemaJson?: {
     multiLang: {
       open?: boolean,
@@ -29,7 +37,6 @@ export interface IApp {
   // image?: IFile;
   pages?: IPage[];
   menus?: IMenu[];
-  config?: IAppConfig;
 }
 
 export enum Device {

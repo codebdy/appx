@@ -1,9 +1,10 @@
 import { gql } from "awesome-graphql-client";
 import { useMemo, useEffect } from "react";
 import { useSetRecoilState } from "recoil";
+import { SYSTEM_APP_UUID } from "../../consts";
 import { useQueryOne } from "../../enthooks/hooks/useQueryOne";
 import { Meta } from "../meta/Meta";
-import { metaState, classesState, relationsState, diagramsState, x6NodesState, x6EdgesState, packagesState, SYSTEM_APP_UUID } from "../recoil/atoms";
+import { metaState, classesState, relationsState, diagramsState, x6NodesState, x6EdgesState, packagesState } from "../recoil/atoms";
 
 export function useReadMeta(appUuid: string): { error?: Error; loading?: boolean } {
   const setMeta = useSetRecoilState(metaState(appUuid));

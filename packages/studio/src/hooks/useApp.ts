@@ -1,4 +1,5 @@
 import { gql } from "awesome-graphql-client";
+import { SYSTEM_APP_UUID } from "../consts";
 import { useQueryOne } from "../enthooks/hooks/useQueryOne";
 import { IApp } from "../model";
 
@@ -12,10 +13,6 @@ query queryApp($uuid:String!){
     id
     uuid
     title
-    config{
-      id
-      schemaJson
-    }
   }
 }
 `
@@ -24,8 +21,10 @@ export function useApp(uuid: string) {
   const { data, error, loading } = useQueryOne<IApp>(
     {
       gql: appGql,
-      params: { uuid },
-      depEntityNames: ["App", "AppConfig"],
+      params: {
+        uuid: uuid || SYSTEM_APP_UUID
+      },
+      depEntityNames: ["App"],
     }
 
   )

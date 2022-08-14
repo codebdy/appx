@@ -3,7 +3,7 @@ import React, { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useShowError } from '../../hooks/useShowError';
 import { useUpsertAppConfig } from '../../hooks/useUpsertAppConfig';
-import { useAppConfig } from '../../shared/AppRoot/context/config';
+import { useAppConfig } from '../../shared/AppRoot/context';
 import LangResourceEditor from './LangResourceEditor';
 import LangSelect from './LangSelect';
 import "./style.less"

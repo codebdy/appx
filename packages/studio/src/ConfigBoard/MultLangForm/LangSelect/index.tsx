@@ -1,5 +1,6 @@
 import { FormOutlined } from "@ant-design/icons";
 import { Input, message, Modal, Tag } from "antd";
+import { useAppConfig } from "../../../shared/AppRoot/context";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { memo } from "react";
 import { DragDropContext, Draggable, Droppable, DropResult } from "react-beautiful-dnd";
@@ -7,7 +8,6 @@ import { useTranslation } from "react-i18next";
 import { useShowError } from "../../../hooks/useShowError";
 import { useUpsertAppConfig } from "../../../hooks/useUpsertAppConfig";
 import { ILang } from "../../../model";
-import { useAppConfig } from "../../../shared/AppRoot/context/config";
 import LangLabel from "./LangLabel";
 import { langs } from "./langs";
 

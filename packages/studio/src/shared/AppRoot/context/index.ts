@@ -1,15 +1,18 @@
 import { createContext, useContext, useMemo } from "react";
-import { Device, IApp } from "../../../model";
+import { Device, IApp, IAppConfig, ILangLocal } from "../../../model";
 
 export interface IAppContextParams {
   app: IApp,
-  device: Device
+  device: Device | undefined,
+  config: IAppConfig | undefined,
+  langLocales: ILangLocal[] | undefined,
 }
 
 
 export const AppContext = createContext<IAppContextParams | undefined>(undefined);
 
 export const useAppParams = (): IAppContextParams | undefined => useContext(AppContext);
+export const useAppConfig = (): IAppConfig | undefined => useContext(AppContext)?.config;
 
 export const useAppViewKey = () => {
   const params = useAppParams()

@@ -2,7 +2,7 @@ import { MoreOutlined, EditOutlined, DeleteOutlined, FileAddOutlined, PlusSquare
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
 import { useSetRecoilState } from 'recoil';
-import { classesState, selectedDiagramState, SYSTEM_APP_UUID } from "../recoil/atoms";
+import { classesState, selectedDiagramState } from "../recoil/atoms";
 import { PackageMeta } from "../meta/PackageMeta";
 import { useDeletePackage } from './../hooks/useDeletePackage';
 import { useCreateNewClass } from "../hooks/useCreateNewClass";
@@ -11,6 +11,7 @@ import { StereoType } from "../meta/ClassMeta";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
 import { useSelectedAppUuid } from "../context";
 import { useTranslation } from "react-i18next";
+import { SYSTEM_APP_UUID } from "../../consts";
 
 const PackageAction = memo((
   props: {

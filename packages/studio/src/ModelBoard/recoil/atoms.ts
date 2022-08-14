@@ -20,8 +20,6 @@ export interface Snapshot {
   selectedDiagram?: string;
 }
 
-export const SYSTEM_APP_UUID = "SYSTEM"
-
 export const minMapState = atomFamily<boolean, string>({
   key: "local.minMap",
   default: true,

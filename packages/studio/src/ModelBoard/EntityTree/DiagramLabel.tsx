@@ -4,11 +4,12 @@ import { memo } from "react";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
 import TreeNodeLabel from "../../common/TreeNodeLabel";
 import { useSetRecoilState } from 'recoil';
-import { diagramsState, SYSTEM_APP_UUID } from './../recoil/atoms';
+import { diagramsState } from './../recoil/atoms';
 import { useSelectedAppUuid } from "../context";
 import { DiagramMeta } from "../meta/DiagramMeta";
 import DiagramAction from "./DiagramAction";
 import { useGetPackage } from "../hooks/useGetPackage";
+import { SYSTEM_APP_UUID } from "../../consts";
 
 const DiagramLabel = memo((
   props: {

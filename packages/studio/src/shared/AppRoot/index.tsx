@@ -1,30 +1,36 @@
 import { Spin } from 'antd'
 import 'antd/dist/antd.less'
-import React, { memo } from 'react'
+import React, { memo, useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 import { useApp } from '../../hooks/useApp'
+import { useQueryLangLocales } from '../../hooks/useQueryLangLocales'
+import { useQueryAppConfig } from '../../hooks/useQueryAppConfig'
 import { useShowError } from '../../hooks/useShowError'
 import { Device } from '../../model'
 import { AppContext } from './context'
-import { AppConfigContext } from './context/config'
+import { SYSTEM_APP_UUID } from '../../consts'
 
 const AppRoot = memo((
   props: {
     children: React.ReactNode
   }
 ) => {
-  const { appUuid, device } = useParams();
+  const { appUuid = SYSTEM_APP_UUID, device } = useParams();
   const { app, loading, error } = useApp(appUuid)
-  useShowError(error);
+  const { config, loading: configLoading, error: configError } = useQueryAppConfig(appUuid);
+  const { langLocales, loading: localLoading, error: localError } = useQueryLangLocales(appUuid);
+  useShowError(error || configError || localError);
+
+  const realApp = useMemo(() => {
+    return appUuid === SYSTEM_APP_UUID ? { id: "System", uuid: SYSTEM_APP_UUID, title: "System" } : app
+  }, [app, appUuid])
 
   return (
-    app ?
-      <AppContext.Provider value={{ app: app, device: device as Device }}>
-        <AppConfigContext.Provider value={app.config}>
-          <Spin style={{ height: "100vh" }} spinning={loading}>
-            {app && props.children}
-          </Spin>
-        </AppConfigContext.Provider>
+    realApp ?
+      <AppContext.Provider value={{ app: realApp, device: device as Device, config, langLocales }}>
+        <Spin style={{ height: "100vh" }} spinning={loading || configLoading || localLoading}>
+          {props.children}
+        </Spin>
       </AppContext.Provider>
       : <></>
   )
