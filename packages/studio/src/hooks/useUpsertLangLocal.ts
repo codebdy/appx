@@ -17,13 +17,12 @@ export function useUpsertLangLocal(options?: IPostOptions<any>): [
     }
   )
 
-  const upsert = useCallback((config: ILangLocalInput) => {
-    const newConfig = params?.app ? {
-      ...config,
+  const upsert = useCallback((localInput: ILangLocalInput) => {
+    const newLocal = {
+      ...localInput,
       appUuid: params.app.uuid,
     }
-      : config
-    post({ ...newConfig })
+    post({ ...newLocal })
   }, [params?.app, post]);
 
   return [upsert, { error: error, loading: loading }]

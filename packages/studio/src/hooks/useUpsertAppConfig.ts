@@ -18,11 +18,10 @@ export function useUpsertAppConfig(options?: IPostOptions<any>): [
   )
 
   const upsert = useCallback((config: IAppConfigInput) => {
-    const newConfig = params?.app ? {
+    const newConfig = {
       ...config,
       appUuid: params.app.uuid,
     }
-      : config
     post({ ...newConfig })
   }, [params?.app, post]);
 

@@ -11,6 +11,7 @@ query queryLangLocal($appUuid:String){
     }
   }){
     id
+    name
     appUuid
     schemaJson
   }

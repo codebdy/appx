@@ -39,8 +39,8 @@ const LangLocalEditDialog = memo((
 
   useShowError(error);
 
-  const handleOk = (formValues) => {
-    form.validateFields().then(() => {
+  const handleOk = () => {
+    form.validateFields().then((formValues) => {
       const { name, ...schemaJson } = formValues
       upsert({
         name: formValues.name,
