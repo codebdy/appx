@@ -86,12 +86,13 @@ const ResourcesTable = memo(() => {
             </div>
           )
         }}
-        scroll={{ y: 240, x: 500 }}
         columns={columns}
         dataSource={data}
         pagination={false}
+        scroll={{ x: 'max-content', y: "calc(100vh - 300px)" }}
       />
       <LangLocalEditDialog langLocal={editingLocal} onClose={handleClose} />
+
     </>
   )
 });
