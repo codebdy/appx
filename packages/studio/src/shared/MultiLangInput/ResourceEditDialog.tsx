@@ -11,11 +11,10 @@ const ResourceEditDialog = memo((
   props: {
     value?: string,
     visiable?: boolean,
-    langLocal?: ILangLocalInput,
     onClose: () => void,
   }
 ) => {
-  const { value, visiable, langLocal, onClose } = props;
+  const { value, visiable, onClose } = props;
   const [nameError, setNameError] = useState<string>();
   const { t } = useTranslation()
   const appConfig = useAppConfig();
@@ -26,10 +25,9 @@ const ResourceEditDialog = memo((
     setNameError("");
     form.resetFields();
     form.setFieldsValue({
-      name: langLocal?.name,
-      ...langLocal?.schemaJson
+
     })
-  }, [form, langLocal?.name, langLocal?.schemaJson])
+  }, [form])
 
   useEffect(() => {
     resetForm();
@@ -47,18 +45,17 @@ const ResourceEditDialog = memo((
   useShowError(error);
 
   const handleOk = () => {
-    form.validateFields().then((formValues) => {
-      if (langLocales.find(lang => lang.name === formValues.name && langLocal.id !== lang.id)) {
-        setNameError(t("ErrorNameRepeat"))
-        return;
-      }
-      const { name, ...schemaJson } = formValues
-      upsert({
-        id: langLocal?.id,
-        name: formValues.name,
-        schemaJson: schemaJson
-      })
-    })
+    // form.validateFields().then((formValues) => {
+    //   if (langLocales.find(lang => lang.name === formValues.name && langLocal.id !== lang.id)) {
+    //     setNameError(t("ErrorNameRepeat"))
+    //     return;
+    //   }
+    //   const { name, ...schemaJson } = formValues
+    //   upsert({
+    //     name: formValues.name,
+    //     schemaJson: schemaJson
+    //   })
+    // })
 
   };
 
@@ -69,7 +66,7 @@ const ResourceEditDialog = memo((
 
   return (
     <Modal
-      title={langLocal?.id ? t("Config.MultiLang.LangResourcesEdit") : t("Config.MultiLang.NewLangResource")}
+      title={t("Config.MultiLang.LangInput")}
       visible={visiable}
       okText={t("Confirm")}
       width={600}

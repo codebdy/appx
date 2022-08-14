@@ -207,7 +207,8 @@
       "Resources": "语言资源",
       "LangResourcesList": "语言资源列表",
       "LangResourcesEdit": "编辑语言资源",
-      "NewLangResource": "新建语言资源"
+      "NewLangResource": "新建语言资源",
+      "LangInput": "多语言输入"
     },
     "Other": "其他配置"
   },

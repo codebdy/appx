@@ -3,6 +3,7 @@ import { Button, Input } from "antd";
 import React, { useCallback, useMemo, useState } from "react";
 import { useParseLangMessage } from "../../hooks/useParseLangMessage";
 import { useAppConfig } from "../AppRoot/context";
+import ResourceEditDialog from "./ResourceEditDialog";
 
 const MultiLangInput = (
   props?: {
@@ -17,6 +18,10 @@ const MultiLangInput = (
 
   const parse = useParseLangMessage();
 
+  const handleOpen = useCallback(() => {
+    setVisiable(true)
+  }, [])
+
   const handleClose = useCallback(() => {
     setVisiable(false)
   }, [])
@@ -28,14 +33,17 @@ const MultiLangInput = (
   const parsedValue = useMemo(() => parse(value), [parse, value]);
 
   return (
-    <Input.Group compact>
-      <InputCtrl style={{ width: isMultLang ? 'calc(100% - 32px)' : "100%" }} value={parsedValue} onChange={onChange} />
-      {
-        isMultLang &&
-        <Button icon={<TranslationOutlined />} style={{ width: "32px" }}></Button>
-      }
+    <>
+      <Input.Group compact>
+        <InputCtrl style={{ width: isMultLang ? 'calc(100% - 32px)' : "100%" }} value={parsedValue} onChange={onChange} />
+        {
+          isMultLang &&
+          <Button icon={<TranslationOutlined />} style={{ width: "32px" }} onClick={handleOpen}></Button>
+        }
 
-    </Input.Group>
+      </Input.Group>
+      <ResourceEditDialog visiable={visiable} value={value} onClose={handleClose} />
+    </>
   )
 }
 
