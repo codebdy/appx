@@ -1,17 +1,24 @@
 import { TranslationOutlined } from "@ant-design/icons";
 import { Button, Input } from "antd";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 
-const MultiLangInput = () => {
+const MultiLangInput = (
+  props?: {
+    multiline?: boolean,
+  }
+) => {
+  const { multiline } = props;
   const [visiable, setVisiable] = useState(false);
 
   const handleClose = useCallback(() => {
     setVisiable(false)
   }, [])
 
+  const InputCtrl = useMemo(() => multiline ? Input.TextArea : Input, [multiline]);
+
   return (
     <Input.Group compact>
-      <Input style={{ width: 'calc(100% - 32px)' }} />
+      <InputCtrl style={{ width: 'calc(100% - 32px)' }} />
       <Button icon={<TranslationOutlined />} style={{ width: "32px" }}></Button>
     </Input.Group>
   )
