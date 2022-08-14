@@ -1,7 +1,7 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, Input, Space, Table } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface DataType {
@@ -11,7 +11,7 @@ interface DataType {
   address: string;
 }
 
-const columns: ColumnsType<DataType> = [
+const columns22: ColumnsType<DataType> = [
   {
     title: 'Name',
     dataIndex: 'name',
@@ -67,6 +67,36 @@ const data = [
 const ResourcesTable = memo(() => {
   const [keyword, setKeyWord] = useState("");
   const { t } = useTranslation();
+  const columns = useMemo(() => {
+    const cols: any[] = [
+      {
+        title: t('Name'),
+        dataIndex: 'name',
+        key: 'name',
+      },
+    ];
+
+    cols.push({
+      title: t('Operation'),
+      key: 'operation',
+      width: 100,
+      render: (_, record) => (
+        <Space>
+          <Button type="link">
+            {t("Edit")}
+          </Button>
+          <Button type="link">
+            {
+              t("Delete")
+            }
+          </Button>
+        </Space>
+      ),
+    })
+
+    return cols;
+  }, [t])
+
   const handleKeywordChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setKeyWord(event.target.value);
   }, [])
