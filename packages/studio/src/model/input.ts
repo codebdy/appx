@@ -5,6 +5,12 @@ export interface IFileInput {
   id?: ID;
   thumbUrl?: string;
 }
+export interface ILangLocalInput {
+  id?: ID;
+  name?: string;
+  appUuid?: string;
+  schemaJson?: any;
+}
 
 export interface IAppConfigInput {
   id?: ID;

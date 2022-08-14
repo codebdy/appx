@@ -3,33 +3,13 @@ import { Button, Input, Space, Table } from 'antd';
 import { useAppConfig, useAppParams } from '../../../shared/AppRoot/context';
 import React, { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ILangLocalInput } from '../../../model/input';
+import LangLocalEditDialog from './LangLocalEditDialog';
 
-const data = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-];
 
 const ResourcesTable = memo(() => {
   const [keyword, setKeyWord] = useState("");
+  const [editingLocal, setEditingLocal] = useState<ILangLocalInput>();
   const { t } = useTranslation();
   const appConfig = useAppConfig();
   const { langLocales } = useAppParams();
@@ -86,21 +66,32 @@ const ResourcesTable = memo(() => {
     setKeyWord(event.target.value);
   }, [])
 
+  const handleClose = useCallback(() => {
+    setEditingLocal(undefined);
+  }, [])
+
+  const handleNew  = useCallback(() => {
+    setEditingLocal({});
+  }, [])
+
   return (
-    <Table
-      className="lang-resource-table"
-      title={() => {
-        return (
-          <div className='table-toolbar'>
-            <Input.Search className='search-input' allowClear onChange={handleKeywordChange} />
-            <Button type="primary" icon={<PlusOutlined />}>{t("New")}</Button>
-          </div>
-        )
-      }}
-      columns={columns}
-      dataSource={data}
-      pagination={false}
-    />
+    <>
+      <Table
+        className="lang-resource-table"
+        title={() => {
+          return (
+            <div className='table-toolbar'>
+              <Input.Search className='search-input' allowClear onChange={handleKeywordChange} />
+              <Button type="primary" icon={<PlusOutlined />} onClick={handleNew}>{t("New")}</Button>
+            </div>
+          )
+        }}
+        columns={columns}
+        dataSource={data}
+        pagination={false}
+      />
+      <LangLocalEditDialog langLocal={editingLocal} onClose={handleClose} />
+    </>
   )
 });
 
