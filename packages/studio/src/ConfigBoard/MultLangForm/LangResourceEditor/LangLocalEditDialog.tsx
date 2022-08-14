@@ -14,6 +14,7 @@ const LangLocalEditDialog = memo((
   const { langLocal, onClose } = props;
   const { t } = useTranslation()
   const appConfig = useAppConfig();
+  const [form] = Form.useForm();
   const handleOk = () => {
     //setIsModalVisible(false);
   };
@@ -34,10 +35,10 @@ const LangLocalEditDialog = memo((
     >
       <Form
         name="edit-lang-local"
+        form={form}
         labelCol={{ span: 6 }}
         labelWrap
         wrapperCol={{ span: 17 }}
-        initialValues={{ remember: true }}
         autoComplete="off"
       >
         <Form.Item
