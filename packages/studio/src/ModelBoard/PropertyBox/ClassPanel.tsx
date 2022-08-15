@@ -54,7 +54,7 @@ export const ClassPanel = (props: { cls: ClassMeta }) => {
           label={t("Label")}
           name="label"
         >
-          <MultiLangInput inline/>
+          <MultiLangInput inline title={t("Label")}/>
         </Form.Item>
         {cls.stereoType !== StereoType.Enum &&
           cls.stereoType !== StereoType.ValueObject &&

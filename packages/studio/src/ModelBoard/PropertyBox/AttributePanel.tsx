@@ -72,7 +72,7 @@ export const AttributePanel = (props: {
             label={t("Label")}
             name="label"
           >
-            <MultiLangInput inline />
+            <MultiLangInput inline title={t("Label")} />
           </Form.Item>
         }
 

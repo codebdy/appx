@@ -35,7 +35,7 @@ const PageForm = memo((props: {
             name="title"
             rules={[{ required: true, message: t("Required") }]}
           >
-            <MultiLangInput />
+            <MultiLangInput title={t("Pages.PageName")} />
           </Form.Item>
         </Col>
         <Col span={12}>

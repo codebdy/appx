@@ -20,11 +20,12 @@ const ResourceEditDialog = memo((
     value?: string,
     visiable?: boolean,
     inline?: boolean,
+    title?: string,
     onClose: () => void,
     onChange: (value?: string) => void,
   }
 ) => {
-  const { multiline, value, visiable, inline, onClose, onChange } = props;
+  const { multiline, value, visiable, inline, title, onClose, onChange } = props;
   const [localResourceId, setLocalResourceId] = useState<ID>();
   const [searchText, setSearchText] = useState<string>();
   const [inputType, setInputType] = useState(MultilangType.Inline);
@@ -127,19 +128,6 @@ const ResourceEditDialog = memo((
         }
       }
     })
-
-    // form.validateFields().then((formValues) => {
-    //   if (langLocales.find(lang => lang.name === formValues.name && langLocal.id !== lang.id)) {
-    //     setNameError(t("ErrorNameRepeat"))
-    //     return;
-    //   }
-    //   const { name, ...schemaJson } = formValues
-    //   upsert({
-    //     name: formValues.name,
-    //     schemaJson: schemaJson
-    //   })
-    // })
-
   };
 
   const handleCancel = () => {
@@ -166,11 +154,10 @@ const ResourceEditDialog = memo((
     checkLocalId(data);
   };
 
-
   const InputCtrl = useMemo(() => multiline ? Input.TextArea : Input, [multiline]);
   return (
     <Modal
-      title={t("MultiLang.LangInput")}
+      title={title || t("MultiLang.LangInput")}
       visible={visiable}
       okText={t("Confirm")}
       width={600}

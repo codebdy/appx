@@ -12,7 +12,7 @@ const CategoryForm = memo((
 ) => {
   const { title, form } = props;
   const { t } = useTranslation();
-  
+
   return (
     <Form
       name="eidtCategory"
@@ -27,7 +27,7 @@ const CategoryForm = memo((
         name="title"
         rules={[{ required: true, message: t("Required") }]}
       >
-        <MultiLangInput />
+        <MultiLangInput title={t("Pages.CagegoryName")} />
       </Form.Item>
     </Form>
   )

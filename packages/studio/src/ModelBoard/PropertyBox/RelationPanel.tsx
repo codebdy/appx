@@ -95,7 +95,7 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
                       label={t("Label")}
                       name="labelOfSource"
                     >
-                      <MultiLangInput inline />
+                      <MultiLangInput inline title={t("Label")} />
                     </Form.Item>
                     <Form.Item
                       label={t("ModelBoard.Description")}
@@ -126,7 +126,7 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
                   label={t("Label")}
                   name="labelOfTarget"
                 >
-                  <MultiLangInput inline />
+                  <MultiLangInput inline title={t("Label")} />
                 </Form.Item>
                 <Form.Item
                   label={t("ModelBoard.Description")}

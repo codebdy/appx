@@ -103,7 +103,7 @@ const MenuSettingsForm = memo((
                 label={t("Menu.Title")}
                 name="title"
               >
-                <MultiLangInput />
+                <MultiLangInput title={t("Menu.Title")} />
               </Form.Item>
 
               <Form.Item

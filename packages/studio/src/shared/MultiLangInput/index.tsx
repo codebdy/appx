@@ -11,12 +11,12 @@ const MultiLangInput = (
     onChange?: (event: { target: { value: string } }) => void,
     value?: string,
     inline?: boolean,
+    title?: string,
   }
 ) => {
-  const { multiline, onChange, value, inline } = props;
+  const { multiline, onChange, value, inline, title } = props;
   const appConfig = useAppConfig();
   const [visiable, setVisiable] = useState(false);
-
   const parse = useParseLangMessage();
 
   const handleOpen = useCallback(() => {
@@ -56,6 +56,7 @@ const MultiLangInput = (
         multiline={multiline}
         value={value}
         inline = {inline}
+        title = {title}
         onClose={handleClose}
         onChange={handleDiaglogChange}
       />
