@@ -110,7 +110,7 @@ const CreateDialog = memo(() => {
             name="title"
             rules={[{ required: true, message: t("Required") }]}
           >
-            <MultiLangInput />
+            <MultiLangInput inline/>
           </Form.Item>
 
           {/* <Form.Item

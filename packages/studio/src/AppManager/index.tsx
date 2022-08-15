@@ -1,7 +1,6 @@
 import { Layout } from 'antd';
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import AppRoot from '../shared/AppRoot';
 import AppHeader from './AppHeader';
 
 const { Content } = Layout;
