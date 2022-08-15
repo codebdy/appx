@@ -6,6 +6,7 @@ import { usePagesWithoutCategory } from '../../hooks/usePagesWithoutCategory';
 import { useGetCategoryPages } from '../../hooks/useGetCategoryPages';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 import { OTHER_PAGES_ID, PAGE_LIST_ID } from '../consts';
+import { useParseLangMessage } from '../../../hooks/useParseLangMessage';
 const { Panel } = Collapse;
 
 const PagesTree = memo((
@@ -17,6 +18,7 @@ const PagesTree = memo((
   const { categories, pages } = props;
   const pagesWithoutCategory = usePagesWithoutCategory(pages, categories);
   const getCategoryPage = useGetCategoryPages(pages);
+  const p = useParseLangMessage();
 
   return (
     <Collapse
@@ -27,7 +29,7 @@ const PagesTree = memo((
       {
         categories?.map((category) => {
           return (
-            <Panel key={category.id} header={category.title}>
+            <Panel key={category.id} header={p(category.title)}>
               <Droppable droppableId={PAGE_LIST_ID + category.id} isDropDisabled={true}>
                 {(provided) => (
                   <div ref={provided.innerRef}>
@@ -38,7 +40,7 @@ const PagesTree = memo((
                             {(provided, snapshot) => (
                               <>
                                 <DraggableLabel
-                                  title={page.title}
+                                  title={p(page.title)}
                                   {...provided.draggableProps}
                                   {...provided.dragHandleProps}
                                   float={snapshot.isDragging}
@@ -47,7 +49,7 @@ const PagesTree = memo((
                                 {snapshot.isDragging && (
                                   <DraggableLabel
                                     key={page.id}
-                                    title={page.title}
+                                    title={p(page.title)}
                                     fixed
                                   />
                                 )}
@@ -74,14 +76,14 @@ const PagesTree = memo((
                     {(provided, snapshot) => (
                       <>
                         <DraggableLabel
-                          title={page.title}
+                          title={p(page.title)}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
                           ref={provided.innerRef}
                           float={snapshot.isDragging}
                         />
                         {snapshot.isDragging && (
-                          <DraggableLabel key={page.id} title={page.title} />
+                          <DraggableLabel key={page.id} title={p(page.title)} />
                         )}
                       </>
                     )}

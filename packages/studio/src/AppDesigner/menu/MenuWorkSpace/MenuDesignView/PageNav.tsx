@@ -12,6 +12,7 @@ import React from "react";
 import clx from "classnames";
 import ItemIcon from "./ItemIcon";
 import { IconView } from "../../../../shared/icon/IconView";
+import { useParseLangMessage } from "../../../../hooks/useParseLangMessage";
 
 const PageNavInner = memo(
   (props: {
@@ -21,6 +22,7 @@ const PageNavInner = memo(
   }) => {
     const { provided, snapshot, node } = props;
     const key = useAppViewKey();
+    const p = useParseLangMessage();
     const [selectedId, setSelectedId] = useRecoilState(
       navigationSelectedIdState(key)
     );
@@ -46,7 +48,7 @@ const PageNavInner = memo(
             />
           </ItemIcon>
         )}
-        {node.meta?.title}
+        {p(node.meta?.title)}
       </div>
     );
   }

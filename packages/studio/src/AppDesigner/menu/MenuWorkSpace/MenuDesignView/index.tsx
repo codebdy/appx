@@ -5,6 +5,7 @@ import { useRecoilValue } from "recoil";
 import { useAppViewKey } from "../../../../shared/AppRoot/context";
 import { navigationRootNodeState } from "../../atoms";
 import NavItemList from "./NavItemList";
+import { useParseLangMessage } from "../../../../hooks/useParseLangMessage";
 
 const MenuDesignView = memo((
   props: {
@@ -15,13 +16,15 @@ const MenuDesignView = memo((
   const [canDrop, setCanDrop] = useState(true);
   const key = useAppViewKey();
   const rootNode = useRecoilValue(navigationRootNodeState(key));
+  const p = useParseLangMessage();
+
   const handleDropable = useCallback((dropable: boolean) => {
     setCanDrop(dropable);
   }, []);
 
 
   return (
-    <Card className="design-view" title={app?.title}>
+    <Card className="design-view" title={p(app?.title)}>
       {rootNode && (
         <NavItemList
           node={rootNode}
