@@ -32,6 +32,8 @@ const MultiLangInput = (
 
   const parsedValue = useMemo(() => parse(value), [parse, value]);
 
+  console.log("哈哈", value)
+
   const handleDiaglogChange = useCallback((value?:string)=>{
     onChange({
       target:{

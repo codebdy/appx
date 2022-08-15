@@ -22,6 +22,10 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
   const { t } = useTranslation();
 
   const [form] = Form.useForm()
+  
+  useEffect(() => {
+    form.resetFields();
+  }, [form, relation.uuid])
 
   useEffect(() => {
     form.setFieldsValue(relation);

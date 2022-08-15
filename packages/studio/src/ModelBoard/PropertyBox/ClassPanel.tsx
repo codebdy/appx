@@ -13,7 +13,17 @@ export const ClassPanel = (props: { cls: ClassMeta }) => {
   const changeClass = useChangeClass(serviceId);
   const { t } = useTranslation();
   const [form] = Form.useForm()
-  useEffect(() => form.setFieldsValue({ ...cls }), [cls, form])
+
+  useEffect(() => {
+    form.resetFields();
+  }, [form, cls.uuid])
+
+  useEffect(
+    () => {
+      form.setFieldsValue({ ...cls });
+    },
+    [cls, form]
+  )
   const handleChange = useCallback((formData) => {
     const errMsg = changeClass({ ...cls, ...formData });
     setNameError(errMsg)

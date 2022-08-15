@@ -21,7 +21,14 @@ export const AttributePanel = (props: {
   const getTypeLabel = useGetTypeLabel(serviceId);
   const { t } = useTranslation();
   const [form] = Form.useForm()
-  useEffect(() => form.setFieldsValue({ ...attribute }), [attribute, form])
+
+  useEffect(() => {
+    form.resetFields();
+  }, [form, attribute.uuid])
+
+  useEffect(() => {
+    form.setFieldsValue({ ...attribute });
+  }, [attribute, form])
 
   const isId = useMemo(() => attribute.name === CONST_ID, [attribute.name]);
 
