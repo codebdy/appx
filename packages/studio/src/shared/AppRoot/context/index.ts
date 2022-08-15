@@ -23,3 +23,7 @@ export const useAppViewKey = () => {
 
   return key;
 }
+
+export function useSelectedAppUuid() {
+  return useAppParams()?.app?.uuid
+}

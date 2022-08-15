@@ -2,9 +2,9 @@ import React, { useCallback, useEffect, useState } from "react";
 import { ClassMeta, StereoType } from "../meta/ClassMeta";
 import { useChangeClass } from "../hooks/useChangeClass";
 import { Form, Input, Switch } from "antd";
-import { useSelectedAppUuid } from "../context";
 import { useTranslation } from "react-i18next";
 import MultiLangInput from "../../shared/MultiLangInput";
+import { useSelectedAppUuid } from "../../shared/AppRoot/context";
 
 export const ClassPanel = (props: { cls: ClassMeta }) => {
   const { cls } = props;

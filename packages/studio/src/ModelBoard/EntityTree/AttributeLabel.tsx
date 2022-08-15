@@ -9,7 +9,7 @@ import { DeleteOutlined } from "@ant-design/icons"
 import { AttributeMeta } from './../meta/AttributeMeta';
 import { useDeleteAttribute } from "../hooks/useDeleteAttribute";
 import { CONST_ID } from "../meta/Meta";
-import { useSelectedAppUuid } from "../context";
+import { useSelectedAppUuid } from "../../shared/AppRoot/context";
 
 const AttributeLabel = memo((
   props: {

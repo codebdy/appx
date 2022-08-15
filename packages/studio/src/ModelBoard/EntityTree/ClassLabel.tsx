@@ -11,7 +11,8 @@ import { selectedElementState, classesState } from './../recoil/atoms';
 import { Button } from "antd"
 import { DeleteOutlined } from "@ant-design/icons"
 import { useDeleteClass } from "../hooks/useDeleteClass"
-import { useSelectedAppUuid } from "../context"
+import { useSelectedAppUuid } from "../../shared/AppRoot/context"
+
 const { Dnd } = Addon;
 
 const ClassLabel = memo((

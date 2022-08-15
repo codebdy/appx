@@ -8,7 +8,7 @@ import { Button } from "antd"
 import { DeleteOutlined } from "@ant-design/icons"
 import { RelationMeta } from "../meta/RelationMeta";
 import { useDeleteRelation } from "../hooks/useDeleteRelation";
-import { useSelectedAppUuid } from "../context";
+import { useSelectedAppUuid } from "../../shared/AppRoot/context";
 
 const RelationLabel = memo((
   props: {

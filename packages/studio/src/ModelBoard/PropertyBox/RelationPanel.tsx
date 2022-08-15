@@ -7,9 +7,9 @@ import {
 import { useClass } from "../hooks/useClass";
 import { useChangeRelation } from "../hooks/useChangeRelation";
 import { Collapse, Form, Input, Select } from "antd";
-import { useSelectedAppUuid } from "../context";
 import { useTranslation } from "react-i18next";
 import MultiLangInput from "../../shared/MultiLangInput";
+import { useSelectedAppUuid } from "../../shared/AppRoot/context";
 
 const { Panel } = Collapse;
 const { Option } = Select;

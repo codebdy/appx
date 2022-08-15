@@ -9,9 +9,9 @@ import { useCreateNewClass } from "../hooks/useCreateNewClass";
 import { useCreateNewDiagram } from "../hooks/useCreateNewDiagram";
 import { StereoType } from "../meta/ClassMeta";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
-import { useSelectedAppUuid } from "../context";
 import { useTranslation } from "react-i18next";
 import { SYSTEM_APP_UUID } from "../../consts";
+import { useSelectedAppUuid } from "../../shared/AppRoot/context";
 
 const PackageAction = memo((
   props: {

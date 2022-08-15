@@ -6,10 +6,10 @@ import { useChangeAttribute } from "../hooks/useChangeAttribute";
 import { CONST_ID } from "../meta/Meta";
 import { useGetTypeLabel } from "../hooks/useGetTypeLabel";
 import { Form, Input, Switch } from "antd";
-import { useSelectedAppUuid } from "../context";
 import { useTranslation } from "react-i18next";
 import { TypeInput } from "./TypeInput";
 import MultiLangInput from "../../shared/MultiLangInput";
+import { useSelectedAppUuid } from "../../shared/AppRoot/context";
 
 export const AttributePanel = (props: {
   attribute: AttributeMeta;

@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
 import { Form, Select } from "antd";
 import { memo } from "react";
-import { useSelectedAppUuid } from "../context";
 import { useEntities } from "../hooks/useEntities";
 import { useEnums } from "../hooks/useEnums";
 import { useValueObjects } from "../hooks/useValueObjects";
@@ -9,6 +8,7 @@ import { Type } from "../meta/Type";
 import { useTranslation } from "react-i18next";
 import { AttributeMeta } from "../meta/AttributeMeta";
 import { CONST_ID } from "../meta/Meta";
+import { useSelectedAppUuid } from "../../shared/AppRoot/context";
 const { Option } = Select;
 
 export const TypeInput = memo(

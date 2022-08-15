@@ -18,8 +18,8 @@ import { StereoType } from "../meta/ClassMeta";
 import { Collapse } from "antd";
 import "./index.less";
 import { PRIMARY_COLOR } from "../../consts";
-import { useSelectedAppUuid } from "../context";
 import { useTranslation } from "react-i18next";
+import { useSelectedAppUuid } from "../../shared/AppRoot/context";
 
 const { Dnd } = Addon;
 const { Panel } = Collapse;

@@ -12,8 +12,8 @@ import { useRelation } from "../hooks/useRelation";
 import { useMethod } from "../hooks/useMethod";
 import { MethodPanel } from "./MethodPanel";
 import { Empty } from "antd";
-import { useSelectedAppUuid } from "../context";
 import { useTranslation } from "react-i18next";
+import { useSelectedAppUuid } from "../../shared/AppRoot/context";
 
 export const PropertyBox = () => {
   const serviceId = useSelectedAppUuid();

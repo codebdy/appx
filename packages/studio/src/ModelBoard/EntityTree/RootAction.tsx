@@ -6,8 +6,8 @@ import { useSetRecoilState } from 'recoil';
 import { packagesState } from "../recoil/atoms";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
 import { useExportJson } from "../hooks/useExportJson";
-import { useSelectedAppUuid } from "../context";
 import { useTranslation } from "react-i18next";
+import { useSelectedAppUuid } from "../../shared/AppRoot/context";
 
 const RootAction = memo(() => {
   const appUuid = useSelectedAppUuid();
@@ -49,7 +49,7 @@ const RootAction = memo(() => {
         },
       ]}
     />
-  ), [expotJson, handleAddPackage]);
+  ), [expotJson, handleAddPackage, t]);
 
   return (
     <Dropdown overlay={menu} trigger={['click']}>

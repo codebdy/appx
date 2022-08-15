@@ -4,7 +4,7 @@ import { Type } from "../meta/Type";
 import { ClassMeta } from "../meta/ClassMeta";
 import { useChangeMethod } from "../hooks/useChangeMethod";
 import { useGetTypeLabel } from "../hooks/useGetTypeLabel";
-import { useSelectedAppUuid } from "../context";
+import { useSelectedAppUuid } from "../../shared/AppRoot/context";
 
 export const MethodPanel = (props: { method: MethodMeta; cls: ClassMeta }) => {
   const { method, cls } = props;

@@ -16,8 +16,8 @@ import { Button, Divider } from "antd";
 import { DeleteOutlined, RedoOutlined, UndoOutlined } from "@ant-design/icons";
 import "./index.less";
 import { PRIMARY_COLOR } from "../../consts";
-import { useSelectedAppUuid } from "../context";
 import SaveActions from "../SaveActions";
+import { useSelectedAppUuid } from "../../shared/AppRoot/context";
 
 export const ModelToolbar = memo(() => {
   const appUuid = useSelectedAppUuid();

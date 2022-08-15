@@ -1,12 +1,12 @@
 import { MoreOutlined, EditOutlined, DeleteOutlined, LockOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
-import { useSelectedAppUuid } from "../context";
 import { useTranslation } from "react-i18next";
 import { DiagramMeta } from "../meta/DiagramMeta";
 import { useGetPackage } from "../hooks/useGetPackage";
 import { useDeleteDiagram } from "../hooks/useDeleteDiagram";
 import { SYSTEM_APP_UUID } from "../../consts";
+import { useSelectedAppUuid } from "../../shared/AppRoot/context";
 
 const DiagramAction = memo((
   props: {

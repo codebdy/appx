@@ -26,10 +26,10 @@ import MethodLabel from "./MethodLabel";
 import AttributesLabel from "./AttributesLabel";
 import MethodsLabel from "./MethodsLabel";
 import RelationLabel from "./RelationLabel";
-import { useSelectedAppUuid } from "../context";
 import { useTranslation } from "react-i18next";
 import PlugIcon from "../../icons/PlugIcon";
 import DiagramLabel from "./DiagramLabel";
+import { useSelectedAppUuid } from "../../shared/AppRoot/context";
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
