@@ -1,4 +1,4 @@
-import React, { memo, useMemo, useState } from "react";
+import React, { memo, useState } from "react";
 import { EntityTree } from "./EntityTree";
 import { Graph } from "@antv/x6";
 import "@antv/x6-react-shape";
@@ -7,18 +7,15 @@ import "./index.less"
 import { useReadMeta } from "./hooks/useReadMeta";
 import { useShowError } from "../hooks/useShowError";
 import { Spin } from "antd";
-import { useParams } from "react-router-dom";
+import { useSelectedAppUuid } from "../shared/AppRoot/context";
 
 const ModelsBoard = memo((
   props: {
-    appUuid?: string,
     actions?: React.ReactNode,
   }
 ) => {
-  const { appUuid } = props
-  const { appUuid: appUuidFromUrl } = useParams();
   const [graph, setGraph] = useState<Graph>();
-  const realAppUuid = useMemo(() => appUuid || appUuidFromUrl, [appUuid, appUuidFromUrl])
+  const realAppUuid = useSelectedAppUuid();
   const { loading, error } = useReadMeta(realAppUuid);
 
   useShowError(error);
