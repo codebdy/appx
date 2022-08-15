@@ -116,6 +116,16 @@ const ResourceEditDialog = memo((
           autoComplete="off"
         >
           {
+            inputType === MultilangType.Resource &&
+            <Form.Item
+              label={t("Name")}
+              name={"name"}
+              rules={[{ required: true, message: t("Requried") }]}
+            >
+              <Input />
+            </Form.Item>
+          }
+          {
             appConfig?.schemaJson?.multiLang?.langs.map((lang) => {
               return (
                 <Form.Item
