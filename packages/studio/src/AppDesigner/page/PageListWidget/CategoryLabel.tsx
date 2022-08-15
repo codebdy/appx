@@ -4,6 +4,7 @@ import CategoryActions from "./CategoryActions"
 import EditCategoryDialog from "./EditCategoryDialog"
 import CreatePageModal from "./CreatePageModal"
 import { IPageCategory } from "packages/studio/src/model"
+import { useParseLangMessage } from "../../../hooks/useParseLangMessage"
 
 const CategoryLabel = (
   props: {
@@ -15,6 +16,7 @@ const CategoryLabel = (
   const [visible, setVisible] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [pageModalOpen, setPageModalOpen] = useState(false);
+  const p = useParseLangMessage();
 
   const handleVisableChange = useCallback((visible) => {
     setVisible(visible)
@@ -49,7 +51,7 @@ const CategoryLabel = (
         />
       }
     >
-      {category.title}
+      {p(category.title)}
       <div
         onClick={e => e.stopPropagation()}
       >

@@ -3,6 +3,7 @@ import React, { useCallback, useState } from "react"
 import { IPage, IPageCategory } from "../../../model"
 import PageActions from "./PageActions"
 import EditPageDialog from "./EditPageDialog"
+import { useParseLangMessage } from "../../../hooks/useParseLangMessage"
 
 const PageLabel = (
   props: {
@@ -13,6 +14,7 @@ const PageLabel = (
   const { page, categories } = props;
   const [visible, setVisible] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const p = useParseLangMessage();
   const handleVisableChange = useCallback((visible) => {
     setVisible(visible)
   }, []);
@@ -34,7 +36,7 @@ const PageLabel = (
           onEdit={handleEdit}
         />
       }>
-      {page.title}
+      {p(page.title)}
       <div
         onClick={e => e.stopPropagation()}
       >
