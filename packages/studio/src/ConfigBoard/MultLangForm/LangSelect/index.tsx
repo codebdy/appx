@@ -104,18 +104,18 @@ const LangSelect = memo(() => {
     (result: DropResult) => {
       const { destination, source, draggableId } = result;
 
-      if (source.droppableId === ALL_LANGS_ID && destination.droppableId === SELECTED_LANGS_ID) {
+      if (source?.droppableId === ALL_LANGS_ID && destination?.droppableId === SELECTED_LANGS_ID) {
         const lang = getLang(draggableId)
         if (lang && !inputValue.find(lang => lang.key === draggableId)) {
           insertAt(lang, destination.index)
         }
-      } else if (source.droppableId === SELECTED_LANGS_ID && destination.droppableId === ALL_LANGS_ID) {
+      } else if (source?.droppableId === SELECTED_LANGS_ID && destination?.droppableId === ALL_LANGS_ID) {
         setChanged(true);
         setInputValue((inputValue) => inputValue.filter(lang => lang.key !== draggableId.substring(SELECTED_PREFIX.length)))
-      } else if (source.droppableId === SELECTED_LANGS_ID && destination.droppableId === SELECTED_LANGS_ID) {
+      } else if (source?.droppableId === SELECTED_LANGS_ID && destination?.droppableId === SELECTED_LANGS_ID) {
         const lang = getLang(draggableId.substring(SELECTED_PREFIX.length))
         if (lang) {
-          moveTo(lang, destination.index)
+          moveTo(lang, destination?.index)
         }
       }
     },
