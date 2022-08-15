@@ -1,4 +1,5 @@
-import { Form, FormInstance, Input } from "antd";
+import { Form, FormInstance } from "antd";
+import MultiLangInput from "../../../shared/MultiLangInput";
 import React from "react";
 import { memo } from "react";
 import { useTranslation } from "react-i18next";
@@ -26,7 +27,7 @@ const CategoryForm = memo((
         name="title"
         rules={[{ required: true, message: t("Required") }]}
       >
-        <Input />
+        <MultiLangInput />
       </Form.Item>
     </Form>
   )

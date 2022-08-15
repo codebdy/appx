@@ -16,7 +16,7 @@ const SelectLang = memo(() => {
   const isMultLang = appConfig?.schemaJson?.multiLang?.open;
   const langMenu = (
     <Menu selectedKeys={[i18n.language]} onClick={handleClick}>
-      {appConfig?.schemaJson?.multiLang?.langs.map((lang) => {
+      {appConfig?.schemaJson?.multiLang?.langs?.map((lang) => {
         return (
           <Menu.Item key={lang.key} >
             <span role="img" style={{ marginRight: 8 }}>
