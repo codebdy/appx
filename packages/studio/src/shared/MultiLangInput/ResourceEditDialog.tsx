@@ -83,7 +83,7 @@ const ResourceEditDialog = memo((
       if (value?.startsWith(LANG_RESOURCE_PREFIX)) {
         const lang = getResource(value.substring(LANG_RESOURCE_PREFIX.length));
         setReourceForm(lang);
-        form.setFieldValue("name", lang.name);
+        form.setFieldValue("name", lang?.name);
       }
     }
 
@@ -99,7 +99,6 @@ const ResourceEditDialog = memo((
     {
       onCompleted: () => {
         onClose();
-        resetForm();
       }
     }
   );
@@ -116,12 +115,16 @@ const ResourceEditDialog = memo((
           onChange(LANG_RESOURCE_PREFIX + langLocales?.find(lang => lang.id === localResourceId)?.name);
           onClose();
         } else {
-
+          const { name, ...schemaJson } = formValues
+          upsert(
+            {
+              id: localResourceId,
+              name: name,
+              schemaJson: schemaJson
+            }
+          );
+          onChange(LANG_RESOURCE_PREFIX + name);
         }
-        // if (langLocales.find(lang => lang.name === formValues.name && langLocal.id !== lang.id)) {
-        //   setNameError(t("ErrorNameRepeat"))
-        //   return;
-        // }
       }
     })
 
