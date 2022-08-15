@@ -7,6 +7,7 @@ import { IPage, IPageCategory } from "../../../model";
 import { useTranslation } from "react-i18next";
 import { ID } from "../../../shared";
 import MultiLangInput from "../../../shared/MultiLangInput";
+import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
 const { TabPane } = Tabs;
 const { Option } = Select;
 
@@ -18,6 +19,7 @@ const PageForm = memo((props: {
 }) => {
   const { categoryId, page, categories, form } = props;
   const { t } = useTranslation();
+  const p = useParseLangMessage();
 
   return (
     <Form
@@ -49,7 +51,7 @@ const PageForm = memo((props: {
                 categories.map((category) => {
                   return (
                     <Option key={category.id} value={category.id}>
-                      {category.title}
+                      {p(category.title)}
                     </Option>
                   )
                 })
