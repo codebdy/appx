@@ -10,7 +10,7 @@ import AuthBoard from './AuthBoard';
 import { AppManagerRoutes } from './AppManager/AppHeader';
 import Install from './Install';
 import { useLoginCheck } from './hooks/useLoginCheck';
-import { INDEX_URL, INSTALL_URL, LOGIN_URL, SYSTEM_APP_UUID } from './consts';
+import { INDEX_URL, INSTALL_URL, LOGIN_URL } from './consts';
 import ModelBoard from './ModelBoard';
 import { AppConfigRouts } from './AppConfig/AppConfigRouts';
 import DeviceList from './AppConfig/DeviceList';
