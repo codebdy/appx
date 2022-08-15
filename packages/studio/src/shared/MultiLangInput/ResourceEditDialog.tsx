@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useAppConfig, useAppParams } from "../../shared/AppRoot/context";
 import { useUpsertLangLocal } from "../../hooks/useUpsertLangLocal";
 import { useShowError } from "../../hooks/useShowError";
-import { LANG_INLINE_PREFIX } from "../../hooks/useParseLangMessage";
+import { LANG_INLINE_PREFIX, LANG_RESOURCE_PREFIX } from "../../hooks/useParseLangMessage";
 import { ID } from "..";
 
 export enum MultilangType {
@@ -43,16 +43,42 @@ const ResourceEditDialog = memo((
     })
   }, [langLocales, searchText]);
 
+  const getResource = useCallback((name: string) => {
+    return langLocales.find(lang => lang.name === name)
+  }, [langLocales])
+
+  useEffect(() => {
+    if (value?.startsWith(LANG_RESOURCE_PREFIX)) {
+      setInputType(MultilangType.Resource)
+    } else {
+      setInputType(MultilangType.Inline)
+    }
+  }, [value])
+
   const resetForm = useCallback(() => {
     form.resetFields();
+    let values: any = {}
+    if (inputType === MultilangType.Inline) {
+      setLocalResourceId(undefined);
+      if (value?.startsWith(LANG_INLINE_PREFIX)) {
+        values = JSON.parse(value.substring(LANG_INLINE_PREFIX.length))
+      }
+    } else {
+      if (value?.startsWith(LANG_RESOURCE_PREFIX)) {
+        const lang = getResource(value.substring(LANG_RESOURCE_PREFIX.length));
+        setLocalResourceId(lang?.id);
+        values = lang?.schemaJson || {};
+        values.name = lang?.name
+      }
+    }
     form.setFieldsValue({
-
+      ...values
     })
-  }, [form])
+  }, [form, getResource, inputType, value])
 
   useEffect(() => {
     resetForm();
-  }, [resetForm]);
+  }, [resetForm, inputType]);
 
   const [upsert, { loading, error }] = useUpsertLangLocal(
     {
@@ -101,10 +127,10 @@ const ResourceEditDialog = memo((
     setInputType(value);
   };
 
-  const checkLocalId = useCallback((text:string)=>{
-    const lang = langLocales.find(lang => lang.name === text);
+  const checkLocalId = useCallback((text: string) => {
+    const lang = getResource(text);
     setLocalResourceId(lang?.id);
-  }, [langLocales]);
+  }, [getResource]);
 
   const handleSearchName = (searchText: string) => {
     setSearchText(searchText);
