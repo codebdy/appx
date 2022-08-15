@@ -43,7 +43,7 @@ const MultLangForm = memo(() => {
       autoComplete="off"
     >
       <Form.Item
-        label={t("Config.MultiLang.Open")}
+        label={t("MultiLang.Open")}
         name="open"
       >
         <Switch
@@ -56,13 +56,13 @@ const MultLangForm = memo(() => {
         appConfig?.schemaJson?.multiLang?.open &&
         <>
           <Form.Item
-            label={t("Config.MultiLang.Langs")}
+            label={t("MultiLang.Langs")}
             name="langs"
           >
             <LangSelect />
           </Form.Item>
           <Form.Item
-            label={t("Config.MultiLang.Resources")}
+            label={t("MultiLang.Resources")}
             name="langs"
           >
             <LangResourceEditor />

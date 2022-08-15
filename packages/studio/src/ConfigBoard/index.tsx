@@ -18,7 +18,7 @@ const ConfigBoard = memo(() => {
         }}
       >
         <Collapse defaultActiveKey={['muti-lang']}>
-          <Panel header={t("Config.MultiLang.Title")} key="muti-lang">
+          <Panel header={t("MultiLang.Title")} key="muti-lang">
             <MultLangForm />
           </Panel>
           <Panel header={t("Config.Other")} key="other">

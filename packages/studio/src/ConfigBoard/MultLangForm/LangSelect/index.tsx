@@ -139,7 +139,7 @@ const LangSelect = memo(() => {
         </div>
       </div>
       <Modal
-        title={t("Config.MultiLang.LangsEdit")}
+        title={t("MultiLang.LangsEdit")}
         className="lang-select-dialog"
         width={700}
         visible={isModalVisible}

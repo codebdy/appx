@@ -42,8 +42,6 @@
   "Operation": "操作",
   "AuthPoints": "权限点",
   "ErrorNameRepeat": "名称重复",
-  "Resource": "资源",
-  "Inline": "内联",
   "install": {
     "Title": "安装Appx",
     "Next": "下一步",
@@ -200,18 +198,21 @@
     "IconLib": "图标库",
     "Customized": "自定义"
   },
+  "MultiLang": {
+    "Title": "多语言配置",
+    "Open": "开启多语言",
+    "Langs": "自持语言",
+    "LangsEdit": "支持语言编辑",
+    "Resources": "语言资源",
+    "LangResourcesList": "语言资源列表",
+    "LangResourcesEdit": "编辑语言资源",
+    "NewLangResource": "新建语言资源",
+    "LangInput": "多语言输入",
+    "InputResourceName":"请输入资源名称",
+    "Resource": "资源",
+    "Inline": "内联"
+  },
   "Config": {
-    "MultiLang": {
-      "Title": "多语言配置",
-      "Open": "开启多语言",
-      "Langs": "自持语言",
-      "LangsEdit": "支持语言编辑",
-      "Resources": "语言资源",
-      "LangResourcesList": "语言资源列表",
-      "LangResourcesEdit": "编辑语言资源",
-      "NewLangResource": "新建语言资源",
-      "LangInput": "多语言输入"
-    },
     "Other": "其他配置"
   },
   "Lang": {

@@ -1,4 +1,4 @@
-import { Form, Input, Modal, Radio, RadioChangeEvent } from "antd";
+import { AutoComplete, Form, Input, Modal, Radio, RadioChangeEvent } from "antd";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
@@ -25,15 +25,25 @@ const ResourceEditDialog = memo((
 ) => {
   const { multiline, value, visiable, inline, onClose, onChange } = props;
   const [localResourceId, setLocalResourceId] = useState<ID>();
-  const [nameError, setNameError] = useState<string>();
+  const [searchText, setSearchText] = useState<string>();
   const [inputType, setInputType] = useState(MultilangType.Inline);
   const { t } = useTranslation()
   const appConfig = useAppConfig();
   const [form] = Form.useForm();
   const { langLocales } = useAppParams();
 
+  const options = useMemo(() => {
+    return langLocales?.filter(lang => {
+      return lang.name?.indexOf(searchText) > -1
+    }).map(lang => {
+      return {
+        label: lang.name,
+        value: lang.name,
+      }
+    })
+  }, [langLocales, searchText]);
+
   const resetForm = useCallback(() => {
-    setNameError("");
     form.resetFields();
     form.setFieldsValue({
 
@@ -57,10 +67,10 @@ const ResourceEditDialog = memo((
 
   const handleOk = () => {
     form.validateFields().then((formValues) => {
-      if(inputType === MultilangType.Inline){
+      if (inputType === MultilangType.Inline) {
         onChange(LANG_INLINE_PREFIX + JSON.stringify(formValues))
         onClose();
-      }else{
+      } else {
         // if (langLocales.find(lang => lang.name === formValues.name && langLocal.id !== lang.id)) {
         //   setNameError(t("ErrorNameRepeat"))
         //   return;
@@ -91,10 +101,25 @@ const ResourceEditDialog = memo((
     setInputType(value);
   };
 
+  const checkLocalId = useCallback((text:string)=>{
+    const lang = langLocales.find(lang => lang.name === text);
+    setLocalResourceId(lang?.id);
+  }, [langLocales]);
+
+  const handleSearchName = (searchText: string) => {
+    setSearchText(searchText);
+    checkLocalId(searchText)
+  };
+
+  const handleSelectName = (data: string) => {
+    checkLocalId(data);
+  };
+
+
   const InputCtrl = useMemo(() => multiline ? Input.TextArea : Input, [multiline]);
   return (
     <Modal
-      title={t("Config.MultiLang.LangInput")}
+      title={t("MultiLang.LangInput")}
       visible={visiable}
       okText={t("Confirm")}
       width={600}
@@ -111,8 +136,8 @@ const ResourceEditDialog = memo((
           <Radio.Group
             onChange={onChangeType}
             options={[
-              { label: t(MultilangType.Inline), value: MultilangType.Inline },
-              { label: t(MultilangType.Resource), value: MultilangType.Resource }
+              { label: t("MultiLang." + MultilangType.Inline), value: MultilangType.Inline },
+              { label: t("MultiLang." + MultilangType.Resource), value: MultilangType.Resource }
             ]}
             value={inputType}
             optionType="button"
@@ -136,10 +161,13 @@ const ResourceEditDialog = memo((
               label={t("Name")}
               name={"name"}
               rules={[{ required: true, message: t("Required") }]}
-              help={nameError}
-              validateStatus={nameError ? "error" : undefined}
             >
-              <Input />
+              <AutoComplete
+                options={options}
+                onSelect={handleSelectName}
+                onSearch={handleSearchName}
+                placeholder={t("MultiLang.InputResourceName")}
+              />
             </Form.Item>
           }
           {
@@ -149,7 +177,7 @@ const ResourceEditDialog = memo((
                   label={t("Lang." + lang.key)}
                   name={lang.key}
                 >
-                  <InputCtrl />
+                  <InputCtrl disabled={localResourceId && inputType === MultilangType.Resource} />
                 </Form.Item>
               )
             })

@@ -67,7 +67,7 @@ const LangLocalEditDialog = memo((
 
   return (
     <Modal
-      title={langLocal?.id ? t("Config.MultiLang.LangResourcesEdit") : t("Config.MultiLang.NewLangResource")}
+      title={langLocal?.id ? t("MultiLang.LangResourcesEdit") : t("MultiLang.NewLangResource")}
       visible={!!langLocal}
       okText={t("Confirm")}
       width={600}
