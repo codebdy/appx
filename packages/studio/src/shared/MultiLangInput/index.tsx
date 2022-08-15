@@ -32,6 +32,14 @@ const MultiLangInput = (
 
   const parsedValue = useMemo(() => parse(value), [parse, value]);
 
+  const handleDiaglogChange = useCallback((value?:string)=>{
+    onChange({
+      target:{
+        value:value
+      }
+    })
+  }, [onChange])
+
   return (
     <>
       <Input.Group compact>
@@ -42,7 +50,13 @@ const MultiLangInput = (
         }
 
       </Input.Group>
-      <ResourceEditDialog visiable={visiable} multiline={multiline} value={value} onClose={handleClose} />
+      <ResourceEditDialog
+        visiable={visiable}
+        multiline={multiline}
+        value={value}
+        onClose={handleClose}
+        onChange = {handleDiaglogChange}
+      />
     </>
   )
 }

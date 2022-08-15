@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useAppConfig, useAppParams } from "../../shared/AppRoot/context";
 import { useUpsertLangLocal } from "../../hooks/useUpsertLangLocal";
 import { useShowError } from "../../hooks/useShowError";
+import { LANG_INLINE_PREFIX } from "../../hooks/useParseLangMessage";
 
 export enum MultilangType {
   Inline = "Inline",
@@ -18,9 +19,10 @@ const ResourceEditDialog = memo((
     visiable?: boolean,
     inline?: boolean,
     onClose: () => void,
+    onChange: (value?: string) => void,
   }
 ) => {
-  const { multiline, value, visiable, inline, onClose } = props;
+  const { multiline, value, visiable, inline, onClose, onChange } = props;
   const [nameError, setNameError] = useState<string>();
   const [inputType, setInputType] = useState(MultilangType.Inline);
   const { t } = useTranslation()
@@ -52,10 +54,12 @@ const ResourceEditDialog = memo((
   useShowError(error);
 
   const handleOk = () => {
-    if(inputType === MultilangType.Resource){
-      form.validateFields().then((formValues) => {
-      })     
-    }
+    form.validateFields().then((formValues) => {
+      if(inputType === MultilangType.Inline){
+        onChange(LANG_INLINE_PREFIX + JSON.stringify(formValues))
+        onClose();
+      }
+    })
 
     // form.validateFields().then((formValues) => {
     //   if (langLocales.find(lang => lang.name === formValues.name && langLocal.id !== lang.id)) {
