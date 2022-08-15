@@ -93,6 +93,8 @@ const ResourceEditDialog = memo((
     resetForm();
   }, [resetForm, inputType]);
 
+  const hasSelectedResource = useMemo(() => localResourceId && inputType === MultilangType.Resource, [inputType, localResourceId]);
+
   const [upsert, { loading, error }] = useUpsertLangLocal(
     {
       onCompleted: () => {
@@ -110,6 +112,12 @@ const ResourceEditDialog = memo((
         onChange(LANG_INLINE_PREFIX + JSON.stringify(formValues))
         onClose();
       } else {
+        if (hasSelectedResource) {
+          onChange(LANG_RESOURCE_PREFIX + langLocales?.find(lang => lang.id === localResourceId)?.name);
+          onClose();
+        } else {
+
+        }
         // if (langLocales.find(lang => lang.name === formValues.name && langLocal.id !== lang.id)) {
         //   setNameError(t("ErrorNameRepeat"))
         //   return;
@@ -217,7 +225,7 @@ const ResourceEditDialog = memo((
                   label={t("Lang." + lang.key)}
                   name={lang.key}
                 >
-                  <InputCtrl disabled={localResourceId && inputType === MultilangType.Resource} />
+                  <InputCtrl disabled={hasSelectedResource} />
                 </Form.Item>
               )
             })
