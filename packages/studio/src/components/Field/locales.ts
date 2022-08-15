@@ -24,6 +24,7 @@ export const FieldLocales = {
       'decorator-group': '容器属性',
       'component-style-group': '组件样式',
       'decorator-style-group': '容器样式',
+      'datasource-group': '数据源',
       'display-group': "显示属性",
       'data-bind-group': "数据绑定",
       'auth-group': "权限设置",
@@ -31,7 +32,7 @@ export const FieldLocales = {
       'style-tab': '样式',
       'data-tab': '数据',
       'action-tab': '动作',
-      viewAuth:"权限",
+      viewAuth: "权限",
       onClick: "鼠标点击",
       'x-component-props': {
         size: { title: '尺寸', dataSource: ['大', '小', '默认', '继承'] },

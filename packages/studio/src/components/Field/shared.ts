@@ -60,6 +60,21 @@ export const createDisplaySchemaTab = () => {
         tab: 'SettingsForm.Display'
       },
       properties: {
+        "datasource-group": {
+          type: 'void',
+          'x-component': 'CollapseItem',
+          'x-reactions': {
+            fulfill: {
+            },
+          },
+          properties: {
+            name: {
+              type: 'string',
+              'x-decorator': 'FormItem',
+              'x-component': 'Input',
+            },
+          }
+        },
         "field-group": {
           type: 'void',
           'x-component': 'CollapseItem',
