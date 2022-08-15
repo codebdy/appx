@@ -9,6 +9,7 @@ import { Form, Input, Switch } from "antd";
 import { useSelectedAppUuid } from "../context";
 import { useTranslation } from "react-i18next";
 import { TypeInput } from "./TypeInput";
+import MultiLangInput from "../../shared/MultiLangInput";
 
 export const AttributePanel = (props: {
   attribute: AttributeMeta;
@@ -48,7 +49,7 @@ export const AttributePanel = (props: {
     <div className="property-pannel">
       <Form
         name="attributeForm"
-        form = {form}
+        form={form}
         colon={false}
         labelAlign="left"
         labelCol={{ span: 9 }}
@@ -65,6 +66,15 @@ export const AttributePanel = (props: {
         >
           <Input disabled={isId} />
         </Form.Item>
+
+        {!isId &&
+          <Form.Item
+            label={t("Label")}
+            name="label"
+          >
+            <MultiLangInput inline />
+          </Form.Item>
+        }
 
         {cls.stereoType !== StereoType.Enum && (
           <>

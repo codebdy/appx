@@ -9,6 +9,7 @@ import { useChangeRelation } from "../hooks/useChangeRelation";
 import { Collapse, Form, Input, Select } from "antd";
 import { useSelectedAppUuid } from "../context";
 import { useTranslation } from "react-i18next";
+import MultiLangInput from "../../shared/MultiLangInput";
 
 const { Panel } = Collapse;
 const { Option } = Select;
@@ -22,7 +23,7 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
   const { t } = useTranslation();
 
   const [form] = Form.useForm()
-  
+
   useEffect(() => {
     form.resetFields();
   }, [form, relation.uuid])
@@ -91,6 +92,12 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
                       <Input />
                     </Form.Item>
                     <Form.Item
+                      label={t("Label")}
+                      name="labelOfSource"
+                    >
+                      <MultiLangInput inline />
+                    </Form.Item>
+                    <Form.Item
                       label={t("ModelBoard.Description")}
                       name="descriptionOnSource"
                     >
@@ -114,6 +121,12 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
                   name="roleOfTarget"
                 >
                   <Input />
+                </Form.Item>
+                <Form.Item
+                  label={t("Label")}
+                  name="labelOfTarget"
+                >
+                  <MultiLangInput inline />
                 </Form.Item>
                 <Form.Item
                   label={t("ModelBoard.Description")}
