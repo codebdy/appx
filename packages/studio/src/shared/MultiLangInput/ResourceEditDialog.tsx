@@ -6,6 +6,7 @@ import { useAppConfig, useAppParams } from "../../shared/AppRoot/context";
 import { useUpsertLangLocal } from "../../hooks/useUpsertLangLocal";
 import { useShowError } from "../../hooks/useShowError";
 import { LANG_INLINE_PREFIX } from "../../hooks/useParseLangMessage";
+import { ID } from "..";
 
 export enum MultilangType {
   Inline = "Inline",
@@ -23,6 +24,7 @@ const ResourceEditDialog = memo((
   }
 ) => {
   const { multiline, value, visiable, inline, onClose, onChange } = props;
+  const [localResourceId, setLocalResourceId] = useState<ID>();
   const [nameError, setNameError] = useState<string>();
   const [inputType, setInputType] = useState(MultilangType.Inline);
   const { t } = useTranslation()
@@ -58,6 +60,11 @@ const ResourceEditDialog = memo((
       if(inputType === MultilangType.Inline){
         onChange(LANG_INLINE_PREFIX + JSON.stringify(formValues))
         onClose();
+      }else{
+        // if (langLocales.find(lang => lang.name === formValues.name && langLocal.id !== lang.id)) {
+        //   setNameError(t("ErrorNameRepeat"))
+        //   return;
+        // }
       }
     })
 
@@ -114,7 +121,7 @@ const ResourceEditDialog = memo((
         </div>
       }
 
-      <div style={{ height: "calc(100vh - 400px)", overflow: "auto" }}>
+      <div style={{ maxHeight: "calc(100vh - 400px)", overflow: "auto" }}>
         <Form
           name="edit-lang-local"
           form={form}
@@ -129,6 +136,8 @@ const ResourceEditDialog = memo((
               label={t("Name")}
               name={"name"}
               rules={[{ required: true, message: t("Required") }]}
+              help={nameError}
+              validateStatus={nameError ? "error" : undefined}
             >
               <Input />
             </Form.Item>
