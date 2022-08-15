@@ -52,6 +52,11 @@ const ResourceEditDialog = memo((
   useShowError(error);
 
   const handleOk = () => {
+    if(inputType === MultilangType.Resource){
+      form.validateFields().then((formValues) => {
+      })     
+    }
+
     // form.validateFields().then((formValues) => {
     //   if (langLocales.find(lang => lang.name === formValues.name && langLocal.id !== lang.id)) {
     //     setNameError(t("ErrorNameRepeat"))
@@ -71,8 +76,7 @@ const ResourceEditDialog = memo((
     resetForm();
   };
 
-  const onChange4 = ({ target: { value } }: RadioChangeEvent) => {
-    console.log('radio4 checked', value);
+  const onChangeType = ({ target: { value } }: RadioChangeEvent) => {
     setInputType(value);
   };
 
@@ -94,7 +98,7 @@ const ResourceEditDialog = memo((
         !inline &&
         <div style={{ paddingBottom: 16 }}>
           <Radio.Group
-            onChange={onChange4}
+            onChange={onChangeType}
             options={[
               { label: t(MultilangType.Inline), value: MultilangType.Inline },
               { label: t(MultilangType.Resource), value: MultilangType.Resource }
@@ -120,7 +124,7 @@ const ResourceEditDialog = memo((
             <Form.Item
               label={t("Name")}
               name={"name"}
-              rules={[{ required: true, message: t("Requried") }]}
+              rules={[{ required: true, message: t("Required") }]}
             >
               <Input />
             </Form.Item>

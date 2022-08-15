@@ -71,7 +71,7 @@ const InstallForm = memo(() => {
             <Form.Item
               label={t("install.Account")}
               name="admin"
-              rules={[{ required: true, message: t("Requried") }]}
+              rules={[{ required: true, message: t("Required") }]}
             >
               <Input />
             </Form.Item>
@@ -79,7 +79,7 @@ const InstallForm = memo(() => {
             <Form.Item
               label={t("install.Password")}
               name="password"
-              rules={[{ required: true, message: t("Requried") }]}
+              rules={[{ required: true, message: t("Required") }]}
             >
               <Input.Password />
             </Form.Item>
