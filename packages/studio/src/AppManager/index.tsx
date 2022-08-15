@@ -27,14 +27,12 @@ const AppManager = memo(() => {
 
 
   return (
-    <AppRoot>
-      <Layout className="rx-studio">
-        <AppHeader scrolled={scrolled} />
-        <Content ref={ref} className='content'>
-          <Outlet />
-        </Content>
-      </Layout>
-    </AppRoot>
+    <Layout className="rx-studio">
+      <AppHeader scrolled={scrolled} />
+      <Content ref={ref} className='content'>
+        <Outlet />
+      </Content>
+    </Layout>
   )
 });
 

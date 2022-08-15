@@ -1,11 +1,12 @@
 import { CloudUploadOutlined, PlusOutlined } from '@ant-design/icons';
-import { Button, UploadProps, Form, Input, Modal, message } from 'antd';
+import { Button, UploadProps, Form, Modal, message } from 'antd';
 import Dragger from 'antd/lib/upload/Dragger';
 import React, { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCreateApp } from '../hooks/useCreateApp';
 import { IAppInput } from '../model/input';
 import { createUuid } from '../shared';
+import MultiLangInput from '../shared/MultiLangInput';
 import { useShowError } from './../hooks/useShowError';
 
 const CreateDialog = memo(() => {
@@ -109,7 +110,7 @@ const CreateDialog = memo(() => {
             name="title"
             rules={[{ required: true, message: t("Required") }]}
           >
-            <Input />
+            <MultiLangInput />
           </Form.Item>
 
           {/* <Form.Item
@@ -131,8 +132,8 @@ const CreateDialog = memo(() => {
                 <CloudUploadOutlined />
               </p>
               <p className="ant-upload-hint">
-                t("UploadHint1")
-                <Button type="link">t("UploadHint2")</Button>
+                {t("UploadHint1")}
+                <Button type="link">{t("UploadHint2")}</Button>
               </p>
             </Dragger>
           </Form.Item>

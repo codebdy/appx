@@ -8,19 +8,22 @@ import { RecoilRoot } from "recoil";
 import { BrowserRouter } from "react-router-dom";
 import { EntiRoot } from "./enthooks";
 import './i18n';
+import AppRoot from "./shared/AppRoot";
 
-const AppRoot = () => {
+const AppRender = () => {
   return (
     <Suspense fallback="loading">
       <RecoilRoot>
         <EntiRoot config={{ endpoint: SERVER_URL, appUuid: SYSTEM_APP_UUID }} >
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
+          <AppRoot>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </AppRoot>
         </EntiRoot>
       </RecoilRoot>
     </Suspense>
   )
 }
 
-ReactDOM.render(<AppRoot />, document.getElementById('root'))
+ReactDOM.render(<AppRender />, document.getElementById('root'))

@@ -5,6 +5,7 @@ import React, { memo, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import { AppConfigRouts } from "../AppConfig/AppConfigRouts"
+import { useParseLangMessage } from "../hooks/useParseLangMessage"
 import { useRemoveApp } from "../hooks/useRemoveApp"
 import { IApp } from "../model"
 import { useShowError } from './../hooks/useShowError';
@@ -17,6 +18,7 @@ const AppCard = memo((props: {
   const [remove, { loading, error }] = useRemoveApp();
   const { t } = useTranslation();
   useShowError(error)
+  const parse = useParseLangMessage();
 
   const handleEdit = useCallback(() => {
     navigate(`/config-app/${app.uuid}/${AppConfigRouts.App}`)
@@ -61,7 +63,7 @@ const AppCard = memo((props: {
       ]}
     >
       <Meta
-        title={app.title}
+        title={parse(app.title)}
         description={app.description}
       />
     </Card>

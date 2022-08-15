@@ -9,6 +9,7 @@ import { IApp } from "../model"
 import { AppConfigRouts } from "./AppConfigRouts"
 import { useTranslation } from "react-i18next"
 import SelectLang from "../shared/SelectLang"
+import { useParseLangMessage } from "../hooks/useParseLangMessage"
 
 const ConifgHeader = memo((props: {
   app?: IApp,
@@ -19,11 +20,11 @@ const ConifgHeader = memo((props: {
     navigate("/")
   }, [navigate]);
 
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
-  const {appUuid} = useParams();
+  const { appUuid } = useParams();
   const match = useMatch(`/config-app/${appUuid}/*`)
-
+  const parse = useParseLangMessage();
   const handleSelect = useCallback((info) => {
     navigate(`/config-app/${app?.uuid}/${info.key}`)
   }, [app?.uuid, navigate]);
@@ -32,7 +33,7 @@ const ConifgHeader = memo((props: {
     <Header className="header">
       <Button className="no-border" shape="circle" onClick={handleBack}><HomeOutlined /></Button>
       <Divider type='vertical' />
-      <div style={{ marginLeft: "4px" }}>{app?.title}</div>
+      <div style={{ marginLeft: "4px" }}>{parse(app?.title)}</div>
       <Menu
         className="app-config-menu"
         mode="horizontal"
