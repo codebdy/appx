@@ -10,9 +10,10 @@ const MultiLangInput = (
     multiline?: boolean,
     onChange?: (event: { target: { value: string } }) => void,
     value?: string,
+    inline?: boolean,
   }
 ) => {
-  const { multiline, onChange, value } = props;
+  const { multiline, onChange, value, inline } = props;
   const appConfig = useAppConfig();
   const [visiable, setVisiable] = useState(false);
 
@@ -32,10 +33,10 @@ const MultiLangInput = (
 
   const parsedValue = useMemo(() => parse(value), [parse, value]);
 
-  const handleDiaglogChange = useCallback((value?:string)=>{
+  const handleDiaglogChange = useCallback((value?: string) => {
     onChange({
-      target:{
-        value:value
+      target: {
+        value: value
       }
     })
   }, [onChange])
@@ -54,8 +55,9 @@ const MultiLangInput = (
         visiable={visiable}
         multiline={multiline}
         value={value}
+        inline = {inline}
         onClose={handleClose}
-        onChange = {handleDiaglogChange}
+        onChange={handleDiaglogChange}
       />
     </>
   )
