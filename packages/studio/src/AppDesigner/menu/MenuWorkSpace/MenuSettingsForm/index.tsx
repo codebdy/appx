@@ -12,6 +12,8 @@ import { IPage, IPageCategory } from '../../../../model';
 import { usePagesWithoutCategory } from '../../../hooks/usePagesWithoutCategory';
 import { useGetCategoryPages } from '../../../hooks/useGetCategoryPages';
 import { useGetPage } from '../../../hooks/useGetPage';
+import MultiLangInput from '../../../../shared/MultiLangInput';
+import { useParseLangMessage } from '../../../../hooks/useParseLangMessage';
 const { Option } = Select;
 const { TreeNode } = TreeSelect;
 
@@ -41,6 +43,7 @@ const MenuSettingsForm = memo((
   const node = useMenuNode(selectedId);
   const setMeta = useSetMeta();
   const [form] = Form.useForm()
+  const p = useParseLangMessage();
 
   useEffect(() => {
     form.setFieldsValue({
@@ -100,7 +103,7 @@ const MenuSettingsForm = memo((
                 label={t("Menu.Title")}
                 name="title"
               >
-                <Input />
+                <MultiLangInput />
               </Form.Item>
 
               <Form.Item
@@ -129,11 +132,11 @@ const MenuSettingsForm = memo((
                 {
                   categories.map(category => {
                     return (
-                      <TreeNode value={category.title} title={category.title} selectable={false}>
+                      <TreeNode value={category.title} title={p(category.title)} selectable={false}>
                         {
                           getCategoryPages(category.id)?.map(page => {
                             return (
-                              <TreeNode value={page.id} title={page.title} />
+                              <TreeNode value={page.id} title={p(page.title)} />
                             )
                           })
                         }
@@ -144,7 +147,7 @@ const MenuSettingsForm = memo((
                 {
                   pagesWithoutCategory?.map(page => {
                     return (
-                      <TreeNode value={page.id} title={page.title} />
+                      <TreeNode value={page.id} title={p(page.title)} />
                     )
                   })
                 }
