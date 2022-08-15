@@ -1,5 +1,6 @@
 import React from "react";
 import { memo } from "react";
+import { useParseLangMessage } from "../../hooks/useParseLangMessage";
 import { useAppParams } from "../../shared/AppRoot/context";
 import PageEngine from "../PageEngine";
 import HeaderContent from "./HeaderContent";
@@ -9,6 +10,7 @@ import "./style.less"
 
 const PCRunner = memo(() => {
   const { app } = useAppParams();
+  const p = useParseLangMessage();
 
   return (
     <div
@@ -18,7 +20,7 @@ const PCRunner = memo(() => {
       }}
     >
       <ProLayout
-        title={app.title}
+        title={p(app.title)}
         logo={
           <svg style={{ width: "40px", height: "40px" }} viewBox="0 0 24 24">
             <defs>
