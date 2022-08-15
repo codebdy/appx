@@ -7,6 +7,7 @@ import { useUpsertLangLocal } from "../../hooks/useUpsertLangLocal";
 import { useShowError } from "../../hooks/useShowError";
 import { LANG_INLINE_PREFIX, LANG_RESOURCE_PREFIX } from "../../hooks/useParseLangMessage";
 import { ID } from "..";
+import { ILangLocal } from "../../model";
 
 export enum MultilangType {
   Inline = "Inline",
@@ -55,26 +56,38 @@ const ResourceEditDialog = memo((
     }
   }, [value])
 
+  const clearFields = useCallback(() => {
+    appConfig?.schemaJson?.multiLang?.langs?.forEach(lang => {
+      form.setFieldValue(lang.key, "");
+    })
+  }, [appConfig?.schemaJson?.multiLang?.langs, form])
+
+  const setReourceForm = useCallback((lang: ILangLocal | undefined) => {
+    clearFields();
+    setLocalResourceId(lang?.id);
+    form.setFieldsValue(lang?.schemaJson)
+  }, [clearFields, form])
+
   const resetForm = useCallback(() => {
     form.resetFields();
-    let values: any = {}
     if (inputType === MultilangType.Inline) {
       setLocalResourceId(undefined);
+      let values: any = {}
       if (value?.startsWith(LANG_INLINE_PREFIX)) {
         values = JSON.parse(value.substring(LANG_INLINE_PREFIX.length))
       }
+      form.setFieldsValue({
+        ...values
+      })
     } else {
       if (value?.startsWith(LANG_RESOURCE_PREFIX)) {
         const lang = getResource(value.substring(LANG_RESOURCE_PREFIX.length));
-        setLocalResourceId(lang?.id);
-        values = lang?.schemaJson || {};
-        values.name = lang?.name
+        setReourceForm(lang);
+        form.setFieldValue("name", lang.name);
       }
     }
-    form.setFieldsValue({
-      ...values
-    })
-  }, [form, getResource, inputType, value])
+
+  }, [form, getResource, inputType, setReourceForm, value])
 
   useEffect(() => {
     resetForm();
@@ -130,7 +143,8 @@ const ResourceEditDialog = memo((
   const checkLocalId = useCallback((text: string) => {
     const lang = getResource(text);
     setLocalResourceId(lang?.id);
-  }, [getResource]);
+    setReourceForm(lang);
+  }, [getResource, setReourceForm]);
 
   const handleSearchName = (searchText: string) => {
     setSearchText(searchText);
