@@ -1,9 +1,11 @@
-import { Button, Modal } from "antd";
+import { Button, Form, Modal, Select } from "antd";
 import React, { memo, useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { MonacoInput } from '@designable/react-settings-form'
 import "./style.less"
 import { useGetPackageEntities, usePackages } from "../../../datasource/hooks";
+
+const { OptGroup, Option } = Select;
 
 const DataSourceInput = memo((
   props: {
@@ -38,35 +40,61 @@ const DataSourceInput = memo((
       <Modal
         title={t("SettingsForm.ConfigDataSource")}
         className="config-datasource-modal"
-        width={700}
+        width={800}
         visible={isModalVisible}
         okText={t("Confirm")}
         cancelText={t("Cancel")}
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <div className="form-pannel">
-          <div className="expresion-input">
-            <MonacoInput
-              //{...props}
-              options={{
-                readOnly: false,
-                //glyphMargin: false,
-                folding: false,
-                //lineNumbers: "off",
-                lineDecorationsWidth: 0,
-                lineNumbersMinChars: 0,
-                minimap: {
-                  enabled: false,
-                }
-              }}
-              //value={transformToMarkupSchemaCode(props.tree)}
-              language="sql"
-            />
-          </div>
-        </div>
-
-
+        <Form
+          layout={"vertical"}
+          initialValues={{}}
+        >
+          <Form.Item label="实体">
+            <Select
+            //onChange={handleChange}
+            >
+              {
+                packages?.map(pkg => {
+                  return (
+                    <OptGroup key={pkg.uuid} label={pkg.name}>
+                      {
+                        getPackageEntities(pkg.uuid)?.map(entity => {
+                          return (
+                            <Option key={entity.uuid} value={entity.uuid}>{entity.name}</Option>
+                          )
+                        })
+                      }
+                    </OptGroup>
+                  )
+                })
+              }
+            </Select>
+          </Form.Item>
+          <Form.Item label="表达式">
+            <div style={{
+              height: "200px"
+            }}>
+              <MonacoInput
+                //{...props}
+                options={{
+                  readOnly: false,
+                  glyphMargin: false,
+                  folding: false,
+                  lineNumbers: "off",
+                  lineDecorationsWidth: 0,
+                  lineNumbersMinChars: 0,
+                  minimap: {
+                    enabled: false,
+                  }
+                }}
+                //value={transformToMarkupSchemaCode(props.tree)}
+                language="sql"
+              />
+            </div>
+          </Form.Item>
+        </Form>
       </Modal>
     </>
   )
