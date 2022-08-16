@@ -1,6 +1,7 @@
 import { Button, Modal } from "antd";
 import React, { memo, useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { MonacoInput } from '@designable/react-settings-form'
 
 const DataSourceInput = memo((
   props: {
@@ -39,6 +40,29 @@ const DataSourceInput = memo((
         onCancel={handleCancel}
       >
 
+        <div>
+          实体
+        </div>
+        <div style={{
+          height: "300px"
+        }}>
+          <MonacoInput
+            //{...props}
+            options={{
+              readOnly: false,
+              glyphMargin: false,
+              folding: false,
+              lineNumbers: "off",
+              lineDecorationsWidth: 0,
+              lineNumbersMinChars: 0,
+              minimap: {
+                enabled: false,
+              }
+            }}
+            //value={transformToMarkupSchemaCode(props.tree)}
+            language="sql"
+          />
+        </div>
       </Modal>
     </>
   )
