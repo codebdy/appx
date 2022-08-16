@@ -3,6 +3,8 @@ import React, { memo, useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { MonacoInput } from '@designable/react-settings-form'
 import "./style.less"
+import { usePackages } from "../../hooks/usePackages";
+import { useGetPackageEntities } from "../../hooks/useGetPackageEntities";
 
 const { OptGroup, Option } = Select;
 
@@ -13,6 +15,9 @@ const DataSourceInput = memo((
 ) => {
   const { t } = useTranslation();
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const packages = usePackages();
+  const getPackageEntities = useGetPackageEntities();
+
 
   const showModal = useCallback(() => {
     setIsModalVisible(true);
@@ -50,16 +55,23 @@ const DataSourceInput = memo((
         >
           <Form.Item label="实体">
             <Select
-              defaultValue="lucy"
             //onChange={handleChange}
             >
-              <OptGroup label="Manager">
-                <Option value="jack">Jack</Option>
-                <Option value="lucy">Lucy</Option>
-              </OptGroup>
-              <OptGroup label="Engineer">
-                <Option value="Yiminghe">yiminghe</Option>
-              </OptGroup>
+              {
+                packages?.map(pkg => {
+                  return (
+                    <OptGroup key={pkg.uuid} label={pkg.name}>
+                      {
+                        getPackageEntities(pkg.uuid)?.map(entity => {
+                          return (
+                            <Option key={entity.uuid} value={entity.uuid}>{entity.name}</Option>
+                          )
+                        })
+                      }
+                    </OptGroup>
+                  )
+                })
+              }
             </Select>
           </Form.Item>
           <Form.Item label="表达式">
