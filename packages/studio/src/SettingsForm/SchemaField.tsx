@@ -38,6 +38,7 @@ import {
   CollapseItem,
 } from '@designable/react-settings-form'
 import SettingsTab from './components/SettingsTab'
+import DataSourceInput from './components/DataSourceInput'
 
 export const SchemaField = createSchemaField({
   components: {
@@ -75,6 +76,7 @@ export const SchemaField = createSchemaField({
     FormGrid,
     FormLayout,
     FormTab,
-    SettingsTab
+    SettingsTab,
+    DataSourceInput
   },
 })

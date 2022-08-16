@@ -1,6 +1,7 @@
 export const FieldLocales = {
   'zh-CN': {
     settings: {
+      dataSource: '数据源',
       name: '字段标识',
       title: '标题',
       required: '必填',
@@ -24,7 +25,7 @@ export const FieldLocales = {
       'decorator-group': '容器属性',
       'component-style-group': '组件样式',
       'decorator-style-group': '容器样式',
-      'datasource-group': '数据源',
+      'data-group': '数据',
       'display-group': "显示属性",
       'data-bind-group': "数据绑定",
       'auth-group': "权限设置",
