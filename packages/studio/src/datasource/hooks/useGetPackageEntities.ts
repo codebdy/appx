@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
 import { useSelectedAppUuid } from "../../shared/AppRoot/context";
-import { entitiesState } from "../recoil/atoms";
+import { entitiesState } from "../recoil";
 
 export function useGetPackageEntities() {
   const appUuid = useSelectedAppUuid();

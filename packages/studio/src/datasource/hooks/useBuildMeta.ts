@@ -6,7 +6,7 @@ import { useQueryOne } from "../../enthooks/hooks/useQueryOne";
 import { ClassMeta, StereoType } from "../../ModelBoard/meta/ClassMeta";
 import { Meta } from "../../ModelBoard/meta/Meta";
 import { useSelectedAppUuid } from "../../shared/AppRoot/context";
-import { classesState, entitiesState, packagesState } from "../recoil/atoms";
+import { classesState, entitiesState, packagesState } from "../recoil";
 
 export function useBuildMeta(): { error?: Error; loading?: boolean } {
   const appUuid = useSelectedAppUuid();
