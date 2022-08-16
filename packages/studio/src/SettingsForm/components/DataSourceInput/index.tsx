@@ -30,10 +30,15 @@ const DataSourceInput = memo((
       >
         {t("SettingsForm.ConfigDataSource")}
       </Button>
-      <Modal title={t("SettingsForm.ConfigDataSource")} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+      <Modal
+        title={t("SettingsForm.ConfigDataSource")}
+        visible={isModalVisible}
+        okText={t("Confirm")}
+        cancelText={t("Cancel")}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+
       </Modal>
     </>
   )
