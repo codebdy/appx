@@ -74,15 +74,15 @@ const DataSourceInput = memo((
           </Form.Item>
           <Form.Item label="表达式">
             <div style={{
-              height: "200px"
+              height: "calc(100vh - 440px)"
             }}>
               <MonacoInput
                 //{...props}
                 options={{
                   readOnly: false,
-                  glyphMargin: false,
-                  folding: false,
-                  lineNumbers: "off",
+                  //glyphMargin: false,
+                  //folding: false,
+                  //lineNumbers: "off",
                   lineDecorationsWidth: 0,
                   lineNumbersMinChars: 0,
                   minimap: {
