@@ -3,8 +3,7 @@ import React, { memo, useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { MonacoInput } from '@designable/react-settings-form'
 import "./style.less"
-import { usePackages } from "../../hooks/usePackages";
-import { useGetPackageEntities } from "../../hooks/useGetPackageEntities";
+import { useGetPackageEntities, usePackages } from "../../../datasource/hooks";
 
 const { OptGroup, Option } = Select;
 

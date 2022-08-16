@@ -28,7 +28,7 @@ import { useAppParams } from '../shared/AppRoot/context'
 import { useCagegories } from './hooks/useCagegories'
 import { usePages } from './hooks/usePages'
 import { SettingOutlined } from '@ant-design/icons'
-import { useBuildMeta } from '../SettingsForm/hooks/useBuildMeta'
+import { useBuildMeta } from '../datasource/hooks'
 
 export enum DesignerRoutes {
   Pages = "pages",
