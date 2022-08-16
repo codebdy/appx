@@ -1,8 +1,10 @@
-import { Button, Form, Input, Modal } from "antd";
+import { Button, Form, Modal, Select } from "antd";
 import React, { memo, useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { MonacoInput } from '@designable/react-settings-form'
 import "./style.less"
+
+const { Option } = Select;
 
 const DataSourceInput = memo((
   props: {
@@ -47,7 +49,14 @@ const DataSourceInput = memo((
           initialValues={{}}
         >
           <Form.Item label="实体">
-            <Input placeholder="input placeholder" />
+            <Select
+              defaultValue="lucy"
+            //onChange={handleChange}
+            >
+              <Option value="jack">Jack</Option>
+              <Option value="lucy">Lucy</Option>
+              <Option value="Yiminghe">yiminghe</Option>
+            </Select>
           </Form.Item>
           <Form.Item label="表达式">
             <div style={{
