@@ -34,10 +34,7 @@ export interface ClassMeta {
 
   label?: string;
 
-  partialName?: string;
-
   stereoType: StereoType;
-
   attributes: AttributeMeta[];
   methods: MethodMeta[];
 
