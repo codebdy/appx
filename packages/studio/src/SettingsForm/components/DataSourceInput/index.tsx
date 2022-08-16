@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { MonacoInput } from '@designable/react-settings-form'
 import "./style.less"
 
-const { Option } = Select;
+const { OptGroup, Option } = Select;
 
 const DataSourceInput = memo((
   props: {
@@ -53,9 +53,13 @@ const DataSourceInput = memo((
               defaultValue="lucy"
             //onChange={handleChange}
             >
-              <Option value="jack">Jack</Option>
-              <Option value="lucy">Lucy</Option>
-              <Option value="Yiminghe">yiminghe</Option>
+              <OptGroup label="Manager">
+                <Option value="jack">Jack</Option>
+                <Option value="lucy">Lucy</Option>
+              </OptGroup>
+              <OptGroup label="Engineer">
+                <Option value="Yiminghe">yiminghe</Option>
+              </OptGroup>
             </Select>
           </Form.Item>
           <Form.Item label="表达式">
