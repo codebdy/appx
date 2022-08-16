@@ -26,7 +26,7 @@ export function useBuildMeta(): { error?: Error; loading?: boolean } {
           },
           {
             status:{
-              _eq:'published'
+              _eq:"published"
             }            
           },
         ]

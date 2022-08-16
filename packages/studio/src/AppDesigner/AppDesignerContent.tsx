@@ -28,6 +28,7 @@ import { useAppParams } from '../shared/AppRoot/context'
 import { useCagegories } from './hooks/useCagegories'
 import { usePages } from './hooks/usePages'
 import { SettingOutlined } from '@ant-design/icons'
+import { useBuildMeta } from '../SettingsForm/hooks/useBuildMeta'
 
 export enum DesignerRoutes {
   Pages = "pages",
@@ -43,7 +44,9 @@ const AppDesignerContent = memo(() => {
   const pageId = useSelectedPageId();
   const { categories, loading, error } = useCagegories();
   const { pages, loading: pagesLoading, error: pagesError } = usePages();
-  useShowError(error || pagesError);
+  const { error: metaError, loading: metaLoading } = useBuildMeta();
+
+  useShowError(error || pagesError || metaError);
 
   const engine = useMemo(
     () => createDesigner({
@@ -69,7 +72,7 @@ const AppDesignerContent = memo(() => {
 
 
   return (
-    <Spin style={{ height: "100vh" }} spinning={loading || pagesLoading}>
+    <Spin style={{ height: "100vh" }} spinning={loading || pagesLoading || metaLoading}>
       <MenuDragRoot pages={pages || []}>
         <Designer engine={engine}>
           <StudioPanel logo={<NavigationWidget app={app} />}
