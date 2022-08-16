@@ -1,4 +1,5 @@
 import React from "react";
+import { IDataSource } from "../../datasource";
 
 
 export interface IPageContainerProps {
@@ -13,4 +14,5 @@ export interface IPageContainerProps {
   hasHeaderContentExtra?: boolean;
   hasTabs?: boolean;
   hasFooterToolbar?: boolean;
+  dataSource?: IDataSource;
 }
