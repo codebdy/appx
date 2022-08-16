@@ -4,15 +4,18 @@ import { useTranslation } from "react-i18next";
 import { MonacoInput } from '@designable/react-settings-form'
 import "./style.less"
 import { useGetPackageEntities, usePackages } from "../../../datasource/hooks";
+import { IDataSource } from "../../../datasource";
 
 const { OptGroup, Option } = Select;
 
 const DataSourceInput = memo((
   props: {
-
+    onChange: (dataSource: IDataSource) => void
   }
 ) => {
+  const { onChange } = props;
   const { t } = useTranslation();
+  const [form] = Form.useForm();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const packages = usePackages();
   const getPackageEntities = useGetPackageEntities();
@@ -22,12 +25,16 @@ const DataSourceInput = memo((
   }, []);
 
   const handleOk = useCallback(() => {
-    setIsModalVisible(false);
-  }, []);
+    form.validateFields().then(() => {
+      //setIsModalVisible(false);
+    })
+
+  }, [form]);
 
   const handleCancel = useCallback(() => {
+    form.resetFields();
     setIsModalVisible(false);
-  }, []);
+  }, [form]);
 
   return (
     <>
@@ -49,9 +56,14 @@ const DataSourceInput = memo((
       >
         <Form
           layout={"vertical"}
+          form={form}
           initialValues={{}}
         >
-          <Form.Item label="实体">
+          <Form.Item
+            label="实体"
+            name="entityUuid"
+            rules={[{ required: true, message: t("Required") }]}
+          >
             <Select
             //onChange={handleChange}
             >
