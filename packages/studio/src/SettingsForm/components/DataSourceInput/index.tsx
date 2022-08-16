@@ -34,7 +34,8 @@ const DataSourceInput = memo((
       </Button>
       <Modal
         title={t("SettingsForm.ConfigDataSource")}
-        className = "config-datasource-modal"
+        className="config-datasource-modal"
+        width={800}
         visible={isModalVisible}
         okText={t("Confirm")}
         cancelText={t("Cancel")}
