@@ -27,7 +27,7 @@ export const MaterialDialog = memo(() => {
       />
 
       <Modal
-        title={t("materials.ModuleList")}
+        title={t("Materials.ModuleList")}
         className='material-module-modal'
         visible={isModalVisible}
         okText={t("Confirm")}

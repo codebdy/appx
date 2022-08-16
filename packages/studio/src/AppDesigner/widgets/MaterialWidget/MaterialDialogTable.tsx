@@ -1,4 +1,4 @@
-import { DeleteOutlined, EditOutlined, MenuOutlined, PlusOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined, MenuOutlined } from '@ant-design/icons';
 import { Button, Table } from 'antd';
 import { arrayMoveImmutable } from 'array-move';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -8,7 +8,7 @@ import { UploadDialog } from './UploadDialog';
 import { MaterialModule } from './model';
 import { materialStore } from './global';
 
-const DragHandle = SortableHandle(() => (
+const DragHandle: any = SortableHandle(() => (
   <MenuOutlined
     style={{
       cursor: 'grab',
@@ -41,21 +41,21 @@ const columns = [
     </>,
   },
 ];
-const SortableItem = SortableElement((props) => <tr {...props} />);
-const SortableBody = SortableContainer((props) => <tbody {...props} />);
+const SortableItem: any = SortableElement((props) => <tr {...props} />);
+const SortableBody: any = SortableContainer((props) => <tbody {...props} />);
 
 export const MaterialDialogTable = () => {
   const [dataSource, setDataSource] = useState([]);
 
-  useEffect(()=>{
-    setDataSource(materialStore.modules.map((material,index)=>{
+  useEffect(() => {
+    setDataSource(materialStore.modules.map((material, index) => {
       return {
         key: index,
         name: material.name,
         index: index,
       }
     }))
-  }, [materialStore.modules])
+  }, [])
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
     if (oldIndex !== newIndex) {

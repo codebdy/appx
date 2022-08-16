@@ -97,15 +97,15 @@ export const UploadDialog: React.FC<IUploadModalProps> = memo((props: IUploadMod
         icon={<PlusOutlined />}
         onClick={showModal}
       >
-        {t("materials.Add")}
+        {t("Materials.Add")}
       </Button>
       <Modal
-        title={t("materials.Cuszomized")}
+        title={t("Materials.Cuszomized")}
         className='material-upoad-modal'
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
-        okText={t("nfirm")}
+        okText={t("Confirm")}
         cancelText={t("Cancel")}
       >
         <Form
@@ -125,7 +125,7 @@ export const UploadDialog: React.FC<IUploadModalProps> = memo((props: IUploadMod
           autoComplete="off"
         >
           <Form.Item
-            label={t("materials.ComponentTypeName")}
+            label={t("Materials.ComponentTypeName")}
             name="name"
             rules={[{ required: true, message: t("aterials.RequiredName") }]}
           >
@@ -133,20 +133,20 @@ export const UploadDialog: React.FC<IUploadModalProps> = memo((props: IUploadMod
           </Form.Item>
 
           <Form.Item
-            label={t("materials.OperationType")}
+            label={t("Materials.OperationType")}
             name="operationType"
           >
             <Radio.Group
               onChange={onTypeChange}
             >
-              <Radio value={OperationType.Upload}>t("materials.Upload")</Radio>
-              <Radio value={OperationType.Debug}>t("materials.Debug")</Radio>
+              <Radio value={OperationType.Upload}>{t("Materials.Upload")}</Radio>
+              <Radio value={OperationType.Debug}>{t("Materials.Debug")}</Radio>
             </Radio.Group>
           </Form.Item>
           {
             operationType === OperationType.Upload &&
             < Form.Item
-              label={t("materials.UploadFile")}
+              label={t("Materials.UploadFile")}
               name="file"
               valuePropName="fileList"
               // 如果没有下面这一句会报错
@@ -157,8 +157,8 @@ export const UploadDialog: React.FC<IUploadModalProps> = memo((props: IUploadMod
                   <CloudUploadOutlined />
                 </p>
                 <p className="ant-upload-hint">
-                  t("UploadHint1")
-                  <Button type="link">t("UploadHint2")</Button>
+                  {t("UploadHint1")}
+                  <Button type="link">{t("UploadHint2")}</Button>
                 </p>
               </Dragger>
             </Form.Item>
@@ -166,9 +166,9 @@ export const UploadDialog: React.FC<IUploadModalProps> = memo((props: IUploadMod
           {
             operationType === OperationType.Debug &&
             <Form.Item
-              label={t("materials.LinkAddress")}
+              label={t("Materials.LinkAddress")}
               name="url"
-              rules={[{ required: true, message: t("materials.RequiredUrl") }]}
+              rules={[{ required: true, message: t("Materials.RequiredUrl") }]}
             >
               <Input />
             </Form.Item>
