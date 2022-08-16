@@ -1,8 +1,9 @@
 import { gql } from "awesome-graphql-client";
-import { useMemo, useEffect } from "react";
+import { useMemo, useEffect, useCallback } from "react";
 import { useSetRecoilState } from "recoil";
 import { SYSTEM_APP_UUID } from "../../consts";
 import { useQueryOne } from "../../enthooks/hooks/useQueryOne";
+import { ClassMeta } from "../../ModelBoard/meta/ClassMeta";
 import { Meta } from "../../ModelBoard/meta/Meta";
 import { useSelectedAppUuid } from "../../shared/AppRoot/context";
 import { classesState, entitiesState, packagesState } from "../recoil/atoms";
@@ -53,6 +54,13 @@ export function useBuildMeta(): { error?: Error; loading?: boolean } {
 
   );
 
+  const makeEntity = useCallback((cls: ClassMeta) => {
+    return {
+      ...cls,
+      associations: []
+    }
+  }, []);
+
   useEffect(() => {
     if (data && (systemData || appUuid === SYSTEM_APP_UUID)) {
       const meta = data[queryName];
@@ -64,8 +72,9 @@ export function useBuildMeta(): { error?: Error; loading?: boolean } {
       const systemClasses = systemMeta?.content?.classes?.filter(cls => getPackage(cls.packageUuid).sharable) || []
       setPackages([...systemPackages, ...meta?.content?.packages || []]);
       setClasses([...systemClasses, ...meta?.content?.classes || []]);
+      setEntitiesState(meta?.content?.classes?.map(cls => makeEntity(cls)) || [])
     }
-  }, [data, queryName, setClasses, setPackages, systemData, appUuid]);
+  }, [data, queryName, setClasses, setPackages, systemData, appUuid, setEntitiesState, makeEntity]);
 
   return { error: error || systemError, loading: loading || systemLoading };
 }
