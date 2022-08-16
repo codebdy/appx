@@ -172,7 +172,8 @@
     "Properties": "属性",
     "Styles": "样式",
     "Display": "展示",
-    "Actions": "动作"
+    "Actions": "动作",
+    "ConfigDataSource":"配置数据源"
   },
   "Menu": {
     "HelpItems": "辅助项",
