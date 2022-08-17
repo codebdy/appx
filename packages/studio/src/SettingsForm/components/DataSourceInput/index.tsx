@@ -1,4 +1,4 @@
-import { Button, Form, Modal, Select } from "antd";
+import { Button, Form, Modal, Select, Space } from "antd";
 import React, { memo, useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { MonacoInput } from '@designable/react-settings-form'
@@ -51,8 +51,15 @@ const DataSourceInput = memo((
         visible={isModalVisible}
         okText={t("Confirm")}
         cancelText={t("Cancel")}
-        onOk={handleOk}
-        onCancel={handleCancel}
+        footer={
+          <div className="footer-toolbar">
+            <Button>测试</Button>
+            <Space>
+              <Button onClick={handleCancel}>{t("Cancel")}</Button>
+              <Button type="primary" onClick={handleOk}>{t("Confirm")}</Button>
+            </Space>
+          </div>
+        }
       >
         <Form
           layout={"vertical"}
@@ -85,7 +92,7 @@ const DataSourceInput = memo((
             </Select>
           </Form.Item>
           <div style={{ display: "flex", width: "100%" }}>
-            <div style={{ flex: 1,  marginRight: "8px", }}>
+            <div style={{ flex: 1, marginRight: "8px", }}>
               <Form.Item label="Graphql 语句">
                 <div style={{
                   height: "calc(100vh - 440px)",
@@ -109,7 +116,7 @@ const DataSourceInput = memo((
                 </div>
               </Form.Item>
             </div>
-            <div style={{ flex: 1,  marginLeft: "8px", }}>
+            <div style={{ flex: 1, marginLeft: "8px", }}>
               <Form.Item label="变量">
                 <div style={{
                   height: "calc(100vh - 440px)",
