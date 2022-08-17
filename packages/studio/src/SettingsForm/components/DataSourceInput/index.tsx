@@ -84,28 +84,57 @@ const DataSourceInput = memo((
               }
             </Select>
           </Form.Item>
-          <Form.Item label="表达式">
-            <div style={{
-              height: "calc(100vh - 440px)"
-            }}>
-              <MonacoInput
-                //{...props}
-                options={{
-                  readOnly: false,
-                  //glyphMargin: false,
-                  //folding: false,
-                  //lineNumbers: "off",
-                  lineDecorationsWidth: 0,
-                  lineNumbersMinChars: 0,
-                  minimap: {
-                    enabled: false,
-                  }
-                }}
-                //value={transformToMarkupSchemaCode(props.tree)}
-                language="sql"
-              />
+          <div style={{ display: "flex", width: "100%" }}>
+            <div style={{ flex: 1,  marginRight: "8px", }}>
+              <Form.Item label="Graphql 语句">
+                <div style={{
+                  height: "calc(100vh - 440px)",
+                }}>
+                  <MonacoInput
+                    //{...props}
+                    options={{
+                      readOnly: false,
+                      //glyphMargin: false,
+                      //folding: false,
+                      //lineNumbers: "off",
+                      lineDecorationsWidth: 0,
+                      lineNumbersMinChars: 0,
+                      minimap: {
+                        enabled: false,
+                      }
+                    }}
+                    //value={transformToMarkupSchemaCode(props.tree)}
+                    language="graphql"
+                  />
+                </div>
+              </Form.Item>
             </div>
-          </Form.Item>
+            <div style={{ flex: 1,  marginLeft: "8px", }}>
+              <Form.Item label="变量">
+                <div style={{
+                  height: "calc(100vh - 440px)",
+                }}>
+                  <MonacoInput
+                    //{...props}
+                    options={{
+                      readOnly: false,
+                      glyphMargin: false,
+                      folding: false,
+                      lineNumbers: "off",
+                      lineDecorationsWidth: 0,
+                      lineNumbersMinChars: 0,
+                      minimap: {
+                        enabled: false,
+                      }
+                    }}
+                    //value={transformToMarkupSchemaCode(props.tree)}
+                    language="json"
+                  />
+                </div>
+              </Form.Item>
+            </div>
+          </div>
+
         </Form>
       </Modal>
     </>
