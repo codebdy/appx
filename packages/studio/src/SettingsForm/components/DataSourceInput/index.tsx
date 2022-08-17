@@ -12,7 +12,7 @@ const { OptGroup, Option } = Select;
 export const DataSourceInput = memo((
   props: {
     value?: IDataSource,
-    onChange: (dataSource: IDataSource) => void
+    onChange?: (dataSource?: IDataSource) => void
   }
 ) => {
   const { value, onChange } = props;
@@ -34,7 +34,7 @@ export const DataSourceInput = memo((
 
   const handleOk = useCallback(() => {
     form.validateFields().then((formValues) => {
-      onChange(formValues);
+      onChange && onChange(formValues);
       setIsModalVisible(false);
     })
 

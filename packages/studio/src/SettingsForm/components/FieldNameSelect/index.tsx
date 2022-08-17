@@ -1,11 +1,17 @@
 import { observer } from "@formily/reactive-react";
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import "./style.less"
 import { AutoComplete, Input } from 'antd';
 import { useCurrentEntity } from "../../../datasource/hooks/useCurrentEntity";
 import { TextWidget } from '@designable/react'
 
-export const FieldNameSelect = observer(() => {
+export const FieldNameSelect = observer((
+  props: {
+    value?: string,
+    onChange?: (name?: string) => void
+  }
+) => {
+  const { value, onChange } = props;
   const currentEntity = useCurrentEntity();
 
   const options = useMemo(() => {
@@ -53,12 +59,18 @@ export const FieldNameSelect = observer(() => {
     return opts;
   }, [currentEntity])
 
+  const handleChange = useCallback((value) => {
+    onChange && onChange(value);
+  }, [onChange])
+
   return (
     <>
       <AutoComplete
         dropdownClassName="certain-category-search-dropdown"
         //dropdownMatchSelectWidth={500}
+        value={value}
         options={options}
+        onChange={handleChange}
       >
         <Input
           style={{
