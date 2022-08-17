@@ -1,11 +1,11 @@
 import { Button, Form, Modal, Select, Space } from "antd";
 import React, { memo, useCallback, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { MonacoInput } from '@designable/react-settings-form'
 import "./style.less"
 import { useGetPackageEntities, usePackages } from "../../../datasource/hooks";
 import { IDataSource } from "../../../datasource";
 import { PlayCircleOutlined } from "@ant-design/icons";
+import { TextWidget } from '@designable/react'
 
 const { OptGroup, Option } = Select;
 
@@ -15,7 +15,6 @@ const DataSourceInput = memo((
   }
 ) => {
   const { onChange } = props;
-  const { t } = useTranslation();
   const [form] = Form.useForm();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const packages = usePackages();
@@ -43,21 +42,25 @@ const DataSourceInput = memo((
         block
         onClick={showModal}
       >
-        {t("SettingsForm.ConfigDataSource")}
+        <TextWidget token="SettingComponents.DataSourceInput.Title" />
       </Button>
       <Modal
-        title={t("SettingsForm.ConfigDataSource")}
+        title={<TextWidget token="SettingComponents.DataSourceInput.Title" />}
         className="config-datasource-modal"
         width={900}
         visible={isModalVisible}
-        okText={t("Confirm")}
-        cancelText={t("Cancel")}
         footer={
           <div className="footer-toolbar">
-            <Button icon={<PlayCircleOutlined />}>测试</Button>
+            <Button icon={<PlayCircleOutlined />}>
+              <TextWidget token="SettingComponents.DataSourceInput.Test" />
+            </Button>
             <Space>
-              <Button onClick={handleCancel}>{t("Cancel")}</Button>
-              <Button type="primary" onClick={handleOk}>{t("Confirm")}</Button>
+              <Button onClick={handleCancel}>
+                <TextWidget token="SettingComponents.DataSourceInput.Cancel" />
+              </Button>
+              <Button type="primary" onClick={handleOk}>
+                <TextWidget token="SettingComponents.DataSourceInput.Confirm" />
+              </Button>
             </Space>
           </div>
         }
@@ -70,7 +73,7 @@ const DataSourceInput = memo((
           <Form.Item
             label="实体"
             name="entityUuid"
-            rules={[{ required: true, message: t("Required") }]}
+            rules={[{ required: true, message: <TextWidget token="SettingComponents.DataSourceInput.Required" /> }]}
           >
             <Select
             //onChange={handleChange}
@@ -94,7 +97,7 @@ const DataSourceInput = memo((
           </Form.Item>
           <div style={{ display: "flex", width: "100%" }}>
             <div className="gql-expression-shell">
-              <Form.Item label="Graphql 语句">
+              <Form.Item label={<TextWidget token="SettingComponents.DataSourceInput.GraphqlExpression" />}>
                 <MonacoInput
                   className="gql-input-area"
                   //{...props}
@@ -115,7 +118,7 @@ const DataSourceInput = memo((
               </Form.Item>
             </div>
             <div className="gql-variables-shell">
-              <Form.Item label="变量">
+              <Form.Item label={<TextWidget token="SettingComponents.DataSourceInput.Variables" />}>
                 <MonacoInput
                   className="gql-input-area"
                   //{...props}

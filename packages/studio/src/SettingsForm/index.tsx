@@ -20,6 +20,7 @@ import './styles.less'
 import { ISettingFormProps } from './types'
 import { QuestionCircleOutlined } from '@ant-design/icons'
 import { SchemaField } from './SchemaField'
+import "./locales"
 
 const GlobalState = {
   idleRequest: null,
