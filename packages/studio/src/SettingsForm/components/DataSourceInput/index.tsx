@@ -5,6 +5,7 @@ import { MonacoInput } from '@designable/react-settings-form'
 import "./style.less"
 import { useGetPackageEntities, usePackages } from "../../../datasource/hooks";
 import { IDataSource } from "../../../datasource";
+import { PlayCircleOutlined } from "@ant-design/icons";
 
 const { OptGroup, Option } = Select;
 
@@ -47,13 +48,13 @@ const DataSourceInput = memo((
       <Modal
         title={t("SettingsForm.ConfigDataSource")}
         className="config-datasource-modal"
-        width={800}
+        width={900}
         visible={isModalVisible}
         okText={t("Confirm")}
         cancelText={t("Cancel")}
         footer={
           <div className="footer-toolbar">
-            <Button>测试</Button>
+            <Button icon={<PlayCircleOutlined />}>测试</Button>
             <Space>
               <Button onClick={handleCancel}>{t("Cancel")}</Button>
               <Button type="primary" onClick={handleOk}>{t("Confirm")}</Button>
@@ -92,52 +93,46 @@ const DataSourceInput = memo((
             </Select>
           </Form.Item>
           <div style={{ display: "flex", width: "100%" }}>
-            <div style={{ flex: 1, marginRight: "8px", }}>
+            <div className="gql-expression-shell">
               <Form.Item label="Graphql 语句">
-                <div style={{
-                  height: "calc(100vh - 440px)",
-                }}>
-                  <MonacoInput
-                    //{...props}
-                    options={{
-                      readOnly: false,
-                      //glyphMargin: false,
-                      //folding: false,
-                      //lineNumbers: "off",
-                      lineDecorationsWidth: 0,
-                      lineNumbersMinChars: 0,
-                      minimap: {
-                        enabled: false,
-                      }
-                    }}
-                    //value={transformToMarkupSchemaCode(props.tree)}
-                    language="graphql"
-                  />
-                </div>
+                <MonacoInput
+                  className="gql-input-area"
+                  //{...props}
+                  options={{
+                    readOnly: false,
+                    //glyphMargin: false,
+                    //folding: false,
+                    //lineNumbers: "off",
+                    lineDecorationsWidth: 0,
+                    lineNumbersMinChars: 0,
+                    minimap: {
+                      enabled: false,
+                    }
+                  }}
+                  //value={transformToMarkupSchemaCode(props.tree)}
+                  language="graphql"
+                />
               </Form.Item>
             </div>
-            <div style={{ flex: 1, marginLeft: "8px", }}>
+            <div className="gql-variables-shell">
               <Form.Item label="变量">
-                <div style={{
-                  height: "calc(100vh - 440px)",
-                }}>
-                  <MonacoInput
-                    //{...props}
-                    options={{
-                      readOnly: false,
-                      glyphMargin: false,
-                      folding: false,
-                      lineNumbers: "off",
-                      lineDecorationsWidth: 0,
-                      lineNumbersMinChars: 0,
-                      minimap: {
-                        enabled: false,
-                      }
-                    }}
-                    //value={transformToMarkupSchemaCode(props.tree)}
-                    language="json"
-                  />
-                </div>
+                <MonacoInput
+                  className="gql-input-area"
+                  //{...props}
+                  options={{
+                    readOnly: false,
+                    glyphMargin: false,
+                    folding: false,
+                    lineNumbers: "off",
+                    lineDecorationsWidth: 0,
+                    lineNumbersMinChars: 0,
+                    minimap: {
+                      enabled: false,
+                    }
+                  }}
+                  //value={transformToMarkupSchemaCode(props.tree)}
+                  language="json"
+                />
               </Form.Item>
             </div>
           </div>
