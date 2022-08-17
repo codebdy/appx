@@ -11,7 +11,7 @@ import { CONST_ID } from "../meta/Meta";
 import { useSelectedAppUuid } from "../../shared/AppRoot/context";
 const { Option } = Select;
 
-export const TypeInput = memo(
+export const AttributeTypeInput = memo(
   (
     props: {
       attribute: AttributeMeta

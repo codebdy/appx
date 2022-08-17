@@ -7,7 +7,7 @@ import { CONST_ID } from "../meta/Meta";
 import { useGetTypeLabel } from "../hooks/useGetTypeLabel";
 import { Form, Input, Switch } from "antd";
 import { useTranslation } from "react-i18next";
-import { TypeInput } from "./TypeInput";
+import { AttributeTypeInput } from "./AttributeTypeInput";
 import MultiLangInput from "../../shared/MultiLangInput";
 import { useSelectedAppUuid } from "../../shared/AppRoot/context";
 
@@ -78,7 +78,7 @@ export const AttributePanel = (props: {
 
         {cls.stereoType !== StereoType.Enum && (
           <>
-            <TypeInput attribute={attribute} />
+            <AttributeTypeInput attribute={attribute} />
             {
               !isId &&
               <>
