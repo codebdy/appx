@@ -21,10 +21,12 @@ const DataSourceInput = memo((
   const packages = usePackages();
   const getPackageEntities = useGetPackageEntities();
   useEffect(() => {
-    form.setFieldsValue(value)
-  }, [form, value])
+    if (isModalVisible) {
+      form.resetFields();
+      form.setFieldsValue(value)
+    }
 
-  console.log("哈哈哈", value);
+  }, [form, value, isModalVisible])
 
   const showModal = useCallback(() => {
     setIsModalVisible(true);
@@ -32,18 +34,15 @@ const DataSourceInput = memo((
 
   const handleOk = useCallback(() => {
     form.validateFields().then((formValues) => {
-      console.log("呵呵", formValues);
       onChange(formValues);
       setIsModalVisible(false);
-      form.resetFields();
     })
 
   }, [form, onChange]);
 
   const handleCancel = useCallback(() => {
     setIsModalVisible(false);
-    form.resetFields();
-  }, [form]);
+  }, []);
 
   return (
     <>
