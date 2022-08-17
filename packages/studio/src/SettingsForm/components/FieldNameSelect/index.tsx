@@ -2,6 +2,7 @@ import { observer } from "@formily/reactive-react";
 import React from "react";
 import "./style.less"
 import { AutoComplete, Input } from 'antd';
+import { useCurrentEntity } from "../../../datasource/hooks/useCurrentEntity";
 
 const renderItem = (title: string, count: number) => ({
   value: title,
@@ -24,6 +25,9 @@ const options = [
 ];
 
 export const FieldNameSelect = observer(() => {
+  const currentEntity = useCurrentEntity();
+  console.log("哈哈哈", currentEntity)
+
   return (
     <>
       <AutoComplete
