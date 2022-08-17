@@ -88,7 +88,7 @@ export const createDisplaySchemaTab = () => {
               'x-decorator': 'FormItem',
               'x-component': 'FieldNameSelect',
             },
-            gqlExpression: {
+            expression: {
               type: 'string',
               'x-decorator': 'FormItem',
               'x-component': 'GQlExpresssionInput',
