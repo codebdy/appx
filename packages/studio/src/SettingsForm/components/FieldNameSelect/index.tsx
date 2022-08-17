@@ -1,5 +1,5 @@
 import { observer } from "@formily/reactive-react";
-import React from "react";
+import React, { useMemo } from "react";
 import "./style.less"
 import { AutoComplete, Input } from 'antd';
 import { useCurrentEntity } from "../../../datasource/hooks/useCurrentEntity";
@@ -26,7 +26,51 @@ const options = [
 
 export const FieldNameSelect = observer(() => {
   const currentEntity = useCurrentEntity();
-  console.log("哈哈哈", currentEntity)
+
+  const options = useMemo(() => {
+    const opts = [];
+    if (currentEntity?.attributes?.length) {
+      const opt = {
+        label: "属性",
+        options: [],
+      }
+      for (const attr of currentEntity.attributes) {
+        opt.options.push({
+          value: attr.name,
+          label: attr.name,
+        })
+      }
+      opts.push(opt)
+    }
+    if (currentEntity?.methods?.length) {
+      const opt = {
+        label: "方法",
+        options: [],
+      }
+      for (const method of currentEntity.methods) {
+        opt.options.push({
+          value: method.name,
+          label: method.name,
+        })
+      }
+      opts.push(opt)
+    }
+    if (currentEntity?.associations?.length) {
+      const opt = {
+        label: "关联",
+        options: [],
+      }
+      for (const assoc of currentEntity.associations) {
+        opt.options.push({
+          value: assoc.name,
+          label: assoc.name,
+        })
+      }
+      opts.push(opt)
+    }
+
+    return opts;
+  }, [currentEntity])
 
   return (
     <>
