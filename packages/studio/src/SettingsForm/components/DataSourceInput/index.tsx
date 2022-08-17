@@ -9,7 +9,7 @@ import { TextWidget } from '@designable/react'
 
 const { OptGroup, Option } = Select;
 
-const DataSourceInput = memo((
+export const DataSourceInput = memo((
   props: {
     value?: IDataSource,
     onChange: (dataSource: IDataSource) => void
@@ -153,5 +153,3 @@ const DataSourceInput = memo((
     </>
   )
 })
-
-export default DataSourceInput;

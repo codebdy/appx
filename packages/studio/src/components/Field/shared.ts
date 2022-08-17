@@ -86,7 +86,7 @@ export const createDisplaySchemaTab = () => {
             name: {
               type: 'string',
               'x-decorator': 'FormItem',
-              'x-component': 'Input',
+              'x-component': 'FieldNameSelect',
             },
             title: {
               type: 'string',
