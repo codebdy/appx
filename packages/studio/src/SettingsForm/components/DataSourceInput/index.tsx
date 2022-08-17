@@ -1,5 +1,5 @@
 import { Button, Form, Modal, Select, Space } from "antd";
-import React, { memo, useCallback, useState } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import { MonacoInput } from '@designable/react-settings-form'
 import "./style.less"
 import { useGetPackageEntities, usePackages } from "../../../datasource/hooks";
@@ -11,14 +11,20 @@ const { OptGroup, Option } = Select;
 
 const DataSourceInput = memo((
   props: {
+    value?: IDataSource,
     onChange: (dataSource: IDataSource) => void
   }
 ) => {
-  const { onChange } = props;
+  const { value, onChange } = props;
   const [form] = Form.useForm();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const packages = usePackages();
   const getPackageEntities = useGetPackageEntities();
+  useEffect(() => {
+    form.setFieldsValue(value)
+  }, [form, value])
+
+  console.log("哈哈哈", value);
 
   const showModal = useCallback(() => {
     setIsModalVisible(true);
@@ -26,15 +32,17 @@ const DataSourceInput = memo((
 
   const handleOk = useCallback(() => {
     form.validateFields().then((formValues) => {
-      console.log(formValues)
-      //setIsModalVisible(false);
+      console.log("呵呵", formValues);
+      onChange(formValues);
+      setIsModalVisible(false);
+      form.resetFields();
     })
 
-  }, [form]);
+  }, [form, onChange]);
 
   const handleCancel = useCallback(() => {
-    form.resetFields();
     setIsModalVisible(false);
+    form.resetFields();
   }, [form]);
 
   return (
@@ -76,9 +84,7 @@ const DataSourceInput = memo((
             name="entityUuid"
             rules={[{ required: true, message: <TextWidget token="SettingComponents.DataSourceInput.Required" /> }]}
           >
-            <Select
-            //onChange={handleChange}
-            >
+            <Select>
               {
                 packages?.map(pkg => {
                   return (
@@ -101,15 +107,12 @@ const DataSourceInput = memo((
               <Form.Item
                 label={<TextWidget token="SettingComponents.DataSourceInput.GraphqlExpression" />}
                 name="expression"
+                rules={[{ required: true, message: <TextWidget token="SettingComponents.DataSourceInput.Required" /> }]}
               >
                 <MonacoInput
                   className="gql-input-area"
-                  //{...props}
                   options={{
                     readOnly: false,
-                    //glyphMargin: false,
-                    //folding: false,
-                    //lineNumbers: "off",
                     lineDecorationsWidth: 0,
                     lineNumbersMinChars: 0,
                     minimap: {
@@ -124,11 +127,10 @@ const DataSourceInput = memo((
             <div className="gql-variables-shell">
               <Form.Item
                 label={<TextWidget token="SettingComponents.DataSourceInput.Variables" />}
-                name = "variables"
+                name="variables"
               >
                 <MonacoInput
                   className="gql-input-area"
-                  //{...props}
                   options={{
                     readOnly: false,
                     glyphMargin: false,
