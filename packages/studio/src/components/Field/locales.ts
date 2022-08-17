@@ -8,6 +8,7 @@ export const FieldLocales = {
       description: '描述',
       default: '默认值',
       enum: '可选项',
+      gqlExpression:"字段表达式",
       'x-display': {
         title: '展示状态',
         tooltip: '半隐藏只会隐藏UI，全隐藏会删除数据',

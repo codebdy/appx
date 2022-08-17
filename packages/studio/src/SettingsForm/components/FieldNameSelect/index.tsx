@@ -35,7 +35,6 @@ export const FieldNameSelect = observer(() => {
           style={{
             paddingRight: "24px"
           }}
-          placeholder="input here"
         />
       </AutoComplete>
       <span className="ant-select-arrow"

@@ -1,5 +1,6 @@
 export * from "./ActionInput"
 export * from "./DataSourceInput"
 export * from "./FieldNameSelect"
+export * from "./GQlExpresssionInput"
 export * from "./IconInput"
 export * from "./SettingsTab"

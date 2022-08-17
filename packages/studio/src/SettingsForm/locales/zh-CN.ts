@@ -11,6 +11,9 @@ export const zhCN = {
         GraphqlExpression: "Graphql 语句",
         Variables: "变量"
       },
+      GQlExpresssionInput: {
+        ConfigExpression: "配置表达式"
+      }
     },
   },
 }
