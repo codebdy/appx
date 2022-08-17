@@ -16,6 +16,7 @@ export const FieldNameSelect = observer((
 
   const options = useMemo(() => {
     const opts = [];
+
     if (currentEntity?.attributes?.length) {
       const opt = {
         label: <TextWidget token="SettingComponents.FieldNameSelect.Attributes" />,

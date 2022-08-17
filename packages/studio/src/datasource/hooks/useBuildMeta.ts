@@ -95,6 +95,9 @@ export function useBuildMeta(): { error?: Error; loading?: boolean } {
   const getEntityAssociations = useCallback((classUuid: string, relations: RelationMeta[]) => {
     const associations: AssociationMeta[] = [];
     for (const relation of relations) {
+      if (relation.relationType === RelationType.INHERIT) {
+        continue;
+      }
       if (relation.sourceId === classUuid) {
         associations.push({
           name: relation.roleOfTarget,
