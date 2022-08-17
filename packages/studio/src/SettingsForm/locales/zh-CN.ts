@@ -13,6 +13,11 @@ export const zhCN = {
       },
       GQlExpresssionInput: {
         ConfigExpression: "配置表达式"
+      },
+      FieldNameSelect: {
+        Attributes: "属性",
+        Methods: "方法",
+        Associations: "关联"
       }
     },
   },

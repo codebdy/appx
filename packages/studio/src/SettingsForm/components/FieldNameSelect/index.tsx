@@ -3,26 +3,7 @@ import React, { useMemo } from "react";
 import "./style.less"
 import { AutoComplete, Input } from 'antd';
 import { useCurrentEntity } from "../../../datasource/hooks/useCurrentEntity";
-
-const renderItem = (title: string, count: number) => ({
-  value: title,
-  label: title,
-});
-
-const options = [
-  {
-    label: 'Libraries',
-    options: [renderItem('AntDesign', 10000), renderItem('AntDesign UI', 10600)],
-  },
-  {
-    label: 'Solutions',
-    options: [renderItem('AntDesign UI FAQ', 60100), renderItem('AntDesign FAQ', 30010)],
-  },
-  {
-    label: 'Articles',
-    options: [renderItem('AntDesign design language', 100000)],
-  },
-];
+import { TextWidget } from '@designable/react'
 
 export const FieldNameSelect = observer(() => {
   const currentEntity = useCurrentEntity();
@@ -31,7 +12,7 @@ export const FieldNameSelect = observer(() => {
     const opts = [];
     if (currentEntity?.attributes?.length) {
       const opt = {
-        label: "属性",
+        label: <TextWidget token="SettingComponents.FieldNameSelect.Attributes" />,
         options: [],
       }
       for (const attr of currentEntity.attributes) {
@@ -44,7 +25,7 @@ export const FieldNameSelect = observer(() => {
     }
     if (currentEntity?.methods?.length) {
       const opt = {
-        label: "方法",
+        label: <TextWidget token="SettingComponents.FieldNameSelect.Methods" />,
         options: [],
       }
       for (const method of currentEntity.methods) {
@@ -57,7 +38,7 @@ export const FieldNameSelect = observer(() => {
     }
     if (currentEntity?.associations?.length) {
       const opt = {
-        label: "关联",
+        label: <TextWidget token="SettingComponents.FieldNameSelect.Associations" />,
         options: [],
       }
       for (const assoc of currentEntity.associations) {
