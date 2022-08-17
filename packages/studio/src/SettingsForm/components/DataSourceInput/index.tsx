@@ -25,7 +25,8 @@ const DataSourceInput = memo((
   }, []);
 
   const handleOk = useCallback(() => {
-    form.validateFields().then(() => {
+    form.validateFields().then((formValues) => {
+      console.log(formValues)
       //setIsModalVisible(false);
     })
 
@@ -97,7 +98,10 @@ const DataSourceInput = memo((
           </Form.Item>
           <div style={{ display: "flex", width: "100%" }}>
             <div className="gql-expression-shell">
-              <Form.Item label={<TextWidget token="SettingComponents.DataSourceInput.GraphqlExpression" />}>
+              <Form.Item
+                label={<TextWidget token="SettingComponents.DataSourceInput.GraphqlExpression" />}
+                name="expression"
+              >
                 <MonacoInput
                   className="gql-input-area"
                   //{...props}
@@ -118,7 +122,10 @@ const DataSourceInput = memo((
               </Form.Item>
             </div>
             <div className="gql-variables-shell">
-              <Form.Item label={<TextWidget token="SettingComponents.DataSourceInput.Variables" />}>
+              <Form.Item
+                label={<TextWidget token="SettingComponents.DataSourceInput.Variables" />}
+                name = "variables"
+              >
                 <MonacoInput
                   className="gql-input-area"
                   //{...props}
