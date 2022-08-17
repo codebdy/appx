@@ -71,7 +71,7 @@ const DataSourceInput = memo((
           initialValues={{}}
         >
           <Form.Item
-            label="实体"
+            label={<TextWidget token="SettingComponents.DataSourceInput.Entity" />}
             name="entityUuid"
             rules={[{ required: true, message: <TextWidget token="SettingComponents.DataSourceInput.Required" /> }]}
           >
