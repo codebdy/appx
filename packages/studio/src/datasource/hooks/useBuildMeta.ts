@@ -11,6 +11,7 @@ import { RelationMeta, RelationType } from "../../ModelBoard/meta/RelationMeta";
 import { useSelectedAppUuid } from "../../shared/AppRoot/context";
 import { classesState, entitiesState, packagesState } from "../recoil";
 import _ from "lodash";
+import { AssociationMeta } from "../model";
 
 export const sort = (array: { name: string }[]) => {
   return array.sort((a, b) => {
@@ -91,6 +92,26 @@ export function useBuildMeta(): { error?: Error; loading?: boolean } {
     return classes;
   }, [])
 
+  const getEntityAssociations = useCallback((classUuid: string, relations: RelationMeta[]) => {
+    const associations: AssociationMeta[] = [];
+    for (const relation of relations) {
+      if (relation.sourceId === classUuid) {
+        associations.push({
+          name: relation.roleOfTarget,
+          label: relation.labelOfTarget,
+          tyeEntityUuid: relation.targetId,
+        })
+      } else if (relation.targetId === classUuid) {
+        associations.push({
+          name: relation.roleOfSource,
+          label: relation.labelOfSource,
+          tyeEntityUuid: relation.sourceId,
+        })
+      }
+    }
+    return associations;
+  }, [])
+
 
   const makeEntity = useCallback((cls: ClassMeta, classMetas: ClassMeta[], relations: RelationMeta[]) => {
     const parentClasses = getParentClasses(cls.uuid, classMetas, relations);
@@ -106,9 +127,9 @@ export function useBuildMeta(): { error?: Error; loading?: boolean } {
       ...cls,
       attributes: sort(_.uniqBy([...cls.attributes || [], ...parentAttributes], "name")),
       methods: sort(_.uniqBy([...cls.methods || [], ...parentMethods], "name")),
-      associations: []
+      associations: getEntityAssociations(cls.uuid, relations)
     }
-  }, [getParentClasses]);
+  }, [getEntityAssociations, getParentClasses]);
 
   useEffect(() => {
     if (data && (systemData || appUuid === SYSTEM_APP_UUID)) {
