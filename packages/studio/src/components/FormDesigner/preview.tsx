@@ -6,7 +6,8 @@ import { Form } from '@formily/antd'
 import { usePrefix, DnFC } from '@designable/react'
 import './styles.less'
 import { FormLocales } from './locales'
-import { FormSchema } from './schema'
+import { FormLayoutSchema } from '../FormLayoutDesigner/schema'
+import { createFieldSchema } from '../Field'
 
 export const FormDesigner: DnFC<React.ComponentProps<typeof Form>> = observer(
   (props) => {
@@ -40,7 +41,7 @@ FormDesigner.Behavior = createBehavior({
       cloneable: !node.isRoot,
       deletable: !node.isRoot,
       droppable: true,
-      propsSchema: FormSchema,
+      propsSchema: createFieldSchema(FormLayoutSchema),
       defaultProps: {
         labelCol: 6,
         wrapperCol: 12,
