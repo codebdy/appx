@@ -18,11 +18,12 @@ export const FieldSourceInput = observer((
   const currentEntity = useCurrentEntity();
   const p = useParseLangMessage();
 
-  const handleChange = useCallback((name) => {
-    if (onChange) {
+  const handleChange = useCallback((value) => {
+    if (!onChange) {
       return;
     }
-    const attr = currentEntity?.attributes?.find(attr => attr.name === name);
+
+    const attr = currentEntity?.attributes?.find(attr => attr.name === value);
     if (attr) {
       onChange({
         name: attr.name,
@@ -32,7 +33,7 @@ export const FieldSourceInput = observer((
       })
       return;
     }
-    const method = currentEntity?.methods?.find(method => method.name === name);
+    const method = currentEntity?.methods?.find(method => method.name === value);
     if (method) {
       onChange({
         name: method.name,
@@ -43,7 +44,7 @@ export const FieldSourceInput = observer((
       return;
     }
 
-    const assoc = currentEntity?.associations?.find(assoc => assoc.name === name);
+    const assoc = currentEntity?.associations?.find(assoc => assoc.name === value);
     if (attr) {
       onChange({
         name: assoc.name,
