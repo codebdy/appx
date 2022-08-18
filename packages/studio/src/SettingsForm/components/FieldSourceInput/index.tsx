@@ -5,7 +5,7 @@ import { Select } from 'antd';
 import { useCurrentEntity } from "../../../datasource/hooks/useCurrentEntity";
 import { TextWidget } from '@designable/react'
 import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
-import { IFieldSource } from "../../../datasource/model/IFieldSource";
+import { FieldSourceType, IFieldSource } from "../../../datasource/model/IFieldSource";
 const { Option, OptGroup } = Select;
 
 export const FieldSourceInput = observer((
@@ -18,12 +18,45 @@ export const FieldSourceInput = observer((
   const currentEntity = useCurrentEntity();
   const p = useParseLangMessage();
 
-  const handleChange = useCallback((value) => {
-    onChange && onChange(value);
-  }, [onChange])
+  const handleChange = useCallback((name) => {
+    if (onChange) {
+      return;
+    }
+    const attr = currentEntity?.attributes?.find(attr => attr.name === name);
+    if (attr) {
+      onChange({
+        name: attr.name,
+        sourceType: FieldSourceType.Attribute,
+        label: attr.label,
+        typeUuid: attr.typeUuid,
+      })
+      return;
+    }
+    const method = currentEntity?.methods?.find(method => method.name === name);
+    if (method) {
+      onChange({
+        name: method.name,
+        sourceType: FieldSourceType.Method,
+        label: method.label,
+        typeUuid: method.typeUuid,
+      })
+      return;
+    }
+
+    const assoc = currentEntity?.associations?.find(assoc => assoc.name === name);
+    if (attr) {
+      onChange({
+        name: assoc.name,
+        sourceType: FieldSourceType.Association,
+        label: assoc.label,
+        typeUuid: assoc.tyeUuid,
+      })
+      return;
+    }
+  }, [currentEntity, onChange])
 
   return (
-    <Select value={value} onChange={handleChange}>
+    <Select value={value?.name} onChange={handleChange}>
       {
         !!currentEntity?.attributes?.length &&
         <OptGroup label={<TextWidget token="SettingComponents.FieldNameSelect.Attributes" />}>

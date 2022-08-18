@@ -107,13 +107,13 @@ export function useBuildMeta(): { error?: Error; loading?: boolean } {
         associations.push({
           name: relation.roleOfTarget,
           label: relation.labelOfTarget,
-          tyeEntityUuid: relation.targetId,
+          tyeUuid: relation.targetId,
         })
       } else if (relation.targetId === classUuid) {
         associations.push({
           name: relation.roleOfSource,
           label: relation.labelOfSource,
-          tyeEntityUuid: relation.sourceId,
+          tyeUuid: relation.sourceId,
         })
       }
     }
