@@ -8,7 +8,7 @@ export function useCurrentEntity() {
   const currentNode = useCurrentNode();
   const getEntity = useGetEntity();
   const getRecentDataSource = useCallback((node?: TreeNode) => {
-    const dataSource = node?.parent?.props?.["dataSource"]
+    const dataSource = node?.parent?.props?.["x-component-props"]?.["dataBindSource"]
     if (dataSource) {
       return dataSource
     } else if (node?.parent) {

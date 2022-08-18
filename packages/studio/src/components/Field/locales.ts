@@ -1,14 +1,13 @@
 export const FieldLocales = {
   'zh-CN': {
     settings: {
-      dataSource: '数据源',
       name: '字段标识',
       title: '标题',
       required: '必填',
       description: '描述',
       default: '默认值',
       enum: '可选项',
-      expression:"表达式",
+      expression: "表达式",
       'x-display': {
         title: '展示状态',
         tooltip: '半隐藏只会隐藏UI，全隐藏会删除数据',
@@ -36,7 +35,9 @@ export const FieldLocales = {
       'action-tab': '动作',
       viewAuth: "权限",
       onClick: "鼠标点击",
+      "x-field-bind": "绑定字段",
       'x-component-props': {
+        dataBindSource: '数据源',
         size: { title: '尺寸', dataSource: ['大', '小', '默认', '继承'] },
         allowClear: '允许清除内容',
         autoFocus: '自动获取焦点',

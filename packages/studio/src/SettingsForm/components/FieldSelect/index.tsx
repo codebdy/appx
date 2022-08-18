@@ -5,7 +5,7 @@ import { AutoComplete, Input } from 'antd';
 import { useCurrentEntity } from "../../../datasource/hooks/useCurrentEntity";
 import { TextWidget } from '@designable/react'
 
-export const FieldNameSelect = observer((
+export const FieldSelect = observer((
   props: {
     value?: string,
     onChange?: (name?: string) => void

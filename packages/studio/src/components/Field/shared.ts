@@ -68,12 +68,23 @@ export const createDisplaySchemaTab = () => {
             },
           },
           properties: {
-            dataSource: {
+            'x-component-props': {
+              type: 'object',
+              properties: {
+                dataBindSource: {
+                  type: 'string',
+                  'x-decorator': 'FormItem',
+                  'x-component': 'DataSourceInput',
+                },
+              }
+            },
+
+            "x-field-bind": {
               type: 'string',
               'x-decorator': 'FormItem',
-              'x-component': 'DataSourceInput',
+              'x-component': 'FieldSelect',
             },
-          }
+          },
         },
         "field-group": {
           type: 'void',
@@ -86,7 +97,7 @@ export const createDisplaySchemaTab = () => {
             name: {
               type: 'string',
               'x-decorator': 'FormItem',
-              'x-component': 'FieldNameSelect',
+              'x-component': 'Input',
             },
             expression: {
               type: 'string',
@@ -302,9 +313,6 @@ export const createVoidFieldSchemaOld = (
       tabs: {
         type: 'void',
         'x-component': 'SettingsTab',
-        'x-component-props': {
-
-        },
         properties: {
           ...createComponentSchemaTab(component, decorator),
           ...createStyleSchemaTab(),
