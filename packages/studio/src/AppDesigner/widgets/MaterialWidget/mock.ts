@@ -1,38 +1,10 @@
 import { MaterialModule, OperationType } from "./model";
-
-import {
-  Input,
-  Select,
-  TreeSelect,
-  Cascader,
-  Radio,
-  Checkbox,
-  Slider,
-  Rate,
-  NumberPicker,
-  Transfer,
-  Password,
-  DatePicker,
-  TimePicker,
-  Upload,
-  Switch,
-  Text,
-  Card,
-  ArrayCards,
-  ObjectContainer,
-  ArrayTable,
-  Space,
-  FormTab,
-  FormCollapse,
-  FormLayout,
-  FormGrid,
-} from '@designable/formily-antd'
-
-import { Input as ExecutableInput } from "@formily/antd";
+import { Input } from "@formily/antd";
 import Button from "../../../components/form/Button";
 import { PageContainerDesigner } from "../../../components/layout/PageContainerDesigner";
 import PageContainer from "../../../components/layout/PageContainer";
 import { ButtonDesigner } from "../../../components/form/ButtonDesigner";
+import { InputDesigner } from "../../../components/form/InputDesigner";
 
 export const allMaterials: MaterialModule[] = [
   {
@@ -46,8 +18,8 @@ export const allMaterials: MaterialModule[] = [
         materials: [
           {
             name: "Input",
-            component: Input,
-            xComponent: ExecutableInput,
+            component: InputDesigner,
+            xComponent: Input,
           },
           {
             name: "PageContainer",
