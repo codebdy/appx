@@ -77,7 +77,7 @@ export const createDisplaySchemaTab = () => {
             "x-field-source": {
               type: 'string',
               'x-decorator': 'FormItem',
-              'x-component': 'FieldSelect',
+              'x-component': 'FieldSourceInput',
             },
             "x-field-params": {
               type: 'string',

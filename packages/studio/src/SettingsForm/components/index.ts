@@ -1,6 +1,6 @@
 export * from "./ActionInput"
 export * from "./DataSourceInput"
-export * from "./FieldSelect"
+export * from "./FieldSourceInput"
 export * from "./FieldParamsInput"
 export * from "./IconInput"
 export * from "./SettingsTab"

@@ -5,12 +5,13 @@ import { Select } from 'antd';
 import { useCurrentEntity } from "../../../datasource/hooks/useCurrentEntity";
 import { TextWidget } from '@designable/react'
 import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
+import { IFieldSource } from "../../../datasource/model/IFieldSource";
 const { Option, OptGroup } = Select;
 
-export const FieldSelect = observer((
+export const FieldSourceInput = observer((
   props: {
-    value?: string,
-    onChange?: (name?: string) => void
+    value?: IFieldSource,
+    onChange?: (value?: IFieldSource) => void
   }
 ) => {
   const { value, onChange } = props;
