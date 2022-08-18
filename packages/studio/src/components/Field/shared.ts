@@ -68,21 +68,21 @@ export const createDisplaySchemaTab = () => {
             },
           },
           properties: {
-            'x-component-props': {
-              type: 'object',
-              properties: {
-                dataBindSource: {
-                  type: 'string',
-                  'x-decorator': 'FormItem',
-                  'x-component': 'DataSourceInput',
-                },
-              }
+            "x-data-source": {
+              type: 'string',
+              'x-decorator': 'FormItem',
+              'x-component': 'DataSourceInput',
             },
 
             "x-field-source": {
               type: 'string',
               'x-decorator': 'FormItem',
               'x-component': 'FieldSelect',
+            },
+            "x-field-params": {
+              type: 'string',
+              'x-decorator': 'FormItem',
+              'x-component': 'FieldParamsInput',
             },
           },
         },
@@ -98,11 +98,6 @@ export const createDisplaySchemaTab = () => {
               type: 'string',
               'x-decorator': 'FormItem',
               'x-component': 'Input',
-            },
-            expression: {
-              type: 'string',
-              'x-decorator': 'FormItem',
-              'x-component': 'GQlExpresssionInput',
             },
             title: {
               type: 'string',
