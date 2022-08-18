@@ -1,9 +1,11 @@
 import { observer } from "@formily/reactive-react";
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback } from "react";
 import "./style.less"
-import { AutoComplete, Input } from 'antd';
+import { Select } from 'antd';
 import { useCurrentEntity } from "../../../datasource/hooks/useCurrentEntity";
 import { TextWidget } from '@designable/react'
+import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
+const { Option, OptGroup } = Select;
 
 export const FieldSelect = observer((
   props: {
@@ -13,83 +15,44 @@ export const FieldSelect = observer((
 ) => {
   const { value, onChange } = props;
   const currentEntity = useCurrentEntity();
-
-  const options = useMemo(() => {
-    const opts = [];
-
-    if (currentEntity?.attributes?.length) {
-      const opt = {
-        label: <TextWidget token="SettingComponents.FieldNameSelect.Attributes" />,
-        options: [],
-      }
-      for (const attr of currentEntity.attributes) {
-        opt.options.push({
-          value: attr.name,
-          label: attr.name,
-        })
-      }
-      opts.push(opt)
-    }
-    if (currentEntity?.methods?.length) {
-      const opt = {
-        label: <TextWidget token="SettingComponents.FieldNameSelect.Methods" />,
-        options: [],
-      }
-      for (const method of currentEntity.methods) {
-        opt.options.push({
-          value: method.name,
-          label: method.name,
-        })
-      }
-      opts.push(opt)
-    }
-    if (currentEntity?.associations?.length) {
-      const opt = {
-        label: <TextWidget token="SettingComponents.FieldNameSelect.Associations" />,
-        options: [],
-      }
-      for (const assoc of currentEntity.associations) {
-        opt.options.push({
-          value: assoc.name,
-          label: assoc.name,
-        })
-      }
-      opts.push(opt)
-    }
-
-    return opts;
-  }, [currentEntity])
+  const p = useParseLangMessage();
 
   const handleChange = useCallback((value) => {
     onChange && onChange(value);
   }, [onChange])
 
   return (
-    <>
-      <AutoComplete
-        dropdownClassName="certain-category-search-dropdown"
-        //dropdownMatchSelectWidth={500}
-        value={value}
-        options={options}
-        onChange={handleChange}
-      >
-        <Input
-          style={{
-            paddingRight: "24px"
-          }}
-        />
-      </AutoComplete>
-      <span className="ant-select-arrow"
-        unselectable="on"
-        aria-hidden="true"
-        style={{ userSelect: "none", marginTop: -11 }}>
-        <span role="img" aria-label="down" className="anticon anticon-down ant-select-suffix">
-          <svg viewBox="64 64 896 896" focusable="false" data-icon="down" width="1em" height="1em" fill="currentColor" aria-hidden="true">
-            <path d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z">
-            </path>
-          </svg>
-        </span>
-      </span>
-    </>
+    <Select value={value} style={{ width: 200 }} onChange={handleChange}>
+      {
+        !!currentEntity?.attributes?.length &&
+        <OptGroup label={<TextWidget token="SettingComponents.FieldNameSelect.Attributes" />}>
+          {
+            currentEntity.attributes?.map(attr => {
+              return (<Option value={attr.name}>{p(attr.label) || attr.name}</Option>)
+            })
+          }
+        </OptGroup>
+      }
+      {
+        !!currentEntity?.methods?.length &&
+        <OptGroup label={<TextWidget token="SettingComponents.FieldNameSelect.Methods" />}>
+          {
+            currentEntity.methods?.map(method => {
+              return (<Option value={method.name}>{p(method.label) || method.name}</Option>)
+            })
+          }
+        </OptGroup>
+      }
+      {
+        !!currentEntity?.associations?.length &&
+        <OptGroup label={<TextWidget token="SettingComponents.FieldNameSelect.Associations" />}>
+          {
+            currentEntity.associations?.map(assoc => {
+              return (<Option value={assoc.name}>{p(assoc.label) || assoc.name}</Option>)
+            })
+          }
+        </OptGroup>
+      }
+    </Select>
   )
 })
