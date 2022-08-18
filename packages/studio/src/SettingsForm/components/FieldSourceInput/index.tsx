@@ -59,8 +59,7 @@ export const FieldSourceInput = observer((
   }, [currentEntity, onChange])
 
   return (
-    <Select value={value?.name} onChange={handleChange}>
-      <Option value=""><em>None</em></Option>
+    <Select allowClear value={value?.name} onChange={handleChange}>
       {
         !!currentEntity?.attributes?.length &&
         <OptGroup label={<TextWidget token="SettingComponents.FieldNameSelect.Attributes" />}>
