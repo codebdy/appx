@@ -1,11 +1,12 @@
 import React from "react"
 import Button, { IButtonProps } from "../Button";
-import { createVoidFieldSchemaOld } from "../Field";
+import { createFieldSchema } from "../Field";
 import { createBehavior, createResource } from '@designable/core'
 import { ButtonSchema } from "./schema";
 import { ButtonLocales } from "./locales";
 import { DnFC } from '@designable/react'
 import { observer } from "@formily/reactive-react";
+import { Actions } from "../../action/actions";
 
 const ButtonDesigner: DnFC<IButtonProps> = observer((
   props: IButtonProps
@@ -26,7 +27,7 @@ ButtonDesigner.Behavior = createBehavior({
   extends: ['Field'],
   selector: (node) => node.props['x-component'] === 'Button',
   designerProps: {
-    propsSchema: createVoidFieldSchemaOld(ButtonSchema),
+    propsSchema: createFieldSchema(ButtonSchema, { actions: [Actions.Click] }),
   },
   designerLocales: ButtonLocales,
 })

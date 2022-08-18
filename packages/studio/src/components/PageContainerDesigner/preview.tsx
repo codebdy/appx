@@ -13,7 +13,7 @@ import FooterToolbar from './FooterToolbar'
 import { observer } from '@formily/reactive-react'
 import './index.less'
 import { LoadTemplate } from "@designable/formily-antd/lib/common/LoadTemplate"
-import { createVoidFieldSchemaOld } from "../Field/shared"
+import { createFieldSchema } from "../Field/shared"
 import { useTriggerableNode } from './hooks/useTriggerableNode'
 import HeaderContentExtra from './HeaderContentExtra'
 import { IPageContainerProps } from '../PageContainer/IPageContainerProps'
@@ -214,7 +214,7 @@ PageContainerDesigner.Behavior = createBehavior(
     selector: (node) => node.props['x-component'] === 'PageContainer',
     designerProps: {
       droppable: true,
-      propsSchema: createVoidFieldSchemaOld(Schema),
+      propsSchema: createFieldSchema(Schema, { hasDataBindSource: true }),
     },
     designerLocales: Locales,
   },
@@ -225,7 +225,7 @@ PageContainerDesigner.Behavior = createBehavior(
     designerProps: {
       droppable: true,
       deletable: false,
-      propsSchema: createVoidFieldSchemaOld(Schema.HeaderActions),
+      propsSchema: createFieldSchema(Schema.HeaderActions),
     },
     designerLocales: Locales.HeaderActions,
   },
@@ -236,7 +236,7 @@ PageContainerDesigner.Behavior = createBehavior(
     designerProps: {
       droppable: true,
       deletable: false,
-      propsSchema: createVoidFieldSchemaOld(Schema.HeaderContent),
+      propsSchema: createFieldSchema(Schema.HeaderContent),
     },
     designerLocales: Locales.HeaderContent,
   },
@@ -247,7 +247,7 @@ PageContainerDesigner.Behavior = createBehavior(
     designerProps: {
       droppable: true,
       deletable: false,
-      propsSchema: createVoidFieldSchemaOld(Schema.HeaderContentExtra),
+      propsSchema: createFieldSchema(Schema.HeaderContentExtra),
     },
     designerLocales: Locales.HeaderContentExtra,
   },
@@ -257,7 +257,7 @@ PageContainerDesigner.Behavior = createBehavior(
     selector: (node) => node.props['x-component'] === 'PageContainer.Content',
     designerProps: {
       droppable: true,
-      propsSchema: createVoidFieldSchemaOld(Schema.Content),
+      propsSchema: createFieldSchema(Schema.Content),
     },
     designerLocales: Locales.Content,
   },
@@ -268,7 +268,7 @@ PageContainerDesigner.Behavior = createBehavior(
     selector: (node) => node.props['x-component'] === 'PageContainer.TabPanel',
     designerProps: {
       droppable: true,
-      propsSchema: createVoidFieldSchemaOld(Schema.TabPanel),
+      propsSchema: createFieldSchema(Schema.TabPanel),
     },
     designerLocales: Locales.TabPanel,
   },
@@ -279,7 +279,7 @@ PageContainerDesigner.Behavior = createBehavior(
     designerProps: {
       droppable: true,
       deletable: false,
-      propsSchema: createVoidFieldSchemaOld(Schema.FooterToolbar),
+      propsSchema: createFieldSchema(Schema.FooterToolbar),
     },
     designerLocales: Locales.FooterToolbar,
   }

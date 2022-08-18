@@ -51,7 +51,47 @@ export const createStyleSchemaTab = () => {
   }
 }
 
-export const createDisplaySchemaTab = () => {
+export const createDisplaySchemaTab = (
+  hasDataBindSource?: boolean,
+  isDataField?: boolean,
+) => {
+  const dataGroup = (hasDataBindSource || isDataField)
+    ?
+    ({
+      "data-group": {
+        type: 'void',
+        'x-component': 'CollapseItem',
+        'x-reactions': {
+          fulfill: {
+          },
+        },
+        properties: {
+          'x-component-props': {
+            type: 'object',
+            properties: {
+              dataBindSource: {
+                type: 'string',
+                'x-decorator': 'FormItem',
+                'x-component': 'DataSourceInput',
+              },
+            }
+          },
+
+          "x-field-source": {
+            type: 'string',
+            'x-decorator': 'FormItem',
+            'x-component': 'FieldSourceInput',
+          },
+          "x-field-params": {
+            type: 'string',
+            'x-decorator': 'FormItem',
+            'x-component': 'FieldParamsInput',
+          },
+        },
+      },
+    })
+    :
+    {}
   return {
     'display-tab': {
       type: 'void',
@@ -60,37 +100,7 @@ export const createDisplaySchemaTab = () => {
         tab: 'SettingsForm.Display'
       },
       properties: {
-        "data-group": {
-          type: 'void',
-          'x-component': 'CollapseItem',
-          'x-reactions': {
-            fulfill: {
-            },
-          },
-          properties: {
-            'x-component-props': {
-              type: 'object',
-              properties: {
-                dataBindSource: {
-                  type: 'string',
-                  'x-decorator': 'FormItem',
-                  'x-component': 'DataSourceInput',
-                },
-              }
-            },
-
-            "x-field-source": {
-              type: 'string',
-              'x-decorator': 'FormItem',
-              'x-component': 'FieldSourceInput',
-            },
-            "x-field-params": {
-              type: 'string',
-              'x-decorator': 'FormItem',
-              'x-component': 'FieldParamsInput',
-            },
-          },
-        },
+        ...dataGroup,
         "field-group": {
           type: 'void',
           'x-component': 'CollapseItem',
@@ -211,7 +221,7 @@ export const createComponentSchemaTab = (
   }
 }
 
-export const createActionSchemaTab = () => {
+export const createActionSchemaTab = (actions: string[]) => {
 
   return {
     'action-tab': {
@@ -303,9 +313,14 @@ export const createFieldSchemaOld = (
   }
 }
 
-export const createVoidFieldSchemaOld = (
-  component?: ISchema,
-  decorator: ISchema = AllSchemas.FormItem
+export const createFieldSchema = (
+  component: ISchema,
+  options?: {
+    decorator?: ISchema,
+    actions?: string[],
+    hasDataBindSource?: boolean,
+    isDataField?: boolean,
+  }
 ) => {
   return {
     type: 'object',
@@ -314,32 +329,13 @@ export const createVoidFieldSchemaOld = (
         type: 'void',
         'x-component': 'SettingsTab',
         properties: {
-          ...createComponentSchemaTab(component, decorator),
+          ...createComponentSchemaTab(component, options?.decorator || (options?.isDataField && AllSchemas.FormItem)),
           ...createStyleSchemaTab(),
-          ...createDisplaySchemaTab(),
-          ...createActionSchemaTab(),
+          ...createDisplaySchemaTab(options?.hasDataBindSource, options?.isDataField),
+          ...(options?.actions ? createActionSchemaTab(options?.actions) : {}),
         }
       },
     },
   }
-}
-
-
-export enum BindableType {
-  EntityArray = "EntityArray",
-  Entity = "Entity",
-  Attribute = "Attribute",
-  Void = "Void",
-}
-
-export const createFieldSchema = (
-  component: ISchema,
-  options: {
-    decorator?: ISchema,
-    actions?: string[],
-    bindable?: BindableType,
-    bindExtraSchema?: ISchema,
-  }
-) => {
 
 }
