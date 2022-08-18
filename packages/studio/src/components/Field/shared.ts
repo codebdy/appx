@@ -336,6 +336,7 @@ export const createFieldSchema = (
     actions?: string[],
     hasDataBindSource?: boolean,
     isDataField?: boolean,
+    noDisplayTab?: boolean,
   }
 ) => {
   return {
@@ -347,7 +348,7 @@ export const createFieldSchema = (
         properties: {
           ...createComponentSchemaTab(component, options?.decorator || (options?.isDataField && AllSchemas.FormItem)),
           ...createStyleSchemaTab(),
-          ...createDisplaySchemaTab(options?.hasDataBindSource, options?.isDataField),
+          ...(!options?.noDisplayTab ? createDisplaySchemaTab(options?.hasDataBindSource, options?.isDataField) : {}),
           ...(options?.actions ? createActionSchemaTab(options?.actions) : {}),
         }
       },
