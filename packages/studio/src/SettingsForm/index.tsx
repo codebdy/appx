@@ -99,7 +99,7 @@ export const SettingsForm: React.FC<ISettingFormProps> = observer(
               className='node-path-area'
             >
               <NodePathWidget workspaceId={currentWorkspaceId} />
-              <Tooltip placement="left" title={"Description"}>
+              <Tooltip placement="left" title={node.getMessage("description")}>
                 <QuestionCircleOutlined />
               </Tooltip>
             </div>

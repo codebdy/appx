@@ -44,7 +44,7 @@ ButtonDesigner.Resource = createResource({
         'x-component-props': {
           type: "primary",
           title: "Button"
-        }
+        },
       },
     },
   ],
