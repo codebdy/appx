@@ -20,13 +20,13 @@ export const createStyleSchemaTab = () => {
           type: 'void',
           'x-component': 'CollapseItem',
           'x-component-props': { defaultExpand: true },
-          'x-reactions': {
-            fulfill: {
-              state: {
-                visible: '{{!!$form.values["x-component"]}}',
-              },
-            },
-          },
+          // 'x-reactions': {
+          //   fulfill: {
+          //     state: {
+          //       visible: '{{!!$form.values["x-component"]}}',
+          //     },
+          //   },
+          // },
           properties: {
             'x-component-props.style': AllSchemas.CSSStyle,
           },
@@ -201,13 +201,13 @@ export const createComponentSchemaTab = (
         'component-group': component && {
           type: 'void',
           'x-component': 'CollapseItem',
-          'x-reactions': {
-            fulfill: {
-              state: {
-                visible: '{{!!$form.values["x-component"]}}',
-              },
-            },
-          },
+          // 'x-reactions': {
+          //   fulfill: {
+          //     state: {
+          //       visible: '{{!!$form.values["x-component"]}}',
+          //     },
+          //   },
+          // },
           properties: {
             'x-component-props': component,
             // 'x-decorator': {
@@ -253,78 +253,6 @@ export const createActionSchemaTab = (actions: string[]) => {
           'x-component': 'Input',
         },
       }
-    },
-  }
-}
-
-export const createFieldSchemaOld = (
-  component?: ISchema,
-  decorator: ISchema = AllSchemas.FormItem
-): ISchema => {
-  return {
-    type: 'object',
-    properties: {
-      'field-group': {
-        type: 'void',
-        'x-component': 'CollapseItem',
-        properties: {
-          name: {
-            type: 'string',
-            'x-decorator': 'FormItem',
-            'x-component': 'Input',
-          },
-          title: {
-            type: 'string',
-            'x-decorator': 'FormItem',
-            'x-component': 'Input',
-          },
-          description: {
-            type: 'string',
-            'x-decorator': 'FormItem',
-            'x-component': 'Input.TextArea',
-          },
-          'x-display': {
-            type: 'string',
-            enum: ['visible', 'hidden', 'none', ''],
-            'x-decorator': 'FormItem',
-            'x-component': 'Select',
-            'x-component-props': {
-              defaultValue: 'visible',
-            },
-          },
-          'x-pattern': {
-            type: 'string',
-            enum: ['editable', 'disabled', 'readOnly', 'readPretty', ''],
-            'x-decorator': 'FormItem',
-            'x-component': 'Select',
-            'x-component-props': {
-              defaultValue: 'editable',
-            },
-          },
-          default: {
-            'x-decorator': 'FormItem',
-            'x-component': 'ValueInput',
-          },
-          enum: {
-            'x-decorator': 'FormItem',
-            'x-component': DataSourceSetter,
-          },
-          'x-reactions': {
-            'x-decorator': 'FormItem',
-            'x-component': ReactionsSetter,
-          },
-          'x-validator': {
-            type: 'array',
-            'x-component': ValidatorSetter,
-          },
-          required: {
-            type: 'boolean',
-            'x-decorator': 'FormItem',
-            'x-component': 'Switch',
-          },
-        },
-      },
-      ...createComponentSchemaTab(component, decorator),
     },
   }
 }

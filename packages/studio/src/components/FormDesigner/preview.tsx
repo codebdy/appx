@@ -8,8 +8,8 @@ import './styles.less'
 import { FormLocales } from './locales'
 import { createFieldSchema } from '../Field'
 import { FormSchema } from './schema'
-import { FormLayoutSchema } from '../FormLayoutDesigner/schema'
-import { CSSStyle } from '../common'
+import _ from "lodash";
+import { FieldLocales } from '../Field/locales'
 
 export const FormDesigner: DnFC<React.ComponentProps<typeof Form>> = observer(
   (props) => {
@@ -37,20 +37,20 @@ export const FormDesigner: DnFC<React.ComponentProps<typeof Form>> = observer(
 FormDesigner.Behavior = createBehavior({
   name: 'Form',
   selector: (node) => node.componentName === 'Form',
-  designerProps(node) {
+  designerProps: (node) => {
     return {
       draggable: !node.isRoot,
       cloneable: !node.isRoot,
       deletable: !node.isRoot,
       droppable: true,
-      propsSchema: FormSchema,
+      propsSchema: createFieldSchema(FormSchema, { noDisplayTab: true }),
       defaultProps: {
         labelCol: 6,
         wrapperCol: 12,
       },
     }
   },
-  designerLocales: FormLocales,
+  designerLocales: _.merge(FormLocales, FieldLocales),
 })
 
 FormDesigner.Resource = createResource({
