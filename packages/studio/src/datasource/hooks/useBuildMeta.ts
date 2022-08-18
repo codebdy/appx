@@ -92,12 +92,17 @@ export function useBuildMeta(): { error?: Error; loading?: boolean } {
     return classes;
   }, [])
 
-  const getEntityAssociations = useCallback((classUuid: string, relations: RelationMeta[]) => {
+  const getEntityAssociations = useCallback((classUuid: string, classMetas: ClassMeta[], relations: RelationMeta[]) => {
     const associations: AssociationMeta[] = [];
     for (const relation of relations) {
       if (relation.relationType === RelationType.INHERIT) {
         continue;
       }
+
+      if (!classMetas.find(cls => cls.uuid === relation.targetId) || !classMetas.find(cls => cls.uuid === relation.sourceId)) {
+        continue;
+      }
+
       if (relation.sourceId === classUuid) {
         associations.push({
           name: relation.roleOfTarget,
@@ -130,7 +135,7 @@ export function useBuildMeta(): { error?: Error; loading?: boolean } {
       ...cls,
       attributes: sort(_.uniqBy([...cls.attributes || [], ...parentAttributes], "name")),
       methods: sort(_.uniqBy([...cls.methods || [], ...parentMethods], "name")),
-      associations: getEntityAssociations(cls.uuid, relations)
+      associations: getEntityAssociations(cls.uuid, classMetas, relations)
     }
   }, [getEntityAssociations, getParentClasses]);
 

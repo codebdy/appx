@@ -22,7 +22,7 @@ export const FieldSelect = observer((
   }, [onChange])
 
   return (
-    <Select value={value} style={{ width: 200 }} onChange={handleChange}>
+    <Select value={value} onChange={handleChange}>
       {
         !!currentEntity?.attributes?.length &&
         <OptGroup label={<TextWidget token="SettingComponents.FieldNameSelect.Attributes" />}>
