@@ -91,6 +91,8 @@ export const SettingsForm: React.FC<ISettingFormProps> = observer(
       )
     }
 
+    const description = useMemo(() => node.getMessage("description"), [node]);
+
     return (
       <IconWidget.Provider tooltip>
         <div className={prefix + '-wrapper'}>
@@ -99,9 +101,11 @@ export const SettingsForm: React.FC<ISettingFormProps> = observer(
               className='node-path-area'
             >
               <NodePathWidget workspaceId={currentWorkspaceId} />
-              <Tooltip placement="left" title={node.getMessage("description")}>
-                <QuestionCircleOutlined />
-              </Tooltip>
+              {
+                description && <Tooltip placement="left" title={description}>
+                  <QuestionCircleOutlined />
+                </Tooltip>
+              }
             </div>
           }
           <div className={prefix + '-content'}>{render()}</div>

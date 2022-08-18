@@ -31,8 +31,8 @@ type ComposedSettingsTab = React.FC<React.PropsWithChildren<ISettingsTabProps>> 
 }
 
 const useTabs = () => {
-  const tabsField = useField()
-  const schema = useFieldSchema()
+  const tabsField = useField();
+  const schema = useFieldSchema();
   const tabs: { name: SchemaKey; props: any; schema: Schema }[] = []
   schema.mapProperties((schema, name) => {
     const field = tabsField.query(tabsField.address.concat(name)).take()
