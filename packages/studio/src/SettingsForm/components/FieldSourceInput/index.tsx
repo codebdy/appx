@@ -45,7 +45,7 @@ export const FieldSourceInput = observer((
     }
 
     const assoc = currentEntity?.associations?.find(assoc => assoc.name === value);
-    if (attr) {
+    if (assoc) {
       onChange({
         name: assoc.name,
         sourceType: FieldSourceType.Association,
