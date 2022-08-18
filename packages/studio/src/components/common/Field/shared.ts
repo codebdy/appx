@@ -85,6 +85,13 @@ export const createDisplaySchemaTab = (
         type: 'string',
         'x-decorator': 'FormItem',
         'x-component': 'FieldParamsInput',
+        'x-reactions': {
+          fulfill: {
+            state: {
+              visible: '{{$form.values["x-field-source"]?.["sourceType"] === "Method" || $form.values["x-field-source"]?.["sourceType"] === "Association"}}',
+            },
+          },
+        },
       },
     }
     :
