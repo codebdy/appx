@@ -3,7 +3,7 @@ import { FormLayout as FormilyFormLayout } from '@formily/antd'
 import { createBehavior, createResource } from '@designable/core'
 import { DnFC } from '@designable/react'
 import { withContainer } from '@designable/formily-antd/lib/common/Container'
-import { createFieldSchema } from '../Field'
+import { createFieldSchema } from '../../common/Field'
 import { FormLayoutLocales } from './locales'
 import { FormLayoutSchema } from './schema'
 

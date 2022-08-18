@@ -1,9 +1,10 @@
 import React from "react";
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/react'
-import { ArrayTable, FormItem } from "@formily/antd";
-import ProTable from "../../components/ProTable";
-import PageContainer from "../../components/PageContainer";
+import { ArrayTable } from "@formily/antd";
+import ProTable from "../../components/layout/ProTable";
+import { FormItem } from "../../components/form/FormItem";
+import PageContainer from "../../components/layout/PageContainer";
 
 const SchemaField = createSchemaField({
   components: {
