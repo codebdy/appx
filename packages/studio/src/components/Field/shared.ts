@@ -55,6 +55,41 @@ export const createDisplaySchemaTab = (
   hasDataBindSource?: boolean,
   isDataField?: boolean,
 ) => {
+  const dataBindSource =
+    hasDataBindSource
+      ?
+      {
+        'x-component-props': {
+          type: 'object',
+          properties: {
+            dataBindSource: {
+              type: 'string',
+              'x-decorator': 'FormItem',
+              'x-component': 'DataSourceInput',
+            },
+          }
+        },
+      }
+      :
+      {}
+
+  const fieldSource = isDataField
+    ?
+    {
+      "x-field-source": {
+        type: 'string',
+        'x-decorator': 'FormItem',
+        'x-component': 'FieldSourceInput',
+      },
+      "x-field-params": {
+        type: 'string',
+        'x-decorator': 'FormItem',
+        'x-component': 'FieldParamsInput',
+      },
+    }
+    :
+    {}
+
   const dataGroup = (hasDataBindSource || isDataField)
     ?
     ({
@@ -66,27 +101,8 @@ export const createDisplaySchemaTab = (
           },
         },
         properties: {
-          'x-component-props': {
-            type: 'object',
-            properties: {
-              dataBindSource: {
-                type: 'string',
-                'x-decorator': 'FormItem',
-                'x-component': 'DataSourceInput',
-              },
-            }
-          },
-
-          "x-field-source": {
-            type: 'string',
-            'x-decorator': 'FormItem',
-            'x-component': 'FieldSourceInput',
-          },
-          "x-field-params": {
-            type: 'string',
-            'x-decorator': 'FormItem',
-            'x-component': 'FieldParamsInput',
-          },
+          ...dataBindSource,
+          ...fieldSource
         },
       },
     })
