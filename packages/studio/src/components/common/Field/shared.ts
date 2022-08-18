@@ -154,7 +154,7 @@ export const createDisplaySchemaTab = (
                 fulfill: {
                   state: {
                     hidden: '{{$form.values["x-decorator"] !== "FormItem"}}',
-                    value: '{{$form.values["x-field-source"]?.label}}',
+                    value: '{{$form.values["x-field-source"]?.label||$form.values["x-field-source"]?.name}}',
                   },
                 },
               },
