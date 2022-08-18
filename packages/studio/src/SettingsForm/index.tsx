@@ -91,7 +91,7 @@ export const SettingsForm: React.FC<ISettingFormProps> = observer(
       )
     }
 
-    const description = useMemo(() => node.getMessage("description"), [node]);
+    const description = useMemo(() => node?.getMessage("description"), [node]);
 
     return (
       <IconWidget.Provider tooltip>

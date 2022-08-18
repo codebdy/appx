@@ -136,6 +136,15 @@ export const createDisplaySchemaTab = (
               type: 'string',
               'x-decorator': 'FormItem',
               'x-component': 'Input',
+              'x-reactions': {
+                fulfill: {
+                  dependencies: ['x-field-source'],
+                  state: {
+                    value: '{{$form.values["x-field-source"]?.name}}',
+                    disabled: '{{!!$form.values["x-field-source"]?.name}}',
+                  },
+                },
+              },
             },
             title: {
               type: 'string',
@@ -145,6 +154,7 @@ export const createDisplaySchemaTab = (
                 fulfill: {
                   state: {
                     hidden: '{{$form.values["x-decorator"] !== "FormItem"}}',
+                    value: '{{$form.values["x-field-source"]?.label}}',
                   },
                 },
               },
