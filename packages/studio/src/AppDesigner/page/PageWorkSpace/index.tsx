@@ -6,9 +6,6 @@ import {
   DesignerToolsWidget,
   ComponentTreeWidget,
 } from '../../widgets'
-import {
-  Form,
-} from '@designable/formily-antd'
 import { ViewPanel, WorkspacePanel, ToolbarPanel, ViewportPanel, SettingsPanel } from '../../panels'
 import { convertMaterialsToComponents } from '../../widgets/MaterialWidget/model'
 import { materialStore } from '../../widgets/MaterialWidget/global'
@@ -22,6 +19,7 @@ import { useShowError } from "../../../hooks/useShowError";
 import { transformToTreeNode } from "../../transformer";
 import { useDesigner } from '@designable/react'
 import { useLazyQueryPage } from "../../../hooks/useLazyQueryPage";
+import { FormDesigner } from "../../../components/FormDesigner";
 
 const PageWorkSpace = (props: {
   pageId: ID,
@@ -67,7 +65,7 @@ const PageWorkSpace = (props: {
                   {() => (
                     <ComponentTreeWidget
                       components={{
-                        Form,
+                        Form: FormDesigner,
                         Field,
                         ...convertMaterialsToComponents(materialStore.modules)
                       }}
