@@ -140,7 +140,7 @@ export const createDisplaySchemaTab = (
                 fulfill: {
                   dependencies: ['x-field-source'],
                   state: {
-                    value: '{{$form.values["x-field-source"]?.name}}',
+                    value: '{{$form.values["x-field-source"]?.name ||""}}',
                     disabled: '{{!!$form.values["x-field-source"]?.name}}',
                   },
                 },
@@ -154,7 +154,7 @@ export const createDisplaySchemaTab = (
                 fulfill: {
                   state: {
                     hidden: '{{$form.values["x-decorator"] !== "FormItem"}}',
-                    value: '{{$form.values["x-field-source"]?.label||$form.values["x-field-source"]?.name}}',
+                    value: '{{$form.values["x-field-source"]?.label||$form.values["x-field-source"]?.name} ||""}',
                   },
                 },
               },

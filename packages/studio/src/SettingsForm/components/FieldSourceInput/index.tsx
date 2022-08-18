@@ -54,10 +54,13 @@ export const FieldSourceInput = observer((
       })
       return;
     }
+
+    onChange(undefined);
   }, [currentEntity, onChange])
 
   return (
     <Select value={value?.name} onChange={handleChange}>
+      <Option value=""><em>None</em></Option>
       {
         !!currentEntity?.attributes?.length &&
         <OptGroup label={<TextWidget token="SettingComponents.FieldNameSelect.Attributes" />}>
@@ -88,6 +91,6 @@ export const FieldSourceInput = observer((
           }
         </OptGroup>
       }
-    </Select>
+    </Select >
   )
 })
