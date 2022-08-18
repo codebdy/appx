@@ -31,7 +31,7 @@ import {
 import { Input as ExecutableInput } from "@formily/antd";
 import { PageContainerDesigner } from "../../../components/PageContainerDesigner";
 import PageContainer from "../../../components/PageContainer";
-import ButtonDesigner from "../../../components/ButtonDesigner";
+import { ButtonDesigner } from "../../../components/ButtonDesigner";
 import Button from "../../../components/Button";
 
 export const allMaterials: MaterialModule[] = [
