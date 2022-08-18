@@ -11,7 +11,7 @@ import { convertMaterialsToComponents } from '../../widgets/MaterialWidget/model
 import { materialStore } from '../../widgets/MaterialWidget/global'
 import { Workspace } from '../../containers'
 import { SettingsForm } from '../../../SettingsForm'
-import { Field } from '../../../components/Field'
+import { Field } from '../../../components/common/Field'
 import { useTranslation } from "react-i18next";
 import { Spin } from "antd";
 import { ID } from "../../../shared";
@@ -19,7 +19,7 @@ import { useShowError } from "../../../hooks/useShowError";
 import { transformToTreeNode } from "../../transformer";
 import { useDesigner } from '@designable/react'
 import { useLazyQueryPage } from "../../../hooks/useLazyQueryPage";
-import { FormDesigner } from "../../../components/FormDesigner";
+import { FormDesigner } from "../../../components/form/FormDesigner";
 
 const PageWorkSpace = (props: {
   pageId: ID,

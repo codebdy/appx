@@ -29,10 +29,10 @@ import {
 } from '@designable/formily-antd'
 
 import { Input as ExecutableInput } from "@formily/antd";
-import { PageContainerDesigner } from "../../../components/PageContainerDesigner";
-import PageContainer from "../../../components/PageContainer";
-import { ButtonDesigner } from "../../../components/ButtonDesigner";
-import Button from "../../../components/Button";
+import Button from "../../../components/form/Button";
+import { PageContainerDesigner } from "../../../components/layout/PageContainerDesigner";
+import PageContainer from "../../../components/layout/PageContainer";
+import { ButtonDesigner } from "../../../components/form/ButtonDesigner";
 
 export const allMaterials: MaterialModule[] = [
   {

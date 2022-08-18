@@ -13,7 +13,7 @@ import FooterToolbar from './FooterToolbar'
 import { observer } from '@formily/reactive-react'
 import './index.less'
 import { LoadTemplate } from "@designable/formily-antd/lib/common/LoadTemplate"
-import { createFieldSchema } from "../Field/shared"
+import { createFieldSchema } from "../../common/Field/shared"
 import { useTriggerableNode } from './hooks/useTriggerableNode'
 import HeaderContentExtra from './HeaderContentExtra'
 import { IPageContainerProps } from '../PageContainer/IPageContainerProps'

@@ -6,10 +6,10 @@ import { Form } from '@formily/antd'
 import { usePrefix, DnFC } from '@designable/react'
 import './styles.less'
 import { FormLocales } from './locales'
-import { createFieldSchema } from '../Field'
+import { createFieldSchema } from '../../common/Field'
 import { FormSchema } from './schema'
 import _ from "lodash";
-import { FieldLocales } from '../Field/locales'
+import { FieldLocales } from '../../common/Field/locales'
 
 export const FormDesigner: DnFC<React.ComponentProps<typeof Form>> = observer(
   (props) => {
