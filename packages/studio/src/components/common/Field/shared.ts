@@ -1,7 +1,6 @@
 import { ISchema } from '@formily/json-schema'
 import {
   ReactionsSetter,
-  DataSourceSetter,
   ValidatorSetter,
 } from '@designable/formily-setters'
 import { AllSchemas } from '@designable/formily-antd/lib/schemas'
@@ -115,6 +114,32 @@ export const createDisplaySchemaTab = (
     })
     :
     {}
+
+  const datdFieids = isDataField ?
+    {
+      default: {
+        'x-decorator': 'FormItem',
+        'x-component': 'ValueInput',
+      },
+      'x-validator': {
+        type: 'array',
+        'x-component': ValidatorSetter,
+      },
+      required: {
+        type: 'boolean',
+        'x-decorator': 'FormItem',
+        'x-component': 'Switch',
+      },
+      description: {
+        type: 'string',
+        'x-decorator': 'FormItem',
+        'x-component': 'Input.TextArea',
+      },
+    }
+    :
+    {
+
+    }
   return {
     'display-tab': {
       type: 'void',
@@ -181,6 +206,7 @@ export const createDisplaySchemaTab = (
               'x-decorator': 'FormItem',
               'x-component': ReactionsSetter,
             },
+            ...datdFieids
           }
         },
         "auth-group": {
