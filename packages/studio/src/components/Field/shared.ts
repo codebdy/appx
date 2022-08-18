@@ -68,10 +68,15 @@ export const createDisplaySchemaTab = () => {
             },
           },
           properties: {
-            "x-data-source": {
-              type: 'string',
-              'x-decorator': 'FormItem',
-              'x-component': 'DataSourceInput',
+            'x-component-props': {
+              type: 'object',
+              properties: {
+                dataBindSource: {
+                  type: 'string',
+                  'x-decorator': 'FormItem',
+                  'x-component': 'DataSourceInput',
+                },
+              }
             },
 
             "x-field-source": {

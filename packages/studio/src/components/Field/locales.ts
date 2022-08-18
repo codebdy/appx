@@ -35,10 +35,10 @@ export const FieldLocales = {
       'action-tab': '动作',
       viewAuth: "权限",
       onClick: "鼠标点击",
-      "x-data-source": '数据源',
       "x-field-source": "字段源",
       "x-field-params": "字段参数",
       'x-component-props': {
+        "dataBindSource": '数据源',
         size: { title: '尺寸', dataSource: ['大', '小', '默认', '继承'] },
         allowClear: '允许清除内容',
         autoFocus: '自动获取焦点',
