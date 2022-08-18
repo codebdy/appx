@@ -8,7 +8,7 @@ import ResourceEditDialog from "./ResourceEditDialog";
 const MultiLangInput = (
   props?: {
     multiline?: boolean,
-    onChange?: (event: { target: { value: string } }) => void,
+    onChange?: (value: string) => void,
     value?: string,
     inline?: boolean,
     title?: string,
@@ -34,17 +34,17 @@ const MultiLangInput = (
   const parsedValue = useMemo(() => parse(value), [parse, value]);
 
   const handleDiaglogChange = useCallback((value?: string) => {
-    onChange({
-      target: {
-        value: value
-      }
-    })
+    onChange && onChange(value)
+  }, [onChange])
+
+  const hanldeCInputCtrlChange = useCallback((event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    onChange && onChange(event.target.value)
   }, [onChange])
 
   return (
     <>
       <Input.Group compact>
-        <InputCtrl style={{ width: isMultLang ? 'calc(100% - 32px)' : "100%" }} value={parsedValue} onChange={onChange} />
+        <InputCtrl style={{ width: isMultLang ? 'calc(100% - 32px)' : "100%" }} value={parsedValue} onChange={hanldeCInputCtrlChange} />
         {
           isMultLang &&
           <Button icon={<TranslationOutlined />} style={{ width: "32px" }} onClick={handleOpen}></Button>
@@ -55,8 +55,8 @@ const MultiLangInput = (
         visiable={visiable}
         multiline={multiline}
         value={value}
-        inline = {inline}
-        title = {title}
+        inline={inline}
+        title={title}
         onClose={handleClose}
         onChange={handleDiaglogChange}
       />
