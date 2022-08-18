@@ -79,7 +79,7 @@ export const createDisplaySchemaTab = () => {
               }
             },
 
-            "x-field-bind": {
+            "x-field-source": {
               type: 'string',
               'x-decorator': 'FormItem',
               'x-component': 'FieldSelect',

@@ -35,7 +35,7 @@ export const FieldLocales = {
       'action-tab': '动作',
       viewAuth: "权限",
       onClick: "鼠标点击",
-      "x-field-bind": "绑定字段",
+      "x-field-source": "字段源",
       'x-component-props': {
         dataBindSource: '数据源',
         size: { title: '尺寸', dataSource: ['大', '小', '默认', '继承'] },
