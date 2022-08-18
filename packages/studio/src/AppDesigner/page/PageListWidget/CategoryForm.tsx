@@ -1,5 +1,5 @@
 import { Form, FormInstance } from "antd";
-import MultiLangInput from "../../../shared/MultiLangInput";
+import MultiLangInput from "../../../components/form/MultiLangInput";
 import React from "react";
 import { memo } from "react";
 import { useTranslation } from "react-i18next";

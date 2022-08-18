@@ -1,8 +1,8 @@
 import { TranslationOutlined } from "@ant-design/icons";
 import { Button, Input } from "antd";
 import React, { useCallback, useMemo, useState } from "react";
-import { useParseLangMessage } from "../../hooks/useParseLangMessage";
-import { useAppConfig } from "../AppRoot/context";
+import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
+import { useAppConfig } from "../../../shared/AppRoot/context";
 import ResourceEditDialog from "./ResourceEditDialog";
 
 const MultiLangInput = (
