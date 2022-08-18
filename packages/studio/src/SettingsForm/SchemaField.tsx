@@ -39,6 +39,7 @@ import {
 } from '@designable/react-settings-form'
 import SettingsTab from './components/SettingsTab'
 import {DataSourceInput, FieldSourceInput, FieldParamsInput} from './components'
+import MultiLangInput from '../components/form/MultiLangInput'
 
 export const SchemaField = createSchemaField({
   components: {
@@ -79,6 +80,7 @@ export const SchemaField = createSchemaField({
     SettingsTab,
     DataSourceInput,
     FieldSourceInput,
-    FieldParamsInput
+    FieldParamsInput,
+    MultiLangInput
   },
 })

@@ -149,7 +149,7 @@ export const createDisplaySchemaTab = (
             title: {
               type: 'string',
               'x-decorator': 'FormItem',
-              'x-component': 'Input',
+              'x-component': 'MultiLangInput',
               'x-reactions': {
                 fulfill: {
                   state: {
