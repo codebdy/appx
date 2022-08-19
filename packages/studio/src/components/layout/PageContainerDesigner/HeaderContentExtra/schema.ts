@@ -1,6 +1,6 @@
-import { Schema } from "../schema";
+import { PageContainerSchema } from "../schema";
 
-Schema.HeaderContentExtra = {
+PageContainerSchema.HeaderContentExtra = {
   type: 'object',
   properties: {
     gridSpan: {

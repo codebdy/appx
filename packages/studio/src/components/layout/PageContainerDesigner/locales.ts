@@ -1,4 +1,4 @@
-export const Locales: any & {
+export const PageContainerLocales: any & {
   HeaderActions: any,
   HeaderContent: any,
   HeaderContentExtra: any,

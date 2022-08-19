@@ -3,8 +3,8 @@ import { Row, Tabs } from 'antd'
 import { createBehavior, createResource, TreeNode } from '@designable/core'
 import { DnFC, TreeNodeWidget, useTreeNode } from '@designable/react'
 import { queryNodesByComponentPath } from './shared'
-import { Locales } from './locales'
-import { Schema } from './schema'
+import { PageContainerLocales } from './locales'
+import { PageContainerSchema } from './schema'
 import HeaderActions from './HeaderActions'
 import HeaderContent from './HeaderContent'
 import TabPanel from './PageTabPanel'
@@ -89,22 +89,6 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
     setSelectedTabKey(tabPanel.id)
   }, [node])
 
-
-  console.log("哈哈", headerContent)
-
-  // useEffect(() => {
-  //   if (hasTabs && !tabs.length) {
-  //     //for (const child of otherChildrenNodes) {
-  //     //child.remove()
-  //     //}
-  //     handleAddPannel()
-  //   } else if (!hasTabs && tabs.length) {
-  //     //for (const tab of tabs) {
-  //     //  tab.remove()
-  //     //}
-  //   }
-  // }, [handleAddPannel, hasTabs, otherChildrenNodes, tabs, tabs.length])
-
   return (
     <PageContainerShell {...other} >
       <PageHeader
@@ -178,9 +162,9 @@ PageContainerDesigner.Behavior = createBehavior(
     selector: (node) => node.props['x-component'] === 'PageContainer',
     designerProps: {
       droppable: true,
-      propsSchema: createFieldSchema(Schema, { hasDataBindSource: true }),
+      propsSchema: createFieldSchema(PageContainerSchema, { hasDataBindSource: true }),
     },
-    designerLocales: Locales,
+    designerLocales: PageContainerLocales,
   },
   {
     name: 'PageContainer.HeaderActions',
@@ -189,9 +173,9 @@ PageContainerDesigner.Behavior = createBehavior(
     designerProps: {
       droppable: true,
       deletable: false,
-      propsSchema: createFieldSchema(Schema.HeaderActions),
+      propsSchema: createFieldSchema(PageContainerSchema.HeaderActions),
     },
-    designerLocales: Locales.HeaderActions,
+    designerLocales: PageContainerLocales.HeaderActions,
   },
   {
     name: 'PageContainer.HeaderContent',
@@ -200,9 +184,9 @@ PageContainerDesigner.Behavior = createBehavior(
     designerProps: {
       droppable: true,
       deletable: false,
-      propsSchema: createFieldSchema(Schema.HeaderContent),
+      propsSchema: createFieldSchema(PageContainerSchema.HeaderContent),
     },
-    designerLocales: Locales.HeaderContent,
+    designerLocales: PageContainerLocales.HeaderContent,
   },
   {
     name: 'PageContainer.HeaderContentExtra',
@@ -211,9 +195,9 @@ PageContainerDesigner.Behavior = createBehavior(
     designerProps: {
       droppable: true,
       deletable: false,
-      propsSchema: createFieldSchema(Schema.HeaderContentExtra),
+      propsSchema: createFieldSchema(PageContainerSchema.HeaderContentExtra),
     },
-    designerLocales: Locales.HeaderContentExtra,
+    designerLocales: PageContainerLocales.HeaderContentExtra,
   },
   {
     name: 'PageContainer.TabPanel',
@@ -221,9 +205,9 @@ PageContainerDesigner.Behavior = createBehavior(
     selector: (node) => node.props['x-component'] === 'PageContainer.TabPanel',
     designerProps: {
       droppable: true,
-      propsSchema: createFieldSchema(Schema.TabPanel),
+      propsSchema: createFieldSchema(PageContainerSchema.TabPanel),
     },
-    designerLocales: Locales.TabPanel,
+    designerLocales: PageContainerLocales.TabPanel,
   },
   {
     name: 'PageContainer.FooterToolbar',
@@ -232,9 +216,9 @@ PageContainerDesigner.Behavior = createBehavior(
     designerProps: {
       droppable: true,
       deletable: false,
-      propsSchema: createFieldSchema(Schema.FooterToolbar),
+      propsSchema: createFieldSchema(PageContainerSchema.FooterToolbar),
     },
-    designerLocales: Locales.FooterToolbar,
+    designerLocales: PageContainerLocales.FooterToolbar,
   }
 )
 

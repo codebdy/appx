@@ -1,6 +1,6 @@
-import { Locales } from "../locales";
+import { PageContainerLocales } from "../locales";
 
-Locales.TabPanel = {
+PageContainerLocales.TabPanel = {
   'zh-CN': {
     title: '选项卡面板',
     settings: {

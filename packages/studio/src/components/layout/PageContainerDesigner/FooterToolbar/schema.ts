@@ -1,6 +1,6 @@
-import { Schema } from "../schema";
+import { PageContainerSchema } from "../schema";
 
-Schema.FooterToolbar = {
+PageContainerSchema.FooterToolbar = {
   type: 'object',
   properties: {
     gridSpan: {

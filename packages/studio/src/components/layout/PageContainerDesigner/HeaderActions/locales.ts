@@ -1,6 +1,6 @@
-import { Locales } from "../locales";
+import { PageContainerLocales } from "../locales";
 
-Locales.HeaderActions = {
+PageContainerLocales.HeaderActions = {
   'zh-CN': {
     title: '操作区',
     settings: {

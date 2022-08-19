@@ -1,6 +1,6 @@
-import { Locales } from "../locales";
+import { PageContainerLocales } from "../locales";
 
-Locales.FooterToolbar = {
+PageContainerLocales.FooterToolbar = {
   'zh-CN': {
     title: '页脚工具栏',
     settings: {

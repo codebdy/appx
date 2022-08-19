@@ -1,6 +1,6 @@
-import { Schema } from "../schema";
+import { PageContainerSchema } from "../schema";
 
-Schema.TabPanel = {
+PageContainerSchema.TabPanel = {
   type: 'object',
   properties: {
     gridSpan: {

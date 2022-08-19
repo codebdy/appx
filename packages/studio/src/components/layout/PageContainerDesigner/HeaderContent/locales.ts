@@ -1,6 +1,6 @@
-import { Locales } from "../locales";
+import { PageContainerLocales } from "../locales";
 
-Locales.HeaderContent = {
+PageContainerLocales.HeaderContent = {
   'zh-CN': {
     title: '页头内容',
     settings: {

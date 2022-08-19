@@ -1,6 +1,6 @@
 import { ISchema } from '@formily/react'
 
-export const Schema: ISchema & {
+export const PageContainerSchema: ISchema & {
   HeaderActions?: ISchema,
   HeaderContent?: ISchema,
   HeaderContentExtra?: ISchema,

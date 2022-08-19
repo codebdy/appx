@@ -1,6 +1,6 @@
-import { Schema } from "../schema";
+import { PageContainerSchema } from "../schema";
 
-Schema.HeaderActions = {
+PageContainerSchema.HeaderActions = {
   type: 'object',
   properties: {
     gridSpan: {
