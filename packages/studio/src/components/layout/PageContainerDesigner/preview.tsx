@@ -72,13 +72,6 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
     setSelectedTabKey(key);
   }, []);
 
-  const selectedTab = useMemo(
-    () => {
-      return tabs?.find(tab => tab.id === selectedTabKey)
-    },
-    [selectedTabKey, tabs]
-  )
-
   const handleAddPannel = useCallback(() => {
     const tabPanel = new TreeNode({
       componentName: 'Field',
@@ -94,7 +87,13 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
     setSelectedTabKey(tabPanel.id)
   }, [node])
 
-  console.log("就啊哈", selectedTabKey, tabs?.[0]?.id)
+  const selectedKey = useMemo(() => selectedTabKey || tabs?.[0]?.id, [selectedTabKey, tabs])
+  const selectedTab = useMemo(
+    () => {
+      return tabs?.find(tab => tab.id === selectedKey)
+    },
+    [selectedKey, tabs]
+  )
 
   return (
     <PageContainerShell {...other} >
@@ -104,10 +103,9 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
         subTitle={subtitle && <span data-content-editable="x-component-props.subtitle">{subtitle}</span>}
         extra={hasActions && headerActions && <TreeNodeWidget node={headerActions} />}
         footer={
-          hasTabs && <Tabs activeKey={selectedTabKey || tabs?.[0]?.id} onChange={handleSelectTab}>
+          hasTabs && <Tabs activeKey={selectedKey} onChange={handleSelectTab}>
             {
               tabs.map((tab) => {
-                console.log("哈哈哈", tab.id)
                 return (
                   <TabPane tab={tab?.props?.['x-component-props']?.["title"]} key={tab.id} />
                 )
