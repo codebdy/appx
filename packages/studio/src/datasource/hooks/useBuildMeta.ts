@@ -149,7 +149,7 @@ export function useBuildMeta(): { error?: Error; loading?: boolean } {
       const systemPackages = systemMeta?.content?.packages?.filter(pkg => pkg.sharable) || [];
       const systemClasses = systemMeta?.content?.classes?.filter(cls => getPackage(cls.packageUuid).sharable) || []
       const allClasses: ClassMeta[] = [...systemClasses, ...meta?.content?.classes || []];
-      const allRelations: RelationMeta[] = [...systemMeta?.content?.relations, ...meta?.content?.relations];
+      const allRelations: RelationMeta[] = [...systemMeta?.content?.relations||[], ...meta?.content?.relations||[]];
       setPackages([...systemPackages, ...meta?.content?.packages || []]);
       setClasses(allClasses);
       setEntitiesState(
