@@ -286,6 +286,7 @@ PageContainerDesigner.Resource = createResource({
             type: 'void',
             'x-component': 'PageContainer.TabPanel',
             'x-component-props': {
+              title: `Unnamed title`,
             },
           },
         },
