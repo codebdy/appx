@@ -1,6 +1,5 @@
 import { Card, TableProps } from "antd"
 import React, { useCallback, useRef, useState } from "react"
-import { registerResourceBundle } from "../../i18n/registerResourceBundle"
 import { IProTableParams, ProTableContext } from "./context"
 import "./index.less"
 import locales, { LOCALES_NS } from "./locales"
@@ -14,13 +13,13 @@ import {
   useField,
   useFieldSchema,
   RecursionField,
-  ReactFC,
 } from '@formily/react'
 import { GeneralField, FieldDisplayTypes, ArrayField } from '@formily/core'
 import { ColumnProps } from "antd/lib/table"
 import { Schema } from '@formily/json-schema'
 import { usePrefixCls } from "@formily/antd/esm/__builtins__"
-import { isArr, isBool, isFn } from '@formily/shared'
+import { isArr } from '@formily/shared'
+import { registerResourceBundle } from "../../../i18n/registerResourceBundle"
 
 registerResourceBundle(LOCALES_NS, locales);
 interface ObservableColumnSource {
