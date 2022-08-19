@@ -57,10 +57,13 @@ const useCollapseGrid = (maxRows: number, maxColumns = 4) => {
   }
 }
 
-const QueryForm: React.FC = observer((props: {
+export interface IQueryFormProps {
   layout?: "horizontal" | "vertical",
+  className?: string,
   children?: React.ReactNode
-}) => {
+}
+
+const QueryForm: React.FC = observer((props: IQueryFormProps) => {
   const { layout = "vertical" } = props;
   const { t } = useLocalTranslations();
   const { grid, expanded, toggle, type } = useCollapseGrid(1)
