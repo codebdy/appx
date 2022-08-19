@@ -25,6 +25,7 @@ import { routesPlaceholder } from '../PageContainer'
 import { PageHeader } from '../PageContainer/PageHeader'
 import { PageBody } from '../PageContainer/PageBody'
 import { PageContainerShell } from '../PageContainer/PageContainerShell'
+import { useRemoveNode } from './hooks/useRemoveNode'
 
 const { TabPane } = Tabs;
 
@@ -85,15 +86,34 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
     })
     node.append(tabPanel)
     setSelectedTabKey(tabPanel.id)
-  }, [node])
+  }, [node]);
 
-  const selectedKey = useMemo(() => selectedTabKey || tabs?.[0]?.id, [selectedTabKey, tabs])
+  const selectedKey = useMemo(() => {
+    return (tabs.find(tab => tab.id === selectedTabKey) ? selectedTabKey : undefined) || tabs?.[0]?.id
+  }, [selectedTabKey, tabs])
+
   const selectedTab = useMemo(
     () => {
       return tabs?.find(tab => tab.id === selectedKey)
     },
     [selectedKey, tabs]
   )
+
+  const handleRemoveNode = useCallback((target: TreeNode) => {
+    if (target.parent?.id === node.id && target?.props?.['x-component'] === 'PageContainer.TabPanel') {
+      setSelectedTabKey(tabs?.[0]?.id)
+    }
+  }, [node.id, tabs])
+
+  useRemoveNode('PageContainer', (target) => {
+    if (target && Array.isArray(target)) {
+      for (const child of target) {
+        handleRemoveNode(child)
+      }
+    } else if (target) {
+      handleRemoveNode(target as any)
+    }
+  })
 
   return (
     <PageContainerShell {...other} >
