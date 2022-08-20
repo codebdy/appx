@@ -1,7 +1,7 @@
 import { DownOutlined, UpOutlined } from "@ant-design/icons";
 import { FormButtonGroup, FormGrid, Reset, Submit } from "@formily/antd";
 import { Button } from "antd";
-import React, { memo } from "react"
+import React, { memo, useMemo } from "react"
 import { useLocalTranslations } from "../hooks/useLocalTranslations";
 
 export const ButtonsGridColum = memo((
@@ -15,14 +15,14 @@ export const ButtonsGridColum = memo((
   const { layout, expanded, collapsiable, onToggle } = props;
   const { t } = useLocalTranslations();
 
-  const renderActions = () => {
+  const acions = useMemo(() => {
     return (
       <>
-        <Submit onSubmit={console.log}>{t("Search")}</Submit>
         <Reset >{t("Reset")}</Reset>
+        <Submit onSubmit={console.log}>{t("Search")}</Submit>
       </>
     )
-  }
+  }, [t])
 
   return (
     <FormGrid.GridColumn
@@ -37,7 +37,7 @@ export const ButtonsGridColum = memo((
         collapsiable
           ?
           <>
-            <FormButtonGroup align="right">{renderActions()}</FormButtonGroup>
+            <FormButtonGroup align="right">{acions}</FormButtonGroup>
             <FormButtonGroup>
               <Button
                 type="link"
@@ -52,7 +52,7 @@ export const ButtonsGridColum = memo((
             </FormButtonGroup>
           </>
           :
-          <FormButtonGroup align="right">{renderActions()}</FormButtonGroup>
+          <FormButtonGroup align="right">{acions}</FormButtonGroup>
       }
     </FormGrid.GridColumn>
   )
