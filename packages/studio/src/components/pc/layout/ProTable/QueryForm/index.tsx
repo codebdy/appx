@@ -51,16 +51,16 @@ const QueryForm: React.FC = observer((props: IQueryFormProps) => {
       return FormGrid.createFormGrid({
         maxColumns: maxColumns,
         maxWidth: maxWidth,
-        maxRows: maxRowsOnCollapsed,
+        maxRows: expanded ? maxRowsOnCollapsed : Infinity,
         shouldVisible: (node, grid) => {
-          return true;
-          // if (node.index === grid.childSize - 1) return true
-          // if (grid.maxRows === Infinity) return true
-          // return node.shadowRow < maxRowsOnCollapsed + 1 && node.index < maxColumns - 1
+          if (!collapsiable) return true;
+          if (node.index === grid.childSize - 1) return true
+          if (grid.maxRows === Infinity) return true
+          return node.shadowRow < maxRowsOnCollapsed + 1 && node.index < maxColumns - 1
         },
       })
     },
-    [maxColumns, maxRowsOnCollapsed, maxWidth]
+    [collapsiable, expanded, maxColumns, maxRowsOnCollapsed, maxWidth]
   )
 
   const handleToggle = useCallback(() => {
@@ -81,6 +81,7 @@ const QueryForm: React.FC = observer((props: IQueryFormProps) => {
           rowGap={rowGap}
           colWrap={colWrap}
           strictAutoFit={strictAutoFit}
+          maxRows={expanded ? maxRowsOnCollapsed : Infinity}
         >
           {children}
           {
