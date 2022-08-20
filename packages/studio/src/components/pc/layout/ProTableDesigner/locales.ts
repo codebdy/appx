@@ -9,7 +9,7 @@ export const ProTableLocales: any & {
       'x-component-props': {
         hasQueryForm: "查询表单",
         hasToolbar: "工具栏",
-        hasBatchActions: "批量处理"
+        hasBatchActions: "批量操作"
       },
     },
   },
