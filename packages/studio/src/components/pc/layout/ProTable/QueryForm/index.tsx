@@ -12,7 +12,9 @@ import {
 import { ButtonsGridColum } from './ButtonsGridColum'
 import { Card } from 'antd'
 
-export interface IQueryFormProps {
+type formilyGrid = typeof FormGrid
+
+export type IQueryFormProps = {
   maxRowsOnCollapsed?: number,
   maxColumns?: number,
   maxWidth?: number,
@@ -21,15 +23,22 @@ export interface IQueryFormProps {
   className?: string,
   children?: React.ReactNode,
   style?: CSSProperties,
-}
+} & React.ComponentProps<formilyGrid>
 
 const QueryForm: React.FC = observer((props: IQueryFormProps) => {
   const {
     layout = "horizontal",
-    maxRowsOnCollapsed = 1,
-    maxColumns = 3,
-    maxWidth = 240,
     collapsiable = true,
+    maxRowsOnCollapsed = 1,
+    minWidth,
+    maxWidth,
+    minColumns,
+    maxColumns = 4,
+    breakpoints,
+    columnGap,
+    rowGap,
+    colWrap,
+    strictAutoFit,
     children,
     style,
     ...other
@@ -49,7 +58,7 @@ const QueryForm: React.FC = observer((props: IQueryFormProps) => {
           // if (grid.maxRows === Infinity) return true
           // return node.shadowRow < maxRowsOnCollapsed + 1 && node.index < maxColumns - 1
         },
-      })    
+      })
     },
     [maxColumns, maxRowsOnCollapsed, maxWidth]
   )
@@ -61,7 +70,18 @@ const QueryForm: React.FC = observer((props: IQueryFormProps) => {
   return (
     <Card {...other} style={{ ...style || {}, marginTop: "16px" }}>
       <FormLayout layout={layout} feedbackLayout="terse">
-        <FormGrid grid={grid} maxColumns = {maxColumns}>
+        <FormGrid
+          grid={grid}
+          minWidth={minWidth}
+          maxWidth={maxWidth}
+          minColumns={minColumns}
+          maxColumns={maxColumns}
+          breakpoints={breakpoints}
+          columnGap={columnGap}
+          rowGap={rowGap}
+          colWrap={colWrap}
+          strictAutoFit={strictAutoFit}
+        >
           {children}
           {
             !collapsiable && <ButtonsGridColum collapsiable={collapsiable} expanded={expanded} onToggle={handleToggle} />
