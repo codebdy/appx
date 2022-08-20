@@ -26,10 +26,10 @@ export const ProTableDesigner: DnFC<IProTableProps> & {
   } = props;
   return (
     <div className={clx("appx-pro-table", className)} {...other}>
-      <Card>
+      <Card style={{ marginBottom: "16px" }}>
         <QueryFormExample />
       </Card>
-      <Card style={{ marginTop: "16px" }}>
+      <Card>
         <div />
         <SelectMessage />
         <QueryTable />
