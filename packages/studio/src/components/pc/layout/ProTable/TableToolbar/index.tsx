@@ -10,12 +10,23 @@ export interface ITableToolbarProps {
   title?: string,
   className?: string,
   hasNewButton?: boolean,
+  hasRefresh?: boolean,
+  hasHeight?: boolean,
+  hasSettings?: boolean,
 }
 
 const TableToolbar = memo((
   props: ITableToolbarProps
 ) => {
-  const { title, className, hasNewButton = true, ...other } = props;
+  const {
+    title,
+    className,
+    hasNewButton = true,
+    hasRefresh = true,
+    hasHeight = true,
+    hasSettings = true,
+    ...other
+  } = props;
   const { t } = useLocalTranslations();
 
   return (
@@ -44,13 +55,24 @@ const TableToolbar = memo((
           </Button>
         }
 
-        <Tooltip title={t("Refresh")}>
-          <Button shape="circle" size="large" type="text" style={{ marginLeft: 8 }}>
-            <ReloadOutlined />
-          </Button>
-        </Tooltip>
-        <HeightMenu />
-        <ColumnsSettings />
+        {
+          hasRefresh &&
+          <Tooltip title={t("Refresh")}>
+            <Button shape="circle" size="large" type="text" style={{ marginLeft: 8 }}>
+              <ReloadOutlined />
+            </Button>
+          </Tooltip>
+        }
+
+        {
+          hasHeight &&
+          <HeightMenu />
+        }
+
+        {
+          hasSettings &&
+          <ColumnsSettings />
+        }
       </div>
     </div>
   )

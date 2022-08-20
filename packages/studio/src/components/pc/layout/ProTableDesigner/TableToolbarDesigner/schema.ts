@@ -1,4 +1,3 @@
-import { FormGridSchema } from "../../../form/FormGridDesigner/schema";
 import { ProTableSchema } from "../schema";
 
 ProTableSchema.TableToolbar = {
@@ -10,6 +9,30 @@ ProTableSchema.TableToolbar = {
       'x-component': 'Input',
     },
     hasNewButton: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+      'x-component-props': {
+        defaultChecked: true,
+      },
+    },
+    hasRefresh: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+      'x-component-props': {
+        defaultChecked: true,
+      },
+    },
+    hasHeight: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+      'x-component-props': {
+        defaultChecked: true,
+      },
+    },
+    hasSettings: {
       type: 'boolean',
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
