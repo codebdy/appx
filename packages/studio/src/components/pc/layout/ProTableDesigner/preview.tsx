@@ -2,7 +2,7 @@ import { observer } from "@formily/reactive-react"
 import { Card } from "antd"
 import React from "react"
 import { IQueryFormProps } from "../ProTable/QueryForm"
-import QueryTable from "../ProTable/QueryTable"
+import { DataTable } from "../ProTable/DataTable"
 import { ITableToolbarProps } from "../ProTable/TableToolbar"
 import { DnFC, TreeNodeWidget } from '@designable/react'
 import { QueryFormDesigner } from "./QueryFormDesigner"
@@ -48,7 +48,7 @@ export const ProTableDesigner: DnFC<IProTableProps> & {
         {
           hasBatchActions && batchActions && <TreeNodeWidget node={batchActions} />
         }
-        <QueryTable />
+        <DataTable />
       </Card>
     </div>
   )

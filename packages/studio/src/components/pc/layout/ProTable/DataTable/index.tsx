@@ -107,7 +107,7 @@ export interface IQueryTableProps{
 
 }
 
-const QueryTable = memo((
+export const DataTable = memo((
   props:IQueryTableProps
 ) => {
   const { onSelectedChange } = useProTableParams();
@@ -134,5 +134,3 @@ const QueryTable = memo((
   )
 
 });
-
-export default QueryTable;

@@ -3,8 +3,8 @@ import React, { useCallback, useRef, useState } from "react"
 import { IProTableParams, ProTableContext } from "./context"
 import "./index.less"
 import locales, { LOCALES_NS } from "./locales"
-import QueryTable from "./QueryTable"
-import {TableBatchActions} from "./TableBatchActions"
+import { DataTable } from "./DataTable"
+import { TableBatchActions } from "./TableBatchActions"
 import { observer } from "@formily/reactive-react"
 import { ArrayBase } from "@formily/antd"
 import {
@@ -116,7 +116,7 @@ const useArrayTableSources = () => {
   return parseArrayItems(schema.items)
 }
 
-export interface IProTableProps extends IDataSourceableProps{
+export interface IProTableProps extends IDataSourceableProps {
   className?: string,
   hasQueryForm?: boolean,
   hasToolbar?: boolean,
@@ -147,12 +147,12 @@ export const ProTable = observer((
     >
       <div className="appx-pro-table">
         <Card>
-          
+
         </Card>
         <Card style={{ marginTop: "16px" }}>
           <TableToolbar />
           <TableBatchActions />
-          <QueryTable />
+          <DataTable />
         </Card>
       </div>
     </ProTableContext.Provider>
