@@ -3,12 +3,12 @@ import { ProTableSchema } from "../schema";
 ProTableSchema.QueryForm = {
   type: 'object',
   properties: {
-    gridSpan: {
-      type: 'number',
+    collapsiable: {
+      type: 'boolean',
       'x-decorator': 'FormItem',
-      'x-component': 'NumberPicker',
+      'x-component': 'Switch',
       'x-component-props': {
-        defaultValue: 1,
+        defaultValue: true,
       },
     },
   },

@@ -1,7 +1,7 @@
 import { observer } from "@formily/reactive-react"
 import { Card } from "antd"
 import React from "react"
-import { IQueryFormProps, QueryFormExample } from "../ProTable/QueryForm"
+import { IQueryFormProps } from "../ProTable/QueryForm"
 import QueryTable from "../ProTable/QueryTable"
 import QueryToolbar, { IQueryToolbarProps } from "../ProTable/QueryToolbar"
 import SelectMessage from "../ProTable/SelectMessage"
@@ -103,6 +103,7 @@ ProTableDesigner.Resource = createResource({
             type: 'void',
             'x-component': 'ProTable.QueryForm',
             'x-component-props': {
+              collapsiable: true,
             },
           },
         },

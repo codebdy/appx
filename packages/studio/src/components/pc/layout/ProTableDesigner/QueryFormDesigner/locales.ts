@@ -5,6 +5,7 @@ ProTableLocales.QueryForm = {
     title: '查询表单',
     settings: {
       'x-component-props': {
+        collapsiable: "可折叠"
       },
     },
   },
