@@ -4,24 +4,25 @@ import React, { memo } from "react"
 import { useLocalTranslations } from "../hooks/useLocalTranslations"
 import ColumnsSettings from "./ColumnsSettings"
 import HeightMenu from "./HeightMenu"
+import clx from "classnames"
 
 export interface ITableToolbarProps {
-
+  title?: string,
+  className?: string,
 }
 
 const TableToolbar = memo((
   props: ITableToolbarProps
 ) => {
+  const { title, className, ...other } = props;
   const { t } = useLocalTranslations();
 
   return (
-    <div style={{
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between"
-    }}>
+    <div {...other}
+      className={clx(className, "table-toolbar")}
+    >
       <div>
-        查询表格
+        {title}
       </div>
       <div
         style={{
