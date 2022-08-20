@@ -30,7 +30,9 @@ const QueryForm: React.FC = observer((props: IQueryFormProps) => {
     maxColumns = 4,
     maxWidth = 240,
     collapsiable = true,
-    children
+    children,
+    style,
+    ...other
   } = props;
   const [expanded, setExpanded] = useState(false);
 
@@ -55,7 +57,7 @@ const QueryForm: React.FC = observer((props: IQueryFormProps) => {
   }, [])
 
   return (
-    <Card style={{ marginTop: "16px" }}>
+    <Card {...other} style={{ ...style || {}, marginTop: "16px" }}>
       <FormLayout {...props} layout={layout} feedbackLayout="terse">
         <FormGrid grid={grid}>
           {children}

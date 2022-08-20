@@ -6,7 +6,7 @@ import QueryTable from "../ProTable/QueryTable"
 import QueryToolbar, { IQueryToolbarProps } from "../ProTable/QueryToolbar"
 import SelectMessage from "../ProTable/SelectMessage"
 import { DnFC, TreeNodeWidget } from '@designable/react'
-import QueryForm from "./QueryForm"
+import { QueryFormDesigner } from "./QueryFormDesigner"
 import { IProTableProps } from "../ProTable"
 import { createBehavior, createResource } from '@designable/core'
 import { createFieldSchema } from "../../../common/Field/shared"
@@ -48,7 +48,7 @@ export const ProTableDesigner: DnFC<IProTableProps> & {
   )
 })
 
-ProTableDesigner.QueryForm = QueryForm
+ProTableDesigner.QueryForm = QueryFormDesigner
 ProTableDesigner.QueryToolbar = QueryToolbar
 
 ProTableDesigner.Behavior = createBehavior(
