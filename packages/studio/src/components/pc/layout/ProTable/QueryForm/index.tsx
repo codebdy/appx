@@ -1,11 +1,6 @@
 import React, { useMemo, useState, useCallback, CSSProperties } from 'react'
-import { createForm } from '@formily/core'
-import { createSchemaField, FormProvider, observer } from '@formily/react'
+import { observer } from '@formily/react'
 import {
-  Input,
-  Select,
-  DatePicker,
-  FormItem,
   FormGrid,
   FormLayout,
 } from '@formily/antd'
@@ -25,7 +20,7 @@ export type IQueryFormProps = {
   style?: CSSProperties,
 } & React.ComponentProps<formilyGrid>
 
-const QueryForm: React.FC = observer((props: IQueryFormProps) => {
+export const QueryForm: React.FC = observer((props: IQueryFormProps) => {
   const {
     layout = "horizontal",
     collapsiable = true,
@@ -85,79 +80,13 @@ const QueryForm: React.FC = observer((props: IQueryFormProps) => {
         >
           {children}
           {
-            !collapsiable && <ButtonsGridColum collapsiable={collapsiable} expanded={expanded} onToggle={handleToggle} />
+            !collapsiable && <ButtonsGridColum collapsiable={collapsiable} layout = {layout} expanded={expanded} onToggle={handleToggle} />
           }
         </FormGrid>
         {
-          collapsiable && <ButtonsGridColum collapsiable={collapsiable} expanded={expanded} onToggle={handleToggle} />
+          collapsiable && <ButtonsGridColum collapsiable={collapsiable} layout={layout} expanded={expanded} onToggle={handleToggle} />
         }
       </FormLayout>
     </Card>
   )
 })
-
-const SchemaField = createSchemaField({
-  components: {
-    QueryForm,
-    Input,
-    Select,
-    DatePicker,
-    FormItem,
-  },
-})
-
-const QueryFormExample = () => {
-  const form = useMemo(() => createForm(), [])
-  return (
-    <FormProvider form={form}>
-      <SchemaField>
-        <SchemaField.Object x-component="QueryForm">
-          <SchemaField.String
-            name="input1"
-            title="Input 1"
-            x-component="Input"
-            x-decorator="FormItem"
-          />
-          <SchemaField.String
-            name="input2"
-            title="Input 2"
-            x-component="Input"
-            x-decorator="FormItem"
-          />
-
-          <SchemaField.String
-            name="select1"
-            title="Select 1"
-            x-component="Select"
-            x-decorator="FormItem"
-          />
-          <SchemaField.String
-            name="select2"
-            title="Select 2"
-            x-component="Select"
-            x-decorator="FormItem"
-          />
-          <SchemaField.String
-            name="date"
-            title="DatePicker"
-            x-component="DatePicker"
-            x-decorator="FormItem"
-          />
-          <SchemaField.String
-            name="dateRange"
-            title="DatePicker.RangePicker"
-            x-component="DatePicker.RangePicker"
-            x-decorator="FormItem"
-            x-decorator-props={{
-              gridSpan: 2,
-            }}
-          />
-
-        </SchemaField.Object>
-      </SchemaField>
-    </FormProvider>
-  )
-}
-
-export default QueryForm
-export { QueryFormExample }

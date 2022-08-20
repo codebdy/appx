@@ -1,5 +1,5 @@
 import { DownOutlined, UpOutlined } from "@ant-design/icons";
-import { FormButtonGroup, FormGrid, Reset, Submit } from "@formily/antd";
+import { FormButtonGroup, Reset, Submit } from "@formily/antd";
 import { Button } from "antd";
 import React, { memo, useMemo } from "react"
 import { useLocalTranslations } from "../hooks/useLocalTranslations";
@@ -26,7 +26,12 @@ export const ButtonsGridColum = memo((
 
   return (
     <div
-      style={{ display: 'flex', justifyContent: 'space-between', width: "100%" }}
+      style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        width: "100%",
+        alignItems: layout !== "vertical" && !collapsiable ? "flex-start" : "center",
+      }}
     >
       {
         collapsiable
