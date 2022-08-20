@@ -2,7 +2,7 @@ import { ProTableLocales } from "../locales";
 
 ProTableLocales.QueryForm = {
   'zh-CN': {
-    title: '页脚工具栏',
+    title: '查询表单',
     settings: {
       'x-component-props': {
       },

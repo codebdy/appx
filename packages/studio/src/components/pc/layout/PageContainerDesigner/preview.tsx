@@ -13,7 +13,7 @@ import { observer } from '@formily/reactive-react'
 import './index.less'
 import { LoadTemplate } from "@designable/formily-antd/lib/common/LoadTemplate"
 import { createFieldSchema } from "../../../common/Field/shared"
-import { useFindNode } from './hooks/useFindNode'
+import { useFindNode } from '../../../common/hooks/useFindNode'
 import HeaderContentExtra from './HeaderContentExtra'
 import { IPageContainerProps } from '../PageContainer/IPageContainerProps'
 import { IHeaderActionsProps } from '../PageContainer/PageHeaderActions'
@@ -25,7 +25,7 @@ import { routesPlaceholder } from '../PageContainer'
 import { PageHeader } from '../PageContainer/PageHeader'
 import { PageBody } from '../PageContainer/PageBody'
 import { PageContainerShell } from '../PageContainer/PageContainerShell'
-import { useRemoveNode } from './hooks/useRemoveNode'
+import { useRemoveNode } from '../../../common/hooks/useRemoveNode'
 
 const { TabPane } = Tabs;
 

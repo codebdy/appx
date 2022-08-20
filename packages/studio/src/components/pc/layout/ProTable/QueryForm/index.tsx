@@ -10,6 +10,7 @@ import {
   FormLayout,
 } from '@formily/antd'
 import { ButtonsGridColum } from './ButtonsGridColum'
+import { Card } from 'antd'
 
 export interface IQueryFormProps {
   maxRowsOnCollapsed?: number,
@@ -53,17 +54,19 @@ const QueryForm: React.FC = observer((props: IQueryFormProps) => {
   }, [])
 
   return (
-    <FormLayout {...props} layout={layout} feedbackLayout="terse">
-      <FormGrid grid={grid}>
-        {children}
+    <Card style={{ marginTop: "16px" }}>
+      <FormLayout {...props} layout={layout} feedbackLayout="terse">
+        <FormGrid grid={grid}>
+          {children}
+          {
+            !collapsiable && <ButtonsGridColum collapsiable={collapsiable} expanded={expanded} onToggle={handleToggle} />
+          }
+        </FormGrid>
         {
-          !collapsiable && <ButtonsGridColum collapsiable={collapsiable} expanded={expanded} onToggle={handleToggle} />
+          collapsiable && <ButtonsGridColum collapsiable={collapsiable} expanded={expanded} onToggle={handleToggle} />
         }
-      </FormGrid>
-      {
-        collapsiable && <ButtonsGridColum collapsiable={collapsiable} expanded={expanded} onToggle={handleToggle} />
-      }
-    </FormLayout>
+      </FormLayout>
+    </Card>
   )
 })
 

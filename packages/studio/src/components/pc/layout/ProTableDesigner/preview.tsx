@@ -5,7 +5,7 @@ import { IQueryFormProps, QueryFormExample } from "../ProTable/QueryForm"
 import QueryTable from "../ProTable/QueryTable"
 import QueryToolbar, { IQueryToolbarProps } from "../ProTable/QueryToolbar"
 import SelectMessage from "../ProTable/SelectMessage"
-import { DnFC } from '@designable/react'
+import { DnFC, TreeNodeWidget } from '@designable/react'
 import QueryForm from "./QueryForm"
 import { IProTableProps } from "../ProTable"
 import { createBehavior, createResource } from '@designable/core'
@@ -13,6 +13,7 @@ import { createFieldSchema } from "../../../common/Field/shared"
 import { ProTableSchema } from "./schema"
 import { ProTableLocales } from "./locales"
 import clx from "classnames"
+import { useFindNode } from "../../../common/hooks/useFindNode"
 
 export const ProTableDesigner: DnFC<IProTableProps> & {
   QueryForm?: React.FC<IQueryFormProps>,
@@ -24,13 +25,22 @@ export const ProTableDesigner: DnFC<IProTableProps> & {
     className,
     ...other
   } = props;
+
+  const queryForm = useFindNode('QueryForm');
+  const toolbar = useFindNode("Toolbar");
+
   return (
     <div className={clx("appx-pro-table", className)} {...other}>
+      {
+        hasQueryForm && queryForm && <TreeNodeWidget node={queryForm} />
+      }
       <Card style={{ marginTop: "16px" }}>
         <QueryFormExample />
       </Card>
       <Card style={{ marginTop: "16px" }}>
-        <div />
+        {
+          hasToolbar && toolbar && <TreeNodeWidget node={toolbar} />
+        }
         <SelectMessage />
         <QueryTable />
       </Card>
@@ -47,7 +57,7 @@ ProTableDesigner.Behavior = createBehavior(
     extends: [],
     selector: (node) => node.props['x-component'] === 'ProTable',
     designerProps: {
-      droppable: true,
+      droppable: false,
       propsSchema: createFieldSchema(ProTableSchema, { hasDataBindSource: true }),
     },
     designerLocales: ProTableLocales,
@@ -85,15 +95,8 @@ ProTableDesigner.Resource = createResource({
         type: 'void',
         'x-component': 'ProTable',
         'x-component-props': {
-          title: "Page title",
-          //subtitle: "ProTable subtitle",
-          hasBreadcrumb: false,
-          hasGobackButton: false,
-          hasActions: false,
-          hasHeaderContent: false,
-          hasHeaderContentExtra: false,
-          hasTabs: false,
-          hasFooterToolbar: false,
+          hasQueryForm: true,
+          hasToolbar: true,
         },
       },
       children: [

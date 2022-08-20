@@ -5,13 +5,16 @@ import './locales'
 import './schema'
 import clx from "classnames"
 import { IQueryFormProps } from "../../ProTable/QueryForm"
+import { Card } from "antd"
 
 const QueryForm = observer((props: IQueryFormProps) => {
-  const {className, ...other} = props
+  const { className, ...other } = props
   return (
-    <DroppableWidget {...other} className = {clx(className)}>
-      {props.children}
-    </DroppableWidget>
+    <Card style={{ marginTop: "16px" }}>
+      <DroppableWidget {...other} className={clx(className)}>
+        {props.children}
+      </DroppableWidget>
+    </Card>
   )
 })
 
