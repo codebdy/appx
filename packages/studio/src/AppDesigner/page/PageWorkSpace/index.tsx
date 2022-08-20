@@ -19,7 +19,7 @@ import { useShowError } from "../../../hooks/useShowError";
 import { transformToTreeNode } from "../../transformer";
 import { useDesigner } from '@designable/react'
 import { useLazyQueryPage } from "../../../hooks/useLazyQueryPage";
-import { FormDesigner } from "../../../components/form/FormDesigner";
+import { FormDesigner } from "../../../components/pc/form/FormDesigner";
 
 const PageWorkSpace = (props: {
   pageId: ID,

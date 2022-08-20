@@ -2,8 +2,8 @@ import { IDesignerComponents, DnFC, DnComponent } from "@designable/react"
 
 export interface Material {
   name: string;
-  component: DnFC<any> | DnComponent<any>;
-  xComponent: React.FC<any> | React.Component;
+  designer: DnFC<any> | DnComponent<any>;
+  component: React.FC<any> | React.Component;
 }
 
 export interface MaterialGroup {
@@ -16,7 +16,7 @@ export function convertMaterialsToComponents(tabs: MaterialModule[]): IDesignerC
   for (const tab of tabs) {
     for (const group of tab.groups) {
       for (const material of group.materials) {
-        coms[material.name] = material.component
+        coms[material.name] = material.designer
       }
     }
   }

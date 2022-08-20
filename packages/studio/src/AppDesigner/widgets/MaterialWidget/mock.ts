@@ -1,10 +1,14 @@
 import { MaterialModule, OperationType } from "./model";
 import { Input } from "@formily/antd";
-import Button from "../../../components/form/Button";
-import { PageContainerDesigner } from "../../../components/layout/PageContainerDesigner";
-import PageContainer from "../../../components/layout/PageContainer";
-import { ButtonDesigner } from "../../../components/form/ButtonDesigner";
-import { InputDesigner } from "../../../components/form/InputDesigner";
+import {
+  Button,
+  ButtonDesigner,
+  InputDesigner,
+  PageContainerDesigner,
+  PageContainer,
+  ProTableDesigner,
+  ProTable
+} from "../../../components/pc";
 
 export const allMaterials: MaterialModule[] = [
   {
@@ -18,18 +22,23 @@ export const allMaterials: MaterialModule[] = [
         materials: [
           {
             name: "Input",
-            component: InputDesigner,
-            xComponent: Input,
+            designer: InputDesigner,
+            component: Input,
           },
           {
             name: "PageContainer",
-            component: PageContainerDesigner,
-            xComponent: PageContainer,
+            designer: PageContainerDesigner,
+            component: PageContainer,
+          },
+          {
+            name: "ProTable",
+            designer: ProTableDesigner,
+            component: ProTable
           },
           {
             name: "Button",
-            component: ButtonDesigner,
-            xComponent: Button
+            designer: ButtonDesigner,
+            component: Button
           }
           // {
           //   name: "Rate2",

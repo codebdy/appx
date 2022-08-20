@@ -12,7 +12,7 @@ import { IPage, IPageCategory } from '../../../../model';
 import { usePagesWithoutCategory } from '../../../hooks/usePagesWithoutCategory';
 import { useGetCategoryPages } from '../../../hooks/useGetCategoryPages';
 import { useGetPage } from '../../../hooks/useGetPage';
-import MultiLangInput from '../../../../components/form/MultiLangInput';
+import MultiLangInput from '../../../../components/pc/form/MultiLangInput';
 import { useParseLangMessage } from '../../../../hooks/useParseLangMessage';
 const { Option } = Select;
 const { TreeNode } = TreeSelect;

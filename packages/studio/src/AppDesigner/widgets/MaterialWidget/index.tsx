@@ -34,7 +34,7 @@ export const MaterialWidget: React.FC = observer(() => {
                     return (<ResourceWidget
                       key={gIndex + 1}
                       title={groupData.title}
-                      sources={groupData.materials.map(material => material.component)}
+                      sources={groupData.materials.map(material => material.designer)}
                     />)
                   })
                 }
