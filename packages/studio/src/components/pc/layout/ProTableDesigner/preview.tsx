@@ -30,7 +30,7 @@ export const ProTableDesigner: DnFC<IProTableProps> & {
   } = props;
 
   const queryForm = useFindNode('QueryForm');
-  const toolbar = useFindNode("Toolbar");
+  const toolbar = useFindNode("TableToolbar");
 
   return (
     <div className={clx("appx-pro-table", className)} {...other}>
