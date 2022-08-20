@@ -25,16 +25,16 @@ export const ProTableDesigner: DnFC<IProTableProps> & {
   TableBatchActions?: React.FC<ITableBatchActionsProps>,
 } = observer((props: IProTableProps) => {
   const {
-    hasQueryForm,
-    hasToolbar,
-    hasBatchaAction,
+    hasQueryForm = true,
+    hasToolbar = true,
+    hasBatchActions = true,
     className,
     ...other
   } = props;
 
   const queryForm = useFindNode('QueryForm');
   const toolbar = useFindNode("TableToolbar");
-  const batchActions = useFindNode("BatchActionsDesigner");
+  const batchActions = useFindNode("TableBatchActions");
 
   return (
     <div className={clx("appx-pro-table", className)} {...other}>
@@ -46,7 +46,7 @@ export const ProTableDesigner: DnFC<IProTableProps> & {
           hasToolbar && toolbar && <TreeNodeWidget node={toolbar} />
         }
         {
-          hasBatchaAction && batchActions && <TreeNodeWidget node={batchActions} />
+          hasBatchActions && batchActions && <TreeNodeWidget node={batchActions} />
         }
         <QueryTable />
       </Card>
@@ -121,6 +121,7 @@ ProTableDesigner.Resource = createResource({
         'x-component-props': {
           hasQueryForm: true,
           hasToolbar: true,
+          hasBatchActions: true,
         },
       },
       children: [
@@ -135,7 +136,15 @@ ProTableDesigner.Resource = createResource({
             },
           },
         },
-
+        {
+          componentName: 'Field',
+          props: {
+            type: 'void',
+            'x-component': 'ProTable.TableToolbar',
+            'x-component-props': {
+            },
+          },
+        },
         {
           componentName: 'Field',
           props: {

@@ -18,15 +18,19 @@ export const BatchActionsContainer = memo((
       message={
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <div>
-            {t("SelecteMessage", { count: counts })}
-            <Button type="link">{t("CancelSelect")}</Button>
+            {
+              !!counts &&
+              <>
+                {t("SelecteMessage", { count: counts })}
+                <Button type="link">{t("CancelSelect")}</Button>
+              </>
+            }
+
           </div>
           <Space style={{ display: 'flex', alignItems: 'center' }}>
             {
               children
             }
-            <Button>批量删除</Button>
-            <Button type="primary">批量审批</Button>
           </Space>
         </div>
       }

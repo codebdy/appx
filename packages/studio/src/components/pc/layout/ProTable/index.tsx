@@ -120,7 +120,7 @@ export interface IProTableProps extends IDataSourceableProps{
   className?: string,
   hasQueryForm?: boolean,
   hasToolbar?: boolean,
-  hasBatchaAction?: boolean,
+  hasBatchActions?: boolean,
 }
 
 export const ProTable = observer((
