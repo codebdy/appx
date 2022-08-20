@@ -35,9 +35,6 @@ export const ProTableDesigner: DnFC<IProTableProps> & {
         hasQueryForm && queryForm && <TreeNodeWidget node={queryForm} />
       }
       <Card style={{ marginTop: "16px" }}>
-        <QueryFormExample />
-      </Card>
-      <Card style={{ marginTop: "16px" }}>
         {
           hasToolbar && toolbar && <TreeNodeWidget node={toolbar} />
         }
