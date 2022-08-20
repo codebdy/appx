@@ -18,6 +18,8 @@ import { TableToolbarDesigner } from "./TableToolbarDesigner"
 import { TableBatchActionsDesigner } from "./TableBatchActionsDesigner"
 import { ITableBatchActionsProps } from "../ProTable/TableBatchActions"
 import { DataTableDesigner } from "./DataTableDesigner"
+import { DataTableColumnLocales } from "./DataTableDesigner/locales"
+import { DataTableSchema } from "./DataTableDesigner/schema"
 
 export const ProTableDesigner: DnFC<IProTableProps> & {
   QueryForm?: React.FC<IQueryFormProps>,
@@ -112,6 +114,32 @@ ProTableDesigner.Behavior = createBehavior(
       propsSchema: createFieldSchema(ProTableSchema.TableBatchActions),
     },
     designerLocales: ProTableLocales.TableBatchActions,
+  },
+  {
+    name: 'ProTable.DataTable',
+    extends: ['Field'],
+    selector: (node) => node.props['x-component'] === 'ProTable.DataTable',
+    designerProps: {
+      droppable: true,
+      deletable: false,
+      cloneable: false,
+      draggable: false,
+      propsSchema: createFieldSchema(DataTableSchema),
+    },
+    designerLocales: DataTableColumnLocales,
+  },
+  {
+    name: 'ProTable.DataTable.Column',
+    extends: ['Field'],
+    selector: (node) => node.props['x-component'] === 'ProTable.DataTable.Column',
+    designerProps: {
+      droppable: true,
+      allowDrop: (node) =>
+        node.props['type'] === 'object' &&
+        node.parent?.props?.['x-component'] === 'ProTable.DataTable.Column',
+      propsSchema: createFieldSchema(DataTableSchema.Column),
+    },
+    designerLocales: DataTableColumnLocales,
   },
 )
 

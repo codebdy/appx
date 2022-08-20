@@ -424,29 +424,32 @@ export const DataTableDesigner: DnFC<TableProps<any>> = observer((props) => {
 
 //ArrayBase.mixin(DataTableDesigner)
 
-DataTableDesigner.Behavior = createBehavior(
-  {
-    name: 'DataTable',
-    extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'DataTable',
-    designerProps: {
-      droppable: true,
-      propsSchema: createFieldSchema(DataTableSchema),
-    },
-    designerLocales: DataTableLocales,
-  },
-  {
-    name: 'DataTable.Column',
-    extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'DataTable.Column',
-    designerProps: {
-      droppable: true,
-      allowDrop: (node) =>
-        node.props['type'] === 'object' &&
-        node.parent?.props?.['x-component'] === 'DataTable.Column',
-      propsSchema: createFieldSchema(DataTableSchema.Column),
-    },
-    designerLocales: DataTableColumnLocales,
-  },
-)
+// DataTableDesigner.Behavior = createBehavior(
+//   {
+//     name: 'ProTable.DataTable',
+//     extends: ['Field'],
+//     selector: (node) => node.props['x-component'] === 'ProTable.DataTable',
+//     designerProps: {
+//       droppable: true,
+//       deletable: false,
+//       cloneable: false,
+//       draggable: false,
+//       propsSchema: createFieldSchema(DataTableSchema),
+//     },
+//     designerLocales: DataTableColumnLocales,
+//   },
+//   {
+//     name: 'ProTable.DataTable.Column',
+//     extends: ['Field'],
+//     selector: (node) => node.props['x-component'] === 'ProTable.DataTable.Column',
+//     designerProps: {
+//       droppable: true,
+//       allowDrop: (node) =>
+//         node.props['type'] === 'object' &&
+//         node.parent?.props?.['x-component'] === 'ProTable.DataTable.Column',
+//       propsSchema: createFieldSchema(DataTableSchema.Column),
+//     },
+//     designerLocales: DataTableColumnLocales,
+//   },
+// )
 
