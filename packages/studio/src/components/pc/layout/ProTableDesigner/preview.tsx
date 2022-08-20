@@ -106,6 +106,7 @@ ProTableDesigner.Resource = createResource({
             'x-component': 'ProTable.QueryForm',
             'x-component-props': {
               collapsiable: true,
+              colon: true,
             },
           },
         },

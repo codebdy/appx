@@ -18,12 +18,14 @@ export type IQueryFormProps = {
   className?: string,
   children?: React.ReactNode,
   style?: CSSProperties,
+  colon?: boolean,
 } & React.ComponentProps<formilyGrid>
 
 export const QueryForm: React.FC = observer((props: IQueryFormProps) => {
   const {
     layout = "horizontal",
     collapsiable = true,
+    colon = true,
     maxRowsOnCollapsed = 1,
     minWidth,
     maxWidth,
@@ -46,7 +48,7 @@ export const QueryForm: React.FC = observer((props: IQueryFormProps) => {
       return FormGrid.createFormGrid({
         maxColumns: maxColumns,
         maxWidth: maxWidth,
-        maxRows: expanded ? maxRowsOnCollapsed : Infinity,
+        maxRows: expanded && collapsiable ? maxRowsOnCollapsed : Infinity,
         shouldVisible: (node, grid) => {
           if (!collapsiable) return true;
           if (node.index === grid.childSize - 1) return true
@@ -64,7 +66,7 @@ export const QueryForm: React.FC = observer((props: IQueryFormProps) => {
 
   return (
     <Card {...other} style={{ ...style || {}, marginTop: "16px" }}>
-      <FormLayout layout={layout} feedbackLayout="terse">
+      <FormLayout layout={layout} colon={colon} feedbackLayout="terse">
         <FormGrid
           grid={grid}
           minWidth={minWidth}
@@ -76,11 +78,11 @@ export const QueryForm: React.FC = observer((props: IQueryFormProps) => {
           rowGap={rowGap}
           colWrap={colWrap}
           strictAutoFit={strictAutoFit}
-          maxRows={expanded ? maxRowsOnCollapsed : Infinity}
+          maxRows={expanded && collapsiable ? maxRowsOnCollapsed : Infinity}
         >
           {children}
           {
-            !collapsiable && <ButtonsGridColum collapsiable={collapsiable} layout = {layout} expanded={expanded} onToggle={handleToggle} />
+            !collapsiable && <ButtonsGridColum collapsiable={collapsiable} layout={layout} expanded={expanded} onToggle={handleToggle} />
           }
         </FormGrid>
         {

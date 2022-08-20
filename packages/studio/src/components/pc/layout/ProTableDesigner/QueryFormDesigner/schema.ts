@@ -29,6 +29,14 @@ ProTableSchema.QueryForm = {
         defaultValue: 1,
       },
     },
+    colon: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+      'x-component-props': {
+        defaultValue: true,
+      },
+    },
     ...(FormGridSchema.properties as any)
   },
 }
