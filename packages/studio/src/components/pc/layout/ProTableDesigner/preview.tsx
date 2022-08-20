@@ -18,7 +18,7 @@ import { TableToolbarDesigner } from "./TableToolbarDesigner"
 import { TableBatchActionsDesigner } from "./TableBatchActionsDesigner"
 import { ITableBatchActionsProps } from "../ProTable/TableBatchActions"
 import { DataTableDesigner } from "./DataTableDesigner"
-import { DataTableColumnLocales } from "./DataTableDesigner/locales"
+import { DataTableColumnLocales, DataTableLocales } from "./DataTableDesigner/locales"
 import { DataTableSchema } from "./DataTableDesigner/schema"
 
 export const ProTableDesigner: DnFC<IProTableProps> & {
@@ -126,7 +126,7 @@ ProTableDesigner.Behavior = createBehavior(
       draggable: false,
       propsSchema: createFieldSchema(DataTableSchema),
     },
-    designerLocales: DataTableColumnLocales,
+    designerLocales: DataTableLocales,
   },
   {
     name: 'ProTable.DataTable.Column',
