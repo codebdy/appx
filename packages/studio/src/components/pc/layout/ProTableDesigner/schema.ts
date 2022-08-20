@@ -17,37 +17,12 @@ export const ProTableSchema: ISchema & {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
     },
-    hasBreadcrumb: {
+    hasQueryForm: {
       type: 'boolean',
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
     },
-    hasGobackButton: {
-      type: 'boolean',
-      'x-decorator': 'FormItem',
-      'x-component': 'Switch',
-    },
-    hasActions: {
-      type: 'boolean',
-      'x-decorator': 'FormItem',
-      'x-component': 'Switch',
-    },
-    hasHeaderContent: {
-      type: 'boolean',
-      'x-decorator': 'FormItem',
-      'x-component': 'Switch',
-    },
-    hasHeaderContentExtra: {
-      type: 'boolean',
-      'x-decorator': 'FormItem',
-      'x-component': 'Switch',
-    },
-    hasTabs: {
-      type: 'boolean',
-      'x-decorator': 'FormItem',
-      'x-component': 'Switch',
-    },
-    hasFooterToolbar: {
+    hasToolbar: {
       type: 'boolean',
       'x-decorator': 'FormItem',
       'x-component': 'Switch',

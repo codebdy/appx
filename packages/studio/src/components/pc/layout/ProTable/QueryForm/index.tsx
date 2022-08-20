@@ -119,7 +119,7 @@ const QueryForm: React.FC = observer((props: IQueryFormProps) => {
           style={{
             display: 'flex',
             justifyContent: 'right',
-            alignItems: layout === "horizontal" ? "flex-start" : "center"
+            alignItems: layout === "horizontal" ? "flex-start" : "center",
           }}
         >
           {renderButtonGroup()}

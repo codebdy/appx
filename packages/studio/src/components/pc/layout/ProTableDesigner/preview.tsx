@@ -8,17 +8,24 @@ import SelectMessage from "../ProTable/SelectMessage"
 import { DnFC } from '@designable/react'
 import QueryForm from "./QueryForm"
 import { IProTableProps } from "../ProTable"
-import { createBehavior, createResource, TreeNode } from '@designable/core'
+import { createBehavior, createResource } from '@designable/core'
 import { createFieldSchema } from "../../../common/Field/shared"
 import { ProTableSchema } from "./schema"
 import { ProTableLocales } from "./locales"
+import clx from "classnames"
 
 export const ProTableDesigner: DnFC<IProTableProps> & {
   QueryForm?: React.FC<IQueryFormProps>,
   QueryToolbar?: React.FC<IQueryToolbarProps>,
-} = observer(() => {
+} = observer((props: IProTableProps) => {
+  const {
+    hasQueryForm,
+    hasToolbar,
+    className,
+    ...other
+  } = props;
   return (
-    <div className="appx-pro-table">
+    <div className={clx("appx-pro-table", className)} {...other}>
       <Card>
         <QueryFormExample />
       </Card>

@@ -20,6 +20,7 @@ import { Schema } from '@formily/json-schema'
 import { usePrefixCls } from "@formily/antd/esm/__builtins__"
 import { isArr } from '@formily/shared'
 import { registerResourceBundle } from "../../../../i18n/registerResourceBundle"
+import { IDataSourceableProps } from "../../../common/IDataSourceableProps"
 
 registerResourceBundle(LOCALES_NS, locales);
 interface ObservableColumnSource {
@@ -116,7 +117,8 @@ const useArrayTableSources = () => {
   return parseArrayItems(schema.items)
 }
 
-export type IProTableProps = TableProps<any> & {
+export interface IProTableProps extends IDataSourceableProps{
+  className?: string,
   hasQueryForm?: boolean,
   hasToolbar?: boolean,
 }

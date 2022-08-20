@@ -1,8 +1,7 @@
 import React from "react";
-import { IDataSource } from "../../datasource";
+import { IDataSourceableProps } from "../../../common/IDataSourceableProps";
 
-
-export interface IPageContainerProps {
+export interface IPageContainerProps extends IDataSourceableProps{
   title?: string;
   subtitle?: string;
   children?: React.ReactNode;
@@ -14,5 +13,4 @@ export interface IPageContainerProps {
   hasHeaderContentExtra?: boolean;
   hasTabs?: boolean;
   hasFooterToolbar?: boolean;
-  dataSource?: IDataSource;
 }
