@@ -8,22 +8,10 @@ export const ProTableLocales: any & {
 } = {
   'zh-CN': {
     title: '页面表格',
-    addExtra: '添加页头扩展',
-    addHeaderContent: '添加页头内容',
-    addPanel: '添加选项卡',
-    addFooter: '添加页脚',
     settings: {
       'x-component-props': {
-        type: '类型',
-        title: '标题',
-        subtitle: '子标题',
-        hasBreadcrumb: "面包屑导航",
-        hasGobackButton: "返回按钮",
-        hasActions: "动作区",
-        hasHeaderContent: "页头内容区",
-        hasHeaderContentExtra: "页头扩展区",
-        hasTabs: "选项卡",
-        hasFooterToolbar: "页脚工具条",
+        hasQueryForm: "查询表单",
+        hasToolbar: "工具栏",
       },
     },
   },

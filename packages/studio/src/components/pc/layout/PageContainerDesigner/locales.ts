@@ -8,10 +8,7 @@ export const PageContainerLocales: any & {
 } = {
   'zh-CN': {
     title: '页面容器',
-    addExtra: '添加页头扩展',
-    addHeaderContent: '添加页头内容',
     addPanel: '添加选项卡',
-    addFooter: '添加页脚',
     settings: {
       'x-component-props': {
         type: '类型',
