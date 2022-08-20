@@ -4,7 +4,7 @@ export const ProTableLocales: any & {
   TableBatchActions: any,
 } = {
   'zh-CN': {
-    title: '页面表格',
+    title: '查询表格',
     settings: {
       'x-component-props': {
         hasQueryForm: "查询表单",
