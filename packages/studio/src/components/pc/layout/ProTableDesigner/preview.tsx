@@ -14,6 +14,8 @@ import { ProTableSchema } from "./schema"
 import { ProTableLocales } from "./locales"
 import clx from "classnames"
 import { useFindNode } from "../../../common/hooks/useFindNode"
+import _ from "lodash"
+import { FormGridLocales } from "../../form/FormGridDesigner/locales"
 
 export const ProTableDesigner: DnFC<IProTableProps> & {
   QueryForm?: React.FC<IQueryFormProps>,
@@ -68,7 +70,7 @@ ProTableDesigner.Behavior = createBehavior(
       deletable: false,
       propsSchema: createFieldSchema(ProTableSchema.QueryForm),
     },
-    designerLocales: ProTableLocales.QueryForm,
+    designerLocales: _.merge(ProTableLocales.QueryForm, FormGridLocales),
   },
   {
     name: 'ProTable.QueryToolbar',

@@ -33,7 +33,7 @@ const QueryForm: React.FC = observer((props: IQueryFormProps) => {
     minWidth,
     maxWidth,
     minColumns,
-    maxColumns = 4,
+    maxColumns,
     breakpoints,
     columnGap,
     rowGap,

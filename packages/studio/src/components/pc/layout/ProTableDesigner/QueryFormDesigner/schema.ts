@@ -1,3 +1,4 @@
+import { FormGridSchema } from "../../../form/FormGridDesigner/schema";
 import { ProTableSchema } from "../schema";
 
 ProTableSchema.QueryForm = {
@@ -28,21 +29,6 @@ ProTableSchema.QueryForm = {
         defaultValue: 1,
       },
     },
-    maxColumns: {
-      type: 'number',
-      'x-decorator': 'FormItem',
-      'x-component': 'NumberPicker',
-      'x-component-props': {
-        defaultValue: 4,
-      },
-    },
-    maxWidth:{
-      type: 'number',
-      'x-decorator': 'FormItem',
-      'x-component': 'NumberPicker',
-      'x-component-props': {
-        defaultValue: 240,
-      },
-    },
+    ...(FormGridSchema.properties as any)
   },
 }

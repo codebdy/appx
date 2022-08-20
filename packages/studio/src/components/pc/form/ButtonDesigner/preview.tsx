@@ -1,5 +1,5 @@
 import React from "react"
-import Button, { IButtonProps } from "../Button";
+import { Button, IButtonProps } from "../Button";
 import { createFieldSchema } from "../../../common/Field";
 import { createBehavior, createResource } from '@designable/core'
 import { ButtonSchema } from "./schema";
