@@ -39,7 +39,6 @@ const QueryForm: React.FC = observer((props: IQueryFormProps) => {
 
   const grid = useMemo(
     () => {
-      console.log("哈哈哈", maxColumns)
       return FormGrid.createFormGrid({
         maxColumns: maxColumns,
         maxWidth: maxWidth,
@@ -62,7 +61,7 @@ const QueryForm: React.FC = observer((props: IQueryFormProps) => {
   return (
     <Card {...other} style={{ ...style || {}, marginTop: "16px" }}>
       <FormLayout layout={layout} feedbackLayout="terse">
-        <FormGrid grid={grid}>
+        <FormGrid grid={grid} maxColumns = {maxColumns}>
           {children}
           {
             !collapsiable && <ButtonsGridColum collapsiable={collapsiable} expanded={expanded} onToggle={handleToggle} />
