@@ -10,18 +10,14 @@ import {
 } from '@designable/react'
 import { ArrayBase } from '@formily/antd'
 import { observer } from '@formily/react'
-import { LoadTemplate } from '../../common/LoadTemplate'
 import cls from 'classnames'
-import {
-  queryNodesByComponentPath,
-  hasNodeByComponentPath,
-  findNodeByComponentPath,
-  createEnsureTypeItemsNode,
-} from '../../shared'
-import { useDropTemplate } from '../../hooks'
-import { createArrayBehavior } from '../ArrayBase'
 import './styles.less'
-import { createVoidFieldSchema } from '../Field'
+import { createEnsureTypeItemsNode, findNodeByComponentPath, hasNodeByComponentPath, queryNodesByComponentPath } from '../../../../../components/common/shared'
+import { useDropTemplate } from "@designable/formily-antd/lib/hooks/useDropTemplate"
+import { LoadTemplate } from '@designable/formily-antd/lib/common/LoadTemplate'
+import { DataTableSchema } from './schema'
+import { DataTableColumnLocales, DataTableLocales } from './locales'
+import { createFieldSchema } from "../../../../common/Field";
 
 const ensureObjectItemsNode = createEnsureTypeItemsNode('object')
 
@@ -427,19 +423,31 @@ export const DataTableDesigner: DnFC<TableProps<any>> = observer((props) => {
   )
 })
 
-ArrayBase.mixin(DataTableDesigner)
+//ArrayBase.mixin(DataTableDesigner)
 
-DataTableDesigner.Behavior = createBehavior(createArrayBehavior('DataTable'), {
-  name: 'DataTable.Column',
-  extends: ['Field'],
-  selector: (node) => node.props['x-component'] === 'DataTable.Column',
-  designerProps: {
-    droppable: true,
-    allowDrop: (node) =>
-      node.props['type'] === 'object' &&
-      node.parent?.props?.['x-component'] === 'DataTable',
-    propsSchema: createVoidFieldSchema(AllSchemas.DataTable.Column),
+DataTableDesigner.Behavior = createBehavior(
+  {
+    name: 'DataTable',
+    extends: ['Field'],
+    selector: (node) => node.props['x-component'] === 'DataTable',
+    designerProps: {
+      droppable: true,
+      propsSchema: createFieldSchema(DataTableSchema),
+    },
+    designerLocales: DataTableLocales,
   },
-  designerLocales: AllLocales.DataTableColumn,
-})
+  {
+    name: 'DataTable.Column',
+    extends: ['Field'],
+    selector: (node) => node.props['x-component'] === 'DataTable.Column',
+    designerProps: {
+      droppable: true,
+      allowDrop: (node) =>
+        node.props['type'] === 'object' &&
+        node.parent?.props?.['x-component'] === 'DataTable.Column',
+      propsSchema: createFieldSchema(DataTableSchema.Column),
+    },
+    designerLocales: DataTableColumnLocales,
+  },
+)
 
