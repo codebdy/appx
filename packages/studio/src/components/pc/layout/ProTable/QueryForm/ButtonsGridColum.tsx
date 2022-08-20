@@ -18,26 +18,20 @@ export const ButtonsGridColum = memo((
   const acions = useMemo(() => {
     return (
       <>
-        <Reset >{t("Reset")}</Reset>
         <Submit onSubmit={console.log}>{t("Search")}</Submit>
+        <Reset >{t("Reset")}</Reset>
       </>
     )
   }, [t])
 
   return (
-    <FormGrid.GridColumn
-      gridSpan={expanded ? -1 : 1}
-      style={{
-        display: 'flex',
-        justifyContent: 'right',
-        alignItems: layout === "horizontal" ? "flex-start" : "center",
-      }}
+    <div
+      style={{ display: 'flex', justifyContent: 'space-between', width: "100%" }}
     >
       {
         collapsiable
           ?
           <>
-            <FormButtonGroup align="right">{acions}</FormButtonGroup>
             <FormButtonGroup>
               <Button
                 type="link"
@@ -50,10 +44,11 @@ export const ButtonsGridColum = memo((
                 {expanded ? <UpOutlined /> : <DownOutlined />}
               </Button>
             </FormButtonGroup>
+            <FormButtonGroup align="right">{acions}</FormButtonGroup>
           </>
           :
           <FormButtonGroup align="right">{acions}</FormButtonGroup>
       }
-    </FormGrid.GridColumn>
+    </div>
   )
 })

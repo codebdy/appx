@@ -22,7 +22,14 @@ export interface IQueryFormProps {
 }
 
 const QueryForm: React.FC = observer((props: IQueryFormProps) => {
-  const { layout = "vertical", maxRowsOnCollapsed = 1, maxColumns, maxWidth = 240, collapsiable } = props;
+  const {
+    layout = "vertical",
+    maxRowsOnCollapsed = 1,
+    maxColumns = 4,
+    maxWidth = 240,
+    collapsiable = true,
+    children
+  } = props;
   const [expanded, setExpanded] = useState(false);
 
   const grid = useMemo(
@@ -48,47 +55,14 @@ const QueryForm: React.FC = observer((props: IQueryFormProps) => {
   return (
     <FormLayout {...props} layout={layout} feedbackLayout="terse">
       <FormGrid grid={grid}>
-        <FormGrid.GridColumn>
-          <SchemaField>
-            <SchemaField.String
-              name="input2"
-              title="Input 2"
-              x-component="Input"
-              x-decorator="FormItem"
-            />
-          </SchemaField>
-        </FormGrid.GridColumn>
-        <FormGrid.GridColumn>
-          <SchemaField>
-            <SchemaField.String
-              name="input3"
-              title="Input 2"
-              x-component="Input"
-              x-decorator="FormItem"
-            />
-          </SchemaField>
-        </FormGrid.GridColumn>
-        <FormGrid.GridColumn>
-          <SchemaField>
-            <SchemaField.String
-              name="input4"
-              title="Input 2"
-              x-component="Input"
-              x-decorator="FormItem"
-            />
-          </SchemaField>
-        </FormGrid.GridColumn>
-        <FormGrid.GridColumn
-          gridSpan={-1}
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: layout === "horizontal" ? "flex-start" : "center",
-          }}
-        >
-          <ButtonsGridColum collapsiable={collapsiable} expanded={expanded} onToggle={handleToggle} />
-        </FormGrid.GridColumn>
+        {children}
+        {
+          !collapsiable && <ButtonsGridColum collapsiable={collapsiable} expanded={expanded} onToggle={handleToggle} />
+        }
       </FormGrid>
+      {
+        collapsiable && <ButtonsGridColum collapsiable={collapsiable} expanded={expanded} onToggle={handleToggle} />
+      }
     </FormLayout>
   )
 })
@@ -149,12 +123,7 @@ const QueryFormExample = () => {
               gridSpan: 2,
             }}
           />
-          <SchemaField.String
-            name="select3"
-            title="Select 3"
-            x-component="Select"
-            x-decorator="FormItem"
-          />
+
         </SchemaField.Object>
       </SchemaField>
     </FormProvider>
