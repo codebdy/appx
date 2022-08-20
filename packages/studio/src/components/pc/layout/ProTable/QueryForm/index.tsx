@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useCallback, Children, CSSProperties } from 'react'
+import React, { useMemo, useState, useCallback, CSSProperties } from 'react'
 import { createForm } from '@formily/core'
 import { createSchemaField, FormProvider, observer } from '@formily/react'
 import {
@@ -25,9 +25,9 @@ export interface IQueryFormProps {
 
 const QueryForm: React.FC = observer((props: IQueryFormProps) => {
   const {
-    layout = "vertical",
+    layout = "horizontal",
     maxRowsOnCollapsed = 1,
-    maxColumns = 4,
+    maxColumns = 3,
     maxWidth = 240,
     collapsiable = true,
     children,
@@ -36,9 +36,11 @@ const QueryForm: React.FC = observer((props: IQueryFormProps) => {
   } = props;
   const [expanded, setExpanded] = useState(false);
 
+
   const grid = useMemo(
-    () =>
-      FormGrid.createFormGrid({
+    () => {
+      console.log("哈哈哈", maxColumns)
+      return FormGrid.createFormGrid({
         maxColumns: maxColumns,
         maxWidth: maxWidth,
         maxRows: maxRowsOnCollapsed,
@@ -48,7 +50,8 @@ const QueryForm: React.FC = observer((props: IQueryFormProps) => {
           // if (grid.maxRows === Infinity) return true
           // return node.shadowRow < maxRowsOnCollapsed + 1 && node.index < maxColumns - 1
         },
-      }),
+      })    
+    },
     [maxColumns, maxRowsOnCollapsed, maxWidth]
   )
 
@@ -58,7 +61,7 @@ const QueryForm: React.FC = observer((props: IQueryFormProps) => {
 
   return (
     <Card {...other} style={{ ...style || {}, marginTop: "16px" }}>
-      <FormLayout {...props} layout={layout} feedbackLayout="terse">
+      <FormLayout layout={layout} feedbackLayout="terse">
         <FormGrid grid={grid}>
           {children}
           {

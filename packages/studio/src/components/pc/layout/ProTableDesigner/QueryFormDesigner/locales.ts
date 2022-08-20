@@ -5,7 +5,11 @@ ProTableLocales.QueryForm = {
     title: '查询表单',
     settings: {
       'x-component-props': {
-        collapsiable: "可折叠"
+        collapsiable: "可折叠",
+        maxRowsOnCollapsed: "折叠后行数",
+        maxColumns: "最大列数",
+        maxWidth: "最大列宽",
+        layout: { title: '布局', dataSource: ['水平', '垂直', '内联', '继承'] },
       },
     },
   },
