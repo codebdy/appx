@@ -11,7 +11,6 @@ import {
 import { ArrayBase } from '@formily/antd'
 import { observer } from '@formily/react'
 import cls from 'classnames'
-import './styles.less'
 import { createEnsureTypeItemsNode, findNodeByComponentPath, hasNodeByComponentPath, queryNodesByComponentPath } from '../../../../../components/common/shared'
 import { useDropTemplate } from "@designable/formily-antd/lib/hooks/useDropTemplate"
 import { LoadTemplate } from '@designable/formily-antd/lib/common/LoadTemplate'

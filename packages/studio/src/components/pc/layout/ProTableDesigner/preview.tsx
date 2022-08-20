@@ -1,8 +1,7 @@
 import { observer } from "@formily/reactive-react"
-import { Card } from "antd"
+import { Card, TableProps } from "antd"
 import React from "react"
 import { IQueryFormProps } from "../ProTable/QueryForm"
-import { DataTable } from "../ProTable/DataTable"
 import { ITableToolbarProps } from "../ProTable/TableToolbar"
 import { DnFC, TreeNodeWidget } from '@designable/react'
 import { QueryFormDesigner } from "./QueryFormDesigner"
@@ -18,11 +17,13 @@ import { FormGridLocales } from "../../form/FormGridDesigner/locales"
 import { TableToolbarDesigner } from "./TableToolbarDesigner"
 import { TableBatchActionsDesigner } from "./TableBatchActionsDesigner"
 import { ITableBatchActionsProps } from "../ProTable/TableBatchActions"
+import { DataTableDesigner } from "./DataTableDesigner"
 
 export const ProTableDesigner: DnFC<IProTableProps> & {
   QueryForm?: React.FC<IQueryFormProps>,
   TableToolbar?: React.FC<ITableToolbarProps>,
   TableBatchActions?: React.FC<ITableBatchActionsProps>,
+  DataTable?: React.FC<TableProps<any>>,
 } = observer((props: IProTableProps) => {
   const {
     hasQueryForm = true,
@@ -35,6 +36,7 @@ export const ProTableDesigner: DnFC<IProTableProps> & {
   const queryForm = useFindNode('QueryForm');
   const toolbar = useFindNode("TableToolbar");
   const batchActions = useFindNode("TableBatchActions");
+  const dataTable = useFindNode("DataTable");
 
   return (
     <div className={clx("appx-pro-table", className)} {...other}>
@@ -48,7 +50,9 @@ export const ProTableDesigner: DnFC<IProTableProps> & {
         {
           hasBatchActions && batchActions && <TreeNodeWidget node={batchActions} />
         }
-        <DataTable />
+        {
+          dataTable && <TreeNodeWidget node={dataTable} />
+        }
       </Card>
     </div>
   )
@@ -57,6 +61,7 @@ export const ProTableDesigner: DnFC<IProTableProps> & {
 ProTableDesigner.QueryForm = QueryFormDesigner;
 ProTableDesigner.TableToolbar = TableToolbarDesigner;
 ProTableDesigner.TableBatchActions = TableBatchActionsDesigner;
+ProTableDesigner.DataTable = DataTableDesigner;
 
 ProTableDesigner.Behavior = createBehavior(
   {
@@ -128,7 +133,7 @@ ProTableDesigner.Resource = createResource({
         {
           componentName: 'Field',
           props: {
-            type: 'void',
+            type: 'object',
             'x-component': 'ProTable.QueryForm',
             'x-component-props': {
               collapsiable: true,
@@ -150,6 +155,15 @@ ProTableDesigner.Resource = createResource({
           props: {
             type: 'void',
             'x-component': 'ProTable.TableBatchActions',
+            'x-component-props': {
+            },
+          },
+        },
+        {
+          componentName: 'Field',
+          props: {
+            type: 'array',
+            'x-component': 'ProTable.DataTable',
             'x-component-props': {
             },
           },
