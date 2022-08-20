@@ -7,7 +7,7 @@ export const ProTableLocales: any & {
   FooterToolbar: any,
 } = {
   'zh-CN': {
-    title: '页面容器',
+    title: '页面表格',
     addExtra: '添加页头扩展',
     addHeaderContent: '添加页头内容',
     addPanel: '添加选项卡',
