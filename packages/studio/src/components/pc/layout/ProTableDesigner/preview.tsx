@@ -70,7 +70,7 @@ ProTableDesigner.Behavior = createBehavior(
       deletable: false,
       propsSchema: createFieldSchema(ProTableSchema.QueryForm),
     },
-    designerLocales: _.merge(ProTableLocales.QueryForm, FormGridLocales),
+    designerLocales: _.merge(JSON.parse(JSON.stringify(FormGridLocales)), ProTableLocales.QueryForm),
   },
   {
     name: 'ProTable.QueryToolbar',

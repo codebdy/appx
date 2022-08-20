@@ -50,7 +50,7 @@ FormDesigner.Behavior = createBehavior({
       },
     }
   },
-  designerLocales: _.merge(FormLocales, FieldLocales),
+  designerLocales: _.merge(JSON.parse(JSON.stringify(FieldLocales)), FormLocales),
 })
 
 FormDesigner.Resource = createResource({
