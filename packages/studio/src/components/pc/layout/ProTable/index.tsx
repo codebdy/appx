@@ -4,7 +4,7 @@ import { IProTableParams, ProTableContext } from "./context"
 import "./index.less"
 import locales, { LOCALES_NS } from "./locales"
 import QueryTable from "./QueryTable"
-import {BatchActions} from "./BatchActions"
+import {TableBatchActions} from "./TableBatchActions"
 import { observer } from "@formily/reactive-react"
 import { ArrayBase } from "@formily/antd"
 import {
@@ -120,6 +120,7 @@ export interface IProTableProps extends IDataSourceableProps{
   className?: string,
   hasQueryForm?: boolean,
   hasToolbar?: boolean,
+  hasBatchaAction?: boolean,
 }
 
 export const ProTable = observer((
@@ -150,7 +151,7 @@ export const ProTable = observer((
         </Card>
         <Card style={{ marginTop: "16px" }}>
           <TableToolbar />
-          <BatchActions />
+          <TableBatchActions />
           <QueryTable />
         </Card>
       </div>

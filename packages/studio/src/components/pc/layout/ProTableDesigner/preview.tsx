@@ -4,7 +4,6 @@ import React from "react"
 import { IQueryFormProps } from "../ProTable/QueryForm"
 import QueryTable from "../ProTable/QueryTable"
 import { ITableToolbarProps } from "../ProTable/TableToolbar"
-import { BatchActions } from "../ProTable/BatchActions"
 import { DnFC, TreeNodeWidget } from '@designable/react'
 import { QueryFormDesigner } from "./QueryFormDesigner"
 import { IProTableProps } from "../ProTable"
@@ -17,20 +16,25 @@ import { useFindNode } from "../../../common/hooks/useFindNode"
 import _ from "lodash"
 import { FormGridLocales } from "../../form/FormGridDesigner/locales"
 import { TableToolbarDesigner } from "./TableToolbarDesigner"
+import { TableBatchActionsDesigner } from "./TableBatchActionsDesigner"
+import { ITableBatchActionsProps } from "../ProTable/TableBatchActions"
 
 export const ProTableDesigner: DnFC<IProTableProps> & {
   QueryForm?: React.FC<IQueryFormProps>,
   TableToolbar?: React.FC<ITableToolbarProps>,
+  TableBatchActions?: React.FC<ITableBatchActionsProps>,
 } = observer((props: IProTableProps) => {
   const {
     hasQueryForm,
     hasToolbar,
+    hasBatchaAction,
     className,
     ...other
   } = props;
 
   const queryForm = useFindNode('QueryForm');
   const toolbar = useFindNode("TableToolbar");
+  const batchActions = useFindNode("BatchActionsDesigner");
 
   return (
     <div className={clx("appx-pro-table", className)} {...other}>
@@ -41,15 +45,18 @@ export const ProTableDesigner: DnFC<IProTableProps> & {
         {
           hasToolbar && toolbar && <TreeNodeWidget node={toolbar} />
         }
-        <BatchActions />
+        {
+          hasBatchaAction && batchActions && <TreeNodeWidget node={batchActions} />
+        }
         <QueryTable />
       </Card>
     </div>
   )
 })
 
-ProTableDesigner.QueryForm = QueryFormDesigner
-ProTableDesigner.TableToolbar = TableToolbarDesigner
+ProTableDesigner.QueryForm = QueryFormDesigner;
+ProTableDesigner.TableToolbar = TableToolbarDesigner;
+ProTableDesigner.TableBatchActions = TableBatchActionsDesigner;
 
 ProTableDesigner.Behavior = createBehavior(
   {
@@ -69,6 +76,8 @@ ProTableDesigner.Behavior = createBehavior(
     designerProps: {
       droppable: true,
       deletable: false,
+      cloneable: false,
+      draggable: false,
       propsSchema: createFieldSchema(ProTableSchema.QueryForm),
     },
     designerLocales: _.merge(JSON.parse(JSON.stringify(FormGridLocales)), ProTableLocales.QueryForm),
@@ -80,9 +89,24 @@ ProTableDesigner.Behavior = createBehavior(
     designerProps: {
       droppable: true,
       deletable: false,
+      cloneable: false,
+      draggable: false,
       propsSchema: createFieldSchema(ProTableSchema.TableToolbar),
     },
     designerLocales: ProTableLocales.TableToolbar,
+  },
+  {
+    name: 'ProTable.TableBatchActions',
+    extends: ['Field'],
+    selector: (node) => node.props['x-component'] === 'ProTable.TableBatchActions',
+    designerProps: {
+      droppable: true,
+      deletable: false,
+      cloneable: false,
+      draggable: false,
+      propsSchema: createFieldSchema(ProTableSchema.TableBatchActions),
+    },
+    designerLocales: ProTableLocales.TableBatchActions,
   },
 )
 
@@ -111,11 +135,12 @@ ProTableDesigner.Resource = createResource({
             },
           },
         },
+
         {
           componentName: 'Field',
           props: {
             type: 'void',
-            'x-component': 'ProTable.TableToolbar',
+            'x-component': 'ProTable.TableBatchActions',
             'x-component-props': {
             },
           },

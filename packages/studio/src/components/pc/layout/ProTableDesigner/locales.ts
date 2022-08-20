@@ -1,6 +1,7 @@
 export const ProTableLocales: any & {
   QueryForm: any,
   TableToolbar: any,
+  TableBatchActions: any,
 } = {
   'zh-CN': {
     title: '页面表格',
