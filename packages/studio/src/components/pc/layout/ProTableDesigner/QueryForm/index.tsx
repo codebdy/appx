@@ -8,10 +8,10 @@ import { IQueryFormProps } from "../../ProTable/QueryForm"
 import { Card } from "antd"
 
 const QueryForm = observer((props: IQueryFormProps) => {
-  const { className, ...other } = props
+  const { className, style, ...other } = props
   return (
-    <Card style={{ marginTop: "16px" }}>
-      <DroppableWidget {...other} className={clx(className)}>
+    <Card {...other} style={{ ...style || {}, marginTop: "16px" }} className={clx(className)}>
+      <DroppableWidget >
         {props.children}
       </DroppableWidget>
     </Card>

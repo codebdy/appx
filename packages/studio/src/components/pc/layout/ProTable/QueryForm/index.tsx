@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useCallback, Children } from 'react'
+import React, { useMemo, useState, useCallback, Children, CSSProperties } from 'react'
 import { createForm } from '@formily/core'
 import { createSchemaField, FormProvider, observer } from '@formily/react'
 import {
@@ -19,7 +19,8 @@ export interface IQueryFormProps {
   layout?: "horizontal" | "vertical",
   collapsiable?: boolean,
   className?: string,
-  children?: React.ReactNode
+  children?: React.ReactNode,
+  style?: CSSProperties,
 }
 
 const QueryForm: React.FC = observer((props: IQueryFormProps) => {
