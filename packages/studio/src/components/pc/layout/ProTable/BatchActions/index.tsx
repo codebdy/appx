@@ -3,7 +3,7 @@ import React, { memo } from "react";
 import { useProTableParams } from "../context";
 import { useLocalTranslations } from "../hooks/useLocalTranslations";
 
-const SelectMessage = memo(() => {
+export const BatchActions = memo(() => {
   const { t } = useLocalTranslations()
   const { selectedRowKeys } = useProTableParams();
 
@@ -28,5 +28,3 @@ const SelectMessage = memo(() => {
       : <></>
   )
 })
-
-export default SelectMessage;

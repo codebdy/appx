@@ -3,10 +3,8 @@ import React, { useCallback, useRef, useState } from "react"
 import { IProTableParams, ProTableContext } from "./context"
 import "./index.less"
 import locales, { LOCALES_NS } from "./locales"
-import { QueryFormExample } from "./QueryForm"
 import QueryTable from "./QueryTable"
-import TableToolbar from "./TableToolbar"
-import SelectMessage from "./SelectMessage"
+import {BatchActions} from "./BatchActions"
 import { observer } from "@formily/reactive-react"
 import { ArrayBase } from "@formily/antd"
 import {
@@ -21,6 +19,7 @@ import { usePrefixCls } from "@formily/antd/esm/__builtins__"
 import { isArr } from '@formily/shared'
 import { registerResourceBundle } from "../../../../i18n/registerResourceBundle"
 import { IDataSourceableProps } from "../../../common/IDataSourceableProps"
+import TableToolbar from "./TableToolbar"
 
 registerResourceBundle(LOCALES_NS, locales);
 interface ObservableColumnSource {
@@ -147,11 +146,11 @@ export const ProTable = observer((
     >
       <div className="appx-pro-table">
         <Card>
-          <QueryFormExample />
+          
         </Card>
         <Card style={{ marginTop: "16px" }}>
           <TableToolbar />
-          <SelectMessage />
+          <BatchActions />
           <QueryTable />
         </Card>
       </div>

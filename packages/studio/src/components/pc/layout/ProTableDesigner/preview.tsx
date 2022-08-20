@@ -4,7 +4,7 @@ import React from "react"
 import { IQueryFormProps } from "../ProTable/QueryForm"
 import QueryTable from "../ProTable/QueryTable"
 import { ITableToolbarProps } from "../ProTable/TableToolbar"
-import SelectMessage from "../ProTable/SelectMessage"
+import { BatchActions } from "../ProTable/BatchActions"
 import { DnFC, TreeNodeWidget } from '@designable/react'
 import { QueryFormDesigner } from "./QueryFormDesigner"
 import { IProTableProps } from "../ProTable"
@@ -41,7 +41,7 @@ export const ProTableDesigner: DnFC<IProTableProps> & {
         {
           hasToolbar && toolbar && <TreeNodeWidget node={toolbar} />
         }
-        <SelectMessage />
+        <BatchActions />
         <QueryTable />
       </Card>
     </div>
