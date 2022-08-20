@@ -9,12 +9,13 @@ import clx from "classnames"
 export interface ITableToolbarProps {
   title?: string,
   className?: string,
+  hasNewButton?: boolean,
 }
 
 const TableToolbar = memo((
   props: ITableToolbarProps
 ) => {
-  const { title, className, ...other } = props;
+  const { title, className, hasNewButton = true, ...other } = props;
   const { t } = useLocalTranslations();
 
   return (
@@ -31,14 +32,18 @@ const TableToolbar = memo((
         }}
       >
 
-        <Button
-          type="primary"
-          icon={
-            <PlusOutlined />
-          }
-        >
-          {t("New")}
-        </Button>
+        {
+          hasNewButton &&
+          <Button
+            type="primary"
+            icon={
+              <PlusOutlined />
+            }
+          >
+            {t("New")}
+          </Button>
+        }
+
         <Tooltip title={t("Refresh")}>
           <Button shape="circle" size="large" type="text" style={{ marginLeft: 8 }}>
             <ReloadOutlined />

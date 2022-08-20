@@ -9,7 +9,7 @@ ProTableSchema.QueryForm = {
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
       'x-component-props': {
-        defaultValue: true,
+        defaultChecked: true,
       },
     },
     layout: {
@@ -34,7 +34,7 @@ ProTableSchema.QueryForm = {
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
       'x-component-props': {
-        defaultValue: true,
+        defaultChecked: true,
       },
     },
     ...(FormGridSchema.properties as any)
