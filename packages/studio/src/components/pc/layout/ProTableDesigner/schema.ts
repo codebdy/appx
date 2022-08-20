@@ -3,7 +3,7 @@ import { ISchema } from '@formily/react'
 export const ProTableSchema: ISchema & {
   QueryForm?: ISchema,
   QueryTable?: ISchema,
-  QueryToolbar?: ISchema,
+  TableToolbar?: ISchema,
 } = {
   type: 'object',
   properties: {

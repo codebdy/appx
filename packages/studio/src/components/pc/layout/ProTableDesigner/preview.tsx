@@ -3,7 +3,7 @@ import { Card } from "antd"
 import React from "react"
 import { IQueryFormProps } from "../ProTable/QueryForm"
 import QueryTable from "../ProTable/QueryTable"
-import QueryToolbar, { IQueryToolbarProps } from "../ProTable/QueryToolbar"
+import { ITableToolbarProps } from "../ProTable/TableToolbar"
 import SelectMessage from "../ProTable/SelectMessage"
 import { DnFC, TreeNodeWidget } from '@designable/react'
 import { QueryFormDesigner } from "./QueryFormDesigner"
@@ -16,10 +16,11 @@ import clx from "classnames"
 import { useFindNode } from "../../../common/hooks/useFindNode"
 import _ from "lodash"
 import { FormGridLocales } from "../../form/FormGridDesigner/locales"
+import { TableToolbarDesigner } from "./TableToolbarDesigner"
 
 export const ProTableDesigner: DnFC<IProTableProps> & {
   QueryForm?: React.FC<IQueryFormProps>,
-  QueryToolbar?: React.FC<IQueryToolbarProps>,
+  TableToolbar?: React.FC<ITableToolbarProps>,
 } = observer((props: IProTableProps) => {
   const {
     hasQueryForm,
@@ -48,7 +49,7 @@ export const ProTableDesigner: DnFC<IProTableProps> & {
 })
 
 ProTableDesigner.QueryForm = QueryFormDesigner
-ProTableDesigner.QueryToolbar = QueryToolbar
+ProTableDesigner.TableToolbar = TableToolbarDesigner
 
 ProTableDesigner.Behavior = createBehavior(
   {
@@ -73,15 +74,15 @@ ProTableDesigner.Behavior = createBehavior(
     designerLocales: _.merge(JSON.parse(JSON.stringify(FormGridLocales)), ProTableLocales.QueryForm),
   },
   {
-    name: 'ProTable.QueryToolbar',
+    name: 'ProTable.TableToolbar',
     extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'ProTable.QueryToolbar',
+    selector: (node) => node.props['x-component'] === 'ProTable.TableToolbar',
     designerProps: {
       droppable: true,
       deletable: false,
-      propsSchema: createFieldSchema(ProTableSchema.QueryToolbar),
+      propsSchema: createFieldSchema(ProTableSchema.TableToolbar),
     },
-    designerLocales: ProTableLocales.QueryToolbar,
+    designerLocales: ProTableLocales.TableToolbar,
   },
 )
 
@@ -114,7 +115,7 @@ ProTableDesigner.Resource = createResource({
           componentName: 'Field',
           props: {
             type: 'void',
-            'x-component': 'ProTable.QueryToolbar',
+            'x-component': 'ProTable.TableToolbar',
             'x-component-props': {
             },
           },

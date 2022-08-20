@@ -1,10 +1,6 @@
 export const ProTableLocales: any & {
-  HeaderActions: any,
-  HeaderContent: any,
-  HeaderContentExtra: any,
-  Content: any,
-  TabPanel: any,
-  FooterToolbar: any,
+  QueryForm: any,
+  TableToolbar: any,
 } = {
   'zh-CN': {
     title: '页面表格',

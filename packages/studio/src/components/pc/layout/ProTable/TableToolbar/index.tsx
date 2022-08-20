@@ -5,12 +5,12 @@ import { useLocalTranslations } from "../hooks/useLocalTranslations"
 import ColumnsSettings from "./ColumnsSettings"
 import HeightMenu from "./HeightMenu"
 
-export interface IQueryToolbarProps {
+export interface ITableToolbarProps {
 
 }
 
-const QueryToolbar = memo((
-  props: IQueryToolbarProps
+const TableToolbar = memo((
+  props: ITableToolbarProps
 ) => {
   const { t } = useLocalTranslations();
 
@@ -50,4 +50,4 @@ const QueryToolbar = memo((
   )
 })
 
-export default QueryToolbar
+export default TableToolbar

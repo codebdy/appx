@@ -5,7 +5,7 @@ import "./index.less"
 import locales, { LOCALES_NS } from "./locales"
 import { QueryFormExample } from "./QueryForm"
 import QueryTable from "./QueryTable"
-import QueryToolbar from "./QueryToolbar"
+import TableToolbar from "./TableToolbar"
 import SelectMessage from "./SelectMessage"
 import { observer } from "@formily/reactive-react"
 import { ArrayBase } from "@formily/antd"
@@ -150,7 +150,7 @@ export const ProTable = observer((
           <QueryFormExample />
         </Card>
         <Card style={{ marginTop: "16px" }}>
-          <QueryToolbar />
+          <TableToolbar />
           <SelectMessage />
           <QueryTable />
         </Card>
