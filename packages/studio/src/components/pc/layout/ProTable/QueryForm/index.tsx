@@ -1,117 +1,61 @@
-import React, { useMemo, Fragment } from 'react'
+import React, { useMemo, useState, useCallback } from 'react'
 import { createForm } from '@formily/core'
 import { createSchemaField, FormProvider, observer } from '@formily/react'
 import {
-  Form,
   Input,
   Select,
   DatePicker,
   FormItem,
   FormGrid,
-  Submit,
-  Reset,
-  FormButtonGroup,
+  FormLayout,
 } from '@formily/antd'
-import { Button } from 'antd'
-import { DownOutlined, UpOutlined } from '@ant-design/icons'
-import { useLocalTranslations } from '../hooks/useLocalTranslations'
-
-const useCollapseGrid = (maxRows: number, maxColumns = 4) => {
-  const grid = useMemo(
-    () =>
-      FormGrid.createFormGrid({
-        maxColumns: maxColumns,
-        maxWidth: 240,
-        maxRows: maxRows,
-        shouldVisible: (node, grid) => {
-          if (node.index === grid.childSize - 1) return true
-          if (grid.maxRows === Infinity) return true
-          return node.shadowRow < maxRows + 1 && node.index < maxColumns - 1
-        },
-      }),
-    [maxColumns, maxRows]
-  )
-  const expanded = grid.maxRows === Infinity
-  const realRows = grid.shadowRows
-  const computeRows = grid.fullnessLastColumn
-    ? grid.shadowRows - 1
-    : grid.shadowRows
-
-  const toggle = () => {
-    if (grid.maxRows === Infinity) {
-      grid.maxRows = maxRows
-    } else {
-      grid.maxRows = Infinity
-    }
-  }
-  const takeType = () => {
-    if (realRows < maxRows + 1) return 'incomplete-wrap'
-    if (computeRows > maxRows) return 'collapsible'
-    return 'complete-wrap'
-  }
-  return {
-    grid,
-    expanded,
-    toggle,
-    type: takeType(),
-  }
-}
+import { ButtonsGridColum } from './ButtonsGridColum'
 
 export interface IQueryFormProps {
+  maxRowsOnCollapsed?: number,
+  maxColumns?: number,
   layout?: "horizontal" | "vertical",
   className?: string,
   children?: React.ReactNode
 }
 
 const QueryForm: React.FC = observer((props: IQueryFormProps) => {
-  const { layout = "vertical" } = props;
-  const { t } = useLocalTranslations();
-  const { grid, expanded, toggle, type } = useCollapseGrid(1)
-  const renderActions = () => {
-    return (
-      <Fragment>
-        <Submit onSubmit={console.log}>{t("Search")}</Submit>
-        <Reset >{t("Reset")}</Reset>
-      </Fragment>
-    )
-  }
+  const { layout = "vertical", maxRowsOnCollapsed = 1, maxColumns } = props;
+  const [expanded, setExpanded] = useState(false);
+  
+  const grid = useMemo(
+    () =>
+      FormGrid.createFormGrid({
+        maxColumns: maxColumns,
+        maxWidth: 240,
+        maxRows: maxRowsOnCollapsed,
+        shouldVisible: (node, grid) => {
+          if (node.index === grid.childSize - 1) return true
+          if (grid.maxRows === Infinity) return true
+          return node.shadowRow < maxRowsOnCollapsed + 1 && node.index < maxColumns - 1
+        },
+      }),
+    [maxColumns, maxRowsOnCollapsed]
+  )
 
-  const renderButtonGroup = () => {
-    if (type === 'incomplete-wrap') {
-      return (
-        <FormButtonGroup.FormItem>
-          <FormButtonGroup>{renderActions()}</FormButtonGroup>
-        </FormButtonGroup.FormItem>
-      )
-    }
-    if (type === 'collapsible') {
-      return (
-        <>
-          <FormButtonGroup align="right">{renderActions()}</FormButtonGroup>
-          <FormButtonGroup>
-            <Button
-              type="link"
-              onClick={(e) => {
-                e.preventDefault()
-                toggle()
-              }}
-            >
-              {expanded ? t("PackUp") : t("Expand")}
-              {expanded ? <UpOutlined /> : <DownOutlined />}
-            </Button>
-          </FormButtonGroup>
-        </>
-      )
-    }
-    return (
-      <FormButtonGroup align="right" style={{ display: 'flex' }}>
-        {renderActions()}
-      </FormButtonGroup>
-    )
-  }
+  const collapsiable = useMemo(() => {
+    const realRows = grid.shadowRows
+    const computeRows = grid.fullnessLastColumn
+      ? grid.shadowRows - 1
+      : grid.shadowRows
+
+    if (realRows < maxRowsOnCollapsed + 1) return false
+    if (computeRows > maxRowsOnCollapsed) return true
+    return false
+  }, [grid.fullnessLastColumn, grid.shadowRows, maxRowsOnCollapsed])
+
+
+  const handleToggle = useCallback(() => {
+    setExpanded(expanded => !expanded)
+  }, [])
 
   return (
-    <Form {...props} layout={layout} feedbackLayout="terse">
+    <FormLayout {...props} layout={layout} feedbackLayout="terse">
       <FormGrid grid={grid}>
         {props.children}
         <FormGrid.GridColumn
@@ -122,10 +66,10 @@ const QueryForm: React.FC = observer((props: IQueryFormProps) => {
             alignItems: layout === "horizontal" ? "flex-start" : "center",
           }}
         >
-          {renderButtonGroup()}
+          <ButtonsGridColum collapsiable={collapsiable} expanded={expanded} onToggle={handleToggle} />
         </FormGrid.GridColumn>
       </FormGrid>
-    </Form>
+    </FormLayout>
   )
 })
 
