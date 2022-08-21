@@ -40,14 +40,17 @@ export const ActionInput = observer((props: {}) => {
         cancelText={<TextWidget token="SettingComponents.ActionInput.Cancel" />}
       >
         <div className='action-input-model-content'>
-          <div className="toolbox">
-            工具箱
+          <div className="toolbox block-area right-border">
+            <div className='toolbar bottom-border'>工具箱</div>
+            
           </div>
-          <div className="main-area">
-            操作区
+          <div className="main-area block-area right-border">
+            <div className='toolbar bottom-border'>操作区</div>
+            <div></div>
           </div>
-          <div className='property-box'>
-            属性区
+          <div className='property-box block-area'>
+            <div className='toolbar bottom-border'>属性</div>
+            <div></div>
           </div>
         </div>
       </Modal>
