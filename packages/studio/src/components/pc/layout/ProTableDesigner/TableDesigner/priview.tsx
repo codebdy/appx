@@ -12,7 +12,7 @@ import { ArrayBase } from '@formily/antd'
 import { observer } from '@formily/react'
 import cls from 'classnames'
 import {
-  findNodeByComponentPath,
+  queryNodesByComponentPath,
   hasNodeByComponentPath,
 } from '../../../../common/shared'
 import { useDropTemplate } from "@designable/formily-antd/lib/hooks/useDropTemplate"
@@ -123,18 +123,10 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
   })
 
   const findOperationNode = useCallback(() => {
-    return findNodeByComponentPath(node, [
-      'ProTable.Table',
+    return queryNodesByComponentPath(node, [
       '*',
       'ProTable.Column',
-      (name) => {
-        return (
-          name === 'ProTable.Remove' ||
-          name === 'ProTable.MoveDown' ||
-          name === 'ProTable.MoveUp'
-        )
-      },
-    ])
+    ])?.find(node => node?.props?.["x-actions"])
   }, [node]);
 
   const defaultRowKey = useCallback(() => {
@@ -207,12 +199,12 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
     }
   }, [renderColumn, renderColumnGroup])
 
-  useDropTemplate('ProTable.Column', (source) => {
-    return source.map((node) => {
-      node.props.title = undefined
-      return node
-    })
-  })
+  // useDropTemplate('ProTable.Column', (source) => {
+  //   return source.map((node) => {
+  //     node.props.title = undefined
+  //     return node
+  //   })
+  // })
 
   return (
     <div {...nodeId} className="dn-array-table">
@@ -302,7 +294,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
                 },
               })
               if (operationNode) {
-                operationNode.parent.insertBefore(tableColumnGroup)
+                operationNode.insertBefore(tableColumnGroup)
               } else {
                 node.append(tableColumnGroup)
               }
@@ -325,7 +317,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
                 },
               })
               if (operationNode) {
-                operationNode.parent.insertBefore(tableColumn)
+                operationNode.insertBefore(tableColumn)
               } else {
                 node.append(tableColumn)
               }
@@ -346,6 +338,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
                     'x-component-props': {
                       title: `Actions`,
                     },
+                    "x-actions": true,
                   },
                   children: [
                     {
