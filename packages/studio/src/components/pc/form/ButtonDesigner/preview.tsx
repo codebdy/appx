@@ -13,7 +13,7 @@ ButtonDesigner.Behavior = createBehavior({
   extends: ['Field'],
   selector: (node) => node.props['x-component'] === 'Button',
   designerProps: {
-    propsSchema: createFieldSchema(ButtonSchema, { actions: [Actions.Click] }),
+    propsSchema: createFieldSchema(ButtonSchema, { actions: [Actions.onClick] }),
   },
   designerLocales: ButtonLocales,
 })

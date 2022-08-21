@@ -282,6 +282,15 @@ export const createComponentSchemaTab = (
 
 export const createActionSchemaTab = (actions: string[]) => {
 
+  const actionsObj = {} as any;
+
+  for (const action of actions) {
+    actionsObj[action] = {
+      type: 'string',
+      'x-decorator': 'FormItem',
+      'x-component': 'ActionInput',
+    }
+  }
   return {
     'action-tab': {
       type: 'void',
@@ -290,11 +299,7 @@ export const createActionSchemaTab = (actions: string[]) => {
         tab: 'SettingsForm.Actions'
       },
       properties: {
-        onClick: {
-          type: 'string',
-          'x-decorator': 'FormItem',
-          'x-component': 'Input',
-        },
+        ...actionsObj
       }
     },
   }

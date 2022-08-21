@@ -1,3 +1,3 @@
 export enum Actions {
-  Click = "Click"
+  onClick = "onClick"
 }

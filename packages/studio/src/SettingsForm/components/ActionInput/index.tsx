@@ -3,14 +3,13 @@ import {
   observer,
 } from '@formily/react'
 
-const ActionInput = observer((props: {}) => {
+export const ActionInput = observer((props: {}) => {
   //const tabs = useTabs()
 
 
   return (
     <div>
+      哈哈
     </div>
   )
 }) 
-
-export default ActionInput

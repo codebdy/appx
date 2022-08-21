@@ -38,7 +38,7 @@ import {
   CollapseItem,
 } from '@designable/react-settings-form'
 import SettingsTab from './components/SettingsTab'
-import { DataSourceInput, FieldSourceInput, FieldParamsInput } from './components'
+import { DataSourceInput, FieldSourceInput, FieldParamsInput, ActionInput } from './components'
 import { MultiLangInput } from '../components/pc/form/MultiLangInput'
 import IconInput from '../shared/icon/IconInput'
 
@@ -83,6 +83,7 @@ export const SchemaField = createSchemaField({
     FieldSourceInput,
     FieldParamsInput,
     MultiLangInput,
-    IconInput
+    IconInput,
+    ActionInput
   },
 })
