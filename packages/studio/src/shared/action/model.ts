@@ -11,6 +11,9 @@ export enum ActionType {
   CloseDrawer = "CloseDrawer",
   Confirm = "Confirm",
   SuccessMessage = "SuccessMessage",
+  DeleteRecord = "DeltedRecord",
+  UpdateRecord = "UpdateRecord",
+  SaveData = "SaveData"
 }
 
 export enum OpenPageType {

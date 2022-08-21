@@ -42,7 +42,41 @@ export const ActionInput = observer((props: {}) => {
         <div className='action-input-model-content'>
           <div className="toolbox block-area right-border">
             <div className='toolbar bottom-border'>工具箱</div>
-            
+            <div>
+              <div>
+                打开页面
+              </div>
+              <div>
+                关闭页面
+              </div>
+              <div>
+                打开对话框
+              </div>
+              <div>
+                关闭对话框
+              </div>
+              <div>
+                打开抽屉
+              </div>
+              <div>
+                关闭抽屉
+              </div>
+              <div>
+                确认框
+              </div>
+              <div>
+                成功消息
+              </div>
+              <div>
+                删除记录
+              </div>
+              <div>
+                更新记录
+              </div>
+              <div>
+                提交数据
+              </div>
+            </div>
           </div>
           <div className="main-area block-area right-border">
             <div className='toolbar bottom-border'>操作区</div>
