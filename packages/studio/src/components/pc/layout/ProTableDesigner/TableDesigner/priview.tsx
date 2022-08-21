@@ -348,7 +348,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
                     type: 'void',
                     'x-component': 'ProTable.Column',
                     'x-component-props': {
-                      title: `Title`,
+                      title: `Actions`,
                     },
                   },
                   children: [
