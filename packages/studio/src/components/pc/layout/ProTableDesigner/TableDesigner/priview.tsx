@@ -183,11 +183,6 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
       }
       dataIndex={node.id}
       className={`data-id:${node.id}`}
-      render={(value, record, key) => {
-        return (
-          'Droppable'
-        )
-      }}
     >
       {
         children?.map(child => {
@@ -301,7 +296,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
                   type: 'void',
                   'x-component': 'ProTable.ColumnGroup',
                   'x-component-props': {
-                    title: `Group title`,
+                    title: `Column group`,
                   },
                 },
               })
