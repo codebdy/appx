@@ -23,7 +23,7 @@ const HeaderCell: React.FC = (props: any) => {
   return (
     <th
       {...props}
-      data-designer-node-id={props.className.match(/data-id\:([^\s]+)/)?.[1]}
+      data-designer-node-id={props.className.match(/data-id:([^\s]+)/)?.[1]}
     >
       {props.children}
     </th>
@@ -34,7 +34,7 @@ const BodyCell: React.FC = (props: any) => {
   return (
     <td
       {...props}
-      data-designer-node-id={props.className.match(/data-id\:([^\s]+)/)?.[1]}
+      data-designer-node-id={props.className.match(/data-id:([^\s]+)/)?.[1]}
     >
       {props.children}
     </td>
@@ -191,12 +191,17 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
     >
       {
         children?.map(child => {
-          return renderChild(child)
+          const isGroup = child.props?.['x-component'] === "ProTable.ColumnGroup";
+          if (isGroup) {
+            return renderColumnGroup(child)
+          } else {
+            return renderColumn(child)
+          }
         })
       }
     </Table.ColumnGroup>
     )
-  }, []);
+  }, [renderColumn]);
 
   const renderChild = useCallback((node: TreeNode) => {
     const isGroup = node.props?.['x-component'] === "ProTable.ColumnGroup";
