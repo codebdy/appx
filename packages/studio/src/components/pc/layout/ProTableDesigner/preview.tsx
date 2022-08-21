@@ -22,6 +22,7 @@ import { DataTableLocales } from "./TableDesigner/locales"
 import { DataTableSchema } from "./TableDesigner/schema"
 import { ColumnProps } from "antd/lib/table"
 import { ArrayBase } from "@formily/antd"
+import { ColumnDesigner } from "./TableDesigner/ColumnDesigner"
 
 export const ProTableDesigner: DnFC<IProTableProps> & {
   QueryForm?: React.FC<IQueryFormProps>,
@@ -66,7 +67,7 @@ ProTableDesigner.QueryForm = QueryFormDesigner;
 ProTableDesigner.TableToolbar = TableToolbarDesigner;
 ProTableDesigner.TableBatchActions = TableBatchActionsDesigner;
 ProTableDesigner.Table = TableDesigner;
-//ProTableDesigner.Column = ColumnDesigner;
+ProTableDesigner.Column = ColumnDesigner;
 
 ArrayBase.mixin(ProTableDesigner)
 
@@ -200,6 +201,17 @@ ProTableDesigner.Resource = createResource({
             'x-component-props': {
             },
           },
+          children: [
+            {
+              componentName: 'Field',
+              props: {
+                type: 'void',
+                'x-component': 'ProTable.Column',
+                'x-component-props': {
+                },
+              },
+            },
+          ]
         },
       ]
     },

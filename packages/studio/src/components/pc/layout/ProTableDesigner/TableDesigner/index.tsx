@@ -11,7 +11,12 @@ import {
 import { ArrayBase } from '@formily/antd'
 import { observer } from '@formily/react'
 import cls from 'classnames'
-import { createEnsureTypeItemsNode, findNodeByComponentPath, hasNodeByComponentPath, queryNodesByComponentPath } from '../../../../common/shared'
+import {
+  createEnsureTypeItemsNode,
+  findNodeByComponentPath,
+  hasNodeByComponentPath,
+  queryNodesByComponentPath
+} from '../../../../common/shared'
 import { useDropTemplate } from "@designable/formily-antd/lib/hooks/useDropTemplate"
 import { LoadTemplate } from '@designable/formily-antd/lib/common/LoadTemplate'
 
@@ -42,31 +47,12 @@ const BodyCell: React.FC = (props: any) => {
 export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
   const node = useTreeNode()
   const nodeId = useNodeIdProps()
-  useDropTemplate('DataTable', (source) => {
-    const sortHandleNode = new TreeNode({
-      componentName: 'Field',
-      props: {
-        type: 'void',
-        'x-component': 'DataTable.Column',
-        'x-component-props': {
-          title: `Title`,
-        },
-      },
-      children: [
-        {
-          componentName: 'Field',
-          props: {
-            type: 'void',
-            'x-component': 'DataTable.SortHandle',
-          },
-        },
-      ],
-    })
+  useDropTemplate('ProTable', (source) => {
     const indexNode = new TreeNode({
       componentName: 'Field',
       props: {
         type: 'void',
-        'x-component': 'DataTable.Column',
+        'x-component': 'ProTable.Column',
         'x-component-props': {
           title: `Title`,
         },
@@ -76,7 +62,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
           componentName: 'Field',
           props: {
             type: 'void',
-            'x-component': 'DataTable.Index',
+            'x-component': 'ProTable.Index',
           },
         },
       ],
@@ -85,7 +71,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
       componentName: 'Field',
       props: {
         type: 'void',
-        'x-component': 'DataTable.Column',
+        'x-component': 'ProTable.Column',
         'x-component-props': {
           title: `Title`,
         },
@@ -134,27 +120,16 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
       props: {
         type: 'object',
       },
-      children: [sortHandleNode, indexNode, columnNode, operationNode],
+      children: [indexNode, columnNode, operationNode],
     })
-    const additionNode = new TreeNode({
-      componentName: 'Field',
-      props: {
-        type: 'void',
-        title: 'Addition',
-        'x-component': 'ProTable.Addition',
-      },
-    })
-    return [objectNode, additionNode]
+    return [objectNode]
   })
   const columns = queryNodesByComponentPath(node, [
-    'DataTable',
+    'ProTable.Table',
     '*',
-    'DataTable.Column',
+    'ProTable.Column',
   ])
-  const additions = queryNodesByComponentPath(node, [
-    'DataTable',
-    'DataTable.Addition',
-  ])
+
   const defaultRowKey = () => {
     return node.id
   }
@@ -212,14 +187,11 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
             <Table.Column render={() => <DroppableWidget />} />
           )}
         </Table>
-        {additions.map((child) => {
-          return <TreeNodeWidget node={child} key={child.id} />
-        })}
       </ArrayBase>
     )
   }
 
-  useDropTemplate('DataTable.Column', (source) => {
+  useDropTemplate('ProTable.Column', (source) => {
     return source.map((node) => {
       node.props.title = undefined
       return node
@@ -237,7 +209,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
             onClick: () => {
               if (
                 hasNodeByComponentPath(node, [
-                  'ProTable.DataTable',
+                  'ProTable.Table',
                   '*',
                   'ProTable.Column',
                   'ProTable.Index',
@@ -263,17 +235,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
                   },
                 ],
               })
-              const sortNode = findNodeByComponentPath(node, [
-                'ProTable.DataTable',
-                '*',
-                'ProTable.Column',
-                'ProTable.SortHandle',
-              ])
-              if (sortNode) {
-                sortNode.parent.insertAfter(tableColumn)
-              } else {
-                ensureObjectItemsNode(node).prepend(tableColumn)
-              }
+              ensureObjectItemsNode(node).prepend(tableColumn)
             },
           },
           {
@@ -281,7 +243,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
             icon: 'AddColumn',
             onClick: () => {
               const operationNode = findNodeByComponentPath(node, [
-                'ProTable.DataTable',
+                'ProTable.Table',
                 '*',
                 'ProTable.Column',
                 (name) => {
@@ -292,6 +254,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
                   )
                 },
               ])
+
               const tableColumn = new TreeNode({
                 componentName: 'Field',
                 props: {
@@ -314,9 +277,9 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
             icon: 'AddOperation',
             onClick: () => {
               const oldOperationNode = findNodeByComponentPath(node, [
-                'DataTable',
+                'ProTable',
                 '*',
-                'DataTable.Column',
+                'ProTable.Column',
                 (name) => {
                   return (
                     name === 'ProTable.Remove' ||
@@ -325,10 +288,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
                   )
                 },
               ])
-              const oldAdditionNode = findNodeByComponentPath(node, [
-                'ProTable.DataTable',
-                'ProTable.Addition',
-              ])
+
               if (!oldOperationNode) {
                 const operationNode = new TreeNode({
                   componentName: 'Field',
@@ -365,17 +325,6 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
                 })
                 ensureObjectItemsNode(node).append(operationNode)
               }
-              if (!oldAdditionNode) {
-                const additionNode = new TreeNode({
-                  componentName: 'Field',
-                  props: {
-                    type: 'void',
-                    title: 'Addition',
-                    'x-component': 'ProTable.Addition',
-                  },
-                })
-                ensureObjectItemsNode(node).insertAfter(additionNode)
-              }
             },
           },
         ]}
@@ -384,21 +333,21 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
   )
 })
 
-//ArrayBase.mixin(DataTableDesigner)
+//ArrayBase.mixin(TableDesigner)
 
-// DataTableDesigner.Behavior = createBehavior(
+// TableDesigner.Behavior = createBehavior(
 //   {
-//     name: 'ProTable.DataTable',
+//     name: 'ProTable.Table',
 //     extends: ['Field'],
-//     selector: (node) => node.props['x-component'] === 'ProTable.DataTable',
+//     selector: (node) => node.props['x-component'] === 'ProTable.Table',
 //     designerProps: {
 //       droppable: true,
 //       deletable: false,
 //       cloneable: false,
 //       draggable: false,
-//       propsSchema: createFieldSchema(DataTableSchema),
+//       propsSchema: createFieldSchema(TableSchema),
 //     },
-//     designerLocales: DataTableColumnLocales,
+//     designerLocales: TableColumnLocales,
 //   },
 //   {
 //     name: 'ProTable.Column',
@@ -409,9 +358,9 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
 //       allowDrop: (node) =>
 //         node.props['type'] === 'object' &&
 //         node.parent?.props?.['x-component'] === 'ProTable.Column',
-//       propsSchema: createFieldSchema(DataTableSchema.Column),
+//       propsSchema: createFieldSchema(TableSchema.Column),
 //     },
-//     designerLocales: DataTableColumnLocales,
+//     designerLocales: TableColumnLocales,
 //   },
 // )
 
