@@ -54,7 +54,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
         type: 'void',
         'x-component': 'ProTable.Column',
         'x-component-props': {
-          title: `Title`,
+          title: `No.`,
         },
       },
       children: [
@@ -222,7 +222,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
                   type: 'void',
                   'x-component': 'ProTable.Column',
                   'x-component-props': {
-                    title: `Title`,
+                    title: `No.`,
                   },
                 },
                 children: [
@@ -236,6 +236,40 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
                 ],
               })
               ensureObjectItemsNode(node).prepend(tableColumn)
+            },
+          },
+          {
+            title: node.getMessage('addColumnGroup'),
+            icon: 'AddColumnGroup',
+            onClick: () => {
+              const operationNode = findNodeByComponentPath(node, [
+                'ProTable.Table',
+                '*',
+                'ProTable.Column',
+                (name) => {
+                  return (
+                    name === 'ProTable.Remove' ||
+                    name === 'ProTable.MoveDown' ||
+                    name === 'ProTable.MoveUp'
+                  )
+                },
+              ])
+
+              const tableColumnGroup = new TreeNode({
+                componentName: 'Field',
+                props: {
+                  type: 'void',
+                  'x-component': 'ProTable.ColumnGroup',
+                  'x-component-props': {
+                    title: `Title`,
+                  },
+                },
+              })
+              if (operationNode) {
+                operationNode.parent.insertBefore(tableColumnGroup)
+              } else {
+                ensureObjectItemsNode(node).append(tableColumnGroup)
+              }
             },
           },
           {
