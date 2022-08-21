@@ -15,7 +15,7 @@ export const Button = observer((
 ) => {
   const { title, icon, ...other } = props;
   return (
-    <AntdButton {...other} icon={<IconView icon={icon} />}>
+    <AntdButton {...other} icon={icon && <IconView icon={icon} />}>
       {title}
     </AntdButton>
   )
