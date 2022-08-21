@@ -183,23 +183,31 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
       }
       dataIndex={node.id}
       className={`data-id:${node.id}`}
+      render={(value, record, key) => {
+        return (
+          <ArrayBase.Item key={key} index={key} record={null}>
+            {(children as any)?.length
+              ?
+              <></>
+              : 'Droppable'
+            }
+          </ArrayBase.Item>
+        )
+      }}
     >
-
       {(children as any)?.length
         ?
         children?.map(child => {
           return renderChild(child)
         })
-        : 'Droppable'
+        : <></>
       }
-
     </Table.ColumnGroup>
     )
   }, []);
 
   const renderChild = useCallback((node: TreeNode) => {
     const isGroup = node.props?.['x-component'] === "ProTable.ColumnGroup";
-    console.log("哈哈哈", isGroup, node)
     if (isGroup) {
       return renderColumnGroup(node)
     } else {
