@@ -4,6 +4,7 @@ import {
 } from '@formily/react'
 import { Button, Modal } from 'antd';
 import { TextWidget } from '@designable/react';
+import "./style.less"
 
 export const ActionInput = observer((props: {}) => {
   //const tabs = useTabs()
@@ -38,7 +39,17 @@ export const ActionInput = observer((props: {}) => {
         okText={<TextWidget token="SettingComponents.ActionInput.Confirm" />}
         cancelText={<TextWidget token="SettingComponents.ActionInput.Cancel" />}
       >
-        haha
+        <div className='action-input-model-content'>
+          <div>
+            工具箱
+          </div>
+          <div>
+            操作区
+          </div>
+          <div>
+            属性区
+          </div>
+        </div>
       </Modal>
     </>
   )
