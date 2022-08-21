@@ -3,14 +3,28 @@ export enum Events {
 }
 
 export enum ActionType {
-  RouteTo = "RouteTo",
+  OpenPage = "OpenPage",
+  ClosePage = "ClosePage",
   OpenDialog = "OpenDialog",
+  CloseDialog = "CloseDialog",
   OpenDrawer = "OpenDrawer",
-  ConfirmDialog = "ConfirmDialog",
+  CloseDrawer = "CloseDrawer",
+  Confirm = "Confirm",
   SuccessMessage = "SuccessMessage",
-  CloseModel = "CloseModel", //Dialog or Drawer
+}
+
+export enum OpenPageType {
+  RouteTo = "RouteTo",
+  Dialog = "Dialog",
+  Drawer = "Drawer"
+}
+
+export interface IOpenPageAction {
+  openType: OpenPageType,
+  pageUuid?: string,
 }
 
 export interface IAction {
   actionType: ActionType,
+  payload?: IOpenPageAction,
 }
