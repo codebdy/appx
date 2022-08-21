@@ -137,9 +137,10 @@ ProTableDesigner.Behavior = createBehavior(
     selector: (node) => node.props['x-component'] === 'ProTable.Column',
     designerProps: {
       droppable: true,
-      allowDrop: (node) =>
-        node.props['type'] === 'object' &&
-        node.parent?.props?.['x-component'] === 'ProTable.Column',
+      allowDrop: (node) => {
+        return (node?.props?.['x-component'] === 'ProTable' || node?.props?.['x-component'] === 'ProTable.ColumnGroup')
+      }
+      ,
       propsSchema: createFieldSchema(DataTableSchema.Column),
     },
     designerLocales: DataTableColumnLocales,
@@ -150,9 +151,9 @@ ProTableDesigner.Behavior = createBehavior(
     selector: (node) => node.props['x-component'] === 'ProTable.ColumnGroup',
     designerProps: {
       droppable: true,
-      allowDrop: (node) =>
-        node.props['type'] === 'object' &&
-        node.parent?.props?.['x-component'] === 'ProTable.Column',
+      allowDrop: (node) => {
+        return node.props?.['x-component'] === 'ProTable.ColumnGroup' || node.props?.['x-component'] === 'ProTable'
+      },
       propsSchema: createFieldSchema(DataTableSchema.ColumnGroup),
     },
     designerLocales: DataTableColumnGroupLocales,
