@@ -351,21 +351,28 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
                       componentName: 'Field',
                       props: {
                         type: 'void',
-                        'x-component': 'ProTable.Remove',
+                        'x-component': 'Button',
+                        "x-component-props": {
+                          shape: "circle",
+                          type: "text",
+                          icon: {
+                            iconKey: "EditOutlined"
+                          }
+                        }
                       },
                     },
                     {
                       componentName: 'Field',
                       props: {
                         type: 'void',
-                        'x-component': 'ProTable.MoveDown',
-                      },
-                    },
-                    {
-                      componentName: 'Field',
-                      props: {
-                        type: 'void',
-                        'x-component': 'ProTable.MoveUp',
+                        'x-component': 'Button',
+                        "x-component-props": {
+                          shape: "circle",
+                          type: "text",
+                          icon: {
+                            iconKey: "DeleteOutlined"
+                          }
+                        }
                       },
                     },
                   ],

@@ -1,26 +1,12 @@
-import React from "react"
 import { Button, IButtonProps } from "../Button";
 import { createFieldSchema } from "../../../common/Field";
 import { createBehavior, createResource } from '@designable/core'
 import { ButtonSchema } from "./schema";
 import { ButtonLocales } from "./locales";
 import { DnFC } from '@designable/react'
-import { observer } from "@formily/reactive-react";
 import { Actions } from "../../../../action/actions";
 
-export const ButtonDesigner: DnFC<IButtonProps> = observer((
-  props: IButtonProps
-) => {
-  const { title, ...other } = props;
-
-  return (
-    <Button {...other}
-      title={
-        <span data-content-editable="x-component-props.title">{title}</span> as any
-      }
-    />
-  )
-})
+export const ButtonDesigner: DnFC<IButtonProps> = Button
 
 ButtonDesigner.Behavior = createBehavior({
   name: 'Button',
