@@ -226,29 +226,31 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
           ?
           <DroppableWidget />
           :
-          <Table
-            size="small"
-            bordered
-            {...props}
-            scroll={{ x: '100%' }}
-            className={cls('ant-formily-array-table', props.className)}
-            style={{ marginBottom: 10, ...props.style }}
-            rowKey={defaultRowKey}
-            dataSource={[{ id: '1' }]}
-            pagination={false}
-            components={{
-              header: {
-                cell: HeaderCell,
-              },
-              body: {
-                cell: BodyCell,
-              },
-            }}
-          >
-            {node.children?.map((node) => {
-              return renderChild(node);
-            })}
-          </Table>
+          <ArrayBase disabled>
+            <Table
+              size="small"
+              bordered
+              {...props}
+              scroll={{ x: '100%' }}
+              className={cls('ant-formily-array-table', props.className)}
+              style={{ marginBottom: 10, ...props.style }}
+              rowKey={defaultRowKey}
+              dataSource={[{ id: '1' }]}
+              pagination={false}
+              components={{
+                header: {
+                  cell: HeaderCell,
+                },
+                body: {
+                  cell: BodyCell,
+                },
+              }}
+            >
+              {node.children?.map((node) => {
+                return renderChild(node);
+              })}
+            </Table>
+          </ArrayBase>
       }
       <LoadTemplate
         actions={[
@@ -329,7 +331,6 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
               if (operationNode) {
                 operationNode.parent.insertBefore(tableColumn)
               } else {
-                console.log("呵呵 append")
                 node.append(tableColumn)
               }
             },

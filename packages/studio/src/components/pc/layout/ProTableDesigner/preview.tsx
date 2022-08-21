@@ -138,7 +138,7 @@ ProTableDesigner.Behavior = createBehavior(
     designerProps: {
       droppable: true,
       allowDrop: (node) => {
-        return (node?.props?.['x-component'] === 'ProTable' || node?.props?.['x-component'] === 'ProTable.ColumnGroup')
+        return (node?.props?.['x-component'] === 'ProTable.Table' || node?.props?.['x-component'] === 'ProTable.ColumnGroup')
       }
       ,
       propsSchema: createFieldSchema(DataTableSchema.Column),
