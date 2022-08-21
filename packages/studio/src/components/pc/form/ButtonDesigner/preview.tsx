@@ -4,7 +4,7 @@ import { createBehavior, createResource } from '@designable/core'
 import { ButtonSchema } from "./schema";
 import { ButtonLocales } from "./locales";
 import { DnFC } from '@designable/react'
-import { Actions } from "../../../../action/actions";
+import { Actions } from "../../../../shared/action/actions";
 
 export const ButtonDesigner: DnFC<IButtonProps> = Button
 
