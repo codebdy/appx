@@ -18,6 +18,9 @@ export const zhCN = {
         Attributes: "属性",
         Methods: "方法",
         Associations: "关联"
+      },
+      ActionInput: {
+        Title: "配置动作"
       }
     },
   },
