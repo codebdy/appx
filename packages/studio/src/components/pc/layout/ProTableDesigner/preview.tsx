@@ -19,9 +19,7 @@ import { TableBatchActionsDesigner } from "./TableBatchActionsDesigner"
 import { ITableBatchActionsProps } from "../ProTable/TableBatchActions"
 import { DataTableColumnLocales, DataTableLocales } from "./TableDesigner/locales"
 import { DataTableSchema } from "./TableDesigner/schema"
-import { ColumnProps } from "antd/lib/table"
 import { TableDesigner } from "./TableDesigner"
-import { ColumnGroupProps } from "antd/lib/table/ColumnGroup"
 
 export const ProTableDesigner: DnFC<IProTableProps> & {
   QueryForm?: React.FC<IQueryFormProps>,
@@ -137,6 +135,19 @@ ProTableDesigner.Behavior = createBehavior(
     name: 'ProTable.Column',
     extends: ['Field'],
     selector: (node) => node.props['x-component'] === 'ProTable.Column',
+    designerProps: {
+      droppable: true,
+      allowDrop: (node) =>
+        node.props['type'] === 'object' &&
+        node.parent?.props?.['x-component'] === 'ProTable.Column',
+      propsSchema: createFieldSchema(DataTableSchema.Column),
+    },
+    designerLocales: DataTableColumnLocales,
+  },
+  {
+    name: 'ProTable.ColumnGroup',
+    extends: ['Field'],
+    selector: (node) => node.props['x-component'] === 'ProTable.ColumnGroup',
     designerProps: {
       droppable: true,
       allowDrop: (node) =>

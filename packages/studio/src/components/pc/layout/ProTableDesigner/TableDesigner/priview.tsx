@@ -145,14 +145,14 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
   }, [node.id])
 
   const renderColumn = useCallback((node: TreeNode) => {
-    const props = node.props?.['x-component-props']
+    const props = node.props?.['x-component-props'] || {}
     const children = node.children;
     return (
       <Table.Column
         {...props}
         title={
           <div>
-            {props.title}
+            {props?.title}
           </div>
         }
         dataIndex={node.id}
@@ -169,11 +169,30 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
   }, []);
 
   const renderColumnGroup = useCallback((node: TreeNode) => {
-
+    const props = node.props?.['x-component-props'] || {}
+    const children = node.children;
+    return (<Table.Column
+      {...props}
+      title={
+        <div>
+          {props?.title}
+        </div>
+      }
+      dataIndex={node.id}
+      className={`data-id:${node.id}`}
+      render={(value, record, key) => {
+        return (
+          <ArrayBase.Item key={key} index={key} record={null}>
+            {(children as any)?.length ? children : 'Droppable'}
+          </ArrayBase.Item>
+        )
+      }}
+    />)
   }, []);
 
   const renderChild = useCallback((node: TreeNode) => {
     const isGroup = node.props?.['x-component'] === "ProTable.ColumnGroup";
+    console.log("哈哈哈", isGroup, node)
     if (isGroup) {
       return renderColumnGroup(node)
     } else {
@@ -253,7 +272,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
                   },
                 ],
               })
-              ensureObjectItemsNode(node).prepend(tableColumn)
+              node.prepend(tableColumn)
             },
           },
           {
@@ -275,7 +294,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
               if (operationNode) {
                 operationNode.parent.insertBefore(tableColumnGroup)
               } else {
-                ensureObjectItemsNode(node).append(tableColumnGroup)
+                node.append(tableColumnGroup)
               }
             },
           },
@@ -343,7 +362,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
                     },
                   ],
                 })
-                ensureObjectItemsNode(node).append(operationNode)
+                node.append(operationNode)
               }
             },
           },
