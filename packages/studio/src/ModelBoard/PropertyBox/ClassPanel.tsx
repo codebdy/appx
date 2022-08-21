@@ -3,7 +3,7 @@ import { ClassMeta, StereoType } from "../meta/ClassMeta";
 import { useChangeClass } from "../hooks/useChangeClass";
 import { Form, Input, Switch } from "antd";
 import { useTranslation } from "react-i18next";
-import MultiLangInput from "../../components/pc/form/MultiLangInput";
+import { MultiLangInput } from "../../components/pc/form/MultiLangInput";
 import { useSelectedAppUuid } from "../../shared/AppRoot/context";
 
 export const ClassPanel = (props: { cls: ClassMeta }) => {
@@ -54,7 +54,7 @@ export const ClassPanel = (props: { cls: ClassMeta }) => {
           label={t("Label")}
           name="label"
         >
-          <MultiLangInput inline title={t("Label")}/>
+          <MultiLangInput inline title={t("Label")} />
         </Form.Item>
         {cls.stereoType !== StereoType.Enum &&
           cls.stereoType !== StereoType.ValueObject &&

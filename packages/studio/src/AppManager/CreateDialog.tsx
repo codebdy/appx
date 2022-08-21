@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useCreateApp } from '../hooks/useCreateApp';
 import { IAppInput } from '../model/input';
 import { createUuid } from '../shared';
-import MultiLangInput from '../components/pc/form/MultiLangInput';
+import { MultiLangInput } from '../components/pc/form/MultiLangInput';
 import { useShowError } from './../hooks/useShowError';
 
 const CreateDialog = memo(() => {
@@ -110,7 +110,7 @@ const CreateDialog = memo(() => {
             name="title"
             rules={[{ required: true, message: t("Required") }]}
           >
-            <MultiLangInput inline title={t("AppName")}/>
+            <MultiLangInput inline title={t("AppName")} />
           </Form.Item>
 
           {/* <Form.Item

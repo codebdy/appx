@@ -5,7 +5,7 @@ import { useParseLangMessage } from "../../../../hooks/useParseLangMessage";
 import { useAppConfig } from "../../../../shared/AppRoot/context";
 import ResourceEditDialog from "./ResourceEditDialog";
 
-const MultiLangInput = (
+export const MultiLangInput = (
   props?: {
     multiline?: boolean,
     onChange?: (value: string) => void,
@@ -63,5 +63,3 @@ const MultiLangInput = (
     </>
   )
 }
-
-export default MultiLangInput;
