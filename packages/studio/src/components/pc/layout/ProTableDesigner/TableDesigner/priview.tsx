@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Table, TableProps } from 'antd'
 import { TreeNode } from '@designable/core'
 import {
@@ -124,72 +124,50 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
     })
     return [objectNode]
   })
-  const columns = queryNodesByComponentPath(node, [
-    'ProTable.Table',
-    '*',
-    'ProTable.Column',
-  ])
 
-  const defaultRowKey = () => {
+  const findOperationNode = useCallback(() => {
+    return findNodeByComponentPath(node, [
+      'ProTable.Table',
+      '*',
+      'ProTable.Column',
+      (name) => {
+        return (
+          name === 'ProTable.Remove' ||
+          name === 'ProTable.MoveDown' ||
+          name === 'ProTable.MoveUp'
+        )
+      },
+    ])
+  }, [node]);
+
+  const defaultRowKey = useCallback(() => {
     return node.id
-  }
+  }, [node.id])
 
-  const renderTable = () => {
-    if (node.children.length === 0) return <DroppableWidget />
+
+  const renderChild = useCallback((node: TreeNode) => {
+    const props = node.props?.['x-component-props']
+    const children = node.children;
     return (
-      <ArrayBase disabled>
-        <Table
-          size="small"
-          bordered
-          {...props}
-          scroll={{ x: '100%' }}
-          className={cls('ant-formily-array-table', props.className)}
-          style={{ marginBottom: 10, ...props.style }}
-          rowKey={defaultRowKey}
-          dataSource={[{ id: '1' }]}
-          pagination={false}
-          components={{
-            header: {
-              cell: HeaderCell,
-            },
-            body: {
-              cell: BodyCell,
-            },
-          }}
-        >
-          {columns.map((node) => {
-            const children = node.children.map((child) => {
-              return <TreeNodeWidget node={child} key={child.id} />
-            })
-            const props = node.props['x-component-props']
-            return (
-              <Table.Column
-                {...props}
-                title={
-                  <div data-content-editable="x-component-props.title">
-                    {props.title}
-                  </div>
-                }
-                dataIndex={node.id}
-                className={`data-id:${node.id}`}
-                key={node.id}
-                render={(value, record, key) => {
-                  return (
-                    <ArrayBase.Item key={key} index={key} record={null}>
-                      {children.length > 0 ? children : 'Droppable'}
-                    </ArrayBase.Item>
-                  )
-                }}
-              />
-            )
-          })}
-          {columns.length === 0 && (
-            <Table.Column render={() => <DroppableWidget />} />
-          )}
-        </Table>
-      </ArrayBase>
+      <Table.Column
+        {...props}
+        title={
+          <div>
+            {props.title}
+          </div>
+        }
+        dataIndex={node.id}
+        className={`data-id:${node.id}`}
+        render={(value, record, key) => {
+          return (
+            <ArrayBase.Item key={key} index={key} record={null}>
+              {(children as any)?.length ? children : 'Droppable'}
+            </ArrayBase.Item>
+          )
+        }}
+      />
     )
-  }
+  }, [])
 
   useDropTemplate('ProTable.Column', (source) => {
     return source.map((node) => {
@@ -200,7 +178,35 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
 
   return (
     <div {...nodeId} className="dn-array-table">
-      {renderTable()}
+      {
+        node.children.length === 0
+          ?
+          <DroppableWidget />
+          :
+          <Table
+            size="small"
+            bordered
+            {...props}
+            scroll={{ x: '100%' }}
+            className={cls('ant-formily-array-table', props.className)}
+            style={{ marginBottom: 10, ...props.style }}
+            rowKey={defaultRowKey}
+            dataSource={[{ id: '1' }]}
+            pagination={false}
+            components={{
+              header: {
+                cell: HeaderCell,
+              },
+              body: {
+                cell: BodyCell,
+              },
+            }}
+          >
+            {node.children?.map((node) => {
+              return renderChild(node);
+            })}
+          </Table>
+      }
       <LoadTemplate
         actions={[
           {
@@ -242,18 +248,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
             title: node.getMessage('addColumnGroup'),
             icon: 'AddColumnGroup',
             onClick: () => {
-              const operationNode = findNodeByComponentPath(node, [
-                'ProTable.Table',
-                '*',
-                'ProTable.Column',
-                (name) => {
-                  return (
-                    name === 'ProTable.Remove' ||
-                    name === 'ProTable.MoveDown' ||
-                    name === 'ProTable.MoveUp'
-                  )
-                },
-              ])
+              const operationNode = findOperationNode();
 
               const tableColumnGroup = new TreeNode({
                 componentName: 'Field',
@@ -276,18 +271,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
             title: node.getMessage('addColumn'),
             icon: 'AddColumn',
             onClick: () => {
-              const operationNode = findNodeByComponentPath(node, [
-                'ProTable.Table',
-                '*',
-                'ProTable.Column',
-                (name) => {
-                  return (
-                    name === 'ProTable.Remove' ||
-                    name === 'ProTable.MoveDown' ||
-                    name === 'ProTable.MoveUp'
-                  )
-                },
-              ])
+              const operationNode = findOperationNode()
 
               const tableColumn = new TreeNode({
                 componentName: 'Field',
@@ -302,7 +286,8 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
               if (operationNode) {
                 operationNode.parent.insertBefore(tableColumn)
               } else {
-                ensureObjectItemsNode(node).append(tableColumn)
+                console.log("呵呵 append")
+                node.append(tableColumn)
               }
             },
           },
@@ -310,18 +295,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
             title: node.getMessage('addOperation'),
             icon: 'AddOperation',
             onClick: () => {
-              const oldOperationNode = findNodeByComponentPath(node, [
-                'ProTable',
-                '*',
-                'ProTable.Column',
-                (name) => {
-                  return (
-                    name === 'ProTable.Remove' ||
-                    name === 'ProTable.MoveDown' ||
-                    name === 'ProTable.MoveUp'
-                  )
-                },
-              ])
+              const oldOperationNode = findOperationNode();
 
               if (!oldOperationNode) {
                 const operationNode = new TreeNode({
@@ -366,35 +340,3 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
     </div>
   )
 })
-
-//ArrayBase.mixin(TableDesigner)
-
-// TableDesigner.Behavior = createBehavior(
-//   {
-//     name: 'ProTable.Table',
-//     extends: ['Field'],
-//     selector: (node) => node.props['x-component'] === 'ProTable.Table',
-//     designerProps: {
-//       droppable: true,
-//       deletable: false,
-//       cloneable: false,
-//       draggable: false,
-//       propsSchema: createFieldSchema(TableSchema),
-//     },
-//     designerLocales: TableColumnLocales,
-//   },
-//   {
-//     name: 'ProTable.Column',
-//     extends: ['Field'],
-//     selector: (node) => node.props['x-component'] === 'ProTable.Column',
-//     designerProps: {
-//       droppable: true,
-//       allowDrop: (node) =>
-//         node.props['type'] === 'object' &&
-//         node.parent?.props?.['x-component'] === 'ProTable.Column',
-//       propsSchema: createFieldSchema(TableSchema.Column),
-//     },
-//     designerLocales: TableColumnLocales,
-//   },
-// )
-

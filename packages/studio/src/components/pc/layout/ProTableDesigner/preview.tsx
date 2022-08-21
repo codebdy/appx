@@ -20,8 +20,7 @@ import { ITableBatchActionsProps } from "../ProTable/TableBatchActions"
 import { DataTableColumnLocales, DataTableLocales } from "./TableDesigner/locales"
 import { DataTableSchema } from "./TableDesigner/schema"
 import { ColumnProps } from "antd/lib/table"
-import { ArrayBase } from "@formily/antd"
-import { ColumnDesigner, ColumnGroupDesigner, TableDesigner } from "./TableDesigner"
+import { TableDesigner } from "./TableDesigner"
 import { ColumnGroupProps } from "antd/lib/table/ColumnGroup"
 
 export const ProTableDesigner: DnFC<IProTableProps> & {
@@ -29,8 +28,8 @@ export const ProTableDesigner: DnFC<IProTableProps> & {
   TableToolbar?: React.FC<ITableToolbarProps>,
   TableBatchActions?: React.FC<ITableBatchActionsProps>,
   Table?: React.FC<TableProps<any>>,
-  ColumnGroup?: React.FC<ColumnGroupProps<any>>,
-  Column?: React.FC<ColumnProps<any>>,
+  //ColumnGroup?: React.FC<ColumnGroupProps<any>>,
+  //Column?: React.FC<ColumnProps<any>>,
 } = observer((props: IProTableProps) => {
   const {
     hasQueryForm = true,
@@ -68,10 +67,8 @@ ProTableDesigner.QueryForm = QueryFormDesigner;
 ProTableDesigner.TableToolbar = TableToolbarDesigner;
 ProTableDesigner.TableBatchActions = TableBatchActionsDesigner;
 ProTableDesigner.Table = TableDesigner;
-ProTableDesigner.ColumnGroup = ColumnGroupDesigner;
-ProTableDesigner.Column = ColumnDesigner;
-
-ArrayBase.mixin(ProTableDesigner)
+//ProTableDesigner.ColumnGroup = ColumnGroupDesigner;
+//ProTableDesigner.Column = ColumnDesigner;
 
 ProTableDesigner.Behavior = createBehavior(
   {
@@ -202,18 +199,7 @@ ProTableDesigner.Resource = createResource({
             'x-component': 'ProTable.Table',
             'x-component-props': {
             },
-          },
-          children: [
-            {
-              componentName: 'Field',
-              props: {
-                type: 'void',
-                'x-component': 'ProTable.Column',
-                'x-component-props': {
-                },
-              },
-            },
-          ]
+          }
         },
       ]
     },
