@@ -185,22 +185,14 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
       className={`data-id:${node.id}`}
       render={(value, record, key) => {
         return (
-          <ArrayBase.Item key={key} index={key} record={null}>
-            {(children as any)?.length
-              ?
-              <></>
-              : 'Droppable'
-            }
-          </ArrayBase.Item>
+          'Droppable'
         )
       }}
     >
-      {(children as any)?.length
-        ?
+      {
         children?.map(child => {
           return renderChild(child)
         })
-        : <></>
       }
     </Table.ColumnGroup>
     )
