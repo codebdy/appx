@@ -11,7 +11,7 @@ import {
 import { ArrayBase } from '@formily/antd'
 import { observer } from '@formily/react'
 import cls from 'classnames'
-import { createEnsureTypeItemsNode, findNodeByComponentPath, hasNodeByComponentPath, queryNodesByComponentPath } from '../../../../../components/common/shared'
+import { createEnsureTypeItemsNode, findNodeByComponentPath, hasNodeByComponentPath, queryNodesByComponentPath } from '../../../../common/shared'
 import { useDropTemplate } from "@designable/formily-antd/lib/hooks/useDropTemplate"
 import { LoadTemplate } from '@designable/formily-antd/lib/common/LoadTemplate'
 
@@ -39,7 +39,7 @@ const BodyCell: React.FC = (props: any) => {
   )
 }
 
-export const DataTableDesigner: DnFC<TableProps<any>> = observer((props) => {
+export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
   const node = useTreeNode()
   const nodeId = useNodeIdProps()
   useDropTemplate('DataTable', (source) => {
@@ -100,7 +100,7 @@ export const DataTableDesigner: DnFC<TableProps<any>> = observer((props) => {
       componentName: 'Field',
       props: {
         type: 'void',
-        'x-component': 'ProTable.DataTable.Column',
+        'x-component': 'ProTable.Column',
         'x-component-props': {
           title: `Title`,
         },
@@ -110,21 +110,21 @@ export const DataTableDesigner: DnFC<TableProps<any>> = observer((props) => {
           componentName: 'Field',
           props: {
             type: 'void',
-            'x-component': 'ProTable.DataTable.Remove',
+            'x-component': 'ProTable.Remove',
           },
         },
         {
           componentName: 'Field',
           props: {
             type: 'void',
-            'x-component': 'ProTable.DataTable.MoveDown',
+            'x-component': 'ProTable.MoveDown',
           },
         },
         {
           componentName: 'Field',
           props: {
             type: 'void',
-            'x-component': 'ProTable.DataTable.MoveUp',
+            'x-component': 'ProTable.MoveUp',
           },
         },
       ],
@@ -141,7 +141,7 @@ export const DataTableDesigner: DnFC<TableProps<any>> = observer((props) => {
       props: {
         type: 'void',
         title: 'Addition',
-        'x-component': 'ProTable.DataTable.Addition',
+        'x-component': 'ProTable.Addition',
       },
     })
     return [objectNode, additionNode]
@@ -239,8 +239,8 @@ export const DataTableDesigner: DnFC<TableProps<any>> = observer((props) => {
                 hasNodeByComponentPath(node, [
                   'ProTable.DataTable',
                   '*',
-                  'ProTable.DataTable.Column',
-                  'ProTable.DataTable.Index',
+                  'ProTable.Column',
+                  'ProTable.Index',
                 ])
               )
                 return
@@ -248,7 +248,7 @@ export const DataTableDesigner: DnFC<TableProps<any>> = observer((props) => {
                 componentName: 'Field',
                 props: {
                   type: 'void',
-                  'x-component': 'ProTable.DataTable.Column',
+                  'x-component': 'ProTable.Column',
                   'x-component-props': {
                     title: `Title`,
                   },
@@ -258,7 +258,7 @@ export const DataTableDesigner: DnFC<TableProps<any>> = observer((props) => {
                     componentName: 'Field',
                     props: {
                       type: 'void',
-                      'x-component': 'ProTable.DataTable.Index',
+                      'x-component': 'ProTable.Index',
                     },
                   },
                 ],
@@ -266,8 +266,8 @@ export const DataTableDesigner: DnFC<TableProps<any>> = observer((props) => {
               const sortNode = findNodeByComponentPath(node, [
                 'ProTable.DataTable',
                 '*',
-                'ProTable.DataTable.Column',
-                'ProTable.DataTable.SortHandle',
+                'ProTable.Column',
+                'ProTable.SortHandle',
               ])
               if (sortNode) {
                 sortNode.parent.insertAfter(tableColumn)
@@ -283,12 +283,12 @@ export const DataTableDesigner: DnFC<TableProps<any>> = observer((props) => {
               const operationNode = findNodeByComponentPath(node, [
                 'ProTable.DataTable',
                 '*',
-                'ProTable.DataTable.Column',
+                'ProTable.Column',
                 (name) => {
                   return (
-                    name === 'ProTable.DataTable.Remove' ||
-                    name === 'ProTable.DataTable.MoveDown' ||
-                    name === 'ProTable.DataTable.MoveUp'
+                    name === 'ProTable.Remove' ||
+                    name === 'ProTable.MoveDown' ||
+                    name === 'ProTable.MoveUp'
                   )
                 },
               ])
@@ -296,7 +296,7 @@ export const DataTableDesigner: DnFC<TableProps<any>> = observer((props) => {
                 componentName: 'Field',
                 props: {
                   type: 'void',
-                  'x-component': 'ProTable.DataTable.Column',
+                  'x-component': 'ProTable.Column',
                   'x-component-props': {
                     title: `Title`,
                   },
@@ -319,22 +319,22 @@ export const DataTableDesigner: DnFC<TableProps<any>> = observer((props) => {
                 'DataTable.Column',
                 (name) => {
                   return (
-                    name === 'ProTable.DataTable.Remove' ||
-                    name === 'ProTable.DataTable.MoveDown' ||
-                    name === 'ProTable.DataTable.MoveUp'
+                    name === 'ProTable.Remove' ||
+                    name === 'ProTable.MoveDown' ||
+                    name === 'ProTable.MoveUp'
                   )
                 },
               ])
               const oldAdditionNode = findNodeByComponentPath(node, [
                 'ProTable.DataTable',
-                'ProTable.DataTable.Addition',
+                'ProTable.Addition',
               ])
               if (!oldOperationNode) {
                 const operationNode = new TreeNode({
                   componentName: 'Field',
                   props: {
                     type: 'void',
-                    'x-component': 'ProTable.DataTable.Column',
+                    'x-component': 'ProTable.Column',
                     'x-component-props': {
                       title: `Title`,
                     },
@@ -344,21 +344,21 @@ export const DataTableDesigner: DnFC<TableProps<any>> = observer((props) => {
                       componentName: 'Field',
                       props: {
                         type: 'void',
-                        'x-component': 'ProTable.DataTable.Remove',
+                        'x-component': 'ProTable.Remove',
                       },
                     },
                     {
                       componentName: 'Field',
                       props: {
                         type: 'void',
-                        'x-component': 'ProTable.DataTable.MoveDown',
+                        'x-component': 'ProTable.MoveDown',
                       },
                     },
                     {
                       componentName: 'Field',
                       props: {
                         type: 'void',
-                        'x-component': 'ProTable.DataTable.MoveUp',
+                        'x-component': 'ProTable.MoveUp',
                       },
                     },
                   ],
@@ -371,7 +371,7 @@ export const DataTableDesigner: DnFC<TableProps<any>> = observer((props) => {
                   props: {
                     type: 'void',
                     title: 'Addition',
-                    'x-component': 'ProTable.DataTable.Addition',
+                    'x-component': 'ProTable.Addition',
                   },
                 })
                 ensureObjectItemsNode(node).insertAfter(additionNode)
@@ -401,14 +401,14 @@ export const DataTableDesigner: DnFC<TableProps<any>> = observer((props) => {
 //     designerLocales: DataTableColumnLocales,
 //   },
 //   {
-//     name: 'ProTable.DataTable.Column',
+//     name: 'ProTable.Column',
 //     extends: ['Field'],
-//     selector: (node) => node.props['x-component'] === 'ProTable.DataTable.Column',
+//     selector: (node) => node.props['x-component'] === 'ProTable.Column',
 //     designerProps: {
 //       droppable: true,
 //       allowDrop: (node) =>
 //         node.props['type'] === 'object' &&
-//         node.parent?.props?.['x-component'] === 'ProTable.DataTable.Column',
+//         node.parent?.props?.['x-component'] === 'ProTable.Column',
 //       propsSchema: createFieldSchema(DataTableSchema.Column),
 //     },
 //     designerLocales: DataTableColumnLocales,

@@ -17,15 +17,18 @@ import { FormGridLocales } from "../../form/FormGridDesigner/locales"
 import { TableToolbarDesigner } from "./TableToolbarDesigner"
 import { TableBatchActionsDesigner } from "./TableBatchActionsDesigner"
 import { ITableBatchActionsProps } from "../ProTable/TableBatchActions"
-import { DataTableDesigner } from "./DataTableDesigner"
-import { DataTableColumnLocales, DataTableLocales } from "./DataTableDesigner/locales"
-import { DataTableSchema } from "./DataTableDesigner/schema"
+import { TableDesigner } from "./TableDesigner"
+import { DataTableLocales } from "./TableDesigner/locales"
+import { DataTableSchema } from "./TableDesigner/schema"
+import { ColumnProps } from "antd/lib/table"
+import { ArrayBase } from "@formily/antd"
 
 export const ProTableDesigner: DnFC<IProTableProps> & {
   QueryForm?: React.FC<IQueryFormProps>,
   TableToolbar?: React.FC<ITableToolbarProps>,
   TableBatchActions?: React.FC<ITableBatchActionsProps>,
-  DataTable?: React.FC<TableProps<any>>,
+  Table?: React.FC<TableProps<any>>,
+  Column?: React.FC<ColumnProps<any>>,
 } = observer((props: IProTableProps) => {
   const {
     hasQueryForm = true,
@@ -38,7 +41,7 @@ export const ProTableDesigner: DnFC<IProTableProps> & {
   const queryForm = useFindNode('QueryForm');
   const toolbar = useFindNode("TableToolbar");
   const batchActions = useFindNode("TableBatchActions");
-  const dataTable = useFindNode("DataTable");
+  const dataTable = useFindNode("Table");
 
   return (
     <div className={clx("appx-pro-table", className)} {...other}>
@@ -52,9 +55,8 @@ export const ProTableDesigner: DnFC<IProTableProps> & {
         {
           hasBatchActions && batchActions && <TreeNodeWidget node={batchActions} />
         }
-        {
-          dataTable && <TreeNodeWidget node={dataTable} />
-        }
+
+        <TreeNodeWidget node={dataTable} />
       </Card>
     </div>
   )
@@ -63,7 +65,10 @@ export const ProTableDesigner: DnFC<IProTableProps> & {
 ProTableDesigner.QueryForm = QueryFormDesigner;
 ProTableDesigner.TableToolbar = TableToolbarDesigner;
 ProTableDesigner.TableBatchActions = TableBatchActionsDesigner;
-ProTableDesigner.DataTable = DataTableDesigner;
+ProTableDesigner.Table = TableDesigner;
+//ProTableDesigner.Column = ColumnDesigner;
+
+ArrayBase.mixin(ProTableDesigner)
 
 ProTableDesigner.Behavior = createBehavior(
   {
@@ -116,9 +121,9 @@ ProTableDesigner.Behavior = createBehavior(
     designerLocales: ProTableLocales.TableBatchActions,
   },
   {
-    name: 'ProTable.DataTable',
+    name: 'ProTable.Table',
     extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'ProTable.DataTable',
+    selector: (node) => node.props['x-component'] === 'ProTable.Table',
     designerProps: {
       droppable: true,
       deletable: false,
@@ -128,19 +133,19 @@ ProTableDesigner.Behavior = createBehavior(
     },
     designerLocales: DataTableLocales,
   },
-  {
-    name: 'ProTable.DataTable.Column',
-    extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'ProTable.DataTable.Column',
-    designerProps: {
-      droppable: true,
-      allowDrop: (node) =>
-        node.props['type'] === 'object' &&
-        node.parent?.props?.['x-component'] === 'ProTable.DataTable.Column',
-      propsSchema: createFieldSchema(DataTableSchema.Column),
-    },
-    designerLocales: DataTableColumnLocales,
-  },
+  // {
+  //   name: 'ProTable.Column',
+  //   extends: ['Field'],
+  //   selector: (node) => node.props['x-component'] === 'ProTable.Column',
+  //   designerProps: {
+  //     droppable: true,
+  //     allowDrop: (node) =>
+  //       node.props['type'] === 'object' &&
+  //       node.parent?.props?.['x-component'] === 'ProTable.Column',
+  //     propsSchema: createFieldSchema(DataTableSchema.Column),
+  //   },
+  //   designerLocales: DataTableColumnLocales,
+  // },
 )
 
 ProTableDesigner.Resource = createResource({
@@ -191,7 +196,7 @@ ProTableDesigner.Resource = createResource({
           componentName: 'Field',
           props: {
             type: 'array',
-            'x-component': 'ProTable.DataTable',
+            'x-component': 'ProTable.Table',
             'x-component-props': {
             },
           },
