@@ -1,9 +1,9 @@
 import React from "react"
 
-export const IndexDesigner = ()=>{
+export const IndexDesigner = (props) => {
   return (
-    <>
-    #1.
-    </>
+    <span {...props}>
+      #1.
+    </span>
   )
 }
