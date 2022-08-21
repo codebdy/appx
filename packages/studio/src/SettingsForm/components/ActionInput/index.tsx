@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react'
 import {
   observer,
 } from '@formily/react'
-import { Button } from 'antd';
+import { Button, Modal } from 'antd';
 import { TextWidget } from '@designable/react';
 
 export const ActionInput = observer((props: {}) => {
@@ -10,6 +10,14 @@ export const ActionInput = observer((props: {}) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const showModal = useCallback(() => {
     setIsModalVisible(true);
+  }, []);
+
+  const handleCancel = useCallback(() => {
+    setIsModalVisible(false);
+  }, []);
+
+  const handleOk = useCallback(() => {
+    setIsModalVisible(false);
   }, []);
 
   return (
@@ -20,6 +28,18 @@ export const ActionInput = observer((props: {}) => {
       >
         <TextWidget token="SettingComponents.ActionInput.Title" />
       </Button>
+      <Modal
+        title={<TextWidget token="SettingComponents.ActionInput.Title" />}
+        className="config-action-modal"
+        width={900}
+        visible={isModalVisible}
+        onCancel={handleCancel}
+        onOk={handleOk}
+        okText={<TextWidget token="SettingComponents.ActionInput.Confirm" />}
+        cancelText={<TextWidget token="SettingComponents.ActionInput.Cancel" />}
+      >
+        haha
+      </Modal>
     </>
   )
 }) 

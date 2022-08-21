@@ -20,7 +20,9 @@ export const zhCN = {
         Associations: "关联"
       },
       ActionInput: {
-        Title: "配置动作"
+        Title: "配置动作",
+        Cancel: "取消",
+        Confirm: "确定",
       }
     },
   },
