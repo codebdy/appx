@@ -144,8 +144,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
     return node.id
   }, [node.id])
 
-
-  const renderChild = useCallback((node: TreeNode) => {
+  const renderColumn = useCallback((node: TreeNode) => {
     const props = node.props?.['x-component-props']
     const children = node.children;
     return (
@@ -167,7 +166,20 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
         }}
       />
     )
-  }, [])
+  }, []);
+
+  const renderColumnGroup = useCallback((node: TreeNode) => {
+
+  }, []);
+
+  const renderChild = useCallback((node: TreeNode) => {
+    const isGroup = node.props?.['x-component'] === "ProTable.ColumnGroup";
+    if (isGroup) {
+      return renderColumnGroup(node)
+    } else {
+      return renderColumn(node)
+    }
+  }, [renderColumn, renderColumnGroup])
 
   useDropTemplate('ProTable.Column', (source) => {
     return source.map((node) => {
