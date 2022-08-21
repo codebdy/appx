@@ -18,7 +18,7 @@ import { TableToolbarDesigner } from "./TableToolbarDesigner"
 import { TableBatchActionsDesigner } from "./TableBatchActionsDesigner"
 import { ITableBatchActionsProps } from "../ProTable/TableBatchActions"
 import { TableDesigner } from "./TableDesigner"
-import { DataTableLocales } from "./TableDesigner/locales"
+import { DataTableColumnLocales, DataTableLocales } from "./TableDesigner/locales"
 import { DataTableSchema } from "./TableDesigner/schema"
 import { ColumnProps } from "antd/lib/table"
 import { ArrayBase } from "@formily/antd"
@@ -29,7 +29,7 @@ export const ProTableDesigner: DnFC<IProTableProps> & {
   TableToolbar?: React.FC<ITableToolbarProps>,
   TableBatchActions?: React.FC<ITableBatchActionsProps>,
   Table?: React.FC<TableProps<any>>,
-  Column?: React.FC<ColumnProps<any>>,
+  //Column?: React.FC<ColumnProps<any>>,
 } = observer((props: IProTableProps) => {
   const {
     hasQueryForm = true,
@@ -67,7 +67,7 @@ ProTableDesigner.QueryForm = QueryFormDesigner;
 ProTableDesigner.TableToolbar = TableToolbarDesigner;
 ProTableDesigner.TableBatchActions = TableBatchActionsDesigner;
 ProTableDesigner.Table = TableDesigner;
-ProTableDesigner.Column = ColumnDesigner;
+//ProTableDesigner.Column = ColumnDesigner;
 
 ArrayBase.mixin(ProTableDesigner)
 
@@ -134,19 +134,19 @@ ProTableDesigner.Behavior = createBehavior(
     },
     designerLocales: DataTableLocales,
   },
-  // {
-  //   name: 'ProTable.Column',
-  //   extends: ['Field'],
-  //   selector: (node) => node.props['x-component'] === 'ProTable.Column',
-  //   designerProps: {
-  //     droppable: true,
-  //     allowDrop: (node) =>
-  //       node.props['type'] === 'object' &&
-  //       node.parent?.props?.['x-component'] === 'ProTable.Column',
-  //     propsSchema: createFieldSchema(DataTableSchema.Column),
-  //   },
-  //   designerLocales: DataTableColumnLocales,
-  // },
+  {
+    name: 'ProTable.Column',
+    extends: ['Field'],
+    selector: (node) => node.props['x-component'] === 'ProTable.Column',
+    designerProps: {
+      droppable: true,
+      allowDrop: (node) =>
+        node.props['type'] === 'object' &&
+        node.parent?.props?.['x-component'] === 'ProTable.Column',
+      propsSchema: createFieldSchema(DataTableSchema.Column),
+    },
+    designerLocales: DataTableColumnLocales,
+  },
 )
 
 ProTableDesigner.Resource = createResource({
