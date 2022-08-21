@@ -255,13 +255,14 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
             onClick: () => {
               if (
                 hasNodeByComponentPath(node, [
-                  'ProTable.Table',
                   '*',
                   'ProTable.Column',
                   'ProTable.Index',
                 ])
-              )
+              ) {
                 return
+              }
+
               const tableColumn = new TreeNode({
                 componentName: 'Field',
                 props: {
