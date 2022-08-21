@@ -20,12 +20,14 @@ import { ITableBatchActionsProps } from "../ProTable/TableBatchActions"
 import { DataTableColumnGroupLocales, DataTableColumnLocales, DataTableLocales } from "./TableDesigner/locales"
 import { DataTableSchema } from "./TableDesigner/schema"
 import { TableDesigner } from "./TableDesigner"
+import { IndexDesigner } from "./TableDesigner/IndexDesigner"
 
 export const ProTableDesigner: DnFC<IProTableProps> & {
   QueryForm?: React.FC<IQueryFormProps>,
   TableToolbar?: React.FC<ITableToolbarProps>,
   TableBatchActions?: React.FC<ITableBatchActionsProps>,
   Table?: React.FC<TableProps<any>>,
+  Index?: React.FC,
   //ColumnGroup?: React.FC<ColumnGroupProps<any>>,
   //Column?: React.FC<ColumnProps<any>>,
 } = observer((props: IProTableProps) => {
@@ -65,7 +67,7 @@ ProTableDesigner.QueryForm = QueryFormDesigner;
 ProTableDesigner.TableToolbar = TableToolbarDesigner;
 ProTableDesigner.TableBatchActions = TableBatchActionsDesigner;
 ProTableDesigner.Table = TableDesigner;
-//ProTableDesigner.ColumnGroup = ColumnGroupDesigner;
+ProTableDesigner.Index = IndexDesigner;
 //ProTableDesigner.Column = ColumnDesigner;
 
 ProTableDesigner.Behavior = createBehavior(
