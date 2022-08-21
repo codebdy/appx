@@ -17,19 +17,20 @@ import { FormGridLocales } from "../../form/FormGridDesigner/locales"
 import { TableToolbarDesigner } from "./TableToolbarDesigner"
 import { TableBatchActionsDesigner } from "./TableBatchActionsDesigner"
 import { ITableBatchActionsProps } from "../ProTable/TableBatchActions"
-import { TableDesigner } from "./TableDesigner"
 import { DataTableColumnLocales, DataTableLocales } from "./TableDesigner/locales"
 import { DataTableSchema } from "./TableDesigner/schema"
 import { ColumnProps } from "antd/lib/table"
 import { ArrayBase } from "@formily/antd"
-import { ColumnDesigner } from "./TableDesigner/ColumnDesigner"
+import { ColumnDesigner, ColumnGroupDesigner, TableDesigner } from "./TableDesigner"
+import { ColumnGroupProps } from "antd/lib/table/ColumnGroup"
 
 export const ProTableDesigner: DnFC<IProTableProps> & {
   QueryForm?: React.FC<IQueryFormProps>,
   TableToolbar?: React.FC<ITableToolbarProps>,
   TableBatchActions?: React.FC<ITableBatchActionsProps>,
   Table?: React.FC<TableProps<any>>,
-  //Column?: React.FC<ColumnProps<any>>,
+  ColumnGroup?: React.FC<ColumnGroupProps<any>>,
+  Column?: React.FC<ColumnProps<any>>,
 } = observer((props: IProTableProps) => {
   const {
     hasQueryForm = true,
@@ -67,7 +68,8 @@ ProTableDesigner.QueryForm = QueryFormDesigner;
 ProTableDesigner.TableToolbar = TableToolbarDesigner;
 ProTableDesigner.TableBatchActions = TableBatchActionsDesigner;
 ProTableDesigner.Table = TableDesigner;
-//ProTableDesigner.Column = ColumnDesigner;
+ProTableDesigner.ColumnGroup = ColumnGroupDesigner;
+ProTableDesigner.Column = ColumnDesigner;
 
 ArrayBase.mixin(ProTableDesigner)
 
