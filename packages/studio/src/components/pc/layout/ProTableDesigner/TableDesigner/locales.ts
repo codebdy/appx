@@ -121,3 +121,60 @@ export const DataTableColumnLocales = {
     },
   },
 }
+
+export const DataTableColumnGroupLocales = {
+  'zh-CN': {
+    title: '列分组',
+    settings: {
+      'x-component-props': {
+        title: '标题',
+        align: {
+          title: '内容对齐',
+          dataSource: ['左', '右', '居中'],
+        },
+        colSpan: '跨列',
+        width: '宽度',
+        fixed: {
+          title: '固定',
+          dataSource: ['左', '右', '无'],
+        },
+      },
+    },
+  },
+  'en-US': {
+    title: 'Column',
+    settings: {
+      'x-component-props': {
+        title: 'Title',
+        align: {
+          title: 'Align',
+          dataSource: ['Left', 'Right', 'Center'],
+        },
+        colSpan: 'Col Span',
+        width: 'Width',
+        fixed: {
+          title: 'Fixed',
+          dataSource: ['Left', 'Right', 'None'],
+        },
+      },
+    },
+  },
+  'ko-KR': {
+    title: '열',
+    settings: {
+      'x-component-props': {
+        title: '제목',
+        align: {
+          title: '정렬',
+          dataSource: ['왼쪽', '오른쪽', '가운데'],
+        },
+        colSpan: 'Col Span',
+        width: '너비',
+        fixed: {
+          title: '고정',
+          dataSource: ['왼쪽', '오른족', '없음'],
+        },
+      },
+    },
+  },
+}

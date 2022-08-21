@@ -12,15 +12,12 @@ import { ArrayBase } from '@formily/antd'
 import { observer } from '@formily/react'
 import cls from 'classnames'
 import {
-  createEnsureTypeItemsNode,
   findNodeByComponentPath,
   hasNodeByComponentPath,
-  queryNodesByComponentPath
 } from '../../../../common/shared'
 import { useDropTemplate } from "@designable/formily-antd/lib/hooks/useDropTemplate"
 import { LoadTemplate } from '@designable/formily-antd/lib/common/LoadTemplate'
 
-const ensureObjectItemsNode = createEnsureTypeItemsNode('object')
 
 const HeaderCell: React.FC = (props: any) => {
   return (
@@ -171,7 +168,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
   const renderColumnGroup = useCallback((node: TreeNode) => {
     const props = node.props?.['x-component-props'] || {}
     const children = node.children;
-    return (<Table.Column
+    return (<Table.ColumnGroup
       {...props}
       title={
         <div>
@@ -287,7 +284,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
                   type: 'void',
                   'x-component': 'ProTable.ColumnGroup',
                   'x-component-props': {
-                    title: `Title`,
+                    title: `Group title`,
                   },
                 },
               })

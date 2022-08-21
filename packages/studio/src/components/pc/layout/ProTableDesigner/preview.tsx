@@ -17,7 +17,7 @@ import { FormGridLocales } from "../../form/FormGridDesigner/locales"
 import { TableToolbarDesigner } from "./TableToolbarDesigner"
 import { TableBatchActionsDesigner } from "./TableBatchActionsDesigner"
 import { ITableBatchActionsProps } from "../ProTable/TableBatchActions"
-import { DataTableColumnLocales, DataTableLocales } from "./TableDesigner/locales"
+import { DataTableColumnGroupLocales, DataTableColumnLocales, DataTableLocales } from "./TableDesigner/locales"
 import { DataTableSchema } from "./TableDesigner/schema"
 import { TableDesigner } from "./TableDesigner"
 
@@ -153,9 +153,9 @@ ProTableDesigner.Behavior = createBehavior(
       allowDrop: (node) =>
         node.props['type'] === 'object' &&
         node.parent?.props?.['x-component'] === 'ProTable.Column',
-      propsSchema: createFieldSchema(DataTableSchema.Column),
+      propsSchema: createFieldSchema(DataTableSchema.ColumnGroup),
     },
-    designerLocales: DataTableColumnLocales,
+    designerLocales: DataTableColumnGroupLocales,
   },
 )
 
