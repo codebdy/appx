@@ -2,9 +2,11 @@ import React, { useCallback, useState } from 'react'
 import {
   observer,
 } from '@formily/react'
-import { Button, Modal } from 'antd';
+import { Button, Divider, Empty, Modal, Space } from 'antd';
 import { TextWidget } from '@designable/react';
 import "./style.less"
+import { ToolCollapse } from './ToolCollapse';
+import { DeleteOutlined, RedoOutlined, UndoOutlined } from '@ant-design/icons';
 
 export const ActionInput = observer((props: {}) => {
   //const tabs = useTabs()
@@ -42,49 +44,26 @@ export const ActionInput = observer((props: {}) => {
         <div className='action-input-model-content'>
           <div className="toolbox block-area right-border">
             <div className='toolbar bottom-border'>工具箱</div>
-            <div>
-              <div>
-                打开页面
-              </div>
-              <div>
-                关闭页面
-              </div>
-              <div>
-                打开对话框
-              </div>
-              <div>
-                关闭对话框
-              </div>
-              <div>
-                打开抽屉
-              </div>
-              <div>
-                关闭抽屉
-              </div>
-              <div>
-                确认框
-              </div>
-              <div>
-                成功消息
-              </div>
-              <div>
-                删除记录
-              </div>
-              <div>
-                更新记录
-              </div>
-              <div>
-                提交数据
-              </div>
+            <div style={{ overflow: "auto" }}>
+              <ToolCollapse />
             </div>
           </div>
           <div className="main-area block-area right-border">
-            <div className='toolbar bottom-border'>操作区</div>
+            <div className='toolbar bottom-border'>
+              <Space>
+                <Button shape='circle' type='text' size='small' icon={<UndoOutlined />} />
+                <Button shape='circle' type='text' size='small' disabled icon={<RedoOutlined />} />
+                <Divider type="vertical" />
+                <Button shape='circle' type='text' size='small' disabled icon={<DeleteOutlined />} />
+              </Space>
+            </div>
             <div></div>
           </div>
           <div className='property-box block-area'>
             <div className='toolbar bottom-border'>属性</div>
-            <div></div>
+            <div>
+              <Empty />
+            </div>
           </div>
         </div>
       </Modal>
