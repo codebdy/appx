@@ -40,7 +40,7 @@ export const ButtonSchema: ISchema = {
     icon:{
       type: 'string',
       'x-decorator': 'FormItem',
-      'x-component': 'Input',
+      'x-component': 'IconInput',
     },
     shape:{
       type: 'string',
