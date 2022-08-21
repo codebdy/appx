@@ -183,20 +183,18 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
       }
       dataIndex={node.id}
       className={`data-id:${node.id}`}
-      render={(value, record, key) => {
-        return (
-          <ArrayBase.Item key={key} index={key} record={null}>
-            {(children as any)?.length
-              ?
-              children?.map(child => {
-                return renderChild(child)
-              })
-              : 'Droppable'
-            }
-          </ArrayBase.Item>
-        )
-      }}
-    />)
+    >
+
+      {(children as any)?.length
+        ?
+        children?.map(child => {
+          return renderChild(child)
+        })
+        : 'Droppable'
+      }
+
+    </Table.ColumnGroup>
+    )
   }, []);
 
   const renderChild = useCallback((node: TreeNode) => {
@@ -223,31 +221,29 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
           ?
           <DroppableWidget />
           :
-          <ArrayBase disabled>
-            <Table
-              size="small"
-              bordered
-              {...props}
-              scroll={{ x: '100%' }}
-              className={cls('ant-formily-array-table', props.className)}
-              style={{ marginBottom: 10, ...props.style }}
-              rowKey={defaultRowKey}
-              dataSource={[{ id: '1' }]}
-              pagination={false}
-              components={{
-                header: {
-                  cell: HeaderCell,
-                },
-                body: {
-                  cell: BodyCell,
-                },
-              }}
-            >
-              {node.children?.map((node) => {
-                return renderChild(node);
-              })}
-            </Table>
-          </ArrayBase>
+          <Table
+            size="small"
+            bordered
+            {...props}
+            scroll={{ x: '100%' }}
+            className={cls('ant-formily-array-table', props.className)}
+            style={{ marginBottom: 10, ...props.style }}
+            rowKey={defaultRowKey}
+            dataSource={[{ id: '1' }]}
+            pagination={false}
+            components={{
+              header: {
+                cell: HeaderCell,
+              },
+              body: {
+                cell: BodyCell,
+              },
+            }}
+          >
+            {node.children?.map((node) => {
+              return renderChild(node);
+            })}
+          </Table>
       }
       <LoadTemplate
         actions={[
