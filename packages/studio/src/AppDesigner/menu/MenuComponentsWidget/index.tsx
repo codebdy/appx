@@ -1,20 +1,20 @@
 import { Collapse } from "antd"
-import { IPage, IPageCategory } from "../../../model";
 import React, { memo, useMemo } from "react"
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import { useTranslation } from "react-i18next";
 import { COLLAPSE_GROUP_ID, CUSTOMIZED_LINK_ID, DIVIDER_ID, HELPER_LIST_ID } from "../consts";
 import DraggableLabel from "./DraggableLabel";
 import PagesTree from "./PagesTree";
+import { useCategories } from "../../hooks/useCategories";
+import { usePages } from "../../hooks/usePages";
 const { Panel } = Collapse;
 
 const MenuComponentsWidget = memo((
   props: {
-    categories: IPageCategory[],
-    pages: IPage[]
   }
 ) => {
-  const { categories, pages } = props;
+  const categories = useCategories();
+  const pages = usePages();
   const { t } = useTranslation();
   const items = useMemo(() => [
     {

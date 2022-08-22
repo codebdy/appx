@@ -10,7 +10,7 @@ import { ViewPanel, WorkspacePanel, ToolbarPanel, ViewportPanel, SettingsPanel }
 import { convertMaterialsToComponents } from '../../widgets/MaterialWidget/model'
 import { materialStore } from '../../widgets/MaterialWidget/global'
 import { Workspace } from '../../containers'
-import { SettingsForm } from '../../../SettingsForm'
+import { SettingsForm } from '../../SettingsForm'
 import { Field } from '../../../components/common/Field'
 import { useTranslation } from "react-i18next";
 import { Spin } from "antd";

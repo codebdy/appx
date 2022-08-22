@@ -9,28 +9,28 @@ import { useAppViewKey } from '../../../shared/AppRoot/context';
 import CategoryLabel from './CategoryLabel';
 import PageLabel from './PageLabel';
 import { selectedPageIdState } from '../../recoil/atom';
-import { IPage, IPageCategory } from '../../../model';
 import { useGetPage } from '../../hooks/useGetPage';
 import { usePagesWithoutCategory } from '../../hooks/usePagesWithoutCategory';
 import { useGetCategoryPages } from '../../hooks/useGetCategoryPages';
+import { useCategories } from '../../hooks/useCategories';
+import { usePages } from '../../hooks/usePages';
 
 const { DirectoryTree } = Tree;
 
 const PageListWidget = memo((
   props: {
-    categories: IPageCategory[],
-    pages: IPage[]
   }
 ) => {
-  const { categories, pages } = props;
+  const categories = useCategories();
+  const pages = usePages();
   const key = useAppViewKey();
 
   const getPage = useGetPage(pages);
 
   // const getPageCategory = useGetPageCategory();
   const [selectedPageId, setSelectedPageId] = useRecoilState(selectedPageIdState(key));
-  const pagesWithoutCategory = usePagesWithoutCategory(pages, categories);
-  const getCategoryPages = useGetCategoryPages(pages);
+  const pagesWithoutCategory = usePagesWithoutCategory();
+  const getCategoryPages = useGetCategoryPages();
 
   const getTreeData = useCallback(() => {
     const dataNodes: DataNode[] = []

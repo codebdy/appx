@@ -32,7 +32,7 @@ query queryCategories($appUuid:String!, $device:String!){
 }
 `
 
-export function useCagegories() {
+export function useQueryCagegories() {
   const params = useAppParams();
 
   const { data, error, loading } = useQuery<IPageCategory>(

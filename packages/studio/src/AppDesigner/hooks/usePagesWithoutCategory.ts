@@ -1,7 +1,10 @@
 import { useMemo } from "react";
-import { IPage, IPageCategory } from "../../model";
+import { useCategories } from "./useCategories";
+import { usePages } from "./usePages";
 
-export function usePagesWithoutCategory(pages?: IPage[], categories?: IPageCategory[]) {
+export function usePagesWithoutCategory() {
+  const pages = usePages();
+  const categories = useCategories();
 
   const pagesWithoutCategory = useMemo(() => {
     const pgs = [];

@@ -1,4 +1,4 @@
-import { IApp, IPage, IPageCategory } from "../../../model";
+import { IApp } from "../../../model";
 import React, { memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { Workspace } from "../../containers";
@@ -15,11 +15,9 @@ import { Empty } from "antd";
 const MenuWorkSpace = memo((
   props: {
     app: IApp,
-    categories: IPageCategory[],
-    pages: IPage[]
   }
 ) => {
-  const { app, categories, pages } = props;
+  const { app } = props;
   const { t } = useTranslation();
   const key = useAppViewKey();
   const [selectedId, setSelectedId] = useRecoilState(
@@ -50,7 +48,7 @@ const MenuWorkSpace = memo((
         {
           selectedId
             ?
-            <MenuSettingsForm categories={categories} pages={pages} />
+            <MenuSettingsForm />
             :
             <Empty />
         }

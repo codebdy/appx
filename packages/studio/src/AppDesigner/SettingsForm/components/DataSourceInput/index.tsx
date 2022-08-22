@@ -2,8 +2,8 @@ import { Button, Form, Modal, Select, Space } from "antd";
 import React, { memo, useCallback, useEffect, useState } from "react";
 import { MonacoInput } from '@designable/react-settings-form'
 import "./style.less"
-import { useGetPackageEntities, usePackages } from "../../../datasource/hooks";
-import { IDataSource } from "../../../datasource";
+import { useGetPackageEntities, usePackages } from "../../../../datasource/hooks";
+import { IDataSource } from "../../../../datasource";
 import { PlayCircleOutlined } from "@ant-design/icons";
 import { TextWidget } from '@designable/react'
 

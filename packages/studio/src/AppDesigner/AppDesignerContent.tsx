@@ -1,5 +1,5 @@
 import 'antd/dist/antd.less'
-import React, { memo, useCallback, useMemo, useState } from 'react'
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import {
   createDesigner,
   Shortcut,
@@ -24,11 +24,13 @@ import { useShowError } from '../hooks/useShowError'
 import { Spin } from 'antd'
 import { useSelectedPageId } from './hooks/useSelectedPageId'
 import MenuDragRoot from './menu/MenuDragRoot'
-import { useAppParams } from '../shared/AppRoot/context'
-import { useCagegories } from './hooks/useCagegories'
-import { usePages } from './hooks/usePages'
+import { useAppParams, useAppViewKey } from '../shared/AppRoot/context'
+import { useQueryCagegories } from './hooks/useQueryCagegories'
+import { useQueryPages } from './hooks/useQueryPages'
 import { SettingOutlined } from '@ant-design/icons'
 import { useBuildMeta } from '../datasource/hooks'
+import { useSetRecoilState } from 'recoil'
+import { categoriesState, pagesState } from './recoil/atom'
 
 export enum DesignerRoutes {
   Pages = "pages",
@@ -39,12 +41,23 @@ export enum DesignerRoutes {
 
 const AppDesignerContent = memo(() => {
   const { app } = useAppParams();
+  const key = useAppViewKey()
   const [activeKey, setActiveKey] = useState<string>(DesignerRoutes.Pages);
   const { t } = useTranslation();
+  const setCategories = useSetRecoilState(categoriesState(key))
+  const setPages = useSetRecoilState(pagesState(key))
   const pageId = useSelectedPageId();
-  const { categories, loading, error } = useCagegories();
-  const { pages, loading: pagesLoading, error: pagesError } = usePages();
+  const { categories, loading, error } = useQueryCagegories();
+  const { pages, loading: pagesLoading, error: pagesError } = useQueryPages();
   const { error: metaError, loading: metaLoading } = useBuildMeta();
+
+  useEffect(() => {
+    setPages(pages || []);
+  }, [pages, setPages])
+
+  useEffect(() => {
+    setCategories(categories || []);
+  }, [categories, setCategories])
 
   useShowError(error || pagesError || metaError);
 
@@ -89,7 +102,7 @@ const AppDesignerContent = memo(() => {
                 key={DesignerRoutes.Pages}
                 title={t("Panels.Page")} icon="Page"
               >
-                <PageListWidget pages={pages || []} categories={categories || []} />
+                <PageListWidget />
               </CompositePanel.Item>
               <CompositePanel.Item
                 key={DesignerRoutes.Components}
@@ -112,7 +125,7 @@ const AppDesignerContent = memo(() => {
                     <path d="M912.051527 151.150632l-286.624817 780.499041c-5.753719 15.667798-23.118384 23.704707-38.786182 17.950989a30.220937 30.220937 0 0 1-19.305944-22.909364L498.23787 550.442426a30.220937 30.220937 0 0 0-24.265655-24.265655L97.723343 457.080057c-16.415729-3.014425-27.279412-18.766366-24.264987-35.182094a30.220937 30.220937 0 0 1 19.306612-22.910032L873.263342 112.363782c15.669134-5.753719 33.033799 2.28319 38.786849 17.951656a30.220937 30.220937 0 0 1 0 20.835194zM826.833582 205.907791a7.555234 7.555234 0 0 0-9.679684-9.650301l-573.559491 207.092476a7.555234 7.555234 0 0 0 1.149942 14.527205l297.554613 56.790594a7.555234 7.555234 0 0 1 6.020837 6.087616L603.515031 788.626754a7.555234 7.555234 0 0 0 14.549911 1.210044L826.83425 205.908459z" p-id="8853"></path>
                   </svg>
                 }>
-                <MenuComponentsWidget pages={pages || []} categories={categories || []} />
+                <MenuComponentsWidget />
               </CompositePanel.Item>
               <CompositePanel.Item
                 key="settings"
@@ -130,7 +143,7 @@ const AppDesignerContent = memo(() => {
 
             {
               activeKey === DesignerRoutes.Menu &&
-              <MenuWorkSpace app={app} pages={pages || []} categories={categories || []} />
+              <MenuWorkSpace app={app} />
             }
           </StudioPanel>
         </Designer >

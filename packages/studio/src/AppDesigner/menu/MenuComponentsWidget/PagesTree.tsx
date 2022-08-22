@@ -1,5 +1,4 @@
 import { Collapse } from 'antd';
-import { IPage, IPageCategory } from '../../../model';
 import React, { memo } from 'react';
 import DraggableLabel from './DraggableLabel';
 import { usePagesWithoutCategory } from '../../hooks/usePagesWithoutCategory';
@@ -7,17 +6,16 @@ import { useGetCategoryPages } from '../../hooks/useGetCategoryPages';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 import { OTHER_PAGES_ID, PAGE_LIST_ID } from '../consts';
 import { useParseLangMessage } from '../../../hooks/useParseLangMessage';
+import { useCategories } from '../../hooks/useCategories';
 const { Panel } = Collapse;
 
 const PagesTree = memo((
   props: {
-    categories: IPageCategory[],
-    pages: IPage[]
   }
 ) => {
-  const { categories, pages } = props;
-  const pagesWithoutCategory = usePagesWithoutCategory(pages, categories);
-  const getCategoryPage = useGetCategoryPages(pages);
+  const categories = useCategories();
+  const pagesWithoutCategory = usePagesWithoutCategory();
+  const getCategoryPage = useGetCategoryPages();
   const p = useParseLangMessage();
 
   return (

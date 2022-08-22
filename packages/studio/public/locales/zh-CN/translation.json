@@ -185,7 +185,6 @@
     "Title": "名称",
     "DropTip": "请把子菜单项拖放到此处",
     "Page": "页面",
-    "PleaseSelectPage": "请选择页面",
     "Link": "链接",
     "RouteParams": "路由参数"
   },
@@ -234,6 +233,9 @@
     "Toolbox": "工具箱",
     "Properties": "属性",
     "Custimized": "自定义代码"
+  },
+  "PageSelect":{
+    "PleaseSelectPage": "请选择页面"
   },
   "Lang": {
     "Title": "语言",

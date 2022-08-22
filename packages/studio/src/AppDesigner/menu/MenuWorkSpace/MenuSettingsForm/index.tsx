@@ -8,12 +8,13 @@ import { useMenuNode } from '../../hooks/useMenuNode';
 import { useSetMeta } from '../../hooks/useSetMeta';
 import { useAppViewKey } from '../../../../shared/AppRoot/context';
 import { MenuItemType } from '../../../../model/IMenuNode';
-import { IPage, IPageCategory } from '../../../../model';
 import { usePagesWithoutCategory } from '../../../hooks/usePagesWithoutCategory';
 import { useGetCategoryPages } from '../../../hooks/useGetCategoryPages';
 import { useGetPage } from '../../../hooks/useGetPage';
 import { MultiLangInput } from '../../../../components/pc/form/MultiLangInput';
 import { useParseLangMessage } from '../../../../hooks/useParseLangMessage';
+import { useCategories } from '../../../hooks/useCategories';
+import { usePages } from '../../../hooks/usePages';
 const { Option } = Select;
 const { TreeNode } = TreeSelect;
 
@@ -28,13 +29,12 @@ const handleAuthPointsChange = (value: string[]) => {
 
 const MenuSettingsForm = memo((
   props: {
-    categories: IPageCategory[],
-    pages: IPage[]
   }
 ) => {
-  const { categories, pages } = props;
-  const pagesWithoutCategory = usePagesWithoutCategory(pages, categories);
-  const getCategoryPages = useGetCategoryPages(pages);
+  const categories = useCategories();
+  const pages = usePages();
+  const pagesWithoutCategory = usePagesWithoutCategory();
+  const getCategoryPages = useGetCategoryPages();
   const getPge = useGetPage(pages);
 
   const { t } = useTranslation();

@@ -2,10 +2,10 @@ import { observer } from "@formily/reactive-react";
 import React, { useCallback } from "react";
 import "./style.less"
 import { Select } from 'antd';
-import { useCurrentEntity } from "../../../datasource/hooks/useCurrentEntity";
+import { useCurrentEntity } from "../../../../datasource/hooks/useCurrentEntity";
 import { TextWidget } from '@designable/react'
-import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
-import { FieldSourceType, IFieldSource } from "../../../datasource/model/IFieldSource";
+import { useParseLangMessage } from "../../../../hooks/useParseLangMessage";
+import { FieldSourceType, IFieldSource } from "../../../../datasource/model/IFieldSource";
 const { Option, OptGroup } = Select;
 
 export const FieldSourceInput = observer((
