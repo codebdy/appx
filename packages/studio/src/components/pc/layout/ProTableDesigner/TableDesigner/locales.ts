@@ -2,7 +2,7 @@ export const DataTableLocales = {
   'zh-CN': {
     title: '数据表格',
     addSortHandle: '添加排序',
-    addColumnGroup:"添加分组",
+    addColumnGroup: "添加分组",
     addColumn: '添加列',
     addIndex: '添加索引',
     addOperation: '添加操作',

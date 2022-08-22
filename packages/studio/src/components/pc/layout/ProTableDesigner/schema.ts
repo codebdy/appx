@@ -17,10 +17,13 @@ export const ProTableSchema: ISchema & {
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
     },
-    hasBatchActions:{
+    selectable:{
       type: 'boolean',
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
+      'x-component-props': {
+        defaultChecked: true,
+      },
     }
   },
 }

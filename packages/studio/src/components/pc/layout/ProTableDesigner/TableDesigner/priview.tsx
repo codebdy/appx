@@ -18,7 +18,7 @@ import {
 import { useDropTemplate } from "@designable/formily-antd/lib/hooks/useDropTemplate"
 import { LoadTemplate } from '@designable/formily-antd/lib/common/LoadTemplate'
 import { useParseLangMessage } from '../../../../../hooks/useParseLangMessage'
-
+import { ITableProps } from '../../ProTable/Table'
 
 const HeaderCell: React.FC = (props: any) => {
   return (
@@ -42,7 +42,8 @@ const BodyCell: React.FC = (props: any) => {
   )
 }
 
-export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
+export const TableDesigner: DnFC<ITableProps> = observer((props) => {
+  const { selectable, ...others } = props;
   const node = useTreeNode();
   const nodeId = useNodeIdProps();
   const p = useParseLangMessage();
@@ -219,7 +220,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
             <Table
               size="small"
               bordered
-              {...props}
+              {...others}
               scroll={{ x: '100%' }}
               className={cls('ant-formily-array-table', props.className)}
               style={{ marginBottom: 10, ...props.style }}
@@ -234,6 +235,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
                   cell: BodyCell,
                 },
               }}
+              rowSelection={selectable && {}}
             >
               {node.children?.map((node) => {
                 return renderChild(node);

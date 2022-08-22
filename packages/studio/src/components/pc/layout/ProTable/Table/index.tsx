@@ -1,4 +1,4 @@
-import { Button, Table, Tag } from 'antd';
+import { Button, Table, TableProps, Tag } from 'antd';
 import React, { memo, useMemo } from 'react';
 import { useProTableParams } from '../context';
 
@@ -103,12 +103,12 @@ const onChange = (pagination, filters, sorter, extra) => {
 
 // rowSelection object indicates the need for row selection
 
-export interface IQueryTableProps{
-
+export type ITableProps = TableProps<any> & {
+  selectable?: boolean,
 }
 
 export const DataTable = memo((
-  props:IQueryTableProps
+  props: ITableProps
 ) => {
   const { onSelectedChange } = useProTableParams();
   const rowSelection = useMemo(() => ({

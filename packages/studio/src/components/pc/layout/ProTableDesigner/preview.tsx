@@ -1,5 +1,5 @@
 import { observer } from "@formily/reactive-react"
-import { Card, TableProps } from "antd"
+import { Card } from "antd"
 import React from "react"
 import { IQueryFormProps } from "../ProTable/QueryForm"
 import { ITableToolbarProps } from "../ProTable/TableToolbar"
@@ -21,12 +21,13 @@ import { DataTableColumnGroupLocales, DataTableColumnLocales, DataTableLocales }
 import { DataTableSchema } from "./TableDesigner/schema"
 import { TableDesigner } from "./TableDesigner"
 import { IndexDesigner } from "./TableDesigner/IndexDesigner"
+import { ITableProps } from "../ProTable/Table"
 
 export const ProTableDesigner: DnFC<IProTableProps> & {
   QueryForm?: React.FC<IQueryFormProps>,
   TableToolbar?: React.FC<ITableToolbarProps>,
   TableBatchActions?: React.FC<ITableBatchActionsProps>,
-  Table?: React.FC<TableProps<any>>,
+  Table?: React.FC<ITableProps>,
   Index?: React.FC,
   //ColumnGroup?: React.FC<ColumnGroupProps<any>>,
   //Column?: React.FC<ColumnProps<any>>,
@@ -34,7 +35,7 @@ export const ProTableDesigner: DnFC<IProTableProps> & {
   const {
     hasQueryForm = true,
     hasToolbar = true,
-    hasBatchActions = true,
+    selectable = true,
     className,
     ...other
   } = props;
@@ -54,7 +55,7 @@ export const ProTableDesigner: DnFC<IProTableProps> & {
           hasToolbar && toolbar && <TreeNodeWidget node={toolbar} />
         }
         {
-          hasBatchActions && batchActions && <TreeNodeWidget node={batchActions} />
+          selectable && batchActions && <TreeNodeWidget node={batchActions} />
         }
 
         <TreeNodeWidget node={dataTable} />

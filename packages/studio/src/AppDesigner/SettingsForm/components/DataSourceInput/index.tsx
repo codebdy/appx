@@ -11,11 +11,12 @@ const { OptGroup, Option } = Select;
 
 export const DataSourceInput = memo((
   props: {
+    isSingle?: boolean,
     value?: IDataSource,
-    onChange?: (dataSource?: IDataSource) => void
+    onChange?: (dataSource?: IDataSource) => void,
   }
 ) => {
-  const { value, onChange } = props;
+  const { isSingle, value, onChange } = props;
   const [form] = Form.useForm();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const packages = usePackages();
