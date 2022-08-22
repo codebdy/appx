@@ -13,7 +13,6 @@ import { useGetPage } from '../../hooks/useGetPage';
 import { usePagesWithoutCategory } from '../../hooks/usePagesWithoutCategory';
 import { useGetCategoryPages } from '../../hooks/useGetCategoryPages';
 import { useCategories } from '../../hooks/useCategories';
-import { usePages } from '../../hooks/usePages';
 
 const { DirectoryTree } = Tree;
 
@@ -22,10 +21,9 @@ const PageListWidget = memo((
   }
 ) => {
   const categories = useCategories();
-  const pages = usePages();
   const key = useAppViewKey();
 
-  const getPage = useGetPage(pages);
+  const getPage = useGetPage();
 
   // const getPageCategory = useGetPageCategory();
   const [selectedPageId, setSelectedPageId] = useRecoilState(selectedPageIdState(key));

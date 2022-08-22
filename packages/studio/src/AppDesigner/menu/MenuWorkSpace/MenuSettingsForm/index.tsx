@@ -1,4 +1,4 @@
-import { Form, Input, Select, TreeSelect } from 'antd';
+import { Form, Input, Select } from 'antd';
 import IconInput from '../../../../shared/icon/IconInput';
 import React, { memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -8,15 +8,11 @@ import { useMenuNode } from '../../hooks/useMenuNode';
 import { useSetMeta } from '../../hooks/useSetMeta';
 import { useAppViewKey } from '../../../../shared/AppRoot/context';
 import { MenuItemType } from '../../../../model/IMenuNode';
-import { usePagesWithoutCategory } from '../../../hooks/usePagesWithoutCategory';
-import { useGetCategoryPages } from '../../../hooks/useGetCategoryPages';
 import { useGetPage } from '../../../hooks/useGetPage';
 import { MultiLangInput } from '../../../../components/pc/form/MultiLangInput';
-import { useParseLangMessage } from '../../../../hooks/useParseLangMessage';
-import { useCategories } from '../../../hooks/useCategories';
-import { usePages } from '../../../hooks/usePages';
+import { PageSelect } from '../../../SettingsForm/components/PageSelect';
+
 const { Option } = Select;
-const { TreeNode } = TreeSelect;
 
 const children: React.ReactNode[] = [];
 for (let i = 10; i < 36; i++) {
@@ -31,19 +27,13 @@ const MenuSettingsForm = memo((
   props: {
   }
 ) => {
-  const categories = useCategories();
-  const pages = usePages();
-  const pagesWithoutCategory = usePagesWithoutCategory();
-  const getCategoryPages = useGetCategoryPages();
-  const getPge = useGetPage(pages);
-
+  const getPge = useGetPage();
   const { t } = useTranslation();
   const key = useAppViewKey();
   const selectedId = useRecoilValue(navigationSelectedIdState(key));
   const node = useMenuNode(selectedId);
   const setMeta = useSetMeta();
   const [form] = Form.useForm()
-  const p = useParseLangMessage();
 
   useEffect(() => {
     form.setFieldsValue({
@@ -122,36 +112,7 @@ const MenuSettingsForm = memo((
               label={t("Menu.Page")}
               name="route.pageId"
             >
-              <TreeSelect
-                showSearch
-                style={{ width: '100%' }}
-                placeholder={t("Menu.PleaseSelectPage")}
-                allowClear={false}
-                treeDefaultExpandAll
-              >
-                {
-                  categories.map(category => {
-                    return (
-                      <TreeNode value={category.title} title={p(category.title)} selectable={false}>
-                        {
-                          getCategoryPages(category.id)?.map(page => {
-                            return (
-                              <TreeNode value={page.id} title={p(page.title)} />
-                            )
-                          })
-                        }
-                      </TreeNode>
-                    )
-                  })
-                }
-                {
-                  pagesWithoutCategory?.map(page => {
-                    return (
-                      <TreeNode value={page.id} title={p(page.title)} />
-                    )
-                  })
-                }
-              </TreeSelect>
+              <PageSelect />
             </Form.Item>
             <Form.Item
               label={t("Menu.RouteParams")}

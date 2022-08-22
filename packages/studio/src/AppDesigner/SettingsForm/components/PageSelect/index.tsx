@@ -1,26 +1,24 @@
-import { Select, TreeSelect } from "antd";
+import { TreeSelect } from "antd";
 import { useGetCategoryPages } from "../../../../AppDesigner/hooks/useGetCategoryPages";
 import { useParseLangMessage } from "../../../../hooks/useParseLangMessage";
 import React from "react";
 import { memo } from "react"
 import { useTranslation } from "react-i18next"
 import { useCategories } from "../../../hooks/useCategories";
-import { usePages } from "../../../hooks/usePages";
-import { useGetPage } from "../../../hooks/useGetPage";
-const { Option } = Select;
+import { usePagesWithoutCategory } from "../../../hooks/usePagesWithoutCategory";
+import { ID } from "../../../../shared";
 const { TreeNode } = TreeSelect;
 
 export const PageSelect = memo((
   props: {
-    pageUuid?: string,
-    onChange?: (pageUuid?: string) => void,
+    value?: ID,
+    onChange?: (pageId?: ID) => void,
   }
 ) => {
-  const {pageUuid, onChange} = props;
+  const { value, onChange } = props;
   const categories = useCategories();
-  const pages = usePages();
   const getCategoryPages = useGetCategoryPages();
-  const getPge = useGetPage(pages);
+  const pagesWithoutCategory = usePagesWithoutCategory();
 
   const { t } = useTranslation();
   const p = useParseLangMessage();
@@ -32,6 +30,8 @@ export const PageSelect = memo((
       placeholder={t("PageSelect.PleaseSelectPage")}
       allowClear={false}
       treeDefaultExpandAll
+      value={value}
+      onChange={onChange}
     >
       {
         categories.map(category => {

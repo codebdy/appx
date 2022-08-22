@@ -86,7 +86,7 @@ const AppDesignerContent = memo(() => {
 
   return (
     <Spin style={{ height: "100vh" }} spinning={loading || pagesLoading || metaLoading}>
-      <MenuDragRoot pages={pages || []}>
+      <MenuDragRoot>
         <Designer engine={engine}>
           <StudioPanel logo={<NavigationWidget app={app} />}
             actions={

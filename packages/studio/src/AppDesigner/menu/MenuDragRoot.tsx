@@ -22,11 +22,9 @@ const rootMeta: IMenuItem = { type: MenuItemType.Group, uuid: createUuid(), };
 
 const MenuDragRoot = memo((
   props: {
-    pages: IPage[],
     children: React.ReactNode
   }
 ) => {
-  const { pages } = props;
   const key = useAppViewKey();
   const setRootNode = useSetRecoilState(navigationRootNodeState(key));
   const setIsDirty = useSetRecoilState(isNavigationDirtyState(key));
@@ -34,7 +32,7 @@ const MenuDragRoot = memo((
   const setNodes = useSetRecoilState(navigationNodesState(key));
   const { t } = useTranslation();
   const { menu, error } = useMenu();
-  const getPage = useGetPage(pages);
+  const getPage = useGetPage();
   useShowError(error);
 
   const navigationItems: IMenuItem[] | undefined | null = menu?.schemaJson?.items;
