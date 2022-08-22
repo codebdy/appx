@@ -18,6 +18,11 @@ export const ActionPropertyBox = memo((
   const [form] = Form.useForm();
 
   useEffect(()=>{
+    form.resetFields();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [action.uuid])
+
+  useEffect(()=>{
     form.setFieldsValue({title:action.title, ...action.payload})
   }, [action.payload, action.title, action.uuid, form])
 

@@ -33,8 +33,8 @@ export const ActionInput = observer((props: {
     setUndoList([]);
     setRedoList([]);
     setSelectedUuid(undefined);
-    setActions([]);
-  }, []);
+    setActions(value || []);
+  }, [value]);
 
   const backup = useCallback(() => {
     setRedoList([])
@@ -44,8 +44,8 @@ export const ActionInput = observer((props: {
   )
 
   useEffect(() => {
-    setActions(value || [])
-  }, [value])
+    reset()
+  }, [reset])
 
   const { t } = useTranslation();
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -61,8 +61,7 @@ export const ActionInput = observer((props: {
   const handleOk = useCallback(() => {
     onChange && onChange(actions);
     setIsModalVisible(false);
-    reset();
-  }, [actions, onChange, reset]);
+  }, [actions, onChange]);
 
   const insertAt = useCallback((action: IAppxAction, index: number) => {
     backup();
@@ -143,7 +142,7 @@ export const ActionInput = observer((props: {
     setActions(snapshot.actions);
     setSelectedUuid(snapshot.selectedUuid);
   }, [actions, redoList, selectedUuid]);
-  
+
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
       <Button
