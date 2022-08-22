@@ -61,6 +61,12 @@ export const ActionInput = observer((props: {
     setActions(newActions);
   }, [actions, backup])
 
+  const remove = useCallback(() => {
+    backup();
+    setActions(actions => actions.filter(action => action.uuid !== selectedUuid))
+    setSelectedUuid(undefined);
+  }, [backup, selectedUuid])
+
   const handleDragEnd = useCallback(
     (result: DropResult) => {
       const { destination, source, draggableId } = result;
@@ -136,6 +142,7 @@ export const ActionInput = observer((props: {
                   size='small'
                   disabled={!selectedUuid}
                   icon={<DeleteOutlined />}
+                  onClick={remove}
                 />
               </Space>
             </div>
