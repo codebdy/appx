@@ -10,19 +10,19 @@ import { DeleteOutlined, RedoOutlined, UndoOutlined } from '@ant-design/icons';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import { useTranslation } from 'react-i18next';
 import { ActionsView } from './ActionsView';
-import { IAction } from '@formily/reactive';
+import { IAppxAction } from '../../../shared/action/model';
 
 export interface IActionsSnapshot {
-  actions: IAction[],
+  actions: IAppxAction[],
   selectedUuid?: string,
 }
 
 export const ActionInput = observer((props: {
-  value?: IAction[],
-  onChange?: (actions: IAction) => void
+  value?: IAppxAction[],
+  onChange?: (actions: IAppxAction) => void
 }) => {
   const { value, onChange } = props;
-  const [actions, setActions] = useState<IAction[]>([]);
+  const [actions, setActions] = useState<IAppxAction[]>([]);
   const [selectedUuid, setSelectedUuid] = useState<string>();
   const [undoList, setUndoList] = useState<IActionsSnapshot[]>([]);
   const [redoList, setRedoList] = useState<IActionsSnapshot[]>([]);
@@ -45,14 +45,18 @@ export const ActionInput = observer((props: {
     setIsModalVisible(false);
   }, []);
 
-  const onDragEnd = useCallback(
+  const handleDragEnd = useCallback(
     (result: DropResult) => {
     },
     []
   )
 
+  const handleSelect = useCallback((selectedId: string) => {
+    setSelectedUuid(selectedId)
+  }, [])
+
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
+    <DragDropContext onDragEnd={handleDragEnd}>
       <Button
         block
         onClick={showModal}
@@ -109,7 +113,11 @@ export const ActionInput = observer((props: {
               alignItems: "center",
               overflow: "auto"
             }}>
-              <ActionsView />
+              <ActionsView
+                actions={actions}
+                selectedId = {selectedUuid}
+                onSelected={handleSelect}
+              />
             </div>
           </div>
           <div className='property-box block-area'>

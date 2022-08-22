@@ -32,8 +32,9 @@ export interface ISaveDataAction {
 
 }
 
-export interface IAction {
+export interface IAppxAction {
   uuid: string,
+  title: string,
   actionType: ActionType,
   payload?: IOpenPageAction | ISaveDataAction,
 }
