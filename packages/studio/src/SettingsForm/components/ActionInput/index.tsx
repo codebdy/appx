@@ -85,6 +85,7 @@ export const ActionInput = observer((props: {
 
         if (draggedNode) {
           insertAt(draggedNode, destination.index);
+          setSelectedUuid(draggedNode.uuid);
         }
       }
     },
