@@ -79,10 +79,27 @@ export const ActionInput = observer((props: {
           <div className="main-area block-area right-border">
             <div className='toolbar bottom-border'>
               <Space>
-                <Button shape='circle' type='text' size='small' icon={<UndoOutlined />} />
-                <Button shape='circle' type='text' size='small' disabled icon={<RedoOutlined />} />
+                <Button
+                  shape='circle'
+                  type='text'
+                  size='small'
+                  disabled={undoList.length === 0}
+                  icon={<UndoOutlined />}
+                />
+                <Button
+                  shape='circle'
+                  type='text' size='small'
+                  disabled={redoList.length === 0}
+                  icon={<RedoOutlined />}
+                />
                 <Divider type="vertical" />
-                <Button shape='circle' type='text' size='small' disabled icon={<DeleteOutlined />} />
+                <Button
+                  shape='circle'
+                  type='text'
+                  size='small'
+                  disabled={!selectedUuid}
+                  icon={<DeleteOutlined />}
+                />
               </Space>
             </div>
             <div style={{
