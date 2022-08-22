@@ -1,3 +1,5 @@
+import { ID } from "..";
+
 export enum Events {
   onClick = "onClick"
 }
@@ -25,7 +27,7 @@ export enum OpenPageType {
 
 export interface IOpenPageAction {
   openType: OpenPageType,
-  pageUuid?: string,
+  pageId?: ID,
 }
 
 export interface ISaveDataAction {

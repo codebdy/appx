@@ -10,7 +10,7 @@ import { DeleteOutlined, RedoOutlined, UndoOutlined } from '@ant-design/icons';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import { useTranslation } from 'react-i18next';
 import { ActionsView } from './ActionsView';
-import { IAppxAction } from '../../../../shared/action/model';
+import { ActionType, IAppxAction, OpenPageType } from '../../../../shared/action/model';
 import { createUuid } from '../../../../shared';
 import { ActionPropertyBox } from './ActionPropertyBox';
 
@@ -79,6 +79,12 @@ export const ActionInput = observer((props: {
             actionType: draggableId as any,
             title: t("Action." + draggableId),
           };
+
+          if (draggableId === ActionType.OpenPage) {
+            draggedNode.payload = {
+              openType: OpenPageType.RouteTo,
+            }
+          }
         } else {
           draggedNode = actions.find(action => action.uuid === draggableId);
         }
