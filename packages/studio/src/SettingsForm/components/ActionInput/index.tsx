@@ -7,6 +7,7 @@ import { TextWidget } from '@designable/react';
 import "./style.less"
 import { ToolCollapse } from './ToolCollapse';
 import { DeleteOutlined, RedoOutlined, UndoOutlined } from '@ant-design/icons';
+import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
 export const ActionInput = observer((props: {}) => {
   //const tabs = useTabs()
@@ -23,8 +24,14 @@ export const ActionInput = observer((props: {}) => {
     setIsModalVisible(false);
   }, []);
 
+  const onDragEnd = useCallback(
+    (result: DropResult) => {
+    },
+    []
+  )
+
   return (
-    <>
+    <DragDropContext onDragEnd={onDragEnd}>
       <Button
         block
         onClick={showModal}
@@ -67,6 +74,6 @@ export const ActionInput = observer((props: {}) => {
           </div>
         </div>
       </Modal>
-    </>
+    </DragDropContext>
   )
 }) 

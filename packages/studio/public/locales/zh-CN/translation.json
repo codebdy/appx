@@ -173,7 +173,7 @@
     "Styles": "样式",
     "Display": "展示",
     "Actions": "动作",
-    "ConfigDataSource":"配置数据源"
+    "ConfigDataSource": "配置数据源"
   },
   "Menu": {
     "HelpItems": "辅助项",
@@ -209,12 +209,27 @@
     "LangResourcesEdit": "编辑语言资源",
     "NewLangResource": "新建语言资源",
     "LangInput": "多语言输入",
-    "InputResourceName":"请输入资源名称",
+    "InputResourceName": "请输入资源名称",
     "Resource": "资源",
     "Inline": "内联"
   },
   "Config": {
     "Other": "其他配置"
+  },
+  "Action": {
+    "OpenPage": "打开页面",
+    "ClosePage": "关闭页面",
+    "OpenDialog": "打开对话框",
+    "CloseDialog": "关闭对话框",
+    "OpenDrawer": "打开抽屉",
+    "CloseDrawer": "关闭抽屉",
+    "Confirm": "确认框",
+    "SuccessMessage": "成功提醒",
+    "DeleteRecord": "删除记录",
+    "UpdateRecord": "更新记录",
+    "SaveData": "保存数据",
+    "DataActions": "数据操作",
+    "UiActions": "界面操作"
   },
   "Lang": {
     "Title": "语言",

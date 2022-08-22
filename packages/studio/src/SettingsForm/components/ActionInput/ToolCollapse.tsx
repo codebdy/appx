@@ -1,11 +1,71 @@
 import { Collapse } from 'antd';
-import React, { memo } from 'react';
+import { ActionType } from '../../../shared/action/model';
+import React, { memo, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Draggable, Droppable } from 'react-beautiful-dnd';
+import DraggableLabel from './DraggableLabel';
 const { Panel } = Collapse;
 
+
+export const DATA_ACTIONS_LIST = "DATA_ACTIONS_LIST";
+export const UI_ACTIONS_LIST = "UI_ACTIONS_LIST";
+
+const enumToLangKey = (actionType: ActionType) => {
+  return "Action." + actionType;
+}
+
 export const ToolCollapse = memo(() => {
-  const onChange = (key) => {
-    console.log(key);
-  };
+  const { t } = useTranslation();
+  const dataItems = useMemo(() => [
+    {
+      id: ActionType.SaveData,
+      title: t(enumToLangKey(ActionType.SaveData)),
+    },
+    {
+      id: ActionType.UpdateRecord,
+      title: t(enumToLangKey(ActionType.UpdateRecord)),
+    },
+    {
+      id: ActionType.DeleteRecord,
+      title: t(enumToLangKey(ActionType.DeleteRecord)),
+    },
+  ], [t]);
+
+  const uiItems = useMemo(() => [
+    {
+      id: ActionType.OpenPage,
+      title: t(enumToLangKey(ActionType.OpenPage)),
+    },
+    {
+      id: ActionType.ClosePage,
+      title: t(enumToLangKey(ActionType.ClosePage)),
+    },
+    {
+      id: ActionType.OpenDialog,
+      title: t(enumToLangKey(ActionType.OpenDialog)),
+    },
+    {
+      id: ActionType.CloseDialog,
+      title: t(enumToLangKey(ActionType.CloseDialog)),
+    },
+    {
+      id: ActionType.OpenDrawer,
+      title: t(enumToLangKey(ActionType.OpenDrawer)),
+    },
+    {
+      id: ActionType.CloseDrawer,
+      title: t(enumToLangKey(ActionType.CloseDrawer)),
+    },
+    {
+      id: ActionType.Confirm,
+      title: t(enumToLangKey(ActionType.Confirm)),
+    },
+    {
+      id: ActionType.SuccessMessage,
+      title: t(enumToLangKey(ActionType.SuccessMessage)),
+    },
+  ], [t]);
+
 
   return (
     <Collapse
@@ -13,44 +73,72 @@ export const ToolCollapse = memo(() => {
       ghost
       accordion
       bordered={false}
-      onChange={onChange}
     >
-      <Panel header="数据操作" key="1">
-        <div>
-          删除记录
-        </div>
-        <div>
-          更新记录
-        </div>
-        <div>
-          提交数据
-        </div>
+      <Panel header={t("Action.DataActions")} key="1">
+        <Droppable droppableId={DATA_ACTIONS_LIST} isDropDisabled={true}>
+          {(provided) => (
+            <div ref={provided.innerRef}>
+              {dataItems.map((item, index) => {
+                return (
+                  <Draggable key={item.id} draggableId={item.id} index={index}>
+                    {(provided, snapshot) => (
+                      <>
+                        <DraggableLabel
+                          title={item.title}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          float={snapshot.isDragging}
+                          ref={provided.innerRef}
+                        />
+                        {snapshot.isDragging && (
+                          <DraggableLabel
+                            title={item.title}
+                            fixed
+                          />
+                        )}
+                      </>
+                    )}
+                  </Draggable>
+                );
+              })}
+              <div style={{ display: "none" }}>{provided.placeholder}</div>
+            </div>
+          )}
+
+        </Droppable>
       </Panel>
-      <Panel header="页面操作" key="2">
-        <div>
-          打开页面
-        </div>
-        <div>
-          关闭页面
-        </div>
-        <div>
-          打开对话框
-        </div>
-        <div>
-          关闭对话框
-        </div>
-        <div>
-          打开抽屉
-        </div>
-        <div>
-          关闭抽屉
-        </div>
-        <div>
-          确认框
-        </div>
-        <div>
-          成功消息
-        </div>
+      <Panel header={t("Action.UiActions")} key="2">
+        <Droppable droppableId={UI_ACTIONS_LIST} isDropDisabled={true}>
+          {(provided) => (
+            <div ref={provided.innerRef}>
+              {uiItems.map((item, index) => {
+                return (
+                  <Draggable key={item.id} draggableId={item.id} index={index}>
+                    {(provided, snapshot) => (
+                      <>
+                        <DraggableLabel
+                          title={item.title}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          float={snapshot.isDragging}
+                          ref={provided.innerRef}
+                        />
+                        {snapshot.isDragging && (
+                          <DraggableLabel
+                            title={item.title}
+                            fixed
+                          />
+                        )}
+                      </>
+                    )}
+                  </Draggable>
+                );
+              })}
+              <div style={{ display: "none" }}>{provided.placeholder}</div>
+            </div>
+          )}
+
+        </Droppable>
       </Panel>
     </Collapse>
   );

@@ -11,7 +11,7 @@ export enum ActionType {
   CloseDrawer = "CloseDrawer",
   Confirm = "Confirm",
   SuccessMessage = "SuccessMessage",
-  DeleteRecord = "DeltedRecord",
+  DeleteRecord = "DeleteRecord",
   UpdateRecord = "UpdateRecord",
   SaveData = "SaveData"
 }
