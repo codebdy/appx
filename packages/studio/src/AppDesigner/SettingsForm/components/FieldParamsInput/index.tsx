@@ -35,7 +35,7 @@ export const FieldParamsInput = observer(() => {
         <div
           style={{
             flex: 1,
-            marginRight: "8px",
+            //marginRight: "8px",
             minHeight: 300,
             height: "calc(100vh - 400px)"
           }}
@@ -50,8 +50,7 @@ export const FieldParamsInput = observer(() => {
                 enabled: false,
               }
             }}
-            //value={transformToMarkupSchemaCode(props.tree)}
-            language="graphql"
+            language="json"
           />
         </div>
       </Modal>
