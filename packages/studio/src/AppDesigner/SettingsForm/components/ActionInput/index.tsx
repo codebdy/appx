@@ -47,13 +47,13 @@ export const ActionInput = observer((props: {
   }, []);
 
   const handleCancel = useCallback(() => {
+    setIsModalVisible(false);
+  }, []);
+
+  const handleOk = useCallback(() => {
     onChange && onChange(actions);
     setIsModalVisible(false);
   }, [actions, onChange]);
-
-  const handleOk = useCallback(() => {
-    setIsModalVisible(false);
-  }, []);
 
   const insertAt = useCallback((action: IAppxAction, index: number) => {
     backup();
@@ -105,6 +105,11 @@ export const ActionInput = observer((props: {
   const selectedAction = useMemo(() => {
     return actions.find(action => action.uuid === selectedUuid)
   }, [actions, selectedUuid])
+
+  const handleActionChange = useCallback((action: IAppxAction) => {
+    backup();
+    setActions(actions => actions.map(act => act.uuid === action.uuid ? action : act))
+  }, [backup]);
 
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
@@ -178,7 +183,7 @@ export const ActionInput = observer((props: {
               {
                 selectedUuid
                   ?
-                  <ActionPropertyBox action={selectedAction} />
+                  <ActionPropertyBox action={selectedAction} onChange={handleActionChange} />
                   :
                   <Empty />
               }

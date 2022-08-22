@@ -21,9 +21,9 @@ export const ActionPropertyBox = memo((
     form.setFieldsValue({title:action.title, ...action.payload})
   }, [action.payload, action.title, action.uuid, form])
 
-  const handleChange = useCallback((fromValues) => {
+  const handleChange = useCallback((changeValues, fromValues) => {
     const {title, ...payload} = fromValues;
-    onChange({...action, title, payload})
+    onChange && onChange({...action, title, payload})
   }, [action, onChange])
 
   const ActionPannel = pannels[action.actionType]
@@ -36,7 +36,7 @@ export const ActionPropertyBox = memo((
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 16 }}
       autoComplete="off"
-      onChange={handleChange}
+      onValuesChange={handleChange}
     >
       {
         ActionPannel &&

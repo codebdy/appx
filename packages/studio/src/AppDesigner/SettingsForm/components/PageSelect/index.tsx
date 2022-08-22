@@ -1,7 +1,7 @@
 import { TreeSelect } from "antd";
 import { useGetCategoryPages } from "../../../../AppDesigner/hooks/useGetCategoryPages";
 import { useParseLangMessage } from "../../../../hooks/useParseLangMessage";
-import React from "react";
+import React, { useCallback } from "react";
 import { memo } from "react"
 import { useTranslation } from "react-i18next"
 import { useCategories } from "../../../hooks/useCategories";
@@ -12,7 +12,7 @@ const { TreeNode } = TreeSelect;
 export const PageSelect = memo((
   props: {
     value?: ID,
-    onChange?: (pageId?: ID) => void,
+    onChange?: (value?: ID) => void,
   }
 ) => {
   const { value, onChange } = props;
@@ -22,6 +22,9 @@ export const PageSelect = memo((
 
   const { t } = useTranslation();
   const p = useParseLangMessage();
+  const handleChange = useCallback((value?: string) => {
+    onChange && onChange(value)
+  }, [onChange])
 
   return (
     <TreeSelect
@@ -31,7 +34,7 @@ export const PageSelect = memo((
       allowClear={false}
       treeDefaultExpandAll
       value={value}
-      onChange={onChange}
+      onChange={handleChange}
     >
       {
         categories.map(category => {
