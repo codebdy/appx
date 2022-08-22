@@ -57,6 +57,7 @@ export const DataSourceInput = memo((
         className="config-datasource-modal"
         width={900}
         visible={isModalVisible}
+        onCancel={handleCancel}
         footer={
           <div className="footer-toolbar">
             <Button icon={<PlayCircleOutlined />}>
