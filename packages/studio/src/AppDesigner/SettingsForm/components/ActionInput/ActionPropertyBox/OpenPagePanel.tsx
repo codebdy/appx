@@ -22,13 +22,13 @@ export const OpenPagePanel = memo(() => {
 
       <Form.Item
         label={t("Action.Page")}
-        name="payload.pageId"
+        name="pageId"
       >
         <PageSelect />
       </Form.Item>
       <Form.Item
         label={t("Action.OpenType")}
-        name="payload.openType"
+        name="openType"
       >
         <Select>
           <Option value={OpenPageType.RouteTo}>{t("Action." + OpenPageType.RouteTo)}</Option>

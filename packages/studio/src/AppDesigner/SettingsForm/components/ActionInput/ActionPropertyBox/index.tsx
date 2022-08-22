@@ -1,5 +1,5 @@
 import { ActionType, IAppxAction } from "../../../../../shared/action/model";
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { memo } from "react";
 import { Form } from "antd";
 import { OpenPagePanel } from "./OpenPagePanel";
@@ -17,9 +17,14 @@ export const ActionPropertyBox = memo((
   const { action, onChange } = props;
   const [form] = Form.useForm();
 
-  const handleChange = useCallback((fromValues) => {
+  useEffect(()=>{
+    form.setFieldsValue({title:action.title, ...action.payload})
+  }, [action.payload, action.title, action.uuid, form])
 
-  }, [])
+  const handleChange = useCallback((fromValues) => {
+    const {title, ...payload} = fromValues;
+    onChange({...action, title, payload})
+  }, [action, onChange])
 
   const ActionPannel = pannels[action.actionType]
 
