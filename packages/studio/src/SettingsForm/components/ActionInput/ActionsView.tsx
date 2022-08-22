@@ -3,6 +3,7 @@ import React from "react"
 import { memo } from "react"
 import { Draggable, Droppable } from "react-beautiful-dnd"
 import DraggableLabel from "./DraggableLabel"
+import { useParseLangMessage } from "../../../hooks/useParseLangMessage"
 
 export const ACTIONS_VIEW_ID = "ACTIONS_VIEW_ID"
 
@@ -14,6 +15,8 @@ export const ActionsView = memo((
   }
 ) => {
   const { actions, selectedId, onSelect } = props;
+
+  const p = useParseLangMessage();
 
   return (
     <Droppable droppableId={ACTIONS_VIEW_ID} >
@@ -34,7 +37,7 @@ export const ActionsView = memo((
                 {(provided, snapshot) => (
                   <DraggableLabel
                     uuid={action.uuid}
-                    title={action.title}
+                    title={p(action.title)}
                     className={selectedId === action.uuid ? "selected" : undefined}
                     onSelect={onSelect}
                     {...provided.draggableProps}
