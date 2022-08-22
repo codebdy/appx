@@ -8,9 +8,11 @@ import "./style.less"
 import { ToolCollapse } from './ToolCollapse';
 import { DeleteOutlined, RedoOutlined, UndoOutlined } from '@ant-design/icons';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
+import { useTranslation } from 'react-i18next';
 
 export const ActionInput = observer((props: {}) => {
   //const tabs = useTabs()
+  const { t } = useTranslation();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const showModal = useCallback(() => {
     setIsModalVisible(true);
@@ -50,7 +52,7 @@ export const ActionInput = observer((props: {}) => {
       >
         <div className='action-input-model-content'>
           <div className="toolbox block-area right-border">
-            <div className='toolbar bottom-border'>工具箱</div>
+            <div className='toolbar bottom-border'>{t("Action.Toolbox")}</div>
             <div style={{ overflow: "auto" }}>
               <ToolCollapse />
             </div>
@@ -67,8 +69,8 @@ export const ActionInput = observer((props: {}) => {
             <div></div>
           </div>
           <div className='property-box block-area'>
-            <div className='toolbar bottom-border'>属性</div>
-            <div>
+            <div className='toolbar bottom-border'>{t("Action.Properties")}</div>
+            <div style={{ padding: 16 }}>
               <Empty />
             </div>
           </div>

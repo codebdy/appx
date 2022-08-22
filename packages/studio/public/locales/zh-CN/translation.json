@@ -229,7 +229,9 @@
     "UpdateRecord": "更新记录",
     "SaveData": "保存数据",
     "DataActions": "数据操作",
-    "UiActions": "界面操作"
+    "UiActions": "界面操作",
+    "Toolbox": "工具箱",
+    "Properties": "属性"
   },
   "Lang": {
     "Title": "语言",
