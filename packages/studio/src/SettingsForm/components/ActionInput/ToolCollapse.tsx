@@ -29,6 +29,10 @@ export const ToolCollapse = memo(() => {
       id: ActionType.DeleteRecord,
       title: t(enumToLangKey(ActionType.DeleteRecord)),
     },
+    {
+      id: ActionType.Custimized,
+      title: t(enumToLangKey(ActionType.Custimized)),
+    },
   ], [t]);
 
   const uiItems = useMemo(() => [

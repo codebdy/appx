@@ -13,7 +13,8 @@ export enum ActionType {
   SuccessMessage = "SuccessMessage",
   DeleteRecord = "DeleteRecord",
   UpdateRecord = "UpdateRecord",
-  SaveData = "SaveData"
+  SaveData = "SaveData",
+  Custimized = "Custimized"
 }
 
 export enum OpenPageType {
