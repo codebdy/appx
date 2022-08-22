@@ -28,7 +28,12 @@ export interface IOpenPageAction {
   pageUuid?: string,
 }
 
+export interface ISaveDataAction {
+
+}
+
 export interface IAction {
+  uuid: string,
   actionType: ActionType,
-  payload?: IOpenPageAction,
+  payload?: IOpenPageAction | ISaveDataAction,
 }

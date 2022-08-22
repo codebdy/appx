@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import {
   observer,
 } from '@formily/react'
@@ -10,9 +10,27 @@ import { DeleteOutlined, RedoOutlined, UndoOutlined } from '@ant-design/icons';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import { useTranslation } from 'react-i18next';
 import { ActionsView } from './ActionsView';
+import { IAction } from '@formily/reactive';
 
-export const ActionInput = observer((props: {}) => {
-  //const tabs = useTabs()
+export interface IActionsSnapshot {
+  actions: IAction[],
+  selectedUuid?: string,
+}
+
+export const ActionInput = observer((props: {
+  value?: IAction[],
+  onChange?: (actions: IAction) => void
+}) => {
+  const { value, onChange } = props;
+  const [actions, setActions] = useState<IAction[]>([]);
+  const [selectedUuid, setSelectedUuid] = useState<string>();
+  const [undoList, setUndoList] = useState<IActionsSnapshot[]>([]);
+  const [redoList, setRedoList] = useState<IActionsSnapshot[]>([]);
+
+  useEffect(() => {
+    setActions(value || [])
+  }, [value])
+
   const { t } = useTranslation();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const showModal = useCallback(() => {

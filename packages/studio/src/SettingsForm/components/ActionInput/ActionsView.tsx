@@ -18,7 +18,6 @@ export const ActionsView = memo(() => {
               : undefined,
           }}
         >
-
           {provided.placeholder}
         </div>
       )}
