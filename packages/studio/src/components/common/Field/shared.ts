@@ -5,6 +5,15 @@ import {
 } from '@designable/formily-setters'
 import { AllSchemas } from '@designable/formily-antd/lib/schemas'
 
+export interface IFieldOptions {
+  decorator?: ISchema,
+  actions?: string[],
+  hasDataBindSource?: boolean,
+  isDataField?: boolean,
+  hasPropTitle?: boolean,
+  noDisplayTab?: boolean,
+}
+
 export const createStyleSchemaTab = () => {
 
   return {
@@ -50,10 +59,8 @@ export const createStyleSchemaTab = () => {
   }
 }
 
-export const createDisplaySchemaTab = (
-  hasDataBindSource?: boolean,
-  isDataField?: boolean,
-) => {
+export const createDisplaySchemaTab = (options?: IFieldOptions) => {
+  const { hasDataBindSource, isDataField, hasPropTitle } = options || {}
   const dataBindSource =
     hasDataBindSource
       ?
@@ -115,7 +122,7 @@ export const createDisplaySchemaTab = (
     :
     {}
 
-  const datdFieids = isDataField ?
+  const dataFieids = isDataField ?
     {
       default: {
         'x-decorator': 'FormItem',
@@ -137,9 +144,30 @@ export const createDisplaySchemaTab = (
       },
     }
     :
-    {
+    {}
 
+  const propTitle = hasPropTitle ?
+    {
+      'x-component-props': {
+        type: "object",
+        properties: {
+          title: {
+            type: 'string',
+            'x-decorator': 'FormItem',
+            'x-component': 'MultiLangInput',
+            'x-reactions': {
+              fulfill: {
+                state: {
+                  value: '{{$form.values["x-field-source"]?.label||$form.values["x-field-source"]?.name ||""}}',
+                },
+              },
+            },
+          },
+        }
+      }
     }
+    :
+    {}
   return {
     'display-tab': {
       type: 'void',
@@ -184,6 +212,7 @@ export const createDisplaySchemaTab = (
                 },
               },
             },
+            ...propTitle,
             'x-display': {
               type: 'string',
               enum: ['visible', 'hidden', 'none', ''],
@@ -206,7 +235,7 @@ export const createDisplaySchemaTab = (
               'x-decorator': 'FormItem',
               'x-component': ReactionsSetter,
             },
-            ...datdFieids
+            ...dataFieids
           }
         },
         "auth-group": {
@@ -307,13 +336,7 @@ export const createActionSchemaTab = (actions: string[]) => {
 
 export const createFieldSchema = (
   component: ISchema,
-  options?: {
-    decorator?: ISchema,
-    actions?: string[],
-    hasDataBindSource?: boolean,
-    isDataField?: boolean,
-    noDisplayTab?: boolean,
-  }
+  options?: IFieldOptions
 ) => {
   return {
     type: 'object',
@@ -324,7 +347,7 @@ export const createFieldSchema = (
         properties: {
           ...createComponentSchemaTab(component, options?.decorator || (options?.isDataField && AllSchemas.FormItem)),
           ...createStyleSchemaTab(),
-          ...(!options?.noDisplayTab ? createDisplaySchemaTab(options?.hasDataBindSource, options?.isDataField) : {}),
+          ...(!options?.noDisplayTab ? createDisplaySchemaTab(options) : {}),
           ...(options?.actions ? createActionSchemaTab(options?.actions) : {}),
         }
       },

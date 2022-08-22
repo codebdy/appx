@@ -33,7 +33,6 @@ export const ActionPropertyBox = memo((
 
   const ActionPannel = pannels[action.actionType]
 
-
   return (
     <Form
       name="action-property-form"

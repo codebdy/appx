@@ -17,6 +17,7 @@ import {
 } from '../../../../common/shared'
 import { useDropTemplate } from "@designable/formily-antd/lib/hooks/useDropTemplate"
 import { LoadTemplate } from '@designable/formily-antd/lib/common/LoadTemplate'
+import { useParseLangMessage } from '../../../../../hooks/useParseLangMessage'
 
 
 const HeaderCell: React.FC = (props: any) => {
@@ -42,8 +43,9 @@ const BodyCell: React.FC = (props: any) => {
 }
 
 export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
-  const node = useTreeNode()
-  const nodeId = useNodeIdProps()
+  const node = useTreeNode();
+  const nodeId = useNodeIdProps();
+  const p = useParseLangMessage();
   useDropTemplate('ProTable', (source) => {
     const indexNode = new TreeNode({
       componentName: 'Field',
@@ -141,7 +143,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
         {...props}
         title={
           <div>
-            {props?.title}
+            {p(props?.title)}
           </div>
         }
         dataIndex={node.id}
@@ -161,7 +163,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
         }}
       />
     )
-  }, []);
+  }, [p]);
 
   const renderColumnGroup = useCallback((node: TreeNode) => {
     const props = node.props?.['x-component-props'] || {}
@@ -170,7 +172,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
       {...props}
       title={
         <div>
-          {props?.title}
+          {p(props?.title)}
         </div>
       }
       dataIndex={node.id}
@@ -188,7 +190,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
       }
     </Table.ColumnGroup>
     )
-  }, [renderColumn]);
+  }, [p, renderColumn]);
 
   const renderChild = useCallback((node: TreeNode) => {
     const isGroup = node.props?.['x-component'] === "ProTable.ColumnGroup";

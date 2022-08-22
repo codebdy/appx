@@ -39,11 +39,6 @@ export const DataTableSchema: ISchema & { Column?: ISchema, ColumnGroup?: ISchem
 const Column: ISchema = {
   type: 'object',
   properties: {
-    title: {
-      type: 'string',
-      'x-decorator': 'FormItem',
-      'x-component': 'Input',
-    },
     align: {
       type: 'string',
       enum: ['left', 'right', 'center'],
@@ -81,11 +76,6 @@ DataTableSchema.Column = Column
 const ColumnGroup: ISchema = {
   type: 'object',
   properties: {
-    title: {
-      type: 'string',
-      'x-decorator': 'FormItem',
-      'x-component': 'Input',
-    },
     align: {
       type: 'string',
       enum: ['left', 'right', 'center'],
