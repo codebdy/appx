@@ -12,7 +12,9 @@ export const zhCN = {
         Variables: "变量"
       },
       FieldParamsInput: {
-        ConfigParams: "配置字段参数"
+        ConfigParams: "配置字段参数",
+        Cancel: "取消",
+        Confirm: "确定",
       },
       FieldNameSelect: {
         Attributes: "属性",
