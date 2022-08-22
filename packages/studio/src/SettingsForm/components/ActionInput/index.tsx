@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next';
 import { ActionsView } from './ActionsView';
 import { IAppxAction } from '../../../shared/action/model';
 import { createUuid } from '../../../shared';
+import { ActionPropertyBox } from './ActionPropertyBox';
 
 export interface IActionsSnapshot {
   actions: IAppxAction[],
@@ -163,7 +164,13 @@ export const ActionInput = observer((props: {
           <div className='property-box block-area'>
             <div className='toolbar bottom-border'>{t("Action.Properties")}</div>
             <div style={{ padding: 16, overflow: "auto" }}>
-              <Empty />
+              {
+                selectedUuid
+                  ?
+                  <ActionPropertyBox selectedUuid={selectedUuid} />
+                  :
+                  <Empty />
+              }
             </div>
           </div>
         </div>
