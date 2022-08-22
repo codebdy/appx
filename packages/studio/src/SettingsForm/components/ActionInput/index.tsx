@@ -149,7 +149,7 @@ export const ActionInput = observer((props: {
               <ActionsView
                 actions={actions}
                 selectedId={selectedUuid}
-                onSelected={handleSelect}
+                onSelect={handleSelect}
               />
             </div>
           </div>

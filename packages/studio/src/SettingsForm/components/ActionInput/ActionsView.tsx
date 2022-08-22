@@ -10,10 +10,10 @@ export const ActionsView = memo((
   props: {
     actions: IAppxAction[],
     selectedId?: string,
-    onSelected: (selectedId?: string) => void,
+    onSelect: (selectedId?: string) => void,
   }
 ) => {
-  const { actions, selectedId, onSelected } = props;
+  const { actions, selectedId, onSelect } = props;
 
   return (
     <Droppable droppableId={ACTIONS_VIEW_ID} >
@@ -33,7 +33,10 @@ export const ActionsView = memo((
               <Draggable key={action.uuid} draggableId={action.uuid} index={index}>
                 {(provided, snapshot) => (
                   <DraggableLabel
+                    uuid={action.uuid}
                     title={action.title}
+                    className={selectedId === action.uuid ? "selected" : undefined}
+                    onSelect={onSelect}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                     float={snapshot.isDragging}

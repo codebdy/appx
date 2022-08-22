@@ -37,6 +37,7 @@
     padding-left: 16px;
     cursor: move;
     background-color: @backgrounColor;
+    border:  solid 1px @backgrounColor;
   }
   .draggable-label:hover{
     transform: translate3d(0, 0, 0);
@@ -57,5 +58,9 @@
     flex: 1;
     width: 300px;
     padding: 16px;
+  }
+
+  .selected{
+    border:  solid 1px @primaryColor;
   }
 }
