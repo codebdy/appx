@@ -29,6 +29,13 @@ export const ActionInput = observer((props: {
   const [undoList, setUndoList] = useState<IActionsSnapshot[]>([]);
   const [redoList, setRedoList] = useState<IActionsSnapshot[]>([]);
 
+  const reset = useCallback(() => {
+    setUndoList([]);
+    setRedoList([]);
+    setSelectedUuid(undefined);
+    setActions([]);
+  }, []);
+
   const backup = useCallback(() => {
     setRedoList([])
     setUndoList(list => [...list, { actions, selectedUuid }])
@@ -48,12 +55,14 @@ export const ActionInput = observer((props: {
 
   const handleCancel = useCallback(() => {
     setIsModalVisible(false);
-  }, []);
+    reset();
+  }, [reset]);
 
   const handleOk = useCallback(() => {
     onChange && onChange(actions);
     setIsModalVisible(false);
-  }, [actions, onChange]);
+    reset();
+  }, [actions, onChange, reset]);
 
   const insertAt = useCallback((action: IAppxAction, index: number) => {
     backup();
@@ -111,6 +120,30 @@ export const ActionInput = observer((props: {
     setActions(actions => actions.map(act => act.uuid === action.uuid ? action : act))
   }, [backup]);
 
+  const handleUndo = useCallback(() => {
+    const snapshot = undoList[undoList.length - 1];
+    setRedoList(list => [...list, {
+      actions,
+      selectedUuid
+    }]);
+
+    setUndoList((list) => list.slice(0, list.length - 1));
+    setActions(snapshot.actions);
+    setSelectedUuid(snapshot.selectedUuid);
+  }, [actions, selectedUuid, undoList]);
+
+  const handleRedo = useCallback(() => {
+    const snapshot = redoList[redoList.length - 1];
+    setUndoList(list => [...list, {
+      actions,
+      selectedUuid
+    }]);
+
+    setRedoList((list) => list.slice(0, list.length - 1));
+    setActions(snapshot.actions);
+    setSelectedUuid(snapshot.selectedUuid);
+  }, [actions, redoList, selectedUuid]);
+  
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
       <Button
@@ -145,12 +178,14 @@ export const ActionInput = observer((props: {
                   size='small'
                   disabled={undoList.length === 0}
                   icon={<UndoOutlined />}
+                  onClick={handleUndo}
                 />
                 <Button
                   shape='circle'
                   type='text' size='small'
                   disabled={redoList.length === 0}
                   icon={<RedoOutlined />}
+                  onClick={handleRedo}
                 />
                 <Divider type="vertical" />
                 <Button
