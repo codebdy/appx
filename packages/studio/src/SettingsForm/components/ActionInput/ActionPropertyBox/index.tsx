@@ -1,13 +1,14 @@
+import { IAppxAction } from "../../../../shared/action/model";
 import React from "react";
 import { memo } from "react";
 
 export const ActionPropertyBox = memo((
   props: {
-    selectedUuid?: string
+    action?: IAppxAction
   }
 ) => {
-  const { selectedUuid } = props;
-  
+  const { action } = props;
+
   return (
     <>
     </>

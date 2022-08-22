@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import {
   observer,
 } from '@formily/react'
@@ -95,6 +95,10 @@ export const ActionInput = observer((props: {
     setSelectedUuid(selectedId)
   }, [])
 
+  const selectedAction = useMemo(() => {
+    return actions.find(action => action.uuid === selectedUuid)
+  }, [actions, selectedUuid])
+
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
       <Button
@@ -167,7 +171,7 @@ export const ActionInput = observer((props: {
               {
                 selectedUuid
                   ?
-                  <ActionPropertyBox selectedUuid={selectedUuid} />
+                  <ActionPropertyBox action={selectedAction} />
                   :
                   <Empty />
               }
