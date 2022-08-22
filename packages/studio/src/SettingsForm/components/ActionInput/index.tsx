@@ -9,6 +9,7 @@ import { ToolCollapse } from './ToolCollapse';
 import { DeleteOutlined, RedoOutlined, UndoOutlined } from '@ant-design/icons';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import { useTranslation } from 'react-i18next';
+import { ActionsView } from './ActionsView';
 
 export const ActionInput = observer((props: {}) => {
   //const tabs = useTabs()
@@ -66,11 +67,19 @@ export const ActionInput = observer((props: {}) => {
                 <Button shape='circle' type='text' size='small' disabled icon={<DeleteOutlined />} />
               </Space>
             </div>
-            <div></div>
+            <div style={{
+              flex: 1,
+              display: "flex",
+              flexFlow: "column",
+              alignItems: "center",
+              overflow: "auto"
+            }}>
+              <ActionsView />
+            </div>
           </div>
           <div className='property-box block-area'>
             <div className='toolbar bottom-border'>{t("Action.Properties")}</div>
-            <div style={{ padding: 16 }}>
+            <div style={{ padding: 16, overflow: "auto" }}>
               <Empty />
             </div>
           </div>
