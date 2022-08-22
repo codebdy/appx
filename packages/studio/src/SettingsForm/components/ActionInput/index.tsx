@@ -5,12 +5,13 @@ import {
 import { Button, Divider, Empty, Modal, Space } from 'antd';
 import { TextWidget } from '@designable/react';
 import "./style.less"
-import { ToolCollapse } from './ToolCollapse';
+import { DATA_ACTIONS_LIST, ToolCollapse, UI_ACTIONS_LIST } from './ToolCollapse';
 import { DeleteOutlined, RedoOutlined, UndoOutlined } from '@ant-design/icons';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import { useTranslation } from 'react-i18next';
 import { ActionsView } from './ActionsView';
 import { IAppxAction } from '../../../shared/action/model';
+import { createUuid } from '../../../shared';
 
 export interface IActionsSnapshot {
   actions: IAppxAction[],
@@ -19,13 +20,20 @@ export interface IActionsSnapshot {
 
 export const ActionInput = observer((props: {
   value?: IAppxAction[],
-  onChange?: (actions: IAppxAction) => void
+  onChange?: (actions: IAppxAction[]) => void
 }) => {
   const { value, onChange } = props;
   const [actions, setActions] = useState<IAppxAction[]>([]);
   const [selectedUuid, setSelectedUuid] = useState<string>();
   const [undoList, setUndoList] = useState<IActionsSnapshot[]>([]);
   const [redoList, setRedoList] = useState<IActionsSnapshot[]>([]);
+
+  const backup = useCallback(() => {
+    setRedoList([])
+    setUndoList(list => [...list, { actions, selectedUuid }])
+  },
+    [actions, selectedUuid]
+  )
 
   useEffect(() => {
     setActions(value || [])
@@ -38,17 +46,42 @@ export const ActionInput = observer((props: {
   }, []);
 
   const handleCancel = useCallback(() => {
+    onChange && onChange(actions);
     setIsModalVisible(false);
-  }, []);
+  }, [actions, onChange]);
 
   const handleOk = useCallback(() => {
     setIsModalVisible(false);
   }, []);
 
+  const insertAt = useCallback((action: IAppxAction, index: number) => {
+    backup();
+    const newActions = actions.filter(act => act.uuid !== action.uuid)
+    newActions.splice(index, 0, action);
+    setActions(newActions);
+  }, [actions, backup])
+
   const handleDragEnd = useCallback(
     (result: DropResult) => {
+      const { destination, source, draggableId } = result;
+      if (destination?.droppableId) {
+        var draggedNode: IAppxAction;
+        if (source.droppableId === DATA_ACTIONS_LIST || source.droppableId === UI_ACTIONS_LIST) {
+          draggedNode = {
+            uuid: createUuid(),
+            actionType: draggableId as any,
+            title: t("Action." + draggableId),
+          };
+        } else {
+          draggedNode = actions.find(action => action.uuid === draggableId);
+        }
+
+        if (draggedNode) {
+          insertAt(draggedNode, destination.index);
+        }
+      }
     },
-    []
+    [actions, insertAt, t]
   )
 
   const handleSelect = useCallback((selectedId: string) => {
@@ -115,7 +148,7 @@ export const ActionInput = observer((props: {
             }}>
               <ActionsView
                 actions={actions}
-                selectedId = {selectedUuid}
+                selectedId={selectedUuid}
                 onSelected={handleSelect}
               />
             </div>
