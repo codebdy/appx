@@ -2,19 +2,13 @@ import React, { memo } from "react";
 import { useTranslation } from "react-i18next";
 import { ViewportPanel, WorkspacePanel } from "../../panels";
 import "./style.less"
-import { useAppViewKey } from "../../../shared/AppRoot/context";
 import { Collapse } from "antd";
 import { BaseLangForm } from "./BaseForm";
 const { Panel } = Collapse;
 
-const MenuWorkSpace = memo((
-  props: {
-
-  }
-) => {
+const MenuWorkSpace = memo(() => {
 
   const { t } = useTranslation();
-  const key = useAppViewKey();
 
   return (
     <>

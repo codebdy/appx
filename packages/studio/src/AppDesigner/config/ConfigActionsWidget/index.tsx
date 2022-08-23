@@ -7,10 +7,13 @@ import { useTranslation } from 'react-i18next'
 import { useAppViewKey } from '../../../shared/AppRoot/context'
 import { useUpsertMenu } from '../../hooks/useUpsertMenu'
 import { IMenu } from 'packages/studio/src/model'
+import { useRecoilState } from 'recoil'
+import { deviceConfigChangedState } from '../../recoil/atom'
 
 export const ConfigActionsWidget = observer(() => {
-  const { t } = useTranslation();
   const key = useAppViewKey();
+  const [changed, setChanged] = useRecoilState(deviceConfigChangedState(key));
+  const { t } = useTranslation();
 
 
   // const [upsert, { loading, error }] = useUpsertMenu({
@@ -37,7 +40,7 @@ export const ConfigActionsWidget = observer(() => {
       <Button
         type="primary"
         //loading={loading}
-        //disabled={!isDirty}
+        disabled={!changed}
         //onClick={handleSave}
       >
         <TextWidget>Save</TextWidget>

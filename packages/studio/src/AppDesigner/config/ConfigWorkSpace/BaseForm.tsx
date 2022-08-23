@@ -1,38 +1,39 @@
-import { Form, message } from 'antd';
-import React, { memo, useCallback } from 'react';
+import { Form } from 'antd';
+import React, { memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useShowError } from '../../../hooks/useShowError';
-import { useUpsertAppConfig } from '../../../hooks/useUpsertAppConfig';
-import { useAppConfig } from '../../../shared/AppRoot/context';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useAppParams, useAppViewKey } from '../../../shared/AppRoot/context';
+import { deviceConfigChangedState, deviceConfigState } from '../../recoil/atom';
 import { PageSelect } from '../../SettingsForm/components/PageSelect';
 import "./style.less"
 
 export const BaseLangForm = memo(() => {
   const { t } = useTranslation();
-  const appConfig = useAppConfig();
-  const [upsert, { loading, error }] = useUpsertAppConfig(
-    {
-      onCompleted: () => {
-        message.success(t("OperateSuccess"));
-      }
-    }
-  );
+  const key = useAppViewKey();
+  const [config, setConfig] = useRecoilState(deviceConfigState(key));
+  const setChanged = useSetRecoilState(deviceConfigChangedState(key));
+  const { deviceConfig } = useAppParams()
+  const [form] = Form.useForm();
 
-  useShowError(error);
+  useEffect(()=>{
+    setConfig(deviceConfig);
+    form.resetFields();
+    form.setFieldsValue({entryUuid: deviceConfig?.schemaJson?.entryUuid});
+  }, [deviceConfig, form, setConfig])
 
-  const handleOpenChange = useCallback((checked: boolean) => {
-    upsert({
-      ...appConfig,
-      schemaJson: {
-        ...appConfig?.schemaJson,
-        multiLang: { ...appConfig?.schemaJson?.multiLang, open: checked }
-      }
-    })
-  }, [appConfig, upsert]);
+  useEffect(()=>{
+    form.setFieldsValue({entryUuid: config?.schemaJson?.entryUuid});
+  }, [config, form])
+
+  const handleValuesChange = useCallback((changeValues, formValues)=>{
+    setConfig(config=>({...config, schemaJson:{...config?.schemaJson||{}, ...formValues}}));
+    setChanged(true);
+  }, [setChanged, setConfig]);
 
   return (
     <Form
-      name="multlang"
+      name="baseconfig"
+      form = {form}
       labelCol={{
         span: 4,
       }}
@@ -40,10 +41,11 @@ export const BaseLangForm = memo(() => {
         span: 12,
       }}
       autoComplete="off"
+      onValuesChange={handleValuesChange}
     >
       <Form.Item
         label={t("Designer.EntryPage")}
-        name="entry"
+        name="entryUuid"
       >
         <PageSelect />
       </Form.Item>

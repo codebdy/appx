@@ -1,5 +1,5 @@
 import { atomFamily } from "recoil";
-import { IPage, IPageCategory } from "../../model";
+import { IAppDeviceConfig, IPage, IPageCategory } from "../../model";
 import { ID } from "../../shared";
 
 export const selectedPageIdState = atomFamily<ID | undefined, string>({
@@ -15,4 +15,14 @@ export const categoriesState = atomFamily<IPageCategory[], string>({
 export const pagesState = atomFamily<IPage[], string>({
   key: "designer.pages",
   default: [],
+})
+
+export const deviceConfigState = atomFamily<IAppDeviceConfig | undefined, string>({
+  key: "designer.deviceConfig",
+  default: undefined,
+})
+
+export const deviceConfigChangedState = atomFamily<boolean, string>({
+  key: "designer.deviceConfigChange",
+  default: false,
 })
