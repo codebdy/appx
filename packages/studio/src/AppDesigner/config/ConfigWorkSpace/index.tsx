@@ -1,9 +1,10 @@
 import React, { memo } from "react";
 import { useTranslation } from "react-i18next";
-import { ViewportPanel, WorkspacePanel } from "../panels";
+import { ViewportPanel, WorkspacePanel } from "../../panels";
 import "./style.less"
-import { useAppViewKey } from "../../shared/AppRoot/context";
+import { useAppViewKey } from "../../../shared/AppRoot/context";
 import { Collapse } from "antd";
+import { BaseLangForm } from "./BaseForm";
 const { Panel } = Collapse;
 
 const MenuWorkSpace = memo((
@@ -14,7 +15,6 @@ const MenuWorkSpace = memo((
 
   const { t } = useTranslation();
   const key = useAppViewKey();
-
 
   return (
     <>
@@ -29,9 +29,9 @@ const MenuWorkSpace = memo((
                 marginTop: 16,
               }}
             >
-              <Collapse defaultActiveKey={['muti-lang']}>
-                <Panel header={t("Designer.BaseConfig")} key="other">
-                  <p>Other config</p>
+              <Collapse defaultActiveKey={['base']}>
+                <Panel header={t("Designer.BaseConfig")} key="base">
+                  <BaseLangForm />
                 </Panel>
               </Collapse>
             </div>

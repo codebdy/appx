@@ -31,7 +31,8 @@ import { SettingOutlined } from '@ant-design/icons'
 import { useBuildMeta } from '../datasource/hooks'
 import { useSetRecoilState } from 'recoil'
 import { categoriesState, pagesState } from './recoil/atom'
-import ConfigWorkSpace from './ConfigWorkSpace'
+import ConfigWorkSpace from './config/ConfigWorkSpace'
+import { ConfigActionsWidget } from './config/ConfigActionsWidget'
 
 export enum DesignerRoutes {
   Pages = "pages",
@@ -85,19 +86,22 @@ const AppDesignerContent = memo(() => {
     setActiveKey(activeKey)
   }, []);
 
+  const renderActions = useCallback(() => {
+    if (activeKey === DesignerRoutes.Menu) {
+      return <MenuActionsWidget />
+    } else if (activeKey === DesignerRoutes.Settings) {
+      return <ConfigActionsWidget />
+    } else {
+      <ActionsWidget />
+    }
+  }, [activeKey])
 
   return (
     <Spin style={{ height: "100vh" }} spinning={loading || pagesLoading || metaLoading}>
       <MenuDragRoot>
         <Designer engine={engine}>
           <StudioPanel logo={<NavigationWidget app={app} activeKey={activeKey as any} />}
-            actions={
-              activeKey === DesignerRoutes.Menu
-                ?
-                <MenuActionsWidget />
-                :
-                <ActionsWidget />
-            }
+            actions={renderActions()}
           >
             <CompositePanel showNavTitle activeKey={activeKey} onChange={hanclePannelChange}>
               <CompositePanel.Item
