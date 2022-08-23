@@ -46,10 +46,10 @@ const App = memo(() => {
       <Route path={INSTALL_URL} element={<Install />} />
       <Route path={"/app/:device/:appUuid"} element={<AppRunner />}>
         <Route path=":menuUuid" element={<PageEngine />}>
-          <Route path=":pageId" />
-          <Route path="" />
+          <Route path=":pageId" element={<></>} />
+          <Route path="" element={<></>} />
         </Route>
-        <Route path="" />
+        <Route path="" element={<></>} />
       </Route>
     </Routes>
   )
