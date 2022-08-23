@@ -1,5 +1,5 @@
 import { observer } from "@formily/reactive-react"
-import { Card } from "antd"
+import { Card, TableProps } from "antd"
 import React from "react"
 import { IQueryFormProps } from "../ProTable/QueryForm"
 import { ITableToolbarProps } from "../ProTable/TableToolbar"
@@ -21,14 +21,13 @@ import { DataTableColumnGroupLocales, DataTableColumnLocales, DataTableLocales }
 import { DataTableSchema } from "./TableDesigner/schema"
 import { TableDesigner } from "./TableDesigner"
 import { IndexDesigner } from "./TableDesigner/IndexDesigner"
-import { ITableProps } from "../ProTable/Table"
 import { ProTableContext } from "../ProTable/context"
 
 export const ProTableDesigner: DnFC<IProTableProps> & {
   QueryForm?: React.FC<IQueryFormProps>,
   TableToolbar?: React.FC<ITableToolbarProps>,
   TableBatchActions?: React.FC<ITableBatchActionsProps>,
-  Table?: React.FC<ITableProps>,
+  Table?: React.FC<TableProps<any>>,
   Index?: React.FC,
   //ColumnGroup?: React.FC<ColumnGroupProps<any>>,
   //Column?: React.FC<ColumnProps<any>>,
