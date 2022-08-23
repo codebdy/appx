@@ -1,23 +1,23 @@
 import { useCallback } from "react";
 import { IPostOptions, usePostOne } from "../enthooks/hooks/usePostOne";
-import { IAppConfig } from "../model";
-import { IAppConfigInput } from "../model/input";
+import { IAppDeviceConfig } from "../model";
+import { IAppDeviceConfigInput } from "../model/input";
 import { useAppParams } from "../shared/AppRoot/context";
 
-export function useUpsertAppConfig(options?: IPostOptions<any>): [
-  (config: IAppConfigInput) => void,
+export function useUpsertAppDeviceConfig(options?: IPostOptions<any>): [
+  (config: IAppDeviceConfigInput) => void,
   { loading?: boolean; error?: Error }
 ] {
   const params = useAppParams();
 
-  const [post, { error, loading }] = usePostOne<IAppConfigInput, IAppConfig>("AppConfig",
+  const [post, { error, loading }] = usePostOne<IAppDeviceConfigInput, IAppDeviceConfig>("AppDeviceConfig",
     {
       ...options,
-      fieldsGql: " schemaJson"
+      fieldsGql: " device appUuid schemaJson"
     }
   )
 
-  const upsert = useCallback((config: IAppConfigInput) => {
+  const upsert = useCallback((config: IAppDeviceConfigInput) => {
     const newConfig = {
       ...config,
       appUuid: params.app.uuid,

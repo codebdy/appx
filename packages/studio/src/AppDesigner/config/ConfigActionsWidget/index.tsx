@@ -4,44 +4,47 @@ import { TextWidget } from '@designable/react'
 import { observer } from '@formily/react'
 import { useShowError } from '../../../hooks/useShowError'
 import { useTranslation } from 'react-i18next'
-import { useAppViewKey } from '../../../shared/AppRoot/context'
-import { useUpsertMenu } from '../../hooks/useUpsertMenu'
-import { IMenu } from 'packages/studio/src/model'
-import { useRecoilState } from 'recoil'
-import { deviceConfigChangedState } from '../../recoil/atom'
+import { useAppParams, useAppViewKey } from '../../../shared/AppRoot/context'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { deviceConfigChangedState, deviceConfigState } from '../../recoil/atom'
+import { useUpsertAppDeviceConfig } from '../../../hooks/useUpsertAppDeviceConfig'
 
 export const ConfigActionsWidget = observer(() => {
+  const { device } = useAppParams();
   const key = useAppViewKey();
   const [changed, setChanged] = useRecoilState(deviceConfigChangedState(key));
+  const appDeviceConfig = useRecoilValue(deviceConfigState(key));
   const { t } = useTranslation();
 
+  const [upsert, { loading, error }] = useUpsertAppDeviceConfig(
+    {
+      onCompleted: () => {
+        message.success(t("OperateSuccess"));
+        setChanged(false);
+      }
+    }
+  );
 
-  // const [upsert, { loading, error }] = useUpsertMenu({
-  //   onCompleted: (menu: IMenu) => {
-  //     setMenuId(menu.id);
-  //     message.success(t("OperateSuccess"))
-  //   }
-  // });
+  useShowError(error);
 
-  // useShowError(error);
-
-  // const handleSave = useCallback(() => {
-  //   const items = extractMetas(rootNode?.meta?.uuid || "")?.children || [];
-  //   upsert({
-  //     id: meunId,
-  //     schemaJson: {
-  //       items
-  //     }
-  //   });
-  // }, [extractMetas, meunId, rootNode?.meta?.uuid, upsert])
+  const handleSave = useCallback(() => {
+    upsert({
+      ...appDeviceConfig,
+      device,
+      schemaJson: {
+        ...appDeviceConfig?.schemaJson || {},
+        entryUuid: appDeviceConfig?.schemaJson?.entryUuid,
+      }
+    })
+  }, [appDeviceConfig, device, upsert])
 
   return (
     <Space style={{ marginRight: 10 }}>
       <Button
         type="primary"
-        //loading={loading}
+        loading={loading}
         disabled={!changed}
-        //onClick={handleSave}
+        onClick={handleSave}
       >
         <TextWidget>Save</TextWidget>
       </Button>
