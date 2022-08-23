@@ -7,6 +7,8 @@ import { ItemType } from "antd/lib/menu/hooks/useItems";
 import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetMenuItem } from "../../hooks/useGetMenuItem";
+import { useEntryPageId } from "../../hooks/useEntryPageId";
+import { useGetMenuItemByPageId } from "../../hooks/useGetMenuItemByPageId";
 
 const MenuContent = memo(() => {
   const { menu } = useRunnerParams();
@@ -14,7 +16,10 @@ const MenuContent = memo(() => {
   const { device, appUuid, menuUuid } = useParams();
   const navigate = useNavigate();
 
+  const entryId = useEntryPageId();
+
   const getMenuItem = useGetMenuItem();
+  const getMenuItemByPageId = useGetMenuItemByPageId();
 
   const makeItem = useCallback((item: IMenuItem) => {
     return ({
@@ -49,7 +54,7 @@ const MenuContent = memo(() => {
       <Menu
         theme="dark"
         mode="inline"
-        selectedKeys={[menuUuid]}
+        selectedKeys={[menuUuid || getMenuItemByPageId(entryId)?.uuid]}
         items={data}
         onClick={handleClick}
       />

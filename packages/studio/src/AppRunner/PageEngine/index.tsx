@@ -9,6 +9,7 @@ import { useShowError } from "../../hooks/useShowError";
 import { useParseLangSchema } from "../../hooks/useParseLangSchema";
 import { useParams } from "react-router-dom";
 import { useGetMenuItem } from "../hooks/useGetMenuItem";
+import { useEntryPageId } from "../hooks/useEntryPageId";
 
 export interface ILoadingSpanProps {
   spinning?: boolean,
@@ -26,8 +27,9 @@ const PageEngine = memo((
   const { LoadingSpan = Spin, components = {} } = props;
   const { menuUuid } = useParams();
   const getMenuItem = useGetMenuItem();
+  const entryId = useEntryPageId();
 
-  const { page, loading, error } = useQueryPage(getMenuItem(menuUuid)?.route?.pageId);
+  const { page, loading, error } = useQueryPage(getMenuItem(menuUuid)?.route?.pageId || entryId);
 
   const p = useParseLangSchema();
   useShowError(error);

@@ -28,7 +28,7 @@ export interface IAppDeviceConfigInput {
   appUuid?: string;
   device?: Device;
   schemaJson?: {
-    entryUuid?: string,
+    entryId?: string,
   }
 }
 

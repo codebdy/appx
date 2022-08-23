@@ -18,11 +18,11 @@ export const BaseLangForm = memo(() => {
   useEffect(()=>{
     setConfig(deviceConfig);
     form.resetFields();
-    form.setFieldsValue({entryUuid: deviceConfig?.schemaJson?.entryUuid});
+    form.setFieldsValue({entryId: deviceConfig?.schemaJson?.entryId});
   }, [deviceConfig, form, setConfig])
 
   useEffect(()=>{
-    form.setFieldsValue({entryUuid: config?.schemaJson?.entryUuid});
+    form.setFieldsValue({entryId: config?.schemaJson?.entryId});
   }, [config, form])
 
   const handleValuesChange = useCallback((changeValues, formValues)=>{
@@ -45,7 +45,7 @@ export const BaseLangForm = memo(() => {
     >
       <Form.Item
         label={t("Designer.EntryPage")}
-        name="entryUuid"
+        name="entryId"
       >
         <PageSelect />
       </Form.Item>
