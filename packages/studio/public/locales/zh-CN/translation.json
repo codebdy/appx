@@ -71,7 +71,8 @@
   "Designer": {
     "Pages": "页面编辑",
     "Menu": "菜单编辑",
-    "Settings": "应用设置"
+    "Settings": "应用设置",
+    "BaseConfig": "基础配置"
   },
   "Panels": {
     "Page": "页面",

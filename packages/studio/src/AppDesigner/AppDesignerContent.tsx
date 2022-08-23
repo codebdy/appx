@@ -31,6 +31,7 @@ import { SettingOutlined } from '@ant-design/icons'
 import { useBuildMeta } from '../datasource/hooks'
 import { useSetRecoilState } from 'recoil'
 import { categoriesState, pagesState } from './recoil/atom'
+import ConfigWorkSpace from './ConfigWorkSpace'
 
 export enum DesignerRoutes {
   Pages = "pages",
@@ -145,6 +146,10 @@ const AppDesignerContent = memo(() => {
             {
               activeKey === DesignerRoutes.Menu &&
               <MenuWorkSpace app={app} />
+            }
+            {
+              activeKey === DesignerRoutes.Settings &&
+              <ConfigWorkSpace />
             }
           </StudioPanel>
         </Designer >
