@@ -92,7 +92,7 @@ const AppDesignerContent = memo(() => {
     } else if (activeKey === DesignerRoutes.Settings) {
       return <ConfigActionsWidget />
     } else {
-      <ActionsWidget />
+      return <ActionsWidget />
     }
   }, [activeKey])
 
