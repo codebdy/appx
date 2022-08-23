@@ -14,3 +14,7 @@ export const useProTableParams = (): IProTableParams => useContext(ProTableConte
 export function useSelectedKeys() {
   return useProTableParams()?.selectedRowKeys;
 }
+
+export function useSelectable(){
+  return  useProTableParams()?.selectable;
+}

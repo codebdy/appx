@@ -22,6 +22,7 @@ import { DataTableSchema } from "./TableDesigner/schema"
 import { TableDesigner } from "./TableDesigner"
 import { IndexDesigner } from "./TableDesigner/IndexDesigner"
 import { ITableProps } from "../ProTable/Table"
+import { ProTableContext } from "../ProTable/context"
 
 export const ProTableDesigner: DnFC<IProTableProps> & {
   QueryForm?: React.FC<IQueryFormProps>,
@@ -46,21 +47,23 @@ export const ProTableDesigner: DnFC<IProTableProps> & {
   const dataTable = useFindNode("Table");
 
   return (
-    <div className={clx("appx-pro-table", className)} {...other}>
-      {
-        hasQueryForm && queryForm && <TreeNodeWidget node={queryForm} />
-      }
-      <Card style={{ marginTop: "16px" }}>
+    <ProTableContext.Provider value={{ selectable }}>
+      <div className={clx("appx-pro-table", className)} {...other}>
         {
-          hasToolbar && toolbar && <TreeNodeWidget node={toolbar} />
+          hasQueryForm && queryForm && <TreeNodeWidget node={queryForm} />
         }
-        {
-          selectable && batchActions && <TreeNodeWidget node={batchActions} />
-        }
+        <Card style={{ marginTop: "16px" }}>
+          {
+            hasToolbar && toolbar && <TreeNodeWidget node={toolbar} />
+          }
+          {
+            selectable && batchActions && <TreeNodeWidget node={batchActions} />
+          }
 
-        <TreeNodeWidget node={dataTable} />
-      </Card>
-    </div>
+          <TreeNodeWidget node={dataTable} />
+        </Card>
+      </div>
+    </ProTableContext.Provider>
   )
 })
 

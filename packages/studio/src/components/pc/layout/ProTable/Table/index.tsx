@@ -103,12 +103,8 @@ const onChange = (pagination, filters, sorter, extra) => {
 
 // rowSelection object indicates the need for row selection
 
-export type ITableProps = TableProps<any> & {
-  selectable?: boolean,
-}
-
 export const DataTable = memo((
-  props: ITableProps
+  props: TableProps<any>
 ) => {
   const { onSelectedChange } = useProTableParams();
   const rowSelection = useMemo(() => ({
