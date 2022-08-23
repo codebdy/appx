@@ -21,13 +21,22 @@ import { IPageHeaderContentProps } from '../PageContainer/PageHeaderContent'
 import { IPageHeaderContentExtraProps } from '../PageContainer/PageHeaderContentExtra'
 import { IPageTabPanelProps } from '../PageContainer/PageTabPanel'
 import { IPageFooterToolbarProps } from '../PageContainer/PageFooterToolbar'
-import { routesPlaceholder } from '../PageContainer'
 import { PageHeader } from '../PageContainer/PageHeader'
 import { PageBody } from '../PageContainer/PageBody'
 import { PageContainerShell } from '../PageContainer/PageContainerShell'
 import { useRemoveNode } from '../../../common/hooks/useRemoveNode'
 
 const { TabPane } = Tabs;
+export const routesPlaceholder = [
+  {
+    path: '$path1',
+    breadcrumbName: 'Path1',
+  },
+  {
+    path: '$path2',
+    breadcrumbName: 'Path2',
+  }
+];
 
 export const PageContainerDesigner: DnFC<IPageContainerProps> & {
   HeaderActions?: React.FC<IHeaderActionsProps>,

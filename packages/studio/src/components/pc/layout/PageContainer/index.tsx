@@ -10,19 +10,9 @@ import PageTabPanel, { IPageTabPanelProps } from "./PageTabPanel";
 import PageFooterToolbar, { IPageFooterToolbarProps } from "./PageFooterToolbar";
 import { IPageContainerProps } from "./IPageContainerProps";
 import { PageContainerShell } from "./PageContainerShell";
+import { useBreadcumbItems } from "../../../../AppRunner/hooks/useBreadcumbItems";
 
 const { TabPane } = Tabs;
-
-export const routesPlaceholder = [
-  {
-    path: '$path1',
-    breadcrumbName: 'Path1',
-  },
-  {
-    path: '$path2',
-    breadcrumbName: 'Path2',
-  }
-];
 
 export const PageContainer: React.FC<IPageContainerProps> & {
   HeaderActions?: React.FC<IHeaderActionsProps>,
@@ -53,6 +43,8 @@ export const PageContainer: React.FC<IPageContainerProps> & {
     tabs: [],
     otherChildren: []
   }
+
+  const breadcrumbs = useBreadcumbItems();
 
   for (const key of Object.keys(fieldSchema?.properties || {})) {
     const childSchema = fieldSchema.properties[key]
@@ -97,7 +89,7 @@ export const PageContainer: React.FC<IPageContainerProps> & {
 
           </Tabs>
         }
-        breadcrumb={hasBreadcrumb ? { routes: routesPlaceholder } : undefined}
+        breadcrumb={hasBreadcrumb ? { routes: breadcrumbs } : undefined}
       >
         <Row>
           {hasHeaderContent && slots.headerContent && <RecursionField schema={slots.headerContent} name={slots.headerContent.name} />}
