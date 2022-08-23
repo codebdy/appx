@@ -15,6 +15,7 @@ import clx from "classnames";
 import { useTranslation } from "react-i18next";
 import { IconView } from "../../../../shared/icon/IconView";
 import ItemIcon from "./ItemIcon";
+import { useParseLangMessage } from "../../../../hooks/useParseLangMessage";
 
 const { Panel } = Collapse;
 
@@ -36,6 +37,7 @@ const CollpaseGroupInner = memo(
       navigationSelectedIdState(key)
     );
     const { t } = useTranslation();
+    const p = useParseLangMessage();
 
     const ref = useRef<HTMLDivElement>();
 
@@ -115,7 +117,7 @@ const CollpaseGroupInner = memo(
                       />
                     </ItemIcon>
                   )}
-                  {node.meta.title}
+                  {p(node.meta.title)}
                 </div>
               }
               key={node.meta.uuid}
