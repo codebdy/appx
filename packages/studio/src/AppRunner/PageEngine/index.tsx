@@ -29,7 +29,7 @@ const PageEngine = memo((
   const getMenuItem = useGetMenuItem();
   const entryId = useEntryPageId();
 
-  const { page, loading, error } = useQueryPage(getMenuItem(menuUuid)?.route?.pageId || entryId);
+  const { page, loading, error } = useQueryPage(menuUuid ? getMenuItem(menuUuid)?.route?.pageId : entryId);
 
   const p = useParseLangSchema();
   useShowError(error);
