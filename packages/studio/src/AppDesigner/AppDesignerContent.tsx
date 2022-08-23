@@ -37,6 +37,7 @@ export enum DesignerRoutes {
   Components = "coms",
   OutlinedTree = "outlinedTree",
   Menu = "menu",
+  Settings = "settings"
 }
 
 const AppDesignerContent = memo(() => {
@@ -88,7 +89,7 @@ const AppDesignerContent = memo(() => {
     <Spin style={{ height: "100vh" }} spinning={loading || pagesLoading || metaLoading}>
       <MenuDragRoot>
         <Designer engine={engine}>
-          <StudioPanel logo={<NavigationWidget app={app} />}
+          <StudioPanel logo={<NavigationWidget app={app} activeKey={activeKey as any} />}
             actions={
               activeKey === DesignerRoutes.Menu
                 ?
@@ -128,7 +129,7 @@ const AppDesignerContent = memo(() => {
                 <MenuComponentsWidget />
               </CompositePanel.Item>
               <CompositePanel.Item
-                key="settings"
+                key={DesignerRoutes.Settings}
                 title={t("Panels.Settings")}
                 icon={<SettingOutlined />}>
               </CompositePanel.Item>

@@ -68,6 +68,11 @@
     "AppApi": "应用接口",
     "ModelAuth": "模型权限"
   },
+  "Designer": {
+    "Pages": "页面编辑",
+    "Menu": "菜单编辑",
+    "Settings": "应用设置"
+  },
   "Panels": {
     "Page": "页面",
     "OutlinedTree": "大纲",
