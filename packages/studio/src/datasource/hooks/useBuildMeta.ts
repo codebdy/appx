@@ -60,17 +60,22 @@ export function useBuildMeta(): { error?: Error; loading?: boolean } {
     }
   `;
   }, [queryName]);
+
+  const metParams = useMemo(()=>({ appUuid }), [appUuid]);
+
   const { data, error, loading } = useQueryOne<Meta>(
     {
       gql: queryGql,
-      params: { appUuid }
+      params: metParams
     }
 
   );
+
+  const systemParams = useMemo(()=>({appUuid: SYSTEM_APP_UUID}), []);
   const { data: systemData, error: systemError, loading: systemLoading } = useQueryOne<Meta>(
     {
       gql: appUuid !== SYSTEM_APP_UUID ? queryGql : undefined,
-      params: { appUuid: SYSTEM_APP_UUID }
+      params: systemParams
     }
 
   );

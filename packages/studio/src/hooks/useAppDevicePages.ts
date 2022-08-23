@@ -2,6 +2,7 @@ import { ID } from "../shared";
 import { Device, IApp } from "../model";
 import { gql } from "awesome-graphql-client";
 import { useQueryOne } from "../enthooks/hooks/useQueryOne";
+import { useMemo } from "react";
 
 const appsGql = gql`
 query queryApp($device:DeviceEnumComparisonExp!, id:ID!){
@@ -26,10 +27,11 @@ query queryApp($device:DeviceEnumComparisonExp!, id:ID!){
 `
 
 export function useAppDevicePages(id: ID, device: Device) {
+  const params = useMemo(() => ({ id, device }), [device, id]);
   return useQueryOne<IApp>(
     {
       gql: appsGql,
-      params: { id, device },
+      params,
       depEntityNames: ["App", "Page"]
     })
 }

@@ -31,20 +31,21 @@ export function useReadMeta(appUuid: string): { error?: Error; loading?: boolean
     }
   `;
   }, [queryName]);
-  const { data, error, loading } = useQueryOne<Meta>(
-    {
-      gql: queryGql,
-      params: { appUuid }
-    }
 
-  );
-  const { data: systemData, error: systemError, loading: systemLoading } = useQueryOne<Meta>(
+  const input = useMemo(() => ({
+    gql: queryGql,
+    params: { appUuid }
+  }), [appUuid, queryGql])
+
+  const { data, error, loading } = useQueryOne<Meta>(input);
+
+  const systemInput = useMemo(() => (
     {
       gql: appUuid !== SYSTEM_APP_UUID ? queryGql : undefined,
       params: { appUuid: SYSTEM_APP_UUID }
     }
-
-  );
+  ), [appUuid, queryGql])
+  const { data: systemData, error: systemError, loading: systemLoading } = useQueryOne<Meta>(systemInput);
 
   useEffect(() => {
     if (data && (systemData || appUuid === SYSTEM_APP_UUID)) {

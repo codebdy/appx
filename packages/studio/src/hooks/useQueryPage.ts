@@ -1,4 +1,5 @@
 import { gql } from "awesome-graphql-client";
+import { useMemo } from "react";
 import { useQueryOne } from "../enthooks/hooks/useQueryOne";
 import { IPage } from "../model";
 
@@ -17,13 +18,15 @@ query queryPage($id:ID!){
 `
 
 export function useQueryPage(id?: string) {
-  const { data, error, loading } = useQueryOne<IPage>(
+  const input = useMemo(() => (
     {
       gql: id && pageGql,
       params: { id },
       depEntityNames: ["Page"]
     }
-  )
+  ), [id]);
+
+  const { data, error, loading } = useQueryOne<IPage>(input);
 
   return { page: data?.onePage, error, loading }
 }

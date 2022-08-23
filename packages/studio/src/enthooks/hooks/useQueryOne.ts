@@ -19,7 +19,7 @@ export type QueryOneResponse<T> = {
 }
 
 export function useQueryOne<T>(input: IQueryInput): QueryOneResponse<T> {
-  const loadedRef = useRef(false);
+  //const loadedRef = useRef(false);
   const endpoint = useEndpoint();
   const [revalidating, setRevalidating] = useState<boolean>();
   const refreshRef = useRef<() => void>();
@@ -32,6 +32,14 @@ export function useQueryOne<T>(input: IQueryInput): QueryOneResponse<T> {
     }
   })
 
+  const loadingRef = useRef(loading);
+  loadingRef.current = loading;
+
+  const errorRef = useRef(error);
+  errorRef.current = error;
+
+  const queryRef = useRef(query);
+  queryRef.current = query;
 
   const refresh = useCallback((data?: T) => {
     setRevalidating(true);
@@ -49,11 +57,11 @@ export function useQueryOne<T>(input: IQueryInput): QueryOneResponse<T> {
   }, [input.depEntityNames]);
 
   useEffect(() => {
-    if (!error && !loading && input.gql && !loadedRef.current && endpoint) {
-      loadedRef.current = true;
-      query(input.gql, input.params);
+    if (!errorRef.current && !loadingRef.current && input.gql && endpoint) {
+      //loadedRef.current = true;
+      queryRef.current && queryRef.current(input.gql, input.params);
     }
-  }, [endpoint, error, eventHandler, input.gql, input.params, loading, query]);
+  }, [endpoint, input.gql, input.params]);
 
   useEffect(() => {
     on(EVENT_DATA_POSTED_ONE, eventHandler);
