@@ -3,11 +3,12 @@ import { FormProvider, createSchemaField } from '@formily/react';
 import { ArrayTable, FormItem, Input } from "@formily/antd";
 import React from "react";
 import { memo, useMemo } from "react";
-import { useMenuRoute } from "../context/route";
 import { Spin } from "antd";
-import { usePage } from "../../hooks/usePage";
+import { useQueryPage } from "../../hooks/useQueryPage";
 import { useShowError } from "../../hooks/useShowError";
 import { useParseLangSchema } from "../../hooks/useParseLangSchema";
+import { useParams } from "react-router-dom";
+import { useGetMenuItem } from "../hooks/useGetMenuItem";
 
 export interface ILoadingSpanProps {
   spinning?: boolean,
@@ -20,9 +21,10 @@ const PageEngine = memo((
   }
 ) => {
   const { LoadingSpan = Spin } = props;
-  const { menuItem } = useMenuRoute();
+  const { menuUuid } = useParams();
+  const getMenuItem = useGetMenuItem();
 
-  const { page, loading, error } = usePage(menuItem?.route?.pageId);
+  const { page, loading, error } = useQueryPage(getMenuItem(menuUuid)?.route?.pageId);
 
   const p = useParseLangSchema();
   useShowError(error);

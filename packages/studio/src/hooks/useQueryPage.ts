@@ -16,7 +16,7 @@ query queryPage($id:ID!){
 }
 `
 
-export function usePage(id?: string) {
+export function useQueryPage(id?: string) {
   const { data, error, loading } = useQueryOne<IPage>(
     {
       gql: id && pageGql,

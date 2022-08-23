@@ -1,29 +1,20 @@
 import { Menu } from "antd";
 import { IMenuItem, MenuItemType } from "../../../model/IMenuNode";
-import React, { memo, useCallback, useMemo, useState } from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import { useRunnerParams } from "../../context/runner";
 import { IconView } from "../../../shared/icon/IconView";
 import { ItemType } from "antd/lib/menu/hooks/useItems";
-import { useMenuRoute } from "../../context/route";
 import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
+import { useNavigate, useParams } from "react-router-dom";
+import { useGetMenuItem } from "../../hooks/useGetMenuItem";
 
 const MenuContent = memo(() => {
-  const [key, setKey] = useState<string>();
   const { menu } = useRunnerParams();
-  const { setMenuItem: setItem } = useMenuRoute();
   const p = useParseLangMessage();
+  const { device, appUuid, menuUuid } = useParams();
+  const navigate = useNavigate();
 
-  const getMenuItem = useCallback((uuid: string, items?: IMenuItem[]) => {
-    for (const item of items || menu?.schemaJson?.items || []) {
-      if (item.uuid === uuid) {
-        return item;
-      }
-      const child = getMenuItem(uuid, item?.children || []);
-      if (child) {
-        return child;
-      }
-    }
-  }, [menu?.schemaJson?.items])
+  const getMenuItem = useGetMenuItem();
 
   const makeItem = useCallback((item: IMenuItem) => {
     return ({
@@ -49,17 +40,16 @@ const MenuContent = memo(() => {
     if (item?.type === MenuItemType.Link) {
       item?.link && window.open(item?.link)
     } else if (item?.type !== MenuItemType.Divider) {
-      setItem(item)
-      setKey(key);
+      navigate(`/app/${device}/${appUuid}/${item.uuid}`)
     }
-  }, [getMenuItem, setItem]);
+  }, [appUuid, device, getMenuItem, navigate]);
 
   return (
     <>
       <Menu
         theme="dark"
         mode="inline"
-        selectedKeys={[key]}
+        selectedKeys={[menuUuid]}
         items={data}
         onClick={handleClick}
       />

@@ -1,8 +1,8 @@
 import React from "react";
 import { memo } from "react";
+import { Outlet } from "react-router-dom";
 import { useParseLangMessage } from "../../hooks/useParseLangMessage";
 import { useAppParams } from "../../shared/AppRoot/context";
-import PageEngine from "../PageEngine";
 import HeaderContent from "./HeaderContent";
 import MenuContent from "./MenuContent";
 import ProLayout from "./ProLayout";
@@ -40,7 +40,7 @@ const PCRunner = memo(() => {
         header={<HeaderContent />}
         footer={"©Copyright 悠闲的水 2022"}
       >
-        <PageEngine />
+        <Outlet />
       </ProLayout>
     </div>
   )
