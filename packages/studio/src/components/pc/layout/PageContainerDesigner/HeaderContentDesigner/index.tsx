@@ -13,13 +13,11 @@ export const HeaderContentDesigner = observer((props: IPageHeaderContentProps) =
       ?
       <PageHeaderContent {...props}>
         {props.children}
-        haha
       </PageHeaderContent>
       :
       <Col span ={gridSpan} >
         <DroppableWidget {...other}>
           {props.children}
-          hhh
         </DroppableWidget>
       </Col>
 
