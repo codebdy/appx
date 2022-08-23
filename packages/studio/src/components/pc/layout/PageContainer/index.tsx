@@ -11,12 +11,14 @@ import PageFooterToolbar, { IPageFooterToolbarProps } from "./PageFooterToolbar"
 import { IPageContainerProps } from "./IPageContainerProps";
 import { PageContainerShell } from "./PageContainerShell";
 import { useBreadcumbItems } from "../../../../AppRunner/hooks/useBreadcumbItems";
+import PageHeaderContentExtra, { IPageHeaderContentExtraProps } from "./PageHeaderContentExtra";
 
 const { TabPane } = Tabs;
 
 export const PageContainer: React.FC<IPageContainerProps> & {
   HeaderActions?: React.FC<IHeaderActionsProps>,
   HeaderContent?: React.FC<IPageHeaderContentProps>,
+  HeaderContentExtra?: React.FC<IPageHeaderContentExtraProps>,
   TabPanel?: React.FC<IPageTabPanelProps>,
   FooterToolbar?: React.FC<IPageFooterToolbarProps>,
 } = (props: IPageContainerProps) => {
@@ -117,5 +119,6 @@ export const PageContainer: React.FC<IPageContainerProps> & {
 
 PageContainer.HeaderActions = PageHeaderActions
 PageContainer.HeaderContent = PageHeaderContent
+PageContainer.HeaderContentExtra = PageHeaderContentExtra
 PageContainer.TabPanel = PageTabPanel
 PageContainer.FooterToolbar = PageFooterToolbar

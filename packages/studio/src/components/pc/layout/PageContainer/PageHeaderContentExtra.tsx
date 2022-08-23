@@ -1,16 +1,18 @@
 import { observer } from "@formily/reactive-react"
 import { Col } from "antd"
 import React from "react"
+import clx from "classnames";
 
 export interface IPageHeaderContentExtraProps {
   gridSpan?: number,
-  children?: React.ReactNode
+  children?: React.ReactNode,
+  className?: string,
 }
 
 const PageHeaderContentExtra = observer((props: IPageHeaderContentExtraProps) => {
-  const {gridSpan, ...other} = props;
+  const { gridSpan, className, ...other } = props;
   return (
-    <Col {...other} span = {gridSpan}>
+    <Col {...other} className={clx(className, "header-content-extra")} span={gridSpan}>
       {props.children}
     </Col>
   )
