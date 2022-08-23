@@ -1,4 +1,4 @@
-import { Tabs } from "antd";
+import { Row, Tabs } from "antd";
 import React, { useState } from "react"
 import { RecursionField, useFieldSchema } from '@formily/react';
 import "./index.less"
@@ -48,6 +48,7 @@ export const PageContainer: React.FC<IPageContainerProps> & {
   const slots = {
     headerExtra: null,
     headerContent: null,
+    headerContentExtra: null,
     footer: null,
     tabs: [],
     otherChildren: []
@@ -63,6 +64,8 @@ export const PageContainer: React.FC<IPageContainerProps> & {
       slots.footer = childSchema
     } else if (childSchema["x-component"] === 'PageContainer.TabPanel') {
       slots.tabs.push(childSchema)
+    } else if (childSchema["x-component"] === 'PageContainer.HeaderContentExtra') {
+      slots.headerContentExtra = childSchema;
     } else {
       slots.otherChildren.push(childSchema)
     }
@@ -96,7 +99,12 @@ export const PageContainer: React.FC<IPageContainerProps> & {
         }
         breadcrumb={hasBreadcrumb ? { routes: routesPlaceholder } : undefined}
       >
-        {hasHeaderContent && slots.headerContent && <RecursionField schema={slots.headerContent} name={slots.headerContent.name} />}
+        <Row>
+          {hasHeaderContent && slots.headerContent && <RecursionField schema={slots.headerContent} name={slots.headerContent.name} />}
+          {hasHeaderContentExtra && slots.headerContentExtra && <RecursionField schema={slots.headerContentExtra} name={slots.headerContentExtra.name} />}
+          {hasHeaderContent && slots.headerContent && <RecursionField schema={slots.headerContent} name={slots.headerContent.name} />}
+        </Row>
+
       </PageHeader>
       <PageBody>
         {selectedTab && <RecursionField schema={selectedTab} name={selectedTab.name} />}

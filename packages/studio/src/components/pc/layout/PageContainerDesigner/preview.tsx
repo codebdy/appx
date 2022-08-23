@@ -139,7 +139,7 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
           (hasHeaderContent || hasHeaderContentExtra) &&
           <Row>
             {hasHeaderContent && headerContent && <TreeNodeWidget node={headerContent} />}
-            {hasHeaderContentExtra && hasHeaderContentExtra && <TreeNodeWidget node={headerContentExtra} />}
+            {hasHeaderContentExtra && headerContentExtra && <TreeNodeWidget node={headerContentExtra} />}
           </Row>
         }
       </PageHeader>
