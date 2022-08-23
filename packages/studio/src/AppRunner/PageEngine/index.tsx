@@ -1,6 +1,6 @@
-import { createForm } from "@formily/core";
+import { createForm, JSXComponent } from "@formily/core";
 import { FormProvider, createSchemaField } from '@formily/react';
-import { ArrayTable, FormItem, Input } from "@formily/antd";
+import { FormItem } from "@formily/antd";
 import React from "react";
 import { memo, useMemo } from "react";
 import { Spin } from "antd";
@@ -15,12 +15,15 @@ export interface ILoadingSpanProps {
   children?: React.ReactNode
 }
 
+type IComponents = Record<string, JSXComponent>;
+
 const PageEngine = memo((
   props: {
     LoadingSpan?: React.FC<ILoadingSpanProps>,
+    components: IComponents,
   }
 ) => {
-  const { LoadingSpan = Spin } = props;
+  const { LoadingSpan = Spin, components = {} } = props;
   const { menuUuid } = useParams();
   const getMenuItem = useGetMenuItem();
 
@@ -32,10 +35,9 @@ const PageEngine = memo((
   const SchemaField = useMemo(() => createSchemaField({
     components: {
       FormItem,
-      Input,
-      ArrayTable
+      ...components
     },
-  }), [])
+  }), [components])
 
   const form = useMemo(() => createForm(), [])
 
