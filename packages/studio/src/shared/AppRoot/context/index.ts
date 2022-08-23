@@ -1,10 +1,11 @@
 import { createContext, useContext, useMemo } from "react";
-import { Device, IApp, IAppConfig, ILangLocal } from "../../../model";
+import { Device, IApp, IAppConfig, IAppDeviceConfig, ILangLocal } from "../../../model";
 
 export interface IAppContextParams {
   app: IApp,
   device: Device | undefined,
   config: IAppConfig | undefined,
+  deviceConfig: IAppDeviceConfig | undefined,
   langLocales: ILangLocal[] | undefined,
 }
 

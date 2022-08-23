@@ -29,6 +29,16 @@ export interface IAppConfig {
   }
 }
 
+export interface IAppDeviceConfig {
+  id: ID;
+  appUuid?: string;
+  device?: Device;
+  schemaJson?: {
+    entryUuid?: string,
+  }
+}
+
+
 export interface IApp {
   id: ID;
   uuid: string;

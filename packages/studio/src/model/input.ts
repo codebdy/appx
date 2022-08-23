@@ -23,6 +23,16 @@ export interface IAppConfigInput {
   }
 }
 
+export interface IAppDeviceConfigInput {
+  id?: ID;
+  appUuid?: string;
+  device?: Device;
+  schemaJson?: {
+    entryUuid?: string,
+  }
+}
+
+
 export interface IAppInput {
   id?: ID;
   uuid?: string;
