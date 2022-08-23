@@ -1,6 +1,6 @@
 import { ID } from "../shared";
 import { IMenuItem } from "./IMenuNode";
-
+import { ISchema } from '@formily/json-schema'
 export interface ILang {
   key: string,
   abbr: string,
@@ -48,7 +48,7 @@ export enum Device {
 export interface IPage {
   id: ID;
   title: string;
-  schemaJson: { form: any, schema: any };
+  schemaJson: { form: any, schema: ISchema };
   device: Device;
   app: IApp;
   category?: IPageCategory;

@@ -7,6 +7,7 @@ import { useMenuRoute } from "../context/route";
 import { Spin } from "antd";
 import { usePage } from "../../hooks/usePage";
 import { useShowError } from "../../hooks/useShowError";
+import { useParseLangSchema } from "../../hooks/useParseLangSchema";
 
 export interface ILoadingSpanProps {
   spinning?: boolean,
@@ -23,6 +24,7 @@ const PageEngine = memo((
 
   const { page, loading, error } = usePage(menuItem?.route?.pageId);
 
+  const p = useParseLangSchema();
   useShowError(error);
 
   const SchemaField = useMemo(() => createSchemaField({
@@ -40,7 +42,7 @@ const PageEngine = memo((
       <FormProvider form={form}>
         {
           page?.schemaJson?.schema &&
-          <SchemaField schema={page?.schemaJson?.schema}>
+          <SchemaField schema={p(page?.schemaJson?.schema)}>
           </SchemaField>
         }
 
