@@ -1,7 +1,6 @@
 import { IApp } from "../../../model";
 import React, { memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { Workspace } from "../../containers";
 import { SettingsPanel, ToolbarPanel, ViewportPanel, WorkspacePanel } from "../../panels";
 import { MenuToolsWidget } from "../MenuToolsWidget";
 import MenuDesignView from "./MenuDesignView";
