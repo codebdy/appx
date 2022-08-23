@@ -10,12 +10,6 @@ import { useTranslation } from 'react-i18next';
 import { useSelectedPageId } from '../hooks/useSelectedPageId';
 import { usePages } from '../hooks/usePages';
 
-// const logo = {
-//   dark: '//img.alicdn.com/imgextra/i2/O1CN01NTUDi81fHLQvZCPnc_!!6000000003981-55-tps-1141-150.svg',
-//   light:
-//     '//img.alicdn.com/imgextra/i2/O1CN01Kq3OHU1fph6LGqjIz_!!6000000004056-55-tps-1141-150.svg',
-// }
-
 export const NavigationWidget = memo((
   props: {
     app: IApp,
@@ -38,15 +32,19 @@ export const NavigationWidget = memo((
 
   const p = useParseLangMessage();
 
+  const isPageEdit = useMemo(() => activeKey === DesignerRoutes.Pages ||
+    activeKey === DesignerRoutes.OutlinedTree ||
+    activeKey === DesignerRoutes.Components,
+    [activeKey])
   const subTitle = useMemo(() => {
-    if (activeKey === DesignerRoutes.Pages || activeKey === DesignerRoutes.OutlinedTree || activeKey === DesignerRoutes.Components) {
+    if (isPageEdit) {
       return t("Designer.Pages")
     } else if (activeKey === DesignerRoutes.Menu) {
       return t("Designer.Menu")
     } else if (activeKey === DesignerRoutes.Settings) {
       return t("Designer.Settings")
     }
-  }, [activeKey, t])
+  }, [activeKey, isPageEdit, t])
 
   return (
     <div className='navigation-widget'>
@@ -60,7 +58,7 @@ export const NavigationWidget = memo((
         </Breadcrumb.Item>
         <Breadcrumb.Item>{subTitle}</Breadcrumb.Item>
         {
-          selectedPage &&
+          selectedPage && isPageEdit &&
           <Breadcrumb.Item>{p(selectedPage.title)}</Breadcrumb.Item>
         }
       </Breadcrumb>
