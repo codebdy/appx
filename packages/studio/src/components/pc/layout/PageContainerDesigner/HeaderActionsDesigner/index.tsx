@@ -5,7 +5,7 @@ import PageHeaderActions, { IHeaderActionsProps } from "../../PageContainer/Page
 import './locales'
 import './schema'
 
-const HeaderActions = observer((props: IHeaderActionsProps) => {
+export const HeaderActionsDesigner = observer((props: IHeaderActionsProps) => {
   return (
     props.children
       ?
@@ -18,5 +18,3 @@ const HeaderActions = observer((props: IHeaderActionsProps) => {
       </DroppableWidget>
   )
 })
-
-export default HeaderActions

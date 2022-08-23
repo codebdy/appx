@@ -6,7 +6,7 @@ import PageHeaderContentExtra, { IPageHeaderContentExtraProps } from "../../Page
 import './locales'
 import './schema'
 
-const HeaderContentExtra = observer((props: IPageHeaderContentExtraProps) => {
+export const HeaderContentExtraDesigner = observer((props: IPageHeaderContentExtraProps) => {
   const { gridSpan, ...other } = props;
   return (
     props.children
@@ -22,5 +22,3 @@ const HeaderContentExtra = observer((props: IPageHeaderContentExtraProps) => {
       </Col>
   )
 })
-
-export default HeaderContentExtra

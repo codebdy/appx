@@ -6,7 +6,7 @@ import PageHeaderContent, { IPageHeaderContentProps } from "../../PageContainer/
 import './locales'
 import './schema'
 
-const HeaderContent = observer((props: IPageHeaderContentProps) => {
+export const HeaderContentDesigner = observer((props: IPageHeaderContentProps) => {
   const {gridSpan, ...other} = props;
   return (
     props.children
@@ -25,5 +25,3 @@ const HeaderContent = observer((props: IPageHeaderContentProps) => {
 
   )
 })
-
-export default HeaderContent

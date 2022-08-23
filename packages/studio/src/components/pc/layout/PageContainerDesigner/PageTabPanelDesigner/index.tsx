@@ -5,7 +5,7 @@ import PageTabPanel, { IPageTabPanelProps } from "../../PageContainer/PageTabPan
 import './locales'
 import './schema'
 
-const TabPanel = observer((props: IPageTabPanelProps) => {
+export const TabPanelDesigner = observer((props: IPageTabPanelProps) => {
   return (
     props.children
     ?
@@ -18,5 +18,3 @@ const TabPanel = observer((props: IPageTabPanelProps) => {
     </DroppableWidget>
   )
 })
-
-export default TabPanel

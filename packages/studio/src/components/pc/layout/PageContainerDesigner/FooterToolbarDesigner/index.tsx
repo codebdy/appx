@@ -6,7 +6,7 @@ import './schema'
 import clx from "classnames"
 import { IPageFooterToolbarProps } from "../../PageContainer/PageFooterToolbar"
 
-const FooterToolbar = observer((props: IPageFooterToolbarProps) => {
+export const FooterToolbarDesigner = observer((props: IPageFooterToolbarProps) => {
   const {className, ...other} = props
   return (
     <DroppableWidget {...other} className = {clx("rx-page-footer-toolbar-layout", className)}>
@@ -14,5 +14,3 @@ const FooterToolbar = observer((props: IPageFooterToolbarProps) => {
     </DroppableWidget>
   )
 })
-
-export default FooterToolbar

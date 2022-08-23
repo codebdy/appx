@@ -5,16 +5,16 @@ import { DnFC, TreeNodeWidget, useTreeNode } from '@designable/react'
 import { queryNodesByComponentPath } from '../../../common/shared'
 import { PageContainerLocales } from './locales'
 import { PageContainerSchema } from './schema'
-import HeaderActions from './HeaderActions'
-import HeaderContent from './HeaderContent'
-import TabPanel from './PageTabPanel'
-import FooterToolbar from './FooterToolbar'
+import { HeaderActionsDesigner } from './HeaderActionsDesigner'
+import { HeaderContentDesigner } from './HeaderContentDesigner'
+import { TabPanelDesigner } from './PageTabPanelDesigner'
+import { FooterToolbarDesigner } from './FooterToolbarDesigner'
 import { observer } from '@formily/reactive-react'
 import './index.less'
 import { LoadTemplate } from "@designable/formily-antd/lib/common/LoadTemplate"
 import { createFieldSchema } from "../../../common/Field/shared"
 import { useFindNode } from '../../../common/hooks/useFindNode'
-import HeaderContentExtra from './HeaderContentExtra'
+import { HeaderContentExtraDesigner } from './HeaderContentExtraDesigner'
 import { IPageContainerProps } from '../PageContainer/IPageContainerProps'
 import { IHeaderActionsProps } from '../PageContainer/PageHeaderActions'
 import { IPageHeaderContentProps } from '../PageContainer/PageHeaderContent'
@@ -175,11 +175,11 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
   )
 })
 
-PageContainerDesigner.HeaderActions = HeaderActions
-PageContainerDesigner.HeaderContent = HeaderContent
-PageContainerDesigner.HeaderContentExtra = HeaderContentExtra
-PageContainerDesigner.TabPanel = TabPanel
-PageContainerDesigner.FooterToolbar = FooterToolbar
+PageContainerDesigner.HeaderActions = HeaderActionsDesigner
+PageContainerDesigner.HeaderContent = HeaderContentDesigner
+PageContainerDesigner.HeaderContentExtra = HeaderContentExtraDesigner
+PageContainerDesigner.TabPanel = TabPanelDesigner
+PageContainerDesigner.FooterToolbar = FooterToolbarDesigner
 
 PageContainerDesigner.Behavior = createBehavior(
   {
