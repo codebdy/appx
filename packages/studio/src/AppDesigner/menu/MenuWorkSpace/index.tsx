@@ -30,20 +30,18 @@ const MenuWorkSpace = memo((
 
   return (
     <>
-      <Workspace id="menu">
-        <WorkspacePanel>
-          <ToolbarPanel>
-            <MenuToolsWidget />
-          </ToolbarPanel>
-          <ViewportPanel style={{ height: '100%' }}>
-            <div className="menu-design-view-container"
-              onClick={handleClick}
-            >
-              <MenuDesignView app={app} />
-            </div>
-          </ViewportPanel>
-        </WorkspacePanel>
-      </Workspace>
+      <WorkspacePanel>
+        <ToolbarPanel>
+          <MenuToolsWidget />
+        </ToolbarPanel>
+        <ViewportPanel style={{ height: '100%' }}>
+          <div className="menu-design-view-container"
+            onClick={handleClick}
+          >
+            <MenuDesignView app={app} />
+          </div>
+        </ViewportPanel>
+      </WorkspacePanel>
       <SettingsPanel title={t("Panels.PropertySettings")}>
         {
           selectedId
