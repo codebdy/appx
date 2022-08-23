@@ -1,7 +1,7 @@
 import { Input } from "@formily/antd";
 import React from "react";
 import { memo } from "react";
-import { Button, PageContainer } from "../../components/pc";
+import { Button, PageContainer, ProTable } from "../../components/pc";
 import { useParseLangMessage } from "../../hooks/useParseLangMessage";
 import { useAppParams } from "../../shared/AppRoot/context";
 import PageEngine from "../PageEngine";
@@ -46,7 +46,8 @@ const PCRunner = memo(() => {
           components={{
             Input,
             Button,
-            PageContainer
+            PageContainer,
+            ProTable
           }}
         />
       </ProLayout>
