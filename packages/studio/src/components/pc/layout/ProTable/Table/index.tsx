@@ -123,17 +123,24 @@ interface ObservableColumnSource {
 }
 
 const isColumnComponent = (schema: Schema) => {
-  return schema['x-component']?.indexOf('Column') > -1
+  return schema?.['x-component']?.indexOf('ProTable.Column') > -1
+}
+const isColumnGroupComponent = (schema: Schema) => {
+  return schema['x-component']?.indexOf('ProTable.ColumnGroup') > -1
 }
 
+const isOperationsComponent = (schema: Schema) => {
+  return schema['x-component']?.indexOf('Operations') > -1
+}
 
 // rowSelection object indicates the need for row selection
 const useArrayTableColumns = (
   dataSource: any[],
   sources: ObservableColumnSource[]
 ): TableProps<any>['columns'] => {
-  return sources?.reduce((buf, { name, columnProps, schema, display }, key) => {
-    if (display !== 'visible') return buf
+  return sources?.reduce((buf, source, key) => {
+    const { name, columnProps, schema, display } = source ||{}
+    //if (display !== 'visible') return buf
     if (!isColumnComponent(schema)) return buf
     return buf.concat({
       ...columnProps,
@@ -158,8 +165,7 @@ const useArrayTableSources = () => {
   const parseSources = (schema: Schema): ObservableColumnSource[] => {
     if (
       isColumnComponent(schema) ||
-      isOperationsComponent(schema) ||
-      isAdditionComponent(schema)
+      isOperationsComponent(schema)
     ) {
       if (!schema['x-component-props']?.['dataIndex'] && !schema['name'])
         return []
@@ -207,7 +213,14 @@ export const Table = memo((
   const { onSelectedChange } = useProTableParams();
   const selectable = useSelectable();
   const p = useParseLangMessage();
-  console.log("cmcmc", props)
+  const field = useField<ArrayField>()
+  const dataSource = Array.isArray(field.value) ? field.value.slice() : []
+  const sources = useArrayTableSources()
+  console.log("cmz1", dataSource, sources);
+  const columns = useArrayTableColumns(dataSource, sources)
+
+  console.log("cmz columns", columns);
+
   const rowSelection = useMemo(() => ({
     onChange: (selectedRowKeys: React.Key[], selectedRows: any[]) => {
       onSelectedChange(selectedRowKeys);
