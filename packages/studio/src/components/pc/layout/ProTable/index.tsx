@@ -39,7 +39,6 @@ export const ProTable: React.FC<IProTableProps> & {
     selectable = true,
     className,
     dataSource,
-    items,
     ...other
   } = props;
   const [params, setParams] = useState<IProTableParams>();
@@ -65,7 +64,7 @@ export const ProTable: React.FC<IProTableProps> & {
         slts.tableToolbar = childSchema;
       }
     }
-  
+
     return slts
   }, [fieldSchema.properties])
 
@@ -86,9 +85,15 @@ export const ProTable: React.FC<IProTableProps> & {
           hasQueryForm && slots.queryForm && <RecursionField schema={slots.queryForm} name={slots.queryForm.name} />
         }
         <Card style={{ marginTop: "16px" }}>
-          <TableToolbar />
-          <TableBatchActions />
-          <Table />
+          {
+            hasToolbar && slots.tableToolbar && <RecursionField schema={slots.tableToolbar} name={slots.tableToolbar.name} />
+          }
+          {
+            selectable && slots.tableBatchActions && <RecursionField schema={slots.tableBatchActions} name={slots.tableBatchActions.name} />
+          }
+          {
+            <RecursionField schema={slots.dataTable} name={slots.dataTable.name} />
+          }
         </Card>
       </div>
     </ProTableContext.Provider>
