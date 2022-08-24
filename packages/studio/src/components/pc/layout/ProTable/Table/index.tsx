@@ -304,18 +304,21 @@ export const Table = memo((
 
 
 
-  return (<AntdTable
-    columns={columns}
-    dataSource={data}
-    rowSelection={selectable && {
-      type: 'checkbox',
-      ...rowSelection,
-    }}
-    onChange={onChange}>
-    {/* {node.children?.map((node) => {
+  return (
+    <ArrayBase>
+      <AntdTable
+        columns={columns}
+        dataSource={data}
+        rowSelection={selectable && {
+          type: 'checkbox',
+          ...rowSelection,
+        }}
+        onChange={onChange}>
+        {/* {node.children?.map((node) => {
       return renderChild(node);
     })} */}
-  </AntdTable>
+      </AntdTable>
+    </ArrayBase>
   )
 
 });
