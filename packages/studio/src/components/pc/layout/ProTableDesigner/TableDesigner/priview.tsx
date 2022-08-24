@@ -14,11 +14,12 @@ import cls from 'classnames'
 import {
   queryNodesByComponentPath,
   hasNodeByComponentPath,
+  createEnsureTypeItemsNode,
 } from '../../../../common/shared'
-import { useDropTemplate } from "@designable/formily-antd/lib/hooks/useDropTemplate"
 import { LoadTemplate } from '@designable/formily-antd/lib/common/LoadTemplate'
 import { useParseLangMessage } from '../../../../../hooks/useParseLangMessage'
 import { useSelectable } from '../../ProTable/context'
+const ensureObjectItemsNode = createEnsureTypeItemsNode('object')
 
 const HeaderCell: React.FC = (props: any) => {
   return (
@@ -48,91 +49,14 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
   const nodeId = useNodeIdProps();
   const p = useParseLangMessage();
   const selectable = useSelectable();
-
-  useDropTemplate('ProTable', (source) => {
-    const indexNode = new TreeNode({
-      componentName: 'Field',
-      props: {
-        type: 'void',
-        'x-component': 'ProTable.Column',
-        'x-component-props': {
-          title: `No.`,
-        },
-      },
-      children: [
-        {
-          componentName: 'Field',
-          props: {
-            type: 'void',
-            'x-component': 'ProTable.Index',
-          },
-        },
-      ],
-    })
-    const columnNode = new TreeNode({
-      componentName: 'Field',
-      props: {
-        type: 'void',
-        'x-component': 'ProTable.Column',
-        'x-component-props': {
-          title: `Title`,
-        },
-      },
-      children: source.map((node) => {
-        node.props.title = undefined
-        return node
-      }),
-    })
-
-    const operationNode = new TreeNode({
-      componentName: 'Field',
-      props: {
-        type: 'void',
-        'x-component': 'ProTable.Column',
-        'x-component-props': {
-          title: `Title`,
-        },
-      },
-      children: [
-        {
-          componentName: 'Field',
-          props: {
-            type: 'void',
-            'x-component': 'ProTable.Remove',
-          },
-        },
-        {
-          componentName: 'Field',
-          props: {
-            type: 'void',
-            'x-component': 'ProTable.MoveDown',
-          },
-        },
-        {
-          componentName: 'Field',
-          props: {
-            type: 'void',
-            'x-component': 'ProTable.MoveUp',
-          },
-        },
-      ],
-    })
-    const objectNode = new TreeNode({
-      componentName: 'Field',
-      props: {
-        type: 'object',
-      },
-      children: [indexNode, columnNode, operationNode],
-    })
-    return [objectNode]
-  })
+  const itemsNode = node.children.find((child) => child.props['type'] === "object");
 
   const findOperationNode = useCallback(() => {
-    return queryNodesByComponentPath(node, [
+    return queryNodesByComponentPath(itemsNode, [
       '*',
       'ProTable.Column',
     ])?.find(node => node?.props?.["x-actions"])
-  }, [node]);
+  }, [itemsNode]);
 
   const defaultRowKey = useCallback(() => {
     return node.id
@@ -204,13 +128,6 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
     }
   }, [renderColumn, renderColumnGroup])
 
-  // useDropTemplate('ProTable.Column', (source) => {
-  //   return source.map((node) => {
-  //     node.props.title = undefined
-  //     return node
-  //   })
-  // })
-
   return (
     <div {...nodeId} className="dn-array-table">
       {
@@ -239,7 +156,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
               }}
               rowSelection={selectable && {}}
             >
-              {node.children?.map((node) => {
+              {itemsNode?.children?.map((node) => {
                 return renderChild(node);
               })}
             </Table>
@@ -280,7 +197,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
                   },
                 ],
               })
-              node.prepend(tableColumn)
+              ensureObjectItemsNode(node).prepend(tableColumn)
             },
           },
           {
@@ -302,7 +219,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
               if (operationNode) {
                 operationNode.insertBefore(tableColumnGroup)
               } else {
-                node.append(tableColumnGroup)
+                ensureObjectItemsNode(node).append(tableColumnGroup)
               }
             },
           },
@@ -325,7 +242,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
               if (operationNode) {
                 operationNode.insertBefore(tableColumn)
               } else {
-                node.append(tableColumn)
+                ensureObjectItemsNode(node).append(tableColumn)
               }
             },
           },
@@ -377,7 +294,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
                     },
                   ],
                 })
-                node.append(operationNode)
+                ensureObjectItemsNode(node).append(operationNode)
               }
             },
           },
