@@ -10,6 +10,7 @@ import {
   ProTable,
   ArrayTableDesigner
 } from "../../../components/pc";
+import { ObjectContainer } from "@designable/formily-antd";
 
 export const allMaterials: MaterialModule[] = [
   {
@@ -45,6 +46,11 @@ export const allMaterials: MaterialModule[] = [
             name: "ArrayTable",
             designer: ArrayTableDesigner,
             component: ArrayTable
+          },
+          {
+            name:"ObjectContainer",
+            designer: ObjectContainer,
+            component: ObjectContainer,
           }
           // {
           //   name: "Rate2",

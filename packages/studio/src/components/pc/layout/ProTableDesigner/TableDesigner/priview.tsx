@@ -19,7 +19,6 @@ import {
 import { LoadTemplate } from '@designable/formily-antd/lib/common/LoadTemplate'
 import { useParseLangMessage } from '../../../../../hooks/useParseLangMessage'
 import { useSelectable } from '../../ProTable/context'
-import {useDropTemplate} from '@designable/formily-antd/lib/hooks/useDropTemplate'
 const ensureObjectItemsNode = createEnsureTypeItemsNode('object')
 
 const HeaderCell: React.FC = (props: any) => {
@@ -51,111 +50,6 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
   const p = useParseLangMessage();
   const selectable = useSelectable();
   const itemsNode = node.children.find((child) => child.props['type'] === "object");
-
-  useDropTemplate('PropTable.Table', (source) => {
-    const sortHandleNode = new TreeNode({
-      componentName: 'Field',
-      props: {
-        type: 'void',
-        'x-component': 'PropTable.Column',
-        'x-component-props': {
-          title: `Title`,
-        },
-      },
-      children: [
-        {
-          componentName: 'Field',
-          props: {
-            type: 'void',
-            'x-component': 'PropTable.SortHandle',
-          },
-        },
-      ],
-    })
-    const indexNode = new TreeNode({
-      componentName: 'Field',
-      props: {
-        type: 'void',
-        'x-component': 'PropTable.Column',
-        'x-component-props': {
-          title: `Title`,
-        },
-      },
-      children: [
-        {
-          componentName: 'Field',
-          props: {
-            type: 'void',
-            'x-component': 'PropTable.Index',
-          },
-        },
-      ],
-    })
-    const columnNode = new TreeNode({
-      componentName: 'Field',
-      props: {
-        type: 'void',
-        'x-component': 'PropTable.Column',
-        'x-component-props': {
-          title: `Title`,
-        },
-      },
-      children: source.map((node) => {
-        node.props.title = undefined
-        return node
-      }),
-    })
-
-    const operationNode = new TreeNode({
-      componentName: 'Field',
-      props: {
-        type: 'void',
-        'x-component': 'PropTable.Column',
-        'x-component-props': {
-          title: `Title`,
-        },
-      },
-      children: [
-        {
-          componentName: 'Field',
-          props: {
-            type: 'void',
-            'x-component': 'PropTable.Remove',
-          },
-        },
-        {
-          componentName: 'Field',
-          props: {
-            type: 'void',
-            'x-component': 'PropTable.MoveDown',
-          },
-        },
-        {
-          componentName: 'Field',
-          props: {
-            type: 'void',
-            'x-component': 'PropTable.MoveUp',
-          },
-        },
-      ],
-    })
-    const objectNode = new TreeNode({
-      componentName: 'Field',
-      props: {
-        type: 'object',
-      },
-      children: [sortHandleNode, indexNode, columnNode, operationNode],
-    })
-    return [objectNode]
-  })
-
-  
-  useDropTemplate('PropTable.Column', (source) => {
-    return source.map((node) => {
-      node.props.title = undefined
-      return node
-    })
-  })
 
   const findOperationNode = useCallback(() => {
     return queryNodesByComponentPath(itemsNode, [

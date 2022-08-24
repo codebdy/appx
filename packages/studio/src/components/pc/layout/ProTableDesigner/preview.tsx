@@ -127,7 +127,7 @@ ProTableDesigner.Behavior = createBehavior(
     extends: ['Field'],
     selector: (node) => node.props['x-component'] === 'ProTable.Table',
     designerProps: {
-      droppable: true,
+      droppable: false,
       deletable: false,
       cloneable: false,
       draggable: false,
