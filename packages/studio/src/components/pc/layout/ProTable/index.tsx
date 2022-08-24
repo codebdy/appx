@@ -13,6 +13,7 @@ import { IDataSource } from "../../../../datasource"
 import clx from "classnames";
 import { RecursionField, useFieldSchema } from '@formily/react';
 import { IQueryFormProps, QueryForm } from "./QueryForm"
+import { TableIndex } from "./TableIndex"
 
 registerResourceBundle(LOCALES_NS, locales);
 
@@ -104,3 +105,4 @@ ProTable.QueryForm = QueryForm
 ProTable.TableToolbar = TableToolbar
 ProTable.TableBatchActions = TableBatchActions
 ProTable.Table = Table
+ProTable.Index = TableIndex
