@@ -149,7 +149,7 @@ const getTableColumns = (
       children: getTableColumns(dataSource, children) || [],
       key,
       dataIndex: name,
-      render: children.length > 0
+      render: !children.length
         ? (value: any, record: any) => {
           const index = dataSource.indexOf(record)
           const children = (
