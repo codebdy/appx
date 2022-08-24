@@ -150,8 +150,8 @@ const getTableColumns = (
       key,
       dataIndex: name,
       render: !children.length
-        ? (value: any, record: any) => {
-          const index = dataSource.indexOf(record)
+        ? (value: any, record: any, index: number) => {
+          //const index = dataSource.indexOf(record)
           const children = (
             <ArrayBase.Item index={index} record={() => dataSource[index]}>
               <RecursionField schema={schema} name={index} onlyRenderProperties />
