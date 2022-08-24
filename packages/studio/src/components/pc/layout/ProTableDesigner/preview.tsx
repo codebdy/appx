@@ -29,14 +29,13 @@ export const ProTableDesigner: DnFC<IProTableProps> & {
   TableBatchActions?: React.FC<ITableBatchActionsProps>,
   Table?: React.FC<TableProps<any>>,
   Index?: React.FC,
-  //ColumnGroup?: React.FC<ColumnGroupProps<any>>,
-  //Column?: React.FC<ColumnProps<any>>,
 } = observer((props: IProTableProps) => {
   const {
     hasQueryForm = true,
     hasToolbar = true,
     selectable = true,
     className,
+    dataSource,
     ...other
   } = props;
 

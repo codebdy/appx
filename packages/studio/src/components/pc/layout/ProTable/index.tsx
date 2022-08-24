@@ -20,6 +20,7 @@ import { isArr } from '@formily/shared'
 import { registerResourceBundle } from "../../../../i18n/registerResourceBundle"
 import { IDataSourceableProps } from "../../../common/IDataSourceableProps"
 import TableToolbar from "./TableToolbar"
+import { IDataSource } from "../../../../datasource"
 
 registerResourceBundle(LOCALES_NS, locales);
 interface ObservableColumnSource {
@@ -121,18 +122,20 @@ export interface IProTableProps extends IDataSourceableProps {
   hasQueryForm?: boolean,
   hasToolbar?: boolean,
   selectable?: boolean,
+  dataSource?: IDataSource,
 }
 
 export const ProTable = observer((
   props: IProTableProps
 ) => {
+  const { dataSource } = props;
   const [params, setParams] = useState<IProTableParams>();
   const ref = useRef<HTMLDivElement>()
   const field = useField<ArrayField>()
   const prefixCls = usePrefixCls('appx-pro-table')
-  const dataSource = Array.isArray(field.value) ? field.value.slice() : []
+  //const dataSource = Array.isArray(field.value) ? field.value.slice() : []
   const sources = useArrayTableSources()
-  const columns = useArrayTableColumns(dataSource, sources)
+  //const columns = useArrayTableColumns(dataSource, sources)
 
   const handleSelectedChange = useCallback((keys?: React.Key[]) => {
     setParams(params => ({ ...params, selectedRowKeys: keys }))
