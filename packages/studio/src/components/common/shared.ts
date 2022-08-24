@@ -51,7 +51,7 @@ export const queryNodesByComponentPath = (
     }
   }
   return matchComponent(node, path[0])
-    ? node.children.reduce((buf, child) => {
+    ? node?.children?.reduce((buf, child) => {
         return buf.concat(queryNodesByComponentPath(child, path.slice(1)))
       }, [])
     : []

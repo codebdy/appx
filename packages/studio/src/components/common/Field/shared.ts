@@ -335,7 +335,7 @@ export const createActionSchemaTab = (actions: string[]) => {
 }
 
 export const createFieldSchema = (
-  component: ISchema,
+  component: ISchema | undefined,
   options?: IFieldOptions
 ) => {
   return {
@@ -345,7 +345,7 @@ export const createFieldSchema = (
         type: 'void',
         'x-component': 'SettingsTab',
         properties: {
-          ...createComponentSchemaTab(component, options?.decorator || (options?.isDataField && AllSchemas.FormItem)),
+          ...component && createComponentSchemaTab(component, options?.decorator || (options?.isDataField && AllSchemas.FormItem)),
           ...createStyleSchemaTab(),
           ...(!options?.noDisplayTab ? createDisplaySchemaTab(options) : {}),
           ...(options?.actions ? createActionSchemaTab(options?.actions) : {}),

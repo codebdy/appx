@@ -127,7 +127,7 @@ ProTableDesigner.Behavior = createBehavior(
     extends: ['Field'],
     selector: (node) => node.props['x-component'] === 'ProTable.Table',
     designerProps: {
-      droppable: false,
+      droppable: true,
       deletable: false,
       cloneable: false,
       draggable: false,
@@ -142,7 +142,11 @@ ProTableDesigner.Behavior = createBehavior(
     designerProps: {
       droppable: true,
       allowDrop: (node) => {
-        return (node?.props?.['x-component'] === 'ProTable.Table' || node?.props?.['x-component'] === 'ProTable.ColumnGroup')
+        console.log("哈哈", node.id, node.props?.['type'], node?.props?.["x-component"])
+        return (
+          node?.props?.['x-component'] === 'ProTable.Table' ||
+          node?.props?.['x-component'] === 'ProTable.ColumnGroup'
+        );
       }
       ,
       propsSchema: createFieldSchema(DataTableSchema.Column, { isDataField: true, hasPropTitle: true }),

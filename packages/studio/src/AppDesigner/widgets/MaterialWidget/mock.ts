@@ -1,5 +1,5 @@
 import { MaterialModule, OperationType } from "./model";
-import { Input } from "@formily/antd";
+import { ArrayTable, Input } from "@formily/antd";
 import {
   Button,
   ButtonDesigner,
@@ -7,7 +7,8 @@ import {
   PageContainerDesigner,
   PageContainer,
   ProTableDesigner,
-  ProTable
+  ProTable,
+  ArrayTableDesigner
 } from "../../../components/pc";
 
 export const allMaterials: MaterialModule[] = [
@@ -39,6 +40,11 @@ export const allMaterials: MaterialModule[] = [
             name: "Button",
             designer: ButtonDesigner,
             component: Button
+          },
+          {
+            name: "ArrayTable",
+            designer: ArrayTableDesigner,
+            component: ArrayTable
           }
           // {
           //   name: "Rate2",

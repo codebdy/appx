@@ -207,6 +207,7 @@ export const Table = memo((
   const { onSelectedChange } = useProTableParams();
   const selectable = useSelectable();
   const p = useParseLangMessage();
+  console.log("cmcmc", props)
   const rowSelection = useMemo(() => ({
     onChange: (selectedRowKeys: React.Key[], selectedRows: any[]) => {
       onSelectedChange(selectedRowKeys);

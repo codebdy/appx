@@ -3,3 +3,4 @@ export * from "./ButtonDesigner";
 export * from "./FormDesigner";
 export * from "./InputDesigner";
 export * from "./MultiLangInput";
+export * from "./ArrayTableDesigner";
