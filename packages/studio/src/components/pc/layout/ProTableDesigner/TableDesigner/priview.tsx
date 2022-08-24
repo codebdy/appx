@@ -52,11 +52,12 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
   const itemsNode = node.children.find((child) => child.props['type'] === "object");
 
   const findOperationNode = useCallback(() => {
-    return queryNodesByComponentPath(itemsNode, [
+    return queryNodesByComponentPath(node, [
+      'ProTable.Table',
       '*',
       'ProTable.Column',
     ])?.find(node => node?.props?.["x-actions"])
-  }, [itemsNode]);
+  }, [node]);
 
   const defaultRowKey = useCallback(() => {
     return node.id
@@ -170,6 +171,7 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
             onClick: () => {
               if (
                 hasNodeByComponentPath(node, [
+                  'ProTable.Table',
                   '*',
                   'ProTable.Column',
                   'ProTable.Index',
