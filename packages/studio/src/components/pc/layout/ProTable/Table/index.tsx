@@ -119,42 +119,47 @@ interface ObservableColumnSource {
   columnProps: ColumnProps<any>
   schema: Schema
   display: FieldDisplayTypes
-  name: string
+  name: string,
+  children?: ObservableColumnSource[],
 }
 
 const isColumnComponent = (schema: Schema) => {
-  return schema?.['x-component']?.indexOf('ProTable.Column') > -1
+  return schema?.['x-component'] === 'ProTable.Column'
 }
 const isColumnGroupComponent = (schema: Schema) => {
-  return schema['x-component']?.indexOf('ProTable.ColumnGroup') > -1
+  return schema?.['x-component'] === 'ProTable.ColumnGroup'
 }
 
-const isOperationsComponent = (schema: Schema) => {
-  return schema['x-component']?.indexOf('Operations') > -1
-}
+// const isOperationsComponent = (schema: Schema) => {
+//   return schema['x-component']?.indexOf('Operations') > -1
+// }
+
 
 // rowSelection object indicates the need for row selection
-const useArrayTableColumns = (
+const getTableColumns = (
   dataSource: any[],
   sources: ObservableColumnSource[]
 ): TableProps<any>['columns'] => {
   return sources?.reduce((buf, source, key) => {
-    const { name, columnProps, schema, display } = source ||{}
+    const { name, columnProps, schema, children, display } = source || {}
     //if (display !== 'visible') return buf
-    if (!isColumnComponent(schema)) return buf
+    if (!isColumnComponent(schema) && !isColumnGroupComponent(schema)) return buf
     return buf.concat({
       ...columnProps,
+      children: getTableColumns(dataSource, children) || [],
       key,
       dataIndex: name,
-      render: (value: any, record: any) => {
-        const index = dataSource.indexOf(record)
-        const children = (
-          <ArrayBase.Item index={index} record={() => dataSource[index]}>
-            <RecursionField schema={schema} name={index} onlyRenderProperties />
-          </ArrayBase.Item>
-        )
-        return children
-      },
+      render: children.length > 0
+        ? (value: any, record: any) => {
+          const index = dataSource.indexOf(record)
+          const children = (
+            <ArrayBase.Item index={index} record={() => dataSource[index]}>
+              <RecursionField schema={schema} name={index} onlyRenderProperties />
+            </ArrayBase.Item>
+          )
+          return children
+        }
+        : undefined,
     })
   }, [])
 }
@@ -163,10 +168,9 @@ const useArrayTableSources = () => {
   const arrayField = useField()
   const schema = useFieldSchema()
   const parseSources = (schema: Schema): ObservableColumnSource[] => {
-    if (
-      isColumnComponent(schema) ||
-      isOperationsComponent(schema)
-    ) {
+    const isColumn = isColumnComponent(schema);
+    const isColumnGroup = isColumnGroupComponent(schema);
+    if (isColumn || isColumnGroup) {
       if (!schema['x-component-props']?.['dataIndex'] && !schema['name'])
         return []
       const name = schema['x-component-props']?.['dataIndex'] || schema['name']
@@ -181,6 +185,9 @@ const useArrayTableSources = () => {
           field,
           schema,
           columnProps,
+          children: schema.reduceProperties((buf, schema) => {
+            return buf.concat(parseSources(schema))
+          }, []).filter(child => child),
         },
       ]
     } else if (schema.properties) {
@@ -216,10 +223,7 @@ export const Table = memo((
   const field = useField<ArrayField>()
   const dataSource = Array.isArray(field.value) ? field.value.slice() : []
   const sources = useArrayTableSources()
-  console.log("cmz1", dataSource, sources);
-  const columns = useArrayTableColumns(dataSource, sources)
-
-  console.log("cmz columns", columns);
+  const columns = getTableColumns(dataSource, sources)
 
   const rowSelection = useMemo(() => ({
     onChange: (selectedRowKeys: React.Key[], selectedRows: any[]) => {
