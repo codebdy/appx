@@ -1,4 +1,4 @@
-import { Button, Table, TableProps, Tag } from 'antd';
+import { Button, Table as AntdTable, TableProps, Tag } from 'antd';
 import React, { memo, useMemo } from 'react';
 import { useProTableParams } from '../context';
 import { ArrayBase } from "@formily/antd"
@@ -200,7 +200,7 @@ const useArrayTableSources = () => {
 
   return parseArrayItems(schema.items)
 }
-export const DataTable = memo((
+export const Table = memo((
   props: TableProps<any>
 ) => {
   const { onSelectedChange } = useProTableParams();
@@ -216,7 +216,7 @@ export const DataTable = memo((
   }), [onSelectedChange]);
 
 
-  return (<Table
+  return (<AntdTable
     columns={columns}
     dataSource={data}
     rowSelection={{

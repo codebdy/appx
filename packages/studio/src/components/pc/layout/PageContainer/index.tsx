@@ -1,5 +1,5 @@
 import { Row, Tabs } from "antd";
-import React, { useState } from "react"
+import React, { useMemo, useState } from "react"
 import { RecursionField, useFieldSchema } from '@formily/react';
 import "./index.less"
 import { PageHeader } from "./PageHeader";
@@ -37,33 +37,37 @@ export const PageContainer: React.FC<IPageContainerProps> & {
   } = props;
   const [selectedTabKey, setSelectedTabKey] = useState("1")
   const fieldSchema = useFieldSchema()
-  const slots = {
-    headerExtra: null,
-    headerContent: null,
-    headerContentExtra: null,
-    footer: null,
-    tabs: [],
-    otherChildren: []
-  }
+  const slots = useMemo(() => {
+    const slts = {
+      headerExtra: null,
+      headerContent: null,
+      headerContentExtra: null,
+      footer: null,
+      tabs: [],
+      otherChildren: []
+    }
+
+    for (const key of Object.keys(fieldSchema?.properties || {})) {
+      const childSchema = fieldSchema.properties[key]
+      if (childSchema["x-component"] === 'PageContainer.HeaderActions') {
+        slts.headerExtra = childSchema
+      } else if (childSchema["x-component"] === 'PageContainer.HeaderContent') {
+        slts.headerContent = childSchema
+      } else if (childSchema["x-component"] === 'PageContainer.FooterToolbar') {
+        slts.footer = childSchema
+      } else if (childSchema["x-component"] === 'PageContainer.TabPanel') {
+        slts.tabs.push(childSchema)
+      } else if (childSchema["x-component"] === 'PageContainer.HeaderContentExtra') {
+        slts.headerContentExtra = childSchema;
+      } else {
+        slts.otherChildren.push(childSchema)
+      }
+    }
+  
+    return slts;
+  }, [fieldSchema.properties])
 
   const breadcrumbs = useBreadcumbItems();
-
-  for (const key of Object.keys(fieldSchema?.properties || {})) {
-    const childSchema = fieldSchema.properties[key]
-    if (childSchema["x-component"] === 'PageContainer.HeaderActions') {
-      slots.headerExtra = childSchema
-    } else if (childSchema["x-component"] === 'PageContainer.HeaderContent') {
-      slots.headerContent = childSchema
-    } else if (childSchema["x-component"] === 'PageContainer.FooterToolbar') {
-      slots.footer = childSchema
-    } else if (childSchema["x-component"] === 'PageContainer.TabPanel') {
-      slots.tabs.push(childSchema)
-    } else if (childSchema["x-component"] === 'PageContainer.HeaderContentExtra') {
-      slots.headerContentExtra = childSchema;
-    } else {
-      slots.otherChildren.push(childSchema)
-    }
-  }
 
   const handleSelectTab = (key: string) => {
     setSelectedTabKey(key);
