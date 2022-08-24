@@ -37,6 +37,6 @@ ProTableSchema.QueryForm = {
         defaultChecked: true,
       },
     },
-    ...(FormGridSchema.properties as any)
+    ...(FormGridSchema.properties as any),
   },
 }
