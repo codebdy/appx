@@ -432,9 +432,10 @@ ArrayTableDesigner.Behavior = createBehavior(createArrayBehavior('ArrayTable', A
   selector: (node) => node.props['x-component'] === 'ArrayTable.Column',
   designerProps: {
     droppable: true,
-    allowDrop: (node) =>
-      node.props['type'] === 'object' &&
-      node.parent?.props?.['x-component'] === 'ArrayTable',
+    allowDrop: (node) => {
+      return node.props['type'] === 'object' &&
+        node.parent?.props?.['x-component'] === 'ArrayTable'
+    },
     propsSchema: createFieldSchema(ArrayTableSchema.Column),
   },
   designerLocales: ArrayTableLocales,

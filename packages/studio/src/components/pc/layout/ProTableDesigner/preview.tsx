@@ -142,9 +142,9 @@ ProTableDesigner.Behavior = createBehavior(
     designerProps: {
       droppable: true,
       allowDrop: (node) => {
-        console.log("哈哈", node.id, node.props?.['type'], node?.props?.["x-component"])
         return (
-          node?.props?.['x-component'] === 'ProTable.Table' ||
+          (node.props['type'] === 'object' &&
+            node.parent?.props?.['x-component'] === 'ProTable.Table') ||
           node?.props?.['x-component'] === 'ProTable.ColumnGroup'
         );
       }
@@ -160,7 +160,11 @@ ProTableDesigner.Behavior = createBehavior(
     designerProps: {
       droppable: true,
       allowDrop: (node) => {
-        return node.props?.['x-component'] === 'ProTable.ColumnGroup' || node.props?.['x-component'] === 'ProTable.Table'
+        return (
+          (node.props['type'] === 'object' &&
+            node.parent?.props?.['x-component'] === 'ProTable.Table') ||
+          node?.props?.['x-component'] === 'ProTable.ColumnGroup'
+        );
       },
       propsSchema: createFieldSchema(DataTableSchema.ColumnGroup, { isDataField: true, hasPropTitle: true }),
     },

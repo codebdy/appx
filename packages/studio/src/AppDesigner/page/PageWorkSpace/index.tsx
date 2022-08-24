@@ -20,6 +20,7 @@ import { transformToTreeNode } from "../../transformer";
 import { useDesigner } from '@designable/react'
 import { useLazyQueryPage } from "../../../hooks/useLazyQueryPage";
 import { FormDesigner } from "../../../components/pc/form/FormDesigner";
+import { ObjectContainer } from "@designable/formily-antd";
 
 const PageWorkSpace = (props: {
   pageId: ID,
@@ -67,6 +68,7 @@ const PageWorkSpace = (props: {
                       components={{
                         Form: FormDesigner,
                         Field,
+                        ObjectContainer,
                         ...convertMaterialsToComponents(materialStore.modules)
                       }}
                     />
