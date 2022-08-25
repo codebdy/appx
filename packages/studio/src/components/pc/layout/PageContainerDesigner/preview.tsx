@@ -263,7 +263,7 @@ PageContainerDesigner.Resource = createResource({
     {
       componentName: 'Field',
       props: {
-        type: 'void',
+        type: 'object',
         'x-component': 'PageContainer',
         'x-component-props': {
           title: "Page title",

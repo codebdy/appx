@@ -1,4 +1,4 @@
-import { Button, Table as AntdTable, TableProps, Tag } from 'antd';
+import { Table as AntdTable, TableProps } from 'antd';
 import React, { memo, useMemo } from 'react';
 import { useProTableParams, useSelectable } from '../context';
 import { ArrayBase } from "@formily/antd"
@@ -6,74 +6,13 @@ import {
   useField,
   useFieldSchema,
   RecursionField,
+  Field
 } from '@formily/react'
-
 import { GeneralField, FieldDisplayTypes, ArrayField } from '@formily/core'
 import { ColumnProps } from "antd/lib/table"
 import { Schema } from '@formily/json-schema'
 import { isArr } from '@formily/shared'
-import { useParseLangMessage } from '../../../../../hooks/useParseLangMessage';
 
-const columns = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-  },
-  {
-    title: 'Chinese Score',
-    dataIndex: 'chinese',
-    sorter: {
-      compare: (a, b) => a.chinese - b.chinese,
-      multiple: 3,
-    },
-  },
-  {
-    title: 'Math Score',
-    dataIndex: 'math',
-    sorter: {
-      compare: (a, b) => a.math - b.math,
-      multiple: 2,
-    },
-  },
-  {
-    title: 'English Score',
-    dataIndex: 'english',
-    sorter: {
-      compare: (a, b) => a.english - b.english,
-      multiple: 1,
-    },
-  },
-  {
-    title: '标签',
-    key: 'tags',
-    dataIndex: 'tags',
-    render: (_, { tags }) => (
-      <>
-        {tags.map(tag => {
-          let color = tag.length > 5 ? 'geekblue' : 'green';
-          if (tag === 'loser') {
-            color = 'volcano';
-          }
-          return (
-            <Tag color={color} key={tag}>
-              {tag.toUpperCase()}
-            </Tag>
-          );
-        })}
-      </>
-    ),
-  },
-  {
-    title: '操作',
-    key: 'action',
-    render: () =>
-      <>
-        <Button type="link" size='small'>编辑</Button>
-        <Button type="link" size='small'>删除</Button>
-      </>
-    ,
-  },
-];
 const data = [
   {
     key: '1',
@@ -140,7 +79,7 @@ const getTableColumns = (
   sources: ObservableColumnSource[]
 ): TableProps<any>['columns'] => {
   return sources?.reduce((buf, source, key) => {
-    const { name, columnProps, schema, children, display } = source || {}
+    const { name, columnProps, schema, children/*, display*/ } = source || {}
     //if (display !== 'visible') return buf
     if (!isColumnComponent(schema) && !isColumnGroupComponent(schema)) return buf
     return buf.concat({
@@ -150,11 +89,14 @@ const getTableColumns = (
       dataIndex: name,
       render: !children.length
         ? (value: any, record: any, index: number) => {
-          console.log("哈哈哈哈哈", schema)
           //const index = dataSource.indexOf(record)
           const children = (
             <ArrayBase.Item index={index} record={() => dataSource[index]}>
-              <RecursionField schema={schema} name={index} onlyRenderProperties />
+              <Field name={index} >
+                <Field name={name} >
+                  <RecursionField schema={schema} onlyRenderProperties />
+                </Field>
+              </Field>
             </ArrayBase.Item>
           )
           return children
@@ -219,7 +161,6 @@ export const Table = memo((
 ) => {
   const { onSelectedChange } = useProTableParams();
   const selectable = useSelectable();
-  const p = useParseLangMessage();
   const field = useField<ArrayField>()
   const dataSource = Array.isArray(field.value) ? field.value.slice() : []
   const sources = useArrayTableSources()
@@ -249,5 +190,4 @@ export const Table = memo((
       </AntdTable>
     </ArrayBase>
   )
-
 });

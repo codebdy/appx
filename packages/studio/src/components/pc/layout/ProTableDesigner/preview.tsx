@@ -178,7 +178,7 @@ ProTableDesigner.Resource = createResource({
     {
       componentName: 'Field',
       props: {
-        type: 'void',
+        type: 'object',
         'x-component': 'ProTable',
         'x-component-props': {
           hasQueryForm: true,
