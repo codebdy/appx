@@ -36,7 +36,7 @@ export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema
         }
       });
       
-      console.log("new gql", print(newAst))
+      console.log(operation, print(newAst))
     } catch (err) {
       console.error(err);
       message.error(t("Query.GraphqlExpressionError") + err?.message)
