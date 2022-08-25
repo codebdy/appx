@@ -9,7 +9,6 @@ import { observer } from "@formily/reactive-react"
 import { registerResourceBundle } from "../../../../i18n/registerResourceBundle"
 import { IDataSourceableProps } from "../../../common/IDataSourceableProps"
 import TableToolbar, { ITableToolbarProps } from "./TableToolbar"
-import { IDataBindSource } from "../../../../datasource"
 import clx from "classnames";
 import { RecursionField, useFieldSchema } from '@formily/react';
 import { IQueryFormProps, QueryForm } from "./QueryForm"
@@ -22,7 +21,6 @@ export interface IProTableProps extends IDataSourceableProps {
   hasQueryForm?: boolean,
   hasToolbar?: boolean,
   selectable?: boolean,
-  dataSource?: IDataBindSource,
 }
 
 export const ProTable: React.FC<IProTableProps> & {
@@ -40,15 +38,15 @@ export const ProTable: React.FC<IProTableProps> & {
     hasToolbar = true,
     selectable = true,
     className,
-    dataSource,
+    dataBindSource,
     ...other
   } = props;
-  const [params, setParams] = useState<IProTableParams>({ selectable });
+  const [params, setParams] = useState<IProTableParams>({ selectable, dataBindSource });
   const fieldSchema = useFieldSchema();
 
   useEffect(() => {
-    setParams(params => ({ ...params, selectable }))
-  }, [selectable])
+    setParams(params => ({ ...params, selectable, dataBindSource }))
+  }, [dataBindSource, selectable])
 
   const slots = useMemo(() => {
     const slts = {

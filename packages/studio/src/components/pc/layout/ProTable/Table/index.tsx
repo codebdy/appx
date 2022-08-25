@@ -160,16 +160,13 @@ export const Table = observer((
   const selectable = useSelectable();
   const sources = useArrayTableSources()
   const getTableColumns = useGetTableColumns();
+  const { dataBindSource } = useProTableParams();
   const columns = useMemo(() => getTableColumns(sources), [getTableColumns, sources]);
   const rowSelection = useMemo(() => ({
     selectedRowKeys: selectedRowKeys,
     onChange: (selectedRowKeys: React.Key[], selectedRows: any[]) => {
       onSelectedChange(selectedRowKeys);
     },
-    //getCheckboxProps: (record: any) => ({
-    //disabled: record.name === 'Disabled User', // Column configuration not to be checked
-    //name: record.name,
-    //}),
   }), [onSelectedChange, selectedRowKeys]);
 
   return (
