@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { Schema } from '@formily/json-schema';
 import { IDataBindSource } from "../model";
-import { parse, OperationTypeNode } from "graphql";
+import { parse, OperationTypeNode, visit, print } from "graphql";
 import { message } from "antd";
 import { useTranslation } from "react-i18next";
 
@@ -19,13 +19,24 @@ export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema
 
   if (dataBindSource.expression) {
     try {
-      const paresedExpression = parse(dataBindSource.expression);
-      console.log("danzm", paresedExpression);
-      const operation = firstOperationDefinition(paresedExpression).operation;
+      const ast = parse(dataBindSource.expression);
+      console.log("danzm", ast);
+      const operation = firstOperationDefinition(ast).operation;
       if (operation !== OperationTypeNode.QUERY) {
         message.error("Can not find query operation");
       }
-      params.rootFieldName = firstFieldValueNameFromOperation(firstOperationDefinition(paresedExpression));
+      params.rootFieldName = firstFieldValueNameFromOperation(firstOperationDefinition(ast));
+
+      const newAst = visit(ast, {
+        enter(node, key, parent, path, ancestors) {
+          // do some work
+        },
+        leave(node, key, parent, path, ancestors) {
+          // do some more work
+        }
+      });
+      
+      console.log("new gql", print(newAst))
     } catch (err) {
       console.error(err);
       message.error(t("Query.GraphqlExpressionError") + err?.message)
