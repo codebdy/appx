@@ -9,7 +9,7 @@ import { observer } from "@formily/reactive-react"
 import { registerResourceBundle } from "../../../../i18n/registerResourceBundle"
 import { IDataSourceableProps } from "../../../common/IDataSourceableProps"
 import TableToolbar, { ITableToolbarProps } from "./TableToolbar"
-import { IDataSource } from "../../../../datasource"
+import { IDataBindSource } from "../../../../datasource"
 import clx from "classnames";
 import { RecursionField, useFieldSchema } from '@formily/react';
 import { IQueryFormProps, QueryForm } from "./QueryForm"
@@ -22,7 +22,7 @@ export interface IProTableProps extends IDataSourceableProps {
   hasQueryForm?: boolean,
   hasToolbar?: boolean,
   selectable?: boolean,
-  dataSource?: IDataSource,
+  dataSource?: IDataBindSource,
 }
 
 export const ProTable: React.FC<IProTableProps> & {

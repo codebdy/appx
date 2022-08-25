@@ -165,7 +165,6 @@ export const Table = observer((
     selectedRowKeys: selectedRowKeys,
     onChange: (selectedRowKeys: React.Key[], selectedRows: any[]) => {
       onSelectedChange(selectedRowKeys);
-      //console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
     },
     //getCheckboxProps: (record: any) => ({
     //disabled: record.name === 'Disabled User', // Column configuration not to be checked
