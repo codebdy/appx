@@ -166,10 +166,10 @@ export const Table = observer((
       onSelectedChange(selectedRowKeys);
       //console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
     },
-    getCheckboxProps: (record: any) => ({
-      //disabled: record.name === 'Disabled User', // Column configuration not to be checked
-      name: record.name,
-    }),
+    //getCheckboxProps: (record: any) => ({
+    //disabled: record.name === 'Disabled User', // Column configuration not to be checked
+    //name: record.name,
+    //}),
   }), [onSelectedChange]);
 
   return (

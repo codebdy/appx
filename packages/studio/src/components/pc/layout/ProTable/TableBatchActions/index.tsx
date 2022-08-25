@@ -14,7 +14,7 @@ export const TableBatchActions = memo((
 
   return (
     selectedRowKeys?.length
-      ? <BatchActionsContainer>
+      ? <BatchActionsContainer counts={selectedRowKeys.length}>
         {children}
       </BatchActionsContainer>
       : <></>
