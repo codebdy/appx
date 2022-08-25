@@ -166,7 +166,7 @@ export const Table = memo((
   const sources = useArrayTableSources()
   const getTableColumns = useGetTableColumns();
   const columns = useMemo(() => getTableColumns(sources), [getTableColumns, sources]);
-
+  console.log("danz", selectable);
   const rowSelection = useMemo(() => ({
     onChange: (selectedRowKeys: React.Key[], selectedRows: any[]) => {
       onSelectedChange(selectedRowKeys);

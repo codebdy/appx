@@ -1,5 +1,5 @@
 import { Card, TableProps } from "antd"
-import React, { useCallback, useMemo, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { IProTableParams, ProTableContext } from "./context"
 import "./index.less"
 import locales, { LOCALES_NS } from "./locales"
@@ -43,8 +43,12 @@ export const ProTable: React.FC<IProTableProps> & {
     dataSource,
     ...other
   } = props;
-  const [params, setParams] = useState<IProTableParams>();
+  const [params, setParams] = useState<IProTableParams>({ selectable });
   const fieldSchema = useFieldSchema();
+
+  //useEffect(() => {
+    //setParams(params => ({ ...params, selectable }))
+  //}, [selectable])
 
   const slots = useMemo(() => {
     const slts = {
