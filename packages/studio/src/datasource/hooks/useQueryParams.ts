@@ -27,7 +27,7 @@ export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema
       }
       params.rootFieldName = firstFieldValueNameFromOperation(firstOperationDefinition(ast));
 
-      const newAst = visit(ast, {
+      const fragmenAst = visit(firstOperationDefinition(ast)?.selectionSet?.selections?.[0]?.selectionSet, {
         enter(node, key, parent, path, ancestors) {
           // do some work
         },
@@ -35,8 +35,8 @@ export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema
           // do some more work
         }
       });
-      
-      console.log(operation, print(newAst))
+
+      console.log(`fragment RootFragment on ${params.rootFieldName}`, print(fragmenAst))
     } catch (err) {
       console.error(err);
       message.error(t("Query.GraphqlExpressionError") + err?.message)
