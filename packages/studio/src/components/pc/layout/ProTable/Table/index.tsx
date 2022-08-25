@@ -8,7 +8,7 @@ import {
   RecursionField,
   Field
 } from '@formily/react'
-import { GeneralField, FieldDisplayTypes, ArrayField } from '@formily/core'
+import { GeneralField, FieldDisplayTypes } from '@formily/core'
 import { ColumnProps } from "antd/lib/table"
 import { Schema } from '@formily/json-schema'
 import { isArr } from '@formily/shared'
@@ -68,32 +68,22 @@ const isColumnGroupComponent = (schema: Schema) => {
   return schema?.['x-component'] === 'ProTable.ColumnGroup'
 }
 
-// const isOperationsComponent = (schema: Schema) => {
-//   return schema['x-component']?.indexOf('Operations') > -1
-// }
-
-
-// rowSelection object indicates the need for row selection
-const getTableColumns = (
-  dataSource: any[],
-  sources: ObservableColumnSource[]
-): TableProps<any>['columns'] => {
+const getTableColumns = (sources: ObservableColumnSource[]): TableProps<any>['columns'] => {
   return sources?.reduce((buf, source, key) => {
     const { name, columnProps, schema, children/*, display*/ } = source || {}
     //if (display !== 'visible') return buf
     if (!isColumnComponent(schema) && !isColumnGroupComponent(schema)) return buf
     return buf.concat({
       ...columnProps,
-      children: getTableColumns(dataSource, children) || [],
+      children: getTableColumns(children) || [],
       key,
       dataIndex: name,
       render: !children.length
         ? (value: any, record: any, index: number) => {
-          //const index = dataSource.indexOf(record)
           const children = (
-            <ArrayBase.Item index={index} record={() => dataSource[index]}>
+            <ArrayBase.Item index={index} record={record}>
               <Field name={index} >
-                <Field name={name} >
+                <Field name={name} value={record?.[name]} >
                   <RecursionField schema={schema} onlyRenderProperties />
                 </Field>
               </Field>
@@ -161,10 +151,8 @@ export const Table = memo((
 ) => {
   const { onSelectedChange } = useProTableParams();
   const selectable = useSelectable();
-  const field = useField<ArrayField>()
-  const dataSource = Array.isArray(field.value) ? field.value.slice() : []
   const sources = useArrayTableSources()
-  const columns = getTableColumns(dataSource, sources)
+  const columns = getTableColumns(sources)
 
   const rowSelection = useMemo(() => ({
     onChange: (selectedRowKeys: React.Key[], selectedRows: any[]) => {
