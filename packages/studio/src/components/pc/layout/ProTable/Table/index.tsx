@@ -13,6 +13,7 @@ import { Schema } from '@formily/json-schema'
 import { isArr, isStr } from '@formily/shared'
 import { useParseLangMessage } from '../../../../../hooks/useParseLangMessage';
 import { observer } from '@formily/reactive-react';
+import { useQueryParams } from '../../../../../datasource/hooks/useQueryParams';
 
 const data = [
   {
@@ -164,10 +165,13 @@ export const Table = observer((
   const columns = useMemo(() => getTableColumns(sources), [getTableColumns, sources]);
   const rowSelection = useMemo(() => ({
     selectedRowKeys: selectedRowKeys,
-    onChange: (selectedRowKeys: React.Key[], selectedRows: any[]) => {
+    onChange: (selectedRowKeys: React.Key[]) => {
       onSelectedChange(selectedRowKeys);
     },
   }), [onSelectedChange, selectedRowKeys]);
+
+  const schema = useFieldSchema();
+  const queryParams = useQueryParams(dataBindSource, schema);
 
   return (
     <ArrayBase>
