@@ -1,18 +1,18 @@
 import { Table as AntdTable, TableProps } from 'antd';
-import React, { memo, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { useProTableParams, useSelectable } from '../context';
 import { ArrayBase } from "@formily/antd"
 import {
-  useField,
   useFieldSchema,
   RecursionField,
   Field
 } from '@formily/react'
-import { GeneralField, FieldDisplayTypes } from '@formily/core'
+import { FieldDisplayTypes } from '@formily/core'
 import { ColumnProps } from "antd/lib/table"
 import { Schema } from '@formily/json-schema'
 import { isArr, isStr } from '@formily/shared'
 import { useParseLangMessage } from '../../../../../hooks/useParseLangMessage';
+import { observer } from '@formily/reactive-react';
 
 const data = [
   {
@@ -54,7 +54,6 @@ const onChange = (pagination, filters, sorter, extra) => {
 };
 
 interface ObservableColumnSource {
-  field: GeneralField
   columnProps: ColumnProps<any>
   schema: Schema
   display: FieldDisplayTypes
@@ -106,7 +105,6 @@ function useGetTableColumns() {
 
 const useArrayTableSources = () => {
   const p = useParseLangMessage();
-  const arrayField = useField()
   const schema = useFieldSchema();
   const parseSources = (schema: Schema): ObservableColumnSource[] => {
     const isColumn = isColumnComponent(schema);
@@ -115,16 +113,13 @@ const useArrayTableSources = () => {
       if (!schema['x-component-props']?.['dataIndex'] && !schema['name'])
         return []
       const name = schema['x-component-props']?.['dataIndex'] || schema['name']
-      const field = arrayField.query(arrayField.address.concat(name)).take()
-      const columnProps =
-        field?.component?.[1] || schema['x-component-props'] || {}
-      const display = field?.display || schema['x-display']
+      const columnProps = schema['x-component-props'] || {}
+      const display = schema['x-display']
       columnProps.title = p(columnProps?.title);
       return [
         {
           name,
           display,
-          field,
           schema,
           columnProps,
           children: schema.reduceProperties((buf, schema) => {
@@ -158,7 +153,7 @@ const useArrayTableSources = () => {
 }
 
 
-export const Table = memo((
+export const Table = observer((
   props: TableProps<any>
 ) => {
   const { onSelectedChange } = useProTableParams();
@@ -166,7 +161,6 @@ export const Table = memo((
   const sources = useArrayTableSources()
   const getTableColumns = useGetTableColumns();
   const columns = useMemo(() => getTableColumns(sources), [getTableColumns, sources]);
-  console.log("danz", selectable);
   const rowSelection = useMemo(() => ({
     onChange: (selectedRowKeys: React.Key[], selectedRows: any[]) => {
       onSelectedChange(selectedRowKeys);

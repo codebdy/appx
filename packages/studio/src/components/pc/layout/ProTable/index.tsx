@@ -46,9 +46,9 @@ export const ProTable: React.FC<IProTableProps> & {
   const [params, setParams] = useState<IProTableParams>({ selectable });
   const fieldSchema = useFieldSchema();
 
-  //useEffect(() => {
-    //setParams(params => ({ ...params, selectable }))
-  //}, [selectable])
+  useEffect(() => {
+    setParams(params => ({ ...params, selectable }))
+  }, [selectable])
 
   const slots = useMemo(() => {
     const slts = {
