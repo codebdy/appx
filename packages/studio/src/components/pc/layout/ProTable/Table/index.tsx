@@ -150,6 +150,7 @@ const getTableColumns = (
       dataIndex: name,
       render: !children.length
         ? (value: any, record: any, index: number) => {
+          console.log("哈哈哈哈哈", schema)
           //const index = dataSource.indexOf(record)
           const children = (
             <ArrayBase.Item index={index} record={() => dataSource[index]}>

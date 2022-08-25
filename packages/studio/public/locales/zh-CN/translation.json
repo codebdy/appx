@@ -73,7 +73,8 @@
     "Menu": "菜单编辑",
     "Settings": "应用设置",
     "BaseConfig": "基础配置",
-    "EntryPage": "入口页面"
+    "EntryPage": "入口页面",
+    "TextView": "文本展示"
   },
   "Panels": {
     "Page": "页面",

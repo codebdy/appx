@@ -31,6 +31,7 @@ export const ProTable: React.FC<IProTableProps> & {
   TableBatchActions?: React.FC<ITableBatchActionsProps>,
   Table?: React.FC<TableProps<any>>,
   Index?: React.FC,
+  Column?: React.FC,
 } = observer((
   props: IProTableProps
 ) => {

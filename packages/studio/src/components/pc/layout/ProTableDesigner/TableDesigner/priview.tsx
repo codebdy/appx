@@ -239,6 +239,15 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
                   'x-component-props': {
                     title: `Title`,
                   },
+                  children: [
+                    {
+                      componentName: 'Field',
+                      props: {
+                        type: 'void',
+                        'x-component': 'TextView',
+                      },
+                    },
+                  ],
                 },
               })
               if (operationNode) {
