@@ -250,6 +250,9 @@
   "PageSelect": {
     "PleaseSelectPage": "请选择页面"
   },
+  "Query":{
+    "GraphqlExpressionError":"Graphql 表达式错误："
+  },
   "Lang": {
     "Title": "语言",
     "ar-EG": "阿拉伯语",
