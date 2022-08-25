@@ -156,12 +156,13 @@ const useArrayTableSources = () => {
 export const Table = observer((
   props: TableProps<any>
 ) => {
-  const { onSelectedChange } = useProTableParams();
+  const { onSelectedChange, selectedRowKeys } = useProTableParams();
   const selectable = useSelectable();
   const sources = useArrayTableSources()
   const getTableColumns = useGetTableColumns();
   const columns = useMemo(() => getTableColumns(sources), [getTableColumns, sources]);
   const rowSelection = useMemo(() => ({
+    selectedRowKeys: selectedRowKeys,
     onChange: (selectedRowKeys: React.Key[], selectedRows: any[]) => {
       onSelectedChange(selectedRowKeys);
       //console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
@@ -170,7 +171,7 @@ export const Table = observer((
     //disabled: record.name === 'Disabled User', // Column configuration not to be checked
     //name: record.name,
     //}),
-  }), [onSelectedChange]);
+  }), [onSelectedChange, selectedRowKeys]);
 
   return (
     <ArrayBase>
