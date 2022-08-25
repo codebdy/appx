@@ -82,10 +82,12 @@ const getTableColumns = (sources: ObservableColumnSource[]): TableProps<any>['co
         ? (value: any, record: any, index: number) => {
           const children = (
             <ArrayBase.Item index={index} record={record}>
-              <Field name={index} >
-                <Field name={name} value={record?.[name]} >
-                  <RecursionField schema={schema} onlyRenderProperties />
-                </Field>
+              <Field name={name} value={record?.[name]} >
+                {
+                  schema.properties && Object.keys(schema.properties).length > 0
+                    ? <RecursionField schema={schema} onlyRenderProperties />
+                    : record?.[name]
+                }
               </Field>
             </ArrayBase.Item>
           )
@@ -174,7 +176,7 @@ export const Table = memo((
           type: 'checkbox',
           ...rowSelection,
         }}
-        loading = {false}
+        loading={false}
         onChange={onChange}>
       </AntdTable>
     </ArrayBase>

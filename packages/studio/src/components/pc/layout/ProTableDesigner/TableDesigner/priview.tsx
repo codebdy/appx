@@ -239,15 +239,6 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
                     title: `Title`,
                   },
                 },
-                children: [
-                  {
-                    componentName: 'Field',
-                    props: {
-                      type: 'void',
-                      'x-component': 'TextView',
-                    },
-                  },
-                ],
               })
               if (operationNode) {
                 operationNode.insertBefore(tableColumn)
