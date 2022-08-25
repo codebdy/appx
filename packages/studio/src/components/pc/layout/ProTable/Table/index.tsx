@@ -11,7 +11,8 @@ import {
 import { GeneralField, FieldDisplayTypes } from '@formily/core'
 import { ColumnProps } from "antd/lib/table"
 import { Schema } from '@formily/json-schema'
-import { isArr } from '@formily/shared'
+import { isArr, isStr } from '@formily/shared'
+import { useParseLangMessage } from '../../../../../hooks/useParseLangMessage';
 
 const data = [
   {
@@ -68,39 +69,45 @@ const isColumnGroupComponent = (schema: Schema) => {
   return schema?.['x-component'] === 'ProTable.ColumnGroup'
 }
 
-const getTableColumns = (sources: ObservableColumnSource[]): TableProps<any>['columns'] => {
-  return sources?.reduce((buf, source, key) => {
-    const { name, columnProps, schema, children/*, display*/ } = source || {}
-    //if (display !== 'visible') return buf
-    if (!isColumnComponent(schema) && !isColumnGroupComponent(schema)) return buf
-    return buf.concat({
-      ...columnProps,
-      children: getTableColumns(children) || [],
-      key,
-      dataIndex: name,
-      render: !children.length
-        ? (value: any, record: any, index: number) => {
-          const children = (
-            <ArrayBase.Item index={index} record={record}>
-              <Field name={name} value={record?.[name]} >
-                {
-                  schema.properties && Object.keys(schema.properties).length > 0
-                    ? <RecursionField schema={schema} onlyRenderProperties />
-                    : record?.[name]
-                }
-              </Field>
-            </ArrayBase.Item>
-          )
-          return children
-        }
-        : undefined,
-    })
-  }, [])
+function useGetTableColumns() {
+  const p = useParseLangMessage();
+  const getTableColumns = (sources: ObservableColumnSource[]): TableProps<any>['columns'] => {
+    return sources?.reduce((buf, source, key) => {
+      const { name, columnProps, schema, children/*, display*/ } = source || {}
+      //if (display !== 'visible') return buf
+      if (!isColumnComponent(schema) && !isColumnGroupComponent(schema)) return buf
+      return buf.concat({
+        ...columnProps,
+        children: getTableColumns(children) || [],
+        key,
+        dataIndex: name,
+        render: !children.length
+          ? (value: any, record: any, index: number) => {
+            const children = (
+              <ArrayBase.Item index={index} record={record}>
+                <Field name={name} value={record?.[name]} >
+                  {
+                    schema.properties && Object.keys(schema.properties).length > 0
+                      ? <RecursionField schema={schema} onlyRenderProperties />
+                      : isStr(record?.[name]) ? p(record?.[name]) : record?.[name]
+                  }
+                </Field>
+              </ArrayBase.Item>
+            )
+            return children
+          }
+          : undefined,
+      })
+    }, [])
+  }
+
+  return getTableColumns;
 }
 
 const useArrayTableSources = () => {
+  const p = useParseLangMessage();
   const arrayField = useField()
-  const schema = useFieldSchema()
+  const schema = useFieldSchema();
   const parseSources = (schema: Schema): ObservableColumnSource[] => {
     const isColumn = isColumnComponent(schema);
     const isColumnGroup = isColumnGroupComponent(schema);
@@ -112,6 +119,7 @@ const useArrayTableSources = () => {
       const columnProps =
         field?.component?.[1] || schema['x-component-props'] || {}
       const display = field?.display || schema['x-display']
+      columnProps.title = p(columnProps?.title);
       return [
         {
           name,
@@ -148,13 +156,16 @@ const useArrayTableSources = () => {
 
   return parseArrayItems(schema.items)
 }
+
+
 export const Table = memo((
   props: TableProps<any>
 ) => {
   const { onSelectedChange } = useProTableParams();
   const selectable = useSelectable();
   const sources = useArrayTableSources()
-  const columns = getTableColumns(sources)
+  const getTableColumns = useGetTableColumns();
+  const columns = useMemo(() => getTableColumns(sources), [getTableColumns, sources]);
 
   const rowSelection = useMemo(() => ({
     onChange: (selectedRowKeys: React.Key[], selectedRows: any[]) => {

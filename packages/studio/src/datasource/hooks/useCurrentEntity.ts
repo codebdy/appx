@@ -14,14 +14,15 @@ export function useCurrentEntity() {
     }
     const dataSource = node?.parent?.props?.["x-component-props"]?.["dataBindSource"]
     if (dataSource) {
-      return dataSource
+      return dataSource?.entityUuid;
     } else if (node?.parent) {
       return getRecentDataSourceUuid(node?.parent)
     }
   }, [])
 
   const entity = useMemo(() => {
-    return getEntity(getRecentDataSourceUuid(currentNode));
+    const entityUuid = getRecentDataSourceUuid(currentNode);
+    return getEntity(entityUuid);
   }, [currentNode, getEntity, getRecentDataSourceUuid])
 
   return entity;
