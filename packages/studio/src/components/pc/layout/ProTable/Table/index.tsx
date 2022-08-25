@@ -174,6 +174,7 @@ export const Table = memo((
           type: 'checkbox',
           ...rowSelection,
         }}
+        loading = {false}
         onChange={onChange}>
       </AntdTable>
     </ArrayBase>
