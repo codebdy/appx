@@ -4,10 +4,10 @@ import { IDataBindSource } from "../model";
 import { parse, OperationTypeNode, visit, print } from "graphql";
 import { message } from "antd";
 import { useTranslation } from "react-i18next";
+import { IFragmentParams } from "./IFragmentParams";
+import { useQueryFragmentFromSchema } from "./useQueryFragmentFromSchema";
 
-export interface IQueryParams {
-  gql?: string,
-  variables?: any,
+export interface IQueryParams extends IFragmentParams {
   rootFieldName?: string,
 }
 
@@ -16,7 +16,7 @@ export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema
   const { t } = useTranslation();
   const firstOperationDefinition = (ast) => ast.definitions?.[0];
   const firstFieldValueNameFromOperation = (operationDefinition) => operationDefinition?.selectionSet?.selections?.[0]?.name?.value;
-
+  const fragmentFromSchema = useQueryFragmentFromSchema(schema);
   if (dataBindSource.expression) {
     try {
       const ast = parse(dataBindSource.expression);
@@ -36,7 +36,10 @@ export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema
         }
       });
 
-      console.log(`fragment RootFragment on ${params.rootFieldName}`, print(fragmenAst))
+      const rootFragment: IFragmentParams = {
+        gql: `fragment RootFragment on ${params.rootFieldName} ${print(fragmenAst)}`,
+        variables: dataBindSource.variables,
+      }
     } catch (err) {
       console.error(err);
       message.error(t("Query.GraphqlExpressionError") + err?.message)
