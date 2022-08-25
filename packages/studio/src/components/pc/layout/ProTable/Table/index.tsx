@@ -1,5 +1,5 @@
 import { Button, Table as AntdTable, TableProps, Tag } from 'antd';
-import React, { memo, useCallback, useMemo } from 'react';
+import React, { memo, useMemo } from 'react';
 import { useProTableParams, useSelectable } from '../context';
 import { ArrayBase } from "@formily/antd"
 import {
@@ -11,7 +11,6 @@ import {
 import { GeneralField, FieldDisplayTypes, ArrayField } from '@formily/core'
 import { ColumnProps } from "antd/lib/table"
 import { Schema } from '@formily/json-schema'
-import { usePrefixCls } from "@formily/antd/esm/__builtins__"
 import { isArr } from '@formily/shared'
 import { useParseLangMessage } from '../../../../../hooks/useParseLangMessage';
 
@@ -236,74 +235,6 @@ export const Table = memo((
     }),
   }), [onSelectedChange]);
 
-  const renderColumn = useCallback((node: any) => {
-    const props = node.props?.['x-component-props'] || {}
-    const children = node.children;
-    return (
-      <AntdTable.Column
-        {...props}
-        title={
-          <div>
-            {p(props?.title)}
-          </div>
-        }
-        dataIndex={node.id}
-        className={`data-id:${node.id}`}
-        render={(value, record, key) => {
-          return (
-            <ArrayBase.Item key={key} index={key} record={null}>
-              {/* {(children as any)?.length
-                ?
-                children?.map(child => {
-                  return <TreeNodeWidget node={child} />
-                })
-                : 'Droppable'
-              } */}
-            </ArrayBase.Item>
-          )
-        }}
-      />
-    )
-  }, [p]);
-
-  const renderColumnGroup = useCallback((node: any) => {
-    const props = node.props?.['x-component-props'] || {}
-    const children = node.children;
-    return (<AntdTable.ColumnGroup
-      {...props}
-      title={
-        <div>
-          {p(props?.title)}
-        </div>
-      }
-      dataIndex={node.id}
-      className={`data-id:${node.id}`}
-    >
-      {
-        children?.map(child => {
-          const isGroup = child.props?.['x-component'] === "ProTable.ColumnGroup";
-          if (isGroup) {
-            return renderColumnGroup(child)
-          } else {
-            return renderColumn(child)
-          }
-        })
-      }
-    </AntdTable.ColumnGroup>
-    )
-  }, [p, renderColumn]);
-
-  const renderChild = useCallback((node: any) => {
-    const isGroup = node.props?.['x-component'] === "ProTable.ColumnGroup";
-    if (isGroup) {
-      return renderColumnGroup(node)
-    } else {
-      return renderColumn(node)
-    }
-  }, [renderColumn, renderColumnGroup])
-
-
-
   return (
     <ArrayBase>
       <AntdTable
@@ -314,9 +245,6 @@ export const Table = memo((
           ...rowSelection,
         }}
         onChange={onChange}>
-        {/* {node.children?.map((node) => {
-      return renderChild(node);
-    })} */}
       </AntdTable>
     </ArrayBase>
   )
