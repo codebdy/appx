@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
 import { useProTableParams } from "../context";
 import { BatchActionsContainer } from "./BatchActionsContainer";
 
@@ -10,11 +10,15 @@ export const TableBatchActions = memo((
   props: ITableBatchActionsProps
 ) => {
   const { children } = props;
-  const { selectedRowKeys } = useProTableParams();
+  const { selectedRowKeys, onSelectedChange } = useProTableParams();
+
+  const handleClear = useCallback(() => {
+    onSelectedChange([])
+  }, [onSelectedChange])
 
   return (
     selectedRowKeys?.length
-      ? <BatchActionsContainer counts={selectedRowKeys.length}>
+      ? <BatchActionsContainer counts={selectedRowKeys.length} onClear={handleClear}>
         {children}
       </BatchActionsContainer>
       : <></>

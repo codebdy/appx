@@ -8,10 +8,11 @@ export const BatchActionsContainer = memo((
   props: {
     counts?: number,
     className?: string,
-    children?: React.ReactNode
+    children?: React.ReactNode,
+    onClear?: () => void,
   }
 ) => {
-  const { counts, className, children, ...others } = props;
+  const { counts, className, children, onClear, ...others } = props;
   const { t } = useLocalTranslations();
   return (
     <Alert
@@ -22,7 +23,7 @@ export const BatchActionsContainer = memo((
               !!counts &&
               <>
                 {t("SelecteMessage", { count: counts })}
-                <Button type="link">{t("CancelSelect")}</Button>
+                <Button type="link" onClick={onClear}>{t("CancelSelect")}</Button>
               </>
             }
 
