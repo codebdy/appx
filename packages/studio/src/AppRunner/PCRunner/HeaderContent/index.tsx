@@ -62,7 +62,7 @@ const HeaderContent: React.FC = () => {
       </span>
       <NoticeIconView />
       <Avatar menu />
-      <SelectLang className={"action"} />
+      <SelectLang />
     </Space>
   );
 };

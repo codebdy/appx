@@ -3,7 +3,7 @@ import { Button, Layout } from "antd";
 import React from "react";
 import { memo } from "react";
 import clx from "classnames";
-
+import { menuCollapsedWidth, menuWidth } from ".";
 const { Header } = Layout;
 
 const ProHeader = memo((
@@ -14,7 +14,7 @@ const ProHeader = memo((
     onTrigger?: () => void,
   }
 ) => {
-  const { collapsed, fixed, children, onTrigger } = props;
+  const { collapsed, fixed = true, children, onTrigger } = props;
 
   return (
     <>
@@ -24,11 +24,21 @@ const ProHeader = memo((
           className={clx("site-layout-background toolbar")}
         >
         </Header>
-
       }
       <Header
         className={clx("site-layout-background toolbar", { fixedHeader: fixed })}
       >
+        <div>
+          {
+            fixed &&
+            <div
+              style={{
+                width: collapsed ? menuCollapsedWidth : menuWidth,
+                transition: "width 0.2s"
+              }}
+            ></div>
+          }
+        </div>
         <Button type="text" shape="circle" onClick={onTrigger}
           icon={
             collapsed ?
@@ -41,7 +51,6 @@ const ProHeader = memo((
             children
           }
         </div>
-
       </Header>
     </>
   )

@@ -6,8 +6,8 @@ import ProHeader from './ProHeader';
 
 const { Content, Footer } = Layout;
 
-const menuWidth = 260;
-const menuCollapsedWidth = 56;
+export const menuWidth = 260;
+export const menuCollapsedWidth = 56;
 
 const ProLayout = memo((
   props: {
