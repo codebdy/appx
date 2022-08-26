@@ -22,6 +22,9 @@ export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema
     if (dataBindSource.expression) {
       try {
         const ast = parse(dataBindSource.expression);
+        if(!dataBindSource.entityName){
+          throw new Error("Can not finde entityName in dataBindSource");
+        }
         console.log("gql ast", ast);
         const operation = firstOperationDefinition(ast).operation;
         if (operation !== OperationTypeNode.QUERY) {
