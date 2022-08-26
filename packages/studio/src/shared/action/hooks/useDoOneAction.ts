@@ -1,18 +1,24 @@
 import { useCallback } from "react";
-import { IAppxAction } from "../model";
-import {
-  useField,
-} from '@formily/react'
+import { ActionType, IAppxAction, IOpenPageAction, OpenPageType } from "../model";
 import { useInstanceId } from "../../contexts/instance";
+import { useNavigate, useParams } from "react-router-dom";
+
 export function useDoOneAction() {
-  const field = useField();
-  const id = useInstanceId();
+  const { device, appUuid, menuUuid } = useParams();
+  const dataId = useInstanceId();
+  const navigate = useNavigate();
   const doAction = useCallback((action: IAppxAction) => {
     return new Promise((resolve, reject) => {
-      console.log("哈哈哈哈", field.path.toString(), id)
-      resolve(undefined);
+      if(action.actionType === ActionType.OpenPage){
+        const payload = action.payload as IOpenPageAction;
+        if(payload.openType === OpenPageType.RouteTo){
+          navigate(`/app/${device}/${appUuid}/${menuUuid}/${payload.pageId}/${dataId}`)          
+        }
+        resolve(undefined);
+      }
+      
     })
-  }, [field.path, id])
+  }, [appUuid, dataId, device, menuUuid, navigate])
 
   return doAction;
 }
