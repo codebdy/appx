@@ -20,6 +20,7 @@ import { TextView } from '../../../dispaly';
 import {
   useField
 } from '@formily/react'
+import { InstanceContext } from '../../../../../shared/contexts/instance';
 
 const onChange = (pagination, filters, sorter, extra) => {
   console.log('params', pagination, filters, sorter, extra);
@@ -41,6 +42,7 @@ const isColumnGroupComponent = (schema: Schema) => {
 }
 
 function useGetTableColumns() {
+  const field = useField();
   const getTableColumns = (sources: ObservableColumnSource[], parentGroupNames: string[] = []): TableProps<any>['columns'] => {
     return sources?.reduce((buf, source, key) => {
       const { name, columnProps, schema, children/*, display*/ } = source || {}
@@ -67,13 +69,17 @@ function useGetTableColumns() {
               </ReactField>
             }
 
-            return <ArrayBase.Item index={index} record={record}>
-              <ReactField name={index}>
-                <ReactField name={rootName} value={record?.[rootName]} >
-                  {children}
-                </ReactField>
-              </ReactField>
-            </ArrayBase.Item>
+            return (
+              <InstanceContext.Provider value={{ fieldPath: field?.path?.toString(), instance: record }}>
+                <ArrayBase.Item index={index} record={record}>
+                  <ReactField name={index}>
+                    <ReactField name={rootName} value={record?.[rootName]} >
+                      {children}
+                    </ReactField>
+                  </ReactField>
+                </ArrayBase.Item>
+              </InstanceContext.Provider>
+            )
           }
           : undefined,
       })
