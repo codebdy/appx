@@ -4,25 +4,27 @@ import { observer } from "@formily/reactive-react"
 import { IIcon } from "../../../../shared/icon/model"
 import { IconView } from "../../../../shared/icon/IconView"
 import { useParseLangMessage } from "../../../../hooks/useParseLangMessage"
+import { IAppxAction, useDoActions } from "../../../../shared/action"
 
 export type IButtonProps = ButtonProps &
   React.RefAttributes<HTMLElement> & {
     title?: React.ReactElement,
-    icon?: IIcon
+    icon?: IIcon,
+    onClick?: IAppxAction[]
   }
 
-export const Button = observer((
-  props: IButtonProps
-) => {
+export const Button = observer((props: IButtonProps) => {
   const { title, icon, onClick, ...other } = props;
   const p = useParseLangMessage();
 
-  const handleClick = useCallback(()=>{
-    console.log("onClick 哈哈", onClick)
-  }, [onClick])
+  const doActions = useDoActions();
+
+  const handleClick = useCallback(() => {
+    doActions(onClick);
+  }, [doActions, onClick])
 
   return (
-    <AntdButton {...other} onClick = {handleClick} icon={icon && <IconView icon={icon} />}>
+    <AntdButton {...other} onClick={handleClick} icon={icon && <IconView icon={icon} />}>
       {p(title)}
     </AntdButton>
   )
