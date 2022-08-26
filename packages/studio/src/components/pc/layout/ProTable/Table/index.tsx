@@ -142,6 +142,10 @@ export const Table = observer((
 
   const {data, loading, error} = useDataQuery(queryParams);
 
+  if(data && !Array.isArray(data)){
+    throw new Error("Data is not array, please check query expression")
+  }
+
   useShowError(error);
   return (
     <ArrayBase>
