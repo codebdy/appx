@@ -1,6 +1,6 @@
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 import { Button, Layout } from "antd";
-import React from "react";
+import React, { useMemo } from "react";
 import { memo } from "react";
 import clx from "classnames";
 import { menuCollapsedWidth, menuWidth } from ".";
@@ -16,7 +16,7 @@ const ProHeader = memo((
   }
 ) => {
   const { collapsed, fixed = true, scrolled, children, onTrigger } = props;
-
+  const menuSiderWidth = useMemo(() => collapsed ? menuCollapsedWidth : menuWidth, [collapsed]);
   return (
     <>
       {
@@ -29,8 +29,7 @@ const ProHeader = memo((
       <Header
         className={clx("site-layout-background toolbar", { "fixed-header": fixed, "float": scrolled })}
         style={{
-          marginLeft: fixed && (collapsed ? menuCollapsedWidth : menuWidth),
-          transition: "margin 0.2s"
+          width: fixed && `calc(100% - ${menuSiderWidth}px)`,
         }
         }
       >
