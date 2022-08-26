@@ -8,6 +8,7 @@ import { IFragmentParams } from "./IFragmentParams";
 import { useQueryFragmentFromSchema } from "./useQueryFragmentFromSchema";
 
 export interface IQueryParams extends IFragmentParams {
+  entityName?: string,
   rootFieldName?: string,
 }
 
@@ -17,7 +18,7 @@ export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema
   const firstFieldValueNameFromOperation = (operationDefinition) => operationDefinition?.selectionSet?.selections?.[0]?.name?.value;
   const fragmentFromSchema = useQueryFragmentFromSchema(schema);
   const params = useMemo(() => {
-    const parms:IQueryParams= {}
+    const parms: IQueryParams = {}
     if (dataBindSource.expression) {
       try {
         const ast = parse(dataBindSource.expression);
@@ -27,7 +28,8 @@ export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema
           message.error("Can not find query operation");
         }
         parms.rootFieldName = firstFieldValueNameFromOperation(firstOperationDefinition(ast));
-  
+        parms.entityName = dataBindSource.entityName;
+
         const fragmenAst = visit(firstOperationDefinition(ast)?.selectionSet?.selections?.[0]?.selectionSet, {
           enter(node, key, parent, path, ancestors) {
             // do some work
@@ -36,17 +38,19 @@ export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema
             // do some more work
           }
         });
-  
+
         const rootFragment: IFragmentParams = {
           gql: `fragment RootFragment on ${parms.rootFieldName} ${print(fragmenAst)}`,
           variables: dataBindSource.variables,
         }
-  
+
         parms.variables = { ...fragmentFromSchema.variables || {}, ...rootFragment.variables || {} }
-  
+
         const gql = `
         fragment SchemaFragment on ${parms.rootFieldName} ${rootFragment.gql}
+
         ${fragmentFromSchema.gql}
+        
         query{
           ${parms.rootFieldName}{
             ...RootFragment
@@ -60,9 +64,9 @@ export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema
         message.error(t("Query.GraphqlExpressionError") + err?.message)
       }
     }
-  
+
     return parms;
-  }, [dataBindSource.expression, dataBindSource.variables, fragmentFromSchema.gql, fragmentFromSchema.variables, t]);
+  }, [dataBindSource.entityName, dataBindSource.expression, dataBindSource.variables, fragmentFromSchema.gql, fragmentFromSchema.variables, t]);
 
   return params
 }

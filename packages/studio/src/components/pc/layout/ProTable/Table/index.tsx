@@ -14,41 +14,8 @@ import { isArr, isStr } from '@formily/shared'
 import { useParseLangMessage } from '../../../../../hooks/useParseLangMessage';
 import { observer } from '@formily/reactive-react';
 import { useQueryParams } from '../../../../../datasource/hooks/useQueryParams';
-
-const data = [
-  {
-    key: '1',
-    name: 'John Brown',
-    chinese: 98,
-    math: 60,
-    english: 70,
-    tags: ['cool', 'teacher'],
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    chinese: 98,
-    math: 66,
-    english: 89,
-    tags: ['cool',],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    chinese: 98,
-    math: 90,
-    english: 70,
-    tags: ['cool', 'teacher'],
-  },
-  {
-    key: '4',
-    name: 'Jim Red',
-    chinese: 88,
-    math: 99,
-    english: 89,
-    tags: ['teacher'],
-  },
-];
+import { useDataQuery } from '../../../../../datasource/hooks/useDataQuery';
+import { useShowError } from '../../../../../hooks/useShowError';
 
 const onChange = (pagination, filters, sorter, extra) => {
   console.log('params', pagination, filters, sorter, extra);
@@ -173,6 +140,9 @@ export const Table = observer((
   const schema = useFieldSchema();
   const queryParams = useQueryParams(dataBindSource, schema);
 
+  const {data, loading, error} = useDataQuery(queryParams);
+
+  useShowError(error);
   return (
     <ArrayBase>
       <AntdTable
@@ -182,7 +152,7 @@ export const Table = observer((
           type: 'checkbox',
           ...rowSelection,
         }}
-        loading={false}
+        loading={loading}
         onChange={onChange}>
       </AntdTable>
     </ArrayBase>
