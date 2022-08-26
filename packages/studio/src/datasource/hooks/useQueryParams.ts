@@ -40,14 +40,14 @@ export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema
         });
 
         const rootFragment: IFragmentParams = {
-          gql: `fragment RootFragment on ${parms.rootFieldName} ${print(fragmenAst)}`,
+          gql: `fragment RootFragment on ${parms.entityName} ${print(fragmenAst)}`,
           variables: dataBindSource.variables,
         }
 
         parms.variables = { ...fragmentFromSchema.variables || {}, ...rootFragment.variables || {} }
 
         const gql = `
-        fragment SchemaFragment on ${parms.rootFieldName} ${fragmentFromSchema.gql}
+        fragment SchemaFragment on ${parms.entityName} ${fragmentFromSchema.gql}
 
         ${rootFragment.gql}
 
