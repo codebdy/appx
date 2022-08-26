@@ -170,6 +170,7 @@ export const Table = observer((
       <AntdTable
         columns={columns}
         dataSource={data}
+        rowKey="id"
         rowSelection={selectable && {
           type: 'checkbox',
           ...rowSelection,
