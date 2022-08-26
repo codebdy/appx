@@ -13,7 +13,7 @@ export function useDoOneAction() {
         const payload = action.payload as IOpenPageAction;
         if (payload.openType === OpenPageType.RouteTo) {
           console.log(`menuUuid:${menuUuid}, pageId:${payload.pageId}, dataId:${dataId}`)
-          navigate(`/app/${device}/${appUuid}/${menuUuid||""}/${payload.pageId}/${dataId}`)
+          navigate(`/app/${device}/${appUuid}/${menuUuid||"no"}/${payload.pageId}/${dataId}`)
         }
         resolve(undefined);
       }

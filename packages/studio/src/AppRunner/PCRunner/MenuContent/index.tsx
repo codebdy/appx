@@ -54,7 +54,7 @@ const MenuContent = memo(() => {
       <Menu
         theme="dark"
         mode="inline"
-        selectedKeys={[menuUuid || getMenuItemByPageId(entryId)?.uuid]}
+        selectedKeys={[(menuUuid !== "no" && menuUuid) || getMenuItemByPageId(entryId)?.uuid]}
         items={data}
         onClick={handleClick}
       />
