@@ -1,21 +1,25 @@
 import { Table as AntdTable, TableProps } from 'antd';
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useProTableParams, useSelectable } from '../context';
 import { ArrayBase } from "@formily/antd"
 import {
   useFieldSchema,
   RecursionField,
-  Field
+  Field as ReactField
 } from '@formily/react'
-import { FieldDisplayTypes } from '@formily/core'
+import { Field, FieldDisplayTypes } from '@formily/core'
 import { ColumnProps } from "antd/lib/table"
 import { Schema } from '@formily/json-schema'
-import { isArr, isStr } from '@formily/shared'
+import { isArr } from '@formily/shared'
 import { useParseLangMessage } from '../../../../../hooks/useParseLangMessage';
 import { observer } from '@formily/reactive-react';
 import { useQueryParams } from '../../../../../datasource/hooks/useQueryParams';
 import { useDataQuery } from '../../../../../datasource/hooks/useDataQuery';
 import { useShowError } from '../../../../../hooks/useShowError';
+import { TextView } from '../../../dispaly';
+import {
+  useField
+} from '@formily/react'
 
 const onChange = (pagination, filters, sorter, extra) => {
   console.log('params', pagination, filters, sorter, extra);
@@ -37,31 +41,39 @@ const isColumnGroupComponent = (schema: Schema) => {
 }
 
 function useGetTableColumns() {
-  const p = useParseLangMessage();
-  const getTableColumns = (sources: ObservableColumnSource[]): TableProps<any>['columns'] => {
+  const getTableColumns = (sources: ObservableColumnSource[], parentGroupNames: string[] = []): TableProps<any>['columns'] => {
     return sources?.reduce((buf, source, key) => {
       const { name, columnProps, schema, children/*, display*/ } = source || {}
       //if (display !== 'visible') return buf
       if (!isColumnComponent(schema) && !isColumnGroupComponent(schema)) return buf
+      let rootName = parentGroupNames.length ? parentGroupNames[0] : name;//组根名字
+      const groups = [...parentGroupNames, name];
       return buf.concat({
         ...columnProps,
-        children: getTableColumns(children) || [],
+        children: getTableColumns(children, groups) || [],
         key,
         dataIndex: name,
         render: !children.length
           ? (value: any, record: any, index: number) => {
-            const children = (
-              <ArrayBase.Item index={index} record={record}>
-                <Field name={name} value={record?.[name]} >
-                  {
-                    schema.properties && Object.keys(schema.properties).length > 0
-                      ? <RecursionField schema={schema} onlyRenderProperties />
-                      : isStr(record?.[name]) ? p(record?.[name]) : record?.[name]
-                  }
-                </Field>
-              </ArrayBase.Item>
+            let children = (
+              schema.properties && Object.keys(schema.properties).length > 0
+                ? <RecursionField schema={schema} onlyRenderProperties />
+                : <TextView inherited={false}></TextView>
             )
-            return children
+            for (let i = groups.length - 1; i > 0; i--) {
+              const groupName = groups[i];
+              children = <ReactField name={groupName} >
+                {children}
+              </ReactField>
+            }
+
+            return <ArrayBase.Item index={index} record={record}>
+              <ReactField name={index}>
+                <ReactField name={rootName} value={record?.[rootName]} >
+                  {children}
+                </ReactField>
+              </ReactField>
+            </ArrayBase.Item>
           }
           : undefined,
       })
@@ -140,13 +152,19 @@ export const Table = observer((
   const schema = useFieldSchema();
   const queryParams = useQueryParams(dataBindSource, schema);
 
-  const {data, loading, error} = useDataQuery(queryParams);
+  const { data, loading, error } = useDataQuery(queryParams);
+  useShowError(error);
 
-  if(data && !Array.isArray(data)){
+  if (data && !Array.isArray(data)) {
     throw new Error("Data is not array, please check query expression")
   }
 
-  useShowError(error);
+  const field = useField();
+
+  useEffect(() => {
+    (field as Field).setInitialValue(data);
+  }, [data, field])
+
   return (
     <ArrayBase>
       <AntdTable

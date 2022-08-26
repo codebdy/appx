@@ -4,6 +4,8 @@ import {
   useField,
 } from '@formily/react'
 import { Field, GeneralField, isField } from "@formily/core";
+import { useParseLangMessage } from "../../../../hooks/useParseLangMessage";
+import { isStr } from "@formily/shared";
 
 export interface ITextViewProps {
   inherited?: boolean,
@@ -26,9 +28,10 @@ export const TextView = observer((
     return undefined;
   }, [])
   const datatField = (inherited ? getParentField(field) : field) as Field
+  const p = useParseLangMessage();
   return (
     <>
-      {datatField?.value}
+      {isStr(datatField?.value) ? p(datatField?.value) : datatField?.value}
     </>
   )
 })
