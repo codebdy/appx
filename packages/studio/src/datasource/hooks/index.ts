@@ -1,4 +1,4 @@
 export * from "./useBuildMeta";
-export * from "./useGetPackageEntities";
+export * from "./useGetPackageRootEntities";
 export * from "./usePackages";
 export * from "./useQueryDataSource";

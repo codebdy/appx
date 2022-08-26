@@ -11,4 +11,5 @@ export interface EntityMeta {
   attributes: AttributeMeta[];
   methods: MethodMeta[];
   associations: AssociationMeta[];
+  root?: boolean;
 }
