@@ -10,11 +10,12 @@ const ProHeader = memo((
   props: {
     collapsed?: boolean,
     fixed?: boolean,
+    scrolled?: boolean,
     children?: React.ReactNode,
     onTrigger?: () => void,
   }
 ) => {
-  const { collapsed, fixed = true, children, onTrigger } = props;
+  const { collapsed, fixed = true, scrolled, children, onTrigger } = props;
 
   return (
     <>
@@ -26,7 +27,7 @@ const ProHeader = memo((
         </Header>
       }
       <Header
-        className={clx("site-layout-background toolbar", { fixedHeader: fixed })}
+        className={clx("site-layout-background toolbar", { "fixed-header": fixed, "float": scrolled })}
       >
         <div>
           {

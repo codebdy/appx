@@ -1,5 +1,5 @@
 import { Layout } from 'antd';
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import "./style.less";
 import MenuSider from './MenuSider';
 import ProHeader from './ProHeader';
@@ -21,7 +21,25 @@ const ProLayout = memo((
   }
 ) => {
   const { logo, title, menu, children, fixedHeader, header, footer } = props;
+  const [scrolled, setScrolled] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
+  const ref = useRef<HTMLElement>(null)
+  const handleScroll = useCallback((event: Event) => {
+    const scrollRect = ref?.current?.getBoundingClientRect();
+    if (scrollRect.y < 40) {
+      setScrolled(true)
+    } else {
+      setScrolled(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    document.addEventListener("scroll", handleScroll);
+    return () => {
+      document.removeEventListener("scroll", handleScroll);
+    }
+  }, [handleScroll])
+
 
   const handleTrigger = useCallback(() => {
     setCollapsed(collapsed => !collapsed)
@@ -43,10 +61,11 @@ const ProLayout = memo((
           collapsed={collapsed}
           fixed={fixedHeader}
           onTrigger={handleTrigger}
+          scrolled={scrolled}
         >
           {header}
         </ProHeader>
-        <Content>
+        <Content ref = {ref}>
           {children}
         </Content>
         {
