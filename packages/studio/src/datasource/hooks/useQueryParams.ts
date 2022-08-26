@@ -40,11 +40,26 @@ export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema
         gql: `fragment RootFragment on ${params.rootFieldName} ${print(fragmenAst)}`,
         variables: dataBindSource.variables,
       }
+
+      params.variables = { ...fragmentFromSchema.variables || {}, ...rootFragment.variables || {} }
+
+      const gql = `
+      fragment SchemaFragment on ${params.rootFieldName} ${rootFragment.gql}
+      ${fragmentFromSchema.gql}
+      query{
+        ${params.rootFieldName}{
+          ...RootFragment
+          ...SchemaFragment
+        }
+      }
+      `;
+      console.log("呵呵呵呵", gql)
     } catch (err) {
       console.error(err);
       message.error(t("Query.GraphqlExpressionError") + err?.message)
     }
   }
+
 
   return params
 }
