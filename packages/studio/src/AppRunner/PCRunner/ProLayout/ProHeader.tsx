@@ -28,18 +28,12 @@ const ProHeader = memo((
       }
       <Header
         className={clx("site-layout-background toolbar", { "fixed-header": fixed, "float": scrolled })}
+        style={{
+          marginLeft: fixed && (collapsed ? menuCollapsedWidth : menuWidth),
+          transition: "margin 0.2s"
+        }
+        }
       >
-        <div>
-          {
-            fixed &&
-            <div
-              style={{
-                width: collapsed ? menuCollapsedWidth : menuWidth,
-                transition: "width 0.2s"
-              }}
-            ></div>
-          }
-        </div>
         <Button type="text" shape="circle" onClick={onTrigger}
           icon={
             collapsed ?
