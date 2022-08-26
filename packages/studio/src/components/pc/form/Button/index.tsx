@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useCallback } from "react"
 import { Button as AntdButton, ButtonProps } from "antd"
 import { observer } from "@formily/reactive-react"
 import { IIcon } from "../../../../shared/icon/model"
@@ -14,10 +14,15 @@ export type IButtonProps = ButtonProps &
 export const Button = observer((
   props: IButtonProps
 ) => {
-  const { title, icon, ...other } = props;
+  const { title, icon, onClick, ...other } = props;
   const p = useParseLangMessage();
+
+  const handleClick = useCallback(()=>{
+    console.log("onClick 哈哈", onClick)
+  }, [onClick])
+
   return (
-    <AntdButton {...other} icon={icon && <IconView icon={icon} />}>
+    <AntdButton {...other} onClick = {handleClick} icon={icon && <IconView icon={icon} />}>
       {p(title)}
     </AntdButton>
   )

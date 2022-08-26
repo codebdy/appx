@@ -328,7 +328,12 @@ export const createActionSchemaTab = (actions: string[]) => {
         tab: 'SettingsForm.Actions'
       },
       properties: {
-        ...actionsObj
+        'x-component-props': {
+          type: "object",
+          properties: {
+            ...actionsObj,
+          }
+        }
       }
     },
   }
