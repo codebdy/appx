@@ -9,14 +9,15 @@ export function useDoOneAction() {
   const navigate = useNavigate();
   const doAction = useCallback((action: IAppxAction) => {
     return new Promise((resolve, reject) => {
-      if(action.actionType === ActionType.OpenPage){
+      if (action.actionType === ActionType.OpenPage) {
         const payload = action.payload as IOpenPageAction;
-        if(payload.openType === OpenPageType.RouteTo){
-          navigate(`/app/${device}/${appUuid}/${menuUuid}/${payload.pageId}/${dataId}`)          
+        if (payload.openType === OpenPageType.RouteTo) {
+          console.log(`menuUuid:${menuUuid}, pageId:${payload.pageId}, dataId:${dataId}`)
+          navigate(`/app/${device}/${appUuid}/${menuUuid||""}/${payload.pageId}/${dataId}`)
         }
         resolve(undefined);
       }
-      
+
     })
   }, [appUuid, dataId, device, menuUuid, navigate])
 

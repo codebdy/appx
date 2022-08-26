@@ -25,11 +25,13 @@ const PageEngine = memo((
   }
 ) => {
   const { LoadingSpan = Spin, components = {} } = props;
-  const { menuUuid } = useParams();
+  const { menuUuid, pageId } = useParams();
   const getMenuItem = useGetMenuItem();
   const entryId = useEntryPageId();
 
-  const { page, loading, error } = useQueryPage(menuUuid ? getMenuItem(menuUuid)?.route?.pageId : entryId);
+  const pageIdFormMenu = useMemo(() => getMenuItem(menuUuid)?.route?.pageId, [getMenuItem, menuUuid])
+
+  const { page, loading, error } = useQueryPage(pageId || pageIdFormMenu || entryId);
 
   const p = useParseLangSchema();
   useShowError(error);
