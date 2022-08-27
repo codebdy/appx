@@ -13,7 +13,14 @@ ObjectContainerDesigner.Behavior = createBehavior({
   selector: (node) => node.props.type === 'object',
   designerProps: {
     droppable: true,
-    propsSchema: createFieldSchema(undefined, { hasDataBindSource: true, noStyleTab: true }),
+    propsSchema: createFieldSchema(
+      undefined,
+      {
+        hasDataBindSource: true,
+        noStyleTab: true,
+        isDataField: true,
+      }
+    ),
   },
   designerLocales: ObjectLocale,
 })
