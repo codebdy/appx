@@ -6,7 +6,7 @@ export interface IPagePopup {
   id: string;
   pageId: ID;
   openType: OpenPageType;
-  title?: string;
+  pageTitle?: string;
   width?: number | string;
   height?: number | string;
   placement?: "top" | "right" | "bottom" | "left";

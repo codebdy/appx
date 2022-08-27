@@ -26,7 +26,7 @@ export const PageDrawer = memo((
 
   return (
     <Drawer
-      title={p(pageDrawer.title)}
+      title={p(pageDrawer.pageTitle)}
       visible={visalbe}
       footer={null}
       placement={pageDrawer.placement}

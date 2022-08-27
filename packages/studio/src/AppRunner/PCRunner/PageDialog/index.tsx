@@ -26,7 +26,7 @@ export const PageDialog = memo((
 
   return (
     <Modal
-      title={p(pageDialog.title)}
+      title={p(pageDialog.pageTitle)}
       visible={visalbe}
       footer={null}
       onCancel={handleCancel}
