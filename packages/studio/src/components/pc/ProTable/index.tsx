@@ -1,7 +1,7 @@
 import { Card, TableProps } from "antd"
 import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { IProTableParams, ProTableContext } from "./context"
-import "./index.less"
+import "./style.less"
 import locales, { LOCALES_NS } from "./locales"
 import { Table } from "./Table"
 import { ITableBatchActionsProps, TableBatchActions } from "./TableBatchActions"

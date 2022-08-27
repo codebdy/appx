@@ -10,7 +10,7 @@ import { HeaderContentDesigner } from './HeaderContentDesigner'
 import { TabPanelDesigner } from './PageTabPanelDesigner'
 import { FooterToolbarDesigner } from './FooterToolbarDesigner'
 import { observer } from '@formily/reactive-react'
-import './index.less'
+import './style.less'
 import { LoadTemplate } from "@designable/formily-antd/lib/common/LoadTemplate"
 import { createFieldSchema } from "../../common/Field/shared"
 import { useFindNode } from '../../common/hooks/useFindNode'

@@ -1,7 +1,7 @@
 import { Row, Tabs } from "antd";
 import React, { useMemo, useState } from "react"
 import { RecursionField, useFieldSchema } from '@formily/react';
-import "./index.less"
+import "./style.less"
 import { PageHeader } from "./PageHeader";
 import { PageBody } from "./PageBody";
 import PageHeaderActions, { IHeaderActionsProps } from "./PageHeaderActions";
