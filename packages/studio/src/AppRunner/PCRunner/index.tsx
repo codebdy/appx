@@ -53,11 +53,11 @@ const PCRunner = memo(() => {
           pagePopups.map((pagePop) => {
             return (<PageContext.Provider key={pagePop.id} value={{ openType: OpenPageType.Dialog, containerId: pagePop.id }}>
               {
-                pagePop.type === OpenPageType.Dialog &&
+                pagePop.openType === OpenPageType.Dialog &&
                 <PageDialog pageDialog={pagePop} />
               }
               {
-                pagePop.type === OpenPageType.Drawer &&
+                pagePop.openType === OpenPageType.Drawer &&
                 <PageDrawer pageDrawer={pagePop} />
               }
             </PageContext.Provider>)

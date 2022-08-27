@@ -1,9 +1,9 @@
 import { useCallback } from "react";
 import { useSetRecoilState } from "recoil";
-import { OpenPageType } from "../../shared/action";
-import { useAppViewKey } from "../../shared/AppRoot/context";
-import { usePageParams } from "../context/page";
-import { pagePopupsState } from "./atoms";
+import { OpenPageType } from "..";
+import { useAppViewKey } from "../../AppRoot/context";
+import { usePageParams } from "../../../AppRunner/context/page";
+import { pagePopupsState } from "../../../AppRunner/recoil/atoms";
 
 export function useClosePage() {
   const key = useAppViewKey();

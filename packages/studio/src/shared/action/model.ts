@@ -27,7 +27,7 @@ export enum OpenPageType {
 
 export interface IOpenPageAction {
   openType: OpenPageType,
-  pageId?: ID,
+  pageId: ID,
   width?: number | string;
   height?: number | string;
   placement?: "top" | "right" | "bottom" | "left";

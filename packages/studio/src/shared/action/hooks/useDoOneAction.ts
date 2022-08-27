@@ -1,25 +1,20 @@
 import { useCallback } from "react";
-import { ActionType, IAppxAction, IOpenPageAction, OpenPageType } from "../model";
-import { useInstanceId } from "../../contexts/instance";
-import { useNavigate, useParams } from "react-router-dom";
+import { ActionType, IAppxAction, IOpenPageAction } from "../model";
+import { useOpenPage } from "./useOpenPage";
 
 export function useDoOneAction() {
-  const { device, appUuid, menuUuid } = useParams();
-  const dataId = useInstanceId();
-  const navigate = useNavigate();
+  const openPage = useOpenPage();
+
   const doAction = useCallback((action: IAppxAction) => {
     return new Promise((resolve, reject) => {
       if (action.actionType === ActionType.OpenPage) {
         const payload = action.payload as IOpenPageAction;
-        if (payload.openType === OpenPageType.RouteTo) {
-          console.log(`menuUuid:${menuUuid}, pageId:${payload.pageId}, dataId:${dataId}`)
-          navigate(`/app/${device}/${appUuid}/${menuUuid||"no"}/${payload.pageId}/${dataId}`)
-        }
+        openPage(payload);
         resolve(undefined);
       }
 
     })
-  }, [appUuid, dataId, device, menuUuid, navigate])
+  }, [openPage])
 
   return doAction;
 }

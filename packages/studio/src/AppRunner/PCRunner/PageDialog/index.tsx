@@ -4,7 +4,7 @@ import React, { useCallback, useMemo } from "react"
 import { memo } from "react"
 import { IPagePopup, pagePopupsState } from "../../recoil/atoms";
 import { useRecoilValue } from "recoil";
-import { useClosePage } from "../../recoil/useClosePage";
+import { useClosePage } from "../../../shared/action/hooks/useClosePage";
 
 export const PageDialog = memo((
   props: {
