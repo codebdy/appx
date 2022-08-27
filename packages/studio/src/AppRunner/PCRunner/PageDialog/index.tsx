@@ -2,37 +2,34 @@ import { Modal } from "antd";
 import { useAppViewKey } from "../../../shared/AppRoot/context";
 import React, { useCallback, useMemo } from "react"
 import { memo } from "react"
-import { IPageDialog, pageDialogsState } from "../../recoil/atoms";
-import { useRecoilState } from "recoil";
-import { PageContext } from "../../context/page";
-import { OpenPageType } from "../../../../src/shared/action";
+import { IPagePopup, pagePopupsState } from "../../recoil/atoms";
+import { useRecoilValue } from "recoil";
+import { useClosePage } from "../../recoil/useClosePage";
 
 export const PageDialog = memo((
   props: {
-    pageDialog: IPageDialog,
+    pageDialog: IPagePopup,
   }
 ) => {
   const { pageDialog } = props;
   const key = useAppViewKey();
-  const [pageDialogs, setPageDialogs] = useRecoilState(pageDialogsState(key));
-
-  const visalbe = useMemo(() => !!pageDialogs.find(pgDialog => pgDialog.id === pageDialog.id), [pageDialog.id, pageDialogs])
+  const pagePopups = useRecoilValue(pagePopupsState(key));
+  const close = useClosePage();
+  const visalbe = useMemo(() => !!pagePopups.find(pgDialog => pgDialog.id === pageDialog.id), [pageDialog.id, pagePopups])
   const handleCancel = useCallback(() => {
-    setPageDialogs(pgDialogs => pgDialogs.filter(pgDialog => pgDialog.id !== pageDialog.id))
-  }, [pageDialog.id, setPageDialogs]);
+    close();
+  }, [close]);
 
   return (
-    <PageContext.Provider value={{ openType: OpenPageType.Dialog, containerId: pageDialog.id }}>
-      <Modal
-        title={pageDialog.title}
-        visible={visalbe}
-        footer={null}
-        onCancel={handleCancel}
-      >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Modal>
-    </PageContext.Provider>
+    <Modal
+      title={pageDialog.title}
+      visible={visalbe}
+      footer={null}
+      onCancel={handleCancel}
+    >
+      <p>Some contents...</p>
+      <p>Some contents...</p>
+      <p>Some contents...</p>
+    </Modal>
   )
 })

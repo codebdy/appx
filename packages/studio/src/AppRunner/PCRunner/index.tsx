@@ -1,9 +1,15 @@
 import React from "react";
 import { memo } from "react";
+import { useRecoilValue } from "recoil";
 import { useParseLangMessage } from "../../hooks/useParseLangMessage";
-import { useAppParams } from "../../shared/AppRoot/context";
+import { OpenPageType } from "../../shared/action";
+import { useAppParams, useAppViewKey } from "../../shared/AppRoot/context";
+import { PageContext } from "../context/page";
+import { pagePopupsState } from "../recoil/atoms";
 import HeaderContent from "./HeaderContent";
 import MenuContent from "./MenuContent";
+import { PageDialog } from "./PageDialog";
+import { PageDrawer } from "./PageDrawer";
 import ProLayout from "./ProLayout";
 import { RootPage } from "./RootPage";
 import "./style.less"
@@ -11,6 +17,8 @@ import "./style.less"
 const PCRunner = memo(() => {
   const { app } = useAppParams();
   const p = useParseLangMessage();
+  const key = useAppViewKey();
+  const pagePopups = useRecoilValue(pagePopupsState(key));
 
   return (
     <div
@@ -40,7 +48,22 @@ const PCRunner = memo(() => {
         header={<HeaderContent />}
         footer={"©Copyright 悠闲的水 2022"}
       >
-        <RootPage/>
+        <RootPage />
+        {
+          pagePopups.map((pagePop) => {
+            return (<PageContext.Provider key={pagePop.id} value={{ openType: OpenPageType.Dialog, containerId: pagePop.id }}>
+              {
+                pagePop.type === OpenPageType.Dialog &&
+                <PageDialog pageDialog={pagePop} />
+              }
+              {
+                pagePop.type === OpenPageType.Drawer &&
+                <PageDrawer pageDrawer={pagePop} />
+              }
+            </PageContext.Provider>)
+          })
+
+        }
       </ProLayout>
     </div>
   )

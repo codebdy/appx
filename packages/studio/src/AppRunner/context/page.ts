@@ -9,4 +9,4 @@ export interface IPageParams {
 
 export const PageContext = createContext<IPageParams | undefined>(undefined);
 
-export const useRunnerParams = (): IPageParams | undefined => useContext(PageContext);
+export const usePageParams = (): IPageParams | undefined => useContext(PageContext);
