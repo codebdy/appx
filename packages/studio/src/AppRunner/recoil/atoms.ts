@@ -1,4 +1,5 @@
 import { atomFamily } from "recoil";
+import { IPage } from "../../model";
 import { ID } from "../../shared";
 import { OpenPageType } from "../../shared/action";
 
@@ -14,5 +15,11 @@ export interface IPagePopup {
 
 export const pagePopupsState = atomFamily<IPagePopup[], string>({
   key: "runner.pagePopups",
+  default: [],
+})
+
+
+export const pagesCacheState = atomFamily<IPage[], string>({
+  key: "runner.pagesCache",
   default: [],
 })
