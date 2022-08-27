@@ -258,7 +258,7 @@ PageContainerDesigner.Behavior = createBehavior(
 )
 
 PageContainerDesigner.Resource = createResource({
-  icon: 'CardSource',
+  icon: 'EntitySource',
   elements: [
     {
       componentName: 'Field',

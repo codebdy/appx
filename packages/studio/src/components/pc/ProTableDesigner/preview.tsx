@@ -173,7 +173,7 @@ ProTableDesigner.Behavior = createBehavior(
 )
 
 ProTableDesigner.Resource = createResource({
-  icon: 'DataTableSource',
+  icon: 'DataQueryListSource',
   elements: [
     {
       componentName: 'Field',
