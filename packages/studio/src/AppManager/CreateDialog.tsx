@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useCreateApp } from '../hooks/useCreateApp';
 import { IAppInput } from '../model/input';
 import { createUuid } from '../shared';
-import { MultiLangInput } from '../components/pc/form/MultiLangInput';
+import { MultiLangInput } from '../components/pc/MultiLangInput';
 import { useShowError } from './../hooks/useShowError';
 
 const CreateDialog = memo(() => {

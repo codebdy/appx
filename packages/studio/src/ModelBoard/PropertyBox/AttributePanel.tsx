@@ -8,7 +8,7 @@ import { useGetTypeLabel } from "../hooks/useGetTypeLabel";
 import { Form, Input, Switch } from "antd";
 import { useTranslation } from "react-i18next";
 import { AttributeTypeInput } from "./AttributeTypeInput";
-import { MultiLangInput } from "../../components/pc/form/MultiLangInput";
+import { MultiLangInput } from "../../components/pc/MultiLangInput";
 import { useSelectedAppUuid } from "../../shared/AppRoot/context";
 
 export const AttributePanel = (props: {

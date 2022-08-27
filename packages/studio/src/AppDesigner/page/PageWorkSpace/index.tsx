@@ -19,7 +19,7 @@ import { useShowError } from "../../../hooks/useShowError";
 import { transformToTreeNode } from "../../transformer";
 import { useDesigner } from '@designable/react'
 import { useLazyQueryPage } from "../../../hooks/useLazyQueryPage";
-import { FormDesigner } from "../../../components/pc/form/FormDesigner";
+import { FormDesigner } from "../../../components/pc/FormDesigner";
 import { ObjectContainer } from "@designable/formily-antd";
 
 const PageWorkSpace = (props: {
