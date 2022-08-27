@@ -3,6 +3,7 @@ import { FormButtonGroup, IFormButtonGroupProps } from "../FormButtonGroup";
 import { createBehavior, createResource } from '@designable/core'
 import { FormButtonGroupLocales } from './locales';
 import { createFieldSchema } from "../../common/Field/shared"
+import { FormButtonGroupSchema } from './schema';
 
 export const FormButtonGroupDesigner: DnFC<IFormButtonGroupProps> = FormButtonGroup;
 
@@ -13,7 +14,7 @@ FormButtonGroupDesigner.Behavior = createBehavior({
   designerProps: {
     droppable: true,
     propsSchema: createFieldSchema(
-      undefined,
+      FormButtonGroupSchema,
       {
         noStyleTab: true,
         noDisplayTab: true,

@@ -6,7 +6,10 @@ export const FormButtonGroupLocales = {
       'x-component-props': {
         formItem: "对齐标签",
         sticky: "吸底",
-        align: "对齐",
+        align: {
+          title: '对齐',
+          dataSource: ['左对齐', '右对齐', '居中'],
+        },
         gutter: "间隙",
       },
     },
