@@ -10,5 +10,6 @@ export interface IFieldSource {
   name: string;
   label?: string;
   typeUuid?: string;
+  typeEntityName?: string;
   sourceType: FieldSourceType;
 }

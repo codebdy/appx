@@ -6,6 +6,7 @@ import { useCurrentEntity } from "../../../../datasource/hooks/useCurrentEntity"
 import { TextWidget } from '@designable/react'
 import { useParseLangMessage } from "../../../../hooks/useParseLangMessage";
 import { FieldSourceType, IFieldSource } from "../../../../datasource/model/IFieldSource";
+import { useGetEntity } from "../../../../datasource/hooks/useGetEntity";
 const { Option, OptGroup } = Select;
 
 export const FieldSourceInput = observer((
@@ -16,6 +17,7 @@ export const FieldSourceInput = observer((
 ) => {
   const { value, onChange } = props;
   const currentEntity = useCurrentEntity();
+  const getEntity = useGetEntity();
   const p = useParseLangMessage();
 
   const handleChange = useCallback((value) => {
@@ -30,6 +32,7 @@ export const FieldSourceInput = observer((
         sourceType: FieldSourceType.Attribute,
         label: attr.label,
         typeUuid: attr.typeUuid,
+        typeEntityName: getEntity(attr.typeUuid)?.name,
       })
       return;
     }
@@ -40,6 +43,7 @@ export const FieldSourceInput = observer((
         sourceType: FieldSourceType.Method,
         label: method.label,
         typeUuid: method.typeUuid,
+        typeEntityName: getEntity(method.typeUuid)?.name,
       })
       return;
     }
@@ -50,13 +54,14 @@ export const FieldSourceInput = observer((
         name: assoc.name,
         sourceType: FieldSourceType.Association,
         label: assoc.label,
-        typeUuid: assoc.tyeUuid,
+        typeUuid: assoc.typeUuid,
+        typeEntityName: getEntity(assoc.typeUuid)?.name,
       })
       return;
     }
 
     onChange(undefined);
-  }, [currentEntity, onChange])
+  }, [currentEntity?.associations, currentEntity?.attributes, currentEntity?.methods, getEntity, onChange])
 
   return (
     <Select allowClear value={value?.name} onChange={handleChange}>
