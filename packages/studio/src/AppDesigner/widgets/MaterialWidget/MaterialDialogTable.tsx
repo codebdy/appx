@@ -6,7 +6,7 @@ import { SortableContainer, SortableElement, SortableHandle } from 'react-sortab
 import "./index.less"
 import { UploadDialog } from './UploadDialog';
 import { MaterialModule } from './model';
-import { materialStore } from './global';
+import { materialStore } from '../../../shared/global';
 
 const DragHandle: any = SortableHandle(() => (
   <MenuOutlined

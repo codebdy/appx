@@ -1,10 +1,6 @@
-import { Input } from "@formily/antd";
-import { Button, PageContainer, ProTable, TextView } from "../../components/pc";
+import { convertMaterialsToComponents } from "../../AppDesigner/widgets/MaterialWidget/model";
+import { materialStore } from "../../shared/global";
 
 export const components = {
-  Input,
-  Button,
-  PageContainer,
-  ProTable,
-  TextView
+  ...convertMaterialsToComponents(materialStore.modules)
 }

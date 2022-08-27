@@ -7,8 +7,8 @@ import {
   ComponentTreeWidget,
 } from '../../widgets'
 import { ViewPanel, WorkspacePanel, ToolbarPanel, ViewportPanel, SettingsPanel } from '../../panels'
-import { convertMaterialsToComponents } from '../../widgets/MaterialWidget/model'
-import { materialStore } from '../../widgets/MaterialWidget/global'
+import { convertMaterialsToComponentDesigners } from '../../widgets/MaterialWidget/model'
+import { materialStore } from '../../../shared/global'
 import { Workspace } from '../../containers'
 import { SettingsForm } from '../../SettingsForm'
 import { Field } from '../../../components/common/Field'
@@ -69,7 +69,7 @@ const PageWorkSpace = (props: {
                         Form: FormDesigner,
                         Field,
                         ObjectContainer,
-                        ...convertMaterialsToComponents(materialStore.modules)
+                        ...convertMaterialsToComponentDesigners(materialStore.modules)
                       }}
                     />
                   )}

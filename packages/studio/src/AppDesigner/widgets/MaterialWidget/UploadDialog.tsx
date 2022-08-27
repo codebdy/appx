@@ -4,7 +4,7 @@ import React, { memo, useCallback, useState } from 'react';
 import Dragger from 'antd/lib/upload/Dragger';
 import { MaterialModule, OperationType } from './model';
 import { loadDebugModule, transMaterialGroups } from './load';
-import { materialStore } from './global';
+import { materialStore } from '../../../shared/global';
 import { useTranslation } from 'react-i18next';
 
 export interface IUploadModalProps {
