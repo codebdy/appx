@@ -1,9 +1,8 @@
 import React from 'react'
 import { createBehavior, createResource } from '@designable/core'
 import { DnFC } from '@designable/react'
-import { createFieldSchema } from '../Field'
-import { Container } from '../../common/Container'
-import { AllLocales } from '../../locales'
+import { Container } from '@designable/formily-antd/lib/common/Container'
+import { ObjectLocale } from './locales'
 
 export const ObjectContainer: DnFC<React.ComponentProps<typeof Container>> =
   Container
@@ -15,7 +14,7 @@ ObjectContainer.Behavior = createBehavior({
     droppable: true,
     propsSchema: createFieldSchema(),
   },
-  designerLocales: AllLocales.ObjectLocale,
+  designerLocales: ObjectLocale,
 })
 
 ObjectContainer.Resource = createResource({
