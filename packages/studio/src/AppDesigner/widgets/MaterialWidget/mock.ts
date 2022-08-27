@@ -10,9 +10,10 @@ import {
   ProTable,
   ArrayTableDesigner,
   TextView,
-  TextViewDesigner
+  TextViewDesigner,
+  ObjectContainerDesigner,
+  ObjectContainer
 } from "../../../components/pc";
-import { ObjectContainer } from "@designable/formily-antd";
 
 export const allMaterials: MaterialModule[] = [
   {
@@ -50,12 +51,12 @@ export const allMaterials: MaterialModule[] = [
             component: ArrayTable
           },
           {
-            name:"ObjectContainer",
-            designer: ObjectContainer,
+            name: "ObjectContainer",
+            designer: ObjectContainerDesigner,
             component: ObjectContainer,
           },
           {
-            name:"TextView",
+            name: "TextView",
             designer: TextViewDesigner,
             component: TextView
           }

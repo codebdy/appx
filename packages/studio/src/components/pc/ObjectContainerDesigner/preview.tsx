@@ -3,21 +3,22 @@ import { createBehavior, createResource } from '@designable/core'
 import { DnFC } from '@designable/react'
 import { Container } from '@designable/formily-antd/lib/common/Container'
 import { ObjectLocale } from './locales'
+import { createFieldSchema } from "../../common/Field/shared"
 
-export const ObjectContainer: DnFC<React.ComponentProps<typeof Container>> =
+export const ObjectContainerDesigner: DnFC<React.ComponentProps<typeof Container>> =
   Container
-ObjectContainer.Behavior = createBehavior({
+ObjectContainerDesigner.Behavior = createBehavior({
   name: 'Object',
   extends: ['Field'],
   selector: (node) => node.props.type === 'object',
   designerProps: {
     droppable: true,
-    propsSchema: createFieldSchema(),
+    propsSchema: createFieldSchema(undefined, { hasDataBindSource: true }),
   },
   designerLocales: ObjectLocale,
 })
 
-ObjectContainer.Resource = createResource({
+ObjectContainerDesigner.Resource = createResource({
   icon: 'ObjectSource',
   elements: [
     {
