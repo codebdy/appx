@@ -78,8 +78,8 @@ export const OpenPagePanel = memo((
       }
 
       {
-        ((openPageAction.openType === OpenPageType.Drawer && (openPageAction.placement === "top" || openPageAction.placement === "bottom")) ||
-          openPageAction.openType === OpenPageType.Dialog
+        (openPageAction.openType === OpenPageType.Drawer &&
+          (openPageAction.placement === "top" || openPageAction.placement === "bottom")
         ) &&
         <Form.Item
           label={t("Height")}
