@@ -1,4 +1,4 @@
-import { Form, Select } from "antd"
+import { Form, Input, Select } from "antd"
 import { MultiLangInput } from "../../../../../components/pc"
 import React from "react"
 import { memo } from "react"
@@ -59,6 +59,18 @@ export const OpenPagePanel = memo(() => {
             {t("Action.Top")}
           </Option>
         </Select>
+      </Form.Item>
+      <Form.Item
+        label={t("Width")}
+        name="width"
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        label={t("Height")}
+        name="height"
+      >
+        <Input />
       </Form.Item>
     </>
   )
