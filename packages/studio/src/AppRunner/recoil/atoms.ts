@@ -1,13 +1,17 @@
 import { atomFamily } from "recoil";
 import { ID } from "../../shared";
 
-export interface IPageDialog {
+export interface IPageModel {
+  id: string;
   pageId: ID;
+  title?: string;
+}
+
+export interface IPageDialog extends IPageModel {
   width?: number | string;
 }
 
-export interface IPageDrawer {
-  pageId: ID;
+export interface IPageDrawer extends IPageModel {
   width?: number | string;
   height?: number | string;
   placement?: "top" | "right" | "bottom" | "left";

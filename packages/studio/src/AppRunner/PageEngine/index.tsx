@@ -16,7 +16,7 @@ export interface ILoadingSpanProps {
 
 type IComponents = Record<string, JSXComponent>;
 
-const PageEngine = memo((
+export const PageEngine = memo((
   props: {
     pageId?: ID,
     LoadingSpan?: React.FC<ILoadingSpanProps>,
@@ -51,5 +51,3 @@ const PageEngine = memo((
     </LoadingSpan>
   )
 })
-
-export default PageEngine;
