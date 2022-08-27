@@ -1,5 +1,6 @@
 {
   "extends": "../../tsconfig.json",
+  "strict": true,
   "compilerOptions": {
     "resolveJsonModule":true,
     "jsx": "react" //使用react-jsx时，运行会出问题,

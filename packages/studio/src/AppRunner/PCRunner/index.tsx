@@ -1,13 +1,11 @@
-import { Input } from "@formily/antd";
 import React from "react";
 import { memo } from "react";
-import { Button, PageContainer, ProTable, TextView } from "../../components/pc";
 import { useParseLangMessage } from "../../hooks/useParseLangMessage";
 import { useAppParams } from "../../shared/AppRoot/context";
-import PageEngine from "../PageEngine";
 import HeaderContent from "./HeaderContent";
 import MenuContent from "./MenuContent";
 import ProLayout from "./ProLayout";
+import { RootPage } from "./RootPage";
 import "./style.less"
 
 const PCRunner = memo(() => {
@@ -42,15 +40,7 @@ const PCRunner = memo(() => {
         header={<HeaderContent />}
         footer={"©Copyright 悠闲的水 2022"}
       >
-        <PageEngine
-          components={{
-            Input,
-            Button,
-            PageContainer,
-            ProTable,
-            TextView
-          }}
-        />
+        <RootPage/>
       </ProLayout>
     </div>
   )

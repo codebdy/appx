@@ -7,9 +7,7 @@ import { Spin } from "antd";
 import { useQueryPage } from "../../hooks/useQueryPage";
 import { useShowError } from "../../hooks/useShowError";
 import { useParseLangSchema } from "../../hooks/useParseLangSchema";
-import { useParams } from "react-router-dom";
-import { useGetMenuItem } from "../hooks/useGetMenuItem";
-import { useEntryPageId } from "../hooks/useEntryPageId";
+import { ID } from "../../shared";
 
 export interface ILoadingSpanProps {
   spinning?: boolean,
@@ -20,18 +18,14 @@ type IComponents = Record<string, JSXComponent>;
 
 const PageEngine = memo((
   props: {
+    pageId?: ID,
     LoadingSpan?: React.FC<ILoadingSpanProps>,
     components: IComponents,
   }
 ) => {
-  const { LoadingSpan = Spin, components = {} } = props;
-  const { menuUuid, pageId } = useParams();
-  const getMenuItem = useGetMenuItem();
-  const entryId = useEntryPageId();
+  const { pageId, LoadingSpan = Spin, components = {} } = props;
 
-  const pageIdFormMenu = useMemo(() => getMenuItem(menuUuid)?.route?.pageId, [getMenuItem, menuUuid])
-
-  const { page, loading, error } = useQueryPage(pageId || pageIdFormMenu || entryId);
+  const { page, loading, error } = useQueryPage(pageId);
 
   const p = useParseLangSchema();
   useShowError(error);
@@ -53,7 +47,6 @@ const PageEngine = memo((
           <SchemaField schema={p(page?.schemaJson?.schema)}>
           </SchemaField>
         }
-
       </FormProvider>
     </LoadingSpan>
   )
