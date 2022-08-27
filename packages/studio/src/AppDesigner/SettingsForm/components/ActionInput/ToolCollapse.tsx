@@ -22,12 +22,12 @@ export const ToolCollapse = memo(() => {
       title: t(enumToLangKey(ActionType.SaveData)),
     },
     {
-      id: ActionType.UpdateRecord,
-      title: t(enumToLangKey(ActionType.UpdateRecord)),
+      id: ActionType.UpdateData,
+      title: t(enumToLangKey(ActionType.UpdateData)),
     },
     {
-      id: ActionType.DeleteRecord,
-      title: t(enumToLangKey(ActionType.DeleteRecord)),
+      id: ActionType.DeleteData,
+      title: t(enumToLangKey(ActionType.DeleteData)),
     },
     {
       id: ActionType.Custimized,
