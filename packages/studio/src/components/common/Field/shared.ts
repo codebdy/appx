@@ -12,6 +12,7 @@ export interface IFieldOptions {
   isDataField?: boolean,
   hasPropTitle?: boolean,
   noDisplayTab?: boolean,
+  noStyleTab?: boolean,
 }
 
 export const createStyleSchemaTab = () => {
@@ -351,7 +352,7 @@ export const createFieldSchema = (
         'x-component': 'SettingsTab',
         properties: {
           ...component && createComponentSchemaTab(component, options?.decorator || (options?.isDataField && AllSchemas.FormItem)),
-          ...createStyleSchemaTab(),
+          ...(!options?.noStyleTab ? createStyleSchemaTab() : {}),
           ...(!options?.noDisplayTab ? createDisplaySchemaTab(options) : {}),
           ...(options?.actions ? createActionSchemaTab(options?.actions) : {}),
         }
