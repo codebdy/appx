@@ -5,6 +5,7 @@ import { Form } from "antd";
 import { OpenPagePanel } from "./OpenPagePanel";
 import { MultiLangInput } from "../../../../../components/pc";
 import { useTranslation } from "react-i18next";
+import { useGetPage } from "../../../../../AppDesigner/hooks/useGetPage";
 
 const pannels: { [key: string]: React.FC<{ payload: any }> } = {
   [ActionType.OpenPage]: OpenPagePanel
@@ -19,6 +20,7 @@ export const ActionPropertyBox = memo((
   const { action, onChange } = props;
   const [form] = Form.useForm();
   const { t } = useTranslation();
+  const getPage = useGetPage();
 
   useEffect(() => {
     form.resetFields();
@@ -31,8 +33,14 @@ export const ActionPropertyBox = memo((
 
   const handleChange = useCallback((changeValues, fromValues) => {
     const { title, ...payload } = fromValues;
+    if (changeValues?.pageId) {
+      const page = getPage(changeValues?.pageId);
+      if(page){
+        payload.pageTitle = page.title;
+      }
+    }
     onChange && onChange({ ...action, title, payload })
-  }, [action, onChange])
+  }, [action, getPage, onChange])
 
   const ActionPannel = useMemo(() => pannels[action.actionType], [action.actionType]);
 
