@@ -7,10 +7,10 @@ import { createFieldSchema } from '../../common/Field'
 import { FormLayoutLocales } from './locales'
 import { FormLayoutSchema } from './schema'
 
-export const FormLayout: DnFC<React.ComponentProps<typeof FormilyFormLayout>> =
+export const FormLayoutDesigner: DnFC<React.ComponentProps<typeof FormilyFormLayout>> =
   withContainer(FormilyFormLayout)
 
-FormLayout.Behavior = createBehavior({
+FormLayoutDesigner.Behavior = createBehavior({
   name: 'FormLayout',
   extends: ['Field'],
   selector: (node) => node.props['x-component'] === 'FormLayout',
@@ -21,7 +21,7 @@ FormLayout.Behavior = createBehavior({
   designerLocales: FormLayoutLocales,
 })
 
-FormLayout.Resource = createResource({
+FormLayoutDesigner.Resource = createResource({
   icon: 'FormLayoutSource',
   elements: [
     {

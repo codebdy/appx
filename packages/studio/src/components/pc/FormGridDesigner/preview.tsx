@@ -16,7 +16,7 @@ import { createFieldSchema } from "../../common/Field";
 
 type formilyGrid = typeof FormilyGird
 
-export const FormGrid: DnFC<React.ComponentProps<formilyGrid>> & {
+export const FormGridDesigner: DnFC<React.ComponentProps<formilyGrid>> & {
   GridColumn?: React.FC<React.ComponentProps<formilyGrid['GridColumn']>>
 } = observer((props) => {
   const node = useTreeNode()
@@ -52,7 +52,7 @@ export const FormGrid: DnFC<React.ComponentProps<formilyGrid>> & {
   )
 })
 
-FormGrid.GridColumn = observer((props) => {
+FormGridDesigner.GridColumn = observer((props) => {
   return (
     <DroppableWidget
       {...props}
@@ -67,7 +67,7 @@ FormGrid.GridColumn = observer((props) => {
   )
 })
 
-FormGrid.Behavior = createBehavior(
+FormGridDesigner.Behavior = createBehavior(
   {
     name: 'FormGrid',
     extends: ['Field'],
@@ -115,7 +115,7 @@ FormGrid.Behavior = createBehavior(
   }
 )
 
-FormGrid.Resource = createResource({
+FormGridDesigner.Resource = createResource({
   icon: 'GridSource',
   elements: [
     {

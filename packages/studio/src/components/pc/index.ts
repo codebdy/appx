@@ -12,3 +12,5 @@ export * from "./ProTable";
 export * from "./ProTableDesigner";
 export * from "./ObjectContainer";
 export * from "./ObjectContainerDesigner";
+export * from "./FormLayoutDesigner";
+export * from "./FormGridDesigner";

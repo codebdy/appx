@@ -1,5 +1,5 @@
 import { MaterialModule, OperationType } from "./model";
-import { ArrayTable, Input } from "@formily/antd";
+import { ArrayTable, FormGrid, FormLayout, Input } from "@formily/antd";
 import {
   Button,
   ButtonDesigner,
@@ -12,7 +12,9 @@ import {
   TextView,
   TextViewDesigner,
   ObjectContainerDesigner,
-  ObjectContainer
+  ObjectContainer,
+  FormLayoutDesigner,
+  FormGridDesigner
 } from "../../../components/pc";
 
 export const allMaterials: MaterialModule[] = [
@@ -59,6 +61,16 @@ export const allMaterials: MaterialModule[] = [
             name: "TextView",
             designer: TextViewDesigner,
             component: TextView
+          },
+          {
+            name: "FormLayout",
+            designer: FormLayoutDesigner,
+            component: FormLayout,
+          },
+          {
+            name: "FormGrid",
+            designer: FormGridDesigner,
+            component: FormGrid,
           }
           // {
           //   name: "Rate2",
