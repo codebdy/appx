@@ -13,22 +13,25 @@ export function useParseLangSchema() {
     if (!schema || !isObj(schema)) {
       return schema;
     }
-    schema.title = p(schema.title);
 
-    for (const key of Object.keys(schema.properties || {})) {
-      schema.properties[key] = parse(schema.properties[key]);
+    const newSchema:ISchema = JSON.parse(JSON.stringify(schema));
+
+    newSchema.title = p(newSchema.title);
+
+    for (const key of Object.keys(newSchema.properties || {})) {
+      newSchema.properties[key] = parse(newSchema.properties[key]);
     }
 
-    if (isArr(schema.items)) {
-      for (let i = 0; i < schema.items.length; i++) {
-        schema.items[i] = parse(schema.items[i]);
+    if (isArr(newSchema.items)) {
+      for (let i = 0; i < newSchema.items.length; i++) {
+        newSchema.items[i] = parse(newSchema.items[i]);
       }
     } else {
-      for (const key of Object.keys(schema.items || {})) {
-        schema.items[key] = parse(schema.items[key]);
+      for (const key of Object.keys(newSchema.items || {})) {
+        newSchema.items[key] = parse(newSchema.items[key]);
       }
     }
-    return schema
+    return newSchema
   }, [p]);
 
   return parse;

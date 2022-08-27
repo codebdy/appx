@@ -1,32 +1,23 @@
-import { gql } from "awesome-graphql-client";
-import { useMemo } from "react";
-import { useQueryOne } from "../enthooks/hooks/useQueryOne";
-import { IPage } from "../model";
+import { useEffect, useMemo } from "react";
+import { useRecoilState } from "recoil";
+import { useQueryPage } from "../../hooks/useQueryPage";
+import { useAppViewKey } from "../../shared/AppRoot/context";
+import { pagesCacheState } from "../recoil/atoms";
 
-const pageGql = gql`
-query queryPage($id:ID!){
-  onePage(where:{
-    id:{
-      _eq:$id
-    }
-  }){
-    id
-    title
-    schemaJson
-  }
-}
-`
 
 export function useQueryPageWithCache(id?: string) {
-  const input = useMemo(() => (
-    {
-      gql: id && pageGql,
-      params: { id },
-      depEntityNames: ["Page"]
+  const key = useAppViewKey();
+  const [pages, setPages] = useRecoilState(pagesCacheState(key))
+
+  const pageInCache = useMemo(() => pages.find(pg => pg.id === id), [id, pages]);
+
+  const { page, error, loading } = useQueryPage(pageInCache ? undefined : id);
+
+  useEffect(() => {
+    if (page) {
+      setPages(pages => ([...pages, page]))
     }
-  ), [id]);
+  }, [page, setPages])
 
-  const { data, error, loading } = useQueryOne<IPage>(input);
-
-  return { page: data?.onePage, error, loading }
+  return { page: page || pageInCache, error, loading }
 }

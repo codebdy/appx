@@ -4,10 +4,10 @@ import { FormItem } from "@formily/antd";
 import React from "react";
 import { memo, useMemo } from "react";
 import { Spin } from "antd";
-import { useQueryPage } from "../../hooks/useQueryPage";
 import { useShowError } from "../../hooks/useShowError";
 import { useParseLangSchema } from "../../hooks/useParseLangSchema";
 import { ID } from "../../shared";
+import { useQueryPageWithCache } from "../hooks/useQueryPageWithCache";
 
 export interface ILoadingSpanProps {
   spinning?: boolean,
@@ -25,7 +25,7 @@ export const PageEngine = memo((
 ) => {
   const { pageId, LoadingSpan = Spin, components = {} } = props;
 
-  const { page, loading, error } = useQueryPage(pageId);
+  const { page, loading, error } = useQueryPageWithCache(pageId);
 
   const p = useParseLangSchema();
   useShowError(error);
