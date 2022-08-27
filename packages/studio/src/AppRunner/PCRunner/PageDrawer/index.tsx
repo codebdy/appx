@@ -1,4 +1,4 @@
-import { Modal } from "antd";
+import { Drawer, Modal } from "antd";
 import { useAppViewKey } from "../../../shared/AppRoot/context";
 import React, { useCallback, useMemo } from "react"
 import { memo } from "react"
@@ -16,20 +16,20 @@ export const PageDrawer = memo((
   const pagePopups = useRecoilValue(pagePopupsState(key));
   const close = useClosePage();
   const visalbe = useMemo(() => !!pagePopups.find(pgDialog => pgDialog.id === pageDrawer.id), [pageDrawer.id, pagePopups])
-  const handleCancel = useCallback(() => {
+  const handleClose = useCallback(() => {
     close();
   }, [close]);
 
   return (
-    <Modal
+    <Drawer
       title={pageDrawer.title}
       visible={visalbe}
       footer={null}
-      onCancel={handleCancel}
+      onClose={handleClose}
     >
       <p>Some contents...</p>
       <p>Some contents...</p>
       <p>Some contents...</p>
-    </Modal>
+    </Drawer>
   )
 })
