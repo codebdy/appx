@@ -173,7 +173,7 @@ ProTableDesigner.Behavior = createBehavior(
 )
 
 ProTableDesigner.Resource = createResource({
-  icon: 'CardSource',
+  icon: 'DataTableSource',
   elements: [
     {
       componentName: 'Field',
