@@ -1,25 +1,28 @@
 import { useCallback } from "react";
 import { ActionType, IAppxAction, IOpenPageAction } from "../model";
 import { useClosePage } from "./useClosePage";
+import { useDeleteData } from "./useDeleteData";
 import { useOpenPage } from "./useOpenPage";
 
 export function useDoOneAction() {
   const openPage = useOpenPage();
   const closePage = useClosePage();
+  const deleteData = useDeleteData();
 
   const doAction = useCallback((action: IAppxAction) => {
-    
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
       if (action.actionType === ActionType.OpenPage) {
         const payload = action.payload as IOpenPageAction;
         openPage(payload);
-        resolve(undefined);
-      }else if(action.actionType === ActionType.ClosePage){
+      } else if (action.actionType === ActionType.ClosePage) {
         closePage();
+      } else if (action.actionType === ActionType.DeleteData) {
+        await deleteData();
       }
-
+      resolve(undefined);
     })
-  }, [closePage, openPage])
+
+  }, [closePage, deleteData, openPage])
 
   return doAction;
 }
