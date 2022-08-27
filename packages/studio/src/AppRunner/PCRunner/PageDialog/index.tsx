@@ -6,6 +6,8 @@ import { IPagePopup, pagePopupsState } from "../../recoil/atoms";
 import { useRecoilValue } from "recoil";
 import { useClosePage } from "../../../shared/action/hooks/useClosePage";
 import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
+import { PageEngine } from "../../PageEngine";
+import { components } from "../components";
 
 export const PageDialog = memo((
   props: {
@@ -29,9 +31,10 @@ export const PageDialog = memo((
       footer={null}
       onCancel={handleCancel}
     >
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
+      <PageEngine
+        pageId={pageDialog.pageId}
+        components={components}
+      />
     </Modal>
   )
 })

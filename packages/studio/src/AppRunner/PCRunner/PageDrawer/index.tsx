@@ -6,6 +6,8 @@ import { IPagePopup, pagePopupsState } from "../../recoil/atoms";
 import { useRecoilValue } from "recoil";
 import { useClosePage } from "../../../shared/action/hooks/useClosePage";
 import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
+import { PageEngine } from "../../PageEngine";
+import { components } from "../components";
 
 export const PageDrawer = memo((
   props: {
@@ -27,11 +29,13 @@ export const PageDrawer = memo((
       title={p(pageDrawer.title)}
       visible={visalbe}
       footer={null}
+      placement={pageDrawer.placement}
       onClose={handleClose}
     >
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
+      <PageEngine
+        pageId={pageDrawer.pageId}
+        components={components}
+      />
     </Drawer>
   )
 })
