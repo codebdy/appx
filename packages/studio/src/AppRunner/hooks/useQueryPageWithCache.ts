@@ -19,5 +19,9 @@ export function useQueryPageWithCache(id?: string) {
     }
   }, [page, setPages])
 
-  return { page: page || pageInCache, error, loading }
+  const realPage = useMemo(() => {
+    return pageInCache || page
+  }, [page, pageInCache])
+
+  return { page: realPage, error, loading }
 }
