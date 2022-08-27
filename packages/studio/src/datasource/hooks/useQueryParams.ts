@@ -19,10 +19,10 @@ export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema
   const fragmentFromSchema = useQueryFragmentFromSchema(schema);
   const params = useMemo(() => {
     const parms: IQueryParams = {}
-    if (dataBindSource.expression) {
+    if (dataBindSource?.expression) {
       try {
-        const ast = parse(dataBindSource.expression);
-        if(!dataBindSource.entityName){
+        const ast = parse(dataBindSource?.expression);
+        if(!dataBindSource?.entityName){
           throw new Error("Can not finde entityName in dataBindSource");
         }
         console.log("gql ast", ast);
@@ -31,7 +31,7 @@ export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema
           message.error("Can not find query operation");
         }
         parms.rootFieldName = firstFieldValueNameFromOperation(firstOperationDefinition(ast));
-        parms.entityName = dataBindSource.entityName;
+        parms.entityName = dataBindSource?.entityName;
 
         const fragmenAst = visit(firstOperationDefinition(ast)?.selectionSet?.selections?.[0]?.selectionSet, {
           enter(node, key, parent, path, ancestors) {
@@ -44,7 +44,7 @@ export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema
 
         const rootFragment: IFragmentParams = {
           gql: `fragment RootFragment on ${parms.entityName} ${print(fragmenAst)}`,
-          variables: dataBindSource.variables,
+          variables: dataBindSource?.variables,
         }
 
         parms.variables = { ...fragmentFromSchema.variables || {}, ...rootFragment.variables || {} }
@@ -69,7 +69,7 @@ export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema
     }
 
     return parms;
-  }, [dataBindSource.entityName, dataBindSource.expression, dataBindSource.variables, fragmentFromSchema.gql, fragmentFromSchema.variables, t]);
+  }, [dataBindSource, fragmentFromSchema.gql, fragmentFromSchema.variables, t]);
 
   return params
 }
