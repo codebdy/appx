@@ -38,6 +38,28 @@ export const OpenPagePanel = memo(() => {
           </Option>
         </Select>
       </Form.Item>
+      <Form.Item
+        label={t("Action.PageTitle")}
+        name="pageTitle"
+      >
+        <MultiLangInput title={t("Title")} />
+      </Form.Item>
+
+      <Form.Item
+        label={t("Action.Placement")}
+        name="placement"
+      >
+        <Select>
+          <Option value={"right"}>{t("Action.Right")}</Option>
+          <Option value={"bottom"}>{t("Action.Bottom")}</Option>
+          <Option value={"left"}>
+            {t("Action.Left")}
+          </Option>
+          <Option value={"top"}>
+            {t("Action.Top")}
+          </Option>
+        </Select>
+      </Form.Item>
     </>
   )
 })

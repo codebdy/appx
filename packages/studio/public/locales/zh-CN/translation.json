@@ -245,13 +245,19 @@
     "OpenType": "打开类型",
     "RouteTo": "路由",
     "Dialog": "对话框",
-    "Drawer": "抽屉"
+    "Drawer": "抽屉",
+    "PageTitle": "页面标题",
+    "Placement": "位置",
+    "Right": "右侧",
+    "Bottom": "底部",
+    "Left": "左侧",
+    "Top": "顶部"
   },
   "PageSelect": {
     "PleaseSelectPage": "请选择页面"
   },
-  "Query":{
-    "GraphqlExpressionError":"Graphql 表达式错误："
+  "Query": {
+    "GraphqlExpressionError": "Graphql 表达式错误："
   },
   "Lang": {
     "Title": "语言",

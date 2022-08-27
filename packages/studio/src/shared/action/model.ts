@@ -31,7 +31,7 @@ export interface IOpenPageAction {
   width?: number | string;
   height?: number | string;
   placement?: "top" | "right" | "bottom" | "left";
-  title?: string;
+  pageTitle?: string;
 }
 
 export interface ISaveDataAction {

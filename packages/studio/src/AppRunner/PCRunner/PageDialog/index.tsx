@@ -5,6 +5,7 @@ import { memo } from "react"
 import { IPagePopup, pagePopupsState } from "../../recoil/atoms";
 import { useRecoilValue } from "recoil";
 import { useClosePage } from "../../../shared/action/hooks/useClosePage";
+import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
 
 export const PageDialog = memo((
   props: {
@@ -14,6 +15,7 @@ export const PageDialog = memo((
   const { pageDialog } = props;
   const key = useAppViewKey();
   const pagePopups = useRecoilValue(pagePopupsState(key));
+  const p = useParseLangMessage();
   const close = useClosePage();
   const visalbe = useMemo(() => !!pagePopups.find(pgDialog => pgDialog.id === pageDialog.id), [pageDialog.id, pagePopups])
   const handleCancel = useCallback(() => {
@@ -22,7 +24,7 @@ export const PageDialog = memo((
 
   return (
     <Modal
-      title={pageDialog.title}
+      title={p(pageDialog.title)}
       visible={visalbe}
       footer={null}
       onCancel={handleCancel}
