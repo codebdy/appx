@@ -11,13 +11,16 @@ export function useClosePage() {
   const setPagePopups = useSetRecoilState(pagePopupsState(key));
 
   const close = useCallback(() => {
+    if (!pageParams) {
+      return;
+    }
     if (pageParams.openType === OpenPageType.RouteTo) {
       window.history.back()
     } else {
       setPagePopups(pgDialogs => pgDialogs.filter(pgDialog => pgDialog.id !== pageParams?.containerId))
     }
 
-  }, [pageParams?.containerId, pageParams.openType, setPagePopups])
+  }, [pageParams, setPagePopups])
 
   return close;
 }
