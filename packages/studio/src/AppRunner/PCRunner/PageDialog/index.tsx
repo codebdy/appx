@@ -28,6 +28,7 @@ export const PageDialog = memo((
     <Modal
       title={p(pageDialog.pageTitle)}
       visible={visalbe}
+      width = {pageDialog.width}
       footer={null}
       onCancel={handleCancel}
     >
