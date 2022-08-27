@@ -1,26 +1,41 @@
-import { observer } from "@formily/reactive-react";
-import React, { useCallback } from "react";
 import { DnFC } from '@designable/react'
-import { FormButtonGroup } from "@formily/antd";
+import { FormButtonGroup, IFormButtonGroupProps } from "../FormButtonGroup";
+import { createBehavior, createResource } from '@designable/core'
+import { FormButtonGroupLocales } from './locales';
+import { createFieldSchema } from "../../common/Field/shared"
 
-export type IFormButtonGroupProps = React.ComponentProps<typeof FormButtonGroup> & {
-  formItem?: boolean;
-  sticky?: boolean;
-}
+export const FormButtonGroupDesigner: DnFC<IFormButtonGroupProps> = FormButtonGroup;
 
-export const FormButtonGroupDesigner: DnFC<IFormButtonGroupProps> = observer((props) => {
-  const { formItem, sticky, ...other } = props;
-  const render = useCallback(() => {
-    const group = formItem ? <FormButtonGroup.FormItem {...other} /> : <FormButtonGroup {...other} />;
-    if (sticky) {
-      return <FormButtonGroup.Sticky>
-        {group}
-      </FormButtonGroup.Sticky>
-    }
-    return group
-  }, [formItem, other, sticky])
+FormButtonGroupDesigner.Behavior = createBehavior({
+  name: 'Object',
+  extends: ['Field'],
+  selector: (node) => node.props.type === 'object',
+  designerProps: {
+    droppable: true,
+    propsSchema: createFieldSchema(
+      undefined,
+      {
+        noStyleTab: true,
+        noDisplayTab: true,
+      }
+    ),
+  },
+  designerLocales: FormButtonGroupLocales,
+})
 
-  return (
-    render()
-  )
+FormButtonGroupDesigner.Resource = createResource({
+  icon: 'SubmitButtonSource',
+  elements: [
+    {
+      componentName: 'Field',
+      props: {
+        type: 'object',
+        'x-component': 'FormButtonGroupD',
+        'x-component-props': {
+          formItem: true,
+          sticky: false,
+        },
+      },
+    },
+  ],
 })

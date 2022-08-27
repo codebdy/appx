@@ -8,7 +8,7 @@ import { createFieldSchema } from "../../common/Field/shared"
 export const ObjectContainerDesigner: DnFC<React.ComponentProps<typeof Container>> =
   Container
 ObjectContainerDesigner.Behavior = createBehavior({
-  name: 'Object',
+  name: 'ObjectContainer',
   extends: ['Field'],
   selector: (node) => node.props.type === 'object',
   designerProps: {

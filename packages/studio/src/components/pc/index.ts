@@ -14,4 +14,5 @@ export * from "./ObjectContainer";
 export * from "./ObjectContainerDesigner";
 export * from "./FormLayoutDesigner";
 export * from "./FormGridDesigner";
+export * from "./FormButtonGroup";
 export * from "./FormButtonGroupDesigner";

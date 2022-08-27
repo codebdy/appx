@@ -14,7 +14,9 @@ import {
   ObjectContainerDesigner,
   ObjectContainer,
   FormLayoutDesigner,
-  FormGridDesigner
+  FormGridDesigner,
+  FormButtonGroupDesigner,
+  FormButtonGroup
 } from "../../../components/pc";
 
 export const allMaterials: MaterialModule[] = [
@@ -71,6 +73,11 @@ export const allMaterials: MaterialModule[] = [
             name: "FormGrid",
             designer: FormGridDesigner,
             component: FormGrid,
+          },
+          {
+            name: "FormButtonGroup",
+            designer: FormButtonGroupDesigner,
+            component: FormButtonGroup
           }
           // {
           //   name: "Rate2",
