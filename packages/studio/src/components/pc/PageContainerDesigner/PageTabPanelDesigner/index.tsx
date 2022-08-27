@@ -13,7 +13,7 @@ export const TabPanelDesigner = observer((props: IPageTabPanelProps) => {
       {props.children}
     </PageTabPanel>
     :
-    <DroppableWidget {...props}>
+    <DroppableWidget>
       {props.children}
     </DroppableWidget>
   )

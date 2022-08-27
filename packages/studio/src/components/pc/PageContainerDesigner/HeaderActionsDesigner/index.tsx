@@ -13,7 +13,7 @@ export const HeaderActionsDesigner = observer((props: IHeaderActionsProps) => {
         {props.children}
       </PageHeaderActions>
       :
-      <DroppableWidget {...props}>
+      <DroppableWidget>
         {props.children}
       </DroppableWidget>
   )

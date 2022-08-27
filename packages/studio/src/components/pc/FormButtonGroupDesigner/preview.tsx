@@ -4,8 +4,25 @@ import { createBehavior, createResource } from '@designable/core'
 import { FormButtonGroupLocales } from './locales';
 import { createFieldSchema } from "../../common/Field/shared"
 import { FormButtonGroupSchema } from './schema';
+import React from 'react';
+import { observer } from '@formily/reactive-react';
+import { DroppableWidget } from '../../../AppDesigner/widgets';
 
-export const FormButtonGroupDesigner: DnFC<IFormButtonGroupProps> = FormButtonGroup;
+export const FormButtonGroupDesigner: DnFC<IFormButtonGroupProps> = observer((props)=>{
+  const {sticky, children, ...others} = props;
+  
+   return (
+    props.children
+      ?
+      <FormButtonGroup {...others}>
+        {children}
+      </FormButtonGroup>
+      :
+      <DroppableWidget >
+        {children}
+      </DroppableWidget>
+  )
+});
 
 FormButtonGroupDesigner.Behavior = createBehavior({
   name: 'FormButtonGroup',

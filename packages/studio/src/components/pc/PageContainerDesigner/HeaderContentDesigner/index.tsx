@@ -7,7 +7,7 @@ import './locales'
 import './schema'
 
 export const HeaderContentDesigner = observer((props: IPageHeaderContentProps) => {
-  const {gridSpan, ...other} = props;
+  const {gridSpan} = props;
   return (
     props.children
       ?
@@ -16,7 +16,7 @@ export const HeaderContentDesigner = observer((props: IPageHeaderContentProps) =
       </PageHeaderContent>
       :
       <Col span ={gridSpan} >
-        <DroppableWidget {...other}>
+        <DroppableWidget>
           {props.children}
         </DroppableWidget>
       </Col>
