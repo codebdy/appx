@@ -32,6 +32,7 @@ ObjectContainerDesigner.Resource = createResource({
       componentName: 'Field',
       props: {
         type: 'object',
+        'x-component': 'ObjectContainer',
       },
     },
   ],

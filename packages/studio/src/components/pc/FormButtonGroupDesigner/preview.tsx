@@ -8,9 +8,9 @@ import { FormButtonGroupSchema } from './schema';
 export const FormButtonGroupDesigner: DnFC<IFormButtonGroupProps> = FormButtonGroup;
 
 FormButtonGroupDesigner.Behavior = createBehavior({
-  name: 'Object',
+  name: 'FormButtonGroup',
   extends: ['Field'],
-  selector: (node) => node.props.type === 'object',
+  selector: (node) => node.props['x-component'] === 'FormButtonGroup',
   designerProps: {
     droppable: true,
     propsSchema: createFieldSchema(
@@ -30,8 +30,8 @@ FormButtonGroupDesigner.Resource = createResource({
     {
       componentName: 'Field',
       props: {
-        type: 'object',
-        'x-component': 'FormButtonGroupD',
+        type: 'void',
+        'x-component': 'FormButtonGroup',
         'x-component-props': {
           formItem: true,
           sticky: false,
