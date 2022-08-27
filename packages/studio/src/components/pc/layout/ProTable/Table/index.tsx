@@ -42,6 +42,7 @@ const isColumnGroupComponent = (schema: Schema) => {
 }
 
 function useGetTableColumns() {
+  const { dataBindSource } = useProTableParams();
   const field = useField();
   const getTableColumns = (sources: ObservableColumnSource[], parentGroupNames: string[] = []): TableProps<any>['columns'] => {
     return sources?.reduce((buf, source, key) => {
@@ -70,7 +71,13 @@ function useGetTableColumns() {
             }
 
             return (
-              <InstanceContext.Provider value={{ fieldPath: field?.path?.toString(), instance: record }}>
+              <InstanceContext.Provider
+                value={{
+                  fieldPath: field?.path?.toString(),
+                  instance: record,
+                  entityName: dataBindSource.entityName,
+                }}
+              >
                 <ArrayBase.Item index={index} record={record}>
                   <ReactField name={index}>
                     <ReactField name={rootName} value={record?.[rootName]} >
@@ -142,11 +149,10 @@ const useArrayTableSources = () => {
 export const Table = observer((
   props: TableProps<any>
 ) => {
-  const { onSelectedChange, selectedRowKeys } = useProTableParams();
+  const { onSelectedChange, dataBindSource, selectedRowKeys } = useProTableParams();
   const selectable = useSelectable();
   const sources = useArrayTableSources()
   const getTableColumns = useGetTableColumns();
-  const { dataBindSource } = useProTableParams();
   const columns = useMemo(() => getTableColumns(sources), [getTableColumns, sources]);
   const rowSelection = useMemo(() => ({
     selectedRowKeys: selectedRowKeys,

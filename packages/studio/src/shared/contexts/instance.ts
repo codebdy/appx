@@ -3,6 +3,7 @@ import { ID } from "..";
 
 export interface IInstance {
   fieldPath?: string,
+  entityName: string | undefined,
   instance?: any,
 }
 
