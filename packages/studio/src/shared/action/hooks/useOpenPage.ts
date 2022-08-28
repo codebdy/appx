@@ -13,13 +13,13 @@ export function useOpenPage() {
   const key = useAppViewKey();
   const setPagePopups = useSetRecoilState(pagePopupsState(key));
   const navigate = useNavigate();
-  
+
   const open = useCallback((action: IOpenPageAction) => {
     if (action.openType === OpenPageType.RouteTo) {
       console.log(`menuUuid:${menuUuid}, pageId:${action.pageId}, dataId:${dataId}`)
-      navigate(`/app/${device}/${appUuid}/${menuUuid||"no"}/${action.pageId}/${dataId}`)
-    }else if(action.openType === OpenPageType.Dialog || action.openType === OpenPageType.Drawer){
-      setPagePopups(pgPops =>([...pgPops, {
+      navigate(`/app/${device}/${appUuid}/${menuUuid || "no"}/${action.pageId}/${dataId || ""}`)
+    } else if (action.openType === OpenPageType.Dialog || action.openType === OpenPageType.Drawer) {
+      setPagePopups(pgPops => ([...pgPops, {
         id: createId(),
         ...action,
         dataId
