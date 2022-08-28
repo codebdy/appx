@@ -37,20 +37,20 @@ export const OpenPagePanel = memo((
         </Select>
       </Form.Item>
       {
-        (openPageAction.openType === OpenPageType.Dialog || openPageAction.openType === OpenPageType.Drawer) &&
         <Form.Item
           label={t("Action.PageTitle")}
           name="pageTitle"
+          hidden={!(openPageAction.openType === OpenPageType.Dialog || openPageAction.openType === OpenPageType.Drawer)}
         >
           <MultiLangInput title={t("Title")} />
         </Form.Item>
       }
 
       {
-        (openPageAction.openType === OpenPageType.Drawer) &&
         <Form.Item
           label={t("Action.Placement")}
           name="placement"
+          hidden={!(openPageAction.openType === OpenPageType.Drawer)}
         >
           <Select>
             <Option value={"right"}>{t("Action.Right")}</Option>
@@ -66,24 +66,24 @@ export const OpenPagePanel = memo((
       }
 
       {
-        ((openPageAction.openType === OpenPageType.Drawer && openPageAction.placement !== "top" && openPageAction.placement !== "bottom") ||
-          openPageAction.openType === OpenPageType.Dialog
-        ) &&
         <Form.Item
           label={t("Width")}
           name="width"
+          hidden={!((openPageAction.openType === OpenPageType.Drawer && openPageAction.placement !== "top" && openPageAction.placement !== "bottom") ||
+            openPageAction.openType === OpenPageType.Dialog
+          )}
         >
           <Input />
         </Form.Item>
       }
 
       {
-        (openPageAction.openType === OpenPageType.Drawer &&
-          (openPageAction.placement === "top" || openPageAction.placement === "bottom")
-        ) &&
         <Form.Item
           label={t("Height")}
           name="height"
+          hidden = {!(openPageAction.openType === OpenPageType.Drawer &&
+            (openPageAction.placement === "top" || openPageAction.placement === "bottom")
+          )}
         >
           <Input />
         </Form.Item>
