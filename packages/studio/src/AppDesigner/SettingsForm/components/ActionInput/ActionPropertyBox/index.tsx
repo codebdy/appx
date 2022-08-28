@@ -6,9 +6,11 @@ import { OpenPagePanel } from "./OpenPagePanel";
 import { MultiLangInput } from "../../../../../components/pc";
 import { useTranslation } from "react-i18next";
 import { useGetPage } from "../../../../../AppDesigner/hooks/useGetPage";
+import { SuccessMessagePanel } from "./SuccessMessagePanel";
 
 const pannels: { [key: string]: React.FC<{ payload: any }> } = {
-  [ActionType.OpenPage]: OpenPagePanel
+  [ActionType.OpenPage]: OpenPagePanel,
+  [ActionType.SuccessMessage]: SuccessMessagePanel,
 }
 
 export const ActionPropertyBox = memo((
@@ -42,6 +44,7 @@ export const ActionPropertyBox = memo((
     onChange && onChange({ ...action, title, payload })
   }, [action, getPage, onChange])
 
+  console.log(action.actionType, pannels)
   const ActionPannel = useMemo(() => pannels[action.actionType], [action.actionType]);
 
   return (

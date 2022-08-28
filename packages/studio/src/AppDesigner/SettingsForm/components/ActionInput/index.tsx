@@ -88,11 +88,13 @@ export const ActionInput = observer((props: {
             title: t("Action." + draggableId),
           };
 
+          draggedNode.payload = {}
           if (draggableId === ActionType.OpenPage) {
             draggedNode.payload = {
               openType: OpenPageType.RouteTo,
             }
           }
+
         } else {
           draggedNode = actions.find(action => action.uuid === draggableId);
         }

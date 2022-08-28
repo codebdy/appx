@@ -16,7 +16,6 @@ export const OpenPagePanel = memo((
   const { t } = useTranslation();
 
   return (
-    openPageAction &&
     <>
       <Form.Item
         label={t("Action.Page")}
@@ -81,7 +80,7 @@ export const OpenPagePanel = memo((
         <Form.Item
           label={t("Height")}
           name="height"
-          hidden = {!(openPageAction.openType === OpenPageType.Drawer &&
+          hidden={!(openPageAction.openType === OpenPageType.Drawer &&
             (openPageAction.placement === "top" || openPageAction.placement === "bottom")
           )}
         >

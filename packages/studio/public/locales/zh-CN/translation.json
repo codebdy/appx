@@ -45,6 +45,7 @@
   "Title": "标题",
   "Width": "宽度",
   "Height": "高度",
+  "Message":"消息",
   "install": {
     "Title": "安装Appx",
     "Next": "下一步",

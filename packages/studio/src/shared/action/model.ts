@@ -28,20 +28,20 @@ export enum OpenPageType {
 
 export interface IOpenPageAction {
   openType: OpenPageType,
-  pageId: ID,
+  pageId?: ID,
   width?: number | string;
   height?: number | string;
   placement?: "top" | "right" | "bottom" | "left";
   pageTitle?: string;
 }
 
-export interface ISaveDataAction {
-
+export interface ISuccessAction {
+  message?:string;
 }
 
 export interface IAppxAction {
   uuid: string,
   title: string,
   actionType: ActionType,
-  payload?: IOpenPageAction | ISaveDataAction,
+  payload?: IOpenPageAction | ISuccessAction,
 }
