@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { Schema } from '@formily/json-schema';
 import { IDataBindSource } from "../model";
-import { parse, OperationTypeNode, visit, print } from "graphql";
+import { parse, OperationTypeNode, print } from "graphql";
 import { message } from "antd";
 import { useTranslation } from "react-i18next";
 import { IFragmentParams } from "./IFragmentParams";
@@ -17,6 +17,7 @@ export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema
   const { t } = useTranslation();
   const convertQueryVariables = useConvertQueryVariables();
   const firstOperationDefinition = (ast) => ast.definitions?.[0];
+  const rootField =  (ast) => ast.definitions?.[0]?.selectionSet?.selections[0];
   const firstFieldValueNameFromOperation = (operationDefinition) => operationDefinition?.selectionSet?.selections?.[0]?.name?.value;
   const fragmentFromSchema = useQueryFragmentFromSchema(schema);
   const params = useMemo(() => {
@@ -27,7 +28,7 @@ export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema
         if (!dataBindSource?.entityName) {
           throw new Error("Can not finde entityName in dataBindSource");
         }
-        console.log("gql ast", ast);
+
         const operation = firstOperationDefinition(ast).operation;
         if (operation !== OperationTypeNode.QUERY) {
           message.error("Can not find query operation");
@@ -35,34 +36,20 @@ export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema
         parms.rootFieldName = firstFieldValueNameFromOperation(firstOperationDefinition(ast));
         parms.entityName = dataBindSource?.entityName;
 
-        const fragmenAst = visit(firstOperationDefinition(ast)?.selectionSet?.selections?.[0]?.selectionSet, {
-          enter(node, key, parent, path, ancestors) {
-            // do some work
-          },
-          leave(node, key, parent, path, ancestors) {
-            // do some more work
-          }
-        });
+        const shchemaFragmentAst = parse(fragmentFromSchema.gql);
 
-        const rootFragment: IFragmentParams = {
-          gql: `fragment RootFragment on ${parms.entityName} ${print(fragmenAst)}`,
-          variables: dataBindSource?.variables,
+        const firstNode = rootField(ast);
+        if(firstNode?.selectionSet?.selections){
+          firstNode.selectionSet.selections = [
+            ...firstNode.selectionSet.selections, 
+            ...(shchemaFragmentAst?.definitions?.[0] as any)?.selectionSet?.selections,
+          ]
         }
 
-        parms.variables = { ...fragmentFromSchema.variables || {}, ...rootFragment.variables || {} }
+        parms.variables = { ...fragmentFromSchema.variables || {}, ...dataBindSource?.variables || {} }
 
-        const gql = `
-        fragment SchemaFragment on ${parms.entityName} ${fragmentFromSchema.gql}
-
-        ${rootFragment.gql}
-
-        query{
-          ${parms.rootFieldName}{
-            ...RootFragment
-            ...SchemaFragment
-          }
-        }
-        `;
+        const gql = print(ast);
+        console.log("Query GQL:", gql)
         parms.gql = gql;
       } catch (err) {
         console.error(err);
