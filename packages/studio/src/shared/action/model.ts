@@ -16,6 +16,7 @@ export enum ActionType {
   DeleteData = "DeleteData",
   UpdateData = "UpdateData",
   SaveData = "SaveData",
+  Reset = "Reset",
   Custimized = "Custimized"
 }
 
