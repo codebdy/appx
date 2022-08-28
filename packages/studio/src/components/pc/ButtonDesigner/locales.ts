@@ -5,6 +5,7 @@ export const ButtonLocales = {
     settings: {
       'x-component-props': {
         title: '标题',
+        onClick: "鼠标点击",
         type: {
           title: '类型',
           dataSource: ['填充', '透明', '虚线', '链接', '文本', '默认'],

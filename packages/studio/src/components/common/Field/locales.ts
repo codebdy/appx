@@ -34,7 +34,6 @@ export const FieldLocales = {
       'data-tab': '数据',
       'action-tab': '动作',
       viewAuth: "权限",
-      onClick: "鼠标点击",
       "x-field-source": "字段源",
       "x-field-params": "字段参数",
       'x-component-props': {

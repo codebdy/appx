@@ -1,10 +1,11 @@
 import { PlusOutlined, ReloadOutlined } from "@ant-design/icons"
-import { Button, Tooltip } from "antd"
-import React, { memo } from "react"
+import { Button, message, Tooltip } from "antd"
+import React, { memo, useCallback } from "react"
 import { useLocalTranslations } from "../hooks/useLocalTranslations"
 import ColumnsSettings from "./ColumnsSettings"
 import HeightMenu from "./HeightMenu"
 import clx from "classnames"
+import { IAppxAction, useDoActions } from "../../../../shared/action"
 
 export interface ITableToolbarProps {
   title?: string,
@@ -13,6 +14,7 @@ export interface ITableToolbarProps {
   hasRefresh?: boolean,
   hasHeight?: boolean,
   hasSettings?: boolean,
+  onNew?: IAppxAction[],
 }
 
 const TableToolbar = memo((
@@ -25,9 +27,26 @@ const TableToolbar = memo((
     hasRefresh = true,
     hasHeight = true,
     hasSettings = true,
+    onNew,
     ...other
   } = props;
   const { t } = useLocalTranslations();
+
+  const doActions = useDoActions();
+
+  const handleNew = useCallback(() => {
+    if (!onNew) {
+      return;
+    }
+    doActions(onNew)
+      .then(() => {
+      })
+      .catch((error) => {
+        message.error(error?.message);
+        console.error(error);
+      })
+      ;
+  }, [doActions, onNew])
 
   return (
     <div {...other}
@@ -50,6 +69,8 @@ const TableToolbar = memo((
             icon={
               <PlusOutlined />
             }
+
+            onClick={handleNew}
           >
             {t("New")}
           </Button>

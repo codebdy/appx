@@ -105,7 +105,7 @@ ProTableDesigner.Behavior = createBehavior(
       deletable: false,
       cloneable: false,
       draggable: false,
-      propsSchema: createFieldSchema(ProTableSchema.TableToolbar),
+      propsSchema: createFieldSchema(ProTableSchema.TableToolbar, { actions: ["onNew"] }),
     },
     designerLocales: ProTableLocales.TableToolbar,
   },
