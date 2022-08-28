@@ -4,6 +4,7 @@ import { useClosePage } from "./useClosePage";
 import { useDeleteData } from "./useDeleteData";
 import { useOpenPage } from "./useOpenPage";
 import { useReset } from "./useReset";
+import { useSaveData } from "./useSaveData";
 import { useShowSuccess } from "./useShowSuccess";
 
 export function useDoOneAction() {
@@ -12,6 +13,7 @@ export function useDoOneAction() {
   const deleteData = useDeleteData();
   const reset = useReset();
   const showSuccess = useShowSuccess();
+  const save = useSaveData();
 
   const doAction = useCallback((action: IAppxAction) => {
     return new Promise(async (resolve, reject) => {
@@ -26,11 +28,13 @@ export function useDoOneAction() {
         reset();
       } else if(action.actionType === ActionType.SuccessMessage){
         showSuccess(action.payload as ISuccessAction)
+      } else if(action.actionType === ActionType.SaveData){
+        save();
       }
       resolve(undefined);
     })
 
-  }, [closePage, deleteData, openPage, reset, showSuccess])
+  }, [closePage, deleteData, openPage, reset, save, showSuccess])
 
   return doAction;
 }
