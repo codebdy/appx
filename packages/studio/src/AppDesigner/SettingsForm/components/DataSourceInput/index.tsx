@@ -7,6 +7,7 @@ import { IDataBindSource } from "../../../../datasource";
 import { PlayCircleOutlined } from "@ant-design/icons";
 import { TextWidget } from '@designable/react'
 import { useGetEntity } from "../../../../datasource/hooks/useGetEntity";
+import { objToString, stringToObj } from "../../../../shared";
 
 const { OptGroup, Option } = Select;
 
@@ -26,7 +27,7 @@ export const DataSourceInput = memo((
   useEffect(() => {
     if (isModalVisible) {
       form.resetFields();
-      form.setFieldsValue(value)
+      form.setFieldsValue({ ...value, variables: objToString(value?.variables) })
     }
 
   }, [form, value, isModalVisible])
@@ -37,7 +38,11 @@ export const DataSourceInput = memo((
 
   const handleOk = useCallback(() => {
     form.validateFields().then((formValues) => {
-      onChange && onChange({ ...formValues, entityName: getEntity(formValues.entityUuid)?.name });
+      onChange && onChange({
+        ...formValues,
+        entityName: getEntity(formValues.entityUuid)?.name,
+        variables: stringToObj(formValues.variables),
+      });
       setIsModalVisible(false);
     })
 

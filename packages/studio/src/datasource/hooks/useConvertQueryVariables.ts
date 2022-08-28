@@ -9,6 +9,8 @@ export function useConvertQueryVariables(){
       return variables;
     }
 
+    console.log("呵呵二号", variables)
+
     for(const key of Object.keys(variables)){
       if(variables[key] === "$dataId"){
         variables[key] = dataId;

@@ -11,3 +11,21 @@ export function createId(): ID {
 export const createUuid = () => {
   return uuidv4();
 };
+
+export const stringToObj = (str?: string) => {
+  if (!str) {
+    return {}
+  }
+
+  const obj = JSON.parse(str);
+
+  return obj;
+}
+
+export const objToString = (obj?: any) => {
+  if (!obj) {
+    return obj;
+  }
+
+  return JSON.stringify(obj);
+}

@@ -13,15 +13,16 @@ export interface IQueryParams extends IFragmentParams {
   rootFieldName?: string,
 }
 
+//GQL拼接部分还是很不完善
 export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema): IQueryParams {
   const { t } = useTranslation();
   const convertQueryVariables = useConvertQueryVariables();
   const firstOperationDefinition = (ast) => ast.definitions?.[0];
-  const rootField =  (ast) => ast.definitions?.[0]?.selectionSet?.selections[0];
+  const rootField = (ast) => ast.definitions?.[0]?.selectionSet?.selections[0];
   const firstFieldValueNameFromOperation = (operationDefinition) => operationDefinition?.selectionSet?.selections?.[0]?.name?.value;
   const fragmentFromSchema = useQueryFragmentFromSchema(schema);
   const params = useMemo(() => {
-    const parms: IQueryParams = {}
+    const pms: IQueryParams = {}
     if (dataBindSource?.expression) {
       try {
         const ast = parse(dataBindSource?.expression);
@@ -33,33 +34,32 @@ export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema
         if (operation !== OperationTypeNode.QUERY) {
           message.error("Can not find query operation");
         }
-        parms.rootFieldName = firstFieldValueNameFromOperation(firstOperationDefinition(ast));
-        parms.entityName = dataBindSource?.entityName;
+        pms.rootFieldName = firstFieldValueNameFromOperation(firstOperationDefinition(ast));
+        pms.entityName = dataBindSource?.entityName;
 
         const shchemaFragmentAst = parse(fragmentFromSchema.gql);
 
         const firstNode = rootField(ast);
-        if(firstNode?.selectionSet?.selections){
+        if (firstNode?.selectionSet?.selections) {
           firstNode.selectionSet.selections = [
-            ...firstNode.selectionSet.selections, 
+            ...firstNode.selectionSet.selections,
             ...(shchemaFragmentAst?.definitions?.[0] as any)?.selectionSet?.selections,
           ]
         }
 
-        parms.variables = { ...fragmentFromSchema.variables || {}, ...dataBindSource?.variables || {} }
+        pms.variables = { ...fragmentFromSchema.variables, ...dataBindSource?.variables||{} }
 
         const gql = print(ast);
-        console.log("Query GQL:", gql)
-        parms.gql = gql;
+        pms.gql = gql;
       } catch (err) {
         console.error(err);
         message.error(t("Query.GraphqlExpressionError") + err?.message)
       }
     }
 
-    params && (params.variables = convertQueryVariables(params.variables));
-    return parms;
+    pms && (pms.variables = convertQueryVariables(pms.variables));
+    return pms;
   }, [convertQueryVariables, dataBindSource?.entityName, dataBindSource?.expression, dataBindSource?.variables, fragmentFromSchema.gql, fragmentFromSchema.variables, t]);
-
+  console.log("Query GQL:", params?.gql, params?.variables);
   return params
 }
