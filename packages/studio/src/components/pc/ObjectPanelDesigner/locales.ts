@@ -1,6 +1,6 @@
 export const ObjectLocale = {
   'zh-CN': {
-    title: '对象容器',
+    title: '对象面板',
   },
   'en-US': {
     title: 'Object',

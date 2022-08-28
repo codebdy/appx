@@ -5,12 +5,12 @@ import { Container } from '@designable/formily-antd/lib/common/Container'
 import { ObjectLocale } from './locales'
 import { createFieldSchema } from "../../common/Field/shared"
 
-export const ObjectContainerDesigner: DnFC<React.ComponentProps<typeof Container>> =
+export const ObjectPanelDesigner: DnFC<React.ComponentProps<typeof Container>> =
   Container
-ObjectContainerDesigner.Behavior = createBehavior({
-  name: 'ObjectContainer',
+ObjectPanelDesigner.Behavior = createBehavior({
+  name: 'ObjectPanel',
   extends: ['Field'],
-  selector: (node) => node.props.type === 'object',
+  selector: (node) =>  node.props['x-component'] === 'ObjectPanel',
   designerProps: {
     droppable: true,
     propsSchema: createFieldSchema(
@@ -25,14 +25,14 @@ ObjectContainerDesigner.Behavior = createBehavior({
   designerLocales: ObjectLocale,
 })
 
-ObjectContainerDesigner.Resource = createResource({
+ObjectPanelDesigner.Resource = createResource({
   icon: 'ObjectSource',
   elements: [
     {
       componentName: 'Field',
       props: {
         type: 'object',
-        'x-component': 'ObjectContainer',
+        'x-component': 'ObjectPanel',
       },
     },
   ],

@@ -11,8 +11,8 @@ import {
   ArrayTableDesigner,
   TextView,
   TextViewDesigner,
-  ObjectContainerDesigner,
-  ObjectContainer,
+  ObjectPanelDesigner,
+  ObjectPanel,
   FormLayoutDesigner,
   FormGridDesigner,
   FormButtonGroupDesigner,
@@ -55,9 +55,9 @@ export const allMaterials: MaterialModule[] = [
             component: ArrayTable
           },
           {
-            name: "ObjectContainer",
-            designer: ObjectContainerDesigner,
-            component: ObjectContainer,
+            name: "ObjectPanel",
+            designer: ObjectPanelDesigner,
+            component: ObjectPanel,
           },
           {
             name: "TextView",
