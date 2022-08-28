@@ -29,7 +29,7 @@ export function useDoOneAction() {
       } else if(action.actionType === ActionType.SuccessMessage){
         showSuccess(action.payload as ISuccessAction)
       } else if(action.actionType === ActionType.SaveData){
-        save();
+        await save();
       }
       resolve(undefined);
     })
