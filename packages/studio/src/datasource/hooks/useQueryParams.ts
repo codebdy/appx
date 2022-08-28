@@ -6,6 +6,7 @@ import { message } from "antd";
 import { useTranslation } from "react-i18next";
 import { IFragmentParams } from "./IFragmentParams";
 import { useQueryFragmentFromSchema } from "./useQueryFragmentFromSchema";
+import { useConvertQueryVariables } from "./useConvertQueryVariables";
 
 export interface IQueryParams extends IFragmentParams {
   entityName?: string,
@@ -14,6 +15,7 @@ export interface IQueryParams extends IFragmentParams {
 
 export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema): IQueryParams {
   const { t } = useTranslation();
+  const convertQueryVariables = useConvertQueryVariables();
   const firstOperationDefinition = (ast) => ast.definitions?.[0];
   const firstFieldValueNameFromOperation = (operationDefinition) => operationDefinition?.selectionSet?.selections?.[0]?.name?.value;
   const fragmentFromSchema = useQueryFragmentFromSchema(schema);
@@ -22,7 +24,7 @@ export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema
     if (dataBindSource?.expression) {
       try {
         const ast = parse(dataBindSource?.expression);
-        if(!dataBindSource?.entityName){
+        if (!dataBindSource?.entityName) {
           throw new Error("Can not finde entityName in dataBindSource");
         }
         console.log("gql ast", ast);
@@ -68,8 +70,9 @@ export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema
       }
     }
 
+    params && (params.variables = convertQueryVariables(params.variables));
     return parms;
-  }, [dataBindSource, fragmentFromSchema.gql, fragmentFromSchema.variables, t]);
+  }, [convertQueryVariables, dataBindSource?.entityName, dataBindSource?.expression, dataBindSource?.variables, fragmentFromSchema.gql, fragmentFromSchema.variables, t]);
 
   return params
 }

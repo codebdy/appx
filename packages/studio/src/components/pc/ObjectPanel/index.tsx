@@ -21,6 +21,7 @@ export const ObjectPanel = observer((props: {
   const { data, loading, error } = useDataQuery(queryParams);
   useShowError(error);
 
+  console.log("data addd", data)
   if (data && !isObj(data)) {
     throw new Error("Data is not object, please check query expression")
   }
