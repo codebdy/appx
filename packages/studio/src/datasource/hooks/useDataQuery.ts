@@ -15,7 +15,7 @@ export type QueryResponse = {
   error?: Error;
 }
 
-export function useDataQuery(params: IQueryParams): QueryResponse {
+export function useDataQuery(params?: IQueryParams): QueryResponse {
   const [revalidating, setRevalidating] = useState<boolean>();
   const loadedRef = useRef(false);
   const endpoint = useEndpoint();
@@ -31,27 +31,27 @@ export function useDataQuery(params: IQueryParams): QueryResponse {
   })
 
   const load = useCallback(() => {
-    if (!params.gql || !endpoint || loadedRef.current) {
+    if (!params?.gql || !endpoint || loadedRef.current) {
       return
     }
     loadedRef.current = true;
-    doLoad(params.gql, params.variables)
-  }, [doLoad, endpoint, params.gql, params.variables]);
+    doLoad(params?.gql, params?.variables)
+  }, [doLoad, endpoint, params?.gql, params?.variables]);
 
   const refresh = useCallback(() => {
     setRevalidating(true)
-    doLoad(params.gql, params.variables)
-  }, [doLoad, params.gql, params.variables])
+    doLoad(params?.gql, params?.variables)
+  }, [doLoad, params?.gql, params?.variables])
 
   refreshRef.current = refresh;
 
   const eventHandler = useCallback((event: CustomEvent) => {
-    if (params.entityName === event.detail?.entity) {
+    if (params?.entityName === event.detail?.entity) {
       if (refreshRef.current) {
         refreshRef.current();
       }
     }
-  }, [params.entityName]);
+  }, [params?.entityName]);
 
   useEffect(() => {
     load();
@@ -68,7 +68,7 @@ export function useDataQuery(params: IQueryParams): QueryResponse {
   }, []);
 
   return {
-    data: data?.[params.rootFieldName],
+    data: data?.[params?.rootFieldName],
     loading: (revalidating ? false : loading),
     revalidating,
     error,
