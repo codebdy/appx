@@ -42,7 +42,7 @@ export const ObjectPanel = observer((props: {
       <>
         <InstanceContext.Provider
           value={{
-            fieldPath: field?.path?.toString(),
+            field: field as Field,
             instance: data,
             entityName: dataBindSource.entityName,
           }}

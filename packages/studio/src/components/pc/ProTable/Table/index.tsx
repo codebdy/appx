@@ -73,7 +73,7 @@ function useGetTableColumns() {
             return (
               <InstanceContext.Provider
                 value={{
-                  fieldPath: field?.path?.toString(),
+                  field: field as Field,
                   instance: record,
                   entityName: dataBindSource.entityName,
                 }}

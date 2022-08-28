@@ -1,8 +1,9 @@
+import { Field } from "@formily/core";
 import { createContext, useContext } from "react";
 import { ID } from "..";
 
 export interface IInstance {
-  fieldPath?: string,
+  field?: Field,
   entityName?: string | undefined,
   instance?: any,
 }
