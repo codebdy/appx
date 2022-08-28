@@ -17,19 +17,23 @@ export function useDoOneAction() {
 
   const doAction = useCallback((action: IAppxAction) => {
     return new Promise(async (resolve, reject) => {
-      if (action.actionType === ActionType.OpenPage) {
-        const payload = action.payload as IOpenPageAction;
-        openPage(payload);
-      } else if (action.actionType === ActionType.ClosePage) {
-        closePage();
-      } else if (action.actionType === ActionType.DeleteData) {
-        await deleteData();
-      } else if(action.actionType === ActionType.Reset){
-        reset();
-      } else if(action.actionType === ActionType.SuccessMessage){
-        showSuccess(action.payload as ISuccessAction)
-      } else if(action.actionType === ActionType.SaveData){
-        await save();
+      try {
+        if (action.actionType === ActionType.OpenPage) {
+          const payload = action.payload as IOpenPageAction;
+          openPage(payload);
+        } else if (action.actionType === ActionType.ClosePage) {
+          closePage();
+        } else if (action.actionType === ActionType.DeleteData) {
+          await deleteData();
+        } else if (action.actionType === ActionType.Reset) {
+          reset();
+        } else if (action.actionType === ActionType.SuccessMessage) {
+          showSuccess(action.payload as ISuccessAction)
+        } else if (action.actionType === ActionType.SaveData) {
+          await save();
+        }
+      } catch (err) {
+        reject(err);
       }
       resolve(undefined);
     })
