@@ -9,16 +9,23 @@ export type IFormButtonGroupProps = React.ComponentProps<typeof FormilyFormButto
 }
 
 export const FormButtonGroup: DnFC<IFormButtonGroupProps> = observer((props) => {
-  const { formItem, sticky, ...other } = props;
+  const { formItem, sticky, children, ...other } = props;
   const render = useCallback(() => {
-    const group = formItem ? <FormilyFormButtonGroup.FormItem {...other} /> : <FormilyFormButtonGroup {...other} />;
+    let group = <FormilyFormButtonGroup {...other}>
+      {children}
+    </FormilyFormButtonGroup>
+    if (formItem) {
+      group = <FormilyFormButtonGroup.FormItem >
+        {group}
+      </FormilyFormButtonGroup.FormItem>
+    }
     if (sticky) {
-      return <FormilyFormButtonGroup.Sticky>
+      group = <FormilyFormButtonGroup.Sticky>
         {group}
       </FormilyFormButtonGroup.Sticky>
     }
     return group
-  }, [formItem, other, sticky])
+  }, [children, formItem, other, sticky])
 
   return (
     render()

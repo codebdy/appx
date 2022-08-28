@@ -8,10 +8,10 @@ import React from 'react';
 import { observer } from '@formily/reactive-react';
 import { DroppableWidget } from '../../../AppDesigner/widgets';
 
-export const FormButtonGroupDesigner: DnFC<IFormButtonGroupProps> = observer((props)=>{
-  const {sticky, children, ...others} = props;
-  
-   return (
+export const FormButtonGroupDesigner: DnFC<IFormButtonGroupProps> = observer((props) => {
+  const { sticky, children, ...others } = props;
+
+  return (
     props.children
       ?
       <FormButtonGroup {...others}>
@@ -52,6 +52,7 @@ FormButtonGroupDesigner.Resource = createResource({
         'x-component-props': {
           formItem: true,
           sticky: false,
+          align: "left",
         },
       },
     },
