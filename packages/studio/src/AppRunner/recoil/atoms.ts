@@ -11,6 +11,7 @@ export interface IPagePopup {
   width?: number | string;
   height?: number | string;
   placement?: "top" | "right" | "bottom" | "left";
+  dataId?: ID;
 }
 
 export const pagePopupsState = atomFamily<IPagePopup[], string>({

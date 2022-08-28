@@ -51,16 +51,25 @@ const PCRunner = memo(() => {
         <RootPage />
         {
           pagePopups.map((pagePop) => {
-            return (<PageContext.Provider key={pagePop.id} value={{ openType: OpenPageType.Dialog, containerId: pagePop.id }}>
-              {
-                pagePop.openType === OpenPageType.Dialog &&
-                <PageDialog pageDialog={pagePop} />
-              }
-              {
-                pagePop.openType === OpenPageType.Drawer &&
-                <PageDrawer pageDrawer={pagePop} />
-              }
-            </PageContext.Provider>)
+            return (
+              <PageContext.Provider
+                key={pagePop.id}
+                value={{
+                  openType: OpenPageType.Dialog,
+                  containerId: pagePop.id,
+                  dataId: pagePop.dataId
+                }}
+              >
+                {
+                  pagePop.openType === OpenPageType.Dialog &&
+                  <PageDialog pageDialog={pagePop} />
+                }
+                {
+                  pagePop.openType === OpenPageType.Drawer &&
+                  <PageDrawer pageDrawer={pagePop} />
+                }
+              </PageContext.Provider>
+            )
           })
 
         }

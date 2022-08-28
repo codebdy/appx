@@ -21,7 +21,8 @@ export function useOpenPage() {
     }else if(action.openType === OpenPageType.Dialog || action.openType === OpenPageType.Drawer){
       setPagePopups(pgPops =>([...pgPops, {
         id: createId(),
-        ...action
+        ...action,
+        dataId
       }]))
     }
   }, [appUuid, dataId, device, menuUuid, navigate, setPagePopups]);
