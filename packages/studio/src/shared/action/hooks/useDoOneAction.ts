@@ -1,6 +1,7 @@
 import { useCallback } from "react";
-import { ActionType, IAppxAction, IOpenPageAction, ISuccessAction } from "../model";
+import { ActionType, IAppxAction, IConfirmAction, IOpenPageAction, ISuccessAction } from "../model";
 import { useClosePage } from "./useClosePage";
+import { useConfirm } from "./useConfirm";
 import { useDeleteData } from "./useDeleteData";
 import { useOpenPage } from "./useOpenPage";
 import { useReset } from "./useReset";
@@ -14,6 +15,7 @@ export function useDoOneAction() {
   const reset = useReset();
   const showSuccess = useShowSuccess();
   const save = useSaveData();
+  const confirm = useConfirm();
 
   const doAction = useCallback((action: IAppxAction) => {
     return new Promise(async (resolve, reject) => {
@@ -31,6 +33,8 @@ export function useDoOneAction() {
           showSuccess(action.payload as ISuccessAction)
         } else if (action.actionType === ActionType.SaveData) {
           await save();
+        } else if (action.actionType === ActionType.Confirm) {
+          await confirm(action.payload as IConfirmAction);
         }
       } catch (err) {
         reject(err);
@@ -38,7 +42,7 @@ export function useDoOneAction() {
       resolve(undefined);
     })
 
-  }, [closePage, deleteData, openPage, reset, save, showSuccess])
+  }, [closePage, confirm, deleteData, openPage, reset, save, showSuccess])
 
   return doAction;
 }

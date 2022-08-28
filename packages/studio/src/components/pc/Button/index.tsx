@@ -32,8 +32,8 @@ export const Button = observer((props: IButtonProps) => {
       })
       .catch((error) => {
         setLoading(false);
-        message.error(error?.message);
-        console.error(error);
+        error?.message && message.error(error?.message);
+        error && console.error(error);
       })
       ;
   }, [doActions, onClick])

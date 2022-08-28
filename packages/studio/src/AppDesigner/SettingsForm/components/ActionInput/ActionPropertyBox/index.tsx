@@ -7,10 +7,12 @@ import { MultiLangInput } from "../../../../../components/pc";
 import { useTranslation } from "react-i18next";
 import { useGetPage } from "../../../../../AppDesigner/hooks/useGetPage";
 import { SuccessMessagePanel } from "./SuccessMessagePanel";
+import { ConfirmPanel } from "./ConfirmPanel";
 
 const pannels: { [key: string]: React.FC<{ payload: any }> } = {
   [ActionType.OpenPage]: OpenPagePanel,
   [ActionType.SuccessMessage]: SuccessMessagePanel,
+  [ActionType.Confirm]: ConfirmPanel,
 }
 
 export const ActionPropertyBox = memo((

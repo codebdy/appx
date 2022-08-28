@@ -36,12 +36,17 @@ export interface IOpenPageAction {
 }
 
 export interface ISuccessAction {
-  message?:string;
+  message?: string;
+}
+
+export interface IConfirmAction {
+  boxTitle?: string;
+  message?: string;
 }
 
 export interface IAppxAction {
   uuid: string,
   title: string,
   actionType: ActionType,
-  payload?: IOpenPageAction | ISuccessAction,
+  payload?: IOpenPageAction | ISuccessAction | IConfirmAction,
 }
