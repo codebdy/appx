@@ -6,20 +6,20 @@ import { SelectSchema } from './schema'
 import { createFieldSchema } from "../../common/Field/shared"
 import { SelectLocales } from './locales'
 
-export const Select: DnFC<React.ComponentProps<typeof FormilySelect>> =
+export const SelectDesigner: DnFC<React.ComponentProps<typeof FormilySelect>> =
   FormilySelect
 
-Select.Behavior = createBehavior({
+SelectDesigner.Behavior = createBehavior({
   name: 'Select',
   extends: ['Field'],
   selector: (node) => node.props['x-component'] === 'Select',
   designerProps: {
-    propsSchema: createFieldSchema(SelectSchema),
+    propsSchema: createFieldSchema(SelectSchema, { isDataField: true }),
   },
   designerLocales: SelectLocales,
 })
 
-Select.Resource = createResource({
+SelectDesigner.Resource = createResource({
   icon: 'SelectSource',
   elements: [
     {
