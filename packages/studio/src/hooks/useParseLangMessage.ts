@@ -1,3 +1,4 @@
+import { isStr } from "@formily/shared";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useAppParams } from "../shared/AppRoot/context";
@@ -10,6 +11,9 @@ export function useParseLangMessage() {
   const { langLocales } = useAppParams() || {};
 
   const parse = useCallback((message?: string) => {
+    if(!isStr(message)){
+      return message
+    }
     if (message?.startsWith(LANG_RESOURCE_PREFIX)) {
       const key = message.substring(LANG_RESOURCE_PREFIX.length);
       return langLocales?.find(lang => lang.name === key)?.schemaJson?.[i18n.language];

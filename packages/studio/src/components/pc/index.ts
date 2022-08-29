@@ -16,3 +16,5 @@ export * from "./FormLayoutDesigner";
 export * from "./FormGridDesigner";
 export * from "./FormButtonGroup";
 export * from "./FormButtonGroupDesigner";
+export * from "./Card";
+export * from "./CardDesigner";

@@ -13,12 +13,12 @@ export const PageContainerSchema: ISchema & {
     title: {
       type: 'string',
       'x-decorator': 'FormItem',
-      'x-component': 'Input',
+      'x-component': 'MultiLangInput',
     },
     subtitle: {
       type: 'string',
       'x-decorator': 'FormItem',
-      'x-component': 'Input',
+      'x-component': 'MultiLangInput',
     },
     hasBreadcrumb: {
       type: 'boolean',

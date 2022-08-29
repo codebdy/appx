@@ -128,8 +128,8 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
     <PageContainerShell {...other} >
       <PageHeader
         onBack={undefined}
-        title={<span data-content-editable="x-component-props.title">{title}</span>}
-        subTitle={subtitle && <span data-content-editable="x-component-props.subtitle">{subtitle}</span>}
+        title={title}
+        subTitle={subtitle}
         extra={hasActions && headerActions && <TreeNodeWidget node={headerActions} />}
         footer={
           hasTabs && <Tabs activeKey={selectedKey} onChange={handleSelectTab}>
