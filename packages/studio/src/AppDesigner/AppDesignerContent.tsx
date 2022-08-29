@@ -10,7 +10,6 @@ import {
   ActionsWidget,
   OutlineTreeWidget,
 } from './widgets'
-import { saveSchema } from './service'
 import { CompositePanel, StudioPanel } from './panels'
 import { MaterialWidget } from './widgets/MaterialWidget'
 import { Designer } from './containers'
@@ -73,7 +72,7 @@ const AppDesignerContent = memo(() => {
             [KeyCode.Control, KeyCode.S],
           ],
           handler(ctx) {
-            saveSchema(ctx.engine)
+            //saveSchema(ctx.engine)
           },
         }),
       ],

@@ -12,6 +12,7 @@ import { IPageContainerProps } from "./IPageContainerProps";
 import { PageContainerShell } from "./PageContainerShell";
 import { useBreadcumbItems } from "../../../AppRunner/hooks/useBreadcumbItems";
 import PageHeaderContentExtra, { IPageHeaderContentExtraProps } from "./PageHeaderContentExtra";
+import { Schema } from "@formily/react";
 
 const { TabPane } = Tabs;
 
@@ -47,8 +48,8 @@ export const PageContainer: React.FC<IPageContainerProps> & {
       otherChildren: []
     }
 
-    for (const key of Object.keys(fieldSchema?.properties || {})) {
-      const childSchema = fieldSchema.properties[key]
+    for (const child of Schema.getOrderProperties(fieldSchema)) {
+      const childSchema = child?.schema;
       if (childSchema["x-component"] === 'PageContainer.HeaderActions') {
         slts.headerExtra = childSchema
       } else if (childSchema["x-component"] === 'PageContainer.HeaderContent') {
@@ -63,9 +64,9 @@ export const PageContainer: React.FC<IPageContainerProps> & {
         slts.otherChildren.push(childSchema)
       }
     }
-  
+
     return slts;
-  }, [fieldSchema.properties])
+  }, [fieldSchema])
 
   const breadcrumbs = useBreadcumbItems();
 
