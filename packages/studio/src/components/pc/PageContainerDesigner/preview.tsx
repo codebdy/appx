@@ -127,7 +127,7 @@ export const PageContainerDesigner: DnFC<IPageContainerProps> & {
   return (
     <PageContainerShell {...other} >
       <PageHeader
-        onBack={undefined}
+        onBack={hasGobackButton ? () => { } : undefined}
         title={title}
         subTitle={subtitle}
         extra={hasActions && headerActions && <TreeNodeWidget node={headerActions} />}
