@@ -9,12 +9,18 @@ import { useParseLangSchema } from "../../hooks/useParseLangSchema";
 import { ID } from "../../shared";
 import { useQueryPageWithCache } from "../hooks/useQueryPageWithCache";
 
+declare const window: Window & { $query: any };
+
 export interface ILoadingSpanProps {
   spinning?: boolean,
   children?: React.ReactNode
 }
 
 type IComponents = Record<string, JSXComponent>;
+
+window.$query = ()=>{
+  console.log("卧槽 哈哈哈哈")
+}
 
 export const PageEngine = memo((
   props: {
