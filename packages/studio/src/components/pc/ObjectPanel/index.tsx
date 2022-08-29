@@ -10,7 +10,7 @@ import { useQueryParams } from '../../../datasource/hooks/useQueryParams';
 import { useDataQuery } from '../../../datasource/hooks/useDataQuery';
 import { useShowError } from '../../../hooks/useShowError';
 import { Spin } from "antd";
-import { Field } from '@formily/core'
+import { Field, isField } from '@formily/core'
 import { InstanceContext } from "../../../shared/contexts/instance";
 
 export const ObjectPanel = observer((props: {
@@ -30,7 +30,10 @@ export const ObjectPanel = observer((props: {
   }
 
   useEffect(() => {
-    (field as Field).setInitialValue(data);
+    if (isField(field)) {
+      field.setInitialValue(data);
+    }
+
   }, [data, field])
 
   return (
