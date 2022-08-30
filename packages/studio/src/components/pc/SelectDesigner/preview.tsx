@@ -14,7 +14,7 @@ SelectDesigner.Behavior = createBehavior({
   extends: ['Field'],
   selector: (node) => node.props['x-component'] === 'Select',
   designerProps: {
-    propsSchema: createFieldSchema(SelectSchema, { isDataField: true }),
+    propsSchema: createFieldSchema(SelectSchema, { isDataField: true, hasDataBindSource: true }),
   },
   designerLocales: SelectLocales,
 })
