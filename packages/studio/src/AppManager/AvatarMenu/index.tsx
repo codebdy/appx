@@ -1,21 +1,20 @@
 import { LockOutlined, LogoutOutlined, UserOutlined } from "@ant-design/icons"
-import { Avatar, Dropdown, Menu, Modal, Skeleton } from "antd"
+import { Avatar, Dropdown, Menu, Modal } from "antd"
 import React, { memo, useCallback, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { LOGIN_URL, TOKEN_NAME } from "../../consts";
 import { useLogout, useSetToken } from "../../enthooks";
-import { useMe } from "../../enthooks/hooks/useMe";
-import { useShowError } from "../../hooks/useShowError";
+import { useMe } from "../../Login/context";
 import ChangePasswordForm from "./ChangePasswordForm";
 
 const AvatarMenu = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const setToken = useSetToken();
-  const { me, loading, error } = useMe()
+  const me = useMe()
   const navigate = useNavigate();
   const { t } = useTranslation();
-  useShowError(error);
+
   const [logout] = useLogout()
 
   const handleLogout = useCallback(() => {
@@ -46,18 +45,12 @@ const AvatarMenu = memo(() => {
         {t("Logout")}
       </Menu.Item>
     </Menu>
-  ), [handleLogout, showModal]);
+  ), [handleLogout, showModal, t]);
 
   return (
     <>
       <Dropdown overlay={menu} placement="bottomRight" arrow trigger={['click']}>
-        {
-          loading
-            ?
-            <Avatar><Skeleton.Avatar active={true} /></Avatar>
-            : (<Avatar className="avatar" icon={!me && <UserOutlined />} >{me?.name?.substring(0, 1)?.toUpperCase()}</Avatar>)
-        }
-
+        <Avatar className="avatar" icon={!me && <UserOutlined />} >{me?.name?.substring(0, 1)?.toUpperCase()}</Avatar>
       </Dropdown>
       <Modal
         title={t("ChangePassword")}

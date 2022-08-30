@@ -1,13 +1,11 @@
-import { useMatch, useNavigate } from "react-router-dom";
-import { INSTALL_URL, LOGIN_URL } from "../consts";
+import { useNavigate } from "react-router-dom";
+import { LOGIN_URL } from "../consts";
 import { useToken } from "../enthooks";
 
-export function useLoginCheck(){
+export function useLoginCheck() {
   const navigate = useNavigate();
   const token = useToken()
-  const match = useMatch(LOGIN_URL)
-  const matchInstall = useMatch(INSTALL_URL)
-  if (!token && !match && !matchInstall) {
+  if (!token) {
     navigate(LOGIN_URL);
-  }
+  }  
 }

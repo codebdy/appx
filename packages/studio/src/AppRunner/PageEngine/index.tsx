@@ -1,5 +1,5 @@
 import { createForm, JSXComponent } from "@formily/core";
-import { FormProvider, createSchemaField } from '@formily/react';
+import { FormProvider, createSchemaField, ExpressionScope } from '@formily/react';
 import { FormItem } from "@formily/antd";
 import React from "react";
 import { memo, useMemo } from "react";
@@ -41,13 +41,15 @@ export const PageEngine = memo((
 
   return (
     <LoadingSpan spinning={loading}>
-      <FormProvider form={form}>
-        {
-          page?.schemaJson?.schema &&
-          <SchemaField schema={p(page?.schemaJson?.schema)}>
-          </SchemaField>
-        }
-      </FormProvider>
+      <ExpressionScope value={{ $me: 'this inner scope value' }}>
+        <FormProvider form={form}>
+          {
+            page?.schemaJson?.schema &&
+            <SchemaField schema={p(page?.schemaJson?.schema)}>
+            </SchemaField>
+          }
+        </FormProvider>
+      </ExpressionScope>
     </LoadingSpan>
   )
 })

@@ -1,6 +1,15 @@
 import { gql } from "awesome-graphql-client";
-import { IUser } from "../../recoil/atoms";
+
 import { useRequest } from "./useRequest";
+
+export interface IUser {
+  id: number;
+  name: string;
+  loginName: string;
+  isSupper?: boolean;
+  isDemo?: boolean;
+}
+
 
 const queryGql = gql`
   query{
@@ -14,7 +23,7 @@ const queryGql = gql`
   }
 `;
 
-export function useMe(): {
+export function useQueryMe(): {
   loading?: boolean,
   error?: Error,
   me?: IUser
