@@ -1,5 +1,6 @@
 import { Schema } from '@formily/json-schema';
 import { useCallback, useMemo } from 'react';
+import { FieldSourceType } from '../model/IFieldSource';
 import { IFragmentParams } from './IFragmentParams';
 
 export interface IGqlField {
@@ -12,7 +13,7 @@ export function useQueryFragmentFromSchema(schema?: Schema): IFragmentParams {
   const getFragmentFromSchema = useCallback((schema, fields: IGqlField[], key?: string) => {
     let currentFields = fields;
     if (schema?.["x-field-source"] && key) {
-      const subFields = [];
+      const subFields = schema?.["x-field-source"]?.sourceType === FieldSourceType.Association ? [{ name: "id", fields: [] }] : [];
       fields.push({
         name: key,
         variables: schema?.["x-field-source"].variables,

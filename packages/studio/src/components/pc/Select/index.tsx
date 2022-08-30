@@ -21,8 +21,6 @@ export const Select = observer((props: IDataSourceableProps & {
   const { data, loading, error } = useDataQuery(queryParams?.gql ? queryParams : undefined);
   useShowError(error);
 
-  console.log(value)
-
   const toArrayValue = useCallback((value) => {
     if (!value) {
       return [];
