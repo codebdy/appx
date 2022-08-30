@@ -1,13 +1,12 @@
 import React from 'react'
-import { Select as FormilySelect } from '@formily/antd'
 import { createBehavior, createResource } from '@designable/core'
 import { DnFC } from '@designable/react'
 import { SelectSchema } from './schema'
 import { createFieldSchema } from "../../common/Field/shared"
 import { SelectLocales } from './locales'
+import { Select } from '../Select'
 
-export const SelectDesigner: DnFC<React.ComponentProps<typeof FormilySelect>> =
-  FormilySelect
+export const SelectDesigner: DnFC<React.ComponentProps<typeof Select>> = Select
 
 SelectDesigner.Behavior = createBehavior({
   name: 'Select',
