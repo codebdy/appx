@@ -197,7 +197,7 @@ PageContainerDesigner.Behavior = createBehavior(
     selector: (node) => node.props['x-component'] === 'PageContainer',
     designerProps: {
       droppable: true,
-      propsSchema: createFieldSchema(PageContainerSchema, { hasDataBindSource: true }),
+      propsSchema: createFieldSchema(PageContainerSchema),
     },
     designerLocales: PageContainerLocales,
   },
@@ -263,7 +263,7 @@ PageContainerDesigner.Resource = createResource({
     {
       componentName: 'Field',
       props: {
-        type: 'object',
+        type: 'void',
         'x-component': 'PageContainer',
         'x-component-props': {
           title: "Page title",
