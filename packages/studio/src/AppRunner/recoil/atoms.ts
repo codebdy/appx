@@ -5,7 +5,7 @@ import { OpenPageType } from "../../shared/action";
 
 export interface IPagePopup {
   id: string;
-  pageId: ID;
+  pageId?: ID;
   openType: OpenPageType;
   pageTitle?: string;
   width?: number | string;

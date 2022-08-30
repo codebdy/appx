@@ -1,8 +1,8 @@
 import { createForm, JSXComponent } from "@formily/core";
-import { FormProvider, createSchemaField, ExpressionScope, useExpressionScope } from '@formily/react';
+import { Schema, FormProvider, createSchemaField, useExpressionScope } from '@formily/react';
 import { FormItem } from "@formily/antd";
-import React from "react";
-import { memo, useMemo } from "react";
+import React, { memo } from "react";
+import { useMemo } from "react";
 import { Spin } from "antd";
 import { useShowError } from "../../hooks/useShowError";
 import { useParseLangSchema } from "../../hooks/useParseLangSchema";
@@ -56,18 +56,23 @@ export const PageEngine = memo((
     },
   }), [components])
 
-  const form = useMemo(() => createForm(), [])
+  const [schema, form] = useMemo(
+    () => {
+      const newSchema = Schema.compile(p(page?.schemaJson?.schema), { ...expScope || {}, $me });
+      return [newSchema, createForm()];
+    }
+    ,
+    [$me, expScope, p, page?.schemaJson?.schema]
+  );
 
   return (
     <LoadingSpan spinning={loading}>
       <FormProvider form={form}>
-        <ExpressionScope value={{ ...expScope || {}, $me }}>
-          {
-            page?.schemaJson?.schema &&
-            <SchemaField schema={p(page?.schemaJson?.schema)}>
-            </SchemaField>
-          }
-        </ExpressionScope>
+        {
+          page?.schemaJson?.schema &&
+          <SchemaField schema={schema}>
+          </SchemaField>
+        }
       </FormProvider>
     </LoadingSpan>
   )

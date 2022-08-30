@@ -57,6 +57,6 @@ export function useQueryParams(dataBind?: IDataBindSource, schema?: Schema): IQu
 
     return pms;
   }, [dataBind?.entityName, dataBind?.expression, dataBind?.variables, fragmentFromSchema.gql, fragmentFromSchema.variables, t]);
-  console.log("Query GQL:", params?.gql, params?.variables);
+  //console.log("Query GQL:", params?.gql, params?.variables);
   return params
 }

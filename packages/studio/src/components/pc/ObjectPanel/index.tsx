@@ -21,11 +21,10 @@ export const ObjectPanel = observer((props: {
   const schema = useFieldSchema();
   const queryParams = useQueryParams(dataBind, schema);
   const field = useField();
-
   const { data, loading, error } = useDataQuery(queryParams?.variables?.id ? queryParams : undefined);
   useShowError(error);
 
-   if (data && !isObj(data)) {
+  if (data && !isObj(data)) {
     throw new Error("Data is not object, please check query expression")
   }
 
