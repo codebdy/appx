@@ -15,10 +15,8 @@ export const Select = observer((props: IDataSourceableProps & {
   const schema = useFieldSchema();
   const queryParams = useQueryParams(dataBind, schema);
 
-  const { data, loading, error } = useDataQuery(queryParams?.variables?.id ? queryParams : undefined);
+  const { data, loading, error } = useDataQuery(queryParams?.gql ? queryParams : undefined);
   useShowError(error);
-
-  console.log("哈哈哈", data, loading, queryParams)
 
   return (
     <FormilySelect
