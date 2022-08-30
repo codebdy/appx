@@ -18,4 +18,5 @@ export * from "./FormButtonGroup";
 export * from "./FormButtonGroupDesigner";
 export * from "./Card";
 export * from "./CardDesigner";
+export * from "./Select";
 export * from "./SelectDesigner";
