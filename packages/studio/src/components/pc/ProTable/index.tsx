@@ -38,15 +38,15 @@ export const ProTable: React.FC<IProTableProps> & {
     hasToolbar = true,
     selectable = true,
     className,
-    dataBindSource,
+    dataBind: dataBind,
     ...other
   } = props;
-  const [params, setParams] = useState<IProTableParams>({ selectable, dataBindSource });
+  const [params, setParams] = useState<IProTableParams>({ selectable, dataBind });
   const fieldSchema = useFieldSchema();
 
   useEffect(() => {
-    setParams(params => ({ ...params, selectable, dataBindSource }))
-  }, [dataBindSource, selectable])
+    setParams(params => ({ ...params, selectable, dataBind }))
+  }, [dataBind, selectable])
 
   const slots = useMemo(() => {
     const slts = {

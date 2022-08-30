@@ -14,12 +14,12 @@ import { Field, isField } from '@formily/core'
 import { InstanceContext } from "../../../shared/contexts/instance";
 
 export const ObjectPanel = observer((props: {
-  dataBindSource: IDataBindSource,
+  dataBind: IDataBindSource,
   children?: React.ReactNode,
 }) => {
-  const { dataBindSource, children } = props;
+  const { dataBind, children } = props;
   const schema = useFieldSchema();
-  const queryParams = useQueryParams(dataBindSource, schema);
+  const queryParams = useQueryParams(dataBind, schema);
   const field = useField();
 
   const { data, loading, error } = useDataQuery(queryParams?.variables?.id ? queryParams : undefined);
@@ -48,7 +48,7 @@ export const ObjectPanel = observer((props: {
           value={{
             field: field as Field,
             instance: data,
-            entityName: dataBindSource.entityName,
+            entityName: dataBind.entityName,
           }}
         >
           {children}

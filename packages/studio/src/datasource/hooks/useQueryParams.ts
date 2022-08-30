@@ -14,7 +14,7 @@ export interface IQueryParams extends IFragmentParams {
 }
 
 //GQL拼接部分还是很不完善
-export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema): IQueryParams {
+export function useQueryParams(dataBind?: IDataBindSource, schema?: Schema): IQueryParams {
   const { t } = useTranslation();
   const convertQueryVariables = useConvertQueryVariables();
   const firstOperationDefinition = (ast) => ast.definitions?.[0];
@@ -23,11 +23,11 @@ export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema
   const fragmentFromSchema = useQueryFragmentFromSchema(schema);
   const params = useMemo(() => {
     const pms: IQueryParams = {}
-    if (dataBindSource?.expression) {
+    if (dataBind?.expression) {
       try {
-        const ast = parse(dataBindSource?.expression);
-        if (!dataBindSource?.entityName) {
-          throw new Error("Can not finde entityName in dataBindSource");
+        const ast = parse(dataBind?.expression);
+        if (!dataBind?.entityName) {
+          throw new Error("Can not finde entityName in dataBind");
         }
 
         const operation = firstOperationDefinition(ast).operation;
@@ -35,7 +35,7 @@ export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema
           message.error("Can not find query operation");
         }
         pms.rootFieldName = firstFieldValueNameFromOperation(firstOperationDefinition(ast));
-        pms.entityName = dataBindSource?.entityName;
+        pms.entityName = dataBind?.entityName;
 
         const shchemaFragmentAst = parse(fragmentFromSchema.gql);
 
@@ -47,7 +47,7 @@ export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema
           ]
         }
 
-        pms.variables = { ...fragmentFromSchema.variables, ...dataBindSource?.variables||{} }
+        pms.variables = { ...fragmentFromSchema.variables, ...dataBind?.variables||{} }
 
         const gql = print(ast);
         pms.gql = gql;
@@ -59,7 +59,7 @@ export function useQueryParams(dataBindSource?: IDataBindSource, schema?: Schema
 
     pms && (pms.variables = convertQueryVariables(pms.variables));
     return pms;
-  }, [convertQueryVariables, dataBindSource?.entityName, dataBindSource?.expression, dataBindSource?.variables, fragmentFromSchema.gql, fragmentFromSchema.variables, t]);
+  }, [convertQueryVariables, dataBind?.entityName, dataBind?.expression, dataBind?.variables, fragmentFromSchema.gql, fragmentFromSchema.variables, t]);
   console.log("Query GQL:", params?.gql, params?.variables);
   return params
 }

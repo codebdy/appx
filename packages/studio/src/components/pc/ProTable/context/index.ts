@@ -2,7 +2,7 @@ import { IDataBindSource } from "../../../../datasource";
 import { createContext, useContext } from "react";
 
 export interface IProTableParams {
-  dataBindSource?: IDataBindSource,
+  dataBind?: IDataBindSource,
   selectable?: boolean,
   selectedRowKeys?: React.Key[],
   onSelectedChange?: (keys?: React.Key[]) => void,

@@ -62,14 +62,14 @@ export const createStyleSchemaTab = () => {
 
 export const createDisplaySchemaTab = (options?: IFieldOptions) => {
   const { hasDataBindSource, isDataField, hasPropTitle } = options || {}
-  const dataBindSource =
+  const dataBind =
     hasDataBindSource
       ?
       {
         'x-component-props': {
           type: 'object',
           properties: {
-            dataBindSource: {
+            dataBind: {
               type: 'string',
               'x-decorator': 'FormItem',
               'x-component': 'DataSourceInput',
@@ -115,7 +115,7 @@ export const createDisplaySchemaTab = (options?: IFieldOptions) => {
           },
         },
         properties: {
-          ...dataBindSource,
+          ...dataBind,
           ...fieldSource
         },
       },

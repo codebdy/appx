@@ -37,7 +37,7 @@ export const FieldLocales = {
       "x-field-source": "字段源",
       "x-field-params": "字段参数",
       'x-component-props': {
-        "dataBindSource": '数据源',
+        "dataBind": '数据源',
         size: { title: '尺寸', dataSource: ['大', '小', '默认', '继承'] },
         allowClear: '允许清除内容',
         autoFocus: '自动获取焦点',

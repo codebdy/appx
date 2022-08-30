@@ -42,7 +42,7 @@ const isColumnGroupComponent = (schema: Schema) => {
 }
 
 function useGetTableColumns() {
-  const { dataBindSource } = useProTableParams();
+  const { dataBind } = useProTableParams();
   const field = useField();
   const getTableColumns = (sources: ObservableColumnSource[], parentGroupNames: string[] = []): TableProps<any>['columns'] => {
     return sources?.reduce((buf, source, key) => {
@@ -75,7 +75,7 @@ function useGetTableColumns() {
                 value={{
                   field: field as Field,
                   instance: record,
-                  entityName: dataBindSource.entityName,
+                  entityName: dataBind.entityName,
                 }}
               >
                 <ArrayBase.Item index={index} record={record}>
@@ -149,7 +149,7 @@ const useArrayTableSources = () => {
 export const Table = observer((
   props: TableProps<any>
 ) => {
-  const { onSelectedChange, dataBindSource, selectedRowKeys } = useProTableParams();
+  const { onSelectedChange, dataBind, selectedRowKeys } = useProTableParams();
   const selectable = useSelectable();
   const sources = useArrayTableSources()
   const getTableColumns = useGetTableColumns();
@@ -162,7 +162,7 @@ export const Table = observer((
   }), [onSelectedChange, selectedRowKeys]);
 
   const schema = useFieldSchema();
-  const queryParams = useQueryParams(dataBindSource, schema);
+  const queryParams = useQueryParams(dataBind, schema);
 
   const { data, loading, error } = useDataQuery(queryParams);
   useShowError(error);

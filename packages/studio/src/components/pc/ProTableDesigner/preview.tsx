@@ -35,7 +35,7 @@ export const ProTableDesigner: DnFC<IProTableProps> & {
     hasToolbar = true,
     selectable = true,
     className,
-    dataBindSource: dataSource,
+    dataBind: dataSource,
     ...other
   } = props;
 
