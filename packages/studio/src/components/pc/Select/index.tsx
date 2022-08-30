@@ -58,7 +58,7 @@ export const Select = observer((props: IDataSourceableProps & {
       }}
       loading={loading}
       options={data}
-      value={loading ? "" : encodededValue}
+      value={encodededValue}
       onChange={handleChange}
     />
   )
