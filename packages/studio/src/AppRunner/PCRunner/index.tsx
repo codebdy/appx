@@ -4,7 +4,6 @@ import { useRecoilValue } from "recoil";
 import { useParseLangMessage } from "../../hooks/useParseLangMessage";
 import { OpenPageType } from "../../shared/action";
 import { useAppParams, useAppViewKey } from "../../shared/AppRoot/context";
-import { PageContext } from "../context/page";
 import { pagePopupsState } from "../recoil/atoms";
 import HeaderContent from "./HeaderContent";
 import MenuContent from "./MenuContent";
@@ -13,6 +12,7 @@ import { PageDrawer } from "./PageDrawer";
 import ProLayout from "./ProLayout";
 import { RootPage } from "./RootPage";
 import "./style.less"
+import { ExpressionScope } from '@formily/react';
 
 const PCRunner = memo(() => {
   const { app } = useAppParams();
@@ -52,14 +52,13 @@ const PCRunner = memo(() => {
         {
           pagePopups.map((pagePop) => {
             return (
-              <PageContext.Provider
-                key={pagePop.id}
-                value={{
+              <ExpressionScope value={{
+                $params: {
                   openType: OpenPageType.Dialog,
                   containerId: pagePop.id,
                   dataId: pagePop.dataId
-                }}
-              >
+                }
+              }}>
                 {
                   pagePop.openType === OpenPageType.Dialog &&
                   <PageDialog pageDialog={pagePop} />
@@ -68,7 +67,7 @@ const PCRunner = memo(() => {
                   pagePop.openType === OpenPageType.Drawer &&
                   <PageDrawer pageDrawer={pagePop} />
                 }
-              </PageContext.Provider>
+              </ExpressionScope>
             )
           })
 

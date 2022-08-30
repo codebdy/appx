@@ -2,25 +2,25 @@ import { useCallback } from "react";
 import { useSetRecoilState } from "recoil";
 import { OpenPageType } from "..";
 import { useAppViewKey } from "../../AppRoot/context";
-import { usePageParams } from "../../../AppRunner/context/page";
 import { pagePopupsState } from "../../../AppRunner/recoil/atoms";
+import { useExpressionScope } from '@formily/react';
 
 export function useClosePage() {
   const key = useAppViewKey();
-  const pageParams = usePageParams()
+  const { $params } = useExpressionScope()||{}
   const setPagePopups = useSetRecoilState(pagePopupsState(key));
 
   const close = useCallback(() => {
-    if (!pageParams) {
+    if (!$params) {
       return;
     }
-    if (pageParams.openType === OpenPageType.RouteTo) {
+    if ($params.openType === OpenPageType.RouteTo) {
       window.history.back()
     } else {
-      setPagePopups(pgDialogs => pgDialogs.filter(pgDialog => pgDialog.id !== pageParams?.containerId))
+      setPagePopups(pgDialogs => pgDialogs.filter(pgDialog => pgDialog.id !== $params?.containerId))
     }
 
-  }, [pageParams, setPagePopups])
+  }, [$params, setPagePopups])
 
   return close;
 }

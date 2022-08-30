@@ -4,9 +4,9 @@ import { useParams } from "react-router-dom";
 import { PageEngine } from "../../PageEngine";
 import { useGetMenuItem } from "../../hooks/useGetMenuItem";
 import { useEntryPageId } from "../../hooks/useEntryPageId";
-import { PageContext } from "../../context/page";
 import { OpenPageType } from "../../../shared/action";
 import { components } from "../components";
+import { ExpressionScope } from '@formily/react';
 
 export interface ILoadingSpanProps {
   spinning?: boolean,
@@ -15,20 +15,24 @@ export interface ILoadingSpanProps {
 
 export const RootPage = memo(() => {
   const { menuUuid, pageId } = useParams();
+  const { dataId } = useParams();
   const getMenuItem = useGetMenuItem();
   const entryId = useEntryPageId();
 
   const pageIdFormMenu = useMemo(() => getMenuItem(menuUuid)?.route?.pageId, [getMenuItem, menuUuid])
-
-
   const realPageId = useMemo(() => pageId || pageIdFormMenu || entryId, [entryId, pageId, pageIdFormMenu])
 
   return (
-    <PageContext.Provider value={{ openType: OpenPageType.RouteTo }}>
+    <ExpressionScope value={{
+      $params: {
+        openType: OpenPageType.RouteTo,
+        dataId
+      }
+    }}>
       <PageEngine
         pageId={realPageId}
         components={components}
       />
-    </PageContext.Provider>
+    </ExpressionScope>
   )
 })

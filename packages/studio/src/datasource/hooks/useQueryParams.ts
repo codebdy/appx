@@ -6,7 +6,6 @@ import { message } from "antd";
 import { useTranslation } from "react-i18next";
 import { IFragmentParams } from "./IFragmentParams";
 import { useQueryFragmentFromSchema } from "./useQueryFragmentFromSchema";
-import { useConvertQueryVariables } from "./useConvertQueryVariables";
 
 export interface IQueryParams extends IFragmentParams {
   entityName?: string,
@@ -16,7 +15,6 @@ export interface IQueryParams extends IFragmentParams {
 //GQL拼接部分还是很不完善
 export function useQueryParams(dataBind?: IDataBindSource, schema?: Schema): IQueryParams {
   const { t } = useTranslation();
-  const convertQueryVariables = useConvertQueryVariables();
   const firstOperationDefinition = (ast) => ast.definitions?.[0];
   const rootField = (ast) => ast.definitions?.[0]?.selectionSet?.selections[0];
   const firstFieldValueNameFromOperation = (operationDefinition) => operationDefinition?.selectionSet?.selections?.[0]?.name?.value;
@@ -57,9 +55,8 @@ export function useQueryParams(dataBind?: IDataBindSource, schema?: Schema): IQu
       }
     }
 
-    pms && (pms.variables = convertQueryVariables(pms.variables));
     return pms;
-  }, [convertQueryVariables, dataBind?.entityName, dataBind?.expression, dataBind?.variables, fragmentFromSchema.gql, fragmentFromSchema.variables, t]);
+  }, [dataBind?.entityName, dataBind?.expression, dataBind?.variables, fragmentFromSchema.gql, fragmentFromSchema.variables, t]);
   console.log("Query GQL:", params?.gql, params?.variables);
   return params
 }

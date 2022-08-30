@@ -1,5 +1,5 @@
 import { createForm, JSXComponent } from "@formily/core";
-import { FormProvider, createSchemaField, ExpressionScope } from '@formily/react';
+import { FormProvider, createSchemaField, ExpressionScope, useExpressionScope } from '@formily/react';
 import { FormItem } from "@formily/antd";
 import React from "react";
 import { memo, useMemo } from "react";
@@ -20,6 +20,10 @@ export class Me {
       id: this.me?.id
     }
   }
+
+  get id() {
+    return this.me?.id
+  }
 }
 
 export interface ILoadingSpanProps {
@@ -37,10 +41,10 @@ export const PageEngine = memo((
   }
 ) => {
   const { pageId, LoadingSpan = Spin, components = {} } = props;
-
   const { page, loading, error } = useQueryPageWithCache(pageId);
   const me = useMe();
   const $me = useMemo(() => new Me(me), [me]);
+  const expScope = useExpressionScope()
 
   const p = useParseLangSchema();
   useShowError(error);
@@ -57,7 +61,7 @@ export const PageEngine = memo((
   return (
     <LoadingSpan spinning={loading}>
       <FormProvider form={form}>
-        <ExpressionScope value={{ $me }}>
+        <ExpressionScope value={{ ...expScope || {}, $me }}>
           {
             page?.schemaJson?.schema &&
             <SchemaField schema={p(page?.schemaJson?.schema)}>
