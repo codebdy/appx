@@ -20,7 +20,7 @@ export function useQueryFragmentFromSchema(schema?: Schema): IFragmentParams {
       })
       currentFields = subFields;
     }
-    else {
+    else if (!key) {//根节点
       //选择列表控件
       if (schema?.['x-component-props']?.["labelField"]) {
         const subFields = [];
