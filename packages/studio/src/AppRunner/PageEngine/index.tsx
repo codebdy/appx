@@ -8,6 +8,19 @@ import { useShowError } from "../../hooks/useShowError";
 import { useParseLangSchema } from "../../hooks/useParseLangSchema";
 import { ID } from "../../shared";
 import { useQueryPageWithCache } from "../hooks/useQueryPageWithCache";
+import { IUser } from "../../enthooks/hooks/useQueryMe";
+import { useMe } from "../../Login/context";
+
+export class Me {
+
+  constructor(private me?: IUser) { }
+
+  get shortLink() {
+    return {
+      id: this.me?.id
+    }
+  }
+}
 
 export interface ILoadingSpanProps {
   spinning?: boolean,
@@ -26,6 +39,8 @@ export const PageEngine = memo((
   const { pageId, LoadingSpan = Spin, components = {} } = props;
 
   const { page, loading, error } = useQueryPageWithCache(pageId);
+  const me = useMe();
+  const $me = useMemo(() => new Me(me), [me]);
 
   const p = useParseLangSchema();
   useShowError(error);
@@ -41,15 +56,15 @@ export const PageEngine = memo((
 
   return (
     <LoadingSpan spinning={loading}>
-      <ExpressionScope value={{ $me: 'this inner scope value' }}>
-        <FormProvider form={form}>
+      <FormProvider form={form}>
+        <ExpressionScope value={{ $me }}>
           {
             page?.schemaJson?.schema &&
             <SchemaField schema={p(page?.schemaJson?.schema)}>
             </SchemaField>
           }
-        </FormProvider>
-      </ExpressionScope>
+        </ExpressionScope>
+      </FormProvider>
     </LoadingSpan>
   )
 })
