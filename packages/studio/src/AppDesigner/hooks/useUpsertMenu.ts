@@ -21,9 +21,7 @@ export function useUpsertMenu(options?: IPostOptions<any>): [
     post({
       ...menu,
       device: params.device,
-      app: {
-        sync: { id: params.app.id }
-      },
+      app: [{ id: params.app.id }],
     })
   }, [params.app.id, params.device, post]);
 

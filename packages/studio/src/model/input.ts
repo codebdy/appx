@@ -45,7 +45,7 @@ export interface IPageCategoryInput {
   id?: ID;
   title?: string;
   device?: Device;
-  app?: { sync: IAppInput };
+  app?: IAppInput[];
 }
 
 export interface IPageInput {
@@ -53,13 +53,13 @@ export interface IPageInput {
   title?: string;
   schemaJson?: any;
   device?: Device;
-  app?: { sync: IAppInput };
-  category?: { sync: IPageCategoryInput };
+  app?: IAppInput[];
+  category?: IPageCategoryInput[];
 }
 
 export interface IMenuInput {
   id?: ID;
   device?: Device;
   schemaJson?: any;
-  app?: { sync: IAppInput };
+  app?: IAppInput[];
 }
