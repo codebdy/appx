@@ -4,7 +4,7 @@ import { usePageParams } from "../../AppRunner/context/page";
 
 export function useConvertQueryVariables() {
   const { dataId } = useParams();
-  const { dataId: popDataId } = usePageParams();
+  const { dataId: popDataId } = usePageParams() || {};
 
   const convertQueryVariables = useCallback((variables?: any) => {
     if (!variables) {

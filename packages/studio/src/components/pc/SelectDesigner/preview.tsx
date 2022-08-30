@@ -5,8 +5,16 @@ import { SelectSchema } from './schema'
 import { createFieldSchema } from "../../common/Field/shared"
 import { SelectLocales } from './locales'
 import { Select } from '../Select'
+import { observer } from '@formily/reactive-react'
 
-export const SelectDesigner: DnFC<React.ComponentProps<typeof Select>> = Select
+export const SelectDesigner: DnFC<React.ComponentProps<typeof Select>> = observer((
+  props
+) => {
+  const { dataBind, ...other } = props;
+  return (
+    <Select {...other} />
+  )
+})
 
 SelectDesigner.Behavior = createBehavior({
   name: 'Select',
