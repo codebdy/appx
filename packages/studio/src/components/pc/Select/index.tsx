@@ -18,7 +18,7 @@ export const Select = observer((props: IDataSourceableProps & {
   const { data, loading, error } = useDataQuery(queryParams?.variables?.id ? queryParams : undefined);
   useShowError(error);
 
-  console.log("哈哈哈", data, queryParams)
+  console.log("哈哈哈", data, loading, queryParams)
 
   return (
     <FormilySelect

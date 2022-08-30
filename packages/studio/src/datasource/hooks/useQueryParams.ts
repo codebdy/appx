@@ -21,6 +21,7 @@ export function useQueryParams(dataBind?: IDataBindSource, schema?: Schema): IQu
   const rootField = (ast) => ast.definitions?.[0]?.selectionSet?.selections[0];
   const firstFieldValueNameFromOperation = (operationDefinition) => operationDefinition?.selectionSet?.selections?.[0]?.name?.value;
   const fragmentFromSchema = useQueryFragmentFromSchema(schema);
+  
   const params = useMemo(() => {
     const pms: IQueryParams = {}
     if (dataBind?.expression) {
@@ -38,12 +39,11 @@ export function useQueryParams(dataBind?: IDataBindSource, schema?: Schema): IQu
         pms.entityName = dataBind?.entityName;
 
         const shchemaFragmentAst = parse(fragmentFromSchema.gql);
-
         const firstNode = rootField(ast);
         if (firstNode?.selectionSet?.selections) {
           firstNode.selectionSet.selections = [
             ...firstNode.selectionSet.selections,
-            ...(shchemaFragmentAst?.definitions?.[0] as any)?.selectionSet?.selections,
+            ...(shchemaFragmentAst?.definitions?.[0] as any)?.selectionSet?.selections||{},
           ]
         }
 

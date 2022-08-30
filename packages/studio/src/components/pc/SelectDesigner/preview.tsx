@@ -35,6 +35,10 @@ SelectDesigner.Resource = createResource({
         title: 'Select',
         'x-decorator': 'FormItem',
         'x-component': 'Select',
+        'x-component-props': {
+          'labelField': 'name',
+          'valueField': 'id',
+        }
       },
     },
   ],

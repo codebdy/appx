@@ -11,7 +11,7 @@ export interface IGqlField {
 export function useQueryFragmentFromSchema(schema?: Schema): IFragmentParams {
   const getFragmentFromSchema = useCallback((schema, fields: IGqlField[], key?: string) => {
     let currentFields = fields;
-    if (schema?.["x-field-source"]) {
+    if (schema?.["x-field-source"] && key) {
       const subFields = [];
       fields.push({
         name: key,
@@ -19,6 +19,23 @@ export function useQueryFragmentFromSchema(schema?: Schema): IFragmentParams {
         fields: subFields,
       })
       currentFields = subFields;
+    }
+    else {
+      //选择列表控件
+      if (schema?.['x-component-props']?.["labelField"]) {
+        const subFields = [];
+        fields.push({
+          name: schema?.['x-component-props']?.["labelField"],
+          fields: subFields,
+        })
+      }
+      if (schema?.['x-component-props']?.["valueField"]) {
+        const subFields = [];
+        fields.push({
+          name: schema?.['x-component-props']?.["valueField"],
+          fields: subFields,
+        })
+      }
     }
     if (schema?.properties) {
       for (const key of Object.keys(schema?.properties)) {
