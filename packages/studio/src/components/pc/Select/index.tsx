@@ -21,6 +21,8 @@ export const Select = observer((props: IDataSourceableProps & {
   const { data, loading, error } = useDataQuery(queryParams?.gql ? queryParams : undefined);
   useShowError(error);
 
+  console.log(value)
+
   const toArrayValue = useCallback((value) => {
     if (!value) {
       return [];
@@ -28,6 +30,8 @@ export const Select = observer((props: IDataSourceableProps & {
     if (!isArr(value)) {
       return [value]
     }
+
+    return value;
   }, []);
 
   const decodeValue = useCallback((value: any[]) => {
@@ -38,12 +42,13 @@ export const Select = observer((props: IDataSourceableProps & {
     return value?.map(child => (child?.[valueField]))
   }, [valueField])
 
-  const eodededValue = useMemo(() => {
+  const encodededValue = useMemo(() => {
     return encodeValue(toArrayValue(value))
   }, [encodeValue, toArrayValue, value])
 
   const handleChange = useCallback((value) => {
-    onChange(decodeValue(toArrayValue(value)))
+    const decodedValue = decodeValue(toArrayValue(value));
+    onChange(decodedValue)
   }, [decodeValue, onChange, toArrayValue])
 
   return (
@@ -55,7 +60,7 @@ export const Select = observer((props: IDataSourceableProps & {
       }}
       loading={loading}
       options={data}
-      value={eodededValue}
+      value={encodededValue}
       onChange={handleChange}
     />
   )
