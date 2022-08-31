@@ -51,9 +51,9 @@ export const QueryForm: React.FC = observer((props: IQueryFormProps) => {
         maxRows: expanded && collapsiable ? maxRowsOnCollapsed : Infinity,
         shouldVisible: (node, grid) => {
           if (!collapsiable) return true;
-          if (node.index === grid.childSize - 1) return true
+          //if (node.index === grid.childSize - 1) return true
           if (grid.maxRows === Infinity) return true
-          return node.shadowRow < maxRowsOnCollapsed + 1 && node.index < maxColumns - 1
+          return node.shadowRow < maxRowsOnCollapsed + 1 && node.index < maxColumns
         },
       })
     },
