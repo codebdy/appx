@@ -61,8 +61,8 @@ export const ButtonsGridColum = observer((
                   onToggle && onToggle()
                 }}
               >
-                {expanded ? t("PackUp") : t("Expand")}
-                {expanded ? <UpOutlined /> : <DownOutlined />}
+                {!expanded ? t("PackUp") : t("Expand")}
+                {!expanded ? <UpOutlined /> : <DownOutlined />}
               </Button>
             </FormButtonGroup>
             <FormButtonGroup align="right">{acions}</FormButtonGroup>
