@@ -76,7 +76,7 @@ export const PageContainer: React.FC<IPageContainerProps> & {
   };
 
   const selectedTab = slots.tabs?.[parseInt(selectedTabKey) - 1]
-  const basePath = useMemo(()=>field.path.toString(), [field.path]);
+  const basePath = useMemo(()=>field.path, [field.path]);
 
   return (
     <PageContainerShell {...other}>

@@ -91,7 +91,7 @@ export const ProTable: React.FC<IProTableProps> & {
     }
   }, [handelSetQuery, handleSelectedChange, params])
 
-  const basePath = useMemo(()=>field.path.toString(), [field.path]);
+  const basePath = useMemo(()=>field.path, [field.path]);
 
   return (
     <ProTableContext.Provider
