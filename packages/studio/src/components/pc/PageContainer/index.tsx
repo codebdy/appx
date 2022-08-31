@@ -76,11 +76,7 @@ export const PageContainer: React.FC<IPageContainerProps> & {
   };
 
   const selectedTab = slots.tabs?.[parseInt(selectedTabKey) - 1]
-
-  const fieldPrefix = useMemo(() => {
-    return field.path.toString() + '.';
-  }, [field.path]);
-
+  const basePath = useMemo(()=>field.path.toString(), [field.path]);
 
   return (
     <PageContainerShell {...other}>
@@ -89,7 +85,7 @@ export const PageContainer: React.FC<IPageContainerProps> & {
         onBack={hasGobackButton ? () => window.history.back() : undefined}
         title={title}
         subTitle={subtitle}
-        extra={hasActions && slots.headerExtra && <RecursionField schema={slots.headerExtra} name={fieldPrefix + slots.headerExtra.name} />}
+        extra={hasActions && slots.headerExtra && <RecursionField schema={slots.headerExtra} name={slots.headerExtra.name} basePath = {basePath}/>}
         footer={
           hasTabs && slots.tabs && <Tabs activeKey={selectedTabKey} onChange={handleSelectTab}>
             {
@@ -105,23 +101,23 @@ export const PageContainer: React.FC<IPageContainerProps> & {
         breadcrumb={hasBreadcrumb ? { routes: breadcrumbs } : undefined}
       >
         <Row>
-          {hasHeaderContent && slots.headerContent && <RecursionField schema={slots.headerContent} name={fieldPrefix + slots.headerContent.name} />}
-          {hasHeaderContentExtra && slots.headerContentExtra && <RecursionField schema={slots.headerContentExtra} name={fieldPrefix + slots.headerContentExtra.name} />}
+          {hasHeaderContent && slots.headerContent && <RecursionField schema={slots.headerContent} name={slots.headerContent.name} basePath = {basePath}/>}
+          {hasHeaderContentExtra && slots.headerContentExtra && <RecursionField schema={slots.headerContentExtra} name={slots.headerContentExtra.name} basePath = {basePath}/>}
         </Row>
 
       </PageHeader>
       <PageBody>
-        {selectedTab && <RecursionField schema={selectedTab} name={fieldPrefix + selectedTab.name} />}
+        {selectedTab && <RecursionField schema={selectedTab} name={selectedTab.name} basePath = {basePath}/>}
         {
           slots.otherChildren?.map((child, index) => {
             return (
               <div key={index}>
-                <RecursionField key={index} schema={child} name={fieldPrefix + child.name} />
+                <RecursionField key={index} schema={child} name={child.name} basePath = {basePath}/>
               </div>
             )
           })
         }
-        {hasFooterToolbar && slots.footer && <RecursionField schema={slots.footer} name={fieldPrefix + slots.footer.name} />}
+        {hasFooterToolbar && slots.footer && <RecursionField schema={slots.footer} name={slots.footer.name} basePath = {basePath}/>}
       </PageBody>
     </PageContainerShell>
   )

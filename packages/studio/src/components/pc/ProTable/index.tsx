@@ -91,9 +91,7 @@ export const ProTable: React.FC<IProTableProps> & {
     }
   }, [handelSetQuery, handleSelectedChange, params])
 
-  const fieldPrefix = useMemo(() => {
-    return field.path.toString() + '.';
-  }, [field.path]);
+  const basePath = useMemo(()=>field.path.toString(), [field.path]);
 
   return (
     <ProTableContext.Provider
@@ -101,17 +99,17 @@ export const ProTable: React.FC<IProTableProps> & {
     >
       <div className={clx("appx-pro-table", className)} {...other}>
         {
-          hasQueryForm && slots.queryForm && <RecursionField schema={slots.queryForm} name={fieldPrefix + slots.queryForm.name} />
+          hasQueryForm && slots.queryForm && <RecursionField schema={slots.queryForm} name={slots.queryForm.name} basePath={basePath} />
         }
         <Card style={{ marginTop: "16px" }}>
           {
-            hasToolbar && slots.tableToolbar && <RecursionField schema={slots.tableToolbar} name={fieldPrefix + slots.tableToolbar.name} />
+            hasToolbar && slots.tableToolbar && <RecursionField schema={slots.tableToolbar} name={slots.tableToolbar.name} basePath={basePath} />
           }
           {
-            selectable && slots.tableBatchActions && <RecursionField schema={slots.tableBatchActions} name={fieldPrefix + slots.tableBatchActions.name} />
+            selectable && slots.tableBatchActions && <RecursionField schema={slots.tableBatchActions} name={slots.tableBatchActions.name} basePath={basePath}/>
           }
           {
-            <RecursionField schema={slots.dataTable} name={fieldPrefix + slots.dataTable.name} />
+            <RecursionField schema={slots.dataTable} name={slots.dataTable.name} basePath={basePath} />
           }
         </Card>
       </div>
