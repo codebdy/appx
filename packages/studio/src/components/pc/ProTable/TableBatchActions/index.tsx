@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from "react";
+import React, { useCallback } from "react";
 import { useProTableParams } from "../context";
 import { BatchActionsContainer } from "./BatchActionsContainer";
 
@@ -6,7 +6,7 @@ export interface ITableBatchActionsProps {
   children?: React.ReactNode
 }
 
-export const TableBatchActions = memo((
+export const TableBatchActions = (
   props: ITableBatchActionsProps
 ) => {
   const { children } = props;
@@ -23,4 +23,4 @@ export const TableBatchActions = memo((
       </BatchActionsContainer>
       : <></>
   )
-})
+}

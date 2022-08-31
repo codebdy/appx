@@ -4,7 +4,7 @@ import { DataNode } from "antd/lib/tree";
 import React from "react"
 import { memo } from "react"
 import { useLocalTranslations } from "../../hooks/useLocalTranslations";
-import TitleBox from "./TitleBox";
+import { TitleBox } from "./TitleBox";
 
 const treeData: DataNode[] = [
   {

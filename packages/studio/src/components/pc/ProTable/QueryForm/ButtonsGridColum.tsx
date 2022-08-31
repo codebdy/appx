@@ -1,13 +1,14 @@
 import { DownOutlined, UpOutlined } from "@ant-design/icons";
 import { FormButtonGroup, Reset, Submit } from "@formily/antd";
 import { Button } from "antd";
-import React, { memo, useCallback, useMemo } from "react"
+import React, { useCallback, useMemo } from "react"
 import { useLocalTranslations } from "../hooks/useLocalTranslations";
 import { useParentForm } from "@formily/react"
 import { useProTableParams } from "../context";
 import { isObjectField } from "@formily/core";
+import { observer } from "@formily/reactive-react";
 
-export const ButtonsGridColum = memo((
+export const ButtonsGridColum = observer((
   props: {
     layout?: "horizontal" | "vertical",
     expanded?: boolean,
@@ -19,22 +20,27 @@ export const ButtonsGridColum = memo((
   const { t } = useLocalTranslations();
   const { onSetQueryForm } = useProTableParams();
   const form = useParentForm();
-
+  const objectField = useMemo(() => isObjectField(form) && form, [form]);
+  console.log("哈哈哈刷新")
   const handleReset = useCallback(() => {
-    onSetQueryForm && form?.reset();
-  }, [form, onSetQueryForm])
+    console.log("Reset ccc", objectField)
+    onSetQueryForm && objectField?.reset();
+    console.log("Submit ccc2", objectField.value)
+  }, [objectField, onSetQueryForm])
 
   const handleSubmit = useCallback(() => {
-    if (isObjectField(form)) {
-      onSetQueryForm && form && onSetQueryForm(form?.value)
-    }
-  }, [form, onSetQueryForm])
+    console.log("Submit ccc", objectField, objectField.value, objectField.inputValue)
+    objectField?.validate();
+    onSetQueryForm && objectField && onSetQueryForm(objectField?.value)
+    console.log("Submit ccc2", objectField.value)
+
+  }, [objectField, onSetQueryForm])
 
   const acions = useMemo(() => {
     return (
       <>
         <Submit onSubmit={handleSubmit}>{t("Search")}</Submit>
-        <Reset onReset={handleReset} >{t("Reset")}</Reset>
+        <Reset onClick={handleReset} >{t("Reset")}</Reset>
       </>
     )
   }, [handleReset, handleSubmit, t])

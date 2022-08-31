@@ -1,10 +1,9 @@
 import { Alert, Button, Space } from "antd";
 import React from "react";
-import { memo } from "react"
 import { useLocalTranslations } from "../hooks/useLocalTranslations";
 import clx from "classnames";
 
-export const BatchActionsContainer = memo((
+export const BatchActionsContainer = (
   props: {
     counts?: number,
     className?: string,
@@ -40,4 +39,4 @@ export const BatchActionsContainer = memo((
       className={clx(className, "table-batch-actions")}
     />
   )
-})
+}

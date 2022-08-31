@@ -1,9 +1,8 @@
 import { Button, Checkbox, Space } from "antd"
 import React from "react"
-import { memo } from "react"
 import { useLocalTranslations } from "../../hooks/useLocalTranslations"
 
-export const TitleBox = memo(() => {
+export const TitleBox = () => {
   const { t } = useLocalTranslations();
 
   return (
@@ -21,6 +20,4 @@ export const TitleBox = memo(() => {
       </Space>
     </div>
   )
-})
-
-export default TitleBox
+}

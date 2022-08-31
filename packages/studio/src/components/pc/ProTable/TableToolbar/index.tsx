@@ -1,6 +1,6 @@
 import { PlusOutlined, ReloadOutlined } from "@ant-design/icons"
 import { Button, message, Tooltip } from "antd"
-import React, { memo, useCallback } from "react"
+import React, { useCallback } from "react"
 import { useLocalTranslations } from "../hooks/useLocalTranslations"
 import ColumnsSettings from "./ColumnsSettings"
 import HeightMenu from "./HeightMenu"
@@ -17,7 +17,7 @@ export interface ITableToolbarProps {
   onNew?: IAppxAction[],
 }
 
-const TableToolbar = memo((
+const TableToolbar = (
   props: ITableToolbarProps
 ) => {
   const {
@@ -97,6 +97,6 @@ const TableToolbar = memo((
       </div>
     </div>
   )
-})
+}
 
 export default TableToolbar
