@@ -1,9 +1,6 @@
 import { IDataBindSource } from "../../../../datasource";
 import { createContext, useContext } from "react";
-
-export interface IQueryForm {
-  [key: string]: any | any[]
-}
+import { IQueryForm } from "../../../../datasource/model/IQueryForm";
 
 export interface IProTableParams {
   dataBind?: IDataBindSource,

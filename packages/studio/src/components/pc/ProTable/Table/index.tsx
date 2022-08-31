@@ -149,7 +149,7 @@ const useArrayTableSources = () => {
 export const Table = observer((
   props: TableProps<any>
 ) => {
-  const { onSelectedChange, dataBind, selectedRowKeys } = useProTableParams();
+  const { onSelectedChange, dataBind, queryForm, selectedRowKeys } = useProTableParams();
   const selectable = useSelectable();
   const sources = useArrayTableSources()
   const getTableColumns = useGetTableColumns();
@@ -162,7 +162,7 @@ export const Table = observer((
   }), [onSelectedChange, selectedRowKeys]);
 
   const schema = useFieldSchema();
-  const queryParams = useQueryParams(dataBind, schema);
+  const queryParams = useQueryParams(dataBind, schema, queryForm);
 
   const { data, loading, error } = useDataQuery(queryParams);
   useShowError(error);

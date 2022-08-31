@@ -6,6 +6,7 @@ import { message } from "antd";
 import { useTranslation } from "react-i18next";
 import { IFragmentParams } from "./IFragmentParams";
 import { useQueryFragmentFromSchema } from "./useQueryFragmentFromSchema";
+import { IQueryForm } from "../model/IQueryForm";
 
 export interface IQueryParams extends IFragmentParams {
   entityName?: string,
@@ -13,7 +14,7 @@ export interface IQueryParams extends IFragmentParams {
 }
 
 //GQL拼接部分还是很不完善
-export function useQueryParams(dataBind?: IDataBindSource, schema?: Schema): IQueryParams {
+export function useQueryParams(dataBind: IDataBindSource|undefined, schema: Schema|undefined, queryForm?: IQueryForm): IQueryParams {
   const { t } = useTranslation();
   const firstOperationDefinition = (ast) => ast.definitions?.[0];
   const rootField = (ast) => ast.definitions?.[0]?.selectionSet?.selections[0];
