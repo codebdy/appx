@@ -19,6 +19,8 @@ export type IQueryFormProps = {
   children?: React.ReactNode,
   style?: CSSProperties,
   colon?: boolean,
+  value?: any,
+  onChange?: (value) => void,
 } & React.ComponentProps<formilyGrid>
 
 export const QueryForm: React.FC = observer((props: IQueryFormProps) => {
@@ -38,6 +40,8 @@ export const QueryForm: React.FC = observer((props: IQueryFormProps) => {
     strictAutoFit,
     children,
     style,
+    value,
+    onChange,
     ...other
   } = props;
   const [expanded, setExpanded] = useState(false);

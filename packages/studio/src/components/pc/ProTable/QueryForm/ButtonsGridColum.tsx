@@ -21,19 +21,14 @@ export const ButtonsGridColum = observer((
   const { onSetQueryForm } = useProTableParams();
   const form = useParentForm();
   const objectField = useMemo(() => isObjectField(form) && form, [form]);
-  console.log("哈哈哈刷新")
+
   const handleReset = useCallback(() => {
-    console.log("Reset ccc", objectField)
     onSetQueryForm && objectField?.reset();
-    console.log("Submit ccc2", objectField.value)
   }, [objectField, onSetQueryForm])
 
   const handleSubmit = useCallback(() => {
-    console.log("Submit ccc", objectField, objectField.value, objectField.inputValue)
     objectField?.validate();
     onSetQueryForm && objectField && onSetQueryForm(objectField?.value)
-    console.log("Submit ccc2", objectField.value)
-
   }, [objectField, onSetQueryForm])
 
   const acions = useMemo(() => {

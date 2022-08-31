@@ -10,7 +10,7 @@ import { registerResourceBundle } from "../../../i18n/registerResourceBundle"
 import { IDataSourceableProps } from "../../common/IDataSourceableProps"
 import TableToolbar, { ITableToolbarProps } from "./TableToolbar"
 import clx from "classnames";
-import { RecursionField, useFieldSchema } from '@formily/react';
+import { RecursionField, useFieldSchema, useField } from '@formily/react';
 import { IQueryFormProps, QueryForm } from "./QueryForm"
 import { TableIndex } from "./TableIndex"
 
@@ -47,6 +47,8 @@ export const ProTable: React.FC<IProTableProps> & {
   useEffect(() => {
     setParams(params => ({ ...params, selectable, dataBind }))
   }, [dataBind, selectable])
+
+  const field = useField();
 
   const slots = useMemo(() => {
     const slts = {
@@ -89,23 +91,27 @@ export const ProTable: React.FC<IProTableProps> & {
     }
   }, [handelSetQuery, handleSelectedChange, params])
 
+  const fieldPrefix = useMemo(() => {
+    return field.path.toString() + '.';
+  }, [field.path]);
+
   return (
     <ProTableContext.Provider
       value={contextValue}
     >
       <div className={clx("appx-pro-table", className)} {...other}>
         {
-          hasQueryForm && slots.queryForm && <RecursionField schema={slots.queryForm} name={slots.queryForm.name} />
+          hasQueryForm && slots.queryForm && <RecursionField schema={slots.queryForm} name={fieldPrefix + slots.queryForm.name} />
         }
         <Card style={{ marginTop: "16px" }}>
           {
-            hasToolbar && slots.tableToolbar && <RecursionField schema={slots.tableToolbar} name={slots.tableToolbar.name} />
+            hasToolbar && slots.tableToolbar && <RecursionField schema={slots.tableToolbar} name={fieldPrefix + slots.tableToolbar.name} />
           }
           {
-            selectable && slots.tableBatchActions && <RecursionField schema={slots.tableBatchActions} name={slots.tableBatchActions.name} />
+            selectable && slots.tableBatchActions && <RecursionField schema={slots.tableBatchActions} name={fieldPrefix + slots.tableBatchActions.name} />
           }
           {
-            <RecursionField schema={slots.dataTable} name={slots.dataTable.name} />
+            <RecursionField schema={slots.dataTable} name={fieldPrefix + slots.dataTable.name} />
           }
         </Card>
       </div>
