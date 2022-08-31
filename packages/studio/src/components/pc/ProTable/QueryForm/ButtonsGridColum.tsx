@@ -1,8 +1,11 @@
 import { DownOutlined, UpOutlined } from "@ant-design/icons";
 import { FormButtonGroup, Reset, Submit } from "@formily/antd";
 import { Button } from "antd";
-import React, { memo, useMemo } from "react"
+import React, { memo, useCallback, useMemo } from "react"
 import { useLocalTranslations } from "../hooks/useLocalTranslations";
+import { useParentForm } from "@formily/react"
+import { useProTableParams } from "../context";
+import { isObjectField } from "@formily/core";
 
 export const ButtonsGridColum = memo((
   props: {
@@ -14,15 +17,27 @@ export const ButtonsGridColum = memo((
 ) => {
   const { layout, expanded, collapsiable, onToggle } = props;
   const { t } = useLocalTranslations();
+  const { onSetQueryForm } = useProTableParams();
+  const form = useParentForm();
+
+  const handleReset = useCallback(() => {
+    onSetQueryForm && form?.reset();
+  }, [form, onSetQueryForm])
+
+  const handleSubmit = useCallback(() => {
+    if (isObjectField(form)) {
+      onSetQueryForm && form && onSetQueryForm(form?.value)
+    }
+  }, [form, onSetQueryForm])
 
   const acions = useMemo(() => {
     return (
       <>
-        <Submit onSubmit={console.log}>{t("Search")}</Submit>
-        <Reset >{t("Reset")}</Reset>
+        <Submit onSubmit={handleSubmit}>{t("Search")}</Submit>
+        <Reset onReset={handleReset} >{t("Reset")}</Reset>
       </>
     )
-  }, [t])
+  }, [handleReset, handleSubmit, t])
 
   return (
     <div

@@ -38,7 +38,7 @@ export const ProTable: React.FC<IProTableProps> & {
     hasToolbar = true,
     selectable = true,
     className,
-    dataBind: dataBind,
+    dataBind,
     ...other
   } = props;
   const [params, setParams] = useState<IProTableParams>({ selectable, dataBind });
@@ -77,12 +77,21 @@ export const ProTable: React.FC<IProTableProps> & {
     setParams(params => ({ ...params, selectedRowKeys: keys }))
   }, [])
 
+  const handelSetQuery = useCallback((queryForm) => {
+    setParams(params => ({ ...params, queryForm: queryForm }))
+  }, [])
+
+  const contextValue = useMemo(() => {
+    return {
+      ...params,
+      onSelectedChange: handleSelectedChange,
+      onSetQueryForm: handelSetQuery,
+    }
+  }, [handelSetQuery, handleSelectedChange, params])
+
   return (
     <ProTableContext.Provider
-      value={{
-        ...params,
-        onSelectedChange: handleSelectedChange
-      }}
+      value={contextValue}
     >
       <div className={clx("appx-pro-table", className)} {...other}>
         {
