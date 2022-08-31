@@ -1,11 +1,17 @@
 import { IDataBindSource } from "../../../../datasource";
 import { createContext, useContext } from "react";
 
+export interface IQueryForm {
+  [key: string]: any | any[]
+}
+
 export interface IProTableParams {
   dataBind?: IDataBindSource,
   selectable?: boolean,
   selectedRowKeys?: React.Key[],
+  queryForm?: IQueryForm,
   onSelectedChange?: (keys?: React.Key[]) => void,
+  onSetQueryForm?: (form?: IQueryForm) => void,
 }
 
 
@@ -17,6 +23,6 @@ export function useSelectedKeys() {
   return useProTableParams()?.selectedRowKeys;
 }
 
-export function useSelectable(){
-  return  useProTableParams()?.selectable;
+export function useSelectable() {
+  return useProTableParams()?.selectable;
 }
