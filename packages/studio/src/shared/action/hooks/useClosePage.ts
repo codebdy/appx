@@ -9,8 +9,8 @@ export function useClosePage() {
   const key = useAppViewKey();
   const { $params } = useExpressionScope()||{}
   const setPagePopups = useSetRecoilState(pagePopupsState(key));
-
   const close = useCallback(() => {
+
     if (!$params) {
       return;
     }
