@@ -1,7 +1,7 @@
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { Schema } from '@formily/json-schema';
 import { IDataBindSource } from "../model";
-import { parse, OperationTypeNode, print } from "graphql";
+import { parse, OperationTypeNode, print, Kind } from "graphql";
 import { message } from "antd";
 import { useTranslation } from "react-i18next";
 import { IFragmentParams } from "./IFragmentParams";
@@ -17,13 +17,13 @@ export interface IQueryParams extends IFragmentParams {
 //GQL拼接部分还是很不完善
 export function useQueryParams(dataBind: IDataBindSource | undefined, schema: Schema | undefined, queryForm?: IQueryForm): IQueryParams {
   const { t } = useTranslation();
-  const firstOperationDefinition = (ast) => ast.definitions?.[0];
-  const rootField = (ast) => ast.definitions?.[0]?.selectionSet?.selections[0];
-  const firstFiledFromOperation = (operationDefinition) => operationDefinition?.selectionSet?.selections?.[0];
+  const firstOperationDefinition = useCallback((ast) => ast.definitions?.[0], []);
+  const rootField = useCallback((ast) => ast.definitions?.[0]?.selectionSet?.selections[0], []);
+  const firstFiledFromOperation = useCallback((operationDefinition) => operationDefinition?.selectionSet?.selections?.[0], []);
   //const firstFieldValueNameFromOperation = (operationDefinition) => operationDefinition?.selectionSet?.selections?.[0]?.name?.value;
   const fragmentFromSchema = useQueryFragmentFromSchema(schema);
   const convertQueryForm = useConvertQueryFormToArgs();
-  
+
   console.log("呵呵呵", convertQueryForm(queryForm));
 
   const params = useMemo(() => {
@@ -37,7 +37,21 @@ export function useQueryParams(dataBind: IDataBindSource | undefined, schema: Sc
 
         const operation = firstOperationDefinition(ast).operation;
         const firstField = firstFiledFromOperation(firstOperationDefinition(ast));
-        console.log("哈哈哈", firstField, firstField?.name?.value)
+        console.log("哈哈哈", firstField, firstField?.name?.value, firstField.arguments)
+        const queryFormArgs = convertQueryForm(queryForm);
+        const whereArg = firstField.arguments?.find(arg=>arg.name?.value === "where");
+
+        // if(whereArg){
+        //   const newWhere =  {
+        //     kind: Kind.ARGUMENT,
+        //     name: {
+        //       Kind:Kind.NAME,
+        //       value: "where",
+        //     },
+        //     value: ValueNode;
+        //   }
+        // }
+
         if (operation !== OperationTypeNode.QUERY) {
           message.error("Can not find query operation");
         }
@@ -64,7 +78,7 @@ export function useQueryParams(dataBind: IDataBindSource | undefined, schema: Sc
     }
 
     return pms;
-  }, [dataBind?.entityName, dataBind?.expression, dataBind?.variables, fragmentFromSchema.gql, fragmentFromSchema.variables, t]);
+  }, [dataBind?.entityName, dataBind?.expression, dataBind?.variables, firstFiledFromOperation, firstOperationDefinition, fragmentFromSchema.gql, fragmentFromSchema.variables, rootField, t]);
   //console.log("Query GQL:", params?.gql, params?.variables);
   return params
 }

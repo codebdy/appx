@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { AttributeMeta } from "../meta/AttributeMeta";
-import { Type } from "../meta/Type";
+import { Types } from "../meta/Type";
 import { ClassMeta, StereoType } from "../meta/ClassMeta";
 import { useChangeAttribute } from "../hooks/useChangeAttribute";
 import { CONST_ID } from "../meta/Meta";
@@ -109,7 +109,7 @@ export const AttributePanel = (props: {
               </>
             }
             {
-              attribute.type === Type.Date &&
+              attribute.type === Types.Date &&
               <>
                 <Form.Item
                   label={t("ModelBoard.CreateDate")}

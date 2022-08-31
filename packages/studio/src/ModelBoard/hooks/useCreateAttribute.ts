@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { createUuid, ID } from "../../shared";
 import { AttributeMeta } from "../meta/AttributeMeta";
-import { Type } from "../meta/Type";
+import { Types } from "../meta/Type";
 import { useGetTypeLabel } from "./useGetTypeLabel";
 
 export function useCreateAttribute(appUuid: ID, prefix?: string) {
@@ -21,8 +21,8 @@ export function useCreateAttribute(appUuid: ID, prefix?: string) {
       const attr = {
         uuid: createUuid(),
         name: namePrefix + index,
-        type: Type.String,
-        typeLabel: getTypeName(Type.String),
+        type: Types.String,
+        typeLabel: getTypeName(Types.String),
       };
 
       return attr;

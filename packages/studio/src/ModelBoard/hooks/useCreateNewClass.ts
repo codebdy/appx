@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { Type } from "../meta/Type";
+import { Types } from "../meta/Type";
 import { ClassMeta, StereoType } from "../meta/ClassMeta";
 import { CONST_ID } from "../meta/Meta";
 import { useCreateClassInnerId } from "./useCreateClassInnerId";
@@ -38,9 +38,9 @@ export function useCreateNewClass(appUuid: ID) {
               {
                 uuid: createUuid(),
                 name: CONST_ID,
-                type: Type.ID,
+                type: Types.ID,
                 primary: true,
-                typeLabel: Type.ID,
+                typeLabel: Types.ID,
               },
             ],
         methods: [],

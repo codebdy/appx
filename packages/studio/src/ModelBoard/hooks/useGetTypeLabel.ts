@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { ID } from "../../shared";
-import { Type } from "../meta/Type";
+import { Type, Types } from "../meta/Type";
 import { useGetClass } from "./useGetClass";
 
 export function useGetTypeLabel(appUuid: ID) {
@@ -9,19 +9,19 @@ export function useGetTypeLabel(appUuid: ID) {
   const typeName = useCallback(
     (type: Type, typeUuid?: string): string => {
       if (
-        type === Type.ID ||
-        type === Type.Boolean ||
-        type === Type.Int ||
-        type === Type.Float ||
-        type === Type.String ||
-        type === Type.Date ||
-        type === Type.IDArray ||
-        type === Type.IntArray ||
-        type === Type.FloatArray ||
-        type === Type.StringArray ||
-        type === Type.DateArray ||
-        type === Type.File ||
-        type === Type.JSON
+        type === Types.ID ||
+        type === Types.Boolean ||
+        type === Types.Int ||
+        type === Types.Float ||
+        type === Types.String ||
+        type === Types.Date ||
+        type === Types.IDArray ||
+        type === Types.IntArray ||
+        type === Types.FloatArray ||
+        type === Types.StringArray ||
+        type === Types.DateArray ||
+        type === Types.File ||
+        type === Types.JSON
       ) {
         return type;
       } else {
@@ -31,15 +31,15 @@ export function useGetTypeLabel(appUuid: ID) {
           return "";
         }
         if (
-          type === Type.Enum ||
-          type === Type.ValueObject ||
-          type === Type.Entity
+          type === Types.Enum ||
+          type === Types.ValueObject ||
+          type === Types.Entity
         ) {
           return cls.name;
         } else if (
-          type === Type.EnumArray ||
-          type === Type.ValueObjectArray ||
-          type === Type.EntityArray
+          type === Types.EnumArray ||
+          type === Types.ValueObjectArray ||
+          type === Types.EntityArray
         ) {
           return `${cls.name}[]`;
         }

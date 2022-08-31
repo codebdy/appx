@@ -5,7 +5,7 @@ import {
   MethodImplementType,
   MethodOperateType,
 } from "../meta/MethodMeta";
-import { Type } from "../meta/Type";
+import { Types } from "../meta/Type";
 import { useGetTypeLabel } from "./useGetTypeLabel";
 
 export function useCreateMethod(appUuid: ID) {
@@ -26,8 +26,8 @@ export function useCreateMethod(appUuid: ID) {
         uuid: createUuid(),
         name: namePrefix + index,
         args: [],
-        type: Type.String,
-        typeLabel: getTypeName(Type.String),
+        type: Types.String,
+        typeLabel: getTypeName(Types.String),
         implementType: MethodImplementType.Script,
         operateType: MethodOperateType.Query,
       };

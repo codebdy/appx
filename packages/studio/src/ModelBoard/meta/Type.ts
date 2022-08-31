@@ -1,14 +1,9 @@
+import { BaseDataType } from "../../shared/BaseDataType";
+
 /**
  * 字段类型，目前版本仅支持这些类型，后续可以扩展
  */
-export enum Type {
-  ID = "ID",
-  Int = "Int",
-  Float = "Float",
-  Boolean = "Boolean",
-  String = "String",
-  Date = "Date",
-  Enum = "Enum",
+ export enum ExtendType{
   JSON = "JSON",
   ValueObject = "ValueObject",
   Entity = "Entity",
@@ -23,3 +18,7 @@ export enum Type {
   EntityArray = "EntityArray",
   File = "File"
 }
+
+export type Type = ExtendType | BaseDataType
+
+export const Types = {...ExtendType, ...BaseDataType};
