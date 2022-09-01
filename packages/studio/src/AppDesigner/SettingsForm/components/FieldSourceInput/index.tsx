@@ -33,6 +33,7 @@ export const FieldSourceInput = observer((
         label: attr.label,
         typeUuid: attr.typeUuid,
         typeEntityName: getEntity(attr.typeUuid)?.name,
+        dataType: attr.type as any,
       })
       return;
     }

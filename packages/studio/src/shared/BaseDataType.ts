@@ -1,4 +1,4 @@
-export enum BaseDataType{
+export enum BaseDataType {
   ID = "ID",
   Int = "Int",
   Float = "Float",
@@ -6,4 +6,5 @@ export enum BaseDataType{
   String = "String",
   Date = "Date",
   Enum = "Enum",
+  Range = "Range",
 }

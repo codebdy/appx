@@ -1,3 +1,4 @@
+import { BaseDataType } from "../../shared/BaseDataType";
 
 
 export enum FieldSourceType {
@@ -12,4 +13,5 @@ export interface IFieldSource {
   typeUuid?: string;
   typeEntityName?: string;
   sourceType: FieldSourceType;
+  dataType?: BaseDataType;
 }

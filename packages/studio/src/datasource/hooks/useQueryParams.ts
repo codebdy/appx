@@ -1,56 +1,40 @@
-import { useCallback, useMemo } from "react";
-import { Schema } from '@formily/json-schema';
+import { useMemo } from "react";
+import { Schema as JsonSchema } from '@formily/json-schema';
+import { Schema, useExpressionScope } from "@formily/react";
 import { IDataBindSource } from "../model";
-import { parse, OperationTypeNode, print, Kind } from "graphql";
+import { parse, OperationTypeNode, print, Kind, visit } from "graphql";
 import { message } from "antd";
 import { useTranslation } from "react-i18next";
 import { IFragmentParams } from "./IFragmentParams";
 import { useQueryFragmentFromSchema } from "./useQueryFragmentFromSchema";
 import { IQueryForm } from "../model/IQueryForm";
-import { useConvertQueryFormToArgs } from "./useConvertQueryFormToArgs";
 
 export interface IQueryParams extends IFragmentParams {
   entityName?: string,
   rootFieldName?: string,
 }
+const firstOperationDefinition = (ast) => ast.definitions?.[0];
+const rootField = (ast) => ast.definitions?.[0]?.selectionSet?.selections[0];
+const firstFiledFromOperation = (operationDefinition) => operationDefinition?.selectionSet?.selections?.[0];
 
 //GQL拼接部分还是很不完善
-export function useQueryParams(dataBind: IDataBindSource | undefined, schema: Schema | undefined, queryForm?: IQueryForm): IQueryParams {
+export function useQueryParams(dataBind: IDataBindSource | undefined, schema: JsonSchema | undefined, queryForm?: IQueryForm): IQueryParams {
   const { t } = useTranslation();
-  const firstOperationDefinition = useCallback((ast) => ast.definitions?.[0], []);
-  const rootField = useCallback((ast) => ast.definitions?.[0]?.selectionSet?.selections[0], []);
-  const firstFiledFromOperation = useCallback((operationDefinition) => operationDefinition?.selectionSet?.selections?.[0], []);
-  //const firstFieldValueNameFromOperation = (operationDefinition) => operationDefinition?.selectionSet?.selections?.[0]?.name?.value;
   const fragmentFromSchema = useQueryFragmentFromSchema(schema);
-  const convertQueryForm = useConvertQueryFormToArgs();
-
-  console.log("呵呵呵", convertQueryForm(queryForm));
+  const expScope = useExpressionScope()
 
   const params = useMemo(() => {
     const pms: IQueryParams = {}
     if (dataBind?.expression) {
       try {
         const ast = parse(dataBind?.expression);
+
         if (!dataBind?.entityName) {
           throw new Error("Can not finde entityName in dataBind");
         }
 
         const operation = firstOperationDefinition(ast).operation;
         const firstField = firstFiledFromOperation(firstOperationDefinition(ast));
-        console.log("哈哈哈", firstField, firstField?.name?.value, firstField.arguments)
-        const queryFormArgs = convertQueryForm(queryForm);
-        const whereArg = firstField.arguments?.find(arg=>arg.name?.value === "where");
-
-        // if(whereArg){
-        //   const newWhere =  {
-        //     kind: Kind.ARGUMENT,
-        //     name: {
-        //       Kind:Kind.NAME,
-        //       value: "where",
-        //     },
-        //     value: ValueNode;
-        //   }
-        // }
 
         if (operation !== OperationTypeNode.QUERY) {
           message.error("Can not find query operation");
@@ -69,7 +53,38 @@ export function useQueryParams(dataBind: IDataBindSource | undefined, schema: Sc
 
         pms.variables = { ...fragmentFromSchema.variables, ...dataBind?.variables || {} }
 
-        const gql = print(ast);
+        var compiledAST = visit(ast, {
+          enter(node, key, parent, path, ancestors) {
+            // @return
+            //   undefined: no action
+            //   false: skip visiting this node
+            //   visitor.BREAK: stop visiting altogether
+            //   null: delete this node
+            //   any value: replace this node with the returned value
+          },
+          leave(node, key, parent, path, ancestors) {
+            // @return
+            //   undefined: no action
+            //   false: no action
+            //   visitor.BREAK: stop visiting altogether
+            //   null: delete this node
+            //   any value: replace this node with the returned value
+            if (node.kind === Kind.STRING) {
+              const newValue = Schema.shallowCompile(node.value, expScope);
+              if (newValue === undefined) {
+                return {
+                  kind: Kind.NULL
+                }
+              } else {
+                return {
+                  ...node,
+                  value: newValue
+                }
+              }
+            }
+          }
+        });
+        const gql = print(compiledAST);
         pms.gql = gql;
       } catch (err) {
         console.error(err);
@@ -78,7 +93,7 @@ export function useQueryParams(dataBind: IDataBindSource | undefined, schema: Sc
     }
 
     return pms;
-  }, [dataBind?.entityName, dataBind?.expression, dataBind?.variables, firstFiledFromOperation, firstOperationDefinition, fragmentFromSchema.gql, fragmentFromSchema.variables, rootField, t]);
-  //console.log("Query GQL:", params?.gql, params?.variables);
+  }, [dataBind?.entityName, dataBind?.expression, dataBind?.variables, expScope, fragmentFromSchema.gql, fragmentFromSchema.variables, t]);
+  console.log("Query GQL:", params?.gql, params?.variables);
   return params
 }

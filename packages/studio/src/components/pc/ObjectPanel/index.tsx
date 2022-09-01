@@ -11,6 +11,7 @@ import { useDataQuery } from '../../../datasource/hooks/useDataQuery';
 import { useShowError } from '../../../hooks/useShowError';
 import { Spin } from "antd";
 import { Field, isField } from '@formily/core'
+import { useExpressionScope } from '@formily/react'
 import { InstanceContext } from "../../../shared/contexts/instance";
 
 export const ObjectPanel = observer((props: {
@@ -21,7 +22,8 @@ export const ObjectPanel = observer((props: {
   const schema = useFieldSchema();
   const queryParams = useQueryParams(dataBind, schema);
   const field = useField();
-  const { data, loading, error } = useDataQuery(queryParams?.variables?.id ? queryParams : undefined);
+  const expScope = useExpressionScope()
+  const { data, loading, error } = useDataQuery(expScope?.$params?.dataId ? queryParams : undefined);
   useShowError(error);
 
   if (data && !isObj(data)) {
