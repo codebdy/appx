@@ -2,12 +2,13 @@ import { useMemo } from "react";
 import { Schema as JsonSchema } from '@formily/json-schema';
 import { Schema, useExpressionScope } from "@formily/react";
 import { IDataBindSource } from "../model";
-import { parse, OperationTypeNode, print, Kind, visit } from "graphql";
+import { parse, OperationTypeNode, print, Kind, visit, ObjectValueNode } from "graphql";
 import { message } from "antd";
 import { useTranslation } from "react-i18next";
 import { IFragmentParams } from "./IFragmentParams";
 import { useQueryFragmentFromSchema } from "./useQueryFragmentFromSchema";
 import { IQueryForm } from "../model/IQueryForm";
+import { useConvertQueryFormToGqlNodes } from "./useConvertQueryFormToGqlNodes";
 
 export interface IQueryParams extends IFragmentParams {
   entityName?: string,
@@ -22,13 +23,14 @@ export function useQueryParams(dataBind: IDataBindSource | undefined, schema: Js
   const { t } = useTranslation();
   const fragmentFromSchema = useQueryFragmentFromSchema(schema);
   const expScope = useExpressionScope()
+  const convertQueryForm = useConvertQueryFormToGqlNodes();
 
   const params = useMemo(() => {
     const pms: IQueryParams = {}
     if (dataBind?.expression) {
       try {
         const ast = parse(dataBind?.expression);
-
+        const nodesFromQueryForm = convertQueryForm(queryForm);
         if (!dataBind?.entityName) {
           throw new Error("Can not finde entityName in dataBind");
         }
@@ -55,6 +57,28 @@ export function useQueryParams(dataBind: IDataBindSource | undefined, schema: Js
 
         var compiledAST = visit(ast, {
           enter(node, key, parent, path, ancestors) {
+            if ((ancestors?.[path.length - 3] as any)?.kind === Kind.OPERATION_DEFINITION &&
+              node.kind === Kind.FIELD) {
+              //如果根Field 没有where，又有查询表单内容，则添加一个where 节点
+              if (nodesFromQueryForm && nodesFromQueryForm.length > 0 &&
+                !node.arguments?.find(argument => argument.name?.value === "where")
+              ) {
+                return {
+                  ...node,
+                  arguments: [...node.arguments, {
+                    kind: Kind.ARGUMENT,
+                    name: {
+                      kind: Kind.NAME,
+                      value: "where"
+                    },
+                    value: {
+                      kind: Kind.OBJECT,
+                      fields: []
+                    }
+                  }]
+                }
+              }
+            }
             // @return
             //   undefined: no action
             //   false: skip visiting this node
@@ -63,13 +87,27 @@ export function useQueryParams(dataBind: IDataBindSource | undefined, schema: Js
             //   any value: replace this node with the returned value
           },
           leave(node, key, parent, path, ancestors) {
+            if ((ancestors?.[path.length - 5] as any)?.kind === Kind.OPERATION_DEFINITION &&
+              node.kind === Kind.ARGUMENT &&
+              node.name?.value === "where" &&
+              nodesFromQueryForm.length > 0
+            ) {
+              console.log("哈哈哈Where node", node)
+
+              const oldValue = node.value as ObjectValueNode;
+              const newFields = [...oldValue.fields, ...nodesFromQueryForm]
+              return {
+                ...node,
+                fields: newFields
+              }
+            }
             // @return
             //   undefined: no action
             //   false: no action
             //   visitor.BREAK: stop visiting altogether
             //   null: delete this node
             //   any value: replace this node with the returned value
-            console.log("哈哈哈", node);
+            //console.log("哈哈哈", node);
             if (node.kind === Kind.STRING) {
               const newValue = Schema.shallowCompile(node.value, expScope);
               if (newValue === undefined) {
@@ -94,7 +132,7 @@ export function useQueryParams(dataBind: IDataBindSource | undefined, schema: Js
     }
 
     return pms;
-  }, [dataBind?.entityName, dataBind?.expression, dataBind?.variables, expScope, fragmentFromSchema.gql, fragmentFromSchema.variables, t]);
+  }, [convertQueryForm, dataBind?.entityName, dataBind?.expression, dataBind?.variables, expScope, fragmentFromSchema.gql, fragmentFromSchema.variables, queryForm, t]);
   //console.log("Query GQL:", params?.gql, params?.variables);
   return params
 }
