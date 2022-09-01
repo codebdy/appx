@@ -20,3 +20,4 @@ export * from "./Card";
 export * from "./CardDesigner";
 export * from "./Select";
 export * from "./SelectDesigner";
+export * from "./SearchInputDesigner";

@@ -20,7 +20,8 @@ import {
   CardDesigner,
   Card,
   SelectDesigner,
-  Select
+  Select,
+  SearchInputDesigner
 } from "../../../components/pc";
 
 export const allMaterials: MaterialModule[] = [
@@ -36,6 +37,11 @@ export const allMaterials: MaterialModule[] = [
           {
             name: "Input",
             designer: InputDesigner,
+            component: Input,
+          },
+          {
+            name:"SearchInput",
+            designer: SearchInputDesigner,
             component: Input,
           },
           {

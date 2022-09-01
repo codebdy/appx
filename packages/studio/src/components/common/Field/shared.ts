@@ -5,7 +5,7 @@ import {
 } from '@designable/formily-setters'
 import { AllSchemas } from '@designable/formily-antd/lib/schemas'
 
-export enum FieldSoureType {
+export enum FieldsType {
   Multiple = "Multiple",
   Single = "Single"
 }
@@ -14,7 +14,7 @@ export interface IFieldOptions {
   decorator?: ISchema,
   actions?: string[],
   hasDataBindSource?: boolean,
-  fieldSourceType?: FieldSoureType,
+  fieldSourceType?: FieldsType,
   hasPropTitle?: boolean,
   noDisplayTab?: boolean,
   noStyleTab?: boolean,
@@ -93,7 +93,7 @@ export const createDisplaySchemaTab = (options?: IFieldOptions) => {
         'x-decorator': 'FormItem',
         'x-component': 'FieldSourceInput',
         'x-component-props': {
-          mode: fieldSourceType === FieldSoureType.Multiple ? "multiple" : undefined,
+          mode: fieldSourceType === FieldsType.Multiple ? "multiple" : undefined,
         }
       },
       "x-field-params": {
@@ -131,7 +131,7 @@ export const createDisplaySchemaTab = (options?: IFieldOptions) => {
     :
     {}
 
-  const dataFieids = fieldSourceType === FieldSoureType.Single ?
+  const dataFieids = fieldSourceType === FieldsType.Single ?
     {
       default: {
         'x-decorator': 'FormItem',

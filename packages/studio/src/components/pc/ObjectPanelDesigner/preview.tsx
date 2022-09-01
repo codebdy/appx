@@ -3,7 +3,7 @@ import { createBehavior, createResource } from '@designable/core'
 import { DnFC } from '@designable/react'
 import { Container } from '@designable/formily-antd/lib/common/Container'
 import { ObjectLocale } from './locales'
-import { createFieldSchema } from "../../common/Field/shared"
+import { createFieldSchema, FieldsType } from "../../common/Field/shared"
 
 export const ObjectPanelDesigner: DnFC<React.ComponentProps<typeof Container>> =
   Container
@@ -18,7 +18,7 @@ ObjectPanelDesigner.Behavior = createBehavior({
       {
         hasDataBindSource: true,
         noStyleTab: true,
-        fieldSourceType: true,
+        fieldSourceType: FieldsType.Single,
       }
     ),
   },

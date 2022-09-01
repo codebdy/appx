@@ -2,7 +2,7 @@ import React from 'react'
 import { createBehavior, createResource } from '@designable/core'
 import { DnFC } from '@designable/react'
 import { SelectSchema } from './schema'
-import { createFieldSchema } from "../../common/Field/shared"
+import { createFieldSchema, FieldsType } from "../../common/Field/shared"
 import { SelectLocales } from './locales'
 import { Select } from '../Select'
 import { observer } from '@formily/reactive-react'
@@ -21,7 +21,7 @@ SelectDesigner.Behavior = createBehavior({
   extends: ['Field'],
   selector: (node) => node.props['x-component'] === 'Select',
   designerProps: {
-    propsSchema: createFieldSchema(SelectSchema, { fieldSourceType: true, hasDataBindSource: true }),
+    propsSchema: createFieldSchema(SelectSchema, { fieldSourceType: FieldsType.Single, hasDataBindSource: true }),
   },
   designerLocales: SelectLocales,
 })

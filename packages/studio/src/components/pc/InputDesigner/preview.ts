@@ -4,7 +4,7 @@ import { createBehavior, createResource } from '@designable/core'
 import { DnFC } from '@designable/react'
 import { InputSchema } from './schema'
 import { InputLocales, TextAreaLocales } from './locales'
-import { createFieldSchema } from "../../common/Field";
+import { createFieldSchema, FieldsType } from "../../common/Field";
 
 export const InputDesigner: DnFC<React.ComponentProps<typeof Input>> =
   Input
@@ -15,7 +15,7 @@ InputDesigner.Behavior = createBehavior(
     extends: ['Field'],
     selector: (node) => node.props['x-component'] === 'Input',
     designerProps: {
-      propsSchema: createFieldSchema(InputSchema, { fieldSourceType: true }),
+      propsSchema: createFieldSchema(InputSchema, { fieldSourceType: FieldsType.Single }),
     },
     designerLocales: InputLocales,
   },
@@ -24,7 +24,7 @@ InputDesigner.Behavior = createBehavior(
     extends: ['Field'],
     selector: (node) => node.props['x-component'] === 'Input.TextArea',
     designerProps: {
-      propsSchema: createFieldSchema(InputSchema.TextArea, { fieldSourceType: true }),
+      propsSchema: createFieldSchema(InputSchema.TextArea, { fieldSourceType: FieldsType.Single }),
     },
     designerLocales: TextAreaLocales,
   }

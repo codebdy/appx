@@ -2,26 +2,27 @@ import React from 'react'
 import { Input } from '@formily/antd'
 import { createBehavior, createResource } from '@designable/core'
 import { DnFC } from '@designable/react'
-import { InputSchema } from '../InputDesigner/schema'
-import { InputLocales } from '../InputDesigner/locales'
-import { createFieldSchema, FieldSoureType } from "../../common/Field";
+import { createFieldSchema, FieldsType } from "../../common/Field";
+import { SearchInputLocales } from './locales';
+import { SearchInputSchema } from './schema';
+import { SearchInput } from '../SearchInput';
 
-export const InputDesigner: DnFC<React.ComponentProps<typeof Input>> =
-  Input
+export const SearchInputDesigner: DnFC<React.ComponentProps<typeof Input>> =
+  SearchInput
 
-InputDesigner.Behavior = createBehavior(
+SearchInputDesigner.Behavior = createBehavior(
   {
-    name: 'Input',
+    name: 'SearchInput',
     extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'Input',
+    selector: (node) => node.props['x-component'] === 'SearchInput',
     designerProps: {
-      propsSchema: createFieldSchema(InputSchema, { fieldSourceType: FieldSoureType.Multiple }),
+      propsSchema: createFieldSchema(SearchInputSchema, { fieldSourceType: FieldsType.Multiple }),
     },
-    designerLocales: InputLocales,
+    designerLocales: SearchInputLocales,
   },
 )
 
-InputDesigner.Resource = createResource(
+SearchInputDesigner.Resource = createResource(
   {
     icon: 'InputSource',
     elements: [
@@ -29,7 +30,7 @@ InputDesigner.Resource = createResource(
         componentName: 'Field',
         props: {
           type: 'string',
-          title: 'Input',
+          title: 'SearchInput',
           'x-decorator': 'FormItem',
           'x-component': 'SearchInput',
         },

@@ -7,7 +7,7 @@ import { DnFC, TreeNodeWidget } from '@designable/react'
 import { QueryFormDesigner } from "./QueryFormDesigner"
 import { IProTableProps } from "../ProTable"
 import { createBehavior, createResource } from '@designable/core'
-import { createFieldSchema } from "../../common/Field/shared"
+import { createFieldSchema, FieldsType } from "../../common/Field/shared"
 import { ProTableSchema } from "./schema"
 import { ProTableLocales } from "./locales"
 import clx from "classnames"
@@ -149,7 +149,7 @@ ProTableDesigner.Behavior = createBehavior(
         );
       }
       ,
-      propsSchema: createFieldSchema(DataTableSchema.Column, { fieldSourceType: true, hasPropTitle: true }),
+      propsSchema: createFieldSchema(DataTableSchema.Column, { fieldSourceType: FieldsType.Single, hasPropTitle: true }),
     },
     designerLocales: DataTableColumnLocales,
   },
@@ -166,7 +166,7 @@ ProTableDesigner.Behavior = createBehavior(
           node?.props?.['x-component'] === 'ProTable.ColumnGroup'
         );
       },
-      propsSchema: createFieldSchema(DataTableSchema.ColumnGroup, { fieldSourceType: true, hasPropTitle: true }),
+      propsSchema: createFieldSchema(DataTableSchema.ColumnGroup, { fieldSourceType: FieldsType.Single, hasPropTitle: true }),
     },
     designerLocales: DataTableColumnGroupLocales,
   },
