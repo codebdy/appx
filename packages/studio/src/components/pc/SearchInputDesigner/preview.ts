@@ -33,6 +33,9 @@ SearchInputDesigner.Resource = createResource(
           title: 'SearchInput',
           'x-decorator': 'FormItem',
           'x-component': 'SearchInput',
+          'x-compoent-props': {
+            isFuzzy: true,
+          }
         },
       },
     ],

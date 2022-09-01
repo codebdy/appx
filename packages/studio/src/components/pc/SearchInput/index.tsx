@@ -2,8 +2,13 @@ import { observer } from "@formily/reactive-react"
 import { Input } from "antd"
 import React from "react"
 
-export const SearchInput = observer((props)=>{
+export interface ISearchInput {
+  isFuzzy?: boolean,
+}
+
+export const SearchInput = observer((props: ISearchInput) => {
+  const { isFuzzy, ...other } = props;
   return (
-    <Input {...props}/>
+    <Input {...other} />
   )
 })
