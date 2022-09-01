@@ -33,6 +33,7 @@ export function useDataQuery(params?: IQueryParams): QueryResponse {
     if (!params?.gql || !endpoint) {
       return
     }
+    console.log("doLoad:", params?.gql)
     doLoad(params?.gql, params?.variables)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [endpoint, params?.gql, params?.variables]);
