@@ -132,29 +132,6 @@ export const DataSourceInput = memo((
                 />
               </Form.Item>
             </div>
-            <div className="gql-variables-shell">
-              <Form.Item
-                label={<TextWidget token="SettingComponents.DataSourceInput.Variables" />}
-                name="variables"
-              >
-                <MonacoInput
-                  className="gql-input-area"
-                  options={{
-                    readOnly: false,
-                    glyphMargin: false,
-                    folding: false,
-                    lineNumbers: "off",
-                    lineDecorationsWidth: 0,
-                    lineNumbersMinChars: 0,
-                    minimap: {
-                      enabled: false,
-                    }
-                  }}
-                  //value={transformToMarkupSchemaCode(props.tree)}
-                  language="json"
-                />
-              </Form.Item>
-            </div>
           </div>
 
         </Form>

@@ -69,6 +69,7 @@ export function useQueryParams(dataBind: IDataBindSource | undefined, schema: Js
             //   visitor.BREAK: stop visiting altogether
             //   null: delete this node
             //   any value: replace this node with the returned value
+            console.log("哈哈哈", node);
             if (node.kind === Kind.STRING) {
               const newValue = Schema.shallowCompile(node.value, expScope);
               if (newValue === undefined) {
@@ -94,6 +95,6 @@ export function useQueryParams(dataBind: IDataBindSource | undefined, schema: Js
 
     return pms;
   }, [dataBind?.entityName, dataBind?.expression, dataBind?.variables, expScope, fragmentFromSchema.gql, fragmentFromSchema.variables, t]);
-  console.log("Query GQL:", params?.gql, params?.variables);
+  //console.log("Query GQL:", params?.gql, params?.variables);
   return params
 }
