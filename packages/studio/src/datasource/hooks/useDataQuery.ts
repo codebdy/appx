@@ -17,7 +17,6 @@ export type QueryResponse = {
 
 export function useDataQuery(params?: IQueryParams): QueryResponse {
   const [revalidating, setRevalidating] = useState<boolean>();
-  const loadedRef = useRef(false);
   const endpoint = useEndpoint();
   const refreshRef = useRef<() => void>();
 
@@ -31,12 +30,12 @@ export function useDataQuery(params?: IQueryParams): QueryResponse {
   })
 
   const load = useCallback(() => {
-    if (!params?.gql || !endpoint || loadedRef.current) {
+    if (!params?.gql || !endpoint) {
       return
     }
-    loadedRef.current = true;
     doLoad(params?.gql, params?.variables)
-  }, [doLoad, endpoint, params?.gql, params?.variables]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [endpoint, params?.gql, params?.variables]);
 
   const refresh = useCallback(() => {
     setRevalidating(true)

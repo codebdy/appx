@@ -5,8 +5,8 @@ import { IFragmentParams } from './IFragmentParams';
 
 export interface IGqlField {
   name: string;
-  variables?: any;
   fields: IGqlField[];
+  gql?: string;
 }
 
 export function useQueryFragmentFromSchema(schema?: Schema): IFragmentParams {
@@ -16,7 +16,6 @@ export function useQueryFragmentFromSchema(schema?: Schema): IFragmentParams {
       const subFields = schema?.["x-field-source"]?.sourceType === FieldSourceType.Association ? [{ name: "id", fields: [] }] : [];
       fields.push({
         name: key,
-        variables: schema?.["x-field-source"].variables,
         fields: subFields,
       })
       currentFields = subFields;
@@ -50,11 +49,9 @@ export function useQueryFragmentFromSchema(schema?: Schema): IFragmentParams {
     }
   }, [])
 
-  const makeOneField = useCallback((field: IGqlField, variables: any) => {
-    const args = field.variables && `(${Object.keys(field.variables).map(key => `${key}:$${key}`).join(",")})`;
-    Object.assign(variables, field.variables);
-    const subFieldGql = field.fields.map(subField => makeOneField(subField, variables)).join("\n")
-    const gql = field.name + (args || "") + (subFieldGql ? `{\n${subFieldGql}\n}` : "");
+  const makeOneField = useCallback((field: IGqlField) => {
+    const subFieldGql = field.fields.map(subField => makeOneField(subField)).join("\n")
+    const gql = field.name + (subFieldGql ? `{\n${subFieldGql}\n}` : "");
     return gql;
   }, []);
 

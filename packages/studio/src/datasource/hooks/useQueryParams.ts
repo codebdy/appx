@@ -53,7 +53,7 @@ export function useQueryParams(dataBind: IDataBindSource | undefined, schema: Js
           ]
         }
 
-        pms.variables = { ...fragmentFromSchema.variables, ...dataBind?.variables || {} }
+        pms.variables = dataBind?.variables;
 
         var compiledAST = visit(ast, {
           // @return
@@ -134,7 +134,7 @@ export function useQueryParams(dataBind: IDataBindSource | undefined, schema: Js
     }
 
     return pms;
-  }, [convertQueryForm, dataBind?.entityName, dataBind?.expression, dataBind?.variables, expScope, fragmentFromSchema.gql, fragmentFromSchema.variables, queryForm, t]);
+  }, [convertQueryForm, dataBind?.entityName, dataBind?.expression, dataBind?.variables, expScope, fragmentFromSchema.gql, queryForm, t]);
   console.log("Query GQL:", params?.gql, params?.variables);
   return params
 }

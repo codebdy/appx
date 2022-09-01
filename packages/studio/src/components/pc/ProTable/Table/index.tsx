@@ -174,7 +174,7 @@ export const Table = observer((
   const field = useField();
 
   useEffect(() => {
-    (field as Field).setInitialValue(data);
+    (field as Field).setValue(data);
   }, [data, field])
 
   return (
