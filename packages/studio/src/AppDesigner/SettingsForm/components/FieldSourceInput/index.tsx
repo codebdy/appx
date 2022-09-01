@@ -11,11 +11,12 @@ const { Option, OptGroup } = Select;
 
 export const FieldSourceInput = observer((
   props: {
+    mode?: 'multiple' | 'tags',
     value?: IFieldSource,
     onChange?: (value?: IFieldSource) => void
   }
 ) => {
-  const { value, onChange } = props;
+  const { value, onChange, ...other } = props;
   const currentEntity = useCurrentEntity();
   const getEntity = useGetEntity();
   const p = useParseLangMessage();
@@ -65,7 +66,7 @@ export const FieldSourceInput = observer((
   }, [currentEntity?.associations, currentEntity?.attributes, currentEntity?.methods, getEntity, onChange])
 
   return (
-    <Select allowClear value={value?.name} onChange={handleChange}>
+    <Select allowClear value={value?.name} onChange={handleChange} {...other}>
       {
         !!currentEntity?.attributes?.length &&
         <OptGroup label={<TextWidget token="SettingComponents.FieldNameSelect.Attributes" />}>

@@ -5,11 +5,16 @@ import {
 } from '@designable/formily-setters'
 import { AllSchemas } from '@designable/formily-antd/lib/schemas'
 
+export enum FieldSoureType {
+  Multiple = "Multiple",
+  Single = "Single"
+}
+
 export interface IFieldOptions {
   decorator?: ISchema,
   actions?: string[],
   hasDataBindSource?: boolean,
-  isDataField?: boolean,
+  fieldSourceType?: FieldSoureType,
   hasPropTitle?: boolean,
   noDisplayTab?: boolean,
   noStyleTab?: boolean,
@@ -61,7 +66,7 @@ export const createStyleSchemaTab = () => {
 }
 
 export const createDisplaySchemaTab = (options?: IFieldOptions) => {
-  const { hasDataBindSource, isDataField, hasPropTitle } = options || {}
+  const { hasDataBindSource, fieldSourceType, hasPropTitle } = options || {}
   const dataBind =
     hasDataBindSource
       ?
@@ -80,13 +85,16 @@ export const createDisplaySchemaTab = (options?: IFieldOptions) => {
       :
       {}
 
-  const fieldSource = isDataField
+  const fieldSource = fieldSourceType
     ?
     {
       "x-field-source": {
         type: 'string',
         'x-decorator': 'FormItem',
         'x-component': 'FieldSourceInput',
+        'x-component-props': {
+          mode: fieldSourceType === FieldSoureType.Multiple ? "multiple" : undefined,
+        }
       },
       "x-field-params": {
         type: 'string',
@@ -104,7 +112,7 @@ export const createDisplaySchemaTab = (options?: IFieldOptions) => {
     :
     {}
 
-  const dataGroup = (hasDataBindSource || isDataField)
+  const dataGroup = (hasDataBindSource || fieldSourceType)
     ?
     ({
       "data-group": {
@@ -123,7 +131,7 @@ export const createDisplaySchemaTab = (options?: IFieldOptions) => {
     :
     {}
 
-  const dataFieids = isDataField ?
+  const dataFieids = fieldSourceType === FieldSoureType.Single ?
     {
       default: {
         'x-decorator': 'FormItem',
@@ -351,7 +359,7 @@ export const createFieldSchema = (
         type: 'void',
         'x-component': 'SettingsTab',
         properties: {
-          ...component && createComponentSchemaTab(component, options?.decorator || (options?.isDataField && AllSchemas.FormItem)),
+          ...component && createComponentSchemaTab(component, options?.decorator || (options?.fieldSourceType && AllSchemas.FormItem)),
           ...(!options?.noStyleTab ? createStyleSchemaTab() : {}),
           ...(!options?.noDisplayTab ? createDisplaySchemaTab(options) : {}),
           ...(options?.actions ? createActionSchemaTab(options?.actions) : {}),

@@ -15,7 +15,7 @@ InputDesigner.Behavior = createBehavior(
     extends: ['Field'],
     selector: (node) => node.props['x-component'] === 'Input',
     designerProps: {
-      propsSchema: createFieldSchema(InputSchema, { isDataField: true }),
+      propsSchema: createFieldSchema(InputSchema, { fieldSourceType: true }),
     },
     designerLocales: InputLocales,
   },
@@ -24,7 +24,7 @@ InputDesigner.Behavior = createBehavior(
     extends: ['Field'],
     selector: (node) => node.props['x-component'] === 'Input.TextArea',
     designerProps: {
-      propsSchema: createFieldSchema(InputSchema.TextArea, { isDataField: true }),
+      propsSchema: createFieldSchema(InputSchema.TextArea, { fieldSourceType: true }),
     },
     designerLocales: TextAreaLocales,
   }

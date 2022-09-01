@@ -149,7 +149,7 @@ ProTableDesigner.Behavior = createBehavior(
         );
       }
       ,
-      propsSchema: createFieldSchema(DataTableSchema.Column, { isDataField: true, hasPropTitle: true }),
+      propsSchema: createFieldSchema(DataTableSchema.Column, { fieldSourceType: true, hasPropTitle: true }),
     },
     designerLocales: DataTableColumnLocales,
   },
@@ -166,7 +166,7 @@ ProTableDesigner.Behavior = createBehavior(
           node?.props?.['x-component'] === 'ProTable.ColumnGroup'
         );
       },
-      propsSchema: createFieldSchema(DataTableSchema.ColumnGroup, { isDataField: true, hasPropTitle: true }),
+      propsSchema: createFieldSchema(DataTableSchema.ColumnGroup, { fieldSourceType: true, hasPropTitle: true }),
     },
     designerLocales: DataTableColumnGroupLocales,
   },

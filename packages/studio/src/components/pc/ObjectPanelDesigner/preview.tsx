@@ -18,7 +18,7 @@ ObjectPanelDesigner.Behavior = createBehavior({
       {
         hasDataBindSource: true,
         noStyleTab: true,
-        isDataField: true,
+        fieldSourceType: true,
       }
     ),
   },
