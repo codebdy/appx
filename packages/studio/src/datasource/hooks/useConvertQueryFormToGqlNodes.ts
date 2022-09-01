@@ -96,12 +96,11 @@ const createObjectFieldNode = (name: string, operator: string, value: any): Obje
   }
 }
 export function useConvertQueryFormToGqlNodes() {
-  const convert = useCallback((queryForm?: IQueryForm): ListValueNode | ObjectFieldNode | undefined => {
+  const convert = useCallback((queryForm?: IQueryForm): ObjectFieldNode[]=> {
     if (!queryForm) {
-      return undefined;
+      return [];
     }
-
-    const args: ObjectValueNode[] = [];
+    const args: ObjectFieldNode[] = [];
     for (const key of Object.keys(queryForm)) {
       const value = queryForm[key];
       if (isObj(value)) {
@@ -110,67 +109,23 @@ export function useConvertQueryFormToGqlNodes() {
           const rangeValue = value as IRangeValue
           if (rangeValue?.start) {
             const gtOp = rangeValue.startWithEqual ? "_gte" : "_gt";
-            args.push(
-              {
-                [key]: {
-                  [gtOp]: value
-                }
-              }
-            )
+            args.push(createObjectFieldNode(key, gtOp, value));
           }
           if (rangeValue?.end) {
             const ltOp = rangeValue.startWithEqual ? "_lte" : "_lt";
-            args.push(
-              {
-                [key]: {
-                  [ltOp]: value
-                }
-              }
-            )
+            args.push(createObjectFieldNode(key, ltOp, value));
           }
         } else if (anyValue.isLike) {
-          args.push(
-            {
-              [key]: {
-                _like: `%${anyValue?.keyword}%`
-              }
-            }
-          )
+          args.push(createObjectFieldNode(key, "_like", value));
         } else {
-          args.push(
-            {
-              [key]: {
-                _eq: value
-              }
-            }
-          )
+          args.push(createObjectFieldNode(key, "_eq", value));
         }
       } else if (isArr(value)) {
-        args.push(
-          {
-            [key]: {
-              id: {
-                _in: value?.map(v => v?.id)
-              }
-            }
-          }
-        )
+        args.push(createObjectFieldNode(key, "_in", value?.map(v => v?.id)));
       } else if (isStr(value) && value.trim()) {
-        args.push(
-          {
-            [key]: {
-              _eq: value.trim()
-            }
-          }
-        )
+        args.push(createObjectFieldNode(key, "_eq", value.trim()));
       } else if (value) {
-        args.push(
-          {
-            [key]: {
-              _eq: value
-            }
-          }
-        )
+        args.push(createObjectFieldNode(key, "_eq", value));
       }
     }
     return args;
