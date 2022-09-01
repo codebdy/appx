@@ -1,12 +1,14 @@
 import { IDataBindSource } from "../../../../datasource";
 import { createContext, useContext } from "react";
 import { IQueryForm } from "../../../../datasource/model/IQueryForm";
+import { IOrderBy } from "../../../../datasource/model/IOrderBy";
 
 export interface IProTableParams {
   dataBind?: IDataBindSource,
   selectable?: boolean,
   selectedRowKeys?: React.Key[],
   queryForm?: IQueryForm,
+  orderBys?: IOrderBy[],
   onSelectedChange?: (keys?: React.Key[]) => void,
   onSetQueryForm?: (form?: IQueryForm) => void,
 }
