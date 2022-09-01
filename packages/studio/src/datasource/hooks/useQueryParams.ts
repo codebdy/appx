@@ -24,7 +24,6 @@ export function useQueryParams(dataBind: IDataBindSource | undefined, schema: Js
   const fragmentFromSchema = useQueryFragmentFromSchema(schema);
   const expScope = useExpressionScope()
   const convertQueryForm = useConvertQueryFormToGqlNodes();
-
   const params = useMemo(() => {
     const pms: IQueryParams = {}
     if (dataBind?.expression) {

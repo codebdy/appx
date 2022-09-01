@@ -7,6 +7,7 @@ import { useParentForm } from "@formily/react"
 import { useProTableParams } from "../context";
 import { isObjectField } from "@formily/core";
 import { observer } from "@formily/reactive-react";
+import { toJS } from "@formily/reactive";
 
 export const ButtonsGridColum = observer((
   props: {
@@ -28,7 +29,7 @@ export const ButtonsGridColum = observer((
 
   const handleSubmit = useCallback(() => {
     objectField?.validate();
-    onSetQueryForm && objectField && onSetQueryForm(objectField?.value)
+    onSetQueryForm && objectField && onSetQueryForm(toJS(objectField?.value))
   }, [objectField, onSetQueryForm])
 
   const acions = useMemo(() => {
