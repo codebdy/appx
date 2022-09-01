@@ -56,6 +56,12 @@ export function useQueryParams(dataBind: IDataBindSource | undefined, schema: Js
         pms.variables = { ...fragmentFromSchema.variables, ...dataBind?.variables || {} }
 
         var compiledAST = visit(ast, {
+          // @return
+          //   undefined: no action
+          //   false: skip visiting this node
+          //   visitor.BREAK: stop visiting altogether
+          //   null: delete this node
+          //   any value: replace this node with the returned value
           enter(node, key, parent, path, ancestors) {
             if ((ancestors?.[path.length - 3] as any)?.kind === Kind.OPERATION_DEFINITION &&
               node.kind === Kind.FIELD) {
@@ -79,35 +85,30 @@ export function useQueryParams(dataBind: IDataBindSource | undefined, schema: Js
                 }
               }
             }
-            // @return
-            //   undefined: no action
-            //   false: skip visiting this node
-            //   visitor.BREAK: stop visiting altogether
-            //   null: delete this node
-            //   any value: replace this node with the returned value
+
           },
+          // @return
+          //   undefined: no action
+          //   false: no action
+          //   visitor.BREAK: stop visiting altogether
+          //   null: delete this node
+          //   any value: replace this node with the returned value
           leave(node, key, parent, path, ancestors) {
             if ((ancestors?.[path.length - 5] as any)?.kind === Kind.OPERATION_DEFINITION &&
               node.kind === Kind.ARGUMENT &&
               node.name?.value === "where" &&
               nodesFromQueryForm.length > 0
             ) {
-              console.log("哈哈哈Where node", node)
-
               const oldValue = node.value as ObjectValueNode;
               const newFields = [...oldValue.fields, ...nodesFromQueryForm]
               return {
                 ...node,
-                fields: newFields
+                value: {
+                  ...node.value,
+                  fields: newFields
+                }
               }
             }
-            // @return
-            //   undefined: no action
-            //   false: no action
-            //   visitor.BREAK: stop visiting altogether
-            //   null: delete this node
-            //   any value: replace this node with the returned value
-            //console.log("哈哈哈", node);
             if (node.kind === Kind.STRING) {
               const newValue = Schema.shallowCompile(node.value, expScope);
               if (newValue === undefined) {
@@ -124,6 +125,7 @@ export function useQueryParams(dataBind: IDataBindSource | undefined, schema: Js
           }
         });
         const gql = print(compiledAST);
+        //console.log("compiledAST", compiledAST, gql)
         pms.gql = gql;
       } catch (err) {
         console.error(err);
@@ -133,6 +135,6 @@ export function useQueryParams(dataBind: IDataBindSource | undefined, schema: Js
 
     return pms;
   }, [convertQueryForm, dataBind?.entityName, dataBind?.expression, dataBind?.variables, expScope, fragmentFromSchema.gql, fragmentFromSchema.variables, queryForm, t]);
-  //console.log("Query GQL:", params?.gql, params?.variables);
+  console.log("Query GQL:", params?.gql, params?.variables);
   return params
 }

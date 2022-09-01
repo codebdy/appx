@@ -12,28 +12,29 @@ export const createObjectValueNode = (value: any): IntValueNode |
   ObjectValueNode => {
   if (value === undefined) {
     return {
-      kind: Kind.NULL
+      kind: Kind.NULL,
     };
   }
 
   if (isStr(value)) {
     return {
       kind: Kind.STRING,
-      value
+      value,
+      block: false,
     };
   }
 
   if (isArr(value)) {
     return {
       kind: Kind.LIST,
-      values: value.map(subValue => createObjectValueNode(subValue))
+      values: value.map(subValue => createObjectValueNode(subValue)),
     };
   }
 
   if (isBool(value)) {
     return {
       kind: Kind.BOOLEAN,
-      value
+      value,
     };
   }
 
