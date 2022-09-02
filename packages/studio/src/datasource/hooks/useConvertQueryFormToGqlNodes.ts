@@ -1,12 +1,14 @@
 import { isArr, isObj, isStr } from "@formily/shared";
 import { ObjectFieldNode } from "graphql";
 import { useCallback } from "react";
+import { ISearchText } from "../../components/pc";
 import { IRangeValue } from "../../components/pc/RangePicker";
 import { IQueryForm } from "../model/IQueryForm";
 import { createObjectFieldNode } from "./createObjectFieldNode";
+import { createSeachFieldNode } from "./createSeachFieldNode";
 
 export function useConvertQueryFormToGqlNodes() {
-  const convert = useCallback((queryForm?: IQueryForm): ObjectFieldNode[]=> {
+  const convert = useCallback((queryForm?: IQueryForm): ObjectFieldNode[] => {
     if (!queryForm) {
       return [];
     }
@@ -25,8 +27,11 @@ export function useConvertQueryFormToGqlNodes() {
             const ltOp = rangeValue.startWithEqual ? "_lte" : "_lt";
             args.push(createObjectFieldNode(key, ltOp, value));
           }
-        } else if (anyValue.isLike) {
-          args.push(createObjectFieldNode(key, "_like", value));
+        } else if (anyValue.isSearchText) {
+          const searchText = anyValue as ISearchText;
+          if (searchText.keyword && searchText?.fields?.length) {
+            args.push(createSeachFieldNode(value as any) as any);
+          }
         } else {
           args.push(createObjectFieldNode(key, "_eq", value));
         }

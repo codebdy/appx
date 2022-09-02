@@ -53,9 +53,6 @@ export const createObjectValueNode = (value: any): IntValueNode |
   }
 
   if (isObj(value)) {
-    if((value as any)?.isSearchText){
-
-    }
     return {
       kind: Kind.OBJECT,
       fields: Object.keys(value).map((key) => {

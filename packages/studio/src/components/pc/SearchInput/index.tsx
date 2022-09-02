@@ -27,7 +27,7 @@ export const SearchInput = observer((props: ISearchInput) => {
     const fieldSource = fieldSchema?.["x-field-source"];
     return isArr(fieldSource)
       ? (fieldSource as IFieldSource[]).map(subField => subField.name)
-      : ((fieldSource as IFieldSource).name && [(fieldSource as IFieldSource).name])
+      : ((fieldSource as IFieldSource)?.name && [(fieldSource as IFieldSource).name])
   }, [fieldSchema])
 
   const handleChange = useCallback((event?: React.ChangeEvent<HTMLInputElement>) => {
