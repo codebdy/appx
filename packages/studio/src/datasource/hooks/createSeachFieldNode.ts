@@ -28,7 +28,7 @@ export function createSeachFieldNode(searchText: ISearchText) {
         values: fieldNodes?.map((field) => {
           return {
             kind: Kind.OBJECT,
-            fields: fieldNodes,
+            fields: [field],
           }
         }),
       }
