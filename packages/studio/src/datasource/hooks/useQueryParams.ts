@@ -18,7 +18,7 @@ const firstOperationDefinition = (ast) => ast.definitions?.[0];
 const rootField = (ast) => ast.definitions?.[0]?.selectionSet?.selections[0];
 const firstFiledFromOperation = (operationDefinition) => operationDefinition?.selectionSet?.selections?.[0];
 
-//GQL拼接部分还是很不完善
+//GQL拼接部分欠缺关联跟方法的参数
 export function useQueryParams(dataBind: IDataBindSource | undefined, schema: JsonSchema | undefined, queryForm?: IQueryForm): IQueryParams {
   const { t } = useTranslation();
   const fragmentFromSchema = useQueryFragmentFromSchema(schema);
@@ -124,7 +124,7 @@ export function useQueryParams(dataBind: IDataBindSource | undefined, schema: Js
           }
         });
         const gql = print(compiledAST);
-        console.log("compiledAST", compiledAST, gql)
+        //console.log("compiledAST", compiledAST, gql)
         pms.gql = gql;
       } catch (err) {
         console.error(err);
