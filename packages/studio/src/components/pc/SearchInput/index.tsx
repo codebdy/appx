@@ -9,6 +9,7 @@ export interface ISearchText {
   isFuzzy?: boolean,
   keyword?: string,
   fields?: string[],
+  isSearchText: true,
 }
 
 export interface ISearchInput {
@@ -30,11 +31,11 @@ export const SearchInput = observer((props: ISearchInput) => {
   }, [fieldSchema])
 
   const handleChange = useCallback((event?: React.ChangeEvent<HTMLInputElement>) => {
-
     onChange && onChange({
       isFuzzy,
       keyword: event.target.value,
       fields: fields,
+      isSearchText: true,
     })
   }, [fields, isFuzzy, onChange]);
 

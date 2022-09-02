@@ -29,6 +29,7 @@ export const ButtonsGridColum = observer((
 
   const handleSubmit = useCallback(() => {
     objectField?.validate();
+    console.log("哈哈", toJS(objectField?.value));
     onSetQueryForm && objectField && onSetQueryForm(toJS(objectField?.value))
   }, [objectField, onSetQueryForm])
 
