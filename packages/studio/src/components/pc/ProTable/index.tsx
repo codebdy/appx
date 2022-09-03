@@ -49,7 +49,7 @@ export const ProTable: React.FC<IProTableProps> & {
   const fieldSchema = useFieldSchema();
 
   useEffect(() => {
-    setParams(params => ({ ...params, selectable, dataBind, paginationPosition, pageSize }))
+    setParams(params => ({ ...params, selectable, dataBind, paginationPosition, pageSize: pageSize || 10 }))
   }, [dataBind, pageSize, paginationPosition, selectable])
 
   const field = useField();

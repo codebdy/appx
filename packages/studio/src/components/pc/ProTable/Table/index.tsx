@@ -155,7 +155,17 @@ const mapOrderBy = (orderBy?: "ascend" | "descend"): 'asc' | 'desc' | undefined 
 export const Table = observer((
   props: TableProps<any>
 ) => {
-  const { onSelectedChange, dataBind, queryForm, selectedRowKeys, onTableChange, paginationPosition, pageSize } = useProTableParams();
+  const {
+    onSelectedChange,
+    dataBind,
+    queryForm,
+    selectedRowKeys,
+    onTableChange,
+    paginationPosition,
+    pageSize,
+    current,
+    orderBys,
+  } = useProTableParams();
   const selectable = useSelectable();
   const sources = useArrayTableSources()
   const getTableColumns = useGetTableColumns();
@@ -169,7 +179,7 @@ export const Table = observer((
   }), [onSelectedChange, selectedRowKeys]);
 
   const schema = useFieldSchema();
-  const queryParams = useQueryParams(dataBind, schema, queryForm);
+  const queryParams = useQueryParams(dataBind, schema, queryForm, orderBys, current, pageSize);
 
   const { data, loading, error } = useDataQuery(queryParams);
   useShowError(error);
@@ -186,7 +196,7 @@ export const Table = observer((
 
   const onChange = useCallback((pagination, filters, sorter, extra) => {
     onTableChange({
-      current: pagination?.current,
+      current: pagination?.current || 1,
       pageSize: pagination?.pageSize,
       sorter:
         isArr(sorter)
@@ -210,7 +220,11 @@ export const Table = observer((
         dataSource={data?.nodes}
         rowKey="id"
         rowSelection={selectable && rowSelection}
-        pagination={{ position: paginationPosition as any, pageSize }}
+        pagination={{
+          position: paginationPosition as any,
+          pageSize,
+          total: data?.total
+        }}
         loading={loading}
         onChange={onChange}>
       </AntdTable>

@@ -13,7 +13,7 @@ export interface IProTableParams {
   selectable?: boolean,
   selectedRowKeys?: React.Key[],
   queryForm?: IQueryForm,
-  sorter?: IOrderBy[],
+  orderBys?: IOrderBy[],
   onSelectedChange?: (keys?: React.Key[]) => void,
   onSetQueryForm?: (form?: IQueryForm) => void,
   paginationPosition?: "bottomLeft" | "bottomCenter" | "bottomRight",

@@ -31,6 +31,7 @@ export function useQueryParams(
   const fragmentFromSchema = useQueryFragmentFromSchema(schema);
   const expScope = useExpressionScope()
   const convertQueryForm = useConvertQueryFormToGqlNodes();
+  console.log("哈哈哈啊哈哈", current, pageSize, orderBys)
   const params = useMemo(() => {
     const pms: IQueryParams = {}
     if (dataBind?.expression) {
@@ -70,17 +71,20 @@ export function useQueryParams(
               ) {
                 return {
                   ...node,
-                  arguments: [...node.arguments, {
-                    kind: Kind.ARGUMENT,
-                    name: {
-                      kind: Kind.NAME,
-                      value: "where"
+                  arguments: [
+                    ...node.arguments,
+                    {
+                      kind: Kind.ARGUMENT,
+                      name: {
+                        kind: Kind.NAME,
+                        value: "where"
+                      },
+                      value: {
+                        kind: Kind.OBJECT,
+                        fields: []
+                      }
                     },
-                    value: {
-                      kind: Kind.OBJECT,
-                      fields: []
-                    }
-                  }]
+                  ]
                 }
               }
             }
@@ -121,6 +125,40 @@ export function useQueryParams(
                   ]
                 }
               }
+            } else if ((ancestors?.[path.length - 3] as any)?.kind === Kind.OPERATION_DEFINITION &&
+              node.kind === Kind.FIELD) {
+              //arguments 宿主
+              const args = node.arguments?.filter(arg => arg?.name?.value !== "limit" && arg?.name?.value !== "offset") || [];
+              if (pageSize) {
+                args.push({
+                  kind: Kind.ARGUMENT,
+                  name: {
+                    kind: Kind.NAME,
+                    value: "limit"
+                  },
+                  value: {
+                    kind: Kind.INT,
+                    value: pageSize.toString(),
+                  }
+                })
+              }
+              if (current && current > 1) {
+                args.push({
+                  kind: Kind.ARGUMENT,
+                  name: {
+                    kind: Kind.NAME,
+                    value: "offset"
+                  },
+                  value: {
+                    kind: Kind.INT,
+                    value: ((current - 1) * pageSize).toString(),
+                  }
+                })
+              }
+              return {
+                ...node,
+                arguments: args
+              }
             }
 
             if (node.kind === Kind.STRING) {
@@ -139,7 +177,7 @@ export function useQueryParams(
           }
         });
         const gql = print(compiledAST);
-        //console.log("compiledAST", compiledAST, gql)
+        console.log("compiledAST", compiledAST, gql)
         pms.gql = gql;
       } catch (err) {
         console.error(err);
@@ -148,7 +186,7 @@ export function useQueryParams(
     }
 
     return pms;
-  }, [convertQueryForm, dataBind?.entityName, dataBind?.expression, dataBind?.variables, expScope, fragmentFromSchema.gql, queryForm, t]);
+  }, [convertQueryForm, current, dataBind?.entityName, dataBind?.expression, dataBind?.variables, expScope, fragmentFromSchema.gql, pageSize, queryForm, t]);
   console.log("Query GQL:", params?.gql, params?.variables);
   return params
 }
