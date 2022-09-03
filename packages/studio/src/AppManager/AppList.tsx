@@ -3,7 +3,7 @@ import React, { memo } from "react"
 import { IApp } from "../model"
 import AppCard from "./AppCard"
 
-const AppList = memo((props: {
+export const AppList = memo((props: {
   apps: IApp[]
 }) => {
   const { apps } = props
@@ -35,5 +35,3 @@ const AppList = memo((props: {
     </div>
   )
 })
-
-export default AppList

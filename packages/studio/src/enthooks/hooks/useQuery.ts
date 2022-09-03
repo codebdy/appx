@@ -8,7 +8,10 @@ import { MutateFn } from './useQueryOne';
 import { IQueryInput } from './IQueryInput';
 
 export interface QueryResult<T> {
-  [key: string]: T[] | undefined;
+  [key: string]: {
+    nodes?: T[] | undefined;
+    total?: number
+  }
 }
 
 export type QueryResponse<T> = {

@@ -5,9 +5,12 @@ import { useQuery } from "../enthooks/hooks/useQuery";
 const appsGql = gql`
 query {
   app{
-    id
-    uuid
-    title
+    nodes{
+      id
+      uuid
+      title      
+    }
+    total
   }
 }
 `

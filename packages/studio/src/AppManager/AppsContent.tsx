@@ -1,7 +1,7 @@
 import React from "react"
 import { memo } from "react"
 import AppFooter from "./AppFooter"
-import AppList from "./AppList"
+import { AppList } from "./AppList"
 import AppManagebar from "./AppManagebar"
 import { useApps } from './../hooks/useApps';
 import { useShowError } from "../hooks/useShowError"
@@ -41,7 +41,7 @@ const AppsContent = memo(() => {
             ?
             <AppsSkeleton />
             :
-            <AppList apps={data?.app || []} />
+            <AppList apps={data?.app?.nodes || []} />
         }
         <AppFooter />
       </div>
