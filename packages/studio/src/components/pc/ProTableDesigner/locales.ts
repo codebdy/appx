@@ -9,7 +9,12 @@ export const ProTableLocales: any & {
       'x-component-props': {
         hasQueryForm: "查询表单",
         hasToolbar: "工具栏",
-        selectable: "可选择"
+        selectable: "可选择",
+        paginationPosition: {
+          title:"分页位置",
+          dataSource: ['左', '右', '居中'],
+        },
+        pageSize: "每页行数"
       },
     },
   },

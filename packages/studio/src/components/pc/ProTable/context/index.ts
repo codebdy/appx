@@ -11,6 +11,8 @@ export interface IProTableParams {
   orderBys?: IOrderBy[],
   onSelectedChange?: (keys?: React.Key[]) => void,
   onSetQueryForm?: (form?: IQueryForm) => void,
+  paginationPosition?: "bottomLeft" | "bottomCenter" | "bottomRight",
+  pageSize?: number,
 }
 
 

@@ -21,6 +21,8 @@ export interface IProTableProps extends IDataSourceableProps {
   hasQueryForm?: boolean,
   hasToolbar?: boolean,
   selectable?: boolean,
+  paginationPosition?: "bottomLeft" | "bottomCenter" | "bottomRight",
+  pageSize?: number,
 }
 
 export const ProTable: React.FC<IProTableProps> & {
@@ -39,14 +41,16 @@ export const ProTable: React.FC<IProTableProps> & {
     selectable = true,
     className,
     dataBind,
+    paginationPosition,
+    pageSize,
     ...other
   } = props;
   const [params, setParams] = useState<IProTableParams>({ selectable, dataBind });
   const fieldSchema = useFieldSchema();
 
   useEffect(() => {
-    setParams(params => ({ ...params, selectable, dataBind }))
-  }, [dataBind, selectable])
+    setParams(params => ({ ...params, selectable, dataBind, paginationPosition, pageSize }))
+  }, [dataBind, pageSize, paginationPosition, selectable])
 
   const field = useField();
 
@@ -91,7 +95,7 @@ export const ProTable: React.FC<IProTableProps> & {
     }
   }, [handelSetQuery, handleSelectedChange, params])
 
-  const basePath = useMemo(()=>field.path, [field.path]);
+  const basePath = useMemo(() => field.path, [field.path]);
 
   return (
     <ProTableContext.Provider
@@ -106,7 +110,7 @@ export const ProTable: React.FC<IProTableProps> & {
             hasToolbar && slots.tableToolbar && <RecursionField schema={slots.tableToolbar} name={slots.tableToolbar.name} basePath={basePath} />
           }
           {
-            selectable && slots.tableBatchActions && <RecursionField schema={slots.tableBatchActions} name={slots.tableBatchActions.name} basePath={basePath}/>
+            selectable && slots.tableBatchActions && <RecursionField schema={slots.tableBatchActions} name={slots.tableBatchActions.name} basePath={basePath} />
           }
           {
             <RecursionField schema={slots.dataTable} name={slots.dataTable.name} basePath={basePath} />
