@@ -11,10 +11,12 @@ query queryLangLocal($appUuid:String){
       _eq:$appUuid
     }
   }){
-    id
-    name
-    appUuid
-    schemaJson
+    nodes{
+      id
+      name
+      appUuid
+      schemaJson      
+    }
   }
 }
 `
