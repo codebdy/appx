@@ -174,15 +174,15 @@ export const Table = observer((
   const { data, loading, error } = useDataQuery(queryParams);
   useShowError(error);
 
-  if (data && !Array.isArray(data)) {
+  if (data?.nodes && !Array.isArray(data?.nodes)) {
     throw new Error("Data is not array, please check query expression")
   }
 
   const field = useField();
 
   useEffect(() => {
-    (field as Field).setValue(data);
-  }, [data, field])
+    (field as Field).setValue(data?.nodes);
+  }, [data?.nodes, field])
 
   const onChange = useCallback((pagination, filters, sorter, extra) => {
     onTableChange({
@@ -207,7 +207,7 @@ export const Table = observer((
     <ArrayBase>
       <AntdTable
         columns={columns}
-        dataSource={data}
+        dataSource={data?.nodes}
         rowKey="id"
         rowSelection={selectable && rowSelection}
         pagination={{ position: paginationPosition as any, pageSize }}
