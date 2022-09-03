@@ -139,7 +139,7 @@ export function useQueryParams(
           }
         });
         const gql = print(compiledAST);
-        console.log("compiledAST", compiledAST, gql)
+        //console.log("compiledAST", compiledAST, gql)
         pms.gql = gql;
       } catch (err) {
         console.error(err);
