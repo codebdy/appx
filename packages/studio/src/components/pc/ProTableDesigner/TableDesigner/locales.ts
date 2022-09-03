@@ -71,6 +71,7 @@ export const DataTableColumnLocales = {
     settings: {
       'x-component-props': {
         title: '标题',
+        sortable: "可排序",
         align: {
           title: '内容对齐',
           dataSource: ['左', '右', '居中'],

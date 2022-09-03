@@ -64,11 +64,12 @@ export const TableDesigner: DnFC<TableProps<any>> = observer((props) => {
   }, [node.id])
 
   const renderColumn = useCallback((node: TreeNode) => {
-    const props = node.props?.['x-component-props'] || {}
+    const { sortable, ...props } = node.props?.['x-component-props'] || {}
     const children = node.children;
     return (
       <Table.Column
         {...props}
+        sorter={sortable ? {} : undefined}
         title={
           <div>
             {p(props?.title)}

@@ -39,6 +39,14 @@ export const DataTableSchema: ISchema & { Column?: ISchema, ColumnGroup?: ISchem
 const Column: ISchema = {
   type: 'object',
   properties: {
+    sortable: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+      'x-component-props': {
+        defaultChecked: false,
+      },
+    },
     align: {
       type: 'string',
       enum: ['left', 'right', 'center'],

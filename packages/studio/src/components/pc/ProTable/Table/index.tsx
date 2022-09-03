@@ -27,7 +27,7 @@ const onChange = (pagination, filters, sorter, extra) => {
 };
 
 interface ObservableColumnSource {
-  columnProps: ColumnProps<any>
+  columnProps: ColumnProps<any> & { sortable?: boolean }
   schema: Schema
   display: FieldDisplayTypes
   name: string,
@@ -51,11 +51,13 @@ function useGetTableColumns() {
       if (!isColumnComponent(schema) && !isColumnGroupComponent(schema)) return buf
       let rootName = parentGroupNames.length ? parentGroupNames[0] : name;//组根名字
       const groups = [...parentGroupNames, name];
+      const { sortable, ...otherCoumnProps } = columnProps;
       return buf.concat({
-        ...columnProps,
+        ...otherCoumnProps,
         children: getTableColumns(children, groups) || [],
         key,
         dataIndex: name,
+        sorter: sortable ? {} : undefined,
         render: !children.length
           ? (value: any, record: any, index: number) => {
             let children = (
