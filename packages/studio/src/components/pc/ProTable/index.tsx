@@ -1,6 +1,6 @@
 import { Card, TableProps } from "antd"
 import React, { useCallback, useEffect, useMemo, useState } from "react"
-import { IProTableParams, ProTableContext } from "./context"
+import { IProTableParams, ITableChangeParams, ProTableContext } from "./context"
 import "./style.less"
 import locales, { LOCALES_NS } from "./locales"
 import { Table } from "./Table"
@@ -45,7 +45,7 @@ export const ProTable: React.FC<IProTableProps> & {
     pageSize,
     ...other
   } = props;
-  const [params, setParams] = useState<IProTableParams>({ selectable, dataBind });
+  const [params, setParams] = useState<IProTableParams>({ selectable, dataBind, current: 1 });
   const fieldSchema = useFieldSchema();
 
   useEffect(() => {
@@ -87,13 +87,18 @@ export const ProTable: React.FC<IProTableProps> & {
     setParams(params => ({ ...params, queryForm: queryForm }))
   }, [])
 
+  const handleTableChange = useCallback((changeParams: ITableChangeParams) => {
+    setParams(params => ({ ...params, ...changeParams }))
+  }, [])
+
   const contextValue = useMemo(() => {
     return {
       ...params,
       onSelectedChange: handleSelectedChange,
       onSetQueryForm: handelSetQuery,
+      onTableChange: handleTableChange,
     }
-  }, [handelSetQuery, handleSelectedChange, params])
+  }, [handelSetQuery, handleSelectedChange, handleTableChange, params])
 
   const basePath = useMemo(() => field.path, [field.path]);
 

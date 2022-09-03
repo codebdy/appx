@@ -3,18 +3,24 @@ import { createContext, useContext } from "react";
 import { IQueryForm } from "../../../../datasource/model/IQueryForm";
 import { IOrderBy } from "../../../../datasource/model/IOrderBy";
 
+export interface ITableChangeParams {
+  current?: number,
+  sorter?: IOrderBy[],
+  pageSize?: number,
+}
 export interface IProTableParams {
   dataBind?: IDataBindSource,
   selectable?: boolean,
   selectedRowKeys?: React.Key[],
   queryForm?: IQueryForm,
-  orderBys?: IOrderBy[],
+  sorter?: IOrderBy[],
   onSelectedChange?: (keys?: React.Key[]) => void,
   onSetQueryForm?: (form?: IQueryForm) => void,
   paginationPosition?: "bottomLeft" | "bottomCenter" | "bottomRight",
   pageSize?: number,
+  current?: number,
+  onTableChange?: (changeParams: ITableChangeParams) => void,
 }
-
 
 export const ProTableContext = createContext<IProTableParams>({});
 

@@ -1,4 +1,4 @@
 export interface IOrderBy {
-  name: string,
+  field: string,
   order: "desc" | "asc" | undefined
 }

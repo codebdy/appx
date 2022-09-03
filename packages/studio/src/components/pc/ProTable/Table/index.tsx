@@ -1,5 +1,5 @@
 import { Table as AntdTable, TableProps } from 'antd';
-import React, { useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { useProTableParams, useSelectable } from '../context';
 import { ArrayBase } from "@formily/antd"
 import {
@@ -10,7 +10,7 @@ import {
 import { Field, FieldDisplayTypes } from '@formily/core'
 import { ColumnProps } from "antd/lib/table"
 import { Schema } from '@formily/json-schema'
-import { isArr } from '@formily/shared'
+import { isArr, isObj } from '@formily/shared'
 import { useParseLangMessage } from '../../../../hooks/useParseLangMessage';
 import { observer } from '@formily/reactive-react';
 import { useQueryParams } from '../../../../datasource/hooks/useQueryParams';
@@ -21,10 +21,6 @@ import {
   useField
 } from '@formily/react'
 import { InstanceContext } from '../../../../shared/contexts/instance';
-
-const onChange = (pagination, filters, sorter, extra) => {
-  console.log('params', pagination, filters, sorter, extra);
-};
 
 interface ObservableColumnSource {
   columnProps: ColumnProps<any> & { sortable?: boolean }
@@ -147,16 +143,25 @@ const useArrayTableSources = () => {
   return parseArrayItems(schema.items)
 }
 
+const mapOrderBy = (orderBy?: "ascend" | "descend"): 'asc' | 'desc' | undefined => {
+  if (orderBy === "ascend") {
+    return "asc"
+  } else if (orderBy === "descend") {
+    return "desc"
+  }
+  return orderBy;
+}
 
 export const Table = observer((
   props: TableProps<any>
 ) => {
-  const { onSelectedChange, dataBind, queryForm, selectedRowKeys } = useProTableParams();
+  const { onSelectedChange, dataBind, queryForm, selectedRowKeys, onTableChange, paginationPosition, pageSize } = useProTableParams();
   const selectable = useSelectable();
   const sources = useArrayTableSources()
   const getTableColumns = useGetTableColumns();
   const columns = useMemo(() => getTableColumns(sources), [getTableColumns, sources]);
   const rowSelection = useMemo(() => ({
+    type: 'checkbox' as any,
     selectedRowKeys: selectedRowKeys,
     onChange: (selectedRowKeys: React.Key[]) => {
       onSelectedChange(selectedRowKeys);
@@ -179,16 +184,33 @@ export const Table = observer((
     (field as Field).setValue(data);
   }, [data, field])
 
+  const onChange = useCallback((pagination, filters, sorter, extra) => {
+    onTableChange({
+      current: pagination?.current,
+      pageSize: pagination?.pageSize,
+      sorter:
+        isArr(sorter)
+          ?
+          sorter.map(orderBy => ({ field: orderBy.field, order: mapOrderBy(orderBy.order) }))
+          :
+          isObj(sorter)
+            ? [{
+              field: (sorter as any)?.field,
+              order: mapOrderBy((sorter as any)?.order)
+            }]
+            : []
+    });
+    console.log('params', pagination, sorter);
+  }, [onTableChange]);
+
   return (
     <ArrayBase>
       <AntdTable
         columns={columns}
         dataSource={data}
         rowKey="id"
-        rowSelection={selectable && {
-          type: 'checkbox',
-          ...rowSelection,
-        }}
+        rowSelection={selectable && rowSelection}
+        pagination={{ position: paginationPosition as any, pageSize }}
         loading={loading}
         onChange={onChange}>
       </AntdTable>
