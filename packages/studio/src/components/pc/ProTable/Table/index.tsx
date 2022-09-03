@@ -45,7 +45,7 @@ function useGetTableColumns() {
   const { dataBind } = useProTableParams();
   const field = useField();
   const getTableColumns = (sources: ObservableColumnSource[], parentGroupNames: string[] = []): TableProps<any>['columns'] => {
-    return sources?.reduce((buf, source, key) => {
+    return sources?.reduce((buf, source, key, index) => {
       const { name, columnProps, schema, children/*, display*/ } = source || {}
       //if (display !== 'visible') return buf
       if (!isColumnComponent(schema) && !isColumnGroupComponent(schema)) return buf
@@ -57,7 +57,7 @@ function useGetTableColumns() {
         children: getTableColumns(children, groups) || [],
         key,
         dataIndex: name,
-        sorter: sortable ? {} : undefined,
+        sorter: sortable ? { multiple: (key + 1) } : undefined,
         render: !children.length
           ? (value: any, record: any, index: number) => {
             let children = (
