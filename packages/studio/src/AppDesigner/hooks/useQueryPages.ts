@@ -25,11 +25,13 @@ query queryPages($appUuid:String!, $device:String!){
     id:asc
   }
  ){
-    id
-    device
-    title
-    category{
+    nodes{
       id
+      device
+      title
+      category{
+        id
+      }
     }
   }
 }
@@ -46,5 +48,5 @@ export function useQueryPages() {
     }
   )
 
-  return { pages: data?.page, error, loading }
+  return { pages: data?.page?.nodes, error, loading }
 }

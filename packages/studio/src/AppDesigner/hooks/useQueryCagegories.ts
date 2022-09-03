@@ -25,9 +25,11 @@ query queryCategories($appUuid:String!, $device:String!){
     id:asc
   }
  ){
-    id
-    device
-    title
+    nodes{
+      id
+      device
+      title      
+    }
   }
 }
 `
@@ -43,5 +45,5 @@ export function useQueryCagegories() {
     }
   )
 
-  return { categories: data?.pageCategory, error, loading }
+  return { categories: data?.pageCategory?.nodes, error, loading }
 }

@@ -28,5 +28,5 @@ export function useQueryLangLocales(appUuid: string) {
     depEntityNames: ["LangLocal"]
   }), [appUuid])
   const { data, error, loading } = useQuery<ILangLocal>(input)
-  return { langLocales: data?.langLocal, error, loading }
+  return { langLocales: data?.langLocal?.nodes, error, loading }
 }
