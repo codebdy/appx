@@ -9,6 +9,7 @@ import { IFragmentParams } from "./IFragmentParams";
 import { useQueryFragmentFromSchema } from "./useQueryFragmentFromSchema";
 import { IQueryForm } from "../model/IQueryForm";
 import { useConvertQueryFormToGqlNodes } from "./useConvertQueryFormToGqlNodes";
+import { IOrderBy } from "../model/IOrderBy";
 
 export interface IQueryParams extends IFragmentParams {
   entityName?: string,
@@ -19,7 +20,14 @@ const rootField = (ast) => ast.definitions?.[0]?.selectionSet?.selections[0];
 const firstFiledFromOperation = (operationDefinition) => operationDefinition?.selectionSet?.selections?.[0];
 
 //GQL拼接部分欠缺关联跟方法的参数
-export function useQueryParams(dataBind: IDataBindSource | undefined, schema: JsonSchema | undefined, queryForm?: IQueryForm): IQueryParams {
+export function useQueryParams(
+  dataBind: IDataBindSource | undefined,
+  schema: JsonSchema | undefined,
+  queryForm: IQueryForm | undefined,
+  orderBys?: IOrderBy[],
+  current?: number,
+  pageSize?: number,
+): IQueryParams {
   const { t } = useTranslation();
   const fragmentFromSchema = useQueryFragmentFromSchema(schema);
   const expScope = useExpressionScope()
