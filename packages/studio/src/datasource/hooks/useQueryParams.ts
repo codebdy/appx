@@ -16,7 +16,6 @@ export interface IQueryParams extends IFragmentParams {
   rootFieldName?: string,
 }
 const firstOperationDefinition = (ast) => ast.definitions?.[0];
-const rootField = (ast) => ast.definitions?.[0]?.selectionSet?.selections[0];
 const firstFiledFromOperation = (operationDefinition) => operationDefinition?.selectionSet?.selections?.[0];
 
 //GQL拼接部分欠缺关联跟方法的参数
@@ -52,13 +51,6 @@ export function useQueryParams(
         pms.entityName = dataBind?.entityName;
 
         const shchemaFragmentAst = parse(fragmentFromSchema.gql);
-        const firstNode = rootField(ast);
-        if (firstNode?.selectionSet?.selections) {
-          firstNode.selectionSet.selections = [
-            ...firstNode.selectionSet.selections,
-            ...(shchemaFragmentAst?.definitions?.[0] as any)?.selectionSet?.selections || {},
-          ]
-        }
 
         pms.variables = dataBind?.variables;
 
@@ -115,7 +107,22 @@ export function useQueryParams(
                   fields: newFields
                 }
               }
+            } else if ((ancestors?.[path.length - 6] as any)?.kind === Kind.OPERATION_DEFINITION &&
+              node.kind === Kind.FIELD &&
+              node.name?.value === "nodes" &&
+              (shchemaFragmentAst?.definitions?.[0] as any)?.selectionSet?.selections) {
+              return {
+                ...node,
+                selectionSet: {
+                  ...node.selectionSet || {},
+                  selections: [
+                    ...node.selectionSet.selections || [],
+                    ...(shchemaFragmentAst?.definitions?.[0] as any)?.selectionSet?.selections || []
+                  ]
+                }
+              }
             }
+
             if (node.kind === Kind.STRING) {
               const newValue = Schema.shallowCompile(node.value, expScope);
               if (newValue === undefined) {
@@ -132,7 +139,7 @@ export function useQueryParams(
           }
         });
         const gql = print(compiledAST);
-        //console.log("compiledAST", compiledAST, gql)
+        console.log("compiledAST", compiledAST, gql)
         pms.gql = gql;
       } catch (err) {
         console.error(err);
