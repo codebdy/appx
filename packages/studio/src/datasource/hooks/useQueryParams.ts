@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { Schema as JsonSchema } from '@formily/json-schema';
 import { Schema, useExpressionScope } from "@formily/react";
 import { IDataBindSource } from "../model";
-import { parse, OperationTypeNode, print, Kind, visit, ObjectValueNode } from "graphql";
+import { parse, OperationTypeNode, print, Kind, visit, ObjectValueNode, ListValueNode } from "graphql";
 import { message } from "antd";
 import { useTranslation } from "react-i18next";
 import { IFragmentParams } from "./IFragmentParams";
@@ -207,28 +207,32 @@ export function useQueryParams(
               node.name?.value === "orderBy" &&
               orderBys?.length
             ) {
+              const newValues = orderBys.map((order) => {
+                return {
+                  kind: Kind.OBJECT,
+                  fields: [
+                    {
+                      kind: Kind.OBJECT_FIELD,
+                      name: {
+                        kind: Kind.NAME,
+                        value: order.field,
+                      },
+                      value: {
+                        kind: Kind.ENUM,
+                        value: order.order,
+                      }
+                    }
+                  ]
+                }
+              })
+
+              const filterdOldValue = (node.value as ListValueNode)?.values.filter((val: ObjectValueNode) => !newValues.find(newVal => newVal.fields[0].name?.value === val.fields?.[0]?.name?.value))
+
               return {
                 ...node,
                 value: {
                   ...node.value,
-                  values: orderBys.map((order) => {
-                    return {
-                      kind: Kind.OBJECT,
-                      fields: [
-                        {
-                          kind: Kind.OBJECT_FIELD,
-                          name: {
-                            kind: Kind.NAME,
-                            value: order.field,
-                          },
-                          value: {
-                            kind: Kind.ENUM,
-                            value: order.order,
-                          }
-                        }
-                      ]
-                    }
-                  })
+                  values: [...filterdOldValue, ...newValues], 
                 }
               }
             }
