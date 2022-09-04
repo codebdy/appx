@@ -122,7 +122,8 @@ export const Table = observer((
         pagination={{
           position: paginationPosition as any,
           pageSize,
-          total: data?.total
+          total: data?.total,
+          current: protableParams.current,
         }}
         loading={loading}
         onChange={onChange}>

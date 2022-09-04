@@ -30,6 +30,7 @@ export const ButtonsGridColum = observer((
   const handleSubmit = useCallback(() => {
     objectField?.validate();
     params.queryForm = toJS(objectField?.value);
+    params.current = 1;
   }, [objectField, params])
 
   const acions = useMemo(() => {
