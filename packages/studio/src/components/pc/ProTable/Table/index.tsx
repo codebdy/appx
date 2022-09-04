@@ -182,13 +182,13 @@ export const Table = observer((
   const queryParams = useQueryParams(
     dataBind,
     schema,
+    QueryType.Multiple,
     {
       queryForm,
       orderBys,
       current,
       pageSize,
     },
-    QueryType.Multiple
   );
 
   const { data, loading, error } = useDataQuery(queryParams);

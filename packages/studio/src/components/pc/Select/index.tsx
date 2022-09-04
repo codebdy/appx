@@ -16,7 +16,7 @@ export const Select = observer((props: IDataSourceableProps & {
 }) => {
   const { dataBind, value, onChange, labelField, valueField, ...other } = props;
   const schema = useFieldSchema();
-  const queryParams = useQueryParams(dataBind, schema, {}, QueryType.Multiple);
+  const queryParams = useQueryParams(dataBind, schema, QueryType.Multiple);
 
   const { data, loading, error } = useDataQuery(queryParams?.gql ? queryParams : undefined);
   useShowError(error);

@@ -17,7 +17,7 @@ export interface IQueryParams extends IFragmentParams {
 }
 
 export interface IQueryOptions {
-  queryForm: IQueryForm | undefined,
+  queryForm?: IQueryForm | undefined,
   orderBys?: IOrderBy[],
   current?: number,
   pageSize?: number,
@@ -35,8 +35,8 @@ const firstFiledFromOperation = (operationDefinition) => operationDefinition?.se
 export function useQueryParams(
   dataBind: IDataBindSource | undefined,
   schema: JsonSchema | undefined,
-  options?: IQueryOptions,
-  queryType: QueryType = QueryType.QueryOne
+  queryType: QueryType = QueryType.QueryOne,
+  options: IQueryOptions = {},
 ): IQueryParams {
   const { queryForm, orderBys, current, pageSize, } = options || {}
   const { t } = useTranslation();
@@ -123,7 +123,7 @@ export function useQueryParams(
                   fields: newFields
                 }
               }
-            } else if ( queryType === QueryType.Multiple &&
+            } else if (queryType === QueryType.Multiple &&
               (ancestors?.[path.length - 6] as any)?.kind === Kind.OPERATION_DEFINITION &&
               node.kind === Kind.FIELD &&
               node.name?.value === "nodes" &&
