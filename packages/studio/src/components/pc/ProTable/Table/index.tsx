@@ -3,7 +3,8 @@ import React, { useCallback, useEffect, useMemo } from 'react';
 import { useProTableParams, useSelectable } from '../context';
 import { ArrayBase } from "@formily/antd"
 import {
-  useFieldSchema} from '@formily/react'
+  useFieldSchema
+} from '@formily/react'
 import { Field, FieldDisplayTypes } from '@formily/core'
 import { ColumnProps } from "antd/lib/table"
 import { Schema } from '@formily/json-schema'
@@ -17,6 +18,7 @@ import {
 } from '@formily/react'
 import { useGetTableColumns } from './useGetTableColumns';
 import { useArrayTableSources } from './useArrayTableSources';
+import { mapOrderBy } from "../../../../datasource/hooks/mapOrderBy";
 
 export interface ObservableColumnSource {
   columnProps: ColumnProps<any> & { sortable?: boolean }
@@ -24,15 +26,6 @@ export interface ObservableColumnSource {
   display: FieldDisplayTypes
   name: string,
   children?: ObservableColumnSource[],
-}
-
-const mapOrderBy = (orderBy?: "ascend" | "descend"): 'asc' | 'desc' | undefined => {
-  if (orderBy === "ascend") {
-    return "asc"
-  } else if (orderBy === "descend") {
-    return "desc"
-  }
-  return orderBy;
 }
 
 export const Table = observer((
@@ -53,11 +46,11 @@ export const Table = observer((
   const getTableColumns = useGetTableColumns();
   const columns = useMemo(() => getTableColumns(sources), [getTableColumns, sources]);
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log("sources 变化")
   }, [sources])
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log("Coumns 变化")
   }, [columns])
 
@@ -96,9 +89,8 @@ export const Table = observer((
   }, [data?.nodes, field])
 
   const onChange = useCallback((pagination, filters, sorter, extra) => {
-    protableParams.current = pagination?.current || 1;
-    protableParams.pageSize = pagination?.pageSize;
-    protableParams.orderBys = isArr(sorter)
+    const sortableColumns = sources?.filter(column => column.columnProps?.sortable);
+    const orderBys = isArr(sorter)
       ?
       sorter.map(orderBy => ({ field: orderBy.field, order: mapOrderBy(orderBy.order) }))
       :
@@ -108,8 +100,17 @@ export const Table = observer((
           order: mapOrderBy((sorter as any)?.order)
         }]
         : []
-    console.log('params', pagination, sorter);
-  }, [protableParams]);
+    protableParams.current = pagination?.current || 1;
+    protableParams.pageSize = pagination?.pageSize;
+    protableParams.orderBys = sortableColumns.map(col => ({
+      field: col.name,
+      order: undefined,
+    })).map((orderBy) => {
+      const newOrderBy = orderBys.find(od => od.field === orderBy.field)
+      return newOrderBy ? newOrderBy : orderBy;
+    });
+    console.log('params', sorter);
+  }, [protableParams, sources]);
 
   return (
     <ArrayBase>

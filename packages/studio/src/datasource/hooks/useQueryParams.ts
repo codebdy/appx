@@ -98,7 +98,7 @@ export function useQueryParams(
                     },
                   ]
                 }
-              } else if (orderBys?.length &&
+              } else if ((orderBys?.length || fragmentFromSchema?.orderBys?.length) &&
                 !node.arguments?.find(argument => argument.name?.value === "orderBy")) {
                 return {
                   ...node,
@@ -204,9 +204,15 @@ export function useQueryParams(
             } else if ((ancestors?.[path.length - 5] as any)?.kind === Kind.OPERATION_DEFINITION &&
               node.kind === Kind.ARGUMENT &&
               node.name?.value === "orderBy" &&
-              orderBys?.length
+              (orderBys?.length || fragmentFromSchema?.orderBys?.length)
             ) {
-              const newValues = orderBys.filter(orderBy => orderBy.order).map((order) => {
+
+              const newOrderBys = [
+                ...fragmentFromSchema.orderBys?.filter(orderBy => !orderBys?.find(od => od.field === orderBy.field)) || [],
+                ...orderBys || [],
+              ]
+
+              const newValues = newOrderBys.filter(orderBy => orderBy.order).map((order) => {
                 return {
                   kind: Kind.OBJECT,
                   fields: [
@@ -225,7 +231,7 @@ export function useQueryParams(
                 }
               })
 
-              const filterdOldValue = (node.value as ListValueNode)?.values.filter((val: ObjectValueNode) => !orderBys.find(orderBy => orderBy.field === val.fields?.[0]?.name?.value))
+              const filterdOldValue = (node.value as ListValueNode)?.values.filter((val: ObjectValueNode) => !newOrderBys.find(orderBy => orderBy.field === val.fields?.[0]?.name?.value))
 
               return {
                 ...node,
@@ -261,7 +267,7 @@ export function useQueryParams(
     }
 
     return pms;
-  }, [convertQueryForm, current, dataBind?.entityName, dataBind?.expression, dataBind?.variables, expScope, fragmentFromSchema.gql, orderBys, pageSize, queryForm, queryType, t]);
+  }, [convertQueryForm, current, dataBind?.entityName, dataBind?.expression, dataBind?.variables, expScope, fragmentFromSchema.gql, fragmentFromSchema.orderBys, orderBys, pageSize, queryForm, queryType, t]);
   //console.log("Query GQL:", params?.gql, params?.variables);
   return params
 }

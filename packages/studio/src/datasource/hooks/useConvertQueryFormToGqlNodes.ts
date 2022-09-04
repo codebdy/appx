@@ -12,7 +12,7 @@ export function useConvertQueryFormToGqlNodes() {
     if (!queryForm) {
       return [];
     }
-    const args: ObjectFieldNode[] = [];
+    const whereNodes: ObjectFieldNode[] = [];
     for (const key of Object.keys(queryForm)) {
       const value = queryForm[key];
       if (isObj(value)) {
@@ -21,29 +21,29 @@ export function useConvertQueryFormToGqlNodes() {
           const rangeValue = value as IRangeValue
           if (rangeValue?.start) {
             const gtOp = rangeValue.startWithEqual ? "_gte" : "_gt";
-            args.push(createObjectFieldNode(key, gtOp, value));
+            whereNodes.push(createObjectFieldNode(key, gtOp, value));
           }
           if (rangeValue?.end) {
             const ltOp = rangeValue.startWithEqual ? "_lte" : "_lt";
-            args.push(createObjectFieldNode(key, ltOp, value));
+            whereNodes.push(createObjectFieldNode(key, ltOp, value));
           }
         } else if (anyValue.isSearchText) {
           const searchText = anyValue as ISearchText;
           if (searchText.keyword && searchText?.fields?.length) {
-            args.push(createSeachFieldNode(value as any) as any);
+            whereNodes.push(createSeachFieldNode(value as any) as any);
           }
         } else {
-          args.push(createObjectFieldNode(key, "_eq", value));
+          whereNodes.push(createObjectFieldNode(key, "_eq", value));
         }
       } else if (isArr(value)) {
-        args.push(createObjectFieldNode(key, "_in", value?.map(v => v?.id)));
+        whereNodes.push(createObjectFieldNode(key, "_in", value?.map(v => v?.id)));
       } else if (isStr(value) && value.trim()) {
-        args.push(createObjectFieldNode(key, "_eq", value.trim()));
+        whereNodes.push(createObjectFieldNode(key, "_eq", value.trim()));
       } else if (value) {
-        args.push(createObjectFieldNode(key, "_eq", value));
+        whereNodes.push(createObjectFieldNode(key, "_eq", value));
       }
     }
-    return args;
+    return whereNodes;
   }, []);
 
   return convert;
