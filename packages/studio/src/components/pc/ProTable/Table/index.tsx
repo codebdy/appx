@@ -40,20 +40,22 @@ const isColumnGroupComponent = (schema: Schema) => {
 function useGetTableColumns() {
   const { dataBind } = useProTableParams();
   const field = useField();
-  const getTableColumns = (sources: ObservableColumnSource[], parentGroupNames: string[] = []): TableProps<any>['columns'] => {
+  const getTableColumns = useCallback((sources: ObservableColumnSource[], parentGroupNames: string[] = []): TableProps<any>['columns'] => {
     return sources?.reduce((buf, source, key, index) => {
       const { name, columnProps, schema, children/*, display*/ } = source || {}
       //if (display !== 'visible') return buf
       if (!isColumnComponent(schema) && !isColumnGroupComponent(schema)) return buf
       let rootName = parentGroupNames.length ? parentGroupNames[0] : name;//组根名字
       const groups = [...parentGroupNames, name];
-      const { sortable, ...otherCoumnProps } = columnProps;
+      const { sortable, defaultSortOrder, ...otherCoumnProps } = columnProps;
+      console.log("cmz", defaultSortOrder)
       return buf.concat({
         ...otherCoumnProps,
         children: getTableColumns(children, groups) || [],
         key,
         dataIndex: name,
         sorter: sortable ? { multiple: (key + 1) } : undefined,
+        defaultSortOrder: "ascend",
         render: !children.length
           ? (value: any, record: any, index: number) => {
             let children = (
@@ -89,7 +91,7 @@ function useGetTableColumns() {
           : undefined,
       })
     }, [])
-  }
+  }, [dataBind.entityName, field])
 
   return getTableColumns;
 }
@@ -97,7 +99,7 @@ function useGetTableColumns() {
 const useArrayTableSources = () => {
   const p = useParseLangMessage();
   const schema = useFieldSchema();
-  const parseSources = (schema: Schema): ObservableColumnSource[] => {
+  const parseSources = useCallback((schema: Schema): ObservableColumnSource[] => {
     const isColumn = isColumnComponent(schema);
     const isColumnGroup = isColumnGroupComponent(schema);
     if (isColumn || isColumnGroup) {
@@ -123,9 +125,9 @@ const useArrayTableSources = () => {
         return buf.concat(parseSources(schema))
       }, [])
     }
-  }
+  }, [p]);
 
-  const parseArrayItems = (schema: Schema['items']) => {
+  const parseArrayItems = useCallback((schema: Schema['items']) => {
     if (!schema) return []
     const sources: ObservableColumnSource[] = []
     const items = isArr(schema) ? schema : [schema]
@@ -136,11 +138,10 @@ const useArrayTableSources = () => {
       }
       return columns
     }, sources)
-  }
+  }, [parseSources])
 
-  if (!schema) throw new Error('can not found schema object')
-
-  return parseArrayItems(schema.items)
+  const result = useMemo(() => parseArrayItems(schema?.items), [parseArrayItems, schema]);
+  return result
 }
 
 const mapOrderBy = (orderBy?: "ascend" | "descend"): 'asc' | 'desc' | undefined => {
@@ -156,27 +157,27 @@ export const Table = observer((
   props: TableProps<any>
 ) => {
   const {
-    onSelectedChange,
     dataBind,
     queryForm,
     selectedRowKeys,
-    onTableChange,
     paginationPosition,
     pageSize,
     current,
     orderBys,
   } = useProTableParams();
+  const protableParams = useProTableParams();
   const selectable = useSelectable();
   const sources = useArrayTableSources()
   const getTableColumns = useGetTableColumns();
   const columns = useMemo(() => getTableColumns(sources), [getTableColumns, sources]);
+
   const rowSelection = useMemo(() => ({
     type: 'checkbox' as any,
     selectedRowKeys: selectedRowKeys,
     onChange: (selectedRowKeys: React.Key[]) => {
-      onSelectedChange(selectedRowKeys);
+      protableParams.selectedRowKeys = selectedRowKeys
     },
-  }), [onSelectedChange, selectedRowKeys]);
+  }), [protableParams, selectedRowKeys]);
 
   const schema = useFieldSchema();
   const queryParams = useQueryParams(
@@ -205,23 +206,20 @@ export const Table = observer((
   }, [data?.nodes, field])
 
   const onChange = useCallback((pagination, filters, sorter, extra) => {
-    onTableChange({
-      current: pagination?.current || 1,
-      pageSize: pagination?.pageSize,
-      orderBys:
-        isArr(sorter)
-          ?
-          sorter.map(orderBy => ({ field: orderBy.field, order: mapOrderBy(orderBy.order) }))
-          :
-          isObj(sorter)
-            ? [{
-              field: (sorter as any)?.field,
-              order: mapOrderBy((sorter as any)?.order)
-            }]
-            : []
-    });
+    protableParams.current = pagination?.current || 1;
+    protableParams.pageSize = pagination?.pageSize;
+    protableParams.orderBys = isArr(sorter)
+      ?
+      sorter.map(orderBy => ({ field: orderBy.field, order: mapOrderBy(orderBy.order) }))
+      :
+      isObj(sorter)
+        ? [{
+          field: (sorter as any)?.field,
+          order: mapOrderBy((sorter as any)?.order)
+        }]
+        : []
     console.log('params', pagination, sorter);
-  }, [onTableChange]);
+  }, [protableParams]);
 
   return (
     <ArrayBase>

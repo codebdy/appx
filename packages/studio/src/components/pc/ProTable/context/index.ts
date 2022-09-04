@@ -14,12 +14,12 @@ export interface IProTableParams {
   selectedRowKeys?: React.Key[],
   queryForm?: IQueryForm,
   orderBys?: IOrderBy[],
-  onSelectedChange?: (keys?: React.Key[]) => void,
-  onSetQueryForm?: (form?: IQueryForm) => void,
+  //onSelectedChange?: (keys?: React.Key[]) => void,
+  //onSetQueryForm?: (form?: IQueryForm) => void,
   paginationPosition?: "bottomLeft" | "bottomCenter" | "bottomRight",
   pageSize?: number,
   current?: number,
-  onTableChange?: (changeParams: ITableChangeParams) => void,
+  //onTableChange?: (changeParams: ITableChangeParams) => void,
 }
 
 export const ProTableContext = createContext<IProTableParams>({});

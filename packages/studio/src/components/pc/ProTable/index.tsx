@@ -1,6 +1,6 @@
 import { Card, TableProps } from "antd"
-import React, { useCallback, useEffect, useMemo, useState } from "react"
-import { IProTableParams, ITableChangeParams, ProTableContext } from "./context"
+import React, { useMemo } from "react"
+import { ProTableContext } from "./context"
 import "./style.less"
 import locales, { LOCALES_NS } from "./locales"
 import { Table } from "./Table"
@@ -13,6 +13,7 @@ import clx from "classnames";
 import { RecursionField, useFieldSchema, useField } from '@formily/react';
 import { IQueryFormProps, QueryForm } from "./QueryForm"
 import { TableIndex } from "./TableIndex"
+import { observable } from "@formily/reactive"
 
 registerResourceBundle(LOCALES_NS, locales);
 
@@ -45,15 +46,18 @@ export const ProTable: React.FC<IProTableProps> & {
     pageSize,
     ...other
   } = props;
-  const [params, setParams] = useState<IProTableParams>({ selectable, dataBind, current: 1 });
+  const params = useMemo(() => {
+    return observable({ 
+      selectable, 
+      dataBind, 
+      current: 1,
+      paginationPosition, 
+      pageSize: pageSize || 10,
+     });
+  }, [dataBind, pageSize, paginationPosition, selectable]);
   const fieldSchema = useFieldSchema();
 
-  useEffect(() => {
-    setParams(params => ({ ...params, selectable, dataBind, paginationPosition, pageSize: pageSize || 10 }))
-  }, [dataBind, pageSize, paginationPosition, selectable])
-
   const field = useField();
-
   const slots = useMemo(() => {
     const slts = {
       queryForm: null,
@@ -79,32 +83,32 @@ export const ProTable: React.FC<IProTableProps> & {
   }, [fieldSchema.properties])
 
 
-  const handleSelectedChange = useCallback((keys?: React.Key[]) => {
-    setParams(params => ({ ...params, selectedRowKeys: keys }))
-  }, [])
+  // const handleSelectedChange = useCallback((keys?: React.Key[]) => {
+  //   setParams(params => ({ ...params, selectedRowKeys: keys }))
+  // }, [])
 
-  const handelSetQuery = useCallback((queryForm) => {
-    setParams(params => ({ ...params, queryForm: queryForm }))
-  }, [])
+  // const handelSetQuery = useCallback((queryForm) => {
+  //   setParams(params => ({ ...params, queryForm: queryForm }))
+  // }, [])
 
-  const handleTableChange = useCallback((changeParams: ITableChangeParams) => {
-    setParams(params => ({ ...params, ...changeParams }))
-  }, [])
+  // const handleTableChange = useCallback((changeParams: ITableChangeParams) => {
+  //   setParams(params => ({ ...params, ...changeParams }))
+  // }, [])
 
-  const contextValue = useMemo(() => {
-    return {
-      ...params,
-      onSelectedChange: handleSelectedChange,
-      onSetQueryForm: handelSetQuery,
-      onTableChange: handleTableChange,
-    }
-  }, [handelSetQuery, handleSelectedChange, handleTableChange, params])
+  // const contextValue = useMemo(() => {
+  //   return {
+  //     ...params,
+  //     onSelectedChange: handleSelectedChange,
+  //     onSetQueryForm: handelSetQuery,
+  //     onTableChange: handleTableChange,
+  //   }
+  // }, [handelSetQuery, handleSelectedChange, handleTableChange, params])
 
   const basePath = useMemo(() => field.path, [field.path]);
 
   return (
     <ProTableContext.Provider
-      value={contextValue}
+      value={params}
     >
       <div className={clx("appx-pro-table", className)} {...other}>
         {

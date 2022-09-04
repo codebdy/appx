@@ -47,6 +47,16 @@ const Column: ISchema = {
         defaultChecked: false,
       },
     },
+    defaultSortOrder:{
+      type: 'string',
+      enum: ['ascend', 'descend', ''],
+      'x-decorator': 'FormItem',
+      'x-component': 'Radio.Group',
+      'x-component-props': {
+        defaultValue: '',
+        optionType: 'button',
+      },
+    },
     align: {
       type: 'string',
       enum: ['left', 'right', 'center'],
@@ -57,11 +67,11 @@ const Column: ISchema = {
         optionType: 'button',
       },
     },
-    colSpan: {
-      type: 'number',
-      'x-decorator': 'FormItem',
-      'x-component': 'NumberPicker',
-    },
+    // colSpan: {
+    //   type: 'number',
+    //   'x-decorator': 'FormItem',
+    //   'x-component': 'NumberPicker',
+    // },
     width: {
       type: 'number',
       'x-decorator': 'FormItem',
