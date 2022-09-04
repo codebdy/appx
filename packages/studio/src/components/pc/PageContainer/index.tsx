@@ -107,7 +107,7 @@ export const PageContainer: React.FC<IPageContainerProps> & {
 
       </PageHeader>
       <PageBody>
-        {selectedTab && <RecursionField schema={selectedTab} name={selectedTab.name} basePath = {basePath}/>}
+        {hasTabs && selectedTab && <RecursionField schema={selectedTab} name={selectedTab.name} basePath = {basePath}/>}
         {
           slots.otherChildren?.map((child, index) => {
             return (
