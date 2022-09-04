@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { Schema as JsonSchema } from '@formily/json-schema';
 import { Schema, useExpressionScope } from "@formily/react";
 import { IDataBindSource } from "../model";
-import { parse, OperationTypeNode, print, Kind, visit, ObjectValueNode, ListValueNode } from "graphql";
+import { parse, OperationTypeNode, print, Kind, visit, ObjectValueNode } from "graphql";
 import { message } from "antd";
 import { useTranslation } from "react-i18next";
 import { IFragmentParams } from "./IFragmentParams";
@@ -207,24 +207,26 @@ export function useQueryParams(
               node.name?.value === "orderBy" &&
               orderBys?.length
             ) {
-              const oldValue = node.value as ListValueNode;
-
-              console.log("哈哈哈", node, oldValue)
               return {
                 ...node,
                 value: {
                   ...node.value,
-                  fields: orderBys.map((order) => {
+                  values: orderBys.map((order) => {
                     return {
-                      kind: Kind.OBJECT_FIELD,
-                      name: {
-                        kind: Kind.NAME,
-                        value: order.field,
-                      },
-                      value: {
-                        kind: Kind.ENUM,
-                        value: order.order,
-                      }
+                      kind: Kind.OBJECT,
+                      fields: [
+                        {
+                          kind: Kind.OBJECT_FIELD,
+                          name: {
+                            kind: Kind.NAME,
+                            value: order.field,
+                          },
+                          value: {
+                            kind: Kind.ENUM,
+                            value: order.order,
+                          }
+                        }
+                      ]
                     }
                   })
                 }
