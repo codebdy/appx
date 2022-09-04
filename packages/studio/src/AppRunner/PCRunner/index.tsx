@@ -20,6 +20,7 @@ const PCRunner = memo(() => {
   const key = useAppViewKey();
   const pagePopups = useRecoilValue(pagePopupsState(key));
 
+  console.log("PCRunner 刷新")
   return (
     <div
       className="appx-pc-layout"

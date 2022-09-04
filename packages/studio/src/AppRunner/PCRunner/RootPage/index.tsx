@@ -18,7 +18,6 @@ export const RootPage = memo(() => {
   const { dataId } = useParams();
   const getMenuItem = useGetMenuItem();
   const entryId = useEntryPageId();
-
   const pageIdFormMenu = useMemo(() => getMenuItem(menuUuid)?.route?.pageId, [getMenuItem, menuUuid])
   const realPageId = useMemo(() => pageId || pageIdFormMenu || entryId, [entryId, pageId, pageIdFormMenu])
 
@@ -29,10 +28,14 @@ export const RootPage = memo(() => {
         dataId
       }
     }}>
-      <PageEngine
-        pageId={realPageId}
-        components={components}
-      />
+      {
+        realPageId &&
+        <PageEngine
+          pageId={realPageId}
+          components={components}
+        />
+      }
+
     </ExpressionScope>
   )
 })

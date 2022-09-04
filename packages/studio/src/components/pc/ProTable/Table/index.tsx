@@ -3,145 +3,27 @@ import React, { useCallback, useEffect, useMemo } from 'react';
 import { useProTableParams, useSelectable } from '../context';
 import { ArrayBase } from "@formily/antd"
 import {
-  useFieldSchema,
-  RecursionField,
-  Field as ReactField
-} from '@formily/react'
+  useFieldSchema} from '@formily/react'
 import { Field, FieldDisplayTypes } from '@formily/core'
 import { ColumnProps } from "antd/lib/table"
 import { Schema } from '@formily/json-schema'
 import { isArr, isObj } from '@formily/shared'
-import { useParseLangMessage } from '../../../../hooks/useParseLangMessage';
 import { observer } from '@formily/reactive-react';
 import { QueryType, useQueryParams } from '../../../../datasource/hooks/useQueryParams';
 import { useDataQuery } from '../../../../datasource/hooks/useDataQuery';
 import { useShowError } from '../../../../hooks/useShowError';
-import { TextView } from '../../';
 import {
   useField
 } from '@formily/react'
-import { InstanceContext } from '../../../../shared/contexts/instance';
+import { useGetTableColumns } from './useGetTableColumns';
+import { useArrayTableSources } from './useArrayTableSources';
 
-interface ObservableColumnSource {
+export interface ObservableColumnSource {
   columnProps: ColumnProps<any> & { sortable?: boolean }
   schema: Schema
   display: FieldDisplayTypes
   name: string,
   children?: ObservableColumnSource[],
-}
-
-const isColumnComponent = (schema: Schema) => {
-  return schema?.['x-component'] === 'ProTable.Column'
-}
-const isColumnGroupComponent = (schema: Schema) => {
-  return schema?.['x-component'] === 'ProTable.ColumnGroup'
-}
-
-function useGetTableColumns() {
-  const { dataBind } = useProTableParams();
-  const field = useField();
-  const getTableColumns = useCallback((sources: ObservableColumnSource[], parentGroupNames: string[] = []): TableProps<any>['columns'] => {
-    return sources?.reduce((buf, source, key, index) => {
-      const { name, columnProps, schema, children/*, display*/ } = source || {}
-      //if (display !== 'visible') return buf
-      if (!isColumnComponent(schema) && !isColumnGroupComponent(schema)) return buf
-      let rootName = parentGroupNames.length ? parentGroupNames[0] : name;//组根名字
-      const groups = [...parentGroupNames, name];
-      const { sortable, defaultSortOrder, ...otherCoumnProps } = columnProps;
-      console.log("cmz", defaultSortOrder)
-      return buf.concat({
-        ...otherCoumnProps,
-        children: getTableColumns(children, groups) || [],
-        key,
-        dataIndex: name,
-        sorter: sortable ? { multiple: (key + 1) } : undefined,
-        defaultSortOrder: "ascend",
-        render: !children.length
-          ? (value: any, record: any, index: number) => {
-            let children = (
-              schema.properties && Object.keys(schema.properties).length > 0
-                ? <RecursionField schema={schema} onlyRenderProperties />
-                : <TextView inherited={false}></TextView>
-            )
-            for (let i = groups.length - 1; i > 0; i--) {
-              const groupName = groups[i];
-              children = <ReactField name={groupName} >
-                {children}
-              </ReactField>
-            }
-
-            return (
-              <InstanceContext.Provider
-                value={{
-                  field: field as Field,
-                  instance: record,
-                  entityName: dataBind.entityName,
-                }}
-              >
-                <ArrayBase.Item index={index} record={record}>
-                  <ReactField name={index}>
-                    <ReactField name={rootName} value={record?.[rootName]} >
-                      {children}
-                    </ReactField>
-                  </ReactField>
-                </ArrayBase.Item>
-              </InstanceContext.Provider>
-            )
-          }
-          : undefined,
-      })
-    }, [])
-  }, [dataBind.entityName, field])
-
-  return getTableColumns;
-}
-
-const useArrayTableSources = () => {
-  const p = useParseLangMessage();
-  const schema = useFieldSchema();
-  const parseSources = useCallback((schema: Schema): ObservableColumnSource[] => {
-    const isColumn = isColumnComponent(schema);
-    const isColumnGroup = isColumnGroupComponent(schema);
-    if (isColumn || isColumnGroup) {
-      if (!schema['x-component-props']?.['dataIndex'] && !schema['name'])
-        return []
-      const name = schema['x-component-props']?.['dataIndex'] || schema['name']
-      const columnProps = schema['x-component-props'] || {}
-      const display = schema['x-display']
-      columnProps.title = p(columnProps?.title);
-      return [
-        {
-          name,
-          display,
-          schema,
-          columnProps,
-          children: schema.reduceProperties((buf, schema) => {
-            return buf.concat(parseSources(schema))
-          }, []).filter(child => child),
-        },
-      ]
-    } else if (schema.properties) {
-      return schema.reduceProperties((buf, schema) => {
-        return buf.concat(parseSources(schema))
-      }, [])
-    }
-  }, [p]);
-
-  const parseArrayItems = useCallback((schema: Schema['items']) => {
-    if (!schema) return []
-    const sources: ObservableColumnSource[] = []
-    const items = isArr(schema) ? schema : [schema]
-    return items.reduce((columns, schema) => {
-      const item = parseSources(schema)
-      if (item) {
-        return columns.concat(item)
-      }
-      return columns
-    }, sources)
-  }, [parseSources])
-
-  const result = useMemo(() => parseArrayItems(schema?.items), [parseArrayItems, schema]);
-  return result
 }
 
 const mapOrderBy = (orderBy?: "ascend" | "descend"): 'asc' | 'desc' | undefined => {
@@ -170,6 +52,14 @@ export const Table = observer((
   const sources = useArrayTableSources()
   const getTableColumns = useGetTableColumns();
   const columns = useMemo(() => getTableColumns(sources), [getTableColumns, sources]);
+
+  useEffect(()=>{
+    console.log("sources 变化")
+  }, [sources])
+
+  useEffect(()=>{
+    console.log("Coumns 变化")
+  }, [columns])
 
   const rowSelection = useMemo(() => ({
     type: 'checkbox' as any,

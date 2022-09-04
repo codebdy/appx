@@ -45,7 +45,7 @@ export const PageEngine = memo((
   const me = useMe();
   const $me = useMemo(() => new Me(me), [me]);
   const expScope = useExpressionScope()
-
+  console.log("PageEngine 刷新", pageId, page)
   const p = useParseLangSchema();
   useShowError(error);
 

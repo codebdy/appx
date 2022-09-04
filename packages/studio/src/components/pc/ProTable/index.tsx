@@ -57,6 +57,7 @@ export const ProTable: React.FC<IProTableProps> & {
   }, [dataBind, pageSize, paginationPosition, selectable]);
   const fieldSchema = useFieldSchema();
 
+  console.log("ProTable 刷新")
   const field = useField();
   const slots = useMemo(() => {
     const slts = {
