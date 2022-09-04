@@ -4,7 +4,7 @@ import { IDataSourceableProps } from "../../common/IDataSourceableProps"
 import { Select as FormilySelect } from "@formily/antd";
 import { useDataQuery } from "../../../datasource";
 import { useFieldSchema } from '@formily/react'
-import { useQueryParams } from "../../../datasource/hooks/useQueryParams";
+import { QueryType, useQueryParams } from "../../../datasource/hooks/useQueryParams";
 import { useShowError } from "../../../hooks/useShowError";
 import { isArr } from "@formily/shared";
 
@@ -16,7 +16,7 @@ export const Select = observer((props: IDataSourceableProps & {
 }) => {
   const { dataBind, value, onChange, labelField, valueField, ...other } = props;
   const schema = useFieldSchema();
-  const queryParams = useQueryParams(dataBind, schema);
+  const queryParams = useQueryParams(dataBind, schema, {}, QueryType.Multiple);
 
   const { data, loading, error } = useDataQuery(queryParams?.gql ? queryParams : undefined);
   useShowError(error);
@@ -57,7 +57,7 @@ export const Select = observer((props: IDataSourceableProps & {
         value: valueField
       }}
       loading={loading}
-      options={data}
+      options={data?.nodes}
       value={encodededValue}
       onChange={handleChange}
     />

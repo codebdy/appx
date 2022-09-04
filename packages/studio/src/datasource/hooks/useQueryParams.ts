@@ -15,18 +15,30 @@ export interface IQueryParams extends IFragmentParams {
   entityName?: string,
   rootFieldName?: string,
 }
+
+export interface IQueryOptions {
+  queryForm: IQueryForm | undefined,
+  orderBys?: IOrderBy[],
+  current?: number,
+  pageSize?: number,
+}
+
+export enum QueryType {
+  Multiple = "Multiple",
+  QueryOne = "QueryOne"
+}
 const firstOperationDefinition = (ast) => ast.definitions?.[0];
 const firstFiledFromOperation = (operationDefinition) => operationDefinition?.selectionSet?.selections?.[0];
+
 
 //GQL拼接部分欠缺关联跟方法的参数
 export function useQueryParams(
   dataBind: IDataBindSource | undefined,
   schema: JsonSchema | undefined,
-  queryForm: IQueryForm | undefined,
-  orderBys?: IOrderBy[],
-  current?: number,
-  pageSize?: number,
+  options?: IQueryOptions,
+  queryType: QueryType = QueryType.QueryOne
 ): IQueryParams {
+  const { queryForm, orderBys, current, pageSize, } = options || {}
   const { t } = useTranslation();
   const fragmentFromSchema = useQueryFragmentFromSchema(schema);
   const expScope = useExpressionScope()
@@ -111,7 +123,8 @@ export function useQueryParams(
                   fields: newFields
                 }
               }
-            } else if ((ancestors?.[path.length - 6] as any)?.kind === Kind.OPERATION_DEFINITION &&
+            } else if ( queryType === QueryType.Multiple &&
+              (ancestors?.[path.length - 6] as any)?.kind === Kind.OPERATION_DEFINITION &&
               node.kind === Kind.FIELD &&
               node.name?.value === "nodes" &&
               (shchemaFragmentAst?.definitions?.[0] as any)?.selectionSet?.selections) {
@@ -186,7 +199,7 @@ export function useQueryParams(
     }
 
     return pms;
-  }, [convertQueryForm, current, dataBind?.entityName, dataBind?.expression, dataBind?.variables, expScope, fragmentFromSchema.gql, pageSize, queryForm, t]);
+  }, [convertQueryForm, current, dataBind?.entityName, dataBind?.expression, dataBind?.variables, expScope, fragmentFromSchema.gql, pageSize, queryForm, queryType, t]);
   console.log("Query GQL:", params?.gql, params?.variables);
   return params
 }

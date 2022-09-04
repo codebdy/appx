@@ -13,7 +13,7 @@ import { Schema } from '@formily/json-schema'
 import { isArr, isObj } from '@formily/shared'
 import { useParseLangMessage } from '../../../../hooks/useParseLangMessage';
 import { observer } from '@formily/reactive-react';
-import { useQueryParams } from '../../../../datasource/hooks/useQueryParams';
+import { QueryType, useQueryParams } from '../../../../datasource/hooks/useQueryParams';
 import { useDataQuery } from '../../../../datasource/hooks/useDataQuery';
 import { useShowError } from '../../../../hooks/useShowError';
 import { TextView } from '../../';
@@ -179,7 +179,17 @@ export const Table = observer((
   }), [onSelectedChange, selectedRowKeys]);
 
   const schema = useFieldSchema();
-  const queryParams = useQueryParams(dataBind, schema, queryForm, orderBys, current, pageSize);
+  const queryParams = useQueryParams(
+    dataBind,
+    schema,
+    {
+      queryForm,
+      orderBys,
+      current,
+      pageSize,
+    },
+    QueryType.Multiple
+  );
 
   const { data, loading, error } = useDataQuery(queryParams);
   useShowError(error);
