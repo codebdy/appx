@@ -38,7 +38,7 @@ export function useQueryParams(
   queryType: QueryType = QueryType.QueryOne,
   options: IQueryOptions = {},
 ): IQueryParams {
-  const { queryForm, orderBys, current, pageSize, } = options || {}
+  const { queryForm, orderBys, current, pageSize} = options || {}
   const { t } = useTranslation();
   const fragmentFromSchema = useQueryFragmentFromSchema(schema);
   const expScope = useExpressionScope()

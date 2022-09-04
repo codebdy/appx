@@ -47,13 +47,13 @@ export const ProTable: React.FC<IProTableProps> & {
     ...other
   } = props;
   const params = useMemo(() => {
-    return observable({ 
-      selectable, 
-      dataBind, 
+    return observable({
+      selectable,
+      dataBind,
       current: 1,
-      paginationPosition, 
+      paginationPosition,
       pageSize: pageSize || 10,
-     });
+    });
   }, [dataBind, pageSize, paginationPosition, selectable]);
   const fieldSchema = useFieldSchema();
 

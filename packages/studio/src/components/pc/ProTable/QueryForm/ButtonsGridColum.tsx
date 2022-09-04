@@ -19,18 +19,18 @@ export const ButtonsGridColum = observer((
 ) => {
   const { layout, expanded, collapsiable, onToggle } = props;
   const { t } = useLocalTranslations();
-  const { onSetQueryForm } = useProTableParams();
+  const params = useProTableParams();
   const form = useParentForm();
   const objectField = useMemo(() => isObjectField(form) && form, [form]);
 
   const handleReset = useCallback(() => {
-    onSetQueryForm && objectField?.reset();
-  }, [objectField, onSetQueryForm])
+    params && objectField?.reset();
+  }, [objectField, params])
 
   const handleSubmit = useCallback(() => {
     objectField?.validate();
-    onSetQueryForm && objectField && onSetQueryForm(toJS(objectField?.value))
-  }, [objectField, onSetQueryForm])
+    params.queryForm = toJS(objectField?.value);
+  }, [objectField, params])
 
   const acions = useMemo(() => {
     return (
