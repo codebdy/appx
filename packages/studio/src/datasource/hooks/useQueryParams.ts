@@ -43,7 +43,7 @@ export function useQueryParams(
   const fragmentFromSchema = useQueryFragmentFromSchema(schema);
   const expScope = useExpressionScope()
   const convertQueryForm = useConvertQueryFormToGqlNodes();
-  console.log("哈哈哈啊哈哈", current, pageSize, orderBys)
+
   const params = useMemo(() => {
     const pms: IQueryParams = {}
     if (dataBind?.expression) {
@@ -137,6 +137,17 @@ export function useQueryParams(
                     ...(shchemaFragmentAst?.definitions?.[0] as any)?.selectionSet?.selections || []
                   ]
                 }
+              }
+            } else if (queryType === QueryType.QueryOne &&
+              (ancestors?.[path.length - 4] as any)?.kind === Kind.OPERATION_DEFINITION &&
+              node.kind === Kind.SELECTION_SET
+            ) {
+              return {
+                ...node,
+                selections: [
+                  ...node.selections || [],
+                  ...(shchemaFragmentAst?.definitions?.[0] as any)?.selectionSet?.selections || []
+                ]
               }
             } else if ((ancestors?.[path.length - 3] as any)?.kind === Kind.OPERATION_DEFINITION &&
               node.kind === Kind.FIELD) {
