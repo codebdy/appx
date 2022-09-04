@@ -100,7 +100,6 @@ export function useQueryParams(
                 }
               } else if (orderBys?.length &&
                 !node.arguments?.find(argument => argument.name?.value === "orderBy")) {
-                console.log("哈哈哈1", node)
                 return {
                   ...node,
                   arguments: [
@@ -207,7 +206,7 @@ export function useQueryParams(
               node.name?.value === "orderBy" &&
               orderBys?.length
             ) {
-              const newValues = orderBys.map((order) => {
+              const newValues = orderBys.filter(orderBy => orderBy.order).map((order) => {
                 return {
                   kind: Kind.OBJECT,
                   fields: [
@@ -226,13 +225,13 @@ export function useQueryParams(
                 }
               })
 
-              const filterdOldValue = (node.value as ListValueNode)?.values.filter((val: ObjectValueNode) => !newValues.find(newVal => newVal.fields[0].name?.value === val.fields?.[0]?.name?.value))
+              const filterdOldValue = (node.value as ListValueNode)?.values.filter((val: ObjectValueNode) => !orderBys.find(orderBy => orderBy.field === val.fields?.[0]?.name?.value))
 
               return {
                 ...node,
                 value: {
                   ...node.value,
-                  values: [...filterdOldValue, ...newValues], 
+                  values: [...filterdOldValue, ...newValues],
                 }
               }
             }
