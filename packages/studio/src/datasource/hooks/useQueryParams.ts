@@ -38,7 +38,7 @@ export function useQueryParams(
   queryType: QueryType = QueryType.QueryOne,
   options: IQueryOptions = {},
 ): IQueryParams {
-  const { queryForm, orderBys, current, pageSize} = options || {}
+  const { queryForm, orderBys, current, pageSize } = options || {}
   const { t } = useTranslation();
   const fragmentFromSchema = useQueryFragmentFromSchema(schema);
   const expScope = useExpressionScope()
@@ -77,46 +77,43 @@ export function useQueryParams(
           enter(node, key, parent, path, ancestors) {
             if ((ancestors?.[path.length - 3] as any)?.kind === Kind.OPERATION_DEFINITION &&
               node.kind === Kind.FIELD) {
+              const args = [];
               //如果根Field 没有where，又有查询表单内容，则添加一个where 节点
               if (nodesFromQueryForm && nodesFromQueryForm.length > 0 &&
                 !node.arguments?.find(argument => argument.name?.value === "where")
               ) {
-                return {
-                  ...node,
-                  arguments: [
-                    ...node.arguments,
-                    {
-                      kind: Kind.ARGUMENT,
-                      name: {
-                        kind: Kind.NAME,
-                        value: "where"
-                      },
-                      value: {
-                        kind: Kind.OBJECT,
-                        fields: []
-                      }
-                    },
-                  ]
-                }
-              } else if ((orderBys?.length || fragmentFromSchema?.orderBys?.length) &&
+                args.push({
+                  kind: Kind.ARGUMENT,
+                  name: {
+                    kind: Kind.NAME,
+                    value: "where"
+                  },
+                  value: {
+                    kind: Kind.OBJECT,
+                    fields: []
+                  }
+                })
+              }
+              if ((orderBys?.length || fragmentFromSchema?.orderBys?.length) &&
                 !node.arguments?.find(argument => argument.name?.value === "orderBy")) {
-                return {
-                  ...node,
-                  arguments: [
-                    ...node.arguments,
-                    {
-                      kind: Kind.ARGUMENT,
-                      name: {
-                        kind: Kind.NAME,
-                        value: "orderBy"
-                      },
-                      value: {
-                        kind: Kind.LIST,
-                        values: [],
-                      }
-                    },
-                  ]
-                }
+                  args.push({
+                  kind: Kind.ARGUMENT,
+                  name: {
+                    kind: Kind.NAME,
+                    value: "orderBy"
+                  },
+                  value: {
+                    kind: Kind.LIST,
+                    values: [],
+                  }
+                })
+              }
+              return {
+                ...node,
+                arguments: [
+                  ...node.arguments,
+                  ...args,
+                ]
               }
             }
           },
