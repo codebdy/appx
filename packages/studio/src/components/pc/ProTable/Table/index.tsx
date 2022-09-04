@@ -208,7 +208,7 @@ export const Table = observer((
     onTableChange({
       current: pagination?.current || 1,
       pageSize: pagination?.pageSize,
-      sorter:
+      orderBys:
         isArr(sorter)
           ?
           sorter.map(orderBy => ({ field: orderBy.field, order: mapOrderBy(orderBy.order) }))

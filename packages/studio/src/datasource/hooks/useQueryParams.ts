@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { Schema as JsonSchema } from '@formily/json-schema';
 import { Schema, useExpressionScope } from "@formily/react";
 import { IDataBindSource } from "../model";
-import { parse, OperationTypeNode, print, Kind, visit, ObjectValueNode } from "graphql";
+import { parse, OperationTypeNode, print, Kind, visit, ObjectValueNode, ListValueNode } from "graphql";
 import { message } from "antd";
 import { useTranslation } from "react-i18next";
 import { IFragmentParams } from "./IFragmentParams";
@@ -98,9 +98,28 @@ export function useQueryParams(
                     },
                   ]
                 }
+              } else if (orderBys?.length &&
+                !node.arguments?.find(argument => argument.name?.value === "orderBy")) {
+                console.log("哈哈哈1", node)
+                return {
+                  ...node,
+                  arguments: [
+                    ...node.arguments,
+                    {
+                      kind: Kind.ARGUMENT,
+                      name: {
+                        kind: Kind.NAME,
+                        value: "orderBy"
+                      },
+                      value: {
+                        kind: Kind.LIST,
+                        values: [],
+                      }
+                    },
+                  ]
+                }
               }
             }
-
           },
           // @return
           //   undefined: no action
@@ -183,6 +202,33 @@ export function useQueryParams(
                 ...node,
                 arguments: args
               }
+            } else if ((ancestors?.[path.length - 5] as any)?.kind === Kind.OPERATION_DEFINITION &&
+              node.kind === Kind.ARGUMENT &&
+              node.name?.value === "orderBy" &&
+              orderBys?.length
+            ) {
+              const oldValue = node.value as ListValueNode;
+
+              console.log("哈哈哈", node, oldValue)
+              return {
+                ...node,
+                value: {
+                  ...node.value,
+                  fields: orderBys.map((order) => {
+                    return {
+                      kind: Kind.OBJECT_FIELD,
+                      name: {
+                        kind: Kind.NAME,
+                        value: order.field,
+                      },
+                      value: {
+                        kind: Kind.ENUM,
+                        value: order.order,
+                      }
+                    }
+                  })
+                }
+              }
             }
 
             if (node.kind === Kind.STRING) {
@@ -210,7 +256,7 @@ export function useQueryParams(
     }
 
     return pms;
-  }, [convertQueryForm, current, dataBind?.entityName, dataBind?.expression, dataBind?.variables, expScope, fragmentFromSchema.gql, pageSize, queryForm, queryType, t]);
-  console.log("Query GQL:", params?.gql, params?.variables);
+  }, [convertQueryForm, current, dataBind?.entityName, dataBind?.expression, dataBind?.variables, expScope, fragmentFromSchema.gql, orderBys, pageSize, queryForm, queryType, t]);
+  //console.log("Query GQL:", params?.gql, params?.variables);
   return params
 }

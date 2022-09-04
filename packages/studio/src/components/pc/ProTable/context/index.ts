@@ -5,7 +5,7 @@ import { IOrderBy } from "../../../../datasource/model/IOrderBy";
 
 export interface ITableChangeParams {
   current?: number,
-  sorter?: IOrderBy[],
+  orderBys?: IOrderBy[],
   pageSize?: number,
 }
 export interface IProTableParams {
