@@ -1,39 +1,21 @@
 import { SettingOutlined } from "@ant-design/icons";
+import { observer } from "@formily/reactive-react";
 import { Button, Divider, Popover, Space, Tooltip, Tree, TreeProps } from "antd";
 import { DataNode } from "antd/lib/tree";
-import React from "react"
-import { memo } from "react"
+import React, { useMemo } from "react"
+import { useProTableParams } from "../../context";
 import { useLocalTranslations } from "../../hooks/useLocalTranslations";
 import { TitleBox } from "./TitleBox";
 
-const treeData: DataNode[] = [
-  {
-    title: 'parent 1',
-    key: '0-0',
-  },
-  {
-    title: 'parent 1-0',
-    key: '0-0-0',
-  },
-
-  {
-    title: 'parent 1-1',
-    key: '0-0-1',
-  },
-  { title: <span style={{ color: '#1890ff' }}>sss</span>, key: '0-0-1-0' },
-  {
-    title: 'leaf',
-    key: '0-0-0-0',
-    disableCheckbox: true,
-  },
-  {
-    title: 'leaf',
-    key: '0-0-0-1',
-  },
-];
-
-const ColumnsSettings = memo(() => {
+const ColumnsSettings = observer(() => {
   const { t } = useLocalTranslations();
+  const protableParams = useProTableParams();
+  
+  const treeData: DataNode[] = useMemo(()=>protableParams.columns?.map(column=>({
+    key: column.name,
+    title: column.title
+  })), [protableParams.columns])
+
   const handleCheck: TreeProps['onCheck'] = (checkedKeys, info) => {
     console.log('onCheck', checkedKeys, info);
   };
