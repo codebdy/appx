@@ -32,15 +32,18 @@ export function useLazyRequest<T1>(options?: RequestOptions<any>)
         console.log("gql or endpoint is null")
         return;
       }
+
+      const headers = { 
+        [HEADER_AUTHORIZATION]: token ? `${TOKEN_PREFIX}${token}` : "" ,
+        [HEADER_APPX_APPUUID]: appUuid,
+      } 
+
       const graphQLClient = new AwesomeGraphQLClient({ endpoint })
       setLoading(true);
       setError(undefined);
       graphQLClient
         .request(gql, params, { 
-          headers: { 
-            [HEADER_AUTHORIZATION]: token ? `${TOKEN_PREFIX}${token}` : "" ,
-            [HEADER_APPX_APPUUID]: appUuid,
-          } 
+          headers: headers
         })
         .then((data) => {
           if (!mountRef.current) {
