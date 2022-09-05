@@ -6,6 +6,7 @@ import ColumnsSettings from "./ColumnsSettings"
 import HeightMenu from "./HeightMenu"
 import clx from "classnames"
 import { IAppxAction, useDoActions } from "../../../../shared/action"
+import { useProTableParams } from "../context"
 
 export interface ITableToolbarProps {
   title?: string,
@@ -31,7 +32,7 @@ const TableToolbar = (
     ...other
   } = props;
   const { t } = useLocalTranslations();
-
+  const params = useProTableParams();
   const doActions = useDoActions();
 
   const handleNew = useCallback(() => {
@@ -47,6 +48,10 @@ const TableToolbar = (
       })
       ;
   }, [doActions, onNew])
+
+  const handleRefresh = useCallback(() => {
+    params.refreshFlag = params.refreshFlag ? (params.refreshFlag + 1) : 1
+  }, [params]);
 
   return (
     <div {...other}
@@ -79,7 +84,13 @@ const TableToolbar = (
         {
           hasRefresh &&
           <Tooltip title={t("Refresh")}>
-            <Button shape="circle" size="large" type="text" style={{ marginLeft: 8 }}>
+            <Button
+              shape="circle"
+              size="large"
+              type="text"
+              style={{ marginLeft: 8 }}
+              onClick={handleRefresh}
+            >
               <ReloadOutlined />
             </Button>
           </Tooltip>

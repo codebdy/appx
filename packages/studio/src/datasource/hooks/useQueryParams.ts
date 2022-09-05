@@ -14,6 +14,7 @@ import { IOrderBy } from "../model/IOrderBy";
 export interface IQueryParams extends IFragmentParams {
   entityName?: string,
   rootFieldName?: string,
+  refreshFlag?: number,
 }
 
 export interface IQueryOptions {
@@ -21,6 +22,7 @@ export interface IQueryOptions {
   orderBys?: IOrderBy[],
   current?: number,
   pageSize?: number,
+  refreshFlag?: number,
 }
 
 export enum QueryType {
@@ -38,14 +40,13 @@ export function useQueryParams(
   queryType: QueryType = QueryType.QueryOne,
   options: IQueryOptions = {},
 ): IQueryParams {
-  const { queryForm, orderBys, current, pageSize } = options || {}
+  const { queryForm, orderBys, current, pageSize, refreshFlag } = options || {}
   const { t } = useTranslation();
   const fragmentFromSchema = useQueryFragmentFromSchema(schema);
   const expScope = useExpressionScope()
   const convertQueryForm = useConvertQueryFormToGqlNodes();
-
   const params = useMemo(() => {
-    const pms: IQueryParams = {}
+    const pms: IQueryParams = {refreshFlag}
     if (dataBind?.expression) {
       try {
         const ast = parse(dataBind?.expression);
@@ -264,7 +265,7 @@ export function useQueryParams(
     }
 
     return pms;
-  }, [convertQueryForm, current, dataBind?.entityName, dataBind?.expression, dataBind?.variables, expScope, fragmentFromSchema.gql, fragmentFromSchema.orderBys, orderBys, pageSize, queryForm, queryType, t]);
+  }, [convertQueryForm, current, dataBind?.entityName, dataBind?.expression, dataBind?.variables, expScope, fragmentFromSchema.gql, fragmentFromSchema.orderBys, orderBys, pageSize, queryForm, queryType, refreshFlag, t]);
   //console.log("Query GQL:", params?.gql, params?.variables);
   return params
 }

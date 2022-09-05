@@ -19,6 +19,7 @@ export interface IProTableParams {
   paginationPosition?: "bottomLeft" | "bottomCenter" | "bottomRight",
   pageSize?: number,
   current?: number,
+  refreshFlag?: number,
   //onTableChange?: (changeParams: ITableChangeParams) => void,
 }
 

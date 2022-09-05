@@ -39,6 +39,7 @@ export const Table = observer((
     pageSize,
     current,
     orderBys,
+    refreshFlag,
   } = useProTableParams();
   const protableParams = useProTableParams();
   const selectable = useSelectable();
@@ -72,6 +73,7 @@ export const Table = observer((
       orderBys,
       current,
       pageSize,
+      refreshFlag,
     },
   );
 

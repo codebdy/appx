@@ -36,7 +36,7 @@ export function useDataQuery(params?: IQueryParams): QueryResponse {
     //console.log("doLoad:", params?.gql)
     doLoad(params?.gql, params?.variables)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [endpoint, params?.gql, params?.variables]);
+  }, [endpoint, params?.gql, params?.variables, params?.refreshFlag]);
 
   const refresh = useCallback(() => {
     setRevalidating(true)
