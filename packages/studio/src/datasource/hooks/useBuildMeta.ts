@@ -39,20 +39,27 @@ export function useBuildMeta(): { error?: Error; loading?: boolean } {
   const queryGql = useMemo(() => {
     return gql`
     query ${queryName}($appUuid:String!) {
-      ${queryName}(where:{
-        _and:[
+      ${queryName}(
+        where:{
+          _and:[
+            {
+              appUuid:{
+                _eq:$appUuid
+              }            
+            },
+            {
+              status:{
+                _eq:"published"
+              }            
+            },
+          ]
+        },
+        orderBy:[
           {
-            appUuid:{
-              _eq:$appUuid
-            }            
-          },
-          {
-            status:{
-              _eq:"published"
-            }            
-          },
+            id:desc
+          }
         ]
-      }){
+      ){
         id
         content
         status

@@ -19,11 +19,18 @@ export function useReadMeta(appUuid: string): { error?: Error; loading?: boolean
   const queryGql = useMemo(() => {
     return gql`
     query ${queryName}($appUuid:String!) {
-      ${queryName}(where:{
-        appUuid:{
-          _eq:$appUuid
-        }
-      }){
+      ${queryName}(
+        where:{
+            appUuid:{
+            _eq:$appUuid
+          }
+        },
+        orderBy:[
+          {
+            id:desc
+          }
+        ]
+      ){
         id
         content
         status
