@@ -9,6 +9,7 @@ import { IAppxAction, useDoActions } from "../../../../shared/action"
 import { useProTableParams } from "../context"
 import { useComponentConfig } from "../../../../shared/AppRoot/hooks/useComponentConfig"
 import { observer } from "@formily/reactive-react"
+import { IProTableConfig } from "../context/IProTableConfig"
 
 export interface ITableToolbarProps {
   title?: string,
@@ -36,13 +37,12 @@ export const TableToolbar = observer((
   const { t } = useLocalTranslations();
   const params = useProTableParams();
   const doActions = useDoActions();
-  const tableConfig = useComponentConfig(params.path);
-  console.log("哈哈哈", tableConfig, params.path)
+  const tableConfig: IProTableConfig = useComponentConfig(params.path);
 
-  useEffect(()=>{
+  useEffect(() => {
     params.tableConfig = tableConfig;
   }, [params, tableConfig])
-  
+
   const handleNew = useCallback(() => {
     if (!onNew) {
       return;

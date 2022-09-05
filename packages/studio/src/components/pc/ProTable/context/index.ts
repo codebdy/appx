@@ -21,7 +21,7 @@ export interface IProTableParams {
   pageSize?: number,
   current?: number,
   refreshFlag?: number,
-  size?: "middle" | "small",
+  //size?: "middle" | "small",
   path?: string,
   tableConfig?: IProTableConfig,
   //onTableChange?: (changeParams: ITableChangeParams) => void,

@@ -119,7 +119,7 @@ export const Table = observer((
           total: data?.total,
           current: protableParams.current,
         }}
-        size={protableParams.size}
+        size={protableParams?.tableConfig?.size}
         loading={loading}
         onChange={onChange}>
       </AntdTable>
