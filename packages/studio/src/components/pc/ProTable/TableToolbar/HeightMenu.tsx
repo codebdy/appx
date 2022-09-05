@@ -1,31 +1,39 @@
 import { ColumnHeightOutlined } from "@ant-design/icons";
+import { observer } from "@formily/reactive-react";
 import { Button, Dropdown, Menu, Tooltip } from "antd";
-import React from "react"
-import { memo } from "react"
+import React, { useCallback } from "react"
+import { useProTableParams } from "../context";
 import { useLocalTranslations } from "../hooks/useLocalTranslations";
 
-const HeightMenu = memo(() => {
+const HeightMenu = observer(() => {
   const { t } = useLocalTranslations();
+  const params = useProTableParams();
+  const handleClick = useCallback((info) => {
+    params.size = info?.key || undefined
+  }, [params])
+
   const menu = (
     <Menu
-      selectedKeys={["1"]}
+      selectedKeys={[(params.size || "")]}
       style={{
         minWidth: 80,
       }}
       items={[
         {
           label: t("Default"),
-          key: '0',
+          key: '',
         },
         {
           label: t("Middle"),
-          key: '1',
+          key: 'middle',
         },
         {
           label: t("Dense"),
-          key: '3',
+          key: 'small',
         },
       ]}
+
+      onClick={handleClick}
     />
   );
   return (
