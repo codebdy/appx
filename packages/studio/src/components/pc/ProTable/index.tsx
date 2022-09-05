@@ -8,13 +8,12 @@ import { ITableBatchActionsProps, TableBatchActions } from "./TableBatchActions"
 import { observer } from "@formily/reactive-react"
 import { registerResourceBundle } from "../../../i18n/registerResourceBundle"
 import { IDataSourceableProps } from "../../common/IDataSourceableProps"
-import TableToolbar, { ITableToolbarProps } from "./TableToolbar"
+import { TableToolbar, ITableToolbarProps } from "./TableToolbar"
 import clx from "classnames";
 import { RecursionField, useFieldSchema, useField } from '@formily/react';
 import { IQueryFormProps, QueryForm } from "./QueryForm"
 import { TableIndex } from "./TableIndex"
 import { observable } from "@formily/reactive"
-import { useComponentConfig } from "../../../shared/AppRoot/hooks/useComponentConfig"
 
 registerResourceBundle(LOCALES_NS, locales);
 
@@ -48,7 +47,6 @@ export const ProTable: React.FC<IProTableProps> & {
     ...other
   } = props;
   const field = useField();
-  const tableConfig = useComponentConfig(field.path.toString());
   const params = useMemo(() => {
     return observable({
       selectable,
@@ -56,10 +54,9 @@ export const ProTable: React.FC<IProTableProps> & {
       current: 1,
       paginationPosition,
       pageSize: pageSize || 10,
-      tableConfig,
       path: field.path.toString()
     });
-  }, [dataBind, field.path, pageSize, paginationPosition, selectable, tableConfig]);
+  }, [dataBind, field.path, pageSize, paginationPosition, selectable]);
   const fieldSchema = useFieldSchema();
 
   console.log("ProTable 刷新")

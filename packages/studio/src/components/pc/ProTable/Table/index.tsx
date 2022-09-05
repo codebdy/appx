@@ -47,14 +47,6 @@ export const Table = observer((
   const getTableColumns = useGetTableColumns();
   const columns = useMemo(() => getTableColumns(sources), [getTableColumns, sources]);
 
-  useEffect(() => {
-    console.log("sources 变化")
-  }, [sources])
-
-  useEffect(() => {
-    console.log("Coumns 变化")
-  }, [columns])
-
   const rowSelection = useMemo(() => ({
     type: 'checkbox' as any,
     selectedRowKeys: selectedRowKeys,

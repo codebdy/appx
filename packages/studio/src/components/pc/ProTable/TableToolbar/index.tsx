@@ -1,12 +1,14 @@
 import { PlusOutlined, ReloadOutlined } from "@ant-design/icons"
 import { Button, message, Tooltip } from "antd"
-import React, { useCallback } from "react"
+import React, { useCallback, useEffect } from "react"
 import { useLocalTranslations } from "../hooks/useLocalTranslations"
 import ColumnsSettings from "./ColumnsSettings"
 import HeightMenu from "./HeightMenu"
 import clx from "classnames"
 import { IAppxAction, useDoActions } from "../../../../shared/action"
 import { useProTableParams } from "../context"
+import { useComponentConfig } from "../../../../shared/AppRoot/hooks/useComponentConfig"
+import { observer } from "@formily/reactive-react"
 
 export interface ITableToolbarProps {
   title?: string,
@@ -18,7 +20,7 @@ export interface ITableToolbarProps {
   onNew?: IAppxAction[],
 }
 
-const TableToolbar = (
+export const TableToolbar = observer((
   props: ITableToolbarProps
 ) => {
   const {
@@ -34,7 +36,13 @@ const TableToolbar = (
   const { t } = useLocalTranslations();
   const params = useProTableParams();
   const doActions = useDoActions();
+  const tableConfig = useComponentConfig(params.path);
+  console.log("哈哈哈", tableConfig, params.path)
 
+  useEffect(()=>{
+    params.tableConfig = tableConfig;
+  }, [params, tableConfig])
+  
   const handleNew = useCallback(() => {
     if (!onNew) {
       return;
@@ -108,6 +116,4 @@ const TableToolbar = (
       </div>
     </div>
   )
-}
-
-export default TableToolbar
+})

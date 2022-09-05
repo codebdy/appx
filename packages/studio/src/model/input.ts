@@ -1,6 +1,9 @@
-import { Device, IApp, ILang } from ".";
-import { IUser } from "../enthooks/hooks/useQueryMe";
+import { Device, ILang } from ".";
 import { ID } from "../shared";
+
+export interface IUserInput{
+  id?: ID;
+}
 
 export interface IFileInput {
   id?: ID;
@@ -67,8 +70,8 @@ export interface IMenuInput {
 
 export interface IUserConfigInput {
   id?: ID;
-  app?: IApp[];
-  user?: IUser[];
+  app?: IAppInput[];
+  user?: IUserInput[];
   schemaJson?: {
     [path: string]: any,
   },

@@ -1,4 +1,4 @@
 export interface IProTableConfig {
-  size?: string,
+  size?: "middle" | "small",
   columns?: string[],
 }
