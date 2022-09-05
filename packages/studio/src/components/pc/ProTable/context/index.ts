@@ -2,6 +2,7 @@ import { IDataBindSource } from "../../../../datasource";
 import { createContext, useContext } from "react";
 import { IQueryForm } from "../../../../datasource/model/IQueryForm";
 import { IOrderBy } from "../../../../datasource/model/IOrderBy";
+import { IProTableConfig } from "./IProTableConfig";
 
 export interface ITableChangeParams {
   current?: number,
@@ -21,6 +22,8 @@ export interface IProTableParams {
   current?: number,
   refreshFlag?: number,
   size?: "middle" | "small",
+  path?: string,
+  tableConfig?: IProTableConfig,
   //onTableChange?: (changeParams: ITableChangeParams) => void,
 }
 
