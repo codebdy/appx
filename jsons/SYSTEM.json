@@ -31,6 +31,7 @@
           },
           {
             "System": true,
+            "label": "$inline:{\"zh-CN\":\"名称\"}",
             "name": "name",
             "nullable": true,
             "type": "String",
@@ -39,6 +40,7 @@
           },
           {
             "System": true,
+            "label": "$inline:{\"zh-CN\":\"登录名\"}",
             "length": 128,
             "name": "loginName",
             "type": "String",
@@ -55,6 +57,7 @@
           },
           {
             "System": true,
+            "label": "$inline:{\"zh-CN\":\"是超级管理员\"}",
             "name": "isSupper",
             "nullable": true,
             "type": "Boolean",
@@ -87,6 +90,7 @@
           }
         ],
         "innerId": 4,
+        "label": "$inline:{\"zh-CN\":\"用户\",\"en-US\":\"User\"}",
         "name": "User",
         "packageUuid": "PACKAGE_SYSTEM_UUID",
         "root": true,
@@ -161,6 +165,7 @@
         ],
         "idNoShift": true,
         "innerId": 1001,
+        "label": "$inline:{\"zh-CN\":\"应用\"}",
         "methods": [],
         "name": "App",
         "packageUuid": "PACKAGE_APPX_UUID",
@@ -187,6 +192,7 @@
           }
         ],
         "innerId": 1002,
+        "label": "$inline:{\"zh-CN\":\"页面\",\"en-US\":\"Page\"}",
         "methods": [],
         "name": "Page",
         "packageUuid": "PACKAGE_APPX_UUID",
@@ -266,6 +272,7 @@
           }
         ],
         "innerId": 1005,
+        "label": "$inline:{\"zh-CN\":\"菜单\"}",
         "methods": [],
         "name": "Menu",
         "packageUuid": "PACKAGE_APPX_UUID",
@@ -404,6 +411,13 @@
             "type": "String",
             "typeLabel": "String",
             "uuid": "60345ded-53be-4070-a273-646cc67ff5f6"
+          },
+          {
+            "uuid": "e612cc4c-6776-42d5-b28d-982cda905d35",
+            "name": "appUuid",
+            "type": "String",
+            "typeLabel": "String",
+            "nullable": true
           }
         ],
         "innerId": 1010,
@@ -437,6 +451,37 @@
         "root": false,
         "stereoType": "Abstract",
         "uuid": "db282fa2-db28-4a99-badd-f53cc8fb0862"
+      },
+      {
+        "attributes": [
+          {
+            "name": "id",
+            "primary": true,
+            "type": "ID",
+            "typeLabel": "ID",
+            "uuid": "83901029-953a-4a4a-b791-8e2cd1cc8640"
+          },
+          {
+            "name": "appUuid",
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "cad6209d-86c9-43b6-bde4-d5c3d4af892b"
+          },
+          {
+            "name": "device",
+            "type": "Enum",
+            "typeLabel": "Device",
+            "typeUuid": "096f252a-5e35-4e49-8dce-297b2f16374f",
+            "uuid": "c4b1d4ec-5cfc-4cbf-b695-c35650400ab7"
+          }
+        ],
+        "innerId": 1012,
+        "methods": [],
+        "name": "AppDeviceConfig",
+        "packageUuid": "PACKAGE_APPX_UUID",
+        "root": true,
+        "stereoType": "Entity",
+        "uuid": "0e31f942-ce6f-4f6e-bd1b-0a5eb126d204"
       }
     ],
     "relations": [
@@ -573,6 +618,7 @@
       {
         "appUuid": "SYSTEM",
         "innerId": 1008,
+        "labelOfSource": "$inline:{\"zh-CN\":\"用户\",\"en-US\":\"user\"}",
         "relationType": "twoWayCombination",
         "roleOfSource": "user",
         "roleOfTarget": "config",
@@ -581,6 +627,16 @@
         "targetId": "de56ae19-aaac-4479-8bf9-6573ad22a482",
         "targetMultiplicity": "0..*",
         "uuid": "32bbc048-107d-4397-bf87-2a4d55c0bb48"
+      },
+      {
+        "appUuid": "SYSTEM",
+        "innerId": 0,
+        "relationType": "inherit",
+        "sourceId": "0e31f942-ce6f-4f6e-bd1b-0a5eb126d204",
+        "sourceMutiplicity": "0..1",
+        "targetId": "db282fa2-db28-4a99-badd-f53cc8fb0862",
+        "targetMultiplicity": "0..1",
+        "uuid": "0ffd3870-c7ab-4971-beca-7b597629e6cb"
       }
     ],
     "diagrams": [
@@ -696,28 +752,36 @@
         "y": -39
       },
       {
-        "diagramUuid": "bd5c2470-2d87-47b8-8fdc-40cedce87375",
-        "height": 120,
         "id": "de56ae19-aaac-4479-8bf9-6573ad22a482",
+        "x": -590,
+        "y": 25,
         "width": 180,
-        "x": -600,
-        "y": 40
+        "height": 150,
+        "diagramUuid": "bd5c2470-2d87-47b8-8fdc-40cedce87375"
       },
       {
-        "diagramUuid": "bd5c2470-2d87-47b8-8fdc-40cedce87375",
-        "height": 120,
         "id": "db282fa2-db28-4a99-badd-f53cc8fb0862",
+        "x": -590,
+        "y": -200,
         "width": 180,
-        "x": -600,
-        "y": -205
+        "height": 120,
+        "diagramUuid": "bd5c2470-2d87-47b8-8fdc-40cedce87375"
       },
       {
         "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
         "height": 96,
         "id": "db282fa2-db28-4a99-badd-f53cc8fb0862",
         "width": 180,
-        "x": -1151,
-        "y": 2
+        "x": -1031,
+        "y": 10
+      },
+      {
+        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
+        "height": 120,
+        "id": "0e31f942-ce6f-4f6e-bd1b-0a5eb126d204",
+        "width": 180,
+        "x": -1261,
+        "y": 150
       }
     ],
     "x6Edges": [
@@ -945,7 +1009,7 @@
         "id": "d1f962f6-6736-460a-a6b8-40aae2e0be0f",
         "vertices": [
           {
-            "x": -1061,
+            "x": -941,
             "y": 210
           }
         ]
@@ -975,6 +1039,16 @@
           "offset": -20
         },
         "vertices": []
+      },
+      {
+        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
+        "id": "0ffd3870-c7ab-4971-beca-7b597629e6cb",
+        "vertices": [
+          {
+            "x": -941,
+            "y": 210
+          }
+        ]
       }
     ]
   }
