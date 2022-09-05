@@ -1,6 +1,7 @@
 import { ID } from "../shared";
 import { IMenuItem } from "./IMenuNode";
 import { ISchema } from '@formily/json-schema'
+import { IUser } from "../enthooks/hooks/useQueryMe";
 export interface ILang {
   key: string,
   abbr: string,
@@ -76,4 +77,13 @@ export interface IMenu {
   schemaJson: { items: IMenuItem[] };
   device: Device;
   app: IApp[];
+}
+
+export interface IUserConfig {
+  id: ID;
+  app?: IApp[],
+  user?: IUser[];
+  schemaJson?: {
+    [path: string]: any,
+  },
 }

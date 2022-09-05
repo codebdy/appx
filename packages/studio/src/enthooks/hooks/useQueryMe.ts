@@ -1,15 +1,15 @@
 import { gql } from "awesome-graphql-client";
+import { ID } from "../../shared";
 
 import { useRequest } from "./useRequest";
 
 export interface IUser {
-  id: number;
+  id: ID;
   name: string;
   loginName: string;
   isSupper?: boolean;
   isDemo?: boolean;
 }
-
 
 const queryGql = gql`
   query{
