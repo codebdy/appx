@@ -1,12 +1,15 @@
 import { SettingOutlined } from "@ant-design/icons";
 import { observer } from "@formily/reactive-react";
 import { Button, Checkbox, Divider, Popover, Space, Tooltip } from "antd";
+import { useUpdateComponentConfig } from "../../../../../shared/AppRoot/hooks/useUpdateComponentConfig";
 import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { DragDropContext, Draggable, Droppable, DropResult } from "react-beautiful-dnd";
 import { useProTableParams } from "../../context";
 import { useLocalTranslations } from "../../hooks/useLocalTranslations";
 import DraggableLabel from "./DraggableLabel";
 import "./style.less"
+import { useShowError } from "../../../../../hooks/useShowError";
+import { toJS } from "@formily/reactive";
 
 enum CheckState {
   half = 1,
@@ -49,13 +52,21 @@ const ColumnsSettings = observer(() => {
   }, [protableParams?.columns?.length, selectedColumns.length]);
 
   const columns = useMemo(() => {
-    const sCols = sortedColumns.map(column => {
+    const sCols = protableParams?.columns ? sortedColumns.map(column => {
       const col = protableParams?.columns?.find(col => col.name === column)
       return col
-    })
+    }) :[]
 
     return [...sCols, ...protableParams?.columns?.filter(col => !sortedColumns?.find(column => col.name === column)) || []];
   }, [protableParams?.columns, sortedColumns])
+
+  const [updateConfig, { error, loading }] = useUpdateComponentConfig({
+    onCompleted: () => {
+      setVisable(false);
+    }
+  });
+
+  useShowError(error);
 
   const handleAllCheckChange = useCallback(() => {
     if (checkState === CheckState.half || checkState === CheckState.none) {
@@ -71,8 +82,15 @@ const ColumnsSettings = observer(() => {
   }, [reset])
 
   const handleConfirm = useCallback(() => {
-
-  }, [])
+    updateConfig(
+      protableParams.path,
+      {
+        ...toJS(protableParams.tableConfig) || {},
+        columns: sortedColumns?.filter(col => selectedColumns.find(column => column === col)),
+        sortedColumns: sortedColumns,
+      }
+    )
+  }, [protableParams.path, protableParams.tableConfig, selectedColumns, sortedColumns, updateConfig])
 
   const handelVisableChange = useCallback((vb) => {
     setVisable(vb);
@@ -156,7 +174,7 @@ const ColumnsSettings = observer(() => {
           <Button size="middle" type="text" onClick={handleCancel}>
             {t("Cancel")}
           </Button>
-          <Button type="primary" size="middle" onClick={handleConfirm}>
+          <Button type="primary" size="middle" loading={loading} onClick={handleConfirm}>
             {t("Confirm")}
           </Button>
         </Space>
