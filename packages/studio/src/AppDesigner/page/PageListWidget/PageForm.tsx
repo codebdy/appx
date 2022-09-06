@@ -27,7 +27,7 @@ const PageForm = memo((props: {
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 16 }}
       form={form}
-      initialValues={{ title: page?.title || "", categoryId: page?.category?.[0]?.id || categoryId || "" }}
+      initialValues={{ title: page?.title || "", categoryId: page?.category?.id || categoryId || "" }}
       autoComplete="off"
     >
       <Row gutter={12}>

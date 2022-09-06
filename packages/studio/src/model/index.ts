@@ -62,27 +62,27 @@ export interface IPage {
   schemaJson: { form: any, schema: ISchema };
   device: Device;
   app: IApp[];
-  category?: IPageCategory[];
+  category?: IPageCategory;
 }
 
 export interface IPageCategory {
   id: ID;
   title?: string;
   device?: Device;
-  app?: IApp[];
+  app?: IApp;
 }
 
 export interface IMenu {
   id: ID;
   schemaJson: { items: IMenuItem[] };
   device: Device;
-  app: IApp[];
+  app: IApp;
 }
 
 export interface IUserConfig {
   id: ID;
-  app?: IApp[],
-  user?: IUser[];
+  app?: IApp,
+  user?: IUser;
   schemaJson?: {
     [path: string]: any,
   },
