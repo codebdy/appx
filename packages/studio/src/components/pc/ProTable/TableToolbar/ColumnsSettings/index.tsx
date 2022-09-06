@@ -2,6 +2,7 @@ import { SettingOutlined } from "@ant-design/icons";
 import { observer } from "@formily/reactive-react";
 import { Button, Checkbox, Divider, Popover, Space, Tooltip } from "antd";
 import React, { useCallback, useEffect, useMemo, useState } from "react"
+import { DragDropContext, Draggable, Droppable, DropResult } from "react-beautiful-dnd";
 import { useProTableParams } from "../../context";
 import { useLocalTranslations } from "../../hooks/useLocalTranslations";
 import DraggableLabel from "./DraggableLabel";
@@ -78,30 +79,64 @@ const ColumnsSettings = observer(() => {
   }, [])
 
   const handleChange = useCallback((name: string, checked: boolean) => {
-    if(!checked && selectedColumns.find(col=>col === name)){
-      setSelectedColumns(columns=>columns.filter(col=>col !== name));
-    }else if(checked && !selectedColumns.find(col=>col === name)){
-      setSelectedColumns(columns=>([...columns, name]));
+    if (!checked && selectedColumns.find(col => col === name)) {
+      setSelectedColumns(columns => columns.filter(col => col !== name));
+    } else if (checked && !selectedColumns.find(col => col === name)) {
+      setSelectedColumns(columns => ([...columns, name]));
     }
   }, [selectedColumns])
 
+  const onDragEnd = useCallback(
+    (result: DropResult) => {
+      const { destination, source, draggableId } = result;
+      if (destination?.droppableId) {
+
+      }
+    },
+    []
+  );
+
   const content = (
     <div className="columns-settings">
-      <div className="columns-list">
-        {
-          columns?.map(column => {
-            return (
-              <DraggableLabel
-                key={column.name}
-                name={column.name}
-                title={column.title}
-                checked={!!selectedColumns?.find(col => col === column.name)}
-                onChange={handleChange}
-              />
-            )
-          })
-        }
-      </div>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId={"DropList"}>
+          {(provided, snapshot) => (
+            <div className="columns-list" ref={provided.innerRef}
+              style={{
+                flex: 1,
+                flexFlow: "column",
+                backgroundColor: snapshot.isDraggingOver
+                  ? "rgba(0,0,0, 0.05)"
+                  : undefined,
+              }}
+            >
+              {
+                columns?.map((column, index) => {
+                  return (
+                    <Draggable key={column.name} draggableId={column.name} index={index}>
+                      {
+                        (provided, snapshot) => (
+                          <DraggableLabel
+                            key={column.name}
+                            name={column.name}
+                            title={column.title}
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            checked={!!selectedColumns?.find(col => col === column.name)}
+                            onChange={handleChange}
+                          />)
+                      }
+                    </Draggable>
+                  )
+                })
+              }
+              <div style={{ display: "none" }}>{provided.placeholder}</div>
+            </div>
+          )
+          }
+        </Droppable>
+      </DragDropContext>
       <Divider style={{ margin: "8px 0" }} />
       <div
         style={{

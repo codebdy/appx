@@ -5,16 +5,12 @@ import { useTranslation } from "react-i18next";
 import { COLLAPSE_GROUP_ID, CUSTOMIZED_LINK_ID, DIVIDER_ID, HELPER_LIST_ID } from "../consts";
 import DraggableLabel from "./DraggableLabel";
 import PagesTree from "./PagesTree";
-import { useCategories } from "../../hooks/useCategories";
-import { usePages } from "../../hooks/usePages";
 const { Panel } = Collapse;
 
 const MenuComponentsWidget = memo((
   props: {
   }
 ) => {
-  const categories = useCategories();
-  const pages = usePages();
   const { t } = useTranslation();
   const items = useMemo(() => [
     {
@@ -72,7 +68,7 @@ const MenuComponentsWidget = memo((
           </Droppable>
         </Panel>
         <Panel header={t("Menu.Pages")} key="2">
-          <PagesTree categories={categories} pages={pages} />
+          <PagesTree/>
         </Panel>
       </Collapse>
     </div>
