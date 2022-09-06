@@ -1,5 +1,5 @@
 import { observer } from "@formily/reactive-react"
-import React, { useCallback, useMemo } from "react"
+import React, { useCallback } from "react"
 import { IDataSourceableProps } from "../../common/IDataSourceableProps"
 import { Select as FormilySelect } from "@formily/antd";
 import { useDataQuery } from "../../../datasource";
@@ -21,33 +21,28 @@ export const Select = observer((props: IDataSourceableProps & {
   const { data, loading, error } = useDataQuery(queryParams?.gql ? queryParams : undefined);
   useShowError(error);
 
-  const toArrayValue = useCallback((value) => {
-    if (!value) {
-      return [];
+  const decodeValue = useCallback((value: any) => {
+    if (isArr(value)) {
+      return value?.map(child => ({ [valueField]: child }))
+    } else if (value) {
+      return { [valueField]: value }
     }
-    if (!isArr(value)) {
-      return [value]
-    }
-
     return value;
-  }, []);
-
-  const decodeValue = useCallback((value: any[]) => {
-    return value?.map(child => ({ [valueField]: child }))
   }, [valueField])
 
-  const encodeValue = useCallback((value: { [key: string]: any }[]) => {
-    return value?.map(child => (child?.[valueField]))
+  const encodeValue = useCallback((value: any) => {
+    if (isArr(value)) {
+      return value?.map(child => (child?.[valueField]))
+    } else if (value) {
+      return value?.[valueField]
+    }
+    return value;
   }, [valueField])
-
-  const encodededValue = useMemo(() => {
-    return encodeValue(toArrayValue(value))
-  }, [encodeValue, toArrayValue, value])
 
   const handleChange = useCallback((value) => {
-    const decodedValue = decodeValue(toArrayValue(value));
+    const decodedValue = decodeValue(value);
     onChange(decodedValue)
-  }, [decodeValue, onChange, toArrayValue])
+  }, [decodeValue, onChange])
 
   return (
     <FormilySelect
@@ -58,7 +53,7 @@ export const Select = observer((props: IDataSourceableProps & {
       }}
       loading={loading}
       options={data?.nodes}
-      value={encodededValue}
+      value={encodeValue(value)}
       onChange={handleChange}
     />
   )
