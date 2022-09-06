@@ -23,9 +23,9 @@ export function useGetTableColumns() {
       if (!isColumnComponent(schema) && !isColumnGroupComponent(schema))
         return buf;
       let rootName = parentGroupNames.length ? parentGroupNames[0] : name; //组根名字
-      const groups = [...parentGroupNames];
+      const groups = [...parentGroupNames, name];
       const { sortable, ...otherCoumnProps } = columnProps;
-      const childrenColumns = getTableColumns(children, [...parentGroupNames, name]);
+      const childrenColumns = getTableColumns(children, groups);
       return buf.concat({
         ...otherCoumnProps,
         //children不赋空，defaultSortOrder不起作用

@@ -43,7 +43,6 @@ export const TextView = observer((
     return datatField?.value
   }, [datatField?.value, p])
 
-
   return (
     <>
       {value}
