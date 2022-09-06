@@ -21,9 +21,12 @@ export function useUpsertPage(options?: IPostOptions<any>): [
     post({
       ...page,
       device: params.device,
-      app: [{ id: params.app.id }],
+      app: {
+        sync: { id: params.app.id }
+      },
     })
   }, [params.app.id, params.device, post]);
+
 
   return [upsert, { error: error, loading: loading }]
 }

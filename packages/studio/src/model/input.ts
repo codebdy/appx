@@ -49,7 +49,7 @@ export interface IPageCategoryInput {
   id?: ID;
   title?: string;
   device?: Device;
-  app?: IAppInput[];
+  app?: { sync: IAppInput };
 }
 
 export interface IPageInput {
@@ -57,21 +57,21 @@ export interface IPageInput {
   title?: string;
   schemaJson?: any;
   device?: Device;
-  app?: IAppInput[];
-  category?: IPageCategoryInput[];
+  app?: { sync: IAppInput };
+  category?: { sync: IPageCategoryInput };
 }
 
 export interface IMenuInput {
   id?: ID;
   device?: Device;
   schemaJson?: any;
-  app?: IAppInput[];
+  app?: { sync: IAppInput };
 }
 
 export interface IUserConfigInput {
   id?: ID;
-  app?: IAppInput[];
-  user?: IUserInput[];
+  app?: { sync: IAppInput };
+  user?: { sync: IUserInput };
   schemaJson?: {
     [path: string]: any,
   },
