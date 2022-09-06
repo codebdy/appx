@@ -2,7 +2,7 @@ import { SettingOutlined } from "@ant-design/icons";
 import { observer } from "@formily/reactive-react";
 import { Button, Checkbox, Divider, Popover, Space, Tooltip, Tree, TreeProps } from "antd";
 import { DataNode } from "antd/lib/tree";
-import React, { useEffect, useMemo, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { useProTableParams } from "../../context";
 import { useLocalTranslations } from "../../hooks/useLocalTranslations";
 
@@ -17,13 +17,17 @@ const ColumnsSettings = observer(() => {
   const { t } = useLocalTranslations();
   const protableParams = useProTableParams();
 
-  useEffect(() => {
+  const reset = useCallback(() => {
     if (!protableParams.tableConfig?.columns) {
       setSelectedColumns(protableParams?.columns?.map(column => column.name) || [])
     } else {
       setSelectedColumns(protableParams.tableConfig?.columns.filter(column => protableParams?.columns?.find(col => col.name === column)));
     }
   }, [protableParams?.columns, protableParams.tableConfig?.columns])
+
+  useEffect(() => {
+    reset()
+  }, [reset])
 
   const checkState: CheckState = useMemo(() => {
     if (selectedColumns.length && selectedColumns.length === protableParams?.columns?.length) {
@@ -40,9 +44,26 @@ const ColumnsSettings = observer(() => {
     title: column.title
   })), [protableParams.columns])
 
-  const handleCheck: TreeProps['onCheck'] = (checkedKeys, info) => {
+  const handleCheck: TreeProps['onCheck'] = useCallback((checkedKeys, info) => {
     setSelectedColumns(checkedKeys as any || [])
-  };
+  }, []);
+
+  const handleAllCheckChange = useCallback(() => {
+    if (checkState === CheckState.half || checkState === CheckState.none) {
+      setSelectedColumns(protableParams?.columns?.map(column => column.name) || [])
+    } else {
+      setSelectedColumns([])
+    }
+  }, [checkState, protableParams?.columns])
+
+  const handleCancel = useCallback(() => {
+
+  }, [])
+
+  const handleConfirm = useCallback(() => {
+
+  }, [])
+
   const content = (
     <div>
       <Tree
@@ -63,10 +84,10 @@ const ColumnsSettings = observer(() => {
         }}
       >
         <Space>
-          <Button size="middle" type="text">
+          <Button size="middle" type="text" onClick={handleCancel}>
             {t("Cancel")}
           </Button>
-          <Button type="primary" size="middle">
+          <Button type="primary" size="middle" onClick={handleConfirm}>
             {t("Confirm")}
           </Button>
         </Space>
@@ -86,9 +107,10 @@ const ColumnsSettings = observer(() => {
           <Checkbox
             checked={checkState !== CheckState.none}
             indeterminate={checkState === CheckState.half}
+            onChange={handleAllCheckChange}
           >{t("ShowColumns")}</Checkbox>
           <Space>
-            <Button type="link" size="small">
+            <Button type="link" size="small" onClick={reset}>
               {t("Reset")}
             </Button>
           </Space>
