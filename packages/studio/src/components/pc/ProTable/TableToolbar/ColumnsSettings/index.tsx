@@ -14,6 +14,7 @@ enum CheckState {
 
 const ColumnsSettings = observer(() => {
   const [selectedColumns, setSelectedColumns] = useState<string[]>([]);
+  const [visible, setVisable] = useState(false);
   const { t } = useLocalTranslations();
   const protableParams = useProTableParams();
 
@@ -57,12 +58,18 @@ const ColumnsSettings = observer(() => {
   }, [checkState, protableParams?.columns])
 
   const handleCancel = useCallback(() => {
-
-  }, [])
+    setVisable(false);
+    reset();
+  }, [reset])
 
   const handleConfirm = useCallback(() => {
 
   }, [])
+
+  const handelVisableChange = useCallback((vb) => {
+    setVisable(vb);
+  }, [])
+
 
   const content = (
     <div>
@@ -120,6 +127,8 @@ const ColumnsSettings = observer(() => {
       placement="bottom"
       overlayClassName="table-column-settings"
       showArrow={false}
+      visible={visible}
+      onVisibleChange={handelVisableChange}
     >
       <Tooltip title={t("ColumnSetting")}>
         <Button shape="circle" size="large" type="text" onClick={e => e.preventDefault()}>
