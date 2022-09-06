@@ -1,17 +1,21 @@
 import React, { CSSProperties, useCallback, useState } from "react"
 import { HolderOutlined } from "@ant-design/icons"
 import { Checkbox } from "antd";
+import { CheckboxChangeEvent } from "antd/lib/checkbox";
 
 const DraggableLabel = React.forwardRef((
   props: {
+    name: string,
     title: string,
     float?: boolean,
     style?: CSSProperties,
     fixed?: boolean,
+    checked?: boolean,
+    onChange?: (name: string, checked?: boolean) => void,
   },
   ref: any
 ) => {
-  const { title, float, style, fixed, ...other } = props;
+  const { name, title, float, style, fixed, checked, onChange, ...other } = props;
   const [hover, setHover] = useState(false);
 
   const handleMouseEnter = useCallback(() => {
@@ -20,6 +24,10 @@ const DraggableLabel = React.forwardRef((
   const handleMouseLeave = useCallback(() => {
     setHover(false);
   }, []);
+
+  const handleChange = useCallback((event: CheckboxChangeEvent) => {
+    onChange && onChange(name, event.target.checked)
+  }, [name, onChange])
 
   return (
     <div ref={ref} className="draggable-label" {...other}
@@ -34,7 +42,7 @@ const DraggableLabel = React.forwardRef((
       <div className="draggable-icon">
         <HolderOutlined />
       </div>
-      <Checkbox>
+      <Checkbox checked={checked} onChange={handleChange}>
         {title}
       </Checkbox>
     </div>

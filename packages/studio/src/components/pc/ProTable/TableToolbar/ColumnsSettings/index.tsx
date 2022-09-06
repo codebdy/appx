@@ -1,7 +1,6 @@
 import { SettingOutlined } from "@ant-design/icons";
 import { observer } from "@formily/reactive-react";
-import { Button, Checkbox, Divider, Popover, Space, Tooltip, Tree, TreeProps } from "antd";
-import { DataNode } from "antd/lib/tree";
+import { Button, Checkbox, Divider, Popover, Space, Tooltip } from "antd";
 import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { useProTableParams } from "../../context";
 import { useLocalTranslations } from "../../hooks/useLocalTranslations";
@@ -57,12 +56,6 @@ const ColumnsSettings = observer(() => {
     return [...sCols, ...protableParams?.columns?.filter(col => !sortedColumns?.find(column => col.name === column)) || []];
   }, [protableParams?.columns, sortedColumns])
 
-  const treeData: DataNode[] = useMemo(() => protableParams.columns?.map(column => ({
-    key: column.name,
-    title: column.title
-  })), [protableParams.columns])
-
-
   const handleAllCheckChange = useCallback(() => {
     if (checkState === CheckState.half || checkState === CheckState.none) {
       setSelectedColumns(protableParams?.columns?.map(column => column.name) || [])
@@ -84,6 +77,13 @@ const ColumnsSettings = observer(() => {
     setVisable(vb);
   }, [])
 
+  const handleChange = useCallback((name: string, checked: boolean) => {
+    if(!checked && selectedColumns.find(col=>col === name)){
+      setSelectedColumns(columns=>columns.filter(col=>col !== name));
+    }else if(checked && !selectedColumns.find(col=>col === name)){
+      setSelectedColumns(columns=>([...columns, name]));
+    }
+  }, [selectedColumns])
 
   const content = (
     <div className="columns-settings">
@@ -91,7 +91,13 @@ const ColumnsSettings = observer(() => {
         {
           columns?.map(column => {
             return (
-              <DraggableLabel title={column.title} key={column.name} />
+              <DraggableLabel
+                key={column.name}
+                name={column.name}
+                title={column.title}
+                checked={!!selectedColumns?.find(col => col === column.name)}
+                onChange={handleChange}
+              />
             )
           })
         }
