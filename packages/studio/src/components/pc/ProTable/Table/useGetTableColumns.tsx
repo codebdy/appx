@@ -23,9 +23,9 @@ export function useGetTableColumns() {
       if (!isColumnComponent(schema) && !isColumnGroupComponent(schema))
         return buf;
       let rootName = parentGroupNames.length ? parentGroupNames[0] : name; //组根名字
-      const groups = [...parentGroupNames, name];
+      const groups = [...parentGroupNames];
       const { sortable, ...otherCoumnProps } = columnProps;
-      const childrenColumns = getTableColumns(children, groups);
+      const childrenColumns = getTableColumns(children, [...parentGroupNames, name]);
       return buf.concat({
         ...otherCoumnProps,
         //children不赋空，defaultSortOrder不起作用
@@ -35,17 +35,21 @@ export function useGetTableColumns() {
         sorter: sortable ? { multiple: (key + 1) } : undefined,
         render: !children.length
           ? (value: any, record: any, index: number) => {
-            let children = (
+            let childrenCom = (
               schema.properties && Object.keys(schema.properties).length > 0
                 ? <RecursionField schema={schema} onlyRenderProperties />
                 : <TextView inherited={false}></TextView>
+                
             );
-            for (let i = groups.length - 1; i > 0; i--) {
-              const groupName = groups[i];
-              children = <ReactField name={groupName}>
-                {children}
-              </ReactField>;
+            if (groups.length > 0) {
+              for (let i = groups.length - 1; i > 0; i--) {
+                const groupName = groups[i];
+                childrenCom = <ReactField name={groupName}>
+                  {childrenCom}
+                </ReactField>;
+              }
             }
+
 
             return (
               <InstanceContext.Provider
@@ -58,7 +62,7 @@ export function useGetTableColumns() {
                 <ArrayBase.Item index={index} record={record}>
                   <ReactField name={index}>
                     <ReactField name={rootName} value={record?.[rootName]}>
-                      {children}
+                      {childrenCom}
                     </ReactField>
                   </ReactField>
                 </ArrayBase.Item>

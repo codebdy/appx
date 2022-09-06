@@ -1,11 +1,11 @@
 import { observer } from "@formily/reactive-react"
-import React, { useCallback } from "react"
+import React, { useCallback, useMemo } from "react"
 import {
   useField,
 } from '@formily/react'
 import { Field, GeneralField, isField } from "@formily/core";
 import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
-import { isStr } from "@formily/shared";
+import { isArr, isObj, isStr } from "@formily/shared";
 
 export interface ITextViewProps {
   inherited?: boolean,
@@ -29,9 +29,24 @@ export const TextView = observer((
   }, [])
   const datatField = (inherited ? getParentField(field) : field) as Field
   const p = useParseLangMessage();
+  const value = useMemo(() => {
+    if (isStr(datatField?.value)) {
+      return p(datatField?.value)
+    }
+    if (isArr(datatField?.value)) {
+      return undefined;
+    }
+    if (isObj(datatField?.value)) {
+      return undefined;
+    }
+
+    return datatField?.value
+  }, [datatField?.value, p])
+
+
   return (
     <>
-      {isStr(datatField?.value) ? p(datatField?.value) : datatField?.value}
+      {value}
     </>
   )
 })
