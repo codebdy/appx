@@ -88,9 +88,13 @@ const ColumnsSettings = observer(() => {
 
   const onDragEnd = useCallback(
     (result: DropResult) => {
-      const { destination, source, draggableId } = result;
+      const { destination, draggableId } = result;
       if (destination?.droppableId) {
-
+        setSortedColumns((columns) => {
+          const newNodes = columns.filter(column => column !== draggableId)
+          newNodes.splice(destination.index, 0, draggableId)
+          return newNodes
+        })
       }
     },
     []
@@ -125,7 +129,8 @@ const ColumnsSettings = observer(() => {
                             {...provided.dragHandleProps}
                             checked={!!selectedColumns?.find(col => col === column.name)}
                             onChange={handleChange}
-                          />)
+                          />
+                        )
                       }
                     </Draggable>
                   )
