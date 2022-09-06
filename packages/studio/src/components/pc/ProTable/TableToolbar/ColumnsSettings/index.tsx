@@ -1,29 +1,54 @@
 import { SettingOutlined } from "@ant-design/icons";
 import { observer } from "@formily/reactive-react";
-import { Button, Divider, Popover, Space, Tooltip, Tree, TreeProps } from "antd";
+import { Button, Checkbox, Divider, Popover, Space, Tooltip, Tree, TreeProps } from "antd";
 import { DataNode } from "antd/lib/tree";
-import React, { useMemo } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import { useProTableParams } from "../../context";
 import { useLocalTranslations } from "../../hooks/useLocalTranslations";
-import { TitleBox } from "./TitleBox";
+
+enum CheckState {
+  half = 1,
+  all,
+  none,
+}
 
 const ColumnsSettings = observer(() => {
+  const [selectedColumns, setSelectedColumns] = useState<string[]>([]);
   const { t } = useLocalTranslations();
   const protableParams = useProTableParams();
-  
-  const treeData: DataNode[] = useMemo(()=>protableParams.columns?.map(column=>({
+
+  useEffect(() => {
+    if (!protableParams.tableConfig?.columns) {
+      setSelectedColumns(protableParams?.columns?.map(column => column.name) || [])
+    } else {
+      setSelectedColumns(protableParams.tableConfig?.columns.filter(column => protableParams?.columns?.find(col => col.name === column)));
+    }
+  }, [protableParams?.columns, protableParams.tableConfig?.columns])
+
+  const checkState: CheckState = useMemo(() => {
+    if (selectedColumns.length && selectedColumns.length === protableParams?.columns?.length) {
+      return CheckState.all;
+    } else if (selectedColumns.length) {
+      return CheckState.half;
+    } else {
+      return CheckState.none;
+    }
+  }, [protableParams?.columns?.length, selectedColumns.length])
+
+  const treeData: DataNode[] = useMemo(() => protableParams.columns?.map(column => ({
     key: column.name,
     title: column.title
   })), [protableParams.columns])
 
   const handleCheck: TreeProps['onCheck'] = (checkedKeys, info) => {
-    console.log('onCheck', checkedKeys, info);
+    setSelectedColumns(checkedKeys as any || [])
   };
   const content = (
     <div>
       <Tree
         checkable
         draggable
+        checkedKeys={selectedColumns}
         onCheck={handleCheck}
         treeData={treeData}
       />
@@ -51,7 +76,24 @@ const ColumnsSettings = observer(() => {
   return (
     <Popover
       content={content}
-      title={<TitleBox />}
+      title={
+        <div style={{
+          display: "flex",
+          justifyContent: "space-between",
+          width: "100%",
+          padding: "8px 0 ",
+        }}>
+          <Checkbox
+            checked={checkState !== CheckState.none}
+            indeterminate={checkState === CheckState.half}
+          >{t("ShowColumns")}</Checkbox>
+          <Space>
+            <Button type="link" size="small">
+              {t("Reset")}
+            </Button>
+          </Space>
+        </div>
+      }
       trigger="click"
       placement="bottom"
       overlayClassName="table-column-settings"
