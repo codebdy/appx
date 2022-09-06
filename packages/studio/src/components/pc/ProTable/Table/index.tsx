@@ -45,7 +45,11 @@ export const Table = observer((
   const selectable = useSelectable();
   const sources = useArrayTableSources()
   const getTableColumns = useGetTableColumns();
-  const columns = useMemo(() => getTableColumns(sources), [getTableColumns, sources]);
+  const columns = useMemo(() => {
+    const colSources = sources.filter(source => protableParams?.tableConfig?.columns?.find(col => col === source.name))
+    return getTableColumns(protableParams?.tableConfig?.columns?.map(column => colSources.find(src => column === src.name)) || colSources) || []
+  }, [getTableColumns, protableParams?.tableConfig?.columns, sources]);
+
   useEffect(() => {
     protableParams.columns = sources.map(source => ({
       name: source.name,
