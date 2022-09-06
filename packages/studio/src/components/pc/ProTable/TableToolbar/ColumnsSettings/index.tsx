@@ -5,6 +5,8 @@ import { DataNode } from "antd/lib/tree";
 import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { useProTableParams } from "../../context";
 import { useLocalTranslations } from "../../hooks/useLocalTranslations";
+import DraggableLabel from "./DraggableLabel";
+import "./style.less"
 
 enum CheckState {
   half = 1,
@@ -14,6 +16,7 @@ enum CheckState {
 
 const ColumnsSettings = observer(() => {
   const [selectedColumns, setSelectedColumns] = useState<string[]>([]);
+  const [sortedColumns, setSortedColumns] = useState<string[]>([]);
   const [visible, setVisable] = useState(false);
   const { t } = useLocalTranslations();
   const protableParams = useProTableParams();
@@ -24,7 +27,12 @@ const ColumnsSettings = observer(() => {
     } else {
       setSelectedColumns(protableParams.tableConfig?.columns.filter(column => protableParams?.columns?.find(col => col.name === column)));
     }
-  }, [protableParams?.columns, protableParams.tableConfig?.columns])
+    if (!protableParams.tableConfig?.sortedColumns) {
+      setSortedColumns(protableParams?.columns?.map(column => column.name) || [])
+    } else {
+      setSortedColumns(protableParams.tableConfig?.sortedColumns.filter(column => protableParams?.columns?.find(col => col.name === column)));
+    }
+  }, [protableParams?.columns, protableParams.tableConfig?.columns, protableParams.tableConfig?.sortedColumns])
 
   useEffect(() => {
     reset()
@@ -38,16 +46,22 @@ const ColumnsSettings = observer(() => {
     } else {
       return CheckState.none;
     }
-  }, [protableParams?.columns?.length, selectedColumns.length])
+  }, [protableParams?.columns?.length, selectedColumns.length]);
+
+  const columns = useMemo(() => {
+    const sCols = sortedColumns.map(column => {
+      const col = protableParams?.columns?.find(col => col.name === column)
+      return col
+    })
+
+    return [...sCols, ...protableParams?.columns?.filter(col => !sortedColumns?.find(column => col.name === column)) || []];
+  }, [protableParams?.columns, sortedColumns])
 
   const treeData: DataNode[] = useMemo(() => protableParams.columns?.map(column => ({
     key: column.name,
     title: column.title
   })), [protableParams.columns])
 
-  const handleCheck: TreeProps['onCheck'] = useCallback((checkedKeys, info) => {
-    setSelectedColumns(checkedKeys as any || [])
-  }, []);
 
   const handleAllCheckChange = useCallback(() => {
     if (checkState === CheckState.half || checkState === CheckState.none) {
@@ -72,14 +86,16 @@ const ColumnsSettings = observer(() => {
 
 
   const content = (
-    <div>
-      <Tree
-        checkable
-        draggable
-        checkedKeys={selectedColumns}
-        onCheck={handleCheck}
-        treeData={treeData}
-      />
+    <div className="columns-settings">
+      <div className="columns-list">
+        {
+          columns?.map(column => {
+            return (
+              <DraggableLabel title={column.title} key={column.name} />
+            )
+          })
+        }
+      </div>
       <Divider style={{ margin: "8px 0" }} />
       <div
         style={{

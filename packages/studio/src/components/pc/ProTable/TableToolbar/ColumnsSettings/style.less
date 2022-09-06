@@ -1,0 +1,22 @@
+@import url(../../../../../variables.less);
+
+.columns-settings{
+  .columns-list{
+    display: flex;
+    flex-flow: column;
+    .draggable-label{
+      display: flex;
+      padding: 4px;
+      padding-left: 16px;
+      cursor: move;
+      background-color: @backgrounColor;
+    }
+    .draggable-label:hover{
+      transform: translate3d(0, 0, 0);
+    }
+    .draggable-icon{
+      opacity: 0.4;
+      margin-right: 8px;
+    }
+  }
+}
