@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FormGrid as FormilyGird } from '@formily/antd'
 import { TreeNode, createBehavior, createResource } from '@designable/core'
 import {
@@ -57,14 +57,15 @@ const menu = (
 );
 
 export const DropdownMenuDesigner: DnFC<IDropdownMenu> = observer((props) => {
+  const [visible, setVisiable] = useState(false);
   const node = useTreeNode()
 
   return (
     <>
-      <Dropdown overlay={menu}>
+      <Dropdown overlay={menu} visible={visible}>
         <Button onClick={e => e.preventDefault()}>
-            Hover me
-            <DownOutlined />
+          Hover me
+          <DownOutlined />
         </Button>
       </Dropdown>
       <LoadTemplate
