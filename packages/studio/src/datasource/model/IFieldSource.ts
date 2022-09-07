@@ -7,6 +7,10 @@ export enum FieldSourceType {
   Association = "Association"
 }
 
+export enum AssociationType {
+  HasMany = "HasMany",
+  HasOne = "HasOne"
+}
 
 export interface IFieldSource {
   name: string;
@@ -15,4 +19,5 @@ export interface IFieldSource {
   typeEntityName?: string;
   sourceType: FieldSourceType;
   dataType?: BaseDataType;
+  associationType?: AssociationType,
 }
