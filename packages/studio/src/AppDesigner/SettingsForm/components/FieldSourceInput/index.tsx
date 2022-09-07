@@ -60,6 +60,7 @@ export const FieldSourceInput = observer((
         label: assoc.label,
         typeUuid: assoc.typeUuid,
         typeEntityName: getEntity(assoc.typeUuid)?.name,
+        associationType: assoc.associationType,
       })
       return;
     }

@@ -94,6 +94,11 @@ export const createDisplaySchemaTab = (options?: IFieldOptions) => {
         'x-component': 'FieldSourceInput',
         'x-component-props': {
           mode: fieldSourceType === FieldsType.Multiple ? "multiple" : undefined,
+        },
+        "x-reactions": {
+          fulfill: {
+            "run":  '$form.values["x-component-props"].associationType = $form.values["x-field-source"]?.["associationType"]'
+          }
         }
       },
       "x-field-params": {

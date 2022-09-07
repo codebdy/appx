@@ -7,14 +7,16 @@ import { useFieldSchema } from '@formily/react'
 import { QueryType, useQueryParams } from "../../../datasource/hooks/useQueryParams";
 import { useShowError } from "../../../hooks/useShowError";
 import { isArr } from "@formily/shared";
+import { AssociationType } from "../../../datasource/model/IFieldSource";
 
 export const Select = observer((props: IDataSourceableProps & {
+  associationType?:AssociationType
   labelField?: string,
   valueField?: string,
   value?: any;
   onChange?: (value?: any) => void,
 }) => {
-  const { dataBind, value, onChange, labelField, valueField, ...other } = props;
+  const { associationType, dataBind, value, onChange, labelField, valueField, ...other } = props;
   const schema = useFieldSchema();
   const queryParams = useQueryParams(dataBind, schema, QueryType.Multiple);
 

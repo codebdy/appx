@@ -7,11 +7,12 @@ import { AttributeMeta } from "../../ModelBoard/meta/AttributeMeta";
 import { ClassMeta, StereoType } from "../../ModelBoard/meta/ClassMeta";
 import { Meta } from "../../ModelBoard/meta/Meta";
 import { MethodMeta } from "../../ModelBoard/meta/MethodMeta";
-import { RelationMeta, RelationType } from "../../ModelBoard/meta/RelationMeta";
+import { RelationMeta, RelationMultiplicity, RelationType } from "../../ModelBoard/meta/RelationMeta";
 import { useSelectedAppUuid } from "../../shared/AppRoot/context";
 import { classesState, entitiesState, packagesState } from "../recoil";
 import _ from "lodash";
 import { AssociationMeta } from "../model";
+import { AssociationType } from "../model/IFieldSource";
 
 export const sort = (array: { name: string }[]) => {
   return array.sort((a, b) => {
@@ -120,12 +121,14 @@ export function useBuildMeta(): { error?: Error; loading?: boolean } {
           name: relation.roleOfTarget,
           label: relation.labelOfTarget,
           typeUuid: relation.targetId,
+          associationType: relation.targetMultiplicity === RelationMultiplicity.ZERO_MANY ? AssociationType.HasMany : AssociationType.HasOne,
         })
       } else if (relation.targetId === classUuid) {
         associations.push({
           name: relation.roleOfSource,
           label: relation.labelOfSource,
           typeUuid: relation.sourceId,
+          associationType: relation.sourceMutiplicity === RelationMultiplicity.ZERO_MANY ? AssociationType.HasMany : AssociationType.HasOne
         })
       }
     }

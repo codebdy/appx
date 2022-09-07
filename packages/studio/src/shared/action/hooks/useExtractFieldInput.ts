@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { Field, GeneralField, isField } from "@formily/core";
 import { toJS } from "@formily/reactive";
+import { useFieldSchema } from "@formily/react";
 
 interface IFieldInfo {
   name: string,
@@ -10,6 +11,7 @@ interface IFieldInfo {
 const getChildrenFields = (field: GeneralField) => {
   const children: IFieldInfo[] = []
   const address = field.address.toString() + ".";
+
   for (const key of Object.keys(field.form.fields)) {
     if (key.startsWith(address)) {
       const fieldName = key.substring(address.length)
@@ -25,11 +27,11 @@ const getChildrenFields = (field: GeneralField) => {
 }
 
 export function useExtractFieldInput() {
-
+  const schema = useFieldSchema();
   const recursionField = useCallback((fieldInfo: IFieldInfo, value: any) => {
     const { name, field } = fieldInfo;
     if (isField(field) && value) {
-      console.log("呵呵呵呵呵呵", field)
+      console.log("呵呵呵呵呵呵", field?.componentProps?.associationType)
       value[name] = toJS(field.value);
     }
     const currentValue = isField(field) ? field.value : value;
