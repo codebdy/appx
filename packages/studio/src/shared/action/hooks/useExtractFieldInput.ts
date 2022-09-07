@@ -34,7 +34,7 @@ export function useExtractFieldInput() {
         if (field.value) {
           value[name] = { sync: toJS(field.value) };
         } else {
-          value[name] = { sync: [] };
+          value[name] = { sync: [], delete: true };
         }
       } else if (field?.componentProps?.associationType === AssociationType.HasOne) {
         if (field.value) {
