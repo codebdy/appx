@@ -13,21 +13,60 @@ import { LoadTemplate } from '@designable/formily-antd/lib/common/LoadTemplate'
 import { createFieldSchema } from "../../common/Field";
 import { DropdownMenuSchema } from './schema'
 import { DropdownMenuLocales } from './locales'
+import { Button, Dropdown, Menu } from 'antd'
+import { DownOutlined, SmileOutlined } from '@ant-design/icons'
+import { IDropdownMenu } from '../DropdownMenu'
 
-type formilyGrid = typeof FormilyGird
+const menu = (
+  <Menu
+    items={[
+      {
+        key: '1',
+        label: (
+          <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
+            1st menu item
+          </a>
+        ),
+      },
+      {
+        key: '2',
+        label: (
+          <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
+            2nd menu item (disabled)
+          </a>
+        ),
+        icon: <SmileOutlined />,
+        disabled: true,
+      },
+      {
+        key: '3',
+        label: (
+          <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
+            3rd menu item (disabled)
+          </a>
+        ),
+        disabled: true,
+      },
+      {
+        key: '4',
+        danger: true,
+        label: 'a danger item',
+      },
+    ]}
+  />
+);
 
-export const DropdownMenuDesigner: DnFC<React.ComponentProps<formilyGrid>>  = observer((props) => {
+export const DropdownMenuDesigner: DnFC<IDropdownMenu> = observer((props) => {
   const node = useTreeNode()
-  const nodeId = useNodeIdProps()
-  if (node.children.length === 0) return <DroppableWidget {...props} />
-
-  const key = new Date().getTime()
 
   return (
-    <div {...nodeId} className="dn-grid">
-      <FormilyGird {...props} key={key}>
-        {props.children}
-      </FormilyGird>
+    <>
+      <Dropdown overlay={menu}>
+        <Button onClick={e => e.preventDefault()}>
+            Hover me
+            <DownOutlined />
+        </Button>
+      </Dropdown>
       <LoadTemplate
         actions={[
           {
@@ -46,18 +85,17 @@ export const DropdownMenuDesigner: DnFC<React.ComponentProps<formilyGrid>>  = ob
           },
         ]}
       />
-    </div>
+    </>
   )
 })
 
 DropdownMenuDesigner.Behavior = createBehavior(
   {
-    name: 'FormGrid',
+    name: 'DropdownMenu',
     extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'FormGrid',
+    selector: (node) => node.props['x-component'] === 'DropdownMenu',
     designerProps: {
       droppable: true,
-      allowDrop: (node) => node.props['x-component'] !== 'FormGrid',
       propsSchema: createFieldSchema(DropdownMenuSchema),
     },
     designerLocales: DropdownMenuLocales,
@@ -65,37 +103,14 @@ DropdownMenuDesigner.Behavior = createBehavior(
 )
 
 DropdownMenuDesigner.Resource = createResource({
-  icon: 'GridSource',
+  icon: 'SelectSource',
   elements: [
     {
       componentName: 'Field',
       props: {
         type: 'void',
-        'x-component': 'FormGrid',
+        'x-component': 'DropdownMenu',
       },
-      children: [
-        {
-          componentName: 'Field',
-          props: {
-            type: 'void',
-            'x-component': 'FormGrid.GridColumn',
-          },
-        },
-        {
-          componentName: 'Field',
-          props: {
-            type: 'void',
-            'x-component': 'FormGrid.GridColumn',
-          },
-        },
-        {
-          componentName: 'Field',
-          props: {
-            type: 'void',
-            'x-component': 'FormGrid.GridColumn',
-          },
-        },
-      ],
     },
   ],
 })

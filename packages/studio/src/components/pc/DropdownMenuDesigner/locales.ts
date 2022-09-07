@@ -1,7 +1,7 @@
 export const DropdownMenuLocales = {
   'zh-CN': {
-    title: '网格布局',
-    addGridColumn: '添加网格列',
+    title: '下拉菜单',
+    addItem: '添加菜单项',
     settings: {
       'x-component-props': {
         minWidth: '最小宽度',

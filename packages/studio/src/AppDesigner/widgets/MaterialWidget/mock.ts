@@ -22,7 +22,9 @@ import {
   SelectDesigner,
   Select,
   SearchInput,
-  SearchInputDesigner
+  SearchInputDesigner,
+  DropdownMenuDesigner,
+  DropdownMenu
 } from "../../../components/pc";
 
 export const allMaterials: MaterialModule[] = [
@@ -99,6 +101,11 @@ export const allMaterials: MaterialModule[] = [
             name: "Select",
             designer: SelectDesigner,
             component: Select,
+          },
+          {
+            name: "DropdownMenu",
+            designer: DropdownMenuDesigner,
+            component: DropdownMenu,
           }
           // {
           //   name: "Rate2",
