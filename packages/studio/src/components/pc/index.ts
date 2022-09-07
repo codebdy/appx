@@ -22,3 +22,5 @@ export * from "./Select";
 export * from "./SelectDesigner";
 export * from "./SearchInput";
 export * from "./SearchInputDesigner";
+export * from "./DropdownMenu";
+export * from "./DropdownMenuDesigner";
