@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { Field, GeneralField, isField } from "@formily/core";
 import { toJS } from "@formily/reactive";
-import { useFieldSchema } from "@formily/react";
+import { AssociationType } from "../../../datasource/model/IFieldSource";
 
 interface IFieldInfo {
   name: string,
@@ -27,19 +27,30 @@ const getChildrenFields = (field: GeneralField) => {
 }
 
 export function useExtractFieldInput() {
-  const schema = useFieldSchema();
   const recursionField = useCallback((fieldInfo: IFieldInfo, value: any) => {
     const { name, field } = fieldInfo;
-    if (isField(field) && value) {
-      console.log("呵呵呵呵呵呵", field?.componentProps?.associationType)
-      value[name] = toJS(field.value);
+    if (isField(field)) {
+      if (field?.componentProps?.associationType === AssociationType.HasMany) {
+        if (field.value) {
+          value[name] = { sync: toJS(field.value) };
+        } else {
+          value[name] = { sync: [] };
+        }
+      } else if (field?.componentProps?.associationType === AssociationType.HasOne) {
+        if (field.value) {
+          value[name] = { sync: toJS(field.value) };
+        } else {
+          value[name] = { delete: true }
+        }
+      } else {
+        value[name] = toJS(field.value);
+      }
     }
-    const currentValue = isField(field) ? field.value : value;
+    const currentValue = isField(field) ? value[name] : value;
     const children = getChildrenFields(field);
     for (const child of children) {
       recursionField(child, currentValue)
     }
-
   }, [])
 
   const convert = useCallback((field: Field) => {
@@ -52,7 +63,6 @@ export function useExtractFieldInput() {
       },
       value
     )
-    console.log("呵呵呵", field.address.toString(), toJS(value)?.[name])
     return toJS(value)?.[name];
   }, [recursionField])
 
