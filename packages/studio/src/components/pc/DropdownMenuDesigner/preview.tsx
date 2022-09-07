@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { FormGrid as FormilyGird } from '@formily/antd'
 import { TreeNode, createBehavior, createResource } from '@designable/core'
 import {
@@ -14,7 +14,7 @@ import { createFieldSchema } from "../../common/Field";
 import { DropdownMenuSchema } from './schema'
 import { DropdownMenuLocales } from './locales'
 import { Button, Dropdown, Menu } from 'antd'
-import { DownOutlined, SmileOutlined } from '@ant-design/icons'
+import { DownOutlined, EyeOutlined, SmileOutlined } from '@ant-design/icons'
 import { IDropdownMenu } from '../DropdownMenu'
 
 const menu = (
@@ -60,32 +60,30 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenu> = observer((props) => {
   const [visible, setVisiable] = useState(false);
   const node = useTreeNode()
 
+  const handleToggleVisiable = useCallback(() => {
+    setVisiable(visible => !visible);
+  }, [])
+
   return (
     <>
       <Dropdown overlay={menu} visible={visible}>
-        <Button onClick={e => e.preventDefault()}>
+        <Button onClick={e => e.preventDefault()} style={{ position: "relative" }}>
           Hover me
           <DownOutlined />
+          <Button
+            type="primary"
+            danger
+            shape="circle"
+            size='small'
+            style={{ position: "absolute", top: -4, right: -4, width: 16, minWidth: 16, height: 16 }}
+            icon={
+              <EyeOutlined style={{ fontSize: 12 }} />
+            }
+            onClick={handleToggleVisiable}
+          >
+          </Button>
         </Button>
       </Dropdown>
-      <LoadTemplate
-        actions={[
-          {
-            title: node.getMessage('addGridColumn'),
-            icon: 'AddColumn',
-            onClick: () => {
-              const column = new TreeNode({
-                componentName: 'Field',
-                props: {
-                  type: 'void',
-                  'x-component': 'FormGrid.GridColumn',
-                },
-              })
-              node.append(column)
-            },
-          },
-        ]}
-      />
     </>
   )
 })
