@@ -4,14 +4,24 @@ export const DropdownMenuLocales = {
     addItem: '添加菜单项',
     settings: {
       'x-component-props': {
-        minWidth: '最小宽度',
-        minColumns: '最小列数',
-        maxWidth: '最大宽度',
-        maxColumns: '最大列数',
-        breakpoints: '响应式断点',
-        columnGap: '列间距',
-        rowGap: '行间距',
-        colWrap: '自动换行',
+        title: '标题',
+        type: {
+          title: '类型',
+          dataSource: ['填充', '透明', '虚线', '链接', '文本', '默认'],
+        },
+        block: "充满",
+        danger: "警醒",
+        disabled: "无效",
+        ghost: "透明",
+        icon: "图标",
+        shape: {
+          title: '形状',
+          dataSource: ['默认', '圆圈', '圆角'],
+        },
+        size: {
+          title: '尺寸',
+          dataSource: ['大', '中', '小'],
+        }
       },
     },
   },

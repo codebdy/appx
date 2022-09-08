@@ -17,11 +17,13 @@ import { MenuItemDesigner } from './MenuItemDesigner'
 import { DropdownMenuItemSchema } from './MenuItemDesigner/schema'
 import { DropdownMenuItemLocales } from './MenuItemDesigner/locales'
 import { Events } from '../../../shared/action'
+import { IIcon } from '../../../shared/icon/model'
+import { IconView } from '../../../shared/icon/IconView'
 
-export const DropdownMenuDesigner: DnFC<IDropdownMenuProps & { style?: CSSProperties }> & {
+export const DropdownMenuDesigner: DnFC<IDropdownMenuProps & { icon?: IIcon,style?: CSSProperties }> & {
   Item?: React.FC<MenuItemProps>
 } = observer((props) => {
-  const { style, children, ...other } = props;
+  const { icon, style, children, ...other } = props;
   const [visible, setVisiable] = useState(false);
   const ref = useRef<HTMLElement>(null)
   const node = useTreeNode()
@@ -77,7 +79,8 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps & { style?: CSSProper
         </div>
       }
       <Button
-        onClick={e => e.preventDefault()} style={{ ...style, position: "relative" }}
+        icon={icon && <IconView icon={icon} />}
+        style={{ ...style, position: "relative" }}
         {...other}
         ref={ref}
       >

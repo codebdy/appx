@@ -3,62 +3,61 @@ import { ISchema } from '@formily/react'
 export const DropdownMenuSchema: ISchema = {
   type: 'object',
   properties: {
-    minWidth: {
-      type: 'number',
+    title: {
+      type: 'string',
       'x-decorator': 'FormItem',
-      'x-component': 'NumberPicker',
+      'x-component': 'MultiLangInput',
+    },
+    'type': {
+      type: 'string',
+      enum: ['primary', 'ghost', 'dashed', 'link', "text", "default"],
+      'x-decorator': 'FormItem',
+      'x-component': 'Select',
       'x-component-props': {
-        defaultValue: 100,
+        defaultValue: 'primary',
       },
     },
-    maxWidth: {
-      type: 'number',
-      'x-decorator': 'FormItem',
-      'x-component': 'NumberPicker',
-    },
-    minColumns: {
-      type: 'number',
-      'x-decorator': 'FormItem',
-      'x-component': 'NumberPicker',
-      'x-component-props': {
-        defaultValue: 0,
-      },
-    },
-    maxColumns: {
-      type: 'number',
-      'x-decorator': 'FormItem',
-      'x-component': 'NumberPicker',
-    },
-    breakpoints: {
-      type: 'number',
-      'x-decorator': 'FormItem',
-      'x-component': 'ValueInput',
-      'x-component-props': {
-        include: ['EXPRESSION'],
-      },
-    },
-    columnGap: {
-      type: 'number',
-      'x-decorator': 'FormItem',
-      'x-component': 'NumberPicker',
-      'x-component-props': {
-        defaultValue: 10,
-      },
-    },
-    rowGap: {
-      type: 'number',
-      'x-decorator': 'FormItem',
-      'x-component': 'NumberPicker',
-      'x-component-props': {
-        defaultValue: 5,
-      },
-    },
-    colWrap: {
+    block:{
       type: 'boolean',
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
+    },
+    danger:{
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+    },
+    disabled:{
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+    },
+    ghost:{
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+    },
+    icon:{
+      type: 'string',
+      'x-decorator': 'FormItem',
+      'x-component': 'IconInput',
+    },
+    shape:{
+      type: 'string',
+      enum: ['default', 'circle', 'round'],
+      'x-decorator': 'FormItem',
+      'x-component': 'Select',
       'x-component-props': {
-        defaultChecked: true,
+        defaultValue: 'default',
+      },
+    },
+    size: {
+      type: 'string',
+      enum: ['large', 'middle', 'small'],
+      'x-decorator': 'FormItem',
+      'x-component': 'Select',
+      'x-component-props': {
+        defaultValue: 'middle',
       },
     },
   },
