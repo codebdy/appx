@@ -10,6 +10,7 @@ export interface IDropdownMenuProps {
 export interface IDropdownMenuItemProps {
   title?: string,
   icon?: IIcon,
+  className?: string,
 }
 
 export const DropdownMenu: React.FC<IDropdownMenuProps> & {
