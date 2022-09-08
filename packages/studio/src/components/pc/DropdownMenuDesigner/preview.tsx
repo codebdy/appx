@@ -1,11 +1,8 @@
-import React, { Children, CSSProperties, useCallback, useMemo, useRef, useState } from 'react'
+import React, { CSSProperties, useCallback, useRef, useState } from 'react'
 import { TreeNode, createBehavior, createResource } from '@designable/core'
 import {
   DnFC,
   useTreeNode,
-  TreeNodeWidget,
-  useNodeIdProps,
-  DroppableWidget,
 } from '@designable/react'
 import { observer } from '@formily/reactive-react'
 import './styles.less'
@@ -13,7 +10,7 @@ import { LoadTemplate } from '@designable/formily-antd/lib/common/LoadTemplate'
 import { createFieldSchema } from "../../common/Field";
 import { DropdownMenuSchema } from './schema'
 import { DropdownMenuLocales } from './locales'
-import { Button, Dropdown, Menu, MenuItemProps } from 'antd'
+import { Button, MenuItemProps } from 'antd'
 import { CloseOutlined, DownOutlined, EllipsisOutlined } from '@ant-design/icons'
 import { IDropdownMenuProps } from '../DropdownMenu'
 import { MenuItemDesigner } from './MenuItemDesigner'
