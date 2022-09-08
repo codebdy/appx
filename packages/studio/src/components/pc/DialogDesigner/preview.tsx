@@ -1,12 +1,11 @@
 import React, { useCallback, useRef, useState } from 'react'
-import { TreeNode, createBehavior, createResource } from '@designable/core'
+import { createBehavior, createResource } from '@designable/core'
 import {
   DnFC,
   useTreeNode,
 } from '@designable/react'
 import { observer } from '@formily/reactive-react'
 import './styles.less'
-import { LoadTemplate } from '@designable/formily-antd/lib/common/LoadTemplate'
 import { createFieldSchema } from "../../common/Field";
 import { DialogSchema } from './schema'
 import { DialogLocales } from './locales'
@@ -18,7 +17,7 @@ import { PopupButton } from '../../common/PopupButton'
 import { IDialogProps } from '../Dialog'
 
 export const DialogDesigner: DnFC<IDialogProps> = observer((props) => {
-  const { title, icon, children, ...other } = props;
+  const { title, icon, children, width = 520, ...other } = props;
   const [visible, setVisiable] = useState(false);
   const ref = useRef<HTMLElement>(null)
   const node = useTreeNode()
@@ -35,43 +34,38 @@ export const DialogDesigner: DnFC<IDialogProps> = observer((props) => {
   return (
     <>
       {visible &&
-        <div className='rx-dialog-mask'
-          style={{
-            left: maskReact?.left,
-            top: maskReact?.top,
-            height: maskReact?.height,
-            width: maskReact.width,
-          }}
-        >
-          <div>
-            {children}
+        <>
+          <div className='rx-dialog-mask'
+            style={{
+              left: maskReact?.left,
+              top: maskReact?.top,
+              height: maskReact?.height,
+              width: maskReact.width,
+            }}
+          >
           </div>
-          <LoadTemplate
-            actions={[
-              {
-                title: node.getMessage('addItem'),
-                icon: 'AddOperation',
-                onClick: () => {
-                  const item = new TreeNode({
-                    componentName: 'Field',
-                    props: {
-                      type: 'void',
-                      'x-component': 'DropdownMenu.Item',
-                      'x-component-props': {
-                        title: 'Menu Item'
-                      }
-                    },
-                  })
-                  node.append(item)
-                },
-              },
-            ]}
-          />
-          <PopupButton
-            icon={<CloseOutlined style={{ fontSize: 12 }} />}
-            onToggleVisiable={handleToggleVisiable}
-          />
-        </div>
+          <div className='rx-dialog-wrap'
+            style={{
+              left: maskReact?.left,
+              top: maskReact?.top,
+              height: maskReact?.height,
+              width: maskReact.width,
+            }}
+          >
+            <div className='rx-dialog' style={{
+              width: width,
+              height: 100,
+              background: "#fff",
+            }}>
+              哈哈哈
+              {children}
+              <PopupButton
+                icon={<CloseOutlined style={{ fontSize: 12 }} />}
+                onToggleVisiable={handleToggleVisiable}
+              />
+            </div>
+          </div>
+        </>
       }
       <div style={{ position: "relative", display: "inline" }}>
         <Button
