@@ -120,7 +120,7 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
           />
         </div>
       }
-      <div style={{ position: "relative" }}>
+      <div style={{ position: "relative", display: "inline" }}>
         {
           showDropdownIcon
             ?
@@ -150,7 +150,7 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
           <PopupButton
             icon={<EllipsisOutlined style={{ fontSize: 12 }} />}
             style={{
-              top: 8,
+              top: 0,
             }}
             onToggleVisiable={handleToggleVisiable}
           />

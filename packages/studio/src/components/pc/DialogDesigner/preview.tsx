@@ -60,7 +60,7 @@ export const DialogDesigner: DnFC<IDialogProps> = observer((props) => {
           />
         </div>
       }
-      <div style={{ position: "relative" }}>
+      <div style={{ position: "relative", display:"inline" }}>
         <Button
           icon={icon && <IconView icon={icon} />}
           {...other}
@@ -76,7 +76,7 @@ export const DialogDesigner: DnFC<IDialogProps> = observer((props) => {
           <PopupButton
             icon={<EllipsisOutlined style={{ fontSize: 12 }} />}
             style={{
-              top: 8,
+              top: 0,
             }}
             onToggleVisiable={handleToggleVisiable}
           />
