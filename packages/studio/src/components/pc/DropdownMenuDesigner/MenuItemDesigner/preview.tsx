@@ -12,9 +12,7 @@ export const MenuItemDesigner: DnFC<IDropdownMenuItemProps> = observer((props) =
 
   return (
     <div {...other}>
-      <Menu.Item >
-        {title}
-      </Menu.Item>
+      {title}
     </div>
   )
 })

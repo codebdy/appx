@@ -31,48 +31,47 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps & { style?: CSSProper
     setVisiable(visible => !visible);
   }, [])
 
-  const menu = useMemo(() => (
-    <Menu style={{ position: "relative" }}>
-      {children}
-      <LoadTemplate
-        actions={[
-          {
-            title: node.getMessage('addItem'),
-            icon: 'AddOperation',
-            onClick: () => {
-              const item = new TreeNode({
-                componentName: 'Field',
-                props: {
-                  type: 'void',
-                  'x-component': 'DropdownMenu.Item',
-                  'x-component-props': {
-                    title: 'Menu Item'
-                  }
-                },
-              })
-              node.append(item)
-            },
-          },
-        ]}
-      />
-      <Button
-        type="primary"
-        danger
-        shape="circle"
-        size='small'
-        style={{ position: "absolute", top: -8, right: -8, width: 16, minWidth: 16, height: 16 }}
-        icon={
-          <CloseOutlined style={{ fontSize: 12 }} />
-        }
-        onClick={handleToggleVisiable}
-      >
-      </Button>
-    </Menu>
-  ), [children, handleToggleVisiable, node, props, visible]);
-
 
   return (
-    <Dropdown overlay={menu} visible={visible}>
+    <>
+      {visible &&
+        <div className='menu-designer'>
+          {children}
+          <LoadTemplate
+            actions={[
+              {
+                title: node.getMessage('addItem'),
+                icon: 'AddOperation',
+                onClick: () => {
+                  const item = new TreeNode({
+                    componentName: 'Field',
+                    props: {
+                      type: 'void',
+                      'x-component': 'DropdownMenu.Item',
+                      'x-component-props': {
+                        title: 'Menu Item'
+                      }
+                    },
+                  })
+                  node.append(item)
+                },
+              },
+            ]}
+          />
+          <Button
+            type="primary"
+            danger
+            shape="circle"
+            size='small'
+            style={{ position: "absolute", top: -8, right: -8, width: 16, minWidth: 16, height: 16 }}
+            icon={
+              <CloseOutlined style={{ fontSize: 12 }} />
+            }
+            onClick={handleToggleVisiable}
+          >
+          </Button>
+        </div>
+      }
       <Button
         onClick={e => e.preventDefault()} style={{ ...(!visible ? style : {}), position: "relative" }}
         {...(!visible ? other : {})}
@@ -96,7 +95,7 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps & { style?: CSSProper
         }
 
       </Button>
-    </Dropdown>
+    </>
   )
 })
 
