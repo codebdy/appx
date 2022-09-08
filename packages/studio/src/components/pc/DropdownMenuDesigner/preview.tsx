@@ -1,4 +1,4 @@
-import React, { Children, CSSProperties, useCallback, useMemo, useState } from 'react'
+import React, { Children, CSSProperties, useCallback, useMemo, useRef, useState } from 'react'
 import { TreeNode, createBehavior, createResource } from '@designable/core'
 import {
   DnFC,
@@ -25,6 +25,7 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps & { style?: CSSProper
 } = observer((props) => {
   const { style, children, ...other } = props;
   const [visible, setVisiable] = useState(false);
+  const ref = useRef<HTMLElement>(null)
   const node = useTreeNode()
 
   const handleToggleVisiable = useCallback(() => {
@@ -35,7 +36,12 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps & { style?: CSSProper
   return (
     <>
       {visible &&
-        <div className='menu-designer'>
+        <div
+          className='menu-designer'
+          style={{
+            top: ref?.current?.getBoundingClientRect()?.bottom,
+            left: ref?.current?.getBoundingClientRect()?.left
+          }}>
           {children}
           <LoadTemplate
             actions={[
@@ -75,6 +81,7 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps & { style?: CSSProper
       <Button
         onClick={e => e.preventDefault()} style={{ ...(!visible ? style : {}), position: "relative" }}
         {...(!visible ? other : {})}
+        ref = {ref}
       >
         Hover me
         <DownOutlined />
