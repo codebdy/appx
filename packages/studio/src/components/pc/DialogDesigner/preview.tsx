@@ -53,11 +53,10 @@ export const DialogDesigner: DnFC<IDialogProps> = observer((props) => {
             }}
           >
             <div className='rx-dialog-content' style={{
-              left: `10%`,
               top: 100,
               width: width,
               background: "#fff",
-              maxHeight: maskReact?.height,
+              maxHeight: maskReact?.height - 200,
             }}>
               <div style={{
                 flex: 1,
