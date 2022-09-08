@@ -85,7 +85,7 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps & { style?: CSSProper
             danger
             shape="circle"
             size='small'
-            style={{ position: "absolute", top: -8, right: -8, width: 16, minWidth: 16, height: 16 }}
+            style={{ position: "absolute", top: "calc(50% - 8px)", right: -8, width: 16, minWidth: 16, height: 16 }}
             icon={
               <EllipsisOutlined style={{ fontSize: 12 }} />
             }
