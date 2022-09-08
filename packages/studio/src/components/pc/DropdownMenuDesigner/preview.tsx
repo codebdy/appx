@@ -16,6 +16,7 @@ import { IDropdownMenuProps } from '../DropdownMenu'
 import { MenuItemDesigner } from './MenuItemDesigner'
 import { DropdownMenuItemSchema } from './MenuItemDesigner/schema'
 import { DropdownMenuItemLocales } from './MenuItemDesigner/locales'
+import { Events } from '../../../shared/action'
 
 export const DropdownMenuDesigner: DnFC<IDropdownMenuProps & { style?: CSSProperties }> & {
   Item?: React.FC<MenuItemProps>
@@ -122,7 +123,7 @@ DropdownMenuDesigner.Behavior = createBehavior(
     selector: (node) => node.props['x-component'] === 'DropdownMenu.Item',
     designerProps: {
       droppable: false,
-      propsSchema: createFieldSchema(DropdownMenuItemSchema),
+      propsSchema: createFieldSchema(DropdownMenuItemSchema, { actions: [Events.onClick], noDisplayTab: true }),
     },
     designerLocales: DropdownMenuItemLocales,
   },
