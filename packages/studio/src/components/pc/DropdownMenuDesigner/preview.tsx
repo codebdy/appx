@@ -1,5 +1,4 @@
 import React, { useCallback, useMemo, useState } from 'react'
-import { FormGrid as FormilyGird } from '@formily/antd'
 import { TreeNode, createBehavior, createResource } from '@designable/core'
 import {
   DnFC,
@@ -13,12 +12,14 @@ import { LoadTemplate } from '@designable/formily-antd/lib/common/LoadTemplate'
 import { createFieldSchema } from "../../common/Field";
 import { DropdownMenuSchema } from './schema'
 import { DropdownMenuLocales } from './locales'
-import { Button, Dropdown, Menu } from 'antd'
-import { CloseOutlined, DownOutlined, EllipsisOutlined, EyeInvisibleOutlined, EyeOutlined, SmileOutlined } from '@ant-design/icons'
+import { Button, Dropdown, Menu, MenuItemProps } from 'antd'
+import { CloseOutlined, DownOutlined, EllipsisOutlined } from '@ant-design/icons'
 import { IDropdownMenu } from '../DropdownMenu'
+import {ItemDesigner} from './ItemDesigner'
 
-
-export const DropdownMenuDesigner: DnFC<IDropdownMenu> = observer((props) => {
+export const DropdownMenuDesigner: DnFC<IDropdownMenu>&{
+  item?:React.FC<MenuItemProps>
+} = observer((props) => {
   const { style, ...other } = props;
   const [visible, setVisiable] = useState(false);
   const node = useTreeNode()
@@ -65,7 +66,7 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenu> = observer((props) => {
       >
       </Button>
     </Menu>
-  ), [handleToggleVisiable, props, visible]);
+  ), [handleToggleVisiable, node, props, visible]);
 
 
   return (
@@ -95,6 +96,8 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenu> = observer((props) => {
     </>
   )
 })
+
+DropdownMenuDesigner.item = ItemDesigner;
 
 DropdownMenuDesigner.Behavior = createBehavior(
   {
