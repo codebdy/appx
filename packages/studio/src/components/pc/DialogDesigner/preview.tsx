@@ -52,13 +52,44 @@ export const DialogDesigner: DnFC<IDialogProps> = observer((props) => {
               width: maskReact.width,
             }}
           >
-            <div className='rx-dialog' style={{
+            <div className='rx-dialog-content' style={{
+              left: `10%`,
+              top: 100,
               width: width,
-              height: 100,
               background: "#fff",
+              maxHeight: maskReact?.height,
             }}>
-              哈哈哈
-              {children}
+              <div style={{
+                flex: 1,
+                height: 0,
+                overflow: "auto",
+              }}>
+                哈哈哈
+                <br /><br /><br /><br /><br /><br /><br />
+                哈
+                哈哈哈
+                <br /><br /><br /><br /><br /><br /><br />
+                哈
+                哈哈哈
+                <br /><br /><br /><br /><br /><br /><br />
+                哈
+                哈哈哈
+                <br /><br /><br /><br /><br /><br /><br />
+                哈
+                哈哈哈
+                <br /><br /><br /><br /><br /><br /><br />
+                哈
+                哈哈哈
+                <br /><br /><br /><br /><br /><br /><br />
+                哈
+                哈哈哈
+                <br /><br /><br /><br /><br /><br /><br />
+                哈
+                哈哈哈
+                <br /><br /><br /><br /><br /><br /><br />
+                哈
+                {children}
+              </div>
               <PopupButton
                 icon={<CloseOutlined style={{ fontSize: 12 }} />}
                 onToggleVisiable={handleToggleVisiable}

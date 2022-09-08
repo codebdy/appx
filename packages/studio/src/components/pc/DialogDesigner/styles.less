@@ -6,16 +6,23 @@
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 10;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.45);
 }
 
 .rx-dialog-wrap{
   position: fixed;
-  z-index: 1001;
-  .rx-dialog{
-    position: absolute;
+  z-index: 11;
+  .rx-dialog-content{
+    position: relative;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
+    display: flex;
+    flex-flow: column;
   }
 }
 
