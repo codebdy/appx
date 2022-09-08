@@ -76,9 +76,9 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps & { style?: CSSProper
         </div>
       }
       <Button
-        onClick={e => e.preventDefault()} style={{ ...(!visible ? style : {}), position: "relative" }}
-        {...(!visible ? other : {})}
-        ref = {ref}
+        onClick={e => e.preventDefault()} style={{ ...style, position: "relative" }}
+        {...other}
+        ref={ref}
       >
         Hover me
         <DownOutlined />
