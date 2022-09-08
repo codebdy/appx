@@ -4,14 +4,8 @@ export const DropdownMenuItemLocales = {
     addItem: '添加菜单项',
     settings: {
       'x-component-props': {
-        minWidth: '最小宽度',
-        minColumns: '最小列数',
-        maxWidth: '最大宽度',
-        maxColumns: '最大列数',
-        breakpoints: '响应式断点',
-        columnGap: '列间距',
-        rowGap: '行间距',
-        colWrap: '自动换行',
+        title: '标题',
+        onClick: "鼠标点击",
       },
     },
   },

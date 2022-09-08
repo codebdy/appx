@@ -11,8 +11,10 @@ export const MenuItemDesigner: DnFC<IDropdownMenuItemProps> = observer((props) =
   const { icon, title, ...other } = props;
 
   return (
-    <Menu.Item {...other}>
-      {title}
-    </Menu.Item>
+    <div {...other}>
+      <Menu.Item >
+        {title}
+      </Menu.Item>
+    </div>
   )
 })
