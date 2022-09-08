@@ -37,6 +37,14 @@ export const DropdownMenuSchema: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
     },
+    showDropdownIcon:{
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+      'x-component-props': {
+        defaultValue: 'true',
+      },
+    },
     icon:{
       type: 'string',
       'x-decorator': 'FormItem',

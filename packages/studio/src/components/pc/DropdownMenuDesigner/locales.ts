@@ -14,6 +14,7 @@ export const DropdownMenuLocales = {
         disabled: "无效",
         ghost: "透明",
         icon: "图标",
+        showDropdownIcon: "下拉图标",
         shape: {
           title: '形状',
           dataSource: ['默认', '圆圈', '圆角'],

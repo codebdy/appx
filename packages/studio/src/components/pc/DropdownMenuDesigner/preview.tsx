@@ -20,10 +20,16 @@ import { Events } from '../../../shared/action'
 import { IIcon } from '../../../shared/icon/model'
 import { IconView } from '../../../shared/icon/IconView'
 
-export const DropdownMenuDesigner: DnFC<IDropdownMenuProps & { title?: string, icon?: IIcon, style?: CSSProperties }> & {
+export const DropdownMenuDesigner: DnFC<IDropdownMenuProps & {
+  title?: string,
+  icon?: IIcon,
+  style?: CSSProperties,
+  showDropdownIcon?: boolean,
+}> &
+{
   Item?: React.FC<MenuItemProps>
 } = observer((props) => {
-  const { title, icon, style, children, ...other } = props;
+  const { title, icon, style, showDropdownIcon, children, ...other } = props;
   const [visible, setVisiable] = useState(false);
   const ref = useRef<HTMLElement>(null)
   const node = useTreeNode()
@@ -87,7 +93,10 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps & { title?: string, i
         {
           title
         }
-        <DownOutlined />
+        {
+          showDropdownIcon &&
+          <DownOutlined />
+        }        
         {
           !visible &&
           <Button
@@ -144,7 +153,8 @@ DropdownMenuDesigner.Resource = createResource({
         'x-component': 'DropdownMenu',
         'x-component-props': {
           type: "primary",
-          title: "Dropdown"
+          title: "Dropdown",
+          showDropdownIcon: true,
         },
       },
     },
