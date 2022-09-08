@@ -100,7 +100,7 @@ DialogDesigner.Behavior = createBehavior(
 )
 
 DialogDesigner.Resource = createResource({
-  icon: 'SelectSource',
+  icon: 'OpenPageButtonSource',
   elements: [
     {
       componentName: 'Field',

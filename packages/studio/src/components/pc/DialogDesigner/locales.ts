@@ -1,6 +1,6 @@
 export const DialogLocales = {
   'zh-CN': {
-    title: '下拉菜单',
+    title: '弹出窗口',
     settings: {
       'x-component-props': {
         title: '标题',
