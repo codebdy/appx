@@ -20,6 +20,7 @@ import { Events } from '../../../shared/action'
 import { IconView } from '../../../shared/icon/IconView'
 import { useParseLangMessage } from '../../../hooks/useParseLangMessage'
 import { IDropdownMenuItemProps } from '../DropdownMenu/MenuItem'
+import { PopupButton } from '../../common/PopupButton'
 
 export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
 {
@@ -113,26 +114,10 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
               },
             ]}
           />
-          <Button
-            type="primary"
-            danger
-            shape="circle"
-            size='small'
-            style={{
-              position: "absolute",
-              top: -8,
-              right: -8,
-              width: 16,
-              minWidth: 16,
-              height: 16,
-              zIndex: 1000,
-            }}
-            icon={
-              <CloseOutlined style={{ fontSize: 12 }} />
-            }
-            onClick={handleToggleVisiable}
-          >
-          </Button>
+          <PopupButton
+            icon={<CloseOutlined style={{ fontSize: 12 }} />}
+            onToggleVisiable={handleToggleVisiable}
+          />
         </div>
       }
       <div style={{ position: "relative" }}>
@@ -162,26 +147,13 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
         }
         {
           !visible &&
-          <Button
-            type="primary"
-            danger
-            shape="circle"
-            size='small'
+          <PopupButton
+            icon={<EllipsisOutlined style={{ fontSize: 12 }} />}
             style={{
-              position: "absolute",
-              top: "calc(50% - 8px)",
-              right: -8,
-              width: 16,
-              minWidth: 16,
-              height: 16,
-              zIndex: 1000,
+              top: 8,
             }}
-            icon={
-              <EllipsisOutlined style={{ fontSize: 12 }} />
-            }
-            onClick={handleToggleVisiable}
-          >
-          </Button>
+            onToggleVisiable={handleToggleVisiable}
+          />
         }
       </div>
     </>
