@@ -6,6 +6,7 @@ export interface IDropdownMenuItemProps {
   title?: string,
   icon?: IIcon,
   className?: string,
+  onClick?: ()=>void,
 }
 export const MenuItem = observer((props:IDropdownMenuItemProps)=>{
   return (

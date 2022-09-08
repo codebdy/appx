@@ -8,7 +8,7 @@ import { IDropdownMenuItemProps } from '../../DropdownMenu/MenuItem'
 import { IconView } from '../../../../shared/icon/IconView'
 
 export const MenuItemDesigner: DnFC<IDropdownMenuItemProps> = observer((props) => {
-  const { className, icon, title, ...other } = props;
+  const { className, icon, title, onClick, ...other } = props;
 
   return (
     <div className={clx('menu-item', className)} {...other}>
