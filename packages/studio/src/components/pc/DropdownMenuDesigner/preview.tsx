@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react'
+import React, { useCallback, useMemo, useRef, useState } from 'react'
 import { TreeNode, createBehavior, createResource } from '@designable/core'
 import {
   DnFC,
@@ -23,7 +23,7 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
 {
   Item?: React.FC<MenuItemProps>
 } = observer((props) => {
-  const { title, icon, style, showDropdownIcon, children, ...other } = props;
+  const { title, icon, style, showDropdownIcon, placement, children, ...other } = props;
   const [visible, setVisiable] = useState(false);
   const ref = useRef<HTMLElement>(null)
   const node = useTreeNode()
@@ -32,6 +32,40 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
     setVisiable(visible => !visible);
   }, [])
 
+  const placementStyle = useMemo(() => {
+    const rect = ref?.current?.getBoundingClientRect();
+    switch (placement) {
+      case "bottom":
+        return {
+          top: rect?.bottom,
+        }
+      case "bottomLeft":
+        return {
+          top: rect?.bottom,
+          left: rect?.left,
+        }
+      case "bottomRight":
+        return {
+          top: rect?.bottom,
+          right: rect?.right,
+        }
+      case "top":
+        return {
+          bottom: rect?.top,
+        }
+      case "topLeft":
+        return {
+          bottom: rect?.top,
+          left: rect?.left,
+        }
+      case "topRight":
+        return {
+          bottom: rect?.top,
+          right: rect?.right,
+        }
+    }
+
+  }, [placement])
 
   return (
     <>
@@ -39,8 +73,7 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
         <div
           className='menu-designer'
           style={{
-            top: ref?.current?.getBoundingClientRect()?.bottom,
-            left: ref?.current?.getBoundingClientRect()?.left
+            ...placementStyle
           }}>
           {children}
           <LoadTemplate
@@ -149,6 +182,7 @@ DropdownMenuDesigner.Resource = createResource({
           type: "primary",
           title: "Dropdown",
           showDropdownIcon: true,
+          placement: "bottomLeft",
           trigger: ['click']
         },
       },

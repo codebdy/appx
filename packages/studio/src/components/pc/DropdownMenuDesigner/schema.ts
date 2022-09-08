@@ -74,7 +74,7 @@ export const DropdownMenuSchema: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Select',
       'x-component-props': {
-        defaultValue: 'bottom',
+        defaultValue: 'bottomLeft',
       },
     },
     trigger:{
