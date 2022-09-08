@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { FormGrid as FormilyGird } from '@formily/antd'
 import { TreeNode, createBehavior, createResource } from '@designable/core'
 import {
@@ -14,49 +14,12 @@ import { createFieldSchema } from "../../common/Field";
 import { DropdownMenuSchema } from './schema'
 import { DropdownMenuLocales } from './locales'
 import { Button, Dropdown, Menu } from 'antd'
-import { DownOutlined, EyeOutlined, SmileOutlined } from '@ant-design/icons'
+import { CloseOutlined, DownOutlined, EllipsisOutlined, EyeInvisibleOutlined, EyeOutlined, SmileOutlined } from '@ant-design/icons'
 import { IDropdownMenu } from '../DropdownMenu'
 
-const menu = (
-  <Menu
-    items={[
-      {
-        key: '1',
-        label: (
-          <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-            1st menu item
-          </a>
-        ),
-      },
-      {
-        key: '2',
-        label: (
-          <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
-            2nd menu item (disabled)
-          </a>
-        ),
-        icon: <SmileOutlined />,
-        disabled: true,
-      },
-      {
-        key: '3',
-        label: (
-          <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
-            3rd menu item (disabled)
-          </a>
-        ),
-        disabled: true,
-      },
-      {
-        key: '4',
-        danger: true,
-        label: 'a danger item',
-      },
-    ]}
-  />
-);
 
 export const DropdownMenuDesigner: DnFC<IDropdownMenu> = observer((props) => {
+  const { style, ...other } = props;
   const [visible, setVisiable] = useState(false);
   const node = useTreeNode()
 
@@ -64,24 +27,69 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenu> = observer((props) => {
     setVisiable(visible => !visible);
   }, [])
 
+  const menu = useMemo(() => (
+    <Menu style={{ position: "relative" }}>
+      <div {...(!visible ? props : {})}>哈哈</div>
+      <div>
+        <Menu.Item>菜单项一</Menu.Item>
+      </div>
+      <Menu.Item>菜单项二</Menu.Item>
+      <LoadTemplate
+        actions={[
+          {
+            title: node.getMessage('addItem'),
+            icon: 'AddOperation',
+            onClick: () => {
+              const column = new TreeNode({
+                componentName: 'Field',
+                props: {
+                  type: 'void',
+                  'x-component': 'DropdownMenu.Item',
+                },
+              })
+              node.append(column)
+            },
+          },
+        ]}
+      />
+      <Button
+        type="primary"
+        danger
+        shape="circle"
+        size='small'
+        style={{ position: "absolute", top: -8, right: -8, width: 16, minWidth: 16, height: 16 }}
+        icon={
+          <CloseOutlined style={{ fontSize: 12 }} />
+        }
+        onClick={handleToggleVisiable}
+      >
+      </Button>
+    </Menu>
+  ), [handleToggleVisiable, props, visible]);
+
+
   return (
     <>
       <Dropdown overlay={menu} visible={visible}>
-        <Button onClick={e => e.preventDefault()} style={{ position: "relative" }}>
+        <Button onClick={e => e.preventDefault()} style={{ ...(!visible ? style : {}), position: "relative" }} {...(!visible ? other : {})}>
           Hover me
           <DownOutlined />
-          <Button
-            type="primary"
-            danger
-            shape="circle"
-            size='small'
-            style={{ position: "absolute", top: -4, right: -4, width: 16, minWidth: 16, height: 16 }}
-            icon={
-              <EyeOutlined style={{ fontSize: 12 }} />
-            }
-            onClick={handleToggleVisiable}
-          >
-          </Button>
+          {
+            !visible &&
+            <Button
+              type="primary"
+              danger
+              shape="circle"
+              size='small'
+              style={{ position: "absolute", top: -8, right: -8, width: 16, minWidth: 16, height: 16 }}
+              icon={
+                <EllipsisOutlined style={{ fontSize: 12 }} />
+              }
+              onClick={handleToggleVisiable}
+            >
+            </Button>
+          }
+
         </Button>
       </Dropdown>
     </>
