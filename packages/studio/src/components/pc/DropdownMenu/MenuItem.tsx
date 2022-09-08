@@ -5,6 +5,7 @@ import React, { useCallback } from "react"
 import { IIcon } from '../../../shared/icon/model'
 import { useParseLangMessage } from "../../../hooks/useParseLangMessage"
 import { IAppxAction, useDoActions } from "../../../shared/action"
+import { useDropdownParams } from "./context"
 
 export interface IDropdownMenuItemProps {
   title?: string,
@@ -14,6 +15,7 @@ export interface IDropdownMenuItemProps {
 }
 export const MenuItem = observer((props: IDropdownMenuItemProps) => {
   const { title, icon, onClick, ...other } = props
+  const { setLoading } = useDropdownParams();
   const p = useParseLangMessage();
 
   const doActions = useDoActions();
@@ -22,18 +24,18 @@ export const MenuItem = observer((props: IDropdownMenuItemProps) => {
     if (!onClick) {
       return;
     }
-    //setLoading(true)
+    setLoading(true)
     doActions(onClick)
       .then(() => {
-        //setLoading(false);
+        setLoading(false);
       })
       .catch((error) => {
-        //setLoading(false);
+        setLoading(false);
         error?.message && message.error(error?.message);
         error && console.error(error);
       })
       ;
-  }, [doActions, onClick])
+  }, [doActions, onClick, setLoading])
 
   return (
     <Menu.Item
