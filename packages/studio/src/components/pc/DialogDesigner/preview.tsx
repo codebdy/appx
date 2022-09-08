@@ -17,15 +17,16 @@ import { PopupButton } from '../../common/PopupButton'
 import { IDialogProps } from '../Dialog'
 
 export const DialogDesigner: DnFC<IDialogProps> = observer((props) => {
-  const { title, icon, children, width = 520, ...other } = props;
+  const { title, icon, children, width = 520, centered, ...other } = props;
   const [visible, setVisiable] = useState(false);
   const ref = useRef<HTMLElement>(null)
   const node = useTreeNode()
   const p = useParseLangMessage();
 
-  const viewPort = document.querySelector(".dn-component-tree");
-
-  const maskReact = viewPort?.getBoundingClientRect();
+  const viewTree = document.querySelector(".dn-component-tree");
+  const treeRect = viewTree?.getBoundingClientRect();
+  const viewPort = document.querySelector(".dn-viewport");
+  const viewRect = viewPort?.getBoundingClientRect();
 
   const handleToggleVisiable = useCallback(() => {
     setVisiable(visible => !visible);
@@ -37,56 +38,50 @@ export const DialogDesigner: DnFC<IDialogProps> = observer((props) => {
         <>
           <div className='rx-dialog-mask'
             style={{
-              left: maskReact?.left,
-              top: maskReact?.top,
-              height: maskReact?.height,
-              width: maskReact.width,
+              left: treeRect?.left,
+              top: treeRect?.top,
+              height: treeRect?.height,
+              width: treeRect.width,
             }}
           >
           </div>
           <div className='rx-dialog-wrap'
             style={{
-              left: maskReact?.left,
-              top: maskReact?.top,
-              height: maskReact?.height,
-              width: maskReact.width,
+              left: viewRect?.left,
+              top: viewRect?.top,
+              height: viewRect?.height,
+              width: viewRect.width,
+              alignItems: centered ? "center" : "flex-start",
             }}
           >
             <div className='rx-dialog-content' style={{
-              top: 100,
               width: width,
               background: "#fff",
-              maxHeight: maskReact?.height - 200,
+              marginTop: centered ? undefined : 100,
+              maxHeight: viewRect?.height - 200,
             }}>
+              <div>
+                Title
+              </div>
               <div style={{
                 flex: 1,
                 height: 0,
                 overflow: "auto",
               }}>
-                哈哈哈
-                <br /><br /><br /><br /><br /><br /><br />
-                哈
-                哈哈哈
-                <br /><br /><br /><br /><br /><br /><br />
-                哈
-                哈哈哈
-                <br /><br /><br /><br /><br /><br /><br />
-                哈
-                哈哈哈
-                <br /><br /><br /><br /><br /><br /><br />
-                哈
-                哈哈哈
-                <br /><br /><br /><br /><br /><br /><br />
-                哈
-                哈哈哈
-                <br /><br /><br /><br /><br /><br /><br />
-                哈
-                哈哈哈
-                <br /><br /><br /><br /><br /><br /><br />
-                哈
-                哈哈哈
-                <br /><br /><br /><br /><br /><br /><br />
-                哈
+                哈哈哈<br /><br /><br /><br />
+                哈<br /><br /><br /><br /><br /><br />
+                哈哈哈<br /><br /><br /><br /><br />
+                哈哈哈<br /><br /><br /><br />
+                哈<br /><br /><br /><br /><br /><br />
+                哈哈哈<br /><br /><br /><br /><br />                哈哈哈<br /><br /><br /><br />
+                哈<br /><br /><br /><br /><br /><br />
+                哈哈哈<br /><br /><br /><br /><br />                哈哈哈<br /><br /><br /><br />
+                哈<br /><br /><br /><br /><br /><br />
+                哈哈哈<br /><br /><br /><br /><br />                哈哈哈<br /><br /><br /><br />
+                哈<br /><br /><br /><br /><br /><br />
+                哈哈哈<br /><br /><br /><br /><br />                哈哈哈<br /><br /><br /><br />
+                哈<br /><br /><br /><br /><br /><br />
+                哈哈哈<br /><br /><br /><br /><br />
                 {children}
               </div>
               <PopupButton
