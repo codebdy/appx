@@ -25,12 +25,12 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
 {
   Item?: React.FC<IDropdownMenuItemProps>
 } = observer((props) => {
-  const { title, icon, style, showDropdownIcon, placement, children, ...other } = props;
+  const { title, icon, showDropdownIcon, placement, children, ...other } = props;
   const [visible, setVisiable] = useState(false);
   const ref = useRef<HTMLElement>(null)
   const node = useTreeNode()
   const p = useParseLangMessage();
-  
+
   const handleToggleVisiable = useCallback(() => {
     setVisiable(visible => !visible);
   }, [])
@@ -118,15 +118,15 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
             danger
             shape="circle"
             size='small'
-            style={{ 
-              position: "absolute", 
-              top: -8, 
-              right: -8, 
-              width: 16, 
-              minWidth: 16, 
+            style={{
+              position: "absolute",
+              top: -8,
+              right: -8,
+              width: 16,
+              minWidth: 16,
               height: 16,
               zIndex: 1000,
-             }}
+            }}
             icon={
               <CloseOutlined style={{ fontSize: 12 }} />
             }
@@ -135,18 +135,30 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
           </Button>
         </div>
       }
-      <Button
-        icon={icon && <IconView icon={icon} />}
-        style={{ ...style, position: "relative" }}
-        {...other}
-        ref={ref}
-      >
+      <div style={{ position: "relative" }}>
         {
-          p(title)
-        }
-        {
-          showDropdownIcon &&
-          <DownOutlined />
+          showDropdownIcon
+            ?
+            <Button
+              icon={icon && <IconView icon={icon} />}
+              {...other}
+              ref={ref}
+            >
+              {
+                p(title)
+              }
+              <DownOutlined />
+            </Button>
+            :
+            <Button
+              icon={icon && <IconView icon={icon} />}
+              {...other}
+              ref={ref}
+            >
+              {
+                p(title)
+              }
+            </Button>
         }
         {
           !visible &&
@@ -171,8 +183,7 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
           >
           </Button>
         }
-
-      </Button>
+      </div>
     </>
   )
 })

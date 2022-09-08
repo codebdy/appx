@@ -1,4 +1,4 @@
-import { PauseCircleOutlined, PauseOutlined, PlusCircleOutlined, PlusOutlined, QuestionCircleOutlined, QuestionOutlined } from "@ant-design/icons";
+import { EllipsisOutlined, MoreOutlined, PauseCircleOutlined, PauseOutlined, PlusCircleOutlined, PlusOutlined, QuestionCircleOutlined, QuestionOutlined } from "@ant-design/icons";
 import { IIconGroup } from "../../model";
 
 export const suggested: IIconGroup = {
@@ -34,5 +34,15 @@ export const suggested: IIconGroup = {
       icon: PauseCircleOutlined,
       keywords: "",
     },
+    {
+      iconKey: "MoreOutlined",
+      icon: MoreOutlined,
+      keywords: "",
+    },
+    {
+      iconKey: "EllipsisOutlined",
+      icon: EllipsisOutlined,
+      keywords: "",
+    }
   ]
 }

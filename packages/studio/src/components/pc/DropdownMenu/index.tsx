@@ -21,27 +21,38 @@ export interface IDropdownMenuProps {
 export const DropdownMenu: React.FC<IDropdownMenuProps> & {
   Item?: React.FC<IDropdownMenuItemProps>
 } = observer((props) => {
-  const { style, icon, title, showDropdownIcon, placement, trigger, children, ...other } = props;
+  const { icon, title, showDropdownIcon, placement, trigger, children, ...other } = props;
   const [loading, setLoading] = useState(false);
   const p = useParseLangMessage();
 
   return (
     <DropdownContext.Provider value={{ loading, setLoading }}>
       <Dropdown overlay={<Menu>{children}</Menu>} placement={placement} trigger={trigger}>
-        <Button
-          icon={icon && <IconView icon={icon} />}
-          style={{ ...style, position: "relative" }}
-          {...other}
-          loading = {loading}
-        >
-          {
-            p(title)
-          }
-          {
-            showDropdownIcon &&
-            <DownOutlined />
-          }
-        </Button>
+        {
+          showDropdownIcon
+            ?
+            <Button
+              icon={icon && <IconView icon={icon} />}
+              {...other}
+              loading={loading}
+            >
+              {
+                p(title)
+              }
+              <DownOutlined />
+            </Button>
+            :
+            <Button
+              icon={icon && <IconView icon={icon} />}
+              {...other}
+              loading={loading}
+            >
+              {
+                p(title)
+              }
+            </Button>
+        }
+
       </Dropdown>
     </DropdownContext.Provider>
   )
