@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import { TreeNode, createBehavior, createResource } from '@designable/core'
 import {
   DnFC,
@@ -32,40 +32,54 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
     setVisiable(visible => !visible);
   }, [])
 
-  const placementStyle = useMemo(() => {
+  const getPlacementStyle = () => {
     const rect = ref?.current?.getBoundingClientRect();
     switch (placement) {
       case "bottom":
         return {
           top: rect?.bottom,
+          left: "auto",
+          bottom: "auto",
+          right: "auto",
         }
       case "bottomLeft":
         return {
           top: rect?.bottom,
           left: rect?.left,
+          bottom: "auto",
+          right: "auto",
         }
       case "bottomRight":
         return {
           top: rect?.bottom,
-          right: rect?.right,
+          right: document.documentElement.clientWidth - rect?.right,
+          left: "auto",
+          bottom: "auto",
         }
       case "top":
         return {
-          bottom: rect?.top,
+          bottom: document.documentElement.clientHeight - rect?.top,
+          left: "auto",
+          right: "auto",
+          top: "auto",
         }
       case "topLeft":
         return {
-          bottom: rect?.top,
+          bottom: document.documentElement.clientHeight - rect?.top,
           left: rect?.left,
+          top: "auto",
+          right: "auto",
         }
       case "topRight":
         return {
-          bottom: rect?.top,
-          right: rect?.right,
+          bottom: document.documentElement.clientHeight - rect?.top,
+          right: document.documentElement.clientWidth - rect?.right,
+          left: "auto",
+          top: "auto",
         }
     }
 
-  }, [placement])
+  }
 
   return (
     <>
@@ -73,7 +87,7 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
         <div
           className='menu-designer'
           style={{
-            ...placementStyle
+            ...getPlacementStyle()
           }}>
           {children}
           <LoadTemplate
