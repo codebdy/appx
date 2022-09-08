@@ -1,4 +1,4 @@
-import React, { CSSProperties, useCallback, useRef, useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import { TreeNode, createBehavior, createResource } from '@designable/core'
 import {
   DnFC,
@@ -17,15 +17,9 @@ import { MenuItemDesigner } from './MenuItemDesigner'
 import { DropdownMenuItemSchema } from './MenuItemDesigner/schema'
 import { DropdownMenuItemLocales } from './MenuItemDesigner/locales'
 import { Events } from '../../../shared/action'
-import { IIcon } from '../../../shared/icon/model'
 import { IconView } from '../../../shared/icon/IconView'
 
-export const DropdownMenuDesigner: DnFC<IDropdownMenuProps & {
-  title?: string,
-  icon?: IIcon,
-  style?: CSSProperties,
-  showDropdownIcon?: boolean,
-}> &
+export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
 {
   Item?: React.FC<MenuItemProps>
 } = observer((props) => {
