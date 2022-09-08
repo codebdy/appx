@@ -1,6 +1,6 @@
 import { ISchema } from '@formily/react'
 
-export const DropdownMenuSchema: ISchema = {
+export const DropdownMenuItemSchema: ISchema = {
   type: 'object',
   properties: {
     minWidth: {

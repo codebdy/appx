@@ -1,6 +1,6 @@
-export const DropdownMenuLocales = {
+export const DropdownMenuItemLocales = {
   'zh-CN': {
-    title: '下拉菜单',
+    title: '菜单项',
     addItem: '添加菜单项',
     settings: {
       'x-component-props': {

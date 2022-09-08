@@ -1,8 +1,9 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { Children, CSSProperties, useCallback, useMemo, useState } from 'react'
 import { TreeNode, createBehavior, createResource } from '@designable/core'
 import {
   DnFC,
   useTreeNode,
+  TreeNodeWidget,
   useNodeIdProps,
   DroppableWidget,
 } from '@designable/react'
@@ -14,13 +15,15 @@ import { DropdownMenuSchema } from './schema'
 import { DropdownMenuLocales } from './locales'
 import { Button, Dropdown, Menu, MenuItemProps } from 'antd'
 import { CloseOutlined, DownOutlined, EllipsisOutlined } from '@ant-design/icons'
-import { IDropdownMenu } from '../DropdownMenu'
-import {ItemDesigner} from './ItemDesigner'
+import { IDropdownMenuProps } from '../DropdownMenu'
+import { MenuItemDesigner } from './MenuItemDesigner'
+import { DropdownMenuItemSchema } from './MenuItemDesigner/schema'
+import { DropdownMenuItemLocales } from './MenuItemDesigner/locales'
 
-export const DropdownMenuDesigner: DnFC<IDropdownMenu>&{
-  item?:React.FC<MenuItemProps>
+export const DropdownMenuDesigner: DnFC<IDropdownMenuProps & { style?: CSSProperties }> & {
+  item?: React.FC<MenuItemProps>
 } = observer((props) => {
-  const { style, ...other } = props;
+  const { style, children, ...other } = props;
   const [visible, setVisiable] = useState(false);
   const node = useTreeNode()
 
@@ -28,8 +31,10 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenu>&{
     setVisiable(visible => !visible);
   }, [])
 
+  console.log("哈哈", props.children)
   const menu = useMemo(() => (
     <Menu style={{ position: "relative" }}>
+      {children}
       <div {...(!visible ? props : {})}>哈哈</div>
       <div>
         <Menu.Item>菜单项一</Menu.Item>
@@ -41,14 +46,17 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenu>&{
             title: node.getMessage('addItem'),
             icon: 'AddOperation',
             onClick: () => {
-              const column = new TreeNode({
+              const item = new TreeNode({
                 componentName: 'Field',
                 props: {
                   type: 'void',
                   'x-component': 'DropdownMenu.Item',
+                  'x-component-props': {
+                    title: 'Menu Item'
+                  }
                 },
               })
-              node.append(column)
+              node.append(item)
             },
           },
         ]}
@@ -66,13 +74,17 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenu>&{
       >
       </Button>
     </Menu>
-  ), [handleToggleVisiable, node, props, visible]);
+  ), [children, handleToggleVisiable, node, props, visible]);
 
 
   return (
     <>
+      呵呵呵
       <Dropdown overlay={menu} visible={visible}>
-        <Button onClick={e => e.preventDefault()} style={{ ...(!visible ? style : {}), position: "relative" }} {...(!visible ? other : {})}>
+        <Button
+          onClick={e => e.preventDefault()} style={{ ...(!visible ? style : {}), position: "relative" }}
+          {...(!visible ? other : {})}
+        >
           Hover me
           <DownOutlined />
           {
@@ -97,7 +109,7 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenu>&{
   )
 })
 
-DropdownMenuDesigner.item = ItemDesigner;
+DropdownMenuDesigner.item = MenuItemDesigner;
 
 DropdownMenuDesigner.Behavior = createBehavior(
   {
@@ -110,6 +122,16 @@ DropdownMenuDesigner.Behavior = createBehavior(
     },
     designerLocales: DropdownMenuLocales,
   },
+  {
+    name: 'DropdownMenu.Item',
+    extends: ['Field'],
+    selector: (node) => node.props['x-component'] === 'DropdownMenu.Item',
+    designerProps: {
+      droppable: false,
+      propsSchema: createFieldSchema(DropdownMenuItemSchema),
+    },
+    designerLocales: DropdownMenuItemLocales,
+  },
 )
 
 DropdownMenuDesigner.Resource = createResource({
@@ -121,6 +143,18 @@ DropdownMenuDesigner.Resource = createResource({
         type: 'void',
         'x-component': 'DropdownMenu',
       },
+      children: [
+        {
+          componentName: 'Field',
+          props: {
+            type: 'void',
+            'x-component': 'DropdownMenu.Item',
+            'x-component-props': {
+              title:"Menu Item"
+            },
+          },
+        },
+      ]
     },
   ],
 })
