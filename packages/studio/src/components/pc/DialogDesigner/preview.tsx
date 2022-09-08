@@ -24,6 +24,10 @@ export const DialogDesigner: DnFC<IDialogProps> = observer((props) => {
   const node = useTreeNode()
   const p = useParseLangMessage();
 
+  const viewPort = document.querySelector(".dn-component-tree");
+
+  const maskReact = viewPort?.getBoundingClientRect();
+
   const handleToggleVisiable = useCallback(() => {
     setVisiable(visible => !visible);
   }, [])
@@ -31,8 +35,17 @@ export const DialogDesigner: DnFC<IDialogProps> = observer((props) => {
   return (
     <>
       {visible &&
-        <div className='rx-dialog'>
-          {children}
+        <div className='rx-dialog-mask'
+          style={{
+            left: maskReact?.left,
+            top: maskReact?.top,
+            height: maskReact?.height,
+            width: maskReact.width,
+          }}
+        >
+          <div>
+            {children}
+          </div>
           <LoadTemplate
             actions={[
               {
@@ -60,7 +73,7 @@ export const DialogDesigner: DnFC<IDialogProps> = observer((props) => {
           />
         </div>
       }
-      <div style={{ position: "relative", display:"inline" }}>
+      <div style={{ position: "relative", display: "inline" }}>
         <Button
           icon={icon && <IconView icon={icon} />}
           {...other}
