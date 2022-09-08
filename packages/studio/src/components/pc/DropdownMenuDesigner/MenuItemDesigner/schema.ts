@@ -8,5 +8,10 @@ export const DropdownMenuItemSchema: ISchema = {
       'x-decorator': 'FormItem',
       'x-component': 'MultiLangInput',
     },
+    icon: {
+      type: 'string',
+      'x-decorator': 'FormItem',
+      'x-component': 'IconInput',
+    },
   },
 }

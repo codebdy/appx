@@ -1,4 +1,4 @@
-import { ColumnHeightOutlined } from "@ant-design/icons";
+import { ColumnHeightOutlined, HomeOutlined } from "@ant-design/icons";
 import { observer } from "@formily/reactive-react";
 import { Button, Dropdown, Menu, Tooltip } from "antd";
 import { useUpdateComponentConfig } from "../../../../shared/AppRoot/hooks/useUpdateComponentConfig";
@@ -30,6 +30,7 @@ const HeightMenu = observer(() => {
         {
           label: t("Default"),
           key: '',
+          icon: <HomeOutlined/>
         },
         {
           label: t("Middle"),

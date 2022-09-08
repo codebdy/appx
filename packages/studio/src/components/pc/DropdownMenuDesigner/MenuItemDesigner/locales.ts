@@ -6,6 +6,7 @@ export const DropdownMenuItemLocales = {
       'x-component-props': {
         title: '标题',
         onClick: "鼠标点击",
+        icon: "图标",
       },
     },
   },
