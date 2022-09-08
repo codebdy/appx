@@ -22,7 +22,15 @@ export const DropdownMenuLocales = {
         size: {
           title: '尺寸',
           dataSource: ['大', '中', '小'],
-        }
+        },
+        placement: {
+          title: '位置',
+          dataSource: ["底部", "左下", "右下", "顶部", "左上", "右上"],
+        },
+        trigger: {
+          title: '触发',
+          dataSource: ["点击", "悬停", "右键"],
+        },
       },
     },
   },

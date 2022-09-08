@@ -17,27 +17,27 @@ export const DropdownMenuSchema: ISchema = {
         defaultValue: 'primary',
       },
     },
-    block:{
+    block: {
       type: 'boolean',
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
     },
-    danger:{
+    danger: {
       type: 'boolean',
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
     },
-    disabled:{
+    disabled: {
       type: 'boolean',
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
     },
-    ghost:{
+    ghost: {
       type: 'boolean',
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
     },
-    showDropdownIcon:{
+    showDropdownIcon: {
       type: 'boolean',
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
@@ -45,12 +45,12 @@ export const DropdownMenuSchema: ISchema = {
         defaultValue: 'true',
       },
     },
-    icon:{
+    icon: {
       type: 'string',
       'x-decorator': 'FormItem',
       'x-component': 'IconInput',
     },
-    shape:{
+    shape: {
       type: 'string',
       enum: ['default', 'circle', 'round'],
       'x-decorator': 'FormItem',
@@ -68,5 +68,24 @@ export const DropdownMenuSchema: ISchema = {
         defaultValue: 'middle',
       },
     },
+    placement: {
+      type: 'string',
+      enum: ["bottom", "bottomLeft", "bottomRight", "top", "topLeft", "topRight"],
+      'x-decorator': 'FormItem',
+      'x-component': 'Select',
+      'x-component-props': {
+        defaultValue: 'bottom',
+      },
+    },
+    trigger:{
+      type: 'string',
+      enum: ["click", "hover", "contextMenu"],
+      'x-decorator': 'FormItem',
+      'x-component': 'Checkbox.Group',
+      'x-component-props': {
+        defaultValue: ['click'],
+        optionType: 'button',
+      },
+    }
   },
 }

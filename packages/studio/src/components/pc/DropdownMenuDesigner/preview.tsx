@@ -90,7 +90,7 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
         {
           showDropdownIcon &&
           <DownOutlined />
-        }        
+        }
         {
           !visible &&
           <Button
@@ -149,6 +149,7 @@ DropdownMenuDesigner.Resource = createResource({
           type: "primary",
           title: "Dropdown",
           showDropdownIcon: true,
+          trigger: ['click']
         },
       },
     },
