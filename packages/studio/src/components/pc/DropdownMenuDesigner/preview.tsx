@@ -78,7 +78,6 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
           top: "auto",
         }
     }
-
   }
 
   return (
@@ -116,7 +115,15 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
             danger
             shape="circle"
             size='small'
-            style={{ position: "absolute", top: -8, right: -8, width: 16, minWidth: 16, height: 16 }}
+            style={{ 
+              position: "absolute", 
+              top: -8, 
+              right: -8, 
+              width: 16, 
+              minWidth: 16, 
+              height: 16,
+              zIndex: 1000,
+             }}
             icon={
               <CloseOutlined style={{ fontSize: 12 }} />
             }
@@ -145,7 +152,15 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
             danger
             shape="circle"
             size='small'
-            style={{ position: "absolute", top: "calc(50% - 8px)", right: -8, width: 16, minWidth: 16, height: 16 }}
+            style={{
+              position: "absolute",
+              top: "calc(50% - 8px)",
+              right: -8,
+              width: 16,
+              minWidth: 16,
+              height: 16,
+              zIndex: 1000,
+            }}
             icon={
               <EllipsisOutlined style={{ fontSize: 12 }} />
             }
