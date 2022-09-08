@@ -10,7 +10,7 @@ import { LoadTemplate } from '@designable/formily-antd/lib/common/LoadTemplate'
 import { createFieldSchema } from "../../common/Field";
 import { DropdownMenuSchema } from './schema'
 import { DropdownMenuLocales } from './locales'
-import { Button, MenuItemProps } from 'antd'
+import { Button } from 'antd'
 import { CloseOutlined, DownOutlined, EllipsisOutlined } from '@ant-design/icons'
 import { IDropdownMenuProps } from '../DropdownMenu'
 import { MenuItemDesigner } from './MenuItemDesigner'
@@ -18,16 +18,19 @@ import { DropdownMenuItemSchema } from './MenuItemDesigner/schema'
 import { DropdownMenuItemLocales } from './MenuItemDesigner/locales'
 import { Events } from '../../../shared/action'
 import { IconView } from '../../../shared/icon/IconView'
+import { useParseLangMessage } from '../../../hooks/useParseLangMessage'
+import { IDropdownMenuItemProps } from '../DropdownMenu/MenuItem'
 
 export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
 {
-  Item?: React.FC<MenuItemProps>
+  Item?: React.FC<IDropdownMenuItemProps>
 } = observer((props) => {
   const { title, icon, style, showDropdownIcon, placement, children, ...other } = props;
   const [visible, setVisiable] = useState(false);
   const ref = useRef<HTMLElement>(null)
   const node = useTreeNode()
-
+  const p = useParseLangMessage();
+  
   const handleToggleVisiable = useCallback(() => {
     setVisiable(visible => !visible);
   }, [])
@@ -139,7 +142,7 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
         ref={ref}
       >
         {
-          title
+          p(title)
         }
         {
           showDropdownIcon &&

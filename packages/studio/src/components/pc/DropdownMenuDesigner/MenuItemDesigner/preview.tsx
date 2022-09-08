@@ -6,10 +6,11 @@ import { observer } from '@formily/reactive-react'
 import clx from "classnames";
 import { IDropdownMenuItemProps } from '../../DropdownMenu/MenuItem'
 import { IconView } from '../../../../shared/icon/IconView'
+import { useParseLangMessage } from '../../../../hooks/useParseLangMessage';
 
 export const MenuItemDesigner: DnFC<IDropdownMenuItemProps> = observer((props) => {
   const { className, icon, title, onClick, ...other } = props;
-
+  const p = useParseLangMessage();
   return (
     <div className={clx('menu-item', className)} {...other}>
       {
@@ -19,7 +20,7 @@ export const MenuItemDesigner: DnFC<IDropdownMenuItemProps> = observer((props) =
         </div>
       }
       <div className='menu-item-text'>
-        {title}
+        {p(title)}
       </div>
     </div>
   )
