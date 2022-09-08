@@ -1,7 +1,12 @@
 import { observer } from "@formily/reactive-react"
 import React from "react"
-import { IDropdownMenuItemProps } from "."
+import { IIcon } from '../../../shared/icon/model'
 
+export interface IDropdownMenuItemProps {
+  title?: string,
+  icon?: IIcon,
+  className?: string,
+}
 export const MenuItem = observer((props:IDropdownMenuItemProps)=>{
   return (
     <>
