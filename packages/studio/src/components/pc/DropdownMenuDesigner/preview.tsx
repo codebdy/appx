@@ -31,15 +31,9 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps & { style?: CSSProper
     setVisiable(visible => !visible);
   }, [])
 
-  console.log("哈哈", props.children)
   const menu = useMemo(() => (
     <Menu style={{ position: "relative" }}>
       {children}
-      <div {...(!visible ? props : {})}>哈哈</div>
-      <div>
-        <Menu.Item>菜单项一</Menu.Item>
-      </div>
-      <Menu.Item>菜单项二</Menu.Item>
       <LoadTemplate
         actions={[
           {
@@ -78,34 +72,31 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps & { style?: CSSProper
 
 
   return (
-    <>
-      呵呵呵
-      <Dropdown overlay={menu} visible={visible}>
-        <Button
-          onClick={e => e.preventDefault()} style={{ ...(!visible ? style : {}), position: "relative" }}
-          {...(!visible ? other : {})}
-        >
-          Hover me
-          <DownOutlined />
-          {
-            !visible &&
-            <Button
-              type="primary"
-              danger
-              shape="circle"
-              size='small'
-              style={{ position: "absolute", top: -8, right: -8, width: 16, minWidth: 16, height: 16 }}
-              icon={
-                <EllipsisOutlined style={{ fontSize: 12 }} />
-              }
-              onClick={handleToggleVisiable}
-            >
-            </Button>
-          }
+    <Dropdown overlay={menu} visible={visible}>
+      <Button
+        onClick={e => e.preventDefault()} style={{ ...(!visible ? style : {}), position: "relative" }}
+        {...(!visible ? other : {})}
+      >
+        Hover me
+        <DownOutlined />
+        {
+          !visible &&
+          <Button
+            type="primary"
+            danger
+            shape="circle"
+            size='small'
+            style={{ position: "absolute", top: -8, right: -8, width: 16, minWidth: 16, height: 16 }}
+            icon={
+              <EllipsisOutlined style={{ fontSize: 12 }} />
+            }
+            onClick={handleToggleVisiable}
+          >
+          </Button>
+        }
 
-        </Button>
-      </Dropdown>
-    </>
+      </Button>
+    </Dropdown>
   )
 })
 
@@ -143,18 +134,6 @@ DropdownMenuDesigner.Resource = createResource({
         type: 'void',
         'x-component': 'DropdownMenu',
       },
-      children: [
-        {
-          componentName: 'Field',
-          props: {
-            type: 'void',
-            'x-component': 'DropdownMenu.Item',
-            'x-component-props': {
-              title:"Menu Item"
-            },
-          },
-        },
-      ]
     },
   ],
 })
