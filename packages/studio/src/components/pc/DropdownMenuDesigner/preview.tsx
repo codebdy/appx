@@ -21,7 +21,7 @@ import { DropdownMenuItemSchema } from './MenuItemDesigner/schema'
 import { DropdownMenuItemLocales } from './MenuItemDesigner/locales'
 
 export const DropdownMenuDesigner: DnFC<IDropdownMenuProps & { style?: CSSProperties }> & {
-  item?: React.FC<MenuItemProps>
+  Item?: React.FC<MenuItemProps>
 } = observer((props) => {
   const { style, children, ...other } = props;
   const [visible, setVisiable] = useState(false);
@@ -109,7 +109,7 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps & { style?: CSSProper
   )
 })
 
-DropdownMenuDesigner.item = MenuItemDesigner;
+DropdownMenuDesigner.Item = MenuItemDesigner;
 
 DropdownMenuDesigner.Behavior = createBehavior(
   {
