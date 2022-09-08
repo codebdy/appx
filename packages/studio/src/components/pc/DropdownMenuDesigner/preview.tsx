@@ -20,7 +20,7 @@ import { Events } from '../../../shared/action'
 import { IIcon } from '../../../shared/icon/model'
 import { IconView } from '../../../shared/icon/IconView'
 
-export const DropdownMenuDesigner: DnFC<IDropdownMenuProps & { icon?: IIcon, style?: CSSProperties }> & {
+export const DropdownMenuDesigner: DnFC<IDropdownMenuProps & { title?: string, icon?: IIcon, style?: CSSProperties }> & {
   Item?: React.FC<MenuItemProps>
 } = observer((props) => {
   const { title, icon, style, children, ...other } = props;
