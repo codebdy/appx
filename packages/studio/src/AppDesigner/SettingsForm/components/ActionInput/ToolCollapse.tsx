@@ -56,14 +56,14 @@ export const ToolCollapse = memo(() => {
       id: ActionType.CloseDialog,
       title: t(enumToLangKey(ActionType.CloseDialog)),
     },
-    {
-      id: ActionType.OpenDrawer,
-      title: t(enumToLangKey(ActionType.OpenDrawer)),
-    },
-    {
-      id: ActionType.CloseDrawer,
-      title: t(enumToLangKey(ActionType.CloseDrawer)),
-    },
+    // {
+    //   id: ActionType.OpenDrawer,
+    //   title: t(enumToLangKey(ActionType.OpenDrawer)),
+    // },
+    // {
+    //   id: ActionType.CloseDrawer,
+    //   title: t(enumToLangKey(ActionType.CloseDrawer)),
+    // },
     {
       id: ActionType.Confirm,
       title: t(enumToLangKey(ActionType.Confirm)),
