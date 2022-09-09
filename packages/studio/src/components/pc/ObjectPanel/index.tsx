@@ -1,6 +1,6 @@
 import { observer } from "@formily/reactive-react"
 import { IDataBindSource } from "../../../datasource"
-import React, { useEffect } from "react"
+import React, { useEffect, useMemo } from "react"
 import { isObj } from "@formily/shared";
 import {
   useFieldSchema,
@@ -37,6 +37,13 @@ export const ObjectPanel = observer((props: {
 
   }, [data, field])
 
+  const contextValue = useMemo(() => {
+    return {
+      field: field as Field,
+      instance: data,
+      entityName: dataBind.entityName,
+    }
+  }, [data, dataBind.entityName, field])
   return (
     loading
       ?
@@ -46,11 +53,7 @@ export const ObjectPanel = observer((props: {
       :
       <>
         <InstanceContext.Provider
-          value={{
-            field: field as Field,
-            instance: data,
-            entityName: dataBind.entityName,
-          }}
+          value={contextValue}
         >
           {children}
         </InstanceContext.Provider>
