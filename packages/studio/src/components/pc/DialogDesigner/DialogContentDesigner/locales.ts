@@ -2,7 +2,7 @@ import { DialogLocales } from "../locales";
 
 DialogLocales.Content = {
   'zh-CN': {
-    title: '页脚工具栏',
+    title: '对话框内容',
     settings: {
       'x-component-props': {
       },

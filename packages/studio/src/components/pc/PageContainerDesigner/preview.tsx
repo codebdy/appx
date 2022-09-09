@@ -207,7 +207,9 @@ PageContainerDesigner.Behavior = createBehavior(
     selector: (node) => node.props['x-component'] === 'PageContainer.HeaderActions',
     designerProps: {
       droppable: true,
+      draggable: false,
       deletable: false,
+      cloneable: false,
       propsSchema: createFieldSchema(PageContainerSchema.HeaderActions),
     },
     designerLocales: PageContainerLocales.HeaderActions,
@@ -218,7 +220,9 @@ PageContainerDesigner.Behavior = createBehavior(
     selector: (node) => node.props['x-component'] === 'PageContainer.HeaderContent',
     designerProps: {
       droppable: true,
+      draggable: false,
       deletable: false,
+      cloneable: false,
       propsSchema: createFieldSchema(PageContainerSchema.HeaderContent),
     },
     designerLocales: PageContainerLocales.HeaderContent,
@@ -229,7 +233,9 @@ PageContainerDesigner.Behavior = createBehavior(
     selector: (node) => node.props['x-component'] === 'PageContainer.HeaderContentExtra',
     designerProps: {
       droppable: true,
+      draggable: false,
       deletable: false,
+      cloneable: false,
       propsSchema: createFieldSchema(PageContainerSchema.HeaderContentExtra),
     },
     designerLocales: PageContainerLocales.HeaderContentExtra,
@@ -240,6 +246,9 @@ PageContainerDesigner.Behavior = createBehavior(
     selector: (node) => node.props['x-component'] === 'PageContainer.TabPanel',
     designerProps: {
       droppable: true,
+      draggable: false,
+      deletable: false,
+      cloneable: false,
       propsSchema: createFieldSchema(PageContainerSchema.TabPanel),
     },
     designerLocales: PageContainerLocales.TabPanel,
@@ -250,7 +259,9 @@ PageContainerDesigner.Behavior = createBehavior(
     selector: (node) => node.props['x-component'] === 'PageContainer.FooterToolbar',
     designerProps: {
       droppable: true,
+      draggable: false,
       deletable: false,
+      cloneable: false,
       propsSchema: createFieldSchema(PageContainerSchema.FooterToolbar),
     },
     designerLocales: PageContainerLocales.FooterToolbar,

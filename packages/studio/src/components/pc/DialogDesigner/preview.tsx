@@ -147,7 +147,7 @@ DialogDesigner.Behavior = createBehavior(
     extends: ['Field'],
     selector: (node) => node.props['x-component'] === 'Dialog',
     designerProps: {
-      droppable: true,
+      droppable: false,
       propsSchema: createFieldSchema(DialogSchema),
     },
     designerLocales: DialogLocales,
@@ -158,6 +158,9 @@ DialogDesigner.Behavior = createBehavior(
     selector: (node) => node.props['x-component'] === 'Dialog.Content',
     designerProps: {
       droppable: true,
+      draggable: false,
+      deletable: false,
+      cloneable: false,
       propsSchema: createFieldSchema(DialogSchema.Content),
     },
     designerLocales: DialogLocales.Content,
@@ -168,6 +171,9 @@ DialogDesigner.Behavior = createBehavior(
     selector: (node) => node.props['x-component'] === 'Dialog.Footer',
     designerProps: {
       droppable: true,
+      draggable: false,
+      deletable: false,
+      cloneable: false,
       propsSchema: createFieldSchema(DialogSchema.Footer),
     },
     designerLocales: DialogLocales.Footer,
