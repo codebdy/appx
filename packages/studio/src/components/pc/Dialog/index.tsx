@@ -1,9 +1,13 @@
 import { IIcon } from "../../../shared/icon/model"
-import React, { CSSProperties } from "react"
+import React, { CSSProperties, useMemo, useState } from "react"
+import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
+import { observer } from "@formily/reactive-react";
+import { DialogContext } from "./context";
+import { Button } from "antd";
+import { IconView } from "../../../shared/icon/IconView";
 
 export interface IDialogProps {
   title?: string,
-  dialogTitle?: string,
   icon?: IIcon,
   style?: CSSProperties,
   children?: React.ReactNode,
@@ -23,10 +27,39 @@ export interface IDialogProps {
   width?: number | string,
 }
 
-export const Dialog = () => {
-  return (
-    <div>
+export const Dialog = observer((props: IDialogProps) => {
+  const {
+    icon,
+    title,
+    style,
+    children,
+    centered,
+    closable,
+    destroyOnClose,
+    focusTriggerAfterClose,
+    footer,
+    keyboard,
+    mask,
+    maskClosable,
+    width,
+    ...other
+  } = props;
+  const [visiable, setVisiable] = useState(false);
+  const p = useParseLangMessage();
 
-    </div>
+  const contextValue = useMemo(() => {
+    return { visiable, setVisiable }
+  }, [visiable])
+  return (
+    <DialogContext.Provider value={contextValue}>
+      <Button
+        icon={icon && <IconView icon={icon} />}
+        {...other}
+      >
+        {
+          p(title)
+        }
+      </Button>
+    </DialogContext.Provider>
   )
-}
+})

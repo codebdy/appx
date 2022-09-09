@@ -1,6 +1,6 @@
 import { observer } from "@formily/reactive-react"
 import { IIcon } from '../../../shared/icon/model'
-import React, { CSSProperties, useState } from "react"
+import React, { CSSProperties, useMemo, useState } from "react"
 import { IDropdownMenuItemProps, MenuItem } from "./MenuItem"
 import { IconView } from "../../../shared/icon/IconView"
 import { Button, Dropdown, Menu } from "antd"
@@ -24,9 +24,13 @@ export const DropdownMenu: React.FC<IDropdownMenuProps> & {
   const { icon, title, showDropdownIcon, placement, trigger, children, ...other } = props;
   const [loading, setLoading] = useState(false);
   const p = useParseLangMessage();
+  
+  const contextValue = useMemo(() => {
+    return { loading, setLoading }
+  }, [loading])
 
   return (
-    <DropdownContext.Provider value={{ loading, setLoading }}>
+    <DropdownContext.Provider value={contextValue}>
       <Dropdown overlay={<Menu>{children}</Menu>} placement={placement} trigger={trigger}>
         {
           showDropdownIcon
