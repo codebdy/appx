@@ -3,6 +3,7 @@ import { ISchema } from '@formily/react'
 export const DialogSchema: ISchema & {
   Content?: ISchema,
   Footer?: ISchema,
+  Title?: ISchema,
 } = {
   type: 'object',
   properties: {

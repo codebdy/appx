@@ -3,6 +3,7 @@ import React, { CSSProperties } from "react"
 
 export interface IDialogProps {
   title?: string,
+  dialogTitle?: string,
   icon?: IIcon,
   style?: CSSProperties,
   children?: React.ReactNode,

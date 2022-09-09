@@ -2,8 +2,7 @@ import React, { useCallback, useRef, useState } from 'react'
 import { createBehavior, createResource } from '@designable/core'
 import {
   DnFC,
-  useTreeNode,
-  DroppableWidget,
+  TreeNodeWidget,
 } from '@designable/react'
 import { observer } from '@formily/reactive-react'
 import './styles.less'
@@ -20,8 +19,12 @@ import { IDialogContentProps } from '../Dialog/DialogContent'
 import { IDialogFooterProps } from '../Dialog/DialogFooter'
 import { DialogContentDesigner } from './DialogContentDesigner'
 import { DialogFooterDesigner } from './DialogFooterDesigner'
+import { IDialogTitleProps } from '../Dialog/DialogTitle'
+import { DialogTitleDesigner } from './DialogTitleDesigner'
+import { useFindNode } from '../../common/hooks/useFindNode'
 
 export const DialogDesigner: DnFC<IDialogProps> & {
+  Title?: React.FC<IDialogTitleProps>,
   Content?: React.FC<IDialogContentProps>,
   Footer?: React.FC<IDialogFooterProps>,
 } = observer((props) => {
@@ -34,7 +37,6 @@ export const DialogDesigner: DnFC<IDialogProps> & {
     closable,
     destroyOnClose,
     focusTriggerAfterClose,
-    footer,
     keyboard,
     mask,
     maskClosable,
@@ -43,8 +45,10 @@ export const DialogDesigner: DnFC<IDialogProps> & {
   } = props;
   const [visible, setVisiable] = useState(false);
   const ref = useRef<HTMLElement>(null)
-  const node = useTreeNode()
   const p = useParseLangMessage();
+  const dialogTitle = useFindNode('Title');
+  const content = useFindNode("Content");
+  const footer = useFindNode("Footer");
 
   const viewTree = document.querySelector(".dn-component-tree");
   const treeRect = viewTree?.getBoundingClientRect();
@@ -98,10 +102,11 @@ export const DialogDesigner: DnFC<IDialogProps> & {
                 </div>
                 <div className='dialog-header'>
                   <div className='dialog-title'>
-                    {title}
+                    {dialogTitle && <TreeNodeWidget node={dialogTitle} />}
                   </div>
                 </div>
-                {children}
+                {content && <TreeNodeWidget node={content} />}
+                {footer && <TreeNodeWidget node={footer} />}
               </div>
               <PopupButton
                 icon={<CloseOutlined style={{ fontSize: 12 }} />}
@@ -115,7 +120,7 @@ export const DialogDesigner: DnFC<IDialogProps> & {
         <Button
           icon={icon && <IconView icon={icon} />}
           style={{ ...(!visible ? style : {}) }}
-          {...(!visible ? other : {})}
+          {...other}
           ref={ref}
         >
           {
@@ -138,6 +143,7 @@ export const DialogDesigner: DnFC<IDialogProps> & {
   )
 })
 
+DialogDesigner.Title = DialogTitleDesigner;
 DialogDesigner.Content = DialogContentDesigner;
 DialogDesigner.Footer = DialogFooterDesigner;
 
@@ -151,6 +157,19 @@ DialogDesigner.Behavior = createBehavior(
       propsSchema: createFieldSchema(DialogSchema),
     },
     designerLocales: DialogLocales,
+  },
+  {
+    name: 'Dialog.Title',
+    extends: ['Field'],
+    selector: (node) => node.props['x-component'] === 'Dialog.Title',
+    designerProps: {
+      droppable: true,
+      draggable: false,
+      deletable: false,
+      cloneable: false,
+      propsSchema: createFieldSchema(DialogSchema.Title),
+    },
+    designerLocales: DialogLocales.Title,
   },
   {
     name: 'Dialog.Content',
@@ -193,6 +212,16 @@ DialogDesigner.Resource = createResource({
         },
       },
       children: [
+        {
+          componentName: 'Field',
+          props: {
+            type: 'void',
+            'x-component': 'Dialog.Title',
+            'x-component-props': {
+              title: "Dialog",
+            },
+          },
+        },
         {
           componentName: 'Field',
           props: {
