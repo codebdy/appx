@@ -16,7 +16,6 @@ export const DialogLocales: any & {
         disabled: "无效",
         ghost: "透明",
         icon: "图标",
-        showDropdownIcon: "下拉图标",
         shape: {
           title: '形状',
           dataSource: ['默认', '圆圈', '圆角'],
@@ -24,14 +23,6 @@ export const DialogLocales: any & {
         size: {
           title: '尺寸',
           dataSource: ['大', '中', '小'],
-        },
-        placement: {
-          title: '位置',
-          dataSource: ["底部", "左下", "右下", "顶部", "左上", "右上"],
-        },
-        trigger: {
-          title: '触发',
-          dataSource: ["点击", "悬停", "右键"],
         },
         closable: "关闭按钮",
         maskClosable: "遮罩关闭",

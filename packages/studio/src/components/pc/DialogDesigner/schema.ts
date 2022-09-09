@@ -41,14 +41,6 @@ export const DialogSchema: ISchema & {
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
     },
-    showDropdownIcon: {
-      type: 'boolean',
-      'x-decorator': 'FormItem',
-      'x-component': 'Switch',
-      'x-component-props': {
-        defaultValue: true,
-      },
-    },
     icon: {
       type: 'string',
       'x-decorator': 'FormItem',
@@ -72,25 +64,7 @@ export const DialogSchema: ISchema & {
         defaultValue: 'middle',
       },
     },
-    placement: {
-      type: 'string',
-      enum: ["bottom", "bottomLeft", "bottomRight", "top", "topLeft", "topRight"],
-      'x-decorator': 'FormItem',
-      'x-component': 'Select',
-      'x-component-props': {
-        defaultValue: 'bottomLeft',
-      },
-    },
-    trigger: {
-      type: 'string',
-      enum: ["click", "hover", "contextMenu"],
-      'x-decorator': 'FormItem',
-      'x-component': 'Checkbox.Group',
-      'x-component-props': {
-        defaultValue: ['click'],
-        optionType: 'button',
-      },
-    },
+
     closable: {
       type: 'boolean',
       'x-decorator': 'FormItem',

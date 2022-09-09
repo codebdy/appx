@@ -246,6 +246,30 @@ DialogDesigner.Resource = createResource({
             'x-component-props': {
             },
           },
+          children: [
+            {
+              componentName: 'Field',
+              props: {
+                type: 'void',
+                'x-component': 'Button',
+                'x-component-props': {
+                  "title": "$inline:{\"zh-CN\":\"取消\"}",
+                  "type": "default"
+                },
+              },
+            },
+            {
+              componentName: 'Field',
+              props: {
+                type: 'void',
+                'x-component': 'Button',
+                'x-component-props': {
+                  "title": "$inline:{\"zh-CN\":\"确定\"}",
+                  "type": "primary"
+                },
+              },
+            },
+          ],
         },
       ],
     },
