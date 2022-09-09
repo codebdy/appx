@@ -97,5 +97,13 @@ export const DialogSchema: ISchema & {
         defaultValue: false,
       },
     },
+    changeRemind:{
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+      'x-component-props': {
+        defaultValue: false,
+      },
+    },
   },
 }

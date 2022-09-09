@@ -2,7 +2,7 @@ import { createContext, useContext } from "react";
 
 export interface IDialogParams {
   visiable?: boolean,
-  setVisiable?: (visiable?:boolean)=>void,
+  onClose?: ()=>void,
 }
 
 export const DialogContext = createContext<IDialogParams>({});

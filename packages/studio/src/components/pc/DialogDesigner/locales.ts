@@ -27,7 +27,8 @@ export const DialogLocales: any & {
         closable: "关闭按钮",
         maskClosable: "遮罩关闭",
         footer: "页脚",
-        centered: "垂直居中"
+        centered: "垂直居中",
+        changeRemind: "保存提醒"
       },
     },
   },

@@ -41,6 +41,7 @@ export const DialogDesigner: DnFC<IDialogProps> & {
     mask,
     maskClosable,
     footer: hasFooter,
+    changeRemind,
     style,
     ...other
   } = props;
@@ -210,7 +211,7 @@ DialogDesigner.Resource = createResource({
     {
       componentName: 'Field',
       props: {
-        type: 'void',
+        type: 'object',
         'x-component': 'Dialog',
         'x-component-props': {
           title: "Dialog",

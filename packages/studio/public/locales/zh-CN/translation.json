@@ -45,7 +45,9 @@
   "Title": "标题",
   "Width": "宽度",
   "Height": "高度",
-  "Message":"消息",
+  "Message": "消息",
+  "CloseConfirm": "关闭确认",
+  "SaveRemind": "修改没有保存，确实要关闭吗？",
   "install": {
     "Title": "安装Appx",
     "Next": "下一步",
