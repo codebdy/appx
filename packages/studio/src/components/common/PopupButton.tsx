@@ -22,7 +22,7 @@ export const PopupButton = (
         width: 16,
         minWidth: 16,
         height: 16,
-        zIndex: 1000,
+        zIndex: 1,
         ...style || {},
       }}
       icon={icon}
