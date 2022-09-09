@@ -30,12 +30,16 @@ export function useUpdateComponentConfig(options?: IPostOptions<any>): [
         ...userConfig?.schemaJson || {},
         [path]: value,
       },
-      app: [{
-        id: app.id,
-      }],
-      user: [{
-        id: me.id,
-      }],
+      app: {
+        sync: {
+          id: app.id,
+        }
+      },
+      user: {
+        sync: {
+          id: me.id,
+        }
+      },
       device,
     }
 
