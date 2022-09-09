@@ -84,7 +84,7 @@ export const Dialog: React.FC<IDialogProps> & {
   }, [fieldSchema])
 
   const handleClose = useCallback(() => {
-    if ((field as Field).modified) {
+    if (changeRemind && (field as Field).modified) {
       Modal.confirm({
         title: t("CloseConfirm") || t('Confirm'),
         icon: <ExclamationCircleOutlined />,
@@ -97,7 +97,7 @@ export const Dialog: React.FC<IDialogProps> & {
       setVisiable(false);
     }
 
-  }, [field, t])
+  }, [changeRemind, field, t])
 
   const contextValue = useMemo(() => {
     return { visiable, onClose: handleClose }
