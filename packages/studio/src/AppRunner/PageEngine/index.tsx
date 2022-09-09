@@ -65,15 +65,13 @@ export const PageEngine = memo((
     [$me, expScope]
   );
 
-  console.log("哈哈哈哈", p(page?.schemaJson?.schema))
-
   return (
     <LoadingSpan spinning={loading}>
       <FormProvider form={form}>
         <ExpressionScope value={newExpScope} >
           {
             page?.schemaJson?.schema &&
-            <SchemaField schema={p(page?.schemaJson?.schema)}>
+            <SchemaField schema={p(JSON.parse(JSON.stringify(page?.schemaJson?.schema || "{}")))}>
             </SchemaField>
           }
         </ExpressionScope>
