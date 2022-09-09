@@ -218,7 +218,7 @@ DialogDesigner.Resource = createResource({
             type: 'void',
             'x-component': 'Dialog.Title',
             'x-component-props': {
-              title: "Dialog",
+              title: "Title",
             },
           },
         },
