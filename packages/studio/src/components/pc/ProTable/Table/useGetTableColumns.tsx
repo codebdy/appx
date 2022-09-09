@@ -4,7 +4,8 @@ import { useProTableParams } from '../context';
 import { ArrayBase } from "@formily/antd";
 import {
   RecursionField,
-  Field as ReactField
+  Field as ReactField,
+  VoidField
 } from '@formily/react';
 import { Field } from '@formily/core';
 import { TextView } from '../../';
@@ -56,6 +57,16 @@ export function useGetTableColumns() {
               }
             }
 
+            childrenCom = schema?.['x-field-source']?.name
+              ?
+              <ReactField name={rootName} value={record?.[rootName]}>
+                {childrenCom}
+              </ReactField>
+              :
+              <VoidField name={rootName}>
+                {childrenCom}
+              </VoidField>
+
             return (
               <InstanceContext.Provider
                 value={{
@@ -66,9 +77,7 @@ export function useGetTableColumns() {
               >
                 <ArrayBase.Item index={index} record={record}>
                   <ReactField name={index}>
-                    <ReactField name={rootName} value={record?.[rootName]}>
-                      {childrenCom}
-                    </ReactField>
+                    {childrenCom}
                   </ReactField>
                 </ArrayBase.Item>
               </InstanceContext.Provider>

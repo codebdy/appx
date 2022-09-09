@@ -20,7 +20,6 @@ export const Select = observer((props: IDataSourceableProps & {
   const schema = useFieldSchema();
   const queryParams = useQueryParams(dataBind, schema, QueryType.Multiple);
 
-  console.log("嘿嘿", value)
   const { data, loading, error } = useDataQuery(queryParams?.gql ? queryParams : undefined);
   useShowError(error);
 

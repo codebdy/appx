@@ -75,7 +75,6 @@ export const Dialog: React.FC<IDialogProps> & {
 
   useEffect(() => {
     if (isField(field)) {
-      console.log("哈哈哈", instance)
       field.setInitialValue(instance);
     }
   }, [field, instance]);
@@ -130,32 +129,34 @@ export const Dialog: React.FC<IDialogProps> & {
   }, [])
 
   return (
-    <InstanceContext.Provider
-      value={instanceContextValue}
-    >
-      <DialogContext.Provider value={contextValue}>
-        <Button
-          icon={icon && <IconView icon={icon} />}
-          {...other}
-          onClick={handleClick}
-        >
-          {
-            p(title)
-          }
-        </Button>
+
+    <DialogContext.Provider value={contextValue}>
+      <Button
+        icon={icon && <IconView icon={icon} />}
+        {...other}
+        onClick={handleClick}
+      >
         {
-          visiable &&
+          p(title)
+        }
+      </Button>
+
+      {
+        visiable &&
+        <InstanceContext.Provider
+          value={instanceContextValue}
+        >
           <Modal
-            title={slots.title && <RecursionField schema={slots.title} name={slots.title.name}  />}
+            title={slots.title && <RecursionField schema={slots.title} name={slots.title.name} />}
             footer={slots.footer && <RecursionField schema={slots.footer} name={slots.footer.name} />}
             visible={visiable}
             onCancel={handleCancel}
           >
             {slots.content && <RecursionField schema={slots.content} name={slots.content.name} />}
           </Modal>
-        }
-      </DialogContext.Provider>
-    </InstanceContext.Provider>
+        </InstanceContext.Provider>
+      }
+    </DialogContext.Provider>
   )
 })
 

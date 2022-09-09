@@ -90,7 +90,7 @@ export const Table = observer((
   const field = useField();
 
   useEffect(() => {
-    (field as Field).setValue(data?.nodes);
+    (field as Field).setInitialValue(data?.nodes);
   }, [data?.nodes, field])
 
   const onChange = useCallback((pagination, filters, sorter, extra) => {

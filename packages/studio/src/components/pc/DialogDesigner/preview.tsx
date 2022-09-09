@@ -218,7 +218,7 @@ DialogDesigner.Resource = createResource({
     {
       componentName: 'Field',
       props: {
-        type: 'object',
+        type: 'void',
         'x-component': 'Dialog',
         'x-component-props': {
           title: "Dialog",
