@@ -214,6 +214,7 @@ DialogDesigner.Resource = createResource({
         'x-component': 'Dialog',
         'x-component-props': {
           title: "Dialog",
+          type: "primary",
           footer: true
         },
       },
