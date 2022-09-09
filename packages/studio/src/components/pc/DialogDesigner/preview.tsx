@@ -101,21 +101,6 @@ export const DialogDesigner: DnFC<IDialogProps> & {
                     {title}
                   </div>
                 </div>
-                <DroppableWidget />
-                哈哈哈<br /><br /><br /><br />
-                哈<br /><br /><br /><br /><br /><br />
-                哈哈哈<br /><br /><br /><br /><br />
-                哈哈哈<br /><br /><br /><br />
-                哈<br /><br /><br /><br /><br /><br />
-                哈哈哈<br /><br /><br /><br /><br />                哈哈哈<br /><br /><br /><br />
-                哈<br /><br /><br /><br /><br /><br />
-                哈哈哈<br /><br /><br /><br /><br />                哈哈哈<br /><br /><br /><br />
-                哈<br /><br /><br /><br /><br /><br />
-                哈哈哈<br /><br /><br /><br /><br />                哈哈哈<br /><br /><br /><br />
-                哈<br /><br /><br /><br /><br /><br />
-                哈哈哈<br /><br /><br /><br /><br />                哈哈哈<br /><br /><br /><br />
-                哈<br /><br /><br /><br /><br /><br />
-                哈哈哈<br /><br /><br /><br /><br />
                 {children}
               </div>
               <PopupButton
@@ -166,6 +151,26 @@ DialogDesigner.Behavior = createBehavior(
       propsSchema: createFieldSchema(DialogSchema),
     },
     designerLocales: DialogLocales,
+  },
+  {
+    name: 'Dialog.Content',
+    extends: ['Field'],
+    selector: (node) => node.props['x-component'] === 'Dialog.Content',
+    designerProps: {
+      droppable: true,
+      propsSchema: createFieldSchema(DialogSchema.Content),
+    },
+    designerLocales: DialogLocales.Content,
+  },
+  {
+    name: 'Dialog.Footer',
+    extends: ['Field'],
+    selector: (node) => node.props['x-component'] === 'Dialog.Footer',
+    designerProps: {
+      droppable: true,
+      propsSchema: createFieldSchema(DialogSchema.Footer),
+    },
+    designerLocales: DialogLocales.Footer,
   },
 )
 
