@@ -13,6 +13,7 @@ import { useField, Schema } from '@formily/react';
 import { InstanceContext } from '../../../../shared/contexts/instance';
 import { ObservableColumnSource, } from './index';
 import { isColumnComponent, isColumnGroupComponent } from './useArrayTableSources';
+import { CellRoot } from './CellRoot';
 
 export function useGetTableColumns() {
   const { dataBind } = useProTableParams();
@@ -68,25 +69,19 @@ export function useGetTableColumns() {
               </VoidField>
 
             return (
-              <InstanceContext.Provider
-                value={{
-                  field: field as Field,
-                  instance: record,
-                  entityName: dataBind.entityName,
-                }}
-              >
-                <ArrayBase.Item index={index} record={record}>
-                  <ReactField name={index}>
+              <ArrayBase.Item index={index} record={record}>
+                <ReactField name={index}>
+                  <CellRoot instance={record}>
                     {childrenCom}
-                  </ReactField>
-                </ArrayBase.Item>
-              </InstanceContext.Provider>
+                  </CellRoot>
+                </ReactField>
+              </ArrayBase.Item>
             );
           }
           : undefined,
       });
     }, []);
-  }, [dataBind.entityName, field]);
+  }, []);
 
   return getTableColumns;
 }

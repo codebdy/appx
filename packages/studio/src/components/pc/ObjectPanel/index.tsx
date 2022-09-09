@@ -23,6 +23,7 @@ export const ObjectPanel = observer((props: {
   const queryParams = useQueryParams(dataBind, schema);
   const field = useField();
   const expScope = useExpressionScope()
+
   const { data, loading, error } = useDataQuery(expScope?.$params?.dataId ? queryParams : undefined);
   useShowError(error);
 
@@ -41,9 +42,9 @@ export const ObjectPanel = observer((props: {
     return {
       field: field as Field,
       instance: data,
-      entityName: dataBind.entityName,
+      entityName: dataBind?.entityName,
     }
-  }, [data, dataBind.entityName, field])
+  }, [data, dataBind?.entityName, field])
   return (
     loading
       ?

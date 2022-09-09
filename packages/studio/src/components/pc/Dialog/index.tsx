@@ -1,5 +1,5 @@
 import { IIcon } from "../../../shared/icon/model"
-import React, { CSSProperties, useCallback, useEffect, useMemo, useState } from "react"
+import React, { CSSProperties, useCallback, useMemo, useState } from "react"
 import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
 import { observer } from "@formily/reactive-react";
 import { DialogContext } from "./context";
@@ -8,11 +8,10 @@ import { IconView } from "../../../shared/icon/IconView";
 import { RecursionField, useFieldSchema, useField, Schema } from '@formily/react';
 import { useTranslation } from "react-i18next";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
-import { Field, isField } from "@formily/core";
+import { Field } from "@formily/core";
 import { DialogTitle, IDialogTitleProps } from "./DialogTitle";
 import { DialogContent, IDialogContentProps } from "./DialogContent";
 import { DialogFooter, IDialogFooterProps } from "./DialogFooter";
-import { InstanceContext, useInstanceParams } from "../../../shared/contexts/instance";
 
 export interface IDialogProps {
   title?: string,
@@ -63,21 +62,6 @@ export const Dialog: React.FC<IDialogProps> & {
   const { t } = useTranslation()
   const field = useField();
   const fieldSchema = useFieldSchema()
-  const { entityName, instance } = useInstanceParams()
-
-  const instanceContextValue = useMemo(() => {
-    return {
-      field: field as Field,
-      entityName,
-      instance
-    }
-  }, [entityName, field, instance]);
-
-  useEffect(() => {
-    if (isField(field)) {
-      field.setInitialValue(instance);
-    }
-  }, [field, instance]);
 
   const slots = useMemo(() => {
     const slts = {
@@ -122,7 +106,6 @@ export const Dialog: React.FC<IDialogProps> & {
   const handleCancel = useCallback(() => {
     handleClose()
   }, [handleClose])
-  const basePath = useMemo(() => field.path, [field.path]);
 
   const handleClick = useCallback(() => {
     setVisiable(true)
@@ -143,18 +126,14 @@ export const Dialog: React.FC<IDialogProps> & {
 
       {
         visiable &&
-        <InstanceContext.Provider
-          value={instanceContextValue}
+        <Modal
+          title={slots.title && <RecursionField schema={slots.title} name={slots.title.name} />}
+          footer={slots.footer && <RecursionField schema={slots.footer} name={slots.footer.name} />}
+          visible={visiable}
+          onCancel={handleCancel}
         >
-          <Modal
-            title={slots.title && <RecursionField schema={slots.title} name={slots.title.name} />}
-            footer={slots.footer && <RecursionField schema={slots.footer} name={slots.footer.name} />}
-            visible={visiable}
-            onCancel={handleCancel}
-          >
-            {slots.content && <RecursionField schema={slots.content} name={slots.content.name} />}
-          </Modal>
-        </InstanceContext.Provider>
+          {slots.content && <RecursionField schema={slots.content} name={slots.content.name} />}
+        </Modal>
       }
     </DialogContext.Provider>
   )
