@@ -6,7 +6,7 @@ import './schema'
 import clx from "classnames"
 import { IDialogContentProps } from "../../Dialog/DialogContent"
 
-export const FooterToolbarDesigner = observer((props: IDialogContentProps) => {
+export const DialogContentDesigner = observer((props: IDialogContentProps) => {
   const {className, ...other} = props
   return (
     <DroppableWidget {...other} className = {clx("dialog-body", className)}>

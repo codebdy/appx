@@ -16,8 +16,15 @@ import { IconView } from '../../../shared/icon/IconView'
 import { useParseLangMessage } from '../../../hooks/useParseLangMessage'
 import { PopupButton } from '../../common/PopupButton'
 import { IDialogProps } from '../Dialog'
+import { IDialogContentProps } from '../Dialog/DialogContent'
+import { IDialogFooterProps } from '../Dialog/DialogFooter'
+import { DialogContentDesigner } from './DialogContentDesigner'
+import { DialogFooterDesigner } from './DialogFooterDesigner'
 
-export const DialogDesigner: DnFC<IDialogProps> = observer((props) => {
+export const DialogDesigner: DnFC<IDialogProps> & {
+  Content?: React.FC<IDialogContentProps>,
+  Footer?: React.FC<IDialogFooterProps>,
+} = observer((props) => {
   const {
     title,
     icon,
@@ -145,6 +152,9 @@ export const DialogDesigner: DnFC<IDialogProps> = observer((props) => {
     </>
   )
 })
+
+DialogDesigner.Content = DialogContentDesigner;
+DialogDesigner.Footer = DialogFooterDesigner;
 
 DialogDesigner.Behavior = createBehavior(
   {

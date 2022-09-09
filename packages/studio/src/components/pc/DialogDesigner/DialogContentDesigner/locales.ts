@@ -1,6 +1,6 @@
-import { PageContainerLocales } from "../locales";
+import { DialogLocales } from "../locales";
 
-PageContainerLocales.FooterToolbar = {
+DialogLocales.Content = {
   'zh-CN': {
     title: '页脚工具栏',
     settings: {

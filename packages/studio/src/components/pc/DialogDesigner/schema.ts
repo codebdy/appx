@@ -1,6 +1,9 @@
 import { ISchema } from '@formily/react'
 
-export const DialogSchema: ISchema = {
+export const DialogSchema: ISchema & {
+  Content?: ISchema,
+  Footer?: ISchema,
+} = {
   type: 'object',
   properties: {
     title: {
@@ -77,7 +80,7 @@ export const DialogSchema: ISchema = {
         defaultValue: 'bottomLeft',
       },
     },
-    trigger:{
+    trigger: {
       type: 'string',
       enum: ["click", "hover", "contextMenu"],
       'x-decorator': 'FormItem',
