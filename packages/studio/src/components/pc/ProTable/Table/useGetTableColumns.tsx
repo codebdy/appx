@@ -8,7 +8,7 @@ import {
 } from '@formily/react';
 import { Field } from '@formily/core';
 import { TextView } from '../../';
-import { useField } from '@formily/react';
+import { useField, Schema } from '@formily/react';
 import { InstanceContext } from '../../../../shared/contexts/instance';
 import { ObservableColumnSource, } from './index';
 import { isColumnComponent, isColumnGroupComponent } from './useArrayTableSources';
@@ -26,6 +26,7 @@ export function useGetTableColumns() {
       const groups = [...parentGroupNames, name];
       const { sortable, ...otherCoumnProps } = columnProps;
       const childrenColumns = getTableColumns(children, groups);
+
       return buf.concat({
         ...otherCoumnProps,
         //children不赋空，defaultSortOrder不起作用
@@ -35,12 +36,17 @@ export function useGetTableColumns() {
         sorter: sortable ? { multiple: (key + 1) } : undefined,
         render: !children.length
           ? (value: any, record: any, index: number) => {
-            let childrenCom = (
-              schema.properties && Object.keys(schema.properties).length > 0
-                ? <RecursionField schema={schema} onlyRenderProperties />
-                : <TextView inherited={false}></TextView>
-                
-            );
+            let childrenCom: any = <TextView inherited={false}></TextView>
+            if (schema.properties && Object.keys(schema.properties).length > 0) {
+              const properties = Schema.getOrderProperties(schema);
+              childrenCom = [];
+              for (const property of properties) {
+                childrenCom.push(
+                  <RecursionField schema={property.schema} name={property.schema?.name} />
+                )
+              }
+            }
+
             if (groups.length > 0) {
               for (let i = groups.length - 1; i > 0; i--) {
                 const groupName = groups[i];
@@ -49,7 +55,6 @@ export function useGetTableColumns() {
                 </ReactField>;
               }
             }
-
 
             return (
               <InstanceContext.Provider

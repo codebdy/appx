@@ -76,7 +76,7 @@ export const Dialog: React.FC<IDialogProps> & {
   useEffect(() => {
     if (isField(field)) {
       console.log("哈哈哈", instance)
-      field.setValue(instance);
+      field.setInitialValue(instance);
     }
   }, [field, instance]);
 
@@ -146,12 +146,12 @@ export const Dialog: React.FC<IDialogProps> & {
         {
           visiable &&
           <Modal
-            title={slots.title && <RecursionField schema={slots.title} name={slots.title.name} basePath={basePath} />}
-            footer={slots.footer && <RecursionField schema={slots.footer} name={slots.footer.name} basePath={basePath} />}
+            title={slots.title && <RecursionField schema={slots.title} name={slots.title.name}  />}
+            footer={slots.footer && <RecursionField schema={slots.footer} name={slots.footer.name} />}
             visible={visiable}
             onCancel={handleCancel}
           >
-            {slots.content && <RecursionField schema={slots.content} name={slots.content.name} basePath={basePath} />}
+            {slots.content && <RecursionField schema={slots.content} name={slots.content.name} />}
           </Modal>
         }
       </DialogContext.Provider>
