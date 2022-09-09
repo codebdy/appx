@@ -9,7 +9,7 @@ import { IDialogContentProps } from "../../Dialog/DialogContent"
 export const FooterToolbarDesigner = observer((props: IDialogContentProps) => {
   const {className, ...other} = props
   return (
-    <DroppableWidget {...other} className = {clx("dialog-content", className)}>
+    <DroppableWidget {...other} className = {clx("dialog-body", className)}>
       {props.children}
     </DroppableWidget>
   )
