@@ -9,6 +9,9 @@ import { RecursionField, useFieldSchema, useField, Schema } from '@formily/react
 import { useTranslation } from "react-i18next";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { Field } from "@formily/core";
+import { DialogTitle, IDialogTitleProps } from "./DialogTitle";
+import { DialogContent, IDialogContentProps } from "./DialogContent";
+import { DialogFooter, IDialogFooterProps } from "./DialogFooter";
 
 export interface IDialogProps {
   title?: string,
@@ -32,7 +35,11 @@ export interface IDialogProps {
   width?: number | string,
 }
 
-export const Dialog = observer((props: IDialogProps) => {
+export const Dialog: React.FC<IDialogProps> & {
+  Title?: React.FC<IDialogTitleProps>,
+  Content?: React.FC<IDialogContentProps>,
+  Footer?: React.FC<IDialogFooterProps>,
+} = observer((props) => {
   const {
     icon,
     title,
@@ -130,3 +137,7 @@ export const Dialog = observer((props: IDialogProps) => {
     </DialogContext.Provider>
   )
 })
+
+Dialog.Title = DialogTitle;
+Dialog.Content = DialogContent;
+Dialog.Footer = DialogFooter;
