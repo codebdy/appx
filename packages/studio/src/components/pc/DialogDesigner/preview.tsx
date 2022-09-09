@@ -40,6 +40,7 @@ export const DialogDesigner: DnFC<IDialogProps> & {
     keyboard,
     mask,
     maskClosable,
+    footer: hasFooter,
     style,
     ...other
   } = props;
@@ -95,18 +96,22 @@ export const DialogDesigner: DnFC<IDialogProps> & {
                 height: 0,
                 overflow: "auto",
               }}>
-                <div className='dialog-close'>
-                  <Button type='text'>
-                    <CloseOutlined />
-                  </Button>
-                </div>
+                {
+                  closable &&
+                  <div className='dialog-close'>
+                    <Button type='text'>
+                      <CloseOutlined />
+                    </Button>
+                  </div>
+                }
+
                 <div className='dialog-header'>
                   <div className='dialog-title'>
                     {dialogTitle && <TreeNodeWidget node={dialogTitle} />}
                   </div>
                 </div>
                 {content && <TreeNodeWidget node={content} />}
-                {footer && <TreeNodeWidget node={footer} />}
+                {hasFooter && footer && <TreeNodeWidget node={footer} />}
               </div>
               <PopupButton
                 icon={<CloseOutlined style={{ fontSize: 12 }} />}

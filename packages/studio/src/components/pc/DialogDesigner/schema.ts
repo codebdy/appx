@@ -90,6 +90,30 @@ export const DialogSchema: ISchema & {
         defaultValue: ['click'],
         optionType: 'button',
       },
+    },
+    closable: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+      'x-component-props': {
+        defaultValue: 'true',
+      },
+    },
+    maskClosable: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+      'x-component-props': {
+        defaultValue: 'true',
+      },
+    },
+    footer: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+      'x-component-props': {
+        defaultValue: 'true',
+      },
     }
   },
 }

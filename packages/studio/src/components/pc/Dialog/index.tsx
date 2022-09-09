@@ -13,7 +13,7 @@ export interface IDialogProps {
   destroyOnClose?: boolean,
   //关闭后聚焦触发元素
   focusTriggerAfterClose?: boolean,
-  footer?: React.ReactNode,
+  footer?: boolean,
   //是否支持键盘 esc 关闭
   keyboard?: boolean,
   //是否展示遮罩

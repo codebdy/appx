@@ -33,6 +33,9 @@ export const DialogLocales: any & {
           title: '触发',
           dataSource: ["点击", "悬停", "右键"],
         },
+        closable: "关闭按钮",
+        maskClosable: "遮罩关闭",
+        footer: "页脚"
       },
     },
   },
