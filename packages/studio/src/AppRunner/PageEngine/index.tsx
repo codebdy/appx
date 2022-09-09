@@ -65,6 +65,8 @@ export const PageEngine = memo((
     [$me, expScope]
   );
 
+  console.log("哈哈哈哈", p(page?.schemaJson?.schema))
+
   return (
     <LoadingSpan spinning={loading}>
       <FormProvider form={form}>

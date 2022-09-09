@@ -11,7 +11,7 @@ import { createFieldSchema } from "../../common/Field";
 import { DropdownMenuSchema } from './schema'
 import { DropdownMenuLocales } from './locales'
 import { Button } from 'antd'
-import { CloseOutlined, DownOutlined, EllipsisOutlined } from '@ant-design/icons'
+import { CloseOutlined, DownOutlined } from '@ant-design/icons'
 import { IDropdownMenuProps } from '../DropdownMenu'
 import { MenuItemDesigner } from './MenuItemDesigner'
 import { DropdownMenuItemSchema } from './MenuItemDesigner/schema'
@@ -21,6 +21,7 @@ import { IconView } from '../../../shared/icon/IconView'
 import { useParseLangMessage } from '../../../hooks/useParseLangMessage'
 import { IDropdownMenuItemProps } from '../DropdownMenu/MenuItem'
 import { PopupButton } from '../../common/PopupButton'
+import SvgIcon from '../../../common/SvgIcon'
 
 export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
 {
@@ -148,7 +149,13 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
         {
           !visible &&
           <PopupButton
-            icon={<EllipsisOutlined style={{ fontSize: 12 }} />}
+            icon={
+              <SvgIcon>
+                <svg style={{ width: "12px", height: "12px" }} viewBox="0 0 24 24">
+                  <path fill="currentColor" d="M13.5 21H6V17H13.5C15.43 17 17 15.43 17 13.5S15.43 10 13.5 10H11V14L4 8L11 2V6H13.5C17.64 6 21 9.36 21 13.5S17.64 21 13.5 21Z" />
+                </svg>
+              </SvgIcon>
+            }
             style={{
               top: 0,
             }}
