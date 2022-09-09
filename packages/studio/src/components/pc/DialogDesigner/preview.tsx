@@ -3,6 +3,7 @@ import { createBehavior, createResource } from '@designable/core'
 import {
   DnFC,
   useTreeNode,
+  DroppableWidget,
 } from '@designable/react'
 import { observer } from '@formily/reactive-react'
 import './styles.less'
@@ -17,7 +18,22 @@ import { PopupButton } from '../../common/PopupButton'
 import { IDialogProps } from '../Dialog'
 
 export const DialogDesigner: DnFC<IDialogProps> = observer((props) => {
-  const { title, icon, children, width = 520, centered, ...other } = props;
+  const {
+    title,
+    icon,
+    children,
+    width = 520,
+    centered,
+    closable,
+    destroyOnClose,
+    focusTriggerAfterClose,
+    footer,
+    keyboard,
+    mask,
+    maskClosable,
+    style,
+    ...other
+  } = props;
   const [visible, setVisiable] = useState(false);
   const ref = useRef<HTMLElement>(null)
   const node = useTreeNode()
@@ -54,20 +70,31 @@ export const DialogDesigner: DnFC<IDialogProps> = observer((props) => {
               alignItems: centered ? "center" : "flex-start",
             }}
           >
-            <div className='rx-dialog-content' style={{
-              width: width,
-              background: "#fff",
-              marginTop: centered ? undefined : 100,
-              maxHeight: viewRect?.height - 200,
-            }}>
-              <div>
-                Title
-              </div>
+            <div
+              className='rx-dialog-content'
+              style={{
+                width: width,
+                background: "#fff",
+                marginTop: centered ? undefined : 100,
+                maxHeight: viewRect?.height - 200,
+              }}
+            >
               <div style={{
                 flex: 1,
                 height: 0,
                 overflow: "auto",
               }}>
+                <div className='dialog-close'>
+                  <Button type='text'>
+                    <CloseOutlined />
+                  </Button>
+                </div>
+                <div className='dialog-header'>
+                  <div className='dialog-title'>
+                    {title}
+                  </div>
+                </div>
+                <DroppableWidget />
                 哈哈哈<br /><br /><br /><br />
                 哈<br /><br /><br /><br /><br /><br />
                 哈哈哈<br /><br /><br /><br /><br />
@@ -95,7 +122,8 @@ export const DialogDesigner: DnFC<IDialogProps> = observer((props) => {
       <div style={{ position: "relative", display: "inline" }}>
         <Button
           icon={icon && <IconView icon={icon} />}
-          {...other}
+          style={{ ...(!visible ? style : {}) }}
+          {...(!visible ? other : {})}
           ref={ref}
         >
           {
@@ -143,6 +171,18 @@ DialogDesigner.Resource = createResource({
           title: "Dialog",
         },
       },
+      children: [
+        {
+          componentName: 'Field',
+          props: {
+            type: 'void',
+            'x-component': 'Button',
+            'x-component-props': {
+              title:"test"
+            },
+          },
+        },
+      ],
     },
   ],
 })

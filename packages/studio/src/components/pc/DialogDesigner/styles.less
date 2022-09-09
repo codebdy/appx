@@ -6,14 +6,14 @@
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 10;
+  z-index: 1;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.45);
 }
 
 .rx-dialog-wrap{
   position: fixed;
-  z-index: 11;
+  z-index: 1;
   display: flex;
   //flex-flow: column;
   justify-content: center;
@@ -27,6 +27,37 @@
     box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
     display: flex;
     flex-flow: column;
+    .dialog-close{
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 10;
+      padding: 0;
+      color: rgba(0, 0, 0, 0.45);
+      font-weight: 700;
+      line-height: 1;
+      text-decoration: none;
+      background: transparent;
+      border: 0;
+      outline: 0;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .dialog-header{
+      padding: 16px 24px;
+      color: rgba(0, 0, 0, 0.85);
+      background: #fff;
+      border-bottom: 1px solid #f0f0f0;
+      border-radius: 2px 2px 0 0;
+      .dialog-title{
+        margin: 0;
+        color: rgba(0, 0, 0, 0.85);
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 22px;
+        word-wrap: break-word;
+      }
+    }
   }
 }
 
