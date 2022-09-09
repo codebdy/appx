@@ -34,7 +34,7 @@ export const DialogDesigner: DnFC<IDialogProps> & {
     children,
     width = 520,
     centered,
-    closable,
+    closable = true,
     destroyOnClose,
     focusTriggerAfterClose,
     keyboard,
@@ -214,6 +214,7 @@ DialogDesigner.Resource = createResource({
         'x-component': 'Dialog',
         'x-component-props': {
           title: "Dialog",
+          footer: true
         },
       },
       children: [

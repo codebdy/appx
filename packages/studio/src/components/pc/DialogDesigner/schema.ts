@@ -46,7 +46,7 @@ export const DialogSchema: ISchema & {
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
       'x-component-props': {
-        defaultValue: 'true',
+        defaultValue: true,
       },
     },
     icon: {
@@ -96,7 +96,7 @@ export const DialogSchema: ISchema & {
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
       'x-component-props': {
-        defaultValue: 'true',
+        defaultValue: true,
       },
     },
     maskClosable: {
@@ -104,7 +104,7 @@ export const DialogSchema: ISchema & {
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
       'x-component-props': {
-        defaultValue: 'true',
+        defaultValue: true,
       },
     },
     footer: {
@@ -112,8 +112,16 @@ export const DialogSchema: ISchema & {
       'x-decorator': 'FormItem',
       'x-component': 'Switch',
       'x-component-props': {
-        defaultValue: 'true',
+        defaultValue: true,
       },
-    }
+    },
+    centered:{
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+      'x-component-props': {
+        defaultValue: false,
+      },
+    },
   },
 }
