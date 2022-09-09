@@ -14,8 +14,9 @@ export enum ActionType {
   Confirm = "Confirm",
   SuccessMessage = "SuccessMessage",
   DeleteData = "DeleteData",
-  UpdateData = "UpdateData",
   SaveData = "SaveData",
+  BatchUpdate = "BatchUpdate",
+  BatchDelete = "BatchDelete",
   Reset = "Reset",
   Custimized = "Custimized"
 }
