@@ -20,9 +20,10 @@ export function useDeleteByIds<T>(__type: string, options?: IDeleteOptions<T>): 
 
   const [doRemove, { error, loading }] = useLazyRequest({
     onCompleted: (data) => {
-      const deletedObj = data[methodName];
-      trigger(EVENT_DATA_REMOVED, { entity: __type, ids: deletedObj?.map(obj => obj?.id) || [] })
-      options?.onCompleted && data && options?.onCompleted(deletedObj);
+      console.log("useDeleteByIds ", data)
+      const deletedResult = data[methodName];
+      trigger(EVENT_DATA_REMOVED, { entity: __type, ids: deletedResult?.returning?.map(obj => obj?.id) || [] })
+      options?.onCompleted && data && options?.onCompleted(deletedResult?.returning);
     },
     onError: options?.onError
   })
