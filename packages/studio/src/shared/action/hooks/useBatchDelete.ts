@@ -1,0 +1,35 @@
+import { useShowError } from "../../../hooks/useShowError";
+import { useCallback, useRef } from "react";
+import { useProTableParams } from "../../../components/pc/ProTable/context";
+import { useDeleteByIds } from "../../../enthooks/hooks/useDeleteByIds";
+
+export function useBatchDelete() {
+  const resolveRef = useRef<(value: unknown) => void>();
+  const rejectRef = useRef<(reason?: any) => void>();
+  const { dataBind, selectedRowKeys } = useProTableParams()
+
+  const [doDelete, { error }] = useDeleteByIds(dataBind?.entityName, {
+    onCompleted: () => {
+      resolveRef.current && resolveRef.current(undefined);
+    },
+    onError: (error) => {
+      rejectRef.current && rejectRef.current(error);
+    }
+  });
+
+  useShowError(error);
+
+  const batchDelete = useCallback(() => {
+    const p = new Promise((resolve, reject) => {
+      if (!selectedRowKeys?.length) {
+        reject(new Error("No data to delete"));
+      }
+      resolveRef.current = resolve;
+      rejectRef.current = reject;
+      doDelete(selectedRowKeys?.map(key => key?.toString()));
+    });
+    return p;
+  }, [doDelete, selectedRowKeys])
+
+  return batchDelete;
+}

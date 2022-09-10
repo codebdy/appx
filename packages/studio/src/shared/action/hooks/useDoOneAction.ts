@@ -22,23 +22,32 @@ export function useDoOneAction() {
   const doAction = useCallback((action: IAppxAction) => {
     return new Promise(async (resolve, reject) => {
       try {
-        if (action.actionType === ActionType.OpenPage) {
-          const payload = action.payload as IOpenPageAction;
-          openPage(payload);
-        } else if (action.actionType === ActionType.ClosePage) {
-          closePage();
-        } else if (action.actionType === ActionType.DeleteData) {
-          await deleteData();
-        } else if (action.actionType === ActionType.Reset) {
-          reset();
-        } else if (action.actionType === ActionType.SuccessMessage) {
-          showSuccess(action.payload as ISuccessAction)
-        } else if (action.actionType === ActionType.SaveData) {
-          await save();
-        } else if (action.actionType === ActionType.Confirm) {
-          await confirm(action.payload as IConfirmAction);
-        } else if (action.actionType === ActionType.CloseDialog) {
-          closeDialog();
+        switch (action.actionType) {
+          case ActionType.OpenPage:
+            const payload = action.payload as IOpenPageAction;
+            openPage(payload);
+            break;
+          case ActionType.ClosePage:
+            closePage();
+            break;
+          case ActionType.DeleteData:
+            await deleteData();
+            break;
+          case ActionType.Reset:
+            reset();
+            break;
+          case ActionType.SuccessMessage:
+            showSuccess(action.payload as ISuccessAction);
+            break;
+          case ActionType.SaveData:
+            await save();
+            break;
+          case ActionType.Confirm:
+            await confirm(action.payload as IConfirmAction);
+            break;
+          case ActionType.CloseDialog:
+            closeDialog();
+            break;
         }
       } catch (err) {
         reject(err);
