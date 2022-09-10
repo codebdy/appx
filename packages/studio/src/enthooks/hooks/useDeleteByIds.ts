@@ -32,14 +32,16 @@ export function useDeleteByIds<T>(__type: string, options?: IDeleteOptions<T>): 
       const deleteGql = gql`
         mutation ($ids: [ID]!) {
           ${methodName}(
-            where: id:{
-              _in: $ids
+            where: {
+                id:{
+                _in: $ids
+              }
             }
           ){
-            nodes{
+            returning{
               id
             }
-            total
+            affectedRows
           }
         }
       `;

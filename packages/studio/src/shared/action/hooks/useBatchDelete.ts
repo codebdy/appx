@@ -6,11 +6,12 @@ import { useDeleteByIds } from "../../../enthooks/hooks/useDeleteByIds";
 export function useBatchDelete() {
   const resolveRef = useRef<(value: unknown) => void>();
   const rejectRef = useRef<(reason?: any) => void>();
-  const { dataBind, selectedRowKeys } = useProTableParams()
-
+  const tableParams = useProTableParams();
+  const { dataBind, selectedRowKeys } = tableParams;
   const [doDelete, { error }] = useDeleteByIds(dataBind?.entityName, {
     onCompleted: () => {
       resolveRef.current && resolveRef.current(undefined);
+      tableParams.selectedRowKeys = [];
     },
     onError: (error) => {
       rejectRef.current && rejectRef.current(error);
