@@ -1,11 +1,13 @@
 import { useCallback } from "react";
-import { useInstanceParams } from "../../contexts/instance";
+import { useField } from "@formily/react";
+import { useRecentObjectField } from "./useRecentObjectField";
 
-export function useReset(){
-  const {field} = useInstanceParams();
-  const reset = useCallback(()=>{
-    field?.reset()
-  }, [field]);
+export function useReset() {
+  const field = useField();
+  const objectField = useRecentObjectField(field);
+  const reset = useCallback(() => {
+    objectField?.reset()
+  }, [objectField]);
 
   return reset;
 }
