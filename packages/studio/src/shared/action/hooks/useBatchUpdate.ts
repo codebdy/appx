@@ -15,6 +15,8 @@ export function useBatchUpdate() {
   const objectField = useRecentObjectField(field);
   const extract = useExtractFieldInput();
 
+  console.log("哈哈", objectField, field)
+
   const [doSet, { error }] = useSet(dataBind?.entityName, {
     onCompleted: () => {
       resolveRef.current && resolveRef.current(undefined);
