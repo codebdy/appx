@@ -31,13 +31,15 @@ export function useSet<T, T2>(
 
   const set = useCallback(
     (set: T, where: any) => {
-      const inputType = __type + "Input";
+      const setType = __type + "Set";
       const boolExp = __type + "BoolExp";
       const postMutation = gql`
-        mutation ${setName} ($object: ${inputType}!, $where:${boolExp}!) {
-          ${setName}(object: $object, where:$where){
-            id
-            ${options?.fieldsGql || ""}
+        mutation ${setName} ($set: ${setType}!, $where:${boolExp}!) {
+          ${setName}(set: $set, where:$where){
+            returning{
+              id
+              ${options?.fieldsGql || ""}
+            }
           }
         }
       `;

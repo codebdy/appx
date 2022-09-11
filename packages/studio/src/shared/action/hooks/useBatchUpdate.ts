@@ -2,7 +2,6 @@ import { useSet } from "../../../enthooks/hooks/useSet";
 import { useCallback, useRef } from "react";
 import { useProTableParams } from "../../../components/pc/ProTable/context";
 import { useShowError } from "../../../hooks/useShowError";
-import { useField } from "@formily/react";
 import { useRecentObjectField } from "./useRecentObjectField";
 import { useExtractFieldInput } from "./useExtractFieldInput";
 
@@ -11,11 +10,8 @@ export function useBatchUpdate() {
   const rejectRef = useRef<(reason?: any) => void>();
   const tableParams = useProTableParams();
   const { dataBind, selectedRowKeys } = tableParams;
-  const field = useField();
   const objectField = useRecentObjectField();
   const extract = useExtractFieldInput();
-
-  console.log("哈哈", objectField, field)
 
   const [doSet, { error }] = useSet(dataBind?.entityName, {
     onCompleted: () => {
