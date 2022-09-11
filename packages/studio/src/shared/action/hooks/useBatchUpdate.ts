@@ -2,12 +2,26 @@ import { useSet } from "../../../enthooks/hooks/useSet";
 import { useCallback, useRef } from "react";
 import { useProTableParams } from "../../../components/pc/ProTable/context";
 import { useShowError } from "../../../hooks/useShowError";
+import { GeneralField, isObjectField } from "@formily/core";
 
 export function useBatchUpdate(){
   const resolveRef = useRef<(value: unknown) => void>();
   const rejectRef = useRef<(reason?: any) => void>();
   const tableParams = useProTableParams();
   const { dataBind, selectedRowKeys } = tableParams;
+  const getParentObjectField = useCallback((field: GeneralField) => {
+    if (field?.parent) {
+      if (isObjectField(field.parent)) {
+        return field?.parent
+      }
+      else {
+        return getParentObjectField(field?.parent)
+      }
+    }
+
+    return undefined;
+  }, [])
+
   const [doSet, { error }] = useSet(dataBind?.entityName, {
     onCompleted: () => {
       resolveRef.current && resolveRef.current(undefined);
