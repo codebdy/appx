@@ -12,7 +12,7 @@ export function useBatchUpdate() {
   const tableParams = useProTableParams();
   const { dataBind, selectedRowKeys } = tableParams;
   const field = useField();
-  const objectField = useRecentObjectField(field);
+  const objectField = useRecentObjectField();
   const extract = useExtractFieldInput();
 
   console.log("哈哈", objectField, field)

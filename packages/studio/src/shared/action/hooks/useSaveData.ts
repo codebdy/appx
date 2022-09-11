@@ -3,9 +3,11 @@ import { useCallback, useRef } from "react";
 import { useInstanceParams } from "../../contexts/instance";
 import { useShowError } from "../../../hooks/useShowError";
 import { useExtractFieldInput } from "./useExtractFieldInput";
+import { useRecentObjectField } from "./useRecentObjectField";
 
 export function useSaveData() {
-  const { field, entityName, instance } = useInstanceParams()
+  const { entityName, instance } = useInstanceParams()
+  const field = useRecentObjectField();
   const resolveRef = useRef<(value: unknown) => void>();
   const rejectRef = useRef<(reason?: any) => void>();
   const extract = useExtractFieldInput();
@@ -26,7 +28,7 @@ export function useSaveData() {
       rejectRef.current = reject;
       field.validate()
         .then(() => {
-          post({ ...instance || {}, ...extract(field) || {} });
+          post({ id: instance?.id, ...extract(field) || {} });
         })
         .catch((err: Error) => {
           reject(err)

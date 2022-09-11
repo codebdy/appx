@@ -5,13 +5,14 @@ import { observer } from "@formily/reactive-react";
 import { DialogContext } from "./context";
 import { Button, Modal } from "antd";
 import { IconView } from "../../../shared/icon/IconView";
-import { RecursionField, useFieldSchema, useField, Schema } from '@formily/react';
+import { RecursionField, useFieldSchema, useField, Schema, ObjectField } from '@formily/react';
 import { useTranslation } from "react-i18next";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { Field } from "@formily/core";
 import { DialogTitle, IDialogTitleProps } from "./DialogTitle";
 import { DialogContent, IDialogContentProps } from "./DialogContent";
 import { DialogFooter, IDialogFooterProps } from "./DialogFooter";
+import { useInstanceParams } from "../../../shared/contexts/instance";
 
 export interface IDialogProps {
   title?: string,
@@ -62,6 +63,8 @@ export const Dialog: React.FC<IDialogProps> & {
   const { t } = useTranslation()
   const field = useField();
   const fieldSchema = useFieldSchema()
+
+  const instanceParams = useInstanceParams()
 
   const slots = useMemo(() => {
     const slts = {
@@ -126,14 +129,16 @@ export const Dialog: React.FC<IDialogProps> & {
 
       {
         visiable &&
-        <Modal
-          title={slots.title && <RecursionField schema={slots.title} name={slots.title.name} />}
-          footer={slots.footer && <RecursionField schema={slots.footer} name={slots.footer.name} />}
-          visible={visiable}
-          onCancel={handleCancel}
-        >
-          {slots.content && <RecursionField schema={slots.content} name={slots.content.name} />}
-        </Modal>
+        <ObjectField name={fieldSchema.name + "dialog"} initialValue={instanceParams?.instance}>
+          <Modal
+            title={slots.title && <RecursionField schema={slots.title} name={slots.title.name} />}
+            footer={slots.footer && <RecursionField schema={slots.footer} name={slots.footer.name} />}
+            visible={visiable}
+            onCancel={handleCancel}
+          >
+            {slots.content && <RecursionField schema={slots.content} name={slots.content.name} />}
+          </Modal>
+        </ObjectField>
       }
     </DialogContext.Provider>
   )

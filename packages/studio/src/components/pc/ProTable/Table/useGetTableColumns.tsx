@@ -1,23 +1,18 @@
 import { TableProps } from 'antd';
 import React, { useCallback } from 'react';
-import { useProTableParams } from '../context';
 import { ArrayBase } from "@formily/antd";
 import {
   RecursionField,
   Field as ReactField,
   VoidField
 } from '@formily/react';
-import { Field } from '@formily/core';
 import { TextView } from '../../';
-import { useField, Schema } from '@formily/react';
-import { InstanceContext } from '../../../../shared/contexts/instance';
+import { Schema } from '@formily/react';
 import { ObservableColumnSource, } from './index';
 import { isColumnComponent, isColumnGroupComponent } from './useArrayTableSources';
 import { CellRoot } from './CellRoot';
 
 export function useGetTableColumns() {
-  const { dataBind } = useProTableParams();
-  const field = useField();
   const getTableColumns = useCallback((sources: ObservableColumnSource[], parentGroupNames: string[] = []): TableProps<any>['columns'] => {
     return sources?.reduce((buf, source, key, index) => {
       const { name, columnProps, schema, children /*, display*/ } = source || {};
