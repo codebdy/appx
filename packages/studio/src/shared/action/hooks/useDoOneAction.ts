@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { ActionType, IAppxAction, IConfirmAction, IOpenPageAction, ISuccessAction } from "../model";
 import { useBatchDelete } from "./useBatchDelete";
+import { useBatchUpdate } from "./useBatchUpdate";
 import { useCloseDialog } from "./useCloseDialog";
 import { useClosePage } from "./useClosePage";
 import { useConfirm } from "./useConfirm";
@@ -20,6 +21,7 @@ export function useDoOneAction() {
   const confirm = useConfirm();
   const closeDialog = useCloseDialog();
   const batchDelete = useBatchDelete();
+  const batchUpdate = useBatchUpdate();
 
   const doAction = useCallback((action: IAppxAction) => {
     return new Promise(async (resolve, reject) => {
@@ -53,6 +55,8 @@ export function useDoOneAction() {
           case ActionType.BatchDelete:
             await batchDelete();
             break;
+          case ActionType.BatchUpdate:
+            await batchUpdate();
         }
       } catch (err) {
         reject(err);
@@ -60,7 +64,7 @@ export function useDoOneAction() {
       resolve(undefined);
     })
 
-  }, [batchDelete, closeDialog, closePage, confirm, deleteData, openPage, reset, save, showSuccess])
+  }, [batchDelete, batchUpdate, closeDialog, closePage, confirm, deleteData, openPage, reset, save, showSuccess])
 
   return doAction;
 }

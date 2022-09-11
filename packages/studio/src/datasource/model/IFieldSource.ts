@@ -1,4 +1,5 @@
 import { BaseDataType } from "../../shared/BaseDataType";
+import { IDataBindSource } from "./IDataBindSource";
 
 
 export enum FieldSourceType {
@@ -20,4 +21,5 @@ export interface IFieldSource {
   sourceType: FieldSourceType;
   dataType?: BaseDataType;
   associationType?: AssociationType,
+  dataBind?: IDataBindSource,
 }
