@@ -1,8 +1,9 @@
-import React, { useCallback, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { TreeNode, createBehavior, createResource } from '@designable/core'
 import {
   DnFC,
   useTreeNode,
+  useSelected,
 } from '@designable/react'
 import { observer } from '@formily/reactive-react'
 import './styles.less'
@@ -21,7 +22,6 @@ import { IconView } from '../../../shared/icon/IconView'
 import { useParseLangMessage } from '../../../hooks/useParseLangMessage'
 import { IDropdownMenuItemProps } from '../DropdownMenu/MenuItem'
 import { PopupButton } from '../../common/PopupButton'
-import SvgIcon from '../../../common/SvgIcon'
 
 export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
 {
@@ -32,9 +32,20 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
   const ref = useRef<HTMLElement>(null)
   const node = useTreeNode()
   const p = useParseLangMessage();
+  const selected = useSelected();
+  const [canShow, setCanShow] = useState(false);
+  useEffect(() => {
+    setCanShow(selected?.[0] === node.id)
+  }, [node.id, selected])
 
-  const handleToggleVisiable = useCallback(() => {
-    setVisiable(visible => !visible);
+  const handleShow = useCallback(() => {
+    if (canShow) {
+      setVisiable(true);
+    }
+  }, [canShow])
+
+  const handleClose = useCallback(() => {
+    setVisiable(false);
   }, [])
 
   const getPlacementStyle = () => {
@@ -117,7 +128,7 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
           />
           <PopupButton
             icon={<CloseOutlined style={{ fontSize: 12 }} />}
-            onToggleVisiable={handleToggleVisiable}
+            onToggleVisiable={handleClose}
           />
         </div>
       }
@@ -129,6 +140,7 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
               icon={icon && <IconView icon={icon} />}
               {...other}
               ref={ref}
+              onClick={handleShow}
             >
               {
                 p(title)
@@ -140,27 +152,12 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
               icon={icon && <IconView icon={icon} />}
               {...other}
               ref={ref}
+              onClick={handleShow}
             >
               {
                 p(title)
               }
             </Button>
-        }
-        {
-          !visible &&
-          <PopupButton
-            icon={
-              <SvgIcon>
-                <svg style={{ width: "12px", height: "12px" }} viewBox="0 0 24 24">
-                  <path fill="currentColor" d="M13.5 21H6V17H13.5C15.43 17 17 15.43 17 13.5S15.43 10 13.5 10H11V14L4 8L11 2V6H13.5C17.64 6 21 9.36 21 13.5S17.64 21 13.5 21Z" />
-                </svg>
-              </SvgIcon>
-            }
-            style={{
-              top: 0,
-            }}
-            onToggleVisiable={handleToggleVisiable}
-          />
         }
       </div>
     </>

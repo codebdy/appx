@@ -57,15 +57,8 @@ export const DialogDesigner: DnFC<IDialogProps> & {
   const content = useFindNode("Content");
   const footer = useFindNode("Footer");
   const node = useTreeNode();
-  const selected = useSelected();
-  const [canShow, setCanShow] = useState(false);
-
   const viewPort = document.querySelector(".dn-viewport");
   const viewRect = viewPort?.getBoundingClientRect();
-
-  useEffect(() => {
-    setCanShow(selected?.[0] === node.id)
-  }, [node.id, selected])
 
   // useEffect(() => {
   //   const name = designer.props.nodeIdAttrName
@@ -81,6 +74,11 @@ export const DialogDesigner: DnFC<IDialogProps> & {
   //     tree.operation.selection.select(nodeIdProps[name])
   //   }, 100)
   // }, [designer.props.nodeIdAttrName, nodeIdProps, tree.operation.selection, visible])
+  const selected = useSelected();
+  const [canShow, setCanShow] = useState(false);
+  useEffect(() => {
+    setCanShow(selected?.[0] === node.id)
+  }, [node.id, selected])
 
   const handleShow = useCallback(() => {
     if (canShow) {
