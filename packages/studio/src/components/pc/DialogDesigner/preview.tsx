@@ -48,6 +48,10 @@ export const DialogDesigner: DnFC<IDialogProps> & {
   } = props;
   const [visible, setVisiable] = useState(false);
   const ref = useRef<HTMLElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
+  // const tree = useTree()
+  // const designer = useDesigner()
+  // const nodeIdProps = useNodeIdProps()
   const p = useParseLangMessage();
   const dialogTitle = useFindNode('Title');
   const content = useFindNode("Content");
@@ -55,6 +59,21 @@ export const DialogDesigner: DnFC<IDialogProps> & {
 
   const viewPort = document.querySelector(".dn-viewport");
   const viewRect = viewPort?.getBoundingClientRect();
+
+  // useEffect(() => {
+  //   const name = designer.props.nodeIdAttrName
+  //   if (visible) {
+  //     console.log("哈哈哈", name, nodeIdProps[name])
+  //     ref.current?.removeAttribute(name);
+  //     contentRef.current?.setAttribute(name, nodeIdProps[name])
+  //   } else {
+  //     ref.current?.setAttribute(name, nodeIdProps[name]);
+  //     contentRef.current?.removeAttribute(name)
+  //   }
+  //   setTimeout(() => {
+  //     tree.operation.selection.select(nodeIdProps[name])
+  //   }, 100)
+  // }, [designer.props.nodeIdAttrName, nodeIdProps, tree.operation.selection, visible])
 
   const handleToggleVisiable = useCallback(() => {
     setVisiable(visible => !visible);
@@ -90,6 +109,7 @@ export const DialogDesigner: DnFC<IDialogProps> & {
                 marginTop: centered ? undefined : 100,
                 maxHeight: viewRect?.height - 200,
               }}
+              ref={contentRef}
             >
               <div style={{
                 flex: 1,
