@@ -53,8 +53,6 @@ export const DialogDesigner: DnFC<IDialogProps> & {
   const content = useFindNode("Content");
   const footer = useFindNode("Footer");
 
-  const viewTree = document.querySelector(".dn-component-tree");
-  const treeRect = viewTree?.getBoundingClientRect();
   const viewPort = document.querySelector(".dn-viewport");
   const viewRect = viewPort?.getBoundingClientRect();
 
@@ -68,10 +66,10 @@ export const DialogDesigner: DnFC<IDialogProps> & {
         <>
           <div className='rx-dialog-mask'
             style={{
-              left: treeRect?.left,
-              top: treeRect?.top,
-              height: treeRect?.height,
-              width: treeRect.width,
+              left: viewRect?.left,
+              top: viewRect?.top,
+              height: viewRect?.height,
+              width: viewRect.width,
             }}
           >
           </div>
