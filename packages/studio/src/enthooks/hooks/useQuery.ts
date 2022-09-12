@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import { useEffect } from 'react';
 import { useLazyRequest } from "./useLazyRequest";
 import { useEndpoint } from "../context";
-import { EVENT_DATA_POSTED_ONE, EVENT_DATA_REMOVED, off, on } from "../events";
+import { EVENT_DATA_POSTED_ONE, EVENT_DATA_REMOVED, EVENT_DATA_UPDATED, off, on } from "../events";
 import { MutateFn } from './useQueryOne';
 import { IQueryInput } from './IQueryInput';
 
@@ -67,9 +67,11 @@ export function useQuery<T>(input: IQueryInput): QueryResponse<T> {
   useEffect(() => {
     on(EVENT_DATA_POSTED_ONE, eventHandler);
     on(EVENT_DATA_REMOVED, eventHandler);
+    on(EVENT_DATA_UPDATED, eventHandler);
     return () => {
       off(EVENT_DATA_POSTED_ONE, eventHandler);
       off(EVENT_DATA_REMOVED, eventHandler);
+      off(EVENT_DATA_UPDATED, eventHandler);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
