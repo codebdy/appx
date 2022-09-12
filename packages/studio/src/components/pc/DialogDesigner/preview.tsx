@@ -145,6 +145,7 @@ export const DialogDesigner: DnFC<IDialogProps> & {
             }
             style={{
               top: 0,
+              zIndex: 1,
             }}
             onToggleVisiable={handleToggleVisiable}
           />
