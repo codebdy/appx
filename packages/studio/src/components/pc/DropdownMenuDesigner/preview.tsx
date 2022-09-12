@@ -158,7 +158,6 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
             }
             style={{
               top: 0,
-              zIndex: 1,
             }}
             onToggleVisiable={handleToggleVisiable}
           />
