@@ -1,8 +1,10 @@
-import React, { useCallback, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { createBehavior, createResource } from '@designable/core'
 import {
   DnFC,
   TreeNodeWidget,
+  useSelected,
+  useTreeNode
 } from '@designable/react'
 import { observer } from '@formily/reactive-react'
 import './styles.less'
@@ -13,7 +15,6 @@ import { Button } from 'antd'
 import { CloseOutlined } from '@ant-design/icons'
 import { IconView } from '../../../shared/icon/IconView'
 import { useParseLangMessage } from '../../../hooks/useParseLangMessage'
-import { PopupButton } from '../../common/PopupButton'
 import { IDialogProps } from '../Dialog'
 import { IDialogContentProps } from '../Dialog/DialogContent'
 import { IDialogFooterProps } from '../Dialog/DialogFooter'
@@ -22,7 +23,6 @@ import { DialogFooterDesigner } from './DialogFooterDesigner'
 import { IDialogTitleProps } from '../Dialog/DialogTitle'
 import { DialogTitleDesigner } from './DialogTitleDesigner'
 import { useFindNode } from '../../common/hooks/useFindNode'
-import SvgIcon from '../../../common/SvgIcon'
 
 export const DialogDesigner: DnFC<IDialogProps> & {
   Title?: React.FC<IDialogTitleProps>,
@@ -48,7 +48,7 @@ export const DialogDesigner: DnFC<IDialogProps> & {
   } = props;
   const [visible, setVisiable] = useState(false);
   const ref = useRef<HTMLElement>(null)
-  const contentRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null);
   // const tree = useTree()
   // const designer = useDesigner()
   // const nodeIdProps = useNodeIdProps()
@@ -56,9 +56,16 @@ export const DialogDesigner: DnFC<IDialogProps> & {
   const dialogTitle = useFindNode('Title');
   const content = useFindNode("Content");
   const footer = useFindNode("Footer");
+  const node = useTreeNode();
+  const selected = useSelected();
+  const [canShow, setCanShow] = useState(false);
 
   const viewPort = document.querySelector(".dn-viewport");
   const viewRect = viewPort?.getBoundingClientRect();
+
+  useEffect(() => {
+    setCanShow(selected?.[0] === node.id)
+  }, [node.id, selected])
 
   // useEffect(() => {
   //   const name = designer.props.nodeIdAttrName
@@ -75,8 +82,14 @@ export const DialogDesigner: DnFC<IDialogProps> & {
   //   }, 100)
   // }, [designer.props.nodeIdAttrName, nodeIdProps, tree.operation.selection, visible])
 
-  const handleToggleVisiable = useCallback(() => {
-    setVisiable(visible => !visible);
+  const handleShow = useCallback(() => {
+    if (canShow) {
+      setVisiable(true);
+    }
+  }, [canShow])
+
+  const handleClose = useCallback(() => {
+    setVisiable(false);
   }, [])
 
   return (
@@ -119,7 +132,7 @@ export const DialogDesigner: DnFC<IDialogProps> & {
                 {
                   closable &&
                   <div className='dialog-close'>
-                    <Button type='text'>
+                    <Button type='text' onClick={handleClose}>
                       <CloseOutlined />
                     </Button>
                   </div>
@@ -133,43 +146,21 @@ export const DialogDesigner: DnFC<IDialogProps> & {
                 {content && <TreeNodeWidget node={content} />}
                 {hasFooter && footer && <TreeNodeWidget node={footer} />}
               </div>
-              <PopupButton
-                icon={<CloseOutlined style={{ fontSize: 12 }} />}
-                onToggleVisiable={handleToggleVisiable}
-              />
             </div>
           </div>
         </>
       }
-      <div style={{ position: "relative", display: "inline" }}>
-        <Button
-          icon={icon && <IconView icon={icon} />}
-          style={{ ...(!visible ? style : {}) }}
-          {...other}
-          ref={ref}
-        >
-          {
-            p(title)
-          }
-        </Button>
-
+      <Button
+        icon={icon && <IconView icon={icon} />}
+        style={{ ...(!visible ? style : {}) }}
+        {...other}
+        ref={ref}
+        onClick={handleShow}
+      >
         {
-          !visible &&
-          <PopupButton
-            icon={
-              <SvgIcon>
-                <svg style={{ width: "12px", height: "12px" }} viewBox="0 0 24 24">
-                  <path fill="currentColor" d="M13.5 21H6V17H13.5C15.43 17 17 15.43 17 13.5S15.43 10 13.5 10H11V14L4 8L11 2V6H13.5C17.64 6 21 9.36 21 13.5S17.64 21 13.5 21Z" />
-                </svg>
-              </SvgIcon>
-            }
-            style={{
-              top: 0,
-            }}
-            onToggleVisiable={handleToggleVisiable}
-          />
+          p(title)
         }
-      </div>
+      </Button>
     </>
   )
 })
