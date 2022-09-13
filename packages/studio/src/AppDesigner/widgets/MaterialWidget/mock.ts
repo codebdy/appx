@@ -1,5 +1,5 @@
 import { MaterialModule, OperationType } from "./model";
-import { ArrayTable, FormGrid, FormLayout, Input } from "@formily/antd";
+import { ArrayTable, FormGrid, FormLayout, Input, PreviewText } from "@formily/antd";
 import {
   Button,
   ButtonDesigner,
@@ -26,7 +26,8 @@ import {
   DropdownMenuDesigner,
   DropdownMenu,
   DialogDesigner,
-  Dialog
+  Dialog,
+  TextDesigner
 } from "../../../components/pc";
 
 export const allMaterials: MaterialModule[] = [
@@ -113,6 +114,11 @@ export const allMaterials: MaterialModule[] = [
             name: "Dialog",
             designer: DialogDesigner,
             component: Dialog
+          },
+          {
+            name: "Text",
+            designer: TextDesigner,
+            component: PreviewText,
           }
           // {
           //   name: "Rate2",

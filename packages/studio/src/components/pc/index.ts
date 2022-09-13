@@ -26,3 +26,4 @@ export * from "./DropdownMenu";
 export * from "./DropdownMenuDesigner";
 export * from "./Dialog";
 export * from "./DialogDesigner";
+export * from "./TextDesigner";
