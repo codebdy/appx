@@ -5,9 +5,6 @@ ProTableLocales.TableToolbar = {
     title: '表格工具栏',
     settings: {
       'x-component-props': {
-        title: "标题",
-        onNew: "新建",
-        hasNewButton: "新建按钮",
         hasRefresh: "刷新按钮",
         hasHeight: "密度按钮",
         hasSettings: "设置按钮"
