@@ -1,7 +1,6 @@
 export const ProTableLocales: any & {
   QueryForm: any,
   TableToolbar: any,
-  TableToolbarContent: any,
   TableToolbarActions: any,
   TableBatchActions: any,
 } = {

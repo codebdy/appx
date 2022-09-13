@@ -11,7 +11,7 @@ import { ITableToolbarProps } from "."
 
 export interface ITableToolbarShellProps {
   className?:string,
-  content?:React.ReactNode,
+  children?:React.ReactNode,
   actions?:React.ReactNode,
 }
 
@@ -20,7 +20,7 @@ export const TableToolbarShell = observer((
 ) => {
   const {
     className,
-    content,
+    children,
     actions,
     hasRefresh = true,
     hasHeight = true,
@@ -39,7 +39,7 @@ export const TableToolbarShell = observer((
       className={clx(className, "table-toolbar")}
     >
       <div>
-        {content}
+        {children}
       </div>
       <div
         style={{

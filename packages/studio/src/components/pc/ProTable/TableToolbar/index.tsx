@@ -9,7 +9,6 @@ import { Schema } from "@formily/react";
 
 export interface ITableToolbarProps {
   className?: string,
-  hasContent?: boolean,
   hasActions?: boolean,
   hasRefresh?: boolean,
   hasHeight?: boolean,
@@ -19,7 +18,7 @@ export interface ITableToolbarProps {
 export const TableToolbar = observer((
   props: ITableToolbarProps
 ) => {
-  const { hasContent = true, hasActions = true, ...other } = props;
+  const { hasActions = true, ...other } = props;
   const params = useProTableParams();
   const tableConfig: IProTableConfig = useComponentConfig(params.path);
   const fieldSchema = useFieldSchema()
@@ -30,14 +29,14 @@ export const TableToolbar = observer((
 
   const slots = useMemo(() => {
     const slts = {
-      content: null,
+      children: [],
       actions: null,
     }
 
     for (const child of Schema.getOrderProperties(fieldSchema)) {
       const childSchema = child?.schema;
       if (childSchema["x-component"] === 'ProTable.ToolbarContent') {
-        slts.content = childSchema
+        slts.children.push(childSchema)
       } else if (childSchema["x-component"] === 'ProTable.ToolbarActions') {
         slts.actions = childSchema
       }
@@ -49,12 +48,15 @@ export const TableToolbar = observer((
   return (
     <TableToolbarShell
       {...other}
-      content={
-        hasContent && slots.content && <RecursionField schema={slots.content} name={slots.content.name} />
-      }
       actions={
         hasActions && slots.actions && <RecursionField schema={slots.actions} name={slots.actions.name} />
       }
-    />
+    >
+      {
+        slots.children?.map((child) => {
+          return <RecursionField key={child.name} schema={child} name={child.name} />
+        })
+      }
+    </TableToolbarShell>
   )
 })

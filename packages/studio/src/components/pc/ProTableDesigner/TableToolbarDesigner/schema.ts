@@ -3,14 +3,6 @@ import { ProTableSchema } from "../schema";
 ProTableSchema.TableToolbar = {
   type: 'object',
   properties: {
-    hasContent: {
-      type: 'boolean',
-      'x-decorator': 'FormItem',
-      'x-component': 'Switch',
-      'x-component-props': {
-        defaultChecked: true,
-      },
-    },
     hasActions: {
       type: 'boolean',
       'x-decorator': 'FormItem',
