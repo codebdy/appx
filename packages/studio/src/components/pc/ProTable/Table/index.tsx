@@ -47,7 +47,7 @@ export const Table = observer((
   const getTableColumns = useGetTableColumns();
   const columns = useMemo(() => {
     const colSources = sources.filter(source => protableParams?.tableConfig?.columns?.find(col => col === source.name))
-    return getTableColumns(protableParams?.tableConfig?.columns?.map(column => colSources.find(src => column === src.name)) || colSources) || []
+    return getTableColumns(protableParams?.tableConfig?.columns?.map(column => colSources.find(src => column === src.name)) || sources) || []
   }, [getTableColumns, protableParams?.tableConfig?.columns, sources]);
 
   useEffect(() => {
