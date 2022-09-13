@@ -10,6 +10,7 @@ import { TableToolbarShell } from "../../ProTable/TableToolbar/TableToolbarShell
 export const TableToolbarDesigner: DnFC<React.ComponentProps<typeof TableToolbar>> = observer((props) => {
   const { hasContent, hasActions, ...other } = props;
   const node = useTreeNode()
+  console.log("ca mm")
   const content = findNodeByComponentPath(node, [
     'ProTable.Toolbar',
     'ProTable.ToolbarContent',

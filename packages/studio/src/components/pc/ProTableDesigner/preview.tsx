@@ -30,8 +30,8 @@ import { TableToolbarActionsDesigner } from "./TableToolbarActionsDesigner"
 export const ProTableDesigner: DnFC<IProTableProps> & {
   QueryForm?: React.FC<IQueryFormProps>,
   Toolbar?: React.FC<ITableToolbarProps>,
-  ToolbarContent?:React.FC<ITableToolbarContentProps>,
-  ToolbarActions?:React.FC<ITableToolbarActionsProps>,
+  ToolbarContent?: React.FC<ITableToolbarContentProps>,
+  ToolbarActions?: React.FC<ITableToolbarActionsProps>,
   BatchActions?: React.FC<ITableBatchActionsProps>,
   Table?: React.FC<TableProps<any>>,
   Index?: React.FC,
@@ -46,8 +46,8 @@ export const ProTableDesigner: DnFC<IProTableProps> & {
   } = props;
 
   const queryForm = useFindNode('QueryForm');
-  const toolbar = useFindNode("TableToolbar");
-  const batchActions = useFindNode("TableBatchActions");
+  const toolbar = useFindNode("Toolbar");
+  const batchActions = useFindNode("BatchActions");
   const dataTable = useFindNode("Table");
 
   return (
