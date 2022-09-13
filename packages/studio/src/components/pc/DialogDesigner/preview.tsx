@@ -4,7 +4,10 @@ import {
   DnFC,
   TreeNodeWidget,
   useSelected,
-  useTreeNode
+  useTreeNode,
+  useTree,
+  useNodeIdProps,
+  useDesigner
 } from '@designable/react'
 import { observer } from '@formily/reactive-react'
 import './styles.less'
@@ -50,7 +53,7 @@ export const DialogDesigner: DnFC<IDialogProps> & {
   const ref = useRef<HTMLElement>(null)
   const contentRef = useRef<HTMLDivElement>(null);
   // const tree = useTree()
-  // const designer = useDesigner()
+  const designer = useDesigner()
   // const nodeIdProps = useNodeIdProps()
   const p = useParseLangMessage();
   const dialogTitle = useFindNode('Title');
@@ -59,21 +62,28 @@ export const DialogDesigner: DnFC<IDialogProps> & {
   const node = useTreeNode();
   const viewPort = document.querySelector(".dn-viewport");
   const viewRect = viewPort?.getBoundingClientRect();
+  const tree = useTree();
+  const nodeIdProps = useNodeIdProps()
 
-  // useEffect(() => {
-  //   const name = designer.props.nodeIdAttrName
-  //   if (visible) {
-  //     console.log("哈哈哈", name, nodeIdProps[name])
-  //     ref.current?.removeAttribute(name);
-  //     contentRef.current?.setAttribute(name, nodeIdProps[name])
-  //   } else {
-  //     ref.current?.setAttribute(name, nodeIdProps[name]);
-  //     contentRef.current?.removeAttribute(name)
-  //   }
-  //   setTimeout(() => {
-  //     tree.operation.selection.select(nodeIdProps[name])
-  //   }, 100)
-  // }, [designer.props.nodeIdAttrName, nodeIdProps, tree.operation.selection, visible])
+  useEffect(() => {
+    const name = designer.props.nodeIdAttrName
+    tree.operation.selection.clear()
+    
+    if (visible) {
+      ref.current?.removeAttribute(name);
+      contentRef.current?.setAttribute(name, nodeIdProps[name]);
+    } else {
+      contentRef.current?.removeAttribute(name);
+      //ref.current?.setAttribute(name, nodeIdProps[name]);
+    }
+    
+    setTimeout(() => {
+      tree.operation.selection.clear()
+      //tree.operation.selection.select(nodeIdProps[name])
+    }, 100)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible])
+
   const selected = useSelected();
   const [canShow, setCanShow] = useState(false);
   useEffect(() => {
@@ -121,6 +131,7 @@ export const DialogDesigner: DnFC<IDialogProps> & {
                 maxHeight: viewRect?.height - 200,
               }}
               ref={contentRef}
+              {... (visible && nodeIdProps)}
             >
               <div style={{
                 flex: 1,
@@ -152,6 +163,7 @@ export const DialogDesigner: DnFC<IDialogProps> & {
         icon={icon && <IconView icon={icon} />}
         style={{ ...(!visible ? style : {}) }}
         {...other}
+        {...(!visible && nodeIdProps)}
         ref={ref}
         onClick={handleShow}
       >
