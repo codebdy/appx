@@ -14,6 +14,8 @@ import { RecursionField, useFieldSchema, useField } from '@formily/react';
 import { IQueryFormProps, QueryForm } from "./QueryForm"
 import { TableIndex } from "./TableIndex"
 import { observable } from "@formily/reactive"
+import { ITableToolbarContentProps, TableToolbarContent } from "./TableToolbarContent"
+import { ITableToolbarActionsProps, TableToolbarActions } from "./TableToolbarActions"
 
 registerResourceBundle(LOCALES_NS, locales);
 
@@ -28,8 +30,10 @@ export interface IProTableProps extends IDataSourceableProps {
 
 export const ProTable: React.FC<IProTableProps> & {
   QueryForm?: React.FC<IQueryFormProps>,
-  TableToolbar?: React.FC<ITableToolbarProps>,
-  TableBatchActions?: React.FC<ITableBatchActionsProps>,
+  Toolbar?: React.FC<ITableToolbarProps>,
+  ToolbarContent?: React.FC<ITableToolbarContentProps>,
+  ToolbarActions?: React.FC<ITableToolbarActionsProps>,
+  BatchActions?: React.FC<ITableBatchActionsProps>,
   Table?: React.FC<TableProps<any>>,
   Index?: React.FC,
   Column?: React.FC,
@@ -134,7 +138,9 @@ export const ProTable: React.FC<IProTableProps> & {
 })
 
 ProTable.QueryForm = QueryForm
-ProTable.TableToolbar = TableToolbar
-ProTable.TableBatchActions = TableBatchActions
+ProTable.Toolbar = TableToolbar
+ProTable.ToolbarContent = TableToolbarContent
+ProTable.ToolbarActions = TableToolbarActions
+ProTable.BatchActions = TableBatchActions
 ProTable.Table = Table
 ProTable.Index = TableIndex

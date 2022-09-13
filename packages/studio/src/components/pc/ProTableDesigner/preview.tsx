@@ -22,11 +22,17 @@ import { DataTableSchema } from "./TableDesigner/schema"
 import { TableDesigner } from "./TableDesigner"
 import { IndexDesigner } from "./TableDesigner/IndexDesigner"
 import { ProTableContext } from "../ProTable/context"
+import { ITableToolbarContentProps } from "../ProTable/TableToolbarContent"
+import { ITableToolbarActionsProps } from "../ProTable/TableToolbarActions"
+import { TableToolbarContentDesigner } from "./TableToolbarContentDesigner"
+import { TableToolbarActionsDesigner } from "./TableToolbarActionsDesigner"
 
 export const ProTableDesigner: DnFC<IProTableProps> & {
   QueryForm?: React.FC<IQueryFormProps>,
-  TableToolbar?: React.FC<ITableToolbarProps>,
-  TableBatchActions?: React.FC<ITableBatchActionsProps>,
+  Toolbar?: React.FC<ITableToolbarProps>,
+  ToolbarContent?:React.FC<ITableToolbarContentProps>,
+  ToolbarActions?:React.FC<ITableToolbarActionsProps>,
+  BatchActions?: React.FC<ITableBatchActionsProps>,
   Table?: React.FC<TableProps<any>>,
   Index?: React.FC,
 } = observer((props: IProTableProps) => {
@@ -66,8 +72,10 @@ export const ProTableDesigner: DnFC<IProTableProps> & {
 })
 
 ProTableDesigner.QueryForm = QueryFormDesigner;
-ProTableDesigner.TableToolbar = TableToolbarDesigner;
-ProTableDesigner.TableBatchActions = TableBatchActionsDesigner;
+ProTableDesigner.Toolbar = TableToolbarDesigner;
+ProTableDesigner.ToolbarContent = TableToolbarContentDesigner;
+ProTableDesigner.ToolbarActions = TableToolbarActionsDesigner;
+ProTableDesigner.BatchActions = TableBatchActionsDesigner;
 ProTableDesigner.Table = TableDesigner;
 ProTableDesigner.Index = IndexDesigner;
 //ProTableDesigner.Column = ColumnDesigner;
@@ -97,9 +105,9 @@ ProTableDesigner.Behavior = createBehavior(
     designerLocales: _.merge(JSON.parse(JSON.stringify(FormGridLocales)), ProTableLocales.QueryForm),
   },
   {
-    name: 'ProTable.TableToolbar',
+    name: 'ProTable.Toolbar',
     extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'ProTable.TableToolbar',
+    selector: (node) => node.props['x-component'] === 'ProTable.Toolbar',
     designerProps: {
       droppable: false,
       deletable: false,
@@ -110,9 +118,9 @@ ProTableDesigner.Behavior = createBehavior(
     designerLocales: ProTableLocales.TableToolbar,
   },
   {
-    name: 'ProTable.TableBatchActions',
+    name: 'ProTable.BatchActions',
     extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'ProTable.TableBatchActions',
+    selector: (node) => node.props['x-component'] === 'ProTable.BatchActions',
     designerProps: {
       droppable: true,
       deletable: false,
@@ -123,9 +131,9 @@ ProTableDesigner.Behavior = createBehavior(
     designerLocales: ProTableLocales.TableBatchActions,
   },
   {
-    name: 'ProTable.TableToolbarContent',
+    name: 'ProTable.ToolbarContent',
     extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'ProTable.TableToolbarContent',
+    selector: (node) => node.props['x-component'] === 'ProTable.ToolbarContent',
     designerProps: {
       droppable: true,
       deletable: false,
@@ -136,9 +144,9 @@ ProTableDesigner.Behavior = createBehavior(
     designerLocales: ProTableLocales.TableToolbarContent,
   },
   {
-    name: 'ProTable.TableToolbarActions',
+    name: 'ProTable.ToolbarActions',
     extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'ProTable.TableToolbarActions',
+    selector: (node) => node.props['x-component'] === 'ProTable.ToolbarActions',
     designerProps: {
       droppable: true,
       deletable: false,
@@ -227,17 +235,37 @@ ProTableDesigner.Resource = createResource({
         {
           componentName: 'Field',
           props: {
-            type: 'void',
-            'x-component': 'ProTable.TableToolbar',
+            type: 'object',
+            'x-component': 'ProTable.Toolbar',
             'x-component-props': {
             },
           },
+          children: [
+            {
+              componentName: 'Field',
+              props: {
+                type: 'object',
+                'x-component': 'ProTable.ToolbarContent',
+                'x-component-props': {
+                },
+              },
+            },
+            {
+              componentName: 'Field',
+              props: {
+                type: 'object',
+                'x-component': 'ProTable.ToolbarActions',
+                'x-component-props': {
+                },
+              },
+            },
+          ]
         },
         {
           componentName: 'Field',
           props: {
             type: 'void',
-            'x-component': 'ProTable.TableBatchActions',
+            'x-component': 'ProTable.BatchActions',
             'x-component-props': {
             },
           },
