@@ -14,7 +14,6 @@ import { RecursionField, useFieldSchema, useField } from '@formily/react';
 import { IQueryFormProps, QueryForm } from "./QueryForm"
 import { TableIndex } from "./TableIndex"
 import { observable } from "@formily/reactive"
-import { ITableToolbarContentProps, TableToolbarContent } from "./TableToolbarContent"
 import { ITableToolbarActionsProps, TableToolbarActions } from "./TableToolbarActions"
 
 registerResourceBundle(LOCALES_NS, locales);
@@ -31,7 +30,6 @@ export interface IProTableProps extends IDataSourceableProps {
 export const ProTable: React.FC<IProTableProps> & {
   QueryForm?: React.FC<IQueryFormProps>,
   Toolbar?: React.FC<ITableToolbarProps>,
-  ToolbarContent?: React.FC<ITableToolbarContentProps>,
   ToolbarActions?: React.FC<ITableToolbarActionsProps>,
   BatchActions?: React.FC<ITableBatchActionsProps>,
   Table?: React.FC<TableProps<any>>,
@@ -79,9 +77,9 @@ export const ProTable: React.FC<IProTableProps> & {
         slts.queryForm = childSchema
       } else if (childSchema["x-component"] === 'ProTable.Table') {
         slts.dataTable = childSchema
-      } else if (childSchema["x-component"] === 'ProTable.TableBatchActions') {
+      } else if (childSchema["x-component"] === 'ProTable.BatchActions') {
         slts.tableBatchActions = childSchema
-      } else if (childSchema["x-component"] === 'ProTable.TableToolbar') {
+      } else if (childSchema["x-component"] === 'ProTable.Toolbar') {
         slts.tableToolbar = childSchema;
       }
     }
@@ -139,7 +137,6 @@ export const ProTable: React.FC<IProTableProps> & {
 
 ProTable.QueryForm = QueryForm
 ProTable.Toolbar = TableToolbar
-ProTable.ToolbarContent = TableToolbarContent
 ProTable.ToolbarActions = TableToolbarActions
 ProTable.BatchActions = TableBatchActions
 ProTable.Table = Table

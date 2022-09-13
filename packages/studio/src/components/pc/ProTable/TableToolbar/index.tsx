@@ -36,10 +36,10 @@ export const TableToolbar = observer((
 
     for (const child of Schema.getOrderProperties(fieldSchema)) {
       const childSchema = child?.schema;
-      if (childSchema["x-component"] === 'ProTable.ToolbarContent') {
-        slts.children.push(childSchema)
-      } else if (childSchema["x-component"] === 'ProTable.ToolbarActions') {
+      if (childSchema["x-component"] === 'ProTable.ToolbarActions') {
         slts.actions = childSchema
+      } else {
+        slts.children.push(childSchema)
       }
     }
 
