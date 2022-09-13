@@ -55,7 +55,6 @@ export const Table = observer((
       name: source.name,
       title: source.columnProps?.title as any,
     }))
-    console.log("column sources 变化")
   }, [protableParams, sources])
 
   const rowSelection = useMemo(() => ({
