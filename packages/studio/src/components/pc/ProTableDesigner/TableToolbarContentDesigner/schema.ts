@@ -1,6 +1,6 @@
 import { ProTableSchema } from "../schema";
 
-ProTableSchema.TableToolbarActions = {
+ProTableSchema.TableToolbarContent = {
   type: 'object',
   properties: {
   },

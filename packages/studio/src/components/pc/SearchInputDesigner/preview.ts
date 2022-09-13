@@ -1,13 +1,11 @@
-import React from 'react'
-import { Input } from '@formily/antd'
 import { createBehavior, createResource } from '@designable/core'
 import { DnFC } from '@designable/react'
 import { createFieldSchema, FieldsType } from "../../common/Field";
 import { SearchInputLocales } from './locales';
 import { SearchInputSchema } from './schema';
-import { SearchInput } from '../SearchInput';
+import { ISearchInput, SearchInput } from '../SearchInput';
 
-export const SearchInputDesigner: DnFC<React.ComponentProps<typeof Input>> =
+export const SearchInputDesigner: DnFC<ISearchInput> =
   SearchInput
 
 SearchInputDesigner.Behavior = createBehavior(
@@ -30,7 +28,7 @@ SearchInputDesigner.Resource = createResource(
         componentName: 'Field',
         props: {
           type: 'string',
-          title: 'SearchInput',
+          title: '',
           'x-decorator': 'FormItem',
           'x-component': 'SearchInput',
           'x-compoent-props': {

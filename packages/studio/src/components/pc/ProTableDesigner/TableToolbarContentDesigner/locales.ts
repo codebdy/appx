@@ -1,6 +1,6 @@
 import { ProTableLocales } from "../locales";
 
-ProTableLocales.TableToolbarActions = {
+ProTableLocales.TableToolbarContent = {
   'zh-CN': {
     title: '内容区',
     settings: {
@@ -12,7 +12,6 @@ ProTableLocales.TableToolbarActions = {
     title: 'Grid Column',
     settings: {
       'x-component-props': {
-        gridSpan: 'Grid Span',
       },
     },
   },
@@ -20,7 +19,6 @@ ProTableLocales.TableToolbarActions = {
     title: '그리드 열',
     settings: {
       'x-component-props': {
-        gridSpan: '그리드 스팬',
       },
     },
   },

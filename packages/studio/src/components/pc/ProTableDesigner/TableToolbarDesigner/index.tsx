@@ -15,8 +15,6 @@ export const TableToolbarDesigner: DnFC<React.ComponentProps<typeof TableToolbar
     'ProTable.ToolbarContent',
   ])
 
-  console.log("哈哈哈", content, node)
-
   const actions = findNodeByComponentPath(node, [
     'ProTable.Toolbar',
     'ProTable.ToolbarActions',
