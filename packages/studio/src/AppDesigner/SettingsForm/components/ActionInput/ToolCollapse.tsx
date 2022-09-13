@@ -40,6 +40,10 @@ export const ToolCollapse = memo(() => {
     {
       id: ActionType.Custimized,
       title: t(enumToLangKey(ActionType.Custimized)),
+    },
+    {
+      id: ActionType.SubmitSearch,
+      title: t(enumToLangKey(ActionType.SubmitSearch)),
     }
   ], [t]);
 

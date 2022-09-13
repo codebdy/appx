@@ -18,7 +18,8 @@ export enum ActionType {
   BatchUpdate = "BatchUpdate",
   BatchDelete = "BatchDelete",
   Reset = "Reset",
-  Custimized = "Custimized"
+  Custimized = "Custimized",
+  SubmitSearch = "SubmitSearch",
 }
 
 export enum OpenPageType {
