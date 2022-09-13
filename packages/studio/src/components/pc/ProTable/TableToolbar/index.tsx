@@ -19,7 +19,7 @@ export interface ITableToolbarProps {
 export const TableToolbar = observer((
   props: ITableToolbarProps
 ) => {
-  const { hasContent, hasActions, ...other } = props;
+  const { hasContent = true, hasActions = true, ...other } = props;
   const params = useProTableParams();
   const tableConfig: IProTableConfig = useComponentConfig(params.path);
   const fieldSchema = useFieldSchema()
@@ -53,7 +53,7 @@ export const TableToolbar = observer((
         hasContent && slots.content && <RecursionField schema={slots.content} name={slots.content.name} />
       }
       actions={
-        hasContent && slots.actions && <RecursionField schema={slots.actions} name={slots.actions.name} />
+        hasActions && slots.actions && <RecursionField schema={slots.actions} name={slots.actions.name} />
       }
     />
   )

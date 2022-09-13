@@ -8,12 +8,14 @@ import { findNodeByComponentPath } from "../../../common/shared"
 import { TableToolbarShell } from "../../ProTable/TableToolbar/TableToolbarShell"
 
 export const TableToolbarDesigner: DnFC<React.ComponentProps<typeof TableToolbar>> = observer((props) => {
-  const { hasContent, hasActions, ...other } = props;
+  const { hasContent = true, hasActions = true, ...other } = props;
   const node = useTreeNode()
   const content = findNodeByComponentPath(node, [
     'ProTable.Toolbar',
     'ProTable.ToolbarContent',
   ])
+
+  console.log("哈哈哈", content, node)
 
   const actions = findNodeByComponentPath(node, [
     'ProTable.Toolbar',
