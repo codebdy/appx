@@ -232,7 +232,33 @@ ProTableDesigner.Resource = createResource({
                 'x-component-props': {
                 },
               },
+              children: [
+                {
+                  componentName: 'Field',
+                  props: {
+                    type: 'void',
+                    'x-component': 'Button',
+                    'x-component-props': {
+                      title: "New",
+                      "type": "primary",
+                      "icon": {
+                        "iconKey": "PlusOutlined"
+                      }
+                    },
+                  },
+                }
+              ]
             },
+            {
+              componentName: 'Field',
+              props: {
+                type: 'void',
+                'x-component': 'Text',
+                'x-component-props': {
+                  content: "Title",
+                },
+              },
+            }
           ]
         },
         {
