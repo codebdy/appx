@@ -14,7 +14,7 @@ SearchInputDesigner.Behavior = createBehavior(
     extends: ['Field'],
     selector: (node) => node.props['x-component'] === 'SearchInput',
     designerProps: {
-      propsSchema: createFieldSchema(SearchInputSchema, { fieldSourceType: FieldsType.Multiple }),
+      propsSchema: createFieldSchema(SearchInputSchema, { fieldSourceType: FieldsType.Multiple, actions: ["onEnter"] }),
     },
     designerLocales: SearchInputLocales,
   },

@@ -1,14 +1,13 @@
 import { useDeleteById } from "../../../enthooks/hooks/useDeleteById";
 import { useCallback, useRef } from "react";
 import { useInstanceParams } from "../../contexts/instance";
-import { useShowError } from "../../../hooks/useShowError";
 
 export function useDeleteData() {
   const resolveRef = useRef<(value: unknown) => void>();
   const rejectRef = useRef<(reason?: any) => void>();
   const { entityName, instance } = useInstanceParams()
 
-  const [doDelete, { error }] = useDeleteById(entityName, {
+  const [doDelete] = useDeleteById(entityName, {
     onCompleted: () => {
       resolveRef.current && resolveRef.current(undefined);
     },
@@ -16,8 +15,6 @@ export function useDeleteData() {
       rejectRef.current && rejectRef.current(error);
     }
   });
-
-  useShowError(error);
 
   const deleteData = useCallback(() => {
     const p = new Promise((resolve, reject) => {

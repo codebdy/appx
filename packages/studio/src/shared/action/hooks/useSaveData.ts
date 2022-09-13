@@ -1,7 +1,6 @@
 import { usePostOne } from "../../../enthooks/hooks/usePostOne";
 import { useCallback, useRef } from "react";
 import { useInstanceParams } from "../../contexts/instance";
-import { useShowError } from "../../../hooks/useShowError";
 import { useExtractFieldInput } from "./useExtractFieldInput";
 import { useRecentObjectField } from "./useRecentObjectField";
 
@@ -11,7 +10,7 @@ export function useSaveData() {
   const resolveRef = useRef<(value: unknown) => void>();
   const rejectRef = useRef<(reason?: any) => void>();
   const extract = useExtractFieldInput();
-  const [post, { error }] = usePostOne(entityName, {
+  const [post] = usePostOne(entityName, {
     onCompleted: (data: any) => {
       resolveRef.current && resolveRef.current(data)
     },
@@ -19,8 +18,6 @@ export function useSaveData() {
       rejectRef.current && rejectRef.current(err)
     }
   })
-
-  useShowError(error);
 
   const save = useCallback(() => {
     const p = new Promise((resolve, reject) => {

@@ -1,9 +1,10 @@
 import { observer } from "@formily/reactive-react"
-import { Input } from "antd"
+import { Input, message } from "antd"
 import React, { useCallback, useMemo } from "react"
 import { useFieldSchema } from "@formily/react"
-import { IFieldSource } from "packages/studio/src/datasource/model/IFieldSource"
+import { IFieldSource } from "../../../datasource/model/IFieldSource"
 import { isArr } from "@formily/shared"
+import { IAppxAction, useDoActions } from "../../../shared/action"
 
 export interface ISearchText {
   isFuzzy?: boolean,
@@ -16,11 +17,12 @@ export interface ISearchInput {
   isFuzzy?: boolean,
   value?: ISearchText,
   onChange?: (value?: ISearchText) => void,
+  onEnter?: IAppxAction[],
 }
 
 export const SearchInput = observer((props: ISearchInput) => {
-  const { isFuzzy, value, onChange, ...other } = props;
-
+  const { isFuzzy, value, onChange, onEnter, ...other } = props;
+  const doActions = useDoActions();
   const fieldSchema = useFieldSchema();
 
   const fields = useMemo(() => {
@@ -39,7 +41,23 @@ export const SearchInput = observer((props: ISearchInput) => {
     })
   }, [fields, isFuzzy, onChange]);
 
+  const handleKeyEnter = useCallback((event: React.KeyboardEvent<HTMLElement>) => {
+    if (event.key !== "Enter") {
+      return;
+    }
+    if (!onEnter) {
+      return;
+    }
+    doActions(onEnter)
+      .then(() => {
+      })
+      .catch((error) => {
+        message.error(error?.message);
+        console.error(error);
+      })
+      ;
+  }, [doActions, onEnter])
   return (
-    <Input value={value?.keyword} onChange={handleChange}  {...other} />
+    <Input value={value?.keyword} onChange={handleChange} onKeyUp={handleKeyEnter}  {...other} />
   )
 })

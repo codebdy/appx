@@ -1,4 +1,3 @@
-import { useShowError } from "../../../hooks/useShowError";
 import { useCallback, useRef } from "react";
 import { useProTableParams } from "../../../components/pc/ProTable/context";
 import { useDeleteByIds } from "../../../enthooks/hooks/useDeleteByIds";
@@ -8,7 +7,7 @@ export function useBatchDelete() {
   const rejectRef = useRef<(reason?: any) => void>();
   const tableParams = useProTableParams();
   const { dataBind, selectedRowKeys } = tableParams;
-  const [doDelete, { error }] = useDeleteByIds(dataBind?.entityName, {
+  const [doDelete ] = useDeleteByIds(dataBind?.entityName, {
     onCompleted: () => {
       resolveRef.current && resolveRef.current(undefined);
       tableParams.selectedRowKeys = [];
@@ -17,8 +16,6 @@ export function useBatchDelete() {
       rejectRef.current && rejectRef.current(error);
     }
   });
-
-  useShowError(error);
 
   const batchDelete = useCallback(() => {
     const p = new Promise((resolve, reject) => {

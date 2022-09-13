@@ -15,6 +15,7 @@ export const SearchInputLocales = {
         },
         showCount: '是否展示字数',
         checkStrength: '检测强度',
+        onEnter: '回车事件',
       },
     },
   },

@@ -1,7 +1,6 @@
 import { useSet } from "../../../enthooks/hooks/useSet";
 import { useCallback, useRef } from "react";
 import { useProTableParams } from "../../../components/pc/ProTable/context";
-import { useShowError } from "../../../hooks/useShowError";
 import { useRecentObjectField } from "./useRecentObjectField";
 import { useExtractFieldInput } from "./useExtractFieldInput";
 
@@ -13,7 +12,7 @@ export function useBatchUpdate() {
   const objectField = useRecentObjectField();
   const extract = useExtractFieldInput();
 
-  const [doSet, { error }] = useSet(dataBind?.entityName, {
+  const [doSet] = useSet(dataBind?.entityName, {
     onCompleted: () => {
       resolveRef.current && resolveRef.current(undefined);
       tableParams.selectedRowKeys = [];
@@ -23,7 +22,7 @@ export function useBatchUpdate() {
     }
   });
 
-  useShowError(error);
+
   const batchUpdate = useCallback(() => {
     const p = new Promise((resolve, reject) => {
       if (!selectedRowKeys?.length) {
