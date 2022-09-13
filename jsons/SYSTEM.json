@@ -49,6 +49,7 @@
           },
           {
             "System": true,
+            "label": "$inline:{\"zh-CN\":\"密码\"}",
             "length": 256,
             "name": "password",
             "type": "String",
@@ -66,6 +67,7 @@
           },
           {
             "System": true,
+            "label": "$inline:{\"zh-CN\":\"演示账号\"}",
             "name": "isDemo",
             "nullable": true,
             "type": "Boolean",
@@ -75,6 +77,7 @@
           {
             "System": true,
             "createDate": true,
+            "label": "$inline:{\"zh-CN\":\"创建时间\"}",
             "name": "createdAt",
             "type": "Date",
             "typeLabel": "Date",
@@ -82,6 +85,7 @@
           },
           {
             "System": true,
+            "label": "$inline:{\"zh-CN\":\"更新时间\"}",
             "name": "updatedAt",
             "type": "Date",
             "typeLabel": "Date",
@@ -407,11 +411,11 @@
             "uuid": "5f465593-71d8-4c10-ac2d-720fed999811"
           },
           {
-            "uuid": "01da62ca-ad8d-4306-9420-732e779a8b83",
             "name": "device",
             "type": "Enum",
             "typeLabel": "Device",
-            "typeUuid": "096f252a-5e35-4e49-8dce-297b2f16374f"
+            "typeUuid": "096f252a-5e35-4e49-8dce-297b2f16374f",
+            "uuid": "01da62ca-ad8d-4306-9420-732e779a8b83"
           }
         ],
         "innerId": 1010,
@@ -488,7 +492,8 @@
         "sourceMutiplicity": "0..*",
         "targetId": "META_USER_UUID",
         "targetMultiplicity": "0..*",
-        "uuid": "META_RELATION_USER_ROLE_UUID"
+        "uuid": "META_RELATION_USER_ROLE_UUID",
+        "labelOfSource": "$inline:{\"zh-CN\":\"角色\"}"
       },
       {
         "innerId": 0,
