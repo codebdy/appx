@@ -3,6 +3,8 @@ import { ISchema } from '@formily/react'
 export const ProTableSchema: ISchema & {
   QueryForm?: ISchema,
   TableToolbar?: ISchema,
+  TableToolbarContent?: ISchema,
+  TableToolbarActions?: ISchema,
   TableBatchActions?: ISchema,
 } = {
   type: 'object',
