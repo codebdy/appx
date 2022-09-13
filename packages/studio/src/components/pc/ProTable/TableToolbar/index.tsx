@@ -6,6 +6,7 @@ import { IProTableConfig } from "../context/IProTableConfig"
 import { TableToolbarShell } from "./TableToolbarShell"
 import { RecursionField, useFieldSchema } from '@formily/react';
 import { Schema } from "@formily/react";
+import "./style.less";
 
 export interface ITableToolbarProps {
   className?: string,

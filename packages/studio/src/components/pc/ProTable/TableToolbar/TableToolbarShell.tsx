@@ -1,5 +1,5 @@
 import { ReloadOutlined } from "@ant-design/icons"
-import { Button, Tooltip } from "antd"
+import { Button, Space, Tooltip } from "antd"
 import React, { useCallback } from "react"
 import { useLocalTranslations } from "../hooks/useLocalTranslations"
 import ColumnsSettings from "./ColumnsSettings"
@@ -10,13 +10,13 @@ import { observer } from "@formily/reactive-react"
 import { ITableToolbarProps } from "."
 
 export interface ITableToolbarShellProps {
-  className?:string,
-  children?:React.ReactNode,
-  actions?:React.ReactNode,
+  className?: string,
+  children?: React.ReactNode,
+  actions?: React.ReactNode,
 }
 
 export const TableToolbarShell = observer((
-  props: ITableToolbarProps &ITableToolbarShellProps
+  props: ITableToolbarProps & ITableToolbarShellProps
 ) => {
   const {
     className,
@@ -38,8 +38,10 @@ export const TableToolbarShell = observer((
     <div {...other}
       className={clx(className, "table-toolbar")}
     >
-      <div>
-        {children}
+      <div className="table-toolbar-content">
+        <Space>
+          {children}
+        </Space>
       </div>
       <div
         style={{
