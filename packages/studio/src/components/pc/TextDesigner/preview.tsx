@@ -6,25 +6,21 @@ import './styles.less'
 import { TextSchema } from './schema'
 import { TextLocales } from './locales'
 import { createFieldSchema } from "../../common/Field/shared"
+import { ITextProps } from '../Text'
+import { useParseLangMessage } from '../../../hooks/useParseLangMessage'
 
-export interface IDesignableTextProps {
-  value?: string
-  content?: string
-  mode?: 'normal' | 'h1' | 'h2' | 'h3' | 'p'
-  style?: React.CSSProperties
-  className?: string
-}
-
-export const TextDesigner: DnFC<IDesignableTextProps> = (props) => {
+export const TextDesigner: DnFC<ITextProps> = (props) => {
+  const { value, ...other } = props;
   const tagName = props.mode === 'normal' || !props.mode ? 'div' : props.mode
+  const p = useParseLangMessage();
   return React.createElement(
     tagName,
     {
-      ...props,
+      ...other,
       className: cls(props.className, 'dn-text'),
-      'data-content-editable': 'x-component-props.content',
+      value: p(value),
     },
-    props.content
+    p(props.content)
   )
 }
 
@@ -33,7 +29,7 @@ TextDesigner.Behavior = createBehavior({
   extends: ['Field'],
   selector: (node) => node.props['x-component'] === 'Text',
   designerProps: {
-    propsSchema:  createFieldSchema(TextSchema),
+    propsSchema: createFieldSchema(TextSchema),
   },
   designerLocales: TextLocales,
 })

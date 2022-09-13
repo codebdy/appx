@@ -6,7 +6,10 @@ export const TextSchema: ISchema = {
     content: {
       type: 'string',
       'x-decorator': 'FormItem',
-      'x-component': 'Input.TextArea',
+      'x-component': 'MultiLangInput',
+      'x-component-props':{
+        multiline: true
+      }
     },
     mode: {
       type: 'string',
