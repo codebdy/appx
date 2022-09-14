@@ -53,17 +53,18 @@ export const Medias = observer((props: IMediasProps) => {
           </div>
           <div className="medias-content">
             <Card
-              style={{ width: 300, borderRadius: 8 }}
+              style={{ width: 200, borderRadius: 8 }}
+              hoverable
+              size = "small"
               cover={
                 <img
                   alt="example"
+                  style={{ borderRadius: "8px 8px 0 0" }}
                   src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
                 />
               }
             >
-              <Meta
-                title="向日葵"
-              />
+              <div>向日葵</div>
             </Card>
           </div>
 
