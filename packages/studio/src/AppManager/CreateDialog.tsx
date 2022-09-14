@@ -1,6 +1,5 @@
 import { CloudUploadOutlined, PlusOutlined } from '@ant-design/icons';
-import { Button, UploadProps, Form, Modal, message } from 'antd';
-import Dragger from 'antd/lib/upload/Dragger';
+import { Button, UploadProps, Form, Modal, message, Upload } from 'antd';
 import React, { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCreateApp } from '../hooks/useCreateApp';
@@ -8,6 +7,7 @@ import { IAppInput } from '../model/input';
 import { createUuid } from '../shared';
 import { MultiLangInput } from '../components/pc/MultiLangInput';
 import { useShowError } from './../hooks/useShowError';
+const { Dragger } = Upload;
 
 const CreateDialog = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -127,7 +127,7 @@ const CreateDialog = memo(() => {
             // 如果没有下面这一句会报错
             getValueFromEvent={normFile}
           >
-            <Dragger {...uploadProps}>
+            <Dragger {...uploadProps} listType="picture-card">
               <p className="ant-upload-drag-icon">
                 <CloudUploadOutlined />
               </p>
