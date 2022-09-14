@@ -3,7 +3,15 @@ import { ISchema } from '@formily/react'
 export const SearchInputSchema: ISchema = {
   type: 'object',
   properties: {
-    isFuzzy:{
+    searchStyle: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+      'x-component-props': {
+        defaultChecked: true,
+      },
+    },
+    isFuzzy: {
       type: 'boolean',
       'x-decorator': 'FormItem',
       'x-component': 'Switch',

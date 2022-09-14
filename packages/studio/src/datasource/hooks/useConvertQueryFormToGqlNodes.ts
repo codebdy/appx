@@ -29,6 +29,9 @@ export function useConvertQueryFormToGqlNodes() {
           }
         } else if (anyValue.isSearchText) {
           const searchText = anyValue as ISearchText;
+          if(!searchText?.fields?.length){
+            console.error("Not set fields to search box")
+          }
           if (searchText.keyword && searchText?.fields?.length) {
             whereNodes.push(createSeachFieldNode(value as any) as any);
           }

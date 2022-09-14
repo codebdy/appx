@@ -14,17 +14,17 @@ export interface ISearchText {
 }
 
 export interface ISearchInput {
+  searchStyle?: boolean,
   isFuzzy?: boolean,
   value?: ISearchText,
   onChange?: (value?: ISearchText) => void,
-  onEnter?: IAppxAction[],
+  onSearch?: IAppxAction[],
 }
 
 export const SearchInput = observer((props: ISearchInput) => {
-  const { isFuzzy, value, onChange, onEnter, ...other } = props;
+  const { searchStyle, isFuzzy, value, onChange, onSearch, ...other } = props;
   const doActions = useDoActions();
   const fieldSchema = useFieldSchema();
-
   const fields = useMemo(() => {
     const fieldSource = fieldSchema?.["x-field-source"];
     return isArr(fieldSource)
@@ -41,14 +41,8 @@ export const SearchInput = observer((props: ISearchInput) => {
     })
   }, [fields, isFuzzy, onChange]);
 
-  const handleKeyEnter = useCallback((event: React.KeyboardEvent<HTMLElement>) => {
-    if (event.key !== "Enter") {
-      return;
-    }
-    if (!onEnter) {
-      return;
-    }
-    doActions(onEnter)
+  const handleSearch =  useCallback(() => {
+    doActions(onSearch)
       .then(() => {
       })
       .catch((error) => {
@@ -56,8 +50,22 @@ export const SearchInput = observer((props: ISearchInput) => {
         console.error(error);
       })
       ;
-  }, [doActions, onEnter])
+  }, [doActions, onSearch])
+
+  const handleKeyEnter = useCallback((event: React.KeyboardEvent<HTMLElement>) => {
+    if (event.key !== "Enter") {
+      return;
+    }
+    if (!onSearch) {
+      return;
+    }
+    handleSearch();
+  }, [handleSearch, onSearch])
   return (
-    <Input value={value?.keyword} onChange={handleChange} onKeyUp={handleKeyEnter}  {...other} />
+    searchStyle
+      ?
+      <Input.Search value={value?.keyword} onChange={handleChange} onSearch = {handleSearch}  {...other} />
+      :
+      <Input value={value?.keyword} onChange={handleChange} onKeyUp={handleKeyEnter} {...other} />
   )
 })

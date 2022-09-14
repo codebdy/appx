@@ -3,6 +3,7 @@ export const SearchInputLocales = {
     title: '查询框',
     settings: {
       'x-component-props': {
+        searchStyle: "查询风格",
         isFuzzy: "模糊查询",
         addonAfter: '后缀标签',
         addonBefore: '前缀标签',
@@ -15,7 +16,7 @@ export const SearchInputLocales = {
         },
         showCount: '是否展示字数',
         checkStrength: '检测强度',
-        onEnter: '回车事件',
+        onSearch: '查询事件',
       },
     },
   },

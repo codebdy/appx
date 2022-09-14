@@ -17,6 +17,8 @@ import { InstanceContext } from "../../../shared/contexts/instance";
 export const ObjectPanel = observer((props: {
   dataBind: IDataBindSource,
   children?: React.ReactNode,
+  value?: any,
+  onChange?: (value: any) => void //这个必须要过滤出来
 }) => {
   const { dataBind, children } = props;
   const schema = useFieldSchema();

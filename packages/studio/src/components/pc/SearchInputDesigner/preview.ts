@@ -14,7 +14,7 @@ SearchInputDesigner.Behavior = createBehavior(
     extends: ['Field'],
     selector: (node) => node.props['x-component'] === 'SearchInput',
     designerProps: {
-      propsSchema: createFieldSchema(SearchInputSchema, { fieldSourceType: FieldsType.Multiple, actions: ["onEnter"] }),
+      propsSchema: createFieldSchema(SearchInputSchema, { fieldSourceType: FieldsType.Multiple, actions: ["onSearch"] }),
     },
     designerLocales: SearchInputLocales,
   },
@@ -31,8 +31,9 @@ SearchInputDesigner.Resource = createResource(
           title: '',
           'x-decorator': 'FormItem',
           'x-component': 'SearchInput',
-          'x-compoent-props': {
+          'x-component-props': {
             isFuzzy: true,
+            searchStyle: true,
           }
         },
       },
