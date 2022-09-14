@@ -1,10 +1,11 @@
-import { CloudUploadOutlined, FilterOutlined, HomeOutlined, SortAscendingOutlined } from "@ant-design/icons"
+import { CloudUploadOutlined, EditOutlined, EllipsisOutlined, FilterOutlined, HomeOutlined, SettingOutlined, SortAscendingOutlined } from "@ant-design/icons"
 import { observer } from "@formily/reactive-react"
-import { Breadcrumb, Button, Input, Space } from "antd"
+import { Breadcrumb, Button, Card, Input, Space } from "antd"
 import { ResizableColumn } from "../../../../common/ResizableColumn"
 import React from "react"
 import "./style.less"
 import { FolderTree } from "./FolderTree"
+const { Meta } = Card;
 
 export interface IMediasProps {
 
@@ -51,7 +52,20 @@ export const Medias = observer((props: IMediasProps) => {
             </Breadcrumb>
           </div>
           <div className="medias-content">
-            哈哈哈
+            <Card
+              style={{ width: 300 }}
+              cover={
+                <img
+                  alt="example"
+                  src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                />
+              }
+            >
+              <Meta
+                title="向日葵"
+                description="2022-1-29 19:20"
+              />
+            </Card>
           </div>
 
         </div>
