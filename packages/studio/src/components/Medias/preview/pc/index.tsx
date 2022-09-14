@@ -12,8 +12,9 @@ export interface IMediasProps {
 }
 
 export const Medias = observer((props: IMediasProps) => {
+  const { ...other } = props;
   return (
-    <div className="rx-medias top-border">
+    <div className="rx-medias top-border" {...other}>
       <div className="media-page-header">
         <div className="ant-page-header-heading-title">媒体管理</div>
 
