@@ -1,5 +1,5 @@
-import { CloudUploadOutlined, PlusOutlined } from '@ant-design/icons';
-import { Button, UploadProps, Form, Modal, message, Upload } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
+import { Button, Form, Modal, message } from 'antd';
 import React, { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCreateApp } from '../hooks/useCreateApp';
@@ -7,7 +7,7 @@ import { IAppInput } from '../model/input';
 import { createUuid } from '../shared';
 import { MultiLangInput } from '../components/pc/MultiLangInput';
 import { useShowError } from './../hooks/useShowError';
-const { Dragger } = Upload;
+import { ImageUploader } from '../components/ImageUploader';
 
 const CreateDialog = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -49,31 +49,6 @@ const CreateDialog = memo(() => {
     console.log('Failed:', errorInfo);
   };
 
-  const uploadProps: UploadProps = {
-    name: 'file',
-    action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-    headers: {
-      authorization: 'authorization-text',
-    },
-    onChange(info) {
-      if (info.file.status !== 'uploading') {
-        console.log(info.file, info.fileList);
-      }
-      if (info.file.status === 'done') {
-        message.success(`${info.file.name} file uploaded successfully`);
-      } else if (info.file.status === 'error') {
-        message.error(`${info.file.name} file upload failed.`);
-      }
-    },
-  };
-
-  const normFile = (e: any) => {
-    console.log('Upload event:', e);
-    if (Array.isArray(e)) {
-      return e;
-    }
-    return e?.fileList;
-  };
   return (
     <>
       <Button
@@ -123,19 +98,11 @@ const CreateDialog = memo(() => {
           < Form.Item
             label={t("Image")}
             name="image"
-            valuePropName="fileList"
+            //valuePropName="fileList"
             // 如果没有下面这一句会报错
-            getValueFromEvent={normFile}
+            //getValueFromEvent={normFile}
           >
-            <Dragger {...uploadProps} listType="picture-card">
-              <p className="ant-upload-drag-icon">
-                <CloudUploadOutlined />
-              </p>
-              <p className="ant-upload-hint">
-                {t("UploadHint1")}
-                <Button type="link">{t("UploadHint2")}</Button>
-              </p>
-            </Dragger>
+            <ImageUploader title={t("Upload")} maxCount={1} />
           </Form.Item>
         </Form>
       </Modal>
