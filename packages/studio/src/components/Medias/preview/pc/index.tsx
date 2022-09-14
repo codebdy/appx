@@ -1,5 +1,6 @@
+import { CloudUploadOutlined, FilterOutlined, SortAscendingOutlined } from "@ant-design/icons"
 import { observer } from "@formily/reactive-react"
-import { PageHeader } from "antd"
+import { Button, Input, PageHeader, Space } from "antd"
 import React from "react"
 import "./style.less"
 
@@ -12,9 +13,17 @@ export const Medias = observer((props: IMediasProps) => {
     <div>
       <PageHeader
         className="media-page-header"
-        title="Title"
-        subTitle="This is a subtitle"
-      />
+        title="媒体管理"
+        subTitle = {<Input.Search />}
+        extra={
+          <Space>
+            <Button type="text" shape="circle" icon={<FilterOutlined />} />
+            <Button type="text" shape="circle" icon={<SortAscendingOutlined />} />
+            <Button type="primary" shape="round" icon={<CloudUploadOutlined />}>上传</Button>
+          </Space>
+        }
+      >
+      </PageHeader>
       哈哈
     </div>
   )
