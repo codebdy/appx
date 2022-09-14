@@ -30,6 +30,20 @@
         padding: 8px;
         padding-left: 24px;
         overflow: auto;
+        .medias-content-wrap{
+          flex: 1;
+          height: 100%;
+          display: flex;
+          flex-flow: column;
+          .medias-toolbar{
+            height: 48px;
+          }
+          .medias-content{
+            flex: 1;
+            height: 0;
+            overflow: auto;
+          }
+        }
       }
     }
   }

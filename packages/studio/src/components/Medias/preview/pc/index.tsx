@@ -1,11 +1,10 @@
 import { CloudUploadOutlined, FilterOutlined, SortAscendingOutlined } from "@ant-design/icons"
 import { observer } from "@formily/reactive-react"
-import { Button, Input, PageHeader, Space, Typography } from "antd"
+import { Button, Input, PageHeader, Space } from "antd"
 import { ResizableColumn } from "../../../../common/ResizableColumn"
 import React from "react"
 import "./style.less"
 import { FolderTree } from "./FolderTree"
-const { Title } = Typography;
 
 export interface IMediasProps {
 
@@ -38,8 +37,14 @@ export const Medias = observer((props: IMediasProps) => {
             </div>
           </div>
         </ResizableColumn>
-        <div >
-          哈哈哈
+        <div className="medias-content-wrap">
+          <div className="medias-toolbar">
+            ddd
+          </div>
+          <div className="medias-content">
+            哈哈哈
+          </div>
+
         </div>
       </div>
     </div>
