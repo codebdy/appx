@@ -1,11 +1,11 @@
-import { CloudUploadOutlined, EditOutlined, EllipsisOutlined, FilterOutlined, HomeOutlined, SettingOutlined, SortAscendingOutlined } from "@ant-design/icons"
+import { CloudUploadOutlined, FilterOutlined, HomeOutlined, SortAscendingOutlined } from "@ant-design/icons"
 import { observer } from "@formily/reactive-react"
-import { Breadcrumb, Button, Card, Input, Space } from "antd"
+import { Breadcrumb, Button, Col, Input, Row, Space } from "antd"
 import { ResizableColumn } from "../../../../common/ResizableColumn"
 import React from "react"
 import "./style.less"
 import { FolderTree } from "./FolderTree"
-const { Meta } = Card;
+import { ImageCard } from "./ImageCard"
 
 export interface IMediasProps {
 
@@ -52,20 +52,12 @@ export const Medias = observer((props: IMediasProps) => {
             </Breadcrumb>
           </div>
           <div className="medias-content">
-            <Card
-              style={{ width: 200, borderRadius: 8 }}
-              hoverable
-              size = "small"
-              cover={
-                <img
-                  alt="example"
-                  style={{ borderRadius: "8px 8px 0 0" }}
-                  src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                />
-              }
-            >
-              <div>向日葵</div>
-            </Card>
+            <Row>
+              <Col span={6} style={{ padding: 8 }}><ImageCard /></Col>
+              <Col span={6} style={{ padding: 8 }}><ImageCard /></Col>
+              <Col span={6} style={{ padding: 8 }}><ImageCard /></Col>
+              <Col span={6} style={{ padding: 8 }}><ImageCard /></Col>
+            </Row>
           </div>
 
         </div>
