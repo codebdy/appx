@@ -7,7 +7,7 @@ import { useParentForm } from "@formily/react"
 import { useProTableParams } from "../context";
 import { isObjectField } from "@formily/core";
 import { observer } from "@formily/reactive-react";
-import { toJS } from "@formily/reactive";
+import { useTableSearch } from "../../../../shared/action/hooks/useTableSearch";
 
 export const ButtonsGridColum = observer((
   props: {
@@ -23,15 +23,14 @@ export const ButtonsGridColum = observer((
   const form = useParentForm();
   const objectField = useMemo(() => isObjectField(form) && form, [form]);
 
+  const submit = useTableSearch();
   const handleReset = useCallback(() => {
     params && objectField?.reset();
   }, [objectField, params])
 
   const handleSubmit = useCallback(() => {
-    objectField?.validate();
-    params.queryForm = toJS(objectField?.value);
-    params.current = 1;
-  }, [objectField, params])
+    submit()
+  }, [submit])
 
   const acions = useMemo(() => {
     return (

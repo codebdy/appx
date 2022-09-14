@@ -1,6 +1,6 @@
 import { Row, Tabs } from "antd";
 import React, { useMemo, useState } from "react"
-import { RecursionField, useFieldSchema, useField } from '@formily/react';
+import { RecursionField, useFieldSchema } from '@formily/react';
 import "./style.less"
 import { PageHeader } from "./PageHeader";
 import { PageBody } from "./PageBody";
@@ -38,7 +38,6 @@ export const PageContainer: React.FC<IPageContainerProps> & {
   } = props;
   const [selectedTabKey, setSelectedTabKey] = useState("1")
   const fieldSchema = useFieldSchema()
-  const field = useField();
   const slots = useMemo(() => {
     const slts = {
       headerExtra: null,
@@ -76,7 +75,7 @@ export const PageContainer: React.FC<IPageContainerProps> & {
   };
 
   const selectedTab = slots.tabs?.[parseInt(selectedTabKey) - 1]
-  const basePath = useMemo(()=>field.path, [field.path]);
+  //const basePath = useMemo(()=>field.path, [field.path]);
 
   return (
     <PageContainerShell {...other}>
@@ -85,7 +84,7 @@ export const PageContainer: React.FC<IPageContainerProps> & {
         onBack={hasGobackButton ? () => window.history.back() : undefined}
         title={title}
         subTitle={subtitle}
-        extra={hasActions && slots.headerExtra && <RecursionField schema={slots.headerExtra} name={slots.headerExtra.name} basePath = {basePath}/>}
+        extra={hasActions && slots.headerExtra && <RecursionField schema={slots.headerExtra} name={slots.headerExtra.name}/>}
         footer={
           hasTabs && slots.tabs && <Tabs activeKey={selectedTabKey} onChange={handleSelectTab}>
             {
@@ -101,23 +100,23 @@ export const PageContainer: React.FC<IPageContainerProps> & {
         breadcrumb={hasBreadcrumb ? { routes: breadcrumbs } : undefined}
       >
         <Row>
-          {hasHeaderContent && slots.headerContent && <RecursionField schema={slots.headerContent} name={slots.headerContent.name} basePath = {basePath}/>}
-          {hasHeaderContentExtra && slots.headerContentExtra && <RecursionField schema={slots.headerContentExtra} name={slots.headerContentExtra.name} basePath = {basePath}/>}
+          {hasHeaderContent && slots.headerContent && <RecursionField schema={slots.headerContent} name={slots.headerContent.name} />}
+          {hasHeaderContentExtra && slots.headerContentExtra && <RecursionField schema={slots.headerContentExtra} name={slots.headerContentExtra.name}/>}
         </Row>
 
       </PageHeader>
       <PageBody>
-        {hasTabs && selectedTab && <RecursionField schema={selectedTab} name={selectedTab.name} basePath = {basePath}/>}
+        {hasTabs && selectedTab && <RecursionField schema={selectedTab} name={selectedTab.name}/>}
         {
           slots.otherChildren?.map((child, index) => {
             return (
               <div key={index}>
-                <RecursionField key={index} schema={child} name={child.name} basePath = {basePath}/>
+                <RecursionField key={index} schema={child} name={child.name}/>
               </div>
             )
           })
         }
-        {hasFooterToolbar && slots.footer && <RecursionField schema={slots.footer} name={slots.footer.name} basePath = {basePath}/>}
+        {hasFooterToolbar && slots.footer && <RecursionField schema={slots.footer} name={slots.footer.name}/>}
       </PageBody>
     </PageContainerShell>
   )

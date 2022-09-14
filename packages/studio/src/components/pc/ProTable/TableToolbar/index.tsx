@@ -14,12 +14,15 @@ export interface ITableToolbarProps {
   hasRefresh?: boolean,
   hasHeight?: boolean,
   hasSettings?: boolean,
+  children?: React.ReactNode,
+  value?: any,
+  onChange?: (value: any) => void //这个必须要过滤出来
 }
 
 export const TableToolbar = observer((
   props: ITableToolbarProps
 ) => {
-  const { hasActions = true, ...other } = props;
+  const { hasActions = true, children, value, onChange, ...other } = props;
   const params = useProTableParams();
   const tableConfig: IProTableConfig = useComponentConfig(params.path);
   const fieldSchema = useFieldSchema()

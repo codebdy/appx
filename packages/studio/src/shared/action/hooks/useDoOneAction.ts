@@ -10,6 +10,7 @@ import { useOpenPage } from "./useOpenPage";
 import { useReset } from "./useReset";
 import { useSaveData } from "./useSaveData";
 import { useShowSuccess } from "./useShowSuccess";
+import { useTableSearch } from "./useTableSearch";
 
 export function useDoOneAction() {
   const openPage = useOpenPage();
@@ -22,6 +23,7 @@ export function useDoOneAction() {
   const closeDialog = useCloseDialog();
   const batchDelete = useBatchDelete();
   const batchUpdate = useBatchUpdate();
+  const submitSearch = useTableSearch();
 
   const doAction = useCallback((action: IAppxAction) => {
     return new Promise(async (resolve, reject) => {
@@ -57,6 +59,10 @@ export function useDoOneAction() {
             break;
           case ActionType.BatchUpdate:
             await batchUpdate();
+            break;
+          case ActionType.SubmitSearch:
+            submitSearch();
+            break;
         }
       } catch (err) {
         reject(err);
@@ -64,7 +70,7 @@ export function useDoOneAction() {
       resolve(undefined);
     })
 
-  }, [batchDelete, batchUpdate, closeDialog, closePage, confirm, deleteData, openPage, reset, save, showSuccess])
+  }, [batchDelete, batchUpdate, closeDialog, closePage, confirm, deleteData, openPage, reset, save, showSuccess, submitSearch])
 
   return doAction;
 }

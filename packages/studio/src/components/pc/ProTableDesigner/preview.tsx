@@ -227,7 +227,7 @@ ProTableDesigner.Resource = createResource({
             {
               componentName: 'Field',
               props: {
-                type: 'object',
+                type: 'void',
                 'x-component': 'ProTable.ToolbarActions',
                 'x-component-props': {
                 },
