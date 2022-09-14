@@ -47,7 +47,7 @@ const PCRunner = memo(() => {
         }
         menu={<MenuContent />}
         header={<HeaderContent />}
-        footer={"©Copyright 悠闲的水 2022"}
+        //footer={"©Copyright 悠闲的水 2022"}
       >
         <RootPage />
         {
