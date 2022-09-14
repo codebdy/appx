@@ -4,6 +4,26 @@
   height: calc(100vh - 64px);
   .media-page-header{
     background-color: #fff;
+    display: flex;
+    box-sizing: border-box;
+    margin: 0;
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 14px;
+    font-variant: tabular-nums;
+    line-height: 1.5715;
+    list-style: none;
+    font-feature-settings: 'tnum';
+    position: relative;
+    padding: 16px 24px;
+    justify-content: space-between;
+    .medias-actions{
+      display: flex;
+      align-items: center;
+    }
+    .search-wrap{
+      width: 300px;
+      margin-right: 32px;
+    }
   }
   .medias-body{
     flex:1;
