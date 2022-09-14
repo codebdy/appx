@@ -18,7 +18,7 @@ MediasDesigner.Behavior = createBehavior({
 })
 
 MediasDesigner.Resource = createResource({
-  icon: 'MediaSource',
+  icon: 'ImageEntitySource',
   elements: [
     {
       componentName: 'Field',
