@@ -8,14 +8,16 @@ import { RcFile } from "antd/lib/upload";
 export interface ImageUploaderProps {
   title?: string,
   maxCount?: number,
+  value?: string | string[],
+  onChange?: (value?: string | string[]) => void,
 }
 
 export const ImageUploader = observer((props: ImageUploaderProps) => {
-  const { title, maxCount = 1, ...other } = props;
+  const { title, maxCount = 1, value, onChange, ...other } = props;
   const [fileList, setFileList] = useState<UploadFile[]>([
     {
       uid: '-1',
-      name: 'image.png',
+      name: '',
       status: 'done',
       url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
     },
@@ -23,11 +25,11 @@ export const ImageUploader = observer((props: ImageUploaderProps) => {
 
   const p = useParseLangMessage();
 
-  const onChange: UploadProps['onChange'] = useCallback(({ fileList: newFileList }) => {
+  const handleChange: UploadProps['onChange'] = useCallback(({ fileList: newFileList }) => {
     setFileList(newFileList);
   }, []);
 
-  const onPreview = useCallback(async (file: UploadFile) => {
+  const handlePreview = useCallback(async (file: UploadFile) => {
     let src = file.url as string;
     if (!src) {
       src = await new Promise(resolve => {
@@ -49,8 +51,8 @@ export const ImageUploader = observer((props: ImageUploaderProps) => {
         action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
         listType="picture-card"
         fileList={fileList}
-        onChange={onChange}
-        onPreview={onPreview}
+        onChange={handleChange}
+        onPreview={handlePreview}
       >
         {fileList.length < maxCount && `+ ${p(title)}`}
       </Upload>
