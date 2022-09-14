@@ -3,9 +3,9 @@ import { createBehavior, createResource } from '@designable/core'
 import { DnFC } from '@designable/react'
 import { MediasSchema } from "./schema";
 import { MediasLocales } from "./locales";
-import { IImageUploaderProps, ImageUploader } from "../preview/pc";
+import { ImageUploaderProps, ImageUploader } from "../preview/pc";
 
-export const ImageUploaderDesigner: DnFC<IImageUploaderProps> = ImageUploader
+export const ImageUploaderDesigner: DnFC<ImageUploaderProps> = ImageUploader
 
 ImageUploaderDesigner.Behavior = createBehavior({
   name: 'ImageUploader',
