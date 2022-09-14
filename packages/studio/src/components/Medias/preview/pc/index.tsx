@@ -4,6 +4,7 @@ import { Button, Input, PageHeader, Space } from "antd"
 import { ResizableColumn } from "../../../../common/ResizableColumn"
 import React from "react"
 import "./style.less"
+import { FolderTree } from "./FolderTree"
 
 export interface IMediasProps {
 
@@ -27,7 +28,9 @@ export const Medias = observer((props: IMediasProps) => {
       </PageHeader>
       <div className="medias-body">
         <ResizableColumn maxWidth={460} minWidth={160}>
-          呵呵呵
+          <div className="medias-left-tree right-border">
+            <FolderTree />
+          </div>
         </ResizableColumn>
         <div >
           哈哈哈
