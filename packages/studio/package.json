@@ -25,6 +25,7 @@
     "@antv/x6-react-shape": "^1.6.1",
     "@designable/formily-antd": "^1.0.0-beta.45",
     "@graphiql/toolkit": "^0.6.0",
+    "antd-img-crop": "^4.2.4",
     "array-move": "^4.0.0",
     "awesome-graphql-client": "^0.12.1",
     "graphiql": "^1.10.0",

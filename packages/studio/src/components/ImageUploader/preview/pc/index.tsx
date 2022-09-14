@@ -1,49 +1,59 @@
-import { CloudUploadOutlined } from "@ant-design/icons";
 import { observer } from "@formily/reactive-react"
-import { Button, message, Upload, UploadProps } from "antd";
-import { registerResourceBundle } from "../../../../i18n/registerResourceBundle";
-import React from "react"
-import { useLocalTranslations } from "../hooks/useLocalTranslations";
-import locales, { LOCALES_NS } from "../locales"
-
-const { Dragger } = Upload;
-registerResourceBundle(LOCALES_NS, locales);
+import { Upload, UploadFile, UploadProps } from "antd";
+import React, { useCallback, useState } from "react"
+import { useParseLangMessage } from "../../../../hooks/useParseLangMessage";
+import ImgCrop from 'antd-img-crop';
+import { RcFile } from "antd/lib/upload";
 
 export interface ImageUploaderProps {
-
+  title?: string,
+  maxCount?: number,
 }
 
 export const ImageUploader = observer((props: ImageUploaderProps) => {
-  const { ...other } = props;
-  const { t } = useLocalTranslations();
+  const { title, maxCount = 1, ...other } = props;
+  const [fileList, setFileList] = useState<UploadFile[]>([
+    {
+      uid: '-1',
+      name: 'image.png',
+      status: 'done',
+      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    },
+  ]);
 
-  const uploadProps: UploadProps = {
-    name: 'file',
-    action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-    headers: {
-      authorization: 'authorization-text',
-    },
-    onChange(info) {
-      if (info.file.status !== 'uploading') {
-        console.log(info.file, info.fileList);
-      }
-      if (info.file.status === 'done') {
-        message.success(`${info.file.name} file uploaded successfully`);
-      } else if (info.file.status === 'error') {
-        message.error(`${info.file.name} file upload failed.`);
-      }
-    },
-  };
+  const p = useParseLangMessage();
+
+  const onChange: UploadProps['onChange'] = useCallback(({ fileList: newFileList }) => {
+    setFileList(newFileList);
+  }, []);
+
+  const onPreview = useCallback(async (file: UploadFile) => {
+    let src = file.url as string;
+    if (!src) {
+      src = await new Promise(resolve => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file.originFileObj as RcFile);
+        reader.onload = () => resolve(reader.result as string);
+      });
+    }
+    const image = new Image();
+    image.src = src;
+    const imgWindow = window.open(src);
+    imgWindow?.document.write(image.outerHTML);
+  }, []);
 
   return (
-    <Dragger {...other}{...uploadProps} listType="picture-card" >
-      <p className="ant-upload-drag-icon">
-        <CloudUploadOutlined />
-      </p>
-      <p className="ant-upload-hint">
-        {t("UploadHint1")}
-        <Button type="link">{t("UploadHint2")}</Button>
-      </p>
-    </Dragger >
+    <ImgCrop rotate>
+      <Upload
+        {...other}
+        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+        listType="picture-card"
+        fileList={fileList}
+        onChange={onChange}
+        onPreview={onPreview}
+      >
+        {fileList.length < maxCount && `+ ${p(title)}`}
+      </Upload>
+    </ImgCrop>
   )
 })
