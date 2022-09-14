@@ -6,6 +6,7 @@ import { useAppUuid, useEndpoint, useToken } from "../context";
 const gql = `
   mutation ($file:Upload!){
     upload(file:$file)
+  }
 `
 
 export function useUpload() {
