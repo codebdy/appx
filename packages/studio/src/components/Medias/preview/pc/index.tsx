@@ -1,10 +1,11 @@
 import { CloudUploadOutlined, FilterOutlined, SortAscendingOutlined } from "@ant-design/icons"
 import { observer } from "@formily/reactive-react"
-import { Button, Input, PageHeader, Space } from "antd"
+import { Button, Input, PageHeader, Space, Typography } from "antd"
 import { ResizableColumn } from "../../../../common/ResizableColumn"
 import React from "react"
 import "./style.less"
 import { FolderTree } from "./FolderTree"
+const { Title } = Typography;
 
 export interface IMediasProps {
 
@@ -29,8 +30,8 @@ export const Medias = observer((props: IMediasProps) => {
       <div className="medias-body">
         <ResizableColumn maxWidth={460} minWidth={160}>
           <div className="medias-left-tree right-border top-border">
-            <div className="tree-title">
-              目录
+            <div className="tree-title bottom-border">
+              <h3>目录</h3>
             </div>
             <div className="tree-body">
               <FolderTree />
