@@ -12,7 +12,7 @@ export interface IMediasProps {
 
 export const Medias = observer((props: IMediasProps) => {
   return (
-    <div className="rx-medias">
+    <div className="rx-medias top-border">
       <PageHeader
         className="media-page-header"
         title="媒体管理"
@@ -28,8 +28,13 @@ export const Medias = observer((props: IMediasProps) => {
       </PageHeader>
       <div className="medias-body">
         <ResizableColumn maxWidth={460} minWidth={160}>
-          <div className="medias-left-tree right-border">
-            <FolderTree />
+          <div className="medias-left-tree right-border top-border">
+            <div className="tree-title">
+              目录
+            </div>
+            <div className="tree-body">
+              <FolderTree />
+            </div>
           </div>
         </ResizableColumn>
         <div >
