@@ -201,6 +201,7 @@ ProTableDesigner.Resource = createResource({
           hasQueryForm: true,
           hasToolbar: true,
           hasBatchActions: true,
+          selectable: true,
         },
       },
       children: [
