@@ -26,7 +26,7 @@ export const Medias = observer((props: IMediasProps) => {
       >
       </PageHeader>
       <div className="medias-body">
-        <ResizableColumn maxWidth={360} minWidth={160}>
+        <ResizableColumn maxWidth={460} minWidth={160}>
           呵呵呵
         </ResizableColumn>
         <div >
