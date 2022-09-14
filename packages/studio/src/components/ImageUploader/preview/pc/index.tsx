@@ -15,14 +15,7 @@ export interface ImageUploaderProps {
 
 export const ImageUploader = observer((props: ImageUploaderProps) => {
   const { title, maxCount = 1, value, onChange, ...other } = props;
-  const [fileList, setFileList] = useState<UploadFile[]>([
-    {
-      uid: '-1',
-      name: '',
-      status: 'done',
-      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
-  ]);
+  const [fileList, setFileList] = useState<UploadFile[]>([]);
 
   const upload = useUpload();
 
@@ -53,6 +46,11 @@ export const ImageUploader = observer((props: ImageUploaderProps) => {
         {...other}
         action={upload}
         listType="picture-card"
+        // headers={
+        //   {
+        //     "X-Requested-With": null,
+        //   }
+        // }
         fileList={fileList}
         onChange={handleChange}
         onPreview={handlePreview}

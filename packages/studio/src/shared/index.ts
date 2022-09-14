@@ -29,3 +29,7 @@ export const objToString = (obj?: any) => {
 
   return JSON.stringify(obj);
 }
+
+export const httpPrefix = (url: string) => {
+  return url.startsWith("https://") ? "https://" : "http://"
+}
