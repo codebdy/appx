@@ -4,6 +4,7 @@ import React, { useCallback, useState } from "react"
 import { useParseLangMessage } from "../../../../hooks/useParseLangMessage";
 import ImgCrop from 'antd-img-crop';
 import { RcFile } from "antd/lib/upload";
+import { useUpload } from "../../../../enthooks/hooks/useUpload";
 
 export interface ImageUploaderProps {
   title?: string,
@@ -22,6 +23,8 @@ export const ImageUploader = observer((props: ImageUploaderProps) => {
       url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
     },
   ]);
+
+  const upload = useUpload();
 
   const p = useParseLangMessage();
 
@@ -48,7 +51,7 @@ export const ImageUploader = observer((props: ImageUploaderProps) => {
     <ImgCrop rotate>
       <Upload
         {...other}
-        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+        action={upload}
         listType="picture-card"
         fileList={fileList}
         onChange={handleChange}
