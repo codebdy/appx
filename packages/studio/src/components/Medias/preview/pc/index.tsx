@@ -53,7 +53,7 @@ export const Medias = observer((props: IMediasProps) => {
           </div>
           <div className="medias-content">
             <Card
-              style={{ width: 300 }}
+              style={{ width: 300, borderRadius: 8 }}
               cover={
                 <img
                   alt="example"
@@ -63,7 +63,6 @@ export const Medias = observer((props: IMediasProps) => {
             >
               <Meta
                 title="向日葵"
-                description="2022-1-29 19:20"
               />
             </Card>
           </div>
