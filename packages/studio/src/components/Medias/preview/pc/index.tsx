@@ -57,6 +57,10 @@ export const Medias = observer((props: IMediasProps) => {
               <Col span={6} style={{ padding: 8 }}><ImageCard /></Col>
               <Col span={6} style={{ padding: 8 }}><ImageCard /></Col>
               <Col span={6} style={{ padding: 8 }}><ImageCard /></Col>
+              <Col span={6} style={{ padding: 8 }}><ImageCard /></Col>
+              <Col span={6} style={{ padding: 8 }}><ImageCard /></Col>
+              <Col span={6} style={{ padding: 8 }}><ImageCard /></Col>
+
             </Row>
           </div>
 
