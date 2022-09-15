@@ -1,6 +1,6 @@
 export const ArrayPanelLocales = {
   'zh-CN': {
-    title: '枚举标签',
+    title: '数组面板',
     settings: {
       'x-component-props': {
         trueIcon: 'True 图标',

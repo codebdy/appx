@@ -15,9 +15,9 @@ export const EnumSelectDesigner: DnFC<IEnumSelectProps> = observer((props: IEnum
 })
 
 EnumSelectDesigner.Behavior = createBehavior({
-  name: 'EnumTags',
+  name: 'EnumSelect',
   extends: ['Field'],
-  selector: (node) => node.props['x-component'] === 'EnumTags',
+  selector: (node) => node.props['x-component'] === 'EnumSelect',
   designerProps: {
     droppable: false,
     propsSchema: createFieldSchema(EnumSelectSchema, { fieldSourceType: FieldsType.Single }),
@@ -32,7 +32,7 @@ EnumSelectDesigner.Resource = createResource({
       componentName: 'Field',
       props: {
         type: 'boolean',
-        'x-component': 'EnumTags',
+        'x-component': 'EnumSelect',
       },
     },
   ],

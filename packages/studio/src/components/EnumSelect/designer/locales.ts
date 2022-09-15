@@ -1,6 +1,6 @@
 export const EnumSelectLocales = {
   'zh-CN': {
-    title: '枚举标签',
+    title: '枚举选择框',
     settings: {
       'x-component-props': {
         trueIcon: 'True 图标',
