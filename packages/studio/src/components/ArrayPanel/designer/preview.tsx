@@ -15,9 +15,9 @@ export const ArrayPanelDesigner: DnFC<IArrayPanelProps> = observer((props: IArra
 })
 
 ArrayPanelDesigner.Behavior = createBehavior({
-  name: 'EnumTags',
+  name: 'ArrayPanel',
   extends: ['Field'],
-  selector: (node) => node.props['x-component'] === 'EnumTags',
+  selector: (node) => node.props['x-component'] === 'ArrayPanel',
   designerProps: {
     droppable: false,
     propsSchema: createFieldSchema(ArrayPanelSchema, { fieldSourceType: FieldsType.Single }),
@@ -26,13 +26,13 @@ ArrayPanelDesigner.Behavior = createBehavior({
 })
 
 ArrayPanelDesigner.Resource = createResource({
-  icon: 'SelectSource',
+  icon: 'ArrayCardsSource',
   elements: [
     {
       componentName: 'Field',
       props: {
         type: 'boolean',
-        'x-component': 'EnumTags',
+        'x-component': 'ArrayPanel',
       },
     },
   ],

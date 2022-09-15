@@ -142,7 +142,12 @@ export const allMaterials: MaterialModule[] = [
             name: "ImageUploader",
             designer: ImageUploaderDesigner,
             component: ImageUploader,
-          }
+          },
+          {
+            name: "EnumSelect",
+            designer: EnumSelectDesigner,
+            component: EnumSelect,
+          },
         ]
       },
       {
@@ -167,11 +172,6 @@ export const allMaterials: MaterialModule[] = [
             name: "EnumTags",
             designer: EnumTagsDesigner,
             component: EnumTags,
-          },
-          {
-            name: "EnumSelect",
-            designer: EnumSelectDesigner,
-            component: EnumSelect,
           },
           {
             name: "ArrayPanel",
