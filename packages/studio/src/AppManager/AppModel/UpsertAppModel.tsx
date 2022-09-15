@@ -41,11 +41,11 @@ export const UpsertAppModel = memo((
   const handleOk = useCallback(() => {
     form.validateFields().then((formData) => {
       create({ ...formData, uuid: createUuid(), id: app?.id })
-      reset();
+      !app && reset();
     }).catch((err) => {
       console.error("form validate error", err);
     });
-  }, [app?.id, create, form, reset]);
+  }, [app, create, form, reset]);
 
   return (
     <Modal

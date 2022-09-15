@@ -9,33 +9,34 @@ import { isArr } from "@formily/shared";
 export interface ImageUploaderProps {
   title?: string,
   maxCount?: number,
-  defaultValue?: string | string[],
   value?: string | string[],
   onChange?: (value?: string | string[]) => void,
 }
 
 //裁剪失效，以后再说
 export const ImageUploader = observer((props: ImageUploaderProps) => {
-  const { title, maxCount = 1, defaultValue, value, onChange, ...other } = props;
+  const { title, maxCount = 1, value, onChange, ...other } = props;
   const [fileList, setFileList] = useState<UploadFile[]>([]);
 
   useEffect(() => {
-    if (isArr(defaultValue)) {
-      setFileList(defaultValue.map(child => ({
+    if (isArr(value)) {
+      setFileList(value.map(child => ({
         uid: '-1',
         status: 'done',
         name: "",
         url: child,
       })))
-    } else if (defaultValue) {
+    } else if (value) {
       setFileList([{
         uid: '-1',
         status: 'done',
         name: "",
-        url: defaultValue,
+        url: value,
       }])
+    } else {
+      setFileList([])
     }
-  }, [defaultValue])
+  }, [value])
 
   const upload = useUpload();
 
@@ -43,10 +44,14 @@ export const ImageUploader = observer((props: ImageUploaderProps) => {
 
   const handleChange: UploadProps['onChange'] = useCallback(({ fileList: newFileList, file, event }) => {
     setFileList(newFileList);
-    if (maxCount === 1 && newFileList?.[0]?.status === "done") {
-      onChange && onChange(newFileList?.[0]?.url || newFileList?.[0]?.xhr?.responseURL);
-    } else if (!newFileList?.find(file => file.status !== "done")) {
-      onChange && onChange(newFileList?.map(file => file.url || file.xhr?.responseURL));
+    if (maxCount === 1) {
+      if (newFileList?.[0]?.status === "done") {
+        onChange && onChange(newFileList?.[0]?.url || newFileList?.[0]?.xhr?.responseURL || "");
+      }
+    } else {
+      if (!newFileList?.find(file => file.status !== "done")) {
+        onChange && onChange(newFileList?.map(file => file.url || file.xhr?.responseURL) || []);
+      }
     }
   }, [maxCount, onChange]);
 

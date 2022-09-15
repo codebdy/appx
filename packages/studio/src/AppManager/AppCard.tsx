@@ -83,7 +83,10 @@ const AppCard = memo((props: {
           description={app.description}
         />
       </Card>
-      <UpsertAppModel app={app} visible={visible} onClose={handleClose} />
+      {
+        visible && <UpsertAppModel app={app} visible={visible} onClose={handleClose} />
+      }
+
     </>
   )
 })
