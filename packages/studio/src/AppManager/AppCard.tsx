@@ -41,7 +41,7 @@ const AppCard = memo((props: {
         </div>
       }
       actions={[
-        <SendOutlined key="view" />,
+        // <SendOutlined key="view" />,
         <EditOutlined key="edit" onClick={handleEdit} />,
         <DownloadOutlined key="download" />,
         <Dropdown overlay={
