@@ -2,7 +2,7 @@ import { AppstoreOutlined, ImportOutlined, SearchOutlined } from "@ant-design/ic
 import { Button, Input, Space } from "antd";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import CreateDialog from "./AppModel/CreateDialog";
+import { CreateAppDialog } from "./AppModel/CreateAppDialog";
 
 const AppManagebar = () => {
   const { t } = useTranslation();
@@ -19,7 +19,7 @@ const AppManagebar = () => {
         <Button className="hover-float" icon={<ImportOutlined />}>
           {t("AppManager.ImportApp")}
         </Button>
-        <CreateDialog />
+        <CreateAppDialog />
         <Button type="primary" className="hover-float" danger icon={<AppstoreOutlined />}>
           {t("AppManager.AppStore")}
         </Button>

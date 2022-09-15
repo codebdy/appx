@@ -4,7 +4,7 @@ import React, { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { UpsertAppModel } from './UpsertAppModel';
 
-const CreateDialog = memo(() => {
+export const CreateAppDialog = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const { t } = useTranslation();
 
@@ -31,5 +31,3 @@ const CreateDialog = memo(() => {
     </>
   );
 });
-
-export default CreateDialog;
