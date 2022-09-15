@@ -18,7 +18,7 @@ ImageUploaderDesigner.Behavior = createBehavior({
 })
 
 ImageUploaderDesigner.Resource = createResource({
-  icon: 'ImageSource',
+  icon: 'UploadSource',
   elements: [
     {
       componentName: 'Field',
