@@ -23,7 +23,6 @@ ImageUploaderDesigner.Resource = createResource({
     {
       componentName: 'Field',
       props: {
-        type: 'void',
         title: 'Image',
         'x-decorator': 'FormItem',
         'x-component': 'ImageUploader',
