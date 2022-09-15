@@ -28,6 +28,7 @@ ImageUploaderDesigner.Resource = createResource({
         'x-decorator': 'FormItem',
         'x-component': 'ImageUploader',
         'x-component-props': {
+          title: "Upload"
         },
       },
     },
