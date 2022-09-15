@@ -2,7 +2,6 @@ import { observer } from "@formily/reactive-react"
 import { Upload, UploadFile, UploadProps } from "antd";
 import React, { useCallback, useEffect, useState } from "react"
 import { useParseLangMessage } from "../../../../hooks/useParseLangMessage";
-import ImgCrop from 'antd-img-crop';
 import { RcFile } from "antd/lib/upload";
 import { useUpload } from "../../../../enthooks/hooks/useUpload";
 import { isArr } from "@formily/shared";
@@ -15,6 +14,7 @@ export interface ImageUploaderProps {
   onChange?: (value?: string | string[]) => void,
 }
 
+//裁剪失效，以后再说
 export const ImageUploader = observer((props: ImageUploaderProps) => {
   const { title, maxCount = 1, defaultValue, value, onChange, ...other } = props;
   const [fileList, setFileList] = useState<UploadFile[]>([]);
@@ -43,9 +43,9 @@ export const ImageUploader = observer((props: ImageUploaderProps) => {
 
   const handleChange: UploadProps['onChange'] = useCallback(({ fileList: newFileList, file, event }) => {
     setFileList(newFileList);
-    if (maxCount === 1) {
+    if (maxCount === 1 && newFileList?.[0]?.status === "done") {
       onChange && onChange(newFileList?.[0]?.url || newFileList?.[0]?.xhr?.responseURL);
-    } else {
+    } else if (!newFileList?.find(file => file.status !== "done")) {
       onChange && onChange(newFileList?.map(file => file.url || file.xhr?.responseURL));
     }
   }, [maxCount, onChange]);
@@ -65,18 +65,17 @@ export const ImageUploader = observer((props: ImageUploaderProps) => {
     imgWindow?.document.write(image.outerHTML);
   }, []);
 
+
   return (
-    <ImgCrop rotate>
-      <Upload
-        {...other}
-        action={upload}
-        listType="picture-card"
-        fileList={fileList}
-        onChange={handleChange}
-        onPreview={handlePreview}
-      >
-        {fileList.length < maxCount && `+ ${p(title)}`}
-      </Upload>
-    </ImgCrop>
+    <Upload
+      {...other}
+      action={upload}
+      listType="picture-card"
+      fileList={fileList}
+      onChange={handleChange}
+      onPreview={handlePreview}
+    >
+      {fileList.length < maxCount && `+ ${p(title)}`}
+    </Upload>
   )
 })
