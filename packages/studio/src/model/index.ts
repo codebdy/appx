@@ -45,9 +45,9 @@ export interface IApp {
   uuid: string;
   title: string;
   description?: string;
-  // image?: IFile;
   pages?: IPage[];
   menus?: IMenu[];
+  imageUrl?: string;
 }
 
 export enum Device {

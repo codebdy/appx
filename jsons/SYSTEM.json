@@ -93,12 +93,12 @@
             "uuid": "RX_USER_UPDATEDAT_UUID"
           },
           {
-            "uuid": "3d415817-c9de-4d0f-bf72-3580210baa5b",
+            "label": "$inline:{\"zh-CN\":\"状态\"}",
             "name": "status",
             "type": "Enum",
             "typeLabel": "UserStatus",
-            "label": "$inline:{\"zh-CN\":\"状态\"}",
-            "typeUuid": "1da63391-ef0d-4276-9a41-79108e8f30ce"
+            "typeUuid": "1da63391-ef0d-4276-9a41-79108e8f30ce",
+            "uuid": "3d415817-c9de-4d0f-bf72-3580210baa5b"
           }
         ],
         "innerId": 4,
@@ -173,6 +173,12 @@
             "type": "String",
             "typeLabel": "String",
             "uuid": "83b44412-a76d-4c9d-baeb-84d4c1c62665"
+          },
+          {
+            "uuid": "67e158ca-2f85-4e15-bd2d-30a700987f86",
+            "name": "imageUrl",
+            "type": "String",
+            "typeLabel": "String"
           }
         ],
         "idNoShift": true,
@@ -490,30 +496,30 @@
         "uuid": "0e31f942-ce6f-4f6e-bd1b-0a5eb126d204"
       },
       {
-        "uuid": "1da63391-ef0d-4276-9a41-79108e8f30ce",
-        "innerId": 1013,
-        "name": "UserStatus",
         "attributes": [
           {
-            "uuid": "b6a9d5a2-159f-4e21-b721-a907d3bcca37",
+            "label": "$inline:{\"zh-CN\":\"正常\"}",
             "name": "normal",
             "type": "String",
             "typeLabel": "String",
-            "label": "$inline:{\"zh-CN\":\"正常\"}"
+            "uuid": "b6a9d5a2-159f-4e21-b721-a907d3bcca37"
           },
           {
-            "uuid": "cfdf2f6a-e21f-4694-ad64-80daea7ec196",
+            "label": "$inline:{\"zh-CN\":\"禁用\"}",
             "name": "forbid",
             "type": "String",
             "typeLabel": "String",
-            "label": "$inline:{\"zh-CN\":\"禁用\"}"
+            "uuid": "cfdf2f6a-e21f-4694-ad64-80daea7ec196"
           }
         ],
+        "innerId": 1013,
+        "label": "$inline:{\"zh-CN\":\"用户状态\"}",
         "methods": [],
-        "stereoType": "Enum",
-        "root": false,
+        "name": "UserStatus",
         "packageUuid": "PACKAGE_SYSTEM_UUID",
-        "label": "$inline:{\"zh-CN\":\"用户状态\"}"
+        "root": false,
+        "stereoType": "Enum",
+        "uuid": "1da63391-ef0d-4276-9a41-79108e8f30ce"
       }
     ],
     "relations": [
@@ -707,11 +713,11 @@
         "uuid": "bd5c2470-2d87-47b8-8fdc-40cedce87375"
       },
       {
-        "uuid": "4910a0fd-a454-4882-8250-88d77b5144aa",
+        "edges": [],
         "name": "类图",
-        "packageUuid": "PACKAGE_SYSTEM_UUID",
         "nodes": [],
-        "edges": []
+        "packageUuid": "PACKAGE_SYSTEM_UUID",
+        "uuid": "4910a0fd-a454-4882-8250-88d77b5144aa"
       }
     ],
     "x6Nodes": [
@@ -844,20 +850,20 @@
         "y": 320
       },
       {
-        "id": "META_USER_UUID",
-        "x": 170,
-        "y": 50,
-        "width": 180,
+        "diagramUuid": "4910a0fd-a454-4882-8250-88d77b5144aa",
         "height": 278,
-        "diagramUuid": "4910a0fd-a454-4882-8250-88d77b5144aa"
+        "id": "META_USER_UUID",
+        "width": 180,
+        "x": 170,
+        "y": 50
       },
       {
-        "id": "1da63391-ef0d-4276-9a41-79108e8f30ce",
-        "x": 510,
-        "y": 90,
-        "width": 180,
+        "diagramUuid": "4910a0fd-a454-4882-8250-88d77b5144aa",
         "height": 120,
-        "diagramUuid": "4910a0fd-a454-4882-8250-88d77b5144aa"
+        "id": "1da63391-ef0d-4276-9a41-79108e8f30ce",
+        "width": 180,
+        "x": 510,
+        "y": 90
       }
     ],
     "x6Edges": [

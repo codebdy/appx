@@ -29,8 +29,7 @@ const CreateDialog = memo(() => {
 
   const handleOk = () => {
     form.validateFields().then((formData) => {
-      console.log("uuid:", createUuid())
-      create({ title: formData.title, uuid: createUuid() })
+      create({ ...formData, uuid: createUuid() })
       form.setFieldsValue({ title: "", description: "" })
     }).catch((err) => {
       console.error("form validate error", err);
@@ -97,10 +96,7 @@ const CreateDialog = memo(() => {
 
           < Form.Item
             label={t("Image")}
-            name="image"
-            //valuePropName="fileList"
-            // 如果没有下面这一句会报错
-            //getValueFromEvent={normFile}
+            name="imageUrl"
           >
             <ImageUploader title={t("Upload")} maxCount={1} />
           </Form.Item>

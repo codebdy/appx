@@ -42,6 +42,7 @@ export interface IAppInput {
   uuid?: string;
   title?: string;
   description?: string;
+  imageUrl?: string;
   // image?: IFileInput
 }
 

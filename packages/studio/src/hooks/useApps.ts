@@ -8,7 +8,8 @@ query {
     nodes{
       id
       uuid
-      title      
+      title
+      imageUrl      
     }
     total
   }
