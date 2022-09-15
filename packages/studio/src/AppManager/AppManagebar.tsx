@@ -2,7 +2,7 @@ import { AppstoreOutlined, ImportOutlined, SearchOutlined } from "@ant-design/ic
 import { Button, Input, Space } from "antd";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import CreateDialog from "./CreateDialog";
+import CreateDialog from "./AppModel/CreateDialog";
 
 const AppManagebar = () => {
   const { t } = useTranslation();
