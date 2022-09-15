@@ -30,7 +30,7 @@ import {
   Text,
   TextDesigner
 } from "../../../components/pc";
-import { Avatar, AvatarDesigner, ImageUploader, ImageUploaderDesigner, Medias, MediasDesigner } from "../../../components";
+import { Avatar, AvatarDesigner, BooleanView, BooleanViewDesigner, ImageUploader, ImageUploaderDesigner, Medias, MediasDesigner } from "../../../components";
 
 export const allMaterials: MaterialModule[] = [
   {
@@ -142,6 +142,11 @@ export const allMaterials: MaterialModule[] = [
             name:"Avatar",
             designer: AvatarDesigner,
             component: Avatar,
+          },
+          {
+            name:"BooleanView",
+            designer: BooleanViewDesigner,
+            component: BooleanView,
           }
         ],
       }
