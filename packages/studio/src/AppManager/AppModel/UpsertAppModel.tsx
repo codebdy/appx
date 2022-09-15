@@ -1,5 +1,5 @@
 import { Form, message, Modal } from "antd"
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
 import { ImageUploader } from "../../components/ImageUploader";
@@ -21,6 +21,14 @@ export const UpsertAppModel = memo((
   const [form] = Form.useForm<IAppInput>();
   const { t } = useTranslation();
 
+  const reset = useCallback(() => {
+    form.setFieldsValue({ title: app?.title || "", description: app?.description || "", imageUrl: app?.imageUrl || "" })
+  }, [app?.description, app?.imageUrl, app?.title, form])
+
+  useEffect(() => {
+    reset();
+  }, [form, reset])
+
   const [create, { loading, error }] = useUpsertApp({
     onCompleted: () => {
       message.success(t("OperateSuccess"))
@@ -30,14 +38,14 @@ export const UpsertAppModel = memo((
 
   useShowError(error);
 
-  const handleOk = () => {
+  const handleOk = useCallback(() => {
     form.validateFields().then((formData) => {
       create({ ...formData, uuid: createUuid(), id: app?.id })
-      form.setFieldsValue({ title: "", description: "" })
+      reset();
     }).catch((err) => {
       console.error("form validate error", err);
     });
-  };
+  }, [app?.id, create, form, reset]);
 
   return (
     <Modal
