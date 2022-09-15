@@ -1,7 +1,7 @@
 import { SettingOutlined, EditOutlined, EllipsisOutlined, DeleteOutlined, DownloadOutlined, LoadingOutlined, SendOutlined } from "@ant-design/icons"
 import { Card, Dropdown, Menu } from "antd"
 import Meta from "antd/lib/card/Meta"
-import React, { memo, useCallback } from "react"
+import React, { memo, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import { AppConfigRouts } from "../AppConfig/AppConfigRouts"
@@ -28,14 +28,17 @@ const AppCard = memo((props: {
     remove(app.id)
   }, [app.id, remove])
 
+  const imageUrl = useMemo(
+    () => app?.imageUrl || "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
+    [app?.imageUrl]
+  )
+
   return (
     <Card
       className="hover-float app-card"
       cover={
-        <img
-          alt="example"
-          src={app?.imageUrl || "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"}
-        />
+        <div className="app-image" style={{ backgroundImage: `url(${imageUrl})` }}>
+        </div>
       }
       actions={[
         <SendOutlined key="view" />,

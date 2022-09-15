@@ -2,6 +2,7 @@ import { Layout } from 'antd';
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import AppHeader from './AppHeader';
+import "./style.less";
 
 const { Content } = Layout;
 
