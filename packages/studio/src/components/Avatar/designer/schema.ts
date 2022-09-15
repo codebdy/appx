@@ -14,6 +14,16 @@ export const AvatarSchema: ISchema = {
       type: 'number',
       'x-decorator': 'FormItem',
       'x-component': 'NumberPicker',
+    },
+    shape:{
+      type: 'string',
+      enum: ['circle', 'square'],
+      'x-decorator': 'FormItem',
+      'x-component': 'Radio.Group',
+      'x-component-props': {
+        defaultValue: 'circle',
+        optionType: 'button',
+      },
     }
   },
 }

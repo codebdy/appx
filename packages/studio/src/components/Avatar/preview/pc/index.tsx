@@ -9,6 +9,7 @@ export interface IAvatarProps {
   icon?: IIcon,
   value?: string,
   size?: number,
+  shape?: "circle" | "square",
 }
 
 export const Avatar = observer((props: IAvatarProps) => {

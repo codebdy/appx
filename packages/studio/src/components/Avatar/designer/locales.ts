@@ -5,6 +5,10 @@ export const AvatarLocales = {
       'x-component-props': {
         icon: '图标',
         size: '尺寸',
+        shape: {
+          title: '形状',
+          dataSource: ['圆形', '方形'],
+        }
       },
     },
   },
