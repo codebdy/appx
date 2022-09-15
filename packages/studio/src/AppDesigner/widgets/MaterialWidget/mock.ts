@@ -30,7 +30,7 @@ import {
   Text,
   TextDesigner
 } from "../../../components/pc";
-import { Avatar, AvatarDesigner, BooleanView, BooleanViewDesigner, ImageUploader, ImageUploaderDesigner, Medias, MediasDesigner } from "../../../components";
+import { Avatar, AvatarDesigner, BooleanView, BooleanViewDesigner, EnumTags, EnumTagsDesigner, ImageUploader, ImageUploaderDesigner, Medias, MediasDesigner } from "../../../components";
 
 export const allMaterials: MaterialModule[] = [
   {
@@ -147,6 +147,11 @@ export const allMaterials: MaterialModule[] = [
             name:"BooleanView",
             designer: BooleanViewDesigner,
             component: BooleanView,
+          },
+          {
+            name:"EnumTags",
+            designer: EnumTagsDesigner,
+            component: EnumTags,
           }
         ],
       }

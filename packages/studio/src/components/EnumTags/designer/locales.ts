@@ -1,6 +1,6 @@
 export const EnumTagsLocales = {
   'zh-CN': {
-    title: '布尔',
+    title: '枚举标签',
     settings: {
       'x-component-props': {
         trueIcon: 'True 图标',
