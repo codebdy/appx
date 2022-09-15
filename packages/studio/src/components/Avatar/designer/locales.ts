@@ -4,6 +4,7 @@ export const AvatarLocales = {
     settings: {
       'x-component-props': {
         icon: '图标',
+        size: '尺寸',
       },
     },
   },

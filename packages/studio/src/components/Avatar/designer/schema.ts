@@ -10,5 +10,10 @@ export const AvatarSchema: ISchema = {
       'x-component-props':{
       }
     },
+    size:{
+      type: 'number',
+      'x-decorator': 'FormItem',
+      'x-component': 'NumberPicker',
+    }
   },
 }

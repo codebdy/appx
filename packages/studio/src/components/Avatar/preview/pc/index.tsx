@@ -8,12 +8,18 @@ import { UserOutlined } from "@ant-design/icons"
 export interface IAvatarProps {
   icon?: IIcon,
   value?: string,
+  size?: number,
 }
 
 export const Avatar = observer((props: IAvatarProps) => {
-  const { icon, value, ...other } = props;
+  const { icon, value, size, ...other } = props;
   return (
-    <AntdAvatar {...other} icon={(icon && <IconView icon={icon} />) || <UserOutlined />} src={value}>
+    <AntdAvatar
+      {...other}
+      size={size ? size : undefined}
+      icon={(icon && <IconView icon={icon} />) || <UserOutlined />}
+      src={value}
+    >
     </AntdAvatar>
   )
 })
