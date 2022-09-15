@@ -30,7 +30,22 @@ import {
   Text,
   TextDesigner
 } from "../../../components/pc";
-import { Avatar, AvatarDesigner, BooleanView, BooleanViewDesigner, EnumTags, EnumTagsDesigner, ImageUploader, ImageUploaderDesigner, Medias, MediasDesigner } from "../../../components";
+import {
+  ArrayPanel,
+  ArrayPanelDesigner,
+  Avatar,
+  AvatarDesigner,
+  BooleanView,
+  BooleanViewDesigner,
+  EnumSelect,
+  EnumSelectDesigner,
+  EnumTags,
+  EnumTagsDesigner,
+  ImageUploader,
+  ImageUploaderDesigner,
+  Medias,
+  MediasDesigner
+} from "../../../components";
 
 export const allMaterials: MaterialModule[] = [
   {
@@ -124,14 +139,14 @@ export const allMaterials: MaterialModule[] = [
             component: Medias
           },
           {
-            name:"ImageUploader",
+            name: "ImageUploader",
             designer: ImageUploaderDesigner,
-            component:ImageUploader,
+            component: ImageUploader,
           }
         ]
       },
       {
-        title:"展示组件",
+        title: "展示组件",
         materials: [
           {
             name: "Text",
@@ -139,19 +154,29 @@ export const allMaterials: MaterialModule[] = [
             component: Text,
           },
           {
-            name:"Avatar",
+            name: "Avatar",
             designer: AvatarDesigner,
             component: Avatar,
           },
           {
-            name:"BooleanView",
+            name: "BooleanView",
             designer: BooleanViewDesigner,
             component: BooleanView,
           },
           {
-            name:"EnumTags",
+            name: "EnumTags",
             designer: EnumTagsDesigner,
             component: EnumTags,
+          },
+          {
+            name: "EnumSelect",
+            designer: EnumSelectDesigner,
+            component: EnumSelect,
+          },
+          {
+            name: "ArrayPanel",
+            designer: ArrayPanelDesigner,
+            component: ArrayPanel,
           }
         ],
       }

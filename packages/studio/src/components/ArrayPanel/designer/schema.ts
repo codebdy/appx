@@ -1,6 +1,6 @@
 import { ISchema } from '@formily/react'
 
-export const ArrayPannelSchema: ISchema = {
+export const ArrayPanelSchema: ISchema = {
   type: 'object',
   properties: {
     trueIcon: {

@@ -1,4 +1,4 @@
-export const ArrayPannelLocales = {
+export const ArrayPanelLocales = {
   'zh-CN': {
     title: '枚举标签',
     settings: {

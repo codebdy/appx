@@ -1,4 +1,4 @@
-export * from "./ArrayPannel";
+export * from "./ArrayPanel";
 export * from "./Avatar";
 export * from "./Medias";
 export * from "./ImageUploader";

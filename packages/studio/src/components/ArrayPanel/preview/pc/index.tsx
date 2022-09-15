@@ -4,13 +4,13 @@ import React, { useMemo } from "react"
 import { IconView } from "../../../../shared/icon/IconView"
 import { CheckOutlined } from "@ant-design/icons"
 
-export interface IArrayPannelProps {
+export interface IArrayPanelProps {
   trueIcon?: IIcon,
   falseIcon?: IIcon,
   value?: boolean,
 }
 
-export const ArrayPannel = observer((props: IArrayPannelProps) => {
+export const ArrayPanel = observer((props: IArrayPanelProps) => {
   const { trueIcon, falseIcon, value, ...other } = props;
   const checkedIcon = useMemo(() => {
     return trueIcon ? <IconView icon={trueIcon} /> : <CheckOutlined />
