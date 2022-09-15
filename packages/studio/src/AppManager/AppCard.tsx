@@ -9,7 +9,7 @@ import { useParseLangMessage } from "../hooks/useParseLangMessage"
 import { useRemoveApp } from "../hooks/useRemoveApp"
 import { IApp } from "../model"
 import { useShowError } from './../hooks/useShowError';
-import { UpsertAppModel } from "./AppModel/UpsertAppModel"
+import { UpsertAppModel } from "./AppModel/UpsertAppModel";
 
 const AppCard = memo((props: {
   app: IApp
@@ -31,7 +31,7 @@ const AppCard = memo((props: {
   }, [app.id, remove])
 
   const imageUrl = useMemo(
-    () => app?.imageUrl || "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
+    () => app?.imageUrl || "/public/img/bird.png",
     [app?.imageUrl]
   )
 
