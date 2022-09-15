@@ -1,7 +1,6 @@
 import { AwesomeGraphQLClient, GraphQLRequestError } from "awesome-graphql-client";
 import { useCallback } from "react";
 import { HEADER_APPX_APPUUID, HEADER_AUTHORIZATION, TOKEN_PREFIX } from "../../consts";
-import { httpPrefix } from "../../shared";
 import { useAppUuid, useEndpoint, useToken } from "../context";
 
 const gql = `
@@ -26,7 +25,7 @@ export function useUpload() {
           }
         })
         .then((data) => {
-          resolve(data?.upload && (httpPrefix(endpoint) + data?.upload));
+          resolve(data?.upload);
         })
         .catch((err: GraphQLRequestError) => {
           reject(err);
