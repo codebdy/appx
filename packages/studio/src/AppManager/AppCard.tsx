@@ -49,7 +49,7 @@ const AppCard = memo((props: {
       <Card
         className="hover-float app-card"
         cover={
-          <div className="app-image" style={{ backgroundImage: `url(${imageUrl})` }}>
+          <div className="app-image bottom-border" style={{ backgroundImage: `url(${imageUrl})` }}>
           </div>
         }
         actions={[
