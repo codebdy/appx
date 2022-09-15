@@ -8,14 +8,16 @@ import { useUpsertApp } from "../../hooks/useUpsertApp";
 import { useShowError } from "../../hooks/useShowError";
 import { IAppInput } from "../../model/input";
 import { createUuid } from "../../shared";
+import { IApp } from "../../model";
 
 export const UpsertAppModel = memo((
   props: {
+    app?: IApp,
     visible?: boolean,
     onClose?: () => void,
   }
 ) => {
-  const { visible, onClose } = props;
+  const { app, visible, onClose } = props;
   const [form] = Form.useForm<IAppInput>();
   const { t } = useTranslation();
 
@@ -30,17 +32,16 @@ export const UpsertAppModel = memo((
 
   const handleOk = () => {
     form.validateFields().then((formData) => {
-      create({ ...formData, uuid: createUuid() })
+      create({ ...formData, uuid: createUuid(), id: app?.id })
       form.setFieldsValue({ title: "", description: "" })
     }).catch((err) => {
       console.error("form validate error", err);
     });
   };
 
-
   return (
     <Modal
-      title={t("AppManager.CreateApp")}
+      title={app ? t("AppManager.UpdateApp") : t("AppManager.CreateApp")}
       okText={t("Confirm")}
       cancelText={t("Cancel")}
       okButtonProps={{
