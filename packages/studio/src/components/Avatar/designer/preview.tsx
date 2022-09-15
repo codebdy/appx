@@ -1,8 +1,8 @@
 import { createBehavior, createResource } from '@designable/core'
 import { DnFC } from '@designable/react'
-import { TextSchema } from './schema'
-import { TextLocales } from './locales'
-import { createFieldSchema } from "../../common/Field/shared"
+import { AvatarSchema } from './schema'
+import { AvatarLocales } from './locales'
+import { createFieldSchema, FieldsType } from "../../common/Field/shared"
 import { Avatar, IAvatarProps } from '../preview/pc'
 
 export const AvatarDesigner: DnFC<IAvatarProps> = Avatar
@@ -13,9 +13,9 @@ AvatarDesigner.Behavior = createBehavior({
   selector: (node) => node.props['x-component'] === 'Avatar',
   designerProps: {
     droppable: false,
-    propsSchema: createFieldSchema(TextSchema),
+    propsSchema: createFieldSchema(AvatarSchema, { fieldSourceType: FieldsType.Single }),
   },
-  designerLocales: TextLocales,
+  designerLocales: AvatarLocales,
 })
 
 AvatarDesigner.Resource = createResource({
