@@ -30,7 +30,7 @@ import {
   Text,
   TextDesigner
 } from "../../../components/pc";
-import { ImageUploader, ImageUploaderDesigner, Medias, MediasDesigner } from "../../../components";
+import { Avatar, AvatarDesigner, ImageUploader, ImageUploaderDesigner, Medias, MediasDesigner } from "../../../components";
 
 export const allMaterials: MaterialModule[] = [
   {
@@ -117,11 +117,7 @@ export const allMaterials: MaterialModule[] = [
             designer: DialogDesigner,
             component: Dialog
           },
-          {
-            name: "Text",
-            designer: TextDesigner,
-            component: Text,
-          },
+
           {
             name: "Medias",
             designer: MediasDesigner,
@@ -132,72 +128,23 @@ export const allMaterials: MaterialModule[] = [
             designer: ImageUploaderDesigner,
             component:ImageUploader,
           }
-          // {
-          //   name: "Rate2",
-          //   component: Rate,
-          // },
-          // {
-          //   name: "Password",
-          //   component: Password,
-          // },
-          // {
-          //   name: "NumberPicker",
-          //   component: NumberPicker,
-          // },
-          // {
-          //   name: "Rate",
-          //   component: Rate,
-          // },
-          // {
-          //   name: "Slider",
-          //   component: Slider,
-          // },
-          // {
-          //   name: "Select",
-          //   component: Select,
-          // },
-          // {
-          //   name: "TreeSelect",
-          //   component: TreeSelect,
-          // },
-          // {
-          //   name: "Cascader",
-          //   component: Cascader,
-          // },
-          // {
-          //   name: "Transfer",
-          //   component: Transfer,
-          // },
-          // {
-          //   name: "Checkbox",
-          //   component: Checkbox,
-          // },
-          // {
-          //   name: "Radio",
-          //   component: Radio,
-          // },
-          // {
-          //   name: "DatePicker",
-          //   component: DatePicker,
-          // },
-          // {
-          //   name: "TimePicker",
-          //   component: TimePicker,
-          // },
-          // {
-          //   name: "Upload",
-          //   component: Upload,
-          // },
-          // {
-          //   name: "Switch",
-          //   component: Switch,
-          // },
-          // {
-          //   name: "ObjectContainer",
-          //   component: ObjectContainer,
-          // }
         ]
       },
+      {
+        title:"展示组件",
+        materials: [
+          {
+            name: "Text",
+            designer: TextDesigner,
+            component: Text,
+          },
+          {
+            name:"Avatar",
+            designer: AvatarDesigner,
+            component: Avatar,
+          }
+        ],
+      }
     ]
   }
 ]
