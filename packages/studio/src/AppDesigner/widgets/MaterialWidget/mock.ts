@@ -30,7 +30,7 @@ import {
   Text,
   TextDesigner
 } from "../../../components/pc";
-import { Medias, MediasDesigner } from "../../../components";
+import { ImageUploader, ImageUploaderDesigner, Medias, MediasDesigner } from "../../../components";
 
 export const allMaterials: MaterialModule[] = [
   {
@@ -126,6 +126,11 @@ export const allMaterials: MaterialModule[] = [
             name: "Medias",
             designer: MediasDesigner,
             component: Medias
+          },
+          {
+            name:"ImageUploader",
+            designer: ImageUploaderDesigner,
+            component:ImageUploader,
           }
           // {
           //   name: "Rate2",

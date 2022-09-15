@@ -1,7 +1,6 @@
 export const MediasLocales = {
   'zh-CN': {
-    title: '多媒体',
-    description: "多媒体管理，图片、音频、视频、文件等",
+    title: '图片上传',
     settings: {
       'x-component-props': {
         title: '标题',

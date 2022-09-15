@@ -1,4 +1,4 @@
-import { createFieldSchema } from "../../common/Field";
+import { createFieldSchema, FieldsType } from "../../common/Field";
 import { createBehavior, createResource } from '@designable/core'
 import { DnFC } from '@designable/react'
 import { MediasSchema } from "./schema";
@@ -12,7 +12,7 @@ ImageUploaderDesigner.Behavior = createBehavior({
   extends: ['Field'],
   selector: (node) => node.props['x-component'] === 'ImageUploader',
   designerProps: {
-    propsSchema: createFieldSchema(MediasSchema),
+    propsSchema: createFieldSchema(MediasSchema, { fieldSourceType: FieldsType.Single }),
   },
   designerLocales: MediasLocales,
 })
@@ -24,7 +24,8 @@ ImageUploaderDesigner.Resource = createResource({
       componentName: 'Field',
       props: {
         type: 'void',
-        //title: '',
+        title: 'Image',
+        'x-decorator': 'FormItem',
         'x-component': 'ImageUploader',
         'x-component-props': {
         },
