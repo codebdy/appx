@@ -1,8 +1,9 @@
 import { observer } from "@formily/reactive-react"
-import { Modal, Upload, UploadFile, UploadProps } from "antd";
+import { Upload, UploadFile, UploadProps } from "antd";
 import React, { useCallback, useEffect, useState } from "react"
 import { useParseLangMessage } from "../../../../hooks/useParseLangMessage";
 import ImgCrop from 'antd-img-crop';
+import { RcFile } from "antd/lib/upload";
 import { useUpload } from "../../../../enthooks/hooks/useUpload";
 import { isArr } from "@formily/shared";
 
@@ -14,19 +15,8 @@ export interface ImageUploaderProps {
   onChange?: (value?: string | string[]) => void,
 }
 
-function getBase64(file) {
-  return new Promise<string>((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result as any);
-    reader.onerror = error => reject(error);
-  });
-}
-
 export const ImageUploader = observer((props: ImageUploaderProps) => {
   const { title, maxCount = 1, defaultValue, value, onChange, ...other } = props;
-  const [previewVisible, setPreviewVisible] = useState(false);
-  const [previewImage, setPreviewImage] = useState("");
   const [fileList, setFileList] = useState<UploadFile[]>([]);
 
   useEffect(() => {
@@ -61,34 +51,32 @@ export const ImageUploader = observer((props: ImageUploaderProps) => {
   }, [maxCount, onChange]);
 
   const handlePreview = useCallback(async (file: UploadFile) => {
-    if (!file.url && !file.preview) {
-      file.preview = await getBase64(file.originFileObj);
+    let src = file.url as string;
+    if (!src) {
+      src = await new Promise(resolve => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file.originFileObj as RcFile);
+        reader.onload = () => resolve(reader.result as string);
+      });
     }
-    setPreviewImage(file.url || file.preview);
-    setPreviewVisible(true);
-  }, []);
-
-  const handleCancel = useCallback(() => {
-    setPreviewVisible(false);
+    const image = new Image();
+    image.src = src;
+    const imgWindow = window.open(src);
+    imgWindow?.document.write(image.outerHTML);
   }, []);
 
   return (
-    <>
-      <ImgCrop rotate>
-        <Upload
-          {...other}
-          action={upload}
-          listType="picture-card"
-          fileList={fileList}
-          onChange={handleChange}
-          onPreview={handlePreview}
-        >
-          {fileList.length < maxCount && `+ ${p(title)}`}
-        </Upload>
-      </ImgCrop>
-      <Modal visible={previewVisible} footer={null} onCancel={handleCancel} title={'Image View'}>
-        <img alt="example" style={{ width: "100%" }} src={previewImage} />
-      </Modal>
-    </>
+    <ImgCrop rotate>
+      <Upload
+        {...other}
+        action={upload}
+        listType="picture-card"
+        fileList={fileList}
+        onChange={handleChange}
+        onPreview={handlePreview}
+      >
+        {fileList.length < maxCount && `+ ${p(title)}`}
+      </Upload>
+    </ImgCrop>
   )
 })
