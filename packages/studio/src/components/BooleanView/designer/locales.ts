@@ -3,12 +3,8 @@ export const BooleanViewLocales = {
     title: '布尔',
     settings: {
       'x-component-props': {
-        icon: '图标',
-        size: '尺寸',
-        shape: {
-          title: '形状',
-          dataSource: ['圆形', '方形'],
-        }
+        trueIcon: 'True 图标',
+        falseIcon: 'False 图标',
       },
     },
   },

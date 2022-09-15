@@ -3,27 +3,19 @@ import { ISchema } from '@formily/react'
 export const BooleanViewSchema: ISchema = {
   type: 'object',
   properties: {
-    icon: {
+    trueIcon: {
       type: 'string',
       'x-decorator': 'FormItem',
       'x-component': 'IconInput',
-      'x-component-props':{
+      'x-component-props': {
       }
     },
-    size:{
-      type: 'number',
-      'x-decorator': 'FormItem',
-      'x-component': 'NumberPicker',
-    },
-    shape:{
+    falseIcon: {
       type: 'string',
-      enum: ['circle', 'square'],
       'x-decorator': 'FormItem',
-      'x-component': 'Radio.Group',
+      'x-component': 'IconInput',
       'x-component-props': {
-        defaultValue: 'circle',
-        optionType: 'button',
-      },
-    }
+      }
+    },
   },
 }

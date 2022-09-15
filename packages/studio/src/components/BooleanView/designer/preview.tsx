@@ -8,8 +8,9 @@ import { observer } from '@formily/reactive-react'
 import React from 'react'
 
 export const BooleanViewDesigner: DnFC<IBooleanViewProps> = observer((props: IBooleanViewProps) => {
+  const {value, ...other} = props;
   return (
-    <BooleanView value={true} {...props} />
+    <BooleanView value={true} {...other} />
   )
 })
 
