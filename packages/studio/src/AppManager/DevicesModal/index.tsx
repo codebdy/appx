@@ -1,6 +1,7 @@
 import { Modal } from "antd";
 import React, { useCallback } from "react"
 import { memo } from "react"
+import { useTranslation } from "react-i18next";
 
 export const DevicesModal = memo((
   props: {
@@ -9,7 +10,8 @@ export const DevicesModal = memo((
   }
 ) => {
   const { visible, onClose } = props;
-  
+  const { t } = useTranslation();
+
   const handleCancel = useCallback(() => {
     onClose && onClose()
   }, [onClose])
@@ -19,7 +21,7 @@ export const DevicesModal = memo((
   }, [onClose])
 
   return (
-    <Modal title="Basic Modal" visible={visible} onOk={handleOk} onCancel={handleCancel}>
+    <Modal title={t("System.Devices")} visible={visible} onOk={handleOk} onCancel={handleCancel}>
       <p>Some contents...</p>
       <p>Some contents...</p>
       <p>Some contents...</p>
