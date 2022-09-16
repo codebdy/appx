@@ -34,7 +34,7 @@ ArrayPanelDesigner.Behavior = createBehavior({
   extends: ['Field'],
   selector: (node) => node.props['x-component'] === 'ArrayPanel',
   designerProps: {
-    droppable: false,
+    droppable: true,
     propsSchema: createFieldSchema(ArrayPanelSchema, { fieldSourceType: FieldsType.Single }),
   },
   designerLocales: ArrayPanelLocales,

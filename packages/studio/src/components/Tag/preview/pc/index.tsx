@@ -1,30 +1,24 @@
 import { observer } from "@formily/reactive-react"
 import { IIcon } from "../../../../shared/icon/model"
-import React, { useMemo } from "react"
+import React from "react"
 import { IconView } from "../../../../shared/icon/IconView"
-import { CheckOutlined } from "@ant-design/icons"
+import { Tag as AntdTag } from "antd"
+import { useParseLangMessage } from "../../../../hooks/useParseLangMessage"
 
 export interface ITagProps {
-  trueIcon?: IIcon,
-  falseIcon?: IIcon,
-  value?: boolean,
+  icon?: IIcon,
+  value?: string,
+  onChange?: (value?: string) => void,
 }
 
 export const Tag = observer((props: ITagProps) => {
-  const { trueIcon, falseIcon, value, ...other } = props;
-  const checkedIcon = useMemo(() => {
-    return trueIcon ? <IconView icon={trueIcon} /> : <CheckOutlined />
-  }, [trueIcon])
-
-  const uncheckedIcon = useMemo(() => {
-    return falseIcon ? <IconView icon={falseIcon} /> : ""
-  }, [falseIcon])
-
+  const { icon, value, onChange, ...other } = props;
+  const p = useParseLangMessage();
   return (
-    <div {...other}>
+    <AntdTag {...other} icon = {icon && <IconView icon={icon} />}>
       {
-        value ? checkedIcon : uncheckedIcon
+        p(value)
       }
-    </div>
+    </AntdTag>
   )
 })

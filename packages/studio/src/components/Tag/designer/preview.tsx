@@ -8,9 +8,9 @@ import { observer } from '@formily/reactive-react'
 import React from 'react'
 
 export const TagDesigner: DnFC<ITagProps> = observer((props: ITagProps) => {
-  const {value, ...other} = props;
+  const { value, ...other } = props;
   return (
-    <Tag {...other} />
+    <Tag {...other} value="Tag" />
   )
 })
 
