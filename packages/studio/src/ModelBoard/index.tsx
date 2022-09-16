@@ -8,6 +8,7 @@ import { useReadMeta } from "./hooks/useReadMeta";
 import { useShowError } from "../hooks/useShowError";
 import { Spin } from "antd";
 import { useSelectedAppUuid } from "../shared/AppRoot/context";
+import { ResizableColumn } from "../common/ResizableColumn";
 
 const ModelsBoard = memo((
   props: {
@@ -23,9 +24,11 @@ const ModelsBoard = memo((
   return (
     <Spin tip="Loading..." spinning={loading}>
       <div className="appx-model-board">
-        <div className="model-tree-shell">
-          <EntityTree graph={graph}></EntityTree>
-        </div>
+        <ResizableColumn minWidth={200} maxWidth={500}>
+          <div className="model-tree-shell">
+            <EntityTree graph={graph}></EntityTree>
+          </div>
+        </ResizableColumn>
         <ModelContent appUuid={realAppUuid} graph={graph} onSetGraph={setGraph} />
       </div>
     </Spin>

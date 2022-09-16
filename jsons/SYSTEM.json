@@ -1,5 +1,5 @@
 {
-  "appUuid": "SYSTEM",
+  "id": "1507236403010867300",
   "content": {
     "packages": [
       {
@@ -95,10 +95,19 @@
           {
             "label": "$inline:{\"zh-CN\":\"状态\"}",
             "name": "status",
+            "nullable": true,
             "type": "Enum",
-            "typeLabel": "UserStatus",
+            "typeLabel": "",
             "typeUuid": "1da63391-ef0d-4276-9a41-79108e8f30ce",
             "uuid": "3d415817-c9de-4d0f-bf72-3580210baa5b"
+          },
+          {
+            "label": "$inline:{\"zh-CN\":\"头像\"}",
+            "name": "avatarUrl",
+            "nullable": true,
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "403b942f-19e6-4380-8b4c-39829e1d5598"
           }
         ],
         "innerId": 4,
@@ -122,6 +131,7 @@
           },
           {
             "System": true,
+            "label": "$inline:{\"zh-CN\":\"名称\"}",
             "name": "name",
             "type": "String",
             "typeLabel": "String",
@@ -129,6 +139,7 @@
           },
           {
             "System": true,
+            "label": "$inline:{\"zh-CN\":\"描述\"}",
             "name": "description",
             "nullable": true,
             "type": "String",
@@ -138,6 +149,7 @@
           {
             "System": true,
             "createDate": true,
+            "label": "$inline:{\"zh-CN\":\"创建日期\"}",
             "name": "createdAt",
             "type": "Date",
             "typeLabel": "Date",
@@ -145,6 +157,7 @@
           },
           {
             "System": true,
+            "label": "$inline:{\"zh-CN\":\"更新日期\"}",
             "name": "updatedAt",
             "type": "Date",
             "typeLabel": "Date",
@@ -175,10 +188,11 @@
             "uuid": "83b44412-a76d-4c9d-baeb-84d4c1c62665"
           },
           {
-            "uuid": "67e158ca-2f85-4e15-bd2d-30a700987f86",
             "name": "imageUrl",
+            "nullable": true,
             "type": "String",
-            "typeLabel": "String"
+            "typeLabel": "String",
+            "uuid": "67e158ca-2f85-4e15-bd2d-30a700987f86"
           }
         ],
         "idNoShift": true,
@@ -520,6 +534,65 @@
         "root": false,
         "stereoType": "Enum",
         "uuid": "1da63391-ef0d-4276-9a41-79108e8f30ce"
+      },
+      {
+        "uuid": "b635e48d-f4fe-4470-ae77-0bb5dd2f0daa",
+        "innerId": 1014,
+        "name": "Notification",
+        "attributes": [
+          {
+            "uuid": "addb88e1-34df-419d-b6bc-eb2f6982612c",
+            "name": "id",
+            "type": "ID",
+            "primary": true,
+            "typeLabel": "ID"
+          },
+          {
+            "uuid": "cc42e281-1ef4-4e2a-a786-5baccc359941",
+            "name": "appUuid",
+            "type": "String",
+            "typeLabel": "String",
+            "nullable": true
+          },
+          {
+            "uuid": "b483e05d-caaf-4cd6-b628-666525f87cba",
+            "name": "content",
+            "type": "String",
+            "typeLabel": "String",
+            "label": "$inline:{\"zh-CN\":\"内容\"}",
+            "length": "20000",
+            "nullable": false
+          },
+          {
+            "uuid": "ae41faa0-0eec-4145-b7b9-444f9954033b",
+            "name": "type",
+            "type": "String",
+            "typeLabel": "String",
+            "label": "$inline:{\"zh-CN\":\"类型\"}",
+            "nullable": true
+          },
+          {
+            "uuid": "7ee38627-25ef-498f-b2e2-d893ef62a8c9",
+            "name": "entityUuid",
+            "type": "String",
+            "typeLabel": "String",
+            "nullable": true
+          },
+          {
+            "uuid": "4cc58493-1857-47d2-8cba-4733e68a3a04",
+            "name": "read",
+            "type": "Boolean",
+            "typeLabel": "Boolean",
+            "nullable": true,
+            "label": "$inline:{\"zh-CN\":\"已读\"}"
+          }
+        ],
+        "methods": [],
+        "stereoType": "Entity",
+        "root": true,
+        "packageUuid": "PACKAGE_APPX_UUID",
+        "label": "$inline:{\"zh-CN\":\"消息\",\"en-US\":\"Message\"}",
+        "description": "消息定义类"
       }
     ],
     "relations": [
@@ -688,6 +761,20 @@
         "targetId": "2082d665-e503-402a-a089-678115c5ed3e",
         "targetMultiplicity": "0..1",
         "uuid": "d76aa042-9c3c-4e44-9a8d-58a756621c7b"
+      },
+      {
+        "uuid": "6d5a249a-dd94-4e29-8191-212235cc195a",
+        "innerId": 1007,
+        "relationType": "twoWayCombination",
+        "sourceId": "META_USER_UUID",
+        "targetId": "b635e48d-f4fe-4470-ae77-0bb5dd2f0daa",
+        "roleOfTarget": "notifications",
+        "roleOfSource": "receiver",
+        "sourceMutiplicity": "0..1",
+        "targetMultiplicity": "0..1",
+        "appUuid": "SYSTEM",
+        "labelOfTarget": "$inline:{\"zh-CN\":\"通知\"}",
+        "labelOfSource": "$inline:{\"zh-CN\":\"接收者\"}"
       }
     ],
     "diagrams": [
@@ -718,6 +805,13 @@
         "nodes": [],
         "packageUuid": "PACKAGE_SYSTEM_UUID",
         "uuid": "4910a0fd-a454-4882-8250-88d77b5144aa"
+      },
+      {
+        "uuid": "bdc2b39a-b054-4cb1-9af1-2041ad08beee",
+        "name": "消息引擎",
+        "packageUuid": "PACKAGE_APPX_UUID",
+        "nodes": [],
+        "edges": []
       }
     ],
     "x6Nodes": [
@@ -851,11 +945,11 @@
       },
       {
         "diagramUuid": "4910a0fd-a454-4882-8250-88d77b5144aa",
-        "height": 278,
+        "height": 340,
         "id": "META_USER_UUID",
         "width": 180,
-        "x": 170,
-        "y": 50
+        "x": 89.99999999999989,
+        "y": 210
       },
       {
         "diagramUuid": "4910a0fd-a454-4882-8250-88d77b5144aa",
@@ -864,6 +958,30 @@
         "width": 180,
         "x": 510,
         "y": 90
+      },
+      {
+        "diagramUuid": "4910a0fd-a454-4882-8250-88d77b5144aa",
+        "height": 200,
+        "id": "META_ROLE_UUID",
+        "width": 180,
+        "x": 450,
+        "y": 280
+      },
+      {
+        "id": "b635e48d-f4fe-4470-ae77-0bb5dd2f0daa",
+        "x": 320,
+        "y": 160,
+        "width": 180,
+        "height": 210,
+        "diagramUuid": "bdc2b39a-b054-4cb1-9af1-2041ad08beee"
+      },
+      {
+        "id": "META_USER_UUID",
+        "x": -50,
+        "y": 100,
+        "width": 180,
+        "height": 330,
+        "diagramUuid": "bdc2b39a-b054-4cb1-9af1-2041ad08beee"
       }
     ],
     "x6Edges": [
@@ -1156,6 +1274,27 @@
           "offset": -20
         },
         "vertices": []
+      },
+      {
+        "id": "6d5a249a-dd94-4e29-8191-212235cc195a",
+        "vertices": [],
+        "roleOnSourcePosition": {
+          "distance": 40,
+          "offset": 20
+        },
+        "sourceMultiplicityPosition": {
+          "distance": 40,
+          "offset": -20
+        },
+        "roleOnTargetPosition": {
+          "distance": -40,
+          "offset": 20
+        },
+        "targetMultiplicityPosition": {
+          "distance": -40,
+          "offset": -20
+        },
+        "diagramUuid": "bdc2b39a-b054-4cb1-9af1-2041ad08beee"
       }
     ]
   }

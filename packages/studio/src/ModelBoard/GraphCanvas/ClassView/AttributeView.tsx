@@ -75,6 +75,7 @@ export default function AttributeView(props: {
           }}
         >
           {attr.name}
+          {attr.nullable ? "?" : ""}
         </div>
         {stereoType !== StereoType.Enum && (
           <>

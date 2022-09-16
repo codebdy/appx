@@ -42,6 +42,7 @@ const AttributeLabel = memo((
     >
       <div style={{ color: selectedElement === attr.uuid ? PRIMARY_COLOR : undefined }}>
         {attr.name}
+        {attr.nullable ? "?" : ""}
       </div>
     </TreeNodeLabel>
   )
