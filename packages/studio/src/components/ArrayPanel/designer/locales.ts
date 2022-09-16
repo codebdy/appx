@@ -3,8 +3,6 @@ export const ArrayPanelLocales = {
     title: '循环面板',
     settings: {
       'x-component-props': {
-        trueIcon: 'True 图标',
-        falseIcon: 'False 图标',
       },
     },
   },
