@@ -1,7 +1,8 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { PlusOutlined } from "@ant-design/icons";
 import { Button, Modal, Space, Table } from "antd";
 import { ColumnsType } from "antd/lib/table";
-import React, { useCallback } from "react"
+import React, { useCallback, useMemo } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
 import "./style.less";
@@ -13,35 +14,6 @@ interface DataType {
   address: string;
   tags: string[];
 }
-
-const columns: ColumnsType<DataType> = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-    render: text => <a>{text}</a>,
-  },
-  {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
-  },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
-  },
-  {
-    title: 'Action',
-    key: 'action',
-    render: (_, record) => (
-      <Space size="middle">
-        <a>Invite {record.name}</a>
-        <a>Delete</a>
-      </Space>
-    ),
-  },
-];
 
 const data: DataType[] = [
   {
@@ -76,6 +48,40 @@ export const DevicesModal = memo((
   const { visible, onClose } = props;
   const { t } = useTranslation();
 
+  const columns: ColumnsType<DataType> = useMemo(() => [
+    {
+      title: '',
+      dataIndex: 'imageUrl',
+      key: 'imageUrl',
+      render: text => <a>{text}</a>,
+    },
+    {
+      title: t('Devices.Key'),
+      dataIndex: 'key',
+      key: 'key',
+    },
+    {
+      title: t('Name'),
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: t('Description'),
+      dataIndex: 'description',
+      key: 'description',
+    },
+    {
+      title: t('Operation'),
+      key: 'action',
+      render: (_, record) => (
+        <Space size="middle">
+          <a onClick={()=>{}}>编辑</a>
+          <a onClick={()=>{}}>删除</a>
+        </Space>
+      ),
+    },
+  ], [t]);
+
   const handleCancel = useCallback(() => {
     onClose && onClose()
   }, [onClose])
@@ -104,7 +110,7 @@ export const DevicesModal = memo((
             <PlusOutlined />
           }
         >
-          {t("Devices.Add")}
+          {t("Add")}
         </Button>
       </div>
     </Modal>

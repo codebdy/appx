@@ -10,7 +10,7 @@
   "New": "新建",
   "Name": "名称",
   "Label": "标签",
-  "Add": "添加",
+  "Add": "新增",
   "Hidden": "隐藏",
   "App": "应用",
   "AppTemplates": "应用模板",
@@ -235,7 +235,7 @@
     "Other": "其他配置"
   },
   "Devices": {
-    "Add": "新增"
+    "Key": "标识"
   },
   "Action": {
     "OpenPage": "打开页面",
