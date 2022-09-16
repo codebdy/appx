@@ -172,7 +172,8 @@ const AppHeader = memo((props: {
             type={
               match.pathname === match.pathnameBase + AppManagerRoutes.Model ||
                 match.pathname === match.pathnameBase + AppManagerRoutes.Api ||
-                match.pathname === match.pathnameBase + AppManagerRoutes.Auth
+                match.pathname === match.pathnameBase + AppManagerRoutes.Auth ||
+                match.pathname === match.pathnameBase + AppManagerRoutes.Config
                 ?
                 "primary"
                 :
