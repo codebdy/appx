@@ -1,6 +1,7 @@
 import { Collapse } from 'antd';
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Devices } from './Devices';
 import MultLangForm from './MultLangForm';
 const { Panel } = Collapse;
 
@@ -22,7 +23,7 @@ const ConfigBoard = memo(() => {
             <MultLangForm />
           </Panel>
           <Panel header={t("Config.Devices")} key="devices">
-            <p>Devices</p>
+            <Devices />
           </Panel>
           <Panel header={t("Config.Other")} key="other">
             <p>Other config</p>
