@@ -17,22 +17,22 @@ interface DataType {
 
 const data: DataType[] = [
   {
-    key: '1',
-    name: 'John Brown',
+    key: 'pc',
+    name: 'PC管理端',
     age: 32,
     address: 'New York No. 1 Lake Park',
     tags: ['nice', 'developer'],
   },
   {
-    key: '2',
-    name: 'Jim Green',
+    key: 'h5',
+    name: '移动端',
     age: 42,
     address: 'London No. 1 Lake Park',
     tags: ['loser'],
   },
   {
-    key: '3',
-    name: 'Joe Black',
+    key: 'website',
+    name: '网站',
     age: 32,
     address: 'Sidney No. 1 Lake Park',
     tags: ['cool', 'teacher'],
