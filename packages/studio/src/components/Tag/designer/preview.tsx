@@ -31,7 +31,7 @@ TagDesigner.Resource = createResource({
     {
       componentName: 'Field',
       props: {
-        type: 'boolean',
+        type: 'string',
         'x-component': 'Tag',
       },
     },

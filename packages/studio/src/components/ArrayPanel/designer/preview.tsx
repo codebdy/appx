@@ -2,6 +2,8 @@ import { createBehavior, createResource } from '@designable/core'
 import {
   DnFC,
   DroppableWidget,
+  useTreeNode,
+  TreeNodeWidget
 } from '@designable/react'
 import { ArrayPanelSchema } from './schema'
 import { ArrayPanelLocales } from './locales'
@@ -9,22 +11,29 @@ import { createFieldSchema, FieldsType } from "../../common/Field/shared"
 import { IArrayPanelProps } from '../preview/pc'
 import { observer } from '@formily/reactive-react'
 import React from 'react'
+import { queryNodesByComponentPath } from '../../common/shared'
 
 
 export const ArrayPanelDesigner: DnFC<IArrayPanelProps> = observer((props: IArrayPanelProps) => {
-  const { value, onChange, children, ...other } = props;
+  const { value, onChange, ...other } = props;
+  const node = useTreeNode()
+
+  const children = queryNodesByComponentPath(node, [
+    'ArrayPanel',
+    '*'
+  ])
 
   return (
     <div
       {...other}
     >
-      {
-        children
-          ?
-          children
-          :
-          <DroppableWidget hasChildren={false} style={{ whiteSpace: "nowrap" }} />
-      }
+      {children.length ? (
+        children.map((node) => (
+          <TreeNodeWidget key={node.id} node={node} />
+        ))
+      ) : (
+        <DroppableWidget hasChildren={false} style={{ whiteSpace: "nowrap" }}/>
+      )}
     </div>
   )
 })
