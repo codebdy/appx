@@ -17,7 +17,7 @@ import FlowBoard from './FlowBoard';
 import AppRunner from './AppRunner';
 import ConfigBoard from './ConfigBoard';
 import { LoggedInPanel } from './Login/LoggedInPanel';
-import { AppTemplates } from './AppTemplates';
+import { TemplateDesigner } from './TemplateDesigner';
 
 const App = memo(() => {
   return (
@@ -28,7 +28,7 @@ const App = memo(() => {
             path={AppManagerRoutes.Root}
             element={<AppsContent />}
           />
-          <Route path={AppManagerRoutes.Templates} element={<AppTemplates />} />
+          <Route path={AppManagerRoutes.Templates} element={<TemplateDesigner />} />
           <Route path={AppManagerRoutes.Model} element={<ModelBoard />} />
           <Route path={AppManagerRoutes.Api} element={<ApiBoard />} />
           <Route path={AppManagerRoutes.Auth} element={<AuthBoard />} />
