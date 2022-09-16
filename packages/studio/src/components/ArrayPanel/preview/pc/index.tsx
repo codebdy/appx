@@ -7,7 +7,6 @@ import {
 } from '@formily/react'
 import { ArrayField } from "@formily/core";
 import { ArrayBase } from "@formily/antd";
-import { Empty } from "antd";
 
 export interface IArrayPanelProps {
   value?: boolean,
@@ -48,7 +47,7 @@ export const ArrayPanel = observer((props: IArrayPanelProps) => {
   const renderEmpty = () => {
     if (dataSource?.length) return
     return (
-      <Empty />
+      <></>
     )
   }
 
