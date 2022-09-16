@@ -1,6 +1,6 @@
-export const ArrayPanelLocales = {
+export const TagLocales = {
   'zh-CN': {
-    title: '循环面板',
+    title: '标签',
     settings: {
       'x-component-props': {
         trueIcon: 'True 图标',

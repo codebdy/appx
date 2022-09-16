@@ -5,3 +5,4 @@ export * from "./ImageUploader";
 export * from "./BooleanView";
 export * from "./EnumTags";
 export * from "./EnumSelect";
+export * from "./Tag";

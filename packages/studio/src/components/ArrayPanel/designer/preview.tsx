@@ -26,7 +26,7 @@ ArrayPanelDesigner.Behavior = createBehavior({
 })
 
 ArrayPanelDesigner.Resource = createResource({
-  icon: 'ArrayCardsSource',
+  icon: 'ObjectSource',
   elements: [
     {
       componentName: 'Field',

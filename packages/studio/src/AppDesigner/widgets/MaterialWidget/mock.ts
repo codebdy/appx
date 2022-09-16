@@ -44,7 +44,9 @@ import {
   ImageUploader,
   ImageUploaderDesigner,
   Medias,
-  MediasDesigner
+  MediasDesigner,
+  Tag,
+  TagDesigner
 } from "../../../components";
 
 export const allMaterials: MaterialModule[] = [
@@ -147,7 +149,7 @@ export const allMaterials: MaterialModule[] = [
             name: "EnumSelect",
             designer: EnumSelectDesigner,
             component: EnumSelect,
-          },
+          }
         ]
       },
       {
@@ -177,6 +179,11 @@ export const allMaterials: MaterialModule[] = [
             name: "ArrayPanel",
             designer: ArrayPanelDesigner,
             component: ArrayPanel,
+          },
+          {
+            name:"Tag",
+            designer: TagDesigner,
+            component: Tag,
           }
         ],
       }
