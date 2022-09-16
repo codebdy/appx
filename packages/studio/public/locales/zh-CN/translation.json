@@ -230,6 +230,7 @@
     "Inline": "内联"
   },
   "Config": {
+    "Devices": "设备端配置",
     "Other": "其他配置"
   },
   "Action": {

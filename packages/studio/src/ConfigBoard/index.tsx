@@ -21,6 +21,9 @@ const ConfigBoard = memo(() => {
           <Panel header={t("MultiLang.Title")} key="muti-lang">
             <MultLangForm />
           </Panel>
+          <Panel header={t("Config.Devices")} key="devices">
+            <p>Devices</p>
+          </Panel>
           <Panel header={t("Config.Other")} key="other">
             <p>Other config</p>
           </Panel>
