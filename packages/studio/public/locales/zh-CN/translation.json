@@ -234,6 +234,9 @@
     "Devices": "设备端配置",
     "Other": "其他配置"
   },
+  "Devices": {
+    "Add": "新增"
+  },
   "Action": {
     "OpenPage": "打开页面",
     "ClosePage": "关闭页面",
