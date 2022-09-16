@@ -1,6 +1,6 @@
-import { Button, Card, Col, Row } from "antd";
+import { Card, Col, Row } from "antd";
 import Meta from "antd/lib/card/Meta";
-import React from "react"
+import React, { useCallback } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +10,11 @@ export const AppTemplates = memo(() => {
   const { t } = useTranslation();
   const devices = useDevices();
   const navigate = useNavigate();
-  
+
+  const handleClick = useCallback((key: string) => {
+
+  }, []);
+
   return (
     <div className='content-inner'>
       <div className="content-show-block">
@@ -23,29 +27,16 @@ export const AppTemplates = memo(() => {
                     <Col span={6}>
                       <Card
                         className="hover-float"
+                        style={{
+                          cursor: "pointer",
+                        }}
                         cover={
                           <img
                             alt={device.name}
                             src={device.imageUrl}
                           />
                         }
-                        actions={[
-                          <Button
-                            key="design"
-                            shape="round"
-                            type="primary"
-                            onClick={() => { navigate(`/design-app/${device.key}`) }}
-                          >
-                            {t("AppManager.ToDesign")}
-                          </Button>,
-                          <Button
-                            key="preview"
-                            shape="round"
-                            onClick={() => { window.open(`/app/${device.key}`) }}
-                          >
-                            {t("AppManager.ToPreview")}
-                          </Button>,
-                        ]}
+                        onClick={() => handleClick(device.key)}
                       >
                         <Meta
                           title={device.name + t("Templates.Title")}
