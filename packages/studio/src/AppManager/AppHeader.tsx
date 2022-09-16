@@ -1,7 +1,7 @@
 import { AppstoreOutlined, QuestionCircleOutlined, GithubOutlined, DownOutlined, SettingOutlined } from "@ant-design/icons"
 import { Divider, Space, Button, Menu, Dropdown } from "antd"
 import { Header } from "antd/lib/layout/layout"
-import React, { memo, useCallback } from "react"
+import React, { memo, useCallback, useState } from "react"
 import SvgIcon from "../common/SvgIcon"
 import AvatarMenu from "./AvatarMenu"
 import clx from "classnames"
@@ -9,6 +9,7 @@ import { useMatch, useNavigate } from "react-router-dom"
 import { InerfaceSvg } from "../icons/InterfaceIcon"
 import { useTranslation } from "react-i18next"
 import SelectLang from "../shared/SelectLang"
+import { DevicesModal } from "./DevicesModal"
 
 export enum AppManagerRoutes {
   Root = "/",
@@ -16,13 +17,15 @@ export enum AppManagerRoutes {
   Model = "system-model",
   Api = "system-api",
   Auth = "system-auth",
-  Config = "system-config"
+  Config = "system-config",
+  Devices = "devices"
 }
 
 const AppHeader = memo((props: {
   scrolled: boolean
 }) => {
   const { scrolled } = props;
+  const [deviceVisible, setDeviceVisible] = useState(false);
   const navigate = useNavigate()
   const { t } = useTranslation();
   const match = useMatch("/*")
@@ -50,6 +53,14 @@ const AppHeader = memo((props: {
   const handleGotoConfig = useCallback(() => {
     navigate(AppManagerRoutes.Config)
   }, [navigate])
+
+  const handleViewDevices = useCallback(() => {
+    setDeviceVisible(true);
+  }, [])
+
+  const handleCloseDevices = useCallback(() => {
+    setDeviceVisible(false);
+  }, [])
 
   const menu = (
     <Menu
@@ -81,6 +92,16 @@ const AppHeader = memo((props: {
         onClick={handleGotoAuth}
       >
         {t("System.Auth")}
+      </Menu.Item>
+      <Menu.Item key={AppManagerRoutes.Devices}
+        icon={
+          <svg style={{ width: "16px", height: "16px" }} viewBox="0 0 1024 1024">
+            <path d="M966.77888 107.80672a70.0928 70.0928 0 0 0-49.8944-20.66944H192.88576c-38.91712 0-70.5792 31.66208-70.5792 70.57408v186.69056h50.26816V221.19424h764.58496v350.12096H412.78976v49.91488h524.3904v80.62464a20.34688 20.34688 0 0 1-20.28544 20.30592H412.78976v50.25792H442.88c-7.79776 19.93216-17.11616 36.5824-27.78112 49.62816l-2.30912 2.83136v83.3024h353.26464a25.36448 25.36448 0 0 0 25.32864-25.31328 25.37984 25.37984 0 0 0-25.33888-25.344c-43.81696 0-77.1328-28.61056-99.1744-85.0944h250.00448c38.912 0 70.56896-31.66208 70.56896-70.56896V157.71648a70.0928 70.0928 0 0 0-20.66432-49.90976zM172.57472 157.7216a20.36224 20.36224 0 0 1 20.3008-20.31616h356.75648c-7.6544 2.28352-13.29152 9.30816-13.29152 17.69472 0 7.21408 4.17792 13.40928 10.19904 16.47104h-373.9648v-13.8496z m387.5584-20.31616h356.72064a20.35712 20.35712 0 0 1 20.30592 20.30592v13.86496h-373.9392c6.03136-3.06688 10.20928-9.26208 10.20928-16.47104 0-8.39168-5.63712-15.41632-13.29664-17.69984zM460.19584 853.49376c19.29216-28.1088 29.52704-48.06144 41.5488-81.07008h106.20928c11.56608 35.75296 22.97344 56.51968 43.43296 79.11936l1.80736 1.95072H460.19584z" p-id="10677"></path><path d="M351.04256 353.06496H116.68992c-29.27104 0-53.08416 23.81312-53.08416 53.08416v480.47104c0 29.27104 23.81824 53.07904 53.08416 53.07904h234.36288c29.2608 0 53.07392-23.81312 53.07904-53.07904V406.144c0-29.26592-23.808-53.07904-53.08928-53.07904z m-1.38752 408.23808h-231.5776V407.53664h231.57248v353.7664z m-231.5776 54.84032h96.4608a37.21728 37.21728 0 0 0-15.93344 30.49984c0 20.54656 16.71168 37.25312 37.25312 37.25312 20.54144 0 37.25312-16.71168 37.25312-37.25312a37.20192 37.20192 0 0 0-15.93344-30.49984h92.47232v69.07392H118.07744v-69.07392z" p-id="10678"></path>
+          </svg>
+        }
+        onClick={handleViewDevices}
+      >
+        {t("System.Devices")}
       </Menu.Item>
       <Menu.Item key={AppManagerRoutes.Config}
         icon={<SettingOutlined style={{ fontSize: 16 }} />}
@@ -200,6 +221,7 @@ const AppHeader = memo((props: {
         <AvatarMenu />
         <SelectLang />
       </Space>
+      <DevicesModal visible={deviceVisible} onClose = {handleCloseDevices} />
     </Header>
   )
 })
