@@ -235,35 +235,6 @@
       {
         "attributes": [
           {
-            "name": "PC",
-            "type": "String",
-            "typeLabel": "String",
-            "uuid": "8d37eb83-0421-4b61-9609-7b24a28bcd89"
-          },
-          {
-            "name": "H5",
-            "type": "String",
-            "typeLabel": "String",
-            "uuid": "06964564-b1f6-46fa-bc50-0056bf0223cc"
-          },
-          {
-            "name": "Website",
-            "type": "String",
-            "typeLabel": "String",
-            "uuid": "b1f389ea-a0a4-4a29-9fd2-111d25c2ecfb"
-          }
-        ],
-        "innerId": 1003,
-        "methods": [],
-        "name": "Device",
-        "packageUuid": "PACKAGE_APPX_UUID",
-        "root": false,
-        "stereoType": "Enum",
-        "uuid": "096f252a-5e35-4e49-8dce-297b2f16374f"
-      },
-      {
-        "attributes": [
-          {
             "name": "id",
             "primary": true,
             "type": "ID",
@@ -620,36 +591,86 @@
         "uuid": "ff1086b1-5b14-4290-884e-a8a716a2b72e"
       },
       {
-        "uuid": "3a450ffa-e784-415f-b6c2-bc415e2dfd8c",
-        "innerId": 1016,
-        "name": "AppTemplate",
         "attributes": [
           {
-            "uuid": "26b07dab-072d-4a1c-ae0d-65fe0d98b160",
+            "name": "id",
+            "primary": true,
+            "type": "ID",
+            "typeLabel": "ID",
+            "uuid": "26b07dab-072d-4a1c-ae0d-65fe0d98b160"
+          },
+          {
+            "name": "title",
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "8e1c83bd-a9e1-48da-968f-9ea4ccb7c879"
+          },
+          {
+            "name": "description",
+            "nullable": true,
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "65c06c27-7d95-4337-b036-ab08cb7dfc0a"
+          },
+          {
+            "label": "$inline:{\"zh-CN\":\"图像\"}",
+            "name": "imageUrl",
+            "nullable": true,
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "74d97d91-2545-4b09-9324-54949431db2e"
+          }
+        ],
+        "innerId": 1016,
+        "label": "$inline:{\"zh-CN\":\"应用模板\"}",
+        "methods": [],
+        "name": "AppTemplate",
+        "packageUuid": "PACKAGE_APPX_UUID",
+        "root": true,
+        "stereoType": "Entity",
+        "uuid": "3a450ffa-e784-415f-b6c2-bc415e2dfd8c"
+      },
+      {
+        "uuid": "d36beef1-59e2-4cab-87a5-bb814c37e8a7",
+        "innerId": 1017,
+        "name": "Device",
+        "attributes": [
+          {
+            "uuid": "08c81926-09eb-4153-9d54-57d7a02f5faf",
             "name": "id",
             "type": "ID",
             "primary": true,
             "typeLabel": "ID"
           },
           {
-            "uuid": "8e1c83bd-a9e1-48da-968f-9ea4ccb7c879",
-            "name": "title",
+            "uuid": "a1eff38d-6a21-4107-b045-c1a0ac47bc8a",
+            "name": "key",
             "type": "String",
-            "typeLabel": "String"
+            "typeLabel": "String",
+            "label": "$inline:{\"zh-CN\":\"标识\"}"
           },
           {
-            "uuid": "65c06c27-7d95-4337-b036-ab08cb7dfc0a",
+            "uuid": "e9e54510-0d55-41ef-bc04-1b269353fd3b",
             "name": "description",
             "type": "String",
             "typeLabel": "String",
+            "label": "$inline:{\"zh-CN\":\"描述\"}",
+            "nullable": true
+          },
+          {
+            "uuid": "65d4e3b1-bd1c-49de-b533-5e862f69ff47",
+            "name": "imageUrl",
+            "type": "String",
+            "typeLabel": "String",
+            "label": "$inline:{\"zh-CN\":\"图像\"}",
             "nullable": true
           }
         ],
         "methods": [],
         "stereoType": "Entity",
-        "root": true,
+        "root": false,
         "packageUuid": "PACKAGE_APPX_UUID",
-        "label": "$inline:{\"zh-CN\":\"应用模板\"}"
+        "label": "$inline:{\"zh-CN\":\"设备\"}"
       }
     ],
     "relations": [
@@ -848,14 +869,14 @@
         "uuid": "ad19521d-e39d-4758-bfa8-311557dda77e"
       },
       {
-        "uuid": "0d6955d4-4aa2-4fd5-8af9-92a117812d96",
+        "appUuid": "SYSTEM",
         "innerId": 0,
         "relationType": "inherit",
         "sourceId": "3a450ffa-e784-415f-b6c2-bc415e2dfd8c",
-        "targetId": "087b2915-5582-496d-bafb-ae2f5623a70d",
         "sourceMutiplicity": "0..1",
+        "targetId": "087b2915-5582-496d-bafb-ae2f5623a70d",
         "targetMultiplicity": "0..1",
-        "appUuid": "SYSTEM"
+        "uuid": "0d6955d4-4aa2-4fd5-8af9-92a117812d96"
       }
     ],
     "diagrams": [
@@ -918,14 +939,6 @@
         "width": 180,
         "x": 140,
         "y": 0
-      },
-      {
-        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
-        "height": 140,
-        "id": "096f252a-5e35-4e49-8dce-297b2f16374f",
-        "width": 180,
-        "x": -500,
-        "y": -300
       },
       {
         "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
@@ -1088,11 +1101,19 @@
         "y": 110
       },
       {
+        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
+        "height": 190,
         "id": "3a450ffa-e784-415f-b6c2-bc415e2dfd8c",
-        "x": 650,
-        "y": 30,
         "width": 180,
-        "height": 120,
+        "x": 650,
+        "y": 30.000000000000057
+      },
+      {
+        "id": "d36beef1-59e2-4cab-87a5-bb814c37e8a7",
+        "x": -710,
+        "y": -250,
+        "width": 180,
+        "height": 170,
         "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc"
       }
     ],
@@ -1139,6 +1160,7 @@
         "vertices": []
       },
       {
+        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
         "id": "0b456cb0-ffcf-4bb6-a0c9-84524bbdc7b3",
         "vertices": [
           {
@@ -1149,8 +1171,7 @@
             "x": 230,
             "y": -30
           }
-        ],
-        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc"
+        ]
       },
       {
         "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
@@ -1434,14 +1455,14 @@
         "vertices": []
       },
       {
+        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
         "id": "0d6955d4-4aa2-4fd5-8af9-92a117812d96",
         "vertices": [
           {
             "x": 740,
             "y": -150
           }
-        ],
-        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc"
+        ]
       }
     ]
   }
