@@ -3,8 +3,8 @@ export const TagLocales = {
     title: '标签',
     settings: {
       'x-component-props': {
-        trueIcon: 'True 图标',
-        falseIcon: 'False 图标',
+        icon: '图标',
+        color: '颜色',
       },
     },
   },

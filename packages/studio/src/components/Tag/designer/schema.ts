@@ -3,17 +3,17 @@ import { ISchema } from '@formily/react'
 export const TagSchema: ISchema = {
   type: 'object',
   properties: {
-    trueIcon: {
+    icon: {
       type: 'string',
       'x-decorator': 'FormItem',
       'x-component': 'IconInput',
       'x-component-props': {
       }
     },
-    falseIcon: {
+    color: {
       type: 'string',
       'x-decorator': 'FormItem',
-      'x-component': 'IconInput',
+      'x-component': 'ColorInput',
       'x-component-props': {
       }
     },
