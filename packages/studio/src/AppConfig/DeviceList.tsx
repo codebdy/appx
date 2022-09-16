@@ -21,7 +21,6 @@ const DeviceList = memo((props: {
     <div className='content-inner'>
       <div className="content-show-block">
         <div className="config-content">
-          <h2>{t("AppManager.AppDesign")}</h2>
           {
             loading ?
               <Skeleton active={true}></Skeleton>
