@@ -9,7 +9,7 @@ import { useParseLangMessage } from "../hooks/useParseLangMessage"
 import { useRemoveApp } from "../hooks/useRemoveApp"
 import { IApp } from "../model"
 import { useShowError } from './../hooks/useShowError';
-import { UpsertAppModel } from "./AppModel/UpsertAppModel";
+import { UpsertAppModel } from "./AppModal/UpsertAppModel";
 
 const AppCard = memo((props: {
   app: IApp
