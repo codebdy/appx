@@ -134,6 +134,9 @@
     "ToPreview": "去预览",
     "Design": "设计"
   },
+  "Templates": {
+    "Title": "模板"
+  },
   "ModelBoard": {
     "DomainModel": "业务模型",
     "AddPackage": "添加包",
