@@ -8,6 +8,7 @@ export interface IArrayPanelProps {
   trueIcon?: IIcon,
   falseIcon?: IIcon,
   value?: boolean,
+  children?: React.ReactNode,
 }
 
 export const ArrayPanel = observer((props: IArrayPanelProps) => {
