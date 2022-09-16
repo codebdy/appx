@@ -12,6 +12,7 @@ import SelectLang from "../shared/SelectLang"
 
 export enum AppManagerRoutes {
   Root = "/",
+  Templates = "templates", 
   Model = "system-model",
   Api = "system-api",
   Auth = "system-auth",
@@ -122,7 +123,7 @@ const AppHeader = memo((props: {
             </svg>
           </SvgIcon>
         }>
-          {t("Engines")}
+          {t("AppTemplates")}
         </Button>
         {/* <Button shape="round" className='nav-button' icon={
           <SvgIcon>

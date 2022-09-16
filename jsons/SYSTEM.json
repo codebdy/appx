@@ -536,63 +536,88 @@
         "uuid": "1da63391-ef0d-4276-9a41-79108e8f30ce"
       },
       {
-        "uuid": "b635e48d-f4fe-4470-ae77-0bb5dd2f0daa",
-        "innerId": 1014,
-        "name": "Notification",
         "attributes": [
           {
-            "uuid": "addb88e1-34df-419d-b6bc-eb2f6982612c",
+            "name": "id",
+            "primary": true,
+            "type": "ID",
+            "typeLabel": "ID",
+            "uuid": "addb88e1-34df-419d-b6bc-eb2f6982612c"
+          },
+          {
+            "name": "appUuid",
+            "nullable": true,
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "cc42e281-1ef4-4e2a-a786-5baccc359941"
+          },
+          {
+            "label": "$inline:{\"zh-CN\":\"内容\"}",
+            "length": "20000",
+            "name": "content",
+            "nullable": false,
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "b483e05d-caaf-4cd6-b628-666525f87cba"
+          },
+          {
+            "label": "$inline:{\"zh-CN\":\"类型\"}",
+            "name": "type",
+            "nullable": true,
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "ae41faa0-0eec-4145-b7b9-444f9954033b"
+          },
+          {
+            "name": "entityUuid",
+            "nullable": true,
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "7ee38627-25ef-498f-b2e2-d893ef62a8c9"
+          },
+          {
+            "label": "$inline:{\"zh-CN\":\"已读\"}",
+            "name": "read",
+            "nullable": true,
+            "type": "Boolean",
+            "typeLabel": "Boolean",
+            "uuid": "4cc58493-1857-47d2-8cba-4733e68a3a04"
+          }
+        ],
+        "description": "消息定义类",
+        "innerId": 1014,
+        "label": "$inline:{\"zh-CN\":\"消息\",\"en-US\":\"Message\"}",
+        "methods": [],
+        "name": "Notification",
+        "packageUuid": "PACKAGE_APPX_UUID",
+        "root": true,
+        "stereoType": "Entity",
+        "uuid": "b635e48d-f4fe-4470-ae77-0bb5dd2f0daa"
+      },
+      {
+        "uuid": "ff1086b1-5b14-4290-884e-a8a716a2b72e",
+        "innerId": 1015,
+        "name": "ScheduledTask",
+        "attributes": [
+          {
+            "uuid": "181a3430-8203-440f-bd70-0629299f6f1e",
             "name": "id",
             "type": "ID",
             "primary": true,
             "typeLabel": "ID"
           },
           {
-            "uuid": "cc42e281-1ef4-4e2a-a786-5baccc359941",
+            "uuid": "dc007c8d-1262-4be6-bab7-5a0198982621",
             "name": "appUuid",
             "type": "String",
-            "typeLabel": "String",
-            "nullable": true
-          },
-          {
-            "uuid": "b483e05d-caaf-4cd6-b628-666525f87cba",
-            "name": "content",
-            "type": "String",
-            "typeLabel": "String",
-            "label": "$inline:{\"zh-CN\":\"内容\"}",
-            "length": "20000",
-            "nullable": false
-          },
-          {
-            "uuid": "ae41faa0-0eec-4145-b7b9-444f9954033b",
-            "name": "type",
-            "type": "String",
-            "typeLabel": "String",
-            "label": "$inline:{\"zh-CN\":\"类型\"}",
-            "nullable": true
-          },
-          {
-            "uuid": "7ee38627-25ef-498f-b2e2-d893ef62a8c9",
-            "name": "entityUuid",
-            "type": "String",
-            "typeLabel": "String",
-            "nullable": true
-          },
-          {
-            "uuid": "4cc58493-1857-47d2-8cba-4733e68a3a04",
-            "name": "read",
-            "type": "Boolean",
-            "typeLabel": "Boolean",
-            "nullable": true,
-            "label": "$inline:{\"zh-CN\":\"已读\"}"
+            "typeLabel": "String"
           }
         ],
         "methods": [],
         "stereoType": "Entity",
-        "root": true,
+        "root": false,
         "packageUuid": "PACKAGE_APPX_UUID",
-        "label": "$inline:{\"zh-CN\":\"消息\",\"en-US\":\"Message\"}",
-        "description": "消息定义类"
+        "label": "$inline:{\"zh-CN\":\"定时任务\"}"
       }
     ],
     "relations": [
@@ -763,18 +788,32 @@
         "uuid": "d76aa042-9c3c-4e44-9a8d-58a756621c7b"
       },
       {
-        "uuid": "6d5a249a-dd94-4e29-8191-212235cc195a",
+        "appUuid": "SYSTEM",
         "innerId": 1007,
+        "labelOfSource": "$inline:{\"zh-CN\":\"接收者\"}",
+        "labelOfTarget": "$inline:{\"zh-CN\":\"通知\"}",
+        "relationType": "twoWayCombination",
+        "roleOfSource": "receiver",
+        "roleOfTarget": "notifications",
+        "sourceId": "META_USER_UUID",
+        "sourceMutiplicity": "0..1",
+        "targetId": "b635e48d-f4fe-4470-ae77-0bb5dd2f0daa",
+        "targetMultiplicity": "0..*",
+        "uuid": "6d5a249a-dd94-4e29-8191-212235cc195a"
+      },
+      {
+        "uuid": "ad19521d-e39d-4758-bfa8-311557dda77e",
+        "innerId": 1009,
         "relationType": "twoWayCombination",
         "sourceId": "META_USER_UUID",
-        "targetId": "b635e48d-f4fe-4470-ae77-0bb5dd2f0daa",
-        "roleOfTarget": "notifications",
-        "roleOfSource": "receiver",
+        "targetId": "ff1086b1-5b14-4290-884e-a8a716a2b72e",
+        "roleOfTarget": "scheduledTasks",
+        "roleOfSource": "owner",
         "sourceMutiplicity": "0..1",
-        "targetMultiplicity": "0..1",
+        "targetMultiplicity": "0..*",
         "appUuid": "SYSTEM",
-        "labelOfTarget": "$inline:{\"zh-CN\":\"通知\"}",
-        "labelOfSource": "$inline:{\"zh-CN\":\"接收者\"}"
+        "labelOfSource": "$inline:{\"zh-CN\":\"拥有者\"}",
+        "labelOfTarget": "$inline:{\"zh-CN\":\"定时任务\"}"
       }
     ],
     "diagrams": [
@@ -807,8 +846,15 @@
         "uuid": "4910a0fd-a454-4882-8250-88d77b5144aa"
       },
       {
-        "uuid": "bdc2b39a-b054-4cb1-9af1-2041ad08beee",
+        "edges": [],
         "name": "消息引擎",
+        "nodes": [],
+        "packageUuid": "PACKAGE_APPX_UUID",
+        "uuid": "bdc2b39a-b054-4cb1-9af1-2041ad08beee"
+      },
+      {
+        "uuid": "40e28c05-3afb-4fea-a088-6aecd22b8085",
+        "name": "定时任务",
         "packageUuid": "PACKAGE_APPX_UUID",
         "nodes": [],
         "edges": []
@@ -968,20 +1014,36 @@
         "y": 280
       },
       {
-        "id": "b635e48d-f4fe-4470-ae77-0bb5dd2f0daa",
-        "x": 320,
-        "y": 160,
-        "width": 180,
+        "diagramUuid": "bdc2b39a-b054-4cb1-9af1-2041ad08beee",
         "height": 210,
-        "diagramUuid": "bdc2b39a-b054-4cb1-9af1-2041ad08beee"
+        "id": "b635e48d-f4fe-4470-ae77-0bb5dd2f0daa",
+        "width": 180,
+        "x": 320,
+        "y": 160
+      },
+      {
+        "diagramUuid": "bdc2b39a-b054-4cb1-9af1-2041ad08beee",
+        "height": 330,
+        "id": "META_USER_UUID",
+        "width": 180,
+        "x": -50,
+        "y": 100
+      },
+      {
+        "id": "ff1086b1-5b14-4290-884e-a8a716a2b72e",
+        "x": 270,
+        "y": 190,
+        "width": 180,
+        "height": 170,
+        "diagramUuid": "40e28c05-3afb-4fea-a088-6aecd22b8085"
       },
       {
         "id": "META_USER_UUID",
-        "x": -50,
-        "y": 100,
+        "x": -140,
+        "y": 110,
         "width": 180,
         "height": 330,
-        "diagramUuid": "bdc2b39a-b054-4cb1-9af1-2041ad08beee"
+        "diagramUuid": "40e28c05-3afb-4fea-a088-6aecd22b8085"
       }
     ],
     "x6Edges": [
@@ -1276,7 +1338,28 @@
         "vertices": []
       },
       {
+        "diagramUuid": "bdc2b39a-b054-4cb1-9af1-2041ad08beee",
         "id": "6d5a249a-dd94-4e29-8191-212235cc195a",
+        "roleOnSourcePosition": {
+          "distance": 40,
+          "offset": 20
+        },
+        "roleOnTargetPosition": {
+          "distance": -40,
+          "offset": 20
+        },
+        "sourceMultiplicityPosition": {
+          "distance": 40,
+          "offset": -20
+        },
+        "targetMultiplicityPosition": {
+          "distance": -40,
+          "offset": -20
+        },
+        "vertices": []
+      },
+      {
+        "id": "ad19521d-e39d-4758-bfa8-311557dda77e",
         "vertices": [],
         "roleOnSourcePosition": {
           "distance": 40,
@@ -1294,7 +1377,7 @@
           "distance": -40,
           "offset": -20
         },
-        "diagramUuid": "bdc2b39a-b054-4cb1-9af1-2041ad08beee"
+        "diagramUuid": "40e28c05-3afb-4fea-a088-6aecd22b8085"
       }
     ]
   }
