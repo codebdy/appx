@@ -26,11 +26,11 @@ const RunnerDistributer = memo(() => {
             <PCRunner />
           }
           {
-            device === Device.H5 &&
+            device === Device.Mobile &&
             <H5Runner />
           }
           {
-            device === Device.WebSite &&
+            device === Device.Website &&
             <WebsiteRunner />
           }
         </RunnerRoot>

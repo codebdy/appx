@@ -2,6 +2,13 @@ import { ID } from "../shared";
 import { IMenuItem } from "./IMenuNode";
 import { ISchema } from '@formily/json-schema'
 import { IUser } from "../enthooks/hooks/useQueryMe";
+
+export enum Device {
+  PC = "Pc",
+  Mobile = "Mobile",
+  Website = "Website"
+}
+
 export interface ILang {
   key: string,
   abbr: string,
@@ -50,11 +57,6 @@ export interface IApp {
   imageUrl?: string;
 }
 
-export enum Device {
-  PC = "Pc",
-  H5 = "H5",
-  WebSite = "WebSite"
-}
 
 export interface IPage {
   id: ID;

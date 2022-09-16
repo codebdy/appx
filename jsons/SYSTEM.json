@@ -252,7 +252,7 @@
             "name": "device",
             "type": "Enum",
             "typeLabel": "Device",
-            "typeUuid": "096f252a-5e35-4e49-8dce-297b2f16374f",
+            "typeUuid": "65dc043c-daaf-408c-b74c-f6ff4952bd5a",
             "uuid": "fcdbc399-e651-4b35-8b9b-bf3882324bf6"
           }
         ],
@@ -326,7 +326,7 @@
             "name": "device",
             "type": "Enum",
             "typeLabel": "Device",
-            "typeUuid": "096f252a-5e35-4e49-8dce-297b2f16374f",
+            "typeUuid": "65dc043c-daaf-408c-b74c-f6ff4952bd5a",
             "uuid": "95009bc6-dfa7-4e3a-9037-192c5aa83725"
           }
         ],
@@ -413,7 +413,7 @@
             "name": "device",
             "type": "Enum",
             "typeLabel": "Device",
-            "typeUuid": "096f252a-5e35-4e49-8dce-297b2f16374f",
+            "typeUuid": "65dc043c-daaf-408c-b74c-f6ff4952bd5a",
             "uuid": "01da62ca-ad8d-4306-9420-732e779a8b83"
           }
         ],
@@ -468,7 +468,7 @@
             "name": "device",
             "type": "Enum",
             "typeLabel": "Device",
-            "typeUuid": "096f252a-5e35-4e49-8dce-297b2f16374f",
+            "typeUuid": "65dc043c-daaf-408c-b74c-f6ff4952bd5a",
             "uuid": "c4b1d4ec-5cfc-4cbf-b695-c35650400ab7"
           }
         ],
@@ -631,46 +631,33 @@
         "uuid": "3a450ffa-e784-415f-b6c2-bc415e2dfd8c"
       },
       {
-        "uuid": "d36beef1-59e2-4cab-87a5-bb814c37e8a7",
-        "innerId": 1017,
-        "name": "Device",
         "attributes": [
           {
-            "uuid": "08c81926-09eb-4153-9d54-57d7a02f5faf",
-            "name": "id",
-            "type": "ID",
-            "primary": true,
-            "typeLabel": "ID"
+            "uuid": "19a70dae-3082-4894-9878-e06df10a9d5d",
+            "name": "Pc",
+            "type": "String",
+            "typeLabel": "String"
           },
           {
-            "uuid": "a1eff38d-6a21-4107-b045-c1a0ac47bc8a",
-            "name": "key",
+            "uuid": "65455c43-c2f1-4004-82e5-6f79e76b04b0",
+            "name": "Mobile",
             "type": "String",
-            "typeLabel": "String",
-            "label": "$inline:{\"zh-CN\":\"标识\"}"
+            "typeLabel": "String"
           },
           {
-            "uuid": "e9e54510-0d55-41ef-bc04-1b269353fd3b",
-            "name": "description",
+            "uuid": "e6d41e6b-5d19-4e60-bef4-3a43e11b131c",
+            "name": "Website",
             "type": "String",
-            "typeLabel": "String",
-            "label": "$inline:{\"zh-CN\":\"描述\"}",
-            "nullable": true
-          },
-          {
-            "uuid": "65d4e3b1-bd1c-49de-b533-5e862f69ff47",
-            "name": "imageUrl",
-            "type": "String",
-            "typeLabel": "String",
-            "label": "$inline:{\"zh-CN\":\"图像\"}",
-            "nullable": true
+            "typeLabel": "String"
           }
         ],
+        "innerId": 1003,
         "methods": [],
-        "stereoType": "Entity",
-        "root": false,
+        "name": "Device",
         "packageUuid": "PACKAGE_APPX_UUID",
-        "label": "$inline:{\"zh-CN\":\"设备\"}"
+        "root": false,
+        "stereoType": "Enum",
+        "uuid": "65dc043c-daaf-408c-b74c-f6ff4952bd5a"
       }
     ],
     "relations": [
@@ -877,6 +864,18 @@
         "targetId": "087b2915-5582-496d-bafb-ae2f5623a70d",
         "targetMultiplicity": "0..1",
         "uuid": "0d6955d4-4aa2-4fd5-8af9-92a117812d96"
+      },
+      {
+        "uuid": "49fbf19d-aa17-424d-8afa-a82d9e34e01e",
+        "innerId": 1010,
+        "relationType": "twoWayAssociation",
+        "sourceId": "2082d665-e503-402a-a089-678115c5ed3e",
+        "targetId": "3a450ffa-e784-415f-b6c2-bc415e2dfd8c",
+        "roleOfTarget": "appTemplates",
+        "roleOfSource": "app",
+        "sourceMutiplicity": "0..1",
+        "targetMultiplicity": "0..*",
+        "appUuid": "SYSTEM"
       }
     ],
     "diagrams": [
@@ -925,12 +924,12 @@
     ],
     "x6Nodes": [
       {
-        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
-        "height": 120,
         "id": "2082d665-e503-402a-a089-678115c5ed3e",
-        "width": 180,
         "x": -480,
-        "y": -10
+        "y": -10,
+        "width": 180,
+        "height": 120,
+        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc"
       },
       {
         "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
@@ -1109,9 +1108,9 @@
         "y": 30.000000000000057
       },
       {
-        "id": "d36beef1-59e2-4cab-87a5-bb814c37e8a7",
-        "x": -710,
-        "y": -250,
+        "id": "65dc043c-daaf-408c-b74c-f6ff4952bd5a",
+        "x": -730,
+        "y": -330,
         "width": 180,
         "height": 170,
         "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc"
@@ -1463,6 +1462,45 @@
             "y": -150
           }
         ]
+      },
+      {
+        "id": "49fbf19d-aa17-424d-8afa-a82d9e34e01e",
+        "vertices": [
+          {
+            "x": -460,
+            "y": 420
+          },
+          {
+            "x": 740,
+            "y": 420
+          }
+        ],
+        "roleOnSourcePosition": {
+          "distance": 40,
+          "offset": 20
+        },
+        "sourceMultiplicityPosition": {
+          "distance": 40,
+          "offset": -20
+        },
+        "roleOnTargetPosition": {
+          "distance": 0.9787472040701548,
+          "offset": 70,
+          "angle": 0
+        },
+        "targetMultiplicityPosition": {
+          "distance": -40,
+          "offset": -20
+        },
+        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
+        "sourceAnchor": {
+          "name": "topLeft",
+          "args": {
+            "dx": "11%",
+            "dy": "50%",
+            "rotate": true
+          }
+        }
       }
     ]
   }

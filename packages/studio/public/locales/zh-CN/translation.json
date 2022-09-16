@@ -132,9 +132,7 @@
     "AppDesign": "应用设计",
     "ToDesign": "去设计",
     "ToPreview": "去预览",
-    "PCDesign": "管理端设计",
-    "H5Design": "H5设计",
-    "WebsiteDesign": "网站设计"
+    "Design": "设计"
   },
   "ModelBoard": {
     "DomainModel": "业务模型",
@@ -235,7 +233,10 @@
     "Other": "其他配置"
   },
   "Devices": {
-    "Key": "标识"
+    "Key": "标识",
+    "Pc": "管理端",
+    "Mobile": "移动端",
+    "Website": "网站"
   },
   "Action": {
     "OpenPage": "打开页面",
