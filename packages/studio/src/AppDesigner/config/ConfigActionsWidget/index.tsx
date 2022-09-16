@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { Space, Button, message } from 'antd'
+import { Button, message } from 'antd'
 import { TextWidget } from '@designable/react'
 import { observer } from '@formily/react'
 import { useShowError } from '../../../hooks/useShowError'
@@ -39,15 +39,13 @@ export const ConfigActionsWidget = observer(() => {
   }, [appDeviceConfig, device, upsert])
 
   return (
-    <Space style={{ marginRight: 10 }}>
-      <Button
-        type="primary"
-        loading={loading}
-        disabled={!changed}
-        onClick={handleSave}
-      >
-        <TextWidget>Save</TextWidget>
-      </Button>
-    </Space>
+    <Button
+      type="primary"
+      loading={loading}
+      disabled={!changed}
+      onClick={handleSave}
+    >
+      <TextWidget>Save</TextWidget>
+    </Button>
   )
 })

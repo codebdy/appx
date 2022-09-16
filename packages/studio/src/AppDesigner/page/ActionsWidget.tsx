@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { Space, Button, message } from 'antd'
+import { Button, message } from 'antd'
 import { useDesigner, TextWidget } from '@designable/react'
 import { observer } from '@formily/react'
 import { useUpdatePage } from '../../hooks/useUpdatePage'
@@ -25,15 +25,13 @@ export const ActionsWidget = observer(() => {
   }, [designer, pageId, update])
 
   return (
-    <Space style={{ marginRight: 10 }}>
-      <Button
-        type="primary"
-        disabled={!pageId}
-        loading={loading}
-        onClick={handleSave}
-      >
-        <TextWidget>Save</TextWidget>
-      </Button>
-    </Space>
+    <Button
+      type="primary"
+      disabled={!pageId}
+      loading={loading}
+      onClick={handleSave}
+    >
+      <TextWidget>Save</TextWidget>
+    </Button>
   )
 })

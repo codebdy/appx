@@ -20,7 +20,7 @@ import MenuComponentsWidget from './menu/MenuComponentsWidget'
 import MenuWorkSpace from './menu/MenuWorkSpace'
 import { MenuActionsWidget } from './menu/MenuActionsWidget'
 import { useShowError } from '../hooks/useShowError'
-import { Spin } from 'antd'
+import { Button, Space, Spin } from 'antd'
 import { useSelectedPageId } from './hooks/useSelectedPageId'
 import MenuDragRoot from './menu/MenuDragRoot'
 import { useAppParams, useAppViewKey } from '../shared/AppRoot/context'
@@ -42,7 +42,7 @@ export enum DesignerRoutes {
 }
 
 const AppDesignerContent = memo(() => {
-  const { app } = useAppParams();
+  const { app, device } = useAppParams();
   const key = useAppViewKey()
   const [activeKey, setActiveKey] = useState<string>(DesignerRoutes.Pages);
   const { t } = useTranslation();
@@ -95,12 +95,23 @@ const AppDesignerContent = memo(() => {
     }
   }, [activeKey])
 
+  const handlePreview = useCallback(() => {
+    window.open(`/app/${device}/${app?.uuid}`)
+  }, [app?.uuid, device])
+
   return (
     <Spin style={{ height: "100vh" }} spinning={loading || pagesLoading || metaLoading}>
       <MenuDragRoot>
         <Designer engine={engine}>
           <StudioPanel logo={<NavigationWidget app={app} activeKey={activeKey as any} />}
-            actions={renderActions()}
+            actions={
+              <Space style={{ marginRight: 10 }}>
+                <Button onClick={handlePreview}>{t("Designer.Preview")}</Button>
+                {
+                  renderActions()
+                }
+              </Space>
+            }
           >
             <CompositePanel showNavTitle activeKey={activeKey} onChange={hanclePannelChange}>
               <CompositePanel.Item
