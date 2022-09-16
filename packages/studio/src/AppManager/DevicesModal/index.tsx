@@ -50,7 +50,7 @@ export const DevicesModal = memo((
 
   const columns: ColumnsType<DataType> = useMemo(() => [
     {
-      title: '',
+      title: t('Image'),
       dataIndex: 'imageUrl',
       key: 'imageUrl',
       render: text => <a>{text}</a>,
@@ -66,17 +66,12 @@ export const DevicesModal = memo((
       key: 'name',
     },
     {
-      title: t('Description'),
-      dataIndex: 'description',
-      key: 'description',
-    },
-    {
       title: t('Operation'),
       key: 'action',
       render: (_, record) => (
         <Space size="middle">
-          <a onClick={()=>{}}>编辑</a>
-          <a onClick={()=>{}}>删除</a>
+          <a onClick={() => { }}>{t("Edit")}</a>
+          <a onClick={() => { }}>{t("Delete")}</a>
         </Space>
       ),
     },
@@ -100,19 +95,18 @@ export const DevicesModal = memo((
         columns={columns}
         dataSource={data}
       />
-      <div
-        style={{ padding: "8px 16px" }}
+
+      <Button
+        block
+        type="dashed"
+        icon={
+          <PlusOutlined />
+        }
+        style={{ marginTop: 16 }}
       >
-        <Button
-          block
-          type="dashed"
-          icon={
-            <PlusOutlined />
-          }
-        >
-          {t("Add")}
-        </Button>
-      </div>
+        {t("Add")}
+      </Button>
+
     </Modal>
   )
 })
