@@ -16,12 +16,13 @@ export const DevicesModal = memo((
     onClose && onClose()
   }, [onClose])
 
-  const handleOk = useCallback(() => {
-    onClose && onClose()
-  }, [onClose])
-
   return (
-    <Modal title={t("System.Devices")} visible={visible} onOk={handleOk} onCancel={handleCancel}>
+    <Modal
+      title={t("System.Devices")}
+      visible={visible}
+      onCancel={handleCancel}
+      footer = {null}
+    >
       <p>Some contents...</p>
       <p>Some contents...</p>
       <p>Some contents...</p>
