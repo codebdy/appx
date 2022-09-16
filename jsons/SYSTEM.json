@@ -595,29 +595,61 @@
         "uuid": "b635e48d-f4fe-4470-ae77-0bb5dd2f0daa"
       },
       {
-        "uuid": "ff1086b1-5b14-4290-884e-a8a716a2b72e",
-        "innerId": 1015,
-        "name": "ScheduledTask",
         "attributes": [
           {
-            "uuid": "181a3430-8203-440f-bd70-0629299f6f1e",
+            "name": "id",
+            "primary": true,
+            "type": "ID",
+            "typeLabel": "ID",
+            "uuid": "181a3430-8203-440f-bd70-0629299f6f1e"
+          },
+          {
+            "name": "appUuid",
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "dc007c8d-1262-4be6-bab7-5a0198982621"
+          }
+        ],
+        "innerId": 1015,
+        "label": "$inline:{\"zh-CN\":\"定时任务\"}",
+        "methods": [],
+        "name": "ScheduledTask",
+        "packageUuid": "PACKAGE_APPX_UUID",
+        "root": false,
+        "stereoType": "Entity",
+        "uuid": "ff1086b1-5b14-4290-884e-a8a716a2b72e"
+      },
+      {
+        "uuid": "3a450ffa-e784-415f-b6c2-bc415e2dfd8c",
+        "innerId": 1016,
+        "name": "AppTemplate",
+        "attributes": [
+          {
+            "uuid": "26b07dab-072d-4a1c-ae0d-65fe0d98b160",
             "name": "id",
             "type": "ID",
             "primary": true,
             "typeLabel": "ID"
           },
           {
-            "uuid": "dc007c8d-1262-4be6-bab7-5a0198982621",
-            "name": "appUuid",
+            "uuid": "8e1c83bd-a9e1-48da-968f-9ea4ccb7c879",
+            "name": "title",
             "type": "String",
             "typeLabel": "String"
+          },
+          {
+            "uuid": "65c06c27-7d95-4337-b036-ab08cb7dfc0a",
+            "name": "description",
+            "type": "String",
+            "typeLabel": "String",
+            "nullable": true
           }
         ],
         "methods": [],
         "stereoType": "Entity",
-        "root": false,
+        "root": true,
         "packageUuid": "PACKAGE_APPX_UUID",
-        "label": "$inline:{\"zh-CN\":\"定时任务\"}"
+        "label": "$inline:{\"zh-CN\":\"应用模板\"}"
       }
     ],
     "relations": [
@@ -802,18 +834,28 @@
         "uuid": "6d5a249a-dd94-4e29-8191-212235cc195a"
       },
       {
-        "uuid": "ad19521d-e39d-4758-bfa8-311557dda77e",
-        "innerId": 1009,
-        "relationType": "twoWayCombination",
-        "sourceId": "META_USER_UUID",
-        "targetId": "ff1086b1-5b14-4290-884e-a8a716a2b72e",
-        "roleOfTarget": "scheduledTasks",
-        "roleOfSource": "owner",
-        "sourceMutiplicity": "0..1",
-        "targetMultiplicity": "0..*",
         "appUuid": "SYSTEM",
+        "innerId": 1009,
         "labelOfSource": "$inline:{\"zh-CN\":\"拥有者\"}",
-        "labelOfTarget": "$inline:{\"zh-CN\":\"定时任务\"}"
+        "labelOfTarget": "$inline:{\"zh-CN\":\"定时任务\"}",
+        "relationType": "twoWayCombination",
+        "roleOfSource": "owner",
+        "roleOfTarget": "scheduledTasks",
+        "sourceId": "META_USER_UUID",
+        "sourceMutiplicity": "0..1",
+        "targetId": "ff1086b1-5b14-4290-884e-a8a716a2b72e",
+        "targetMultiplicity": "0..*",
+        "uuid": "ad19521d-e39d-4758-bfa8-311557dda77e"
+      },
+      {
+        "uuid": "0d6955d4-4aa2-4fd5-8af9-92a117812d96",
+        "innerId": 0,
+        "relationType": "inherit",
+        "sourceId": "3a450ffa-e784-415f-b6c2-bc415e2dfd8c",
+        "targetId": "087b2915-5582-496d-bafb-ae2f5623a70d",
+        "sourceMutiplicity": "0..1",
+        "targetMultiplicity": "0..1",
+        "appUuid": "SYSTEM"
       }
     ],
     "diagrams": [
@@ -853,11 +895,11 @@
         "uuid": "bdc2b39a-b054-4cb1-9af1-2041ad08beee"
       },
       {
-        "uuid": "40e28c05-3afb-4fea-a088-6aecd22b8085",
+        "edges": [],
         "name": "定时任务",
-        "packageUuid": "PACKAGE_APPX_UUID",
         "nodes": [],
-        "edges": []
+        "packageUuid": "PACKAGE_APPX_UUID",
+        "uuid": "40e28c05-3afb-4fea-a088-6aecd22b8085"
       }
     ],
     "x6Nodes": [
@@ -1030,20 +1072,28 @@
         "y": 100
       },
       {
-        "id": "ff1086b1-5b14-4290-884e-a8a716a2b72e",
-        "x": 270,
-        "y": 190,
-        "width": 180,
+        "diagramUuid": "40e28c05-3afb-4fea-a088-6aecd22b8085",
         "height": 170,
-        "diagramUuid": "40e28c05-3afb-4fea-a088-6aecd22b8085"
+        "id": "ff1086b1-5b14-4290-884e-a8a716a2b72e",
+        "width": 180,
+        "x": 270,
+        "y": 190
       },
       {
-        "id": "META_USER_UUID",
-        "x": -140,
-        "y": 110,
-        "width": 180,
+        "diagramUuid": "40e28c05-3afb-4fea-a088-6aecd22b8085",
         "height": 330,
-        "diagramUuid": "40e28c05-3afb-4fea-a088-6aecd22b8085"
+        "id": "META_USER_UUID",
+        "width": 180,
+        "x": -140,
+        "y": 110
+      },
+      {
+        "id": "3a450ffa-e784-415f-b6c2-bc415e2dfd8c",
+        "x": 650,
+        "y": 30,
+        "width": 180,
+        "height": 120,
+        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc"
       }
     ],
     "x6Edges": [
@@ -1089,14 +1139,18 @@
         "vertices": []
       },
       {
-        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
         "id": "0b456cb0-ffcf-4bb6-a0c9-84524bbdc7b3",
         "vertices": [
           {
             "x": 490,
-            "y": -150
+            "y": -30
+          },
+          {
+            "x": 230,
+            "y": -30
           }
-        ]
+        ],
+        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc"
       },
       {
         "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
@@ -1359,25 +1413,35 @@
         "vertices": []
       },
       {
+        "diagramUuid": "40e28c05-3afb-4fea-a088-6aecd22b8085",
         "id": "ad19521d-e39d-4758-bfa8-311557dda77e",
-        "vertices": [],
         "roleOnSourcePosition": {
           "distance": 40,
+          "offset": 20
+        },
+        "roleOnTargetPosition": {
+          "distance": -40,
           "offset": 20
         },
         "sourceMultiplicityPosition": {
           "distance": 40,
           "offset": -20
         },
-        "roleOnTargetPosition": {
-          "distance": -40,
-          "offset": 20
-        },
         "targetMultiplicityPosition": {
           "distance": -40,
           "offset": -20
         },
-        "diagramUuid": "40e28c05-3afb-4fea-a088-6aecd22b8085"
+        "vertices": []
+      },
+      {
+        "id": "0d6955d4-4aa2-4fd5-8af9-92a117812d96",
+        "vertices": [
+          {
+            "x": 740,
+            "y": -150
+          }
+        ],
+        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc"
       }
     ]
   }
