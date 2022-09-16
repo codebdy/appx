@@ -82,31 +82,33 @@ export const DevicesModal = memo((
   }, [onClose])
 
   return (
-    <Modal
-      title={t("System.Devices")}
-      className="devices-modal"
-      visible={visible}
-      width={700}
-      onCancel={handleCancel}
-      footer={null}
-    >
-      <Table
-        pagination={false}
-        columns={columns}
-        dataSource={data}
-      />
-
-      <Button
-        block
-        type="dashed"
-        icon={
-          <PlusOutlined />
-        }
-        style={{ marginTop: 16 }}
+    <>
+      <Modal
+        title={t("System.Devices")}
+        className="devices-modal"
+        visible={visible}
+        width={700}
+        onCancel={handleCancel}
+        footer={null}
       >
-        {t("Add")}
-      </Button>
+        <Table
+          pagination={false}
+          columns={columns}
+          dataSource={data}
+        />
 
-    </Modal>
+        <Button
+          block
+          type="dashed"
+          icon={
+            <PlusOutlined />
+          }
+          style={{ marginTop: 16 }}
+        >
+          {t("Add")}
+        </Button>
+
+      </Modal>
+    </>
   )
 })
