@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 import { AttributeTypeInput } from "./AttributeTypeInput";
 import { MultiLangInput } from "../../components/pc/MultiLangInput";
 import { useSelectedAppUuid } from "../../shared/AppRoot/context";
+import { isStr } from "@formily/shared";
 
 export const AttributePanel = (props: {
   attribute: AttributeMeta;
@@ -34,6 +35,10 @@ export const AttributePanel = (props: {
   const isId = useMemo(() => attribute.name === CONST_ID, [attribute.name]);
 
   const handleChange = useCallback((form) => {
+    if (form?.length && isStr(form?.length)) {
+      form.length = parseInt(form.length)
+    }
+
     const errMsg = changeAttribute(
       {
         ...attribute,
