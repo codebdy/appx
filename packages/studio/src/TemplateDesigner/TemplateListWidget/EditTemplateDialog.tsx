@@ -45,7 +45,7 @@ export const EditTemplateDialog = memo((
     >
       <Form
         name="editPage"
-        labelCol={{ span: 8 }}
+        labelCol={{ span: 6 }}
         wrapperCol={{ span: 16 }}
         form={form}
         initialValues={{ title: template?.title || "" }}
