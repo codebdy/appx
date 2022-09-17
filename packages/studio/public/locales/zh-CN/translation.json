@@ -136,7 +136,8 @@
     "Design": "设计"
   },
   "Templates": {
-    "Title": "模板"
+    "Title": "模板",
+    "NewTemplate": "新建模板"
   },
   "ModelBoard": {
     "DomainModel": "业务模型",
