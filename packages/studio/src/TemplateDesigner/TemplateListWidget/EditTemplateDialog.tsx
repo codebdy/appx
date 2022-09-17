@@ -66,7 +66,7 @@ export const EditTemplateDialog = memo((
           name="title"
           rules={[{ required: true, message: t("Required") }]}
         >
-          <MultiLangInput title={t("Templates.TemplateName")} />
+          <MultiLangInput inline title={t("Templates.TemplateName")} />
         </Form.Item>
         < Form.Item
           label={t("Templates.Image")}
