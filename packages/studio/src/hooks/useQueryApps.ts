@@ -12,6 +12,7 @@ query {
       imageUrl 
       templates{
         id
+        device
       }     
     }
     total

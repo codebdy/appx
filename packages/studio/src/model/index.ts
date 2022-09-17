@@ -55,7 +55,7 @@ export interface IApp {
   pages?: IPage[];
   menus?: IMenu[];
   imageUrl?: string;
-  templates?: ITemplate;
+  templates?: ITemplate[];
 }
 
 export interface ITemplate {

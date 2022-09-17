@@ -32,7 +32,10 @@ export const UpsertAppModel = memo((
 
   const reset = useCallback(() => {
     form.setFieldsValue({ title: app?.title || "", description: app?.description || "", imageUrl: app?.imageUrl || "" })
-  }, [app?.description, app?.imageUrl, app?.title, form])
+    for (const device of devices) {
+      form.setFieldValue(TEMPLATE_PREFIX + device.key, app?.templates?.find(tmp => tmp.device === device.key)?.id)
+    }
+  }, [app?.description, app?.imageUrl, app?.templates, app?.title, devices, form])
 
   useEffect(() => {
     reset();
