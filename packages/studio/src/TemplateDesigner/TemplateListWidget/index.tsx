@@ -27,7 +27,7 @@ export const TemplateListWidget = memo((
 
   const getTreeData = useCallback(() => {
     const dataNodes: DataNode[] = []
-    for (const template of data?.template?.nodes) {
+    for (const template of data?.template?.nodes || []) {
       dataNodes.push({
         title: <TemplateLabel template={template} />,
         key: template.id,
