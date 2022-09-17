@@ -10,6 +10,8 @@ import { IAppInput } from "../../model/input";
 import { createUuid } from "../../shared";
 import { IApp } from "../../model";
 import { useDevices } from "../../hooks/useDevices";
+import { useParseLangMessage } from "../../hooks/useParseLangMessage";
+import { useQueryAllTemplates } from "../../hooks/useQueryAllTemplates";
 const { Option } = Select;
 
 export const UpsertAppModel = memo((
@@ -23,6 +25,8 @@ export const UpsertAppModel = memo((
   const [form] = Form.useForm<IAppInput>();
   const { t } = useTranslation();
   const devices = useDevices();
+  const p = useParseLangMessage();
+  const { data, error: queryError, loading: quering } = useQueryAllTemplates();
 
   const reset = useCallback(() => {
     form.setFieldsValue({ title: app?.title || "", description: app?.description || "", imageUrl: app?.imageUrl || "" })
@@ -39,7 +43,7 @@ export const UpsertAppModel = memo((
     }
   });
 
-  useShowError(error);
+  useShowError(error || queryError);
 
   const handleOk = useCallback(() => {
     form.validateFields().then((formData) => {
@@ -98,10 +102,14 @@ export const UpsertAppModel = memo((
                 label={t("AppManager.TemplateSelect", { name: device.name })}
                 name={"template-" + device.key}
               >
-                <Select defaultValue="lucy">
-                  <Option value="jack">Jack</Option>
-                  <Option value="lucy">Lucy</Option>
-                  <Option value="Yiminghe">yiminghe</Option>
+                <Select allowClear loading={quering}>
+                  {
+                    data?.template?.nodes?.map(template => {
+                      return (
+                        <Option value={template.id}>{p(template.title)}</Option>
+                      )
+                    })
+                  }
                 </Select>
               </Form.Item>
             )
