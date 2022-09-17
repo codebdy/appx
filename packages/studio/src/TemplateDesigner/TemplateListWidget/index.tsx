@@ -4,17 +4,17 @@ import "./style.less"
 import { DataNode } from 'antd/lib/tree';
 import TemplateLabel from './TemplateLabel';
 import { ID } from '../../shared';
+import { useTranslation } from 'react-i18next';
 import { useQueryTemplates } from '../hooks/useQueryTemplates';
 import { useParams } from 'react-router-dom';
 import { useShowError } from '../../hooks/useShowError';
 import CreatePageDialog from './CreateTemplateDialog';
-
-const { DirectoryTree } = Tree;
+import { FileOutlined } from '@ant-design/icons';
 
 export const TemplateListWidget = memo((
   props: {
     selectedId?: ID,
-    onSelected?: (selectedId?: ID) => void,
+    onSelected: (selectedId?: ID) => void,
   }
 ) => {
   const { selectedId, onSelected } = props;
@@ -28,6 +28,7 @@ export const TemplateListWidget = memo((
     for (const template of data?.template?.nodes || []) {
       dataNodes.push({
         title: <TemplateLabel template={template} />,
+        icon: <FileOutlined />,
         key: template.id,
       })
     }
@@ -42,7 +43,7 @@ export const TemplateListWidget = memo((
   return (
     <div className='template-list-shell'>
       <Spin spinning={loading}>
-        <DirectoryTree
+        <Tree
           className='template-list-tree'
           selectedKeys={[selectedId]}
           onSelect={onSelect}

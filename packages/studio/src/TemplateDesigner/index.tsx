@@ -40,6 +40,10 @@ export const TemplateDesigner = memo(() => {
     }),
     []
   )
+
+  const handleSelect = useCallback((selectedId?: ID) => {
+    setSeletedId(selectedId)
+  }, [])
   return (
     <Designer engine={engine}>
       <StudioPanel logo={<NavigationWidget />}
@@ -54,7 +58,7 @@ export const TemplateDesigner = memo(() => {
             key={DesignerRoutes.Pages}
             title={t("Panels.Templates")} icon="Page"
           >
-            <TemplateListWidget />
+            <TemplateListWidget selectedId={selectedId} onSelected={handleSelect} />
           </CompositePanel.Item>
           <CompositePanel.Item
             key={DesignerRoutes.Components}

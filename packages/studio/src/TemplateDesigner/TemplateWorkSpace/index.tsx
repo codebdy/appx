@@ -8,7 +8,7 @@ import { FormDesigner } from "../../components/pc";
 import { convertMaterialsToComponentDesigners } from "../../AppDesigner/widgets/MaterialWidget/model";
 import { materialStore } from "../../shared/global";
 import { ComponentTreeWidget, DesignerToolsWidget, PreviewWidget, SchemaEditorWidget, ViewToolsWidget } from "../../AppDesigner/widgets";
-import { useLazyQueryTemplate } from "../../hooks/useLazyQueryTemplate";
+import { useLazyQueryTemplate } from "../hooks/useLazyQueryTemplate";
 import { useShowError } from "../../hooks/useShowError";
 import { ID } from "../../shared";
 import { Workspace } from "../../AppDesigner/containers";

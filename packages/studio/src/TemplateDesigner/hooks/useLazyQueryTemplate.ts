@@ -1,9 +1,9 @@
 import { gql } from "awesome-graphql-client";
 import { useCallback } from "react";
-import { useLazyRequest } from "../enthooks/hooks/useLazyRequest";
-import { ITemplate } from "../model";
-import { ITemplateInput } from "../model/input";
-import { ID } from "../shared";
+import { useLazyRequest } from "../../enthooks/hooks/useLazyRequest";
+import { ITemplate } from "../../model";
+import { ITemplateInput } from "../../model/input";
+import { ID } from "../../shared";
 
 const templateGql = gql`
 query ($id:ID!){
@@ -13,7 +13,6 @@ query ($id:ID!){
     }
   }){
     id
-    appUuid
     title
     device
     schemaJson
