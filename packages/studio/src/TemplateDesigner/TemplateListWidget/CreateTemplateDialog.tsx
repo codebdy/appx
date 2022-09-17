@@ -17,7 +17,7 @@ const CreatePageDialog = memo(() => {
   }, []);
 
   return (
-    <>
+    <div className="template-list-action">
       <Button
         type='dashed'
         icon={
@@ -29,7 +29,7 @@ const CreatePageDialog = memo(() => {
         {t("Templates.NewTemplate")}
       </Button>
       <EditTemplateDialog isModalVisible={isModalVisible} onClose={handleClose} />
-    </>
+    </div>
   )
 })
 
