@@ -34,6 +34,7 @@ import ConfigWorkSpace from './config/ConfigWorkSpace'
 import { ConfigActionsWidget } from './config/ConfigActionsWidget'
 
 export enum DesignerRoutes {
+  Templates = "Templates",
   Pages = "pages",
   Components = "coms",
   OutlinedTree = "outlinedTree",
