@@ -57,6 +57,13 @@ export interface IApp {
   imageUrl?: string;
 }
 
+export interface ITemplate {
+  id: ID;
+  title: string;
+  schemaJson: { form: any, schema: ISchema };
+  device: Device;
+  appUuid?: string;
+}
 
 export interface IPage {
   id: ID;

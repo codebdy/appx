@@ -36,6 +36,13 @@ export interface IAppDeviceConfigInput {
   }
 }
 
+export interface ITemplateInput{
+  id?: ID;
+  title?: string;
+  schemaJson?: any;
+  device?: Device;
+  appUuid?: string;
+}
 
 export interface IAppInput {
   id?: ID;
