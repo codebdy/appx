@@ -1,12 +1,14 @@
-import { Button, Tree } from 'antd';
+import { Button, Spin, Tree } from 'antd';
 import React, { memo, useCallback } from 'react';
 import "./style.less"
 import { DataNode } from 'antd/lib/tree';
-import { useRecoilState } from 'recoil';
 import TemplateLabel from './TemplateLabel';
 import { ID } from '../../shared';
 import { useTranslation } from 'react-i18next';
 import SvgIcon from '../../common/SvgIcon';
+import { useQueryTemplates } from '../hooks/useQueryTemplates';
+import { useParams } from 'react-router-dom';
+import { useShowError } from '../../hooks/useShowError';
 
 const { DirectoryTree } = Tree;
 
@@ -18,32 +20,21 @@ export const TemplateListWidget = memo((
 ) => {
   const { selectedId, onSelected } = props;
   const { t } = useTranslation();
+  const { device } = useParams();
+  const { data, error, loading } = useQueryTemplates(device);
+
+  useShowError(error);
 
   const getTreeData = useCallback(() => {
     const dataNodes: DataNode[] = []
-    for (const category of categories) {
+    for (const template of data?.template?.nodes) {
       dataNodes.push({
-        title: <CategoryLabel categories={categories} category={category} />,
-        key: category.id,
-        children: getCategoryPages(category.id)?.map((page) => {
-          return {
-            title: page && <TemplateLabel page={page} categories={categories} />,
-            key: page.id,
-            isLeaf: true,
-          }
-        })
-      })
-    }
-
-    for (const page of pagesWithoutCategory) {
-      dataNodes.push({
-        title: page && <TemplateLabel page={page} categories={categories} />,
-        key: page.id,
-        isLeaf: true,
+        title: <TemplateLabel template={template} />,
+        key: template.id,
       })
     }
     return dataNodes
-  }, [categories, getCategoryPages, pagesWithoutCategory])
+  }, [data?.template?.nodes])
 
   const onSelect = useCallback((selectedKeys) => {
     onSelected(selectedKeys?.[0])
@@ -70,12 +61,14 @@ export const TemplateListWidget = memo((
           {t("Templates.NewTemplate")}
         </Button>
       </div>
-      <DirectoryTree
-        className='template-list-tree'
-        selectedKeys={[selectedId]}
-        onSelect={onSelect}
-        treeData={getTreeData()}
-      />
+      <Spin spinning={loading}>
+        <DirectoryTree
+          className='template-list-tree'
+          selectedKeys={[selectedId]}
+          onSelect={onSelect}
+          treeData={getTreeData()}
+        />
+      </Spin>
     </div>
   );
 });

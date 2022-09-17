@@ -3,7 +3,9 @@ import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next";
 import { useShowError } from "../../hooks/useShowError";
+import { ITemplate } from "../../model";
 import { ID } from "../../shared";
+import { useDeleteTemplate } from "../hooks/useDeleteTemplate";
 
 const TemplateActions = memo((
   props: {
@@ -14,7 +16,7 @@ const TemplateActions = memo((
 ) => {
   const { templateId, onVisibleChange, onEdit } = props;
   const { t } = useTranslation();
-  const [remove, { loading, error }] = useDeletePage({
+  const [remove, { loading, error }] = useDeleteTemplate({
     onCompleted: (data: ITemplate) => {
       onVisibleChange(false);
     }
