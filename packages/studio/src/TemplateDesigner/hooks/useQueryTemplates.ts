@@ -16,7 +16,7 @@ query ($device:String!){
       id 
       title 
       device 
-      schemaJson    
+      imageUrl
     }
     total
   }

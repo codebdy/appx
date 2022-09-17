@@ -15,6 +15,7 @@ query ($id:ID!){
     id
     title
     device
+    imageUrl
     schemaJson
   }
 }

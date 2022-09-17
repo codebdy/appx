@@ -1,5 +1,5 @@
 import { Form, Modal } from "antd";
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { memo } from "react";
 import { useTranslation } from "react-i18next";
 import { ImageUploader } from "../../components";
@@ -17,6 +17,11 @@ export const EditTemplateDialog = memo((
 ) => {
   const { template, isModalVisible, onClose } = props;
   const [form] = Form.useForm()
+
+  useEffect(()=>{
+    form.setFieldsValue(template)
+  }, [form, template]);
+
   const [upsert, { loading, error }] = useUpsertTemplate({
     onCompleted: () => {
       form.resetFields();
