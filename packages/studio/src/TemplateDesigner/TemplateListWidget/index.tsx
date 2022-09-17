@@ -4,7 +4,6 @@ import "./style.less"
 import { DataNode } from 'antd/lib/tree';
 import TemplateLabel from './TemplateLabel';
 import { ID } from '../../shared';
-import { useTranslation } from 'react-i18next';
 import { useQueryTemplates } from '../hooks/useQueryTemplates';
 import { useParams } from 'react-router-dom';
 import { useShowError } from '../../hooks/useShowError';
