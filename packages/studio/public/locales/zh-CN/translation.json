@@ -133,7 +133,8 @@
     "AppDesign": "应用设计",
     "ToDesign": "去设计",
     "ToPreview": "去预览",
-    "Design": "设计"
+    "Design": "设计",
+    "TemplateSelect":"{{name}}模板"
   },
   "Templates": {
     "Title": "模板",

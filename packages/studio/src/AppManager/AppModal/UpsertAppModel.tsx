@@ -1,4 +1,4 @@
-import { Form, message, Modal } from "antd"
+import { Form, message, Modal, Select } from "antd"
 import React, { useCallback, useEffect } from "react";
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
@@ -9,6 +9,8 @@ import { useShowError } from "../../hooks/useShowError";
 import { IAppInput } from "../../model/input";
 import { createUuid } from "../../shared";
 import { IApp } from "../../model";
+import { useDevices } from "../../hooks/useDevices";
+const { Option } = Select;
 
 export const UpsertAppModel = memo((
   props: {
@@ -20,6 +22,7 @@ export const UpsertAppModel = memo((
   const { app, visible, onClose } = props;
   const [form] = Form.useForm<IAppInput>();
   const { t } = useTranslation();
+  const devices = useDevices();
 
   const reset = useCallback(() => {
     form.setFieldsValue({ title: app?.title || "", description: app?.description || "", imageUrl: app?.imageUrl || "" })
@@ -88,6 +91,22 @@ export const UpsertAppModel = memo((
         >
           <ImageUploader title={t("Upload")} maxCount={1} />
         </Form.Item>
+        {
+          devices.map(device => {
+            return (
+              < Form.Item
+                label={t("AppManager.TemplateSelect", { name: device.name })}
+                name={"template-" + device.key}
+              >
+                <Select defaultValue="lucy">
+                  <Option value="jack">Jack</Option>
+                  <Option value="lucy">Lucy</Option>
+                  <Option value="Yiminghe">yiminghe</Option>
+                </Select>
+              </Form.Item>
+            )
+          })
+        }
       </Form>
     </Modal>
   )
