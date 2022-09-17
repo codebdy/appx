@@ -951,7 +951,7 @@
         "innerId": 1010,
         "relationType": "twoWayAssociation",
         "roleOfSource": "app",
-        "roleOfTarget": "appTemplates",
+        "roleOfTarget": "templates",
         "sourceId": "2082d665-e503-402a-a089-678115c5ed3e",
         "sourceMutiplicity": "0..1",
         "targetId": "3a450ffa-e784-415f-b6c2-bc415e2dfd8c",

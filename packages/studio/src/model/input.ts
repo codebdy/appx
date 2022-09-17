@@ -1,7 +1,7 @@
 import { Device, ILang } from ".";
 import { ID } from "../shared";
 
-export interface IUserInput{
+export interface IUserInput {
   id?: ID;
 }
 
@@ -36,7 +36,7 @@ export interface IAppDeviceConfigInput {
   }
 }
 
-export interface ITemplateInput{
+export interface ITemplateInput {
   id?: ID;
   title?: string;
   schemaJson?: any;
@@ -50,6 +50,7 @@ export interface IAppInput {
   title?: string;
   description?: string;
   imageUrl?: string;
+  templates?: { sync?: ITemplateInput[] }
   // image?: IFileInput
 }
 

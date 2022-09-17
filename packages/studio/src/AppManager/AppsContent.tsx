@@ -3,7 +3,7 @@ import { memo } from "react"
 import AppFooter from "./AppFooter"
 import { AppList } from "./AppList"
 import AppManagebar from "./AppManagebar"
-import { useApps } from './../hooks/useApps';
+import { useQueryApps } from '../hooks/useQueryApps';
 import { useShowError } from "../hooks/useShowError"
 import { Card, Col, Row, Skeleton } from "antd"
 
@@ -29,7 +29,7 @@ const AppsSkeleton = () => {
 }
 
 const AppsContent = memo(() => {
-  const { data, error, loading } = useApps();
+  const { data, error, loading } = useQueryApps();
   useShowError(error)
 
   return (

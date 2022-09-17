@@ -9,14 +9,17 @@ query {
       id
       uuid
       title
-      imageUrl      
+      imageUrl 
+      templates{
+        id
+      }     
     }
     total
   }
 }
 `
 
-export function useApps() {
+export function useQueryApps() {
   return useQuery<IApp>(
     {
       gql: appsGql,

@@ -38,7 +38,7 @@ export const UpsertAppModel = memo((
     reset();
   }, [form, reset])
 
-  const [create, { loading, error }] = useUpsertApp({
+  const [upsert, { loading, error }] = useUpsertApp({
     onCompleted: () => {
       message.success(t("OperateSuccess"))
       onClose();
@@ -49,24 +49,24 @@ export const UpsertAppModel = memo((
 
   const handleOk = useCallback(() => {
     form.validateFields().then((formData) => {
-      const templateIds = [];
+      const templates = [];
       for (const key of Object.keys(formData)) {
         if (key.startsWith(TEMPLATE_PREFIX) && formData[key]) {
-          templateIds.push(formData[key])
+          templates.push({ id: formData[key] })
         }
       }
 
-      if (templateIds.length === 0) {
+      if (templates.length === 0) {
         message.error(t("AppManager.AtLeastOneTemplate"))
         return;
       }
-
-      create({ ...formData, uuid: createUuid(), id: app?.id })
+      const { title, imageUrl } = formData;
+      upsert({ title, imageUrl, uuid: app?.uuid || createUuid(), id: app?.id, templates: { sync: templates } })
       !app && reset();
     }).catch((err) => {
       console.error("form validate error", err);
     });
-  }, [app, create, form, reset, t]);
+  }, [app, upsert, form, reset, t]);
 
   return (
     <Modal
