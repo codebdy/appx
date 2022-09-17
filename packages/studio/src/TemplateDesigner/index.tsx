@@ -8,12 +8,15 @@ import { Designer } from "../AppDesigner/containers"
 import { CompositePanel, StudioPanel } from "../AppDesigner/panels"
 import { OutlineTreeWidget } from "../AppDesigner/widgets"
 import { MaterialWidget } from "../AppDesigner/widgets/MaterialWidget"
+import { ID } from "../shared"
 import { ActionsWidget } from "./ActionsWidget"
 import { NavigationWidget } from "./NavigationWidget"
 import { TemplateListWidget } from "./TemplateListWidget"
+import { TemplateWorkSpace } from "./TemplateWorkSpace"
 
 export const TemplateDesigner = memo(() => {
   const [activeKey, setActiveKey] = useState<string>(DesignerRoutes.Templates);
+  const [selectedId, setSeletedId] = useState<ID>();
   const { t } = useTranslation();
 
   const hanclePannelChange = useCallback((activeKey: string) => {
@@ -42,7 +45,7 @@ export const TemplateDesigner = memo(() => {
       <StudioPanel logo={<NavigationWidget />}
         actions={
           <Space style={{ marginRight: 10 }}>
-            <ActionsWidget />
+            <ActionsWidget templateId={selectedId} />
           </Space>
         }
       >
@@ -67,7 +70,10 @@ export const TemplateDesigner = memo(() => {
             <OutlineTreeWidget />
           </CompositePanel.Item>
         </CompositePanel>
-        <TemplateWorkSpace />
+        {
+          selectedId && <TemplateWorkSpace templateId={selectedId} />
+        }
+
       </StudioPanel>
     </Designer >
   )

@@ -5,12 +5,16 @@ import { observer } from '@formily/react'
 import { useTranslation } from 'react-i18next'
 import { transformToSchema } from '../AppDesigner/transformer'
 import { useShowError } from '../hooks/useShowError'
+import { useUpsertTemplate } from '../hooks/useUpsertTemplate'
+import { ID } from '../shared'
 
-export const ActionsWidget = observer(() => {
+export const ActionsWidget = observer((props: {
+  templateId?: ID,
+}) => {
+  const { templateId } = props;
   const designer = useDesigner();
-  const pageId = useSelectedPageId();
   const { t } = useTranslation();
-  const [update, { loading, error }] = useUpdatePage({
+  const [update, { loading, error }] = useUpsertTemplate({
     onCompleted: () => {
       message.success(t("OperateSuccess"))
     }
@@ -19,13 +23,13 @@ export const ActionsWidget = observer(() => {
   useShowError(error);
 
   const handleSave = useCallback(() => {
-    update({ id: pageId, schemaJson: transformToSchema(designer.getCurrentTree()) });
-  }, [designer, pageId, update])
+    update({ id: templateId, schemaJson: transformToSchema(designer.getCurrentTree()) });
+  }, [designer, templateId, update])
 
   return (
     <Button
       type="primary"
-      disabled={!pageId}
+      disabled={!templateId}
       loading={loading}
       onClick={handleSave}
     >
