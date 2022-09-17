@@ -9,7 +9,7 @@ import HeaderContent from "./HeaderContent";
 import MenuContent from "./MenuContent";
 import { PageDialog } from "./PageDialog";
 import { PageDrawer } from "./PageDrawer";
-import ProLayout from "./ProLayout";
+import { ProLayout } from "./ProLayout";
 import { RootPage } from "./RootPage";
 import "./style.less"
 import { ExpressionScope } from '@formily/react';
@@ -47,7 +47,7 @@ const PCRunner = memo(() => {
         }
         menu={<MenuContent />}
         header={<HeaderContent />}
-        //footer={"©Copyright 悠闲的水 2022"}
+      //footer={"©Copyright 悠闲的水 2022"}
       >
         <RootPage />
         {

@@ -9,7 +9,7 @@ const { Content, Footer } = Layout;
 export const menuWidth = 260;
 export const menuCollapsedWidth = 56;
 
-const ProLayout = memo((
+export const ProLayout = memo((
   props: {
     logo?: React.ReactNode,
     title?: React.ReactNode,
@@ -75,5 +75,3 @@ const ProLayout = memo((
     </Layout>
   );
 });
-
-export default ProLayout;
