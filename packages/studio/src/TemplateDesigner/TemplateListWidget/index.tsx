@@ -44,6 +44,7 @@ export const TemplateListWidget = memo((
     <div className='template-list-shell'>
       <Spin spinning={loading}>
         <Tree
+          showIcon
           className='template-list-tree'
           selectedKeys={[selectedId]}
           onSelect={onSelect}
