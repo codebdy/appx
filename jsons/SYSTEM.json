@@ -1,5 +1,4 @@
 {
-  "id": "1507236403010867300",
   "content": {
     "packages": [
       {
@@ -692,10 +691,17 @@
             "uuid": "7cfe36cb-e8f4-413c-bff3-20290662459d"
           },
           {
-            "uuid": "06af7a45-a782-41a6-b7d9-9981a331450d",
             "name": "appUuid",
             "type": "String",
-            "typeLabel": "String"
+            "typeLabel": "String",
+            "uuid": "06af7a45-a782-41a6-b7d9-9981a331450d"
+          },
+          {
+            "label": "$inline:{\"zh-CN\":\"顺序\"}",
+            "name": "order",
+            "type": "Int",
+            "typeLabel": "Int",
+            "uuid": "2a43841a-bb52-4dcb-98c6-783cf20f8f01"
           }
         ],
         "innerId": 1017,
@@ -1197,11 +1203,11 @@
       },
       {
         "diagramUuid": "33546200-9c95-4747-94ee-a7198b6bd85c",
-        "height": 200,
+        "height": 240,
         "id": "f0fa4b0f-4b91-4092-a93b-beaa13896e86",
         "width": 180,
         "x": -1100,
-        "y": -140.00000000000003
+        "y": -140
       },
       {
         "diagramUuid": "33546200-9c95-4747-94ee-a7198b6bd85c",
@@ -1599,5 +1605,7 @@
         ]
       }
     ]
-  }
+  },
+  "id": "1507236403010867300",
+  "status": null
 }

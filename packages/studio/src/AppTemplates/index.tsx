@@ -12,8 +12,8 @@ export const AppTemplates = memo(() => {
   const navigate = useNavigate();
 
   const handleClick = useCallback((key: string) => {
-
-  }, []);
+    navigate(`/design-template/${key}`)
+  }, [navigate]);
 
   return (
     <div className='content-inner'>

@@ -18,6 +18,7 @@ import AppRunner from './AppRunner';
 import ConfigBoard from './ConfigBoard';
 import { LoggedInPanel } from './Login/LoggedInPanel';
 import { AppTemplates } from './AppTemplates';
+import { TemplateDesigner } from './TemplateDesigner';
 
 const App = memo(() => {
   return (
@@ -34,6 +35,7 @@ const App = memo(() => {
           <Route path={AppManagerRoutes.Auth} element={<AuthBoard />} />
           <Route path={AppManagerRoutes.Config} element={<ConfigBoard />} />
         </Route>
+        <Route path="/design-template/:device" element={<TemplateDesigner />} />
         <Route path="/config-app/:appUuid" element={<AppConfig />}>
           <Route path={AppConfigRouts.Base} element={<ConfigBoard />} />
           <Route path={AppConfigRouts.App} element={<DeviceList />} />
