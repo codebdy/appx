@@ -1,4 +1,5 @@
 {
+  "appUuid": "SYSTEM",
   "content": {
     "packages": [
       {
@@ -523,7 +524,7 @@
           },
           {
             "label": "$inline:{\"zh-CN\":\"内容\"}",
-            "length": "20000",
+            "length": 20000,
             "name": "content",
             "nullable": false,
             "type": "String",
@@ -623,7 +624,7 @@
         "innerId": 1016,
         "label": "$inline:{\"zh-CN\":\"应用模板\"}",
         "methods": [],
-        "name": "AppTemplate",
+        "name": "Template",
         "packageUuid": "PACKAGE_APPX_UUID",
         "root": true,
         "stereoType": "Entity",
@@ -1605,7 +1606,5 @@
         ]
       }
     ]
-  },
-  "id": "1507236403010867300",
-  "status": null
+  }
 }
