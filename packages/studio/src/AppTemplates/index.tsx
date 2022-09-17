@@ -18,7 +18,7 @@ export const AppTemplates = memo(() => {
   return (
     <div className='content-inner'>
       <div className="content-show-block">
-        <div className="config-content">
+        <div className="config-content" style={{ marginTop: 16 }}>
           {
             <Row className="app-row" gutter={24}>
               {
