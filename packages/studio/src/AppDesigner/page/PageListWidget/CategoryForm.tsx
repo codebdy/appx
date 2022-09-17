@@ -1,6 +1,6 @@
 import { Form, FormInstance } from "antd";
 import { MultiLangInput } from "../../../components/pc/MultiLangInput";
-import React from "react";
+import React, { useCallback } from "react";
 import { memo } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -12,6 +12,9 @@ const CategoryForm = memo((
 ) => {
   const { title, form } = props;
   const { t } = useTranslation();
+  const handleKeyUp = useCallback((event: React.KeyboardEvent<HTMLElement>) => {
+    event.stopPropagation();
+  }, [])
 
   return (
     <Form
@@ -21,6 +24,7 @@ const CategoryForm = memo((
       form={form}
       autoComplete="off"
       initialValues={{ title: title }}
+      onKeyUp={handleKeyUp}
     >
       <Form.Item
         label={t("Pages.CagegoryName")}

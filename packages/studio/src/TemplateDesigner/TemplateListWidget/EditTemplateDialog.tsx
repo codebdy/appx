@@ -32,6 +32,10 @@ export const EditTemplateDialog = memo((
     });
   }, [form, template, upsert]);
 
+  const handleKeyUp = useCallback((event: React.KeyboardEvent<HTMLElement>) => {
+    event.stopPropagation();
+  }, [])
+
   return (
     <Modal
       title={template ? t("Templates.EidtTemplate") : t("Templates.NewTemplate")}
@@ -50,6 +54,7 @@ export const EditTemplateDialog = memo((
         form={form}
         initialValues={{ title: template?.title || "" }}
         autoComplete="off"
+        onKeyUp={handleKeyUp}
       >
         <Form.Item
           label={t("Templates.TemplateName")}

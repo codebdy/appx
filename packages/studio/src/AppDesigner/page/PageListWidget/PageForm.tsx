@@ -1,5 +1,5 @@
 import { FormInstance, Col, Form, Row, Tabs, Select } from "antd";
-import React from "react";
+import React, { useCallback } from "react";
 import { memo } from "react";
 import FormTemplates from "./FormTemplates";
 import { IPageInput } from "packages/studio/src/model/input";
@@ -21,6 +21,10 @@ const PageForm = memo((props: {
   const { t } = useTranslation();
   const p = useParseLangMessage();
 
+  const handleKeyUp = useCallback((event: React.KeyboardEvent<HTMLElement>) => {
+    event.stopPropagation();
+  }, [])
+
   return (
     <Form
       name="editPage"
@@ -29,6 +33,7 @@ const PageForm = memo((props: {
       form={form}
       initialValues={{ title: page?.title || "", categoryId: page?.category?.id || categoryId || "" }}
       autoComplete="off"
+      onKeyUp={handleKeyUp}
     >
       <Row gutter={12}>
         <Col span={12}>
