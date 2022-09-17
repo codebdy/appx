@@ -14,6 +14,8 @@ import { useParseLangMessage } from "../../hooks/useParseLangMessage";
 import { useQueryAllTemplates } from "../../hooks/useQueryAllTemplates";
 const { Option } = Select;
 
+const TEMPLATE_PREFIX = "template-";
+
 export const UpsertAppModel = memo((
   props: {
     app?: IApp,
@@ -47,12 +49,24 @@ export const UpsertAppModel = memo((
 
   const handleOk = useCallback(() => {
     form.validateFields().then((formData) => {
+      const templateIds = [];
+      for (const key of Object.keys(formData)) {
+        if (key.startsWith(TEMPLATE_PREFIX) && formData[key]) {
+          templateIds.push(formData[key])
+        }
+      }
+
+      if (templateIds.length === 0) {
+        message.error(t("AppManager.AtLeastOneTemplate"))
+        return;
+      }
+
       create({ ...formData, uuid: createUuid(), id: app?.id })
       !app && reset();
     }).catch((err) => {
       console.error("form validate error", err);
     });
-  }, [app, create, form, reset]);
+  }, [app, create, form, reset, t]);
 
   return (
     <Modal
@@ -100,7 +114,7 @@ export const UpsertAppModel = memo((
             return (
               < Form.Item
                 label={t("AppManager.TemplateSelect", { name: device.name })}
-                name={"template-" + device.key}
+                name={TEMPLATE_PREFIX + device.key}
               >
                 <Select allowClear loading={quering}>
                   {

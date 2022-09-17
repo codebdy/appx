@@ -134,7 +134,8 @@
     "ToDesign": "去设计",
     "ToPreview": "去预览",
     "Design": "设计",
-    "TemplateSelect":"{{name}}模板"
+    "TemplateSelect": "{{name}}模板",
+    "AtLeastOneTemplate": "请至少选择一个应用模板"
   },
   "Templates": {
     "Title": "模板",
