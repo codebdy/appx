@@ -1,8 +1,8 @@
 import { Layout } from 'antd';
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import "./style.less";
-import MenuSider from './MenuSider';
-import ProHeader from './ProHeader';
+import { MenuSider } from './MenuSider';
+import { ProHeader } from './ProHeader';
 
 const { Content, Footer } = Layout;
 
@@ -65,7 +65,7 @@ const ProLayout = memo((
         >
           {header}
         </ProHeader>
-        <Content ref = {ref}>
+        <Content ref={ref}>
           {children}
         </Content>
         {

@@ -6,7 +6,7 @@ import clx from "classnames";
 import { menuCollapsedWidth, menuWidth } from ".";
 const { Header } = Layout;
 
-const ProHeader = memo((
+export const ProHeader = memo((
   props: {
     collapsed?: boolean,
     fixed?: boolean,
@@ -49,5 +49,3 @@ const ProHeader = memo((
     </>
   )
 })
-
-export default ProHeader;

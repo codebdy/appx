@@ -3,7 +3,7 @@ import React, { memo } from 'react';
 import clx from "classnames";
 const { Sider } = Layout;
 
-const MenuSider = memo((
+export const MenuSider = memo((
   props: {
     menuWidth?: string | number,
     menuCollapsedWidth?: string | number,
@@ -45,5 +45,3 @@ const MenuSider = memo((
     </>
   );
 });
-
-export default MenuSider;
