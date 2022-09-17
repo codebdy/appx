@@ -137,7 +137,8 @@
   },
   "Templates": {
     "Title": "模板",
-    "NewTemplate": "新建模板"
+    "NewTemplate": "新建模板",
+    "EidtTemplate": "编辑模板"
   },
   "ModelBoard": {
     "DomainModel": "业务模型",
