@@ -633,22 +633,22 @@
       {
         "attributes": [
           {
-            "uuid": "19a70dae-3082-4894-9878-e06df10a9d5d",
             "name": "Pc",
             "type": "String",
-            "typeLabel": "String"
+            "typeLabel": "String",
+            "uuid": "19a70dae-3082-4894-9878-e06df10a9d5d"
           },
           {
-            "uuid": "65455c43-c2f1-4004-82e5-6f79e76b04b0",
             "name": "Mobile",
             "type": "String",
-            "typeLabel": "String"
+            "typeLabel": "String",
+            "uuid": "65455c43-c2f1-4004-82e5-6f79e76b04b0"
           },
           {
-            "uuid": "e6d41e6b-5d19-4e60-bef4-3a43e11b131c",
             "name": "Website",
             "type": "String",
-            "typeLabel": "String"
+            "typeLabel": "String",
+            "uuid": "e6d41e6b-5d19-4e60-bef4-3a43e11b131c"
           }
         ],
         "innerId": 1003,
@@ -658,6 +658,79 @@
         "root": false,
         "stereoType": "Enum",
         "uuid": "65dc043c-daaf-408c-b74c-f6ff4952bd5a"
+      },
+      {
+        "attributes": [
+          {
+            "name": "id",
+            "primary": true,
+            "type": "ID",
+            "typeLabel": "ID",
+            "uuid": "9570e280-e2ad-44b0-9d92-163abbdb33aa"
+          },
+          {
+            "label": "$inline:{\"zh-CN\":\"设备\"}",
+            "name": "device",
+            "type": "Enum",
+            "typeLabel": "Device",
+            "typeUuid": "65dc043c-daaf-408c-b74c-f6ff4952bd5a",
+            "uuid": "c3c8f459-7083-4187-a8cf-0ba50f0147a9"
+          },
+          {
+            "label": "$inline:{\"zh-CN\":\"物料类型\"}",
+            "name": "type",
+            "type": "Enum",
+            "typeLabel": "MaterialType",
+            "typeUuid": "df9ba670-733b-4e3c-aab6-37a9ced86ef3",
+            "uuid": "04400d70-37e8-44cd-b047-707d7abd7b80"
+          },
+          {
+            "label": "$inline:{\"zh-CN\":\"资源地址\"}",
+            "name": "url",
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "7cfe36cb-e8f4-413c-bff3-20290662459d"
+          },
+          {
+            "uuid": "06af7a45-a782-41a6-b7d9-9981a331450d",
+            "name": "appUuid",
+            "type": "String",
+            "typeLabel": "String"
+          }
+        ],
+        "innerId": 1017,
+        "label": "$inline:{\"zh-CN\":\"物料\"}",
+        "methods": [],
+        "name": "Material",
+        "packageUuid": "PACKAGE_APPX_UUID",
+        "root": true,
+        "stereoType": "Entity",
+        "uuid": "f0fa4b0f-4b91-4092-a93b-beaa13896e86"
+      },
+      {
+        "attributes": [
+          {
+            "label": "$inline:{\"zh-CN\":\"上传\"}",
+            "name": "upload",
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "91214fd0-04d4-435a-9584-ada0912ac9d9"
+          },
+          {
+            "label": "$inline:{\"zh-CN\":\"调试\"}",
+            "name": "debug",
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "bd7f72c7-711b-4b14-b083-18d0bc8da503"
+          }
+        ],
+        "innerId": 1018,
+        "methods": [],
+        "name": "MaterialType",
+        "packageUuid": "PACKAGE_APPX_UUID",
+        "root": false,
+        "stereoType": "Enum",
+        "uuid": "df9ba670-733b-4e3c-aab6-37a9ced86ef3"
       }
     ],
     "relations": [
@@ -866,16 +939,16 @@
         "uuid": "0d6955d4-4aa2-4fd5-8af9-92a117812d96"
       },
       {
-        "uuid": "49fbf19d-aa17-424d-8afa-a82d9e34e01e",
+        "appUuid": "SYSTEM",
         "innerId": 1010,
         "relationType": "twoWayAssociation",
-        "sourceId": "2082d665-e503-402a-a089-678115c5ed3e",
-        "targetId": "3a450ffa-e784-415f-b6c2-bc415e2dfd8c",
-        "roleOfTarget": "appTemplates",
         "roleOfSource": "app",
+        "roleOfTarget": "appTemplates",
+        "sourceId": "2082d665-e503-402a-a089-678115c5ed3e",
         "sourceMutiplicity": "0..1",
+        "targetId": "3a450ffa-e784-415f-b6c2-bc415e2dfd8c",
         "targetMultiplicity": "0..*",
-        "appUuid": "SYSTEM"
+        "uuid": "49fbf19d-aa17-424d-8afa-a82d9e34e01e"
       }
     ],
     "diagrams": [
@@ -920,16 +993,23 @@
         "nodes": [],
         "packageUuid": "PACKAGE_APPX_UUID",
         "uuid": "40e28c05-3afb-4fea-a088-6aecd22b8085"
+      },
+      {
+        "edges": [],
+        "name": "物料上传",
+        "nodes": [],
+        "packageUuid": "PACKAGE_APPX_UUID",
+        "uuid": "33546200-9c95-4747-94ee-a7198b6bd85c"
       }
     ],
     "x6Nodes": [
       {
-        "id": "2082d665-e503-402a-a089-678115c5ed3e",
-        "x": -480,
-        "y": -10,
-        "width": 180,
+        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
         "height": 120,
-        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc"
+        "id": "2082d665-e503-402a-a089-678115c5ed3e",
+        "width": 180,
+        "x": -480,
+        "y": -10
       },
       {
         "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
@@ -1108,12 +1188,28 @@
         "y": 30.000000000000057
       },
       {
-        "id": "65dc043c-daaf-408c-b74c-f6ff4952bd5a",
-        "x": -730,
-        "y": -330,
-        "width": 180,
+        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
         "height": 170,
-        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc"
+        "id": "65dc043c-daaf-408c-b74c-f6ff4952bd5a",
+        "width": 180,
+        "x": -730,
+        "y": -330
+      },
+      {
+        "diagramUuid": "33546200-9c95-4747-94ee-a7198b6bd85c",
+        "height": 200,
+        "id": "f0fa4b0f-4b91-4092-a93b-beaa13896e86",
+        "width": 180,
+        "x": -1100,
+        "y": -140.00000000000003
+      },
+      {
+        "diagramUuid": "33546200-9c95-4747-94ee-a7198b6bd85c",
+        "height": 120,
+        "id": "df9ba670-733b-4e3c-aab6-37a9ced86ef3",
+        "width": 180,
+        "x": -810,
+        "y": -150
       }
     ],
     "x6Edges": [
@@ -1464,7 +1560,33 @@
         ]
       },
       {
+        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
         "id": "49fbf19d-aa17-424d-8afa-a82d9e34e01e",
+        "roleOnSourcePosition": {
+          "distance": 40,
+          "offset": 20
+        },
+        "roleOnTargetPosition": {
+          "angle": 0,
+          "distance": 0.9787472040701548,
+          "offset": 70
+        },
+        "sourceAnchor": {
+          "args": {
+            "dx": "11%",
+            "dy": "50%",
+            "rotate": true
+          },
+          "name": "topLeft"
+        },
+        "sourceMultiplicityPosition": {
+          "distance": 40,
+          "offset": -20
+        },
+        "targetMultiplicityPosition": {
+          "distance": -40,
+          "offset": -20
+        },
         "vertices": [
           {
             "x": -460,
@@ -1474,33 +1596,7 @@
             "x": 740,
             "y": 420
           }
-        ],
-        "roleOnSourcePosition": {
-          "distance": 40,
-          "offset": 20
-        },
-        "sourceMultiplicityPosition": {
-          "distance": 40,
-          "offset": -20
-        },
-        "roleOnTargetPosition": {
-          "distance": 0.9787472040701548,
-          "offset": 70,
-          "angle": 0
-        },
-        "targetMultiplicityPosition": {
-          "distance": -40,
-          "offset": -20
-        },
-        "diagramUuid": "8518245f-af73-43b5-a17f-468eefce5acc",
-        "sourceAnchor": {
-          "name": "topLeft",
-          "args": {
-            "dx": "11%",
-            "dy": "50%",
-            "rotate": true
-          }
-        }
+        ]
       }
     ]
   }
