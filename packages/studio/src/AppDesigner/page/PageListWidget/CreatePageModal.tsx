@@ -31,7 +31,7 @@ const CreatePageModal = memo((
   const handleConfirm = useCallback(() => {
     form.validateFields().then((values: any) => {
       if (values.categoryId) {
-        upsert({ title: values.title, category: [{ id: values.categoryId }] });
+        upsert({ title: values.title, category: { sync: { id: values.categoryId } } });
       } else {
         upsert({ title: values.title });
       }

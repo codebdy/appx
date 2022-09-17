@@ -318,6 +318,7 @@
           },
           {
             "name": "schemaJson",
+            "nullable": true,
             "type": "JSON",
             "typeLabel": "JSON",
             "uuid": "94f1a640-4279-409e-b1aa-340093028ea0"
