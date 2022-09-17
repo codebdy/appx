@@ -6,7 +6,7 @@ import { Spin } from 'antd';
 import { useAppParams } from '../../shared/AppRoot/context';
 import { useMenu } from '../../shared/AppRoot/hooks/useMenu';
 import { Device } from '../../model';
-import PCRunner from '../PCRunner';
+import { PCRunner } from '../PCRunner';
 import H5Runner from '../H5Runner';
 import WebsiteRunner from '../WebsiteRunner';
 import { RunnerContext } from '../context/runner';

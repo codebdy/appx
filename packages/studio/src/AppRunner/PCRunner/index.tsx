@@ -14,7 +14,7 @@ import { RootPage } from "./RootPage";
 import "./style.less"
 import { ExpressionScope } from '@formily/react';
 
-const PCRunner = memo(() => {
+export const PCRunner = memo(() => {
   const { app } = useAppParams();
   const p = useParseLangMessage();
   const key = useAppViewKey();
@@ -77,5 +77,3 @@ const PCRunner = memo(() => {
     </div>
   )
 })
-
-export default PCRunner;
