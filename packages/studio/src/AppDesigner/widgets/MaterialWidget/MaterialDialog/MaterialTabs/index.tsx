@@ -14,7 +14,7 @@ export const MaterialTabs = memo((
   const { tabs, onTabsChange } = props;
   const p = useParseLangMessage();
   const [activeKey, setActiveKey] = useState(tabs[0]?.title);
-  
+
   const handleTabChange = useCallback((tab: IMaterialTab) => {
     onTabsChange(tabs.map(tb => tb.title === tab.title ? tab : tb))
   }, [onTabsChange, tabs])
@@ -36,7 +36,7 @@ export const MaterialTabs = memo((
       onChange={onChange}
       activeKey={activeKey}
       items={items}
-      tabBarExtraContent={<TabsEditDialog />}
+      tabBarExtraContent={<TabsEditDialog tabs={tabs} onTabsChange={onTabsChange} />}
     />
   );
 });

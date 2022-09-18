@@ -1,9 +1,16 @@
 import { EditOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Modal } from 'antd';
+import { IMaterialTab } from '../../../../../material-sdk/model';
 import React, { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-export const TabsEditDialog = memo(() => {
+export const TabsEditDialog = memo((
+  props:{
+    tabs:IMaterialTab[],
+    onTabsChange: (tabs: IMaterialTab[]) => void,
+  }
+) => {
+  const { tabs, onTabsChange } = props;
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { t } = useTranslation();
