@@ -3,6 +3,7 @@ import { Button, Modal } from 'antd';
 import { IMaterialTab } from '../../../../../material-sdk/model';
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import TabDragableLabel from './TabDragableLabel';
 
 export const TabsEditDialog = memo((
   props: {
@@ -44,10 +45,20 @@ export const TabsEditDialog = memo((
         onCancel={handleCancel}
       >
         <div className='tabs-edit-content'>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <Button type='dashed' block icon={<PlusOutlined />}>{t("Materials.Add")}</Button>
+          {
+            tabs.map(tab => {
+              return (
+                <TabDragableLabel tab={tab} />
+              )
+            })
+          }
+          <Button
+            type='dashed'
+            block
+            icon={<PlusOutlined />}
+          >
+            {t("Materials.Add")}
+          </Button>
         </div>
       </Modal>
     </>
