@@ -244,9 +244,9 @@
   },
   "Devices": {
     "Key": "标识",
-    "Pc": "管理端",
-    "Mobile": "移动端",
-    "Website": "网站"
+    "pc": "管理端",
+    "mobile": "移动端",
+    "website": "网站"
   },
   "Action": {
     "OpenPage": "打开页面",

@@ -1,7 +1,7 @@
 import { Tabs } from "antd"
 import React from "react"
 import { MaterialSearchWidget } from "./MaterialSearchWidget";
-import "./index.less"
+import "./style.less"
 import { MaterialDialog } from "./MaterialDialog";
 import { observer } from "@formily/reactive-react";
 import { materialStore } from "../../../shared/global";

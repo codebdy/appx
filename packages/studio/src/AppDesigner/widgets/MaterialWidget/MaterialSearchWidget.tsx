@@ -1,6 +1,5 @@
 import { Input, MenuProps } from "antd"
 import React from "react"
-import "./index.less"
 
 const handleMenuClick: MenuProps['onClick'] = e => {
   console.log('click', e);
