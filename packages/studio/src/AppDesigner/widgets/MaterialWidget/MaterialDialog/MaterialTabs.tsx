@@ -1,37 +1,50 @@
-import { Tabs } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
+import { Button, Collapse, Tabs } from 'antd';
 import React, { memo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { TabsEditDialog } from './TabsEditDialog';
-const initialItems = [
-  {
-    label: 'Tab 1',
-    children: <div>
-      Content of Tab 1<br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v
-      Content of Tab 1<br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v
-      Content of Tab 1<br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v
-      Content of Tab 1<br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v
-      Content of Tab 1<br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v
-      Content of Tab 1<br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v
-    </div>,
-    key: '1',
-  },
-  {
-    label: 'Tab 2',
-    children: 'Content of Tab 2',
-    key: '2',
-  },
-  {
-    label: 'Tab 3',
-    children: 'Content of Tab 3',
-    key: '3',
-  },
-  {
-    label: 'Tab 4',
-    children: 'Content of Tab 3',
-    key: '4',
-  },
-];
+const { Panel } = Collapse;
+
+
 
 export const MaterialTabs = memo(() => {
+  const { t } = useTranslation();
+  const initialItems = [
+    {
+      label: 'Tab 1',
+      children:
+        <div style={{ paddingRight: 16 }}>
+          <Collapse defaultActiveKey={['1']} ghost bordered={false}>
+            <Panel header="This is panel header 1" key="1">
+              <p>43434</p>
+            </Panel>
+            <Panel header="This is panel header 2" key="2">
+              <p>34343434</p>
+            </Panel>
+            <Panel header="This is panel header 3" key="3">
+              <p>vvvv</p>
+            </Panel>
+          </Collapse>
+          <Button type='dashed' block icon={<PlusOutlined />}>{t("Materials.Add")}</Button>
+        </div>,
+      key: '1',
+    },
+    {
+      label: 'Tab 2',
+      children: 'Content of Tab 2',
+      key: '2',
+    },
+    {
+      label: 'Tab 3',
+      children: 'Content of Tab 3',
+      key: '3',
+    },
+    {
+      label: 'Tab 4',
+      children: 'Content of Tab 3',
+      key: '4',
+    },
+  ];
   const [activeKey, setActiveKey] = useState(initialItems[0].key);
   const [items, setItems] = useState(initialItems);
 
