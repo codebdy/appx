@@ -4,6 +4,7 @@ import { IMaterialTab } from "../../../../../material-sdk/model";
 import React from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
+import { useParseLangMessage } from "../../../../../hooks/useParseLangMessage";
 const { Panel } = Collapse;
 
 export const MaterialTab = memo((
@@ -14,6 +15,8 @@ export const MaterialTab = memo((
 ) => {
   const { tab, onChange } = props;
   const { t } = useTranslation();
+  const p = useParseLangMessage();
+
   return (
     <div style={{ paddingRight: 16 }}>
       <Collapse defaultActiveKey={['1']} ghost bordered={false}>

@@ -12,9 +12,10 @@ export const MultiLangInput = (
     value?: string,
     inline?: boolean,
     title?: string,
+    onKeyUp?: (event: React.KeyboardEvent<HTMLInputElement>) => void,
   }
 ) => {
-  const { multiline, onChange, value, inline, title } = props;
+  const { multiline, onChange, onKeyUp, value, inline, title } = props;
   const appConfig = useAppConfig();
   const [visiable, setVisiable] = useState(false);
   const parse = useParseLangMessage();
@@ -44,7 +45,7 @@ export const MultiLangInput = (
   return (
     <>
       <Input.Group compact>
-        <InputCtrl style={{ width: isMultLang ? 'calc(100% - 32px)' : "100%" }} value={parsedValue} onChange={hanldeCInputCtrlChange} />
+        <InputCtrl style={{ width: isMultLang ? 'calc(100% - 32px)' : "100%" }} onKeyUp={onKeyUp as any} value={parsedValue} onChange={hanldeCInputCtrlChange} />
         {
           isMultLang &&
           <Button icon={<TranslationOutlined />} style={{ width: "32px" }} onClick={handleOpen}></Button>

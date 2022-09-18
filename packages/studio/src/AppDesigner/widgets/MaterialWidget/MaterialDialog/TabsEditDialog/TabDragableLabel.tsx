@@ -60,6 +60,12 @@ export const TabDragableLabel = React.forwardRef((
     onRemove(tab.uuid);
   }, [onRemove, tab.uuid]);
 
+  const handleKeyEnter = (event: React.KeyboardEvent<HTMLElement>) => {
+    if (event.key === "Enter") {
+      hancleOk();
+    }
+  };
+
   return (
     <div ref={ref} className={clx("draggable-label", className)} {...other}
       style={{
@@ -78,7 +84,12 @@ export const TabDragableLabel = React.forwardRef((
         {
           editing
             ?
-            <MultiLangInput value={title} inline onChange={handleChange} />
+            <MultiLangInput
+              value={title}
+              inline
+              onChange={handleChange}
+              onKeyUp={handleKeyEnter}
+            />
             :
             p(title)
         }
@@ -120,7 +131,7 @@ export const TabDragableLabel = React.forwardRef((
                   shape="circle"
                   size="small"
                   icon={<DeleteOutlined />}
-                  onClick = {handleDelete}
+                  onClick={handleDelete}
                 ></Button>
               </Space>
             </div>)
