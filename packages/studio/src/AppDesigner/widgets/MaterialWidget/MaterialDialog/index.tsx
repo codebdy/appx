@@ -1,9 +1,10 @@
-import { PlusOutlined, SettingOutlined } from '@ant-design/icons';
+import { SettingOutlined } from '@ant-design/icons';
 import { Button, Modal } from 'antd';
 import React, { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MaterialTabs } from './MaterialTabs';
 import { UploadDialog } from './UploadDialog';
+import "./style.less";
 
 export const MaterialDialog = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -30,7 +31,7 @@ export const MaterialDialog = memo(() => {
       <Modal
         title={t("Materials.ModuleList")}
         className='material-module-modal'
-        width={900}
+        width={780}
         open={isModalVisible}
         okText={t("Confirm")}
         cancelText={t("Cancel")}
@@ -42,10 +43,12 @@ export const MaterialDialog = memo(() => {
             <MaterialTabs />
           </div>
           <div className="material-dialog-coms right-border">
-            right
+            <div className='content-title bottom-border'>
+              备选组件
+            </div>
           </div>
           <div className="material-dialog-materials">
-            <div className='upload-title bottom-border'>
+            <div className='content-title bottom-border'>
               <span>自定义上传</span>
               <UploadDialog />
             </div>
