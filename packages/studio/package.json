@@ -36,6 +36,8 @@
     "i18next-http-backend": "^1.4.1",
     "lodash": "^4.17.21",
     "react-beautiful-dnd": "^13.1.0",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
     "react-i18next": "^11.18.3",
     "react-router-dom": "^6.3.0",
     "recoil": "^0.7.4",
