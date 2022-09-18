@@ -80,6 +80,10 @@ export const TabsEditDialog = memo((
     setItems(items => items.map(item => item.uuid === tab.uuid ? tab : item))
   }, []);
 
+  const handleRemove = useCallback((uuid: string) => {
+    setItems(items => items.filter(item => item.uuid !== uuid))
+  }, []);
+
   return (
     <>
       <Button size='small'
@@ -126,6 +130,7 @@ export const TabsEditDialog = memo((
                             float={snapshot.isDragging}
                             ref={provided.innerRef}
                             onChange={handleTabChange}
+                            onRemove={handleRemove}
                           />
                         )}
                       </Draggable>

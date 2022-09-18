@@ -13,8 +13,8 @@ export const TabDragableLabel = React.forwardRef((
     style?: CSSProperties,
     fixed?: boolean,
     className?: string,
-    onChange?: (tab: IMaterialTab) => void,
-    onRemove?: (uuid: string) => void
+    onChange: (tab: IMaterialTab) => void,
+    onRemove: (uuid: string) => void
   },
   ref: any
 ) => {
@@ -47,7 +47,7 @@ export const TabDragableLabel = React.forwardRef((
     setTitle(value);
   }, []);
 
-  const hancleOk = useCallback((g) => {
+  const hancleOk = useCallback(() => {
     onChange({ ...tab, title: title });
     setEditing(false);
   }, [onChange, tab, title]);
@@ -55,6 +55,10 @@ export const TabDragableLabel = React.forwardRef((
   const handleKeyUp = useCallback((event: React.KeyboardEvent<HTMLElement>) => {
     event.stopPropagation();
   }, [])
+
+  const handleDelete = useCallback(() => {
+    onRemove(tab.uuid);
+  }, [onRemove, tab.uuid]);
 
   return (
     <div ref={ref} className={clx("draggable-label", className)} {...other}
@@ -116,6 +120,7 @@ export const TabDragableLabel = React.forwardRef((
                   shape="circle"
                   size="small"
                   icon={<DeleteOutlined />}
+                  onClick = {handleDelete}
                 ></Button>
               </Space>
             </div>)
