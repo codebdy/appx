@@ -83,10 +83,8 @@ export const MaterialTabs = () => {
 
   return (
     <Tabs
-      type="editable-card"
       onChange={onChange}
       activeKey={activeKey}
-      onEdit={onEdit}
       items={items}
     />
   );
