@@ -46,8 +46,16 @@ export const MaterialDialog = memo(() => {
           </div>
           <div className="material-dialog-materials">
             <div className='upload-title bottom-border'>
-              <span>上传管理</span>
+              <span>自定义上传</span>
               <UploadDialog />
+            </div>
+            <div>
+              <div>
+                全部
+              </div>
+              <div>
+                基础
+              </div>
             </div>
           </div>
         </div>
