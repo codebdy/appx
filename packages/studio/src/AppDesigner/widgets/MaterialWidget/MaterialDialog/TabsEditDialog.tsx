@@ -25,6 +25,7 @@ export const TabsEditDialog = memo(() => {
       <Button size='small' type="text" shape='circle' icon={<EditOutlined />} style={{ marginRight: 8 }} onClick={handleShowModal} />
       <Modal
         title={t("Materials.TabsEdit")}
+        width={400}
         open={isModalOpen}
         okText={t("Confirm")}
         cancelText={t("Cancel")}

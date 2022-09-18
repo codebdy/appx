@@ -5,8 +5,10 @@ import { useTranslation } from 'react-i18next';
 import { MaterialTabs } from './MaterialTabs';
 import { UploadDialog } from './UploadDialog';
 import "./style.less";
+import { IMaterialTab } from '../../../../material-sdk/model';
 
 export const MaterialDialog = memo(() => {
+  const [tabs, setTabs] = useState<IMaterialTab[]>([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const { t } = useTranslation();
 
@@ -20,6 +22,10 @@ export const MaterialDialog = memo(() => {
 
   const handleCancel = useCallback(() => {
     setIsModalVisible(false);
+  }, []);
+
+  const handleTabsChange = useCallback((tabs: IMaterialTab[]) => {
+    setTabs(tabs);
   }, []);
 
   return (
@@ -40,7 +46,7 @@ export const MaterialDialog = memo(() => {
       >
         <div className='material-dialog-content'>
           <div className='material-dialog-tabs right-border'>
-            <MaterialTabs />
+            <MaterialTabs tabs={tabs} onTabsChange={handleTabsChange} />
           </div>
           <div className="material-dialog-coms right-border">
             <div className='content-title bottom-border'>
