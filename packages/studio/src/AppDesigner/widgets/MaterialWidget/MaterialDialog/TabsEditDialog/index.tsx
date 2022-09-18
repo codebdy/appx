@@ -4,6 +4,7 @@ import { IMaterialTab } from '../../../../../material-sdk/model';
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import TabDragableLabel from './TabDragableLabel';
+import { createUuid } from '../../../../../shared';
 
 export const TabsEditDialog = memo((
   props: {
@@ -32,9 +33,23 @@ export const TabsEditDialog = memo((
     setIsModalOpen(false);
   }, []);
 
+  const handleAdd = useCallback(() => {
+    setItems(items => [...items, {
+      title: "Tab",
+      uuid: createUuid(),
+      collopsesItems: [],
+    }])
+  }, []);
+
   return (
     <>
-      <Button size='small' type="text" shape='circle' icon={<EditOutlined />} style={{ marginRight: 8 }} onClick={handleShowModal} />
+      <Button size='small'
+        type="text"
+        shape='circle'
+        icon={<EditOutlined />}
+        style={{ marginRight: 8 }}
+        onClick={handleShowModal}
+      />
       <Modal
         title={t("Materials.TabsEdit")}
         width={400}
@@ -46,7 +61,7 @@ export const TabsEditDialog = memo((
       >
         <div className='tabs-edit-content'>
           {
-            tabs.map(tab => {
+            items.map(tab => {
               return (
                 <TabDragableLabel tab={tab} />
               )
@@ -56,6 +71,7 @@ export const TabsEditDialog = memo((
             type='dashed'
             block
             icon={<PlusOutlined />}
+            onClick={handleAdd}
           >
             {t("Materials.Add")}
           </Button>
