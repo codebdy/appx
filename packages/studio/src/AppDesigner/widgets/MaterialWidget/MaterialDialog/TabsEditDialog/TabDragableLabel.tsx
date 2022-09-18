@@ -1,8 +1,9 @@
 import React, { CSSProperties, useCallback, useState } from "react"
-import { HolderOutlined } from "@ant-design/icons"
+import { DeleteOutlined, EditOutlined, HolderOutlined } from "@ant-design/icons"
 import clx from "classnames";
 import { IMaterialTab } from "../../../../../material-sdk/model";
 import { useParseLangMessage } from "../../../../../hooks/useParseLangMessage";
+import { Button, Space } from "antd";
 
 const TabDragableLabel = React.forwardRef((
   props: {
@@ -11,11 +12,12 @@ const TabDragableLabel = React.forwardRef((
     style?: CSSProperties,
     fixed?: boolean,
     className?: string,
-    onSelect?: (uuid?: string) => void,
+    onChange?: (tab: IMaterialTab) => void,
+    onRemove?: (uuid: string) => void
   },
   ref: any
 ) => {
-  const { tab, float, style, className, fixed, onSelect, ...other } = props;
+  const { tab, float, style, className, fixed, onChange, onRemove, ...other } = props;
   const [hover, setHover] = useState(false);
   const p = useParseLangMessage();
   const handleMouseEnter = useCallback(() => {
@@ -25,10 +27,6 @@ const TabDragableLabel = React.forwardRef((
     setHover(false);
   }, []);
 
-  const handleClick = useCallback(() => {
-    onSelect && onSelect(tab.uuid)
-  }, [onSelect, tab.uuid])
-
   return (
     <div ref={ref} className={clx("draggable-label", className)} {...other}
       style={{
@@ -36,16 +34,23 @@ const TabDragableLabel = React.forwardRef((
         boxShadow: float || (hover && !fixed) ? "2px 2px 10px 1px rgb(25 42 70 / 11%)" : undefined,
         pointerEvents: float ? "none" : undefined,
       }}
-      onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <div className="draggable-icon">
         <HolderOutlined />
       </div>
-      {
-        p(tab.title)
-      }
+      <div className="label-text">
+        {
+          p(tab.title)
+        }
+      </div>
+      <div>
+        <Space>
+          <Button type="text" shape="circle" size="small" icon={<EditOutlined />}></Button>
+          <Button type="text" shape="circle" size="small" icon={<DeleteOutlined />}></Button>
+        </Space>
+      </div>
     </div>
   )
 })
