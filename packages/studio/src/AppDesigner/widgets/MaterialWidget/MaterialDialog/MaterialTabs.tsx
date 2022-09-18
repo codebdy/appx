@@ -1,116 +1,86 @@
 import { Tabs } from 'antd';
 import React, { useRef, useState } from 'react';
-import { DndProvider, useDrag, useDrop } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-const type = 'DraggableTabNode';
+const initialItems = [
+  {
+    label: 'Tab 1',
+    children: 'Content of Tab 1',
+    key: '1',
+  },
+  {
+    label: 'Tab 2',
+    children: 'Content of Tab 2',
+    key: '2',
+  },
+  {
+    label: 'Tab 3',
+    children: 'Content of Tab 3',
+    key: '3',
+  },
+  {
+    label: 'Tab 4',
+    children: 'Content of Tab 3',
+    key: '4',
+  },
+];
 
-const DraggableTabNode = ({ index, children, moveNode }) => {
-  const ref = useRef(null);
-  const [{ isOver, dropClassName }, drop] = useDrop({
-    accept: type,
-    collect: (monitor) => {
-      const { index: dragIndex } = monitor.getItem() || {};
+export const MaterialTabs = () => {
+  const [activeKey, setActiveKey] = useState(initialItems[0].key);
+  const [items, setItems] = useState(initialItems);
+  const newTabIndex = useRef(0);
 
-      if (dragIndex === index) {
-        return {};
-      }
-
-      return {
-        isOver: monitor.isOver(),
-        dropClassName: 'dropping',
-      };
-    },
-    drop: (item) => {
-      moveNode(item.index, index);
-    },
-  });
-  const [, drag] = useDrag({
-    type,
-    item: {
-      index,
-    },
-    collect: (monitor) => ({
-      isDragging: monitor.isDragging(),
-    }),
-  });
-  drop(drag(ref));
-  return (
-    <div
-      ref={ref}
-      style={{
-        marginRight: 24,
-      }}
-      className={isOver ? dropClassName : ''}
-    >
-      {children}
-    </div>
-  );
-};
-
-const DraggableTabs = (props) => {
-  const { items = [] } = props;
-  const [order, setOrder] = useState([]);
-
-  const moveTabNode = (dragKey, hoverKey) => {
-    const newOrder = order.slice();
-    items.forEach((item) => {
-      if (item.key && newOrder.indexOf(item.key) === -1) {
-        newOrder.push(item.key);
-      }
-    });
-    const dragIndex = newOrder.indexOf(dragKey);
-    const hoverIndex = newOrder.indexOf(hoverKey);
-    newOrder.splice(dragIndex, 1);
-    newOrder.splice(hoverIndex, 0, dragKey);
-    setOrder(newOrder);
+  const onChange = (newActiveKey) => {
+    setActiveKey(newActiveKey);
   };
 
-  const renderTabBar = (tabBarProps, DefaultTabBar) => (
-    <DefaultTabBar {...tabBarProps}>
-      {(node) => (
-        <DraggableTabNode key={node.key} index={node.key} moveNode={moveTabNode}>
-          {node}
-        </DraggableTabNode>
-      )}
-    </DefaultTabBar>
-  );
+  const add = () => {
+    const newActiveKey = `newTab${newTabIndex.current++}`;
+    const newPanes = [...items];
+    newPanes.push({
+      label: 'New Tab',
+      children: 'Content of new Tab',
+      key: newActiveKey,
+    });
+    setItems(newPanes);
+    setActiveKey(newActiveKey);
+  };
 
-  const orderItems = [...items].sort((a, b) => {
-    const orderA = order.indexOf(a.key);
-    const orderB = order.indexOf(b.key);
+  const remove = (targetKey) => {
+    let newActiveKey = activeKey;
+    let lastIndex = -1;
+    items.forEach((item, i) => {
+      if (item.key === targetKey) {
+        lastIndex = i - 1;
+      }
+    });
+    const newPanes = items.filter((item) => item.key !== targetKey);
 
-    if (orderA !== -1 && orderB !== -1) {
-      return orderA - orderB;
+    if (newPanes.length && newActiveKey === targetKey) {
+      if (lastIndex >= 0) {
+        newActiveKey = newPanes[lastIndex].key;
+      } else {
+        newActiveKey = newPanes[0].key;
+      }
     }
 
-    if (orderA !== -1) {
-      return -1;
-    }
+    setItems(newPanes);
+    setActiveKey(newActiveKey);
+  };
 
-    if (orderB !== -1) {
-      return 1;
+  const onEdit = (targetKey, action) => {
+    if (action === 'add') {
+      add();
+    } else {
+      remove(targetKey);
     }
+  };
 
-    const ia = items.indexOf(a);
-    const ib = items.indexOf(b);
-    return ia - ib;
-  });
   return (
-    <DndProvider backend={HTML5Backend}>
-      <Tabs renderTabBar={renderTabBar} {...props} items={orderItems} />
-    </DndProvider>
+    <Tabs
+      type="editable-card"
+      onChange={onChange}
+      activeKey={activeKey}
+      onEdit={onEdit}
+      items={items}
+    />
   );
 };
-
-export const MaterialTabs = () => (
-  <DraggableTabs
-    items={new Array(3).fill(null).map((_, i) => {
-      const id = String(i + 1);
-      return {
-        label: `tab ${id}`,
-        key: id,
-        children: `Content of Tab Pane ${id}`,
-      };
-    })}
-  />
-);
