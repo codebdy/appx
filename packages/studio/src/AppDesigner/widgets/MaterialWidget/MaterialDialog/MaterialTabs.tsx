@@ -3,7 +3,14 @@ import React, { useRef, useState } from 'react';
 const initialItems = [
   {
     label: 'Tab 1',
-    children: 'Content of Tab 1',
+    children: <div>
+      Content of Tab 1<br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v 
+      Content of Tab 1<br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v 
+      Content of Tab 1<br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v 
+      Content of Tab 1<br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v 
+      Content of Tab 1<br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v 
+      Content of Tab 1<br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v 
+    </div>,
     key: '1',
   },
   {
