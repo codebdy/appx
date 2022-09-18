@@ -29,8 +29,9 @@ export const TabsEditDialog = memo((
   }, []);
 
   const handleOk = useCallback(() => {
+    onTabsChange(items)
     setIsModalOpen(false);
-  }, []);
+  }, [items, onTabsChange]);
 
   const handleCancel = useCallback(() => {
     setIsModalOpen(false);
