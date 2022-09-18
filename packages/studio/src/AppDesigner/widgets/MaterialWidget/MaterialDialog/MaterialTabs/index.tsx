@@ -13,7 +13,7 @@ export const MaterialTabs = memo((
 ) => {
   const { tabs, onTabsChange } = props;
   const p = useParseLangMessage();
-  const [activeKey, setActiveKey] = useState(tabs[0]?.title);
+  const [activeKey, setActiveKey] = useState(tabs[0]?.uuid);
 
   const handleTabChange = useCallback((tab: IMaterialTab) => {
     onTabsChange(tabs.map(tb => tb.title === tab.title ? tab : tb))
@@ -23,7 +23,7 @@ export const MaterialTabs = memo((
     return {
       label: p(tab.title),
       children: <MaterialTab tab={tab} onChange={handleTabChange} />,
-      key: tab.title,
+      key: tab.uuid,
     }
   }), [handleTabChange, p, tabs])
 

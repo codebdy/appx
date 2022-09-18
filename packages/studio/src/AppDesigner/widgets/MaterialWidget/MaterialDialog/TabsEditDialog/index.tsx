@@ -1,19 +1,23 @@
 import { EditOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Modal } from 'antd';
 import { IMaterialTab } from '../../../../../material-sdk/model';
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export const TabsEditDialog = memo((
-  props:{
-    tabs:IMaterialTab[],
+  props: {
+    tabs: IMaterialTab[],
     onTabsChange: (tabs: IMaterialTab[]) => void,
   }
 ) => {
   const { tabs, onTabsChange } = props;
+  const [items, setItems] = useState(tabs);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const { t } = useTranslation();
+
+  useEffect(() => {
+    setItems(tabs);
+  }, [tabs])
 
   const handleShowModal = useCallback(() => {
     setIsModalOpen(true);
