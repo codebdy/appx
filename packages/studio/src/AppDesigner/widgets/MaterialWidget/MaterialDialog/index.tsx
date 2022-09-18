@@ -44,17 +44,17 @@ export const MaterialDialog = memo(() => {
           </div>
           <div className="material-dialog-coms right-border">
             <div className='content-title bottom-border'>
-              备选组件
+              {t("Materials.ComponentsForChoose")}
             </div>
           </div>
           <div className="material-dialog-materials">
             <div className='content-title bottom-border'>
-              <span>自定义上传</span>
+              <span>{t("Materials.Cuszomized")}</span>
               <UploadDialog />
             </div>
-            <div>
+            <div className='content'>
               <div>
-                全部
+                {t("Materials.All")}
               </div>
               <div>
                 基础

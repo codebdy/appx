@@ -123,7 +123,9 @@
     "Upload": "上传",
     "Debug": "调试",
     "LinkAddress": "链接地址",
-    "TabsEdit": "选项卡编辑"
+    "TabsEdit": "选项卡编辑",
+    "ComponentsForChoose": "备选组件",
+    "All": "全部 "
   },
   "AppManager": {
     "SearchPlaceHolder": "请输入应用名称或关键字",
