@@ -1,9 +1,9 @@
-import { MaterialGroup } from "./model";
+import { MaterialGroup } from "../AppDesigner/widgets/MaterialWidget/model";
 import { DnFC } from "@designable/react";
 import { createBehavior, createResource } from '@designable/core'
 import { createVoidFieldSchema } from '@designable/formily-antd'
 import React from "react";
-import { ComponentCategory, IApperComponent } from "./types";
+import { ComponentCategory, IApperComponent } from "../AppDesigner/widgets/MaterialWidget/types";
 import { GlobalRegistry } from '@designable/core'
 
 declare const window: Window & { materials: ComponentCategory[] };
