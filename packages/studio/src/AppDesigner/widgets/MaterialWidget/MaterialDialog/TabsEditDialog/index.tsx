@@ -3,7 +3,7 @@ import { Button, Modal } from 'antd';
 import { IMaterialTab } from '../../../../../material-sdk/model';
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import TabDragableLabel from './TabDragableLabel';
+import { TabDragableLabel } from './TabDragableLabel';
 import { createUuid } from '../../../../../shared';
 import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
 
@@ -76,6 +76,10 @@ export const TabsEditDialog = memo((
     []
   )
 
+  const handleTabChange = useCallback((tab: IMaterialTab) => {
+    setItems(items => items.map(item => item.uuid === tab.uuid ? tab : item))
+  }, []);
+
   return (
     <>
       <Button size='small'
@@ -121,6 +125,7 @@ export const TabsEditDialog = memo((
                             {...provided.dragHandleProps}
                             float={snapshot.isDragging}
                             ref={provided.innerRef}
+                            onChange={handleTabChange}
                           />
                         )}
                       </Draggable>

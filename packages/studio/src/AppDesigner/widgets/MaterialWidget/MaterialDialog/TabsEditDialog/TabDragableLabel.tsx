@@ -1,11 +1,12 @@
-import React, { CSSProperties, useCallback, useState } from "react"
+import React, { CSSProperties, useCallback, useEffect, useState } from "react"
 import { CheckOutlined, CloseOutlined, DeleteOutlined, EditOutlined, HolderOutlined } from "@ant-design/icons"
 import clx from "classnames";
 import { IMaterialTab } from "../../../../../material-sdk/model";
 import { useParseLangMessage } from "../../../../../hooks/useParseLangMessage";
 import { Button, Space } from "antd";
+import { MultiLangInput } from "../../../../../components/pc";
 
-const TabDragableLabel = React.forwardRef((
+export const TabDragableLabel = React.forwardRef((
   props: {
     tab: IMaterialTab,
     float?: boolean,
@@ -18,8 +19,14 @@ const TabDragableLabel = React.forwardRef((
   ref: any
 ) => {
   const { tab, float, style, className, fixed, onChange, onRemove, ...other } = props;
+  const [title, setTitle] = useState(tab.title);
   const [hover, setHover] = useState(false);
   const [editing, setEditing] = useState(false);
+
+  useEffect(() => {
+    setTitle(tab.title);
+  }, [tab.title])
+
   const p = useParseLangMessage();
   const handleMouseEnter = useCallback(() => {
     setHover(true);
@@ -36,6 +43,19 @@ const TabDragableLabel = React.forwardRef((
     setEditing(false);
   }, []);
 
+  const handleChange = useCallback((value: string) => {
+    setTitle(value);
+  }, []);
+
+  const hancleOk = useCallback((g) => {
+    onChange({ ...tab, title: title });
+    setEditing(false);
+  }, [onChange, tab, title]);
+
+  const handleKeyUp = useCallback((event: React.KeyboardEvent<HTMLElement>) => {
+    event.stopPropagation();
+  }, [])
+
   return (
     <div ref={ref} className={clx("draggable-label", className)} {...other}
       style={{
@@ -45,13 +65,18 @@ const TabDragableLabel = React.forwardRef((
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onKeyUp={handleKeyUp}
     >
       <div className="draggable-icon">
         <HolderOutlined />
       </div>
       <div className="label-text">
         {
-          p(tab.title)
+          editing
+            ?
+            <MultiLangInput value={title} inline onChange={handleChange} />
+            :
+            p(title)
         }
       </div>
       {
@@ -71,6 +96,7 @@ const TabDragableLabel = React.forwardRef((
                 shape="circle"
                 size="small"
                 icon={<CheckOutlined />}
+                onClick={hancleOk}
               ></Button>
             </Space>
           </div>
@@ -98,5 +124,3 @@ const TabDragableLabel = React.forwardRef((
     </div>
   )
 })
-
-export default TabDragableLabel
