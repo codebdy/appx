@@ -1,5 +1,5 @@
 import React, { CSSProperties, useCallback, useState } from "react"
-import { DeleteOutlined, EditOutlined, HolderOutlined } from "@ant-design/icons"
+import { CheckOutlined, CloseOutlined, DeleteOutlined, EditOutlined, HolderOutlined } from "@ant-design/icons"
 import clx from "classnames";
 import { IMaterialTab } from "../../../../../material-sdk/model";
 import { useParseLangMessage } from "../../../../../hooks/useParseLangMessage";
@@ -19,12 +19,21 @@ const TabDragableLabel = React.forwardRef((
 ) => {
   const { tab, float, style, className, fixed, onChange, onRemove, ...other } = props;
   const [hover, setHover] = useState(false);
+  const [editing, setEditing] = useState(false);
   const p = useParseLangMessage();
   const handleMouseEnter = useCallback(() => {
     setHover(true);
   }, []);
   const handleMouseLeave = useCallback(() => {
     setHover(false);
+  }, []);
+
+  const handleEdit = useCallback(() => {
+    setEditing(true);
+  }, []);
+
+  const handleCancel = useCallback(() => {
+    setEditing(false);
   }, []);
 
   return (
@@ -45,12 +54,46 @@ const TabDragableLabel = React.forwardRef((
           p(tab.title)
         }
       </div>
-      <div>
-        <Space>
-          <Button type="text" shape="circle" size="small" icon={<EditOutlined />}></Button>
-          <Button type="text" shape="circle" size="small" icon={<DeleteOutlined />}></Button>
-        </Space>
-      </div>
+      {
+        editing
+          ?
+          <div>
+            <Space>
+              <Button
+                type="text"
+                shape="circle"
+                size="small"
+                icon={<CloseOutlined />}
+              ></Button>
+              <Button
+                type="text"
+                shape="circle"
+                size="small"
+                icon={<CheckOutlined />}
+                onClick={handleCancel}
+              ></Button>
+            </Space>
+          </div>
+          :
+          <div>
+            <Space>
+              <Button
+                type="text"
+                shape="circle"
+                size="small"
+                icon={<EditOutlined />}
+                onClick={handleEdit}
+              ></Button>
+              <Button
+                type="text"
+                shape="circle"
+                size="small"
+                icon={<DeleteOutlined />}
+              ></Button>
+            </Space>
+          </div>
+      }
+
     </div>
   )
 })
