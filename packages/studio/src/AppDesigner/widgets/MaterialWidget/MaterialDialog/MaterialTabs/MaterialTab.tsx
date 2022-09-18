@@ -19,16 +19,16 @@ export const MaterialTab = memo((
 
   return (
     <div style={{ paddingRight: 16 }}>
-      <Collapse defaultActiveKey={['1']} ghost bordered={false}>
-        <Panel header="This is panel header 1" key="1">
-          <p>43434</p>
-        </Panel>
-        <Panel header="This is panel header 2" key="2">
-          <p>34343434</p>
-        </Panel>
-        <Panel header="This is panel header 3" key="3">
-          <p>vvvv</p>
-        </Panel>
+      <Collapse defaultActiveKey={[tab.collopsesItems?.[0]?.uuid]} ghost bordered={false}>
+        {
+          tab.collopsesItems.map((item, index) => {
+            return (
+              <Panel header={p(item.title)} key={item.uuid}>
+                <p>43434</p>
+              </Panel>
+            )
+          })
+        }
       </Collapse>
       <Button type='dashed' block icon={<PlusOutlined />}>{t("Materials.Add")}</Button>
     </div>
