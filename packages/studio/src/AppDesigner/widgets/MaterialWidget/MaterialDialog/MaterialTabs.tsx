@@ -5,8 +5,6 @@ import { useTranslation } from 'react-i18next';
 import { TabsEditDialog } from './TabsEditDialog';
 const { Panel } = Collapse;
 
-
-
 export const MaterialTabs = memo(() => {
   const { t } = useTranslation();
   const initialItems = [
