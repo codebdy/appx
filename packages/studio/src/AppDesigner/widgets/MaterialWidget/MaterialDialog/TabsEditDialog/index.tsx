@@ -37,6 +37,13 @@ export const TabsEditDialog = memo((
     setItems(tabs);
   }, [tabs]);
 
+  const insertAt = useCallback((item: IMaterialTab, index: number) => {
+    const newItems = items.filter(itm => itm.uuid !== item.uuid)
+    newItems.splice(index, 0, item);
+    setItems(newItems);
+  }, [items])
+
+
   const handleAdd = useCallback(() => {
     setItems(items => [...items, {
       title: "Tab",
@@ -44,36 +51,21 @@ export const TabsEditDialog = memo((
       collopsesItems: [],
     }])
   }, []);
+
   const handleDragEnd = useCallback(
     (result: DropResult) => {
-      const { destination, source, draggableId } = result;
-      // if (destination?.droppableId) {
-      //   var draggedNode: IAppxAction;
-      //   if (source.droppableId === DATA_ACTIONS_LIST || source.droppableId === UI_ACTIONS_LIST) {
-      //     draggedNode = {
-      //       uuid: createUuid(),
-      //       actionType: draggableId as any,
-      //       title: t("Action." + draggableId),
-      //     };
+      const { destination, draggableId } = result;
+      if (destination?.droppableId) {
+        var draggedNode: IMaterialTab;
 
-      //     draggedNode.payload = {}
-      //     if (draggableId === ActionType.OpenPage) {
-      //       draggedNode.payload = {
-      //         openType: OpenPageType.RouteTo,
-      //       }
-      //     }
+        draggedNode = items.find(action => action.uuid === draggableId);
 
-      //   } else {
-      //     draggedNode = actions.find(action => action.uuid === draggableId);
-      //   }
-
-      //   if (draggedNode) {
-      //     insertAt(draggedNode, destination.index);
-      //     setSelectedUuid(draggedNode.uuid);
-      //   }
-      // }
+        if (draggedNode) {
+          insertAt(draggedNode, destination.index);
+        }
+      }
     },
-    []
+    [insertAt, items]
   )
 
   const handleTabChange = useCallback((tab: IMaterialTab) => {
