@@ -207,8 +207,8 @@ const ColumnsSettings = observer(() => {
       placement="bottom"
       overlayClassName="table-column-settings"
       showArrow={false}
-      visible={visible}
-      onVisibleChange={handelVisableChange}
+      open={visible}
+      onOpenChange={handelVisableChange}
     >
       <Tooltip title={t("ColumnSetting")}>
         <Button shape="circle" size="large" type="text" onClick={e => e.preventDefault()}>

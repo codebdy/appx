@@ -2,13 +2,13 @@ import { CloudUploadOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Form, Input, message, Modal, Radio, RadioChangeEvent, UploadProps } from 'antd';
 import React, { memo, useCallback, useState } from 'react';
 import Dragger from 'antd/lib/upload/Dragger';
-import { MaterialModule, OperationType } from './model';
-import { loadDebugModule, transMaterialGroups } from '../../../material-sdk/load';
-import { materialStore } from '../../../shared/global';
+import { MaterialModule, OperationType } from '../model';
+import { loadDebugModule, transMaterialGroups } from '../../../../material-sdk/load';
+import { materialStore } from '../../../../shared/global';
 import { useTranslation } from 'react-i18next';
 
 export interface IUploadModalProps {
-  onAdded: (module: MaterialModule) => void
+  onAdded?: (module: MaterialModule) => void
 }
 
 export const UploadDialog: React.FC<IUploadModalProps> = memo((props: IUploadModalProps) => {
@@ -92,17 +92,16 @@ export const UploadDialog: React.FC<IUploadModalProps> = memo((props: IUploadMod
   return (
     <>
       <Button
-        type="dashed"
-        className='material-module-add-button'
+        shape='circle' 
         icon={<PlusOutlined />}
+        size = "small"
         onClick={showModal}
       >
-        {t("Materials.Add")}
       </Button>
       <Modal
         title={t("Materials.Cuszomized")}
         className='material-upoad-modal'
-        visible={isModalVisible}
+        open={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
         okText={t("Confirm")}

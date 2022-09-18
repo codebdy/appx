@@ -44,7 +44,7 @@ export const EditTemplateDialog = memo((
   return (
     <Modal
       title={template ? t("Templates.EidtTemplate") : t("Templates.NewTemplate")}
-      visible={isModalVisible}
+      open={isModalVisible}
       width={580}
       cancelText={t("Cancel")}
       okText={t("Confirm")}

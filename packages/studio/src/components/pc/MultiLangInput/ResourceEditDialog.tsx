@@ -158,7 +158,7 @@ const ResourceEditDialog = memo((
   return (
     <Modal
       title={title || t("MultiLang.LangInput")}
-      visible={visiable}
+      open={visiable}
       okText={t("Confirm")}
       width={600}
       cancelText={t("Cancel")}

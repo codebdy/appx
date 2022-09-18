@@ -49,46 +49,42 @@
   
 .material-module-modal{
   .ant-modal-body{
-    padding-top:8px;
+    padding:0;
   }
-  .material-module-add-button{
-    width: 100%;
-    margin-top: 8px;
-  }
-}
 
-.material-table{
-  .action{
+  .material-dialog-content{
     display: flex;
-    justify-content: flex-end;
+    height: calc(100vh - 300px);
+    min-height: 300px;
+    .material-dialog-tabs{
+      width: 260px;
+      height: 100%;
+      padding-top: 8px;
+      padding-left: 16px;
+      .ant-tabs{
+        height: 100%;
+        .ant-tabs-content-holder{
+          overflow: auto;
+          height: 100%;
+        }
+      }
+    }
+    .material-dialog-coms{
+      flex: 1;
+      height: 100%;
+    }
+  
+    .material-dialog-materials{
+      width: 260px;
+      height: 100%;
+      .upload-title{
+        padding: 8px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
   }
-  .action-btn{
-    border: 0;
-  }
-}
-
-.row-dragging {
-  background: #fafafa;
-  border: 1px solid #ccc;
-  display: flex;
-  z-index: 1000;
-  .drag-visible {
-    visibility: visible;
-  }
-  .name{
-    flex:1;
-  }
-  .action{
-    display: flex;
-    justify-content: flex-end;
-  }
-  .action-btn{
-    border: 0;
-  }
-}
-
-.row-dragging td {
-  padding: 16px;
 }
 
 .material-upoad-modal{
@@ -97,20 +93,3 @@
   }
 }
 
-.material-dialog-content{
-  display: flex;
-  height: calc(100vh - 300px);
-  min-height: 300px;
-  .material-dialog-tabs{
-    width: 300px;
-    height: 100%;
-    .ant-tabs{
-      height: 100%;
-      .ant-tabs-content-holder{
-        overflow: auto;
-        height: 100%;
-      }
-    }
-
-  }
-}

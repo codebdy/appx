@@ -52,7 +52,7 @@ const CreateCategoryDialog = memo(() => {
       </Button>
       <Modal
         title={t("Pages.NewCategory")}
-        visible={isModalVisible}
+        open={isModalVisible}
         width={400}
         cancelText={t("Cancel")}
         okText={t("Confirm")}

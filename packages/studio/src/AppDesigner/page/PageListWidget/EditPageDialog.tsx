@@ -39,7 +39,7 @@ const EditPageDialog = memo((
   return (
     <Modal
       title={t("Pages.EidtPage")}
-      visible={isModalVisible}
+      open={isModalVisible}
       width={580}
       cancelText={t("Cancel")}
       okText={t("Confirm")}
