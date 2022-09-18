@@ -34,7 +34,8 @@ export const TabsEditDialog = memo((
 
   const handleCancel = useCallback(() => {
     setIsModalOpen(false);
-  }, []);
+    setItems(tabs);
+  }, [tabs]);
 
   const handleAdd = useCallback(() => {
     setItems(items => [...items, {

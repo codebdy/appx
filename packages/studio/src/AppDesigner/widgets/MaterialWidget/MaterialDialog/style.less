@@ -46,20 +46,24 @@
 }
 
 .material-tabs-edits-modal{
+  .ant-modal-body{
+    padding-top: 8px;
+  }
   .tabs-view{
     display: flex;
     flex: 1;
   }
+
+  .tabs-edit-content{
+    display: flex;
+    flex-flow: column;
+    //min-height: 100px;
+    max-height: 300px;
+    overflow: auto;
+  }
 }
 
 
-.tabs-edit-content{
-  display: flex;
-  flex-flow: column;
-  min-height: 100px;
-  max-height: 300px;
-  overflow: auto;
-}
 
 .material-upoad-modal{
   .ant-modal-body{
