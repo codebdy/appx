@@ -7,5 +7,5 @@ export interface IMaterialTab {
 export interface IMaterialCollapseItem {
   title: string;
   uuid: string;
-  sources: string[];
+  components: string[];
 }
