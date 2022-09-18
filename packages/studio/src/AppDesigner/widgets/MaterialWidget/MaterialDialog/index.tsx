@@ -2,7 +2,7 @@ import { SettingOutlined } from '@ant-design/icons';
 import { Button, Modal } from 'antd';
 import React, { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { MaterialDialogTable } from './MaterialDialogTable';
+import { MaterialTabs } from './MaterialTabs';
 
 export const MaterialDialog = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -36,7 +36,15 @@ export const MaterialDialog = memo(() => {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <MaterialDialogTable />
+        <div className='material-dialog-content'>
+          <div className='material-dialog-tabs'>
+            <MaterialTabs />
+          </div>
+          <div>
+            right
+          </div>
+          <div>哈哈</div>
+        </div>
       </Modal>
     </>
   );

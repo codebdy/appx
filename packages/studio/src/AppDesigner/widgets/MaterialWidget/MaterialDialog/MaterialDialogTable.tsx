@@ -3,9 +3,9 @@ import { Button, Table } from 'antd';
 import { arrayMoveImmutable } from 'array-move';
 import React, { useCallback, useEffect, useState } from 'react';
 import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
-import { UploadDialog } from './UploadDialog';
-import { MaterialModule } from './model';
-import { materialStore } from '../../../shared/global';
+import { UploadDialog } from '../UploadDialog';
+import { MaterialModule } from '../model';
+import { materialStore } from '../../../../shared/global';
 
 const DragHandle: any = SortableHandle(() => (
   <MenuOutlined
