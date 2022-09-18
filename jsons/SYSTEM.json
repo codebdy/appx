@@ -678,14 +678,6 @@
             "uuid": "c3c8f459-7083-4187-a8cf-0ba50f0147a9"
           },
           {
-            "label": "$inline:{\"zh-CN\":\"物料类型\"}",
-            "name": "type",
-            "type": "Enum",
-            "typeLabel": "MaterialType",
-            "typeUuid": "df9ba670-733b-4e3c-aab6-37a9ced86ef3",
-            "uuid": "04400d70-37e8-44cd-b047-707d7abd7b80"
-          },
-          {
             "label": "$inline:{\"zh-CN\":\"资源地址\"}",
             "name": "url",
             "type": "String",
@@ -716,29 +708,29 @@
         "uuid": "f0fa4b0f-4b91-4092-a93b-beaa13896e86"
       },
       {
+        "uuid": "51d35ee7-6757-4e1f-8a08-13b274bbaf3d",
+        "innerId": 1018,
+        "name": "MaterialConfig",
         "attributes": [
           {
-            "label": "$inline:{\"zh-CN\":\"上传\"}",
-            "name": "upload",
-            "type": "String",
-            "typeLabel": "String",
-            "uuid": "91214fd0-04d4-435a-9584-ada0912ac9d9"
+            "uuid": "7346a7a6-dadc-471c-a1d6-cbe95ba92848",
+            "name": "id",
+            "type": "ID",
+            "primary": true,
+            "typeLabel": "ID"
           },
           {
-            "label": "$inline:{\"zh-CN\":\"调试\"}",
-            "name": "debug",
+            "uuid": "ab71d680-f700-4985-a569-1dfcd552966f",
+            "name": "appUuid",
             "type": "String",
-            "typeLabel": "String",
-            "uuid": "bd7f72c7-711b-4b14-b083-18d0bc8da503"
+            "typeLabel": "String"
           }
         ],
-        "innerId": 1018,
         "methods": [],
-        "name": "MaterialType",
-        "packageUuid": "PACKAGE_APPX_UUID",
+        "stereoType": "Entity",
         "root": false,
-        "stereoType": "Enum",
-        "uuid": "df9ba670-733b-4e3c-aab6-37a9ced86ef3"
+        "packageUuid": "PACKAGE_APPX_UUID",
+        "label": "$inline:{\"zh-CN\":\"物料配置\"}"
       }
     ],
     "relations": [
@@ -957,6 +949,16 @@
         "targetId": "3a450ffa-e784-415f-b6c2-bc415e2dfd8c",
         "targetMultiplicity": "0..*",
         "uuid": "49fbf19d-aa17-424d-8afa-a82d9e34e01e"
+      },
+      {
+        "uuid": "84c75916-0791-4787-bbc2-a35e76a182e6",
+        "innerId": 0,
+        "relationType": "inherit",
+        "sourceId": "51d35ee7-6757-4e1f-8a08-13b274bbaf3d",
+        "targetId": "087b2915-5582-496d-bafb-ae2f5623a70d",
+        "sourceMutiplicity": "0..1",
+        "targetMultiplicity": "0..1",
+        "appUuid": "SYSTEM"
       }
     ],
     "diagrams": [
@@ -1212,12 +1214,20 @@
         "y": -140
       },
       {
-        "diagramUuid": "33546200-9c95-4747-94ee-a7198b6bd85c",
-        "height": 120,
-        "id": "df9ba670-733b-4e3c-aab6-37a9ced86ef3",
+        "id": "51d35ee7-6757-4e1f-8a08-13b274bbaf3d",
+        "x": -850,
+        "y": -130,
         "width": 180,
-        "x": -810,
-        "y": -150
+        "height": 120,
+        "diagramUuid": "33546200-9c95-4747-94ee-a7198b6bd85c"
+      },
+      {
+        "id": "087b2915-5582-496d-bafb-ae2f5623a70d",
+        "x": -850,
+        "y": -350,
+        "width": 180,
+        "height": 148,
+        "diagramUuid": "33546200-9c95-4747-94ee-a7198b6bd85c"
       }
     ],
     "x6Edges": [
@@ -1605,6 +1615,11 @@
             "y": 420
           }
         ]
+      },
+      {
+        "id": "84c75916-0791-4787-bbc2-a35e76a182e6",
+        "vertices": [],
+        "diagramUuid": "33546200-9c95-4747-94ee-a7198b6bd85c"
       }
     ]
   }
