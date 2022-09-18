@@ -1,4 +1,4 @@
-import { EditOutlined } from '@ant-design/icons';
+import { EditOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Modal } from 'antd';
 import React, { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -31,11 +31,11 @@ export const TabsEditDialog = memo(() => {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <div  className='tabs-edit-content'>
+        <div className='tabs-edit-content'>
           <p>Some contents...</p>
           <p>Some contents...</p>
           <p>Some contents...</p>
-          <Button type='dashed' block>{t("Materials.Add")}</Button>
+          <Button type='dashed' block icon={<PlusOutlined />}>{t("Materials.Add")}</Button>
         </div>
       </Modal>
     </>
