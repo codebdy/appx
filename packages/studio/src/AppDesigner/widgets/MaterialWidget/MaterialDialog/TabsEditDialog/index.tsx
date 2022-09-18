@@ -5,6 +5,9 @@ import React, { memo, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import TabDragableLabel from './TabDragableLabel';
 import { createUuid } from '../../../../../shared';
+import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
+
+const TABS_ID = "TABS_ID";
 
 export const TabsEditDialog = memo((
   props: {
@@ -40,6 +43,37 @@ export const TabsEditDialog = memo((
       collopsesItems: [],
     }])
   }, []);
+  const handleDragEnd = useCallback(
+    (result: DropResult) => {
+      const { destination, source, draggableId } = result;
+      // if (destination?.droppableId) {
+      //   var draggedNode: IAppxAction;
+      //   if (source.droppableId === DATA_ACTIONS_LIST || source.droppableId === UI_ACTIONS_LIST) {
+      //     draggedNode = {
+      //       uuid: createUuid(),
+      //       actionType: draggableId as any,
+      //       title: t("Action." + draggableId),
+      //     };
+
+      //     draggedNode.payload = {}
+      //     if (draggableId === ActionType.OpenPage) {
+      //       draggedNode.payload = {
+      //         openType: OpenPageType.RouteTo,
+      //       }
+      //     }
+
+      //   } else {
+      //     draggedNode = actions.find(action => action.uuid === draggableId);
+      //   }
+
+      //   if (draggedNode) {
+      //     insertAt(draggedNode, destination.index);
+      //     setSelectedUuid(draggedNode.uuid);
+      //   }
+      // }
+    },
+    []
+  )
 
   return (
     <>
@@ -53,6 +87,7 @@ export const TabsEditDialog = memo((
       <Modal
         title={t("Materials.TabsEdit")}
         width={400}
+        className="material-tabs-edits-modal"
         open={isModalOpen}
         okText={t("Confirm")}
         cancelText={t("Cancel")}
@@ -60,13 +95,41 @@ export const TabsEditDialog = memo((
         onCancel={handleCancel}
       >
         <div className='tabs-edit-content'>
-          {
-            items.map(tab => {
-              return (
-                <TabDragableLabel tab={tab} />
-              )
-            })
-          }
+          <DragDropContext onDragEnd={handleDragEnd}>
+            <Droppable droppableId={TABS_ID} >
+              {(provided, snapshot) => (
+                <div className="tabs-view"
+                  ref={provided.innerRef}
+                  style={{
+                    flex: 1,
+                    flexFlow: "column",
+                    backgroundColor: snapshot.isDraggingOver
+                      ? "rgba(0,0,0, 0.05)"
+                      : undefined,
+                  }}
+                >
+                  {items?.map((item, index) => {
+                    return (
+                      <Draggable key={item.uuid} draggableId={item.uuid} index={index}>
+                        {(provided, snapshot) => (
+                          <TabDragableLabel
+                            tab={item}
+                            //className={selectedId === item.uuid ? "selected" : undefined}
+                            //onSelect={onSelect}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            float={snapshot.isDragging}
+                            ref={provided.innerRef}
+                          />
+                        )}
+                      </Draggable>
+                    );
+                  })}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
           <Button
             type='dashed'
             block
