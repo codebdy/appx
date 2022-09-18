@@ -1,15 +1,16 @@
-import { Tabs } from 'antd';
+import { EditOutlined } from '@ant-design/icons';
+import { Button, Tabs } from 'antd';
 import React, { useRef, useState } from 'react';
 const initialItems = [
   {
     label: 'Tab 1',
     children: <div>
-      Content of Tab 1<br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v 
-      Content of Tab 1<br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v 
-      Content of Tab 1<br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v 
-      Content of Tab 1<br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v 
-      Content of Tab 1<br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v 
-      Content of Tab 1<br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v <br/>ff v 
+      Content of Tab 1<br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v
+      Content of Tab 1<br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v
+      Content of Tab 1<br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v
+      Content of Tab 1<br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v
+      Content of Tab 1<br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v
+      Content of Tab 1<br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v <br />ff v
     </div>,
     key: '1',
   },
@@ -73,19 +74,14 @@ export const MaterialTabs = () => {
     setActiveKey(newActiveKey);
   };
 
-  const onEdit = (targetKey, action) => {
-    if (action === 'add') {
-      add();
-    } else {
-      remove(targetKey);
-    }
-  };
-
   return (
     <Tabs
       onChange={onChange}
       activeKey={activeKey}
       items={items}
+      tabBarExtraContent={
+        <Button size='small' type="text" shape='circle' icon={<EditOutlined />} style={{ marginRight: 8 }} />
+      }
     />
   );
 };

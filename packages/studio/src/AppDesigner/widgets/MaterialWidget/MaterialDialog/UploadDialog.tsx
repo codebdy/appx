@@ -92,9 +92,10 @@ export const UploadDialog: React.FC<IUploadModalProps> = memo((props: IUploadMod
   return (
     <>
       <Button
-        shape='circle' 
+        shape='circle'
+        type="text"
         icon={<PlusOutlined />}
-        size = "small"
+        size="small"
         onClick={showModal}
       >
       </Button>
