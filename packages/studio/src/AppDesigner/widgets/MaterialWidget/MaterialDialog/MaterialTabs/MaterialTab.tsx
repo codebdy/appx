@@ -1,11 +1,18 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { Button, Collapse } from "antd"
+import { IMaterialTab } from "../../../../../material-sdk/model";
 import React from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
 const { Panel } = Collapse;
 
-export const MaterialTab = memo(() => {
+export const MaterialTab = memo((
+  props: {
+    tab: IMaterialTab,
+    onChange: (tab: IMaterialTab) => void,
+  }
+) => {
+  const { tab, onChange } = props;
   const { t } = useTranslation();
   return (
     <div style={{ paddingRight: 16 }}>
