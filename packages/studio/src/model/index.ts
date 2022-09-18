@@ -4,9 +4,9 @@ import { ISchema } from '@formily/json-schema'
 import { IUser } from "../enthooks/hooks/useQueryMe";
 
 export enum Device {
-  PC = "Pc",
-  Mobile = "Mobile",
-  Website = "Website"
+  PC = "pc",
+  Mobile = "mobile",
+  Website = "website"
 }
 
 export interface ILang {
