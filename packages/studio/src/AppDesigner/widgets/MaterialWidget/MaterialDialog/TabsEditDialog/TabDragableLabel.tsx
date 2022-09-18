@@ -64,34 +64,35 @@ const TabDragableLabel = React.forwardRef((
                 shape="circle"
                 size="small"
                 icon={<CloseOutlined />}
+                onClick={handleCancel}
               ></Button>
               <Button
                 type="text"
                 shape="circle"
                 size="small"
                 icon={<CheckOutlined />}
-                onClick={handleCancel}
               ></Button>
             </Space>
           </div>
           :
-          <div>
-            <Space>
-              <Button
-                type="text"
-                shape="circle"
-                size="small"
-                icon={<EditOutlined />}
-                onClick={handleEdit}
-              ></Button>
-              <Button
-                type="text"
-                shape="circle"
-                size="small"
-                icon={<DeleteOutlined />}
-              ></Button>
-            </Space>
-          </div>
+          (hover &&
+            <div>
+              <Space>
+                <Button
+                  type="text"
+                  shape="circle"
+                  size="small"
+                  icon={<EditOutlined />}
+                  onClick={handleEdit}
+                ></Button>
+                <Button
+                  type="text"
+                  shape="circle"
+                  size="small"
+                  icon={<DeleteOutlined />}
+                ></Button>
+              </Space>
+            </div>)
       }
 
     </div>
