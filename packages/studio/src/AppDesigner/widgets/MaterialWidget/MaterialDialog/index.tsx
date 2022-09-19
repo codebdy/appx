@@ -108,8 +108,8 @@ export const MaterialDialog = memo(() => {
               <MaterialTabs tabs={tabs} onTabsChange={handleTabsChange} />
             </div>
             <div className="material-dialog-plugins">
-              <div className='content-title bottom-border'>
-                <span>{t("Materials.ComponentsForChoose")}</span>
+              <div className='content-title'>
+                <div className='title-text bottom-border'>{t("Materials.ComponentsForChoose")}</div>
               </div>
               <div className='content'>
                 <PluginList />

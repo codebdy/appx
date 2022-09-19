@@ -36,6 +36,7 @@
       display: flex;
       flex-flow: column;
       overflow: auto;
+      padding-right: 8px;
       .plugin-pannel{
         background-color: @backgrounColor;
       }
@@ -46,11 +47,17 @@
       // }
     }
     .content-title{
-      padding: 8px 16px;
+      padding-right: 8px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       height: 48px;
+      .title-text{
+        padding: 8px 16px;
+        padding-left: 0;
+        height: 100%;
+        width: 100%;
+      }
     }
     .material-dialog-plugins{
       width: 320px;

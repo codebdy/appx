@@ -20,7 +20,6 @@ export const UploadDialog: React.FC<IUploadModalProps> = memo((props: IUploadMod
     setIsModalVisible(true);
   }, []);
 
-
   const handleOk = useCallback(() => {
     form.validateFields().then((formData) => {
       if (formData.operationType === OperationType.Debug) {

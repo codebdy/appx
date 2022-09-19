@@ -11,12 +11,14 @@ import { SYSTEM_APP_UUID } from '../../consts'
 import { useQueryAppDeviceConfig } from '../../hooks/useQueryAppDeviceConfig'
 import { useMe } from '../../Login/context'
 import { useQueryUserConfig } from './hooks/useQueryUserConfig'
-import { Device } from '../../plugin-sdk/model'
+import { Device, IMaterialComponent } from '../../plugin-sdk/model'
+import { InputDesigner } from '../../components/pc'
+import { Input } from '@designable/formily-antd'
 
 export const locales1 = {
   'zh-CN': {
     Layouts: '布局',
-    Description :'布局组件，包括Fromlayou， PageContainer等',
+    Description: '布局组件，包括Fromlayou， PageContainer等',
   },
   'en-US': {
     Layouts: 'Layouts',
@@ -27,7 +29,7 @@ export const locales1 = {
 export const locales2 = {
   'zh-CN': {
     Medias: '多媒体',
-    Description :'包含媒体管理、媒体选择组件',
+    Description: '包含媒体管理、媒体选择组件',
   },
   'en-US': {
     Layouts: 'Layouts',
@@ -38,13 +40,175 @@ export const locales2 = {
 export const locales3 = {
   'zh-CN': {
     Test: '测试',
-    Description :'一个测试组件',
+    Description: '一个测试组件',
   },
   'en-US': {
     Layouts: 'Layouts',
     Description: '',
   },
 }
+
+const coms1: IMaterialComponent[] = [
+  {
+    name: "Input",
+    component: Input,
+    designer: InputDesigner,
+    behavior: {
+      name:"Input",
+      selector: "",
+      designerLocales:{
+        'zh-CN': {
+          Title: '输入框',
+        },
+        'en-US': {
+          Title: 'Input',
+        },
+      }
+    }
+  },
+  {
+    name: "TextArea",
+    component: Input,
+    designer: InputDesigner,
+    behavior: {
+      name:"TextArea",
+      selector: "",
+      designerLocales:{
+        'zh-CN': {
+          Title: '多行输入框',
+        },
+        'en-US': {
+          Title: 'TextArea',
+        },
+      }
+    }
+  },
+  {
+    name: "Select",
+    component: Input,
+    designer: InputDesigner,
+    behavior: {
+      name:"Select",
+      selector: "",
+      designerLocales:{
+        'zh-CN': {
+          Title: '选择框',
+        },
+        'en-US': {
+          Title: 'Select',
+        },
+      }
+    }
+  },
+]
+
+const coms2: IMaterialComponent[] = [
+  {
+    name: "Input2",
+    component: Input,
+    designer: InputDesigner,
+    behavior: {
+      name:"Input2",
+      selector: "",
+      designerLocales:{
+        'zh-CN': {
+          Title: '输入框2',
+        },
+        'en-US': {
+          Title: 'Input2',
+        },
+      }
+    }
+  },
+  {
+    name: "TextArea2",
+    component: Input,
+    designer: InputDesigner,
+    behavior: {
+      name:"TextArea2",
+      selector: "",
+      designerLocales:{
+        'zh-CN': {
+          Title: '多行输入框2',
+        },
+        'en-US': {
+          Title: 'TextArea2',
+        },
+      }
+    }
+  },
+  {
+    name: "Select2",
+    component: Input,
+    designer: InputDesigner,
+    behavior: {
+      name:"Select2",
+      selector: "",
+      designerLocales:{
+        'zh-CN': {
+          Title: '选择框2',
+        },
+        'en-US': {
+          Title: 'Select2',
+        },
+      }
+    }
+  },
+]
+
+const coms3: IMaterialComponent[] = [
+  {
+    name: "Input3",
+    component: Input,
+    designer: InputDesigner,
+    behavior: {
+      name:"Input3",
+      selector: "",
+      designerLocales:{
+        'zh-CN': {
+          Title: '输入框3',
+        },
+        'en-US': {
+          Title: 'Input3',
+        },
+      }
+    }
+  },
+  {
+    name: "TextArea3",
+    component: Input,
+    designer: InputDesigner,
+    behavior: {
+      name:"TextArea3",
+      selector: "",
+      designerLocales:{
+        'zh-CN': {
+          Title: '多行输入框3',
+        },
+        'en-US': {
+          Title: 'TextArea3',
+        },
+      }
+    }
+  },
+  {
+    name: "Select3",
+    component: Input,
+    designer: InputDesigner,
+    behavior: {
+      name:"Select3",
+      selector: "",
+      designerLocales:{
+        'zh-CN': {
+          Title: '选择框3',
+        },
+        'en-US': {
+          Title: 'Select3',
+        },
+      }
+    }
+  },
+]
 
 
 const plugins: IInstalledPlugin[] = [
@@ -56,13 +220,13 @@ const plugins: IInstalledPlugin[] = [
       pluginId: "test1",
       appUuid: "",
     },
-    plugin:{
+    plugin: {
       id: "test1",
       title: "Layouts",
       version: "1.0",
       description: "Description",
       components: {
-        [Device.PC]: [],
+        [Device.PC]: coms1,
       },
       loacales: locales1,
     },
@@ -76,13 +240,13 @@ const plugins: IInstalledPlugin[] = [
       pluginId: "test2",
       appUuid: "",
     },
-    plugin:{
+    plugin: {
       id: "test2",
       title: "Medias",
       version: "1.1.0",
       description: "Description",
       components: {
-        [Device.PC]: [],
+        [Device.PC]: coms2,
       },
       loacales: locales2,
     },
@@ -100,7 +264,7 @@ const debugPlugins = [
       pluginId: "test2",
       appUuid: "",
     },
-    plugin:{
+    plugin: {
       id: "test1",
       title: "Test",
       version: "1.1.0",
@@ -108,7 +272,7 @@ const debugPlugins = [
       components: {
         [Device.PC]: [],
       },
-      loacales: locales3,
+      loacales: coms3,
     },
     type: PluginType.Debug,
   }
