@@ -66,10 +66,6 @@ export const TabDragableLabel = React.forwardRef((
     }
   };
 
-  const handleBlockClick = (event: React.MouseEvent) => {
-    event.stopPropagation();
-  }
-
   return (
     <div ref={ref} className={clx("draggable-label", className)} {...other}
       style={{
@@ -79,7 +75,6 @@ export const TabDragableLabel = React.forwardRef((
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      onClick={handleBlockClick}
       onKeyUp={handleKeyUp}
     >
       <div className="draggable-icon">

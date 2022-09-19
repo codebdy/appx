@@ -59,10 +59,15 @@ export const GroupLabel = memo((
     }
   };
 
+  const handleBlockClick = (event: React.MouseEvent) => {
+    event.stopPropagation();
+  }
+  
   return (
     <div className="material-group-label"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={handleBlockClick}
       onKeyUp={handleKeyUp}
     >
       <div className="label-text">
