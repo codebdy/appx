@@ -3,7 +3,6 @@ import { Button, Modal } from 'antd';
 import React, { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MaterialTabs } from './MaterialTabs';
-import { UploadDialog } from './UploadDialog';
 import "./style.less";
 import { IMaterialTab } from '../../../../plugin-sdk/model';
 
@@ -56,7 +55,6 @@ export const MaterialDialog = memo(() => {
           <div className="material-dialog-materials">
             <div className='content-title bottom-border'>
               <span>{t("Materials.Plugins")}</span>
-              <UploadDialog />
             </div>
             <div className='content'>
               <div>

@@ -84,6 +84,9 @@
     "TextView": "文本展示",
     "Preview": "预览"
   },
+  "Plugins": {
+    "Title": "插件"
+  },
   "Panels": {
     "Templates": "模板",
     "Page": "页面",
@@ -125,7 +128,8 @@
     "LinkAddress": "链接地址",
     "TabsEdit": "选项卡编辑",
     "ComponentsForChoose": "备选组件",
-    "All": "全部 "
+    "All": "全部 ",
+    "Plugins":"插件列表"
   },
   "AppManager": {
     "SearchPlaceHolder": "请输入应用名称或关键字",
