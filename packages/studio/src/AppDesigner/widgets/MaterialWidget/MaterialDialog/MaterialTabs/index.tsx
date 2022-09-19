@@ -19,6 +19,8 @@ export const MaterialTabs = memo((
     onTabsChange(tabs.map(tb => tb.title === tab.title ? tab : tb))
   }, [onTabsChange, tabs])
 
+  console.log("哈哈", tabs)
+
   const items = useMemo(() => tabs.map(tab => {
     return {
       label: p(tab.title),
