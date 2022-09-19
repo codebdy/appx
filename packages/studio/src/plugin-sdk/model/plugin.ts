@@ -1,4 +1,4 @@
-import { IMaterialComponent } from "./material";
+import { DnFC, DnComponent } from "@designable/react"
 
 export interface IPlugin {
   //唯一标识，记住一定要唯一
@@ -10,4 +10,10 @@ export interface IPlugin {
     [device: string]: IMaterialComponent[];
   }
   model?: any;
+}
+
+export interface IMaterialComponent {
+  name: string;
+  designer: DnFC<any> | DnComponent<any>;
+  component: React.FC<any> | React.Component;
 }
