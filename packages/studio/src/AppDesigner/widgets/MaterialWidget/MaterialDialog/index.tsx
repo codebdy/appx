@@ -117,9 +117,6 @@ export const MaterialDialog = memo(() => {
                 <span>{t("Materials.Plugins")}</span>
               </div>
               <div className='content'>
-                <div>
-                  {t("Materials.All")}
-                </div>
                 <PluginList />
               </div>
             </div>

@@ -3,10 +3,12 @@ import React from "react";
 import { memo } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import { DraggableLabel } from "../../../common/DraggableLabel";
+import { useGetLocalMessage } from "../../../../plugin-sdk/hooks/useGetLocalMessage";
 
 export const PLUGINS_LIST_ID = "PLUGINS_LIST_ID";
 export const PluginList = memo(() => {
   const { plugins } = useAppParams();
+  const { getTitle } = useGetLocalMessage();
 
   return (
     <Droppable droppableId={PLUGINS_LIST_ID} isDropDisabled={true}>
@@ -18,7 +20,7 @@ export const PluginList = memo(() => {
                 {(provided, snapshot) => (
                   <>
                     <DraggableLabel
-                      title={plugin.title}
+                      title={getTitle(plugin)}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                       float={snapshot.isDragging}
@@ -26,7 +28,7 @@ export const PluginList = memo(() => {
                     />
                     {snapshot.isDragging && (
                       <DraggableLabel
-                        title={plugin.title}
+                        title={getTitle(plugin)}
                         fixed
                       />
                     )}

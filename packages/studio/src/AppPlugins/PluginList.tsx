@@ -4,7 +4,7 @@ import React, { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import SvgIcon from '../common/SvgIcon';
 import { PluginType, useAppParams } from '../shared/AppRoot/context';
-import { useGetLocalMessage } from './useGetLocalMessage';
+import { useGetLocalMessage } from '../plugin-sdk/hooks/useGetLocalMessage';
 
 export const PluginList = memo(() => {
   const { plugins, debugPlugins } = useAppParams();

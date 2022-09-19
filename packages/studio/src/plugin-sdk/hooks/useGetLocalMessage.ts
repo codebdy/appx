@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { IPlugin } from "../plugin-sdk/model";
+import { IPlugin } from "../model";
 
 export function useGetLocalMessage() {
   const { i18n } = useTranslation();
