@@ -32,17 +32,21 @@ export const AppRootInner = memo((
     return appUuid === SYSTEM_APP_UUID ? { id: "System", uuid: SYSTEM_APP_UUID, title: "System" } : app
   }, [app, appUuid])
 
+  const contextValue = useMemo(() => {
+    return {
+      app: realApp,
+      device: device as Device,
+      config,
+      langLocales,
+      deviceConfig: deviceConfig,
+      userConfig
+    }
+  }, [config, device, deviceConfig, langLocales, realApp, userConfig])
+
   return (
     realApp ?
       <AppContext.Provider
-        value={{
-          app: realApp,
-          device: device as Device,
-          config,
-          langLocales,
-          deviceConfig: deviceConfig,
-          userConfig
-        }}
+        value={contextValue}
       >
         <Spin style={{ height: "100vh" }} spinning={loading || configLoading || localLoading || deviceLoading || useConfigLoading}>
           {props.children}

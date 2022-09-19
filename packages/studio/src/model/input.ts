@@ -15,6 +15,7 @@ export interface ILangLocalInput {
   name?: string;
   appUuid?: string;
   schemaJson?: any;
+  pluginId: string;
 }
 
 export interface IAppConfigInput {
@@ -37,7 +38,7 @@ export interface IAppDeviceConfigInput {
   }
 }
 
-export interface PluginInfoInput{
+export interface IPluginInfoInput{
   id?: ID;
   appUuid: string;
   title: string;

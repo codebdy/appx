@@ -53,11 +53,12 @@ export interface IApp {
   templates?: ITemplate[];
 }
 
-export interface PluginInfo{
+export interface IPluginInfo{
   id: ID;
   appUuid: string;
   title: string;
   url?: string;
+  pluginId: string;
 }
 
 export interface ITemplate {
