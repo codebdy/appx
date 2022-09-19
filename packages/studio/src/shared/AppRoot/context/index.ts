@@ -1,5 +1,6 @@
+import { Device } from "../../../plugin-sdk/model";
 import { createContext, useContext, useMemo } from "react";
-import { Device, IApp, IAppConfig, IAppDeviceConfig, ILangLocal, IUserConfig } from "../../../model";
+import { IApp, IAppConfig, IAppDeviceConfig, ILangLocal, IUserConfig } from "../../../model";
 
 export interface IAppContextParams {
   app: IApp,

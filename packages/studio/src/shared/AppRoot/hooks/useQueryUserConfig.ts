@@ -1,8 +1,9 @@
 import { gql } from "awesome-graphql-client";
-import { Device, IUserConfig } from "../../../model";
+import { IUserConfig } from "../../../model";
 import { useQueryOne } from "../../../enthooks/hooks/useQueryOne";
 import { useMemo } from "react";
 import { ID } from "../..";
+import { Device } from "../../../plugin-sdk/model";
 
 const userConfigGql = gql`
 query ($appUuid:String!, $device:String!, $userId:ID!){

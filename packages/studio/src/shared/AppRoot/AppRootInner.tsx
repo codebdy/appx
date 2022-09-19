@@ -6,12 +6,12 @@ import { useApp } from '../../hooks/useApp'
 import { useQueryLangLocales } from '../../hooks/useQueryLangLocales'
 import { useQueryAppConfig } from '../../hooks/useQueryAppConfig'
 import { useShowError } from '../../hooks/useShowError'
-import { Device } from '../../model'
 import { AppContext } from './context'
 import { SYSTEM_APP_UUID } from '../../consts'
 import { useQueryAppDeviceConfig } from '../../hooks/useQueryAppDeviceConfig'
 import { useMe } from '../../Login/context'
 import { useQueryUserConfig } from './hooks/useQueryUserConfig'
+import { Device } from '../../plugin-sdk/model'
 
 
 export const AppRootInner = memo((

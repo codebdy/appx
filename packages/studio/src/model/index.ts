@@ -2,12 +2,7 @@ import { ID } from "../shared";
 import { IMenuItem } from "./IMenuNode";
 import { ISchema } from '@formily/json-schema'
 import { IUser } from "../enthooks/hooks/useQueryMe";
-
-export enum Device {
-  PC = "pc",
-  Mobile = "mobile",
-  Website = "website"
-}
+import { Device } from "../plugin-sdk/model";
 
 export interface ILang {
   key: string,

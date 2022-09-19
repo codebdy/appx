@@ -1,5 +1,4 @@
-import { Device } from "../../model";
-import { IPlugin } from "../../plugin-sdk/model";
+import { Device, IPlugin } from "../../plugin-sdk/model";
 
 export const rxPlugin: IPlugin = {
   id: "predefined.layouts",
