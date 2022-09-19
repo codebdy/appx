@@ -27,10 +27,13 @@ export const PluginList = memo(() => {
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                       ref={provided.innerRef}
+                      index={index}
+                      className={snapshot.isDragging ? "float" : undefined}
                     />
                     {snapshot.isDragging && (
                       <PluginPanel
                         plugin={plugin}
+                        index={index}
                       />
                     )}
                   </>

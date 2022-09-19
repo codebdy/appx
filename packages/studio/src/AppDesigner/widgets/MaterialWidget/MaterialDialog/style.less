@@ -1,3 +1,4 @@
+@import url(../../../../variables.less);
 .material-module-modal{
   .ant-modal-body{
     padding:0;
@@ -26,10 +27,23 @@
       flex: 1;
       height: 100%;
     }
+    .float{
+      box-shadow: @floatBoxShadow;
+      transition: all 0.3s;
+    }
     .content{
-      padding: 16px;
+      height: 100%;
       display: flex;
       flex-flow: column;
+      overflow: auto;
+      .plugin-pannel{
+        background-color: @backgrounColor;
+      }
+      // .plugin-pannel:hover{
+      //   box-shadow: @floatBoxShadow;
+      //   transition: all 0.3s;
+      //   transform:translate3d(0, 0, 0);
+      // }
     }
     .content-title{
       padding: 8px 16px;
@@ -41,6 +55,9 @@
     .material-dialog-plugins{
       width: 320px;
       height: 100%;
+      .plugin-title{
+        padding: 8px 0;
+      }
     }
     .ant-collapse-header{
       display: flex;
