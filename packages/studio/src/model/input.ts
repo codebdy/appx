@@ -1,4 +1,5 @@
-import { Device, ILang } from ".";
+import { ILang } from ".";
+import { Device } from "../plugin-sdk/model";
 import { ID } from "../shared";
 
 export interface IUserInput {
@@ -34,6 +35,13 @@ export interface IAppDeviceConfigInput {
   schemaJson?: {
     entryId?: string,
   }
+}
+
+export interface PluginInfoInput{
+  id?: ID;
+  appUuid: string;
+  title: string;
+  url?: string;
 }
 
 export interface ITemplateInput {
