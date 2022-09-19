@@ -1,6 +1,10 @@
+import { Card } from "antd"
 import React, { memo } from "react"
+import { useTranslation } from "react-i18next"
+import { PluginList } from "./PluginList"
 
 export const AppPlugins = memo(() => {
+  const { t } = useTranslation();
   return (
     <div
       style={{ display: "flex", justifyContent: "center" }}
@@ -11,7 +15,9 @@ export const AppPlugins = memo(() => {
           marginTop: 16,
         }}
       >
-        app AppPlugins
+        <Card title={t("Plugins.Title")}>
+          <PluginList />
+        </Card>
       </div>
     </div>
   )
