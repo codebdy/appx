@@ -2,7 +2,7 @@ import { Device, IPlugin } from "../../plugin-sdk/model";
 
 export const rxPlugin: IPlugin = {
   id: "predefined.layouts",
-  title: "Title",
+  title: "Layouts",
   version: "1.0",
   description: "Description",
   components: {

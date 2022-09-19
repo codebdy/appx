@@ -50,6 +50,7 @@
   "Message": "消息",
   "CloseConfirm": "关闭确认",
   "SaveRemind": "修改没有保存，确实要关闭吗？",
+  "Version": "版本",
   "install": {
     "Title": "安装Appx",
     "Next": "下一步",
