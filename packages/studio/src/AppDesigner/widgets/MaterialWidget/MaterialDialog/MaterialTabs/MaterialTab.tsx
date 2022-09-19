@@ -6,6 +6,8 @@ import { memo } from "react"
 import { useTranslation } from "react-i18next";
 import { createUuid } from "../../../../../shared";
 import { GroupLabel } from "./GroupLabel";
+import { Draggable, Droppable } from "react-beautiful-dnd";
+import clx from "classnames";
 const { Panel } = Collapse;
 
 export const MaterialTab = memo((
@@ -37,20 +39,52 @@ export const MaterialTab = memo((
 
   return (
     <div>
-      {
-        tab.collopsesItems.map((item, index) => {
-          return (
-            <Collapse key={item.uuid} ghost bordered={false}>
-              <Panel
-                header={<GroupLabel group={item} onChange={handleChange} onRemove={handleRemove} />}
-                key={item.uuid}
-              >
-                <p>43434</p>
-              </Panel>
-            </Collapse>
-          )
-        })
-      }
+      <Droppable droppableId={tab.uuid}>
+        {(provided, snapshot) => (
+          <div
+            ref={provided.innerRef}
+            style={{
+              flex: 1,
+              flexFlow: "column",
+              backgroundColor: snapshot.isDraggingOver
+                ? "rgba(0,0,0, 0.05)"
+                : undefined,
+            }}
+          >
+            {
+              tab.collopsesItems.map((item, index) => {
+                return (
+                  <Draggable
+                    key={item.uuid}
+                    draggableId={item.uuid}
+                    index={index}
+                  >
+                    {(provided, snapshot) => (
+                      <div
+                        ref={provided.innerRef}
+                        className={clx("material-group", { float: snapshot.isDragging })}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                      >
+                        <Collapse ghost bordered={false}>
+                          <Panel
+                            header={<GroupLabel group={item} onChange={handleChange} onRemove={handleRemove} />}
+                            key={item.uuid}
+                          >
+                            <p>43434</p>
+                          </Panel>
+                        </Collapse>
+                      </div>
+                    )}
+                  </Draggable>
+                )
+              })
+            }
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
+
       <div style={{ padding: "0 16px" }}>
         <Button
           type='dashed'
