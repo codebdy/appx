@@ -670,14 +670,6 @@
             "uuid": "9570e280-e2ad-44b0-9d92-163abbdb33aa"
           },
           {
-            "label": "$inline:{\"zh-CN\":\"设备\"}",
-            "name": "device",
-            "type": "Enum",
-            "typeLabel": "Device",
-            "typeUuid": "65dc043c-daaf-408c-b74c-f6ff4952bd5a",
-            "uuid": "c3c8f459-7083-4187-a8cf-0ba50f0147a9"
-          },
-          {
             "label": "$inline:{\"zh-CN\":\"资源地址\"}",
             "name": "url",
             "type": "String",
@@ -691,46 +683,46 @@
             "uuid": "06af7a45-a782-41a6-b7d9-9981a331450d"
           },
           {
-            "label": "$inline:{\"zh-CN\":\"顺序\"}",
-            "name": "order",
-            "type": "Int",
-            "typeLabel": "Int",
-            "uuid": "2a43841a-bb52-4dcb-98c6-783cf20f8f01"
+            "name": "title",
+            "nullable": true,
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "17de6a6d-5733-4a61-b491-089a8361c801"
           }
         ],
         "innerId": 1017,
         "label": "$inline:{\"zh-CN\":\"物料\"}",
         "methods": [],
-        "name": "Material",
+        "name": "PluginInfo",
         "packageUuid": "PACKAGE_APPX_UUID",
         "root": true,
         "stereoType": "Entity",
         "uuid": "f0fa4b0f-4b91-4092-a93b-beaa13896e86"
       },
       {
-        "uuid": "51d35ee7-6757-4e1f-8a08-13b274bbaf3d",
-        "innerId": 1018,
-        "name": "MaterialConfig",
         "attributes": [
           {
-            "uuid": "7346a7a6-dadc-471c-a1d6-cbe95ba92848",
             "name": "id",
-            "type": "ID",
             "primary": true,
-            "typeLabel": "ID"
+            "type": "ID",
+            "typeLabel": "ID",
+            "uuid": "7346a7a6-dadc-471c-a1d6-cbe95ba92848"
           },
           {
-            "uuid": "ab71d680-f700-4985-a569-1dfcd552966f",
             "name": "appUuid",
             "type": "String",
-            "typeLabel": "String"
+            "typeLabel": "String",
+            "uuid": "ab71d680-f700-4985-a569-1dfcd552966f"
           }
         ],
+        "innerId": 1018,
+        "label": "$inline:{\"zh-CN\":\"物料配置\"}",
         "methods": [],
-        "stereoType": "Entity",
-        "root": false,
+        "name": "MaterialConfig",
         "packageUuid": "PACKAGE_APPX_UUID",
-        "label": "$inline:{\"zh-CN\":\"物料配置\"}"
+        "root": false,
+        "stereoType": "Entity",
+        "uuid": "51d35ee7-6757-4e1f-8a08-13b274bbaf3d"
       }
     ],
     "relations": [
@@ -951,14 +943,14 @@
         "uuid": "49fbf19d-aa17-424d-8afa-a82d9e34e01e"
       },
       {
-        "uuid": "84c75916-0791-4787-bbc2-a35e76a182e6",
+        "appUuid": "SYSTEM",
         "innerId": 0,
         "relationType": "inherit",
         "sourceId": "51d35ee7-6757-4e1f-8a08-13b274bbaf3d",
-        "targetId": "087b2915-5582-496d-bafb-ae2f5623a70d",
         "sourceMutiplicity": "0..1",
+        "targetId": "087b2915-5582-496d-bafb-ae2f5623a70d",
         "targetMultiplicity": "0..1",
-        "appUuid": "SYSTEM"
+        "uuid": "84c75916-0791-4787-bbc2-a35e76a182e6"
       }
     ],
     "diagrams": [
@@ -1006,7 +998,7 @@
       },
       {
         "edges": [],
-        "name": "物料上传",
+        "name": "物料插件",
         "nodes": [],
         "packageUuid": "PACKAGE_APPX_UUID",
         "uuid": "33546200-9c95-4747-94ee-a7198b6bd85c"
@@ -1207,27 +1199,27 @@
       },
       {
         "diagramUuid": "33546200-9c95-4747-94ee-a7198b6bd85c",
-        "height": 240,
+        "height": 170,
         "id": "f0fa4b0f-4b91-4092-a93b-beaa13896e86",
         "width": 180,
         "x": -1100,
-        "y": -140
+        "y": -180
       },
       {
-        "id": "51d35ee7-6757-4e1f-8a08-13b274bbaf3d",
-        "x": -850,
-        "y": -130,
-        "width": 180,
+        "diagramUuid": "33546200-9c95-4747-94ee-a7198b6bd85c",
         "height": 120,
-        "diagramUuid": "33546200-9c95-4747-94ee-a7198b6bd85c"
+        "id": "51d35ee7-6757-4e1f-8a08-13b274bbaf3d",
+        "width": 180,
+        "x": -850,
+        "y": -130
       },
       {
-        "id": "087b2915-5582-496d-bafb-ae2f5623a70d",
-        "x": -850,
-        "y": -350,
-        "width": 180,
+        "diagramUuid": "33546200-9c95-4747-94ee-a7198b6bd85c",
         "height": 148,
-        "diagramUuid": "33546200-9c95-4747-94ee-a7198b6bd85c"
+        "id": "087b2915-5582-496d-bafb-ae2f5623a70d",
+        "width": 180,
+        "x": -850,
+        "y": -350
       }
     ],
     "x6Edges": [
@@ -1617,9 +1609,9 @@
         ]
       },
       {
+        "diagramUuid": "33546200-9c95-4747-94ee-a7198b6bd85c",
         "id": "84c75916-0791-4787-bbc2-a35e76a182e6",
-        "vertices": [],
-        "diagramUuid": "33546200-9c95-4747-94ee-a7198b6bd85c"
+        "vertices": []
       }
     ]
   }
