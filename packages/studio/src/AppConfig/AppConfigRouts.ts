@@ -5,4 +5,5 @@ export enum AppConfigRouts{
   Model = "model",
   Api = "api",
   Auth = "auth",
+  Plugins = "plugins",
 }

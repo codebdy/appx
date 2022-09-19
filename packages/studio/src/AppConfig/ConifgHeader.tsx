@@ -64,6 +64,10 @@ const ConifgHeader = memo((props: {
             key: AppConfigRouts.Flow,
             label: t("AppConfig.FlowDesign"),
           },
+          {
+            key: AppConfigRouts.Plugins,
+            label: t("AppConfig.Plugins"),
+          },
         ]}
       />
 

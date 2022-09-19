@@ -73,7 +73,8 @@
     "DomainModel": "领域模型",
     "FlowDesign": "流程设计",
     "AppApi": "应用接口",
-    "ModelAuth": "模型权限"
+    "ModelAuth": "模型权限",
+    "Plugins": "插件管理"
   },
   "Designer": {
     "Pages": "页面编辑",
@@ -129,7 +130,7 @@
     "TabsEdit": "选项卡编辑",
     "ComponentsForChoose": "备选组件",
     "All": "全部 ",
-    "Plugins":"插件列表"
+    "Plugins": "插件列表"
   },
   "AppManager": {
     "SearchPlaceHolder": "请输入应用名称或关键字",

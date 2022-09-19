@@ -19,6 +19,7 @@ import ConfigBoard from './ConfigBoard';
 import { LoggedInPanel } from './Login/LoggedInPanel';
 import { AppTemplates } from './AppTemplates';
 import { TemplateDesigner } from './TemplateDesigner';
+import { AppPlugins } from './AppPlugins';
 
 const App = memo(() => {
   return (
@@ -43,6 +44,7 @@ const App = memo(() => {
           <Route path={AppConfigRouts.Model} element={<ModelBoard />} />
           <Route path={AppConfigRouts.Api} element={<ApiBoard />} />
           <Route path={AppConfigRouts.Auth} element={<AuthBoard />} />
+          <Route path={AppConfigRouts.Plugins} element={<AppPlugins />} />
         </Route>
         <Route path="/design-app/:device/:appUuid" element={<AppDesigner />} />
         <Route path={"/app/:device/:appUuid"} element={<AppRunner />}>
