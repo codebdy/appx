@@ -12,7 +12,7 @@ export interface MaterialGroup {
   materials: Material[];
 }
 
-export interface IComponents{
+export interface IComponents {
   [key: string]: React.FC<any> | React.Component<{}, {}, any>;
 }
 
@@ -42,7 +42,8 @@ export function convertMaterialsToComponents(tabs: MaterialModule[]): IComponent
 
 export enum OperationType {
   Upload = 1,
-  Debug
+  Debug,
+  Market
 }
 
 export interface MaterialModule {

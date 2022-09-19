@@ -92,7 +92,10 @@
     "Install": "安装",
     "Installed": "已安装插件",
     "InstallPlugin": "安装插件",
-    "OperationType": "操作类型"
+    "OperationType": "操作类型",
+    "Upload": "上传",
+    "Debug": "调试",
+    "Market": "市场"
   },
   "Panels": {
     "Templates": "模板",
@@ -129,8 +132,6 @@
     "UploadFile": "上传文件",
     "RequiredName": "请输入组件类型名称",
     "RequiredUrl": "请输入调试地址",
-    "Upload": "上传",
-    "Debug": "调试",
     "LinkAddress": "链接地址",
     "TabsEdit": "选项卡编辑",
     "ComponentsForChoose": "未分类组件",

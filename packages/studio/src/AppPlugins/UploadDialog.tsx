@@ -131,8 +131,9 @@ export const UploadDialog: React.FC<IUploadModalProps> = memo((props: IUploadMod
             <Radio.Group
               onChange={onTypeChange}
             >
-              <Radio value={OperationType.Upload}>{t("Materials.Upload")}</Radio>
-              <Radio value={OperationType.Debug}>{t("Materials.Debug")}</Radio>
+              <Radio value={OperationType.Upload}>{t("Plugins.Upload")}</Radio>
+              <Radio value={OperationType.Debug}>{t("Plugins.Debug")}</Radio>
+              <Radio disabled value={OperationType.Market}>{t("Plugins.Market")}</Radio>
             </Radio.Group>
           </Form.Item>
           {
