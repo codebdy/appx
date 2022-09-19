@@ -1,3 +1,4 @@
+import { IBehaviorCreator, IResourceCreator } from "@designable/core";
 import { DnFC, DnComponent } from "@designable/react"
 
 export interface IPlugin {
@@ -16,4 +17,6 @@ export interface IMaterialComponent {
   name: string;
   designer: DnFC<any> | DnComponent<any>;
   component: React.FC<any> | React.Component;
+  resource?: IResourceCreator;
+  behavior?: IBehaviorCreator;
 }
