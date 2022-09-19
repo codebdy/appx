@@ -23,8 +23,9 @@ export const PluginList = memo(() => {
     <List
       className="demo-loadmore-list"
       loading={initLoading}
-      itemLayout="horizontal"
+      itemLayout="vertical"
       dataSource={list}
+      size="large"
       renderItem={(item) => (
         <List.Item
           actions={[<a key="list-loadmore-edit">edit</a>, <a key="list-loadmore-more">more</a>]}
@@ -38,8 +39,9 @@ export const PluginList = memo(() => {
               </SvgIcon>
             } />}
             title={item.name?.last}
-            description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+            description="Version 1.0"
           />
+          <div>Ant Design, a design language for background applications, is refined by Ant UED Team</div>
         </List.Item>
       )}
     />
