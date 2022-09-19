@@ -58,10 +58,10 @@ const coms1: IMaterialComponent[] = [
       selector: "",
       designerLocales:{
         'zh-CN': {
-          Title: '输入框',
+          title: '输入框',
         },
         'en-US': {
-          Title: 'Input',
+          title: 'Input',
         },
       }
     }
@@ -75,10 +75,10 @@ const coms1: IMaterialComponent[] = [
       selector: "",
       designerLocales:{
         'zh-CN': {
-          Title: '多行输入框',
+          title: '多行输入框',
         },
         'en-US': {
-          Title: 'TextArea',
+          title: 'TextArea',
         },
       }
     }
@@ -92,10 +92,10 @@ const coms1: IMaterialComponent[] = [
       selector: "",
       designerLocales:{
         'zh-CN': {
-          Title: '选择框',
+          title: '选择框',
         },
         'en-US': {
-          Title: 'Select',
+          title: 'Select',
         },
       }
     }
@@ -112,10 +112,10 @@ const coms2: IMaterialComponent[] = [
       selector: "",
       designerLocales:{
         'zh-CN': {
-          Title: '输入框2',
+          title: '输入框2',
         },
         'en-US': {
-          Title: 'Input2',
+          title: 'Input2',
         },
       }
     }
@@ -129,10 +129,10 @@ const coms2: IMaterialComponent[] = [
       selector: "",
       designerLocales:{
         'zh-CN': {
-          Title: '多行输入框2',
+          title: '多行输入框2',
         },
         'en-US': {
-          Title: 'TextArea2',
+          title: 'TextArea2',
         },
       }
     }
@@ -146,10 +146,10 @@ const coms2: IMaterialComponent[] = [
       selector: "",
       designerLocales:{
         'zh-CN': {
-          Title: '选择框2',
+          title: '选择框2',
         },
         'en-US': {
-          Title: 'Select2',
+          title: 'Select2',
         },
       }
     }
@@ -166,10 +166,10 @@ const coms3: IMaterialComponent[] = [
       selector: "",
       designerLocales:{
         'zh-CN': {
-          Title: '输入框3',
+          title: '输入框3',
         },
         'en-US': {
-          Title: 'Input3',
+          title: 'Input3',
         },
       }
     }
@@ -183,10 +183,10 @@ const coms3: IMaterialComponent[] = [
       selector: "",
       designerLocales:{
         'zh-CN': {
-          Title: '多行输入框3',
+          title: '多行输入框3',
         },
         'en-US': {
-          Title: 'TextArea3',
+          title: 'TextArea3',
         },
       }
     }
@@ -200,10 +200,10 @@ const coms3: IMaterialComponent[] = [
       selector: "",
       designerLocales:{
         'zh-CN': {
-          Title: '选择框3',
+          title: '选择框3',
         },
         'en-US': {
-          Title: 'Select3',
+          title: 'Select3',
         },
       }
     }
