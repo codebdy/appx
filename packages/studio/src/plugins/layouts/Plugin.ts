@@ -1,12 +1,15 @@
+import { Device } from "../../model";
 import { IPlugin } from "../../plugin-sdk/model";
 
 export const rxPlugin: IPlugin = {
   id: "predefined.layouts",
-  name: string;
-  version: string;
-  description?: string;
+  title: "Title",
+  version: "1.0",
+  description: "Description",
   components: {
-    [device: string]: IMaterialComponent[];
-  }
-  model?: any;
+    [Device.PC]: [],
+    [Device.Mobile]: [],
+    [Device.Website]: [],
+  },
+  model: undefined,
 }
