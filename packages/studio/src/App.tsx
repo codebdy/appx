@@ -3,7 +3,7 @@ import AppManager from './AppManager';
 import { Routes, Route } from "react-router-dom";
 import Login from './Login';
 import AppDesigner from './AppDesigner';
-import AppConfig from './AppConfig/index';
+import AppEntry from './AppEntry/index';
 import AppsContent from './AppManager/AppsContent';
 import ApiBoard from './ApiBoard';
 import AuthBoard from './AuthBoard';
@@ -11,11 +11,11 @@ import { AppManagerRoutes } from './AppManager/AppHeader';
 import Install from './Install';
 import { INDEX_URL, INSTALL_URL, LOGIN_URL } from './consts';
 import ModelBoard from './ModelBoard';
-import { AppConfigRouts } from './AppConfig/AppConfigRouts';
-import DeviceList from './AppConfig/DeviceList';
+import { AppConfigRouts } from './AppEntry/AppConfigRouts';
+import DeviceList from './AppEntry/DeviceList';
 import FlowBoard from './FlowBoard';
 import AppRunner from './AppRunner';
-import ConfigBoard from './ConfigBoard';
+import AppConfig from './AppConfig';
 import { LoggedInPanel } from './Login/LoggedInPanel';
 import { AppTemplates } from './AppTemplates';
 import { TemplateDesigner } from './TemplateDesigner';
@@ -34,11 +34,11 @@ const App = memo(() => {
           <Route path={AppManagerRoutes.Model} element={<ModelBoard />} />
           <Route path={AppManagerRoutes.Api} element={<ApiBoard />} />
           <Route path={AppManagerRoutes.Auth} element={<AuthBoard />} />
-          <Route path={AppManagerRoutes.Config} element={<ConfigBoard />} />
+          <Route path={AppManagerRoutes.Config} element={<AppConfig />} />
         </Route>
         <Route path="/design-template/:device" element={<TemplateDesigner />} />
-        <Route path="/config-app/:appUuid" element={<AppConfig />}>
-          <Route path={AppConfigRouts.Base} element={<ConfigBoard />} />
+        <Route path="/config-app/:appUuid" element={<AppEntry />}>
+          <Route path={AppConfigRouts.Config} element={<AppConfig />} />
           <Route path={AppConfigRouts.App} element={<DeviceList />} />
           <Route path={AppConfigRouts.Flow} element={<FlowBoard />} />
           <Route path={AppConfigRouts.Model} element={<ModelBoard />} />

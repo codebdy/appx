@@ -1,5 +1,5 @@
 export enum AppConfigRouts{
-  Base = "base",
+  Config = "config",
   App = "app",
   Flow = "flow",
   Model = "model",

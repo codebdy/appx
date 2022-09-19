@@ -41,7 +41,7 @@ const ConifgHeader = memo((props: {
         onSelect={handleSelect}
         items={[
           {
-            key: AppConfigRouts.Base,
+            key: AppConfigRouts.Config,
             label: t("AppConfig.BaseConfig"),
           },
           {

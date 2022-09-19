@@ -1,30 +1,37 @@
-import React from "react"
-import { memo } from "react"
-import { Layout } from 'antd';
-import ConifgHeader from "./ConifgHeader";
-import { Outlet, useParams } from "react-router-dom";
-import { useApp } from "../hooks/useApp";
-import { useShowError } from './../hooks/useShowError';
-import AppRoot from "../shared/AppRoot";
-
-const { Content } = Layout;
+import { Collapse } from 'antd';
+import React, { memo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Devices } from './Devices';
+import MultLangForm from './MultLangForm';
+const { Panel } = Collapse;
 
 const AppConfig = memo(() => {
-  const { appUuid } = useParams();
-  const { app, error } = useApp(appUuid)
-
-  useShowError(error);
+  const { t } = useTranslation();
 
   return (
-    <AppRoot>
-      <Layout className="rx-studio">
-        <ConifgHeader app={app} />
-        <Content className='content'>
-          <Outlet />
-        </Content>
-      </Layout>
-    </AppRoot>
-  )
-})
+    <div
+      style={{ display: "flex", justifyContent: "center" }}
+    >
+      <div
+        style={{
+          width: 800,
+          marginTop: 16,
+        }}
+      >
+        <Collapse defaultActiveKey={['muti-lang']}>
+          <Panel header={t("MultiLang.Title")} key="muti-lang">
+            <MultLangForm />
+          </Panel>
+          <Panel header={t("Config.Devices")} key="devices">
+            <Devices />
+          </Panel>
+          <Panel header={t("Config.Other")} key="other">
+            <p>Other config</p>
+          </Panel>
+        </Collapse>
+      </div>
+    </div>
+  );
+});
 
 export default AppConfig;
