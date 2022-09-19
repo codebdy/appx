@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { MaterialTabs } from './MaterialTabs';
 import "./style.less";
 import { IMaterialTab } from '../../../../plugin-sdk/model';
+import { DragDropContext, DropResult } from 'react-beautiful-dnd';
+import { PluginList } from './PluginList';
 
 export const MaterialDialog = memo(() => {
   const [tabs, setTabs] = useState<IMaterialTab[]>([]);
@@ -27,6 +29,63 @@ export const MaterialDialog = memo(() => {
     setTabs(tabs);
   }, []);
 
+  const onDragEnd = useCallback(
+    (result: DropResult) => {
+      const { destination, source, draggableId } = result;
+      // if (destination?.droppableId) {
+      //   let draggedNode: IMenuNode | undefined;
+      //   if (draggableId === COLLAPSE_GROUP_ID) {
+      //     draggedNode = {
+      //       meta: {
+      //         uuid: createUuid(),
+      //         type: MenuItemType.Group,
+      //         title: t("Menu.CollapseGroup"),
+      //       },
+      //       childIds: [],
+      //     };
+      //   } else if (draggableId === DIVIDER_ID) {
+      //     draggedNode = {
+      //       meta: {
+      //         uuid: createUuid(),
+      //         type: MenuItemType.Divider,
+      //         title: t("Menu.Divider"),
+      //       },
+      //       childIds: [],
+      //     };
+      //   } else if (draggableId === CUSTOMIZED_LINK_ID) {
+      //     draggedNode = {
+      //       meta: {
+      //         uuid: createUuid(),
+      //         type: MenuItemType.Link,
+      //         title: t("Menu.CustomizedLink"),
+      //       },
+      //       childIds: [],
+      //     };
+      //   } else if (source.droppableId.startsWith(PAGE_LIST_ID)) {
+      //     const page: IPage | undefined = getPage(draggableId);
+      //     if (page) {
+      //       draggedNode = {
+      //         meta: {
+      //           uuid: createUuid(),
+      //           type: MenuItemType.Item,
+      //           title: page.title,
+      //           route: { pageId: page.id },
+      //         },
+      //         childIds: [],
+      //       };
+      //     }
+      //   } else {
+      //     draggedNode = getNode(draggableId);
+      //   }
+
+      //   if (draggedNode) {
+      //     insertAt(draggedNode, destination?.droppableId, destination.index);
+      //   }
+      // }
+    },
+    []
+  );
+
   return (
     <>
       <Button shape="circle" type="text" onClick={showModal}
@@ -43,29 +102,29 @@ export const MaterialDialog = memo(() => {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <div className='material-dialog-content'>
-          <div className='material-dialog-tabs right-border'>
-            <MaterialTabs tabs={tabs} onTabsChange={handleTabsChange} />
-          </div>
-          <div className="material-dialog-coms right-border">
-            <div className='content-title bottom-border'>
-              {t("Materials.ComponentsForChoose")}
+        <DragDropContext onDragEnd={onDragEnd}>
+          <div className='material-dialog-content'>
+            <div className='material-dialog-tabs right-border'>
+              <MaterialTabs tabs={tabs} onTabsChange={handleTabsChange} />
             </div>
-          </div>
-          <div className="material-dialog-materials">
-            <div className='content-title bottom-border'>
-              <span>{t("Materials.Plugins")}</span>
-            </div>
-            <div className='content'>
-              <div>
-                {t("Materials.All")}
-              </div>
-              <div>
-                基础
+            <div className="material-dialog-coms right-border">
+              <div className='content-title bottom-border'>
+                {t("Materials.ComponentsForChoose")}
               </div>
             </div>
+            <div className="material-dialog-materials">
+              <div className='content-title bottom-border'>
+                <span>{t("Materials.Plugins")}</span>
+              </div>
+              <div className='content'>
+                <div>
+                  {t("Materials.All")}
+                </div>
+                <PluginList />
+              </div>
+            </div>
           </div>
-        </div>
+        </DragDropContext>
       </Modal>
     </>
   );
