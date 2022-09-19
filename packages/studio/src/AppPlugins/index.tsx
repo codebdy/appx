@@ -16,7 +16,7 @@ export const AppPlugins = memo(() => {
           marginTop: 16,
         }}
       >
-        <Card title={t("Plugins.Title")} extra={<UploadDialog />}>
+        <Card title={t("Plugins.Installed")} extra={<UploadDialog />}>
           <PluginList />
         </Card>
       </div>

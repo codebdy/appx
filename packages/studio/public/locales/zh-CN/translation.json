@@ -87,7 +87,8 @@
   },
   "Plugins": {
     "Title": "插件",
-    "Install": "安装"
+    "Install": "安装",
+    "Installed": "已安装插件"
   },
   "Panels": {
     "Templates": "模板",
