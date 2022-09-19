@@ -1,7 +1,8 @@
 import React, { CSSProperties, useCallback, useState } from "react"
 import { HolderOutlined } from "@ant-design/icons"
+import "./style.less"
 
-const DraggableLabel = React.forwardRef((
+export const DraggableLabel = React.forwardRef((
   props: {
     title: string,
     float?: boolean,
@@ -39,5 +40,3 @@ const DraggableLabel = React.forwardRef((
     </div>
   )
 })
-
-export default DraggableLabel

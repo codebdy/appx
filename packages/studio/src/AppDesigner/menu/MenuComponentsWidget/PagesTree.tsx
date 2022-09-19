@@ -1,6 +1,6 @@
 import { Collapse } from 'antd';
 import React, { memo } from 'react';
-import DraggableLabel from './DraggableLabel';
+import { DraggableLabel } from '../../common/DraggableLabel';
 import { usePagesWithoutCategory } from '../../hooks/usePagesWithoutCategory';
 import { useGetCategoryPages } from '../../hooks/useGetCategoryPages';
 import { Draggable, Droppable } from 'react-beautiful-dnd';

@@ -1,9 +1,5 @@
-import { Input, MenuProps } from "antd"
+import { Input } from "antd"
 import React from "react"
-
-const handleMenuClick: MenuProps['onClick'] = e => {
-  console.log('click', e);
-};
 
 const { Search } = Input;
 
