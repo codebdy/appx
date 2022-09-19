@@ -4,13 +4,13 @@ import React, { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import SvgIcon from '../common/SvgIcon';
 import { PluginType, useAppParams } from '../shared/AppRoot/context';
-import { useGetLocalMessage } from '../plugin-sdk/hooks/useGetLocalMessage';
+import { useGetPluginLocalMessage } from '../plugin-sdk/hooks/useGetPluginLocalMessage';
 
 export const PluginList = memo(() => {
   const { plugins, debugPlugins } = useAppParams();
 
   const { t } = useTranslation();
-  const { getTitle, getDescription } = useGetLocalMessage();
+  const { getTitle, getDescription } = useGetPluginLocalMessage();
 
   const items = useMemo(() => [...plugins, ...debugPlugins], [debugPlugins, plugins]);
 

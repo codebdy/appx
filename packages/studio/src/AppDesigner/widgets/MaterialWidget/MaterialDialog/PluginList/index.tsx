@@ -1,14 +1,17 @@
-import { useAppParams } from "../../../../shared/AppRoot/context";
+import { useAppParams } from "../../../../../shared/AppRoot/context";
 import React from "react";
 import { memo } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
-import { DraggableLabel } from "../../../common/DraggableLabel";
-import { useGetLocalMessage } from "../../../../plugin-sdk/hooks/useGetLocalMessage";
+import { DraggableLabel } from "../../../../common/DraggableLabel";
+import { useGetPluginLocalMessage } from "../../../../../plugin-sdk/hooks/useGetPluginLocalMessage";
+import { Collapse } from "antd";
+import { PluginPanel } from "./PluginPanel";
+const { Panel } = Collapse;
 
 export const PLUGINS_LIST_ID = "PLUGINS_LIST_ID";
 export const PluginList = memo(() => {
   const { plugins } = useAppParams();
-  const { getTitle } = useGetLocalMessage();
+  const { getTitle } = useGetPluginLocalMessage();
 
   return (
     <Droppable droppableId={PLUGINS_LIST_ID} isDropDisabled={true}>
@@ -19,17 +22,15 @@ export const PluginList = memo(() => {
               <Draggable key={plugin.id} draggableId={plugin.id} index={index}>
                 {(provided, snapshot) => (
                   <>
-                    <DraggableLabel
-                      title={getTitle(plugin)}
+                    <PluginPanel
+                      plugin={plugin}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
-                      float={snapshot.isDragging}
                       ref={provided.innerRef}
                     />
                     {snapshot.isDragging && (
-                      <DraggableLabel
-                        title={getTitle(plugin)}
-                        fixed
+                      <PluginPanel
+                        plugin={plugin}
                       />
                     )}
                   </>
@@ -40,7 +41,6 @@ export const PluginList = memo(() => {
           <div style={{ display: "none" }}>{provided.placeholder}</div>
         </div>
       )}
-
     </Droppable>
   )
 })

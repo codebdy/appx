@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { IPlugin } from "../model";
 
-export function useGetLocalMessage() {
+export function useGetPluginLocalMessage() {
   const { i18n } = useTranslation();
   const getTitle = useCallback((plugin: IPlugin) => {
     return plugin?.loacales?.[i18n.language]?.[plugin?.title] || plugin?.title
