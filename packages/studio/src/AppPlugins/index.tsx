@@ -2,6 +2,7 @@ import { Card } from "antd"
 import React, { memo } from "react"
 import { useTranslation } from "react-i18next"
 import { PluginList } from "./PluginList"
+import { UploadDialog } from "./UploadDialog"
 
 export const AppPlugins = memo(() => {
   const { t } = useTranslation();
@@ -15,7 +16,7 @@ export const AppPlugins = memo(() => {
           marginTop: 16,
         }}
       >
-        <Card title={t("Plugins.Title")}>
+        <Card title={t("Plugins.Title")} extra={<UploadDialog />}>
           <PluginList />
         </Card>
       </div>

@@ -86,7 +86,8 @@
     "Preview": "预览"
   },
   "Plugins": {
-    "Title": "插件"
+    "Title": "插件",
+    "Install": "安装"
   },
   "Panels": {
     "Templates": "模板",
