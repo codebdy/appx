@@ -1,4 +1,4 @@
-import { IMaterialCollapseItem } from "../../../../../material-sdk/model"
+import { IMaterialCollapseItem } from "../../../../../plugin-sdk/model"
 import React, { memo, useCallback, useEffect, useState } from "react"
 import { useParseLangMessage } from "../../../../../hooks/useParseLangMessage";
 import { Button, Space } from "antd";

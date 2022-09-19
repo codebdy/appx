@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { MaterialTabs } from './MaterialTabs';
 import { UploadDialog } from './UploadDialog';
 import "./style.less";
-import { IMaterialTab } from '../../../../material-sdk/model';
+import { IMaterialTab } from '../../../../plugin-sdk/model';
 
 export const MaterialDialog = memo(() => {
   const [tabs, setTabs] = useState<IMaterialTab[]>([]);
@@ -55,7 +55,7 @@ export const MaterialDialog = memo(() => {
           </div>
           <div className="material-dialog-materials">
             <div className='content-title bottom-border'>
-              <span>{t("Materials.Cuszomized")}</span>
+              <span>{t("Materials.Plugins")}</span>
               <UploadDialog />
             </div>
             <div className='content'>

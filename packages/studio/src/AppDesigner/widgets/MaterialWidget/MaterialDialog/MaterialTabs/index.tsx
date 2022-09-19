@@ -1,5 +1,5 @@
 import { Tabs } from 'antd';
-import { IMaterialTab } from '../../../../../material-sdk/model';
+import { IMaterialTab } from '../../../../../plugin-sdk/model';
 import React, { memo, useCallback, useMemo, useState } from 'react';
 import { TabsEditDialog } from '../TabsEditDialog';
 import { useParseLangMessage } from '../../../../../hooks/useParseLangMessage';
