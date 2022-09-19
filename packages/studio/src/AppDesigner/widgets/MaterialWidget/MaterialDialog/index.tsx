@@ -95,7 +95,7 @@ export const MaterialDialog = memo(() => {
       <Modal
         title={t("Materials.ModuleList")}
         className='material-module-modal'
-        width={780}
+        width={680}
         open={isModalVisible}
         okText={t("Confirm")}
         cancelText={t("Cancel")}
@@ -107,14 +107,9 @@ export const MaterialDialog = memo(() => {
             <div className='material-dialog-tabs right-border'>
               <MaterialTabs tabs={tabs} onTabsChange={handleTabsChange} />
             </div>
-            <div className="material-dialog-coms right-border">
+            <div className="material-dialog-plugins">
               <div className='content-title bottom-border'>
-                {t("Materials.ComponentsForChoose")}
-              </div>
-            </div>
-            <div className="material-dialog-materials">
-              <div className='content-title bottom-border'>
-                <span>{t("Materials.Plugins")}</span>
+                <span>{t("Materials.ComponentsForChoose")}</span>
               </div>
               <div className='content'>
                 <PluginList />
