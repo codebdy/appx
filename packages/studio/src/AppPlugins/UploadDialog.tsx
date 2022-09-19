@@ -100,7 +100,7 @@ export const UploadDialog: React.FC<IUploadModalProps> = memo((props: IUploadMod
         {t("Plugins.Install")}
       </Button>
       <Modal
-        title={t("Materials.Cuszomized")}
+        title={t("Plugins.InstallPlugin")}
         className='plugin-upoad-modal'
         open={isModalVisible}
         onOk={handleOk}
@@ -125,15 +125,7 @@ export const UploadDialog: React.FC<IUploadModalProps> = memo((props: IUploadMod
           autoComplete="off"
         >
           <Form.Item
-            label={t("Materials.ComponentTypeName")}
-            name="name"
-            rules={[{ required: true, message: t("aterials.RequiredName") }]}
-          >
-            <Input />
-          </Form.Item>
-
-          <Form.Item
-            label={t("Materials.OperationType")}
+            label={t("Plugins.OperationType")}
             name="operationType"
           >
             <Radio.Group

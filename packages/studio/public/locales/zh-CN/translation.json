@@ -90,7 +90,9 @@
   "Plugins": {
     "Title": "插件",
     "Install": "安装",
-    "Installed": "已安装插件"
+    "Installed": "已安装插件",
+    "InstallPlugin": "安装插件",
+    "OperationType": "操作类型"
   },
   "Panels": {
     "Templates": "模板",
@@ -124,7 +126,6 @@
     "Add": "新增",
     "Cuszomized": "自定义上传",
     "ComponentTypeName": "组件类型名称",
-    "OperationType": "操作类型",
     "UploadFile": "上传文件",
     "RequiredName": "请输入组件类型名称",
     "RequiredUrl": "请输入调试地址",
@@ -132,7 +133,7 @@
     "Debug": "调试",
     "LinkAddress": "链接地址",
     "TabsEdit": "选项卡编辑",
-    "ComponentsForChoose": "备选组件",
+    "ComponentsForChoose": "未分类组件",
     "All": "全部 ",
     "Plugins": "插件列表"
   },
