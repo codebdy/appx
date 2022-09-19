@@ -1,4 +1,4 @@
-import { Avatar, List } from 'antd';
+import { Avatar, Button, List } from 'antd';
 import React, { memo, useEffect, useState } from 'react';
 import SvgIcon from '../common/SvgIcon';
 const count = 3;
@@ -6,7 +6,6 @@ const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender
 
 export const PluginList = memo(() => {
   const [initLoading, setInitLoading] = useState(true);
-  const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [list, setList] = useState([]);
   useEffect(() => {
@@ -28,7 +27,12 @@ export const PluginList = memo(() => {
       size="large"
       renderItem={(item) => (
         <List.Item
-          actions={[<a key="list-loadmore-edit">edit</a>, <a key="list-loadmore-more">more</a>]}
+          actions={
+            [
+              <Button size="small" type="text" key="remove">删除</Button>,
+              <Button size="small" type='link' key="update">更新</Button>,
+            ]
+          }
         >
           <List.Item.Meta
             avatar={<Avatar icon={
