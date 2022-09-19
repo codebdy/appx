@@ -8,6 +8,7 @@ import { createUuid } from "../../../../../shared";
 import { GroupLabel } from "./GroupLabel";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import clx from "classnames";
+import { MaterialList } from "./MaterialList";
 const { Panel } = Collapse;
 
 export const MaterialTab = memo((
@@ -71,7 +72,7 @@ export const MaterialTab = memo((
                             header={<GroupLabel group={item} onChange={handleChange} onRemove={handleRemove} />}
                             key={item.uuid}
                           >
-                            <p>43434</p>
+                            <MaterialList item={item} />
                           </Panel>
                         </Collapse>
                       </div>
