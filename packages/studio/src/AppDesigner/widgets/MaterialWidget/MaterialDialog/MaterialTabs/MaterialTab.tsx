@@ -37,20 +37,20 @@ export const MaterialTab = memo((
 
   return (
     <div>
-      <Collapse defaultActiveKey={[tab.collopsesItems?.[0]?.uuid]} ghost bordered={false}>
-        {
-          tab.collopsesItems.map((item, index) => {
-            return (
+      {
+        tab.collopsesItems.map((item, index) => {
+          return (
+            <Collapse key={item.uuid} ghost bordered={false}>
               <Panel
                 header={<GroupLabel group={item} onChange={handleChange} onRemove={handleRemove} />}
                 key={item.uuid}
               >
                 <p>43434</p>
               </Panel>
-            )
-          })
-        }
-      </Collapse>
+            </Collapse>
+          )
+        })
+      }
       <div style={{ padding: "0 16px" }}>
         <Button
           type='dashed'

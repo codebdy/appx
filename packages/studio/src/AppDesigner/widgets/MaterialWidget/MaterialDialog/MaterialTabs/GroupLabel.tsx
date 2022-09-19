@@ -67,7 +67,6 @@ export const GroupLabel = memo((
     <div className="material-group-label"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      onClick={handleBlockClick}
       onKeyUp={handleKeyUp}
     >
       <div className="label-text">
@@ -87,7 +86,7 @@ export const GroupLabel = memo((
       {
         editing
           ?
-          <div>
+          <div onClick={handleBlockClick}>
             <Space>
               <Button
                 type="text"
@@ -107,7 +106,7 @@ export const GroupLabel = memo((
           </div>
           :
           (hover &&
-            <div>
+            <div onClick={handleBlockClick}>
               <Space>
                 <Button
                   type="text"
