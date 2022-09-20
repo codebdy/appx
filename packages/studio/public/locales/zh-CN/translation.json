@@ -136,7 +136,12 @@
     "TabsEdit": "选项卡编辑",
     "ComponentsForChoose": "未分类组件",
     "All": "全部 ",
-    "Plugins": "插件列表"
+    "Plugins": "插件列表",
+    "Basic": "基础",
+    "Inputs": "输入控件",
+    "Layouts": "布局组件",
+    "Arrays": "数组组件",
+    "Displays": "展示组件"
   },
   "AppManager": {
     "SearchPlaceHolder": "请输入应用名称或关键字",

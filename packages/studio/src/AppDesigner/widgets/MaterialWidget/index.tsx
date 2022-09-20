@@ -6,25 +6,41 @@ import { MaterialDialog } from "./MaterialDialog";
 import { observer } from "@formily/reactive-react";
 import { materialStore } from "../../../shared/global";
 import { ResourceWidget } from "../ResourceWidget";
+import { usePredefinedTabs } from "./hooks/usePredefinedTabs";
 
 const { TabPane } = Tabs;
 
 export const MaterialWidget: React.FC = observer(() => {
-  const onChange = (key: string) => {
-    console.log(key);
-  };
+  const predefinedTabs = usePredefinedTabs();
+
   return (
     <div className="rx-material-panel">
       <MaterialSearchWidget />
-      <Tabs defaultActiveKey="1"
+      <Tabs defaultActiveKey={predefinedTabs?.[0].uuid}
         animated
         size="small"
         className="materail-tabs"
         tabBarExtraContent={
           <MaterialDialog />
         }
-        onChange={onChange}
       >
+        {
+          predefinedTabs.map((tab, index) => {
+            return (
+              <TabPane tab={tab.title} key={tab.uuid}>
+                {
+                  tab.collopsesItems?.map((groupData, gIndex) => {
+                    return (<ResourceWidget
+                      key={gIndex + 1}
+                      title={groupData.title}
+                      sources={[]}
+                    />)
+                  })
+                }
+              </TabPane>
+            )
+          })
+        }
         {
           materialStore.modules.map((tabData, index) => {
             return (
