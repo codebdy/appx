@@ -10,13 +10,22 @@ import { PluginList, PLUGINS_LIST_ID } from './PluginList';
 import { GROUP_TYPE } from './MaterialTabs/MaterialTab';
 import { useAppParams } from '../../../../shared/AppRoot/context';
 import { useGetNotCategoriedComponents } from './hooks/useGetNotCategoriedComponents';
+import { useUpsertMaterialConfig } from '../../../hooks/useUpsertMaterialConfig';
+import { useShowError } from '../../../../hooks/useShowError';
 
 export const MaterialDialog = memo(() => {
   const [tabs, setTabs] = useState<IMaterialTab[]>([]);
-  const { plugins, materialConfig } = useAppParams();
+  const { plugins, materialConfig, app, device } = useAppParams();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const { t } = useTranslation();
   const getUnCategoriedComponents = useGetNotCategoriedComponents(tabs);
+  const [upsert, { loading, error }] = useUpsertMaterialConfig({
+    onCompleted:()=>{
+      setIsModalVisible(false);
+    }
+  });
+
+  useShowError(error);
 
   useEffect(() => {
     setTabs(materialConfig?.schemaJson?.tabs || [])
@@ -27,8 +36,8 @@ export const MaterialDialog = memo(() => {
   }, []);
 
   const handleOk = useCallback(() => {
-    setIsModalVisible(false);
-  }, []);
+    upsert({...materialConfig, appUuid: app.uuid, device, schemaJson:{tabs}})
+  }, [app.uuid, device, materialConfig, tabs, upsert]);
 
   const handleCancel = useCallback(() => {
     setIsModalVisible(false);
@@ -130,23 +139,26 @@ export const MaterialDialog = memo(() => {
         cancelText={t("Cancel")}
         onOk={handleOk}
         onCancel={handleCancel}
+        okButtonProps={{
+          loading: loading
+        }}
       >
-        <DragDropContext onDragEnd={onDragEnd}>
-          <div className='material-dialog-content'>
-            <div className='material-dialog-tabs right-border'>
-              <MaterialTabs tabs={tabs} onTabsChange={handleTabsChange} />
+      <DragDropContext onDragEnd={onDragEnd}>
+        <div className='material-dialog-content'>
+          <div className='material-dialog-tabs right-border'>
+            <MaterialTabs tabs={tabs} onTabsChange={handleTabsChange} />
+          </div>
+          <div className="material-dialog-plugins">
+            <div className='content-title'>
+              <div className='title-text bottom-border'>{t("Materials.ComponentsForChoose")}</div>
             </div>
-            <div className="material-dialog-plugins">
-              <div className='content-title'>
-                <div className='title-text bottom-border'>{t("Materials.ComponentsForChoose")}</div>
-              </div>
-              <div className='plugin-content'>
-                <PluginList tabs={tabs} />
-              </div>
+            <div className='plugin-content'>
+              <PluginList tabs={tabs} />
             </div>
           </div>
-        </DragDropContext>
-      </Modal>
+        </div>
+      </DragDropContext>
+    </Modal>
     </>
   );
 })

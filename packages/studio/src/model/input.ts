@@ -98,6 +98,7 @@ export interface IUserConfigInput {
 export interface IMaterialConfigInput {
   id?: ID;
   appUuid?: string,
+  device?: Device,
   schemaJson?: {
     tabs: IMaterialTab[],
   },
