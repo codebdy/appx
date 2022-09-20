@@ -40,7 +40,7 @@ export const MaterialTab = memo((
 
   return (
     <div>
-      <Droppable droppableId={tab.uuid}>
+      <Droppable droppableId={tab.uuid} isDropDisabled>
         {(provided, snapshot) => (
           <div
             ref={provided.innerRef}
