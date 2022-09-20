@@ -48,9 +48,16 @@ export const MaterialDialog = memo(() => {
     setTabs(tabs => tabs.map(tb => tb.uuid === tab.uuid ? { ...tab, collopsesItems: newGroups } : tb))
   }, [])
 
-  const moveComponent = useCallback((targetGroup: IMaterialCollapseItem, names: string, index: number) => {
-
-  }, [])
+  const moveComponent = useCallback((sourceGroup: IMaterialCollapseItem, targetGroup: IMaterialCollapseItem, name: string, index: number) => {
+    const newSourceGroup = { ...sourceGroup, components: sourceGroup?.components?.filter(com => com !== name) || [] }
+    const tab = tabs.find(tab => tab.collopsesItems?.find(gp => gp.uuid === targetGroup.uuid));
+    const newGroups = tab.collopsesItems.map(gp => gp.uuid === newSourceGroup.uuid ? newSourceGroup : gp);
+    const newNames = [...targetGroup.components];
+    newNames.splice(index, 0, name);
+    const newTargetGroup = { ...targetGroup, components: newNames };
+    const newGroups2 = newGroups.map(gp => gp.uuid === newTargetGroup.uuid ? newTargetGroup : gp);
+    setTabs(tabs => tabs.map(tb => tb.uuid === tab.uuid ? { ...tab, collopsesItems: newGroups2 } : tb))
+  }, [tabs])
 
   const addComponentsToGroup = useCallback((group: IMaterialCollapseItem, names: string[], index: number) => {
     const newNames = [...group.components];
@@ -75,7 +82,7 @@ export const MaterialDialog = memo(() => {
         console.error("No target group");
         return;
       }
-      
+
       if (source.droppableId === PLUGINS_LIST_ID) {
         const draggedPlugin = getPlugin(draggableId);
         addComponentsToGroup(targetGroup, draggedPlugin.plugin?.components?.[device]?.map(com => com.name), destination.index);
@@ -85,10 +92,13 @@ export const MaterialDialog = memo(() => {
       const sourceGroup = getGroup(source.droppableId)
 
       if (targetGroup) {
+        if (sourceGroup) {
+          moveComponent(sourceGroup, targetGroup, draggableId, destination.index);
+        }
       }
 
     },
-    [addComponentsToGroup, device, getGroup, getPlugin, groupInsertAt, tabs]
+    [addComponentsToGroup, device, getGroup, getPlugin, groupInsertAt, moveComponent, tabs]
   );
 
   return (
