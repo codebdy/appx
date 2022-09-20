@@ -13,8 +13,15 @@ export function usePredefinedPlugins() {
     if(window.rxPlugin){
       plugins.push(get(window.rxPlugin))
     }
-
     window.rxPlugin = undefined;
+
+    await import("../../../plugins/layouts/index");
+    if(window.rxPlugin){
+      plugins.push(get(window.rxPlugin))
+    }
+    window.rxPlugin = undefined;
+
+    console.log("哈哈", plugins)
     return plugins
   }, [get])
 
