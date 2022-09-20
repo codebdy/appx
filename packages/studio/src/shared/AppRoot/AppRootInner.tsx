@@ -14,6 +14,7 @@ import { useQueryUserConfig } from './hooks/useQueryUserConfig'
 import { Device, IMaterialComponent } from '../../plugin-sdk/model'
 import { InputDesigner } from '../../components/pc'
 import { Input } from '@designable/formily-antd'
+import { useQueryMaterialConfig } from './hooks/useQueryMaterialConfig'
 
 export const locales1 = {
   'zh-CN': {
@@ -54,9 +55,9 @@ const coms1: IMaterialComponent[] = [
     component: Input,
     designer: InputDesigner,
     behavior: {
-      name:"Input",
+      name: "Input",
       selector: "",
-      designerLocales:{
+      designerLocales: {
         'zh-CN': {
           title: '输入框',
         },
@@ -71,9 +72,9 @@ const coms1: IMaterialComponent[] = [
     component: Input,
     designer: InputDesigner,
     behavior: {
-      name:"TextArea",
+      name: "TextArea",
       selector: "",
-      designerLocales:{
+      designerLocales: {
         'zh-CN': {
           title: '多行输入框',
         },
@@ -88,9 +89,9 @@ const coms1: IMaterialComponent[] = [
     component: Input,
     designer: InputDesigner,
     behavior: {
-      name:"Select",
+      name: "Select",
       selector: "",
-      designerLocales:{
+      designerLocales: {
         'zh-CN': {
           title: '选择框',
         },
@@ -108,9 +109,9 @@ const coms2: IMaterialComponent[] = [
     component: Input,
     designer: InputDesigner,
     behavior: {
-      name:"Input2",
+      name: "Input2",
       selector: "",
-      designerLocales:{
+      designerLocales: {
         'zh-CN': {
           title: '输入框2',
         },
@@ -125,9 +126,9 @@ const coms2: IMaterialComponent[] = [
     component: Input,
     designer: InputDesigner,
     behavior: {
-      name:"TextArea2",
+      name: "TextArea2",
       selector: "",
-      designerLocales:{
+      designerLocales: {
         'zh-CN': {
           title: '多行输入框2',
         },
@@ -142,9 +143,9 @@ const coms2: IMaterialComponent[] = [
     component: Input,
     designer: InputDesigner,
     behavior: {
-      name:"Select2",
+      name: "Select2",
       selector: "",
-      designerLocales:{
+      designerLocales: {
         'zh-CN': {
           title: '选择框2',
         },
@@ -162,9 +163,9 @@ const coms3: IMaterialComponent[] = [
     component: Input,
     designer: InputDesigner,
     behavior: {
-      name:"Input3",
+      name: "Input3",
       selector: "",
-      designerLocales:{
+      designerLocales: {
         'zh-CN': {
           title: '输入框3',
         },
@@ -179,9 +180,9 @@ const coms3: IMaterialComponent[] = [
     component: Input,
     designer: InputDesigner,
     behavior: {
-      name:"TextArea3",
+      name: "TextArea3",
       selector: "",
-      designerLocales:{
+      designerLocales: {
         'zh-CN': {
           title: '多行输入框3',
         },
@@ -196,9 +197,9 @@ const coms3: IMaterialComponent[] = [
     component: Input,
     designer: InputDesigner,
     behavior: {
-      name:"Select3",
+      name: "Select3",
       selector: "",
-      designerLocales:{
+      designerLocales: {
         'zh-CN': {
           title: '选择框3',
         },
@@ -289,8 +290,9 @@ export const AppRootInner = memo((
   const { config, loading: configLoading, error: configError } = useQueryAppConfig(appUuid);
   const { deviceConfig, loading: deviceLoading, error: deviceError } = useQueryAppDeviceConfig(appUuid, device as any)
   const { langLocales, loading: localLoading, error: localError } = useQueryLangLocales(appUuid);
-  const { userConfig, loading: useConfigLoading, error: useConfigError } = useQueryUserConfig(appUuid, device as any, me?.id)
-  useShowError(error || configError || localError || deviceError || useConfigError);
+  const { userConfig, loading: userConfigLoading, error: userConfigError } = useQueryUserConfig(appUuid, device as any, me?.id)
+  const { materialConfig, loading: materialConfigLoading, error: materialConfigError } = useQueryMaterialConfig(appUuid, device as any)
+  useShowError(error || configError || localError || deviceError || userConfigError || materialConfigError);
 
   const realApp = useMemo(() => {
     return appUuid === SYSTEM_APP_UUID ? { id: "System", uuid: SYSTEM_APP_UUID, title: "System" } : app
@@ -305,16 +307,27 @@ export const AppRootInner = memo((
       deviceConfig: deviceConfig,
       userConfig,
       plugins,
-      debugPlugins
+      debugPlugins,
+      materialConfig
     }
-  }, [config, device, deviceConfig, langLocales, realApp, userConfig])
+  }, [config, device, deviceConfig, langLocales, materialConfig, realApp, userConfig])
 
   return (
     realApp ?
       <AppContext.Provider
         value={contextValue}
       >
-        <Spin style={{ height: "100vh" }} spinning={loading || configLoading || localLoading || deviceLoading || useConfigLoading}>
+        <Spin
+          style={{ height: "100vh" }}
+          spinning={
+            loading ||
+            configLoading ||
+            localLoading ||
+            deviceLoading ||
+            userConfigLoading ||
+            materialConfigLoading
+          }
+        >
           {props.children}
         </Spin>
       </AppContext.Provider>

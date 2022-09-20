@@ -1,5 +1,5 @@
 import { ILang } from ".";
-import { Device } from "../plugin-sdk/model";
+import { Device, IMaterialTab } from "../plugin-sdk/model";
 import { ID } from "../shared";
 
 export interface IUserInput {
@@ -92,5 +92,13 @@ export interface IUserConfigInput {
   user?: { sync: IUserInput };
   schemaJson?: {
     [path: string]: any,
+  },
+}
+
+export interface IMaterialConfigInput {
+  id?: ID;
+  appUuid?: string,
+  schemaJson?: {
+    tabs: IMaterialTab[],
   },
 }

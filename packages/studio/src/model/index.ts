@@ -2,7 +2,7 @@ import { ID } from "../shared";
 import { IMenuItem } from "./IMenuNode";
 import { ISchema } from '@formily/json-schema'
 import { IUser } from "../enthooks/hooks/useQueryMe";
-import { Device } from "../plugin-sdk/model";
+import { Device, IMaterialTab } from "../plugin-sdk/model";
 
 export interface ILang {
   key: string,
@@ -98,5 +98,13 @@ export interface IUserConfig {
   user?: IUser;
   schemaJson?: {
     [path: string]: any,
+  },
+}
+
+export interface IMaterialConfig {
+  id: ID;
+  appUuid: string,
+  schemaJson?: {
+    tabs: IMaterialTab[],
   },
 }

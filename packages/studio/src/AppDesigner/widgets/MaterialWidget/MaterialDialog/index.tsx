@@ -1,6 +1,6 @@
 import { SettingOutlined } from '@ant-design/icons';
 import { Button, Modal } from 'antd';
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MaterialTabs } from './MaterialTabs';
 import "./style.less";
@@ -13,10 +13,14 @@ import { useGetNotCategoriedComponents } from './hooks/useGetNotCategoriedCompon
 
 export const MaterialDialog = memo(() => {
   const [tabs, setTabs] = useState<IMaterialTab[]>([]);
-  const { plugins } = useAppParams();
+  const { plugins, materialConfig } = useAppParams();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const { t } = useTranslation();
   const getUnCategoriedComponents = useGetNotCategoriedComponents(tabs);
+
+  useEffect(() => {
+    setTabs(materialConfig?.schemaJson?.tabs || [])
+  }, [materialConfig?.schemaJson?.tabs])
 
   const showModal = useCallback(() => {
     setIsModalVisible(true);

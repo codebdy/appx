@@ -1,6 +1,6 @@
 import { Device, IPlugin } from "../../../plugin-sdk/model";
 import { createContext, useContext, useMemo } from "react";
-import { IApp, IAppConfig, IAppDeviceConfig, ILangLocal, IPluginInfo, IUserConfig } from "../../../model";
+import { IApp, IAppConfig, IAppDeviceConfig, ILangLocal, IMaterialConfig, IPluginInfo, IUserConfig } from "../../../model";
 
 export enum PluginType {
   Predefined = "predefined",
@@ -24,6 +24,7 @@ export interface IAppContextParams {
   predefinedPlugins?: IInstalledPlugin[],
   plugins?: IInstalledPlugin[],
   debugPlugins?: IInstalledPlugin[],
+  materialConfig?: IMaterialConfig,
 }
 
 export const AppContext = createContext<IAppContextParams | undefined>(undefined);

@@ -690,10 +690,10 @@
             "uuid": "17de6a6d-5733-4a61-b491-089a8361c801"
           },
           {
-            "uuid": "18e20f85-be4a-4bd2-ac38-2c0ec3ee301d",
             "name": "pluginId",
             "type": "String",
-            "typeLabel": "String"
+            "typeLabel": "String",
+            "uuid": "18e20f85-be4a-4bd2-ac38-2c0ec3ee301d"
           }
         ],
         "innerId": 1017,
@@ -726,7 +726,7 @@
         "methods": [],
         "name": "MaterialConfig",
         "packageUuid": "PACKAGE_APPX_UUID",
-        "root": false,
+        "root": true,
         "stereoType": "Entity",
         "uuid": "51d35ee7-6757-4e1f-8a08-13b274bbaf3d"
       }
