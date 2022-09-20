@@ -6,11 +6,13 @@ import { MaterialTabs } from './MaterialTabs';
 import "./style.less";
 import { IMaterialCollapseItem, IMaterialTab } from '../../../../plugin-sdk/model';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
-import { PluginList } from './PluginList';
+import { PluginList, PLUGINS_LIST_ID } from './PluginList';
 import { GROUP_TYPE } from './MaterialTabs/MaterialTab';
+import { useAppParams } from '../../../../shared/AppRoot/context';
 
 export const MaterialDialog = memo(() => {
   const [tabs, setTabs] = useState<IMaterialTab[]>([]);
+  const { plugins, device } = useAppParams();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const { t } = useTranslation();
 
@@ -30,11 +32,34 @@ export const MaterialDialog = memo(() => {
     setTabs(tabs);
   }, []);
 
+  const getGroup = useCallback((uuid?: string) => {
+    const tab = tabs.find(tab => tab.collopsesItems?.find(group => group.uuid === uuid));
+    const group = tab?.collopsesItems.find(group => group.uuid === uuid);
+    return group
+  }, [tabs]);
+
+  const getPlugin = useCallback((id?: string) => {
+    return plugins?.find(plugin => plugin.plugin?.id === id)
+  }, [plugins]);
+
   const groupInsertAt = useCallback((tab: IMaterialTab, group: IMaterialCollapseItem, index: number) => {
     const newGroups = tab.collopsesItems.filter(itm => itm.uuid !== group.uuid)
     newGroups.splice(index, 0, group);
     setTabs(tabs => tabs.map(tb => tb.uuid === tab.uuid ? { ...tab, collopsesItems: newGroups } : tb))
   }, [])
+
+  const moveComponent = useCallback((targetGroup: IMaterialCollapseItem, names: string, index: number) => {
+
+  }, [])
+
+  const addComponentsToGroup = useCallback((group: IMaterialCollapseItem, names: string[], index: number) => {
+    const newNames = [...group.components];
+    newNames.splice(index, 0, ...names);
+    const newGroup = { ...group, components: newNames };
+    const tab = tabs.find(tab => tab.collopsesItems?.find(gp => gp.uuid === group.uuid));
+    const newGroups = tab.collopsesItems.map(gp => gp.uuid === newGroup.uuid ? newGroup : gp);
+    setTabs(tabs => tabs.map(tb => tb.uuid === tab.uuid ? { ...tab, collopsesItems: newGroups } : tb))
+  }, [tabs]);
 
   const onDragEnd = useCallback(
     (result: DropResult) => {
@@ -43,59 +68,27 @@ export const MaterialDialog = memo(() => {
         const tab = tabs.find(tab => tab.collopsesItems?.find(group => group.uuid === draggableId));
         const group = tab.collopsesItems.find(group => group.uuid === draggableId)
         groupInsertAt(tab, group, destination.index);
+        return;
       }
-      // if (destination?.droppableId) {
-      //   let draggedNode: IMenuNode | undefined;
-      //   if (draggableId === COLLAPSE_GROUP_ID) {
-      //     draggedNode = {
-      //       meta: {
-      //         uuid: createUuid(),
-      //         type: MenuItemType.Group,
-      //         title: t("Menu.CollapseGroup"),
-      //       },
-      //       childIds: [],
-      //     };
-      //   } else if (draggableId === DIVIDER_ID) {
-      //     draggedNode = {
-      //       meta: {
-      //         uuid: createUuid(),
-      //         type: MenuItemType.Divider,
-      //         title: t("Menu.Divider"),
-      //       },
-      //       childIds: [],
-      //     };
-      //   } else if (draggableId === CUSTOMIZED_LINK_ID) {
-      //     draggedNode = {
-      //       meta: {
-      //         uuid: createUuid(),
-      //         type: MenuItemType.Link,
-      //         title: t("Menu.CustomizedLink"),
-      //       },
-      //       childIds: [],
-      //     };
-      //   } else if (source.droppableId.startsWith(PAGE_LIST_ID)) {
-      //     const page: IPage | undefined = getPage(draggableId);
-      //     if (page) {
-      //       draggedNode = {
-      //         meta: {
-      //           uuid: createUuid(),
-      //           type: MenuItemType.Item,
-      //           title: page.title,
-      //           route: { pageId: page.id },
-      //         },
-      //         childIds: [],
-      //       };
-      //     }
-      //   } else {
-      //     draggedNode = getNode(draggableId);
-      //   }
+      const targetGroup = getGroup(destination?.droppableId);
+      if (!targetGroup) {
+        console.error("No target group");
+        return;
+      }
+      
+      if (source.droppableId === PLUGINS_LIST_ID) {
+        const draggedPlugin = getPlugin(draggableId);
+        addComponentsToGroup(targetGroup, draggedPlugin.plugin?.components?.[device]?.map(com => com.name), destination.index);
+        return;
+      }
 
-      //   if (draggedNode) {
-      //     insertAt(draggedNode, destination?.droppableId, destination.index);
-      //   }
-      // }
+      const sourceGroup = getGroup(source.droppableId)
+
+      if (targetGroup) {
+      }
+
     },
-    [groupInsertAt, tabs]
+    [addComponentsToGroup, device, getGroup, getPlugin, groupInsertAt, tabs]
   );
 
   return (
