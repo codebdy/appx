@@ -9,6 +9,7 @@ import { ResourceWidget } from "../ResourceWidget";
 import { usePredefinedTabs } from "./hooks/usePredefinedTabs";
 import { useTranslation } from "react-i18next";
 import { useAppParams } from "../../../shared/AppRoot/context";
+import { convertMaterialsToSources } from "./hooks/convertMaterialsToSources";
 const { TabPane } = Tabs;
 
 export const MaterialWidget: React.FC = observer(() => {
@@ -29,6 +30,7 @@ export const MaterialWidget: React.FC = observer(() => {
       >
         {
           predefinedTabs.map((tab, index) => {
+            console.log("哈哈", tab)
             return (
               <TabPane tab={tab.title} key={tab.uuid}>
                 {
@@ -36,7 +38,7 @@ export const MaterialWidget: React.FC = observer(() => {
                     return (<ResourceWidget
                       key={group.uuid}
                       title={group.title}
-                      sources={group?.components?.[device]||[]}
+                      sources={convertMaterialsToSources(group?.components?.[device]||[])}
                     />)
                   })
                 }
