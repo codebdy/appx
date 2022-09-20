@@ -1,5 +1,5 @@
 import { IMaterialCollapseItem } from "../../../../../plugin-sdk/model"
-import React from "react"
+import React, { useCallback } from "react"
 import { memo } from "react"
 import { Draggable, Droppable } from "react-beautiful-dnd"
 import { DraggableLabel } from "../../../../common/DraggableLabel"
@@ -10,13 +10,17 @@ import { DeleteOutlined } from "@ant-design/icons"
 
 export const MaterialList = memo((
   props: {
-    item: IMaterialCollapseItem
+    item: IMaterialCollapseItem,
+    onChange: (item: IMaterialCollapseItem) => void,
   }
 ) => {
-  const { item } = props;
+  const { item, onChange } = props;
 
   const getComponent = useGetComponent();
   const getComTitle = useGetComponentLocalTitle();
+  const handleRemove = useCallback((name: string) => {
+    onChange({ ...item, components: item.components?.filter(com => name !== com) })
+  }, [item, onChange]);
 
   return (
     <Droppable droppableId={item.uuid} >
@@ -43,7 +47,13 @@ export const MaterialList = memo((
                             {getComTitle(getComponent(item))}
                           </div>
                           <div className="label-button">
-                            <Button type="text" size="small" shape="circle" icon={<DeleteOutlined />} />
+                            <Button
+                              type="text"
+                              size="small"
+                              shape="circle"
+                              icon={<DeleteOutlined />}
+                              onClick={() => handleRemove(item)}
+                            />
                           </div>
                         </div>
                       }

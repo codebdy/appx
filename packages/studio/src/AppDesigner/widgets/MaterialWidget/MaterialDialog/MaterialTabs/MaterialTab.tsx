@@ -65,7 +65,7 @@ export const MaterialTab = memo((
                     {(provided, snapshot) => (
                       <div
                         ref={provided.innerRef}
-                        className={clx("material-group", { float: snapshot.isDragging })}
+                        className={clx("material-group bottom-border", { float: snapshot.isDragging })}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >
@@ -74,7 +74,7 @@ export const MaterialTab = memo((
                             header={<GroupLabel group={item} onChange={handleChange} onRemove={handleRemove} />}
                             key={item.uuid}
                           >
-                            <MaterialList item={item} />
+                            <MaterialList item={item} onChange = {handleChange}/>
                           </Panel>
                         </Collapse>
                       </div>
