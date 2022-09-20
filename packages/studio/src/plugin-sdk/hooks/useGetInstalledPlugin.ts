@@ -1,6 +1,6 @@
-import { IPlugin, useGetPluginLocalMessage } from "../../../plugin-sdk/";
+import { IPlugin, useGetPluginLocalMessage } from "..";
 import { useCallback } from "react";
-import { IInstalledPlugin, PluginType } from "../context";
+import { IInstalledPlugin, PluginType } from "../../shared/AppRoot/context";
 
 export function useGetInstalledPlugin() {
   const { getTitle } = useGetPluginLocalMessage();

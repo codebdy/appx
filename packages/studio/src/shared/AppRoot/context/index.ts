@@ -21,7 +21,6 @@ export interface IAppContextParams {
   deviceConfig: IAppDeviceConfig | undefined,
   langLocales: ILangLocal[] | undefined,
   userConfig?: IUserConfig,
-  predefinedPlugins?: IInstalledPlugin[],
   plugins?: IInstalledPlugin[],
   debugPlugins?: IInstalledPlugin[],
   materialConfig?: IMaterialConfig,
