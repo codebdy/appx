@@ -17,46 +17,44 @@ export const MaterialList = memo((
   const getComTitle = useGetComponentLocalTitle();
 
   return (
-    <div className="materila-list">
-      <Droppable droppableId={item.uuid} >
-        {(provided, snapshot) => (
-          <div className="tabs-view"
-            ref={provided.innerRef}
-            style={{
-              flex: 1,
-              flexFlow: "column",
-              backgroundColor: snapshot.isDraggingOver
-                ? "rgba(0,0,0, 0.05)"
-                : undefined,
-            }}
-          >
-            {item.components?.map((item, index) => {
-              return (
-                <Draggable key={item} draggableId={item} index={index}>
-                  {(provided, snapshot) => (
-                    <>
+    <Droppable droppableId={item.uuid} >
+      {(provided, snapshot) => (
+        <div className="materila-list"
+          ref={provided.innerRef}
+          style={{
+            flex: 1,
+            flexFlow: "column",
+            backgroundColor: snapshot.isDraggingOver
+              ? "rgba(0,0,0, 0.05)"
+              : undefined,
+          }}
+        >
+          {item.components?.map((item, index) => {
+            return (
+              <Draggable key={item} draggableId={item} index={index}>
+                {(provided, snapshot) => (
+                  <>
+                    <DraggableLabel
+                      title={getComTitle(getComponent(item))}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      float={snapshot.isDragging}
+                      ref={provided.innerRef}
+                    />
+                    {snapshot.isDragging && (
                       <DraggableLabel
                         title={getComTitle(getComponent(item))}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        float={snapshot.isDragging}
-                        ref={provided.innerRef}
+                        fixed
                       />
-                      {snapshot.isDragging && (
-                        <DraggableLabel
-                          title={getComTitle(getComponent(item))}
-                          fixed
-                        />
-                      )}
-                    </>
-                  )}
-                </Draggable>
-              );
-            })}
-            {provided.placeholder}
-          </div>
-        )}
-      </Droppable>
-    </div>
+                    )}
+                  </>
+                )}
+              </Draggable>
+            );
+          })}
+          {provided.placeholder}
+        </div>
+      )}
+    </Droppable>
   )
 })
