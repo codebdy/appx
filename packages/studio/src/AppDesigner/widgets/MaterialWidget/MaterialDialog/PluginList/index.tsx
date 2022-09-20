@@ -15,38 +15,40 @@ export const PluginList = memo((
   const { plugins } = useAppParams();
 
   return (
-    <Droppable droppableId={PLUGINS_LIST_ID} isDropDisabled={true}>
-      {(provided) => (
-        <div ref={provided.innerRef}>
-          {plugins.filter(plugin => plugin.plugin).map(plugin => plugin.plugin).map((plugin, index) => {
-            return (
-              <Draggable key={plugin.id} draggableId={plugin.id} index={index}>
-                {(provided, snapshot) => (
-                  <>
-                    <PluginPanel
-                      plugin={plugin}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      ref={provided.innerRef}
-                      index={index}
-                      className={snapshot.isDragging ? "float" : undefined}
-                      tabs = {tabs}
-                    />
-                    {snapshot.isDragging && (
+    <div>
+      <Droppable droppableId={PLUGINS_LIST_ID} isDropDisabled={true}>
+        {(provided) => (
+          <div ref={provided.innerRef}>
+            {plugins.filter(plugin => plugin.plugin).map(plugin => plugin.plugin).map((plugin, index) => {
+              return (
+                <Draggable key={plugin.id} draggableId={plugin.id} index={index}>
+                  {(provided, snapshot) => (
+                    <>
                       <PluginPanel
                         plugin={plugin}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        ref={provided.innerRef}
                         index={index}
-                        tabs = {tabs}
+                        className={snapshot.isDragging ? "float" : undefined}
+                        tabs={tabs}
                       />
-                    )}
-                  </>
-                )}
-              </Draggable>
-            );
-          })}
-          <div style={{ display: "none" }}>{provided.placeholder}</div>
-        </div>
-      )}
-    </Droppable>
+                      {snapshot.isDragging && (
+                        <PluginPanel
+                          plugin={plugin}
+                          index={index}
+                          tabs={tabs}
+                        />
+                      )}
+                    </>
+                  )}
+                </Draggable>
+              );
+            })}
+            <div style={{ display: "none" }}>{provided.placeholder}</div>
+          </div>
+        )}
+      </Droppable>
+    </div>
   )
 })

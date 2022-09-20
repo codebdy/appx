@@ -38,8 +38,17 @@
       box-shadow: @floatBoxShadow;
       transition: all 0.3s;
     }
-    .content{
+    .material-dialog-plugins{
+      width: 320px;
       height: 100%;
+      display: flex;
+      flex-flow: column;
+      .plugin-title{
+        padding: 8px 0;
+      }
+    }
+    .plugin-content{
+      flex:1;
       display: flex;
       flex-flow: column;
       overflow: auto;
@@ -67,13 +76,7 @@
         width: 100%;
       }
     }
-    .material-dialog-plugins{
-      width: 320px;
-      height: 100%;
-      .plugin-title{
-        padding: 8px 0;
-      }
-    }
+
     .ant-collapse-header{
       display: flex;
       align-items: center;
