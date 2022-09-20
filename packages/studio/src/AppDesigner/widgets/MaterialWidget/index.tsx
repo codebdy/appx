@@ -7,11 +7,13 @@ import { observer } from "@formily/reactive-react";
 import { materialStore } from "../../../shared/global";
 import { ResourceWidget } from "../ResourceWidget";
 import { usePredefinedTabs } from "./hooks/usePredefinedTabs";
+import { useTranslation } from "react-i18next";
 
 const { TabPane } = Tabs;
 
 export const MaterialWidget: React.FC = observer(() => {
   const predefinedTabs = usePredefinedTabs();
+  const { t } = useTranslation();
 
   return (
     <div className="rx-material-panel">
@@ -58,6 +60,12 @@ export const MaterialWidget: React.FC = observer(() => {
             )
           })
         }
+        <TabPane tab={t("Materials.Other")} key={"TAB-OTHER"}>
+
+        </TabPane>
+        <TabPane tab={t("Materials.Debug")} key={"TAB-DEBUG"}>
+
+        </TabPane>
       </Tabs>
     </div>
   )
