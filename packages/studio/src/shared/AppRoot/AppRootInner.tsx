@@ -1,6 +1,6 @@
 import { Spin } from 'antd'
 import 'antd/dist/antd.less'
-import React, { memo, useMemo } from 'react'
+import React, { memo, useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useApp } from '../../hooks/useApp'
 import { useQueryLangLocales } from '../../hooks/useQueryLangLocales'
@@ -15,6 +15,7 @@ import { Device, IMaterialComponent } from '../../plugin-sdk/model'
 import { InputDesigner } from '../../components/pc'
 import { Input } from '@designable/formily-antd'
 import { useQueryMaterialConfig } from './hooks/useQueryMaterialConfig'
+import { usePredefinedPlugins } from './hooks/usePredefinedPlugins'
 
 export const locales1 = {
   'zh-CN': {
@@ -285,6 +286,7 @@ export const AppRootInner = memo((
   }
 ) => {
   const { appUuid = SYSTEM_APP_UUID, device = Device.PC } = useParams();
+  const [predefinedPlugins, setPredefinedPlugins] = useState<IInstalledPlugin[]>()
   const me = useMe();
   const { app, loading, error } = useApp(appUuid)
   const { config, loading: configLoading, error: configError } = useQueryAppConfig(appUuid);
@@ -294,6 +296,10 @@ export const AppRootInner = memo((
   const { materialConfig, loading: materialConfigLoading, error: materialConfigError } = useQueryMaterialConfig(appUuid, device as any)
   useShowError(error || configError || localError || deviceError || userConfigError || materialConfigError);
 
+  usePredefinedPlugins().then((plugins=>{
+    setPredefinedPlugins(plugins)
+  }));
+  
   const realApp = useMemo(() => {
     return appUuid === SYSTEM_APP_UUID ? { id: "System", uuid: SYSTEM_APP_UUID, title: "System" } : app
   }, [app, appUuid])
@@ -306,11 +312,12 @@ export const AppRootInner = memo((
       langLocales,
       deviceConfig: deviceConfig,
       userConfig,
+      predefinedPlugins,
       plugins,
       debugPlugins,
       materialConfig
     }
-  }, [config, device, deviceConfig, langLocales, materialConfig, realApp, userConfig])
+  }, [config, device, deviceConfig, langLocales, materialConfig, predefinedPlugins, realApp, userConfig])
 
   return (
     realApp ?

@@ -10,6 +10,6 @@ declare const window: Window & { rxPlugin: IPlugin };
   //   console.error("Has material not finished! load error", window.materials)
   // }else{
   window.rxPlugin = rxPlugin
-  console.log("plug in 中", rxPlugin)
+  console.log("Layouts plugin 中")
   // }
 })()
