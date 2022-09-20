@@ -229,7 +229,7 @@ const plugins: IInstalledPlugin[] = [
       components: {
         [Device.PC]: coms1,
       },
-      loacales: locales1,
+      locales: locales1,
     },
     type: PluginType.Normal,
   },
@@ -249,7 +249,7 @@ const plugins: IInstalledPlugin[] = [
       components: {
         [Device.PC]: coms2,
       },
-      loacales: locales2,
+      locales: locales2,
     },
     type: PluginType.Normal,
   }

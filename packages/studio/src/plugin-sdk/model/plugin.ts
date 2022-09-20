@@ -11,7 +11,7 @@ export interface IPlugin {
     [device: string]: IMaterialComponent[];
   }
   model?: any;
-  loacales?: any;
+  locales?: any;
 }
 
 export interface IMaterialComponent {

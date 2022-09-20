@@ -1,4 +1,5 @@
 import { Device, IPlugin } from "../../plugin-sdk/model";
+import { locales } from "./loacales";
 
 export const rxPlugin: IPlugin = {
   id: "predefined.Inputs",
@@ -11,4 +12,5 @@ export const rxPlugin: IPlugin = {
     [Device.Website]: [],
   },
   model: undefined,
+  locales
 }
