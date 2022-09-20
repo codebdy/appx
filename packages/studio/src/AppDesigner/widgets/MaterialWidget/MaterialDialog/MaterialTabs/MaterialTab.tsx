@@ -11,6 +11,8 @@ import clx from "classnames";
 import { MaterialList } from "./MaterialList";
 const { Panel } = Collapse;
 
+export const GROUP_TYPE = "group"
+
 export const MaterialTab = memo((
   props: {
     tab: IMaterialTab,
@@ -40,7 +42,7 @@ export const MaterialTab = memo((
 
   return (
     <div>
-      <Droppable droppableId={tab.uuid} type="group">
+      <Droppable droppableId={tab.uuid} type={GROUP_TYPE}>
         {(provided, snapshot) => (
           <div
             ref={provided.innerRef}
