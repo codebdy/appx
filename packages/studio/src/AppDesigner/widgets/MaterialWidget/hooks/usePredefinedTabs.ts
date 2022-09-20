@@ -1,42 +1,31 @@
+import { useGetPluginLocalMessage } from "../../../../plugin-sdk";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { IMaterialTab } from "../../../../plugin-sdk/model";
+import { usePredefinedPlugins } from "../../../../shared/contexts/predefinedPlugins";
 
 export function usePredefinedTabs() {
   const { t } = useTranslation();
+  const { getTitle } = useGetPluginLocalMessage();
+  const predefinedPlugins = usePredefinedPlugins();
 
   const predefinedMaterialTabs: IMaterialTab[] = useMemo(() => {
     const tabs = [
       {
         title: t("Materials.Basic"),
         uuid: "UUID-MATERIALS-BASIC",
-        collopsesItems: [
-          {
-            title: t("Materials.Inputs"),
-            uuid: "UUID-MATERIALS-BASIC-INPUTS",
+        collopsesItems: predefinedPlugins.map(plugin => {
+          return {
+            title: getTitle(plugin),
+            uuid: plugin.id,
             components: [],
-          },
-          {
-            title: t("Materials.Layouts"),
-            uuid: "UUID-MATERIALS-BASIC-LAYOUTS",
-            components: [],
-          },
-          {
-            title: t("Materials.Arrays"),
-            uuid: "UUID-MATERIALS-BASIC-ARRAYS",
-            components: [],
-          },
-          {
-            title: t("Materials.Displays"),
-            uuid: "UUID-MATERIALS-BASIC-DISPLAYS",
-            components: [],
-          },
-        ]
+          }
+        })
       }
     ]
 
     return tabs;
-  }, [t])
+  }, [getTitle, predefinedPlugins, t])
 
   return predefinedMaterialTabs;
 }
