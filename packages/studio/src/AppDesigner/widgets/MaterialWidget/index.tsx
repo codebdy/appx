@@ -29,9 +29,9 @@ export const MaterialWidget: React.FC = observer(() => {
             return (
               <TabPane tab={tab.title} key={tab.uuid}>
                 {
-                  tab.collopsesItems?.map((groupData, gIndex) => {
+                  tab.collopsesItems?.map((groupData) => {
                     return (<ResourceWidget
-                      key={gIndex + 1}
+                      key={groupData.uuid}
                       title={groupData.title}
                       sources={[]}
                     />)
