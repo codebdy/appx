@@ -9,12 +9,14 @@ import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import { PluginList, PLUGINS_LIST_ID } from './PluginList';
 import { GROUP_TYPE } from './MaterialTabs/MaterialTab';
 import { useAppParams } from '../../../../shared/AppRoot/context';
+import { useGetNotCategoriedComponents } from './hooks/useGetNotCategoriedComponents';
 
 export const MaterialDialog = memo(() => {
   const [tabs, setTabs] = useState<IMaterialTab[]>([]);
-  const { plugins, device } = useAppParams();
+  const { plugins } = useAppParams();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const { t } = useTranslation();
+  const getUnCategoriedComponents = useGetNotCategoriedComponents(tabs);
 
   const showModal = useCallback(() => {
     setIsModalVisible(true);
@@ -90,7 +92,8 @@ export const MaterialDialog = memo(() => {
 
       if (source.droppableId === PLUGINS_LIST_ID) {
         const draggedPlugin = getPlugin(draggableId);
-        addComponentsToGroup(targetGroup, draggedPlugin.plugin?.components?.[device]?.map(com => com.name), destination.index);
+        const coms = getUnCategoriedComponents(draggedPlugin?.plugin) || [];
+        addComponentsToGroup(targetGroup, coms?.map(com => com.name), destination.index);
         return;
       }
 
@@ -105,7 +108,7 @@ export const MaterialDialog = memo(() => {
         }
       }
     },
-    [addComponentsToGroup, device, getGroup, getPlugin, groupInsertAt, moveComponent, tabs]
+    [addComponentsToGroup, getGroup, getPlugin, getUnCategoriedComponents, groupInsertAt, moveComponent, tabs]
   );
 
   return (
