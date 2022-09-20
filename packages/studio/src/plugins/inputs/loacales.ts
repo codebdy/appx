@@ -1,10 +1,10 @@
 export const locales = {
   'zh-CN': {
-    Layouts: '布局组件',
+    Inputs: '输入控件',
     Description :'',
   },
   'en-US': {
-    Layouts: 'Layouts',
+    Inputs: 'Inputs',
     Description: '',
   },
 }
