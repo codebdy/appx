@@ -8,12 +8,13 @@ import { materialStore } from "../../../shared/global";
 import { ResourceWidget } from "../ResourceWidget";
 import { usePredefinedTabs } from "./hooks/usePredefinedTabs";
 import { useTranslation } from "react-i18next";
+import { useAppParams } from "../../../shared/AppRoot/context";
 const { TabPane } = Tabs;
 
 export const MaterialWidget: React.FC = observer(() => {
   const predefinedTabs = usePredefinedTabs();
   const { t } = useTranslation();
-
+  const {device} = useAppParams();
 
   return (
     <div className="rx-material-panel">
@@ -31,11 +32,11 @@ export const MaterialWidget: React.FC = observer(() => {
             return (
               <TabPane tab={tab.title} key={tab.uuid}>
                 {
-                  tab.collopsesItems?.map((groupData) => {
+                  tab.collopsesItems?.map((group) => {
                     return (<ResourceWidget
-                      key={groupData.uuid}
-                      title={groupData.title}
-                      sources={[]}
+                      key={group.uuid}
+                      title={group.title}
+                      sources={group?.components?.[device]||[]}
                     />)
                   })
                 }

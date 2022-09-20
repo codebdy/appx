@@ -1,15 +1,29 @@
-import { useGetPluginLocalMessage } from "../../../../plugin-sdk";
+import { IMaterialComponent, useGetPluginLocalMessage } from "../../../../plugin-sdk";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { IMaterialTab } from "../../../../plugin-sdk/model";
 import { usePredefinedPlugins } from "../../../../shared/contexts/predefinedPlugins";
+import { useAppParams } from "../../../../shared/AppRoot/context";
+
+export interface ITab {
+  title: string;
+  uuid: string;
+  collopsesItems: ICollapseItem[];
+}
+
+export interface ICollapseItem {
+  title: string;
+  uuid: string;
+  components: IMaterialComponent[];
+}
+
 
 export function usePredefinedTabs() {
+  const { device } = useAppParams();
   const { t } = useTranslation();
   const { getTitle } = useGetPluginLocalMessage();
   const predefinedPlugins = usePredefinedPlugins();
 
-  const predefinedMaterialTabs: IMaterialTab[] = useMemo(() => {
+  const predefinedMaterialTabs: ITab[] = useMemo(() => {
     const tabs = [
       {
         title: t("Materials.Basic"),
@@ -18,14 +32,14 @@ export function usePredefinedTabs() {
           return {
             title: getTitle(plugin),
             uuid: plugin.id,
-            components: [],
+            components: plugin.components?.[device] || [],
           }
         })
       }
     ]
 
     return tabs;
-  }, [getTitle, predefinedPlugins, t])
+  }, [device, getTitle, predefinedPlugins, t])
 
   return predefinedMaterialTabs;
 }
