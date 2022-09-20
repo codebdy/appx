@@ -9,10 +9,8 @@ query ($appUuid:String!, $device:String!){
   oneMaterialConfig(where:{
     _and:[
       {
-        app:{
-          uuid:{
-            _eq:$appUuid
-          }
+        appUuid:{
+          _eq:$appUuid
         }
       },
       {
