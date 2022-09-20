@@ -6,7 +6,10 @@ export function useGetComponent() {
 
   const getCompoent = useCallback((name: string) => {
     for (const plugin of plugins) {
-      return plugin.plugin?.components[device]?.find(com => com.name === name)
+      const com = plugin.plugin?.components[device]?.find(com => com.name === name)
+      if (com) {
+        return com;
+      }
     }
   }, [device, plugins])
 
