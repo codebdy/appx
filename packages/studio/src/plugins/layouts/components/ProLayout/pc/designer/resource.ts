@@ -7,7 +7,6 @@ export const resource = {
         type: 'void',
         'x-component': 'ProLayout',
         'x-component-props': {
-          title: 'Title',
         },
       },
     },
