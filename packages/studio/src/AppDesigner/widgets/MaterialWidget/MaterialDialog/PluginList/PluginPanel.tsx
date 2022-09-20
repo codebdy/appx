@@ -1,27 +1,29 @@
-import { IPlugin } from "../../../../../plugin-sdk/model"
-import React from "react"
+import { IMaterialTab, IPlugin } from "../../../../../plugin-sdk/model"
+import React, { useMemo } from "react"
 import { Collapse, Empty } from "antd";
 import { useGetPluginLocalMessage } from "../../../../../plugin-sdk/hooks/useGetPluginLocalMessage";
 import cls from "classnames";
-import { useParams } from "react-router-dom";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import { DraggableLabel } from "../../../../common/DraggableLabel";
 import { useGetComponentLocalTitle } from "../../../../../plugin-sdk/hooks/useGetComponentLocalTitle";
+import { useGetNotCategoriedComponents } from "../hooks/useGetNotCategoriedComponents";
 const { Panel } = Collapse;
 
 export const PluginPanel = React.forwardRef((
   props: {
+    tabs: IMaterialTab[],
     plugin: IPlugin,
     index: number,
     className?: string,
   },
   ref: any,
 ) => {
-  const { plugin, index, className, ...other } = props;
-  const { device } = useParams();
+  const { tabs, plugin, index, className, ...other } = props;
   const { getTitle } = useGetPluginLocalMessage();
   const getComTitle = useGetComponentLocalTitle();
-  const components = plugin.components?.[device]
+  const getComponents = useGetNotCategoriedComponents(tabs);
+  
+  const components = useMemo(()=>getComponents(plugin), [getComponents, plugin]);
 
   return (
     <div

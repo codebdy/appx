@@ -3,9 +3,15 @@ import React from "react";
 import { memo } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import { PluginPanel } from "./PluginPanel";
+import { IMaterialTab } from "../../../../../plugin-sdk/model";
 
 export const PLUGINS_LIST_ID = "PLUGINS_LIST_ID";
-export const PluginList = memo(() => {
+export const PluginList = memo((
+  props: {
+    tabs: IMaterialTab[],
+  }
+) => {
+  const { tabs } = props;
   const { plugins } = useAppParams();
 
   return (
@@ -24,11 +30,13 @@ export const PluginList = memo(() => {
                       ref={provided.innerRef}
                       index={index}
                       className={snapshot.isDragging ? "float" : undefined}
+                      tabs = {tabs}
                     />
                     {snapshot.isDragging && (
                       <PluginPanel
                         plugin={plugin}
                         index={index}
+                        tabs = {tabs}
                       />
                     )}
                   </>

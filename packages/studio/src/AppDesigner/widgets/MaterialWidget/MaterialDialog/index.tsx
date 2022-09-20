@@ -134,7 +134,7 @@ export const MaterialDialog = memo(() => {
                 <div className='title-text bottom-border'>{t("Materials.ComponentsForChoose")}</div>
               </div>
               <div className='content'>
-                <PluginList />
+                <PluginList tabs={tabs} />
               </div>
             </div>
           </div>
