@@ -1,4 +1,5 @@
 import { Device, IPlugin } from "../../plugin-sdk/model";
+import { mobileComponents, pcComponents, webSiteComponents } from "./components";
 import { locales } from "./loacales";
 
 export const rxPlugin: IPlugin = {
@@ -7,9 +8,9 @@ export const rxPlugin: IPlugin = {
   version: "1.0",
   description: "Description",
   components: {
-    [Device.PC]: [],
-    [Device.Mobile]: [],
-    [Device.Website]: [],
+    [Device.PC]: pcComponents,
+    [Device.Mobile]: mobileComponents,
+    [Device.Website]: webSiteComponents,
   },
   model: undefined,
   locales

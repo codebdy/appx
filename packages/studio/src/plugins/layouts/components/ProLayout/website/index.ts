@@ -5,10 +5,12 @@ import { behavior } from "./designer/behavior";
 import { resource } from "./designer/resource";
 import { ProLayout } from "./view";
 
-export const website: IMaterialComponent = {
+const website: IMaterialComponent = {
   name: NAME,
   designer: ProLayoutDesigner,
   component: ProLayout,
   behavior,
   resource
 }
+
+export default website;
