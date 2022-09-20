@@ -5,6 +5,8 @@ import { Draggable, Droppable } from "react-beautiful-dnd"
 import { DraggableLabel } from "../../../../common/DraggableLabel"
 import { useGetComponentLocalTitle } from "../../../../../plugin-sdk/hooks/useGetComponentLocalTitle"
 import { useGetComponent } from "../../../../../plugin-sdk/hooks/useGetComponent"
+import { Button } from "antd"
+import { DeleteOutlined } from "@ant-design/icons"
 
 export const MaterialList = memo((
   props: {
@@ -35,7 +37,16 @@ export const MaterialList = memo((
                 {(provided, snapshot) => (
                   <>
                     <DraggableLabel
-                      title={getComTitle(getComponent(item))}
+                      title={
+                        <div className="label-in-tab">
+                          <div className="label-text">
+                            {getComTitle(getComponent(item))}
+                          </div>
+                          <div className="label-button">
+                            <Button type="text" size="small" shape="circle" icon={<DeleteOutlined />} />
+                          </div>
+                        </div>
+                      }
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                       float={snapshot.isDragging}

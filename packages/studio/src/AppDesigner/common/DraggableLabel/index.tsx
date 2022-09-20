@@ -4,7 +4,7 @@ import "./style.less"
 
 export const DraggableLabel = React.forwardRef((
   props: {
-    title: string,
+    title: React.ReactNode,
     float?: boolean,
     style?: CSSProperties,
     fixed?: boolean,

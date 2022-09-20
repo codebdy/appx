@@ -28,6 +28,24 @@
         .materila-list{
           min-height: 50px;
         }
+        .draggable-label{
+          height: 40px;
+        }
+        .label-in-tab{
+          display: flex;
+          flex: 1;
+          align-items: center;
+          .label-text{
+            flex:1,
+          }
+          .label-button{
+            display: none;
+          }
+        }
+
+        .draggable-label:hover .label-button{
+          display: block;
+        }
       }
     }
     .material-dialog-coms{
