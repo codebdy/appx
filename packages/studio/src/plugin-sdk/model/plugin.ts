@@ -1,5 +1,6 @@
 import { IBehaviorCreator, IResourceCreator } from "@designable/core";
 import { DnFC, DnComponent } from "@designable/react"
+import { IAppxAction } from "./action";
 
 export interface IPlugin {
   //唯一标识，记住一定要唯一
@@ -12,6 +13,7 @@ export interface IPlugin {
   }
   model?: any;
   locales?: any;
+  actions?: IAppxAction[];//action功能以后实现
 }
 
 export interface IMaterialComponent {
