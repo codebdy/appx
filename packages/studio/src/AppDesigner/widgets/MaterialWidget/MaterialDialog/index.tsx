@@ -49,12 +49,17 @@ export const MaterialDialog = memo(() => {
   }, [])
 
   const moveComponent = useCallback((sourceGroup: IMaterialCollapseItem, targetGroup: IMaterialCollapseItem, name: string, index: number) => {
+    const tab = tabs.find(tab => tab.collopsesItems?.find(gp => gp.uuid === targetGroup.uuid));    
     const newSourceGroup = { ...sourceGroup, components: sourceGroup?.components?.filter(com => com !== name) || [] }
-    const tab = tabs.find(tab => tab.collopsesItems?.find(gp => gp.uuid === targetGroup.uuid));
     const newGroups = tab.collopsesItems.map(gp => gp.uuid === newSourceGroup.uuid ? newSourceGroup : gp);
-    const newNames = [...targetGroup.components];
+    const tgGroup =  newGroups?.find(gp=>gp.uuid === targetGroup.uuid);
+    if(!tgGroup){
+      console.error("Can not find target group")
+      return;
+    }
+    const newNames = [...tgGroup.components];
     newNames.splice(index, 0, name);
-    const newTargetGroup = { ...targetGroup, components: newNames };
+    const newTargetGroup = { ...tgGroup, components: newNames };
     const newGroups2 = newGroups.map(gp => gp.uuid === newTargetGroup.uuid ? newTargetGroup : gp);
     setTabs(tabs => tabs.map(tb => tb.uuid === tab.uuid ? { ...tab, collopsesItems: newGroups2 } : tb))
   }, [tabs])
