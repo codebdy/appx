@@ -1,8 +1,6 @@
 import { IPlugin } from "../../plugin-sdk/model";
 import { rxPlugin } from "./Plugin";
 
-export * from "./ProLayout"
-
 declare const window: Window & { rxPlugin: IPlugin };
 
 (function () {
