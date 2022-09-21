@@ -1,4 +1,9 @@
 import { ISchema } from '@formily/react'
+import { IPropsTab } from '../../../../../../plugin-sdk'
+
+export const schemaTabs:IPropsTab[] = [
+  
+]
 
 export const schema: ISchema & { Addition?: ISchema } = {
   type: 'object',

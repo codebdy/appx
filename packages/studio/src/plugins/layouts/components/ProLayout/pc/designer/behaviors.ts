@@ -1,7 +1,8 @@
+import { IBehavior } from "packages/studio/src/plugin-sdk";
 import { locales } from "../../locales";
-import { schema } from "./schema";
+import { schemaTabs } from "./schema";
 
-export const behaviors = [
+export const behaviors: IBehavior[] = [
   {
     name: 'ProLayout',
     extends: ['Field'],
@@ -10,6 +11,6 @@ export const behaviors = [
       droppable: true,
     },
     designerLocales: locales,
-    schema,
+    propsTabs: schemaTabs,
   }
 ]

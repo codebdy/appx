@@ -21,8 +21,18 @@ export interface IPlugin {
   }
 }
 
+export interface IPropsGroup {
+  title: string;
+  schema: ISchema;
+}
+
+export interface IPropsTab {
+  title: string;
+  groups: IPropsGroup[];
+}
+
 export interface IBehavior extends IBehaviorCreator {
-  schema?: ISchema,
+  propsTabs?: IPropsTab[];
 }
 
 export interface IMaterialComponent {
