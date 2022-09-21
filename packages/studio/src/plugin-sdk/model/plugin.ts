@@ -32,10 +32,11 @@ export interface IPropsTab {
 }
 
 export interface IPropsSchema {
-  style?: boolean | IPropsTab;
+  style?: false | IPropsTab;
   props?: ISchema;
   display?: IPropsTab;
   actions?: string[];
+  decorator?: boolean | IPropsTab;
 }
 
 export interface IBehavior extends IBehaviorCreator {
