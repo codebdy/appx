@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { Device } from "../plugin-sdk/model";
+import { Device } from "@appx/plugin-sdk";
 
 export function useDevices() {
   const {t} = useTranslation();

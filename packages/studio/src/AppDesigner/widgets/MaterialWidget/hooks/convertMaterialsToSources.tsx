@@ -2,7 +2,7 @@ import { createBehavior, createResource } from '@designable/core'
 import { DnFC } from "@designable/react"
 import { createFieldSchema } from '../../../../components/common/Field'
 import React from 'react'
-import { IMaterialComponent } from "../../../../plugin-sdk"
+import { IMaterialComponent } from "@appx/plugin-sdk"
 //import { createFieldSchema, FieldsType } from "../../common/Field/shared"
 
 function transComponment(material: IMaterialComponent): DnFC<any> {

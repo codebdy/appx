@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { IBehavior, IMaterialComponent } from "../../plugin-sdk";
+import { IBehavior, IMaterialComponent } from "@appx/plugin-sdk";
 import { DnFC } from "@designable/react"
 import { createBehavior, createResource } from '@designable/core'
 import { Material } from "../model";

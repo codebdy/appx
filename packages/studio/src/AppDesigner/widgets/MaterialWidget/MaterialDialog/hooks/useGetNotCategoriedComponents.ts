@@ -1,6 +1,6 @@
 import { useAppParams } from "../../../../../shared/AppRoot/context";
 import { useCallback } from "react";
-import { IMaterialTab, IPlugin } from "../../../../../plugin-sdk/model";
+import { IMaterialTab, IPlugin } from "@appx/plugin-sdk";
 
 export function useGetNotCategoriedComponents(tabs: IMaterialTab[]) {
   const { device } = useAppParams();

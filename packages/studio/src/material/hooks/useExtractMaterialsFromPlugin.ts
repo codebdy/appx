@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { IPlugin } from "../../plugin-sdk";
+import { IPlugin } from "@appx/plugin-sdk";
 import { useAppParams } from "../../shared/AppRoot/context";
 import { useConvertMaterialFromPlugin } from "./useConvertMaterialFromPlugin";
 

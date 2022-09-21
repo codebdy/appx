@@ -1,4 +1,4 @@
-import { IPropsSchema } from '../../../../../../plugin-sdk'
+import { IPropsSchema } from '@appx/plugin-sdk'
 
 export const schema: IPropsSchema = {
   props: {

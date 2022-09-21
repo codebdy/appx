@@ -1,7 +1,7 @@
 import React, { CSSProperties, useCallback, useEffect, useState } from "react"
 import { CheckOutlined, CloseOutlined, DeleteOutlined, EditOutlined, HolderOutlined } from "@ant-design/icons"
 import clx from "classnames";
-import { IMaterialTab } from "../../../../../plugin-sdk/model";
+import { IMaterialTab } from "@appx/plugin-sdk";
 import { useParseLangMessage } from "../../../../../hooks/useParseLangMessage";
 import { Button, Space } from "antd";
 import { MultiLangInput } from "../../../../../components/pc";

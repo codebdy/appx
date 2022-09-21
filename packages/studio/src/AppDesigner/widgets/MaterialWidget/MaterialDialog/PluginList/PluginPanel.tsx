@@ -1,4 +1,4 @@
-import { IMaterialTab, IPlugin } from "../../../../../plugin-sdk/model"
+import { IMaterialTab, IPlugin } from "@appx/plugin-sdk"
 import React, { useMemo } from "react"
 import { Collapse, Empty } from "antd";
 import { useGetPluginLocalMessage } from "../../../../../plugin/hooks/useGetPluginLocalMessage";

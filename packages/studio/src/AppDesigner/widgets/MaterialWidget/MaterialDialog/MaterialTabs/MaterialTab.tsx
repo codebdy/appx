@@ -1,6 +1,6 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { Button, Collapse } from "antd"
-import { IMaterialCollapseItem, IMaterialTab } from "../../../../../plugin-sdk/model";
+import { IMaterialCollapseItem, IMaterialTab } from "@appx/plugin-sdk";
 import React, { useCallback } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next";

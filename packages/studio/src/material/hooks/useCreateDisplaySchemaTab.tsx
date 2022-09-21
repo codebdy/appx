@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { FieldsType, IDisplayTabOptions, IPropsSchema } from "../../plugin-sdk";
+import { FieldsType, IDisplayTabOptions, IPropsSchema } from "@appx/plugin-sdk";
 import {
   ReactionsSetter,
   ValidatorSetter,

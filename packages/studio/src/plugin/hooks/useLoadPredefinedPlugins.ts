@@ -1,4 +1,4 @@
-import { IPlugin } from "../../plugin-sdk/model";
+import { IPlugin } from "@appx/plugin-sdk";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useExtractMaterialGroupFromPlugin } from "../../material/hooks/useExtractMaterialGroupFromPlugin";

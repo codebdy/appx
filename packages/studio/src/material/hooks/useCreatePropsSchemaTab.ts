@@ -1,5 +1,5 @@
 import { useCallback } from "react"
-import { IPropsSchema } from "../../plugin-sdk"
+import { IPropsSchema } from "@appx/plugin-sdk"
 import { ISchema } from '@formily/json-schema'
 import { AllSchemas } from "@designable/formily-antd"
 

@@ -1,6 +1,6 @@
 import { EditOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Modal } from 'antd';
-import { IMaterialTab } from '../../../../../plugin-sdk/model';
+import { IMaterialTab } from '@appx/plugin-sdk';
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TabDragableLabel } from './TabDragableLabel';

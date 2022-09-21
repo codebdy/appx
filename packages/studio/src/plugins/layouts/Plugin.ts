@@ -1,4 +1,4 @@
-import { Device, IPlugin } from "../../plugin-sdk/model";
+import { Device, IPlugin } from "@appx/plugin-sdk";
 import { mobileComponents, pcComponents, webSiteComponents } from "./components";
 import { locales } from "./loacales";
 

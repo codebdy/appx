@@ -1,5 +1,5 @@
 import { ILang } from ".";
-import { Device, IMaterialTab } from "../plugin-sdk/model";
+import { Device, IMaterialTab } from "@appx/plugin-sdk";
 import { ID } from "../shared";
 
 export interface IUserInput {

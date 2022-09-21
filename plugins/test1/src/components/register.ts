@@ -1,4 +1,4 @@
-import { Device, IMaterialComponent } from "../../../plugin-sdk";
+import { Device, IMaterialComponent } from "@appx/plugin-sdk";
 
 export const pcComponents = []
 export const mobileComponents = []
