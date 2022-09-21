@@ -1,5 +1,5 @@
 {
-  "name": "first",
+  "name": "@appx/test1",
   "devEngines": {
     "node": "8.x || 9.x || 10.x || 11.x"
   },
