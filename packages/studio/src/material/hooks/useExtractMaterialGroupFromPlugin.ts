@@ -10,6 +10,7 @@ export function useExtractMaterialGroupFromPlugin() {
   const extractMaterialGroupFromPlugin = useCallback((plugin: IPlugin) => {
     const group: MaterialGroup = {
       title: getTitle(plugin),
+      id: plugin.id,
       materials: extractMaterials(plugin),
     }
 

@@ -7,7 +7,8 @@ export interface Material {
   component: React.FC<any> | React.Component;
 }
 
-export interface MaterialGroup {
+export interface MaterialGroup {  
+  id: string;
   title: string;
   materials: Material[];
 }
@@ -15,5 +16,6 @@ export interface MaterialGroup {
 
 export interface MaterialTab {
   title: string,
+  uuid: string,
   groups: MaterialGroup[],
 }

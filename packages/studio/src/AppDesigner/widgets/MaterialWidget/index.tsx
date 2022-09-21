@@ -6,19 +6,18 @@ import { MaterialDialog } from "./MaterialDialog";
 import { observer } from "@formily/reactive-react";
 import { materialStore } from "../../../shared/global";
 import { ResourceWidget } from "../ResourceWidget";
-import { usePredefinedTabs } from "./hooks/usePredefinedTabs";
 import { useTranslation } from "react-i18next";
-import { convertMaterialsToSources } from "./hooks/convertMaterialsToSources";
+import { usePredefinedMaterialTab } from "../../../material/context";
 const { TabPane } = Tabs;
 
 export const MaterialWidget: React.FC = observer(() => {
-  const predefinedTabs = usePredefinedTabs();
+  const predefinedTab = usePredefinedMaterialTab();
   const { t } = useTranslation();
 
   return (
     <div className="rx-material-panel">
       <MaterialSearchWidget />
-      <Tabs defaultActiveKey={predefinedTabs?.[0].uuid}
+      <Tabs defaultActiveKey={predefinedTab.uuid}
         animated
         size="small"
         className="materail-tabs"
@@ -27,22 +26,18 @@ export const MaterialWidget: React.FC = observer(() => {
         }
       >
         {
-          predefinedTabs.map((tab, index) => {
-            return (
-              <TabPane tab={tab.title} key={tab.uuid}>
-                {
-                  tab.collopsesItems?.map((group) => {
-                    console.log("哈哈", group?.components, convertMaterialsToSources(group?.components||[]))
-                    return (<ResourceWidget
-                      key={group.uuid}
-                      title={group.title}
-                      sources={convertMaterialsToSources(group?.components||[])}
-                    />)
-                  })
-                }
-              </TabPane>
-            )
-          })
+          predefinedTab &&
+          <TabPane tab={predefinedTab.title} key={predefinedTab.uuid}>
+            {
+              predefinedTab.groups?.map((groupData, gIndex) => {
+                return (<ResourceWidget
+                  key={gIndex + 1}
+                  title={groupData.title}
+                  sources={groupData.materials.map(material => material.designer)}
+                />)
+              })
+            }
+          </TabPane>
         }
         {
           materialStore.modules.map((tabData, index) => {

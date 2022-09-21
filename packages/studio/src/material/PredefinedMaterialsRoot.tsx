@@ -17,6 +17,7 @@ export const PredefinedMaterialsRoot = memo((
   const predefinedTab: MaterialTab = useMemo(() => {
     return {
       title: t("Materials.Basic"),
+      uuid: "UUID-MATERIALS-BASIC",
       groups: predefinedPlugsins?.map(plugin => extract(plugin)) || []
     }
   }, [extract, predefinedPlugsins, t])
