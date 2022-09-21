@@ -1,9 +1,15 @@
 import { useCallback } from "react";
 import { IPropsSchema } from "../../plugin-sdk/model";
+import { useCreateActionsSchemaTab } from "./useCreateActionsSchemaTab";
+import { useCreateDisplaySchemaTab } from "./useCreateDisplaySchemaTab";
 import { useCreatePropsSchemaTab } from "./useCreatePropsSchemaTab";
+import { useCreateStyleSchemaTab } from "./useCreateStyleSchemaTab";
 
 export function useCreateFieldSchema() {
-  const createPropsSchema = useCreatePropsSchemaTab();
+  const createPropsTab = useCreatePropsSchemaTab();
+  const createStyleTab = useCreateStyleSchemaTab();
+  const createDisplayTab = useCreateDisplaySchemaTab();
+  const createActionsTab = useCreateActionsSchemaTab();
   const create = useCallback((propsSchema: IPropsSchema) => {
     return {
       type: 'object',
@@ -12,15 +18,15 @@ export function useCreateFieldSchema() {
           type: 'void',
           'x-component': 'SettingsTab',
           properties: {
-            ...createPropsSchema(propsSchema),
-            ...(!options?.noStyleTab ? createStyleSchemaTab() : {}),
-            ...(!options?.noDisplayTab ? createDisplaySchemaTab(options) : {}),
-            ...(options?.actions ? createActionSchemaTab(options?.actions) : {}),
+            ...createPropsTab(propsSchema),
+            ...createStyleTab(propsSchema),
+            ...createDisplayTab(propsSchema),
+            ...createActionsTab(propsSchema),
           }
         },
       },
     }
-  }, [])
+  }, [createActionsTab, createDisplayTab, createPropsTab, createStyleTab])
 
   return create;
 }
