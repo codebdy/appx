@@ -1,13 +1,6 @@
-import { observable } from "@formily/reactive"
+import { createContext, useContext } from "react";
 import { MaterialTab } from "./model"
 
-export interface MaterialStore {
-  predefinedTab?: MaterialTab,
-  tabs: MaterialTab[],
-  debugTab?: MaterialTab,
-}
+export const PredefinedMaterialTabContext = createContext<MaterialTab>(undefined);
 
-export const materialStore2: MaterialStore = observable.shallow({
-  tabs: [],
-})
-
+export const usePredefinedMaterialTab = (): MaterialTab | undefined => useContext(PredefinedMaterialTabContext);
