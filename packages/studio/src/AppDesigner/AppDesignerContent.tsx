@@ -37,6 +37,7 @@ export enum DesignerRoutes {
   Templates = "Templates",
   Pages = "pages",
   Components = "coms",
+  Fragments = "fratments",
   OutlinedTree = "outlinedTree",
   Menu = "menu",
   Settings = "settings"
@@ -129,6 +130,13 @@ const AppDesignerContent = memo(() => {
                 <MaterialWidget />
               </CompositePanel.Item>
               <CompositePanel.Item
+                key={DesignerRoutes.Fragments}
+                title={t("Panels.Fragments")}
+                icon="JSON"
+              >
+                代码片段
+              </CompositePanel.Item>
+              <CompositePanel.Item
                 key={DesignerRoutes.OutlinedTree}
                 title={t("Panels.OutlinedTree")} icon="Outline"
               >
@@ -154,7 +162,8 @@ const AppDesignerContent = memo(() => {
               pageId && <PageWorkSpace pageId={pageId} visable={
                 activeKey === DesignerRoutes.Pages ||
                 activeKey === DesignerRoutes.OutlinedTree ||
-                activeKey === DesignerRoutes.Components
+                activeKey === DesignerRoutes.Components ||
+                activeKey === DesignerRoutes.Fragments 
               } />
             }
 
