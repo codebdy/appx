@@ -63,14 +63,14 @@ const PageActions = memo((
     <Dropdown
       overlay={menu}
       trigger={['click']}
-      onVisibleChange={onVisibleChange}
+      onOpenChange={onVisibleChange}
       disabled={loading}
     >
       <Button shape='circle' type="text" size='small' onClick={e => e.stopPropagation()}>
         {
           loading ?
             <LoadingOutlined />
-            : <MoreOutlined />
+            : <MoreOutlined color="inherit" />
         }
 
       </Button>

@@ -1,28 +1,26 @@
 import { useCallback } from "react";
 import { IBehavior, IMaterialComponent } from "../../plugin-sdk";
 import { DnFC } from "@designable/react"
-import { createFieldSchema } from '../../components/common/Field'
 import { createBehavior, createResource } from '@designable/core'
 import { Material } from "../model";
 import React from "react";
-import { useConvertPropsTabsToSchema } from "./useConvertPropsTabsToSchema";
+import { useCreateFieldSchema } from "./useCreateFieldSchema";
 
 export function useConvertMaterialFromPlugin() {
-  const convertPropsSchema = useConvertPropsTabsToSchema();
-  
-  const convertBehaviors = useCallback((behaviors: IBehavior[]) => {
+  const createFieldSchema = useCreateFieldSchema();
+   const convertBehaviors = useCallback((behaviors: IBehavior[]) => {
     return behaviors?.map(behavior => {
-      const { schema: propsTabs, ...other } = behavior;
+      const { schema, ...other } = behavior;
       return {
         ...other,
         designerProps: {
           ...behavior.designerProps,
-          propsSchema: createFieldSchema(convertPropsSchema(propsTabs)),
+          propsSchema: createFieldSchema(schema),
         },
       }
     }
     ) || []
-  }, [convertPropsSchema])
+  }, [createFieldSchema])
 
   const transComponment = useCallback((material: IMaterialComponent): Material => {
     const Resource = createResource(material.resource)

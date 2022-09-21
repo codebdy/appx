@@ -78,7 +78,7 @@ const CategoryActions = memo((
     <Dropdown
       overlay={menu}
       trigger={['click']}
-      onVisibleChange={onVisibleChange}
+      onOpenChange={onVisibleChange}
       disabled={loading}
     >
       <Button shape='circle' type="text" size='small' onClick={e => e.stopPropagation()}>
@@ -87,7 +87,6 @@ const CategoryActions = memo((
             <LoadingOutlined />
             : <MoreOutlined />
         }
-
       </Button>
     </Dropdown>
   )
