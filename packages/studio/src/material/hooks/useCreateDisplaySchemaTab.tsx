@@ -1,7 +1,11 @@
 import { useCallback } from "react";
-import { IPropsSchema } from "../../plugin-sdk";
+import { FieldsType, IDisplayTabOptions, IPropsSchema } from "../../plugin-sdk";
+import {
+  ReactionsSetter,
+  ValidatorSetter,
+} from '@designable/formily-setters'
 
-export const createDisplaySchemaTab = (options?: IFieldOptions) => {
+export const createDisplaySchemaTab = (options?: IDisplayTabOptions) => {
   const { hasDataBindSource, fieldSourceType, hasPropTitle } = options || {}
   const dataBind =
     hasDataBindSource
@@ -211,10 +215,7 @@ export const createDisplaySchemaTab = (options?: IFieldOptions) => {
 
 export function useCreateDisplaySchemaTab() {
   const create = useCallback((propsSchema: IPropsSchema) => {
-    if (!propsSchema.display) {
-      return {}
-    }
-    return createDisplaySchemaTab(propsSchema.actions)
+    return createDisplaySchemaTab(propsSchema.display)
   }, [])
 
   return create

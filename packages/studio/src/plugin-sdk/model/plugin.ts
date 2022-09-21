@@ -21,22 +21,24 @@ export interface IPlugin {
   }
 }
 
-export interface IPropsGroup {
-  title: string;
-  schema: ISchema;
+export enum FieldsType {
+  Multiple = "Multiple",
+  Single = "Single"
 }
 
-export interface IPropsTab {
-  title: string;
-  groups: IPropsGroup[];
+
+export interface IDisplayTabOptions {
+  hasDataBindSource?: boolean,
+  fieldSourceType?: FieldsType,
+  hasPropTitle?: boolean,
 }
 
 export interface IPropsSchema {
-  style?: false | IPropsTab;
+  style?: boolean;
   props?: ISchema;
-  display?: IPropsTab;
+  display?: IDisplayTabOptions;
   actions?: string[];
-  decorator?: boolean | IPropsTab;
+  decorator?: boolean | ISchema;
 }
 
 export interface IBehavior extends IBehaviorCreator {
