@@ -1,20 +1,20 @@
 import { useCallback } from "react";
-import { IMaterialComponent } from "../../plugin-sdk";
+import { IBehavior, IMaterialComponent } from "../../plugin-sdk";
 import { DnFC } from "@designable/react"
 import { createFieldSchema } from '../../components/common/Field'
-import { createBehavior, createResource, IBehaviorCreator } from '@designable/core'
+import { createBehavior, createResource } from '@designable/core'
 import { Material } from "../model";
 import React from "react";
 
-function convertBehaviors(behaviors: IBehaviorCreator[]) {
+function convertBehaviors(behaviors: IBehavior[]) {
   return behaviors?.map(behavior => {
+    const { schema, ...other } = behavior;
     return {
-      ...behavior,
+      ...other,
       designerProps: {
         ...behavior.designerProps,
-        propsSchema: createFieldSchema((behavior.designerProps as any).propsSchema),
+        propsSchema: createFieldSchema(schema),
       },
-      //selector: (node) => node.props['x-component'] === 'Card',
     }
   }
   ) || []

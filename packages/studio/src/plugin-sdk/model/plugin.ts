@@ -1,5 +1,6 @@
 import { IBehaviorCreator, IResourceCreator } from "@designable/core";
 import { DnFC, DnComponent } from "@designable/react"
+import { ISchema } from "@formily/json-schema";
 import { IAppxAction } from "./action";
 
 export interface IPlugin {
@@ -20,10 +21,14 @@ export interface IPlugin {
   }
 }
 
+export interface IBehavior extends IBehaviorCreator {
+  schema?: ISchema,
+}
+
 export interface IMaterialComponent {
   name: string;
   designer: DnFC<any> | DnComponent<any>;
   component: React.FC<any> | React.Component;
   resource?: IResourceCreator;
-  behaviors?: IBehaviorCreator[];
+  behaviors?: IBehavior[];
 }

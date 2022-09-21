@@ -8,8 +8,8 @@ export const behaviors = [
     selector: (node) => node.props['x-component'] === 'ProLayout',
     designerProps: {
       droppable: true,
-      propsSchema: schema,
     },
     designerLocales: locales,
+    schema,
   }
 ]
