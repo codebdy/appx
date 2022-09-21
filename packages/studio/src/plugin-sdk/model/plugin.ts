@@ -14,6 +14,7 @@ export interface IPlugin {
   model?: any;
   locales?: any;
   actions?: IAppxAction[];//action功能以后实现
+  //templates?: ITemplate;
   dependencies?: {
     [name: string]: string; // name:version
   }
