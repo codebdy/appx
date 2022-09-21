@@ -20,13 +20,10 @@ import { LoggedInPanel } from './Login/LoggedInPanel';
 import { AppTemplates } from './AppTemplates';
 import { TemplateDesigner } from './TemplateDesigner';
 import { AppPlugins } from './AppPlugins';
-import { useLoadPredefinedPlugins } from './plugin/hooks/useLoadPredefinedPlugins';
 import { PredefinedPluginsRoot } from './plugin/PredefinedPluginsRoot';
 import { PredefinedMaterialsRoot } from './material/PredefinedMaterialsRoot';
 
 const App = memo(() => {
-  const predefinedPlugsin = useLoadPredefinedPlugins();
-  console.log("App.tsx 刷新", predefinedPlugsin)
   return (
     <PredefinedPluginsRoot>
       <PredefinedMaterialsRoot>

@@ -1,6 +1,5 @@
 import { IPlugin } from "../../plugin-sdk/model";
 import { useEffect, useState } from "react";
-import { materialStore2 } from "../../material/context";
 import { useTranslation } from "react-i18next";
 import { useExtractMaterialGroupFromPlugin } from "../../material/hooks/useExtractMaterialGroupFromPlugin";
 declare const window: Window & { rxPlugin: IPlugin };
@@ -11,6 +10,7 @@ export function useLoadPredefinedPlugins() {
   const extractGroup = useExtractMaterialGroupFromPlugin();
 
   useEffect(() => {
+    console.log("加载预定义插件")
     const plugins: IPlugin[] = [];
     import("../../plugins/inputs/index").then(() => {
       if (window.rxPlugin) {
@@ -23,11 +23,6 @@ export function useLoadPredefinedPlugins() {
         }
         window.rxPlugin = undefined;
         setPredefinedPlugins(plugins);
-
-        materialStore2.predefinedTab = {
-          title: t("Materials.Basic"),
-          groups: plugins.map(plugin => extractGroup(plugin)),
-        }
       });
     });
   }, [extractGroup, t])
