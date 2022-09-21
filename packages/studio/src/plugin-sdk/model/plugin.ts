@@ -24,5 +24,5 @@ export interface IMaterialComponent {
   designer: DnFC<any> | DnComponent<any>;
   component: React.FC<any> | React.Component;
   resource?: IResourceCreator;
-  behavior?: IBehaviorCreator;
+  behaviors?: IBehaviorCreator[];
 }
