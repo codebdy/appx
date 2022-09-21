@@ -20,8 +20,8 @@ import { LoggedInPanel } from './Login/LoggedInPanel';
 import { AppTemplates } from './AppTemplates';
 import { TemplateDesigner } from './TemplateDesigner';
 import { AppPlugins } from './AppPlugins';
-import { useLoadPredefinedPlugins } from './hooks/useLoadPredefinedPlugins';
-import { PredefinedPluginsContext } from './shared/contexts/predefinedPlugins';
+import { useLoadPredefinedPlugins } from './plugin/hooks/useLoadPredefinedPlugins';
+import { PredefinedPluginsContext } from './plugin/contexts';
 
 const App = memo(() => {
   const predefinedPlugsin = useLoadPredefinedPlugins();

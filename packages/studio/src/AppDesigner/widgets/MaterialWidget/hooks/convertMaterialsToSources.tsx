@@ -1,5 +1,6 @@
 import { createBehavior, createResource } from '@designable/core'
 import { DnFC } from "@designable/react"
+import { createFieldSchema } from '../../../../components/common/Field'
 import React from 'react'
 import { IMaterialComponent } from "../../../../plugin-sdk"
 //import { createFieldSchema, FieldsType } from "../../common/Field/shared"
@@ -10,9 +11,9 @@ function transComponment(material: IMaterialComponent): DnFC<any> {
     ...material.behavior,
     designerProps: {
       ...material.behavior.designerProps,
-      propsSchema: (material.behavior.designerProps as any).propsSchema,
+      propsSchema: createFieldSchema((material.behavior.designerProps as any).propsSchema),
     },
-    selector: (node) => node.props['x-component'] === 'Card',
+    //selector: (node) => node.props['x-component'] === 'Card',
   })
   const Resource = createResource(material.resource)
 

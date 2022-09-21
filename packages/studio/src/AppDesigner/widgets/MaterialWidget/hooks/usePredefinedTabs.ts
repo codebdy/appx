@@ -1,7 +1,7 @@
 import { IMaterialComponent, useGetPluginLocalMessage } from "../../../../plugin-sdk";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { usePredefinedPlugins } from "../../../../shared/contexts/predefinedPlugins";
+import { usePredefinedPlugins } from "../../../../plugin/contexts";
 import { useAppParams } from "../../../../shared/AppRoot/context";
 
 export interface ITab {
