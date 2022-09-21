@@ -1,6 +1,6 @@
 import { IBehavior } from "packages/studio/src/plugin-sdk";
 import { locales } from "../../locales";
-import { schemaTabs } from "./schema";
+import { schema } from "./schema";
 
 export const behaviors: IBehavior[] = [
   {
@@ -11,6 +11,6 @@ export const behaviors: IBehavior[] = [
       droppable: true,
     },
     designerLocales: locales,
-    propsTabs: schemaTabs,
+    schema,
   }
 ]

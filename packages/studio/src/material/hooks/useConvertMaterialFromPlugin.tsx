@@ -12,7 +12,7 @@ export function useConvertMaterialFromPlugin() {
   
   const convertBehaviors = useCallback((behaviors: IBehavior[]) => {
     return behaviors?.map(behavior => {
-      const { propsTabs, ...other } = behavior;
+      const { schema: propsTabs, ...other } = behavior;
       return {
         ...other,
         designerProps: {

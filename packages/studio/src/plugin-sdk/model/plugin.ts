@@ -31,8 +31,15 @@ export interface IPropsTab {
   groups: IPropsGroup[];
 }
 
+export interface IPropsSchema {
+  style?: boolean | IPropsTab;
+  props?: ISchema;
+  display?: IPropsTab;
+  actions?: string[];
+}
+
 export interface IBehavior extends IBehaviorCreator {
-  propsTabs?: IPropsTab[];
+  schema?: IPropsSchema;
 }
 
 export interface IMaterialComponent {
