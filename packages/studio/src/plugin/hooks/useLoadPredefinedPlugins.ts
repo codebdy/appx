@@ -1,8 +1,8 @@
 import { IPlugin } from "../../plugin-sdk/model";
 import { useEffect, useState } from "react";
-import { materialStore2 } from "../../materials/context";
+import { materialStore2 } from "../../material/context";
 import { useTranslation } from "react-i18next";
-import { useExtractMaterialGroupFromPlugin } from "../../materials/hooks/useExtractMaterialGroupFromPlugin";
+import { useExtractMaterialGroupFromPlugin } from "../../material/hooks/useExtractMaterialGroupFromPlugin";
 declare const window: Window & { rxPlugin: IPlugin };
 
 export function useLoadPredefinedPlugins() {
