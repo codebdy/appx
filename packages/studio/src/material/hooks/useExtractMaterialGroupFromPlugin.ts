@@ -1,5 +1,6 @@
 import { useCallback } from "react";
-import { IPlugin, useGetPluginLocalMessage } from "../../plugin-sdk";
+import { IPlugin } from "../../plugin-sdk";
+import { useGetPluginLocalMessage } from "../../plugin/hooks";
 import { MaterialGroup } from "../model";
 import { useExtractMaterialsFromPlugin } from "./useExtractMaterialsFromPlugin";
 
