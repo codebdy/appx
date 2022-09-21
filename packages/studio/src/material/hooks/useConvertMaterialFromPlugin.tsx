@@ -21,7 +21,6 @@ function convertBehaviors(behaviors: IBehaviorCreator[]) {
 }
 
 function transComponment(material: IMaterialComponent): Material {
-
   const Resource = createResource(material.resource)
 
   const dnfc: DnFC<any> = (props) => {

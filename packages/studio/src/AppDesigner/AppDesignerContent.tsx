@@ -32,7 +32,6 @@ import { useSetRecoilState } from 'recoil'
 import { categoriesState, pagesState } from './recoil/atom'
 import ConfigWorkSpace from './config/ConfigWorkSpace'
 import { ConfigActionsWidget } from './config/ConfigActionsWidget'
-import SvgIcon from '../common/SvgIcon'
 
 export enum DesignerRoutes {
   Templates = "Templates",
