@@ -21,6 +21,7 @@ import { useDesigner } from '@designable/react'
 import { useLazyQueryPage } from "../../../hooks/useLazyQueryPage";
 import { FormDesigner } from "../../../components/pc/FormDesigner";
 import { ObjectContainer } from "@designable/formily-antd";
+import { useMaterialDesigners } from "../../../material/hooks/useMaterialDesigners";
 
 const PageWorkSpace = (props: {
   pageId: ID,
@@ -29,6 +30,7 @@ const PageWorkSpace = (props: {
   const { pageId, visable } = props;
   const designer = useDesigner();
   const [query, { page, loading, error }] = useLazyQueryPage();
+  const materailDesigners = useMaterialDesigners();
 
   useEffect(() => {
     query(pageId)
@@ -69,6 +71,7 @@ const PageWorkSpace = (props: {
                         Form: FormDesigner,
                         Field,
                         ObjectContainer,
+                        ...materailDesigners,
                         ...convertMaterialsToComponentDesigners(materialStore.modules)
                       }}
                     />
