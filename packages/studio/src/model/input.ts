@@ -44,6 +44,7 @@ export interface IPluginInfoInput{
   title: string;
   url?: string;
   type?: PluginType,
+  description?: string;
 }
 
 export interface ITemplateInput {
