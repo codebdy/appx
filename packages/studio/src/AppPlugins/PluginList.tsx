@@ -3,7 +3,8 @@ import { Avatar, Button, List } from 'antd';
 import React, { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import SvgIcon from '../common/SvgIcon';
-import { PluginType, useAppParams } from '../shared/AppRoot/context';
+import { useAppParams } from '../shared/AppRoot/context';
+import { PluginType } from "../plugin/model";
 import { useGetPluginLocalMessage } from '../plugin/hooks/useGetPluginLocalMessage';
 
 export const PluginList = memo(() => {

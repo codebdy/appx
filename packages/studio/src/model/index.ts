@@ -58,7 +58,7 @@ export interface IPluginInfo{
   appUuid: string;
   title: string;
   url?: string;
-  pluginId: string;
+  pluginId: string
 }
 
 export interface ITemplate {

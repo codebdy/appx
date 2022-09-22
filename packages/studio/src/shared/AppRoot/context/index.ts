@@ -1,18 +1,7 @@
-import { Device, IPlugin } from "@appx/plugin-sdk";
+import { Device } from "@appx/plugin-sdk";
 import { createContext, useContext, useMemo } from "react";
-import { IApp, IAppConfig, IAppDeviceConfig, ILangLocal, IMaterialConfig, IPluginInfo, IUserConfig } from "../../../model";
-
-export enum PluginType {
-  Predefined = "predefined",
-  Normal = "normal",
-  Debug = "debug"
-}
-
-export interface IInstalledPlugin {
-  pluginInfo: IPluginInfo,
-  plugin?: IPlugin,
-  type: PluginType,
-}
+import { IApp, IAppConfig, IAppDeviceConfig, ILangLocal, IMaterialConfig, IUserConfig } from "../../../model";
+import { IInstalledPlugin } from "../../../plugin/model";
 
 export interface IAppContextParams {
   app: IApp,
