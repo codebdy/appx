@@ -37,7 +37,7 @@ function loadJS(src: string, clearCache = false): Promise<HTMLScriptElement> {
     //   }
     // })
     const script = document.createElement("script", {});
-    script.type = "module";
+    script.type = "text/JavaScript";
     if (clearCache) {
       script.src = src + "?t=" + new Date().getTime();
     } else {
