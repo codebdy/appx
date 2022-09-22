@@ -19,6 +19,7 @@ export const PluginList = memo(() => {
       itemLayout="vertical"
       dataSource={items}
       size="large"
+      grid={{ gutter: 16, column: 2 }}
       renderItem={(item) => (
         <PluginItem plugin={item} />
       )}
