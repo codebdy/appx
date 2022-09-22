@@ -15,7 +15,7 @@ import { Device } from '@rxdrag/appx-plugin-sdk'
 import { useQueryMaterialConfig } from './hooks/useQueryMaterialConfig'
 import { useIntalledPlugins } from '../../plugin/hooks/useIntalledPlugins'
 import { PluginType } from '../../model'
-
+import { MaterialTabRoot } from '../../material/MaterialTabRoot'
 
 export const AppRootInner = memo((
   props: {
@@ -37,6 +37,10 @@ export const AppRootInner = memo((
     return appUuid === SYSTEM_APP_UUID ? { id: "System", uuid: SYSTEM_APP_UUID, title: "System" } : app
   }, [app, appUuid])
 
+  const debugPlugins = useMemo(
+    () => plugins?.filter(plugin => plugin.pluginInfo?.type === PluginType.debug) || [],
+    [plugins]);
+
   const contextValue = useMemo(() => {
     return {
       app: realApp,
@@ -46,10 +50,10 @@ export const AppRootInner = memo((
       deviceConfig: deviceConfig,
       userConfig,
       normalPlugins: plugins?.filter(plugin => plugin.pluginInfo?.type === PluginType.normal) || [],
-      debugPlugins: plugins?.filter(plugin => plugin.pluginInfo?.type === PluginType.debug) || [],
+      debugPlugins: debugPlugins,
       materialConfig
     }
-  }, [config, device, deviceConfig, langLocales, materialConfig, plugins, realApp, userConfig])
+  }, [config, debugPlugins, device, deviceConfig, langLocales, materialConfig, plugins, realApp, userConfig])
 
 
   return (
@@ -57,20 +61,22 @@ export const AppRootInner = memo((
       <AppContext.Provider
         value={contextValue}
       >
-        <Spin
-          style={{ height: "100vh" }}
-          spinning={
-            loading ||
-            configLoading ||
-            localLoading ||
-            deviceLoading ||
-            userConfigLoading ||
-            materialConfigLoading ||
-            pluginLoading
-          }
-        >
-          {props.children}
-        </Spin>
+        <MaterialTabRoot>
+          <Spin
+            style={{ height: "100vh" }}
+            spinning={
+              loading ||
+              configLoading ||
+              localLoading ||
+              deviceLoading ||
+              userConfigLoading ||
+              materialConfigLoading ||
+              pluginLoading
+            }
+          >
+            {props.children}
+          </Spin>
+        </MaterialTabRoot>
       </AppContext.Provider>
       : <></>
   )

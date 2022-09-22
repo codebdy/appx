@@ -7,15 +7,12 @@ import { observer } from "@formily/reactive-react";
 import { materialStore } from "../../../shared/global";
 import { ResourceWidget } from "../ResourceWidget";
 import { useTranslation } from "react-i18next";
-import { usePredefinedMaterialTab } from "../../../material/context";
-import { useAppParams } from "../../../shared/AppRoot/context";
-import { useExtractMaterialGroupFromPlugin } from "../../../material/hooks/useExtractMaterialGroupFromPlugin";
+import { useAppMaterialTabs, usePredefinedMaterialTab } from "../../../material/context";
 const { TabPane } = Tabs;
 
 export const MaterialWidget: React.FC = observer(() => {
-  const { debugPlugins } = useAppParams();
+  const { debugMaterialTab } = useAppMaterialTabs();
   const predefinedTab = usePredefinedMaterialTab();
-  const extract = useExtractMaterialGroupFromPlugin();
   const { t } = useTranslation();
 
   return (
@@ -63,22 +60,20 @@ export const MaterialWidget: React.FC = observer(() => {
         <TabPane tab={t("Materials.Other")} key={"TAB-OTHER"}>
 
         </TabPane>
-        <TabPane tab={t("Materials.Debug")} key={"TAB-DEBUG"}>
-          {
-            debugPlugins?.map((plugin) => {
-              if (plugin.plugin) {
-                const group = extract(plugin.plugin);
+        {
+          debugMaterialTab &&
+          <TabPane tab={debugMaterialTab.title} key={debugMaterialTab.uuid}>
+            {
+              debugMaterialTab.groups?.map((groupData, gIndex) => {
                 return (<ResourceWidget
-                  key={plugin.pluginInfo?.id}
-                  title={plugin.pluginInfo.title}
-                  sources={group.materials.map(material => material.designer)}
+                  key={gIndex + 1}
+                  title={groupData.title}
+                  sources={groupData.materials.map(material => material.designer)}
                 />)
-              }
-
-              return undefined;
-            })
-          }
-        </TabPane>
+              })
+            }
+          </TabPane>
+        }
       </Tabs>
     </div>
   )

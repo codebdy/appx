@@ -1,17 +1,18 @@
 import { useMemo } from "react";
-import { usePredefinedMaterialTab } from "../context";
+import { useAppMaterialTabs, usePredefinedMaterialTab } from "../context";
 
 export function useMaterialDesigners() {
   const predefinedTab = usePredefinedMaterialTab();
+  const { debugMaterialTab } = useAppMaterialTabs();
   const materialDesigners = useMemo(() => {
     const designers = {} as any;
-    for (const group of predefinedTab?.groups || []) {
+    for (const group of [...predefinedTab?.groups || [], ...debugMaterialTab?.groups || []]) {
       for (const material of group.materials || []) {
         designers[material.name] = material.designer
       }
     }
     return designers
-  }, [predefinedTab?.groups])
+  }, [debugMaterialTab?.groups, predefinedTab?.groups])
 
   return materialDesigners;
 }
