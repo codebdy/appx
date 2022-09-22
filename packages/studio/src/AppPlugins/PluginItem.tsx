@@ -16,13 +16,20 @@ export const PluginItem = memo((
   const { plugin } = props;
   const { t } = useTranslation();
   const { getTitle, getDescription } = useGetPluginLocalMessage();
-  
+
   return (
     <List.Item
       actions={
         [
           <Button size="small" type="text" key="remove">{t("Delete")}</Button>,
-          <Button size="small" type='link' key="update">{t("Update")}</Button>,
+          <Button
+            size="small"
+            type='link'
+            key="update"
+            disabled={plugin.pluginInfo?.type === PluginType.debug}
+          >
+            {t("Update")}
+          </Button>,
         ]
       }
     >
