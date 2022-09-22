@@ -16,6 +16,7 @@ export default {
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: '[name].[hash].bundle.js',
+    publicPath: '/',
   },
   resolve: {
     modules: ['node_modules'],
@@ -58,6 +59,10 @@ export default {
               //   dark: true // 开启暗黑模式
               // }),
               javascriptEnabled: true,
+              modules: true,
+              modifyVars: {
+                'root-entry-name': 'default'
+              },
             },
           },
         ],

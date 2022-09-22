@@ -27,7 +27,7 @@ for (const key in baseConfig.entry) {
   }
 }
 
-export default {
+const devConfig = {
   ...baseConfig,
   plugins: [
     new MiniCssExtractPlugin({
@@ -48,5 +48,8 @@ export default {
     host: '127.0.0.1',
     open: true,
     port: PORT,
+    historyApiFallback: true,
   },
 }
+
+export default devConfig

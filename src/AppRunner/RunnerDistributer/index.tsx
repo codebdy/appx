@@ -5,12 +5,12 @@ import { useShowError } from '../../hooks/useShowError';
 import { Spin } from 'antd';
 import { useAppParams } from '../../shared/AppRoot/context';
 import { useMenu } from '../../shared/AppRoot/hooks/useMenu';
-import { Device } from '../../model';
 import { PCRunner } from '../PCRunner';
 import H5Runner from '../H5Runner';
 import WebsiteRunner from '../WebsiteRunner';
 import { RunnerContext } from '../context/runner';
 import RunnerRoot from '../RunnerRoot';
+import { Device } from '@rxdrag/appx-plugin-sdk';
 
 const RunnerDistributer = memo(() => {
   const { device } = useAppParams();
