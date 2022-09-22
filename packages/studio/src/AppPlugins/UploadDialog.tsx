@@ -114,7 +114,7 @@ export const UploadDialog: React.FC<IUploadModalProps> = memo((props: IUploadMod
           initialValues={
             {
               name: "",
-              url: "http://localhost:4000/",
+              url: "http://localhost:10001",
               operationType: OperationType.Upload
             }
           }
