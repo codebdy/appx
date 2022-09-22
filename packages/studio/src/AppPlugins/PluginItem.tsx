@@ -1,11 +1,13 @@
 import { BugOutlined } from "@ant-design/icons"
 import { Avatar, Button, List } from "antd"
-import React from "react"
+import React, { useCallback } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next"
 import SvgIcon from "../common/SvgIcon"
+import { useShowError } from "../hooks/useShowError"
 import { PluginType } from "../model"
 import { useGetPluginLocalMessage } from "../plugin/hooks"
+import { useDeletePluginInfo } from "../plugin/hooks/useDeletePluginInfo"
 import { IInstalledPlugin } from "../plugin/model"
 
 export const PluginItem = memo((
@@ -17,11 +19,25 @@ export const PluginItem = memo((
   const { t } = useTranslation();
   const { getTitle, getDescription } = useGetPluginLocalMessage();
 
+  const [remove, { error: deletError, loading: deleting }] = useDeletePluginInfo();
+
+  useShowError(deletError)
+
+  const handleDelete = useCallback(() => {
+    plugin.pluginInfo?.id && remove(plugin.pluginInfo?.id)
+  }, [plugin.pluginInfo?.id, remove]);
+
   return (
     <List.Item
       actions={
         [
-          <Button size="small" type="text" key="remove">{t("Delete")}</Button>,
+          <Button
+            size="small"
+            type="text"
+            key="remove"
+            loading={deleting}
+            onClick={handleDelete}
+          >{t("Delete")}</Button>,
           <Button
             size="small"
             type='link'
