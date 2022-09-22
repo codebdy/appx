@@ -11,7 +11,6 @@ export interface IAppContextParams {
   langLocales: ILangLocal[] | undefined,
   userConfig?: IUserConfig,
   plugins?: IInstalledPlugin[],
-  debugPlugins?: IInstalledPlugin[],
   materialConfig?: IMaterialConfig,
 }
 

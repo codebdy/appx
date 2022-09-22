@@ -4,16 +4,16 @@ import React, { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import SvgIcon from '../common/SvgIcon';
 import { useAppParams } from '../shared/AppRoot/context';
-import { PluginType } from "../plugin/model";
 import { useGetPluginLocalMessage } from '../plugin/hooks/useGetPluginLocalMessage';
+import { PluginType } from '../model';
 
 export const PluginList = memo(() => {
-  const { plugins, debugPlugins } = useAppParams();
+  const { plugins } = useAppParams();
 
   const { t } = useTranslation();
   const { getTitle, getDescription } = useGetPluginLocalMessage();
 
-  const items = useMemo(() => [...plugins, ...debugPlugins], [debugPlugins, plugins]);
+  const items = useMemo(() => [...plugins], [plugins]);
 
   return (
     <List
@@ -31,9 +31,9 @@ export const PluginList = memo(() => {
         >
           <List.Item.Meta
             avatar={<Avatar
-              style={{ backgroundColor: item.type === PluginType.Debug ? '#1890ff' : '#87d068' }}
+              style={{ backgroundColor: item.pluginInfo?.type === PluginType.Debug ? '#1890ff' : '#87d068' }}
               icon={
-                item.type === PluginType.Debug
+                item.pluginInfo?.type === PluginType.Debug
                   ?
                   <BugOutlined />
                   :
