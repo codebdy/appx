@@ -16,5 +16,5 @@ export function useIntalledPlugins() {
 
   }, [data, load])
 
-  return { installedPlugins, error, loading }
+  return { plugins: installedPlugins, error, loading }
 }
