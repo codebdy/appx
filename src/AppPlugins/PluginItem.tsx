@@ -1,6 +1,6 @@
 import { BugOutlined } from "@ant-design/icons"
 import { Avatar, Button, List } from "antd"
-import React, { useCallback } from "react"
+import React, { useCallback, useMemo } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next"
 import SvgIcon from "../common/SvgIcon"
@@ -8,7 +8,7 @@ import { useShowError } from "../hooks/useShowError"
 import { PluginType } from "../model"
 import { useGetPluginLocalMessage } from "../plugin/hooks"
 import { useDeletePluginInfo } from "../plugin/hooks/useDeletePluginInfo"
-import { IInstalledPlugin } from "../plugin/model"
+import { IInstalledPlugin, PluginStatus } from "../plugin/model"
 
 export const PluginItem = memo((
   props: {
@@ -26,6 +26,13 @@ export const PluginItem = memo((
   const handleDelete = useCallback(() => {
     plugin.pluginInfo?.id && remove(plugin.pluginInfo?.id)
   }, [plugin.pluginInfo?.id, remove]);
+
+  const color = useMemo(() => {
+    if (plugin.status === PluginStatus.Error) {
+      return "red"
+    }
+    return plugin.pluginInfo?.type === PluginType.debug ? '#1890ff' : '#87d068';
+  }, [])
 
   return (
     <List.Item
@@ -51,7 +58,7 @@ export const PluginItem = memo((
     >
       <List.Item.Meta
         avatar={<Avatar
-          style={{ backgroundColor: plugin.pluginInfo?.type === PluginType.debug ? '#1890ff' : '#87d068' }}
+          style={{ backgroundColor: color }}
           icon={
             plugin.pluginInfo?.type === PluginType.debug
               ?
