@@ -42,7 +42,7 @@ export const createStyleSchemaTab = () => {
 
 export function useCreateStyleSchemaTab() {
   const create = useCallback((propsSchema: IPropsSchema) => {
-    if (!propsSchema.style === false) {
+    if (!propsSchema?.style === false) {
       return {}
     }
     return createStyleSchemaTab()

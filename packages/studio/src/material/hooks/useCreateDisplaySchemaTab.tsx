@@ -215,7 +215,7 @@ export const createDisplaySchemaTab = (options?: IDisplayTabOptions) => {
 
 export function useCreateDisplaySchemaTab() {
   const create = useCallback((propsSchema: IPropsSchema) => {
-    return createDisplaySchemaTab(propsSchema.display)
+    return createDisplaySchemaTab(propsSchema?.display)
   }, [])
 
   return create

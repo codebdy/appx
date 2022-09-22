@@ -44,10 +44,10 @@ export const createComponentSchemaTab = (
 
 export function useCreatePropsSchemaTab() {
   const create = useCallback((propsSchema: IPropsSchema) => {
-    if (!propsSchema.props || Object.keys(propsSchema.props).length === 0) {
+    if (!propsSchema?.props || Object.keys(propsSchema.props).length === 0) {
       return {}
     }
-    return createComponentSchemaTab(propsSchema.props, propsSchema.decorator === true && AllSchemas.FormItem)
+    return createComponentSchemaTab(propsSchema.props as any, propsSchema.decorator === true && AllSchemas.FormItem)
   }, [])
 
   return create
