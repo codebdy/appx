@@ -9,13 +9,15 @@ export function useExtractMaterialGroupFromPlugin() {
   const { getTitle } = useGetPluginLocalMessage();
 
   const extractMaterialGroupFromPlugin = useCallback((plugin: IPlugin) => {
-    const group: MaterialGroup = {
-      title: getTitle(plugin),
-      id: plugin.id,
-      materials: extractMaterials(plugin),
+    if(plugin){
+      const group: MaterialGroup = {
+        title: getTitle(plugin),
+        id: plugin.id,
+        materials: extractMaterials(plugin),
+      }   
+      return group;   
     }
-
-    return group;
+    
   }, [extractMaterials, getTitle])
 
   return extractMaterialGroupFromPlugin;
