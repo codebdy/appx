@@ -23,6 +23,8 @@ export function useLoadPlugins() {
         })
       }
     }
+
+    return installedPlugins;
   }, [])
 
   return load;
