@@ -29,7 +29,7 @@ export const AppRootInner = memo((
   const { langLocales, loading: localLoading, error: localError } = useQueryLangLocales(appUuid);
   const { userConfig, loading: userConfigLoading, error: userConfigError } = useQueryUserConfig(appUuid, device as any, me?.id)
   const { materialConfig, loading: materialConfigLoading, error: materialConfigError } = useQueryMaterialConfig(appUuid, device as any)
-  const { plugins, loading: pluginLoading, error: pluginError } = useIntalledPlugins();
+  const { plugins, loading: pluginLoading, error: pluginError } = useIntalledPlugins(appUuid);
   useShowError(error || configError || localError || deviceError || userConfigError || materialConfigError || pluginError);
 
   const realApp = useMemo(() => {

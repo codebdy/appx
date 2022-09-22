@@ -5,7 +5,7 @@ import { useQuery } from "../../enthooks/hooks/useQuery";
 import { IPluginInfo } from "../../model";
 
 const pluginsGql = gql`
-query ($appUuid:ID!){
+query ($appUuid:String!){
   pluginInfo(where:{
     appUuid:{
       _eq:$appUuid
@@ -25,7 +25,7 @@ query ($appUuid:ID!){
 }
 `
 
-export function useQueryPluginInfos(appUuid?: string) {
+export function useQueryPluginInfos(appUuid: string) {
   const queryParams = useMemo((): IQueryInput => {
     return {
       gql: appUuid && pluginsGql,

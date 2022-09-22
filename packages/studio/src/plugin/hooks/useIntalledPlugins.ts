@@ -3,14 +3,14 @@ import { IInstalledPlugin } from "../model";
 import { useLoadPlugins } from "./useLoadPlugins";
 import { useQueryPluginInfos } from "./useQueryPluginInfos";
 
-export function useIntalledPlugins() {
+export function useIntalledPlugins(appUuid: string) {
   const [installedPlugins, setInstalledPlugins] = useState<IInstalledPlugin[]>([])
-  const { data, error, loading } = useQueryPluginInfos();
+  const { data, error, loading } = useQueryPluginInfos(appUuid);
 
   const load = useLoadPlugins();
 
   useEffect(() => {
-    load(data?.pluginInfos?.nodes || []).then((plugins) => {
+    load(data?.pluginInfo?.nodes || []).then((plugins) => {
       setInstalledPlugins(plugins);
     })
 
