@@ -18,7 +18,7 @@ export const MaterialTabRoot = memo((
   const contextValue = useMemo(() => {
     return {
       normalMaterialTabs: [],
-      debugMaterialTab: debugPlugins.length > 0 ? {
+      debugMaterialTab: debugPlugins.filter(plugin => plugin?.plugin).length > 0 ? {
         title: t("Materials.Debug"),
         uuid: "UUID-MATERIALS-DEBUG",
         groups: debugPlugins?.map(plugin => extract(plugin.plugin)) || []
