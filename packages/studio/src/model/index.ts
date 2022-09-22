@@ -59,12 +59,13 @@ export enum PluginType {
 }
 
 export interface IPluginInfo{
-  id: ID;
-  appUuid: string;
-  title: string;
+  id?: ID;
+  appUuid?: string;
+  title?: string;
   url?: string;
-  pluginId: string,
+  pluginId?: string,
   type?: PluginType,
+  description?: string,
 }
 
 export interface ITemplate {

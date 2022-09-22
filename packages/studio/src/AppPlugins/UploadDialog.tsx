@@ -3,7 +3,7 @@ import { Button, Form, Input, message, Modal, Radio, RadioChangeEvent, UploadPro
 import React, { memo, useCallback, useState } from 'react';
 import Dragger from 'antd/lib/upload/Dragger';
 import { MaterialModule, OperationType } from '../AppDesigner/widgets/MaterialWidget/model';
-import { loadDebugModule, transMaterialGroups } from '../plugin/load';
+import { loadDebugModule } from '../plugin/hooks/load';
 import { materialStore } from '../shared/global';
 import { useTranslation } from 'react-i18next';
 
@@ -29,7 +29,7 @@ export const UploadDialog: React.FC<IUploadModalProps> = memo((props: IUploadMod
               ...materialStore.modules,
               {
                 ...form.getFieldsValue(),
-                groups: transMaterialGroups(data.categories),
+                groups: []//transMaterialGroups(data.categories),
               },
             ];
             setIsModalVisible(false);
