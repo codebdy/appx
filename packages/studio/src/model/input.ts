@@ -1,4 +1,4 @@
-import { ILang } from ".";
+import { ILang, PluginType } from ".";
 import { Device, IMaterialTab } from "@appx/plugin-sdk";
 import { ID } from "../shared";
 
@@ -43,6 +43,7 @@ export interface IPluginInfoInput{
   appUuid: string;
   title: string;
   url?: string;
+  type?: PluginType,
 }
 
 export interface ITemplateInput {

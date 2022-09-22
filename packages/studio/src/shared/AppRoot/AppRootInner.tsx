@@ -7,7 +7,7 @@ import { useQueryLangLocales } from '../../hooks/useQueryLangLocales'
 import { useQueryAppConfig } from '../../hooks/useQueryAppConfig'
 import { useShowError } from '../../hooks/useShowError'
 import { AppContext } from './context'
-import { IInstalledPlugin, PluginStatus, PluginType } from "../../plugin/model"
+import { IInstalledPlugin, PluginStatus } from "../../plugin/model"
 import { SYSTEM_APP_UUID } from '../../consts'
 import { useQueryAppDeviceConfig } from '../../hooks/useQueryAppDeviceConfig'
 import { useMe } from '../../Login/context'
@@ -15,6 +15,7 @@ import { useQueryUserConfig } from './hooks/useQueryUserConfig'
 import { Device, IMaterialComponent } from '@appx/plugin-sdk'
 import { useQueryMaterialConfig } from './hooks/useQueryMaterialConfig'
 import { InputDesigner } from '../../components/pc'
+import { PluginType } from '../../model'
 
 export const locales1 = {
   'zh-CN': {
@@ -114,6 +115,7 @@ const plugins: IInstalledPlugin[] = [
       title: "布局",
       pluginId: "test1",
       appUuid: "",
+      type: PluginType.Normal,
     },
     plugin: {
       id: "test1",
@@ -125,7 +127,6 @@ const plugins: IInstalledPlugin[] = [
       },
       locales: locales1,
     },
-    type: PluginType.Normal,
     status: PluginStatus.Normal,
   },
   {
@@ -135,6 +136,7 @@ const plugins: IInstalledPlugin[] = [
       title: "多媒体",
       pluginId: "test2",
       appUuid: "",
+      type: PluginType.Normal,
     },
     plugin: {
       id: "test2",
@@ -146,7 +148,6 @@ const plugins: IInstalledPlugin[] = [
       },
       locales: locales2,
     },
-    type: PluginType.Normal,
     status: PluginStatus.Normal,
   }
 

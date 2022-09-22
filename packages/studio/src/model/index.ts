@@ -53,12 +53,18 @@ export interface IApp {
   templates?: ITemplate[];
 }
 
+export enum PluginType {
+  Normal = "normal",
+  Debug = "debug"
+}
+
 export interface IPluginInfo{
   id: ID;
   appUuid: string;
   title: string;
   url?: string;
-  pluginId: string
+  pluginId: string,
+  type?: PluginType,
 }
 
 export interface ITemplate {
