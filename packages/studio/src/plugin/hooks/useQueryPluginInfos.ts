@@ -18,7 +18,8 @@ query ($appUuid:String!){
       title
       pluginId
       type   
-      description 
+      description
+      version 
     }
     total
   }

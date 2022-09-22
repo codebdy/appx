@@ -67,6 +67,7 @@ export interface IPluginInfo {
   pluginId?: string,
   type?: PluginType,
   description?: string,
+  version?: string,
 }
 
 export interface ITemplate {

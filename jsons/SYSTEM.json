@@ -703,11 +703,18 @@
             "uuid": "cf0398e7-8dbc-4053-9db7-512b3fb115ec"
           },
           {
-            "uuid": "77dcb51c-e52e-4e73-bf9f-fdaf8a5abef0",
+            "label": "$inline:{\"zh-CN\":\"介绍\"}",
             "name": "description",
+            "nullable": true,
             "type": "String",
             "typeLabel": "String",
-            "label": "$inline:{\"zh-CN\":\"介绍\"}",
+            "uuid": "77dcb51c-e52e-4e73-bf9f-fdaf8a5abef0"
+          },
+          {
+            "uuid": "510d473b-c4e8-44b9-a55a-a8607135d9d1",
+            "name": "version",
+            "type": "String",
+            "typeLabel": "String",
             "nullable": true
           }
         ],
@@ -1243,12 +1250,12 @@
         "y": -330
       },
       {
-        "diagramUuid": "33546200-9c95-4747-94ee-a7198b6bd85c",
-        "height": 230,
         "id": "f0fa4b0f-4b91-4092-a93b-beaa13896e86",
-        "width": 180,
         "x": -1100,
-        "y": -201.9999999999999
+        "y": -201.9999999999998,
+        "width": 180,
+        "height": 280,
+        "diagramUuid": "33546200-9c95-4747-94ee-a7198b6bd85c"
       },
       {
         "diagramUuid": "33546200-9c95-4747-94ee-a7198b6bd85c",

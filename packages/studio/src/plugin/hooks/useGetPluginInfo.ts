@@ -17,6 +17,7 @@ export function useGetPluginInfo() {
       title: getTitle(plugin),
       pluginId: plugin.id,
       description: getDescription(plugin),
+      version: plugin.version,
     }
   }, [app?.uuid, getDescription, getTitle])
 
