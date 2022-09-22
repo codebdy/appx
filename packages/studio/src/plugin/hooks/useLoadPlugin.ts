@@ -1,4 +1,3 @@
-import { isStr } from "@formily/shared";
 import { IPlugin } from "@rxdrag/appx-plugin-sdk";
 import { useCallback } from "react";
 import { IPluginInfo, PluginType } from "../../model";
@@ -55,7 +54,7 @@ function loadJS(src: string, clearCache = false): Promise<HTMLScriptElement> {
     }
     document.head.appendChild(script);
 
-   })
+  })
 
   return p;
 }
@@ -81,14 +80,46 @@ export function loadPlugin(url: string): Promise<IPlugin> {
   return p;
 }
 
+export function loadDebugPlugin(url: string): Promise<IPlugin> {
+  const path = trimUrl(url);
+  const indexJs = path + "index.js";
+  const venderJs = path + "vendors~index.js";
+
+  console.log("加载前", window.rxPlugin);
+
+  const p = new Promise<IPlugin>((resolve, reject) => {
+    loadJS(venderJs, true)
+      .then((script) => {
+        const venderScript = script;
+        loadJS(indexJs, true)
+          .then((script) => {
+            resolve(window.rxPlugin);
+            window.rxPlugin = undefined
+            venderScript?.remove();
+            script?.remove();
+          })
+          .catch(err => {
+            reject(err);
+            venderScript?.remove();
+          })
+      })
+      .catch(err => {
+        reject(err);
+      })
+  })
+
+  return p;
+}
+
+
 export function useLoadPlugin() {
   const { app } = useAppParams();
   const getPlugInfo = useGetPluginInfo();
   const load = useCallback(async (url: string, type: PluginType, oldInfo?: IPluginInfo): Promise<IInstalledPlugin> => {
     console.assert(url, "Plugin url is emperty");
     try {
-      const plugin = await loadPlugin(url)
-      if(plugin){
+      const plugin = type === PluginType.debug ? await loadDebugPlugin(url) : await loadPlugin(url)
+      if (plugin) {
         return {
           pluginInfo: {
             ...getPlugInfo(plugin, url, type),
@@ -96,8 +127,8 @@ export function useLoadPlugin() {
           },
           plugin,
           status: PluginStatus.Normal
-        }        
-      }else{
+        }
+      } else {
         console.error("Load plugin failed")
       }
 

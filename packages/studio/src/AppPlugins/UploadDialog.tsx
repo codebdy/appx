@@ -123,7 +123,7 @@ export const UploadDialog: React.FC = memo(() => {
           initialValues={
             {
               name: "",
-              url: "http://localhost:10001",
+              url: "http://127.0.0.1:4000/",
               operationType: PluginType.normal
             }
           }
