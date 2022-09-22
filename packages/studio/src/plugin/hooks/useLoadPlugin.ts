@@ -68,6 +68,7 @@ export function loadPlugin(url: string): Promise<IPlugin> {
     loadJS(indexJs, true)
       .then((script) => {
         const rxPlugin = window.rxPlugin
+        console.log("加载结果", window.rxPlugin)
         window.rxPlugin = undefined
         resolve(rxPlugin);
         script?.remove();
