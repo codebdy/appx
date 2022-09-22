@@ -1,4 +1,4 @@
-import { Spin } from 'antd'
+import { Input, Spin } from 'antd'
 import 'antd/dist/antd.less'
 import React, { memo, useMemo } from 'react'
 import { useParams } from 'react-router-dom'
@@ -7,15 +7,14 @@ import { useQueryLangLocales } from '../../hooks/useQueryLangLocales'
 import { useQueryAppConfig } from '../../hooks/useQueryAppConfig'
 import { useShowError } from '../../hooks/useShowError'
 import { AppContext } from './context'
-import { IInstalledPlugin, PluginType } from "../../plugin/model"
+import { IInstalledPlugin, PluginStatus, PluginType } from "../../plugin/model"
 import { SYSTEM_APP_UUID } from '../../consts'
 import { useQueryAppDeviceConfig } from '../../hooks/useQueryAppDeviceConfig'
 import { useMe } from '../../Login/context'
 import { useQueryUserConfig } from './hooks/useQueryUserConfig'
 import { Device, IMaterialComponent } from '@appx/plugin-sdk'
-import { InputDesigner } from '../../components/pc'
-import { Input } from '@designable/formily-antd'
 import { useQueryMaterialConfig } from './hooks/useQueryMaterialConfig'
+import { InputDesigner } from '../../components/pc'
 
 export const locales1 = {
   'zh-CN': {
@@ -55,7 +54,7 @@ const coms1: IMaterialComponent[] = [
     name: "Input",
     component: Input,
     designer: InputDesigner,
-    behavior: {
+    behaviors: [{
       name: "Input",
       selector: "",
       designerLocales: {
@@ -67,12 +66,13 @@ const coms1: IMaterialComponent[] = [
         },
       }
     }
+    ],
   },
   {
     name: "TextArea",
     component: Input,
     designer: InputDesigner,
-    behavior: {
+    behaviors: [{
       name: "TextArea",
       selector: "",
       designerLocales: {
@@ -83,13 +83,13 @@ const coms1: IMaterialComponent[] = [
           title: 'TextArea',
         },
       }
-    }
+    }]
   },
   {
     name: "Select",
     component: Input,
     designer: InputDesigner,
-    behavior: {
+    behaviors: [{
       name: "Select",
       selector: "",
       designerLocales: {
@@ -100,117 +100,10 @@ const coms1: IMaterialComponent[] = [
           title: 'Select',
         },
       }
-    }
+    }]
   },
 ]
 
-const coms2: IMaterialComponent[] = [
-  {
-    name: "Input2",
-    component: Input,
-    designer: InputDesigner,
-    behavior: {
-      name: "Input2",
-      selector: "",
-      designerLocales: {
-        'zh-CN': {
-          title: '输入框2',
-        },
-        'en-US': {
-          title: 'Input2',
-        },
-      }
-    }
-  },
-  {
-    name: "TextArea2",
-    component: Input,
-    designer: InputDesigner,
-    behavior: {
-      name: "TextArea2",
-      selector: "",
-      designerLocales: {
-        'zh-CN': {
-          title: '多行输入框2',
-        },
-        'en-US': {
-          title: 'TextArea2',
-        },
-      }
-    }
-  },
-  {
-    name: "Select2",
-    component: Input,
-    designer: InputDesigner,
-    behavior: {
-      name: "Select2",
-      selector: "",
-      designerLocales: {
-        'zh-CN': {
-          title: '选择框2',
-        },
-        'en-US': {
-          title: 'Select2',
-        },
-      }
-    }
-  },
-]
-
-const coms3: IMaterialComponent[] = [
-  {
-    name: "Input3",
-    component: Input,
-    designer: InputDesigner,
-    behavior: {
-      name: "Input3",
-      selector: "",
-      designerLocales: {
-        'zh-CN': {
-          title: '输入框3',
-        },
-        'en-US': {
-          title: 'Input3',
-        },
-      }
-    }
-  },
-  {
-    name: "TextArea3",
-    component: Input,
-    designer: InputDesigner,
-    behavior: {
-      name: "TextArea3",
-      selector: "",
-      designerLocales: {
-        'zh-CN': {
-          title: '多行输入框3',
-        },
-        'en-US': {
-          title: 'TextArea3',
-        },
-      }
-    }
-  },
-  {
-    name: "Select3",
-    component: Input,
-    designer: InputDesigner,
-    behavior: {
-      name: "Select3",
-      selector: "",
-      designerLocales: {
-        'zh-CN': {
-          title: '选择框3',
-        },
-        'en-US': {
-          title: 'Select3',
-        },
-      }
-    }
-  },
-]
 
 
 const plugins: IInstalledPlugin[] = [
@@ -233,6 +126,7 @@ const plugins: IInstalledPlugin[] = [
       locales: locales1,
     },
     type: PluginType.Normal,
+    status: PluginStatus.Normal,
   },
   {
     pluginInfo: {
@@ -248,36 +142,14 @@ const plugins: IInstalledPlugin[] = [
       version: "1.1.0",
       description: "Description",
       components: {
-        [Device.PC]: coms2,
+        [Device.PC]: [],
       },
       locales: locales2,
     },
     type: PluginType.Normal,
+    status: PluginStatus.Normal,
   }
 
-]
-
-const debugPlugins = [
-  {
-    pluginInfo: {
-      id: "text-3",
-      url: "test",
-      title: "测试",
-      pluginId: "test2",
-      appUuid: "",
-    },
-    plugin: {
-      id: "test1",
-      title: "Test",
-      version: "1.1.0",
-      description: "Description",
-      components: {
-        [Device.PC]: [],
-      },
-      loacales: coms3,
-    },
-    type: PluginType.Debug,
-  }
 ]
 
 export const AppRootInner = memo((
@@ -308,7 +180,6 @@ export const AppRootInner = memo((
       deviceConfig: deviceConfig,
       userConfig,
       plugins,
-      debugPlugins,
       materialConfig
     }
   }, [config, device, deviceConfig, langLocales, materialConfig, realApp, userConfig])
