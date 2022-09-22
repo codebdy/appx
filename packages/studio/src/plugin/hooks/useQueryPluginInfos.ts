@@ -1,30 +1,38 @@
 import { gql } from "awesome-graphql-client";
 import { useMemo } from "react";
+import { IQueryInput } from "../../enthooks/hooks/IQueryInput";
 import { useQuery } from "../../enthooks/hooks/useQuery";
 import { IPluginInfo } from "../../model";
 
 const pluginsGql = gql`
-query {
-  pluginInfos{
+query ($appUuid:ID!){
+  pluginInfo(where:{
+    appUuid:{
+      _eq:$appUuid
+    }
+  }){
     nodes{
       id
       appUuid
       url 
       title
       pluginId
-      type    
+      type   
+      description 
     }
     total
   }
 }
 `
 
-export function useQueryPluginInfos() {
-  const queryParams = useMemo(() => {
+export function useQueryPluginInfos(appUuid?: string) {
+  const queryParams = useMemo((): IQueryInput => {
     return {
-      gql: pluginsGql,
-      depEntityNames: ["PluginInfo"]
+      gql: appUuid && pluginsGql,
+      depEntityNames: ["PluginInfo"],
+      params: { appUuid },
+
     }
-  }, [])
+  }, [appUuid])
   return useQuery<IPluginInfo>(queryParams)
 }
