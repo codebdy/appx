@@ -14,6 +14,7 @@ import { useQueryUserConfig } from './hooks/useQueryUserConfig'
 import { Device } from '@rxdrag/appx-plugin-sdk'
 import { useQueryMaterialConfig } from './hooks/useQueryMaterialConfig'
 import { useIntalledPlugins } from '../../plugin/hooks/useIntalledPlugins'
+import { PluginType } from '../../model'
 
 
 export const AppRootInner = memo((
@@ -44,7 +45,8 @@ export const AppRootInner = memo((
       langLocales,
       deviceConfig: deviceConfig,
       userConfig,
-      plugins,
+      normalPlugins: plugins?.filter(plugin => plugin.pluginInfo?.type === PluginType.normal) || [],
+      debugPlugins: plugins?.filter(plugin => plugin.pluginInfo?.type === PluginType.debug) || [],
       materialConfig
     }
   }, [config, device, deviceConfig, langLocales, materialConfig, plugins, realApp, userConfig])

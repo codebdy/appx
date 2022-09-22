@@ -1,18 +1,17 @@
 import { List } from 'antd';
 import React, { memo, useMemo } from 'react';
-import { PluginType } from '../model';
 import { useAppParams } from '../shared/AppRoot/context';
 import { PluginItem } from './PluginItem';
 
 export const PluginList = memo(() => {
-  const { plugins } = useAppParams();
+  const { normalPlugins, debugPlugins } = useAppParams();
 
   const items = useMemo(() => {
     return [
-      ...plugins?.filter(plugin => plugin.pluginInfo?.type === PluginType.normal) || [],
-      ...plugins?.filter(plugin => plugin.pluginInfo?.type === PluginType.debug) || []
+      ...normalPlugins,
+      ...debugPlugins
     ]
-  }, [plugins]);
+  }, [debugPlugins, normalPlugins]);
 
   return (
     <List

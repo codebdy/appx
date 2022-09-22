@@ -8,9 +8,11 @@ import { materialStore } from "../../../shared/global";
 import { ResourceWidget } from "../ResourceWidget";
 import { useTranslation } from "react-i18next";
 import { usePredefinedMaterialTab } from "../../../material/context";
+import { useAppParams } from "../../../shared/AppRoot/context";
 const { TabPane } = Tabs;
 
 export const MaterialWidget: React.FC = observer(() => {
+  const { debugPlugins, device } = useAppParams();
   const predefinedTab = usePredefinedMaterialTab();
   const { t } = useTranslation();
 
@@ -60,7 +62,15 @@ export const MaterialWidget: React.FC = observer(() => {
 
         </TabPane>
         <TabPane tab={t("Materials.Debug")} key={"TAB-DEBUG"}>
-
+          {
+            debugPlugins?.map((plugin) => {
+              return (<ResourceWidget
+                key={plugin.pluginInfo?.id}
+                title={plugin.pluginInfo.title}
+                sources={plugin.plugin?.components?.[device]?.map(material => material.designer)}
+              />)
+            })
+          }
         </TabPane>
       </Tabs>
     </div>
