@@ -3,7 +3,7 @@ import React from "react";
 import { memo } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import { PluginPanel } from "./PluginPanel";
-import { IMaterialTab } from "@appx/plugin-sdk";
+import { IMaterialTab } from "@rxdrag/appx-plugin-sdk";
 
 export const PLUGINS_LIST_ID = "PLUGINS_LIST_ID";
 export const PluginList = memo((

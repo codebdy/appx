@@ -1,4 +1,4 @@
-import { IBehavior } from "@appx/plugin-sdk";
+import { IBehavior } from "@rxdrag/appx-plugin-sdk";
 import { locales } from "../../locales";
 import { schema } from "./schema";
 

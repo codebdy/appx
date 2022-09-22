@@ -1,6 +1,6 @@
 import { AllSchemas } from "@designable/formily-antd"
 import { useCallback } from "react"
-import { IPropsSchema } from "@appx/plugin-sdk"
+import { IPropsSchema } from "@rxdrag/appx-plugin-sdk"
 
 export const createStyleSchemaTab = () => {
 

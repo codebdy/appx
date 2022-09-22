@@ -1,4 +1,4 @@
-import { Device, IPlugin } from "@appx/plugin-sdk";
+import { Device, IPlugin } from "@rxdrag/appx-plugin-sdk";
 import { mobileComponents, pcComponents, webSiteComponents } from "./components";
 import { locales } from "./loacales";
 

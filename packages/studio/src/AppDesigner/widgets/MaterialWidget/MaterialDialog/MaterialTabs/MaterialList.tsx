@@ -1,4 +1,4 @@
-import { IMaterialCollapseItem } from "@appx/plugin-sdk"
+import { IMaterialCollapseItem } from "@rxdrag/appx-plugin-sdk"
 import React, { useCallback } from "react"
 import { memo } from "react"
 import { Draggable, Droppable } from "react-beautiful-dnd"

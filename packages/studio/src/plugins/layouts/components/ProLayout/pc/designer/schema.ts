@@ -1,4 +1,4 @@
-import { IPropsSchema } from '@appx/plugin-sdk'
+import { IPropsSchema } from '@rxdrag/appx-plugin-sdk'
 
 export const schema: IPropsSchema = {
   props: {

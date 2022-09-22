@@ -4,7 +4,7 @@ import React, { memo, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MaterialTabs } from './MaterialTabs';
 import "./style.less";
-import { IMaterialCollapseItem, IMaterialTab } from '@appx/plugin-sdk';
+import { IMaterialCollapseItem, IMaterialTab } from '@rxdrag/appx-plugin-sdk';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import { PluginList, PLUGINS_LIST_ID } from './PluginList';
 import { GROUP_TYPE } from './MaterialTabs/MaterialTab';

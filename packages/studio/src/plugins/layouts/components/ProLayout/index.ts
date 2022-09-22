@@ -1,4 +1,4 @@
-import { Device } from "@appx/plugin-sdk"
+import { Device } from "@rxdrag/appx-plugin-sdk"
 import mobile from "./mobile"
 import pc from "./pc"
 import website from "./website"

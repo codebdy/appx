@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { IPropsSchema } from "@appx/plugin-sdk";
+import { IPropsSchema } from "@rxdrag/appx-plugin-sdk";
 import { useCreateActionsSchemaTab } from "./useCreateActionsSchemaTab";
 import { useCreateDisplaySchemaTab } from "./useCreateDisplaySchemaTab";
 import { useCreatePropsSchemaTab } from "./useCreatePropsSchemaTab";

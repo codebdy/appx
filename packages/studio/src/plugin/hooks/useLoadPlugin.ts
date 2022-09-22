@@ -1,6 +1,5 @@
-import { IPlugin } from "@appx/plugin-sdk";
+import { IPlugin } from "@rxdrag/appx-plugin-sdk";
 import { isStr } from "@formily/shared";
-import { strict } from "assert";
 import { useCallback } from "react";
 import { IPluginInfo, PluginType } from "../../model";
 import { useAppParams } from "../../shared/AppRoot/context";

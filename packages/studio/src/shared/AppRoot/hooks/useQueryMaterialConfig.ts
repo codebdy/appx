@@ -2,7 +2,7 @@ import { gql } from "awesome-graphql-client";
 import { useMemo } from "react";
 import { useQueryOne } from "../../../enthooks/hooks/useQueryOne";
 import { IMaterialConfig } from "../../../model";
-import { Device } from "@appx/plugin-sdk";
+import { Device } from "@rxdrag/appx-plugin-sdk";
 
 const materialConfigGql = gql`
 query ($appUuid:String!, $device:String!){

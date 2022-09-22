@@ -1,4 +1,4 @@
-import { Device, IPlugin } from "@appx/plugin-sdk";
+import { Device, IPlugin } from "@rxdrag/appx-plugin-sdk";
 import { locales } from "./loacales";
 
 export const rxPlugin: IPlugin = {

@@ -3,7 +3,7 @@ import { IUserConfig } from "../../../model";
 import { useQueryOne } from "../../../enthooks/hooks/useQueryOne";
 import { useMemo } from "react";
 import { ID } from "../..";
-import { Device } from "@appx/plugin-sdk";
+import { Device } from "@rxdrag/appx-plugin-sdk";
 
 const userConfigGql = gql`
 query ($appUuid:String!, $device:String!, $userId:ID!){

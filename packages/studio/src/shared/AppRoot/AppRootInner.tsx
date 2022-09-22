@@ -11,7 +11,7 @@ import { SYSTEM_APP_UUID } from '../../consts'
 import { useQueryAppDeviceConfig } from '../../hooks/useQueryAppDeviceConfig'
 import { useMe } from '../../Login/context'
 import { useQueryUserConfig } from './hooks/useQueryUserConfig'
-import { Device } from '@appx/plugin-sdk'
+import { Device } from '@rxdrag/appx-plugin-sdk'
 import { useQueryMaterialConfig } from './hooks/useQueryMaterialConfig'
 import { useIntalledPlugins } from '../../plugin/hooks/useIntalledPlugins'
 

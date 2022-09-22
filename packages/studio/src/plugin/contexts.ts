@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { IPlugin } from "@appx/plugin-sdk";
+import { IPlugin } from "@rxdrag/appx-plugin-sdk";
 
 export const PredefinedPluginsContext = createContext<IPlugin []>([]);
 

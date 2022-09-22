@@ -1,4 +1,4 @@
-import { Device } from "@appx/plugin-sdk";
+import { Device } from "@rxdrag/appx-plugin-sdk";
 import { createContext, useContext, useMemo } from "react";
 import { IApp, IAppConfig, IAppDeviceConfig, ILangLocal, IMaterialConfig, IUserConfig } from "../../../model";
 import { IInstalledPlugin } from "../../../plugin/model";

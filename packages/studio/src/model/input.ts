@@ -1,5 +1,5 @@
 import { ILang, PluginType } from ".";
-import { Device, IMaterialTab } from "@appx/plugin-sdk";
+import { Device, IMaterialTab } from "@rxdrag/appx-plugin-sdk";
 import { ID } from "../shared";
 
 export interface IUserInput {

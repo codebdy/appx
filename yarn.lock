@@ -1546,7 +1546,7 @@
   resolved "https://registry.npmmirror.com/@ctrl/tinycolor/-/tinycolor-3.4.1.tgz#75b4c27948c81e88ccd3a8902047bcd797f38d32"
   integrity sha512-ej5oVy6lykXsvieQtqZxCOaLT+xD4+QNarq78cIYISHmZXshCvROLudpQN3lfL8G0NL7plMSSK+zlyvCaIJ4Iw==
 
-"@designable/core@1.0.0-beta.45":
+"@designable/core@1.0.0-beta.45", "@designable/core@^1.0.0-beta.45":
   version "1.0.0-beta.45"
   resolved "https://registry.npmmirror.com/@designable/core/-/core-1.0.0-beta.45.tgz#779010f2f33aa2ea48c11f6ace05744805e85518"
   integrity sha512-zCN2O9HlVaqcd90KCl1OtsWTBMX4+xcWfew9sqxQfOE9GWc2VENw2IpbHcIsGaEDhklmZZ83vnDrivjwhZMMsw==
@@ -1597,7 +1597,7 @@
     react-color "^2.19.3"
     react-tiny-popover "^6.0.5"
 
-"@designable/react@1.0.0-beta.45":
+"@designable/react@1.0.0-beta.45", "@designable/react@^1.0.0-beta.45":
   version "1.0.0-beta.45"
   resolved "https://registry.npmmirror.com/@designable/react/-/react-1.0.0-beta.45.tgz#d6b592904c55bce969959c14ec846a6dc262556c"
   integrity sha512-zZQ7cIl+X1ntXCNkeesCeMtLChWbFLsKTNmMVA6gS1wUWIlWb2aFQg/cM3P2JVmu2ovBE5EEEnomC94Nwz390A==
@@ -1688,6 +1688,15 @@
     "@formily/shared" "2.1.9"
     "@formily/validator" "2.1.9"
 
+"@formily/core@2.2.5":
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/@formily/core/-/core-2.2.5.tgz#5964a3f45e611154ec52fe1ed660e978f1096c16"
+  integrity sha512-XQc79yyJrLa+UZd9FCczevAYmEGHTmS7ZSt30ZM3VMvbqVHBPNsXGtpJdXjq4tSQpc/83U362i4ALvhUisbjaQ==
+  dependencies:
+    "@formily/reactive" "2.2.5"
+    "@formily/shared" "2.2.5"
+    "@formily/validator" "2.2.5"
+
 "@formily/grid@2.1.9":
   version "2.1.9"
   resolved "https://registry.npmmirror.com/@formily/grid/-/grid-2.1.9.tgz#6fd32070fb78a7741ff71bb8fa56c19abac12eb1"
@@ -1705,10 +1714,24 @@
     "@formily/reactive" "2.1.9"
     "@formily/shared" "2.1.9"
 
+"@formily/json-schema@^2.2.5":
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/@formily/json-schema/-/json-schema-2.2.5.tgz#1fe81f6959fb56771a89e0f362d713e07ad3a99d"
+  integrity sha512-VNK1R4y59qd9o/yMfEDtDPbJnsTyDtmbaP55ff9+2Uo+s82E4uYIf/dWcXlrXNZRDUjt1wocmdN/fBR9kARJWQ==
+  dependencies:
+    "@formily/core" "2.2.5"
+    "@formily/reactive" "2.2.5"
+    "@formily/shared" "2.2.5"
+
 "@formily/path@2.1.9":
   version "2.1.9"
   resolved "https://registry.npmmirror.com/@formily/path/-/path-2.1.9.tgz#bba0ae4c2ce19e43cd3927f4b3a15865d50b99cb"
   integrity sha512-oMCKu6v5IoZiNAq7mKeXUDJagEquBhgkJ5kskvuMPjGCWBQQiAOCLtLMBSDWwTk7gAjpl6S9sxQmxHGvPzDGsg==
+
+"@formily/path@2.2.5":
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/@formily/path/-/path-2.2.5.tgz#bd617a03c3e45906f9a909db93522e6dfbb8c357"
+  integrity sha512-9a5CEG81tW6vLuzPnDqxCmrCWqPP6LEKzrqWv6eeu3WNwZKhkGd0YX9vSLcnzVkojpt0NxSgxqvEDdN4vT3oxg==
 
 "@formily/react@2.1.9":
   version "2.1.9"
@@ -1736,6 +1759,11 @@
   resolved "https://registry.npmmirror.com/@formily/reactive/-/reactive-2.1.9.tgz#f4619a4521a068d9dc4a9f0a01254a75c3d5168d"
   integrity sha512-rpZdf0FhhNsE7mepEqsSDYF+HW6VSYBHbJYwDnaymRT4NWrvpBjB88aFvgoKbJ2udM/5GLB5fji5Kf6toV8cpg==
 
+"@formily/reactive@2.2.5":
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/@formily/reactive/-/reactive-2.2.5.tgz#52af202bf6aaa9cab9b9fd309237fe5c5ff778d6"
+  integrity sha512-mw7KgTAOqfHM1FJbPla0/LTLddX3K+CFHp6RpDuXC1lHmbt7f3wFmuVbCJQVKbslJEhQp740zrXk5SB0RGHwhw==
+
 "@formily/shared@2.1.9", "@formily/shared@^2.1.9":
   version "2.1.9"
   resolved "https://registry.npmmirror.com/@formily/shared/-/shared-2.1.9.tgz#4bbe91948e80e6ddd1e0c54853134f5ef314f67d"
@@ -1749,12 +1777,32 @@
     pascal-case "^3.1.1"
     upper-case "^2.0.1"
 
+"@formily/shared@2.2.5":
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/@formily/shared/-/shared-2.2.5.tgz#33bb9d3c17df746dd90253070a2d793e2ad19362"
+  integrity sha512-pIsa+/ljy4MLMwW9pfgvQw8cnhMqebuA5ejB07tSLo3qZqfozDZjTf5IsMRphqds3Zgk1ZsIkOHvNP8Xqqd6Vw==
+  dependencies:
+    "@formily/path" "2.2.5"
+    camel-case "^4.1.1"
+    lower-case "^2.0.1"
+    no-case "^3.0.4"
+    param-case "^3.0.4"
+    pascal-case "^3.1.1"
+    upper-case "^2.0.1"
+
 "@formily/validator@2.1.9":
   version "2.1.9"
   resolved "https://registry.npmmirror.com/@formily/validator/-/validator-2.1.9.tgz#2b8c082023fe34ddddf05e52f856349897343097"
   integrity sha512-BLiSvrPhE/qYpC770OzODILrjmFztUmKVo3HIwCA/6En58j3LScLXgI/IXbJDoHbOqzLkZF9hH8Ru2FA+PUQbg==
   dependencies:
     "@formily/shared" "2.1.9"
+
+"@formily/validator@2.2.5":
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/@formily/validator/-/validator-2.2.5.tgz#cbe62bad4e98c3ceb4dd9a88eff15d840a7a7e1e"
+  integrity sha512-XPIqIRFtwrXgnJl2B50IR6dyJ7SJPKEo6eXM7an3Tr4/qqc89VdQOzxvmRCgUGGr6JIJzBX7fW5A6FEOPI9+5g==
+  dependencies:
+    "@formily/shared" "2.2.5"
 
 "@graphiql/react@^0.6.0":
   version "0.6.0"
@@ -2141,6 +2189,16 @@
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.1.4.tgz#0c8b74c50f29ee44f423f7416829c0bf8bb5eb27"
   integrity sha512-LwzQKA4vzIct1zNZzBmRKI9QuNpLgTQMEjsQLf3BXuGYb3QPTP4Yjf6mkdX+X1mYttZ808QpOwAzZjv28kq7DA==
+
+"@rxdrag/appx-plugin-sdk@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@rxdrag/appx-plugin-sdk/-/appx-plugin-sdk-0.0.2.tgz#61abade0585b633c48d025385f949a7f82ce0d9e"
+  integrity sha512-yOFzPP2TrcndFzknT3Zm9te62kgdZNmKVhb+iWqmzbqogFQNNZyExKzo7rIQWZiGpsh26rqP1uKMQJlgo8qqqQ==
+  dependencies:
+    "@designable/core" "^1.0.0-beta.45"
+    "@designable/react" "^1.0.0-beta.45"
+    "@formily/json-schema" "^2.2.5"
+    prop-types "^15.7.2"
 
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.1"
@@ -10965,7 +11023,7 @@ react-display-name@^0.2.4:
   resolved "https://registry.yarnpkg.com/react-display-name/-/react-display-name-0.2.5.tgz#304c7cbfb59ee40389d436e1a822c17fe27936c6"
   integrity sha512-I+vcaK9t4+kypiSgaiVWAipqHRXYmZIuAiS8vzFvXHHXVigg/sMKwlRgLy6LH2i3rmP+0Vzfl5lFsFRwF1r3pg==
 
-react-dom@^17.0.1, react-dom@^17.0.2:
+react-dom@^17.0.1:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-17.0.2.tgz#ecffb6845e3ad8dbfcdc498f0d0a939736502c23"
   integrity sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==
@@ -11080,7 +11138,7 @@ react-tiny-popover@^6.0.5:
   resolved "https://registry.npmmirror.com/react-tiny-popover/-/react-tiny-popover-6.0.10.tgz#6167a1b4a1ae6cf847d2909057defd00d95d726c"
   integrity sha512-ECMucd701SxWHGa+2YuVvccCxxTjmhomcD0ZYTF+Qmi5qNAj8pdlExFN+k+p1G78QTYIGPGNLocxRb9f6cZ0Mw==
 
-react@^17.0.1, react@^17.0.2:
+react@^17.0.1:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
   integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==

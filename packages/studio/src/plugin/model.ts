@@ -1,4 +1,4 @@
-import { IPlugin } from "@appx/plugin-sdk";
+import { IPlugin } from "@rxdrag/appx-plugin-sdk";
 import { IPluginInfo } from "../model";
 
 

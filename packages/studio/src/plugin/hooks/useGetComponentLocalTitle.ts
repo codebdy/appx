@@ -1,4 +1,4 @@
-import { IMaterialComponent } from "@appx/plugin-sdk";
+import { IMaterialComponent } from "@rxdrag/appx-plugin-sdk";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 

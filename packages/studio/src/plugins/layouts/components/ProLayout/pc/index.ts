@@ -1,4 +1,4 @@
-import { IMaterialComponent } from "@appx/plugin-sdk";
+import { IMaterialComponent } from "@rxdrag/appx-plugin-sdk";
 import { NAME } from "../consts";
 import { ProLayoutDesigner } from "./designer";
 import { behaviors } from "./designer/behaviors";
