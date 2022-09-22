@@ -18,7 +18,7 @@ query queryApp($uuid:String!){
 }
 `
 
-export function useApp(uuid: string) {
+export function useQueryApp(uuid: string) {
   const params = useMemo(() => ({
     uuid: uuid || SYSTEM_APP_UUID
   }), [uuid])

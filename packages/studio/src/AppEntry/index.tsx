@@ -3,7 +3,7 @@ import { memo } from "react"
 import { Layout } from 'antd';
 import ConifgHeader from "./ConifgHeader";
 import { Outlet, useParams } from "react-router-dom";
-import { useApp } from "../hooks/useApp";
+import { useQueryApp } from "../hooks/useQueryApp";
 import { useShowError } from '../hooks/useShowError';
 import AppRoot from "../shared/AppRoot";
 
@@ -11,7 +11,7 @@ const { Content } = Layout;
 
 const AppEntry = memo(() => {
   const { appUuid } = useParams();
-  const { app, error } = useApp(appUuid)
+  const { app, error } = useQueryApp(appUuid)
 
   useShowError(error);
 

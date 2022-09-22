@@ -2,7 +2,7 @@ import { Input, Spin } from 'antd'
 import 'antd/dist/antd.less'
 import React, { memo, useMemo } from 'react'
 import { useParams } from 'react-router-dom'
-import { useApp } from '../../hooks/useApp'
+import { useQueryApp } from '../../hooks/useQueryApp'
 import { useQueryLangLocales } from '../../hooks/useQueryLangLocales'
 import { useQueryAppConfig } from '../../hooks/useQueryAppConfig'
 import { useShowError } from '../../hooks/useShowError'
@@ -160,7 +160,7 @@ export const AppRootInner = memo((
 ) => {
   const { appUuid = SYSTEM_APP_UUID, device = Device.PC } = useParams();
   const me = useMe();
-  const { app, loading, error } = useApp(appUuid)
+  const { app, loading, error } = useQueryApp(appUuid)
   const { config, loading: configLoading, error: configError } = useQueryAppConfig(appUuid);
   const { deviceConfig, loading: deviceLoading, error: deviceError } = useQueryAppDeviceConfig(appUuid, device as any)
   const { langLocales, loading: localLoading, error: localError } = useQueryLangLocales(appUuid);

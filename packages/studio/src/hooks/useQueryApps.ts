@@ -1,6 +1,7 @@
 import { gql } from "awesome-graphql-client";
 import { IApp } from "../model";
 import { useQuery } from "../enthooks/hooks/useQuery";
+import { useMemo } from "react";
 
 const appsGql = gql`
 query {
@@ -21,10 +22,11 @@ query {
 `
 
 export function useQueryApps() {
-  return useQuery<IApp>(
-    {
+  const queryParams = useMemo(() => {
+    return {
       gql: appsGql,
       depEntityNames: ["App"]
     }
-  )
+  }, [])
+  return useQuery<IApp>(queryParams)
 }
