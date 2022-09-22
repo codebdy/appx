@@ -1,7 +1,7 @@
 import { useCallback } from "react";
-import { IPluginInfo } from "../../model";
+import { IPluginInfo, PluginType } from "../../model";
 import { IInstalledPlugin, PluginStatus } from "../model";
-import { loadPlugin } from "./load";
+import { loadDebugPlugin, loadPlugin } from "./useLoadPlugin";
 
 export function useLoadPlugins() {
   const load = useCallback(async (pluginInfos: IPluginInfo[]) => {
@@ -9,7 +9,10 @@ export function useLoadPlugins() {
     for (const pluginInfo of pluginInfos) {
       console.assert(pluginInfo.url, "Plugin no url");
       try {
-        const plugin = await loadPlugin(pluginInfo.url)
+        const plugin = pluginInfo.type === PluginType.debug
+          ? await loadDebugPlugin(pluginInfo.url)
+          : await loadPlugin(pluginInfo.url)
+
         installedPlugins.push({
           pluginInfo,
           plugin,
