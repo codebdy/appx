@@ -2,16 +2,16 @@ import { useCallback } from "react";
 import { useAppParams } from "../../shared/AppRoot/context";
 
 export function useGetComponent() {
-  const { plugins, device } = useAppParams();
+  const { normalPlugins, device } = useAppParams();
 
   const getCompoent = useCallback((name: string) => {
-    for (const plugin of plugins) {
+    for (const plugin of normalPlugins) {
       const com = plugin.plugin?.components[device]?.find(com => com.name === name)
       if (com) {
         return com;
       }
     }
-  }, [device, plugins])
+  }, [device, normalPlugins])
 
   return getCompoent;
 }
