@@ -2,37 +2,43 @@ import { CloudUploadOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Form, Input, message, Modal, Radio, RadioChangeEvent, UploadProps } from 'antd';
 import React, { memo, useCallback, useState } from 'react';
 import Dragger from 'antd/lib/upload/Dragger';
-import { MaterialModule, OperationType } from '../AppDesigner/widgets/MaterialWidget/model';
-import { loadDebugModule } from '../plugin/hooks/load';
-import { materialStore } from '../shared/global';
 import { useTranslation } from 'react-i18next';
+import { useUpsertPluginInfo } from '../plugin/hooks/useUpsertPluginInfo';
+import { useShowError } from '../hooks/useShowError';
+import { useLoadPlugin } from '../plugin/hooks/useLoadPlugin';
+import { IPluginInfo, PluginType } from '../model';
+import { PluginStatus } from '../plugin/model';
 
-export interface IUploadModalProps {
-  onAdded?: (module: MaterialModule) => void
-}
-
-export const UploadDialog: React.FC<IUploadModalProps> = memo((props: IUploadModalProps) => {
+export const UploadDialog: React.FC = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [operationType, setOperationType] = useState(OperationType.Upload)
-  const [form] = Form.useForm<MaterialModule>();
+  const [operationType, setOperationType] = useState(PluginType.normal)
+  const [form] = Form.useForm<IPluginInfo>();
   const { t } = useTranslation();
   const showModal = useCallback(() => {
     setIsModalVisible(true);
   }, []);
 
+  const [upsert, { loading: upserting, error }] = useUpsertPluginInfo(
+    {
+      onCompleted: () => {
+        setIsModalVisible(false);
+      }
+    }
+  );
+
+  const load = useLoadPlugin();
+
+  useShowError(error);
+
   const handleOk = useCallback(() => {
     form.validateFields().then((formData) => {
-      if (formData.operationType === OperationType.Debug) {
-        loadDebugModule(formData.url)
+      if (formData.type === PluginType.debug) {
+        load(formData.url, PluginType.debug)
           .then((data) => {
-            materialStore.modules = [
-              ...materialStore.modules,
-              {
-                ...form.getFieldsValue(),
-                groups: []//transMaterialGroups(data.categories),
-              },
-            ];
-            setIsModalVisible(false);
+            console.log("哈哈哈", data)
+            if (data?.pluginInfo && data.status !== PluginStatus.Error) {
+              upsert(data?.pluginInfo)
+            }
           })
           .catch((err) => {
             console.error(err);
@@ -45,7 +51,7 @@ export const UploadDialog: React.FC<IUploadModalProps> = memo((props: IUploadMod
     });
 
     //setIsModalVisible(false);
-  }, [form]);
+  }, [form, load, upsert]);
 
   const handleCancel = useCallback(() => {
     setIsModalVisible(false);
@@ -106,6 +112,9 @@ export const UploadDialog: React.FC<IUploadModalProps> = memo((props: IUploadMod
         onCancel={handleCancel}
         okText={t("Confirm")}
         cancelText={t("Cancel")}
+        okButtonProps={{
+          loading: upserting
+        }}
       >
         <Form
           name="upload-customized"
@@ -115,7 +124,7 @@ export const UploadDialog: React.FC<IUploadModalProps> = memo((props: IUploadMod
             {
               name: "",
               url: "http://localhost:10001",
-              operationType: OperationType.Upload
+              operationType: PluginType.normal
             }
           }
           form={form}
@@ -125,18 +134,18 @@ export const UploadDialog: React.FC<IUploadModalProps> = memo((props: IUploadMod
         >
           <Form.Item
             label={t("Plugins.OperationType")}
-            name="operationType"
+            name="type"
           >
             <Radio.Group
               onChange={onTypeChange}
             >
-              <Radio value={OperationType.Upload}>{t("Plugins.Upload")}</Radio>
-              <Radio value={OperationType.Debug}>{t("Plugins.Debug")}</Radio>
-              <Radio disabled value={OperationType.Market}>{t("Plugins.Market")}</Radio>
+              <Radio value={PluginType.normal}>{t("Plugins.Upload")}</Radio>
+              <Radio value={PluginType.debug}>{t("Plugins.Debug")}</Radio>
+              <Radio disabled value={PluginType.market}>{t("Plugins.Market")}</Radio>
             </Radio.Group>
           </Form.Item>
           {
-            operationType === OperationType.Upload &&
+            operationType === PluginType.normal &&
             < Form.Item
               label={t("Materials.UploadFile")}
               name="file"
@@ -156,7 +165,7 @@ export const UploadDialog: React.FC<IUploadModalProps> = memo((props: IUploadMod
             </Form.Item>
           }
           {
-            operationType === OperationType.Debug &&
+            operationType === PluginType.debug &&
             <Form.Item
               label={t("Materials.LinkAddress")}
               name="url"

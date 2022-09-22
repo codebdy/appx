@@ -38,10 +38,10 @@ export interface IAppDeviceConfigInput {
   }
 }
 
-export interface IPluginInfoInput{
+export interface IPluginInfoInput {
   id?: ID;
-  appUuid: string;
-  title: string;
+  appUuid?: string;
+  title?: string;
   url?: string;
   type?: PluginType,
   description?: string;

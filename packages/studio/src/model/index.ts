@@ -55,10 +55,11 @@ export interface IApp {
 
 export enum PluginType {
   normal = "normal",
-  debug = "debug"
+  debug = "debug",
+  market = "market"
 }
 
-export interface IPluginInfo{
+export interface IPluginInfo {
   id?: ID;
   appUuid?: string;
   title?: string;

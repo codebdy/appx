@@ -1,5 +1,6 @@
 import { IPlugin } from "@appx/plugin-sdk";
-import { assert } from "console";
+import { isStr } from "@formily/shared";
+import { strict } from "assert";
 import { useCallback } from "react";
 import { IPluginInfo, PluginType } from "../../model";
 import { useAppParams } from "../../shared/AppRoot/context";
@@ -14,22 +15,46 @@ function trimUrl(url: string) {
 
 function loadJS(src: string, clearCache = false): Promise<HTMLScriptElement> {
   const p = new Promise<HTMLScriptElement>((resolve, reject) => {
-    const script = document.createElement("script");
-    script.type = "text/JavaScript";
-    if (clearCache) {
-      script.src = src + "?t=" + new Date().getTime();
-    } else {
-      script.src = src;
-    }
-    if (script.addEventListener) {
-      script.addEventListener("load", () => {
-        resolve(script)
-      });
-      script.addEventListener("error", (e) => {
-        reject(e)
-      });
-    }
-    document.head.appendChild(script);
+    fetch(src, {
+      method: 'GET',
+      mode: 'cors',
+      credentials: 'omit',
+    }).then((response) => {
+      console.log("响应", response)
+      if (!response.ok) {
+        console.error('Network response was not ok')
+        reject('Network response was not ok');
+        return;
+      }
+      return response.text();
+    }).catch((err) => {
+      reject(err)
+    }).then(data => {
+      if (isStr(data)) {
+        // eslint-disable-next-line no-new-func
+        const fun = new Function(data)
+        fun();
+        //console.log("收到的数据", data)
+        console.log("eval后", window.rxPlugin)
+      }
+
+    })
+    // const script = document.createElement("script", {});
+    // script.type = "text/JavaScript";
+    // if (clearCache) {
+    //   script.src = src + "?t=" + new Date().getTime();
+    // } else {
+    //   script.src = src;
+    // }
+    // if (script.addEventListener) {
+    //   script.addEventListener("load", () => {
+    //     resolve(script)
+    //   });
+    //   script.addEventListener("error", (e) => {
+    //     reject(e)
+    //   });
+    // }
+    // document.head.appendChild(script);
   })
 
   return p;
@@ -58,8 +83,8 @@ export function loadPlugin(url: string): Promise<IPlugin> {
 export function useLoadPlugin() {
   const { app } = useAppParams();
   const getPlugInfo = useGetPluginInfo();
-  const load = useCallback(async (url: string, type: PluginType, oldInfo: IPluginInfo): Promise<IInstalledPlugin> => {
-    assert(url, "Plugin url is emperty");
+  const load = useCallback(async (url: string, type: PluginType, oldInfo?: IPluginInfo): Promise<IInstalledPlugin> => {
+    console.assert(url, "Plugin url is emperty");
     try {
       const plugin = await loadPlugin(url)
       return {
