@@ -35,7 +35,6 @@ export const UploadDialog: React.FC = memo(() => {
       if (formData.type === PluginType.debug) {
         load(formData.url, PluginType.debug)
           .then((data) => {
-            console.log("哈哈哈", data)
             if (data?.pluginInfo && data.status !== PluginStatus.Error) {
               upsert(data?.pluginInfo)
             }

@@ -7,7 +7,7 @@ import { useGetPluginLocalMessage } from "./useGetPluginLocalMessage";
 export function useGetPluginInfo() {
   const { app } = useAppParams();
 
-  const {getTitle, getDescription} = useGetPluginLocalMessage();
+  const { getTitle, getDescription } = useGetPluginLocalMessage();
 
   const getPlugInfo = useCallback((plugin: IPlugin, url: string, type: PluginType): IPluginInfo => {
     return {
@@ -15,6 +15,7 @@ export function useGetPluginInfo() {
       url,
       type,
       title: getTitle(plugin),
+      pluginId: plugin.id,
       description: getDescription(plugin),
     }
   }, [app?.uuid, getDescription, getTitle])
