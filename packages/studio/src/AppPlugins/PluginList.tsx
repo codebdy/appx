@@ -31,9 +31,9 @@ export const PluginList = memo(() => {
         >
           <List.Item.Meta
             avatar={<Avatar
-              style={{ backgroundColor: item.pluginInfo?.type === PluginType.Debug ? '#1890ff' : '#87d068' }}
+              style={{ backgroundColor: item.pluginInfo?.type === PluginType.debug ? '#1890ff' : '#87d068' }}
               icon={
-                item.pluginInfo?.type === PluginType.Debug
+                item.pluginInfo?.type === PluginType.debug
                   ?
                   <BugOutlined />
                   :

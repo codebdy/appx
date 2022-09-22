@@ -54,8 +54,8 @@ export interface IApp {
 }
 
 export enum PluginType {
-  Normal = "normal",
-  Debug = "debug"
+  normal = "normal",
+  debug = "debug"
 }
 
 export interface IPluginInfo{

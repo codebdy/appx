@@ -1,5 +1,5 @@
 {
-  "appUuid": "SYSTEM",
+  "id": "1507236403010867307",
   "content": {
     "packages": [
       {
@@ -694,6 +694,13 @@
             "type": "String",
             "typeLabel": "String",
             "uuid": "18e20f85-be4a-4bd2-ac38-2c0ec3ee301d"
+          },
+          {
+            "uuid": "cf0398e7-8dbc-4053-9db7-512b3fb115ec",
+            "name": "type",
+            "type": "Enum",
+            "typeLabel": "PluginType",
+            "typeUuid": "58d3b299-cd9a-4066-929f-26341023a62a"
           }
         ],
         "innerId": 1017,
@@ -729,6 +736,30 @@
         "root": true,
         "stereoType": "Entity",
         "uuid": "51d35ee7-6757-4e1f-8a08-13b274bbaf3d"
+      },
+      {
+        "uuid": "58d3b299-cd9a-4066-929f-26341023a62a",
+        "innerId": 1019,
+        "name": "PluginType",
+        "attributes": [
+          {
+            "uuid": "1df08808-9edf-44f7-8f2b-472fff0eb7b7",
+            "name": "normal",
+            "type": "String",
+            "typeLabel": "String"
+          },
+          {
+            "uuid": "ae9c29c7-c4a5-45ad-8179-ed17612fc744",
+            "name": "debug",
+            "type": "String",
+            "typeLabel": "String"
+          }
+        ],
+        "methods": [],
+        "stereoType": "Enum",
+        "root": false,
+        "packageUuid": "PACKAGE_APPX_UUID",
+        "label": "$inline:{\"zh-CN\":\"插件类型\"}"
       }
     ],
     "relations": [
@@ -1204,12 +1235,12 @@
         "y": -330
       },
       {
-        "diagramUuid": "33546200-9c95-4747-94ee-a7198b6bd85c",
-        "height": 170,
         "id": "f0fa4b0f-4b91-4092-a93b-beaa13896e86",
-        "width": 180,
         "x": -1100,
-        "y": -180
+        "y": -201.9999999999999,
+        "width": 180,
+        "height": 230,
+        "diagramUuid": "33546200-9c95-4747-94ee-a7198b6bd85c"
       },
       {
         "diagramUuid": "33546200-9c95-4747-94ee-a7198b6bd85c",
@@ -1226,6 +1257,14 @@
         "width": 180,
         "x": -850,
         "y": -350
+      },
+      {
+        "id": "58d3b299-cd9a-4066-929f-26341023a62a",
+        "x": -1100,
+        "y": -364,
+        "width": 180,
+        "height": 120,
+        "diagramUuid": "33546200-9c95-4747-94ee-a7198b6bd85c"
       }
     ],
     "x6Edges": [

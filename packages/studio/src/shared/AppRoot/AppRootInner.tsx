@@ -115,7 +115,7 @@ const plugins: IInstalledPlugin[] = [
       title: "布局",
       pluginId: "test1",
       appUuid: "",
-      type: PluginType.Normal,
+      type: PluginType.normal,
     },
     plugin: {
       id: "test1",
@@ -136,7 +136,7 @@ const plugins: IInstalledPlugin[] = [
       title: "多媒体",
       pluginId: "test2",
       appUuid: "",
-      type: PluginType.Normal,
+      type: PluginType.normal,
     },
     plugin: {
       id: "test2",
