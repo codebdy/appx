@@ -29,7 +29,7 @@ export const PluginItem = memo((
 
   const color = useMemo(() => {
     if (plugin.status === PluginStatus.Error) {
-      return "red"
+      return undefined
     }
     return plugin.pluginInfo?.type === PluginType.debug ? '#1890ff' : '#87d068';
   }, [])
@@ -72,11 +72,11 @@ export const PluginItem = memo((
               </SvgIcon>
           } />
         }
-        title={getTitle(plugin.plugin)}
-        description={`${t("Version")} ${plugin.plugin?.version}`}
+        title={getTitle(plugin.plugin) || plugin.pluginInfo?.title}
+        description={`${t("Version")} ${plugin.plugin?.version || plugin.pluginInfo?.version}`}
       />
       <div>
-        {getDescription(plugin.plugin)}
+        {getDescription(plugin.plugin) || plugin.pluginInfo?.description}
       </div>
     </List.Item>
   )
