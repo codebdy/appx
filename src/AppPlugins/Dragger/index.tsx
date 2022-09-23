@@ -36,6 +36,10 @@ export const Dragger = memo((props: {
     console.log(acceptedFiles)
   }, [maxFiles])
 
+  const handleRemove = useCallback((task) => {
+    setTasks(tasks => tasks.filter(tsk => tsk !== task))
+  }, [])
+
   return (
     <Dropzone maxFiles={maxFiles} onDrop={handleDrop}>
       {({ getRootProps, getInputProps, acceptedFiles }) => (
@@ -43,7 +47,7 @@ export const Dragger = memo((props: {
           <div>
             {
               tasks.map((task) => (
-                <FileView task={task} />
+                <FileView task={task} onRemove={handleRemove} />
               ))
             }
           </div>
