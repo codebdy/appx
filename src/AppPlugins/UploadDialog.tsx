@@ -76,7 +76,10 @@ export const UploadDialog: React.FC = memo(() => {
   const handleChange = useCallback(({ fileList }) => {
     setUploadedUrls((fileList as UploadFile[]).filter(
       file => file.status === "done" && file.xhr?.responseURL
-    ).map(file => file.xhr?.responseURL))
+    ).map(file => {
+      const url = file.xhr?.responseURL as string;
+      return url.substring(0, url.length - 4)
+    }))
   }, [])
 
   const normFile = useCallback((e: any) => {
