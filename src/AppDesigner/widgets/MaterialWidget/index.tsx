@@ -76,9 +76,6 @@ export const MaterialWidget: React.FC = observer(() => {
             )
           })
         }
-        <TabPane tab={t("Materials.Other")} key={"TAB-OTHER"}>
-
-        </TabPane>
         {
           debugMaterialTab &&
           <TabPane tab={debugMaterialTab.title} key={debugMaterialTab.uuid}>

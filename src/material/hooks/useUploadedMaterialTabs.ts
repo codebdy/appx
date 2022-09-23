@@ -5,6 +5,7 @@ import { MaterialTab } from "../model";
 export function useUploadedMaterialTabs() {
   const { uploadedPlugins, materialConfig } = useAppParams();
 
+  //tab={t("Materials.Other")} key={"TAB-OTHER"}
   const uploadTabs = useMemo(() => {
     const tabs: MaterialTab[] = [];
     for(const tab of materialConfig?.schemaJson?.tabs || []){
