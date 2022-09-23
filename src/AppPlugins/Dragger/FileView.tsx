@@ -27,10 +27,10 @@ export const FileView = memo((
     onRemove && onRemove(task);
   }, [task, onRemove])
 
-  const loading = true;
+  const loading = false;
 
   return (
-    <div className={cls("upload-file-item")} title="xxxx">
+    <div className={cls("upload-file-item", "error")} title="xxxx">
       <div className="item-text">
         <PaperClipOutlined style={{ marginRight: 4 }} />
         {task.file.name}
@@ -40,9 +40,9 @@ export const FileView = memo((
         {
           loading
             ?
-            <Button type="link" icon={<LoadingOutlined />}/>
+            <Button type="link" size="small" icon={<LoadingOutlined />} />
             :
-            <Button type="text" size="small" icon={<DeleteOutlined />} onClick={handleRemove}></Button>
+            <Button type="text" style={{ color: "inherit" }} size="small" icon={<DeleteOutlined />} onClick={handleRemove}></Button>
         }
       </div>
     </div>
