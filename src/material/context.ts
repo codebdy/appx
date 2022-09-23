@@ -7,7 +7,7 @@ export const usePredefinedMaterialTab = (): MaterialTab | undefined => useContex
 
 
 export interface IMaterialTabsContextParams {
-  normalMaterialTabs: MaterialTab[],
+  uploadedMaterialTabs: MaterialTab[],
   debugMaterialTab?: MaterialTab,
 }
 

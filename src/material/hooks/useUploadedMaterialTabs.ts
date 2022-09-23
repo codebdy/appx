@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { useAppParams } from "../../shared/AppRoot/context";
 import { MaterialTab } from "../model";
 
-export function useNormalMaterialTabs() {
+export function useUploadedMaterialTabs() {
   const { uploadedPlugins, materialConfig } = useAppParams();
 
   const uploadTabs = useMemo(() => {

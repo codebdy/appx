@@ -8,12 +8,14 @@ import { materialStore } from "../../../shared/global";
 import { ResourceWidget } from "../ResourceWidget";
 import { useTranslation } from "react-i18next";
 import { useAppMaterialTabs, usePredefinedMaterialTab } from "../../../material/context";
+import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
 const { TabPane } = Tabs;
 
 export const MaterialWidget: React.FC = observer(() => {
-  const { debugMaterialTab } = useAppMaterialTabs();
+  const { debugMaterialTab, uploadedMaterialTabs } = useAppMaterialTabs();
   const predefinedTab = usePredefinedMaterialTab();
   const { t } = useTranslation();
+  const p = useParseLangMessage();
 
   return (
     <div className="rx-material-panel">
@@ -39,6 +41,23 @@ export const MaterialWidget: React.FC = observer(() => {
               })
             }
           </TabPane>
+        }
+        {
+          uploadedMaterialTabs?.map(tab => {
+            return (
+              <TabPane tab={p(tab.title)} key={tab.uuid}>
+                {
+                  tab.groups?.map((groupData, gIndex) => {
+                    return (<ResourceWidget
+                      key={gIndex + 1}
+                      title={p(groupData.title)}
+                      sources={groupData.materials.map(material => material.designer)}
+                    />)
+                  })
+                }
+              </TabPane>
+            )
+          })
         }
         {
           materialStore.modules.map((tabData, index) => {
