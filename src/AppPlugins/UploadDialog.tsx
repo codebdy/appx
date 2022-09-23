@@ -1,4 +1,4 @@
-import { CloudUploadOutlined, PlusOutlined } from '@ant-design/icons';
+import { UploadOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Form, Input, message, Modal, Radio, RadioChangeEvent, UploadProps } from 'antd';
 import React, { memo, useCallback, useState } from 'react';
 import Dragger from 'antd/lib/upload/Dragger';
@@ -154,7 +154,7 @@ export const UploadDialog: React.FC = memo(() => {
             >
               <Dragger {...uploadProps}>
                 <p className="ant-upload-drag-icon">
-                  <CloudUploadOutlined />
+                  <UploadOutlined />
                 </p>
                 <p className="ant-upload-hint">
                   {t("UploadHint1")}
