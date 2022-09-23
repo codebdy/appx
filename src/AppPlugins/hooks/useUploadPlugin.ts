@@ -25,7 +25,7 @@ export function useUploadPlugin() {
           }
         })
         .then((data) => {
-          resolve(data?.upload);
+          resolve(data?.uploadPlugin);
         })
         .catch((err: GraphQLRequestError) => {
           reject(err);

@@ -1,4 +1,4 @@
-import { UploadOutlined, PlusOutlined } from '@ant-design/icons';
+import { CloudUploadOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Form, Input, message, Modal, Radio, RadioChangeEvent, UploadProps } from 'antd';
 import React, { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -8,8 +8,7 @@ import { useLoadPlugin } from '../plugin/hooks/useLoadPlugin';
 import { IPluginInfo, PluginType } from '../model';
 import { PluginStatus } from '../plugin/model';
 import { useUploadPlugin } from './hooks/useUploadPlugin';
-import Dropzone from 'react-dropzone';
-import { Dragger } from './Dragger';
+import Dragger from 'antd/lib/upload/Dragger';
 
 export const UploadDialog: React.FC = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -81,7 +80,6 @@ export const UploadDialog: React.FC = memo(() => {
       authorization: 'authorization-text',
     },
     onChange(info) {
-      console.log("哈哈", info, info.file.status)
       if (info.file.status !== 'uploading') {
         console.log(info.file, info.fileList);
       }
@@ -92,6 +90,7 @@ export const UploadDialog: React.FC = memo(() => {
       }
     },
   };
+
   const normFile = (e: any) => {
     console.log('Upload event:', e);
     if (Array.isArray(e)) {
@@ -99,7 +98,6 @@ export const UploadDialog: React.FC = memo(() => {
     }
     return e?.fileList;
   };
-
   return (
     <>
       <Button
@@ -158,7 +156,15 @@ export const UploadDialog: React.FC = memo(() => {
               // 如果没有下面这一句会报错
               getValueFromEvent={normFile}
             >
-              <Dragger action={upload} />
+              <Dragger {...uploadProps}>
+                <p className="ant-upload-drag-icon">
+                  <CloudUploadOutlined />
+                </p>
+                <p className="ant-upload-hint">
+                  {t("UploadHint1")}
+                  <Button type="link">{t("UploadHint2")}</Button>
+                </p>
+              </Dragger>
             </Form.Item>
           }
           {
@@ -171,7 +177,6 @@ export const UploadDialog: React.FC = memo(() => {
               <Input />
             </Form.Item>
           }
-
         </Form>
       </Modal>
     </>
