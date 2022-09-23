@@ -1,8 +1,9 @@
 import { ID } from "../shared";
-import { Device, IApp } from "../model";
+import { IApp } from "../model";
 import { gql } from "awesome-graphql-client";
 import { useQueryOne } from "../enthooks/hooks/useQueryOne";
 import { useMemo } from "react";
+import { Device } from "@rxdrag/appx-plugin-sdk";
 
 const appsGql = gql`
 query queryApp($device:DeviceEnumComparisonExp!, id:ID!){

@@ -1,8 +1,9 @@
+import { Device } from "@rxdrag/appx-plugin-sdk";
 import { gql } from "awesome-graphql-client";
 import { useMemo } from "react";
 import { SYSTEM_APP_UUID } from "../consts";
 import { useQueryOne } from "../enthooks/hooks/useQueryOne";
-import { Device, IAppDeviceConfig } from "../model";
+import { IAppDeviceConfig } from "../model";
 
 const configGql = gql`
 query queryAppDeviceConfig($appUuid:String, $device:String){
