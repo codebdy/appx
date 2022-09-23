@@ -9,6 +9,7 @@ import { PluginStatus } from '../plugin/model';
 import { useUploadPlugin } from './hooks/useUploadPlugin';
 import Dragger from 'antd/lib/upload/Dragger';
 import { useLoadPlugins, useLoadPlugin } from '../plugin/hooks';
+import { useUpsertPluginInfos } from './hooks/useUpsertPluginInfos';
 
 export const UploadDialog: React.FC = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -30,11 +31,19 @@ export const UploadDialog: React.FC = memo(() => {
     }
   );
 
+  const [upsertMany, { loading: multiUpserting, error: multiError }] = useUpsertPluginInfos(
+    {
+      onCompleted: () => {
+        setIsModalVisible(false);
+      }
+    }
+  )
+
   const load = useLoadPlugin();
   const multipleLoad = useLoadPlugins();
   const upload = useUploadPlugin();
 
-  useShowError(error);
+  useShowError(error || multiError);
 
   const handleOk = useCallback(() => {
     form.validateFields().then((formData) => {
@@ -54,7 +63,10 @@ export const UploadDialog: React.FC = memo(() => {
           return;
         }
         multipleLoad(uploadedPlugins).then(data => {
-
+          const succedPlugins = data.filter(plugin => plugin.status !== PluginStatus.Error);
+          if (succedPlugins.length) {
+            upsertMany(succedPlugins.map(plugin => plugin.pluginInfo))
+          }
         }).catch((err) => {
           console.error(err);
           message.error("Load plugin error!");
@@ -63,7 +75,7 @@ export const UploadDialog: React.FC = memo(() => {
     }).catch((err) => {
       console.error("form validate error", err);
     });
-  }, [form, load, upsert]);
+  }, [form, load, upsert, multipleLoad, upsertMany]);
 
   const handleCancel = useCallback(() => {
     setIsModalVisible(false);
@@ -120,7 +132,7 @@ export const UploadDialog: React.FC = memo(() => {
         okText={t("Confirm")}
         cancelText={t("Cancel")}
         okButtonProps={{
-          loading: upserting
+          loading: upserting || multiUpserting
         }}
       >
         <Form

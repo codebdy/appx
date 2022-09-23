@@ -5,7 +5,7 @@ import { IPluginInfoInput } from "../../model/input";
 import { useAppParams } from "../../shared/AppRoot/context";
 
 export function useUpsertPluginInfo(options?: IPostOptions<any>): [
-  (config: IPluginInfoInput) => void,
+  (pluginInfo: IPluginInfoInput) => void,
   { loading?: boolean; error?: Error }
 ] {
   const params = useAppParams();
@@ -21,7 +21,7 @@ export function useUpsertPluginInfo(options?: IPostOptions<any>): [
       ...pluginInfo,
       appUuid: params?.app?.uuid,
     }
-    post({ ...newInfo })
+    post(newInfo)
   }, [params?.app, post]);
 
   return [upsert, { error: error, loading: loading }]

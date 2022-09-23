@@ -2,7 +2,7 @@ import { IPosted } from "./IPosted";
 import { IRemoved } from "./IRemoved";
 import { IUpdated } from "./IUpdated";
 
-export const EVENT_DATA_POSTED_ONE = "appx:posted-one";
+export const EVENT_DATA_POSTED = "appx:posted";
 export const EVENT_DATA_REMOVED = "appx:removed";
 export const EVENT_DATA_UPDATED = "appx:updated";
 

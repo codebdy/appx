@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { useCallback } from 'react';
 import { useEffect } from 'react';
 import { useEndpoint } from '../../enthooks';
-import { EVENT_DATA_POSTED_ONE, EVENT_DATA_REMOVED, EVENT_DATA_UPDATED, off, on } from '../../enthooks/events';
+import { EVENT_DATA_POSTED, EVENT_DATA_REMOVED, EVENT_DATA_UPDATED, off, on } from '../../enthooks/events';
 import { useLazyRequest } from '../../enthooks/hooks/useLazyRequest';
 import { MutateFn } from '../../enthooks/hooks/useQueryOne';
 import { IQueryParams } from './useQueryParams';
@@ -58,11 +58,11 @@ export function useDataQuery(params?: IQueryParams): QueryResponse {
   }, [load]);
 
   useEffect(() => {
-    on(EVENT_DATA_POSTED_ONE, eventHandler);
+    on(EVENT_DATA_POSTED, eventHandler);
     on(EVENT_DATA_REMOVED, eventHandler);
     on(EVENT_DATA_UPDATED, eventHandler);
     return () => {
-      off(EVENT_DATA_POSTED_ONE, eventHandler);
+      off(EVENT_DATA_POSTED, eventHandler);
       off(EVENT_DATA_REMOVED, eventHandler);
       off(EVENT_DATA_UPDATED, eventHandler);
     }

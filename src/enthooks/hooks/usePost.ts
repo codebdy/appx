@@ -5,21 +5,21 @@ import { useLazyRequest } from "./useLazyRequest";
 
 export interface IPostOptions<T> {
   fieldsGql?:string,
-  onCompleted?: (data: T) => void;
+  onCompleted?: (data: T[]) => void;
   onError?: (error: Error) => void;
   noRefresh?: boolean;
 }
 
 export type PostResponse<T> = [
-  (data: T) => void,
+  (data: T[]) => void,
   { loading?: boolean; error?: Error }
 ]
 
-export function usePostOne<T, T2>(
+export function usePost<T, T2>(
   __type: string,
   options?: IPostOptions<T2>
 ): PostResponse<T> {
-  const postName = useMemo(() => ("upsertOne" + __type), [__type]);
+  const postName = useMemo(() => ("upsert" + __type), [__type]);
 
   const [doPost, { error, loading }] = useLazyRequest({
     onCompleted: (data) => {
@@ -30,17 +30,19 @@ export function usePostOne<T, T2>(
   })
 
   const post = useCallback(
-    (object: T) => {
+    (objects: T[]) => {
       const inputType = __type + "Input";
       const postMutation = gql`
-        mutation ${postName} ($object: ${inputType}!) {
-          ${postName}(object: $object){
-            id
-            ${options?.fieldsGql || ""}
+        mutation ($objects: [${inputType}]!) {
+          ${postName}(objects: $objects){
+            nodes:{
+              id
+              ${options?.fieldsGql || ""}              
+            }
           }
         }
       `;
-      doPost(postMutation, { object });
+      doPost(postMutation, { objects });
     },
     [__type, doPost, options?.fieldsGql, postName]
   );

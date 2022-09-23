@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useEndpoint } from "../context";
-import { EVENT_DATA_POSTED_ONE, EVENT_DATA_REMOVED, EVENT_DATA_UPDATED, off, on } from "../events";
+import { EVENT_DATA_POSTED, EVENT_DATA_REMOVED, EVENT_DATA_UPDATED, off, on } from "../events";
 import { IQueryInput } from "./IQueryInput";
 import { useLazyRequest } from "./useLazyRequest";
 
@@ -64,11 +64,11 @@ export function useQueryOne<T>(input: IQueryInput): QueryOneResponse<T> {
   }, [endpoint, input.gql, input.params]);
 
   useEffect(() => {
-    on(EVENT_DATA_POSTED_ONE, eventHandler);
+    on(EVENT_DATA_POSTED, eventHandler);
     on(EVENT_DATA_REMOVED, eventHandler);
     on(EVENT_DATA_UPDATED, eventHandler);
     return () => {
-      off(EVENT_DATA_POSTED_ONE, eventHandler);
+      off(EVENT_DATA_POSTED, eventHandler);
       off(EVENT_DATA_REMOVED, eventHandler);
       off(EVENT_DATA_UPDATED, eventHandler);
     }
