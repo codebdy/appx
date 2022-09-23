@@ -1,7 +1,7 @@
 import React, { useCallback } from "react"
 import { memo } from "react"
 import cls from "classnames";
-import { DeleteOutlined, PaperClipOutlined } from "@ant-design/icons";
+import { DeleteOutlined, LoadingOutlined, PaperClipOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 
 export enum FileStatus {
@@ -27,6 +27,8 @@ export const FileView = memo((
     onRemove && onRemove(task);
   }, [task, onRemove])
 
+  const loading = true;
+
   return (
     <div className={cls("upload-file-item")} title="xxxx">
       <div className="item-text">
@@ -35,7 +37,13 @@ export const FileView = memo((
       </div>
 
       <div className="upload-file-action">
-        <Button type="text" size="small" icon={<DeleteOutlined />} onClick={handleRemove}></Button>
+        {
+          loading
+            ?
+            <Button type="link" icon={<LoadingOutlined />}/>
+            :
+            <Button type="text" size="small" icon={<DeleteOutlined />} onClick={handleRemove}></Button>
+        }
       </div>
     </div>
   )
