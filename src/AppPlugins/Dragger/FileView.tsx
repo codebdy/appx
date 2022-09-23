@@ -1,5 +1,7 @@
 import React from "react"
 import { memo } from "react"
+import { formatFileSize } from "../../shared/formatFileSize";
+import cls from "classnames";
 
 export enum FileStatus {
   waiting = 1,
@@ -14,15 +16,15 @@ export interface IFileTask {
 
 export const FileView = memo((
   props: {
-    fileTask: IFileTask,
+    task: IFileTask,
     onRemove?: (fileTask: IFileTask) => void
   }
 ) => {
-  const { fileTask, onRemove } = props;
+  const { task, onRemove } = props;
 
   return (
-    <div>
-
+    <div className={cls("upload-file-item")}>
+      {task.file.name} - {formatFileSize(task.file.size)}
     </div>
   )
 })

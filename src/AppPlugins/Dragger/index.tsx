@@ -5,7 +5,7 @@ import Dropzone from 'react-dropzone';
 import { useTranslation } from 'react-i18next';
 import "./style.less"
 import { formatFileSize } from "../../shared/formatFileSize"
-import { IFileTask } from './FileView';
+import { FileView, IFileTask } from './FileView';
 
 export const Dragger = memo((props: {
   maxFiles?: number,
@@ -42,10 +42,8 @@ export const Dragger = memo((props: {
         <section>
           <div>
             {
-              acceptedFiles.map((file: any) => (
-                <li key={file.path}>
-                  {file.path} - {formatFileSize(file.size)}
-                </li>
+              tasks.map((task) => (
+                <FileView task={task} />
               ))
             }
           </div>
