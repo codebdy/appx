@@ -74,6 +74,7 @@ export const UploadDialog: React.FC = memo(() => {
   const uploadProps: UploadProps = {
     name: 'file',
     action: upload,
+    accept: ".zip",
     headers: {
       authorization: 'authorization-text',
     },
