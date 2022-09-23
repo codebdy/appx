@@ -15,7 +15,7 @@
     "downlevelIteration": true,
     "baseUrl": "."
     // "paths": {
-    //   "@designable/*": ["./packages/*/src"]
+    //   "@appx/*": ["./packages/*/src"]
     // }
   }
 }

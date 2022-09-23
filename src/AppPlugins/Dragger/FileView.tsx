@@ -9,6 +9,7 @@ export enum FileStatus {
 }
 export interface IFileTask {
   file: File,
+  uploadedUrl?: string,
 }
 
 export const FileView = memo((
