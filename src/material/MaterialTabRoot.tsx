@@ -16,7 +16,7 @@ export const MaterialTabRoot = memo((
   const { t } = useTranslation();
   const { debugPlugins } = useAppParams();
   const uploadedMaterialTabs = useUploadedMaterialTabs();
-
+  console.log("嘿嘿", uploadedMaterialTabs)
   const contextValue = useMemo(() => {
     return {
       uploadedMaterialTabs: uploadedMaterialTabs,
@@ -26,7 +26,7 @@ export const MaterialTabRoot = memo((
         groups: debugPlugins?.map(plugin => extract(plugin.plugin)) || []
       } : undefined,
     }
-  }, [debugPlugins, extract, t])
+  }, [debugPlugins, uploadedMaterialTabs, extract, t])
 
   return (
     <AppMaterialTabsContext.Provider value={contextValue}>
