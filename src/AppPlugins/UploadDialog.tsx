@@ -8,6 +8,7 @@ import { useShowError } from '../hooks/useShowError';
 import { useLoadPlugin } from '../plugin/hooks/useLoadPlugin';
 import { IPluginInfo, PluginType } from '../model';
 import { PluginStatus } from '../plugin/model';
+import { useUploadPlugin } from './hooks/useUploadPlugin';
 
 export const UploadDialog: React.FC = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -27,6 +28,8 @@ export const UploadDialog: React.FC = memo(() => {
   );
 
   const load = useLoadPlugin();
+
+  const upload = useUploadPlugin();
 
   useShowError(error);
 
@@ -70,7 +73,7 @@ export const UploadDialog: React.FC = memo(() => {
 
   const uploadProps: UploadProps = {
     name: 'file',
-    action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+    action: upload,
     headers: {
       authorization: 'authorization-text',
     },
