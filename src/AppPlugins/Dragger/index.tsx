@@ -14,7 +14,7 @@ export const Dragger = memo((props: {
   const { t } = useTranslation();
 
   return (
-    <Dropzone maxFiles={1} onDrop={acceptedFiles => console.log(acceptedFiles)}>
+    <Dropzone maxFiles={maxFiles} onDrop={acceptedFiles => console.log(acceptedFiles)}>
       {({ getRootProps, getInputProps, acceptedFiles }) => (
         <section>
           <div>
