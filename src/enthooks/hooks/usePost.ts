@@ -33,12 +33,10 @@ export function usePost<T, T2>(
     (objects: T[]) => {
       const inputType = __type + "Input";
       const postMutation = gql`
-        mutation ($objects: [${inputType}]!) {
+        mutation ($objects: [${inputType}!]!) {
           ${postName}(objects: $objects){
-            nodes{
-              id
-              ${options?.fieldsGql || ""}              
-            }
+            id
+            ${options?.fieldsGql || ""}              
           }
         }
       `;
