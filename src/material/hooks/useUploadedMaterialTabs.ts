@@ -1,11 +1,14 @@
 import { useCallback, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import { useAppParams } from "../../shared/AppRoot/context";
 import { MaterialTab } from "../model";
 import { useConvertMaterialFromPlugin } from "./useConvertMaterialFromPlugin";
+import { useExtractMaterialGroupFromPlugin } from "./useExtractMaterialGroupFromPlugin";
 
 export function useUploadedMaterialTabs() {
   const { device } = useAppParams();
   const { uploadedPlugins, materialConfig } = useAppParams();
+  const { t } = useTranslation();
   const convert = useConvertMaterialFromPlugin();
   const getComponent = useCallback((name: string) => {
     for (const plugin of uploadedPlugins) {
@@ -16,10 +19,34 @@ export function useUploadedMaterialTabs() {
       }
     }
     return undefined
-  }, [uploadedPlugins, device, convert])
+  }, [uploadedPlugins, device, convert]);
+
   const getMaterials = useCallback((names: string[]) => {
     return names?.map(name => getComponent(name)).filter(material => material)
-  }, [getComponent])
+  }, [getComponent]);
+
+  const findNameInConfig = useCallback((name) => {
+    for (const tab of materialConfig?.schemaJson?.tabs || []) {
+      if (tab.collopsesItems?.find(item => item.components?.find(nm => nm === name))) {
+        return true;
+      }
+    }
+  }, [materialConfig])
+  const extract = useExtractMaterialGroupFromPlugin();
+
+  const getOtherTab = useCallback(() => {
+    const usefullPlugins = uploadedPlugins.filter(plugin => {
+      return plugin.plugin?.components?.[device].length &&
+        !plugin.plugin?.components?.[device].find(com => findNameInConfig(com.name))
+    })
+    if (usefullPlugins.length > 0) {
+      return {
+        title: t("Materials.Other"),
+        uuid: "TAB-OTHER",
+        groups: usefullPlugins?.map(plugin => extract(plugin.plugin)) || []
+      }
+    }
+  }, [uploadedPlugins, device, findNameInConfig, extract, t])
 
   //tab={t("Materials.Other")} key={"TAB-OTHER"}
   const uploadTabs = useMemo(() => {
@@ -39,8 +66,10 @@ export function useUploadedMaterialTabs() {
         }
       )
     }
+    const otherTab = getOtherTab()
+    otherTab && tabs.push(otherTab)
     return tabs
-  }, [getMaterials])
+  }, [getMaterials, getOtherTab])
 
   return uploadTabs;
 }
