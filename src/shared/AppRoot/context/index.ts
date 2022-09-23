@@ -15,9 +15,9 @@ export interface IAppContextParams {
   materialConfig?: IMaterialConfig,
 }
 
-export const AppContext = createContext<IAppContextParams | undefined>(undefined);
+export const AppContext = createContext<IAppContextParams>({} as any);
 
-export const useAppParams = (): IAppContextParams | undefined => useContext(AppContext);
+export const useAppParams = (): IAppContextParams => useContext(AppContext);
 export const useAppConfig = (): IAppConfig | undefined => useContext(AppContext)?.config;
 export const useUserConfig = (): IUserConfig | undefined => useContext(AppContext)?.userConfig;
 

@@ -37,7 +37,7 @@ export const UploadDialog: React.FC = memo(() => {
   const handleOk = useCallback(() => {
     form.validateFields().then((formData) => {
       if (formData.type === PluginType.debug) {
-        load(formData.url, PluginType.debug)
+        load(formData.url || "", PluginType.debug)
           .then((data) => {
             if (data?.pluginInfo && data.status !== PluginStatus.Error) {
               upsert(data?.pluginInfo)
@@ -158,7 +158,7 @@ export const UploadDialog: React.FC = memo(() => {
               // 如果没有下面这一句会报错
               getValueFromEvent={normFile}
             >
-              <Dragger/>
+              <Dragger action={upload} />
             </Form.Item>
           }
           {

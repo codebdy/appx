@@ -10,7 +10,7 @@ const RunnerRoot = (
   const [mentItem, setMenuItem] = useState<IMenuItem>()
 
   return (
-    <RouteContext.Provider value={{ menuItem: mentItem, setMenuItem: setMenuItem }}>
+    <RouteContext.Provider value={{ menuItem: mentItem, setMenuItem: setMenuItem as any }}>
       {props.children}
     </RouteContext.Provider>
   )

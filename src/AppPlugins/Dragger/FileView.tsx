@@ -1,36 +1,51 @@
-import React, { useCallback } from "react"
+import React, { useCallback, useEffect } from "react"
 import { memo } from "react"
 import cls from "classnames";
 import { DeleteOutlined, LoadingOutlined, PaperClipOutlined } from "@ant-design/icons";
 import { Button } from "antd";
+import { useState } from "react";
 
-export enum FileStatus {
-  waiting = 1,
-  uploading,
-  finished,
-  error
-}
 export interface IFileTask {
+  id: string,
   file: File,
   uploadedUrl?: string,
+  action?: (file: File) => Promise<string>,
 }
 
 export const FileView = memo((
   props: {
     task: IFileTask,
-    onRemove?: (fileTask: IFileTask) => void
+    onRemove?: (id: string) => void,
+    action?: (file: File) => Promise<string>,
+    onChange: (fileTask: IFileTask) => void,
   }
 ) => {
-  const { task, onRemove } = props;
+  const { task, onRemove, action, onChange } = props;
+  const [loading, setLoading] = useState(false);
+  const [notUpload, setNotUpload] = useState(true);
+  const [error, setError] = useState<Error>();
+
+  useEffect(() => {
+    if (notUpload && action) {
+      setLoading(true);
+      action(task.file).then((fileUrl) => {
+        onChange({ ...task, uploadedUrl: fileUrl });
+        setLoading(false);
+        setNotUpload(false);
+      }).catch((err) => {
+        setError(err);
+        setLoading(false);
+        setNotUpload(false);
+      })
+    }
+  }, [notUpload, action, task.id])
 
   const handleRemove = useCallback(() => {
-    onRemove && onRemove(task);
+    onRemove && onRemove(task.id);
   }, [task, onRemove])
 
-  const loading = false;
-
   return (
-    <div className={cls("upload-file-item", "error")} title="xxxx">
+    <div className={cls("upload-file-item", { "error": error })} title={error?.message}>
       <div className="item-text">
         <PaperClipOutlined style={{ marginRight: 4 }} />
         {task.file.name}

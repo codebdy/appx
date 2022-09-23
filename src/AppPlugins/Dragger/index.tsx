@@ -1,17 +1,18 @@
 import { UploadOutlined } from '@ant-design/icons';
-import { Button } from 'antd';
 import React, { memo, useCallback, useState } from 'react';
 import Dropzone from 'react-dropzone';
 import { useTranslation } from 'react-i18next';
 import "./style.less"
-import { formatFileSize } from "../../shared/formatFileSize"
 import { FileView, IFileTask } from './FileView';
+import { createId } from '../../shared';
 
 export const Dragger = memo((props: {
   maxFiles?: number,
   children?: React.ReactNode,
+  action?: (file: File) => Promise<string>,
 }) => {
-  const { maxFiles, children } = props;
+  const { maxFiles, action, children } = props;
+
   const [tasks, setTasks] = useState<IFileTask[]>([]);
   const { t } = useTranslation();
 
@@ -19,7 +20,8 @@ export const Dragger = memo((props: {
     const newTasks = acceptedFiles?.filter(
       file => !tasks.find(task => task.file.name === file.name)
     ).map(file => ({
-      file
+      id: createId(),
+      file,
     }))
     if (!maxFiles) {
       setTasks((tasks) => [...tasks, ...newTasks])
@@ -33,12 +35,16 @@ export const Dragger = memo((props: {
         return tasks;
       })
     }
-    console.log(acceptedFiles)
   }, [maxFiles])
 
-  const handleRemove = useCallback((task) => {
-    setTasks(tasks => tasks.filter(tsk => tsk !== task))
+  const handleRemove = useCallback((id: string) => {
+    setTasks(tasks => tasks.filter(tsk => tsk.id !== id))
   }, [])
+
+  const handleChange = useCallback((task) => {
+    setTasks(tasks => tasks.map(tsk => tsk.id === task.id ? task : tsk));
+  }, [])
+
 
   return (
     <Dropzone maxFiles={maxFiles} onDrop={handleDrop}>
@@ -47,7 +53,7 @@ export const Dragger = memo((props: {
           <div>
             {
               tasks.map((task) => (
-                <FileView task={task} onRemove={handleRemove} />
+                <FileView key={task.id} task={task} action={action} onRemove={handleRemove} onChange={handleChange} />
               ))
             }
           </div>

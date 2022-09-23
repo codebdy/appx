@@ -5,7 +5,7 @@ import { useAppParams } from "../../shared/AppRoot/context";
 import { IInstalledPlugin, PluginStatus } from "../model";
 import { useGetPluginInfo } from "./useGetPluginInfo";
 
-declare const window: Window & { rxPlugin: IPlugin };
+declare const window: Window & { rxPlugin: IPlugin | undefined };
 function trimUrl(url: string) {
   url = url.trim()
   return url.endsWith("/") ? url : (url + "/");
@@ -69,7 +69,7 @@ export function loadPlugin(url: string): Promise<IPlugin> {
         const rxPlugin = window.rxPlugin
         console.log("加载结果", window.rxPlugin)
         window.rxPlugin = undefined
-        resolve(rxPlugin);
+        rxPlugin && resolve(rxPlugin);
         script?.remove();
       })
       .catch(err => {
@@ -93,7 +93,7 @@ export function loadDebugPlugin(url: string): Promise<IPlugin> {
         const venderScript = script;
         loadJS(indexJs, true)
           .then((script) => {
-            resolve(window.rxPlugin);
+            window.rxPlugin && resolve(window.rxPlugin);
             window.rxPlugin = undefined
             venderScript?.remove();
             script?.remove();
@@ -130,6 +130,7 @@ export function useLoadPlugin() {
         }
       } else {
         console.error("Load plugin failed")
+        throw new Error("Load plugin failed")
       }
 
     } catch (error) {
