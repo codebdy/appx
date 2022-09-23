@@ -12,7 +12,7 @@ export function useExtractMaterialGroupFromPlugin() {
     if(plugin){
       const group: MaterialGroup = {
         title: getTitle(plugin),
-        id: plugin.id,
+        uuid: plugin.id,
         materials: extractMaterials(plugin),
       }   
       return group;   

@@ -8,7 +8,7 @@ export interface Material {
 }
 
 export interface MaterialGroup {  
-  id: string;
+  uuid: string;
   title: string;
   materials: Material[];
 }

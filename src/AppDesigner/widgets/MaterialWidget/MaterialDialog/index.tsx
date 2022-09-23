@@ -15,7 +15,7 @@ import { useShowError } from '../../../../hooks/useShowError';
 
 export const MaterialDialog = memo(() => {
   const [tabs, setTabs] = useState<IMaterialTab[]>([]);
-  const { normalPlugins, materialConfig, app, device } = useAppParams();
+  const { uploadedPlugins, materialConfig, app, device } = useAppParams();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const { t } = useTranslation();
   const getUnCategoriedComponents = useGetNotCategoriedComponents(tabs);
@@ -54,8 +54,8 @@ export const MaterialDialog = memo(() => {
   }, [tabs]);
 
   const getPlugin = useCallback((id?: string) => {
-    return normalPlugins?.find(plugin => plugin.plugin?.id === id)
-  }, [normalPlugins]);
+    return uploadedPlugins?.find(plugin => plugin.plugin?.id === id)
+  }, [uploadedPlugins]);
 
   const groupInsertAt = useCallback((tab: IMaterialTab, group: IMaterialCollapseItem, index: number) => {
     const newGroups = tab.collopsesItems.filter(itm => itm.uuid !== group.uuid)

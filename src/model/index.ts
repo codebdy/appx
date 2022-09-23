@@ -54,7 +54,7 @@ export interface IApp {
 }
 
 export enum PluginType {
-  normal = "normal",
+  uploaded = "uploaded",
   debug = "debug",
   market = "market"
 }

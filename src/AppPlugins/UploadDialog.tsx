@@ -13,7 +13,7 @@ import { useUpsertPluginInfos } from './hooks/useUpsertPluginInfos';
 
 export const UploadDialog: React.FC = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [operationType, setOperationType] = useState(PluginType.normal);
+  const [operationType, setOperationType] = useState(PluginType.uploaded);
   const [uploadedPlugins, setUploadedPlugins] = useState<IPluginInfo[]>([]);
   const [form] = Form.useForm<IPluginInfo>();
   const { t } = useTranslation();
@@ -98,7 +98,7 @@ export const UploadDialog: React.FC = memo(() => {
       const url = file.xhr?.responseURL as string;
       return {
         url: url.substring(0, url.length - 4),
-        type: PluginType.normal,
+        type: PluginType.uploaded,
       }
     }))
   }, [])
@@ -140,7 +140,7 @@ export const UploadDialog: React.FC = memo(() => {
           initialValues={
             {
               url: "http://127.0.0.1:4000/",
-              type: PluginType.normal
+              type: PluginType.uploaded
             }
           }
           form={form}
@@ -155,13 +155,13 @@ export const UploadDialog: React.FC = memo(() => {
             <Radio.Group
               onChange={onTypeChange}
             >
-              <Radio value={PluginType.normal}>{t("Plugins.Upload")}</Radio>
+              <Radio value={PluginType.uploaded}>{t("Plugins.Upload")}</Radio>
               <Radio value={PluginType.debug}>{t("Plugins.Debug")}</Radio>
               <Radio disabled value={PluginType.market}>{t("Plugins.Market")}</Radio>
             </Radio.Group>
           </Form.Item>
           {
-            operationType === PluginType.normal &&
+            operationType === PluginType.uploaded &&
             < Form.Item
               label={t("Materials.UploadFile")}
               name="file"

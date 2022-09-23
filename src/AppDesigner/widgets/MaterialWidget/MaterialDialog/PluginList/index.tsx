@@ -12,14 +12,14 @@ export const PluginList = memo((
   }
 ) => {
   const { tabs } = props;
-  const { normalPlugins } = useAppParams();
+  const { uploadedPlugins } = useAppParams();
 
   return (
     <div>
       <Droppable droppableId={PLUGINS_LIST_ID} isDropDisabled={true}>
         {(provided) => (
           <div ref={provided.innerRef}>
-            {normalPlugins.filter(plugin => plugin.plugin).map(plugin => plugin.plugin).map((plugin, index) => {
+            {uploadedPlugins.filter(plugin => plugin.plugin).map(plugin => plugin.plugin).map((plugin, index) => {
               return (
                 <Draggable key={plugin.id} draggableId={plugin.id} index={index}>
                   {(provided, snapshot) => (

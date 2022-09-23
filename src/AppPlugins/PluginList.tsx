@@ -4,14 +4,14 @@ import { useAppParams } from '../shared/AppRoot/context';
 import { PluginItem } from './PluginItem';
 
 export const PluginList = memo(() => {
-  const { normalPlugins, debugPlugins } = useAppParams();
+  const { uploadedPlugins, debugPlugins } = useAppParams();
 
   const items = useMemo(() => {
     return [
-      ...normalPlugins,
+      ...uploadedPlugins,
       ...debugPlugins
     ]
-  }, [debugPlugins, normalPlugins]);
+  }, [debugPlugins, uploadedPlugins]);
 
   return (
     <List

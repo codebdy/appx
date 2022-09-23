@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useExtractMaterialGroupFromPlugin } from "./hooks/useExtractMaterialGroupFromPlugin";
 import { useAppParams } from "../shared/AppRoot/context";
 import { AppMaterialTabsContext } from "./context";
+import { useNormalMaterialTabs } from "./hooks/useNormalMaterialTabs";
 
 export const MaterialTabRoot = memo((
   props: {
@@ -14,10 +15,11 @@ export const MaterialTabRoot = memo((
   const extract = useExtractMaterialGroupFromPlugin();
   const { t } = useTranslation();
   const { debugPlugins } = useAppParams();
+  const normalMaterialTabs = useNormalMaterialTabs();
 
   const contextValue = useMemo(() => {
     return {
-      normalMaterialTabs: [],
+      normalMaterialTabs: normalMaterialTabs,
       debugMaterialTab: debugPlugins.filter(plugin => plugin?.plugin).length > 0 ? {
         title: t("Materials.Debug"),
         uuid: "UUID-MATERIALS-DEBUG",

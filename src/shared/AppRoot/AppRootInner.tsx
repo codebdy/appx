@@ -49,7 +49,7 @@ export const AppRootInner = memo((
       langLocales,
       deviceConfig: deviceConfig,
       userConfig,
-      normalPlugins: plugins?.filter(plugin => plugin.pluginInfo?.type === PluginType.normal) || [],
+      uploadedPlugins: plugins?.filter(plugin => plugin.pluginInfo?.type === PluginType.uploaded) || [],
       debugPlugins: debugPlugins,
       materialConfig
     }
