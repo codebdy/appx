@@ -35,7 +35,7 @@ export function usePost<T, T2>(
       const postMutation = gql`
         mutation ($objects: [${inputType}]!) {
           ${postName}(objects: $objects){
-            nodes:{
+            nodes{
               id
               ${options?.fieldsGql || ""}              
             }
