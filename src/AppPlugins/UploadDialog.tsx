@@ -21,8 +21,6 @@ export const UploadDialog: React.FC = memo(() => {
     setIsModalVisible(true);
   }, []);
 
-  console.log("哈哈", uploadedPlugins);
-
   const [upsert, { loading: upserting, error }] = useUpsertPluginInfo(
     {
       onCompleted: () => {
