@@ -2,25 +2,25 @@ import { CloudUploadOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Form, Input, message, Modal, Radio, RadioChangeEvent, UploadFile, UploadProps } from 'antd';
 import React, { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useUpsertPluginInfo } from '../plugin/hooks/useUpsertPluginInfo';
+import { useUpsertPluginInfo } from './hooks/useUpsertPluginInfo';
 import { useShowError } from '../hooks/useShowError';
-import { useLoadPlugin } from '../plugin/hooks/useLoadPlugin';
 import { IPluginInfo, PluginType } from '../model';
 import { PluginStatus } from '../plugin/model';
 import { useUploadPlugin } from './hooks/useUploadPlugin';
 import Dragger from 'antd/lib/upload/Dragger';
+import { useLoadPlugins, useLoadPlugin } from '../plugin/hooks';
 
 export const UploadDialog: React.FC = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [operationType, setOperationType] = useState(PluginType.normal);
-  const [uploadedUrls, setUploadedUrls] = useState<string[]>([]);
+  const [uploadedPlugins, setUploadedPlugins] = useState<IPluginInfo[]>([]);
   const [form] = Form.useForm<IPluginInfo>();
   const { t } = useTranslation();
   const showModal = useCallback(() => {
     setIsModalVisible(true);
   }, []);
 
-  console.log("哈哈", uploadedUrls);
+  console.log("哈哈", uploadedPlugins);
 
   const [upsert, { loading: upserting, error }] = useUpsertPluginInfo(
     {
@@ -31,7 +31,7 @@ export const UploadDialog: React.FC = memo(() => {
   );
 
   const load = useLoadPlugin();
-
+  const multipleLoad = useLoadPlugins();
   const upload = useUploadPlugin();
 
   useShowError(error);
@@ -47,10 +47,18 @@ export const UploadDialog: React.FC = memo(() => {
           })
           .catch((err) => {
             console.error(err);
-            message.error("Load js error!");
+            message.error("Load debug plugin error!");
           })
       } else {
-        //处理上传
+        if (uploadedPlugins.length === 0) {
+          return;
+        }
+        multipleLoad(uploadedPlugins).then(data => {
+
+        }).catch((err) => {
+          console.error(err);
+          message.error("Load plugin error!");
+        })
       }
     }).catch((err) => {
       console.error("form validate error", err);
@@ -74,11 +82,14 @@ export const UploadDialog: React.FC = memo(() => {
   }, []);
 
   const handleChange = useCallback(({ fileList }) => {
-    setUploadedUrls((fileList as UploadFile[]).filter(
+    setUploadedPlugins((fileList as UploadFile[]).filter(
       file => file.status === "done" && file.xhr?.responseURL
     ).map(file => {
       const url = file.xhr?.responseURL as string;
-      return url.substring(0, url.length - 4)
+      return {
+        url: url.substring(0, url.length - 4),
+        type: PluginType.normal,
+      }
     }))
   }, [])
 
