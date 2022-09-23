@@ -121,9 +121,8 @@ export const UploadDialog: React.FC = memo(() => {
           wrapperCol={{ span: 12 }}
           initialValues={
             {
-              name: "",
               url: "http://127.0.0.1:4000/",
-              operationType: PluginType.normal
+              type: PluginType.normal
             }
           }
           form={form}
