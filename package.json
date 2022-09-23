@@ -68,6 +68,7 @@
     "webpack-dev-server": "^3.10.1"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
     "@antv/x6": "^1.32.10",
     "@antv/x6-react-shape": "^1.6.1",
     "@designable/formily-antd": "^1.0.0-beta.45",
@@ -88,6 +89,7 @@
     "i18next-http-backend": "^1.4.1",
     "lodash": "^4.17.21",
     "react-beautiful-dnd": "^13.1.0",
+    "react-dropzone": "^14.2.2",
     "react-i18next": "^11.18.3",
     "react-router-dom": "^6.3.0",
     "recoil": "^0.7.4",
