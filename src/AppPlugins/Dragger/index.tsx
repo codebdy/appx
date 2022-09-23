@@ -4,6 +4,7 @@ import React, { memo } from 'react';
 import Dropzone from 'react-dropzone';
 import { useTranslation } from 'react-i18next';
 import "./style.less"
+import { formatFileSize } from "../../shared/formatFileSize"
 
 export const Dragger = memo((props: {
   maxFiles?: number,
@@ -16,6 +17,15 @@ export const Dragger = memo((props: {
     <Dropzone maxFiles={1} onDrop={acceptedFiles => console.log(acceptedFiles)}>
       {({ getRootProps, getInputProps, acceptedFiles }) => (
         <section>
+          <div>
+            {
+              acceptedFiles.map((file: any) => (
+                <li key={file.path}>
+                  {file.path} - {formatFileSize(file.size)}
+                </li>
+              ))
+            }
+          </div>
           <div {...getRootProps()}>
             <input {...getInputProps()} />
             <div className='appx-upload-dragger'>
@@ -28,15 +38,7 @@ export const Dragger = memo((props: {
               </div>
             </div>
           </div>
-          <div>
-            {
-              acceptedFiles.map((file: any) => (
-                <li key={file.path}>
-                  {file.path} - {file.size} bytes
-                </li>
-              ))
-            }
-          </div>
+
         </section>
       )
       }
