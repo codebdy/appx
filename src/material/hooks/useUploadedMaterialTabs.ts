@@ -26,7 +26,5 @@ export function useUploadedMaterialTabs() {
     return tabs
   }, [materialConfig])
 
-  console.log("呵呵", materialConfig, uploadTabs)
-
   return uploadTabs;
 }

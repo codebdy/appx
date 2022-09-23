@@ -16,7 +16,6 @@ export const MaterialTabRoot = memo((
   const { t } = useTranslation();
   const { debugPlugins } = useAppParams();
   const uploadedMaterialTabs = useUploadedMaterialTabs();
-  console.log("嘿嘿", uploadedMaterialTabs)
   const contextValue = useMemo(() => {
     return {
       uploadedMaterialTabs: uploadedMaterialTabs,
