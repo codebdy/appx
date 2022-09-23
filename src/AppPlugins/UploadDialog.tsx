@@ -1,5 +1,5 @@
 import { CloudUploadOutlined, PlusOutlined } from '@ant-design/icons';
-import { Button, Form, Input, message, Modal, Radio, RadioChangeEvent, UploadProps } from 'antd';
+import { Button, Form, Input, message, Modal, Radio, RadioChangeEvent, UploadFile, UploadProps } from 'antd';
 import React, { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useUpsertPluginInfo } from '../plugin/hooks/useUpsertPluginInfo';
@@ -12,12 +12,15 @@ import Dragger from 'antd/lib/upload/Dragger';
 
 export const UploadDialog: React.FC = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [operationType, setOperationType] = useState(PluginType.normal)
+  const [operationType, setOperationType] = useState(PluginType.normal);
+  const [uploadedUrls, setUploadedUrls] = useState<string[]>([]);
   const [form] = Form.useForm<IPluginInfo>();
   const { t } = useTranslation();
   const showModal = useCallback(() => {
     setIsModalVisible(true);
   }, []);
+
+  console.log("哈哈", uploadedUrls);
 
   const [upsert, { loading: upserting, error }] = useUpsertPluginInfo(
     {
@@ -46,13 +49,12 @@ export const UploadDialog: React.FC = memo(() => {
             console.error(err);
             message.error("Load js error!");
           })
+      } else {
+        //处理上传
       }
-
     }).catch((err) => {
       console.error("form validate error", err);
     });
-
-    //setIsModalVisible(false);
   }, [form, load, upsert]);
 
   const handleCancel = useCallback(() => {
@@ -71,33 +73,20 @@ export const UploadDialog: React.FC = memo(() => {
     setOperationType(e.target.value)
   }, []);
 
-  const uploadProps: UploadProps = {
-    name: 'file',
-    action: upload,
-    accept: ".zip",
-    maxCount: 1,
-    headers: {
-      authorization: 'authorization-text',
-    },
-    onChange(info) {
-      if (info.file.status !== 'uploading') {
-        console.log(info.file, info.fileList);
-      }
-      if (info.file.status === 'done') {
-        message.success(`${info.file.name} file uploaded successfully`);
-      } else if (info.file.status === 'error') {
-        message.error(`${info.file.name} file upload failed.`);
-      }
-    },
-  };
+  const handleChange = useCallback(({ fileList }) => {
+    setUploadedUrls((fileList as UploadFile[]).filter(
+      file => file.status === "done" && file.xhr?.responseURL
+    ).map(file => file.xhr?.responseURL))
+  }, [])
 
-  const normFile = (e: any) => {
+  const normFile = useCallback((e: any) => {
     console.log('Upload event:', e);
     if (Array.isArray(e)) {
       return e;
     }
     return e?.fileList;
-  };
+  }, []);
+
   return (
     <>
       <Button
@@ -156,7 +145,15 @@ export const UploadDialog: React.FC = memo(() => {
               // 如果没有下面这一句会报错
               getValueFromEvent={normFile}
             >
-              <Dragger {...uploadProps}>
+              <Dragger
+                name='file'
+                action={upload}
+                accept={".zip"}
+                multiple
+                headers={{
+                  authorization: 'authorization-text',
+                }}
+                onChange={handleChange}>
                 <p className="ant-upload-drag-icon">
                   <CloudUploadOutlined />
                 </p>
