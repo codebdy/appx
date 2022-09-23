@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useCallback } from "react"
 import { memo } from "react"
 import cls from "classnames";
 import { DeleteOutlined, PaperClipOutlined } from "@ant-design/icons";
@@ -23,6 +23,10 @@ export const FileView = memo((
 ) => {
   const { task, onRemove } = props;
 
+  const handleRemove = useCallback(() => {
+    onRemove && onRemove(task);
+  }, [task, onRemove])
+
   return (
     <div className={cls("upload-file-item")} title="xxxx">
       <div className="item-text">
@@ -31,7 +35,7 @@ export const FileView = memo((
       </div>
 
       <div className="upload-file-action">
-        <Button type="text" size="small" icon={<DeleteOutlined />}></Button>
+        <Button type="text" size="small" icon={<DeleteOutlined />} onClick={handleRemove}></Button>
       </div>
     </div>
   )
