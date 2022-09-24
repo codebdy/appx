@@ -1,4 +1,5 @@
 {
+  "strict": true,
   "compilerOptions": {
     "esModuleInterop": true,
     "moduleResolution": "node",
@@ -13,9 +14,9 @@
     "skipLibCheck": true,
     "experimentalDecorators": true,
     "downlevelIteration": true,
-    "baseUrl": "."
-    // "paths": {
-    //   "@appx/*": ["./packages/*/src"]
-    // }
+    "baseUrl": ".",
+    "resolveJsonModule":true,
+    //"include": ["./src/**/*.ts", "./src/**/*.tsx"],
+    //"exclude": ["./src/__tests__/*", "./esm/*", "./lib/*"]
   }
 }
