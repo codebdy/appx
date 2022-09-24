@@ -2,7 +2,6 @@
   "name": "@appx/studio",
   "version": "0.0.1",
   "license": "MIT",
-  "private": true,
   "engines": {
     "npm": ">=3.0.0"
   },
@@ -29,6 +28,7 @@
     "css-loader": "^5.0.0",
     "eslint": "^7.14.0",
     "eslint-config-prettier": "^7.0.0",
+    "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-markdown": "^2.0.1",
     "eslint-plugin-node": "^11.1.0",
