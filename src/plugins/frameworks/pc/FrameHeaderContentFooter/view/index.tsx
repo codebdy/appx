@@ -5,7 +5,7 @@ export interface IViewProps{
 
 }
 
-export const ProLayout = observer(()=>{
+export const FrameHeaderContentFooter = observer(()=>{
   return (
     <div>
       呵呵啊
