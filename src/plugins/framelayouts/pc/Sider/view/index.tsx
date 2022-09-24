@@ -2,7 +2,7 @@ import { observer } from "@formily/reactive-react"
 import { Layout } from "antd"
 import React from "react"
 
-const { Content } = Layout;
+const { Sider } = Layout;
 
 export interface IComponentProps {
   children?: React.ReactNode
@@ -10,7 +10,7 @@ export interface IComponentProps {
 
 const Component = observer((props: IComponentProps) => {
   return (
-    <Content {...props} />
+    <Sider {...props} />
   )
 })
 

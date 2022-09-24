@@ -1,3 +1,1 @@
-const Name = "Layout"
-
-export default Name
+export default "Layout"

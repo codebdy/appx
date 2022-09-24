@@ -1,3 +1,1 @@
-const Name = "Header"
-
-export default Name
+export default "Header"
