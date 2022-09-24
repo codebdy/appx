@@ -1,7 +1,7 @@
-import HeaderContentFooterFrame from "./HeaderContentFooterFrame"
+import Notification from "./Notification"
 
 const pcComponents = [
-  HeaderContentFooterFrame
+  Notification
 ];
 
 export default pcComponents;
