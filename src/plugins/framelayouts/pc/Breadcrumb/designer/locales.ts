@@ -1,13 +1,13 @@
 const locales = {
   'zh-CN': {
-    title: 'Logo',
+    title: '面包屑导航',
     settings: {
       'x-component-props': {
       },
     },
   },
   'en-US': {
-    title: 'Logo',
+    title: 'Breadcrumb',
     settings: {
       'x-component-props': {
       },

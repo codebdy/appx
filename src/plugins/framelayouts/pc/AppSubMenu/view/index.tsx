@@ -3,13 +3,13 @@ import React from "react"
 
 
 export interface IComponentProps {
-
+  children?: React.ReactNode
 }
 
 const Component = observer((props: IComponentProps) => {
   return (
     <div {...props}>
-      Logo
+      App  submenu
     </div>
   )
 })
