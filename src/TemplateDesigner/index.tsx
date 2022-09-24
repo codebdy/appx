@@ -76,7 +76,7 @@ export const TemplateDesigner = memo(() => {
               title={t("Panels.Component")}
               icon="Component"
             >
-              <MaterialWidget />
+              <MaterialWidget withFrameMaterials />
             </CompositePanel.Item>
             <CompositePanel.Item
               key={DesignerRoutes.OutlinedTree}

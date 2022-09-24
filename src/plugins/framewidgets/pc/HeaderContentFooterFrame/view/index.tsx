@@ -1,11 +1,11 @@
 import { observer } from "@formily/reactive-react"
 import React from "react"
 
-export interface ICompoentProps {
-  children?: React.ReactNode,
+export interface IComponentProps{
+  className?: string;
 }
 
-const Component = observer(() => {
+const Component = observer((props:IComponentProps)=>{
   return (
     <div>
       呵呵啊

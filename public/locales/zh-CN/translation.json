@@ -144,7 +144,8 @@
     "Arrays": "数组组件",
     "Displays": "展示组件",
     "Other": "其它",
-    "Debug": "调试"
+    "Debug": "调试",
+    "FrameWork": "框架"
   },
   "AppManager": {
     "SearchPlaceHolder": "请输入应用名称或关键字",

@@ -1,6 +1,7 @@
 import { IPlugin } from "@rxdrag/appx-plugin-sdk";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { IPredefinedPlugins } from "../contexts";
 declare const window: Window & { rxPlugin: IPlugin };
 
 function loadOne(p: () => Promise<any>): Promise<IPlugin> {
@@ -27,9 +28,9 @@ async function loadList(promises: (() => Promise<any>)[]) {
 }
 
 
-
 export function useLoadPredefinedPlugins() {
-  const [predefinedPlugins, setPredefinedPlugins] = useState<IPlugin[]>()
+  const [basicPlugins, setBasicPlugins] = useState<IPlugin[]>();
+  const [frameworkPlugins, setFrameworkPlugins] = useState<IPlugin[]>();
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -37,11 +38,24 @@ export function useLoadPredefinedPlugins() {
     loadList([
       () => import("../../plugins/inputs/index"),
       () => import("../../plugins/layouts/index"),
-      () => import("../../plugins/frameworks/index"),
     ]).then((plugs) => {
-      setPredefinedPlugins(plugs)
+      setBasicPlugins(plugs)
     })
+
+    loadList([
+      () => import("../../plugins/framelayouts/index"),
+      () => import("../../plugins/framewidgets/index"),
+    ]).then((plugs) => {
+      setFrameworkPlugins(plugs)
+    })
+
   }, [t])
+
+  const predefinedPlugins:IPredefinedPlugins = useMemo(()=>({
+    basicPlugins,
+    frameworkPlugins
+  }), 
+  [basicPlugins, frameworkPlugins]);
 
   return predefinedPlugins;
 }

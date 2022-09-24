@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { usePredefinedPlugins } from "../plugin/contexts";
 import { PredefinedMaterialTabContext } from "./context";
 import { useExtractMaterialGroupFromPlugin } from "./hooks/useExtractMaterialGroupFromPlugin";
-import { MaterialTab } from "./model";
+import { usePredefinedMaterialTabs } from "./hooks/usePredefinedMaterialTabs";
 
 export const PredefinedMaterialsRoot = memo((
   props: {
@@ -12,17 +12,10 @@ export const PredefinedMaterialsRoot = memo((
   }
 ) => {
   const { t } = useTranslation();
-  const extract = useExtractMaterialGroupFromPlugin();
-  const predefinedPlugsins = usePredefinedPlugins();
-  const predefinedTab: MaterialTab = useMemo(() => {
-    return {
-      title: t("Materials.Basic"),
-      uuid: "UUID-MATERIALS-BASIC",
-      groups: predefinedPlugsins?.map(plugin => extract(plugin)) || []
-    }
-  }, [extract, predefinedPlugsins, t])
+  const predefinedTabs = usePredefinedMaterialTabs();
+
   return (
-    <PredefinedMaterialTabContext.Provider value={predefinedTab}>
+    <PredefinedMaterialTabContext.Provider value={predefinedTabs}>
       {props.children}
     </PredefinedMaterialTabContext.Provider>
   )

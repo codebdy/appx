@@ -10,16 +10,21 @@ import { useAppMaterialTabs, usePredefinedMaterialTab } from "../../../material/
 import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
 const { TabPane } = Tabs;
 
-export const MaterialWidget: React.FC = observer(() => {
+export const MaterialWidget = observer((
+  props: {
+    withFrameMaterials?: boolean
+  }
+) => {
+  const { withFrameMaterials } = props;
   const { debugMaterialTab, uploadedMaterialTabs } = useAppMaterialTabs();
-  const predefinedTab = usePredefinedMaterialTab();
+  const { basicTab, frameworkTab } = usePredefinedMaterialTab();
   const { t } = useTranslation();
   const p = useParseLangMessage();
 
   return (
     <div className="rx-material-panel">
       <MaterialSearchWidget />
-      <Tabs defaultActiveKey={predefinedTab.uuid}
+      <Tabs defaultActiveKey={basicTab.uuid}
         animated
         size="small"
         className="materail-tabs"
@@ -28,10 +33,24 @@ export const MaterialWidget: React.FC = observer(() => {
         }
       >
         {
-          predefinedTab &&
-          <TabPane tab={predefinedTab.title} key={predefinedTab.uuid}>
+          basicTab &&
+          <TabPane tab={basicTab.title} key={basicTab.uuid}>
             {
-              predefinedTab.groups?.map((groupData, gIndex) => {
+              basicTab.groups?.map((groupData, gIndex) => {
+                return (<ResourceWidget
+                  key={gIndex + 1}
+                  title={groupData.title}
+                  sources={groupData.materials.map(material => material.designer)}
+                />)
+              })
+            }
+          </TabPane>
+        }
+        {
+          withFrameMaterials && frameworkTab &&
+          <TabPane tab={frameworkTab.title} key={frameworkTab.uuid}>
+            {
+              frameworkTab.groups?.map((groupData, gIndex) => {
                 return (<ResourceWidget
                   key={gIndex + 1}
                   title={groupData.title}

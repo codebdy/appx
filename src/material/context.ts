@@ -1,9 +1,14 @@
 import { createContext, useContext } from "react";
 import { MaterialTab } from "./model"
 
-export const PredefinedMaterialTabContext = createContext<MaterialTab>(undefined);
+export interface IPredefinedMaterialTabs {
+  basicTab?: MaterialTab,
+  frameworkTab?: MaterialTab
+}
 
-export const usePredefinedMaterialTab = (): MaterialTab | undefined => useContext(PredefinedMaterialTabContext);
+export const PredefinedMaterialTabContext = createContext<IPredefinedMaterialTabs>({});
+
+export const usePredefinedMaterialTab = (): IPredefinedMaterialTabs => useContext(PredefinedMaterialTabContext);
 
 
 export interface IMaterialTabsContextParams {

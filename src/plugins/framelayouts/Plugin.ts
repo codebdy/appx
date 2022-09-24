@@ -5,8 +5,8 @@ import pcComponents from "./pc";
 import websiteComponents from "./website";
 
 export const rxPlugin: IPlugin = {
-  id: "predefined.frameworks",
-  title: "Frameworks",
+  id: "predefined.framelayouts",
+  title: "FrameLayouts",
   version: "1.0",
   description: "Description",
   components: {
