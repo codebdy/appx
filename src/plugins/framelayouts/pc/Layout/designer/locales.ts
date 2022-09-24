@@ -3,6 +3,10 @@ const locales = {
     title: '布局',
     settings: {
       'x-component-props': {
+        flexFlow: {
+          title: '布局方式',
+          dataSource: ['列', '行'],
+        }
       },
     },
   },
