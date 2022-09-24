@@ -37,6 +37,7 @@ export function useLoadPredefinedPlugins() {
     loadList([
       () => import("../../plugins/inputs/index"),
       () => import("../../plugins/layouts/index"),
+      () => import("../../plugins/frameworks/index"),
     ]).then((plugs) => {
       setPredefinedPlugins(plugs)
     })
