@@ -38,24 +38,22 @@ export function useLoadPredefinedPlugins() {
     loadList([
       () => import("../../plugins/inputs/index"),
       () => import("../../plugins/layouts/index"),
-    ]).then((plugs) => {
-      setBasicPlugins(plugs)
+    ]).then((basicPlugs) => {
+      setBasicPlugins(basicPlugs);
+      loadList([
+        () => import("../../plugins/framelayouts/index"),
+        () => import("../../plugins/framewidgets/index"),
+      ]).then((framePlugins) => {
+        setFrameworkPlugins(framePlugins)
+      })
     })
-
-    loadList([
-      () => import("../../plugins/framelayouts/index"),
-      () => import("../../plugins/framewidgets/index"),
-    ]).then((plugs) => {
-      setFrameworkPlugins(plugs)
-    })
-
   }, [t])
 
-  const predefinedPlugins:IPredefinedPlugins = useMemo(()=>({
+  const predefinedPlugins: IPredefinedPlugins = useMemo(() => ({
     basicPlugins,
     frameworkPlugins
-  }), 
-  [basicPlugins, frameworkPlugins]);
+  }),
+    [basicPlugins, frameworkPlugins]);
 
   return predefinedPlugins;
 }
