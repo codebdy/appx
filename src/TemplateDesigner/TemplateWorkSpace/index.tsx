@@ -5,8 +5,6 @@ import { useDesigner } from '@designable/react'
 import { transformToTreeNode } from "../../AppDesigner/transformer";
 import { Field, ObjectContainer } from "@designable/formily-antd";
 import { FormDesigner } from "../../components/pc";
-import { convertMaterialsToComponentDesigners } from "../../AppDesigner/widgets/MaterialWidget/model";
-import { materialStore } from "../../shared/global";
 import { ComponentTreeWidget, DesignerToolsWidget, PreviewWidget, SchemaEditorWidget, ViewToolsWidget } from "../../AppDesigner/widgets";
 import { useLazyQueryTemplate } from "../hooks/useLazyQueryTemplate";
 import { useShowError } from "../../hooks/useShowError";
@@ -63,7 +61,7 @@ export const TemplateWorkSpace = (props: {
                       Field,
                       ObjectContainer,
                       ...materailDesigners,
-                      ...convertMaterialsToComponentDesigners(materialStore.modules)
+                      //...convertMaterialsToComponentDesigners(materialStore.modules)
                     }}
                   />
                 )}

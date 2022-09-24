@@ -4,7 +4,6 @@ import { MaterialSearchWidget } from "./MaterialSearchWidget";
 import "./style.less"
 import { MaterialDialog } from "./MaterialDialog";
 import { observer } from "@formily/reactive-react";
-import { materialStore } from "../../../shared/global";
 import { ResourceWidget } from "../ResourceWidget";
 import { useTranslation } from "react-i18next";
 import { useAppMaterialTabs, usePredefinedMaterialTab } from "../../../material/context";
@@ -60,21 +59,21 @@ export const MaterialWidget: React.FC = observer(() => {
           })
         }
         {
-          materialStore.modules.map((tabData, index) => {
-            return (
-              <TabPane tab={tabData.name} key={index + 1}>
-                {
-                  tabData.groups?.map((groupData, gIndex) => {
-                    return (<ResourceWidget
-                      key={gIndex + 1}
-                      title={groupData.title}
-                      sources={groupData.materials.map(material => material.designer)}
-                    />)
-                  })
-                }
-              </TabPane>
-            )
-          })
+          // materialStore.modules.map((tabData, index) => {
+          //   return (
+          //     <TabPane tab={tabData.name} key={index + 1}>
+          //       {
+          //         tabData.groups?.map((groupData, gIndex) => {
+          //           return (<ResourceWidget
+          //             key={gIndex + 1}
+          //             title={groupData.title}
+          //             sources={groupData.materials.map(material => material.designer)}
+          //           />)
+          //         })
+          //       }
+          //     </TabPane>
+          //   )
+          // })
         }
         {
           debugMaterialTab &&
