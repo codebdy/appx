@@ -1,8 +1,5 @@
 import { Device, IMaterialComponent } from "@rxdrag/appx-plugin-sdk";
-
-export const pcComponents = []
-export const mobileComponents = []
-export const webSiteComponents = []
+import { mobileComponents, pcComponents, webSiteComponents } from ".";
 
 function putInArray(arr: Array<IMaterialComponent>, com?: IMaterialComponent) {
   if (com) {

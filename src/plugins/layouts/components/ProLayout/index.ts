@@ -3,7 +3,7 @@ import mobile from "./mobile"
 import pc from "./pc"
 import website from "./website"
 
-export const ProLayout = {
+export default {
   [Device.PC]: pc,
   [Device.Mobile]: mobile,
   [Device.Website]: website,
