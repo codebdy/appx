@@ -1,3 +1,5 @@
+import { Name } from "../name";
+
 export const resource = {
   icon: 'CardSource',
   elements: [
@@ -5,7 +7,7 @@ export const resource = {
       componentName: 'Field',
       props: {
         type: 'void',
-        'x-component': 'ProLayout',
+        'x-component': Name,
         'x-component-props': {
         },
       },

@@ -9,7 +9,7 @@ export const locales = {
     },
   },
   'en-US': {
-    title: 'Top middle bottom layout',
+    title: 'Header content footer layout',
     settings: {
       'x-component-props': {
         type: 'Type',
