@@ -79,7 +79,7 @@ export const UpsertAppModel = memo((
       okButtonProps={{
         loading: loading
       }}
-      visible={visible}
+      open={visible}
       onOk={handleOk}
       onCancel={onClose}
     >

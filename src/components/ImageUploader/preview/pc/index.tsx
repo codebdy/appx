@@ -47,10 +47,18 @@ export const ImageUploader = observer((props: ImageUploaderProps) => {
     if (maxCount === 1) {
       if (newFileList?.[0]?.status === "done") {
         onChange && onChange(newFileList?.[0]?.url || newFileList?.[0]?.xhr?.responseURL || "");
+        return;
+      }
+      if(!newFileList?.length){
+        onChange && onChange("")
       }
     } else {
       if (!newFileList?.find(file => file.status !== "done")) {
         onChange && onChange(newFileList?.map(file => file.url || file.xhr?.responseURL) || []);
+        return;
+      }
+      if(!newFileList?.length){
+        onChange && onChange([])
       }
     }
   }, [maxCount, onChange]);
