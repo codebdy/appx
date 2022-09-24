@@ -1,1 +1,3 @@
-export const Name = "FrameHeaderContentFooter"
+const Name = "FrameHeaderContentFooter"
+
+export default Name

@@ -1,4 +1,4 @@
-export const locales = {
+const locales = {
   'zh-CN': {
     title: '上中下布局',
     settings: {
@@ -18,3 +18,5 @@ export const locales = {
     },
   },
 }
+
+export default locales;

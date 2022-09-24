@@ -1,6 +1,6 @@
 import { IPropsSchema } from '@rxdrag/appx-plugin-sdk'
 
-export const schema: IPropsSchema = {
+const schema: IPropsSchema = {
   props: {
     type: 'object',
     properties: {
@@ -14,3 +14,4 @@ export const schema: IPropsSchema = {
   actions: ['onClick']
 }
 
+export default schema

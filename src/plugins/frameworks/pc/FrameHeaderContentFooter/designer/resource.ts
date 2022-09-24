@@ -1,6 +1,6 @@
-import { Name } from "../name";
+import Name from "../name";
 
-export const resource = {
+const resource = {
   icon: 'CardSource',
   elements: [
     {
@@ -14,3 +14,5 @@ export const resource = {
     },
   ],
 }
+
+export default resource;

@@ -1,9 +1,9 @@
 import React from "react"
 import { DnFC } from '@designable/react'
 import { observer } from "@formily/reactive-react"
-import { IViewProps } from "../view"
+import { ICompoentProps } from "../view"
 
-export const ComponentDesigner: DnFC<IViewProps> = observer((
+const ComponentDesigner: DnFC<ICompoentProps> = observer((
   props
 ) => {
   return (
@@ -12,3 +12,5 @@ export const ComponentDesigner: DnFC<IViewProps> = observer((
     </div>
   )
 })
+
+export default ComponentDesigner
