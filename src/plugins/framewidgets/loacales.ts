@@ -1,6 +1,6 @@
 export const locales = {
   'zh-CN': {
-    FrameWidgets: '框架部件',
+    FrameWidgets: '部件组件',
     Description :'',
   },
   'en-US': {

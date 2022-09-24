@@ -22,7 +22,7 @@ export function usePredefinedMaterialTabs() {
     return {
       title: t("Materials.FrameWork"),
       uuid: "UUID-MATERIALS-FRAMEWORK",
-      groups: predefinedPlugsins?.basicPlugins?.map(plugin => extract(plugin)) || []
+      groups: predefinedPlugsins?.frameworkPlugins?.map(plugin => extract(plugin)) || []
     }
   }, [extract, predefinedPlugsins, t])
 

@@ -1,6 +1,6 @@
 export const locales = {
   'zh-CN': {
-    FrameLayouts: '框架布局',
+    FrameLayouts: '布局组件',
     Description :'',
   },
   'en-US': {
