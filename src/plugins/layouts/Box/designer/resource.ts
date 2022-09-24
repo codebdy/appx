@@ -1,7 +1,7 @@
 import Name from "../name";
 
 const resource = {
-  icon: 'NotificationSource',
+  icon: 'CardSource',
   elements: [
     {
       componentName: 'Field',
