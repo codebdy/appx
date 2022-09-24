@@ -1,7 +1,7 @@
-import FrameHeaderContentFooter from "./FrameHeaderContentFooter"
+import HeaderContentFooterFrame from "./HeaderContentFooterFrame"
 
 const pcComponents = [
-  FrameHeaderContentFooter
+  HeaderContentFooterFrame
 ];
 
 export default pcComponents;
