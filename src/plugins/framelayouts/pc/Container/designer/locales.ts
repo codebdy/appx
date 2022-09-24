@@ -1,13 +1,13 @@
 const locales = {
   'zh-CN': {
-    title: '页眉',
+    title: '容器',
     settings: {
       'x-component-props': {
       },
     },
   },
   'en-US': {
-    title: 'Header',
+    title: 'Container',
     settings: {
       'x-component-props': {
       },
