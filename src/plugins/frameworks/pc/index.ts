@@ -1,1 +1,3 @@
-export const pcFrameworks = [];
+const pcComponents = [];
+
+export default pcComponents;

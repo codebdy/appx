@@ -1,1 +1,3 @@
-export const mobileFrameworks = [];
+const mobileComponents = [];
+
+export default mobileComponents;

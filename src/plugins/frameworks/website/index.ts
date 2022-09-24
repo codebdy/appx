@@ -1,1 +1,3 @@
-export const websiteFrameworks = [];
+const websiteComponents = [];
+
+export default websiteComponents;
