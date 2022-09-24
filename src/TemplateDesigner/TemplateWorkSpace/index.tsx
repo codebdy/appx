@@ -14,6 +14,7 @@ import { ID } from "../../shared";
 import { Workspace } from "../../AppDesigner/containers";
 import { SettingsPanel, ToolbarPanel, ViewPanel, ViewportPanel, WorkspacePanel } from "../../AppDesigner/panels";
 import { SettingsForm } from "../../AppDesigner/SettingsForm";
+import { useMaterialDesigners } from "../../material/hooks/useMaterialDesigners";
 
 export const TemplateWorkSpace = (props: {
   templateId: ID
@@ -21,7 +22,8 @@ export const TemplateWorkSpace = (props: {
   const { templateId } = props;
   const designer = useDesigner();
   const [query, { template, loading, error }] = useLazyQueryTemplate();
-
+  const materailDesigners = useMaterialDesigners();
+  
   useEffect(() => {
     query(templateId)
   }, [templateId, query]);
@@ -60,6 +62,7 @@ export const TemplateWorkSpace = (props: {
                       Form: FormDesigner,
                       Field,
                       ObjectContainer,
+                      ...materailDesigners,
                       ...convertMaterialsToComponentDesigners(materialStore.modules)
                     }}
                   />
