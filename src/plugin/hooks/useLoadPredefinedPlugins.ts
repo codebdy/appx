@@ -1,31 +1,46 @@
 import { IPlugin } from "@rxdrag/appx-plugin-sdk";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useExtractMaterialGroupFromPlugin } from "../../material/hooks/useExtractMaterialGroupFromPlugin";
 declare const window: Window & { rxPlugin: IPlugin };
+
+function loadOne(p: () => Promise<any>): Promise<IPlugin> {
+  return new Promise((resolve, reject) => {
+    p().then(() => {
+      let plugin;
+      if (window.rxPlugin) {
+        plugin = window.rxPlugin;
+      }
+      window.rxPlugin = undefined;
+      resolve(plugin);
+    }).catch(err => {
+      reject(err);
+    });
+  })
+}
+
+async function loadList(promises: (() => Promise<any>)[]) {
+  const plugins = [];
+  for (const p of promises) {
+    plugins.push(await loadOne(p));
+  }
+  return plugins;
+}
+
+
 
 export function useLoadPredefinedPlugins() {
   const [predefinedPlugins, setPredefinedPlugins] = useState<IPlugin[]>()
   const { t } = useTranslation();
-  const extractGroup = useExtractMaterialGroupFromPlugin();
 
   useEffect(() => {
     console.log("加载预定义插件")
-    const plugins: IPlugin[] = [];
-    import("../../plugins/inputs/index").then(() => {
-      if (window.rxPlugin) {
-        plugins.push(window.rxPlugin)
-      }
-      window.rxPlugin = undefined;
-      import("../../plugins/layouts/index").then(() => {
-        if (window.rxPlugin) {
-          plugins.push(window.rxPlugin)
-        }
-        window.rxPlugin = undefined;
-        setPredefinedPlugins(plugins);
-      });
-    });
-  }, [extractGroup, t])
+    loadList([
+      () => import("../../plugins/inputs/index"),
+      () => import("../../plugins/layouts/index"),
+    ]).then((plugs) => {
+      setPredefinedPlugins(plugs)
+    })
+  }, [t])
 
   return predefinedPlugins;
 }
