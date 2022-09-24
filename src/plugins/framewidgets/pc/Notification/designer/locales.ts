@@ -1,6 +1,6 @@
 const locales = {
   'zh-CN': {
-    title: '上中下布局',
+    title: '消息通知',
     settings: {
       'x-component-props': {
         type: '类型',
