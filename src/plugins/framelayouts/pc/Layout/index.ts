@@ -5,16 +5,10 @@ import resource from "./designer/resource";
 import Name from "./name";
 import Component from "./view";
 
-const material = {
+export default{
   name: Name,
   designer: ComponentDesigner,
   component: Component,
   behaviors,
   resource
-}
-
-export default {
-  [Device.PC]: material,
-  [Device.Mobile]: material,
-  [Device.Website]: material,
 }

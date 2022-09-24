@@ -1,13 +1,16 @@
-import { register } from "./register"
-import ProLayout from "./ProLayout"
-import Box from "./Box"
-import Spring from "./Spring"
 
-export const pcComponents = []
-export const mobileComponents = []
-export const webSiteComponents = []
+import Box from "./common/Box"
+import Spring from "./common/Spring"
 
-//======注册组件
-register(Box);
-register(Spring);
-register(ProLayout);
+export const pcComponents = [
+  Box,
+  Spring
+]
+export const mobileComponents = [
+  Box,
+  Spring
+]
+export const webSiteComponents = [
+  Box,
+  Spring
+]
