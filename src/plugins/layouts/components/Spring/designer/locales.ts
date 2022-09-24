@@ -1,19 +1,15 @@
 const locales = {
   'zh-CN': {
-    title: '上中下布局',
+    title: '弹簧',
     settings: {
       'x-component-props': {
-        type: '类型',
-        title: '标题',
       },
     },
   },
   'en-US': {
-    title: 'Header content footer layout',
+    title: 'Box',
     settings: {
       'x-component-props': {
-        type: 'Type',
-        title: 'Title',
       },
     },
   },
