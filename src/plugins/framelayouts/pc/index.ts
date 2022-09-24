@@ -7,6 +7,7 @@ import AppMenu from "./AppMenu";
 import AppSubMenu from "./AppSubMenu";
 import Breadcrumb from "./Breadcrumb";
 import Logo from "./Logo";
+import Page from "./Page";
 
 const pcComponents = [
   Layout,
@@ -17,7 +18,8 @@ const pcComponents = [
   AppMenu,
   AppSubMenu,
   Breadcrumb,
-  Logo
+  Logo,
+  Page
 ];
 
 export default pcComponents;
