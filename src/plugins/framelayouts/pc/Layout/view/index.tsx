@@ -1,14 +1,28 @@
 import { observer } from "@formily/reactive-react"
-import { Layout } from "antd"
-import React from "react"
+import React, { CSSProperties } from "react"
+import "./style.less"
+import cls from "classnames"
+
+export enum FlexFlow {
+  column = "column",
+  row = "row"
+}
 
 export interface IComponentProps {
-  children?: React.ReactNode
+  flexFlow?: FlexFlow,
+  className?: string,
+  style?: CSSProperties,
+  children?: React.ReactNode,
 }
 
 const Component = observer((props: IComponentProps) => {
+  const { flexFlow = FlexFlow.column, className, style, ...other } = props;
   return (
-    <Layout {...props} />
+    <div
+      className={cls("appx-layout", className)}
+      style={{ flexFlow: flexFlow, ...style }}
+      {...other}
+    />
   )
 })
 

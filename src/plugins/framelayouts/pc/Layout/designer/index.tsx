@@ -7,14 +7,14 @@ import { DroppableWidget } from "@designable/react"
 const ComponentDesigner: DnFC<IComponentProps> = observer((
   props
 ) => {
-  const { children, ...other } = props
+  const { children } = props
   return (
     children
       ?
       <Component {...props} />
       :
-      <Component>
-        <DroppableWidget {...other} />
+      <Component {...props}>
+        <DroppableWidget style={{ flex: 1 }} />
       </Component>
   )
 })
