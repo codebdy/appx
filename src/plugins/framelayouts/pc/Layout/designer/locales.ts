@@ -14,6 +14,10 @@ const locales = {
     title: 'Layout',
     settings: {
       'x-component-props': {
+        flexFlow: {
+          title: 'Flex flow',
+          dataSource: ['Column', 'Row'],
+        }
       },
     },
   },
