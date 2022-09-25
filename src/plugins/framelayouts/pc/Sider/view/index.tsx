@@ -1,16 +1,17 @@
 import { observer } from "@formily/reactive-react"
-import { Layout } from "antd"
 import React from "react"
-
-const { Sider } = Layout;
+import cls from "classnames"
+import "./style.less"
 
 export interface IComponentProps {
-  children?: React.ReactNode
+  className?: string;
+  children?: React.ReactNode;
 }
 
 const Component = observer((props: IComponentProps) => {
+  const { className, ...other } = props;
   return (
-    <Sider {...props} />
+    <div className={cls(className, "appx-side")} {...other} />
   )
 })
 
