@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
 import { Avatar, Menu, Spin } from 'antd';
 import { stringify } from 'querystring';
-import HeaderDropdown from './HeaderDropdown';
+import HeaderDropdown from '../../../plugins/framewidgets/pc/commons/HeaderDropdown';
 import './index.less';
 import type { MenuInfo } from 'rc-menu/lib/interface';
 

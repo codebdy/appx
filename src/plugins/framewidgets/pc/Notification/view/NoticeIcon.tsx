@@ -5,9 +5,8 @@ import React from 'react';
 import classNames from 'classnames';
 import type { NoticeIconTabProps } from './NoticeList';
 import NoticeList from './NoticeList';
-import './index.less';
 import { NoticeIconItem } from '.';
-import HeaderDropdown from '../../../../plugins/framewidgets/pc/commons/HeaderDropdown';
+import HeaderDropdown from '../../commons/HeaderDropdown';
 
 const { TabPane } = Tabs;
 
