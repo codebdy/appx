@@ -3,6 +3,7 @@ const locales = {
     title: '布局',
     settings: {
       'x-component-props': {
+        root: "根布局",
         flexFlow: {
           title: '布局方式',
           dataSource: ['列', '行'],
@@ -14,6 +15,7 @@ const locales = {
     title: 'Layout',
     settings: {
       'x-component-props': {
+        root: "Root",
         flexFlow: {
           title: 'Flex flow',
           dataSource: ['Column', 'Row'],
