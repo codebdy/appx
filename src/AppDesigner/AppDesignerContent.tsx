@@ -56,7 +56,7 @@ const AppDesignerContent = memo(() => {
   const { categories, loading, error } = useQueryCagegories();
   const { pages, loading: pagesLoading, error: pagesError } = useQueryPages();
   const { error: metaError, loading: metaLoading } = useBuildMeta();
-  const { pageFrame, error: framesError, loading: framesLoading } = useQueryPageFrames(device);
+  const { pageFrames, error: framesError, loading: framesLoading } = useQueryPageFrames(device);
 
   useEffect(() => {
     setPages(pages || []);
@@ -67,8 +67,8 @@ const AppDesignerContent = memo(() => {
   }, [categories, setCategories])
 
   useEffect(() => {
-    setCategories(categories || []);
-  }, [categories, setCategories])
+    setPageFrames(pageFrames || []);
+  }, [pageFrames, setPageFrames])
 
   useShowError(error || pagesError || metaError || framesError);
 
