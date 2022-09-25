@@ -1,17 +1,16 @@
-import TreeNodeLabel from "../../../../common/TreeNodeLabel"
 import React, { useCallback, useState } from "react"
-import { IPage, IPageCategory } from "../../../../model"
-import PageActions from "./PageActions"
-import EditPageDialog from "./EditPageDialog"
-import { useParseLangMessage } from "../../../../hooks/useParseLangMessage"
+import TreeNodeLabel from "../../../common/TreeNodeLabel";
+import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
+import { IPageFrame } from "../../../model";
+import { EditPageFrameDialog } from "./EditPageFrameDialog";
+import PageFrameActions from "./PageFrameActions"
 
-const PageLabel = (
+const PageFrameLabel = (
   props: {
-    page: IPage,
-    categories: IPageCategory[]
+    pageFrame: IPageFrame
   }
 ) => {
-  const { page, categories } = props;
+  const { pageFrame } = props;
   const [visible, setVisible] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const p = useParseLangMessage();
@@ -23,27 +22,27 @@ const PageLabel = (
     setModalOpen(true)
   }, [])
 
-  const handleClose = useCallback(() => {
+  const handleClose  = useCallback(() => {
     setModalOpen(false)
   }, [])
 
   return (
     <TreeNodeLabel fixedAction={visible}
       action={
-        <PageActions
-          pageId={page.id}
+        <PageFrameActions
+          pageFrameId={pageFrame.id}
           onVisibleChange={handleVisableChange}
           onEdit={handleEdit}
         />
       }>
-      {p(page.title)}
+      {p(pageFrame.title)}
       <div
         onClick={e => e.stopPropagation()}
       >
-        <EditPageDialog page={page} categories={categories} isModalVisible={modalOpen} onClose={handleClose} />
+        <EditPageFrameDialog template={pageFrame} isModalVisible={modalOpen} onClose={handleClose} />
       </div>
     </TreeNodeLabel>
   )
 }
 
-export default PageLabel
+export default PageFrameLabel

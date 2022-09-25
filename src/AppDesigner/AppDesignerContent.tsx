@@ -33,6 +33,7 @@ import ConfigWorkSpace from './config/ConfigWorkSpace'
 import { ConfigActionsWidget } from './config/ConfigActionsWidget'
 import { useQueryPageFrames } from './hooks/useQueryPageFrames'
 import PageListWidget from './page/PageListWidget'
+import { PageFrameListWidget } from './widgets/PageFrameListWidget'
 
 export enum DesignerRoutes {
   Templates = "templates",
@@ -173,7 +174,7 @@ const AppDesignerContent = memo(() => {
                   </svg>
                 }
               >
-                <OutlineTreeWidget />
+                <PageFrameListWidget />
               </CompositePanel.Item>
               <CompositePanel.Item
                 key={DesignerRoutes.Settings}

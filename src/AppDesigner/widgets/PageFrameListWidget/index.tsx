@@ -3,14 +3,13 @@ import React, { memo, useCallback } from 'react';
 import "./style.less"
 import { DataNode } from 'antd/lib/tree';
 import PageFrameLabel from './PageFrameLabel';
-import { ID } from '../../../../shared';
 import CreatePageFrameDialog from './CreatePageFrameDialog';
 import { FileOutlined } from '@ant-design/icons';
-import { useAppViewKey } from '../../../../shared/AppRoot/context';
-import { pageFramesState } from '../../../recoil/atom';
+import { useAppViewKey } from '../../../shared/AppRoot/context';
+import { pageFramesState } from '../../recoil/atom';
 import { useRecoilValue } from 'recoil'
 
-export const PageFrameList = memo(() => {
+export const PageFrameListWidget = memo(() => {
   const key = useAppViewKey();
   const pageFrames = useRecoilValue(pageFramesState(key));
 

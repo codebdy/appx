@@ -106,7 +106,7 @@
     "MenuComponents": "菜单组件",
     "Model": "模型",
     "Flow": "流程",
-    "Pageframes":"框架",
+    "Pageframes": "框架",
     "Fragments": "片段",
     "Settings": "设置"
   },
@@ -118,7 +118,7 @@
     "Pages": "页面管理"
   },
   "Pages": {
-    "Title":"页面",
+    "Title": "页面",
     "NewPage": "新建页面",
     "NewCategory": "新建分组",
     "EditCategory": "编辑分组",
@@ -129,7 +129,8 @@
     "PropertySettings": "属性设置"
   },
   "PageFrames": {
-    "Title":"框架"
+    "Title": "框架",
+    "NewPageFrame": "新建框架"
   },
   "Materials": {
     "ModuleList": "物料管理",

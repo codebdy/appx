@@ -2,11 +2,11 @@ import { Form, Modal } from "antd";
 import React, { useCallback, useEffect } from "react";
 import { memo } from "react";
 import { useTranslation } from "react-i18next";
-import { ImageUploader } from "../../../../components";
-import { MultiLangInput } from "../../../../components/pc";
-import { useShowError } from "../../../../hooks/useShowError";
-import { IPageFrame } from "../../../../model";
-import { useUpsertPageFrame } from "../../../hooks/useUpsertPageFrame";
+import { ImageUploader } from "../../../components";
+import { MultiLangInput } from "../../../components/pc";
+import { useShowError } from "../../../hooks/useShowError";
+import { IPageFrame } from "../../../model";
+import { useUpsertPageFrame } from "../../hooks/useUpsertPageFrame";
 
 export const EditPageFrameDialog = memo((
   props: {
