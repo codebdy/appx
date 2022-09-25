@@ -2,11 +2,11 @@ import { Form, Modal } from "antd";
 import React, { useCallback } from "react";
 import { memo } from "react";
 import PageForm from "./PageForm";
-import { useUpsertPage } from "../../hooks/useUpsertPage";
-import { useShowError } from "../../../hooks/useShowError";
+import { useUpsertPage } from "../../../hooks/useUpsertPage";
+import { useShowError } from "../../../../hooks/useShowError";
 import { useTranslation } from "react-i18next";
-import { IPageCategory } from "../../../model";
-import { ID } from "../../../shared";
+import { IPageCategory } from "../../../../model";
+import { ID } from "../../../../shared";
 
 const CreatePageModal = memo((
   props: {

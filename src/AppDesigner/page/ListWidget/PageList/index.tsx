@@ -5,14 +5,14 @@ import { DataNode } from 'antd/lib/tree';
 import CreateCategoryDialog from './CreateCategoryDialog';
 import CreatePageDialog from './CreatePageDialog';
 import { useRecoilState } from 'recoil';
-import { useAppViewKey } from '../../../shared/AppRoot/context';
+import { useAppViewKey } from '../../../../shared/AppRoot/context';
 import CategoryLabel from './CategoryLabel';
 import PageLabel from './PageLabel';
-import { selectedPageIdState } from '../../recoil/atom';
-import { useGetPage } from '../../hooks/useGetPage';
-import { usePagesWithoutCategory } from '../../hooks/usePagesWithoutCategory';
-import { useGetCategoryPages } from '../../hooks/useGetCategoryPages';
-import { useCategories } from '../../hooks/useCategories';
+import { selectedPageIdState } from '../../../recoil/atom';
+import { useGetPage } from '../../../hooks/useGetPage';
+import { usePagesWithoutCategory } from '../../../hooks/usePagesWithoutCategory';
+import { useGetCategoryPages } from '../../../hooks/useGetCategoryPages';
+import { useCategories } from '../../../hooks/useCategories';
 
 const { DirectoryTree } = Tree;
 

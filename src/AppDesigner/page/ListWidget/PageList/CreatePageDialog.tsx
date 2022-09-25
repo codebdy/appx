@@ -1,5 +1,5 @@
 import { Button } from "antd";
-import SvgIcon from "../../../common/SvgIcon";
+import SvgIcon from "../../../../common/SvgIcon";
 import React, { useCallback, useState } from "react";
 import { memo } from "react";
 import CreatePageModal from "./CreatePageModal";

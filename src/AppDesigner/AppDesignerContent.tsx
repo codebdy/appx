@@ -13,7 +13,6 @@ import {
 import { CompositePanel, StudioPanel } from './panels'
 import { MaterialWidget } from './widgets/MaterialWidget'
 import { Designer } from './containers'
-import PageListWidget from './page/PageListWidget'
 import { useTranslation } from 'react-i18next'
 import PageWorkSpace from './page/PageWorkSpace'
 import MenuComponentsWidget from './menu/MenuComponentsWidget'
@@ -32,6 +31,7 @@ import { useSetRecoilState } from 'recoil'
 import { categoriesState, pagesState } from './recoil/atom'
 import ConfigWorkSpace from './config/ConfigWorkSpace'
 import { ConfigActionsWidget } from './config/ConfigActionsWidget'
+import ListWidget from './page/ListWidget'
 
 export enum DesignerRoutes {
   Templates = "Templates",
@@ -120,7 +120,7 @@ const AppDesignerContent = memo(() => {
                 key={DesignerRoutes.Pages}
                 title={t("Panels.Page")} icon="Page"
               >
-                <PageListWidget />
+                <ListWidget />
               </CompositePanel.Item>
               <CompositePanel.Item
                 key={DesignerRoutes.Components}
