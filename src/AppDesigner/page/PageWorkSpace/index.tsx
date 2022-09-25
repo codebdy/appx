@@ -22,28 +22,28 @@ import { useLazyQueryPage } from "../../../hooks/useLazyQueryPage";
 import { FormDesigner } from "../../../components/pc/FormDesigner";
 import { ObjectContainer } from "@designable/formily-antd";
 import { useMaterialDesigners } from "../../../material/hooks/useMaterialDesigners";
-import { DesignerRoutes } from "../../AppDesignerContent";
+import { DesignerRoutes, DesignerType } from "../../AppDesignerContent";
 import { useLazyQueryPageFrame } from "../../hooks/useLazyQueryPageFrame";
 
 const PageWorkSpace = (props: {
-  activeKey?: string,
+  designerType?: DesignerType,
   pageOrFrameId: ID,
   visable: boolean | undefined,
 }) => {
-  const { activeKey, pageOrFrameId, visable } = props;
+  const { designerType, pageOrFrameId, visable } = props;
   const designer = useDesigner();
   const [query, { page, loading, error }] = useLazyQueryPage();
   const [queryFrame, { pageFrame, loading: frameLoading, error: frameError }] = useLazyQueryPageFrame();
   const materailDesigners = useMaterialDesigners();
 
   useEffect(() => {
-    if (activeKey === DesignerRoutes.Pages) {
+    if (designerType === DesignerType.Page) {
       query(pageOrFrameId)
     }
   }, [pageOrFrameId, query]);
 
   useEffect(() => {
-    if (activeKey === DesignerRoutes.PageFrames) {
+    if (designerType === DesignerType.Frame) {
       queryFrame(pageOrFrameId)
     }
   }, [pageOrFrameId, queryFrame]);
@@ -51,16 +51,16 @@ const PageWorkSpace = (props: {
   const { t } = useTranslation();
 
   useEffect(() => {
-    if (activeKey === DesignerRoutes.PageFrames) {
+    if (designerType === DesignerType.Frame) {
       designer.setCurrentTree(
         transformToTreeNode(pageFrame?.schemaJson || {})
       )
-    } else {
+    } else if (designerType === DesignerType.Page) {
       designer.setCurrentTree(
         transformToTreeNode(page?.schemaJson || {})
       )
     }
-  }, [designer, page?.schemaJson, activeKey, pageFrame?.schemaJson])
+  }, [designer, page?.schemaJson, designerType, pageFrame?.schemaJson])
 
   useShowError(error || frameError);
 
