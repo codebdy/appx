@@ -1,24 +1,25 @@
 import { MoreOutlined } from '@ant-design/icons';
 import { Button, Tabs } from 'antd';
 import React, { memo, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import "./style.less"
 
 const ListWidget = memo((
   props: {
   }
 ) => {
-
+  const { t } = useTranslation();
   return (
     <div className='list-shell'>
       <Tabs
-        defaultActiveKey="1"
+        defaultActiveKey="pages"
         size='small'
         tabBarExtraContent={<Button type="text" shape='circle' size='small' icon={<MoreOutlined />} />}
       >
-        <Tabs.TabPane tab="页面" key="1">
+        <Tabs.TabPane tab={t("Pages.Title")} key="pages">
           Content of Tab Pane 1
         </Tabs.TabPane>
-        <Tabs.TabPane tab="框架" key="2">
+        <Tabs.TabPane tab={t("Frameworks.Title")} key="frameworks">
           Content of Tab Pane 2
         </Tabs.TabPane>
       </Tabs>

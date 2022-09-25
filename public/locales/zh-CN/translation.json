@@ -117,6 +117,7 @@
     "Pages": "页面管理"
   },
   "Pages": {
+    "Title":"页面",
     "NewPage": "新建页面",
     "NewCategory": "新建分组",
     "EditCategory": "编辑分组",
@@ -125,6 +126,9 @@
     "PageName": "页面名称",
     "SelectCategory": "选择分组",
     "PropertySettings": "属性设置"
+  },
+  "Frameworks": {
+    "Title":"框架"
   },
   "Materials": {
     "ModuleList": "物料管理",
