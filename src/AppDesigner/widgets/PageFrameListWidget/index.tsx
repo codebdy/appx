@@ -6,11 +6,12 @@ import PageFrameLabel from './PageFrameLabel';
 import CreatePageFrameDialog from './CreatePageFrameDialog';
 import { FileOutlined } from '@ant-design/icons';
 import { useAppViewKey } from '../../../shared/AppRoot/context';
-import { pageFramesState } from '../../recoil/atom';
-import { useRecoilValue } from 'recoil'
+import { pageFramesState, selectedFrameIdState } from '../../recoil/atom';
+import { useRecoilState, useRecoilValue } from 'recoil'
 
 export const PageFrameListWidget = memo(() => {
   const key = useAppViewKey();
+  const [selectedId, setSelectedId] = useRecoilState(selectedFrameIdState(key));
   const pageFrames = useRecoilValue(pageFramesState(key));
 
   const getTreeData = useCallback(() => {
@@ -26,7 +27,7 @@ export const PageFrameListWidget = memo(() => {
   }, [pageFrames])
 
   const onSelect = useCallback((selectedKeys) => {
-    //onSelected(selectedKeys?.[0])
+    setSelectedId(selectedKeys?.[0])
   }, []);
 
 
@@ -35,7 +36,7 @@ export const PageFrameListWidget = memo(() => {
       <Tree
         showIcon
         className='template-list-tree'
-        selectedKeys={[]}
+        selectedKeys={[selectedId]}
         onSelect={onSelect}
         treeData={getTreeData()}
       />

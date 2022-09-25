@@ -7,6 +7,11 @@ export const selectedPageIdState = atomFamily<ID | undefined, string>({
   default: undefined,
 })
 
+export const selectedFrameIdState = atomFamily<ID | undefined, string>({
+  key: "designer.selectedFrameId",
+  default: undefined,
+})
+
 export const categoriesState = atomFamily<IPageCategory[], string>({
   key: "designer.categories",
   default: [],
