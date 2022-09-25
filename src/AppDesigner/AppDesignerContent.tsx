@@ -119,7 +119,7 @@ const AppDesignerContent = memo(() => {
       return <MenuActionsWidget />
     } else if (activeKey === DesignerRoutes.Settings) {
       return <ConfigActionsWidget />
-    } else if (activeKey === DesignerRoutes.PageFrames) {
+    } else if (designerType === DesignerType.Frame) {
       return <FrameActionsWidget />
     } else {
       return <ActionsWidget />
