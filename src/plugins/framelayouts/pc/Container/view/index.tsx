@@ -8,7 +8,7 @@ export interface IComponentProps {
 const Component = observer((props: IComponentProps) => {
   return (
     <div {...props}>
-      Content
+      Container
     </div>
   )
 })
