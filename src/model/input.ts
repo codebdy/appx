@@ -62,7 +62,6 @@ export interface IAppInput {
   title?: string;
   description?: string;
   imageUrl?: string;
-  //templates?: { sync?: IPageFrameInput[] }
   // image?: IFileInput
 }
 

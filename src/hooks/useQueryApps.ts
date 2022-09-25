@@ -11,10 +11,6 @@ query {
       uuid
       title
       imageUrl 
-      templates{
-        id
-        device
-      }     
     }
     total
   }

@@ -10,8 +10,6 @@ import { IAppInput } from "../../model/input";
 import { createUuid } from "../../shared";
 import { IApp } from "../../model";
 
-const TEMPLATE_PREFIX = "template-";
-
 export const UpsertAppModel = memo((
   props: {
     app?: IApp,
@@ -42,15 +40,8 @@ export const UpsertAppModel = memo((
 
   const handleOk = useCallback(() => {
     form.validateFields().then((formData) => {
-      const templates = [];
-      for (const key of Object.keys(formData)) {
-        if (key.startsWith(TEMPLATE_PREFIX) && formData[key]) {
-          templates.push({ id: formData[key] })
-        }
-      }
-
       const { title, imageUrl } = formData;
-      upsert({ title, imageUrl, uuid: app?.uuid || createUuid(), id: app?.id, templates: { sync: templates } })
+      upsert({ title, imageUrl, uuid: app?.uuid || createUuid(), id: app?.id })
       !app && reset();
     }).catch((err) => {
       console.error("form validate error", err);

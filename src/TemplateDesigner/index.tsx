@@ -65,11 +65,6 @@ export const TemplateDesigner = memo(() => {
               key={DesignerRoutes.Pages}
               title={t("Panels.Templates")} icon="Page"
             >
-              <TemplateListWidget
-                templates={data?.template?.nodes || []}
-                selectedId={selectedId}
-                onSelected={handleSelect}
-              />
             </CompositePanel.Item>
             <CompositePanel.Item
               key={DesignerRoutes.Components}
