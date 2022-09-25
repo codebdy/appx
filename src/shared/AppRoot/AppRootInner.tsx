@@ -78,7 +78,7 @@ export const AppRootInner = memo((
           </Spin>
         </MaterialTabRoot>
       </AppContext.Provider>
-      : <>None App</>
+      : <></>
   )
 })
 
