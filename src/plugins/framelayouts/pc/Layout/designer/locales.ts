@@ -6,7 +6,7 @@ const locales = {
         root: "根布局",
         flexFlow: {
           title: '布局方式',
-          dataSource: ['列', '行'],
+          dataSource: ['竖向', '横向'],
         }
       },
     },
