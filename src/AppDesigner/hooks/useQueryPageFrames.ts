@@ -42,7 +42,7 @@ export function useQueryPageFrames(device: string) {
     return {
       gql: pageFramesGql,
       params: { device: params.device, appUuid: params.app.uuid },
-      depEntityNames: ["IPageFrame"]
+      depEntityNames: ["PageFrame"]
     }
   }, [device])
 
