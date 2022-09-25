@@ -13,7 +13,7 @@ export const AppFrames = memo(() => {
   const { appUuid } = useParams();
   
   const handleClick = useCallback((key: string) => {
-    navigate(`/design-frame/${appUuid}/${key}`)
+    navigate(`/design-frame/${key}/${appUuid}/`)
   }, [navigate]);
 
   return (

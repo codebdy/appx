@@ -35,7 +35,7 @@ query ($device:String!, $appUuid:String!){
 }
 `
 
-export function useQueryPageFrames(device: string) {
+export function useQueryPageFrames() {
   const params = useAppParams();
 
   const args = useMemo(() => {
@@ -44,7 +44,7 @@ export function useQueryPageFrames(device: string) {
       params: { device: params.device, appUuid: params.app.uuid },
       depEntityNames: ["PageFrame"]
     }
-  }, [device])
+  }, [params])
 
   const { data, error, loading } = useQuery<IPageFrame>(args)
 
