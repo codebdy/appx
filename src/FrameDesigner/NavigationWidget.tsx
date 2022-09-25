@@ -23,7 +23,7 @@ export const NavigationWidget = memo(() => {
       <Divider type="vertical" />
       <Breadcrumb>
         <Breadcrumb.Item>
-          {t("Templates.Title")}
+          {t("PageFrames.Title")}
         </Breadcrumb.Item>
         <Breadcrumb.Item>{deviceInfo?.name || ""}</Breadcrumb.Item>
       </Breadcrumb>

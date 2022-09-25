@@ -40,7 +40,7 @@ export const AppFrames = memo(() => {
                         onClick={() => handleClick(device.key)}
                       >
                         <Meta
-                          title={device.name + t("Templates.Title")}
+                          title={device.name + t("PageFrames.Title")}
                         />
                       </Card>
                     </Col>

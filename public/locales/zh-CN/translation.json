@@ -107,7 +107,7 @@
     "MenuComponents": "菜单组件",
     "Model": "模型",
     "Flow": "流程",
-    "Pageframes": "框架",
+    "PageFrames": "框架",
     "Fragments": "片段",
     "Settings": "设置"
   },
@@ -131,7 +131,10 @@
   },
   "PageFrames": {
     "Title": "框架",
-    "NewPageFrame": "新建框架"
+    "NewPageFrame": "新建框架",
+    "EidtPageFrame": "编辑框架",
+    "FrameName": "框架名称",
+    "Image": "图片"
   },
   "Materials": {
     "ModuleList": "物料管理",

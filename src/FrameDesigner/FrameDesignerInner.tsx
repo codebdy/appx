@@ -60,7 +60,11 @@ export const FrameDesignerInner = memo(() => {
           <CompositePanel showNavTitle activeKey={activeKey} onChange={hanclePannelChange}>
             <CompositePanel.Item
               key={DesignerRoutes.Pages}
-              title={t("Panels.Templates")} icon="Page"
+              title={t("Panels.PageFrames")} icon={
+                <svg style={{ width: "28px", height: "28px" }} fill="currentColor" viewBox="0 0 1024 1024">
+                  <path d="M426.666667 426.666667v384H384v-384H256V384h554.666667v42.666667h-384zM213.333333 213.333333h640v640H213.333333V213.333333z m42.666667 42.666667v554.666667h554.666667V256H256z" ></path>
+                </svg>
+              }
             >
               <FrameListWidget
                 templates={pageFrames || []}

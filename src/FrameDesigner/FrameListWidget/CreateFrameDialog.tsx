@@ -26,7 +26,7 @@ const CreateFrameDialog = memo(() => {
         block
         onClick={showModal}
       >
-        {t("Templates.NewTemplate")}
+        {t("PageFrames.NewPageFrame")}
       </Button>
       <EditFrameDialog isModalVisible={isModalVisible} onClose={handleClose} />
     </div>

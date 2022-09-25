@@ -18,7 +18,7 @@ export const EditFrameDialog = memo((
   const { frame, isModalVisible, onClose } = props;
   const [form] = Form.useForm()
 
-  useEffect(()=>{
+  useEffect(() => {
     form.setFieldsValue(frame)
   }, [form, frame]);
 
@@ -43,7 +43,7 @@ export const EditFrameDialog = memo((
 
   return (
     <Modal
-      title={frame ? t("Templates.EidtTemplate") : t("Templates.NewTemplate")}
+      title={frame ? t("PageFrames.EidtPageFrame") : t("PageFrames.NewPageFrame")}
       open={isModalVisible}
       width={580}
       cancelText={t("Cancel")}
@@ -62,14 +62,14 @@ export const EditFrameDialog = memo((
         onKeyUp={handleKeyUp}
       >
         <Form.Item
-          label={t("Templates.TemplateName")}
+          label={t("PageFrames.FrameName")}
           name="title"
           rules={[{ required: true, message: t("Required") }]}
         >
-          <MultiLangInput inline title={t("Templates.TemplateName")} />
+          <MultiLangInput inline title={t("PageFrames.FrameName")} />
         </Form.Item>
         < Form.Item
-          label={t("Templates.Image")}
+          label={t("PageFrames.Image")}
           name="imageUrl"
         >
           <ImageUploader title={t("Upload")} maxCount={1} />
