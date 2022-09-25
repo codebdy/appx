@@ -5,7 +5,7 @@ import { useQuery } from "../../enthooks/hooks/useQuery";
 import { IPageFrame } from "../../model";
 
 const pageFramesGql = gql`
-query ($device:String!){
+query ($device:String!, $appUuid:String!){
   pageFrame(
     where:{
       _and:[
