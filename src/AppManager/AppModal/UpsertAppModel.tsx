@@ -1,4 +1,4 @@
-import { Form, message, Modal, Select } from "antd"
+import { Form, message, Modal } from "antd"
 import React, { useCallback, useEffect } from "react";
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
@@ -9,10 +9,6 @@ import { useShowError } from "../../hooks/useShowError";
 import { IAppInput } from "../../model/input";
 import { createUuid } from "../../shared";
 import { IApp } from "../../model";
-import { useDevices } from "../../hooks/useDevices";
-import { useParseLangMessage } from "../../hooks/useParseLangMessage";
-import { useQueryAllTemplates } from "../../hooks/useQueryAllTemplates";
-const { Option } = Select;
 
 const TEMPLATE_PREFIX = "template-";
 
@@ -26,16 +22,10 @@ export const UpsertAppModel = memo((
   const { app, visible, onClose } = props;
   const [form] = Form.useForm<IAppInput>();
   const { t } = useTranslation();
-  const devices = useDevices();
-  const p = useParseLangMessage();
-  const { data, error: queryError, loading: quering } = useQueryAllTemplates();
 
   const reset = useCallback(() => {
     form.setFieldsValue({ title: app?.title || "", description: app?.description || "", imageUrl: app?.imageUrl || "" })
-    for (const device of devices) {
-      form.setFieldValue(TEMPLATE_PREFIX + device.key, app?.templates?.find(tmp => tmp.device === device.key)?.id)
-    }
-  }, [app?.description, app?.imageUrl, app?.templates, app?.title, devices, form])
+  }, [app?.description, app?.imageUrl, app?.templates, app?.title, form])
 
   useEffect(() => {
     reset();
@@ -48,7 +38,7 @@ export const UpsertAppModel = memo((
     }
   });
 
-  useShowError(error || queryError);
+  useShowError(error);
 
   const handleOk = useCallback(() => {
     form.validateFields().then((formData) => {
@@ -59,10 +49,6 @@ export const UpsertAppModel = memo((
         }
       }
 
-      if (templates.length === 0) {
-        message.error(t("AppManager.AtLeastOneTemplate"))
-        return;
-      }
       const { title, imageUrl } = formData;
       upsert({ title, imageUrl, uuid: app?.uuid || createUuid(), id: app?.id, templates: { sync: templates } })
       !app && reset();
@@ -112,26 +98,6 @@ export const UpsertAppModel = memo((
         >
           <ImageUploader title={t("Upload")} maxCount={1} />
         </Form.Item>
-        {
-          devices.map(device => {
-            return (
-              < Form.Item
-                label={t("AppManager.TemplateSelect", { name: device.name })}
-                name={TEMPLATE_PREFIX + device.key}
-              >
-                <Select allowClear loading={quering}>
-                  {
-                    data?.template?.nodes?.map(template => {
-                      return (
-                        <Option value={template.id}>{p(template.title)}</Option>
-                      )
-                    })
-                  }
-                </Select>
-              </Form.Item>
-            )
-          })
-        }
       </Form>
     </Modal>
   )
