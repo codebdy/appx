@@ -13,6 +13,7 @@ import {
 import { CompositePanel, StudioPanel } from './panels'
 import { MaterialWidget } from './widgets/MaterialWidget'
 import { Designer } from './containers'
+import PageListWidget from './page/PageListWidget'
 import { useTranslation } from 'react-i18next'
 import PageWorkSpace from './page/PageWorkSpace'
 import MenuComponentsWidget from './menu/MenuComponentsWidget'
@@ -28,55 +29,31 @@ import { useQueryPages } from './hooks/useQueryPages'
 import { SettingOutlined } from '@ant-design/icons'
 import { useBuildMeta } from '../datasource/hooks'
 import { useSetRecoilState } from 'recoil'
-import { categoriesState, pageFramesState, pagesState } from './recoil/atom'
+import { categoriesState, pagesState } from './recoil/atom'
 import ConfigWorkSpace from './config/ConfigWorkSpace'
 import { ConfigActionsWidget } from './config/ConfigActionsWidget'
-import { useQueryPageFrames } from './hooks/useQueryPageFrames'
-import PageListWidget from './page/PageListWidget'
-import { PageFrameListWidget } from './frame/PageFrameListWidget'
-import { useSelectedFrameId } from './hooks/useSelectedFrameId'
-import { FrameActionsWidget } from './frame/ActionsWidget'
 
 export enum DesignerRoutes {
-  Templates = "templates",
+  Templates = "Templates",
   Pages = "pages",
   Components = "coms",
   Fragments = "fratments",
-  PageFrames = "pageFrames",
   OutlinedTree = "outlinedTree",
   Menu = "menu",
   Settings = "settings"
 }
 
-export enum DesignerType {
-  Page = 1,
-  Frame,
-}
-
 const AppDesignerContent = memo(() => {
-  const [designerType, setDesignerType] = useState<DesignerType>();
   const { app, device } = useAppParams();
   const key = useAppViewKey()
   const [activeKey, setActiveKey] = useState<string>(DesignerRoutes.Pages);
   const { t } = useTranslation();
   const setCategories = useSetRecoilState(categoriesState(key))
   const setPages = useSetRecoilState(pagesState(key))
-  const setPageFrames = useSetRecoilState(pageFramesState(key))
   const pageId = useSelectedPageId();
-  const frameId = useSelectedFrameId();
   const { categories, loading, error } = useQueryCagegories();
   const { pages, loading: pagesLoading, error: pagesError } = useQueryPages();
   const { error: metaError, loading: metaLoading } = useBuildMeta();
-  const { pageFrames, error: framesError, loading: framesLoading } = useQueryPageFrames(device);
-
-  useEffect(() => {
-    if (activeKey === DesignerRoutes.Pages) {
-      setDesignerType(DesignerType.Page)
-    }
-    if (activeKey === DesignerRoutes.PageFrames) {
-      setDesignerType(DesignerType.Frame)
-    }
-  }, [activeKey])
 
   useEffect(() => {
     setPages(pages || []);
@@ -86,11 +63,7 @@ const AppDesignerContent = memo(() => {
     setCategories(categories || []);
   }, [categories, setCategories])
 
-  useEffect(() => {
-    setPageFrames(pageFrames || []);
-  }, [pageFrames, setPageFrames])
-
-  useShowError(error || pagesError || metaError || framesError);
+  useShowError(error || pagesError || metaError);
 
   const engine = useMemo(
     () => createDesigner({
@@ -119,8 +92,6 @@ const AppDesignerContent = memo(() => {
       return <MenuActionsWidget />
     } else if (activeKey === DesignerRoutes.Settings) {
       return <ConfigActionsWidget />
-    } else if (designerType === DesignerType.Frame) {
-      return <FrameActionsWidget />
     } else {
       return <ActionsWidget />
     }
@@ -131,7 +102,7 @@ const AppDesignerContent = memo(() => {
   }, [app?.uuid, device])
 
   return (
-    <Spin style={{ height: "100vh" }} spinning={loading || pagesLoading || metaLoading || framesLoading}>
+    <Spin style={{ height: "100vh" }} spinning={loading || pagesLoading || metaLoading}>
       <MenuDragRoot>
         <Designer engine={engine}>
           <StudioPanel logo={<NavigationWidget app={app} activeKey={activeKey as any} />}
@@ -156,14 +127,14 @@ const AppDesignerContent = memo(() => {
                 title={t("Panels.Component")}
                 icon="Component"
               >
-                <MaterialWidget withFrameMaterials={designerType === DesignerType.Frame} />
+                <MaterialWidget />
               </CompositePanel.Item>
               <CompositePanel.Item
                 key={DesignerRoutes.Templates}
                 title={t("Panels.Templates")}
                 icon={
-                  <svg fill="currentColor" style={{ width: "22px", height: "22px" }} viewBox="0 0 1024 1024">
-                    <path d="M917.157111 911.728984L539.691177 911.728984l0-465.389426 377.464911 0L917.156088 911.728984zM591.663876 859.202677l273.519514 0 0-360.336812-273.519514 0L591.663876 859.202677zM484.299613 911.728984l-377.456724 0 0-193.578834 377.456724 0L484.299613 911.728984zM158.805354 859.202677l273.529747 0 0-88.515986-273.529747 0L158.805354 859.202677zM917.157111 417.779082L106.842889 417.779082 106.842889 112.271016l810.314223 0L917.157111 417.779082zM158.805354 364.679723l706.378036 0 0-199.872167-706.378036 0L158.805354 364.679723zM484.299613 675.897837l-377.456724 0 0-229.558279 377.456724 0L484.299613 675.897837zM158.805354 623.924115l273.529747 0 0-125.058251-273.529747 0L158.805354 623.924115z"></path>
+                  <svg className='nav-icon' viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M12,18.54L19.37,12.8L21,14.07L12,21.07L3,14.07L4.62,12.81L12,18.54M12,16L3,9L12,2L21,9L12,16M12,4.53L6.26,9L12,13.47L17.74,9L12,4.53Z" />
                   </svg>
                 }
               >
@@ -179,22 +150,11 @@ const AppDesignerContent = memo(() => {
                 key={DesignerRoutes.Menu}
                 title={t("Panels.Menu")}
                 icon={
-                  <svg fill="currentColor" style={{ width: "24px", height: "24px" }} viewBox="0 0 1024 1024">
+                  <svg style={{ width: "24px", height: "24px" }} viewBox="0 0 1024 1024">
                     <path d="M912.051527 151.150632l-286.624817 780.499041c-5.753719 15.667798-23.118384 23.704707-38.786182 17.950989a30.220937 30.220937 0 0 1-19.305944-22.909364L498.23787 550.442426a30.220937 30.220937 0 0 0-24.265655-24.265655L97.723343 457.080057c-16.415729-3.014425-27.279412-18.766366-24.264987-35.182094a30.220937 30.220937 0 0 1 19.306612-22.910032L873.263342 112.363782c15.669134-5.753719 33.033799 2.28319 38.786849 17.951656a30.220937 30.220937 0 0 1 0 20.835194zM826.833582 205.907791a7.555234 7.555234 0 0 0-9.679684-9.650301l-573.559491 207.092476a7.555234 7.555234 0 0 0 1.149942 14.527205l297.554613 56.790594a7.555234 7.555234 0 0 1 6.020837 6.087616L603.515031 788.626754a7.555234 7.555234 0 0 0 14.549911 1.210044L826.83425 205.908459z" p-id="8853"></path>
                   </svg>
                 }>
                 <MenuComponentsWidget />
-              </CompositePanel.Item>
-              <CompositePanel.Item
-                key={DesignerRoutes.PageFrames}
-                title={t("Panels.Pageframes")}
-                icon={
-                  <svg fill="currentColor" style={{ width: 28, height: 28 }} viewBox="0 0 1024 1024">
-                    <path d="M426.666667 426.666667v384H384v-384H256V384h554.666667v42.666667h-384zM213.333333 213.333333h640v640H213.333333V213.333333z m42.666667 42.666667v554.666667h554.666667V256H256z"></path>
-                  </svg>
-                }
-              >
-                <PageFrameListWidget />
               </CompositePanel.Item>
               <CompositePanel.Item
                 key={DesignerRoutes.Settings}
@@ -203,17 +163,12 @@ const AppDesignerContent = memo(() => {
               </CompositePanel.Item>
             </CompositePanel>
             {
-              (pageId || frameId) &&
-              <PageWorkSpace
-                pageOrFrameId={pageId || frameId}
-                designerType={designerType}
-                visable={
-                  activeKey === DesignerRoutes.Pages ||
-                  activeKey === DesignerRoutes.OutlinedTree ||
-                  activeKey === DesignerRoutes.Components ||
-                  activeKey === DesignerRoutes.Fragments ||
-                  activeKey === DesignerRoutes.PageFrames
-                } />
+              pageId && <PageWorkSpace pageId={pageId} visable={
+                activeKey === DesignerRoutes.Pages ||
+                activeKey === DesignerRoutes.OutlinedTree ||
+                activeKey === DesignerRoutes.Components ||
+                activeKey === DesignerRoutes.Fragments
+              } />
             }
 
             {
@@ -232,3 +187,6 @@ const AppDesignerContent = memo(() => {
 })
 
 export default AppDesignerContent;
+
+
+

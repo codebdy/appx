@@ -22,51 +22,33 @@ import { useLazyQueryPage } from "../../../hooks/useLazyQueryPage";
 import { FormDesigner } from "../../../components/pc/FormDesigner";
 import { ObjectContainer } from "@designable/formily-antd";
 import { useMaterialDesigners } from "../../../material/hooks/useMaterialDesigners";
-import { DesignerRoutes, DesignerType } from "../../AppDesignerContent";
-import { useLazyQueryPageFrame } from "../../hooks/useLazyQueryPageFrame";
 
 const PageWorkSpace = (props: {
-  designerType?: DesignerType,
-  pageOrFrameId: ID,
+  pageId: ID,
   visable: boolean | undefined,
 }) => {
-  const { designerType, pageOrFrameId, visable } = props;
+  const { pageId, visable } = props;
   const designer = useDesigner();
   const [query, { page, loading, error }] = useLazyQueryPage();
-  const [queryFrame, { pageFrame, loading: frameLoading, error: frameError }] = useLazyQueryPageFrame();
   const materailDesigners = useMaterialDesigners();
 
   useEffect(() => {
-    if (designerType === DesignerType.Page) {
-      query(pageOrFrameId)
-    }
-  }, [pageOrFrameId, query]);
-
-  useEffect(() => {
-    if (designerType === DesignerType.Frame) {
-      queryFrame(pageOrFrameId)
-    }
-  }, [pageOrFrameId, queryFrame]);
+    query(pageId)
+  }, [pageId, query]);
 
   const { t } = useTranslation();
 
   useEffect(() => {
-    if (designerType === DesignerType.Frame) {
-      designer.setCurrentTree(
-        transformToTreeNode(pageFrame?.schemaJson || {})
-      )
-    } else if (designerType === DesignerType.Page) {
-      designer.setCurrentTree(
-        transformToTreeNode(page?.schemaJson || {})
-      )
-    }
-  }, [designer, page?.schemaJson, designerType, pageFrame?.schemaJson])
+    designer.setCurrentTree(
+      transformToTreeNode(page?.schemaJson || {})
+    )
+  }, [designer, page?.schemaJson])
 
-  useShowError(error || frameError);
+  useShowError(error);
 
   return (
     visable && (
-      loading || frameLoading ?
+      loading ?
         <Spin>
           <div style={{ width: "calc(100vw - 280px)", height: "calc(100vh - 64px)" }}>
           </div>

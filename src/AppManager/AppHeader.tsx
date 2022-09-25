@@ -16,7 +16,7 @@ export enum AppManagerRoutes {
   Api = "system-api",
   Auth = "system-auth",
   Config = "system-config",
-  Devices = "devices"
+  Devices = "devices",
 }
 
 const AppHeader = memo((props: {

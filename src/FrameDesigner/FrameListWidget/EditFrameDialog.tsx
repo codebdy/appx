@@ -2,25 +2,25 @@ import { Form, Modal } from "antd";
 import React, { useCallback, useEffect } from "react";
 import { memo } from "react";
 import { useTranslation } from "react-i18next";
-import { ImageUploader } from "../../../components";
-import { MultiLangInput } from "../../../components/pc";
-import { useShowError } from "../../../hooks/useShowError";
-import { IPageFrame } from "../../../model";
-import { useUpsertPageFrame } from "../../hooks/useUpsertPageFrame";
+import { ImageUploader } from "../../components";
+import { MultiLangInput } from "../../components/pc";
+import { useShowError } from "../../hooks/useShowError";
+import { IPageFrame } from "../../model";
+import { useUpsertPageFrame } from "../hooks/useUpsertPageFrame";
 
-export const EditPageFrameDialog = memo((
+export const EditFrameDialog = memo((
   props: {
-    template?: IPageFrame,
+    frame?: IPageFrame,
     isModalVisible: boolean,
     onClose: () => void,
   }
 ) => {
-  const { template, isModalVisible, onClose } = props;
+  const { frame, isModalVisible, onClose } = props;
   const [form] = Form.useForm()
 
   useEffect(()=>{
-    form.setFieldsValue(template)
-  }, [form, template]);
+    form.setFieldsValue(frame)
+  }, [form, frame]);
 
   const [upsert, { loading, error }] = useUpsertPageFrame({
     onCompleted: () => {
@@ -33,9 +33,9 @@ export const EditPageFrameDialog = memo((
 
   const handleConfirm = useCallback((values: any) => {
     form.validateFields().then((values: any) => {
-      upsert({ ...template as any, ...values });
+      upsert({ ...frame as any, ...values });
     });
-  }, [form, template, upsert]);
+  }, [form, frame, upsert]);
 
   const handleKeyUp = useCallback((event: React.KeyboardEvent<HTMLElement>) => {
     event.stopPropagation();
@@ -43,7 +43,7 @@ export const EditPageFrameDialog = memo((
 
   return (
     <Modal
-      title={template ? t("Templates.EidtTemplate") : t("Templates.NewTemplate")}
+      title={frame ? t("Templates.EidtTemplate") : t("Templates.NewTemplate")}
       open={isModalVisible}
       width={580}
       cancelText={t("Cancel")}
@@ -57,7 +57,7 @@ export const EditPageFrameDialog = memo((
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 16 }}
         form={form}
-        initialValues={{ title: template?.title || "" }}
+        initialValues={{ title: frame?.title || "" }}
         autoComplete="off"
         onKeyUp={handleKeyUp}
       >

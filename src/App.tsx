@@ -17,6 +17,8 @@ import FlowBoard from './FlowBoard';
 import AppRunner from './AppRunner';
 import AppConfig from './AppConfig';
 import { LoggedInPanel } from './Login/LoggedInPanel';
+import { AppFrames } from './AppEntry/AppFrames';
+import { FrameDesigner } from './FrameDesigner';
 import { AppPlugins } from './AppPlugins';
 import { PredefinedPluginsRoot } from './plugin/PredefinedPluginsRoot';
 import { PredefinedMaterialsRoot } from './material/PredefinedMaterialsRoot';
@@ -45,8 +47,10 @@ const App = memo(() => {
               <Route path={AppConfigRouts.Api} element={<ApiBoard />} />
               <Route path={AppConfigRouts.Auth} element={<AuthBoard />} />
               <Route path={AppConfigRouts.Plugins} element={<AppPlugins />} />
+              <Route path={AppConfigRouts.Frame} element={<AppFrames />} />
             </Route>
             <Route path="/design-app/:device/:appUuid" element={<AppDesigner />} />
+            <Route path="/design-frame/:device/:appUuid" element={<FrameDesigner />} />
             <Route path={"/app/:device/:appUuid"} element={<AppRunner />}>
               <Route path=":menuUuid" element={<></>}>
                 <Route path=":pageId" element={<></>}>

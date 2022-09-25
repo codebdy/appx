@@ -49,6 +49,10 @@ const ConifgHeader = memo((props: {
             label: t("AppConfig.UIDesign"),
           },
           {
+            key: AppConfigRouts.Frame,
+            label: t("AppConfig.FrameDesign"),
+          },
+          {
             key: AppConfigRouts.Model,
             label: t("AppConfig.DomainModel"),
           },

@@ -2,17 +2,19 @@ import React, { useCallback } from 'react'
 import { Button, message } from 'antd'
 import { useDesigner, TextWidget } from '@designable/react'
 import { observer } from '@formily/react'
-import { transformToSchema } from '../transformer'
-import { useShowError } from '../../hooks/useShowError'
 import { useTranslation } from 'react-i18next'
-import { useSelectedFrameId } from '../hooks/useSelectedFrameId'
-import { useUpsertPageFrame } from '../hooks/useUpsertPageFrame'
+import { transformToSchema } from '../AppDesigner/transformer'
+import { useShowError } from '../hooks/useShowError'
+import { ID } from '../shared'
+import { useUpsertPageFrame } from './hooks/useUpsertPageFrame'
 
-export const FrameActionsWidget = observer(() => {
+export const ActionsWidget = observer((props: {
+  templateId?: ID,
+}) => {
+  const { templateId } = props;
   const designer = useDesigner();
-  const frameId = useSelectedFrameId();
   const { t } = useTranslation();
-  const [upsert, { loading, error }] = useUpsertPageFrame({
+  const [update, { loading, error }] = useUpsertPageFrame({
     onCompleted: () => {
       message.success(t("OperateSuccess"))
     }
@@ -21,13 +23,13 @@ export const FrameActionsWidget = observer(() => {
   useShowError(error);
 
   const handleSave = useCallback(() => {
-    upsert({ id: frameId, schemaJson: transformToSchema(designer.getCurrentTree()) });
-  }, [designer, frameId, upsert])
+    update({ id: templateId, schemaJson: transformToSchema(designer.getCurrentTree()) });
+  }, [designer, templateId, update])
 
   return (
     <Button
       type="primary"
-      disabled={!frameId}
+      disabled={!templateId}
       loading={loading}
       onClick={handleSave}
     >
