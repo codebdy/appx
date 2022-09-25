@@ -186,7 +186,8 @@ const AppDesignerContent = memo(() => {
                 activeKey === DesignerRoutes.Pages ||
                 activeKey === DesignerRoutes.OutlinedTree ||
                 activeKey === DesignerRoutes.Components ||
-                activeKey === DesignerRoutes.Fragments
+                activeKey === DesignerRoutes.Fragments ||
+                activeKey === DesignerRoutes.PageFrames
               } />
             }
 
