@@ -12,7 +12,6 @@ import SelectLang from "../shared/SelectLang"
 
 export enum AppManagerRoutes {
   Root = "/",
-  Templates = "app-templates",
   Model = "system-model",
   Api = "system-api",
   Auth = "system-auth",
@@ -30,10 +29,6 @@ const AppHeader = memo((props: {
 
   const handleGotoRoot = useCallback(() => {
     navigate(AppManagerRoutes.Root)
-  }, [navigate])
-
-  const handleGotoTemplates = useCallback(() => {
-    navigate(AppManagerRoutes.Templates)
   }, [navigate])
 
   const handleGotoModel = useCallback(() => {
@@ -124,7 +119,6 @@ const AppHeader = memo((props: {
         </Button>
         <Button shape="round"
           className='nav-button'
-          type={match.pathname.substring(1) === AppManagerRoutes.Templates ? "primary" : undefined}
           icon={
             <SvgIcon>
               <svg className='nav-icon' fill="currentColor" style={{ width: 18, height: 16 }} viewBox="0 0 1024 1024">
@@ -132,9 +126,8 @@ const AppHeader = memo((props: {
               </svg>
             </SvgIcon>
           }
-          onClick={handleGotoTemplates}
         >
-          {t("AppTemplates")}
+          {t("Engines")}
         </Button>
 
         {/* <Button shape="round" className='nav-button' icon={

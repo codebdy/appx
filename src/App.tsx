@@ -17,8 +17,6 @@ import FlowBoard from './FlowBoard';
 import AppRunner from './AppRunner';
 import AppConfig from './AppConfig';
 import { LoggedInPanel } from './Login/LoggedInPanel';
-import { AppTemplates } from './AppTemplates';
-import { TemplateDesigner } from './TemplateDesigner';
 import { AppPlugins } from './AppPlugins';
 import { PredefinedPluginsRoot } from './plugin/PredefinedPluginsRoot';
 import { PredefinedMaterialsRoot } from './material/PredefinedMaterialsRoot';
@@ -34,13 +32,11 @@ const App = memo(() => {
                 path={AppManagerRoutes.Root}
                 element={<AppsContent />}
               />
-              <Route path={AppManagerRoutes.Templates} element={<AppTemplates />} />
               <Route path={AppManagerRoutes.Model} element={<ModelBoard />} />
               <Route path={AppManagerRoutes.Api} element={<ApiBoard />} />
               <Route path={AppManagerRoutes.Auth} element={<AuthBoard />} />
               <Route path={AppManagerRoutes.Config} element={<AppConfig />} />
             </Route>
-            <Route path="/design-template/:device" element={<TemplateDesigner />} />
             <Route path="/config-app/:appUuid" element={<AppEntry />}>
               <Route path={AppConfigRouts.Config} element={<AppConfig />} />
               <Route path={AppConfigRouts.App} element={<DeviceList />} />
