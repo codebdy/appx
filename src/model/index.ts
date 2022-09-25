@@ -75,7 +75,7 @@ export interface IPageFrame {
   title: string;
   schemaJson: { form: any, schema: ISchema };
   device: Device;
-  appUuid?: string;
+  app?: IApp;
 }
 
 export interface IPage {
@@ -83,7 +83,7 @@ export interface IPage {
   title: string;
   schemaJson: { form: any, schema: ISchema };
   device: Device;
-  app: IApp[];
+  app?: IApp;
   category?: IPageCategory;
 }
 

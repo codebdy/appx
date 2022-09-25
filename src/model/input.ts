@@ -53,7 +53,7 @@ export interface IPageFrameInput {
   title?: string;
   schemaJson?: any;
   device?: Device;
-  appUuid?: string;
+  app?: { sync: IAppInput };
 }
 
 export interface IAppInput {
