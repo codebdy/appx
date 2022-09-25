@@ -2,15 +2,15 @@ import { Tree } from 'antd';
 import React, { memo, useCallback } from 'react';
 import "./style.less"
 import { DataNode } from 'antd/lib/tree';
-import TemplateLabel from './TemplateLabel';
-import { ID } from '../../shared';
-import CreatePageDialog from './CreateTemplateDialog';
+import PageFrameLabel from './PageFrameLabel';
+import { ID } from '../../../../shared';
+import CreatePageFrameDialog from './CreatePageFrameDialog';
 import { FileOutlined } from '@ant-design/icons';
-import { ITemplate } from '../../model';
+import { IPageFrame } from '../../../../model';
 
 export const TemplateListWidget = memo((
   props: {
-    templates?: ITemplate[],
+    templates?: IPageFrame[],
     selectedId?: ID,
     onSelected: (selectedId?: ID) => void,
   }
@@ -21,7 +21,7 @@ export const TemplateListWidget = memo((
     const dataNodes: DataNode[] = []
     for (const template of templates) {
       dataNodes.push({
-        title: <TemplateLabel template={template} />,
+        title: <PageFrameLabel pageFrame={template} />,
         icon: <FileOutlined />,
         key: template.id,
       })
@@ -43,7 +43,7 @@ export const TemplateListWidget = memo((
         onSelect={onSelect}
         treeData={getTreeData()}
       />
-      <CreatePageDialog />
+      <CreatePageFrameDialog />
     </div>
   );
 });

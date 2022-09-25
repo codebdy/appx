@@ -3,9 +3,9 @@ import { Button } from "antd";
 import React, { useCallback, useState } from "react";
 import { memo } from "react";
 import { useTranslation } from "react-i18next";
-import { EditTemplateDialog } from "./EditTemplateDialog";
+import { EditPageFrameDialog } from "./EditPageFrameDialog";
 
-const CreatePageDialog = memo(() => {
+const CreatePageFrameDialog = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const { t } = useTranslation();
   const showModal = useCallback(() => {
@@ -28,9 +28,9 @@ const CreatePageDialog = memo(() => {
       >
         {t("Templates.NewTemplate")}
       </Button>
-      <EditTemplateDialog isModalVisible={isModalVisible} onClose={handleClose} />
+      <EditPageFrameDialog isModalVisible={isModalVisible} onClose={handleClose} />
     </div>
   )
 })
 
-export default CreatePageDialog;
+export default CreatePageFrameDialog;

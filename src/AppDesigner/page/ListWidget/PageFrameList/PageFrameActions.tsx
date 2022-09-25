@@ -2,18 +2,22 @@ import { MoreOutlined, EditOutlined, DeleteOutlined, LoadingOutlined } from "@an
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next";
+import { ID } from "../../../../shared";
+import { useShowError } from "../../../../hooks/useShowError";
+import { IPageFrame } from "../../../../model";
+import { useDeletePageFrame } from "../../../hooks/useDeletePageFrame";
 
-const TemplateActions = memo((
+const PageFrameActions = memo((
   props: {
-    templateId: ID,
+    pageFrameId: ID,
     onVisibleChange: (visible: boolean) => void,
     onEdit: () => void,
   }
 ) => {
-  const { templateId, onVisibleChange, onEdit } = props;
+  const { pageFrameId, onVisibleChange, onEdit } = props;
   const { t } = useTranslation();
-  const [remove, { loading, error }] = useDeleteTemplate({
-    onCompleted: (data: ITemplate) => {
+  const [remove, { loading, error }] = useDeletePageFrame({
+    onCompleted: (data: IPageFrame) => {
       onVisibleChange(false);
     }
   });
@@ -26,8 +30,8 @@ const TemplateActions = memo((
   }, [onEdit, onVisibleChange]);
 
   const handleDelete = useCallback(() => {
-    remove(templateId);
-  }, [templateId, remove]);
+    remove(pageFrameId);
+  }, [pageFrameId, remove]);
 
   const menu = useMemo(() => (
     <Menu
@@ -59,7 +63,7 @@ const TemplateActions = memo((
     <Dropdown
       overlay={menu}
       trigger={['click']}
-      onVisibleChange={onVisibleChange}
+      onOpenChange={onVisibleChange}
       disabled={loading}
     >
       <Button shape='circle' type="text" size='small' onClick={e => e.stopPropagation()}>
@@ -74,4 +78,4 @@ const TemplateActions = memo((
   )
 })
 
-export default TemplateActions;
+export default PageFrameActions;

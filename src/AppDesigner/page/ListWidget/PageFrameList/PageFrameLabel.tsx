@@ -1,16 +1,16 @@
 import React, { useCallback, useState } from "react"
-import TreeNodeLabel from "../../common/TreeNodeLabel";
-import { useParseLangMessage } from "../../hooks/useParseLangMessage";
-import { ITemplate } from "../../model";
-import { EditTemplateDialog } from "./EditTemplateDialog";
-import TemplateActions from "./TemplateActions"
+import TreeNodeLabel from "../../../../common/TreeNodeLabel";
+import { useParseLangMessage } from "../../../../hooks/useParseLangMessage";
+import { IPageFrame } from "../../../../model";
+import { EditPageFrameDialog } from "./EditPageFrameDialog";
+import PageFrameActions from "./PageFrameActions"
 
-const TemplateLabel = (
+const PageFrameLabel = (
   props: {
-    template: ITemplate
+    pageFrame: IPageFrame
   }
 ) => {
-  const { template } = props;
+  const { pageFrame } = props;
   const [visible, setVisible] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const p = useParseLangMessage();
@@ -29,20 +29,20 @@ const TemplateLabel = (
   return (
     <TreeNodeLabel fixedAction={visible}
       action={
-        <TemplateActions
-          templateId={template.id}
+        <PageFrameActions
+          pageFrameId={pageFrame.id}
           onVisibleChange={handleVisableChange}
           onEdit={handleEdit}
         />
       }>
-      {p(template.title)}
+      {p(pageFrame.title)}
       <div
         onClick={e => e.stopPropagation()}
       >
-        <EditTemplateDialog template={template} isModalVisible={modalOpen} onClose={handleClose} />
+        <EditPageFrameDialog template={pageFrame} isModalVisible={modalOpen} onClose={handleClose} />
       </div>
     </TreeNodeLabel>
   )
 }
 
-export default TemplateLabel
+export default PageFrameLabel
