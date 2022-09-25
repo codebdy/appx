@@ -14,7 +14,7 @@ const ComponentDesigner: DnFC<IComponentProps> = observer((
       <Component {...props} />
       :
       <Component {...props}>
-        <DroppableWidget style={{ flex: 1 }} />
+        <DroppableWidget style={{ flex: 1, height: "100%", display: "flex", flexFlow: "column" }} />
       </Component>
   )
 })

@@ -11,9 +11,7 @@ export interface IComponentProps {
 const Component = observer((props: IComponentProps) => {
   const {className, ...other} = props; 
   return (
-    <div className={cls(className, "appx-content")} {...other}>
-      Content
-    </div>
+    <div className={cls(className, "appx-content")} {...other} />
   )
 })
 
