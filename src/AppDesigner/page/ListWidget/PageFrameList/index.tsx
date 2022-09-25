@@ -6,20 +6,17 @@ import PageFrameLabel from './PageFrameLabel';
 import { ID } from '../../../../shared';
 import CreatePageFrameDialog from './CreatePageFrameDialog';
 import { FileOutlined } from '@ant-design/icons';
-import { IPageFrame } from '../../../../model';
+import { useAppViewKey } from '../../../../shared/AppRoot/context';
+import { pageFramesState } from '../../../recoil/atom';
+import { useRecoilValue } from 'recoil'
 
-export const TemplateListWidget = memo((
-  props: {
-    templates?: IPageFrame[],
-    selectedId?: ID,
-    onSelected: (selectedId?: ID) => void,
-  }
-) => {
-  const { templates, selectedId, onSelected } = props;
+export const PageFrameList = memo(() => {
+  const key = useAppViewKey();
+  const pageFrames = useRecoilValue(pageFramesState(key));
 
   const getTreeData = useCallback(() => {
     const dataNodes: DataNode[] = []
-    for (const template of templates) {
+    for (const template of pageFrames || []) {
       dataNodes.push({
         title: <PageFrameLabel pageFrame={template} />,
         icon: <FileOutlined />,
@@ -27,11 +24,11 @@ export const TemplateListWidget = memo((
       })
     }
     return dataNodes
-  }, [templates])
+  }, [pageFrames])
 
   const onSelect = useCallback((selectedKeys) => {
-    onSelected(selectedKeys?.[0])
-  }, [onSelected]);
+    //onSelected(selectedKeys?.[0])
+  }, []);
 
 
   return (
@@ -39,7 +36,7 @@ export const TemplateListWidget = memo((
       <Tree
         showIcon
         className='template-list-tree'
-        selectedKeys={[selectedId]}
+        selectedKeys={[]}
         onSelect={onSelect}
         treeData={getTreeData()}
       />

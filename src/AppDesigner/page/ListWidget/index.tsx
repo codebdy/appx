@@ -2,6 +2,7 @@ import { MoreOutlined } from '@ant-design/icons';
 import { Button, Tabs } from 'antd';
 import React, { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import { PageFrameList } from './PageFrameList';
 import PageList from './PageList';
 import "./style.less"
 
@@ -21,7 +22,7 @@ const ListWidget = memo((
           <PageList />
         </Tabs.TabPane>
         <Tabs.TabPane tab={t("Frameworks.Title")} key="frameworks">
-          Content of Tab Pane 2
+          <PageFrameList />
         </Tabs.TabPane>
       </Tabs>
     </div>
