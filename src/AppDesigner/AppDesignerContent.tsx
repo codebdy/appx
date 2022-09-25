@@ -34,6 +34,7 @@ import { ConfigActionsWidget } from './config/ConfigActionsWidget'
 import { useQueryPageFrames } from './hooks/useQueryPageFrames'
 import PageListWidget from './page/PageListWidget'
 import { PageFrameListWidget } from './widgets/PageFrameListWidget'
+import { useSelectedFrameId } from './hooks/useSelectedFrameId'
 
 export enum DesignerRoutes {
   Templates = "templates",
@@ -55,6 +56,7 @@ const AppDesignerContent = memo(() => {
   const setPages = useSetRecoilState(pagesState(key))
   const setPageFrames = useSetRecoilState(pageFramesState(key))
   const pageId = useSelectedPageId();
+  const frameId = useSelectedFrameId();
   const { categories, loading, error } = useQueryCagegories();
   const { pages, loading: pagesLoading, error: pagesError } = useQueryPages();
   const { error: metaError, loading: metaLoading } = useBuildMeta();
@@ -183,7 +185,7 @@ const AppDesignerContent = memo(() => {
               </CompositePanel.Item>
             </CompositePanel>
             {
-              pageId && <PageWorkSpace pageId={pageId} visable={
+              (pageId || frameId) && <PageWorkSpace pageOrFrameId={pageId || frameId} activeKey={activeKey} visable={
                 activeKey === DesignerRoutes.Pages ||
                 activeKey === DesignerRoutes.OutlinedTree ||
                 activeKey === DesignerRoutes.Components ||
