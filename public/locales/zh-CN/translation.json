@@ -127,8 +127,8 @@
     "SelectCategory": "选择分组",
     "PropertySettings": "属性设置"
   },
-  "Frameworks": {
-    "Title":"框架"
+  "PageFrames": {
+    "Title":"页面框架"
   },
   "Materials": {
     "ModuleList": "物料管理",

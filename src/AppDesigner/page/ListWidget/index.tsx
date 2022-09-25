@@ -34,7 +34,7 @@ const ListWidget = memo((
         <Tabs.TabPane tab={t("Pages.Title")} key="pages">
           <PageList />
         </Tabs.TabPane>
-        <Tabs.TabPane tab={t("Frameworks.Title")} key="frameworks">
+        <Tabs.TabPane tab={t("PageFrames.Title")} key="frameworks">
           <PageFrameList />
         </Tabs.TabPane>
       </Tabs>
