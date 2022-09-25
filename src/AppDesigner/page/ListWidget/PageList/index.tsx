@@ -1,8 +1,6 @@
 import { Tree } from 'antd';
 import React, { memo, useCallback } from 'react';
 import { DataNode } from 'antd/lib/tree';
-import CreateCategoryDialog from './CreateCategoryDialog';
-import CreatePageDialog from './CreatePageDialog';
 import { useRecoilState } from 'recoil';
 import { useAppViewKey } from '../../../../shared/AppRoot/context';
 import CategoryLabel from './CategoryLabel';

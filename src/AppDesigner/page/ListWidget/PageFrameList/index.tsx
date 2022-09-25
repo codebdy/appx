@@ -40,7 +40,6 @@ export const PageFrameList = memo(() => {
         onSelect={onSelect}
         treeData={getTreeData()}
       />
-      <CreatePageFrameDialog />
     </div>
   );
 });

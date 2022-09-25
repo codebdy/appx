@@ -17,19 +17,19 @@ const CreatePageFrameDialog = memo(() => {
   }, []);
 
   return (
-    <div className="template-list-action">
+    <>
       <Button
-        type='dashed'
+        type='text'
+        shape="circle"
+        size="small"
         icon={
           <PlusOutlined />
         }
         block
         onClick={showModal}
-      >
-        {t("Templates.NewTemplate")}
-      </Button>
+      />
       <EditPageFrameDialog isModalVisible={isModalVisible} onClose={handleClose} />
-    </div>
+    </>
   )
 })
 
