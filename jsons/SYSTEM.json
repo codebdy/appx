@@ -623,9 +623,9 @@
           }
         ],
         "innerId": 1016,
-        "label": "$inline:{\"zh-CN\":\"应用模板\"}",
+        "label": "$inline:{\"zh-CN\":\"页面框架\"}",
         "methods": [],
-        "name": "Template",
+        "name": "PageFrame",
         "packageUuid": "PACKAGE_APPX_UUID",
         "root": true,
         "stereoType": "Entity",
@@ -711,11 +711,11 @@
             "uuid": "77dcb51c-e52e-4e73-bf9f-fdaf8a5abef0"
           },
           {
-            "uuid": "510d473b-c4e8-44b9-a55a-a8607135d9d1",
             "name": "version",
+            "nullable": true,
             "type": "String",
             "typeLabel": "String",
-            "nullable": true
+            "uuid": "510d473b-c4e8-44b9-a55a-a8607135d9d1"
           }
         ],
         "innerId": 1017,
@@ -987,7 +987,7 @@
         "innerId": 1010,
         "relationType": "twoWayAssociation",
         "roleOfSource": "app",
-        "roleOfTarget": "templates",
+        "roleOfTarget": "pageFrames",
         "sourceId": "2082d665-e503-402a-a089-678115c5ed3e",
         "sourceMutiplicity": "0..1",
         "targetId": "3a450ffa-e784-415f-b6c2-bc415e2dfd8c",
@@ -1250,12 +1250,12 @@
         "y": -330
       },
       {
-        "id": "f0fa4b0f-4b91-4092-a93b-beaa13896e86",
-        "x": -1100,
-        "y": -201.9999999999998,
-        "width": 180,
+        "diagramUuid": "33546200-9c95-4747-94ee-a7198b6bd85c",
         "height": 280,
-        "diagramUuid": "33546200-9c95-4747-94ee-a7198b6bd85c"
+        "id": "f0fa4b0f-4b91-4092-a93b-beaa13896e86",
+        "width": 180,
+        "x": -1100,
+        "y": -201.9999999999998
       },
       {
         "diagramUuid": "33546200-9c95-4747-94ee-a7198b6bd85c",

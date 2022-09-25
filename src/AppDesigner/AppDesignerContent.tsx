@@ -28,10 +28,11 @@ import { useQueryPages } from './hooks/useQueryPages'
 import { SettingOutlined } from '@ant-design/icons'
 import { useBuildMeta } from '../datasource/hooks'
 import { useSetRecoilState } from 'recoil'
-import { categoriesState, pagesState } from './recoil/atom'
+import { categoriesState, pageFramesState, pagesState } from './recoil/atom'
 import ConfigWorkSpace from './config/ConfigWorkSpace'
 import { ConfigActionsWidget } from './config/ConfigActionsWidget'
 import ListWidget from './page/ListWidget'
+import { useQueryPageFrames } from './hooks/useQueryPageFrames'
 
 export enum DesignerRoutes {
   Templates = "Templates",
@@ -50,10 +51,12 @@ const AppDesignerContent = memo(() => {
   const { t } = useTranslation();
   const setCategories = useSetRecoilState(categoriesState(key))
   const setPages = useSetRecoilState(pagesState(key))
+  const setPageFrames = useSetRecoilState(pageFramesState(key))
   const pageId = useSelectedPageId();
   const { categories, loading, error } = useQueryCagegories();
   const { pages, loading: pagesLoading, error: pagesError } = useQueryPages();
   const { error: metaError, loading: metaLoading } = useBuildMeta();
+  const { pageFrame, error: framesError, loading: framesLoading } = useQueryPageFrames(device);
 
   useEffect(() => {
     setPages(pages || []);
@@ -63,7 +66,11 @@ const AppDesignerContent = memo(() => {
     setCategories(categories || []);
   }, [categories, setCategories])
 
-  useShowError(error || pagesError || metaError);
+  useEffect(() => {
+    setCategories(categories || []);
+  }, [categories, setCategories])
+
+  useShowError(error || pagesError || metaError || framesError);
 
   const engine = useMemo(
     () => createDesigner({
@@ -102,7 +109,7 @@ const AppDesignerContent = memo(() => {
   }, [app?.uuid, device])
 
   return (
-    <Spin style={{ height: "100vh" }} spinning={loading || pagesLoading || metaLoading}>
+    <Spin style={{ height: "100vh" }} spinning={loading || pagesLoading || metaLoading || framesLoading}>
       <MenuDragRoot>
         <Designer engine={engine}>
           <StudioPanel logo={<NavigationWidget app={app} activeKey={activeKey as any} />}

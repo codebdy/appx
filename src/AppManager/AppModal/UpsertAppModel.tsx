@@ -25,7 +25,7 @@ export const UpsertAppModel = memo((
 
   const reset = useCallback(() => {
     form.setFieldsValue({ title: app?.title || "", description: app?.description || "", imageUrl: app?.imageUrl || "" })
-  }, [app?.description, app?.imageUrl, app?.templates, app?.title, form])
+  }, [app?.description, app?.imageUrl, app?.pageFrames, app?.title, form])
 
   useEffect(() => {
     reset();

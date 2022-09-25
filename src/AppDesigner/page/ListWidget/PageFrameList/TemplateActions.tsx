@@ -2,10 +2,6 @@ import { MoreOutlined, EditOutlined, DeleteOutlined, LoadingOutlined } from "@an
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next";
-import { useShowError } from "../../hooks/useShowError";
-import { ITemplate } from "../../model";
-import { ID } from "../../shared";
-import { useDeleteTemplate } from "../hooks/useDeleteTemplate";
 
 const TemplateActions = memo((
   props: {

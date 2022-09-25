@@ -1,15 +1,15 @@
 import { ID } from "../../shared";
 import { IDeleteOptions, useDeleteById } from "../../enthooks/hooks/useDeleteById";
-import { ITemplate } from "../../model";
+import { IPageFrame } from "../../model";
 
-export function useDeleteTemplate(options?: IDeleteOptions<ITemplate>): [
+export function useDeletePageFrame(options?: IDeleteOptions<IPageFrame>): [
   (id: ID) => void,
   {
     error?: Error,
     loading?: boolean,
   }
 ] {
-  const [doDelete, { error, loading }] = useDeleteById<ITemplate>("Template",
+  const [doDelete, { error, loading }] = useDeleteById<IPageFrame>("PageFrame",
     {
       ...options
     }

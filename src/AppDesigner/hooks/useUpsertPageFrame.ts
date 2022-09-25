@@ -1,22 +1,22 @@
 import { useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { IPostOptions, usePostOne } from "../../enthooks/hooks/usePostOne";
-import { ITemplate } from "../../model";
-import { ITemplateInput } from "../../model/input";
+import { IPageFrame } from "../../model";
+import { IPageFrameInput } from "../../model/input";
 
-export function useUpsertTemplate(options?: IPostOptions<any>): [
-  (template: ITemplateInput) => void,
+export function useUpsertPageFrame(options?: IPostOptions<any>): [
+  (template: IPageFrameInput) => void,
   { loading?: boolean; error?: Error }
 ] {
   const { device } = useParams();
-  const [post, { error, loading }] = usePostOne<ITemplateInput, ITemplate>("Template",
+  const [post, { error, loading }] = usePostOne<IPageFrameInput, IPageFrame>("PageFrame",
     {
       ...options,
       fieldsGql: "id title device schemaJson"
     }
   )
 
-  const update = useCallback((template: ITemplateInput) => {
+  const update = useCallback((template: IPageFrameInput) => {
     post({
       device: device as any,
       ...template,

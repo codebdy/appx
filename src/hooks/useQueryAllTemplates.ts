@@ -1,7 +1,7 @@
 import { gql } from "awesome-graphql-client";
 import { useMemo } from "react";
 import { useQuery } from "../enthooks/hooks/useQuery";
-import { ITemplate } from "../model";
+import { IPageFrame } from "../model";
 
 const templatesGql = gql`
 query{
@@ -24,5 +24,5 @@ export function useQueryAllTemplates() {
       depEntityNames: ["Template"],
     }
   }, [])
-  return useQuery<ITemplate>(args)
+  return useQuery<IPageFrame>(args)
 }

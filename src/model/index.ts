@@ -50,7 +50,7 @@ export interface IApp {
   pages?: IPage[];
   menus?: IMenu[];
   imageUrl?: string;
-  templates?: ITemplate[];
+  pageFrames?: IPageFrame[];
 }
 
 export enum PluginType {
@@ -70,7 +70,7 @@ export interface IPluginInfo {
   version?: string,
 }
 
-export interface ITemplate {
+export interface IPageFrame {
   id: ID;
   title: string;
   schemaJson: { form: any, schema: ISchema };

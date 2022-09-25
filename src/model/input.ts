@@ -48,7 +48,7 @@ export interface IPluginInfoInput {
   version?: string;
 }
 
-export interface ITemplateInput {
+export interface IPageFrameInput {
   id?: ID;
   title?: string;
   schemaJson?: any;
@@ -62,7 +62,7 @@ export interface IAppInput {
   title?: string;
   description?: string;
   imageUrl?: string;
-  templates?: { sync?: ITemplateInput[] }
+  //templates?: { sync?: IPageFrameInput[] }
   // image?: IFileInput
 }
 
