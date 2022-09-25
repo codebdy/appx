@@ -1,6 +1,5 @@
 import { Tree } from 'antd';
 import React, { memo, useCallback } from 'react';
-import "./index.less"
 import { DataNode } from 'antd/lib/tree';
 import CreateCategoryDialog from './CreateCategoryDialog';
 import CreatePageDialog from './CreatePageDialog';
@@ -16,7 +15,7 @@ import { useCategories } from '../../../hooks/useCategories';
 
 const { DirectoryTree } = Tree;
 
-const PageListWidget = memo((
+const PageList = memo((
   props: {
   }
 ) => {
@@ -48,7 +47,7 @@ const PageListWidget = memo((
 
     for (const page of pagesWithoutCategory) {
       dataNodes.push({
-        title: page && <PageLabel page={page} categories={categories}/>,
+        title: page && <PageLabel page={page} categories={categories} />,
         key: page.id,
         isLeaf: true,
       })
@@ -56,27 +55,21 @@ const PageListWidget = memo((
     return dataNodes
   }, [categories, getCategoryPages, pagesWithoutCategory])
 
-  const onSelect = (selectedKeys) => {
+  const onSelect = useCallback((selectedKeys) => {
     const page = getPage(selectedKeys?.[0]);
     if (page?.id) {
       setSelectedPageId(page?.id);
     }
-  };
+  }, [getPage]);
 
   return (
-    <div className='page-list-shell'>
-      <div className="page-list-action">
-        <CreateCategoryDialog />
-        <CreatePageDialog categories={categories} />
-      </div>
-      <DirectoryTree
-        className='page-list-tree'
-        selectedKeys={[selectedPageId]}
-        onSelect={onSelect}
-        treeData={getTreeData()}
-      />
-    </div>
+    <DirectoryTree
+      className='page-list-tree'
+      selectedKeys={[selectedPageId]}
+      onSelect={onSelect}
+      treeData={getTreeData()}
+    />
   );
 });
 
-export default PageListWidget;
+export default PageList;
