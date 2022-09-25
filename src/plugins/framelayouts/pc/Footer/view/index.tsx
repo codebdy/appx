@@ -1,16 +1,17 @@
 import { observer } from "@formily/reactive-react"
-import { Layout } from "antd"
 import React from "react"
-
-const { Footer } = Layout;
+import "./style.less"
+import cls from "classnames"
 
 export interface IComponentProps {
+  className?: string,
   children?: React.ReactNode
 }
 
 const Component = observer((props: IComponentProps) => {
+  const {className, ...other} = props;
   return (
-    <Footer {...props} />
+    <div className={cls(className, "appx-footer")} {...props} />
   )
 })
 
