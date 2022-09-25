@@ -5,20 +5,24 @@ import PageForm from "./PageForm";
 import { useUpsertPage } from "../../../hooks/useUpsertPage";
 import { useShowError } from "../../../../hooks/useShowError";
 import { useTranslation } from "react-i18next";
-import { IPageCategory } from "../../../../model";
 import { ID } from "../../../../shared";
+import { useRecoilValue } from "recoil";
+import { categoriesState } from "../../../recoil/atom";
+import { useAppViewKey } from "../../../../shared/AppRoot/context";
 
 const CreatePageModal = memo((
   props: {
     categoryId?: ID,
-    categories: IPageCategory[],
     isModalVisible: boolean,
     onClose: () => void,
   }
 ) => {
-  const { categoryId, categories, isModalVisible, onClose } = props;
+  const { categoryId, isModalVisible, onClose } = props;
   const [form] = Form.useForm();
   const { t } = useTranslation();
+  const key = useAppViewKey();
+  const categories = useRecoilValue(categoriesState(key))
+
   const [upsert, { loading, error }] = useUpsertPage({
     onCompleted: () => {
       form.resetFields();
@@ -55,7 +59,7 @@ const CreatePageModal = memo((
       onOk={handleConfirm}
       confirmLoading={loading}
     >
-      <PageForm categoryId={categoryId} categories={categories} form={form} />
+      <PageForm categoryId={categoryId} categories={categories || []} form={form} />
     </Modal>
   )
 })
