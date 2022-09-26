@@ -6,7 +6,7 @@ import { IPagePopup, pagePopupsState } from "../../recoil/atoms";
 import { useRecoilValue } from "recoil";
 import { useClosePage } from "../../../shared/action/hooks/useClosePage";
 import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
-import { PageEngine } from "../../PageEngine";
+import { PageEngine } from "../../../plugins/framelayouts/PageEngine";
 import { components } from "../components";
 
 export const PageDialog = memo((

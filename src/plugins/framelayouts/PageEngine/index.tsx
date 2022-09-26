@@ -4,12 +4,12 @@ import { FormItem } from "@formily/antd";
 import React, { memo } from "react";
 import { useMemo } from "react";
 import { Spin } from "antd";
-import { useShowError } from "../../hooks/useShowError";
-import { useParseLangSchema } from "../../hooks/useParseLangSchema";
-import { ID } from "../../shared";
-import { useQueryPageWithCache } from "../hooks/useQueryPageWithCache";
-import { IUser } from "../../enthooks/hooks/useQueryMe";
-import { useMe } from "../../plugin-sdk/contexts/login";
+import { useShowError } from "../../../hooks/useShowError";
+import { useParseLangSchema } from "../../../hooks/useParseLangSchema";
+import { ID } from "../../../shared";
+import { useQueryPageWithCache } from "../../../AppRunner/hooks/useQueryPageWithCache";
+import { IUser } from "../../../enthooks/hooks/useQueryMe";
+import { useMe } from "../../../plugin-sdk/contexts/login";
 
 export class Me {
 

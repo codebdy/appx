@@ -1,7 +1,7 @@
 import React from "react";
 import { memo, useMemo } from "react";
 import { useParams } from "react-router-dom";
-import { PageEngine } from "../../PageEngine";
+import { PageEngine } from "../../../plugins/framelayouts/PageEngine";
 import { useGetMenuItem } from "../../hooks/useGetMenuItem";
 import { useEntryPageId } from "../../hooks/useEntryPageId";
 import { OpenPageType } from "../../../shared/action";
