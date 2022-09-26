@@ -1,10 +1,12 @@
 
 import Box from "./common/Box"
 import Spring from "./common/Spring"
+import pc from "./pc"
 
 export const pcComponents = [
   Box,
-  Spring
+  Spring,
+  ...pc
 ]
 export const mobileComponents = [
   Box,

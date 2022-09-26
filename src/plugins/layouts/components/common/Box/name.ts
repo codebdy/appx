@@ -1,3 +1,1 @@
-const Name = "Box"
-
-export default Name
+export default "Box"
