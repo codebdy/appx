@@ -30,7 +30,7 @@ query queryMenu($appUuid:String!, $device:String!){
 }
 `
 
-export function useMenu() {
+export function useQueryMenu() {
   const params = useAppParams();
 
   const input = useMemo(()=>({

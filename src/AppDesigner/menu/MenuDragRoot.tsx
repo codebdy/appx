@@ -11,7 +11,7 @@ import { IMenuItem, IMenuNode, MenuItemType } from "../../model/IMenuNode";
 import { useTranslation } from "react-i18next";
 import "./index.less"
 import { useAppViewKey } from "../../plugin-sdk/contexts/appRoot";
-import { useMenu } from "../../shared/AppRoot/hooks/useMenu";
+import { useQueryMenu } from "../../shared/AppRoot/hooks/useQueryMenu";
 import { useShowError } from "../../hooks/useShowError";
 import { cloneObject } from "./utils/cloneObject";
 import { parseMeta } from "./hooks/useParseMenuMeta";
@@ -31,7 +31,7 @@ const MenuDragRoot = memo((
   const setMenuId = useSetRecoilState(menuIdState(key))
   const setNodes = useSetRecoilState(navigationNodesState(key));
   const { t } = useTranslation();
-  const { menu, error } = useMenu();
+  const { menu, error } = useQueryMenu();
   const getPage = useGetPage();
   useShowError(error);
 

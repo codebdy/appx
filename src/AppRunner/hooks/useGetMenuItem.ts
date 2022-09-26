@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { IMenuItem } from "../../model/IMenuNode";
-import { useRunnerParams } from "../context/runner";
+import { useRunnerParams } from "../../plugin-sdk/contexts/runner";
 
 export function useGetMenuItem() {
   const { menu } = useRunnerParams();
