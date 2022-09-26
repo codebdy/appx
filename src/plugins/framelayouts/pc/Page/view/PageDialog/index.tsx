@@ -7,7 +7,7 @@ import { useRecoilValue } from "recoil";
 import { useClosePage } from "../../../../../../shared/action/hooks/useClosePage";
 import { useParseLangMessage } from "../../../../../../hooks/useParseLangMessage";
 import { PageEngine } from "../../../../PageEngine";
-import { components } from "../../../../../../AppRunner/PCRunner/components";
+import { useRunnerParams } from "../../../../../../plugin-sdk/contexts/runner";
 
 export const PageDialog = memo((
   props: {
@@ -16,6 +16,7 @@ export const PageDialog = memo((
 ) => {
   const { pageDialog } = props;
   const key = useAppViewKey();
+  const { components } = useRunnerParams();
   const pagePopups = useRecoilValue(pagePopupsState(key));
   const p = useParseLangMessage();
   const close = useClosePage();
@@ -27,8 +28,8 @@ export const PageDialog = memo((
   return (
     <Modal
       title={p(pageDialog.pageTitle)}
-      visible={visalbe}
-      width = {pageDialog.width}
+      open={visalbe}
+      width={pageDialog.width}
       footer={null}
       onCancel={handleCancel}
     >
