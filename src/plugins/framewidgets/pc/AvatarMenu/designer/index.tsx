@@ -7,7 +7,7 @@ const ComponentDesigner: DnFC<IComponentProps> = observer((
   props
 ) => {
   return (
-    <AvatarMenu {...props}/>
+    <AvatarMenu trigger={[]} {...props}/>
   )
 })
 
