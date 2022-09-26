@@ -1,9 +1,5 @@
 import React from "react";
 
-export interface IIcon {
-  iconKey?: string;
-  svgString?: string;
-}
 
 export interface IPredefinedIcon {
   iconKey: string;
@@ -12,7 +8,7 @@ export interface IPredefinedIcon {
 }
 export interface IIconGroup {
   name: string;
-  icons: IPredefinedIcon[]
+  icons: IPredefinedIcon[];
 }
 
 export interface IIconCategory {

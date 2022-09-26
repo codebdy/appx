@@ -2,7 +2,7 @@ import { Menu } from "antd";
 import { IMenuItem, MenuItemType } from "../../../model/IMenuNode";
 import React, { memo, useCallback, useMemo } from "react";
 import { useRunnerParams } from "../../context/runner";
-import { IconView } from "../../../shared/icon/IconView";
+import { IconView } from "../../../plugin-sdk/icon/IconView";
 import { ItemType } from "antd/lib/menu/hooks/useItems";
 import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
 import { useNavigate, useParams } from "react-router-dom";

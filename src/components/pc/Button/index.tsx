@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from "react"
 import { Button as AntdButton, ButtonProps, message } from "antd"
 import { observer } from "@formily/reactive-react"
-import { IIcon } from "../../../shared/icon/model"
-import { IconView } from "../../../shared/icon/IconView"
+import { IIcon } from "../../../plugin-sdk/icon/model"
+import { IconView } from "../../../plugin-sdk/icon/IconView"
 import { useParseLangMessage } from "../../../hooks/useParseLangMessage"
 import { IAppxAction, useDoActions } from "../../../shared/action"
 

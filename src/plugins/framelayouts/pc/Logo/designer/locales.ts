@@ -3,6 +3,8 @@ const locales = {
     title: 'Logo',
     settings: {
       'x-component-props': {
+        title: "标题",
+        icon: "图标"
       },
     },
   },
@@ -10,6 +12,8 @@ const locales = {
     title: 'Logo',
     settings: {
       'x-component-props': {
+        title: "Title",
+        icon: "Icon"
       },
     },
   },

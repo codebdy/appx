@@ -1,4 +1,4 @@
-import { IIcon } from "../shared/icon/model";
+import { IIcon } from "../plugin-sdk/icon/model";
 import { ID } from "../shared";
 
 export enum MenuItemType {

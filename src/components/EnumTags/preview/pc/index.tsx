@@ -1,7 +1,7 @@
 import { observer } from "@formily/reactive-react"
-import { IIcon } from "../../../../shared/icon/model"
+import { IIcon } from "../../../../plugin-sdk/icon/model"
 import React, { useMemo } from "react"
-import { IconView } from "../../../../shared/icon/IconView"
+import { IconView } from "../../../../plugin-sdk/icon/IconView"
 import { CheckOutlined } from "@ant-design/icons"
 
 export interface IEnumTagsProps {

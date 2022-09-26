@@ -1,8 +1,8 @@
 import { observer } from "@formily/reactive-react"
-import { IIcon } from "../../../../shared/icon/model"
+import { IIcon } from "../../../../plugin-sdk/icon/model"
 import React from "react"
 import { Avatar as AntdAvatar } from "antd"
-import { IconView } from "../../../../shared/icon/IconView"
+import { IconView } from "../../../../plugin-sdk/icon/IconView"
 import { UserOutlined } from "@ant-design/icons"
 
 export interface IAvatarProps {

@@ -11,7 +11,7 @@ import { useAppViewKey } from "../../../../shared/AppRoot/context";
 import React from "react";
 import clx from "classnames";
 import ItemIcon from "./ItemIcon";
-import { IconView } from "../../../../shared/icon/IconView";
+import { IconView } from "../../../../plugin-sdk/icon/IconView";
 
 const LinkItemInner = memo(
   (props: {

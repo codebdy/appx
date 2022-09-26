@@ -2,16 +2,19 @@ import { observer } from "@formily/reactive-react"
 import React from "react"
 import "./style.less"
 import cls from "classnames"
+import { IIcon } from "../../../../../plugin-sdk"
 
 export interface IComponentProps {
+  title?: React.ReactNode,
+  icon?: IIcon,
   className?: string,
 }
 
 const Component = observer((props: IComponentProps) => {
-  const { className } = props;
+  const { title, className, ...other } = props;
 
   return (
-    <div className={cls(className, "appx-logo")} {...props}>
+    <div className={cls(className, "appx-logo")} {...other}>
       <div className="logo-icon">
         <svg style={{ width: "40px", height: "40px" }} viewBox="0 0 24 24">
           <defs>

@@ -13,7 +13,7 @@ import NavItemList from "./NavItemList";
 import { Collapse } from "antd";
 import clx from "classnames";
 import { useTranslation } from "react-i18next";
-import { IconView } from "../../../../shared/icon/IconView";
+import { IconView } from "../../../../plugin-sdk/icon/IconView";
 import ItemIcon from "./ItemIcon";
 import { useParseLangMessage } from "../../../../hooks/useParseLangMessage";
 

@@ -1,10 +1,10 @@
-import { IIcon } from "../../../shared/icon/model"
+import { IIcon } from "../../../plugin-sdk/icon/model"
 import React, { CSSProperties, useCallback, useMemo, useState } from "react"
 import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
 import { observer } from "@formily/reactive-react";
 import { DialogContext } from "./context";
 import { Button, Modal } from "antd";
-import { IconView } from "../../../shared/icon/IconView";
+import { IconView } from "../../../plugin-sdk/icon/IconView";
 import { RecursionField, useFieldSchema, useField, Schema, ObjectField } from '@formily/react';
 import { useTranslation } from "react-i18next";
 import { ExclamationCircleOutlined } from "@ant-design/icons";

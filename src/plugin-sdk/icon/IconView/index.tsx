@@ -1,7 +1,7 @@
 import React from "react";
-import { getIcon } from "../data";
+import { getIcon } from "../../../shared/icon/data";
 import { IIcon } from "../model";
-import { isEmpertyIcon, empertyIcon } from "../IconInput/index";
+import { isEmpertyIcon, empertyIcon } from "../../../shared/icon/IconInput/index";
 import { SvgStringIcon } from "./SvgStringIcon";
 
 export const IconView = (

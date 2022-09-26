@@ -3,9 +3,9 @@ import { Badge, Button, Modal } from "antd";
 import React, { useCallback, useEffect, useState } from "react";
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
-import { IIcon } from "../model";
+import { IIcon } from "../../../plugin-sdk/icon/model";
 import IconSelectForm, { IconType } from "./IconSelectForm";
-import { IconView } from "../IconView";
+import { IconView } from "../../../plugin-sdk/icon/IconView";
 import "./style.less"
 
 export const isEmpertyIcon = (icon?: IIcon) => {

@@ -1,8 +1,8 @@
 import { observer } from "@formily/reactive-react"
-import { IIcon } from '../../../shared/icon/model'
+import { IIcon } from '../../../plugin-sdk/icon/model'
 import React, { CSSProperties, useMemo, useState } from "react"
 import { IDropdownMenuItemProps, MenuItem } from "./MenuItem"
-import { IconView } from "../../../shared/icon/IconView"
+import { IconView } from "../../../plugin-sdk/icon/IconView"
 import { Button, Dropdown, Menu } from "antd"
 import { DownOutlined } from "@ant-design/icons"
 import { useParseLangMessage } from "../../../hooks/useParseLangMessage"
