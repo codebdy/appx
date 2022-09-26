@@ -9,9 +9,11 @@ import Breadcrumb from "./Breadcrumb";
 import Logo from "./Logo";
 import Page from "./Page";
 import Content from "./Content";
+import FlexBox from "./FlexBox";
 
 const pcComponents = [
   Layout,
+  FlexBox,
   Appbar,
   Sider,
   Content,

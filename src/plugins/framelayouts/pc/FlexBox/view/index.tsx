@@ -16,10 +16,10 @@ export interface IComponentProps {
 }
 
 const Component = observer((props: IComponentProps) => {
-  const { flexFlow = FlexFlow.column, className, style, ...other } = props;
+  const { flexFlow = FlexFlow.row, className, style, ...other } = props;
   return (
     <div
-      className={cls("appx-layout", className)}
+      className={cls("appx-flex-box", className)}
       style={{ flexFlow: flexFlow, ...style }}
       {...other}
     />

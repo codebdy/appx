@@ -1,6 +1,6 @@
 const locales = {
   'zh-CN': {
-    title: '布局',
+    title: '弹性盒子',
     settings: {
       'x-component-props': {
         flexFlow: {
@@ -11,9 +11,10 @@ const locales = {
     },
   },
   'en-US': {
-    title: 'Layout',
+    title: 'Flex box',
     settings: {
       'x-component-props': {
+        root: "Root",
         flexFlow: {
           title: 'Flex flow',
           dataSource: ['Column', 'Row'],
