@@ -1,3 +1,3 @@
-const Name = "AppNotification"
+const Name = "AvatarMenu"
 
 export default Name

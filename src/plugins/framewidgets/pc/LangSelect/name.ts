@@ -1,3 +1,3 @@
-const Name = "AppNotification"
+const Name = "LangSelect"
 
 export default Name

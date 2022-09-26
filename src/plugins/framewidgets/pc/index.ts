@@ -1,7 +1,11 @@
+import AvatarMenu from "./AvatarMenu";
+import LangSelect from "./LangSelect";
 import Notification from "./Notification"
 
 const pcComponents = [
-  Notification
+  Notification,
+  AvatarMenu,
+  LangSelect
 ];
 
 export default pcComponents;

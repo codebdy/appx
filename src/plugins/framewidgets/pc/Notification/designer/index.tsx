@@ -12,7 +12,7 @@ const ComponentDesigner: DnFC<IComponentProps> = observer((
     <Button
       type="text"
       shape="circle"
-      icon={<BellOutlined className={"icon"} {...props} />}
+      icon={<BellOutlined {...props} />}
     />
   )
 })
