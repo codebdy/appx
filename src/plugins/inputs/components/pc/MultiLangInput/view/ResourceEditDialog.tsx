@@ -2,12 +2,12 @@ import { AutoComplete, Form, Input, Modal, Radio, RadioChangeEvent } from "antd"
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
-import { useAppConfig, useAppParams } from "../../../plugin-sdk/contexts/appRoot";
-import { useUpsertLangLocal } from "../../../hooks/useUpsertLangLocal";
-import { useShowError } from "../../../hooks/useShowError";
-import { LANG_INLINE_PREFIX, LANG_RESOURCE_PREFIX } from "../../../hooks/useParseLangMessage";
-import { ID } from "../../../shared";
-import { ILangLocal } from "../../../model";
+import { useAppConfig, useAppParams } from "../../../../../../plugin-sdk/contexts/appRoot";
+import { useUpsertLangLocal } from "../../../../../../hooks/useUpsertLangLocal";
+import { useShowError } from "../../../../../../hooks/useShowError";
+import { LANG_INLINE_PREFIX, LANG_RESOURCE_PREFIX } from "../../../../../../hooks/useParseLangMessage";
+import { ID } from "../../../../../../shared";
+import { ILangLocal } from "../../../../../../model";
 
 export enum MultilangType {
   Inline = "Inline",

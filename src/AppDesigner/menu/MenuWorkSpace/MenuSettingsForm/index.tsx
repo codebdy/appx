@@ -9,7 +9,7 @@ import { useSetMeta } from '../../hooks/useSetMeta';
 import { useAppViewKey } from '../../../../plugin-sdk/contexts/appRoot';
 import { MenuItemType } from '../../../../model/IMenuNode';
 import { useGetPage } from '../../../hooks/useGetPage';
-import { MultiLangInput } from '../../../../components/pc/MultiLangInput';
+import { MultiLangInput } from '../../../../plugins/inputs/components/pc/MultiLangInput/view';
 import { PageSelect } from '../../../SettingsForm/components/PageSelect';
 
 const { Option } = Select;

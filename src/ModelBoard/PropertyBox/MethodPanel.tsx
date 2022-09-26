@@ -5,7 +5,7 @@ import { useChangeMethod } from "../hooks/useChangeMethod";
 import { useGetTypeLabel } from "../hooks/useGetTypeLabel";
 import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
 import { Form, Input } from "antd";
-import { MultiLangInput } from "../../components/pc/MultiLangInput";
+import { MultiLangInput } from "../../plugins/inputs/components/pc/MultiLangInput/view";
 import { useTranslation } from "react-i18next";
 import { MethodTypeInput } from "./MethodTypeInput";
 

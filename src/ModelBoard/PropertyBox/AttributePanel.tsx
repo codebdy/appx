@@ -8,7 +8,7 @@ import { useGetTypeLabel } from "../hooks/useGetTypeLabel";
 import { Form, Input, Switch } from "antd";
 import { useTranslation } from "react-i18next";
 import { AttributeTypeInput } from "./AttributeTypeInput";
-import { MultiLangInput } from "../../components/pc/MultiLangInput";
+import { MultiLangInput } from "../../plugins/inputs/components/pc/MultiLangInput/view";
 import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
 import { isStr } from "@formily/shared";
 

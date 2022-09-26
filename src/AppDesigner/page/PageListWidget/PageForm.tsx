@@ -6,7 +6,7 @@ import { IPageInput } from "packages/studio/src/model/input";
 import { IPage, IPageCategory } from "../../../model";
 import { useTranslation } from "react-i18next";
 import { ID } from "../../../shared";
-import { MultiLangInput } from "../../../components/pc/MultiLangInput";
+import { MultiLangInput } from "../../../plugins/inputs/components/pc/MultiLangInput/view";
 import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
 const { TabPane } = Tabs;
 const { Option } = Select;

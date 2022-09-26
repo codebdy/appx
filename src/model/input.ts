@@ -15,7 +15,6 @@ export interface ILangLocalInput {
   name?: string;
   appUuid?: string;
   schemaJson?: any;
-  pluginId: string;
 }
 
 export interface IAppConfigInput {
@@ -46,6 +45,7 @@ export interface IPluginInfoInput {
   type?: PluginType,
   description?: string;
   version?: string;
+  pluginId: string;
 }
 
 export interface IPageFrameInput {

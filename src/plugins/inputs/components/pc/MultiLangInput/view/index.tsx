@@ -1,8 +1,8 @@
 import { TranslationOutlined } from "@ant-design/icons";
 import { Button, Input } from "antd";
 import React, { useCallback, useMemo, useState } from "react";
-import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
-import { useAppConfig } from "../../../plugin-sdk/contexts/appRoot";
+import { useParseLangMessage } from "../../../../../../hooks/useParseLangMessage";
+import { useAppConfig } from "../../../../../../plugin-sdk/contexts/appRoot";
 import ResourceEditDialog from "./ResourceEditDialog";
 
 export const MultiLangInput = (
@@ -15,7 +15,7 @@ export const MultiLangInput = (
     onKeyUp?: (event: React.KeyboardEvent<HTMLInputElement>) => void,
   }
 ) => {
-  const { multiline, onChange, onKeyUp, value, inline, title } = props;
+  const { multiline, onChange, onKeyUp, value, inline, title, ...other } = props;
   const appConfig = useAppConfig();
   const [visiable, setVisiable] = useState(false);
   const parse = useParseLangMessage();
@@ -44,7 +44,7 @@ export const MultiLangInput = (
 
   return (
     <>
-      <Input.Group compact>
+      <Input.Group compact {...other}>
         <InputCtrl style={{ width: isMultLang ? 'calc(100% - 32px)' : "100%" }} onKeyUp={onKeyUp as any} value={parsedValue} onChange={hanldeCInputCtrlChange} />
         {
           isMultLang &&
