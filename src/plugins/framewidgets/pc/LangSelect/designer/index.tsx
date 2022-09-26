@@ -7,7 +7,9 @@ import { BellOutlined } from "@ant-design/icons";
 const ComponentDesigner: DnFC<IComponentProps> = observer((
   props
 ) => {
-  return (<BellOutlined className={"icon"} {...props} />)
+  return (
+    <BellOutlined className={"icon"} {...props} />
+  )
 })
 
 export default ComponentDesigner

@@ -8,7 +8,7 @@ import { useMatch, useNavigate, useParams } from "react-router-dom"
 import { IApp } from "../model"
 import { AppConfigRouts } from "./AppConfigRouts"
 import { useTranslation } from "react-i18next"
-import SelectLang from "../shared/SelectLang"
+import SelectLang from "../plugins/framewidgets/pc/LangSelect/view"
 import { useParseLangMessage } from "../hooks/useParseLangMessage"
 
 const ConifgHeader = memo((props: {

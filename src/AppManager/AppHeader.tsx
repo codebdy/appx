@@ -8,7 +8,7 @@ import clx from "classnames"
 import { useMatch, useNavigate } from "react-router-dom"
 import { InerfaceSvg } from "../icons/InterfaceIcon"
 import { useTranslation } from "react-i18next"
-import SelectLang from "../shared/SelectLang"
+import SelectLang from "../plugins/framewidgets/pc/LangSelect/view"
 
 export enum AppManagerRoutes {
   Root = "/",

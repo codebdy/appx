@@ -1,10 +1,13 @@
 import React, { memo } from 'react';
 import { Menu, Dropdown, Button } from 'antd';
-import { useAppConfig } from '../../shared/AppRoot/context';
+import { useAppConfig } from '../../../../../shared/AppRoot/context';
 import { useTranslation } from 'react-i18next';
 import { TranslationOutlined } from '@ant-design/icons';
 
-const SelectLang = memo(() => {
+export interface IComponentProps {
+}
+
+const SelectLang = memo((props: IComponentProps) => {
   //const [selectedLang, setSelectedLang] = useState(() => getLocale());
 
   const appConfig = useAppConfig();
