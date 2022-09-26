@@ -3,7 +3,7 @@ export * from "./TextViewDesigner"
 export * from "./Button"
 export * from "./ButtonDesigner";
 export * from "./FormDesigner";
-export * from "./InputDesigner";
+export * from "../../plugins/inputs/components/pc/Input/designer";
 export * from "./MultiLangInput";
 export * from "./ArrayTableDesigner";
 export * from "./PageContainer";
