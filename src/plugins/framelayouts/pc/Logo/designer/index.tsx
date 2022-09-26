@@ -6,8 +6,9 @@ import Component, { IComponentProps } from "../view"
 const ComponentDesigner: DnFC<IComponentProps> = observer((
   props
 ) => {
+  const { title, ...other } = props;
   return (
-    <Component {...props} />
+    <Component title={title || "Please input"} {...other} />
   )
 })
 
