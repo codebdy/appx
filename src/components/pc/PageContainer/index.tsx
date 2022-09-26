@@ -10,7 +10,7 @@ import PageTabPanel, { IPageTabPanelProps } from "./PageTabPanel";
 import PageFooterToolbar, { IPageFooterToolbarProps } from "./PageFooterToolbar";
 import { IPageContainerProps } from "./IPageContainerProps";
 import { PageContainerShell } from "./PageContainerShell";
-import { useBreadcumbItems } from "../../../AppRunner/hooks/useBreadcumbItems";
+import { useBreadcumbItems } from "./hooks/useBreadcumbItems";
 import PageHeaderContentExtra, { IPageHeaderContentExtraProps } from "./PageHeaderContentExtra";
 import { Schema } from "@formily/react";
 

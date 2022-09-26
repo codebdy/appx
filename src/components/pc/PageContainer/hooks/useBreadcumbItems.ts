@@ -1,9 +1,9 @@
 import { Route } from "antd/lib/breadcrumb/Breadcrumb";
 import { useCallback, useMemo } from "react";
 import { useParams } from "react-router-dom";
-import { useParseLangMessage } from "../../hooks/useParseLangMessage";
-import { IMenuItem } from "../../model/IMenuNode";
-import { useRunnerParams } from "../../plugin-sdk/contexts/runner";
+import { useParseLangMessage } from "../../../../hooks/useParseLangMessage";
+import { IMenuItem } from "../../../../model/IMenuNode";
+import { useRunnerParams } from "../../../../plugin-sdk/contexts/runner";
 
 export function useBreadcumbItems() {
   const { menu } = useRunnerParams();
