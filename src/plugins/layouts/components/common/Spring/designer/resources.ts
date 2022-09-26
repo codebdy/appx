@@ -1,6 +1,7 @@
 import Name from "../name";
+import { IResourceCreator } from "@designable/core";
 
-const resource = {
+const resources: IResourceCreator[] = [{
   icon: 'CardSource',
   elements: [
     {
@@ -13,6 +14,6 @@ const resource = {
       },
     },
   ],
-}
+}]
 
-export default resource;
+export default resources;
