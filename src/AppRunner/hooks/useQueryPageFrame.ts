@@ -22,7 +22,7 @@ export function useQueryPageFrame() {
   const input = useMemo(() => (
     {
       gql: pageFrameId && pageFrameGql,
-      params: { pageFrameId },
+      params: { id: pageFrameId },
       depEntityNames: ["PageFrame"]
     }
   ), [pageFrameId]);
