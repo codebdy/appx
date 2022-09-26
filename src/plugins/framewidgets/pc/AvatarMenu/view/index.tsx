@@ -7,6 +7,7 @@ import { useMe } from "../../../../../plugin-sdk/contexts/login";
 import { LOGIN_URL, TOKEN_NAME } from "../../../../../consts";
 import { useLogout, useSetToken } from "../../../../../enthooks";
 import ChangePasswordForm from "./ChangePasswordForm";
+import "./style.less"
 
 export interface IComponentProps {
   trigger?: ("click" | "hover" | "contextMenu")[]
@@ -55,7 +56,7 @@ const AvatarMenu = memo((props: IComponentProps) => {
   return (
     <>
       <Dropdown overlay={menu} placement="bottomRight" arrow trigger={trigger || ['click']}>
-        <Avatar className="avatar" icon={!me && <UserOutlined />} {...other}>
+        <Avatar className="appx-avatar-menu" icon={!me && <UserOutlined />} {...other}>
           {me?.name?.substring(0, 1)?.toUpperCase()}
         </Avatar>
       </Dropdown>
