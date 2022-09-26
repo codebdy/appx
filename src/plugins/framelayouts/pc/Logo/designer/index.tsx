@@ -8,7 +8,7 @@ const ComponentDesigner: DnFC<IComponentProps> = observer((
 ) => {
   const { title, ...other } = props;
   return (
-    <Component title={title || "Please input"} {...other} />
+    <Component title={title || "Logo"} {...other} />
   )
 })
 
