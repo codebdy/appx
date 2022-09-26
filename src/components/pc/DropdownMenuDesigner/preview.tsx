@@ -17,11 +17,11 @@ import { IDropdownMenuProps } from '../DropdownMenu'
 import { MenuItemDesigner } from './MenuItemDesigner'
 import { DropdownMenuItemSchema } from './MenuItemDesigner/schema'
 import { DropdownMenuItemLocales } from './MenuItemDesigner/locales'
-import { Events } from '../../../shared/action'
 import { IconView } from '../../../plugin-sdk/icon/IconView'
 import { useParseLangMessage } from '../../../hooks/useParseLangMessage'
 import { IDropdownMenuItemProps } from '../DropdownMenu/MenuItem'
 import { PopupButton } from '../../common/PopupButton'
+import { Events } from '../../../plugin-sdk/model/action'
 
 export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
 {
