@@ -1,7 +1,7 @@
 import Name from "../name";
-
-const resource = {
-  icon: 'NotificationSource',
+import { IResourceCreator } from "@designable/core";
+const resources: IResourceCreator[] = [{
+  icon: 'SelectSource',
   elements: [
     {
       componentName: 'Field',
@@ -13,6 +13,6 @@ const resource = {
       },
     },
   ],
-}
+}]
 
-export default resource;
+export default resources;

@@ -1,4 +1,6 @@
-const resource =  {
+import { IResourceCreator } from "@designable/core";
+
+const resources: IResourceCreator[] = [{
   icon: 'SpaceSource',
   elements: [
     {
@@ -9,6 +11,6 @@ const resource =  {
       },
     },
   ],
-}
+}]
 
-export default resource;
+export default resources;

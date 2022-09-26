@@ -1,7 +1,8 @@
 import Name from "../name";
+import { IResourceCreator } from "@designable/core";
 
-const resource = {
-  icon: 'Menu',
+const resources: IResourceCreator[] = [{
+  icon: 'SelectSource',
   elements: [
     {
       componentName: 'Field',
@@ -13,6 +14,6 @@ const resource = {
       },
     },
   ],
-}
+}]
 
-export default resource;
+export default resources;

@@ -1,14 +1,16 @@
 import { IMaterialComponent } from "@rxdrag/appx-plugin-sdk";
 import ComponentDesigner from "./designer";
 import behaviors from "./designer/behaviors";
-import resource from "./designer/resource";
+import resources from "./designer/resources";
 import Name from "./name";
 import Component from "./view";
 
-export default {
+const material: IMaterialComponent = {
   name: Name,
   designer: ComponentDesigner,
   component: Component,
   behaviors,
-  resource
+  resources
 }
+
+export default material;
