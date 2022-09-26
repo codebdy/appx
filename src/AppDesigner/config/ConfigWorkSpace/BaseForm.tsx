@@ -25,7 +25,10 @@ export const BaseLangForm = memo(() => {
   useEffect(() => {
     setConfig(deviceConfig);
     form.resetFields();
-    form.setFieldsValue({ entryId: deviceConfig?.schemaJson?.entryId });
+    form.setFieldsValue({
+      entryId: deviceConfig?.schemaJson?.entryId,
+      pageFrameId: deviceConfig?.schemaJson?.pageFrameId,
+    });
   }, [deviceConfig, form, setConfig])
 
   useEffect(() => {

@@ -38,9 +38,9 @@ export interface IAppDeviceConfig {
   device?: Device;
   schemaJson?: {
     entryId?: ID,
+    pageFrameId?: ID,
   }
 }
-
 
 export interface IApp {
   id: ID;
