@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { IPostOptions, usePostOne } from "../enthooks/hooks/usePostOne";
 import { ILangLocal } from "../model";
 import { ILangLocalInput } from "../model/input";
-import { useAppParams } from "../shared/AppRoot/context";
+import { useAppParams } from "../plugin-sdk/contexts/appRoot";
 
 export function useUpsertLangLocal(options?: IPostOptions<any>): [
   (page: ILangLocalInput) => void,

@@ -7,7 +7,7 @@ import MenuDesignView from "./MenuDesignView";
 import "./style.less"
 import { useRecoilState } from "recoil";
 import { navigationSelectedIdState } from "../atoms";
-import { useAppViewKey } from "../../../shared/AppRoot/context";
+import { useAppViewKey } from "../../../plugin-sdk/contexts/appRoot";
 import MenuSettingsForm from "./MenuSettingsForm";
 import { Empty } from "antd";
 

@@ -1,6 +1,6 @@
 import { gql } from "awesome-graphql-client";
 import { useMemo } from "react";
-import { useAppParams } from "../../shared/AppRoot/context";
+import { useAppParams } from "../../plugin-sdk/contexts/appRoot";
 import { useQuery } from "../../enthooks/hooks/useQuery";
 import { IPageFrame } from "../../model";
 

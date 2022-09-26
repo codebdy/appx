@@ -8,7 +8,7 @@ import { Button } from "antd"
 import { DeleteOutlined } from "@ant-design/icons"
 import { MethodMeta } from "../meta/MethodMeta";
 import { useDeleteMethod } from "../hooks/useDeleteMethod";
-import { useSelectedAppUuid } from "../../shared/AppRoot/context";
+import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
 
 const MethodLabel = memo((
   props: {

@@ -6,7 +6,7 @@ import { useEnums } from "../hooks/useEnums";
 import { useValueObjects } from "../hooks/useValueObjects";
 import { Types } from "../meta/Type";
 import { useTranslation } from "react-i18next";
-import { useSelectedAppUuid } from "../../shared/AppRoot/context";
+import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
 import { MethodMeta } from "../meta/MethodMeta";
 const { Option } = Select;
 

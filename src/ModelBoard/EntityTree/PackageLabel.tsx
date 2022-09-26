@@ -8,7 +8,7 @@ import TreeNodeLabel from "../../common/TreeNodeLabel";
 import { useSetRecoilState } from 'recoil';
 import { packagesState } from './../recoil/atoms';
 import { SYSTEM_APP_UUID } from "../../consts";
-import { useSelectedAppUuid } from "../../shared/AppRoot/context";
+import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
 
 const PackageLabel = memo((
   props: {

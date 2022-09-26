@@ -6,7 +6,7 @@ import {
 import { useCallback } from "react";
 import { useSetRecoilState } from "recoil";
 import { IMenuItem, IMenuNode } from "../../../model/IMenuNode";
-import { useAppViewKey } from "../../../shared/AppRoot/context";
+import { useAppViewKey } from "../../../plugin-sdk/contexts/appRoot";
 
 export const parseMeta = (
   meta: IMenuItem,

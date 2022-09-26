@@ -8,7 +8,7 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import { IMenuNode } from "../../../model/IMenuNode";
 import { useBackupSnapshot } from "./useBackupSnapshot";
 import { useGetMenuNode } from "./useGetMenuNode";
-import { useAppViewKey } from "../../../shared/AppRoot/context";
+import { useAppViewKey } from "../../../plugin-sdk/contexts/appRoot";
 
 export function useRemoveMenuNode() {
   const key = useAppViewKey();

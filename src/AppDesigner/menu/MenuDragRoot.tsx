@@ -10,7 +10,7 @@ import { useInsertAt } from "./hooks/useInsertAt";
 import { IMenuItem, IMenuNode, MenuItemType } from "../../model/IMenuNode";
 import { useTranslation } from "react-i18next";
 import "./index.less"
-import { useAppViewKey } from "../../shared/AppRoot/context";
+import { useAppViewKey } from "../../plugin-sdk/contexts/appRoot";
 import { useMenu } from "../../shared/AppRoot/hooks/useMenu";
 import { useShowError } from "../../hooks/useShowError";
 import { cloneObject } from "./utils/cloneObject";

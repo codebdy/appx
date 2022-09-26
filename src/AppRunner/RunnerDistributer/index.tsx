@@ -3,7 +3,7 @@ import { memo } from 'react';
 import React from 'react';
 import { useShowError } from '../../hooks/useShowError';
 import { Spin } from 'antd';
-import { useAppParams } from '../../shared/AppRoot/context';
+import { useAppParams } from '../../plugin-sdk/contexts/appRoot';
 import { useMenu } from '../../shared/AppRoot/hooks/useMenu';
 import { PCRunner } from '../PCRunner';
 import H5Runner from '../H5Runner';

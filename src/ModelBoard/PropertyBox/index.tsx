@@ -13,7 +13,7 @@ import { useMethod } from "../hooks/useMethod";
 import { MethodPanel } from "./MethodPanel";
 import { Empty } from "antd";
 import { useTranslation } from "react-i18next";
-import { useSelectedAppUuid } from "../../shared/AppRoot/context";
+import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
 
 export const PropertyBox = () => {
   const serviceId = useSelectedAppUuid();

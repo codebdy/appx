@@ -1,7 +1,7 @@
 import { isStr } from "@formily/shared";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { useAppParams } from "../shared/AppRoot/context";
+import { useAppParams } from "../plugin-sdk/contexts/appRoot";
 
 export const LANG_RESOURCE_PREFIX = "$src:";
 export const LANG_INLINE_PREFIX = "$inline:"

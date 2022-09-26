@@ -1,4 +1,4 @@
-import { useAppParams } from "../../shared/AppRoot/context";
+import { useAppParams } from "../../plugin-sdk/contexts/appRoot";
 
 export function useEntryPageId() {
   const { deviceConfig } = useAppParams();

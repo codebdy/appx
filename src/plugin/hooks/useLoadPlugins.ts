@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { useAppParams } from "../../shared/AppRoot/context";
+import { useAppParams } from "../../plugin-sdk/contexts/appRoot";
 import { IPluginInfo, PluginType } from "../../model";
 import { IInstalledPlugin, PluginStatus } from "../model";
 import { useGetPluginInfo } from "./useGetPluginInfo";

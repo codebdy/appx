@@ -1,6 +1,6 @@
 import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Input, Space, Table } from 'antd';
-import { useAppConfig, useAppParams } from '../../../shared/AppRoot/context';
+import { useAppConfig, useAppParams } from '../../../plugin-sdk/contexts/appRoot';
 import React, { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ILangLocalInput } from '../../../model/input';

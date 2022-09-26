@@ -9,7 +9,7 @@ import { Form, Input, Switch } from "antd";
 import { useTranslation } from "react-i18next";
 import { AttributeTypeInput } from "./AttributeTypeInput";
 import { MultiLangInput } from "../../components/pc/MultiLangInput";
-import { useSelectedAppUuid } from "../../shared/AppRoot/context";
+import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
 import { isStr } from "@formily/shared";
 
 export const AttributePanel = (props: {

@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { Menu, Dropdown, Button } from 'antd';
-import { useAppConfig } from '../../../../../shared/AppRoot/context';
+import { useAppConfig } from '../../../../../plugin-sdk/contexts/appRoot';
 import { useTranslation } from 'react-i18next';
 import { TranslationOutlined } from '@ant-design/icons';
 

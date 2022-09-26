@@ -2,8 +2,8 @@ import { IPostOptions, usePostOne } from "../../../enthooks/hooks/usePostOne";
 import { IUserConfig } from "../../../model";
 import { IUserConfigInput } from "../../../model/input";
 import { useCallback } from "react";
-import { useAppParams, useUserConfig } from "../context";
-import { useMe } from "../../../Login/context";
+import { useAppParams, useUserConfig } from "../../../plugin-sdk/contexts/appRoot";
+import { useMe } from "../../../plugin-sdk/contexts/login";
 
 export function useUpdateComponentConfig(options?: IPostOptions<any>): [
   (path: string, value: any) => void,

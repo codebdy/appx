@@ -5,7 +5,7 @@ import { DataNode } from 'antd/lib/tree';
 import CreateCategoryDialog from './CreateCategoryDialog';
 import CreatePageDialog from './CreatePageDialog';
 import { useRecoilState } from 'recoil';
-import { useAppViewKey } from '../../../shared/AppRoot/context';
+import { useAppViewKey } from '../../../plugin-sdk/contexts/appRoot';
 import CategoryLabel from './CategoryLabel';
 import PageLabel from './PageLabel';
 import { selectedPageIdState } from '../../recoil/atom';

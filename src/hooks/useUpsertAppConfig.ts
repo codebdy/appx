@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { IPostOptions, usePostOne } from "../enthooks/hooks/usePostOne";
 import { IAppConfig } from "../model";
 import { IAppConfigInput } from "../model/input";
-import { useAppParams } from "../shared/AppRoot/context";
+import { useAppParams } from "../plugin-sdk/contexts/appRoot";
 
 export function useUpsertAppConfig(options?: IPostOptions<any>): [
   (config: IAppConfigInput) => void,

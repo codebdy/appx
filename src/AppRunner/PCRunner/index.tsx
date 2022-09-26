@@ -3,7 +3,7 @@ import { memo } from "react";
 import { useRecoilValue } from "recoil";
 import { useParseLangMessage } from "../../hooks/useParseLangMessage";
 import { OpenPageType } from "../../shared/action";
-import { useAppParams, useAppViewKey } from "../../shared/AppRoot/context";
+import { useAppParams, useAppViewKey } from "../../plugin-sdk/contexts/appRoot";
 import { pagePopupsState } from "../recoil/atoms";
 import HeaderContent from "./HeaderContent";
 import MenuContent from "./MenuContent";

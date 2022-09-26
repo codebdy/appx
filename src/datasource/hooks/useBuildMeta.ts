@@ -8,7 +8,7 @@ import { ClassMeta, StereoType } from "../../ModelBoard/meta/ClassMeta";
 import { Meta } from "../../ModelBoard/meta/Meta";
 import { MethodMeta } from "../../ModelBoard/meta/MethodMeta";
 import { RelationMeta, RelationMultiplicity, RelationType } from "../../ModelBoard/meta/RelationMeta";
-import { useSelectedAppUuid } from "../../shared/AppRoot/context";
+import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
 import { classesState, entitiesState, packagesState } from "../recoil";
 import _ from "lodash";
 import { AssociationMeta } from "../model";

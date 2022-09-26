@@ -17,7 +17,7 @@ import { DeleteOutlined, RedoOutlined, UndoOutlined } from "@ant-design/icons";
 import "./index.less";
 import { PRIMARY_COLOR } from "../../consts";
 import SaveActions from "../SaveActions";
-import { useSelectedAppUuid } from "../../shared/AppRoot/context";
+import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
 
 export const ModelToolbar = memo(() => {
   const appUuid = useSelectedAppUuid();

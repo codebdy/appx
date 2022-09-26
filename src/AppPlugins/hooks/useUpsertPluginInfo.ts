@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { IPostOptions, usePostOne } from "../../enthooks/hooks/usePostOne";
 import { IPluginInfo } from "../../model";
 import { IPluginInfoInput } from "../../model/input";
-import { useAppParams } from "../../shared/AppRoot/context";
+import { useAppParams } from "../../plugin-sdk/contexts/appRoot";
 
 export function useUpsertPluginInfo(options?: IPostOptions<any>): [
   (pluginInfo: IPluginInfoInput) => void,

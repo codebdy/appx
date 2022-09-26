@@ -3,13 +3,13 @@ import { Avatar, Dropdown, Menu, Modal } from "antd"
 import React, { memo, useCallback, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { LOGIN_URL, TOKEN_NAME } from "../../consts";
-import { useLogout, useSetToken } from "../../enthooks";
-import { useMe } from "../../Login/context";
+import { useMe } from "../../../../../plugin-sdk/contexts/login";
+import { LOGIN_URL, TOKEN_NAME } from "../../../../../consts";
+import { useLogout, useSetToken } from "../../../../../enthooks";
 import ChangePasswordForm from "./ChangePasswordForm";
 
 export interface IComponentProps {
-  trigger?: "click" | "hover" | "contextMenu"
+  trigger?: ("click" | "hover" | "contextMenu")[]
 }
 
 const AvatarMenu = memo((props: IComponentProps) => {

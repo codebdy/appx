@@ -6,7 +6,7 @@ import React from "react";
 import { HEADER_AUTHORIZATION, TOKEN_PREFIX, HEADER_APPX_APPUUID } from "../consts";
 import "./index.less";
 import { useEndpoint, useToken } from "../enthooks";
-import { useSelectedAppUuid } from "../shared/AppRoot/context";
+import { useSelectedAppUuid } from "../plugin-sdk/contexts/appRoot";
 
 //例子連接
 //https://github.com/graphql/graphiql/blob/main/packages/graphiql-toolkit/docs/create-fetcher.md#subscriptionurl

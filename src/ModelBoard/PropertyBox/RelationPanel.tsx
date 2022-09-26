@@ -9,7 +9,7 @@ import { useChangeRelation } from "../hooks/useChangeRelation";
 import { Collapse, Form, Input, Select } from "antd";
 import { useTranslation } from "react-i18next";
 import { MultiLangInput } from "../../components/pc/MultiLangInput";
-import { useSelectedAppUuid } from "../../shared/AppRoot/context";
+import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
 
 const { Panel } = Collapse;
 const { Option } = Select;

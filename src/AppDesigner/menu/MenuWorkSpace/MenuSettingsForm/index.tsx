@@ -6,7 +6,7 @@ import { navigationSelectedIdState } from '../../atoms';
 import { useRecoilValue } from 'recoil';
 import { useMenuNode } from '../../hooks/useMenuNode';
 import { useSetMeta } from '../../hooks/useSetMeta';
-import { useAppViewKey } from '../../../../shared/AppRoot/context';
+import { useAppViewKey } from '../../../../plugin-sdk/contexts/appRoot';
 import { MenuItemType } from '../../../../model/IMenuNode';
 import { useGetPage } from '../../../hooks/useGetPage';
 import { MultiLangInput } from '../../../../components/pc/MultiLangInput';

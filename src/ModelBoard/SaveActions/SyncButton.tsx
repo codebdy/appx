@@ -4,7 +4,7 @@ import React, { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useShowError } from '../../hooks/useShowError';
-import { useSelectedAppUuid } from '../../shared/AppRoot/context';
+import { useSelectedAppUuid } from '../../plugin-sdk/contexts/appRoot';
 import { usePublishMeta } from '../hooks/usePublishMeta';
 import { MetaStatus } from '../meta/Meta';
 import { changedState, publishedIdState, metaState } from '../recoil/atoms';

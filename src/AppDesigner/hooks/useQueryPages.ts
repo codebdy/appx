@@ -2,7 +2,7 @@ import { gql } from "awesome-graphql-client";
 import { useMemo } from "react";
 import { useQuery } from "../../enthooks/hooks/useQuery";
 import { IPage } from "../../model";
-import { useAppParams } from "../../shared/AppRoot/context";
+import { useAppParams } from "../../plugin-sdk/contexts/appRoot";
 
 const pagesGql = gql`
 query queryPages($appUuid:String!, $device:String!){

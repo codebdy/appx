@@ -29,7 +29,7 @@ import RelationLabel from "./RelationLabel";
 import { useTranslation } from "react-i18next";
 import PlugIcon from "../../icons/PlugIcon";
 import DiagramLabel from "./DiagramLabel";
-import { useSelectedAppUuid } from "../../shared/AppRoot/context";
+import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {

@@ -9,7 +9,7 @@ import { useParseLangSchema } from "../../hooks/useParseLangSchema";
 import { ID } from "../../shared";
 import { useQueryPageWithCache } from "../hooks/useQueryPageWithCache";
 import { IUser } from "../../enthooks/hooks/useQueryMe";
-import { useMe } from "../../Login/context";
+import { useMe } from "../../plugin-sdk/contexts/login";
 
 export class Me {
 

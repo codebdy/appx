@@ -2,7 +2,7 @@ import { Card } from "antd";
 import { IApp } from "../../../../model";
 import React, { memo, useCallback, useState } from "react";
 import { useRecoilValue } from "recoil";
-import { useAppViewKey } from "../../../../shared/AppRoot/context";
+import { useAppViewKey } from "../../../../plugin-sdk/contexts/appRoot";
 import { navigationRootNodeState } from "../../atoms";
 import NavItemList from "./NavItemList";
 import { useParseLangMessage } from "../../../../hooks/useParseLangMessage";

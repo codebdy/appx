@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { createId } from "../..";
-import { useAppViewKey } from "../../AppRoot/context";
+import { useAppViewKey } from "../../../plugin-sdk/contexts/appRoot";
 import { useInstanceId } from "../../contexts/instance";
 import { IOpenPageAction, OpenPageType } from "../model";
 

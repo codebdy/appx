@@ -8,7 +8,7 @@ import { Types } from "../meta/Type";
 import { useTranslation } from "react-i18next";
 import { AttributeMeta } from "../meta/AttributeMeta";
 import { CONST_ID } from "../meta/Meta";
-import { useSelectedAppUuid } from "../../shared/AppRoot/context";
+import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
 const { Option } = Select;
 
 export const AttributeTypeInput = memo(

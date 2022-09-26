@@ -19,7 +19,7 @@ import { Collapse } from "antd";
 import "./index.less";
 import { PRIMARY_COLOR } from "../../consts";
 import { useTranslation } from "react-i18next";
-import { useSelectedAppUuid } from "../../shared/AppRoot/context";
+import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
 
 const { Dnd } = Addon;
 const { Panel } = Collapse;

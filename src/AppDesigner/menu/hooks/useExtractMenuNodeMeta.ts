@@ -3,7 +3,7 @@ import { useRecoilValue } from "recoil";
 import { useGetMenuNode } from "./useGetMenuNode";
 import { navigationNodesState } from "../atoms";
 import { cloneObject } from "../utils/cloneObject";
-import { useAppViewKey } from "../../../shared/AppRoot/context";
+import { useAppViewKey } from "../../../plugin-sdk/contexts/appRoot";
 import { IMenuItem } from "../../../model/IMenuNode";
 
 export function useExtractMenuNodeMeta() {

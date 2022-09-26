@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { useAppParams } from "../../shared/AppRoot/context";
+import { useAppParams } from "../../plugin-sdk/contexts/appRoot";
 import { MaterialTab } from "../model";
 import { useConvertMaterialFromPlugin } from "./useConvertMaterialFromPlugin";
 import { useExtractMaterialGroupFromPlugin } from "./useExtractMaterialGroupFromPlugin";

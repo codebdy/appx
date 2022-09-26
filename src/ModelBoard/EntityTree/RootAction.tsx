@@ -7,7 +7,7 @@ import { packagesState } from "../recoil/atoms";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
 import { useExportJson } from "../hooks/useExportJson";
 import { useTranslation } from "react-i18next";
-import { useSelectedAppUuid } from "../../shared/AppRoot/context";
+import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
 
 const RootAction = memo(() => {
   const appUuid = useSelectedAppUuid();

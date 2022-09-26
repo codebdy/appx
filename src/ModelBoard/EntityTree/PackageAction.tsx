@@ -11,7 +11,7 @@ import { StereoType } from "../meta/ClassMeta";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
 import { useTranslation } from "react-i18next";
 import { SYSTEM_APP_UUID } from "../../consts";
-import { useSelectedAppUuid } from "../../shared/AppRoot/context";
+import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
 
 const PackageAction = memo((
   props: {

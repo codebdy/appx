@@ -2,7 +2,7 @@ import { Form } from 'antd';
 import React, { memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { useAppParams, useAppViewKey } from '../../../shared/AppRoot/context';
+import { useAppParams, useAppViewKey } from '../../../plugin-sdk/contexts/appRoot';
 import { deviceConfigChangedState, deviceConfigState } from '../../recoil/atom';
 import { PageSelect } from '../../SettingsForm/components/PageSelect';
 import "./style.less"

@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { useSelectedAppUuid } from "../../shared/AppRoot/context";
+import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
 import { packagesState } from "../recoil";
 
 export function usePackages(){

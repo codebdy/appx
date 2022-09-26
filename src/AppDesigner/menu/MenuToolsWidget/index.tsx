@@ -6,7 +6,7 @@ import {
 } from "@designable/react"
 import cls from 'classnames'
 import './styles.less'
-import { useAppViewKey } from '../../../shared/AppRoot/context'
+import { useAppViewKey } from '../../../plugin-sdk/contexts/appRoot'
 import { useRecoilValue } from 'recoil'
 import { navigationSelectedIdState } from '../atoms'
 import { useRedo } from '../hooks/useRedo'

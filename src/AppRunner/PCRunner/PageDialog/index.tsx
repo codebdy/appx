@@ -1,5 +1,5 @@
 import { Modal } from "antd";
-import { useAppViewKey } from "../../../shared/AppRoot/context";
+import { useAppViewKey } from "../../../plugin-sdk/contexts/appRoot";
 import React, { useCallback, useMemo } from "react"
 import { memo } from "react"
 import { IPagePopup, pagePopupsState } from "../../recoil/atoms";

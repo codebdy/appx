@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom"
 import { useQueryMe } from "../enthooks/hooks/useQueryMe";
 import { useLoginCheck } from "../hooks/useLoginCheck";
 import { useShowError } from "../hooks/useShowError";
-import { UserContext } from "./context";
+import { UserContext } from "../plugin-sdk/contexts/login";
 
 export const LoggedInPanel = memo(() => {
   useLoginCheck();

@@ -9,7 +9,7 @@ import { DiagramMeta } from "../meta/DiagramMeta";
 import DiagramAction from "./DiagramAction";
 import { useGetPackage } from "../hooks/useGetPackage";
 import { SYSTEM_APP_UUID } from "../../consts";
-import { useSelectedAppUuid } from "../../shared/AppRoot/context";
+import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
 
 const DiagramLabel = memo((
   props: {

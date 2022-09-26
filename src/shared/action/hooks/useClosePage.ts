@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useSetRecoilState } from "recoil";
 import { OpenPageType } from "..";
-import { useAppViewKey } from "../../AppRoot/context";
+import { useAppViewKey } from "../../../plugin-sdk/contexts/appRoot";
 import { pagePopupsState } from "../../../AppRunner/recoil/atoms";
 import { useExpressionScope } from '@formily/react';
 

@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useSetRecoilState, useRecoilValue } from "recoil";
-import { useAppViewKey } from "../../../shared/AppRoot/context";
+import { useAppViewKey } from "../../../plugin-sdk/contexts/appRoot";
 import {
   isNavigationDirtyState,
   navigationNodesState,

@@ -7,7 +7,7 @@ import { IMenuNode } from "../../../../model/IMenuNode";
 import { memo, useMemo } from "react";
 import { useRecoilState } from "recoil";
 import { navigationSelectedIdState } from "../../atoms";
-import { useAppViewKey } from "../../../../shared/AppRoot/context";
+import { useAppViewKey } from "../../../../plugin-sdk/contexts/appRoot";
 import React from "react";
 import { Divider } from "antd";
 import clx from "classnames";

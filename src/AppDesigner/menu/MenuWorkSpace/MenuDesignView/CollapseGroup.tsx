@@ -7,7 +7,7 @@ import {
 import { IMenuNode } from "../../../../model/IMenuNode";
 import { useRecoilState } from "recoil";
 import { navigationSelectedIdState } from "../../atoms";
-import { useAppViewKey } from "../../../../shared/AppRoot/context";
+import { useAppViewKey } from "../../../../plugin-sdk/contexts/appRoot";
 import React from "react";
 import NavItemList from "./NavItemList";
 import { Collapse } from "antd";

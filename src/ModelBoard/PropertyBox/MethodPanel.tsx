@@ -3,7 +3,7 @@ import { MethodMeta } from "../meta/MethodMeta";
 import { ClassMeta } from "../meta/ClassMeta";
 import { useChangeMethod } from "../hooks/useChangeMethod";
 import { useGetTypeLabel } from "../hooks/useGetTypeLabel";
-import { useSelectedAppUuid } from "../../shared/AppRoot/context";
+import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
 import { Form, Input } from "antd";
 import { MultiLangInput } from "../../components/pc/MultiLangInput";
 import { useTranslation } from "react-i18next";

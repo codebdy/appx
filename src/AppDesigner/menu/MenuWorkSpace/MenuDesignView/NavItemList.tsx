@@ -11,7 +11,7 @@ import { IMenuNode, MenuItemType } from "../../../../model/IMenuNode";
 import { useGetMenuNode } from "../../hooks/useGetMenuNode";
 import { useSetRecoilState } from "recoil";
 import { navigationSelectedIdState } from "../../atoms";
-import { useAppViewKey } from "../../../../shared/AppRoot/context";
+import { useAppViewKey } from "../../../../plugin-sdk/contexts/appRoot";
 import { LinkItem } from "./LinkItem";
 
 export const NavItemListInner = (props: {

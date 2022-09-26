@@ -3,13 +3,13 @@ import { Button, Divider, Menu, Space } from "antd"
 import { Header } from "antd/lib/layout/layout"
 import React, { useCallback } from "react"
 import { memo } from "react"
-import AvatarMenu from "../AppManager/AvatarMenu"
 import { useMatch, useNavigate, useParams } from "react-router-dom"
 import { IApp } from "../model"
 import { AppConfigRouts } from "./AppConfigRouts"
 import { useTranslation } from "react-i18next"
 import SelectLang from "../plugins/framewidgets/pc/LangSelect/view"
 import { useParseLangMessage } from "../hooks/useParseLangMessage"
+import AvatarMenu from "../plugins/framewidgets/pc/AvatarMenu/view"
 
 const ConifgHeader = memo((props: {
   app?: IApp,

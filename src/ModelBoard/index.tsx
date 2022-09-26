@@ -7,7 +7,7 @@ import "./index.less"
 import { useReadMeta } from "./hooks/useReadMeta";
 import { useShowError } from "../hooks/useShowError";
 import { Spin } from "antd";
-import { useSelectedAppUuid } from "../shared/AppRoot/context";
+import { useSelectedAppUuid } from "../plugin-sdk/contexts/appRoot";
 import { ResizableColumn } from "../common/ResizableColumn";
 
 const ModelsBoard = memo((

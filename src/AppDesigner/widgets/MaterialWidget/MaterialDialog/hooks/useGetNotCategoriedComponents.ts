@@ -1,4 +1,4 @@
-import { useAppParams } from "../../../../../shared/AppRoot/context";
+import { useAppParams } from "../../../../../plugin-sdk/contexts/appRoot";
 import { useCallback } from "react";
 import { IMaterialTab, IPlugin } from "@rxdrag/appx-plugin-sdk";
 

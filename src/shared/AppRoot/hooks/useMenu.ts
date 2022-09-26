@@ -1,6 +1,6 @@
 import { gql } from "awesome-graphql-client";
 import { IMenu } from "../../../model";
-import { useAppParams } from "../context";
+import { useAppParams } from "../../../plugin-sdk/contexts/appRoot";
 import { useQueryOne } from "../../../enthooks/hooks/useQueryOne";
 import { useMemo } from "react";
 

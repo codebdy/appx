@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from "react";
 import { useRecoilState } from "recoil";
 import { useQueryPage } from "../../hooks/useQueryPage";
-import { useAppViewKey } from "../../shared/AppRoot/context";
+import { useAppViewKey } from "../../plugin-sdk/contexts/appRoot";
 import { pagesCacheState } from "../recoil/atoms";
 
 

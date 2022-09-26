@@ -3,12 +3,12 @@ import { Divider, Space, Button, Menu, Dropdown } from "antd"
 import { Header } from "antd/lib/layout/layout"
 import React, { memo, useCallback } from "react"
 import SvgIcon from "../common/SvgIcon"
-import AvatarMenu from "./AvatarMenu"
 import clx from "classnames"
 import { useMatch, useNavigate } from "react-router-dom"
 import { InerfaceSvg } from "../icons/InterfaceIcon"
 import { useTranslation } from "react-i18next"
 import SelectLang from "../plugins/framewidgets/pc/LangSelect/view"
+import AvatarMenu from "../plugins/framewidgets/pc/AvatarMenu/view"
 
 export enum AppManagerRoutes {
   Root = "/",
