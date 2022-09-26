@@ -4,7 +4,7 @@ import React from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next"
 import { PageSelect } from "../../PageSelect"
-import { IOpenPageAction, OpenPageType } from "../../../../../shared/action/model"
+import { IOpenPageAction, OpenPageType } from "../../../../../plugin-sdk/model/action"
 const { Option } = Select;
 
 export const OpenPagePanel = memo((

@@ -1,4 +1,4 @@
-import { ActionType, IAppxAction } from "../../../../../shared/action/model";
+import { ActionType, IAppxAction } from "../../../../../plugin-sdk/model/action";
 import React, { useCallback, useEffect, useMemo } from "react";
 import { memo } from "react";
 import { Form } from "antd";

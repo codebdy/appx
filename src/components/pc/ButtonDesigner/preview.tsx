@@ -4,7 +4,7 @@ import { createBehavior, createResource } from '@designable/core'
 import { ButtonSchema } from "./schema";
 import { ButtonLocales } from "./locales";
 import { DnFC } from '@designable/react'
-import { Events } from "../../../shared/action/model";
+import { Events } from "../../../plugin-sdk/model/action";
 import { observer } from "@formily/reactive-react";
 import React from "react";
 

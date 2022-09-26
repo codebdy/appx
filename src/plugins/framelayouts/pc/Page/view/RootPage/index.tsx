@@ -1,12 +1,12 @@
 import React from "react";
 import { memo, useMemo } from "react";
 import { useParams } from "react-router-dom";
-import { PageEngine } from "../../../plugins/framelayouts/PageEngine";
-import { OpenPageType } from "../../../shared/action";
-import { components } from "../components";
+import { PageEngine } from "../../../../PageEngine";
+import { components } from "../../../../../../AppRunner/PCRunner/components";
 import { ExpressionScope } from '@formily/react';
-import { useGetMenuItem } from "../../../plugins/framewidgets/pc/AppMenu/view/hooks/useGetMenuItem";
-import { useEntryPageId } from "../../../plugins/framewidgets/pc/AppMenu/view/hooks/useEntryPageId";
+import { useGetMenuItem } from "../../../../../framewidgets/pc/AppMenu/view/hooks/useGetMenuItem";
+import { useEntryPageId } from "../../../../../framewidgets/pc/AppMenu/view/hooks/useEntryPageId";
+import { OpenPageType } from "../../../../../../plugin-sdk/model/action";
 
 export interface ILoadingSpanProps {
   spinning?: boolean,

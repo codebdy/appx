@@ -1,4 +1,4 @@
-import { IAppxAction } from "../../../../shared/action/model"
+import { IAppxAction } from "../../../../plugin-sdk/model/action"
 import React from "react"
 import { memo } from "react"
 import { Draggable, Droppable } from "react-beautiful-dnd"

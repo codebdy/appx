@@ -4,7 +4,7 @@ import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
 import React from "react";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { IConfirmAction } from "../model";
+import { IConfirmAction } from "../../../plugin-sdk/model/action";
 
 export function useConfirm() {
   const { t } = useTranslation();

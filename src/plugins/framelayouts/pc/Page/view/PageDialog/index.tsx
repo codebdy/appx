@@ -1,13 +1,13 @@
 import { Modal } from "antd";
-import { useAppViewKey } from "../../../plugin-sdk/contexts/appRoot";
+import { useAppViewKey } from "../../../../../../plugin-sdk/contexts/appRoot";
 import React, { useCallback, useMemo } from "react"
 import { memo } from "react"
-import { IPagePopup, pagePopupsState } from "../../recoil/atoms";
+import { IPagePopup, pagePopupsState } from "../../../../../../plugin-sdk/atoms/runner";
 import { useRecoilValue } from "recoil";
-import { useClosePage } from "../../../shared/action/hooks/useClosePage";
-import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
-import { PageEngine } from "../../../plugins/framelayouts/PageEngine";
-import { components } from "../components";
+import { useClosePage } from "../../../../../../shared/action/hooks/useClosePage";
+import { useParseLangMessage } from "../../../../../../hooks/useParseLangMessage";
+import { PageEngine } from "../../../../PageEngine";
+import { components } from "../../../../../../AppRunner/PCRunner/components";
 
 export const PageDialog = memo((
   props: {

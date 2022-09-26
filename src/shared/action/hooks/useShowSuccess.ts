@@ -2,7 +2,7 @@ import { message } from "antd";
 import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { ISuccessAction } from "../model";
+import { ISuccessAction } from "../../../plugin-sdk/model/action";
 
 export function useShowSuccess() {
   const { t } = useTranslation();

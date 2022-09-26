@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { useSetRecoilState } from "recoil";
 import { OpenPageType } from "..";
 import { useAppViewKey } from "../../../plugin-sdk/contexts/appRoot";
-import { pagePopupsState } from "../../../AppRunner/recoil/atoms";
+import { pagePopupsState } from "../../../plugin-sdk/atoms/runner";
 import { useExpressionScope } from '@formily/react';
 
 export function useClosePage() {

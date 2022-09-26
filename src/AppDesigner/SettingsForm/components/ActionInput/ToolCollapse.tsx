@@ -1,5 +1,5 @@
 import { Collapse } from 'antd';
-import { ActionType } from '../../../../shared/action/model';
+import { ActionType } from '../../../../plugin-sdk/model/action';
 import React, { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Draggable, Droppable } from 'react-beautiful-dnd';

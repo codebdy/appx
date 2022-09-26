@@ -2,17 +2,17 @@ import React from "react";
 import { memo } from "react";
 import { useRecoilValue } from "recoil";
 import { useParseLangMessage } from "../../hooks/useParseLangMessage";
-import { OpenPageType } from "../../shared/action";
 import { useAppParams, useAppViewKey } from "../../plugin-sdk/contexts/appRoot";
-import { pagePopupsState } from "../recoil/atoms";
+import { pagePopupsState } from "../../plugin-sdk/atoms/runner";
 import HeaderContent from "./HeaderContent";
 import AppMenu from "../../plugins/framewidgets/pc/AppMenu/view";
-import { PageDialog } from "./PageDialog";
-import { PageDrawer } from "./PageDrawer";
+import { PageDialog } from "../../plugins/framelayouts/pc/Page/view/PageDialog";
 import { ProLayout } from "./ProLayout";
-import { RootPage } from "./RootPage";
+import { RootPage } from "../../plugins/framelayouts/pc/Page/view/RootPage";
 import "./style.less"
 import { ExpressionScope } from '@formily/react';
+import { OpenPageType } from "../../plugin-sdk/model/action";
+import { PageDrawer } from "../../plugins/framelayouts/pc/Page/view/PageDrawer";
 
 export const PCRunner = memo(() => {
   const { app } = useAppParams();

@@ -1,13 +1,13 @@
 import { Drawer } from "antd";
-import { useAppViewKey } from "../../../plugin-sdk/contexts/appRoot";
+import { useAppViewKey } from "../../../../../../plugin-sdk/contexts/appRoot";
 import React, { useCallback, useMemo } from "react"
 import { memo } from "react"
-import { IPagePopup, pagePopupsState } from "../../recoil/atoms";
+import { IPagePopup, pagePopupsState } from "../../../../../../plugin-sdk/atoms/runner";
 import { useRecoilValue } from "recoil";
-import { useClosePage } from "../../../shared/action/hooks/useClosePage";
-import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
-import { PageEngine } from "../../../plugins/framelayouts/PageEngine";
-import { components } from "../components";
+import { useParseLangMessage } from "../../../../../../hooks/useParseLangMessage";
+import { PageEngine } from "../../../../../../plugins/framelayouts/PageEngine";
+import { useRunnerParams } from "../../../../../../plugin-sdk/contexts/runner";
+import { useClosePage } from "../../../../../../shared/action/hooks/useClosePage";
 
 export const PageDrawer = memo((
   props: {
@@ -16,6 +16,7 @@ export const PageDrawer = memo((
 ) => {
   const { pageDrawer } = props;
   const key = useAppViewKey();
+  const { components } = useRunnerParams();
   const pagePopups = useRecoilValue(pagePopupsState(key));
   const p = useParseLangMessage();
   const close = useClosePage();
