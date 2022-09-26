@@ -1,15 +1,16 @@
 import React from "react"
-import { DnFC } from '@designable/react'
+import { DnFC, useTreeNode } from '@designable/react'
 import { observer } from "@formily/reactive-react"
-import Component, { IComponentProps } from "../view"
+import { IComponentProps } from "../view"
 import "./style.less"
 
 const ComponentDesigner: DnFC<IComponentProps> = observer((
   props
 ) => {
+  const node = useTreeNode();
   return (
     <div className="appx-page-designer" {...props}>
-      Page render
+      {node.getMessage("pageReander")}
     </div>
   )
 })
