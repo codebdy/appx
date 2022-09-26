@@ -6,7 +6,7 @@ import { OpenPageType } from "../../shared/action";
 import { useAppParams, useAppViewKey } from "../../plugin-sdk/contexts/appRoot";
 import { pagePopupsState } from "../recoil/atoms";
 import HeaderContent from "./HeaderContent";
-import MenuContent from "./MenuContent";
+import AppMenu from "../../plugins/framewidgets/pc/AppMenu/view";
 import { PageDialog } from "./PageDialog";
 import { PageDrawer } from "./PageDrawer";
 import { ProLayout } from "./ProLayout";
@@ -45,7 +45,7 @@ export const PCRunner = memo(() => {
             />
           </svg>
         }
-        menu={<MenuContent />}
+        menu={<AppMenu />}
         header={<HeaderContent />}
       //footer={"©Copyright 悠闲的水 2022"}
       >

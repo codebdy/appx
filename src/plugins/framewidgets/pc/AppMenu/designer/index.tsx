@@ -1,7 +1,7 @@
 import React from "react"
 import { DnFC } from '@designable/react'
 import { observer } from "@formily/reactive-react"
-import Component, { IComponentProps } from "../view"
+import { IComponentProps } from "../view"
 import { Menu, MenuProps } from "antd";
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from "@ant-design/icons";
 

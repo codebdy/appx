@@ -1,7 +1,7 @@
 import { useCallback } from "react";
-import { IMenuItem } from "../../model/IMenuNode";
-import { ID } from "../../shared";
-import { useRunnerParams } from "../../plugin-sdk/contexts/runner";
+import { IMenuItem } from "../../../../../../model/IMenuNode";
+import { ID } from "../../../../../../shared";
+import { useRunnerParams } from "../../../../../../plugin-sdk/contexts/runner";
 
 export function useGetMenuItemByPageId() {
   const { menu } = useRunnerParams();
