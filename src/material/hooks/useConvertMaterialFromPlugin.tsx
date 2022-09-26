@@ -8,7 +8,7 @@ import { useCreateFieldSchema } from "./useCreateFieldSchema";
 
 export function useConvertMaterialFromPlugin() {
   const createFieldSchema = useCreateFieldSchema();
-   const convertBehaviors = useCallback((behaviors: IBehavior[]) => {
+  const convertBehaviors = useCallback((behaviors: IBehavior[]) => {
     return behaviors?.map(behavior => {
       const { schema, ...other } = behavior;
       return {
@@ -23,7 +23,7 @@ export function useConvertMaterialFromPlugin() {
   }, [createFieldSchema])
 
   const transComponment = useCallback((material: IMaterialComponent): Material => {
-    const Resource = createResource(material.resource)
+    const Resource = createResource(...(material.resources || []))
 
     const dnfc: DnFC<any> = (props) => {
       const Component = material.designer as any;
@@ -45,7 +45,7 @@ export function useConvertMaterialFromPlugin() {
       component: material.component,
     }
   }, [convertBehaviors])
-  
+
   const convertMaterialFromPlugin = useCallback((material: IMaterialComponent) => {//Material
     return transComponment(material)
   }, [transComponment])
