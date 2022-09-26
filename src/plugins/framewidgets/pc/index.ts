@@ -5,6 +5,7 @@ import AppMenu from "./AppMenu";
 import AppSubMenu from "./AppSubMenu";
 import Breadcrumb from "./Breadcrumb";
 import Logo from "./Logo";
+import MenuTrigger from "./MenuTrigger";
 
 const pcComponents = [
   AppMenu,
@@ -14,6 +15,7 @@ const pcComponents = [
   AvatarMenu,
   LangSelect,
   Breadcrumb,
+  MenuTrigger
 ];
 
 export default pcComponents;

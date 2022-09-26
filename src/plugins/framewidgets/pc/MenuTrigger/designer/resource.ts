@@ -1,0 +1,18 @@
+import Name from "../name";
+
+const resource = {
+  icon: 'Menu',
+  elements: [
+    {
+      componentName: 'Field',
+      props: {
+        type: 'void',
+        'x-component': Name,
+        'x-component-props': {
+        },
+      },
+    },
+  ],
+}
+
+export default resource;
