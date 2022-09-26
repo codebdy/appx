@@ -1,14 +1,16 @@
 import { observer } from "@formily/reactive-react"
-import React, { CSSProperties } from "react"
+import React from "react"
+import cls from "classnames"
+import "./style.less"
 
 export interface IComponentProps {
-  style?: CSSProperties
+  className?: string
 }
 
 const Component = observer((props: IComponentProps) => {
-  const { style, ...other } = props;
+  const { className, ...other } = props;
   return (
-    <div {...other} style={{ flex: 1, ...style }} />
+    <div className={cls(className, "appx-spring")} {...other} />
   )
 })
 
