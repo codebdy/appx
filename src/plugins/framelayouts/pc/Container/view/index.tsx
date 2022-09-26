@@ -22,9 +22,7 @@ const Component = observer((props: IComponentProps) => {
   }
 
   return (
-    <div className={cls("appx-container", className, maxWidthClass)} {...other}>
-      Container
-    </div>
+    <div className={cls("appx-container", className, maxWidthClass)} {...other}/>
   )
 })
 
