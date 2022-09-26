@@ -3,20 +3,18 @@ import { memo, useState } from 'react';
 import React from 'react';
 import { useShowError } from '../../hooks/useShowError';
 import { Spin } from 'antd';
-import { useAppParams } from '../../plugin-sdk/contexts/appRoot';
 import { useQueryMenu } from '../../shared/AppRoot/hooks/useQueryMenu';
 import { RouteContext, RunnerContext } from '../../plugin-sdk/contexts/runner';
 import { IMenuItem } from '../../model/IMenuNode';
 import { FormItem } from "@formily/antd";
 import { useMemo } from "react";
 import { useParseLangSchema } from "../../hooks/useParseLangSchema";
-import { ID } from "../../shared";
-import { useQueryPageWithCache } from "../hooks/useQueryPageWithCache";
 import { IUser } from "../../enthooks/hooks/useQueryMe";
 import { useMe } from "../../plugin-sdk/contexts/login";
 import { createSchemaField, ExpressionScope, FormProvider } from '@formily/react';
 import { createForm } from '@formily/core';
 import { components } from '../PCRunner/components';
+import { useQueryPageFrame } from '../hooks/useQueryPageFrame';
 
 export class Me {
   constructor(private me?: IUser) { }
@@ -31,12 +29,12 @@ export class Me {
   }
 }
 
-
 const RunnerEngine = memo(() => {
   const [mentItem, setMenuItem] = useState<IMenuItem>()
-  const { device } = useAppParams();
+  const p = useParseLangSchema();
   const { menu, error, loading } = useQueryMenu();
-  useShowError(error);
+  const { pageFrame, error: frameError, loading: frameLoading } = useQueryPageFrame();
+  useShowError(error || frameError);
   const me = useMe();
   const $me = useMemo(() => new Me(me), [me]);
   const SchemaField = useMemo(() => createSchemaField({
@@ -45,7 +43,7 @@ const RunnerEngine = memo(() => {
       ...components
     },
   }), [components])
-  
+
   const [form, newExpScope] = useMemo(
     () => {
       const newExpScope = { $me };
@@ -58,12 +56,12 @@ const RunnerEngine = memo(() => {
   return (
     <RunnerContext.Provider value={{ menu }}>
       <RouteContext.Provider value={{ menuItem: mentItem, setMenuItem: setMenuItem as any }}>
-        <Spin spinning={loading}>
+        <Spin spinning={loading || frameLoading}>
           <FormProvider form={form}>
             <ExpressionScope value={newExpScope} >
               {
-                page?.schemaJson?.schema &&
-                <SchemaField schema={p(JSON.parse(JSON.stringify(page?.schemaJson?.schema || "{}")))}>
+                pageFrame?.schemaJson?.schema &&
+                <SchemaField schema={p(pageFrame?.schemaJson?.schema || {})}>
                 </SchemaField>
               }
             </ExpressionScope>
