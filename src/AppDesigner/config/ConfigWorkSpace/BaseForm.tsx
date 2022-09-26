@@ -1,11 +1,15 @@
-import { Form } from 'antd';
+import { Form, Select } from 'antd';
 import React, { memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useShowError } from '../../../hooks/useShowError';
+import { useQueryPageFrames } from '../../../FrameDesigner/hooks/useQueryPageFrames';
 import { useAppParams, useAppViewKey } from '../../../plugin-sdk/contexts/appRoot';
 import { deviceConfigChangedState, deviceConfigState } from '../../recoil/atom';
 import { PageSelect } from '../../SettingsForm/components/PageSelect';
 import "./style.less"
+import { useParseLangMessage } from '../../../hooks/useParseLangMessage';
+const { Option } = Select
 
 export const BaseLangForm = memo(() => {
   const { t } = useTranslation();
@@ -14,26 +18,29 @@ export const BaseLangForm = memo(() => {
   const setChanged = useSetRecoilState(deviceConfigChangedState(key));
   const { deviceConfig } = useAppParams()
   const [form] = Form.useForm();
+  const p = useParseLangMessage();
+  const { pageFrames, loading, error } = useQueryPageFrames();
+  useShowError(error);
 
-  useEffect(()=>{
+  useEffect(() => {
     setConfig(deviceConfig);
     form.resetFields();
-    form.setFieldsValue({entryId: deviceConfig?.schemaJson?.entryId});
+    form.setFieldsValue({ entryId: deviceConfig?.schemaJson?.entryId });
   }, [deviceConfig, form, setConfig])
 
-  useEffect(()=>{
-    form.setFieldsValue({entryId: config?.schemaJson?.entryId});
+  useEffect(() => {
+    form.setFieldsValue({ entryId: config?.schemaJson?.entryId });
   }, [config, form])
 
-  const handleValuesChange = useCallback((changeValues, formValues)=>{
-    setConfig(config=>({...config, schemaJson:{...config?.schemaJson||{}, ...formValues}}));
+  const handleValuesChange = useCallback((changeValues, formValues) => {
+    setConfig(config => ({ ...config, schemaJson: { ...config?.schemaJson || {}, ...formValues } }));
     setChanged(true);
   }, [setChanged, setConfig]);
 
   return (
     <Form
       name="baseconfig"
-      form = {form}
+      form={form}
       labelCol={{
         span: 4,
       }}
@@ -43,6 +50,20 @@ export const BaseLangForm = memo(() => {
       autoComplete="off"
       onValuesChange={handleValuesChange}
     >
+      <Form.Item
+        label={t("Designer.PageFrame")}
+        name="pageFrameId"
+      >
+        <Select allowClear loading={loading}>
+          {
+            pageFrames?.map(frame => {
+              return (
+                <Option value={frame.id}>{p(frame.title)}</Option>
+              )
+            })
+          }
+        </Select>
+      </Form.Item>
       <Form.Item
         label={t("Designer.EntryPage")}
         name="entryId"
