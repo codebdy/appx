@@ -1958,10 +1958,10 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.2.0.tgz#8be36a1f66f3265389e90b5f9c9962146758f728"
   integrity sha512-sXo/qW2/pAcmT43VoRKOJbDOfV3cYpq3szSVfIThQXNt+E4DfKj361vaAt3c88U5tPUxzEswam7GW48PJqtKAg==
 
-"@rxdrag/appx-plugin-sdk@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@rxdrag/appx-plugin-sdk/-/appx-plugin-sdk-0.0.2.tgz#61abade0585b633c48d025385f949a7f82ce0d9e"
-  integrity sha512-yOFzPP2TrcndFzknT3Zm9te62kgdZNmKVhb+iWqmzbqogFQNNZyExKzo7rIQWZiGpsh26rqP1uKMQJlgo8qqqQ==
+"@rxdrag/appx-plugin-sdk@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@rxdrag/appx-plugin-sdk/-/appx-plugin-sdk-0.0.3.tgz#cec0b670859c31f74cc1588d82dadc9d7ba3e15e"
+  integrity sha512-soFSLSffSL8ls+Ukk8saxTxMiCGyAct5IP0t/EPsWVx2+Zv+1tJkaawekNv0KqQsNjj+mkvtdGbKvz0eEmazZA==
   dependencies:
     "@designable/core" "^1.0.0-beta.45"
     "@designable/react" "^1.0.0-beta.45"
