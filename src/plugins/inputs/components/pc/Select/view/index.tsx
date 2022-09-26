@@ -1,13 +1,13 @@
 import { observer } from "@formily/reactive-react"
 import React, { useCallback } from "react"
-import { IDataSourceableProps } from "../../common/IDataSourceableProps"
+import { IDataSourceableProps } from "../../../../../../components/common/IDataSourceableProps"
 import { Select as FormilySelect } from "@formily/antd";
-import { useDataQuery } from "../../../datasource";
+import { useDataQuery } from "../../../../../../datasource";
 import { useFieldSchema } from '@formily/react'
-import { QueryType, useQueryParams } from "../../../datasource/hooks/useQueryParams";
-import { useShowError } from "../../../hooks/useShowError";
+import { QueryType, useQueryParams } from "../../../../../../datasource/hooks/useQueryParams";
+import { useShowError } from "../../../../../../hooks/useShowError";
 import { isArr } from "@formily/shared";
-import { AssociationType } from "../../../datasource/model/IFieldSource";
+import { AssociationType } from "../../../../../../datasource/model/IFieldSource";
 
 export const Select = observer((props: IDataSourceableProps & {
   associationType?:AssociationType

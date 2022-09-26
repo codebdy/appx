@@ -1,7 +1,9 @@
 import Input from "./Input";
+import Select from "./Select";
 
 const pcComponents = [
-  Input
+  Input,
+  Select,
 ];
 
 export default pcComponents;

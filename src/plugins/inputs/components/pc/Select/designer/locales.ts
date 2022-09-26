@@ -1,4 +1,4 @@
-export const SelectLocales = {
+const locales = {
   'zh-CN': {
     title: '选择框',
     settings: {
@@ -101,3 +101,5 @@ export const SelectLocales = {
     },
   },
 }
+
+export default locales;
