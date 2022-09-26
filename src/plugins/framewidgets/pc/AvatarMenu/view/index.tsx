@@ -9,9 +9,11 @@ import { useMe } from "../../Login/context";
 import ChangePasswordForm from "./ChangePasswordForm";
 
 export interface IComponentProps {
+  trigger?: "click" | "hover" | "contextMenu"
 }
 
 const AvatarMenu = memo((props: IComponentProps) => {
+  const { trigger, ...other } = props;
   const [isModalVisible, setIsModalVisible] = useState(false);
   const setToken = useSetToken();
   const me = useMe()
@@ -52,8 +54,10 @@ const AvatarMenu = memo((props: IComponentProps) => {
 
   return (
     <>
-      <Dropdown overlay={menu} placement="bottomRight" arrow trigger={['click']}>
-        <Avatar className="avatar" icon={!me && <UserOutlined />} >{me?.name?.substring(0, 1)?.toUpperCase()}</Avatar>
+      <Dropdown overlay={menu} placement="bottomRight" arrow trigger={trigger || ['click']}>
+        <Avatar className="avatar" icon={!me && <UserOutlined />} {...other}>
+          {me?.name?.substring(0, 1)?.toUpperCase()}
+        </Avatar>
       </Dropdown>
       <Modal
         title={t("ChangePassword")}
