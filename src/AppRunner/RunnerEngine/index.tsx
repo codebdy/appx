@@ -13,8 +13,8 @@ import { IUser } from "../../enthooks/hooks/useQueryMe";
 import { useMe } from "../../plugin-sdk/contexts/login";
 import { createSchemaField, ExpressionScope, FormProvider } from '@formily/react';
 import { createForm } from '@formily/core';
-import { components } from '../PCRunner/components';
 import { useQueryPageFrame } from '../hooks/useQueryPageFrame';
+import { useMaterialComponents } from '../../material/hooks/useMaterialComponents';
 
 export class Me {
   constructor(private me?: IUser) { }
@@ -35,6 +35,7 @@ const RunnerEngine = memo(() => {
   const { menu, error, loading } = useQueryMenu();
   const { pageFrame, error: frameError, loading: frameLoading } = useQueryPageFrame();
   useShowError(error || frameError);
+  const components = useMaterialComponents();
   const me = useMe();
   const $me = useMemo(() => new Me(me), [me]);
   const SchemaField = useMemo(() => createSchemaField({
@@ -53,8 +54,15 @@ const RunnerEngine = memo(() => {
     [$me]
   );
 
+  const runnerContextValue = useMemo(() => {
+    return {
+      menu,
+      components: components || [],
+    }
+  }, [menu, components])
+
   return (
-    <RunnerContext.Provider value={{ menu }}>
+    <RunnerContext.Provider value={runnerContextValue}>
       <RouteContext.Provider value={{ menuItem: mentItem, setMenuItem: setMenuItem as any }}>
         <Spin spinning={loading || frameLoading}>
           <FormProvider form={form}>

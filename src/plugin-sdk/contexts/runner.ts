@@ -4,7 +4,7 @@ import { IMenuItem } from "../../model/IMenuNode";
 
 export interface IRunnerContextParams {
   menu?: IMenu,
-  pageFame?: IPageFrame,
+  components: (React.FC<any> | React.Component)[],
 }
 
 export const RunnerContext = createContext<IRunnerContextParams | undefined>(undefined);
