@@ -56,7 +56,7 @@ const AppMenu = memo(() => {
   return (
     <>
       <Menu
-        theme="dark"
+        //theme="dark"
         mode="inline"
         selectedKeys={[(menuUuid !== "no" && menuUuid) || getMenuItemByPageId(entryId)?.uuid]}
         items={data}
