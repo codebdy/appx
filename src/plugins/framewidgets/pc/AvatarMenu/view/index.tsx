@@ -8,7 +8,10 @@ import { useLogout, useSetToken } from "../../enthooks";
 import { useMe } from "../../Login/context";
 import ChangePasswordForm from "./ChangePasswordForm";
 
-const AvatarMenu = memo(() => {
+export interface IComponentProps {
+}
+
+const AvatarMenu = memo((props: IComponentProps) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const setToken = useSetToken();
   const me = useMe()
