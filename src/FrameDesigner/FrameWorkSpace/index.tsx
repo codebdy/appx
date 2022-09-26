@@ -4,7 +4,6 @@ import { Spin } from "antd";
 import { useDesigner } from '@designable/react'
 import { transformToTreeNode } from "../../AppDesigner/transformer";
 import { Field, ObjectContainer } from "@designable/formily-antd";
-import { FormDesigner } from "../../components/pc";
 import { ComponentTreeWidget, DesignerToolsWidget, PreviewWidget, SchemaEditorWidget, ViewToolsWidget } from "../../AppDesigner/widgets";
 import { useShowError } from "../../hooks/useShowError";
 import { ID } from "../../shared";
@@ -13,6 +12,7 @@ import { SettingsPanel, ToolbarPanel, ViewPanel, ViewportPanel, WorkspacePanel }
 import { SettingsForm } from "../../AppDesigner/SettingsForm";
 import { useMaterialDesigners } from "../../material/hooks/useMaterialDesigners";
 import { useLazyQueryPageFrame } from "../hooks/useLazyQueryPageFrame";
+import { FormDesigner } from "../../components/pc/FormDesigner";
 
 export const FrameWorkSpace = (props: {
   frameId: ID
@@ -61,7 +61,6 @@ export const FrameWorkSpace = (props: {
                       Field,
                       ObjectContainer,
                       ...materailDesigners,
-                      //...convertMaterialsToComponentDesigners(materialStore.modules)
                     }}
                   />
                 )}

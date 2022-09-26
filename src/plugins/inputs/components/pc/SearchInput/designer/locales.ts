@@ -1,4 +1,4 @@
-export const SearchInputLocales = {
+const loacales = {
   'zh-CN': {
     title: '查询框',
     settings: {
@@ -51,3 +51,5 @@ export const SearchInputLocales = {
     },
   },
 }
+
+export default loacales;

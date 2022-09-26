@@ -9,7 +9,7 @@ import { useShowError } from "../../../../../../hooks/useShowError";
 import { isArr } from "@formily/shared";
 import { AssociationType } from "../../../../../../datasource/model/IFieldSource";
 
-export const Select = observer((props: IDataSourceableProps & {
+const Component = observer((props: IDataSourceableProps & {
   associationType?:AssociationType
   labelField?: string,
   valueField?: string,
@@ -60,3 +60,5 @@ export const Select = observer((props: IDataSourceableProps & {
     />
   )
 })
+
+export default Component;

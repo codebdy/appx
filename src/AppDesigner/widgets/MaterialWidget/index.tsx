@@ -78,23 +78,6 @@ export const MaterialWidget = observer((
           })
         }
         {
-          // materialStore.modules.map((tabData, index) => {
-          //   return (
-          //     <TabPane tab={tabData.name} key={index + 1}>
-          //       {
-          //         tabData.groups?.map((groupData, gIndex) => {
-          //           return (<ResourceWidget
-          //             key={gIndex + 1}
-          //             title={groupData.title}
-          //             sources={groupData.materials.map(material => material.designer)}
-          //           />)
-          //         })
-          //       }
-          //     </TabPane>
-          //   )
-          // })
-        }
-        {
           debugMaterialTab &&
           <TabPane tab={debugMaterialTab.title} key={debugMaterialTab.uuid}>
             {

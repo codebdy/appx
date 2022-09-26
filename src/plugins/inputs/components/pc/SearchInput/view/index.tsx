@@ -2,9 +2,10 @@ import { observer } from "@formily/reactive-react"
 import { Input, message } from "antd"
 import React, { useCallback, useMemo } from "react"
 import { useFieldSchema } from "@formily/react"
-import { IFieldSource } from "../../../datasource/model/IFieldSource"
+import { IFieldSource } from "../../../../../../datasource/model/IFieldSource"
 import { isArr } from "@formily/shared"
-import { IAppxAction, useDoActions } from "../../../shared/action"
+import { useDoActions } from "../../../../../../shared/action"
+import { IAppxAction } from "../../../../../../plugin-sdk/model/action"
 
 export interface ISearchText {
   isFuzzy?: boolean,
@@ -13,7 +14,7 @@ export interface ISearchText {
   isSearchText: true,
 }
 
-export interface ISearchInput {
+export interface IComponentProps {
   searchStyle?: boolean,
   isFuzzy?: boolean,
   value?: ISearchText,
@@ -21,7 +22,7 @@ export interface ISearchInput {
   onSearch?: IAppxAction[],
 }
 
-export const SearchInput = observer((props: ISearchInput) => {
+const Component = observer((props: IComponentProps) => {
   const { searchStyle, isFuzzy, value, onChange, onSearch, ...other } = props;
   const doActions = useDoActions();
   const fieldSchema = useFieldSchema();
@@ -42,14 +43,13 @@ export const SearchInput = observer((props: ISearchInput) => {
   }, [fields, isFuzzy, onChange]);
 
   const handleSearch =  useCallback(() => {
-    doActions(onSearch)
+    return doActions(onSearch)
       .then(() => {
       })
       .catch((error) => {
-        message.error(error?.message);
-        console.error(error);
+        message.error(error?.message)
+        console.error(error)
       })
-      ;
   }, [doActions, onSearch])
 
   const handleKeyEnter = useCallback((event: React.KeyboardEvent<HTMLElement>) => {
@@ -69,3 +69,5 @@ export const SearchInput = observer((props: ISearchInput) => {
       <Input value={value?.keyword} onChange={handleChange} onKeyUp={handleKeyEnter} {...other} />
   )
 })
+
+export default Component;

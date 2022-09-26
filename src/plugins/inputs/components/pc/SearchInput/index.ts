@@ -5,7 +5,7 @@ import resources from "./designer/resources";
 import Name from "./name";
 import Component from "./view";
 
-const material:IMaterialComponent = {
+const material: IMaterialComponent = {
   name: Name,
   designer: ComponentDesigner,
   component: Component,
