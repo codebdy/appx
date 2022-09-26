@@ -54,7 +54,10 @@ export const BaseLangForm = memo(() => {
         label={t("Designer.PageFrame")}
         name="pageFrameId"
       >
-        <Select allowClear loading={loading}>
+        <Select
+          allowClear loading={loading}
+          placeholder={t("Designer.PleasePageFrame")}
+        >
           {
             pageFrames?.map(frame => {
               return (

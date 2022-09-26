@@ -88,7 +88,8 @@
     "PageFrame": "页面框架",
     "EntryPage": "入口页面",
     "TextView": "文本展示",
-    "Preview": "预览"
+    "Preview": "预览",
+    "PleasePageFrame": "请选择页面架构"
   },
   "Plugins": {
     "Title": "插件",
