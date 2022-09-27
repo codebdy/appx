@@ -1,12 +1,14 @@
-import { DialogSchema } from "../schema";
+import { IPropsSchema } from "@rxdrag/appx-plugin-sdk";
 
-DialogSchema.Title = {
-  type: 'object',
-  properties: {
-    title: {
-      type: 'string',
-      'x-decorator': 'FormItem',
-      'x-component': 'MultiLangInput',
-    },
+export const Title: IPropsSchema = {
+  props: {
+    type: 'object',
+    properties: {
+      title: {
+        type: 'string',
+        'x-decorator': 'FormItem',
+        'x-component': 'MultiLangInput',
+      },
+    }
   }
 }

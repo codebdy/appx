@@ -1,6 +1,5 @@
-import { DialogLocales } from "../locales";
 
-DialogLocales.Footer = {
+export const FooterLocales = {
   'zh-CN': {
     title: '对话框页脚',
     settings: {

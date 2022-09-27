@@ -1,8 +1,6 @@
 import { IBehavior } from "@rxdrag/appx-plugin-sdk";
 import Name from "../name";
 import locales from "./locales";
-import { DropdownMenuItemLocales } from "./MenuItemDesigner/locales";
-import { DropdownMenuItemSchema } from "./MenuItemDesigner/schema";
 import schema from "./schema";
 
 const behaviors: IBehavior[] = [

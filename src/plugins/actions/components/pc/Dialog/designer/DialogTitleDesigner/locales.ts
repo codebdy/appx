@@ -1,6 +1,4 @@
-import { DialogLocales } from "../locales";
-
-DialogLocales.Title = {
+export const TitleLocales = {
   'zh-CN': {
     title: '对话框标题',
     settings: {

@@ -1,5 +1,7 @@
-import { DialogSchema } from "../schema";
+import { IPropsSchema } from "@rxdrag/appx-plugin-sdk";
 
-DialogSchema.Content = {
-  type: 'object',
+export const ContentSchema: IPropsSchema = {
+  props: {
+    type: 'object',
+  }
 }

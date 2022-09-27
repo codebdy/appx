@@ -1,6 +1,6 @@
 import { DialogLocales } from "../locales";
 
-DialogLocales.Content = {
+export const ContentLocles = {
   'zh-CN': {
     title: '对话框内容',
     settings: {

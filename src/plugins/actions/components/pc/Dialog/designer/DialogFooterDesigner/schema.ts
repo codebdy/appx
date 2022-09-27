@@ -1,5 +1,7 @@
-import { DialogSchema } from "../schema";
+import { IPropsSchema } from "@rxdrag/appx-plugin-sdk";
 
-DialogSchema.Footer = {
-  type: 'object',
+export const FooterSchema: IPropsSchema = {
+  props: {
+    type: 'object',
+  }
 }

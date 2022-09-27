@@ -1,7 +1,4 @@
-export const DialogLocales: any & {
-  Content?: any,
-  Footer?: any,
-} = {
+const locales = {
   'zh-CN': {
     title: '弹出窗口',
     settings: {
@@ -65,4 +62,6 @@ export const DialogLocales: any & {
     },
   },
 }
+
+export default locales;
 

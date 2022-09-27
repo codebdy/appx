@@ -1,7 +1,5 @@
 import { observer } from "@formily/react"
 import React from "react"
-import './locales'
-import './schema'
 import { IDialogTitleProps } from "../../Dialog/DialogTitle"
 import { useParseLangMessage } from "../../../../plugin-sdk/hooks/useParseLangMessage"
 
