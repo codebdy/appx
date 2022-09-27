@@ -1,3 +1,4 @@
+import ArrayPanel from "./ArrayPanel";
 import Card from "./Card";
 import FormButtonGroup from "./FormButtonGroup";
 import FormGrid from "./FormGrid";
@@ -13,5 +14,6 @@ export default [
   FormGrid,
   FormButtonGroup,
   ObjectPanel,
+  ArrayPanel,
   Space,
 ]

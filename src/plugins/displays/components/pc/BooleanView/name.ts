@@ -1,2 +1,2 @@
-const Name = "Text"
+const Name = "BooleanView"
 export default Name;

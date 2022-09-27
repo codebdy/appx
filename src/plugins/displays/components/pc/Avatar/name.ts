@@ -1,2 +1,2 @@
-const Name = "Text"
+const Name = "Avatar"
 export default Name;
