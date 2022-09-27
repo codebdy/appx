@@ -1,2 +1,2 @@
 export * from "./designer"
-export * from "./preview"
+export * from "./view"

@@ -3,7 +3,7 @@ import { DnFC } from '@designable/react'
 import { EnumTagsSchema } from './schema'
 import { EnumTagsLocales } from './locales'
 import { createFieldSchema, FieldsType } from "../../common/Field/shared"
-import { EnumTags, IEnumTagsProps } from '../preview/pc'
+import { EnumTags, IEnumTagsProps } from '../view'
 import { observer } from '@formily/reactive-react'
 import React from 'react'
 
