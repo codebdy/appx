@@ -3,13 +3,16 @@ import Name from "../name";
 
 const resources: IResourceCreator[] = [
   {
-    icon: 'TextSource',
+    icon: 'ObjectSource',
     elements: [
       {
         componentName: 'Field',
         props: {
-          type: 'string',
+          type: 'array',
           'x-component': Name,
+          'x-component-props': {
+            title: `Title`,
+          },
         },
       },
     ],
