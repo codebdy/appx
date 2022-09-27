@@ -3,7 +3,7 @@ import { DnFC } from '@designable/react'
 import { TagSchema } from './schema'
 import { TagLocales } from './locales'
 import { createFieldSchema, FieldsType } from "../../common/Field/shared"
-import { Tag, ITagProps } from '../preview/pc'
+import { Tag, ITagProps } from '../view'
 import { observer } from '@formily/reactive-react'
 import React from 'react'
 
