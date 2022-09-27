@@ -3,7 +3,7 @@ import Name from "../name";
 
 const resources: IResourceCreator[] = [
   {
-    icon: 'FormLayoutSource',
+    icon: 'GridSource',
     elements: [
       {
         componentName: 'Field',
@@ -11,6 +11,29 @@ const resources: IResourceCreator[] = [
           type: 'void',
           'x-component': Name,
         },
+        children: [
+          {
+            componentName: 'Field',
+            props: {
+              type: 'void',
+              'x-component': 'FormGrid.GridColumn',
+            },
+          },
+          {
+            componentName: 'Field',
+            props: {
+              type: 'void',
+              'x-component': 'FormGrid.GridColumn',
+            },
+          },
+          {
+            componentName: 'Field',
+            props: {
+              type: 'void',
+              'x-component': 'FormGrid.GridColumn',
+            },
+          },
+        ],
       },
     ],
   }

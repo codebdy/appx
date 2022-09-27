@@ -1,2 +1,2 @@
-const Name =  "FormLayout"
+const Name =  "FormButtonGroup"
 export default Name;
