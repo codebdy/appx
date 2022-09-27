@@ -1,9 +1,9 @@
 import { observer } from '@formily/reactive-react'
 import { Card as AntdCard, CardProps } from 'antd'
-import { useParseLangMessage } from '../../../plugin-sdk/hooks/useParseLangMessage';
+import { useParseLangMessage } from '../../../../../../plugin-sdk/hooks/useParseLangMessage';
 import React from 'react';
 
-export const Card = observer((props: CardProps) => {
+const Component = observer((props: CardProps) => {
   const { title, extra, ...other } = props;
   const p = useParseLangMessage();
 
@@ -15,3 +15,5 @@ export const Card = observer((props: CardProps) => {
     />
   )
 })
+
+export default Component;
