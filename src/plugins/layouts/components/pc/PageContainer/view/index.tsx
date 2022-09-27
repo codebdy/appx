@@ -16,7 +16,7 @@ import { Schema } from "@formily/react";
 
 const { TabPane } = Tabs;
 
-export const PageContainer: React.FC<IPageContainerProps> & {
+export const Component: React.FC<IPageContainerProps> & {
   HeaderActions?: React.FC<IHeaderActionsProps>,
   HeaderContent?: React.FC<IPageHeaderContentProps>,
   HeaderContentExtra?: React.FC<IPageHeaderContentExtraProps>,
@@ -122,8 +122,8 @@ export const PageContainer: React.FC<IPageContainerProps> & {
   )
 }
 
-PageContainer.HeaderActions = PageHeaderActions
-PageContainer.HeaderContent = PageHeaderContent
-PageContainer.HeaderContentExtra = PageHeaderContentExtra
-PageContainer.TabPanel = PageTabPanel
-PageContainer.FooterToolbar = PageFooterToolbar
+Component.HeaderActions = PageHeaderActions
+Component.HeaderContent = PageHeaderContent
+Component.HeaderContentExtra = PageHeaderContentExtra
+Component.TabPanel = PageTabPanel
+Component.FooterToolbar = PageFooterToolbar
