@@ -1,7 +1,11 @@
-import { ProTableSchema } from "../schema";
+import { IPropsSchema } from "@rxdrag/appx-plugin-sdk";
 
-ProTableSchema.TableBatchActions = {
-  type: 'object',
-  properties: {
-  },
+const TableBatchActionsSchema: IPropsSchema = {
+  props: {
+    type: 'object',
+    properties: {
+    },
+  }
 }
+
+export default TableBatchActionsSchema;

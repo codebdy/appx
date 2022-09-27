@@ -15,10 +15,11 @@ import {
   queryNodesByComponentPath,
   hasNodeByComponentPath,
   createEnsureTypeItemsNode,
-} from '../../../../plugin-sdk/funcs'
+} from '../../../../../../../plugin-sdk/funcs'
 import { LoadTemplate } from '@designable/formily-antd/lib/common/LoadTemplate'
-import { useParseLangMessage } from '../../../../plugin-sdk/hooks/useParseLangMessage'
-import { useSelectable } from '../../ProTable/context'
+import { useParseLangMessage } from '../../../../../../../plugin-sdk/hooks/useParseLangMessage'
+import { useSelectable } from '../../view/context'
+
 const ensureObjectItemsNode = createEnsureTypeItemsNode('object')
 
 const HeaderCell: React.FC = (props: any) => {

@@ -1,6 +1,4 @@
-import { ProTableLocales } from "../locales";
-
-ProTableLocales.TableBatchActions = {
+const TableBatchActionsLocales = {
   'zh-CN': {
     title: '批量操作',
     settings: {
@@ -30,3 +28,5 @@ ProTableLocales.TableBatchActions = {
     },
   },
 }
+
+export default TableBatchActionsLocales;

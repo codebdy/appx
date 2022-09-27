@@ -3,6 +3,8 @@ import './locales'
 import './schema'
 import { DnFC } from '@designable/react'
 import { DroppableWidget } from "@designable/react"
+import { TableBatchActions } from "../../view/TableBatchActions"
+import { BatchActionsContainer } from "../../view/TableBatchActions/BatchActionsContainer"
 
 export const TableBatchActionsDesigner: DnFC<React.ComponentProps<typeof TableBatchActions>> = memo((
   props
