@@ -1,6 +1,4 @@
-import { ProTableLocales } from "../locales";
-
-ProTableLocales.TableToolbar = {
+const TableToolbarLocales = {
   'zh-CN': {
     title: '表格工具栏',
     settings: {
@@ -29,3 +27,5 @@ ProTableLocales.TableToolbar = {
     },
   },
 }
+
+export default TableToolbarLocales;

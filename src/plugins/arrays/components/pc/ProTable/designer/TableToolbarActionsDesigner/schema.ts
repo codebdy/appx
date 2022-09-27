@@ -1,7 +1,9 @@
-import { ProTableSchema } from "../schema";
+import { IPropsSchema } from "@rxdrag/appx-plugin-sdk";
 
-ProTableSchema.TableToolbarActions = {
-  type: 'object',
-  properties: {
-  },
+const TableToolbarActionsSchema: IPropsSchema = {
+  props: {
+    type: 'object',
+    properties: {
+    },
+  }
 }

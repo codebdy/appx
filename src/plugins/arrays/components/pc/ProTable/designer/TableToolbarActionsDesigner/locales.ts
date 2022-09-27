@@ -1,6 +1,4 @@
-import { ProTableLocales } from "../locales";
-
-ProTableLocales.TableToolbarActions = {
+const TableToolbarActionsLocales = {
   'zh-CN': {
     title: '操作区',
     settings: {
@@ -25,3 +23,5 @@ ProTableLocales.TableToolbarActions = {
     },
   },
 }
+
+export default TableToolbarActionsLocales;

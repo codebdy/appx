@@ -1,6 +1,4 @@
 import React, { memo } from "react"
-import './locales'
-import './schema'
 import { DnFC } from '@designable/react'
 import { DroppableWidget } from "@designable/react"
 import { QueryForm } from "../../view/QueryForm"

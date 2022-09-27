@@ -1,9 +1,4 @@
-export const ProTableLocales: any & {
-  QueryForm: any,
-  TableToolbar: any,
-  TableToolbarActions: any,
-  TableBatchActions: any,
-} = {
+const locales = {
   'zh-CN': {
     title: '查询表格',
     settings: {
@@ -47,3 +42,5 @@ export const ProTableLocales: any & {
     },
   },
 }
+
+export default locales;
