@@ -1,4 +1,4 @@
-export const TagLocales = {
+const locales = {
   'zh-CN': {
     title: '标签',
     settings: {
@@ -33,3 +33,5 @@ export const TagLocales = {
     },
   },
 }
+
+export default locales;

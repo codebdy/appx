@@ -1,21 +1,25 @@
-import { ISchema } from '@formily/react'
+import { IPropsSchema } from '@rxdrag/appx-plugin-sdk'
 
-export const TagSchema: ISchema = {
-  type: 'object',
-  properties: {
-    icon: {
-      type: 'string',
-      'x-decorator': 'FormItem',
-      'x-component': 'IconInput',
-      'x-component-props': {
-      }
+const schema: IPropsSchema = {
+  props: {
+    type: 'object',
+    properties: {
+      icon: {
+        type: 'string',
+        'x-decorator': 'FormItem',
+        'x-component': 'IconInput',
+        'x-component-props': {
+        }
+      },
+      color: {
+        type: 'string',
+        'x-decorator': 'FormItem',
+        'x-component': 'ColorInput',
+        'x-component-props': {
+        }
+      },
     },
-    color: {
-      type: 'string',
-      'x-decorator': 'FormItem',
-      'x-component': 'ColorInput',
-      'x-component-props': {
-      }
-    },
-  },
+  }
 }
+
+export default schema;

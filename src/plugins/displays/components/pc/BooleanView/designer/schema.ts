@@ -1,21 +1,25 @@
-import { ISchema } from '@formily/react'
+import { IPropsSchema } from '@rxdrag/appx-plugin-sdk'
 
-export const BooleanViewSchema: ISchema = {
-  type: 'object',
-  properties: {
-    trueIcon: {
-      type: 'string',
-      'x-decorator': 'FormItem',
-      'x-component': 'IconInput',
-      'x-component-props': {
-      }
+const schema: IPropsSchema = {
+  props: {
+    type: 'object',
+    properties: {
+      trueIcon: {
+        type: 'string',
+        'x-decorator': 'FormItem',
+        'x-component': 'IconInput',
+        'x-component-props': {
+        }
+      },
+      falseIcon: {
+        type: 'string',
+        'x-decorator': 'FormItem',
+        'x-component': 'IconInput',
+        'x-component-props': {
+        }
+      },
     },
-    falseIcon: {
-      type: 'string',
-      'x-decorator': 'FormItem',
-      'x-component': 'IconInput',
-      'x-component-props': {
-      }
-    },
-  },
+  }
 }
+
+export default schema;

@@ -1,4 +1,4 @@
-export const ArrayPanelLocales = {
+const locales = {
   'zh-CN': {
     title: '循环面板',
     settings: {
@@ -31,3 +31,5 @@ export const ArrayPanelLocales = {
     },
   },
 }
+
+export default locales;

@@ -1,4 +1,4 @@
-export const AvatarLocales = {
+const locales = {
   'zh-CN': {
     title: '头像',
     settings: {
@@ -37,3 +37,5 @@ export const AvatarLocales = {
     },
   },
 }
+
+export default locales;

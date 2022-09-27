@@ -1,8 +1,12 @@
-import { ISchema } from '@formily/react'
+import { IPropsSchema } from '@rxdrag/appx-plugin-sdk';
 
-export const ArrayPanelSchema: ISchema = {
-  type: 'object',
-  properties: {
+const schema: IPropsSchema = {
+  props: {
+    type: 'object',
+    properties: {
+    },
+  }
 
-  },
 }
+
+export default schema;

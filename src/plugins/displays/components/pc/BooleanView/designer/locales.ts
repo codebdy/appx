@@ -1,4 +1,4 @@
-export const BooleanViewLocales = {
+const locales = {
   'zh-CN': {
     title: '布尔',
     settings: {
@@ -33,3 +33,5 @@ export const BooleanViewLocales = {
     },
   },
 }
+
+export default locales;
