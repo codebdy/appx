@@ -1,4 +1,4 @@
-export const FormLayoutLocales = {
+const locales = {
   'zh-CN': {
     title: '表单布局',
     settings: {
@@ -120,3 +120,5 @@ export const FormLayoutLocales = {
     },
   },
 }
+
+export default locales;
