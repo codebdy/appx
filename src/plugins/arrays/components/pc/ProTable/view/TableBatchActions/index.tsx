@@ -1,6 +1,6 @@
 import { observer } from "@formily/reactive-react";
 import React, { useCallback } from "react";
-import { useProTableParams } from "../context";
+import { useProTableParams } from "../../../../../../../plugin-sdk/contexts/propTable";
 import { BatchActionsContainer } from "./BatchActionsContainer";
 
 export interface ITableBatchActionsProps {

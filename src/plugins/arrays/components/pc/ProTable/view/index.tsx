@@ -1,6 +1,6 @@
 import { Card, TableProps } from "antd"
 import React, { useMemo } from "react"
-import { ProTableContext } from "./context"
+import { ProTableContext } from "../../../../../../plugin-sdk/contexts/propTable"
 import "./style.less"
 import locales, { LOCALES_NS } from "./locales"
 import { Table } from "./Table"

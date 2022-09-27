@@ -2,7 +2,7 @@ import { Field } from '@formily/core';
 import { useField } from '@formily/react';
 import React from 'react';
 import { InstanceContext } from '../../../../../../../plugin-sdk/contexts/instance';
-import { useProTableParams } from '../context';
+import { useProTableParams } from '../../../../../../../plugin-sdk/contexts/propTable';
 
 export interface ICellRootProps {
   instance?: any,

@@ -2,7 +2,12 @@ import { createContext, useContext } from "react";
 import { IDataBindSource } from "src/datasource";
 import { IOrderBy } from "src/datasource/model/IOrderBy";
 import { IQueryForm } from "src/datasource/model/IQueryForm";
-import { IProTableConfig } from "./IProTableConfig";
+
+export interface IProTableConfig {
+  size?: "middle" | "small",
+  columns?: string[],
+  sortedColumns?: string[],
+}
 
 export interface ITableChangeParams {
   current?: number,

@@ -16,7 +16,7 @@ import { ITableToolbarProps } from "../view/TableToolbar"
 import { ITableToolbarActionsProps } from "../view/TableToolbarActions"
 import { ITableBatchActionsProps } from "../view/TableBatchActions"
 import { useFindNode } from "../../../../../../plugin-sdk"
-import { ProTableContext } from "../view/context"
+import { ProTableContext } from "../../../../../../plugin-sdk/contexts/propTable"
 
 const ComponentDesigner: DnFC<IProTableProps> & {
   QueryForm?: React.FC<IQueryFormProps>,

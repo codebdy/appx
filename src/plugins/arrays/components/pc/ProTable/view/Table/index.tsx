@@ -1,6 +1,6 @@
 import { Table as AntdTable, TableProps } from 'antd';
 import React, { useCallback, useEffect, useMemo } from 'react';
-import { useProTableParams, useSelectable } from '../context';
+import { useProTableParams, useSelectable } from '../../../../../../../plugin-sdk/contexts/propTable';
 import { ArrayBase } from "@formily/antd"
 import {
   useFieldSchema

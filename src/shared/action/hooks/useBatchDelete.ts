@@ -1,5 +1,5 @@
 import { useCallback, useRef } from "react";
-import { useProTableParams } from "../../../components/pc/ProTable/context";
+import { useProTableParams } from "../../../plugin-sdk";
 import { useDeleteByIds } from "../../../enthooks/hooks/useDeleteByIds";
 
 export function useBatchDelete() {

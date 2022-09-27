@@ -4,7 +4,7 @@ import { Button, Checkbox, Divider, Popover, Space, Tooltip } from "antd";
 import { useUpdateComponentConfig } from "../../../../../../../../shared/AppRoot/hooks/useUpdateComponentConfig";
 import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { DragDropContext, Draggable, Droppable, DropResult } from "react-beautiful-dnd";
-import { useProTableParams } from "../../context";
+import { useProTableParams } from "../../../../../../../../plugin-sdk/contexts/propTable";
 import { useLocalTranslations } from "../../hooks/useLocalTranslations";
 import DraggableLabel from "./DraggableLabel";
 import "./style.less"

@@ -1,8 +1,8 @@
-import { useProTableParams } from "../../../components/pc/ProTable/context";
 import { useParentForm } from "@formily/react"
 import { useCallback, useMemo } from "react";
 import { isObjectField } from "@formily/core";
 import { toJS } from "@formily/reactive";
+import { useProTableParams } from "../../../plugin-sdk";
 
 export function useTableSearch() {
   const params = useProTableParams();

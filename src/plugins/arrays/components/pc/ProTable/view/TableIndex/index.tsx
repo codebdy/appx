@@ -2,7 +2,7 @@ import { ArrayBase } from "@formily/antd"
 import { usePrefixCls } from "@formily/antd/esm/__builtins__"
 import { observer } from "@formily/reactive-react"
 import React, { useMemo } from "react"
-import { useProTableParams } from "../context"
+import { useProTableParams } from "../../../../../../../plugin-sdk/contexts/propTable"
 
 export const TableIndex = observer((props) => {
   const index = ArrayBase.useIndex()

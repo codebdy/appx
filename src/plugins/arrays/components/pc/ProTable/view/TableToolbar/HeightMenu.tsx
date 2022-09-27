@@ -3,7 +3,7 @@ import { observer } from "@formily/reactive-react";
 import { Button, Dropdown, Menu, Tooltip } from "antd";
 import { useUpdateComponentConfig } from "../../../../../../../shared/AppRoot/hooks/useUpdateComponentConfig";
 import React, { useCallback } from "react"
-import { useProTableParams } from "../context";
+import { useProTableParams } from "../../../../../../../plugin-sdk/contexts/propTable";
 import { useLocalTranslations } from "../hooks/useLocalTranslations";
 import { toJS } from "@formily/reactive";
 import { useShowError } from "../../../../../../../hooks/useShowError";
