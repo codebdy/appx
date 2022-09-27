@@ -1,10 +1,8 @@
 import { observer } from "@formily/reactive-react"
-import { IIcon } from "../../../../plugin-sdk/icon/model"
 import React from "react"
-import { IconView } from "../../../../plugin-sdk/icon/IconView"
 import { Tag as AntdTag } from "antd"
-import { useParseLangMessage } from "../../../../plugin-sdk/hooks/useParseLangMessage"
 import { isNum, isStr } from "@formily/shared"
+import { IconView, IIcon, useParseLangMessage } from "../../../../../../plugin-sdk"
 
 export interface ITagProps {
   icon?: IIcon,
