@@ -64,7 +64,7 @@ export const DataSourceInput = memo((
         title={<TextWidget token="SettingComponents.DataSourceInput.Title" />}
         className="config-datasource-modal"
         width={900}
-        visible={isModalVisible}
+        open={isModalVisible}
         onCancel={handleCancel}
         footer={
           <div className="footer-toolbar">

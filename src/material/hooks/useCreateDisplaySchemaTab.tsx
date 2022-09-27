@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { FieldsType, IDisplayTabOptions, IPropsSchema } from "@rxdrag/appx-plugin-sdk";
+import { DataBindSourceType, FieldsType, IDisplayTabOptions, IPropsSchema } from "@rxdrag/appx-plugin-sdk";
 import {
   ReactionsSetter,
   ValidatorSetter,
@@ -18,6 +18,9 @@ export const createDisplaySchemaTab = (options?: IDisplayTabOptions) => {
               type: 'string',
               'x-decorator': 'FormItem',
               'x-component': 'DataSourceInput',
+              'x-component-props': {
+                isSingle: dataBindSourceType === DataBindSourceType.Single
+              }
             },
           }
         },
