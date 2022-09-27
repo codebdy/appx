@@ -54,7 +54,7 @@ FormDesigner.Behavior = createBehavior({
 })
 
 FormDesigner.Resource = createResource({
-  title: { 'zh-CN': '表单', 'en-US': 'Form' },
+  title: { 'zh-CN': '根组件', 'en-US': 'Root' },
   icon: 'FormLayoutSource',
   elements: [
     {

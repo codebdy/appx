@@ -1,1 +1,2 @@
-export default "Space"
+const Name = "Space"
+export default Name;
