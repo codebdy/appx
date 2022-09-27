@@ -3,12 +3,12 @@ import Name from "../name";
 
 const resources: IResourceCreator[] = [
   {
-    icon: 'TextSource',
+    icon: 'SwitchSource',
     elements: [
       {
         componentName: 'Field',
         props: {
-          type: 'string',
+          type: 'boolean',
           'x-component': Name,
         },
       },
