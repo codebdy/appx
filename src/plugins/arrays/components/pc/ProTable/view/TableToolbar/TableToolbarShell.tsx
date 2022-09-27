@@ -39,9 +39,7 @@ export const TableToolbarShell = observer((
       className={clx(className, "table-toolbar")}
     >
       <div className="table-toolbar-content">
-        <Space>
-          {children}
-        </Space>
+        {children}
       </div>
       <div
         style={{
