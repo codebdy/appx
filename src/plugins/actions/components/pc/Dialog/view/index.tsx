@@ -33,7 +33,7 @@ export interface IDialogProps {
   width?: number | string,
 }
 
-export const Dialog: React.FC<IDialogProps> & {
+const Dialog: React.FC<IDialogProps> & {
   Title?: React.FC<IDialogTitleProps>,
   Content?: React.FC<IDialogContentProps>,
   Footer?: React.FC<IDialogFooterProps>,
@@ -144,3 +144,5 @@ export const Dialog: React.FC<IDialogProps> & {
 Dialog.Title = DialogTitle;
 Dialog.Content = DialogContent;
 Dialog.Footer = DialogFooter;
+
+export default Dialog;

@@ -1,4 +1,4 @@
-import { useParseLangMessage } from "../../../../plugin-sdk/hooks/useParseLangMessage";
+import { useParseLangMessage } from "../../../../../../../plugin-sdk";
 import React from "react";
 
 export interface IDialogTitleProps {

@@ -27,7 +27,7 @@ import { IDialogTitleProps } from '../Dialog/DialogTitle'
 import { DialogTitleDesigner } from './DialogTitleDesigner'
 import { useFindNode } from '../../../plugin-sdk/hooks/useFindNode'
 
-export const DialogDesigner: DnFC<IDialogProps> & {
+const DialogDesigner: DnFC<IDialogProps> & {
   Title?: React.FC<IDialogTitleProps>,
   Content?: React.FC<IDialogContentProps>,
   Footer?: React.FC<IDialogFooterProps>,
@@ -302,3 +302,5 @@ DialogDesigner.Resource = createResource({
     },
   ],
 })
+
+export default DialogDesigner;
