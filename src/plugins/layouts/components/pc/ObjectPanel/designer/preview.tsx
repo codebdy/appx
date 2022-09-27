@@ -25,15 +25,3 @@ ObjectPanelDesigner.Behavior = createBehavior({
   designerLocales: ObjectLocale,
 })
 
-ObjectPanelDesigner.Resource = createResource({
-  icon: 'ObjectSource',
-  elements: [
-    {
-      componentName: 'Field',
-      props: {
-        type: 'object',
-        'x-component': 'ObjectPanel',
-      },
-    },
-  ],
-})

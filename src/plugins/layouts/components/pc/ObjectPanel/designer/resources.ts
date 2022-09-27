@@ -1,14 +1,15 @@
 import { IResourceCreator } from "@designable/core";
+import Name from "../name";
 
 const resources: IResourceCreator[] = [
   {
-    icon: 'SpaceSource',
+    icon: 'ObjectSource',
     elements: [
       {
         componentName: 'Field',
         props: {
-          type: 'void',
-          'x-component': 'Space',
+          type: 'object',
+          'x-component': Name,
         },
       },
     ],

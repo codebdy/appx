@@ -1,11 +1,4 @@
-export const PageContainerLocales: any & {
-  HeaderActions: any,
-  HeaderContent: any,
-  HeaderContentExtra: any,
-  Content: any,
-  TabPanel: any,
-  FooterToolbar: any,
-} = {
+const locales = {
   'zh-CN': {
     title: '页面容器',
     addPanel: '添加选项卡',
@@ -52,3 +45,5 @@ export const PageContainerLocales: any & {
     },
   },
 }
+
+export default locales;

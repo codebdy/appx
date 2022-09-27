@@ -1,4 +1,5 @@
 import { IResourceCreator } from "@designable/core";
+import Name from "../name";
 
 const resources: IResourceCreator[] = [
   {
@@ -8,7 +9,7 @@ const resources: IResourceCreator[] = [
         componentName: 'Field',
         props: {
           type: 'void',
-          'x-component': 'Space',
+          'x-component': Name,
         },
       },
     ],

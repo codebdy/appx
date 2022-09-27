@@ -38,7 +38,7 @@ export const routesPlaceholder = [
   }
 ];
 
-export const PageContainerDesigner: DnFC<IPageContainerProps> & {
+const ComponentDesigner: DnFC<IPageContainerProps> & {
   HeaderActions?: React.FC<IHeaderActionsProps>,
   HeaderContent?: React.FC<IPageHeaderContentProps>,
   HeaderContentExtra?: React.FC<IPageHeaderContentExtraProps>,
@@ -268,76 +268,6 @@ PageContainerDesigner.Behavior = createBehavior(
   }
 )
 
-PageContainerDesigner.Resource = createResource({
-  icon: 'EntitySource',
-  elements: [
-    {
-      componentName: 'Field',
-      props: {
-        type: 'void',
-        'x-component': 'PageContainer',
-        'x-component-props': {
-          title: "Page title",
-          //subtitle: "PageContainer subtitle",
-          hasBreadcrumb: false,
-          hasGobackButton: false,
-          hasActions: false,
-          hasHeaderContent: false,
-          hasHeaderContentExtra: false,
-          hasTabs: false,
-          hasFooterToolbar: false,
-        },
-      },
-      children: [
-        {
-          componentName: 'Field',
-          props: {
-            type: 'void',
-            'x-component': 'PageContainer.HeaderActions',
-            'x-component-props': {
-            },
-          },
-        },
-        {
-          componentName: 'Field',
-          props: {
-            type: 'void',
-            'x-component': 'PageContainer.HeaderContent',
-            'x-component-props': {
-              gridSpan: 18
-            },
-          },
-        },
-        {
-          componentName: 'Field',
-          props: {
-            type: 'void',
-            'x-component': 'PageContainer.HeaderContentExtra',
-            'x-component-props': {
-              gridSpan: 6
-            },
-          },
-        },
-        {
-          componentName: 'Field',
-          props: {
-            type: 'void',
-            'x-component': 'PageContainer.TabPanel',
-            'x-component-props': {
-              title: `Unnamed title`,
-            },
-          },
-        },
-        {
-          componentName: 'Field',
-          props: {
-            type: 'void',
-            'x-component': 'PageContainer.FooterToolbar',
-            'x-component-props': {
-            },
-          },
-        },
-      ]
-    },
-  ],
-})
+PageContainerDesigner.Resource = createResource()
+
+export default ComponentDesigner;
