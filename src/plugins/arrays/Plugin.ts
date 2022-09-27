@@ -3,7 +3,7 @@ import { locales } from "./loacales";
 import components from "./components";
 
 export const rxPlugin: IPlugin = {
-  id: "predefined.Inputs",
+  id: "predefined.arrays",
   title: "Inputs",
   version: "1.0",
   description: "Description",
