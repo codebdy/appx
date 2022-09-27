@@ -1,4 +1,4 @@
-export const DropdownMenuLocales = {
+const locales = {
   'zh-CN': {
     title: '下拉菜单',
     addItem: '添加菜单项',
@@ -68,3 +68,4 @@ export const DropdownMenuLocales = {
   },
 }
 
+export default locales;
