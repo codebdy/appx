@@ -4,7 +4,7 @@ import components from "./components";
 
 export const rxPlugin: IPlugin = {
   id: "predefined.arrays",
-  title: "Inputs",
+  title: "Arrays",
   version: "1.0",
   description: "Description",
   components: components,

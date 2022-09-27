@@ -1,6 +1,4 @@
-import { ProTableLocales } from "../locales";
-
-ProTableLocales.QueryForm = {
+const QueryFormLocales = {
   'zh-CN': {
     title: '查询表单',
     settings: {
@@ -31,3 +29,5 @@ ProTableLocales.QueryForm = {
     },
   },
 }
+
+export default QueryFormLocales;
