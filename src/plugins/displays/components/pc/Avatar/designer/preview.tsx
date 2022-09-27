@@ -2,7 +2,7 @@ import { createBehavior, createResource } from '@designable/core'
 import { DnFC } from '@designable/react'
 import { AvatarSchema } from './schema'
 import { AvatarLocales } from './locales'
-import { createFieldSchema, FieldsType } from "../../common/Field/shared"
+import { createFieldSchema, FieldsType } from "../../../../../../components/common/Field/shared"
 import { Avatar, IAvatarProps } from '../preview/pc'
 
 export const AvatarDesigner: DnFC<IAvatarProps> = Avatar

@@ -3,11 +3,11 @@ import React, { useCallback, useEffect, useMemo } from "react";
 import { memo } from "react";
 import { Form } from "antd";
 import { OpenPagePanel } from "./OpenPagePanel";
-import { MultiLangInput } from "../../../../../components/pc";
 import { useTranslation } from "react-i18next";
 import { useGetPage } from "../../../../../AppDesigner/hooks/useGetPage";
 import { SuccessMessagePanel } from "./SuccessMessagePanel";
 import { ConfirmPanel } from "./ConfirmPanel";
+import { MultiLangInput } from "../../../../../plugins/inputs/components/pc/MultiLangInput/view";
 
 const pannels: { [key: string]: React.FC<{ payload: any }> } = {
   [ActionType.OpenPage]: OpenPagePanel,

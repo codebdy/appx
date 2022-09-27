@@ -1,8 +1,8 @@
 import { Form } from "antd"
-import { MultiLangInput } from "../../../../../components/pc"
 import React from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next"
+import { MultiLangInput } from "../../../../../plugins/inputs/components/pc/MultiLangInput/view"
 
 export const SuccessMessagePanel = memo((
   props: {
