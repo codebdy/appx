@@ -1,4 +1,4 @@
-export const TextLocales = {
+const locales = {
   'zh-CN': {
     title: '文本',
     settings: {
@@ -36,3 +36,5 @@ export const TextLocales = {
     },
   },
 }
+
+export default locales;

@@ -1,5 +1,5 @@
 import { observer } from "@formily/reactive-react";
-import { useParseLangMessage } from "../../../plugin-sdk/hooks/useParseLangMessage";
+import { useParseLangMessage } from "../../../../../../plugin-sdk/hooks/useParseLangMessage";
 import React from "react";
 import cls from 'classnames'
 
@@ -10,7 +10,7 @@ export interface ITextProps {
   style?: React.CSSProperties
   className?: string
 }
-export const Text = observer((props: ITextProps) => {
+const Component = observer((props: ITextProps) => {
   const { value, ...other } = props;
   const tagName = props.mode === 'normal' || !props.mode ? 'div' : props.mode
   const p = useParseLangMessage();
@@ -24,3 +24,5 @@ export const Text = observer((props: ITextProps) => {
     p(props.content)
   )
 })
+
+export default Component;
