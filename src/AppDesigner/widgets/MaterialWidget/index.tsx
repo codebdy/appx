@@ -7,7 +7,7 @@ import { observer } from "@formily/reactive-react";
 import { ResourceWidget } from "../ResourceWidget";
 import { useTranslation } from "react-i18next";
 import { useAppMaterialTabs, usePredefinedMaterialTab } from "../../../material/context";
-import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
+import { useParseLangMessage } from "../../../plugin-sdk/hooks/useParseLangMessage";
 const { TabPane } = Tabs;
 
 export const MaterialWidget = observer((

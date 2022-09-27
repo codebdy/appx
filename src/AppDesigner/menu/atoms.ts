@@ -1,6 +1,6 @@
 import { atomFamily } from "recoil";
 import { ID } from "../../shared";
-import { IMenuNode } from "../../model/IMenuNode";
+import { IMenuNode } from "../../plugin-sdk/model/IMenuNode";
 
 export interface INavigationSnapshot {
   rootNode: IMenuNode | undefined;

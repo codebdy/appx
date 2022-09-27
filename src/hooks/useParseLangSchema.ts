@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { useParseLangMessage } from "./useParseLangMessage";
+import { useParseLangMessage } from "../plugin-sdk/hooks/useParseLangMessage";
 import { ISchema } from '@formily/json-schema'
 import { isArr, isObj } from '@designable/shared'
 

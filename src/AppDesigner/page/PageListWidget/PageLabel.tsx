@@ -3,7 +3,7 @@ import React, { useCallback, useState } from "react"
 import { IPage, IPageCategory } from "../../../model"
 import PageActions from "./PageActions"
 import EditPageDialog from "./EditPageDialog"
-import { useParseLangMessage } from "../../../hooks/useParseLangMessage"
+import { useParseLangMessage } from "../../../plugin-sdk/hooks/useParseLangMessage"
 
 const PageLabel = (
   props: {

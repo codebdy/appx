@@ -8,7 +8,7 @@ import { useAppParams, useAppViewKey } from '../../../plugin-sdk/contexts/appRoo
 import { deviceConfigChangedState, deviceConfigState } from '../../recoil/atom';
 import { PageSelect } from '../../SettingsForm/components/PageSelect';
 import "./style.less"
-import { useParseLangMessage } from '../../../hooks/useParseLangMessage';
+import { useParseLangMessage } from '../../../plugin-sdk/hooks/useParseLangMessage';
 const { Option } = Select
 
 export const BaseLangForm = memo(() => {

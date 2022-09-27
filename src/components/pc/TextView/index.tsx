@@ -4,7 +4,7 @@ import {
   useField,
 } from '@formily/react'
 import { Field, GeneralField, isField } from "@formily/core";
-import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
+import { useParseLangMessage } from "../../../plugin-sdk/hooks/useParseLangMessage";
 import { isArr, isObj, isStr } from "@formily/shared";
 
 export interface ITextViewProps {

@@ -3,7 +3,7 @@ import { Menu, message } from "antd"
 import { IconView } from "../../../plugin-sdk/icon/IconView"
 import React, { useCallback } from "react"
 import { IIcon } from '../../../plugin-sdk/icon/model'
-import { useParseLangMessage } from "../../../hooks/useParseLangMessage"
+import { useParseLangMessage } from "../../../plugin-sdk/hooks/useParseLangMessage"
 import { IAppxAction, useDoActions } from "../../../shared/action"
 import { useDropdownParams } from "./context"
 

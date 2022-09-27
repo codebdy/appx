@@ -4,7 +4,7 @@ import { useGetMenuNode } from "./useGetMenuNode";
 import { navigationNodesState } from "../atoms";
 import { cloneObject } from "../utils/cloneObject";
 import { useAppViewKey } from "../../../plugin-sdk/contexts/appRoot";
-import { IMenuItem } from "../../../model/IMenuNode";
+import { IMenuItem } from "../../../plugin-sdk/model/IMenuNode";
 
 export function useExtractMenuNodeMeta() {
   const key = useAppViewKey();

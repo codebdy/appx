@@ -17,7 +17,7 @@ import {
   createEnsureTypeItemsNode,
 } from '../../../../plugin-sdk/funcs'
 import { LoadTemplate } from '@designable/formily-antd/lib/common/LoadTemplate'
-import { useParseLangMessage } from '../../../../hooks/useParseLangMessage'
+import { useParseLangMessage } from '../../../../plugin-sdk/hooks/useParseLangMessage'
 import { useSelectable } from '../../ProTable/context'
 const ensureObjectItemsNode = createEnsureTypeItemsNode('object')
 

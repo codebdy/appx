@@ -5,7 +5,7 @@ import { useRecoilValue } from "recoil";
 import { useAppViewKey } from "../../../../plugin-sdk/contexts/appRoot";
 import { navigationRootNodeState } from "../../atoms";
 import NavItemList from "./NavItemList";
-import { useParseLangMessage } from "../../../../hooks/useParseLangMessage";
+import { useParseLangMessage } from "../../../../plugin-sdk/hooks/useParseLangMessage";
 
 const MenuDesignView = memo((
   props: {

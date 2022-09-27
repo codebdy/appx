@@ -1,5 +1,5 @@
 import { message } from "antd";
-import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
+import { useParseLangMessage } from "../../../plugin-sdk/hooks/useParseLangMessage";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { ISuccessAction } from "../../../plugin-sdk/model/action";

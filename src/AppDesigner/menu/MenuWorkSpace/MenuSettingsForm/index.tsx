@@ -7,7 +7,7 @@ import { useRecoilValue } from 'recoil';
 import { useMenuNode } from '../../hooks/useMenuNode';
 import { useSetMeta } from '../../hooks/useSetMeta';
 import { useAppViewKey } from '../../../../plugin-sdk/contexts/appRoot';
-import { MenuItemType } from '../../../../model/IMenuNode';
+import { MenuItemType } from '../../../../plugin-sdk/model/IMenuNode';
 import { useGetPage } from '../../../hooks/useGetPage';
 import { MultiLangInput } from '../../../../plugins/inputs/components/pc/MultiLangInput/view';
 import { PageSelect } from '../../../SettingsForm/components/PageSelect';

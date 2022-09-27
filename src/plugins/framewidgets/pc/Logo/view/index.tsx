@@ -3,7 +3,7 @@ import React from "react"
 import "./style.less"
 import cls from "classnames"
 import { IconView, IIcon } from "../../../../../plugin-sdk"
-import { useParseLangMessage } from "../../../../../hooks/useParseLangMessage"
+import { useParseLangMessage } from "../../../../../plugin-sdk/hooks/useParseLangMessage"
 
 export interface IComponentProps {
   title?: React.ReactNode,

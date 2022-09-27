@@ -4,7 +4,7 @@ import { Breadcrumb, Button, Divider } from 'antd'
 import { useNavigate, useParams } from "react-router-dom"
 import { IApp } from '../../model';
 import { AppConfigRouts } from '../../AppEntry/AppConfigRouts';
-import { useParseLangMessage } from '../../hooks/useParseLangMessage';
+import { useParseLangMessage } from '../../plugin-sdk/hooks/useParseLangMessage';
 import { DesignerRoutes } from '../AppDesignerContent';
 import { useTranslation } from 'react-i18next';
 import { useSelectedPageId } from '../hooks/useSelectedPageId';

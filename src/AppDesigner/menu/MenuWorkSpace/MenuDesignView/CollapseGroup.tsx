@@ -4,7 +4,7 @@ import {
   DraggableProvided,
   DraggableStateSnapshot,
 } from "react-beautiful-dnd";
-import { IMenuNode } from "../../../../model/IMenuNode";
+import { IMenuNode } from "../../../../plugin-sdk/model/IMenuNode";
 import { useRecoilState } from "recoil";
 import { navigationSelectedIdState } from "../../atoms";
 import { useAppViewKey } from "../../../../plugin-sdk/contexts/appRoot";
@@ -15,7 +15,7 @@ import clx from "classnames";
 import { useTranslation } from "react-i18next";
 import { IconView } from "../../../../plugin-sdk/icon/IconView";
 import ItemIcon from "./ItemIcon";
-import { useParseLangMessage } from "../../../../hooks/useParseLangMessage";
+import { useParseLangMessage } from "../../../../plugin-sdk/hooks/useParseLangMessage";
 
 const { Panel } = Collapse;
 

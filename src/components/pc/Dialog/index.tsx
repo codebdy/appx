@@ -1,6 +1,6 @@
 import { IIcon } from "../../../plugin-sdk/icon/model"
 import React, { CSSProperties, useCallback, useMemo, useState } from "react"
-import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
+import { useParseLangMessage } from "../../../plugin-sdk/hooks/useParseLangMessage";
 import { observer } from "@formily/reactive-react";
 import { DialogContext } from "./context";
 import { Button, Modal } from "antd";

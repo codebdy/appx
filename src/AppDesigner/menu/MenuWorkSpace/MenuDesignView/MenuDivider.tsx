@@ -3,7 +3,7 @@ import {
   DraggableProvided,
   DraggableStateSnapshot,
 } from "react-beautiful-dnd";
-import { IMenuNode } from "../../../../model/IMenuNode";
+import { IMenuNode } from "../../../../plugin-sdk/model/IMenuNode";
 import { memo, useMemo } from "react";
 import { useRecoilState } from "recoil";
 import { navigationSelectedIdState } from "../../atoms";

@@ -1,10 +1,10 @@
 import { Menu } from "antd";
-import { IMenuItem, MenuItemType } from "../../../../../model/IMenuNode";
+import { IMenuItem, MenuItemType } from "../../../../../plugin-sdk/model/IMenuNode";
 import React, { memo, useCallback, useMemo } from "react";
 import { useRunnerParams } from "../../../../../plugin-sdk/contexts/runner";
 import { IconView } from "../../../../../plugin-sdk/icon/IconView";
 import { ItemType } from "antd/lib/menu/hooks/useItems";
-import { useParseLangMessage } from "../../../../../hooks/useParseLangMessage";
+import { useParseLangMessage } from "../../../../../plugin-sdk/hooks/useParseLangMessage";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetMenuItem } from "./hooks/useGetMenuItem";
 import { useEntryPageId } from "./hooks/useEntryPageId";

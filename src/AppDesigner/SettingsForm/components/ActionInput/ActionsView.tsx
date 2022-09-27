@@ -3,7 +3,7 @@ import React from "react"
 import { memo } from "react"
 import { Draggable, Droppable } from "react-beautiful-dnd"
 import DraggableLabel from "./DraggableLabel"
-import { useParseLangMessage } from "../../../../hooks/useParseLangMessage"
+import { useParseLangMessage } from "../../../../plugin-sdk/hooks/useParseLangMessage"
 
 export const ACTIONS_VIEW_ID = "ACTIONS_VIEW_ID"
 

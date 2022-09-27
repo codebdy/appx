@@ -7,7 +7,7 @@ import { TextSchema } from './schema'
 import { TextLocales } from './locales'
 import { createFieldSchema } from "../../common/Field/shared"
 import { ITextProps } from '../Text'
-import { useParseLangMessage } from '../../../hooks/useParseLangMessage'
+import { useParseLangMessage } from '../../../plugin-sdk/hooks/useParseLangMessage'
 
 export const TextDesigner: DnFC<ITextProps> = (props) => {
   const { value, ...other } = props;

@@ -4,7 +4,7 @@ import React, { useCallback, useMemo } from "react"
 import { memo } from "react"
 import { IPagePopup, pagePopupsState } from "../../../../../../plugin-sdk/atoms";
 import { useRecoilValue } from "recoil";
-import { useParseLangMessage } from "../../../../../../hooks/useParseLangMessage";
+import { useParseLangMessage } from "../../../../../../plugin-sdk/hooks/useParseLangMessage";
 import { PageEngine } from "../../../../../../plugins/framelayouts/PageEngine";
 import { useRunnerParams } from "../../../../../../plugin-sdk/contexts/runner";
 import { useClosePage } from "../../../../../../shared/action/hooks/useClosePage";

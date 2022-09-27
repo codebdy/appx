@@ -2,7 +2,7 @@ import { Tabs } from 'antd';
 import { IMaterialTab } from '@rxdrag/appx-plugin-sdk';
 import React, { memo, useCallback, useMemo, useState } from 'react';
 import { TabsEditDialog } from '../TabsEditDialog';
-import { useParseLangMessage } from '../../../../../hooks/useParseLangMessage';
+import { useParseLangMessage } from '../../../../../plugin-sdk/hooks/useParseLangMessage';
 import { MaterialTab } from './MaterialTab';
 
 export const MaterialTabs = memo((

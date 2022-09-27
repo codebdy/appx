@@ -5,7 +5,7 @@ import { memo } from "react"
 import { IPagePopup, pagePopupsState } from "../../../../../../plugin-sdk/atoms";
 import { useRecoilValue } from "recoil";
 import { useClosePage } from "../../../../../../shared/action/hooks/useClosePage";
-import { useParseLangMessage } from "../../../../../../hooks/useParseLangMessage";
+import { useParseLangMessage } from "../../../../../../plugin-sdk/hooks/useParseLangMessage";
 import { PageEngine } from "../../../../PageEngine";
 import { useRunnerParams } from "../../../../../../plugin-sdk/contexts/runner";
 

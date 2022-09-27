@@ -7,7 +7,7 @@ import {
 import { CollapseGroup } from "./CollapseGroup";
 import { PageNav } from "./PageNav";
 import { MenuDivider } from "./MenuDivider";
-import { IMenuNode, MenuItemType } from "../../../../model/IMenuNode";
+import { IMenuNode, MenuItemType } from "../../../../plugin-sdk/model/IMenuNode";
 import { useGetMenuNode } from "../../hooks/useGetMenuNode";
 import { useSetRecoilState } from "recoil";
 import { navigationSelectedIdState } from "../../atoms";

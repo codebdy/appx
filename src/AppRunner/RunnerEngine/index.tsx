@@ -5,7 +5,7 @@ import { useShowError } from '../../hooks/useShowError';
 import { Spin } from 'antd';
 import { useQueryMenu } from '../../shared/AppRoot/hooks/useQueryMenu';
 import { RouteContext, RunnerContext } from '../../plugin-sdk/contexts/runner';
-import { IMenuItem } from '../../model/IMenuNode';
+import { IMenuItem } from '../../plugin-sdk/model/IMenuNode';
 import { FormItem } from "@formily/antd";
 import { useMemo } from "react";
 import { useParseLangSchema } from "../../hooks/useParseLangSchema";

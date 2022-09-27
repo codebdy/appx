@@ -5,7 +5,7 @@ import { usePagesWithoutCategory } from '../../hooks/usePagesWithoutCategory';
 import { useGetCategoryPages } from '../../hooks/useGetCategoryPages';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 import { OTHER_PAGES_ID, PAGE_LIST_ID } from '../consts';
-import { useParseLangMessage } from '../../../hooks/useParseLangMessage';
+import { useParseLangMessage } from '../../../plugin-sdk/hooks/useParseLangMessage';
 import { useCategories } from '../../hooks/useCategories';
 const { Panel } = Collapse;
 

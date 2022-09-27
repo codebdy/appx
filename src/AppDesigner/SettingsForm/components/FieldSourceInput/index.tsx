@@ -4,7 +4,7 @@ import "./style.less"
 import { Select } from 'antd';
 import { useCurrentEntity } from "../../../../datasource/hooks/useCurrentEntity";
 import { TextWidget } from '@designable/react'
-import { useParseLangMessage } from "../../../../hooks/useParseLangMessage";
+import { useParseLangMessage } from "../../../../plugin-sdk/hooks/useParseLangMessage";
 import { FieldSourceType, IFieldSource } from "../../../../datasource/model/IFieldSource";
 import { useGetEntity } from "../../../../datasource/hooks/useGetEntity";
 import { isArr } from "@formily/shared";

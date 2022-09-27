@@ -3,7 +3,7 @@ import React from "react"
 import './locales'
 import './schema'
 import { IDialogTitleProps } from "../../Dialog/DialogTitle"
-import { useParseLangMessage } from "../../../../hooks/useParseLangMessage"
+import { useParseLangMessage } from "../../../../plugin-sdk/hooks/useParseLangMessage"
 
 export const DialogTitleDesigner = observer((props: IDialogTitleProps) => {
   const { className, title, ...other } = props

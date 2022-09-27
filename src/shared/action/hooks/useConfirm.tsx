@@ -1,6 +1,6 @@
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { Modal } from "antd";
-import { useParseLangMessage } from "../../../hooks/useParseLangMessage";
+import { useParseLangMessage } from "../../../plugin-sdk/hooks/useParseLangMessage";
 import React from "react";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";

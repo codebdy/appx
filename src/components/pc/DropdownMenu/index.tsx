@@ -5,7 +5,7 @@ import { IDropdownMenuItemProps, MenuItem } from "./MenuItem"
 import { IconView } from "../../../plugin-sdk/icon/IconView"
 import { Button, Dropdown, Menu } from "antd"
 import { DownOutlined } from "@ant-design/icons"
-import { useParseLangMessage } from "../../../hooks/useParseLangMessage"
+import { useParseLangMessage } from "../../../plugin-sdk/hooks/useParseLangMessage"
 import { DropdownContext } from "./context"
 
 export interface IDropdownMenuProps {

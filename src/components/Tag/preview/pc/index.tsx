@@ -3,7 +3,7 @@ import { IIcon } from "../../../../plugin-sdk/icon/model"
 import React from "react"
 import { IconView } from "../../../../plugin-sdk/icon/IconView"
 import { Tag as AntdTag } from "antd"
-import { useParseLangMessage } from "../../../../hooks/useParseLangMessage"
+import { useParseLangMessage } from "../../../../plugin-sdk/hooks/useParseLangMessage"
 import { isNum, isStr } from "@formily/shared"
 
 export interface ITagProps {

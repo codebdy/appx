@@ -3,7 +3,7 @@ import { Button as AntdButton, ButtonProps, message } from "antd"
 import { observer } from "@formily/reactive-react"
 import { IIcon } from "../../../plugin-sdk/icon/model"
 import { IconView } from "../../../plugin-sdk/icon/IconView"
-import { useParseLangMessage } from "../../../hooks/useParseLangMessage"
+import { useParseLangMessage } from "../../../plugin-sdk/hooks/useParseLangMessage"
 import { IAppxAction, useDoActions } from "../../../shared/action"
 
 export type IButtonProps = ButtonProps &

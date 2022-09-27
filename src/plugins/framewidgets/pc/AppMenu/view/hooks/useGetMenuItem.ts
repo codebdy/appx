@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { IMenuItem } from "../../../../../../model/IMenuNode";
+import { IMenuItem } from "../../../../../../plugin-sdk/model/IMenuNode";
 import { useRunnerParams } from "../../../../../../plugin-sdk/contexts/runner";
 
 export function useGetMenuItem() {

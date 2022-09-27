@@ -4,7 +4,7 @@ import CategoryActions from "./CategoryActions"
 import EditCategoryDialog from "./EditCategoryDialog"
 import CreatePageModal from "./CreatePageModal"
 import { IPageCategory } from "packages/studio/src/model"
-import { useParseLangMessage } from "../../../hooks/useParseLangMessage"
+import { useParseLangMessage } from "../../../plugin-sdk/hooks/useParseLangMessage"
 
 const CategoryLabel = (
   props: {

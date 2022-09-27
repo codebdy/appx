@@ -1,6 +1,6 @@
 import { TreeSelect } from "antd";
 import { useGetCategoryPages } from "../../../../AppDesigner/hooks/useGetCategoryPages";
-import { useParseLangMessage } from "../../../../hooks/useParseLangMessage";
+import { useParseLangMessage } from "../../../../plugin-sdk/hooks/useParseLangMessage";
 import React, { useCallback } from "react";
 import { memo } from "react"
 import { useTranslation } from "react-i18next"

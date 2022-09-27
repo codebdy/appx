@@ -1,5 +1,5 @@
-import { IIcon } from "../plugin-sdk/icon/model";
-import { ID } from "../shared";
+import { IIcon } from "../icon/model";
+import { ID } from "../../shared";
 
 export enum MenuItemType {
   Group = "Group",
