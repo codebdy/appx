@@ -1,3 +1,4 @@
+import ImageUploader from "./ImageUploader";
 import Input from "./Input";
 import MultiLangInput from "./MultiLangInput";
 import SearchInput from "./SearchInput";
@@ -8,6 +9,7 @@ const pcComponents = [
   Input,
   SearchInput,
   Select,
+  ImageUploader
 ];
 
 export default pcComponents;

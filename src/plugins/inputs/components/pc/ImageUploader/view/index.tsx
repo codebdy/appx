@@ -1,9 +1,9 @@
 import { observer } from "@formily/reactive-react"
 import { Upload, UploadFile, UploadProps } from "antd";
 import React, { useCallback, useEffect, useState } from "react"
-import { useParseLangMessage } from "../../../../plugin-sdk/hooks/useParseLangMessage";
+import { useParseLangMessage } from "../../../../../../plugin-sdk/hooks/useParseLangMessage";
 import { RcFile } from "antd/lib/upload";
-import { useUpload } from "../../../../enthooks/hooks/useUpload";
+import { useUpload } from "../../../../../../enthooks/hooks/useUpload";
 import { isArr } from "@formily/shared";
 
 export interface ImageUploaderProps {
@@ -14,7 +14,7 @@ export interface ImageUploaderProps {
 }
 
 //裁剪失效，以后再说
-export const ImageUploader = observer((props: ImageUploaderProps) => {
+const ImageUploader = observer((props: ImageUploaderProps) => {
   const { title, maxCount = 1, value, onChange, ...other } = props;
   const [fileList, setFileList] = useState<UploadFile[]>([]);
 
@@ -92,3 +92,5 @@ export const ImageUploader = observer((props: ImageUploaderProps) => {
     </Upload>
   )
 })
+
+export default ImageUploader;

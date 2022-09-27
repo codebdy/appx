@@ -1,4 +1,4 @@
-export const MediasLocales = {
+const locales = {
   'zh-CN': {
     title: '图片上传',
     settings: {
@@ -17,3 +17,5 @@ export const MediasLocales = {
     },
   }
 }
+
+export default locales;
