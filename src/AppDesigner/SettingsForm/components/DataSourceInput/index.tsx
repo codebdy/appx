@@ -23,6 +23,28 @@ function lowcaseFirst(str: string) {
   return strTemp;
 }
 
+const singleTemplateStr =
+  `query{
+  one#name#(
+    where:{
+      id:{
+        _eq:"{{$params.dataId}}"
+      }
+    }
+  ) {
+    id
+  }
+}`
+const multipleTemplateStr =
+  `query{
+  #name#{
+    nodes{
+      id
+    }
+    total
+  }
+}`
+
 export const DataSourceInput = memo((
   props: {
     isSingle?: boolean,
@@ -66,36 +88,10 @@ export const DataSourceInput = memo((
   const handleFormChange = useCallback((changedValues) => {
     if (changedValues?.entityUuid) {
       const entityName = getEntity(changedValues?.entityUuid)?.name || ""
-      if (isSingle) {
-        form.setFieldValue("expression",
-`
-query{
-  one${entityName}(
-    where:{
-      id:{
-        _eq:"{{$params.dataId}}"
-      }
-    }
-  ) {
-    id
-  }
-}
-`
-        )
-      } else {
-        form.setFieldValue("expression",
-`
-query{
-  ${lowcaseFirst(entityName)}{
-    nodes{
-      id
-    }
-    total
-  }
-}
-`
-        )
-      }
+      const expression = isSingle
+        ? singleTemplateStr.replace("#name#", entityName)
+        : multipleTemplateStr.replace("#name#", lowcaseFirst(entityName));
+      form.setFieldValue("expression", expression)
     }
   }, [form, getEntity]);
 
