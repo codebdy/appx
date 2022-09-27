@@ -1,5 +1,7 @@
+import PageContainer from "./PageContainer";
 import Space from "./Space";
 
-export default[
+export default [
+  PageContainer,
   Space
 ]

@@ -1,7 +1,7 @@
 import React from "react"
 import { PageHeader as AntdPageHeader, PageHeaderProps } from "antd"
 import clx from "classnames"
-import { useParseLangMessage } from "../../../hooks/useParseLangMessage"
+import { useParseLangMessage } from "../../../../../../plugin-sdk"
 
 export const PageHeader = (props: PageHeaderProps) => {
   const { className, title, subTitle, children, ...other } = props

@@ -7,7 +7,7 @@ import { Table } from "./Table"
 import { ITableBatchActionsProps, TableBatchActions } from "./TableBatchActions"
 import { observer } from "@formily/reactive-react"
 import { registerResourceBundle } from "../../../i18n/registerResourceBundle"
-import { IDataSourceableProps } from "../../common/IDataSourceableProps"
+import { IDataSourceableProps } from "../../../plugin-sdk/model/IDataSourceableProps"
 import { TableToolbar, ITableToolbarProps } from "./TableToolbar"
 import clx from "classnames";
 import { RecursionField, useFieldSchema, useField } from '@formily/react';

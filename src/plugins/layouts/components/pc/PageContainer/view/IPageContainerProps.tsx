@@ -1,5 +1,5 @@
 import React from "react";
-import { IDataSourceableProps } from "../../common/IDataSourceableProps";
+import { IDataSourceableProps } from "../../../../../../plugin-sdk/model/IDataSourceableProps";
 
 export interface IPageContainerProps extends IDataSourceableProps{
   title?: string;

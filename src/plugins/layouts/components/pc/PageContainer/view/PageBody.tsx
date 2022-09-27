@@ -1,9 +1,10 @@
 import React from "react"
 import clx from 'classnames'
-import { IComponentProps } from "../../common"
 
-export interface IPageBodyProps extends IComponentProps{
-  children?: React.ReactNode
+export interface IPageBodyProps{
+  className?: string;
+  style?: React.CSSProperties;
+  children?: React.ReactNode;
 }
 
 export const PageBody = (props: IPageBodyProps) => {
