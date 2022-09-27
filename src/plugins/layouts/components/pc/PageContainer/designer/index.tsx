@@ -1,10 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import { Row, Tabs } from 'antd'
-import { createBehavior, createResource, TreeNode } from '@designable/core'
+import { TreeNode } from '@designable/core'
 import { DnFC, TreeNodeWidget, useTreeNode } from '@designable/react'
-import { queryNodesByComponentPath } from '../../common/shared'
-import { PageContainerLocales } from './locales'
-import { PageContainerSchema } from './schema'
 import { HeaderActionsDesigner } from './HeaderActionsDesigner'
 import { HeaderContentDesigner } from './HeaderContentDesigner'
 import { TabPanelDesigner } from './PageTabPanelDesigner'
@@ -12,19 +9,17 @@ import { FooterToolbarDesigner } from './FooterToolbarDesigner'
 import { observer } from '@formily/reactive-react'
 import './style.less'
 import { LoadTemplate } from "@designable/formily-antd/lib/common/LoadTemplate"
-import { createFieldSchema } from "../../common/Field/shared"
-import { useFindNode } from '../../common/hooks/useFindNode'
 import { HeaderContentExtraDesigner } from './HeaderContentExtraDesigner'
-import { IPageContainerProps } from '../PageContainer/IPageContainerProps'
-import { IHeaderActionsProps } from '../PageContainer/PageHeaderActions'
-import { IPageHeaderContentProps } from '../PageContainer/PageHeaderContent'
-import { IPageHeaderContentExtraProps } from '../PageContainer/PageHeaderContentExtra'
-import { IPageTabPanelProps } from '../PageContainer/PageTabPanel'
-import { IPageFooterToolbarProps } from '../PageContainer/PageFooterToolbar'
-import { PageHeader } from '../PageContainer/PageHeader'
-import { PageBody } from '../PageContainer/PageBody'
-import { PageContainerShell } from '../PageContainer/PageContainerShell'
-import { useRemoveNode } from '../../common/hooks/useRemoveNode'
+import { IPageContainerProps } from '../view/IPageContainerProps'
+import { IHeaderActionsProps } from '../view/PageHeaderActions'
+import { IPageHeaderContentProps } from '../view/PageHeaderContent'
+import { IPageHeaderContentExtraProps } from '../view/PageHeaderContentExtra'
+import { IPageTabPanelProps } from '../view/PageTabPanel'
+import { IPageFooterToolbarProps } from '../view/PageFooterToolbar'
+import { useFindNode, queryNodesByComponentPath, useRemoveNode } from '../../../../../../plugin-sdk'
+import { PageContainerShell } from '../view/PageContainerShell'
+import { PageHeader } from '../view/PageHeader'
+import { PageBody } from '../view/PageBody'
 
 const { TabPane } = Tabs;
 export const routesPlaceholder = [
@@ -153,7 +148,6 @@ const ComponentDesigner: DnFC<IPageContainerProps> & {
         }
       </PageHeader>
       <PageBody>
-
         {
           !hasTabs && otherChildrenNodes?.map((child) => {
             return (
@@ -184,90 +178,10 @@ const ComponentDesigner: DnFC<IPageContainerProps> & {
   )
 })
 
-PageContainerDesigner.HeaderActions = HeaderActionsDesigner
-PageContainerDesigner.HeaderContent = HeaderContentDesigner
-PageContainerDesigner.HeaderContentExtra = HeaderContentExtraDesigner
-PageContainerDesigner.TabPanel = TabPanelDesigner
-PageContainerDesigner.FooterToolbar = FooterToolbarDesigner
-
-PageContainerDesigner.Behavior = createBehavior(
-  {
-    name: 'PageContainer',
-    extends: [],
-    selector: (node) => node.props['x-component'] === 'PageContainer',
-    designerProps: {
-      droppable: true,
-      propsSchema: createFieldSchema(PageContainerSchema),
-    },
-    designerLocales: PageContainerLocales,
-  },
-  {
-    name: 'PageContainer.HeaderActions',
-    extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'PageContainer.HeaderActions',
-    designerProps: {
-      droppable: true,
-      draggable: false,
-      deletable: false,
-      cloneable: false,
-      propsSchema: createFieldSchema(PageContainerSchema.HeaderActions),
-    },
-    designerLocales: PageContainerLocales.HeaderActions,
-  },
-  {
-    name: 'PageContainer.HeaderContent',
-    extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'PageContainer.HeaderContent',
-    designerProps: {
-      droppable: true,
-      draggable: false,
-      deletable: false,
-      cloneable: false,
-      propsSchema: createFieldSchema(PageContainerSchema.HeaderContent),
-    },
-    designerLocales: PageContainerLocales.HeaderContent,
-  },
-  {
-    name: 'PageContainer.HeaderContentExtra',
-    extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'PageContainer.HeaderContentExtra',
-    designerProps: {
-      droppable: true,
-      draggable: false,
-      deletable: false,
-      cloneable: false,
-      propsSchema: createFieldSchema(PageContainerSchema.HeaderContentExtra),
-    },
-    designerLocales: PageContainerLocales.HeaderContentExtra,
-  },
-  {
-    name: 'PageContainer.TabPanel',
-    extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'PageContainer.TabPanel',
-    designerProps: {
-      droppable: true,
-      draggable: false,
-      deletable: false,
-      cloneable: false,
-      propsSchema: createFieldSchema(PageContainerSchema.TabPanel),
-    },
-    designerLocales: PageContainerLocales.TabPanel,
-  },
-  {
-    name: 'PageContainer.FooterToolbar',
-    extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'PageContainer.FooterToolbar',
-    designerProps: {
-      droppable: true,
-      draggable: false,
-      deletable: false,
-      cloneable: false,
-      propsSchema: createFieldSchema(PageContainerSchema.FooterToolbar),
-    },
-    designerLocales: PageContainerLocales.FooterToolbar,
-  }
-)
-
-PageContainerDesigner.Resource = createResource()
+ComponentDesigner.HeaderActions = HeaderActionsDesigner
+ComponentDesigner.HeaderContent = HeaderContentDesigner
+ComponentDesigner.HeaderContentExtra = HeaderContentExtraDesigner
+ComponentDesigner.TabPanel = TabPanelDesigner
+ComponentDesigner.FooterToolbar = FooterToolbarDesigner
 
 export default ComponentDesigner;

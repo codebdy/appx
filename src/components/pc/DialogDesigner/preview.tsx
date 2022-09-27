@@ -25,7 +25,7 @@ import { DialogContentDesigner } from './DialogContentDesigner'
 import { DialogFooterDesigner } from './DialogFooterDesigner'
 import { IDialogTitleProps } from '../Dialog/DialogTitle'
 import { DialogTitleDesigner } from './DialogTitleDesigner'
-import { useFindNode } from '../../common/hooks/useFindNode'
+import { useFindNode } from '../../../plugin-sdk/hooks/useFindNode'
 
 export const DialogDesigner: DnFC<IDialogProps> & {
   Title?: React.FC<IDialogTitleProps>,
