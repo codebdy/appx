@@ -1,4 +1,5 @@
 export * from "./appRoot"
+export * from "./instance"
 export * from "./login"
 export * from "./propTable"
 export * from "./runner"

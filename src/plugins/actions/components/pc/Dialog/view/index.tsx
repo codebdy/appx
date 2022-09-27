@@ -1,10 +1,7 @@
-import { IIcon } from "../../../plugin-sdk/icon/model"
 import React, { CSSProperties, useCallback, useMemo, useState } from "react"
-import { useParseLangMessage } from "../../../plugin-sdk/hooks/useParseLangMessage";
 import { observer } from "@formily/reactive-react";
 import { DialogContext } from "./context";
 import { Button, Modal } from "antd";
-import { IconView } from "../../../plugin-sdk/icon/IconView";
 import { RecursionField, useFieldSchema, useField, Schema, ObjectField } from '@formily/react';
 import { useTranslation } from "react-i18next";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
@@ -12,7 +9,7 @@ import { Field } from "@formily/core";
 import { DialogTitle, IDialogTitleProps } from "./DialogTitle";
 import { DialogContent, IDialogContentProps } from "./DialogContent";
 import { DialogFooter, IDialogFooterProps } from "./DialogFooter";
-import { useInstanceParams } from "../../../plugin-sdk/contexts/instance";
+import { IconView, IIcon, useParseLangMessage, useInstanceParams } from '../../../../../../plugin-sdk'
 
 export interface IDialogProps {
   title?: string,
