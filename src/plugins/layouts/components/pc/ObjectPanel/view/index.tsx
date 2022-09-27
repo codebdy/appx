@@ -12,7 +12,7 @@ import { useShowError } from '../../../../../../hooks/useShowError';
 import { Spin } from "antd";
 import { Field, isField } from '@formily/core'
 import { useExpressionScope } from '@formily/react'
-import { InstanceContext } from "../../../../../../shared/contexts/instance";
+import { InstanceContext } from "../../../../../../plugin-sdk/contexts/instance";
 
 const Component = observer((props: {
   dataBind: IDataBindSource,

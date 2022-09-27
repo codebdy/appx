@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { createId } from "../..";
 import { useAppViewKey } from "../../../plugin-sdk/contexts/appRoot";
-import { useInstanceId } from "../../contexts/instance";
+import { useInstanceId } from "../../../plugin-sdk/contexts/instance";
 import { IOpenPageAction, OpenPageType } from "../../../plugin-sdk/model/action";
 
 export function useOpenPage() {

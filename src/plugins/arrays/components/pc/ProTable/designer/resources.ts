@@ -3,7 +3,7 @@ import Name from "../name";
 
 const resources: IResourceCreator[] = [
   {
-    icon: 'EntitySource',
+    icon: 'DataQueryListSource',
     elements: [
       {
         componentName: 'Field',
@@ -11,23 +11,75 @@ const resources: IResourceCreator[] = [
           type: 'void',
           'x-component': Name,
           'x-component-props': {
-            title: "Page title",
-            //subtitle: "PageContainer subtitle",
-            hasBreadcrumb: false,
-            hasGobackButton: false,
-            hasActions: false,
-            hasHeaderContent: false,
-            hasHeaderContentExtra: false,
-            hasTabs: false,
-            hasFooterToolbar: false,
+            hasQueryForm: true,
+            hasToolbar: true,
+            hasBatchActions: true,
+            selectable: true,
           },
         },
         children: [
           {
             componentName: 'Field',
             props: {
+              type: 'object',
+              'x-component': 'ProTable.QueryForm',
+              'x-component-props': {
+                collapsiable: true,
+                colon: true,
+              },
+            },
+          },
+          {
+            componentName: 'Field',
+            props: {
+              type: 'object',
+              'x-component': 'ProTable.Toolbar',
+              'x-component-props': {
+              },
+            },
+            children: [
+              {
+                componentName: 'Field',
+                props: {
+                  type: 'void',
+                  'x-component': 'ProTable.ToolbarActions',
+                  'x-component-props': {
+                  },
+                },
+                children: [
+                  {
+                    componentName: 'Field',
+                    props: {
+                      type: 'void',
+                      'x-component': 'Button',
+                      'x-component-props': {
+                        title: "New",
+                        "type": "primary",
+                        "icon": {
+                          "iconKey": "PlusOutlined"
+                        }
+                      },
+                    },
+                  }
+                ]
+              },
+              {
+                componentName: 'Field',
+                props: {
+                  type: 'void',
+                  'x-component': 'Text',
+                  'x-component-props': {
+                    content: "Title",
+                  },
+                },
+              }
+            ]
+          },
+          {
+            componentName: 'Field',
+            props: {
               type: 'void',
-              'x-component': 'PageContainer.HeaderActions',
+              'x-component': 'ProTable.BatchActions',
               'x-component-props': {
               },
             },
@@ -35,41 +87,11 @@ const resources: IResourceCreator[] = [
           {
             componentName: 'Field',
             props: {
-              type: 'void',
-              'x-component': 'PageContainer.HeaderContent',
-              'x-component-props': {
-                gridSpan: 18
-              },
-            },
-          },
-          {
-            componentName: 'Field',
-            props: {
-              type: 'void',
-              'x-component': 'PageContainer.HeaderContentExtra',
-              'x-component-props': {
-                gridSpan: 6
-              },
-            },
-          },
-          {
-            componentName: 'Field',
-            props: {
-              type: 'void',
-              'x-component': 'PageContainer.TabPanel',
-              'x-component-props': {
-                title: `Unnamed title`,
-              },
-            },
-          },
-          {
-            componentName: 'Field',
-            props: {
-              type: 'void',
-              'x-component': 'PageContainer.FooterToolbar',
+              type: 'array',
+              'x-component': 'ProTable.Table',
               'x-component-props': {
               },
-            },
+            }
           },
         ]
       },

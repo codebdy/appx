@@ -3,13 +3,10 @@ import { Card, TableProps } from "antd"
 import React from "react"
 import { DnFC, TreeNodeWidget } from '@designable/react'
 import { QueryFormDesigner } from "./QueryFormDesigner"
-import { createBehavior, createResource } from '@designable/core'
 import clx from "classnames"
 import _ from "lodash"
 import { TableToolbarDesigner } from "./TableToolbarDesigner"
 import { TableBatchActionsDesigner } from "./TableBatchActionsDesigner"
-import { DataTableColumnGroupLocales, DataTableColumnLocales, DataTableLocales } from "./TableDesigner/locales"
-import { DataTableSchema } from "./TableDesigner/schema"
 import { TableDesigner } from "./TableDesigner"
 import { IndexDesigner } from "./TableDesigner/IndexDesigner"
 import { TableToolbarActionsDesigner } from "./TableToolbarActionsDesigner"
@@ -72,99 +69,3 @@ ProTableDesigner.Table = TableDesigner;
 ProTableDesigner.Index = IndexDesigner;
 //ProTableDesigner.Column = ColumnDesigner;
 
-
-ProTableDesigner.Resource = createResource({
-  icon: 'DataQueryListSource',
-  elements: [
-    {
-      componentName: 'Field',
-      props: {
-        type: 'void',
-        'x-component': 'ProTable',
-        'x-component-props': {
-          hasQueryForm: true,
-          hasToolbar: true,
-          hasBatchActions: true,
-          selectable: true,
-        },
-      },
-      children: [
-        {
-          componentName: 'Field',
-          props: {
-            type: 'object',
-            'x-component': 'ProTable.QueryForm',
-            'x-component-props': {
-              collapsiable: true,
-              colon: true,
-            },
-          },
-        },
-        {
-          componentName: 'Field',
-          props: {
-            type: 'object',
-            'x-component': 'ProTable.Toolbar',
-            'x-component-props': {
-            },
-          },
-          children: [
-            {
-              componentName: 'Field',
-              props: {
-                type: 'void',
-                'x-component': 'ProTable.ToolbarActions',
-                'x-component-props': {
-                },
-              },
-              children: [
-                {
-                  componentName: 'Field',
-                  props: {
-                    type: 'void',
-                    'x-component': 'Button',
-                    'x-component-props': {
-                      title: "New",
-                      "type": "primary",
-                      "icon": {
-                        "iconKey": "PlusOutlined"
-                      }
-                    },
-                  },
-                }
-              ]
-            },
-            {
-              componentName: 'Field',
-              props: {
-                type: 'void',
-                'x-component': 'Text',
-                'x-component-props': {
-                  content: "Title",
-                },
-              },
-            }
-          ]
-        },
-        {
-          componentName: 'Field',
-          props: {
-            type: 'void',
-            'x-component': 'ProTable.BatchActions',
-            'x-component-props': {
-            },
-          },
-        },
-        {
-          componentName: 'Field',
-          props: {
-            type: 'array',
-            'x-component': 'ProTable.Table',
-            'x-component-props': {
-            },
-          }
-        },
-      ]
-    },
-  ],
-})

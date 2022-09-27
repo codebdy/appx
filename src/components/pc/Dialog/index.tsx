@@ -12,7 +12,7 @@ import { Field } from "@formily/core";
 import { DialogTitle, IDialogTitleProps } from "./DialogTitle";
 import { DialogContent, IDialogContentProps } from "./DialogContent";
 import { DialogFooter, IDialogFooterProps } from "./DialogFooter";
-import { useInstanceParams } from "../../../shared/contexts/instance";
+import { useInstanceParams } from "../../../plugin-sdk/contexts/instance";
 
 export interface IDialogProps {
   title?: string,

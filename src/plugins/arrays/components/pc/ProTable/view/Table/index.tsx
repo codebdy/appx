@@ -10,15 +10,15 @@ import { ColumnProps } from "antd/lib/table"
 import { Schema } from '@formily/json-schema'
 import { isArr, isObj } from '@formily/shared'
 import { observer } from '@formily/reactive-react';
-import { QueryType, useQueryParams } from '../../../../datasource/hooks/useQueryParams';
-import { useDataQuery } from '../../../../datasource/hooks/useDataQuery';
-import { useShowError } from '../../../../hooks/useShowError';
+import { QueryType, useQueryParams } from '../../../../../../../datasource/hooks/useQueryParams';
+import { useDataQuery } from '../../../../../../../datasource/hooks/useDataQuery';
+import { useShowError } from '../../../../../../../hooks/useShowError';
 import {
   useField
 } from '@formily/react'
 import { useGetTableColumns } from './useGetTableColumns';
 import { useArrayTableSources } from './useArrayTableSources';
-import { mapOrderBy } from "../../../../datasource/hooks/mapOrderBy";
+import { mapOrderBy } from "../../../../../../../datasource/hooks/mapOrderBy";
 
 export interface ObservableColumnSource {
   columnProps: ColumnProps<any> & { sortable?: boolean }

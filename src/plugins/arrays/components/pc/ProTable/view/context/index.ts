@@ -1,7 +1,7 @@
-import { IDataBindSource } from "../../../../datasource";
 import { createContext, useContext } from "react";
-import { IQueryForm } from "../../../../datasource/model/IQueryForm";
-import { IOrderBy } from "../../../../datasource/model/IOrderBy";
+import { IDataBindSource } from "src/datasource";
+import { IOrderBy } from "src/datasource/model/IOrderBy";
+import { IQueryForm } from "src/datasource/model/IQueryForm";
 import { IProTableConfig } from "./IProTableConfig";
 
 export interface ITableChangeParams {

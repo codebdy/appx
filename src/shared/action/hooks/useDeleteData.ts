@@ -1,6 +1,6 @@
 import { useDeleteById } from "../../../enthooks/hooks/useDeleteById";
 import { useCallback, useRef } from "react";
-import { useInstanceParams } from "../../contexts/instance";
+import { useInstanceParams } from "../../../plugin-sdk/contexts/instance";
 
 export function useDeleteData() {
   const resolveRef = useRef<(value: unknown) => void>();
