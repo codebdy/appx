@@ -3,7 +3,7 @@ import Name from "../name";
 
 const resources: IResourceCreator[] = [
   {
-    icon: 'TextSource',
+    icon: 'ImageSource',
     elements: [
       {
         componentName: 'Field',
