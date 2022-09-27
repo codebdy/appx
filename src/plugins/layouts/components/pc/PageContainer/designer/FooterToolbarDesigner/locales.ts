@@ -1,6 +1,4 @@
-import { PageContainerLocales } from "../locales";
-
-PageContainerLocales.FooterToolbar = {
+const FooterToolbarLocales = {
   'zh-CN': {
     title: '页脚工具栏',
     settings: {
@@ -25,3 +23,5 @@ PageContainerLocales.FooterToolbar = {
     },
   },
 }
+
+export default FooterToolbarLocales;

@@ -1,6 +1,16 @@
 import { IBehavior } from "@rxdrag/appx-plugin-sdk";
 import Name from "../name";
+import FooterToolbarLocales from "./FooterToolbarDesigner/locales";
+import FooterToolbarSchema from "./FooterToolbarDesigner/schema";
+import HeaderActionsLocales from "./HeaderActionsDesigner/locales";
+import HeaderActionsSchema from "./HeaderActionsDesigner/schema";
+import HeaderContentLocales from "./HeaderContentDesigner/locales";
+import HeaderContentSchema from "./HeaderContentDesigner/schema";
+import HeaderContentExtraLocales from "./HeaderContentExtraDesigner/locales";
+import HeaderContentExtraSchema from "./HeaderContentExtraDesigner/schema";
 import locales from "./locales";
+import TabPanelLocales from "./PageTabPanelDesigner/locales";
+import TabPanelSchema from "./PageTabPanelDesigner/schema";
 import schema from "./schema";
 
 const behaviors: IBehavior[] = [
@@ -24,7 +34,8 @@ const behaviors: IBehavior[] = [
       deletable: false,
       cloneable: false,
     },
-    designerLocales: PageContainerLocales.HeaderActions,
+    designerLocales: HeaderActionsLocales,
+    schema: HeaderActionsSchema,
   },
   {
     name: 'PageContainer.HeaderContent',
@@ -35,9 +46,9 @@ const behaviors: IBehavior[] = [
       draggable: false,
       deletable: false,
       cloneable: false,
-      propsSchema: createFieldSchema(PageContainerSchema.HeaderContent),
     },
-    designerLocales: PageContainerLocales.HeaderContent,
+    designerLocales: HeaderContentLocales,
+    schema: HeaderContentSchema
   },
   {
     name: 'PageContainer.HeaderContentExtra',
@@ -48,9 +59,9 @@ const behaviors: IBehavior[] = [
       draggable: false,
       deletable: false,
       cloneable: false,
-      propsSchema: createFieldSchema(PageContainerSchema.HeaderContentExtra),
     },
-    designerLocales: PageContainerLocales.HeaderContentExtra,
+    designerLocales: HeaderContentExtraLocales,
+    schema: HeaderContentExtraSchema,
   },
   {
     name: 'PageContainer.TabPanel',
@@ -61,9 +72,9 @@ const behaviors: IBehavior[] = [
       draggable: false,
       deletable: false,
       cloneable: false,
-      propsSchema: createFieldSchema(PageContainerSchema.TabPanel),
     },
-    designerLocales: PageContainerLocales.TabPanel,
+    designerLocales: TabPanelLocales,
+    schema: TabPanelSchema,
   },
   {
     name: 'PageContainer.FooterToolbar',
@@ -74,9 +85,9 @@ const behaviors: IBehavior[] = [
       draggable: false,
       deletable: false,
       cloneable: false,
-      propsSchema: createFieldSchema(PageContainerSchema.FooterToolbar),
     },
-    designerLocales: PageContainerLocales.FooterToolbar,
+    designerLocales: FooterToolbarLocales,
+    schema: FooterToolbarSchema,
   }
 ]
 

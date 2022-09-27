@@ -1,9 +1,7 @@
 import { DroppableWidget } from "@designable/react"
 import { observer } from "@formily/react"
 import React from "react"
-import PageTabPanel, { IPageTabPanelProps } from "../../PageContainer/PageTabPanel"
-import './locales'
-import './schema'
+import PageTabPanel, { IPageTabPanelProps } from "../../view/PageTabPanel"
 
 export const TabPanelDesigner = observer((props: IPageTabPanelProps) => {
   return (

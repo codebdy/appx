@@ -1,4 +1,4 @@
-const HeaderActionsSchema = {
+const HeaderActionsLocales = {
   'zh-CN': {
     title: '操作区',
     settings: {
@@ -25,4 +25,4 @@ const HeaderActionsSchema = {
   },
 }
 
-export default HeaderActionsSchema;
+export default HeaderActionsLocales;

@@ -2,9 +2,7 @@ import { DroppableWidget } from "@designable/react"
 import { observer } from "@formily/react"
 import { Col } from "antd"
 import React from "react"
-import PageHeaderContent, { IPageHeaderContentProps } from "../../PageContainer/PageHeaderContent"
-import './locales'
-import './schema'
+import PageHeaderContent, { IPageHeaderContentProps } from "../../view/PageHeaderContent"
 
 export const HeaderContentDesigner = observer((props: IPageHeaderContentProps) => {
   const {gridSpan} = props;

@@ -1,15 +1,19 @@
-import { PageContainerSchema } from "../schema";
+import { IPropsSchema } from "@rxdrag/appx-plugin-sdk";
 
-PageContainerSchema.TabPanel = {
-  type: 'object',
-  properties: {
-    gridSpan: {
-      type: 'number',
-      'x-decorator': 'FormItem',
-      'x-component': 'NumberPicker',
-      'x-component-props': {
-        defaultValue: 1,
+const TabPanelSchema: IPropsSchema = {
+  props: {
+    type: 'object',
+    properties: {
+      gridSpan: {
+        type: 'number',
+        'x-decorator': 'FormItem',
+        'x-component': 'NumberPicker',
+        'x-component-props': {
+          defaultValue: 1,
+        },
       },
     },
-  },
+  }
 }
+
+export default TabPanelSchema;
