@@ -6,9 +6,9 @@ import {
 } from '@designable/formily-setters'
 
 export const createDisplaySchemaTab = (options?: IDisplayTabOptions) => {
-  const { hasDataBindSource, fieldSourceType, hasPropTitle } = options || {}
+  const { dataBindSourceType, fieldSourceType, hasPropTitle } = options || {}
   const dataBind =
-    hasDataBindSource
+    dataBindSourceType
       ?
       {
         'x-component-props': {
@@ -37,7 +37,7 @@ export const createDisplaySchemaTab = (options?: IDisplayTabOptions) => {
         },
         "x-reactions": {
           fulfill: {
-            "run":  '$form.values["x-component-props"].associationType = $form.values["x-field-source"]?.["associationType"]'
+            "run": '$form.values["x-component-props"].associationType = $form.values["x-field-source"]?.["associationType"]'
           }
         }
       },
@@ -57,7 +57,7 @@ export const createDisplaySchemaTab = (options?: IDisplayTabOptions) => {
     :
     {}
 
-  const dataGroup = (hasDataBindSource || fieldSourceType)
+  const dataGroup = (dataBindSourceType || fieldSourceType)
     ?
     ({
       "data-group": {
