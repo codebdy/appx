@@ -1,4 +1,4 @@
-export const ObjectLocale = {
+const locales = {
   'zh-CN': {
     title: '对象面板',
   },
@@ -9,3 +9,5 @@ export const ObjectLocale = {
     title: '오브젝트',
   },
 }
+
+export default locales;

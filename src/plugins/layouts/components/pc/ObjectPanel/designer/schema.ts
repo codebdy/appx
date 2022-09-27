@@ -1,7 +1,14 @@
-import { ISchema } from '@formily/react'
+import { FieldsType, IPropsSchema } from '@rxdrag/appx-plugin-sdk'
 
-export const ObjectSchema: ISchema = {
-  type: 'object',
-  properties: {
+const schema: IPropsSchema = {
+  display: {
+    fieldSourceType: FieldsType.Single,
   },
+  props: {
+    type: 'object',
+    properties: {
+    },
+  }
 }
+
+export default schema

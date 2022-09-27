@@ -14,7 +14,7 @@ import { Field, isField } from '@formily/core'
 import { useExpressionScope } from '@formily/react'
 import { InstanceContext } from "../../../../../../shared/contexts/instance";
 
-export const ObjectPanel = observer((props: {
+const Component = observer((props: {
   dataBind: IDataBindSource,
   children?: React.ReactNode,
   value?: any,
@@ -64,3 +64,4 @@ export const ObjectPanel = observer((props: {
   )
 })
 
+export default Component;
