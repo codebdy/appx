@@ -1,4 +1,4 @@
-export const ButtonLocales = {
+const loacales = {
   'zh-CN': {
     title: '按钮',
     description: "按钮，可绑定事件",
@@ -36,3 +36,5 @@ export const ButtonLocales = {
     },
   }
 }
+
+export default loacales;

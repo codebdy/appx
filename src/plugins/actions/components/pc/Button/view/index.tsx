@@ -1,10 +1,9 @@
 import React, { useCallback, useState } from "react"
 import { Button as AntdButton, ButtonProps, message } from "antd"
 import { observer } from "@formily/reactive-react"
-import { IIcon } from "../../../plugin-sdk/icon/model"
-import { IconView } from "../../../plugin-sdk/icon/IconView"
-import { useParseLangMessage } from "../../../plugin-sdk/hooks/useParseLangMessage"
-import { IAppxAction, useDoActions } from "../../../shared/action"
+import { IAppxAction, IconView, IIcon, useParseLangMessage } from "../../../../../../plugin-sdk"
+import { useDoActions } from "../../../../../../shared/action"
+
 
 export type IButtonProps = ButtonProps &
   React.RefAttributes<HTMLElement> & {
@@ -13,7 +12,7 @@ export type IButtonProps = ButtonProps &
     onClick?: IAppxAction[]
   }
 
-export const Button = observer((props: IButtonProps) => {
+const Component = observer((props: IButtonProps) => {
   const { title, icon, onClick, ...other } = props;
   const [loading, setLoading] = useState(false);
 
@@ -49,3 +48,5 @@ export const Button = observer((props: IButtonProps) => {
     </AntdButton>
   )
 })
+
+export default Component;
