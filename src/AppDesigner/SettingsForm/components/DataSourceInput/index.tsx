@@ -11,6 +11,18 @@ import { objToString, stringToObj } from "../../../../shared";
 
 const { OptGroup, Option } = Select;
 
+function lowcaseFirst(str: string) {
+  var strTemp = ""; //新字符串
+  for (var i = 0; i < str.length; i++) {
+    if (i == 0) {
+      strTemp += str[i].toLowerCase(); //第一个
+      continue;
+    }
+    strTemp += str[i];
+  }
+  return strTemp;
+}
+
 export const DataSourceInput = memo((
   props: {
     isSingle?: boolean,
@@ -29,7 +41,6 @@ export const DataSourceInput = memo((
       form.resetFields();
       form.setFieldsValue({ ...value, variables: objToString(value?.variables) })
     }
-
   }, [form, value, isModalVisible])
 
   const showModal = useCallback(() => {
@@ -51,6 +62,42 @@ export const DataSourceInput = memo((
   const handleCancel = useCallback(() => {
     setIsModalVisible(false);
   }, []);
+
+  const handleFormChange = useCallback((changedValues) => {
+    if (changedValues?.entityUuid) {
+      const entityName = getEntity(changedValues?.entityUuid)?.name || ""
+      if (isSingle) {
+        form.setFieldValue("expression",
+`
+query{
+  one${entityName}(
+    where:{
+      id:{
+        _eq:"{{$params.dataId}}"
+      }
+    }
+  ) {
+    id
+  }
+}
+`
+        )
+      } else {
+        form.setFieldValue("expression",
+`
+query{
+  ${lowcaseFirst(entityName)}{
+    nodes{
+      id
+    }
+    total
+  }
+}
+`
+        )
+      }
+    }
+  }, [form, getEntity]);
 
   return (
     <>
@@ -86,6 +133,7 @@ export const DataSourceInput = memo((
           layout={"vertical"}
           form={form}
           initialValues={{}}
+          onValuesChange={handleFormChange}
         >
           <Form.Item
             label={<TextWidget token="SettingComponents.DataSourceInput.Entity" />}
