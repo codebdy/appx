@@ -2,7 +2,7 @@ import { Modal } from "antd";
 import { useAppViewKey } from "../../../../../../plugin-sdk/contexts/appRoot";
 import React, { useCallback, useMemo } from "react"
 import { memo } from "react"
-import { IPagePopup, pagePopupsState } from "../../../../../../plugin-sdk/atoms/runner";
+import { IPagePopup, pagePopupsState } from "../../../../../../plugin-sdk/atoms";
 import { useRecoilValue } from "recoil";
 import { useClosePage } from "../../../../../../shared/action/hooks/useClosePage";
 import { useParseLangMessage } from "../../../../../../hooks/useParseLangMessage";

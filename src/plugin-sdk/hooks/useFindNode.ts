@@ -1,4 +1,4 @@
-import { findNodeByComponentPath } from "../../components/common/shared";
+import { findNodeByComponentPath } from "../funcs";
 import { useTreeNode } from '@designable/react';
 import { useCallback, useMemo } from "react";
 

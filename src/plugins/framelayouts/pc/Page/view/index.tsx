@@ -1,7 +1,7 @@
 import { observer } from "@formily/reactive-react"
 import React from "react"
 import { useAppParams, useAppViewKey } from "../../../../../plugin-sdk/contexts/appRoot";
-import { pagePopupsState } from "../../../../../plugin-sdk/atoms/runner";
+import { pagePopupsState } from "../../../../../plugin-sdk/atoms";
 import { useParseLangMessage } from "../../../../../hooks/useParseLangMessage";
 import { useRecoilValue } from "recoil";
 import { RootPage } from "./RootPage";

@@ -11,7 +11,7 @@ import { createFieldSchema, FieldsType } from "../../common/Field/shared"
 import { IArrayPanelProps } from '../preview/pc'
 import { observer } from '@formily/reactive-react'
 import React from 'react'
-import { queryNodesByComponentPath } from '../../common/shared'
+import { queryNodesByComponentPath } from '../../../plugin-sdk/funcs'
 
 
 export const ArrayPanelDesigner: DnFC<IArrayPanelProps> = observer((props: IArrayPanelProps) => {

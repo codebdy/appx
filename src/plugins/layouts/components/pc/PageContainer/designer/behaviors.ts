@@ -23,7 +23,6 @@ const behaviors: IBehavior[] = [
       draggable: false,
       deletable: false,
       cloneable: false,
-      propsSchema: createFieldSchema(PageContainerSchema.HeaderActions),
     },
     designerLocales: PageContainerLocales.HeaderActions,
   },

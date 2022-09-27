@@ -4,7 +4,7 @@ import './schema'
 import { DnFC, useTreeNode, TreeNodeWidget } from '@designable/react'
 import { TableToolbar } from "../../ProTable/TableToolbar"
 import { observer } from "@formily/reactive-react"
-import { findNodeByComponentPath } from "../../../common/shared"
+import { findNodeByComponentPath } from "../../../../plugin-sdk/funcs"
 import { TableToolbarShell } from "../../ProTable/TableToolbar/TableToolbarShell"
 
 export const TableToolbarDesigner: DnFC<React.ComponentProps<typeof TableToolbar>> = observer((props) => {

@@ -1,6 +1,4 @@
-import { PageContainerLocales } from "../locales";
-
-PageContainerLocales.HeaderActions = {
+const HeaderActionsSchema = {
   'zh-CN': {
     title: '操作区',
     settings: {
@@ -26,3 +24,5 @@ PageContainerLocales.HeaderActions = {
     },
   },
 }
+
+export default HeaderActionsSchema;

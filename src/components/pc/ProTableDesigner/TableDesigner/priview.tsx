@@ -15,7 +15,7 @@ import {
   queryNodesByComponentPath,
   hasNodeByComponentPath,
   createEnsureTypeItemsNode,
-} from '../../../common/shared'
+} from '../../../../plugin-sdk/funcs'
 import { LoadTemplate } from '@designable/formily-antd/lib/common/LoadTemplate'
 import { useParseLangMessage } from '../../../../hooks/useParseLangMessage'
 import { useSelectable } from '../../ProTable/context'

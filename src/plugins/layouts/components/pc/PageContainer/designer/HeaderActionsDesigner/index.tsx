@@ -1,9 +1,7 @@
 import { DroppableWidget } from "@designable/react"
 import { observer } from "@formily/react"
 import React from "react"
-import PageHeaderActions, { IHeaderActionsProps } from "../../PageContainer/PageHeaderActions"
-import './locales'
-import './schema'
+import PageHeaderActions, { IHeaderActionsProps } from "../../view/PageHeaderActions"
 
 export const HeaderActionsDesigner = observer((props: IHeaderActionsProps) => {
   return (

@@ -1,4 +1,4 @@
-import { pagePopupsState } from "../../../plugin-sdk/atoms/runner";
+import { pagePopupsState } from "../../../plugin-sdk/atoms";
 import { useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
