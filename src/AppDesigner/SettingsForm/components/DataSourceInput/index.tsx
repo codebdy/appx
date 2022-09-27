@@ -106,7 +106,7 @@ export const DataSourceInput = memo((
       <Modal
         title={<TextWidget token="SettingComponents.DataSourceInput.Title" />}
         className="config-datasource-modal"
-        width={900}
+        width={600}
         open={isModalVisible}
         onCancel={handleCancel}
         footer={
