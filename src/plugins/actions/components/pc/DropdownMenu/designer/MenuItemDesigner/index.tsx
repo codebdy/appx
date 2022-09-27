@@ -4,9 +4,8 @@ import {
 } from '@designable/react'
 import { observer } from '@formily/reactive-react'
 import clx from "classnames";
-import { IDropdownMenuItemProps } from '../../DropdownMenu/MenuItem'
-import { IconView } from '../../../../../../../plugin-sdk/icon/IconView'
-import { useParseLangMessage } from '../../../../../../../plugin-sdk/hooks/useParseLangMessage';
+import { IconView, useParseLangMessage } from '../../../../../../../plugin-sdk'
+import { IDropdownMenuItemProps } from '../../view/MenuItem';
 
 export const MenuItemDesigner: DnFC<IDropdownMenuItemProps> = observer((props) => {
   const { className, icon, title, onClick, ...other } = props;

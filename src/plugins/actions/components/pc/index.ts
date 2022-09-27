@@ -1,7 +1,7 @@
-import Text from "./DropdownMenu";
+import DropdownMenu from "./DropdownMenu";
 
 const pcComponents = [
-  Text,
+  DropdownMenu,
 ];
 
 export default pcComponents;

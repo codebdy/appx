@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { TreeNode, createBehavior, createResource } from '@designable/core'
+import { TreeNode } from '@designable/core'
 import {
   DnFC,
   useTreeNode,
@@ -8,22 +8,15 @@ import {
 import { observer } from '@formily/reactive-react'
 import './styles.less'
 import { LoadTemplate } from '@designable/formily-antd/lib/common/LoadTemplate'
-import { createFieldSchema } from "../../common/Field";
-import { DropdownMenuSchema } from './schema'
-import { DropdownMenuLocales } from './locales'
 import { Button } from 'antd'
 import { CloseOutlined, DownOutlined } from '@ant-design/icons'
-import { IDropdownMenuProps } from '../DropdownMenu'
 import { MenuItemDesigner } from './MenuItemDesigner'
-import { DropdownMenuItemSchema } from './MenuItemDesigner/schema'
-import { DropdownMenuItemLocales } from './MenuItemDesigner/locales'
-import { IconView } from '../../../plugin-sdk/icon/IconView'
-import { useParseLangMessage } from '../../../plugin-sdk/hooks/useParseLangMessage'
-import { IDropdownMenuItemProps } from '../DropdownMenu/MenuItem'
-import { PopupButton } from '../../common/PopupButton'
-import { Events } from '../../../plugin-sdk/model/action'
+import { IDropdownMenuProps } from '../view'
+import { IDropdownMenuItemProps } from '../view/MenuItem'
+import { PopupButton, IconView, useParseLangMessage } from '../../../../../../plugin-sdk'
 
-export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
+
+const ComponentDesigner: DnFC<IDropdownMenuProps> &
 {
   Item?: React.FC<IDropdownMenuItemProps>
 } = observer((props) => {
@@ -164,47 +157,6 @@ export const DropdownMenuDesigner: DnFC<IDropdownMenuProps> &
   )
 })
 
-DropdownMenuDesigner.Item = MenuItemDesigner;
+ComponentDesigner.Item = MenuItemDesigner;
 
-DropdownMenuDesigner.Behavior = createBehavior(
-  {
-    name: 'DropdownMenu',
-    extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'DropdownMenu',
-    designerProps: {
-      droppable: true,
-      propsSchema: createFieldSchema(DropdownMenuSchema),
-    },
-    designerLocales: DropdownMenuLocales,
-  },
-  {
-    name: 'DropdownMenu.Item',
-    extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'DropdownMenu.Item',
-    designerProps: {
-      droppable: false,
-      propsSchema: createFieldSchema(DropdownMenuItemSchema, { actions: [Events.onClick], noDisplayTab: true }),
-    },
-    designerLocales: DropdownMenuItemLocales,
-  },
-)
-
-DropdownMenuDesigner.Resource = createResource({
-  icon: 'SelectSource',
-  elements: [
-    {
-      componentName: 'Field',
-      props: {
-        type: 'void',
-        'x-component': 'DropdownMenu',
-        'x-component-props': {
-          type: "primary",
-          title: "Dropdown",
-          showDropdownIcon: true,
-          placement: "bottomLeft",
-          trigger: ['click']
-        },
-      },
-    },
-  ],
-})
+export default ComponentDesigner;

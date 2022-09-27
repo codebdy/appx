@@ -1,6 +1,7 @@
 import { IPropsSchema } from '@rxdrag/appx-plugin-sdk'
 
 const schema: IPropsSchema = {
+  actions: ["onClick"],
   props: {
     type: 'object',
     properties: {

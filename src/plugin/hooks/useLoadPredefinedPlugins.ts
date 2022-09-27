@@ -40,6 +40,7 @@ export function useLoadPredefinedPlugins() {
       () => import("../../plugins/layouts/index"),
       () => import("../../plugins/arrays/index"),
       () => import("../../plugins/displays/index"),
+      () => import("../../plugins/actions/index"),
     ]).then((basicPlugs) => {
       setBasicPlugins(basicPlugs);
       loadList([

@@ -3,13 +3,20 @@ import Name from "../name";
 
 const resources: IResourceCreator[] = [
   {
-    icon: 'TextSource',
+    icon: 'SelectSource',
     elements: [
       {
         componentName: 'Field',
         props: {
-          type: 'string',
+          type: 'void',
           'x-component': Name,
+          'x-component-props': {
+            type: "primary",
+            title: "Dropdown",
+            showDropdownIcon: true,
+            placement: "bottomLeft",
+            trigger: ['click']
+          },
         },
       },
     ],

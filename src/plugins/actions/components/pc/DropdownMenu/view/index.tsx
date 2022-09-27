@@ -1,11 +1,9 @@
 import { observer } from "@formily/reactive-react"
-import { IIcon } from '../../../plugin-sdk/icon/model'
 import React, { CSSProperties, useMemo, useState } from "react"
 import { IDropdownMenuItemProps, MenuItem } from "./MenuItem"
-import { IconView } from "../../../plugin-sdk/icon/IconView"
+import { IconView, IIcon, useParseLangMessage } from '../../../../../../plugin-sdk'
 import { Button, Dropdown, Menu } from "antd"
 import { DownOutlined } from "@ant-design/icons"
-import { useParseLangMessage } from "../../../plugin-sdk/hooks/useParseLangMessage"
 import { DropdownContext } from "./context"
 
 export interface IDropdownMenuProps {
@@ -18,7 +16,7 @@ export interface IDropdownMenuProps {
   children?: React.ReactNode,
 }
 
-export const DropdownMenu: React.FC<IDropdownMenuProps> & {
+const Component: React.FC<IDropdownMenuProps> & {
   Item?: React.FC<IDropdownMenuItemProps>
 } = observer((props) => {
   const { icon, title, showDropdownIcon, placement, trigger, children, ...other } = props;
@@ -62,4 +60,6 @@ export const DropdownMenu: React.FC<IDropdownMenuProps> & {
   )
 })
 
-DropdownMenu.Item = MenuItem
+Component.Item = MenuItem
+
+export default Component;
