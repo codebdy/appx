@@ -1,4 +1,4 @@
-export const FormButtonGroupLocales = {
+const locales = {
   'zh-CN': {
     title: '按钮容器',
     addPanel: '添加选项卡',
@@ -42,3 +42,5 @@ export const FormButtonGroupLocales = {
     },
   },
 }
+
+export default locales;

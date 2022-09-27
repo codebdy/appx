@@ -10,9 +10,9 @@ import {
 import { observer } from '@formily/reactive-react'
 import './styles.less'
 import { LoadTemplate } from '@designable/formily-antd/lib/common/LoadTemplate'
-import { FormGridColumnSchema, FormGridLocales } from '../../../plugin-sdk/locales/FormGridLocales'
-import { FormGridSchema } from '../../../plugin-sdk/schemas/FormGridSchema'
-import { createFieldSchema } from "../../common/Field";
+import { FormGridColumnSchema, FormGridLocales } from '../../../../../../plugin-sdk/locales/FormGridLocales'
+import { FormGridSchema } from '../../../../../../plugin-sdk/schemas/FormGridSchema'
+import { createFieldSchema } from "../../../../../../components/common/Field";
 
 type formilyGrid = typeof FormilyGird
 

@@ -8,7 +8,7 @@ export type IFormButtonGroupProps = React.ComponentProps<typeof FormilyFormButto
   sticky?: boolean;
 }
 
-export const FormButtonGroup: DnFC<IFormButtonGroupProps> = observer((props) => {
+const FormButtonGroup: DnFC<IFormButtonGroupProps> = observer((props) => {
   const { formItem, sticky, children, ...other } = props;
   const render = useCallback(() => {
     let group = <FormilyFormButtonGroup {...other}>
@@ -31,3 +31,5 @@ export const FormButtonGroup: DnFC<IFormButtonGroupProps> = observer((props) => 
     render()
   )
 })
+
+export default FormButtonGroup;
