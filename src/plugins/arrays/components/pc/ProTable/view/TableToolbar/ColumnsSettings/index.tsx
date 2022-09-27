@@ -1,14 +1,14 @@
 import { SettingOutlined } from "@ant-design/icons";
 import { observer } from "@formily/reactive-react";
 import { Button, Checkbox, Divider, Popover, Space, Tooltip } from "antd";
-import { useUpdateComponentConfig } from "../../../../../shared/AppRoot/hooks/useUpdateComponentConfig";
+import { useUpdateComponentConfig } from "../../../../../../../../shared/AppRoot/hooks/useUpdateComponentConfig";
 import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { DragDropContext, Draggable, Droppable, DropResult } from "react-beautiful-dnd";
 import { useProTableParams } from "../../context";
 import { useLocalTranslations } from "../../hooks/useLocalTranslations";
 import DraggableLabel from "./DraggableLabel";
 import "./style.less"
-import { useShowError } from "../../../../../hooks/useShowError";
+import { useShowError } from "../../../../../../../../hooks/useShowError";
 import { toJS } from "@formily/reactive";
 
 enum CheckState {

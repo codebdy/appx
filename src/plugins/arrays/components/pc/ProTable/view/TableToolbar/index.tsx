@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react"
 import { useProTableParams } from "../context"
-import { useComponentConfig } from "../../../../shared/AppRoot/hooks/useComponentConfig"
+import { useComponentConfig } from "../../../../../../../shared/AppRoot/hooks/useComponentConfig"
 import { observer } from "@formily/reactive-react"
 import { IProTableConfig } from "../context/IProTableConfig"
 import { TableToolbarShell } from "./TableToolbarShell"

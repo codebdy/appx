@@ -6,11 +6,11 @@ import {
   Field as ReactField,
   VoidField
 } from '@formily/react';
-import { TextView } from '../../';
 import { Schema } from '@formily/react';
 import { ObservableColumnSource, } from './index';
 import { isColumnComponent, isColumnGroupComponent } from './useArrayTableSources';
 import { CellRoot } from './CellRoot';
+import { TextView } from './TextView';
 
 export function useGetTableColumns() {
   const getTableColumns = useCallback((sources: ObservableColumnSource[], parentGroupNames: string[] = []): TableProps<any>['columns'] => {

@@ -27,7 +27,7 @@ export interface IProTableProps extends IDataSourceableProps {
   pageSize?: number,
 }
 
-export const ProTable: React.FC<IProTableProps> & {
+const Component: React.FC<IProTableProps> & {
   QueryForm?: React.FC<IQueryFormProps>,
   Toolbar?: React.FC<ITableToolbarProps>,
   ToolbarActions?: React.FC<ITableToolbarActionsProps>,
@@ -135,9 +135,11 @@ export const ProTable: React.FC<IProTableProps> & {
   )
 })
 
-ProTable.QueryForm = QueryForm
-ProTable.Toolbar = TableToolbar
-ProTable.ToolbarActions = TableToolbarActions
-ProTable.BatchActions = TableBatchActions
-ProTable.Table = Table
-ProTable.Index = TableIndex
+Component.QueryForm = QueryForm
+Component.Toolbar = TableToolbar
+Component.ToolbarActions = TableToolbarActions
+Component.BatchActions = TableBatchActions
+Component.Table = Table
+Component.Index = TableIndex
+
+export default Component;

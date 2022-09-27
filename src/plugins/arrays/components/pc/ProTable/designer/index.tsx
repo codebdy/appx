@@ -18,7 +18,7 @@ import { ITableBatchActionsProps } from "../view/TableBatchActions"
 import { useFindNode } from "../../../../../../plugin-sdk"
 import { ProTableContext } from "../view/context"
 
-export const ProTableDesigner: DnFC<IProTableProps> & {
+const ComponentDesigner: DnFC<IProTableProps> & {
   QueryForm?: React.FC<IQueryFormProps>,
   Toolbar?: React.FC<ITableToolbarProps>,
   ToolbarActions?: React.FC<ITableToolbarActionsProps>,
@@ -61,11 +61,12 @@ export const ProTableDesigner: DnFC<IProTableProps> & {
   )
 })
 
-ProTableDesigner.QueryForm = QueryFormDesigner;
-ProTableDesigner.Toolbar = TableToolbarDesigner;
-ProTableDesigner.ToolbarActions = TableToolbarActionsDesigner;
-ProTableDesigner.BatchActions = TableBatchActionsDesigner;
-ProTableDesigner.Table = TableDesigner;
-ProTableDesigner.Index = IndexDesigner;
+ComponentDesigner.QueryForm = QueryFormDesigner;
+ComponentDesigner.Toolbar = TableToolbarDesigner;
+ComponentDesigner.ToolbarActions = TableToolbarActionsDesigner;
+ComponentDesigner.BatchActions = TableBatchActionsDesigner;
+ComponentDesigner.Table = TableDesigner;
+ComponentDesigner.Index = IndexDesigner;
 //ProTableDesigner.Column = ColumnDesigner;
 
+export default ComponentDesigner;
