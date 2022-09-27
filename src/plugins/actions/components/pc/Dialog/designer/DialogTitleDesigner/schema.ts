@@ -1,6 +1,6 @@
 import { IPropsSchema } from "@rxdrag/appx-plugin-sdk";
 
-export const Title: IPropsSchema = {
+export const TitleSchema: IPropsSchema = {
   props: {
     type: 'object',
     properties: {

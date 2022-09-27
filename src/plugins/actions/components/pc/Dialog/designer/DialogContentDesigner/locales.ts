@@ -1,5 +1,3 @@
-import { DialogLocales } from "../locales";
-
 export const ContentLocles = {
   'zh-CN': {
     title: '对话框内容',
