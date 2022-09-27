@@ -1,4 +1,4 @@
-import { IPropsSchema } from '@rxdrag/appx-plugin-sdk'
+import { FieldsType, IPropsSchema } from '@rxdrag/appx-plugin-sdk'
 
 export const DataTableSchema: IPropsSchema = {
   props: {
@@ -39,6 +39,10 @@ export const DataTableSchema: IPropsSchema = {
 }
 
 export const ColumnSchema: IPropsSchema = {
+  display: {
+    fieldSourceType: FieldsType.Single,
+    hasPropTitle: true,
+  },
   props: {
     type: 'object',
     properties: {
@@ -94,7 +98,11 @@ export const ColumnSchema: IPropsSchema = {
 
 }
 
-export const ColumnGroup: IPropsSchema = {
+export const ColumnGroupSchema: IPropsSchema = {
+  display: {
+    fieldSourceType: FieldsType.Single, 
+    hasPropTitle: true
+  },
   props: {
     type: 'object',
     properties: {

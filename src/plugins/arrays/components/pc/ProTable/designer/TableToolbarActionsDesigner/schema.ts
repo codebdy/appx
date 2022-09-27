@@ -7,3 +7,5 @@ const TableToolbarActionsSchema: IPropsSchema = {
     },
   }
 }
+
+export default TableToolbarActionsSchema;

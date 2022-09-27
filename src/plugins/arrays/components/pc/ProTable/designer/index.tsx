@@ -1,29 +1,25 @@
 import { observer } from "@formily/reactive-react"
 import { Card, TableProps } from "antd"
 import React from "react"
-import { IQueryFormProps } from "../ProTable/QueryForm"
-import { ITableToolbarProps } from "../ProTable/TableToolbar"
 import { DnFC, TreeNodeWidget } from '@designable/react'
 import { QueryFormDesigner } from "./QueryFormDesigner"
-import { IProTableProps } from "../ProTable"
 import { createBehavior, createResource } from '@designable/core'
-import { createFieldSchema, FieldsType } from "../../common/Field/shared"
-import { ProTableSchema } from "./schema"
-import { ProTableLocales } from "./locales"
 import clx from "classnames"
-import { useFindNode } from "../../../plugin-sdk/hooks/useFindNode"
 import _ from "lodash"
-import { FormGridLocales } from "../FormGridDesigner/locales"
 import { TableToolbarDesigner } from "./TableToolbarDesigner"
 import { TableBatchActionsDesigner } from "./TableBatchActionsDesigner"
-import { ITableBatchActionsProps } from "../ProTable/TableBatchActions"
 import { DataTableColumnGroupLocales, DataTableColumnLocales, DataTableLocales } from "./TableDesigner/locales"
 import { DataTableSchema } from "./TableDesigner/schema"
 import { TableDesigner } from "./TableDesigner"
 import { IndexDesigner } from "./TableDesigner/IndexDesigner"
-import { ProTableContext } from "../ProTable/context"
-import { ITableToolbarActionsProps } from "../ProTable/TableToolbarActions"
 import { TableToolbarActionsDesigner } from "./TableToolbarActionsDesigner"
+import { IProTableProps } from "../view"
+import { IQueryFormProps } from "../view/QueryForm"
+import { ITableToolbarProps } from "../view/TableToolbar"
+import { ITableToolbarActionsProps } from "../view/TableToolbarActions"
+import { ITableBatchActionsProps } from "../view/TableBatchActions"
+import { useFindNode } from "../../../../../../plugin-sdk"
+import { ProTableContext } from "../view/context"
 
 export const ProTableDesigner: DnFC<IProTableProps> & {
   QueryForm?: React.FC<IQueryFormProps>,
@@ -76,118 +72,6 @@ ProTableDesigner.Table = TableDesigner;
 ProTableDesigner.Index = IndexDesigner;
 //ProTableDesigner.Column = ColumnDesigner;
 
-ProTableDesigner.Behavior = createBehavior(
-  {
-    name: 'ProTable',
-    extends: [],
-    selector: (node) => node.props['x-component'] === 'ProTable',
-    designerProps: {
-      droppable: false,
-      propsSchema: createFieldSchema(ProTableSchema, { hasDataBindSource: true }),
-    },
-    designerLocales: ProTableLocales,
-  },
-  {
-    name: 'ProTable.QueryForm',
-    extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'ProTable.QueryForm',
-    designerProps: {
-      droppable: true,
-      deletable: false,
-      cloneable: false,
-      draggable: false,
-      propsSchema: createFieldSchema(ProTableSchema.QueryForm),
-    },
-    designerLocales: _.merge(JSON.parse(JSON.stringify(FormGridLocales)), ProTableLocales.QueryForm),
-  },
-  {
-    name: 'ProTable.Toolbar',
-    extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'ProTable.Toolbar',
-    designerProps: {
-      droppable: true,
-      deletable: false,
-      cloneable: false,
-      draggable: false,
-      propsSchema: createFieldSchema(ProTableSchema.TableToolbar),
-    },
-    designerLocales: ProTableLocales.TableToolbar,
-  },
-  {
-    name: 'ProTable.ToolbarActions',
-    extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'ProTable.ToolbarActions',
-    designerProps: {
-      droppable: true,
-      deletable: false,
-      cloneable: false,
-      draggable: false,
-      propsSchema: createFieldSchema(ProTableSchema.TableToolbarActions),
-    },
-    designerLocales: ProTableLocales.TableToolbarActions,
-  },
-  {
-    name: 'ProTable.BatchActions',
-    extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'ProTable.BatchActions',
-    designerProps: {
-      droppable: true,
-      deletable: false,
-      cloneable: false,
-      draggable: false,
-      propsSchema: createFieldSchema(ProTableSchema.TableBatchActions),
-    },
-    designerLocales: ProTableLocales.TableBatchActions,
-  },
-  {
-    name: 'ProTable.Table',
-    extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'ProTable.Table',
-    designerProps: {
-      droppable: false,
-      deletable: false,
-      cloneable: false,
-      draggable: false,
-      propsSchema: createFieldSchema(DataTableSchema),
-    },
-    designerLocales: DataTableLocales,
-  },
-  {
-    name: 'ProTable.Column',
-    extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'ProTable.Column',
-    designerProps: {
-      droppable: true,
-      allowDrop: (node) => {
-        return (
-          (node.props['type'] === 'object' &&
-            node.parent?.props?.['x-component'] === 'ProTable.Table') ||
-          node?.props?.['x-component'] === 'ProTable.ColumnGroup'
-        );
-      }
-      ,
-      propsSchema: createFieldSchema(DataTableSchema.Column, { fieldSourceType: FieldsType.Single, hasPropTitle: true }),
-    },
-    designerLocales: DataTableColumnLocales,
-  },
-  {
-    name: 'ProTable.ColumnGroup',
-    extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'ProTable.ColumnGroup',
-    designerProps: {
-      droppable: true,
-      allowDrop: (node) => {
-        return (
-          (node.props['type'] === 'object' &&
-            node.parent?.props?.['x-component'] === 'ProTable.Table') ||
-          node?.props?.['x-component'] === 'ProTable.ColumnGroup'
-        );
-      },
-      propsSchema: createFieldSchema(DataTableSchema.ColumnGroup, { fieldSourceType: FieldsType.Single, hasPropTitle: true }),
-    },
-    designerLocales: DataTableColumnGroupLocales,
-  },
-)
 
 ProTableDesigner.Resource = createResource({
   icon: 'DataQueryListSource',

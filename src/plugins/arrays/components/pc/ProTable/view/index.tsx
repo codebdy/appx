@@ -6,8 +6,6 @@ import locales, { LOCALES_NS } from "./locales"
 import { Table } from "./Table"
 import { ITableBatchActionsProps, TableBatchActions } from "./TableBatchActions"
 import { observer } from "@formily/reactive-react"
-import { registerResourceBundle } from "../../../i18n/registerResourceBundle"
-import { IDataSourceableProps } from "../../../plugin-sdk/model/IDataSourceableProps"
 import { TableToolbar, ITableToolbarProps } from "./TableToolbar"
 import clx from "classnames";
 import { RecursionField, useFieldSchema, useField } from '@formily/react';
@@ -15,6 +13,8 @@ import { IQueryFormProps, QueryForm } from "./QueryForm"
 import { TableIndex } from "./TableIndex"
 import { observable } from "@formily/reactive"
 import { ITableToolbarActionsProps, TableToolbarActions } from "./TableToolbarActions"
+import { registerResourceBundle } from "../../../../../../i18n/registerResourceBundle"
+import { IDataSourceableProps } from "../../../../../../plugin-sdk"
 
 registerResourceBundle(LOCALES_NS, locales);
 
