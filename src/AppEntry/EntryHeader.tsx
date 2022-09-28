@@ -33,9 +33,9 @@ const EntryHeader = memo((props: {
     <Header className="header">
       <Button className="no-border" shape="circle" onClick={handleBack}><HomeOutlined /></Button>
       <Divider type='vertical' />
-      <div style={{ marginLeft: "4px" }}>{parse(app?.title)}</div>
+      <div className="app-title" style={{ marginLeft: "4px" }}>{parse(app?.title)}</div>
       <Menu
-        className="app-config-menu"
+        className="app-entry-menu"
         mode="horizontal"
         defaultSelectedKeys={[match?.params?.["*"]]}
         onSelect={handleSelect}
@@ -87,7 +87,6 @@ const EntryHeader = memo((props: {
           },
         ]}
       />
-
       <Space>
         <Button className='min-button' size='large' shape="circle" icon={<QuestionCircleOutlined />} />
         <Button
