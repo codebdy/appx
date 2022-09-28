@@ -54,16 +54,16 @@ export const ReactBpmn = (props: {
         } = event;
 
         if (error) {
+          console.error(error)
           //return handleError(error);
           return;
         }
-
         bpmnViewer.get('canvas').zoom('fit-viewport');
 
         //return handleShown(warnings);
       });
     }
-  }, [containerRef?.current])
+  }, [])
 
   return (
     <div className="react-bpmn-diagram-container" ref={containerRef}></div>
