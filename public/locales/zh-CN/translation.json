@@ -73,10 +73,11 @@
   "AppEntry": {
     "BaseConfig": "配置",
     "UIDesign": "界面",
-    "FrameDesign": "框架",
+    "PageDesign":"页面设计",
+    "FrameDesign": "框架设计",
     "Model": "模型",
     "UMLModel":"领域模型",
-    "BPMNFlow": "流程模型",
+    "BPMNFlow": "工作流模型",
     "DMN": "决策模型",
     "AppApi": "接口",
     "ModelAuth": "权限",

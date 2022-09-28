@@ -1,5 +1,6 @@
 export enum AppConfigRouts {
   Config = "config",
+  Ui = "ui",
   App = "app",
   Frame = "frame",
   Bpmn = "bpmn",

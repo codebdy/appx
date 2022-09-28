@@ -41,13 +41,25 @@ const EntryHeader = memo((props: {
         onSelect={handleSelect}
         items={[
           {
-            key: AppConfigRouts.App,
-            label: t("AppEntry.UIDesign"),
+            key: AppConfigRouts.Ui,
+            label: <>
+              {
+                t("AppEntry.UIDesign")
+              }
+              <DownOutlined style={{ fontSize: 10, marginLeft: 8 }} />
+            </>,
+            children: [
+              {
+                key: AppConfigRouts.App,
+                label: t("AppEntry.PageDesign"),
+              },
+              {
+                key: AppConfigRouts.Frame,
+                label: t("AppEntry.FrameDesign"),
+              },
+            ]
           },
-          {
-            key: AppConfigRouts.Frame,
-            label: t("AppEntry.FrameDesign"),
-          },
+
           {
             key: AppConfigRouts.Model,
             label: <>
