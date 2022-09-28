@@ -1,7 +1,7 @@
 import React from "react";
 import { ReactBpmn } from "./ReactBpmn";
 
-export const AppFlow = (props) => {
+export const AppBpmn = (props) => {
 
   function onShown() {
     console.log('diagram shown');

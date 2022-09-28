@@ -1,7 +1,7 @@
 import React from "react"
 import { memo } from "react"
 import { Layout } from 'antd';
-import ConifgHeader from "./ConifgHeader";
+import EntryHeader from "./EntryHeader";
 import { Outlet, useParams } from "react-router-dom";
 import { useQueryApp } from "../hooks/useQueryApp";
 import { useShowError } from '../hooks/useShowError';
@@ -18,7 +18,7 @@ const AppEntry = memo(() => {
   return (
     <AppRoot>
       <Layout className="rx-studio">
-        <ConifgHeader app={app} />
+        <EntryHeader app={app} />
         <Content className='content'>
           <Outlet />
         </Content>

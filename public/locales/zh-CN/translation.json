@@ -70,15 +70,17 @@
     "Config": "系统配置",
     "Devices": "设备管理"
   },
-  "AppConfig": {
-    "BaseConfig": "基础配置",
-    "UIDesign": "界面设计",
-    "FrameDesign": "框架设计",
-    "DomainModel": "领域模型",
-    "FlowDesign": "流程设计",
-    "AppApi": "应用接口",
-    "ModelAuth": "模型权限",
-    "Plugins": "插件管理"
+  "AppEntry": {
+    "BaseConfig": "配置",
+    "UIDesign": "界面",
+    "FrameDesign": "框架",
+    "Model": "模型",
+    "UMLModel":"领域模型",
+    "BPMNFlow": "流程模型",
+    "DMN": "决策模型",
+    "AppApi": "接口",
+    "ModelAuth": "权限",
+    "Plugins": "插件"
   },
   "Designer": {
     "Pages": "页面编辑",

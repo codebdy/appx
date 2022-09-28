@@ -21,7 +21,8 @@ import { FrameDesigner } from './FrameDesigner';
 import { AppPlugins } from './AppPlugins';
 import { PredefinedPluginsRoot } from './plugin/PredefinedPluginsRoot';
 import { PredefinedMaterialsRoot } from './material/PredefinedMaterialsRoot';
-import { AppFlow } from './AppFlow';
+import { AppBpmn } from './AppBpmn';
+import { AppDmn } from './AppDmn';
 
 const App = memo(() => {
   return (
@@ -42,8 +43,9 @@ const App = memo(() => {
             <Route path="/config-app/:appUuid" element={<AppEntry />}>
               <Route path={AppConfigRouts.Config} element={<AppConfig />} />
               <Route path={AppConfigRouts.App} element={<DeviceList />} />
-              <Route path={AppConfigRouts.Flow} element={<AppFlow />} />
-              <Route path={AppConfigRouts.Model} element={<ModelBoard />} />
+              <Route path={AppConfigRouts.Bpmn} element={<AppBpmn />} />
+              <Route path={AppConfigRouts.Dmn} element={<AppDmn />} />
+              <Route path={AppConfigRouts.Uml} element={<ModelBoard />} />
               <Route path={AppConfigRouts.Api} element={<ApiBoard />} />
               <Route path={AppConfigRouts.Auth} element={<AuthBoard />} />
               <Route path={AppConfigRouts.Plugins} element={<AppPlugins />} />

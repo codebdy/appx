@@ -1,4 +1,4 @@
-import { QuestionCircleOutlined, GithubOutlined, HomeOutlined } from "@ant-design/icons"
+import { QuestionCircleOutlined, GithubOutlined, HomeOutlined, DownOutlined } from "@ant-design/icons"
 import { Button, Divider, Menu, Space } from "antd"
 import { Header } from "antd/lib/layout/layout"
 import React, { useCallback } from "react"
@@ -11,7 +11,7 @@ import SelectLang from "../plugins/framewidgets/pc/LangSelect/view"
 import { useParseLangMessage } from "../plugin-sdk/hooks/useParseLangMessage"
 import AvatarMenu from "../plugins/framewidgets/pc/AvatarMenu/view"
 
-const ConifgHeader = memo((props: {
+const EntryHeader = memo((props: {
   app?: IApp,
 }) => {
   const { app } = props;
@@ -41,36 +41,49 @@ const ConifgHeader = memo((props: {
         onSelect={handleSelect}
         items={[
           {
-            key: AppConfigRouts.Config,
-            label: t("AppConfig.BaseConfig"),
-          },
-          {
             key: AppConfigRouts.App,
-            label: t("AppConfig.UIDesign"),
+            label: t("AppEntry.UIDesign"),
           },
           {
             key: AppConfigRouts.Frame,
-            label: t("AppConfig.FrameDesign"),
+            label: t("AppEntry.FrameDesign"),
           },
           {
             key: AppConfigRouts.Model,
-            label: t("AppConfig.DomainModel"),
+            label: <>
+              {t("AppEntry.Model")}
+              <DownOutlined style={{ fontSize: 10, marginLeft: 8 }} />
+            </>,
+            children: [
+              {
+                key: AppConfigRouts.Uml,
+                label: t("AppEntry.UMLModel"),
+              },
+              {
+                key: AppConfigRouts.Bpmn,
+                label: t("AppEntry.BPMNFlow"),
+              },
+              {
+                key: AppConfigRouts.Dmn,
+                label: t("AppEntry.DMN"),
+              },
+            ]
           },
           {
             key: AppConfigRouts.Api,
-            label: t("AppConfig.AppApi"),
+            label: t("AppEntry.AppApi"),
           },
           {
             key: AppConfigRouts.Auth,
-            label: t("AppConfig.ModelAuth"),
-          },
-          {
-            key: AppConfigRouts.Flow,
-            label: t("AppConfig.FlowDesign"),
+            label: t("AppEntry.ModelAuth"),
           },
           {
             key: AppConfigRouts.Plugins,
-            label: t("AppConfig.Plugins"),
+            label: t("AppEntry.Plugins"),
+          },
+          {
+            key: AppConfigRouts.Config,
+            label: t("AppEntry.BaseConfig"),
           },
         ]}
       />
@@ -92,4 +105,4 @@ const ConifgHeader = memo((props: {
   )
 })
 
-export default ConifgHeader
+export default EntryHeader
