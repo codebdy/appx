@@ -1,21 +1,26 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import BpmnJS from 'bpmn-js/dist/bpmn-navigated-viewer.production.min.js';
+import BpmnModeler from 'bpmn-js/lib/Modeler';
+import "bpmn-js/dist/assets/diagram-js.css";
+import "bpmn-js/dist/assets/bpmn-js.css";
+//import "bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css";
+import "bpmn-js-properties-panel/dist/assets/properties-panel.css";
 import "./style.less"
 
 export const ReactBpmn = (props: {
   url: string,
 }) => {
   const { url } = props;
-  const [bpmnViewer, setBpmnViewr] = useState<any>()
+  const [bpmnModeler, setBpmnModeler] = useState<any>()
   const [loading, setLoading] = useState(false);
   const [diagramXML, setDiagramXML] = useState<string>();
   const containerRef = useRef<HTMLDivElement>();
+  const canvasRef = useRef<HTMLDivElement>();
 
   useEffect(() => {
-    if (diagramXML && bpmnViewer) {
-      bpmnViewer.importXML(diagramXML);
+    if (diagramXML && bpmnModeler) {
+      bpmnModeler.importXML(diagramXML);
     }
-  }, [diagramXML, bpmnViewer])
+  }, [diagramXML, bpmnModeler])
 
   const fetchDiagram = useCallback((url: string) => {
     setLoading(true);
@@ -45,9 +50,18 @@ export const ReactBpmn = (props: {
   useEffect(() => {
     const container = containerRef?.current;
     if (container) {
-      const bpmnViewer = new BpmnJS({ container });
-      setBpmnViewr(bpmnViewer)
-      bpmnViewer.on('import.done', (event) => {
+      const bpmnModeler = new BpmnModeler({
+        container: container,
+        propertiesPanel: {
+          parent: '#js-properties-panel'
+        },
+        // additionalModules: [
+        //   BpmnPropertiesPanelModule,
+        //   BpmnPropertiesProviderModule
+        // ]
+      });
+      setBpmnModeler(bpmnModeler)
+      bpmnModeler.on('import.done', (event) => {
         const {
           error,
           warnings
@@ -56,16 +70,22 @@ export const ReactBpmn = (props: {
         if (error) {
           console.error(error)
           //return handleError(error);
-          return;
+
+        } else {
+          bpmnModeler.get('canvas').zoom('fit-viewport');
         }
-        bpmnViewer.get('canvas').zoom('fit-viewport');
 
         //return handleShown(warnings);
       });
     }
+
+    return () => {
+      bpmnModeler?.destroy();
+    }
   }, [])
 
   return (
-    <div className="react-bpmn-diagram-container" ref={containerRef}></div>
+    <div className="react-bpmn-diagram-container" ref={containerRef}>
+    </div>
   )
 }
