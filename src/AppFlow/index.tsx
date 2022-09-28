@@ -1,6 +1,5 @@
 import React from "react";
-import ReactBpmn from 'react-bpmn';
-import "./style.less";
+import { ReactBpmn } from "./ReactBpmn";
 
 export const AppFlow = (props) => {
 
@@ -19,10 +18,6 @@ export const AppFlow = (props) => {
   return (
     <ReactBpmn
       url="/public/diagram.bpmn"
-      style={{ height: "100%" }}
-      onShown={onShown}
-      onLoading={onLoading}
-      onError={onError}
     />
   );
 }

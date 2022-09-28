@@ -10209,11 +10209,6 @@ react-beautiful-dnd@^13.1.0:
     redux "^4.0.4"
     use-memo-one "^1.1.1"
 
-react-bpmn@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.npmmirror.com/react-bpmn/-/react-bpmn-0.2.0.tgz#f9eafb5d793b5e1d09c2f6a609d2068a664f5ad1"
-  integrity sha512-GBIlVw7On32k2IdCHbbN/2y9r7C5iLyzKvBmMclqQ/vMOXH5QEiCcO7qV/70LETvLLL1RZO/AhrvCIYD1pBZqQ==
-
 react-color@^2.19.3:
   version "2.19.3"
   resolved "https://registry.npmmirror.com/react-color/-/react-color-2.19.3.tgz#ec6c6b4568312a3c6a18420ab0472e146aa5683d"
