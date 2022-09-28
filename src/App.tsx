@@ -13,7 +13,6 @@ import { INDEX_URL, INSTALL_URL, LOGIN_URL } from './consts';
 import ModelBoard from './ModelBoard';
 import { AppConfigRouts } from './AppEntry/AppConfigRouts';
 import DeviceList from './AppEntry/DeviceList';
-import FlowBoard from './FlowBoard';
 import AppRunner from './AppRunner';
 import AppConfig from './AppConfig';
 import { LoggedInPanel } from './Login/LoggedInPanel';
@@ -22,6 +21,7 @@ import { FrameDesigner } from './FrameDesigner';
 import { AppPlugins } from './AppPlugins';
 import { PredefinedPluginsRoot } from './plugin/PredefinedPluginsRoot';
 import { PredefinedMaterialsRoot } from './material/PredefinedMaterialsRoot';
+import { AppFlow } from './AppFlow';
 
 const App = memo(() => {
   return (
@@ -42,7 +42,7 @@ const App = memo(() => {
             <Route path="/config-app/:appUuid" element={<AppEntry />}>
               <Route path={AppConfigRouts.Config} element={<AppConfig />} />
               <Route path={AppConfigRouts.App} element={<DeviceList />} />
-              <Route path={AppConfigRouts.Flow} element={<FlowBoard />} />
+              <Route path={AppConfigRouts.Flow} element={<AppFlow />} />
               <Route path={AppConfigRouts.Model} element={<ModelBoard />} />
               <Route path={AppConfigRouts.Api} element={<ApiBoard />} />
               <Route path={AppConfigRouts.Auth} element={<AuthBoard />} />
