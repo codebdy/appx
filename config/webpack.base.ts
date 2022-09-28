@@ -74,6 +74,10 @@ export default {
           name: '[name].[ext]',
         },
       },
+      {
+        test: /\.(ttf|eot|svg|png|jpg|gif|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: require.resolve('file-loader')
+      }
     ],
   },
 }
