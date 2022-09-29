@@ -11,12 +11,16 @@ import "bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css";
 import "bpmn-js-properties-panel/dist/assets/properties-panel.css";
 import "./style.less"
 import { PropertyBox } from "../common/ModelBoard/PropertyBox";
+import { useSelectedElement } from "./hooks/useSelectedElement";
 
 export const AppBpmn = memo((props) => {
   const { t } = useTranslation();
   const { diagramXML } = useLoadDiagramXML();
   const containerRef = useRef<HTMLDivElement>();
   const [bpmnModeler, setBpmnModeler] = useState<any>()
+  const { element } = useSelectedElement(bpmnModeler);
+
+  console.log("哈哈哈", element)
 
   useEffect(() => {
     const container = containerRef?.current;
