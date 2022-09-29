@@ -11,7 +11,7 @@ import { ModelBoard } from "../common/ModelBoard";
 import { minMapState, selectedDiagramState } from "./recoil/atoms";
 import { useRecoilValue } from "recoil";
 import { Toolbox } from "./Toolbox";
-import { ModelToolbar } from "./ModelToolbar";
+import { UmlToolbar } from "./UmlToolbar";
 import { GraphCanvas } from "./GraphCanvas";
 import { PropertyBox } from "./PropertyBox";
 
@@ -32,7 +32,7 @@ const AppUml = memo((
       <ModelBoard
         modelList={<EntityTree graph={graph}></EntityTree>}
         toolbox={selectedDiagram && <Toolbox graph={graph}></Toolbox>}
-        toolbar={<ModelToolbar />}
+        toolbar={<UmlToolbar />}
         propertyBox={<PropertyBox />}
       >
         {
