@@ -10,6 +10,7 @@ import "bpmn-js/dist/assets/bpmn-js.css";
 import "bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css";
 import "bpmn-js-properties-panel/dist/assets/properties-panel.css";
 import "./style.less"
+import { PropertyBox } from "../common/ModelBoard/PropertyBox";
 
 export const AppBpmn = memo((props) => {
   const { t } = useTranslation();
@@ -83,7 +84,7 @@ export const AppBpmn = memo((props) => {
         </Button>
       </ModelToolbar>
       }
-      propertyBox={<></>}
+      propertyBox={<PropertyBox title={t("Properties")} ></PropertyBox>}
     >
       <div className="react-bpmn-diagram-container" ref={containerRef}>
       </div>
