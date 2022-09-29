@@ -1,7 +1,9 @@
-import { Form, Input } from "antd"
+import { Collapse, Form, Input } from "antd"
 import React, { useEffect } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next"
+
+const { Panel } = Collapse;
 
 export const TaskPanel = memo((props: {
   element?: any
@@ -26,18 +28,26 @@ export const TaskPanel = memo((props: {
         form={form}
         autoComplete="off"
       >
-        <Form.Item
-          label="ID"
-          name="id"
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label={t("Name")}
-          name="name"
-        >
-          <Input.TextArea rows={2} />
-        </Form.Item>
+        <Collapse defaultActiveKey={['general']}>
+          <Panel header={t("General")} key="general">
+            <Form.Item
+              label="ID"
+              name="id"
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              label={t("Name")}
+              name="name"
+            >
+              <Input.TextArea rows={2} />
+            </Form.Item>
+          </Panel>
+          <Panel header={t("Document")} key="document">
+
+          </Panel>
+        </Collapse>
+
       </Form>
     </div>
   )
