@@ -2,13 +2,18 @@ import React, { memo, useState } from "react";
 import { EntityTree } from "./EntityTree";
 import { Graph } from "@antv/x6";
 import "@antv/x6-react-shape";
-import { ModelContent } from "./ModelContent";
 import "./style.less"
 import { useReadMeta } from "./hooks/useReadMeta";
 import { useShowError } from "../hooks/useShowError";
 import { Spin } from "antd";
 import { useSelectedAppUuid } from "../plugin-sdk/contexts/appRoot";
-import { ResizableColumn } from "../common/ResizableColumn";
+import { ModelBoard } from "../common/ModelBoard";
+import { minMapState, selectedDiagramState } from "./recoil/atoms";
+import { useRecoilValue } from "recoil";
+import { Toolbox } from "./Toolbox";
+import { ModelToolbar } from "./ModelToolbar";
+import { GraphCanvas } from "./GraphCanvas";
+import { PropertyBox } from "./PropertyBox";
 
 const AppUml = memo((
   props: {
@@ -18,19 +23,34 @@ const AppUml = memo((
   const [graph, setGraph] = useState<Graph>();
   const realAppUuid = useSelectedAppUuid();
   const { loading, error } = useReadMeta(realAppUuid);
-
+  const minMap = useRecoilValue(minMapState(realAppUuid));
+  const selectedDiagram = useRecoilValue(selectedDiagramState(realAppUuid));
   useShowError(error);
 
   return (
     <Spin tip="Loading..." spinning={loading}>
-      <div className="appx-model-board">
-        <ResizableColumn minWidth={200} maxWidth={500}>
-          <div className="model-tree-shell">
-            <EntityTree graph={graph}></EntityTree>
-          </div>
-        </ResizableColumn>
-        <ModelContent appUuid={realAppUuid} graph={graph} onSetGraph={setGraph} />
-      </div>
+      <ModelBoard
+        modelList={<EntityTree graph={graph}></EntityTree>}
+        toolbox={selectedDiagram && <Toolbox graph={graph}></Toolbox>}
+        toolbar={<ModelToolbar />}
+        propertyBox={<PropertyBox />}
+      >
+        {
+          selectedDiagram && <>
+            <GraphCanvas
+              graph={graph}
+              onSetGraph={setGraph}
+            ></GraphCanvas>
+            <div
+              className="model-minimap"
+              style={{
+                display: minMap ? "block" : "none"
+              }}
+              id="mini-map"
+            ></div>
+          </>
+        }
+      </ModelBoard>
     </Spin>
   );
 });
