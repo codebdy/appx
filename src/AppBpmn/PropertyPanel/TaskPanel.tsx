@@ -16,15 +16,18 @@ export const TaskPanel = memo((props: {
   useEffect(() => {
     form.setFieldValue("id", element?.businessObject?.id || '')
     form.setFieldValue("name", element?.businessObject?.name || '')
+    form.setFieldValue("documentation", element?.businessObject?.documentation || '')
   }, [element?.businessObject])
-  console.log("安徽", element?.businessObject)
+  console.log("Element的 businessObject", element?.businessObject)
 
   const handleValueChange = useCallback((changedValue) => {
+    const modeling = modeler.get('modeling');
     if (changedValue?.name) {
-      const modeling = modeler.get('modeling');
       modeling.updateLabel(element, changedValue.name);
+    } else if (changedValue?.documentation) {
+      modeling.updateProperties(element, { documentation: changedValue?.documentation })
     }
-  }, [])
+  }, [modeler, element])
 
   return (
     <div className="property-pannel-form">
