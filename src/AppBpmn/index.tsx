@@ -1,10 +1,12 @@
-import React from "react";
+import React, { memo } from "react";
 import { ModelToolbar } from "../common/ModelBoard/ModelToolbar";
 import { ModelBoard } from "../common/ModelBoard";
 import { ReactBpmn } from "./ReactBpmn";
+import { Button } from "antd";
+import { useTranslation } from "react-i18next";
 
-export const AppBpmn = (props) => {
-
+export const AppBpmn = memo((props) => {
+  const { t } = useTranslation();
   function onShown() {
     console.log('diagram shown');
   }
@@ -20,7 +22,14 @@ export const AppBpmn = (props) => {
   return (
     <ModelBoard
       listWidth={200}
-      toolbar={<ModelToolbar>工具栏 </ModelToolbar>}
+      toolbar={<ModelToolbar>
+        工具栏
+        <div style={{ flex: 1 }}></div>
+        <Button type="primary">
+          {t("Save")}
+        </Button>
+      </ModelToolbar>
+      }
       propertyBox={<></>}
     >
 
@@ -29,4 +38,4 @@ export const AppBpmn = (props) => {
       />
     </ModelBoard>
   );
-}
+})
