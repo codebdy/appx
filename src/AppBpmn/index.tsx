@@ -1,12 +1,65 @@
-import React, { memo } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 import { ModelToolbar } from "../common/ModelBoard/ModelToolbar";
 import { ModelBoard } from "../common/ModelBoard";
-import { ReactBpmn } from "./ReactBpmn";
 import { Button } from "antd";
 import { useTranslation } from "react-i18next";
+import { useLoadDiagramXML } from "./hooks/useLoadDiagramXML";
+import BpmnModeler from 'bpmn-js/lib/Modeler';
+import "bpmn-js/dist/assets/diagram-js.css";
+import "bpmn-js/dist/assets/bpmn-js.css";
+import "bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css";
+import "bpmn-js-properties-panel/dist/assets/properties-panel.css";
+import "./style.less"
 
 export const AppBpmn = memo((props) => {
   const { t } = useTranslation();
+  const { diagramXML } = useLoadDiagramXML();
+  const containerRef = useRef<HTMLDivElement>();
+  const [bpmnModeler, setBpmnModeler] = useState<any>()
+
+  useEffect(() => {
+    const container = containerRef?.current;
+    if (container) {
+      const bpmnModeler = new BpmnModeler({
+        container: container,
+        propertiesPanel: {
+          parent: '#js-properties-panel'
+        },
+        // additionalModules: [
+        //   BpmnPropertiesPanelModule,
+        //   BpmnPropertiesProviderModule
+        // ]
+      });
+      setBpmnModeler(bpmnModeler)
+      bpmnModeler.on('import.done', (event) => {
+        const {
+          error,
+          warnings
+        } = event;
+
+        if (error) {
+          console.error(error)
+          //return handleError(error);
+
+        } else {
+          bpmnModeler.get('canvas').zoom('fit-viewport');
+        }
+
+        //return handleShown(warnings);
+      });
+    }
+
+    return () => {
+      bpmnModeler?.destroy();
+    }
+  }, [])
+
+  useEffect(() => {
+    if (diagramXML && bpmnModeler) {
+      bpmnModeler.importXML(diagramXML);
+    }
+  }, [diagramXML, bpmnModeler])
+
   function onShown() {
     console.log('diagram shown');
   }
@@ -32,10 +85,8 @@ export const AppBpmn = memo((props) => {
       }
       propertyBox={<></>}
     >
-
-      <ReactBpmn
-        url="/public/diagram.bpmn"
-      />
+      <div className="react-bpmn-diagram-container" ref={containerRef}>
+      </div>
     </ModelBoard>
   );
 })
