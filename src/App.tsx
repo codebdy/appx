@@ -12,7 +12,7 @@ import Install from './Install';
 import { INDEX_URL, INSTALL_URL, LOGIN_URL } from './consts';
 import ModelBoard from './ModelBoard';
 import { AppConfigRouts } from './AppEntry/AppConfigRouts';
-import DeviceList from './AppEntry/DeviceList';
+import AppUis from './AppEntry/AppUis';
 import AppRunner from './AppRunner';
 import AppConfig from './AppConfig';
 import { LoggedInPanel } from './Login/LoggedInPanel';
@@ -42,7 +42,7 @@ const App = memo(() => {
             </Route>
             <Route path="/config-app/:appUuid" element={<AppEntry />}>
               <Route path={AppConfigRouts.Config} element={<AppConfig />} />
-              <Route path={AppConfigRouts.App} element={<DeviceList />} />
+              <Route path={AppConfigRouts.App} element={<AppUis />} />
               <Route path={AppConfigRouts.Bpmn} element={<AppBpmn />} />
               <Route path={AppConfigRouts.Dmn} element={<AppDmn />} />
               <Route path={AppConfigRouts.Uml} element={<ModelBoard />} />

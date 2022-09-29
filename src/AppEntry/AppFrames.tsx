@@ -1,4 +1,4 @@
-import { Card, Col, Row } from "antd";
+import { Button, Card, Col, Row } from "antd";
 import Meta from "antd/lib/card/Meta";
 import React, { useCallback } from "react"
 import { memo } from "react"
@@ -11,7 +11,7 @@ export const AppFrames = memo(() => {
   const devices = useDevices();
   const navigate = useNavigate();
   const { appUuid } = useParams();
-  
+
   const handleClick = useCallback((key: string) => {
     navigate(`/design-frame/${key}/${appUuid}/`)
   }, [navigate]);
@@ -38,6 +38,16 @@ export const AppFrames = memo(() => {
                           />
                         }
                         onClick={() => handleClick(device.key)}
+                        actions={[
+                          <Button
+                            key="design"
+                            shape="round"
+                            type="primary"
+                            onClick={() => handleClick(device.key)}
+                          >
+                            {t("AppManager.ToDesign")}
+                          </Button>
+                        ]}
                       >
                         <Meta
                           title={device.name + t("PageFrames.Title")}

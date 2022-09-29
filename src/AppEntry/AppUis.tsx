@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
 import { useDevices } from "../hooks/useDevices"
 
-const DeviceList = memo((props: {
+const AppUis = memo((props: {
   loading?: boolean
 }) => {
   const { loading } = props;
@@ -18,7 +18,7 @@ const DeviceList = memo((props: {
   return (
     <div className='content-inner'>
       <div className="content-show-block">
-        <div className="config-content">
+        <div className="config-content" style={{ marginTop: 16 }}>
           {
             loading ?
               <Skeleton active={true}></Skeleton>
@@ -55,7 +55,7 @@ const DeviceList = memo((props: {
                           ]}
                         >
                           <Meta
-                            title={device.name + t("AppManager.Design")}
+                            title={device.name + t("AppEntry.UI")}
                           />
                         </Card>
                       </Col>
@@ -70,4 +70,4 @@ const DeviceList = memo((props: {
   )
 })
 
-export default DeviceList
+export default AppUis
