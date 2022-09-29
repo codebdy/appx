@@ -12,6 +12,7 @@ import "bpmn-js-properties-panel/dist/assets/properties-panel.css";
 import "./style.less"
 import { PropertyBox } from "../common/ModelBoard/PropertyBox";
 import { useSelectedElement } from "./hooks/useSelectedElement";
+import { PropertyPanel } from "./PropertyPanel";
 
 export const AppBpmn = memo((props) => {
   const { t } = useTranslation();
@@ -19,8 +20,6 @@ export const AppBpmn = memo((props) => {
   const containerRef = useRef<HTMLDivElement>();
   const [bpmnModeler, setBpmnModeler] = useState<any>()
   const { element } = useSelectedElement(bpmnModeler);
-
-  console.log("哈哈哈", element)
 
   useEffect(() => {
     const container = containerRef?.current;
@@ -88,7 +87,9 @@ export const AppBpmn = memo((props) => {
         </Button>
       </ModelToolbar>
       }
-      propertyBox={<PropertyBox title={t("Properties")} ></PropertyBox>}
+      propertyBox={<PropertyBox title={t("Properties")} >
+        <PropertyPanel element={element} />
+      </PropertyBox>}
     >
       <div className="react-bpmn-diagram-container" ref={containerRef}>
       </div>
