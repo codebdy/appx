@@ -28,6 +28,7 @@ export const TaskPanel = memo((props: {
         wrapperCol={{ span: 24 }}
         form={form}
         autoComplete="off"
+        size="small"
       >
         <Collapse defaultActiveKey={['general']}>
           <Panel header={t("Model.General")} key="general">
