@@ -113,7 +113,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
       )
     }
     return {
-      title: t("ModelBoard.Relationships"),
+      title: t("AppUml.Relationships"),
       key: cls.uuid + "relations",
       children: children,
     }
@@ -182,19 +182,19 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     const services = classes.filter(cls => cls.stereoType === StereoType.Service && cls.packageUuid === pkg.uuid)
 
     if (abstracts.length > 0) {
-      packageChildren.push(getClassCategoryNode(t("ModelBoard.AbstractClass"), pkg.uuid + "abstracts", abstracts))
+      packageChildren.push(getClassCategoryNode(t("AppUml.AbstractClass"), pkg.uuid + "abstracts", abstracts))
     }
     if (entities.length > 0) {
-      packageChildren.push(getClassCategoryNode(t("ModelBoard.EntityClass"), pkg.uuid + "entities", entities))
+      packageChildren.push(getClassCategoryNode(t("AppUml.EntityClass"), pkg.uuid + "entities", entities))
     }
     if (enums.length > 0) {
-      packageChildren.push(getClassCategoryNode(t("ModelBoard.EnumClass"), pkg.uuid + "enums", enums))
+      packageChildren.push(getClassCategoryNode(t("AppUml.EnumClass"), pkg.uuid + "enums", enums))
     }
     if (valueObjects.length > 0) {
-      packageChildren.push(getClassCategoryNode(t("ModelBoard.ValueClass"), pkg.uuid + "valueObjects", valueObjects))
+      packageChildren.push(getClassCategoryNode(t("AppUml.ValueClass"), pkg.uuid + "valueObjects", valueObjects))
     }
     if (services.length > 0) {
-      packageChildren.push(getClassCategoryNode(t("ModelBoard.ServiceClass"), pkg.uuid + "services", services))
+      packageChildren.push(getClassCategoryNode(t("AppUml.ServiceClass"), pkg.uuid + "services", services))
     }
 
     for (const diagram of diagrams.filter(diagram => diagram.packageUuid === pkg.uuid)) {
@@ -227,7 +227,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
       </SvgIcon>,
       title:
         <TreeNodeLabel fixedAction action={<RootAction />}>
-          <div>{t("ModelBoard.DomainModel")}</div>
+          <div>{t("AppUml.DomainModel")}</div>
         </TreeNodeLabel>,
       key: "0",
       children: getPackageNodes()

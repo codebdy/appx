@@ -113,63 +113,63 @@ export const Toolbox = memo((props: { graph?: Graph }) => {
         accordion
         defaultActiveKey={["1"]}
       >
-        <Panel header={t("ModelBoard.Class")} key="1">
+        <Panel header={t("AppUml.Class")} key="1">
           <ToolItem onMouseDown={startDragFn(StereoType.Entity)}>
             <ClassRect oneBorder={false} />
-            {t("ModelBoard.EntityClass")}
+            {t("AppUml.EntityClass")}
           </ToolItem>
           <ToolItem onMouseDown={startDragFn(StereoType.Abstract)}>
             <ClassRect stereoChar="A" oneBorder={false} />
-            {t("ModelBoard.AbstractClass")}
+            {t("AppUml.AbstractClass")}
           </ToolItem>
           <ToolItem onMouseDown={startDragFn(StereoType.Enum)}>
             <ClassRect stereoChar="E" oneBorder={true} />
-            {t("ModelBoard.EnumClass")}
+            {t("AppUml.EnumClass")}
           </ToolItem>
           <ToolItem onMouseDown={startDragFn(StereoType.ValueObject)}>
             <ClassRect stereoChar="V" oneBorder={true} />
-            {t("ModelBoard.ValueClass")}
+            {t("AppUml.ValueClass")}
           </ToolItem>
           <ToolItem onMouseDown={startDragFn(StereoType.Service)}>
             <ClassRect stereoChar="V" oneBorder={true} />
-            {t("ModelBoard.ServiceClass")}
+            {t("AppUml.ServiceClass")}
           </ToolItem>
           <ToolItem
             selected={pressedLineType === RelationType.INHERIT}
             onClick={handleRelationClick(RelationType.INHERIT)}
           >
             {svgInherit}
-            {t("ModelBoard.Inherit")}
+            {t("AppUml.Inherit")}
           </ToolItem>
         </Panel>
-        <Panel header={t("ModelBoard.Relationships")} key="2">
+        <Panel header={t("AppUml.Relationships")} key="2">
           <ToolItem
             selected={pressedLineType === RelationType.TWO_WAY_ASSOCIATION}
             onClick={handleRelationClick(RelationType.TWO_WAY_ASSOCIATION)}
           >
             {svgTwoWayAssociation}
-            {t("ModelBoard.Association")}
+            {t("AppUml.Association")}
           </ToolItem>
           <ToolItem
             selected={pressedLineType === RelationType.TWO_WAY_AGGREGATION}
             onClick={handleRelationClick(RelationType.TWO_WAY_AGGREGATION)}
           >
             {svgTwoWayAggregation}
-            {t("ModelBoard.Aggregation")}
+            {t("AppUml.Aggregation")}
           </ToolItem>
           <ToolItem
             selected={pressedLineType === RelationType.TWO_WAY_COMBINATION}
             onClick={handleRelationClick(RelationType.TWO_WAY_COMBINATION)}
           >
             {svgTwoWayCombination}
-            {t("ModelBoard.Combination")}
+            {t("AppUml.Combination")}
           </ToolItem>
           <ToolItem
             selected={pressedLineType === RelationType.ONE_WAY_ASSOCIATION}
             onClick={handleRelationClick(RelationType.ONE_WAY_ASSOCIATION)}
           >
             {svgOneWayAssociation}
-            {t("ModelBoard.OneWanAssociation")}
+            {t("AppUml.OneWanAssociation")}
           </ToolItem>
         </Panel>
       </Collapse>

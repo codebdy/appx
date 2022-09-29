@@ -10,7 +10,7 @@ import { Spin } from "antd";
 import { useSelectedAppUuid } from "../plugin-sdk/contexts/appRoot";
 import { ResizableColumn } from "../common/ResizableColumn";
 
-const ModelsBoard = memo((
+const AppUml = memo((
   props: {
     actions?: React.ReactNode,
   }
@@ -35,4 +35,4 @@ const ModelsBoard = memo((
   );
 });
 
-export default ModelsBoard;
+export default AppUml;

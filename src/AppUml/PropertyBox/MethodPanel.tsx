@@ -44,7 +44,7 @@ export const MethodPanel = (props: { method: MethodMeta; cls: ClassMeta }) => {
         onValuesChange={handleChange}
       >
         <Form.Item
-          label={t("ModelBoard.Name")}
+          label={t("AppUml.Name")}
           name="name"
           validateStatus={nameError ? "error" : undefined}
           help={nameError}

@@ -1,5 +1,5 @@
-import { AttributeMeta } from "../../ModelBoard/meta/AttributeMeta";
-import { MethodMeta } from "../../ModelBoard/meta/MethodMeta";
+import { AttributeMeta } from "../../AppUml/meta/AttributeMeta";
+import { MethodMeta } from "../../AppUml/meta/MethodMeta";
 import { AssociationMeta } from "./AssociationMeta";
 
 

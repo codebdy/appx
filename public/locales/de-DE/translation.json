@@ -117,7 +117,7 @@
     "H5Design": "H5设计",
     "WebsiteDesign": "网站设计"
   },
-  "ModelBoard": {
+  "AppUml": {
     "DomainModel": "业务模型",
     "AddPackage": "添加包",
     "ExportModel": "导出模型",

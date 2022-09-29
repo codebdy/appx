@@ -43,7 +43,7 @@ export const ClassPanel = (props: { cls: ClassMeta }) => {
         onValuesChange={handleChange}
       >
         <Form.Item
-          label={t("ModelBoard.Name")}
+          label={t("AppUml.Name")}
           name="name"
           validateStatus={nameError ? "error" : undefined}
           help={nameError}
@@ -62,13 +62,13 @@ export const ClassPanel = (props: { cls: ClassMeta }) => {
             <Form.Item
               name="root"
               valuePropName="checked"
-              label={t("ModelBoard.RootNode")}
+              label={t("AppUml.RootNode")}
             >
               <Switch disabled={cls.stereoType === StereoType.Service} />
             </Form.Item>
           )}
         <Form.Item
-          label={t("ModelBoard.Description")}
+          label={t("AppUml.Description")}
           name="description"
         >
           <Input.TextArea />

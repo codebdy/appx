@@ -64,7 +64,7 @@ export const AttributePanel = (props: {
         onValuesChange={handleChange}
       >
         <Form.Item
-          label={t("ModelBoard.Name")}
+          label={t("AppUml.Name")}
           name="name"
           validateStatus={nameError ? "error" : undefined}
           help={nameError}
@@ -88,25 +88,25 @@ export const AttributePanel = (props: {
               !isId &&
               <>
                 <Form.Item
-                  label={t("ModelBoard.Nullable")}
+                  label={t("AppUml.Nullable")}
                   name="nullable"
                 >
                   <Switch />
                 </Form.Item>
                 <Form.Item
-                  label={t("ModelBoard.Unique")}
+                  label={t("AppUml.Unique")}
                   name="unique"
                 >
                   <Switch />
                 </Form.Item>
                 <Form.Item
-                  label={t("ModelBoard.Index")}
+                  label={t("AppUml.Index")}
                   name="index"
                 >
                   <Switch />
                 </Form.Item>
                 <Form.Item
-                  label={t("ModelBoard.HiddenField")}
+                  label={t("AppUml.HiddenField")}
                   name="hidden"
                 >
                   <Switch />
@@ -117,19 +117,19 @@ export const AttributePanel = (props: {
               attribute.type === Types.Date &&
               <>
                 <Form.Item
-                  label={t("ModelBoard.CreateDate")}
+                  label={t("AppUml.CreateDate")}
                   name="createDate"
                 >
                   <Switch />
                 </Form.Item>
                 <Form.Item
-                  label={t("ModelBoard.UpdateDate")}
+                  label={t("AppUml.UpdateDate")}
                   name="updateDate"
                 >
                   <Switch />
                 </Form.Item>
                 <Form.Item
-                  label={t("ModelBoard.DeleteDate")}
+                  label={t("AppUml.DeleteDate")}
                   name="deleteDate"
                 >
                   <Switch />
@@ -140,7 +140,7 @@ export const AttributePanel = (props: {
               !isId &&
               <>
                 <Form.Item
-                  label={t("ModelBoard.DefaultValue")}
+                  label={t("AppUml.DefaultValue")}
                   name="default"
                 >
                   <Input />
@@ -157,7 +157,7 @@ export const AttributePanel = (props: {
           </>
         )}
         <Form.Item
-          label={t("ModelBoard.Description")}
+          label={t("AppUml.Description")}
           name="description"
         >
           <Input.TextArea />

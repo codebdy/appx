@@ -184,7 +184,7 @@
     "TemplateName": "模板名称",
     "Image": "图片"
   },
-  "ModelBoard": {
+  "AppUml": {
     "DomainModel": "业务模型",
     "AddPackage": "添加包",
     "ExportModel": "导出模型",

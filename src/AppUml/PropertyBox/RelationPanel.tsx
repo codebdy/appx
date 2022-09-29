@@ -51,7 +51,7 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
           <div style={{
             width: "100%",
             padding: "8px",
-          }}>{t("ModelBoard.Inherit")}</div>
+          }}>{t("AppUml.Inherit")}</div>
           : <Form
             name="classForm"
             form={form}
@@ -64,9 +64,9 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
             onValuesChange={handleChange}
           >
             <Collapse className="no-border" defaultActiveKey={['1', '2']}>
-              <Panel header={source?.name + t("ModelBoard.Side")} key="1">
+              <Panel header={source?.name + t("AppUml.Side")} key="1">
                 <Form.Item
-                  label={t("ModelBoard.Multiplicity")}
+                  label={t("AppUml.Multiplicity")}
                   name="sourceMutiplicity"
                 >
                   <Select>
@@ -86,7 +86,7 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
                   relation.relationType !== RelationType.ONE_WAY_COMBINATION &&
                   <>
                     <Form.Item
-                      label={t("ModelBoard.RoleName")}
+                      label={t("AppUml.RoleName")}
                       name="roleOfSource"
                     >
                       <Input />
@@ -98,7 +98,7 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
                       <MultiLangInput inline title={t("Label")} />
                     </Form.Item>
                     <Form.Item
-                      label={t("ModelBoard.Description")}
+                      label={t("AppUml.Description")}
                       name="descriptionOnSource"
                     >
                       <Input.TextArea />
@@ -106,9 +106,9 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
                   </>
                 }
               </Panel>
-              <Panel header={target?.name + t("ModelBoard.Side")} key="2">
+              <Panel header={target?.name + t("AppUml.Side")} key="2">
                 <Form.Item
-                  label={t("ModelBoard.Multiplicity")}
+                  label={t("AppUml.Multiplicity")}
                   name="targetMultiplicity"
                 >
                   <Select>
@@ -117,7 +117,7 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
                   </Select>
                 </Form.Item>
                 <Form.Item
-                  label={t("ModelBoard.RoleName")}
+                  label={t("AppUml.RoleName")}
                   name="roleOfTarget"
                 >
                   <Input />
@@ -129,7 +129,7 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
                   <MultiLangInput inline title={t("Label")} />
                 </Form.Item>
                 <Form.Item
-                  label={t("ModelBoard.Description")}
+                  label={t("AppUml.Description")}
                   name="descriptionOnTarget"
                 >
                   <Input.TextArea />
