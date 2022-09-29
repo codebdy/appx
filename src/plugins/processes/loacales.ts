@@ -1,10 +1,10 @@
 export const locales = {
   'zh-CN': {
-    Flows: '流程组件',
+    Processes: '流程组件',
     Description :'',
   },
   'en-US': {
-    Flows: 'Flows',
+    Processes: 'Processes',
     Description: '',
   },
 }
