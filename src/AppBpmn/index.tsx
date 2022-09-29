@@ -1,6 +1,6 @@
 import React from "react";
+import { ModelToolbar } from "../common/ModelBoard/ModelToolbar";
 import { ModelBoard } from "../common/ModelBoard";
-import { ProcessList } from "./ProcessList";
 import { ReactBpmn } from "./ReactBpmn";
 
 export const AppBpmn = (props) => {
@@ -20,7 +20,7 @@ export const AppBpmn = (props) => {
   return (
     <ModelBoard
       listWidth={200}
-      toolbar={<>工具栏 </>}
+      toolbar={<ModelToolbar>工具栏 </ModelToolbar>}
       propertyBox={<></>}
     >
 
