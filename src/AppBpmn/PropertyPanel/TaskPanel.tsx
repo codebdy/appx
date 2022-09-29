@@ -1,12 +1,19 @@
 import { Form, Input } from "antd"
-import React from "react"
+import React, { useEffect } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next"
 
 export const TaskPanel = memo((props: {
   element?: any
 }) => {
+  const { element } = props;
   const { t } = useTranslation();
+  const [form] = Form.useForm();
+
+  useEffect(() => {
+    form.setFieldValue("id", element?.businessObject?.id || '')
+    form.setFieldValue("name", element?.businessObject?.name || '')
+  }, [element?.businessObject])
 
   return (
     <div className="property-pannel-form">
@@ -14,8 +21,9 @@ export const TaskPanel = memo((props: {
         name="taskform"
         labelCol={{ span: 8 }}
         labelAlign="left"
-        wrapperCol={{ span: 16 }}
-        initialValues={{}}
+        layout="vertical"
+        wrapperCol={{ span: 24 }}
+        form={form}
         autoComplete="off"
       >
         <Form.Item
@@ -28,7 +36,7 @@ export const TaskPanel = memo((props: {
           label={t("Name")}
           name="name"
         >
-          <Input />
+          <Input.TextArea rows={2} />
         </Form.Item>
       </Form>
     </div>
