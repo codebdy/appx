@@ -1,4 +1,5 @@
 import React from "react";
+import { ModelBoard } from "../common/ModelBoard";
 import { ReactBpmn } from "./ReactBpmn";
 
 export const AppBpmn = (props) => {
@@ -16,8 +17,15 @@ export const AppBpmn = (props) => {
   }
 
   return (
-    <ReactBpmn
-      url="/public/diagram.bpmn"
-    />
+    <ModelBoard
+      modelList={<></>}
+      toolbar={<></>}
+      propertyBox={<></>}
+    >
+
+      <ReactBpmn
+        url="/public/diagram.bpmn"
+      />
+    </ModelBoard>
   );
 }
