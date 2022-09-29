@@ -1,6 +1,4 @@
-import React from "react";
-import ToolbarArea from "./ToolbarArea";
-import ToolbarTitle from "./ToolbarTitle";
+import React, { memo } from "react";
 import { ClassPanel } from "./ClassPanel";
 import { AttributePanel } from "./AttributePanel";
 import { RelationPanel } from "./RelationPanel";
@@ -14,8 +12,9 @@ import { MethodPanel } from "./MethodPanel";
 import { Empty } from "antd";
 import { useTranslation } from "react-i18next";
 import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
+import { PropertyBox } from "../../common/ModelBoard/PropertyBox";
 
-export const PropertyBox = () => {
+export const PropertyPanel = memo(() => {
   const serviceId = useSelectedAppUuid();
   const selectedElement = useRecoilValue(selectedElementState(serviceId));
   const selectedEntity = useClass(selectedElement || "", serviceId);
@@ -31,30 +30,18 @@ export const PropertyBox = () => {
   const relation = useRelation(selectedElement || "", serviceId);
 
   return (
-    <div
-      className="property-box left-border"
-    >
-      <ToolbarArea>
-        <ToolbarTitle>{t("AppUml.Properties")}</ToolbarTitle>
-      </ToolbarArea>
-      <div
-        style={{
-          flex: 1,
-          overflow: "auto",
-        }}
-      >
-        {selectedEntity && <ClassPanel cls={selectedEntity} />}
-        {attribute && attributeCls && (
-          <AttributePanel attribute={attribute} cls={attributeCls} />
-        )}
-        {method && methodCls && <MethodPanel method={method} cls={methodCls} />}
-        {relation && <RelationPanel relation={relation} />}
-        {!selectedElement && (
-          <div style={{padding:"16px"}}>
-            <Empty />
-          </div>
-        )}
-      </div>
-    </div>
+    <PropertyBox title={t("AppUml.Properties")} >
+      {selectedEntity && <ClassPanel cls={selectedEntity} />}
+      {attribute && attributeCls && (
+        <AttributePanel attribute={attribute} cls={attributeCls} />
+      )}
+      {method && methodCls && <MethodPanel method={method} cls={methodCls} />}
+      {relation && <RelationPanel relation={relation} />}
+      {!selectedElement && (
+        <div style={{ padding: "16px" }}>
+          <Empty />
+        </div>
+      )}
+    </PropertyBox>
   );
-};
+});

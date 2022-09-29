@@ -13,7 +13,7 @@ import { useRecoilValue } from "recoil";
 import { Toolbox } from "./Toolbox";
 import { UmlToolbar } from "./UmlToolbar";
 import { GraphCanvas } from "./GraphCanvas";
-import { PropertyBox } from "./PropertyBox";
+import { PropertyPanel } from "./PropertyPanel";
 
 const AppUml = memo((
   props: {
@@ -33,7 +33,7 @@ const AppUml = memo((
         modelList={<EntityTree graph={graph}></EntityTree>}
         toolbox={selectedDiagram && <Toolbox graph={graph}></Toolbox>}
         toolbar={<UmlToolbar />}
-        propertyBox={<PropertyBox />}
+        propertyBox={<PropertyPanel />}
       >
         {
           selectedDiagram && <>
