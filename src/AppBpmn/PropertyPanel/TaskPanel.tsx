@@ -39,7 +39,7 @@ export const TaskPanel = memo((props: {
         size="small"
         onValuesChange={handleValueChange}
       >
-        <Collapse defaultActiveKey={['general']}>
+        <Collapse defaultActiveKey={['general']} expandIconPosition="end">
           <Panel header={t("Model.General")} key="general">
             <Form.Item
               label="ID"
