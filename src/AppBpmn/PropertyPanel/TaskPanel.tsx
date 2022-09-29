@@ -26,6 +26,8 @@ export const TaskPanel = memo((props: {
       modeling.updateLabel(element, changedValue.name);
     } else if (changedValue?.documentation) {
       modeling.updateProperties(element, { documentation: changedValue?.documentation })
+    } else if (changedValue?.id) {
+      modeling.updateProperties(element, { id: changedValue?.id })
     }
   }, [modeler, element])
 
