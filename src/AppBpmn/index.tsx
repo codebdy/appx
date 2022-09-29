@@ -18,6 +18,7 @@ export const AppBpmn = (props) => {
 
   return (
     <ModelBoard
+      listWidth={200}
       modelList={<></>}
       toolbar={<></>}
       propertyBox={<></>}
