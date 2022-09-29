@@ -4,14 +4,15 @@ import { TaskPanel } from "./TaskPanel"
 import "./style.less"
 
 export const PropertyPanel = memo((props: {
-  element?: any
+  element?: any,
+  modeler?: any,
 }) => {
-  const { element } = props;
+  const { element, modeler } = props;
   return (
     <div>
       {
         element?.type === "bpmn:Task" &&
-        <TaskPanel key={element?.id} element={element} />
+        <TaskPanel key={element?.id} element={element} modeler={modeler} />
       }
     </div>
   )

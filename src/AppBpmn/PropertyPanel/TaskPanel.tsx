@@ -1,14 +1,15 @@
 import { Collapse, Form, Input } from "antd"
-import React, { useEffect } from "react"
+import React, { useCallback, useEffect } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next"
 
 const { Panel } = Collapse;
 
 export const TaskPanel = memo((props: {
-  element?: any
+  element?: any,
+  modeler?: any,
 }) => {
-  const { element } = props;
+  const { element, modeler } = props;
   const { t } = useTranslation();
   const [form] = Form.useForm();
 
@@ -17,6 +18,13 @@ export const TaskPanel = memo((props: {
     form.setFieldValue("name", element?.businessObject?.name || '')
   }, [element?.businessObject])
   console.log("安徽", element?.businessObject)
+
+  const handleValueChange = useCallback((changedValue) => {
+    if (changedValue?.name) {
+      const modeling = modeler.get('modeling');
+      modeling.updateLabel(element, changedValue.name);
+    }
+  }, [])
 
   return (
     <div className="property-pannel-form">
@@ -29,6 +37,7 @@ export const TaskPanel = memo((props: {
         form={form}
         autoComplete="off"
         size="small"
+        onValuesChange={handleValueChange}
       >
         <Collapse defaultActiveKey={['general']}>
           <Panel header={t("Model.General")} key="general">

@@ -88,7 +88,7 @@ export const AppBpmn = memo((props) => {
       </ModelToolbar>
       }
       propertyBox={<PropertyBox title={t("Properties")} >
-        <PropertyPanel element={element} />
+        <PropertyPanel element={element} modeler={bpmnModeler} />
       </PropertyBox>}
     >
       <div className="react-bpmn-diagram-container" ref={containerRef}>
