@@ -16,6 +16,7 @@ export const TaskPanel = memo((props: {
     form.setFieldValue("id", element?.businessObject?.id || '')
     form.setFieldValue("name", element?.businessObject?.name || '')
   }, [element?.businessObject])
+  console.log("安徽", element?.businessObject)
 
   return (
     <div className="property-pannel-form">
@@ -29,7 +30,7 @@ export const TaskPanel = memo((props: {
         autoComplete="off"
       >
         <Collapse defaultActiveKey={['general']}>
-          <Panel header={t("General")} key="general">
+          <Panel header={t("Model.General")} key="general">
             <Form.Item
               label="ID"
               name="id"
@@ -43,7 +44,7 @@ export const TaskPanel = memo((props: {
               <Input.TextArea rows={2} />
             </Form.Item>
           </Panel>
-          <Panel header={t("Document")} key="document">
+          <Panel header={t("Model.Documentation")} key="document">
 
           </Panel>
         </Collapse>

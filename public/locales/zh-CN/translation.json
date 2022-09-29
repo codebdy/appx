@@ -16,7 +16,6 @@
   "Properties": "属性",
   "App": "应用",
   "AppTemplates": "应用模板",
-  "Model": "模型",
   "Template": "模板",
   "Engines": "引擎中心",
   "SystemConfig": "系统管理",
@@ -53,8 +52,13 @@
   "CloseConfirm": "关闭确认",
   "SaveRemind": "修改没有保存，确实要关闭吗？",
   "Version": "版本",
-  "General": "通用",
   "Document": "文档",
+  "Model":{
+    "Title":"模型",
+    "General": "通用",
+    "Documentation":"文档",
+    "ElementDocumentation":"元素文档"
+  },
   "install": {
     "Title": "安装Appx",
     "Next": "下一步",

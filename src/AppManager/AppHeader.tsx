@@ -138,7 +138,7 @@ const AppHeader = memo((props: {
           </SvgIcon>
 
         }>
-          {t("Model")}
+          {t("Model.Title")}
         </Button>
         <Button shape="round" className='nav-button'
           type={match.pathname === AppManagerRoutes.Templates ? "primary" : undefined}
