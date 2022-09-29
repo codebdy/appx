@@ -1,4 +1,4 @@
-import { QuestionCircleOutlined, GithubOutlined, HomeOutlined, DownOutlined, LayoutOutlined, ApiOutlined, SettingOutlined } from "@ant-design/icons"
+import { QuestionCircleOutlined, GithubOutlined, HomeOutlined, DownOutlined, ApiOutlined, SettingOutlined, DesktopOutlined } from "@ant-design/icons"
 import { Button, Divider, Menu, Space } from "antd"
 import { Header } from "antd/lib/layout/layout"
 import React, { useCallback } from "react"
@@ -49,7 +49,7 @@ const EntryHeader = memo((props: {
               }
               <DownOutlined style={{ fontSize: 10, marginLeft: 8 }} />
             </>,
-            icon: <LayoutOutlined />,
+            icon: <DesktopOutlined />,
             children: [
               {
                 key: AppConfigRouts.App,
