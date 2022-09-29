@@ -55,7 +55,12 @@ export const TaskPanel = memo((props: {
             </Form.Item>
           </Panel>
           <Panel header={t("Model.Documentation")} key="document">
-
+            <Form.Item
+              label={t("Model.ElementDocumentation")}
+              name="documentation"
+            >
+              <Input.TextArea rows={3} />
+            </Form.Item>
           </Panel>
         </Collapse>
 
