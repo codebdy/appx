@@ -30,6 +30,7 @@ export function useDataQuery(params?: IQueryParams): QueryResponse {
   })
 
   const load = useCallback(() => {
+    console.log("DataQuery 加载", params)
     if (!params?.gql || !endpoint) {
       return
     }

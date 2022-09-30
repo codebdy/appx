@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 import { AttributeTypeInput } from "./AttributeTypeInput";
 import { MultiLangInput } from "../../plugins/inputs/components/pc/MultiLangInput/view";
 import { isStr } from "@formily/shared";
-import { useEdittingAppUuid } from "../hooks/useAppUuid";
+import { useEdittingAppUuid } from "../../hooks/useEdittingAppUuid";
 
 export const AttributePanel = (props: {
   attribute: AttributeMeta;

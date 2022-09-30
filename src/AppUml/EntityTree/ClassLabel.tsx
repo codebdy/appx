@@ -11,7 +11,7 @@ import { selectedElementState, classesState } from './../recoil/atoms';
 import { Button } from "antd"
 import { DeleteOutlined } from "@ant-design/icons"
 import { useDeleteClass } from "../hooks/useDeleteClass"
-import { useEdittingAppUuid } from "../hooks/useAppUuid"
+import { useEdittingAppUuid } from "../../hooks/useEdittingAppUuid"
 
 const { Dnd } = Addon;
 

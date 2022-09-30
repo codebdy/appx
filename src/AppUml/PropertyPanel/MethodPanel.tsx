@@ -7,7 +7,7 @@ import { Form, Input } from "antd";
 import { MultiLangInput } from "../../plugins/inputs/components/pc/MultiLangInput/view";
 import { useTranslation } from "react-i18next";
 import { MethodTypeInput } from "./MethodTypeInput";
-import { useEdittingAppUuid } from "../hooks/useAppUuid";
+import { useEdittingAppUuid } from "../../hooks/useEdittingAppUuid";
 
 export const MethodPanel = (props: { method: MethodMeta; cls: ClassMeta }) => {
   const { method, cls } = props;

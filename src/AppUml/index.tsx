@@ -13,7 +13,7 @@ import { Toolbox } from "./Toolbox";
 import { UmlToolbar } from "./UmlToolbar";
 import { GraphCanvas } from "./GraphCanvas";
 import { PropertyPanel } from "./PropertyPanel";
-import { useEdittingAppUuid } from "./hooks/useAppUuid";
+import { useEdittingAppUuid } from "../hooks/useEdittingAppUuid";
 
 const AppUml = memo((
   props: {

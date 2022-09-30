@@ -4,7 +4,7 @@ import { useChangeClass } from "../hooks/useChangeClass";
 import { Form, Input, Switch } from "antd";
 import { useTranslation } from "react-i18next";
 import { MultiLangInput } from "../../plugins/inputs/components/pc/MultiLangInput/view";
-import { useEdittingAppUuid } from "../hooks/useAppUuid";
+import { useEdittingAppUuid } from "../../hooks/useEdittingAppUuid";
 
 export const ClassPanel = (props: { cls: ClassMeta }) => {
   const { cls } = props;

@@ -9,7 +9,7 @@ import { DiagramMeta } from "../meta/DiagramMeta";
 import DiagramAction from "./DiagramAction";
 import { useGetPackage } from "../hooks/useGetPackage";
 import { SYSTEM_APP_UUID } from "../../consts";
-import { useEdittingAppUuid } from "../hooks/useAppUuid";
+import { useEdittingAppUuid } from "../../hooks/useEdittingAppUuid";
 
 
 const DiagramLabel = memo((

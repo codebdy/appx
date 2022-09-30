@@ -6,12 +6,12 @@ import React from "react";
 import { HEADER_AUTHORIZATION, TOKEN_PREFIX, HEADER_APPX_APPUUID } from "../consts";
 import "./index.less";
 import { useEndpoint, useToken } from "../enthooks";
-import { useSelectedAppUuid } from "../plugin-sdk/contexts/appRoot";
+import { useEdittingAppUuid } from "../hooks/useEdittingAppUuid";
 
 //例子連接
 //https://github.com/graphql/graphiql/blob/main/packages/graphiql-toolkit/docs/create-fetcher.md#subscriptionurl
 const ApiBoard = memo(() => {
-  const realAppUuid = useSelectedAppUuid();
+  const realAppUuid = useEdittingAppUuid();
   const token = useToken();
   const endppoint = useEndpoint();
   const fetcher = useMemo(() => {

@@ -19,7 +19,7 @@ import { Collapse } from "antd";
 import "./index.less";
 import { PRIMARY_COLOR } from "../../consts";
 import { useTranslation } from "react-i18next";
-import { useEdittingAppUuid } from "../hooks/useAppUuid";
+import { useEdittingAppUuid } from "../../hooks/useEdittingAppUuid";
 
 const { Dnd } = Addon;
 const { Panel } = Collapse;
