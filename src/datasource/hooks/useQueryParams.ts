@@ -46,7 +46,7 @@ export function useQueryParams(
   const expScope = useExpressionScope()
   const convertQueryForm = useConvertQueryFormToGqlNodes();
   const params = useMemo(() => {
-    const pms: IQueryParams = {refreshFlag}
+    const pms: IQueryParams = { refreshFlag }
     if (dataBind?.expression) {
       try {
         const ast = parse(dataBind?.expression);
@@ -65,7 +65,6 @@ export function useQueryParams(
         pms.entityName = dataBind?.entityName;
 
         const shchemaFragmentAst = parse(fragmentFromSchema.gql);
-
         pms.variables = dataBind?.variables;
 
         var compiledAST = visit(ast, {
@@ -97,7 +96,7 @@ export function useQueryParams(
               }
               if ((orderBys?.length || fragmentFromSchema?.orderBys?.length) &&
                 !node.arguments?.find(argument => argument.name?.value === "orderBy")) {
-                  args.push({
+                args.push({
                   kind: Kind.ARGUMENT,
                   name: {
                     kind: Kind.NAME,
@@ -265,7 +264,20 @@ export function useQueryParams(
     }
 
     return pms;
-  }, [convertQueryForm, current, dataBind?.entityName, dataBind?.expression, dataBind?.variables, expScope, fragmentFromSchema.gql, fragmentFromSchema.orderBys, orderBys, pageSize, queryForm, queryType, refreshFlag, t]);
+  }, [convertQueryForm,
+    current,
+    dataBind?.entityName,
+    dataBind?.expression,
+    dataBind?.variables,
+    expScope,
+    fragmentFromSchema,
+    orderBys,
+    pageSize,
+    queryForm,
+    queryType,
+    refreshFlag,
+    t
+  ]);
   //console.log("Query GQL:", params?.gql, params?.variables);
   return params
 }

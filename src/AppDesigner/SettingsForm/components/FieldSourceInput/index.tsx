@@ -35,6 +35,10 @@ export const FieldSourceInput = observer((
   }, [getEntity])
 
   const handleSingleChange = useCallback((value) => {
+    if (!value) {
+      onChange(undefined);
+      return;
+    }
     const attr = currentEntity?.attributes?.find(attr => attr.name === value);
     if (attr) {
       onChange(createAttrSource(attr))

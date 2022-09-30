@@ -90,5 +90,6 @@ export function useQueryFragmentFromSchema(schema?: Schema): IFragmentParams {
     return {}
   }, [getFragmentFromSchema, makeOneField, schema]);
 
+
   return fragment
 }
