@@ -6,7 +6,7 @@ import { ClassMeta } from "../meta/ClassMeta";
 import { PlusOutlined } from "@ant-design/icons";
 import { useCreateClassMethod } from './../hooks/useCreateClassMethod';
 import { useTranslation } from "react-i18next";
-import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
+import { useEdittingAppUuid } from "../hooks/useAppUuid";
 
 const MethodsLabel = memo((
   props: {
@@ -14,7 +14,7 @@ const MethodsLabel = memo((
   }
 ) => {
   const { cls } = props;
-  const appUuid = useSelectedAppUuid();
+  const appUuid = useEdittingAppUuid();
   const addMethod = useCreateClassMethod(appUuid);
   const { t } = useTranslation();
   

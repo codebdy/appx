@@ -1,7 +1,7 @@
 import { AwesomeGraphQLClient, GraphQLRequestError } from "awesome-graphql-client";
 import { useCallback } from "react";
 import { HEADER_APPX_APPUUID, HEADER_AUTHORIZATION, TOKEN_PREFIX } from "../../consts";
-import { useAppUuid, useEndpoint, useToken } from "../context";
+import { useEnthooksAppUuid, useEndpoint, useToken } from "../context";
 
 const gql = `
   mutation ($file:Upload!){
@@ -12,7 +12,7 @@ const gql = `
 export function useUpload() {
   const endpoint = useEndpoint();
   const token = useToken();
-  const appUuid = useAppUuid();
+  const appUuid = useEnthooksAppUuid();
 
   const upload = useCallback((file: File) => {
     const p = new Promise<string>((resolve, reject) => {

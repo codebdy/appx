@@ -11,7 +11,7 @@ import { StereoType } from "../meta/ClassMeta";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
 import { useTranslation } from "react-i18next";
 import { SYSTEM_APP_UUID } from "../../consts";
-import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
+import { useEdittingAppUuid } from "../hooks/useAppUuid";
 
 const PackageAction = memo((
   props: {
@@ -21,7 +21,7 @@ const PackageAction = memo((
   }
 ) => {
   const { pkg, onEdit, onVisibleChange } = props;
-  const appUuid = useSelectedAppUuid()
+  const appUuid = useEdittingAppUuid();
   const deletePackage = useDeletePackage(appUuid)
   const createNewClass = useCreateNewClass(appUuid);
   const createNewDiagram = useCreateNewDiagram(appUuid);

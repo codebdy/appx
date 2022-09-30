@@ -11,7 +11,7 @@ import { selectedElementState, classesState } from './../recoil/atoms';
 import { Button } from "antd"
 import { DeleteOutlined } from "@ant-design/icons"
 import { useDeleteClass } from "../hooks/useDeleteClass"
-import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot"
+import { useEdittingAppUuid } from "../hooks/useAppUuid"
 
 const { Dnd } = Addon;
 
@@ -23,7 +23,7 @@ const ClassLabel = memo((
 ) => {
   const { cls, graph } = props;
   const [dnd, setDnd] = React.useState<any>();
-  const appUuid = useSelectedAppUuid();
+  const appUuid = useEdittingAppUuid();
   const classes = useRecoilValue(classesState(appUuid));
   const selectedElement = useRecoilValue(selectedElementState(appUuid));
   const deleteClass = useDeleteClass(appUuid);

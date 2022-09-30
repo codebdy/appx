@@ -3,18 +3,18 @@ import { MethodMeta } from "../meta/MethodMeta";
 import { ClassMeta } from "../meta/ClassMeta";
 import { useChangeMethod } from "../hooks/useChangeMethod";
 import { useGetTypeLabel } from "../hooks/useGetTypeLabel";
-import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
 import { Form, Input } from "antd";
 import { MultiLangInput } from "../../plugins/inputs/components/pc/MultiLangInput/view";
 import { useTranslation } from "react-i18next";
 import { MethodTypeInput } from "./MethodTypeInput";
+import { useEdittingAppUuid } from "../hooks/useAppUuid";
 
 export const MethodPanel = (props: { method: MethodMeta; cls: ClassMeta }) => {
   const { method, cls } = props;
   const [nameError, setNameError] = useState<string>();
-  const serviceId = useSelectedAppUuid();
-  const changeMethod = useChangeMethod(serviceId);
-  const getTypeLabel = useGetTypeLabel(serviceId);
+  const appUuid = useEdittingAppUuid();
+  const changeMethod = useChangeMethod(appUuid);
+  const getTypeLabel = useGetTypeLabel(appUuid);
   const { t } = useTranslation();
   const [form] = Form.useForm()
 

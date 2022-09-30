@@ -9,8 +9,8 @@ import { Form, Input, Switch } from "antd";
 import { useTranslation } from "react-i18next";
 import { AttributeTypeInput } from "./AttributeTypeInput";
 import { MultiLangInput } from "../../plugins/inputs/components/pc/MultiLangInput/view";
-import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
 import { isStr } from "@formily/shared";
+import { useEdittingAppUuid } from "../hooks/useAppUuid";
 
 export const AttributePanel = (props: {
   attribute: AttributeMeta;
@@ -18,9 +18,9 @@ export const AttributePanel = (props: {
 }) => {
   const { attribute, cls } = props;
   const [nameError, setNameError] = useState<string>();
-  const serviceId = useSelectedAppUuid();
-  const changeAttribute = useChangeAttribute(serviceId);
-  const getTypeLabel = useGetTypeLabel(serviceId);
+  const appUuid = useEdittingAppUuid();
+  const changeAttribute = useChangeAttribute(appUuid);
+  const getTypeLabel = useGetTypeLabel(appUuid);
   const { t } = useTranslation();
   const [form] = Form.useForm()
 

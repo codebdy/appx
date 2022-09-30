@@ -16,11 +16,11 @@ import { Button, Divider } from "antd";
 import { DeleteOutlined, RedoOutlined, UndoOutlined } from "@ant-design/icons";
 import { PRIMARY_COLOR } from "../../consts";
 import SaveActions from "../SaveActions";
-import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
 import { ModelToolbar } from "../../common/ModelBoard/ModelToolbar";
+import { useEdittingAppUuid } from "../hooks/useAppUuid";
 
 export const UmlToolbar = memo(() => {
-  const appUuid = useSelectedAppUuid();
+  const appUuid = useEdittingAppUuid();
   const undoList = useRecoilValue(undoListState(appUuid));
   const redoList = useRecoilValue(redoListState(appUuid));
   const selectedDiagram = useRecoilValue(selectedDiagramState(appUuid));

@@ -21,7 +21,7 @@ import { useGetTargetRelations } from './../hooks/useGetTargetRelations';
 import { useGetClass } from "../hooks/useGetClass";
 import { MethodMeta } from "../meta/MethodMeta";
 import AttributeLabel from "./AttributeLabel";
-import { PRIMARY_COLOR } from "../../consts";
+import { PRIMARY_COLOR, SYSTEM_APP_UUID } from "../../consts";
 import MethodLabel from "./MethodLabel";
 import AttributesLabel from "./AttributesLabel";
 import MethodsLabel from "./MethodsLabel";
@@ -29,12 +29,12 @@ import RelationLabel from "./RelationLabel";
 import { useTranslation } from "react-i18next";
 import PlugIcon from "../../icons/PlugIcon";
 import DiagramLabel from "./DiagramLabel";
-import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
+import { useParams } from "react-router-dom";
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
   const { graph } = props;
-  const appUuid = useSelectedAppUuid();
+  const { appUuid = SYSTEM_APP_UUID } = useParams();
   const packages = useRecoilValue(packagesState(appUuid));
   const diagrams = useRecoilValue(diagramsState(appUuid));
   const classes = useRecoilValue(classesState(appUuid));

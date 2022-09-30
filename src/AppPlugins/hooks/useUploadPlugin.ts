@@ -1,6 +1,6 @@
 import { AwesomeGraphQLClient, GraphQLRequestError } from "awesome-graphql-client";
 import { useCallback } from "react";
-import { useAppUuid, useEndpoint, useToken } from "../../enthooks";
+import { useEnthooksAppUuid, useEndpoint, useToken } from "../../enthooks";
 import { HEADER_APPX_APPUUID, HEADER_AUTHORIZATION, TOKEN_PREFIX } from "../../consts";
 
 const gql = `
@@ -12,7 +12,7 @@ const gql = `
 export function useUploadPlugin() {
   const endpoint = useEndpoint();
   const token = useToken();
-  const appUuid = useAppUuid();
+  const appUuid = useEnthooksAppUuid();
 
   const upload = useCallback((file: File) => {
     const p = new Promise<string>((resolve, reject) => {

@@ -39,7 +39,7 @@ export const useEndpoint = () => {
   return iEntx?.endpoint
 }
 
-export const useAppUuid = ()=>{
+export const useEnthooksAppUuid = ()=>{
   const iEntx = useEntix();
   return iEntx?.appUuid
 }

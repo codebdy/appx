@@ -6,7 +6,6 @@ import "./style.less"
 import { useReadMeta } from "./hooks/useReadMeta";
 import { useShowError } from "../hooks/useShowError";
 import { Spin } from "antd";
-import { useSelectedAppUuid } from "../plugin-sdk/contexts/appRoot";
 import { ModelBoard } from "../common/ModelBoard";
 import { minMapState, selectedDiagramState } from "./recoil/atoms";
 import { useRecoilValue } from "recoil";
@@ -14,6 +13,7 @@ import { Toolbox } from "./Toolbox";
 import { UmlToolbar } from "./UmlToolbar";
 import { GraphCanvas } from "./GraphCanvas";
 import { PropertyPanel } from "./PropertyPanel";
+import { useEdittingAppUuid } from "./hooks/useAppUuid";
 
 const AppUml = memo((
   props: {
@@ -21,10 +21,10 @@ const AppUml = memo((
   }
 ) => {
   const [graph, setGraph] = useState<Graph>();
-  const realAppUuid = useSelectedAppUuid();
-  const { loading, error } = useReadMeta(realAppUuid);
-  const minMap = useRecoilValue(minMapState(realAppUuid));
-  const selectedDiagram = useRecoilValue(selectedDiagramState(realAppUuid));
+  const appUuid = useEdittingAppUuid();
+  const { loading, error } = useReadMeta(appUuid);
+  const minMap = useRecoilValue(minMapState(appUuid));
+  const selectedDiagram = useRecoilValue(selectedDiagramState(appUuid));
   useShowError(error);
 
   return (

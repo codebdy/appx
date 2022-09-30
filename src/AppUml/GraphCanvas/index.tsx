@@ -13,12 +13,12 @@ import { useEdgeSelect } from "./useEdgeSelect";
 import { useTriggerSelectedEvent } from "./useTriggerSelectedEvent";
 import { useEdgeHover } from "./useEdgeHover";
 import { useTriggerPressedLineTypeEvent } from "./useTriggerPressedLineTypeEvent";
-import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
+import { useEdittingAppUuid } from "../hooks/useAppUuid";
 
 export const GraphCanvas = memo(
   (props: { graph?: Graph; onSetGraph: (graph?: Graph) => void }) => {
     const { graph, onSetGraph } = props;
-    const appUuid = useSelectedAppUuid();
+    const appUuid = useEdittingAppUuid();
 
     useEffect(() => {
       const config = getGraphConfig();

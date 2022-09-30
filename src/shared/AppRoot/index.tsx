@@ -7,13 +7,14 @@ import { AppRootInner } from './AppRootInner'
 
 const AppRoot = memo((
   props: {
-    children: React.ReactNode
+    children: React.ReactNode,
+    appUuid?: string,
   }
 ) => {
-  const { appUuid = SYSTEM_APP_UUID } = useParams();
+  const { appUuid } = useParams();
 
   return (
-    <EntiRoot config={{ endpoint: SERVER_URL, appUuid: appUuid }} >
+    <EntiRoot config={{ endpoint: SERVER_URL, appUuid: props.appUuid || appUuid }} >
       <AppRootInner>
         {props.children}
       </AppRootInner>

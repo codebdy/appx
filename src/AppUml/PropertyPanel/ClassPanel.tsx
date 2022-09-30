@@ -4,13 +4,13 @@ import { useChangeClass } from "../hooks/useChangeClass";
 import { Form, Input, Switch } from "antd";
 import { useTranslation } from "react-i18next";
 import { MultiLangInput } from "../../plugins/inputs/components/pc/MultiLangInput/view";
-import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
+import { useEdittingAppUuid } from "../hooks/useAppUuid";
 
 export const ClassPanel = (props: { cls: ClassMeta }) => {
   const { cls } = props;
   const [nameError, setNameError] = useState<string>();
-  const serviceId = useSelectedAppUuid();
-  const changeClass = useChangeClass(serviceId);
+  const appUuid = useEdittingAppUuid();
+  const changeClass = useChangeClass(appUuid);
   const { t } = useTranslation();
   const [form] = Form.useForm()
 

@@ -6,7 +6,7 @@ import { ClassMeta } from "../meta/ClassMeta";
 import { PlusOutlined } from "@ant-design/icons";
 import { useCreateClassAttribute } from "../hooks/useCreateClassAttribute";
 import { useTranslation } from "react-i18next";
-import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
+import { useEdittingAppUuid } from "../hooks/useAppUuid";
 
 const AttributesLabel = memo((
   props: {
@@ -15,7 +15,7 @@ const AttributesLabel = memo((
 ) => {
   const { cls } = props;
   const { t } = useTranslation();
-  const appUuid = useSelectedAppUuid();
+  const appUuid = useEdittingAppUuid();
   const addAttribute = useCreateClassAttribute(appUuid);
   
   return (

@@ -11,23 +11,23 @@ import { useMethod } from "../hooks/useMethod";
 import { MethodPanel } from "./MethodPanel";
 import { Empty } from "antd";
 import { useTranslation } from "react-i18next";
-import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
 import { PropertyBox } from "../../common/ModelBoard/PropertyBox";
+import { useEdittingAppUuid } from "../hooks/useAppUuid";
 
 export const PropertyPanel = memo(() => {
-  const serviceId = useSelectedAppUuid();
-  const selectedElement = useRecoilValue(selectedElementState(serviceId));
-  const selectedEntity = useClass(selectedElement || "", serviceId);
+  const appUuid = useEdittingAppUuid();
+  const selectedElement = useRecoilValue(selectedElementState(appUuid));
+  const selectedEntity = useClass(selectedElement || "", appUuid);
   const { t } = useTranslation();
   const { cls: attributeCls, attribute } = useAttribute(
     selectedElement || "",
-    serviceId
+    appUuid
   );
   const { cls: methodCls, method } = useMethod(
     selectedElement || "",
-    serviceId
+    appUuid
   );
-  const relation = useRelation(selectedElement || "", serviceId);
+  const relation = useRelation(selectedElement || "", appUuid);
 
   return (
     <PropertyBox title={t("AppUml.Properties")} >

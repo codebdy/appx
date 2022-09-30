@@ -19,7 +19,7 @@ import { Collapse } from "antd";
 import "./index.less";
 import { PRIMARY_COLOR } from "../../consts";
 import { useTranslation } from "react-i18next";
-import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
+import { useEdittingAppUuid } from "../hooks/useAppUuid";
 
 const { Dnd } = Addon;
 const { Panel } = Collapse;
@@ -57,7 +57,7 @@ export const Toolbox = memo((props: { graph?: Graph }) => {
   const { graph } = props;
   const [dnd, setDnd] = React.useState<any>();
   const { t } = useTranslation();
-  const appUuid = useSelectedAppUuid();
+  const appUuid = useEdittingAppUuid();
   const setSelemedElement = useSetRecoilState(selectedElementState(appUuid))
   const [pressedLineType, setPressedLineType] = useRecoilState(
     pressedLineTypeState(appUuid)

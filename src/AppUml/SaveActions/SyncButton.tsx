@@ -4,13 +4,13 @@ import React, { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useShowError } from '../../hooks/useShowError';
-import { useSelectedAppUuid } from '../../plugin-sdk/contexts/appRoot';
+import { useEdittingAppUuid } from '../hooks/useAppUuid';
 import { usePublishMeta } from '../hooks/usePublishMeta';
 import { MetaStatus } from '../meta/Meta';
 import { changedState, publishedIdState, metaState } from '../recoil/atoms';
 
 const SyncButton = memo(() => {
-  const appUuid = useSelectedAppUuid();
+  const appUuid = useEdittingAppUuid();
   const changed = useRecoilValue(changedState(appUuid))
   const [meta, setMeta] = useRecoilState(metaState(appUuid));
   const { t } = useTranslation();

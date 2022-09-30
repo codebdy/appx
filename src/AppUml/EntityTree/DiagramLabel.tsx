@@ -9,7 +9,8 @@ import { DiagramMeta } from "../meta/DiagramMeta";
 import DiagramAction from "./DiagramAction";
 import { useGetPackage } from "../hooks/useGetPackage";
 import { SYSTEM_APP_UUID } from "../../consts";
-import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
+import { useEdittingAppUuid } from "../hooks/useAppUuid";
+
 
 const DiagramLabel = memo((
   props: {
@@ -21,7 +22,7 @@ const DiagramLabel = memo((
   const [editing, setEditing] = useState(false);
   const [visible, setVisible] = useState(false);
 
-  const appUuid = useSelectedAppUuid();
+  const appUuid = useEdittingAppUuid();
   const backup = useBackupSnapshot(appUuid);
   const setDiagrams = useSetRecoilState(diagramsState(appUuid));
   const getPagcage = useGetPackage(appUuid)

@@ -6,7 +6,7 @@ import { DiagramMeta } from "../meta/DiagramMeta";
 import { useGetPackage } from "../hooks/useGetPackage";
 import { useDeleteDiagram } from "../hooks/useDeleteDiagram";
 import { SYSTEM_APP_UUID } from "../../consts";
-import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
+import { useEdittingAppUuid } from "../hooks/useAppUuid";
 
 const DiagramAction = memo((
   props: {
@@ -16,7 +16,7 @@ const DiagramAction = memo((
   }
 ) => {
   const { diagram, onEdit, onVisibleChange } = props;
-  const appUuid = useSelectedAppUuid()
+  const appUuid = useEdittingAppUuid();
   const getPagcage = useGetPackage(appUuid)
   const deleteDiagram = useDeleteDiagram(appUuid)
   const { t } = useTranslation();
