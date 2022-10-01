@@ -1,13 +1,13 @@
 import React from "react";
 import { Form, Select } from "antd";
 import { memo } from "react";
-import { useEntities } from "../hooks/useEntities";
-import { useEnums } from "../hooks/useEnums";
-import { useValueObjects } from "../hooks/useValueObjects";
-import { Types } from "../meta/Type";
+import { useEntities } from "../../hooks/useEntities";
+import { useEnums } from "../../hooks/useEnums";
+import { useValueObjects } from "../../hooks/useValueObjects";
+import { Types } from "../../meta/Type";
 import { useTranslation } from "react-i18next";
-import { MethodMeta } from "../meta/MethodMeta";
-import { useEdittingAppUuid } from "../../hooks/useEdittingAppUuid";
+import { MethodMeta } from "../../meta/MethodMeta";
+import { useEdittingAppUuid } from "../../../hooks/useEdittingAppUuid";
 const { Option } = Select;
 
 export const MethodTypeInput = memo(

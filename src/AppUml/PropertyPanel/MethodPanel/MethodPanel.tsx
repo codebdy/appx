@@ -1,13 +1,13 @@
 import React, { useCallback, useState } from "react";
-import { MethodMeta, MethodOperateType } from "../meta/MethodMeta";
-import { ClassMeta } from "../meta/ClassMeta";
-import { useChangeMethod } from "../hooks/useChangeMethod";
-import { useGetTypeLabel } from "../hooks/useGetTypeLabel";
+import { MethodMeta, MethodOperateType } from "../../meta/MethodMeta";
+import { ClassMeta } from "../../meta/ClassMeta";
+import { useChangeMethod } from "../../hooks/useChangeMethod";
+import { useGetTypeLabel } from "../../hooks/useGetTypeLabel";
 import { Form, Input, Radio, Select } from "antd";
-import { MultiLangInput } from "../../plugins/inputs/components/pc/MultiLangInput/view";
+import { MultiLangInput } from "../../../plugins/inputs/components/pc/MultiLangInput/view";
 import { useTranslation } from "react-i18next";
 import { MethodTypeInput } from "./MethodTypeInput";
-import { useEdittingAppUuid } from "../../hooks/useEdittingAppUuid";
+import { useEdittingAppUuid } from "../../../hooks/useEdittingAppUuid";
 const { Option } = Select;
 
 export const MethodPanel = (props: { method: MethodMeta; cls: ClassMeta }) => {
