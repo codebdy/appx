@@ -1,13 +1,14 @@
 import React, { useCallback, useState } from "react";
-import { MethodMeta } from "../meta/MethodMeta";
+import { MethodMeta, MethodOperateType } from "../meta/MethodMeta";
 import { ClassMeta } from "../meta/ClassMeta";
 import { useChangeMethod } from "../hooks/useChangeMethod";
 import { useGetTypeLabel } from "../hooks/useGetTypeLabel";
-import { Form, Input } from "antd";
+import { Form, Input, Radio, Select } from "antd";
 import { MultiLangInput } from "../../plugins/inputs/components/pc/MultiLangInput/view";
 import { useTranslation } from "react-i18next";
 import { MethodTypeInput } from "./MethodTypeInput";
 import { useEdittingAppUuid } from "../../hooks/useEdittingAppUuid";
+const { Option } = Select;
 
 export const MethodPanel = (props: { method: MethodMeta; cls: ClassMeta }) => {
   const { method, cls } = props;
@@ -62,6 +63,19 @@ export const MethodPanel = (props: { method: MethodMeta; cls: ClassMeta }) => {
           label={t("AppUml.OperateType")}
           name="operateType"
         >
+          <Radio.Group
+            optionType="button"
+            options={[
+              {
+                value: MethodOperateType.Query,
+                label: t("AppUml.Query"),
+              },
+              {
+                value: MethodOperateType.Mutation,
+                label: t("AppUml.Mutation"),
+              }
+            ]}
+          />
         </Form.Item>
         <MethodTypeInput method={method} />
         <Form.Item

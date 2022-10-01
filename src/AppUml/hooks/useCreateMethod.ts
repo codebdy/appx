@@ -2,7 +2,6 @@ import { useCallback } from "react";
 import { createUuid, ID } from "../../shared";
 import {
   MethodMeta,
-  MethodImplementType,
   MethodOperateType,
 } from "../meta/MethodMeta";
 import { Types } from "../meta/Type";
@@ -28,7 +27,6 @@ export function useCreateMethod(appUuid: ID) {
         args: [],
         type: Types.String,
         typeLabel: getTypeName(Types.String),
-        implementType: MethodImplementType.Script,
         operateType: MethodOperateType.Query,
       };
 

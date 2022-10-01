@@ -225,7 +225,7 @@
     "Name": "名称",
     "RootNode": "根节点",
     "Description": "描述",
-    "Type": "类型",
+    "ReturnType": "返回类型",
     "Arguments": "参数",
     "Script": "脚本",
     "Entity": "实体",
@@ -242,7 +242,9 @@
     "Side": "端",
     "RoleName": "角色名",
     "Multiplicity": "重数",
-    "OperateType": "操作类型"
+    "OperateType": "操作类型",
+    "Query": "查询",
+    "Mutation": "变更"
   },
   "SettingsForm": {
     "Properties": "属性",
