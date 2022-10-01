@@ -225,7 +225,7 @@
     "Name": "名称",
     "RootNode": "根节点",
     "Description": "描述",
-    "DataType": "数据类型",
+    "Type": "类型",
     "Entity": "实体",
     "Array": "数组",
     "Enum": "枚举",

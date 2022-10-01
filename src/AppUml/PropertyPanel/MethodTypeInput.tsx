@@ -26,7 +26,7 @@ export const MethodTypeInput = memo(
     return (
       <>
         <Form.Item
-          label={t("AppUml.DataType")}
+          label={t("AppUml.Type")}
           name="type"
         >
           <Select>
