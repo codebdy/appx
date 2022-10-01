@@ -1,3 +1,4 @@
+import { PlusOutlined } from "@ant-design/icons";
 import { Button, Modal } from "antd"
 import React, { useCallback, useState } from "react"
 import { memo } from "react"
@@ -37,8 +38,8 @@ export const ArgsInput = memo(() => {
           <div className="arg-list">
 
           </div>
-          <Button type="dashed" block>
-            {t("ADD")}
+          <Button type="dashed" block icon={<PlusOutlined />}>
+            {t("Add")}
           </Button>
         </div>
       </Modal>
