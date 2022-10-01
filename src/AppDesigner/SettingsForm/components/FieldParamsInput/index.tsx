@@ -26,7 +26,7 @@ export const FieldParamsInput = observer(() => {
       </Button>
       <Modal
         title={<TextWidget token="SettingComponents.FieldParamsInput.ConfigParams" />}
-        visible={isModalVisible}
+        open={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
         okText={<TextWidget token="SettingComponents.FieldParamsInput.Confirm" />}
