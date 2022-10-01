@@ -2,10 +2,15 @@ import { Button, Modal } from "antd"
 import React, { useCallback, useState } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
-import { MonacoInput } from '@designable/react-settings-form'
 import MonacoEditor from "react-monaco-editor";
 
-export const ScriptInput = memo(() => {
+export const ScriptInput = memo((
+  props: {
+    value?: string,
+    onChange?: (value?: string) => void,
+  }
+) => {
+  const { value, onChange } = props;
   const [open, setOpen] = useState(false);
 
   const { t } = useTranslation();
@@ -22,14 +27,14 @@ export const ScriptInput = memo(() => {
     setOpen(false);
   }, [])
 
-  const handleEditorDidMount = (monaco: any)=>{
+  const handleEditorDidMount = (monaco: any) => {
     // monaco.languages?.json.jsonDefaults.setDiagnosticsOptions({
     //   validate: true,
     // });
   }
 
-  const handleChange = (valueStr: string)=>{
-
+  const handleChange = (valueStr: string) => {
+    onChange && onChange(valueStr)
   }
   return (
     <>
@@ -55,8 +60,11 @@ export const ScriptInput = memo(() => {
         >
           <MonacoEditor
             language="javascript"
-            theme={ 'vs-dark'}
-            value={""}
+            options={{
+              selectOnLineNumbers: true
+            }}
+            theme={'vs-dark'}
+            value={value}
             editorDidMount={handleEditorDidMount}
             onChange={handleChange}
           />
