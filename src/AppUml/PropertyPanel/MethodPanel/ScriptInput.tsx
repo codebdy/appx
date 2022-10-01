@@ -42,7 +42,7 @@ export const ScriptInput = memo((
         {t("AppUml.ConfigScript")}
       </Button>
       <Modal
-        className="method-input-modal"
+        className="script-input-modal"
         title={t("AppUml.ConfigScript")}
         width={800}
         open={open}
