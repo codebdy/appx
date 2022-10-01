@@ -1,5 +1,5 @@
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Modal } from "antd"
+import { Button, Input, Modal } from "antd"
 import React, { useCallback, useMemo, useState } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
@@ -67,11 +67,17 @@ export const ArgsInput = memo(() => {
       title: t("Name"),
       dataIndex: 'name',
       className: 'drag-visible',
+      render: (_, { name }) => (
+        <Input value={name} />
+      ),
     },
     {
       title: t("Type"),
       dataIndex: 'type',
       className: 'drag-visible',
+      render: (_, { name }) => (
+        <Input value={name} />
+      ),
     },
     {
       dataIndex: 'operate',
