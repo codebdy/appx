@@ -10,6 +10,7 @@ import { useGetEntity } from "../../../../datasource/hooks/useGetEntity";
 import { objToString, stringToObj } from "../../../../shared";
 
 const { OptGroup, Option } = Select;
+var pluralize = require('pluralize')
 
 function lowcaseFirst(str: string) {
   var strTemp = ""; //新字符串
@@ -90,7 +91,7 @@ export const DataSourceInput = memo((
       const entityName = getEntity(changedValues?.entityUuid)?.name || ""
       const expression = isSingle
         ? singleTemplateStr.replace("#name#", entityName)
-        : multipleTemplateStr.replace("#name#", lowcaseFirst(entityName));
+        : multipleTemplateStr.replace("#name#", lowcaseFirst(pluralize(entityName)));
       form.setFieldValue("expression", expression)
     }
   }, [form, getEntity]);

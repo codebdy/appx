@@ -5,7 +5,7 @@ import { IPageFrame } from "../model";
 
 const templatesGql = gql`
 query{
-  template{
+  templates{
     nodes{
       id 
       title 

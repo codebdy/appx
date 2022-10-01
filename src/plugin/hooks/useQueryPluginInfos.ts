@@ -6,7 +6,7 @@ import { IPluginInfo } from "../../model";
 
 const pluginsGql = gql`
 query ($appUuid:String!){
-  pluginInfo(where:{
+  pluginInfos(where:{
     appUuid:{
       _eq:$appUuid
     }

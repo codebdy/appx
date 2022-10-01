@@ -92,6 +92,7 @@
     "i18next-browser-languagedetector": "^6.1.4",
     "i18next-http-backend": "^1.4.1",
     "lodash": "^4.17.21",
+    "pluralize": "^8.0.0",
     "react-beautiful-dnd": "^13.1.0",
     "react-dropzone": "^14.2.2",
     "react-i18next": "^11.18.3",

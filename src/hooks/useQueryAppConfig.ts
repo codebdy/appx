@@ -5,7 +5,7 @@ import { useQueryOne } from "../enthooks/hooks/useQueryOne";
 import { IAppConfig } from "../model";
 
 const configGql = gql`
-query queryAppConfig($appUuid:String){
+query ($appUuid:String){
   oneAppConfig(where:{
     appUuid:{
       _eq:$appUuid

@@ -5,7 +5,7 @@ import { useQueryOne } from "../enthooks/hooks/useQueryOne";
 import { IApp } from "../model";
 
 const appGql = gql`
-query queryApp($uuid:String!){
+query ($uuid:String!){
   oneApp(where:{
     uuid:{
       _eq:$uuid

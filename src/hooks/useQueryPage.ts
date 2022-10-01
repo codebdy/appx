@@ -4,7 +4,7 @@ import { useQueryOne } from "../enthooks/hooks/useQueryOne";
 import { IPage } from "../model";
 
 const pageGql = gql`
-query queryPage($id:ID!){
+query ($id:ID!){
   onePage(where:{
     id:{
       _eq:$id

@@ -5,8 +5,8 @@ import { useQuery } from "../../enthooks/hooks/useQuery";
 import { useMemo } from "react";
 
 const categoriesGql = gql`
-query queryCategories($appUuid:String!, $device:String!){
-  pageCategory(where:{
+query ($appUuid:String!, $device:String!){
+  pageCategories(where:{
     _and:[
       {
         app:{

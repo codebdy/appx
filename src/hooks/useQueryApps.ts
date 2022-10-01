@@ -5,7 +5,7 @@ import { useMemo } from "react";
 
 const appsGql = gql`
 query {
-  app{
+  apps{
     nodes{
       id
       uuid

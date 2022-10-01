@@ -10,7 +10,7 @@ export function useIntalledPlugins(appUuid: string) {
   const load = useLoadPlugins();
 
   useEffect(() => {
-    load(data?.pluginInfo?.nodes || []).then((plugins) => {
+    load(data?.pluginInfos?.nodes || []).then((plugins) => {
       setInstalledPlugins(plugins);
     })
 

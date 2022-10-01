@@ -6,7 +6,7 @@ import { useQueryOne } from "../enthooks/hooks/useQueryOne";
 import { IAppDeviceConfig } from "../model";
 
 const configGql = gql`
-query queryAppDeviceConfig($appUuid:String, $device:String){
+query ($appUuid:String, $device:String){
   oneAppDeviceConfig(where:{
     _and:[
       {

@@ -5,8 +5,8 @@ import { IPage } from "../../model";
 import { useAppParams } from "../../plugin-sdk/contexts/appRoot";
 
 const pagesGql = gql`
-query queryPages($appUuid:String!, $device:String!){
-  page(where:{
+query ($appUuid:String!, $device:String!){
+  pages(where:{
     _and:[
       {
         app:{
