@@ -8,6 +8,8 @@ import { MultiLangInput } from "../../../plugins/inputs/components/pc/MultiLangI
 import { useTranslation } from "react-i18next";
 import { MethodTypeInput } from "./MethodTypeInput";
 import { useEdittingAppUuid } from "../../../hooks/useEdittingAppUuid";
+import { ScriptInput } from "./ScriptInput";
+import { ArgsInput } from "./ArgsInput";
 
 export const MethodPanel = memo((props: { method: MethodMeta; cls: ClassMeta }) => {
   const { method, cls } = props;
@@ -81,11 +83,13 @@ export const MethodPanel = memo((props: { method: MethodMeta; cls: ClassMeta }) 
           label={t("AppUml.Arguments")}
           name="args"
         >
+          <ArgsInput />
         </Form.Item>
         <Form.Item
           label={t("AppUml.Script")}
           name="script"
         >
+          <ScriptInput />
         </Form.Item>
       </Form>
     </div>
