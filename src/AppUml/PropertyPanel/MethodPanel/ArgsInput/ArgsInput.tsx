@@ -69,17 +69,18 @@ export const ArgsInput = memo(() => {
       title: t("Name"),
       dataIndex: 'name',
       className: 'drag-visible',
+      width: 200,
       render: (_, { name }) => (
-        <Input value={name} />
+        <Input value={name} style={{ width: 200 }} />
       ),
     },
     {
       title: t("Type"),
       dataIndex: 'type',
       className: 'drag-visible',
-      width: 200,
+      width: 150,
       render: (_, { type }) => (
-        <Select value={type}>
+        <Select style={{ width: 150 }} value={type}>
           <Option value={Types.ID}>ID</Option>
           <Option value={Types.Int}>Int</Option>
           <Option value={Types.Float}>Float</Option>
@@ -167,7 +168,7 @@ export const ArgsInput = memo(() => {
       <Modal
         className="args-input-modal"
         title={t("AppUml.ConfigArgs")}
-        width={700}
+        width={600}
         open={open}
         onOk={handleOk}
         onCancel={handleCancel}
