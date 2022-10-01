@@ -3,6 +3,7 @@ import { Button, Modal } from "antd"
 import React, { useCallback, useState } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
+import "./style.less";
 
 export const ArgsInput = memo(() => {
   const [open, setOpen] = useState(false);

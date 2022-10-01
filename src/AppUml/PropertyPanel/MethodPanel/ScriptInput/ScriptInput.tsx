@@ -3,6 +3,7 @@ import React, { useCallback, useState } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
 import MonacoEditor from "react-monaco-editor";
+import "./style.less";
 
 export const ScriptInput = memo((
   props: {

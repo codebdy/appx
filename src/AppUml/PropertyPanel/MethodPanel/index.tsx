@@ -8,9 +8,8 @@ import { MultiLangInput } from "../../../plugins/inputs/components/pc/MultiLangI
 import { useTranslation } from "react-i18next";
 import { MethodTypeInput } from "./MethodTypeInput";
 import { useEdittingAppUuid } from "../../../hooks/useEdittingAppUuid";
-import { ScriptInput } from "./ScriptInput";
-import { ArgsInput } from "./ArgsInput";
-import "./style.less";
+import { ScriptInput } from "./ScriptInput/ScriptInput";
+import { ArgsInput } from "./ArgsInput/ArgsInput";
 
 export const MethodPanel = memo((props: { method: MethodMeta; cls: ClassMeta }) => {
   const { method, cls } = props;
