@@ -1,13 +1,13 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { Button, Modal } from "antd"
-import React, { useCallback, useState } from "react"
+import React, { useCallback, useMemo, useState } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
 import "./style.less";
 import { Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { MenuOutlined } from '@ant-design/icons';
-import type { SortableContainerProps, SortEnd } from 'react-sortable-hoc';
+import { SortableContainerProps, SortEnd } from 'react-sortable-hoc';
 import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
 import { arrayMoveImmutable } from "array-move";
 
@@ -20,29 +20,6 @@ interface DataType {
 }
 
 const DragHandle = SortableHandle(() => <MenuOutlined style={{ cursor: 'grab', color: '#999' }} />) as any;
-
-const columns: ColumnsType<DataType> = [
-  {
-    title: 'Sort',
-    dataIndex: 'sort',
-    width: 30,
-    className: 'drag-visible',
-    render: () => <DragHandle />,
-  },
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    className: 'drag-visible',
-  },
-  {
-    title: 'Age',
-    dataIndex: 'age',
-  },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-  },
-];
 
 const data: DataType[] = [
   {
@@ -78,6 +55,30 @@ export const ArgsInput = memo(() => {
   const [open, setOpen] = useState(false);
   const [dataSource, setDataSource] = useState(data);
   const { t } = useTranslation();
+
+  const columns: ColumnsType<DataType> = useMemo(() => [
+    {
+      dataIndex: 'sort',
+      width: 30,
+      className: 'drag-visible',
+      render: () => <DragHandle />,
+    },
+    {
+      title: t("Name"),
+      dataIndex: 'name',
+      className: 'drag-visible',
+    },
+    {
+      title: t("Type"),
+      dataIndex: 'type',
+      className: 'drag-visible',
+    },
+    {
+      dataIndex: 'operate',
+      className: 'drag-visible',
+    },
+  ], []);
+
 
   const onSortEnd = ({ oldIndex, newIndex }: SortEnd) => {
     if (oldIndex !== newIndex) {
