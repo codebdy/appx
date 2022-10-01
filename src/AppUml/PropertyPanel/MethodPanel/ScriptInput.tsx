@@ -42,7 +42,7 @@ export const ScriptInput = memo((
         {t("AppUml.ConfigScript")}
       </Button>
       <Modal
-        className="script-input-modal"
+        className="method-input-modal"
         title={t("AppUml.ConfigScript")}
         width={800}
         open={open}
@@ -51,13 +51,7 @@ export const ScriptInput = memo((
         okText={t("Confirm")}
         cancelText={t("Cancel")}
       >
-        <div
-          style={{
-            flex: 1,
-            minHeight: 300,
-            height: "calc(100vh - 400px)"
-          }}
-        >
+        <div className="input-modal-body">
           <MonacoEditor
             language="javascript"
             options={{

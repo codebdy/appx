@@ -25,6 +25,7 @@ export const ArgsInput = memo(() => {
         {t("AppUml.ConfigArgs")}
       </Button>
       <Modal
+        className="method-input-modal"
         title={t("AppUml.ConfigArgs")}
         open={open}
         onOk={handleOk}
@@ -32,6 +33,9 @@ export const ArgsInput = memo(() => {
         okText={t("Confirm")}
         cancelText={t("Cancel")}
       >
+        <div className="input-modal-body args-input-body">
+
+        </div>
       </Modal>
     </>
   )
