@@ -1,4 +1,5 @@
-import { Button, Modal } from "antd"
+import { PlayCircleOutlined } from "@ant-design/icons";
+import { Button, Modal, Space } from "antd"
 import React, { useCallback, useState } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
@@ -51,6 +52,21 @@ export const ScriptInput = memo((
         onCancel={handleCancel}
         okText={t("Confirm")}
         cancelText={t("Cancel")}
+        footer={
+          <div className="footer-toolbar">
+            <Button icon={<PlayCircleOutlined />}>
+              {t("Test")}
+            </Button>
+            <Space>
+              <Button onClick={handleCancel}>
+                {t("Cancel")}
+              </Button>
+              <Button type="primary" onClick={handleOk}>
+                {t("Confirm")}
+              </Button>
+            </Space>
+          </div>
+        }
       >
         <div className="input-modal-body">
           <MonacoEditor
