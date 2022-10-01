@@ -241,7 +241,8 @@
     "DeleteDate": "删除时间",
     "Side": "端",
     "RoleName": "角色名",
-    "Multiplicity": "重数"
+    "Multiplicity": "重数",
+    "OperateType": "操作类型"
   },
   "SettingsForm": {
     "Properties": "属性",

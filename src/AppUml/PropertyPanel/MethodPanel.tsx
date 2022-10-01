@@ -58,7 +58,22 @@ export const MethodPanel = (props: { method: MethodMeta; cls: ClassMeta }) => {
         >
           <MultiLangInput inline title={t("Label")} />
         </Form.Item>
+        <Form.Item
+          label={t("AppUml.OperateType")}
+          name="operateType"
+        >
+        </Form.Item>
         <MethodTypeInput method={method} />
+        <Form.Item
+          label={t("AppUml.Arguments")}
+          name="args"
+        >
+        </Form.Item>
+        <Form.Item
+          label={t("AppUml.Script")}
+          name="script"
+        >
+        </Form.Item>
       </Form>
     </div>
   );

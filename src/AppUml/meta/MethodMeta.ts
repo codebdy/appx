@@ -17,11 +17,11 @@ export enum MethodOperateType {
   Mutation = "mutation"
 }
 
-export enum MethodImplementType {
-  Script = "script",
-  CloudFunction = "cloudFunction",
-  MicroService = "microService",
-}
+// export enum MethodImplementType {
+//   Script = "script",
+//   CloudFunction = "cloudFunction",
+//   MicroService = "microService",
+// }
 
 export interface MethodMeta {
   /**
@@ -55,8 +55,8 @@ export interface MethodMeta {
 
   operateType: MethodOperateType;
 
-  implementType: MethodImplementType;
-  methodImplements?: string;
+  //implementType: MethodImplementType;
+  script?: string;
 
   system?: boolean;
 }
