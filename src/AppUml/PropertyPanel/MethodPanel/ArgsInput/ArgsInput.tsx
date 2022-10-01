@@ -1,5 +1,5 @@
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Input, Modal } from "antd"
+import { Button, Input, Modal, Select } from "antd"
 import React, { useCallback, useMemo, useState } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
@@ -10,7 +10,9 @@ import { MenuOutlined } from '@ant-design/icons';
 import { SortableContainerProps, SortEnd } from 'react-sortable-hoc';
 import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
 import { arrayMoveImmutable } from "array-move";
+import { Types } from "../../../../AppUml/meta/Type";
 
+const { Option } = Select;
 interface DataType {
   key: string;
   name: string;
@@ -75,8 +77,38 @@ export const ArgsInput = memo(() => {
       title: t("Type"),
       dataIndex: 'type',
       className: 'drag-visible',
-      render: (_, { name }) => (
-        <Input value={name} />
+      width: 200,
+      render: (_, { type }) => (
+        <Select value={type}>
+          <Option value={Types.ID}>ID</Option>
+          <Option value={Types.Int}>Int</Option>
+          <Option value={Types.Float}>Float</Option>
+          <Option value={Types.Boolean}>Boolean</Option>
+          <Option value={Types.String}>String</Option>
+          <Option value={Types.Date}>Date</Option>
+          <Option value={Types.Enum}>{t("AppUml.Enum")}</Option>
+          <Option value={Types.JSON}>JSON</Option>
+          <Option value={Types.ValueObject}>{t("AppUml.ValueClass")}</Option>
+          <Option value={Types.Entity}>{t("AppUml.Entity")}</Option>
+          <Option value={Types.File}>{t("File")}</Option>
+          <Option value={Types.IDArray}>ID {t("AppUml.Array")}</Option>
+          <Option value={Types.IntArray}>Int {t("AppUml.Array")}</Option>
+          <Option value={Types.FloatArray}>Float {t("AppUml.Array")}</Option>
+          <Option value={Types.StringArray}>String {t("AppUml.Array")}</Option>
+          <Option value={Types.DateArray}>Date {t("AppUml.Array")}</Option>
+          <Option value={Types.EnumArray}>
+            {t("AppUml.Enum")}
+            {t("AppUml.Array")}
+          </Option>
+          <Option value={Types.ValueObjectArray}>
+            {t("AppUml.ValueClass")}
+            {t("AppUml.Array")}
+          </Option>
+          <Option value={Types.EntityArray}>
+            {t("AppUml.Entity")}
+            {t("AppUml.Array")}
+          </Option>
+        </Select>
       ),
     },
     {
@@ -135,6 +167,7 @@ export const ArgsInput = memo(() => {
       <Modal
         className="args-input-modal"
         title={t("AppUml.ConfigArgs")}
+        width={700}
         open={open}
         onOk={handleOk}
         onCancel={handleCancel}
