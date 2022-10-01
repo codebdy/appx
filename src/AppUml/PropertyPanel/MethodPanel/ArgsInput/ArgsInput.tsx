@@ -1,4 +1,4 @@
-import { PlusOutlined } from "@ant-design/icons";
+import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Modal } from "antd"
 import React, { useCallback, useMemo, useState } from "react"
 import { memo } from "react"
@@ -76,6 +76,9 @@ export const ArgsInput = memo(() => {
     {
       dataIndex: 'operate',
       className: 'drag-visible',
+      render: () => (
+        <Button shape="circle" type="text" icon={<DeleteOutlined />} />
+      ),
     },
   ], []);
 
