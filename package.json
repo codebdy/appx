@@ -96,6 +96,7 @@
     "react-beautiful-dnd": "^13.1.0",
     "react-dropzone": "^14.2.2",
     "react-i18next": "^11.18.3",
+    "react-monaco-editor": "^0.50.1",
     "react-router-dom": "^6.3.0",
     "recoil": "^0.7.4",
     "subscriptions-transport-ws": "^0.11.0",

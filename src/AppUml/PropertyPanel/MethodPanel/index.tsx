@@ -10,6 +10,7 @@ import { MethodTypeInput } from "./MethodTypeInput";
 import { useEdittingAppUuid } from "../../../hooks/useEdittingAppUuid";
 import { ScriptInput } from "./ScriptInput";
 import { ArgsInput } from "./ArgsInput";
+import "./style.less";
 
 export const MethodPanel = memo((props: { method: MethodMeta; cls: ClassMeta }) => {
   const { method, cls } = props;

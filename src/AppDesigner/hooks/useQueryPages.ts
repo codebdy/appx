@@ -51,5 +51,5 @@ export function useQueryPages() {
 
   const { data, error, loading } = useQuery<IPage>(args)
 
-  return { pages: data?.page?.nodes, error, loading }
+  return { pages: data?.pages?.nodes, error, loading }
 }
