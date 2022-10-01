@@ -241,7 +241,7 @@ export const ClassView = memo(
               position: "absolute",
               left: "4px",
               top: "4px",
-              color: "green"
+              color: "#5d78ff"
             }}>
               <PlugIcon size="16px" />
             </div>
