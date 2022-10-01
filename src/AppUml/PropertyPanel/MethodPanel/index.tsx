@@ -1,16 +1,15 @@
-import React, { useCallback, useState } from "react";
+import React, { memo, useCallback, useState } from "react";
 import { MethodMeta, MethodOperateType } from "../../meta/MethodMeta";
 import { ClassMeta } from "../../meta/ClassMeta";
 import { useChangeMethod } from "../../hooks/useChangeMethod";
 import { useGetTypeLabel } from "../../hooks/useGetTypeLabel";
-import { Form, Input, Radio, Select } from "antd";
+import { Form, Input, Radio } from "antd";
 import { MultiLangInput } from "../../../plugins/inputs/components/pc/MultiLangInput/view";
 import { useTranslation } from "react-i18next";
 import { MethodTypeInput } from "./MethodTypeInput";
 import { useEdittingAppUuid } from "../../../hooks/useEdittingAppUuid";
-const { Option } = Select;
 
-export const MethodPanel = (props: { method: MethodMeta; cls: ClassMeta }) => {
+export const MethodPanel = memo((props: { method: MethodMeta; cls: ClassMeta }) => {
   const { method, cls } = props;
   const [nameError, setNameError] = useState<string>();
   const appUuid = useEdittingAppUuid();
@@ -91,4 +90,4 @@ export const MethodPanel = (props: { method: MethodMeta; cls: ClassMeta }) => {
       </Form>
     </div>
   );
-};
+});

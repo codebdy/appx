@@ -8,7 +8,7 @@ import { useClass } from "../hooks/useClass";
 import { useAttribute } from "../hooks/useAttribute";
 import { useRelation } from "../hooks/useRelation";
 import { useMethod } from "../hooks/useMethod";
-import { MethodPanel } from "./MethodPanel/MethodPanel";
+import { MethodPanel } from "./MethodPanel";
 import { Empty } from "antd";
 import { useTranslation } from "react-i18next";
 import { PropertyBox } from "../../common/ModelBoard/PropertyBox";
