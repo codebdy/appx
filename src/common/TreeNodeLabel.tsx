@@ -6,9 +6,10 @@ const TreeNodeLabel = memo((
     action?: React.ReactNode,
     children?: React.ReactNode,
     fixedAction?: boolean,
+    onClick?: (event: React.MouseEvent<any>) => void,
   }
 ) => {
-  const { action, children, fixedAction } = props;
+  const { action, children, fixedAction, onClick } = props;
   const [hover, setHover] = useState(false);
   const handleMouseOver = useCallback(() => {
     setHover(true)
@@ -22,6 +23,7 @@ const TreeNodeLabel = memo((
     <div className='tree-node-label'
       onMouseOver={handleMouseOver}
       onMouseLeave={handleMouseLeave}
+      onClick={onClick}
     >
       {children}
       {

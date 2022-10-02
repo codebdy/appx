@@ -11,6 +11,7 @@ import { SortableContainerProps, SortEnd } from 'react-sortable-hoc';
 import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
 import { arrayMoveImmutable } from "array-move";
 import { Types } from "../../../../AppUml/meta/Type";
+import { MethodOperateType } from "../../../../AppUml/meta/MethodMeta";
 
 const { Option } = Select;
 interface DataType {
@@ -19,6 +20,7 @@ interface DataType {
   age: number;
   address: string;
   index: number;
+  type?: MethodOperateType
 }
 
 const DragHandle = SortableHandle(() => <MenuOutlined style={{ cursor: 'grab', color: '#999' }} />) as any;

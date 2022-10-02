@@ -215,7 +215,7 @@ const ResourceEditDialog = memo((
                   label={t("Lang." + lang.key)}
                   name={lang.key}
                 >
-                  <InputCtrl disabled={hasSelectedResource} />
+                  <InputCtrl disabled={hasSelectedResource}/>
                 </Form.Item>
               )
             })

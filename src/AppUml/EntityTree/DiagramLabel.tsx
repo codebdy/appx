@@ -10,7 +10,8 @@ import DiagramAction from "./DiagramAction";
 import { useGetPackage } from "../hooks/useGetPackage";
 import { SYSTEM_APP_UUID } from "../../consts";
 import { useEdittingAppUuid } from "../../hooks/useEdittingAppUuid";
-
+import { useParseLangMessage } from "../../plugin-sdk";
+import { MultiLangInput } from "../../plugins/inputs/components/pc/MultiLangInput/view";
 
 const DiagramLabel = memo((
   props: {
@@ -21,7 +22,7 @@ const DiagramLabel = memo((
   const [name, setName] = useState(diagram.name);
   const [editing, setEditing] = useState(false);
   const [visible, setVisible] = useState(false);
-
+  const p = useParseLangMessage();
   const appUuid = useEdittingAppUuid();
   const backup = useBackupSnapshot(appUuid);
   const setDiagrams = useSetRecoilState(diagramsState(appUuid));
@@ -40,8 +41,8 @@ const DiagramLabel = memo((
     setEditing(true);
   }, []);
 
-  const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
+  const handleChange = useCallback((value?: string) => {
+    setName(value);
   }, []);
 
   const handleEditFinish = useCallback(() => {
@@ -59,23 +60,26 @@ const DiagramLabel = memo((
   return (
     <TreeNodeLabel
       fixedAction={visible || (getPagcage(diagram.packageUuid)?.sharable && appUuid !== SYSTEM_APP_UUID)}
-      action={!editing ?
-        <DiagramAction diagram={diagram}
-          onEdit={handleEdit}
-          onVisibleChange={handleVisableChange} /> : undefined}
+      action={
+        !editing ?
+          <DiagramAction diagram={diagram}
+            onEdit={handleEdit}
+            onVisibleChange={handleVisableChange} /> : undefined
+      }
+      onClick={e => editing ? e.stopPropagation() : undefined}
     >
       {
         editing ?
-          <Input
-            size="small"
+          <MultiLangInput
+            //size="small"
             value={name}
             onClick={e => e.stopPropagation()}
             onChange={handleChange}
-            onBlur={handleEditFinish}
+            //onBlur={handleEditFinish}
             onKeyUp={handleKeyEnter}
           />
           :
-          <div>{name}</div>
+          <div>{p(name)}</div>
       }
 
     </TreeNodeLabel>

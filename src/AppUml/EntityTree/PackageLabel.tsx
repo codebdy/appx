@@ -9,6 +9,8 @@ import { useSetRecoilState } from 'recoil';
 import { packagesState } from './../recoil/atoms';
 import { SYSTEM_APP_UUID } from "../../consts";
 import { useEdittingAppUuid } from "../../hooks/useEdittingAppUuid";
+import { useParseLangMessage } from "../../plugin-sdk";
+import { MultiLangInput } from "../../plugins/inputs/components/pc/MultiLangInput/view";
 
 const PackageLabel = memo((
   props: {
@@ -19,6 +21,8 @@ const PackageLabel = memo((
   const [name, setName] = useState(pkg.name);
   const [editing, setEditing] = useState(false);
   const [visible, setVisible] = useState(false);
+
+  const p = useParseLangMessage();
 
   useEffect(() => {
     setName(pkg.name)
@@ -36,8 +40,8 @@ const PackageLabel = memo((
     setEditing(true);
   }, []);
 
-  const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
+  const handleChange = useCallback((value?: string) => {
+    setName(value);
   }, []);
 
   const handleEditFinish = useCallback(() => {
@@ -58,20 +62,22 @@ const PackageLabel = memo((
       action={!editing ?
         <PackageAction pkg={pkg}
           onEdit={handleEdit}
-          onVisibleChange={handleVisableChange} /> : undefined}
+          onVisibleChange={handleVisableChange} /> : undefined
+      }
+      onClick={e => editing ? e.stopPropagation() : undefined}
     >
       {
         editing ?
-          <Input
-            size="small"
+          <MultiLangInput
+            //size="small"
             value={name}
             onClick={e => e.stopPropagation()}
             onChange={handleChange}
-            onBlur={handleEditFinish}
+            //onBlur={handleEditFinish}
             onKeyUp={handleKeyEnter}
           />
           :
-          <div>{name}</div>
+          <div>{p(name)}</div>
       }
 
     </TreeNodeLabel>
