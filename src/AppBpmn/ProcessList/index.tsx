@@ -1,4 +1,5 @@
-import { Tree } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
+import { Button, Tree } from "antd";
 import { DataNode } from "antd/lib/tree";
 import React, { useCallback, useMemo } from "react";
 import { memo } from "react";
@@ -17,12 +18,38 @@ export const ProcessList = memo(() => {
   const getCategoryNodes = useCallback(() => {
     return [
       {
-        title: t("AppBpmn.ApprovalFlow"),
+        title:
+          <TreeNodeLabel
+            action={
+              <Button
+                shape="circle"
+                type="text"
+                size="small"
+                icon={<PlusOutlined />}
+                onClick = {e=>e.stopPropagation()}
+              ></Button>
+            }
+          >
+            {t("AppBpmn.ApprovalFlow")}
+          </TreeNodeLabel>,
         key: "approval-model",
         //children: clses.map(cls => getClassNode(cls))
       },
       {
-        title: t("AppBpmn.WorkFlow"),
+        title:
+          <TreeNodeLabel
+            action={
+              <Button
+                shape="circle"
+                type="text"
+                size="small"
+                icon={<PlusOutlined />}
+                onClick = {e=>e.stopPropagation()}
+              ></Button>
+            }
+          >
+            {t("AppBpmn.WorkFlow")}
+          </TreeNodeLabel>,
         key: "approval-work",
         //children: clses.map(cls => getClassNode(cls))
       },
