@@ -88,6 +88,11 @@ export const AppBpmnInner = memo((props) => {
         </Button>
       </ModelToolbar>
       }
+      modelList={
+        <div>
+          列表
+        </div>
+      }
       propertyBox={<PropertyBox title={t("Properties")} >
         <PropertyPanel element={element} modeler={bpmnModeler} />
       </PropertyBox>}
