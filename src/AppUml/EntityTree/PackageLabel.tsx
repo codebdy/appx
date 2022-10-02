@@ -42,12 +42,13 @@ const PackageLabel = memo((
 
   const handleChange = useCallback((value?: string) => {
     setName(value);
+    handleEditFinish(value);
   }, []);
 
-  const handleEditFinish = useCallback(() => {
+  const handleEditFinish = useCallback((value?: string) => {
     backup()
     setEditing(false);
-    setPackages(packages => packages.map(pg => pg.uuid === pkg.uuid ? { ...pkg, name } : pg))
+    setPackages(packages => packages.map(pg => pg.uuid === pkg.uuid ? { ...pkg, name: value || name } : pg))
   }, [backup, name, pkg, setPackages])
 
   const handleKeyEnter = (event: React.KeyboardEvent<HTMLElement>) => {
@@ -73,7 +74,6 @@ const PackageLabel = memo((
             value={name}
             onClick={e => e.stopPropagation()}
             onChange={handleChange}
-            //onBlur={handleEditFinish}
             onKeyUp={handleKeyEnter}
           />
           :

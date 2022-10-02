@@ -1,10 +1,10 @@
 {
-  "appUuid": "SYSTEM",
+  "id": "1507236403010867326",
   "content": {
     "packages": [
       {
         "appUuid": "SYSTEM",
-        "name": "System",
+        "name": "$inline:{\"zh-CN\":\"系统\",\"en-US\":\"System\"}",
         "sharable": true,
         "system": true,
         "uuid": "PACKAGE_SYSTEM_UUID"
@@ -775,6 +775,49 @@
         "root": false,
         "stereoType": "Enum",
         "uuid": "58d3b299-cd9a-4066-929f-26341023a62a"
+      },
+      {
+        "attributes": [],
+        "innerId": 1020,
+        "methods": [
+          {
+            "args": [
+              {
+                "index": 0,
+                "name": "arg1",
+                "type": "Int",
+                "typeLabel": "Int",
+                "uuid": "434a382c-cc7c-4157-a7bc-b904396d805e"
+              },
+              {
+                "index": 1,
+                "name": "arg2",
+                "type": "Int",
+                "typeLabel": "Int",
+                "uuid": "e43ce8ff-3491-4eb1-9d5a-c03d2d875ed2"
+              }
+            ],
+            "name": "firstMethod",
+            "operateType": "query",
+            "script": "\r\nvar test = arg1*arg2\r\nreturn arg1 + arg2 + \"-\" +query() + \"-\" + test;",
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "e6affd42-a603-4da7-985f-802981e6b624"
+          },
+          {
+            "args": [],
+            "name": "newMethod1",
+            "operateType": "query",
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "3c72362e-1fc4-4f99-8264-91b02e671a53"
+          }
+        ],
+        "name": "Test",
+        "packageUuid": "PACKAGE_APPX_UUID",
+        "root": true,
+        "stereoType": "Service",
+        "uuid": "0afeac65-c0f6-48c1-846c-922e156307f5"
       }
     ],
     "relations": [
@@ -1050,10 +1093,24 @@
       },
       {
         "edges": [],
-        "name": "物料插件",
+        "name": "$inline:{\"zh-CN\":\"物料插件\"}",
         "nodes": [],
         "packageUuid": "PACKAGE_APPX_UUID",
         "uuid": "33546200-9c95-4747-94ee-a7198b6bd85c"
+      },
+      {
+        "edges": [],
+        "name": "service测试",
+        "nodes": [],
+        "packageUuid": "PACKAGE_APPX_UUID",
+        "uuid": "67a8ae11-8160-4555-97bb-bcd3c4d36ed5"
+      },
+      {
+        "edges": [],
+        "name": "$inline:{\"zh-CN\":\"工作流\"}",
+        "nodes": [],
+        "packageUuid": "PACKAGE_APPX_UUID",
+        "uuid": "2242ac47-13fc-4732-8822-b5f4e33f4474"
       }
     ],
     "x6Nodes": [
@@ -1280,6 +1337,14 @@
         "width": 180,
         "x": -1100,
         "y": -364
+      },
+      {
+        "diagramUuid": "67a8ae11-8160-4555-97bb-bcd3c4d36ed5",
+        "height": 120,
+        "id": "0afeac65-c0f6-48c1-846c-922e156307f5",
+        "width": 360,
+        "x": -1130,
+        "y": -330
       }
     ],
     "x6Edges": [

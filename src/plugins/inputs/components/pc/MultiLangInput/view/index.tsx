@@ -37,6 +37,7 @@ export const MultiLangInput = (
 
   const handleDiaglogChange = useCallback((value?: string) => {
     onChange && onChange(value)
+    //onModalOkClose && onModalOkClose()
   }, [onChange])
 
   const hanldeCInputCtrlChange = useCallback((event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

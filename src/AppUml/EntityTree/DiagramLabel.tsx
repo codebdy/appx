@@ -43,12 +43,13 @@ const DiagramLabel = memo((
 
   const handleChange = useCallback((value?: string) => {
     setName(value);
+    handleEditFinish(value);
   }, []);
 
-  const handleEditFinish = useCallback(() => {
+  const handleEditFinish = useCallback((value?: string) => {
     backup()
     setEditing(false);
-    setDiagrams(diagrams => diagrams.map(dm => dm.uuid === diagram.uuid ? { ...diagram, name } : dm))
+    setDiagrams(diagrams => diagrams.map(dm => dm.uuid === diagram.uuid ? { ...diagram, name: value || name } : dm))
   }, [backup, name, diagram, setDiagrams])
 
   const handleKeyEnter = (event: React.KeyboardEvent<HTMLElement>) => {
@@ -75,7 +76,6 @@ const DiagramLabel = memo((
             value={name}
             onClick={e => e.stopPropagation()}
             onChange={handleChange}
-            //onBlur={handleEditFinish}
             onKeyUp={handleKeyEnter}
           />
           :
