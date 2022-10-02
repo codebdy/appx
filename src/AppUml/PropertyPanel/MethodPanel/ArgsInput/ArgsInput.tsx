@@ -1,6 +1,6 @@
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Input, Modal, Select } from "antd"
-import React, { useCallback, useMemo, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
 import "./style.less";
@@ -11,43 +11,11 @@ import { SortableContainerProps, SortEnd } from 'react-sortable-hoc';
 import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
 import { arrayMoveImmutable } from "array-move";
 import { Types } from "../../../../AppUml/meta/Type";
-import { MethodOperateType } from "../../../../AppUml/meta/MethodMeta";
+import { ArgMeta } from "../../../../AppUml/meta/MethodMeta";
 
 const { Option } = Select;
-interface DataType {
-  key: string;
-  name: string;
-  age: number;
-  address: string;
-  index: number;
-  type?: MethodOperateType
-}
 
 const DragHandle = SortableHandle(() => <MenuOutlined style={{ cursor: 'grab', color: '#999' }} />) as any;
-
-const data: DataType[] = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    index: 0,
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    index: 1,
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    index: 2,
-  },
-];
 
 const SortableItem: any = SortableElement((props: React.HTMLAttributes<HTMLTableRowElement>) => (
   <tr {...props} />
@@ -55,12 +23,22 @@ const SortableItem: any = SortableElement((props: React.HTMLAttributes<HTMLTable
 const SortableBody: any = SortableContainer((props: React.HTMLAttributes<HTMLTableSectionElement>) => (
   <tbody {...props} />
 ));
-export const ArgsInput = memo(() => {
+export const ArgsInput = memo((
+  props: {
+    args?: ArgMeta[]
+  }
+) => {
+  const { args } = props;
   const [open, setOpen] = useState(false);
-  const [dataSource, setDataSource] = useState(data);
+  const [items, setItems] = useState<ArgMeta[]>([]);
+
+  useEffect(() => {
+    setItems(args?.map((arg, index) => ({ ...arg, index })) || [])
+  }, [args])
+
   const { t } = useTranslation();
 
-  const columns: ColumnsType<DataType> = useMemo(() => [
+  const columns: ColumnsType<ArgMeta> = useMemo(() => [
     {
       dataIndex: 'sort',
       width: 30,
@@ -126,11 +104,10 @@ export const ArgsInput = memo(() => {
 
   const onSortEnd = ({ oldIndex, newIndex }: SortEnd) => {
     if (oldIndex !== newIndex) {
-      const newData = arrayMoveImmutable(dataSource.slice(), oldIndex, newIndex).filter(
-        (el: DataType) => !!el,
+      const newData = arrayMoveImmutable(items.slice(), oldIndex, newIndex).filter(
+        (el: ArgMeta) => !!el,
       );
-      console.log('Sorted items: ', newData);
-      setDataSource(newData);
+      setItems(newData);
     }
   };
 
@@ -146,7 +123,7 @@ export const ArgsInput = memo(() => {
 
   const DraggableBodyRow: React.FC<any> = ({ className, style, ...restProps }) => {
     // function findIndex base on Table rowKey props and should always be a right array index
-    const index = dataSource.findIndex(x => x.index === restProps['data-row-key']);
+    const index = items.findIndex(x => x.index === restProps['data-row-key']);
     return <SortableItem index={index} {...restProps} />;
   };
 
@@ -180,7 +157,7 @@ export const ArgsInput = memo(() => {
         <div className="args-input-body">
           <Table
             pagination={false}
-            dataSource={dataSource}
+            dataSource={items}
             columns={columns}
             rowKey="index"
             components={{
@@ -190,7 +167,11 @@ export const ArgsInput = memo(() => {
               },
             }}
           />
-          <Button type="dashed" block icon={<PlusOutlined />}>
+          <Button
+            type="dashed"
+            block
+            icon={<PlusOutlined />}
+          >
             {t("Add")}
           </Button>
         </div>

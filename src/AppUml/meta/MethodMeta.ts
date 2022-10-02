@@ -10,6 +10,7 @@ export interface ArgMeta {
    * 渲染图形元素用的label，其他地方毫无用处
    */
   typeLabel: string;
+  index?: number;
 }
 
 export enum MethodOperateType {
