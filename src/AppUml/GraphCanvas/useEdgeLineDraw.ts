@@ -7,7 +7,7 @@ import {
   drawingLineState,
   pressedLineTypeState,
   relationsState,
-  selectedDiagramState,
+  selectedUmlDiagramState,
   selectedElementState,
   x6EdgesState,
 } from "../recoil/atoms";
@@ -25,7 +25,7 @@ export function useEdgeLineDraw(graph: Graph | undefined, appUuid: ID) {
   const [drawingLine, setDrawingLine] = useRecoilState(
     drawingLineState(appUuid)
   );
-  const selectedDiagram = useRecoilValue(selectedDiagramState(appUuid));
+  const selectedDiagram = useRecoilValue(selectedUmlDiagramState(appUuid));
   const setRelations = useSetRecoilState(relationsState(appUuid));
   const selectedElement = useSetRecoilState(selectedElementState(appUuid));
   const setEdges = useSetRecoilState(x6EdgesState(appUuid));

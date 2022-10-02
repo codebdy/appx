@@ -7,7 +7,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import {
   drawingLineState,
   pressedLineTypeState,
-  selectedDiagramState,
+  selectedUmlDiagramState,
   selectedElementState,
 } from "../recoil/atoms";
 import { useDiagramNodes } from "../hooks/useDiagramNodes";
@@ -26,7 +26,7 @@ import { useSelectedDiagramPackageUuid } from "../hooks/useSelectedDiagramPackag
 import { useHideClassFromDiagram } from "../hooks/useHideClassFromDiagram";
 
 export function useNodesShow(graph: Graph | undefined, appUuid: ID) {
-  const selectedDiagram = useRecoilValue(selectedDiagramState(appUuid));
+  const selectedDiagram = useRecoilValue(selectedUmlDiagramState(appUuid));
   const [selectedElement, setSelectedElement] = useRecoilState(
     selectedElementState(appUuid)
   );

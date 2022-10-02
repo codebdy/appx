@@ -250,6 +250,9 @@
     "Query": "查询",
     "Mutation": "变更"
   },
+  "AppBpmn":{
+    "BpmnModel":"工作流模型"
+  },
   "SettingsForm": {
     "Properties": "属性",
     "Styles": "样式",

@@ -4,7 +4,7 @@ import { ClassMeta } from "../meta/ClassMeta";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import {
   classesState,
-  selectedDiagramState,
+  selectedUmlDiagramState,
   selectedElementState,
   x6NodesState,
 } from "../recoil/atoms";
@@ -13,7 +13,7 @@ import { useCreateClassInnerId } from "../hooks/useCreateClassInnerId";
 import { ID } from "../../shared";
 
 export function useNodeAdd(graph: Graph | undefined, appUuid: ID) {
-  const selectedDiagramUuid = useRecoilValue(selectedDiagramState(appUuid));
+  const selectedDiagramUuid = useRecoilValue(selectedUmlDiagramState(appUuid));
   const setNodes = useSetRecoilState(x6NodesState(appUuid));
   const setEntities = useSetRecoilState(classesState(appUuid));
   const backupSnapshot = useBackupSnapshot(appUuid);

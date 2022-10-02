@@ -7,7 +7,7 @@ import {
   classesState,
   redoListState,
   relationsState,
-  selectedDiagramState,
+  selectedUmlDiagramState,
   selectedElementState,
   undoListState,
   x6EdgesState,
@@ -22,7 +22,7 @@ export function useBackupSnapshot(appUuid: ID) {
   const packages = useRecoilValue(packagesState(appUuid))
   const x6Nodes = useRecoilValue(x6NodesState(appUuid));
   const x6Edges = useRecoilValue(x6EdgesState(appUuid));
-  const selectedDiagram = useRecoilValue(selectedDiagramState(appUuid));
+  const selectedDiagram = useRecoilValue(selectedUmlDiagramState(appUuid));
   const selectedElement = useRecoilValue(selectedElementState(appUuid));
   const setChanged = useSetRecoilState(changedState(appUuid));
 

@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react";
 import { Graph, Node } from "@antv/x6";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { selectedDiagramState, selectedElementState } from "../recoil/atoms";
+import { selectedUmlDiagramState, selectedElementState } from "../recoil/atoms";
 import { useGetDiagramNode } from "../hooks/useGetDiagramNode";
 import { CONST_CANVAS_CLICK } from "../consts";
 import { ID } from "../../shared";
@@ -9,7 +9,7 @@ import { ID } from "../../shared";
 export function useNodeSelect(graph: Graph | undefined, appUuid: ID) {
   const [selectedElement, setSelectedElement] =
     useRecoilState(selectedElementState(appUuid));
-  const selectedDiagram = useRecoilValue(selectedDiagramState(appUuid));
+  const selectedDiagram = useRecoilValue(selectedUmlDiagramState(appUuid));
   const getDiagramNode = useGetDiagramNode(appUuid);
 
   useEffect(() => {

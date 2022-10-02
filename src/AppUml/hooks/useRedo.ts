@@ -8,7 +8,7 @@ import {
   classesState,
   redoListState,
   relationsState,
-  selectedDiagramState,
+  selectedUmlDiagramState,
   selectedElementState,
   undoListState,
   x6EdgesState,
@@ -28,7 +28,7 @@ export function useRedo(appUuid: ID) {
   const setChanged = useSetRecoilState(changedState(appUuid));
 
   const [selectedDiagram, setSelectedDiagram] = useRecoilState(
-    selectedDiagramState(appUuid)
+    selectedUmlDiagramState(appUuid)
   );
   const [selectedElement, setSelectedElement] = useRecoilState(
     selectedElementState(appUuid)

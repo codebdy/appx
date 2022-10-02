@@ -4,7 +4,7 @@ import _ from "lodash";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import {
   drawingLineState,
-  selectedDiagramState,
+  selectedUmlDiagramState,
   x6EdgesState,
 } from "../recoil/atoms";
 import { useGetEdge } from "../hooks/useGetEdge";
@@ -18,7 +18,7 @@ import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
 import { ID } from "../../shared";
 
 export function useEdgeChange(graph: Graph | undefined, appUuid: ID) {
-  const selectedDiagram = useRecoilValue(selectedDiagramState(appUuid));
+  const selectedDiagram = useRecoilValue(selectedUmlDiagramState(appUuid));
   const drawingLine = useRecoilValue(drawingLineState(appUuid));
   const setEdges = useSetRecoilState(x6EdgesState(appUuid));
   const getEdge = useGetEdge(appUuid);

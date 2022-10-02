@@ -7,7 +7,7 @@ import { useReadMeta } from "./hooks/useReadMeta";
 import { useShowError } from "../hooks/useShowError";
 import { Spin } from "antd";
 import { ModelBoard } from "../common/ModelBoard";
-import { minMapState, selectedDiagramState } from "./recoil/atoms";
+import { minMapState, selectedUmlDiagramState } from "./recoil/atoms";
 import { useRecoilValue } from "recoil";
 import { Toolbox } from "./Toolbox";
 import { UmlToolbar } from "./UmlToolbar";
@@ -24,7 +24,7 @@ const AppUml = memo((
   const appUuid = useEdittingAppUuid();
   const { loading, error } = useReadMeta(appUuid);
   const minMap = useRecoilValue(minMapState(appUuid));
-  const selectedDiagram = useRecoilValue(selectedDiagramState(appUuid));
+  const selectedDiagram = useRecoilValue(selectedUmlDiagramState(appUuid));
   useShowError(error);
 
   return (

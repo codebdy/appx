@@ -2,7 +2,7 @@ import { MoreOutlined, EditOutlined, DeleteOutlined, FileAddOutlined, PlusSquare
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
 import { useSetRecoilState } from 'recoil';
-import { classesState, selectedDiagramState } from "../recoil/atoms";
+import { classesState, selectedUmlDiagramState } from "../recoil/atoms";
 import { PackageMeta } from "../meta/PackageMeta";
 import { useDeletePackage } from './../hooks/useDeletePackage';
 import { useCreateNewClass } from "../hooks/useCreateNewClass";
@@ -30,7 +30,7 @@ const PackageAction = memo((
   const { t } = useTranslation();
   
   const setSelectedDiagram = useSetRecoilState(
-    selectedDiagramState(appUuid)
+    selectedUmlDiagramState(appUuid)
   );
 
   const handleDelete = useCallback(() => {

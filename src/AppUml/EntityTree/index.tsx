@@ -5,7 +5,7 @@ import { DataNode } from "antd/lib/tree";
 import SvgIcon from "../../common/SvgIcon";
 import RootAction from "./RootAction";
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { packagesState, diagramsState, classesState, selectedDiagramState, selectedElementState } from './../recoil/atoms';
+import { packagesState, diagramsState, classesState, selectedUmlDiagramState, selectedElementState } from './../recoil/atoms';
 import TreeNodeLabel from "../../common/TreeNodeLabel";
 import PackageLabel from "./PackageLabel";
 import { PackageMeta } from "../meta/PackageMeta";
@@ -41,7 +41,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   const isDiagram = useIsDiagram(appUuid);
   const isElement = useIsElement(appUuid);
   const parseRelationUuid = useParseRelationUuid(appUuid);
-  const [selectedDiagramId, setSelecteDiagramId] = useRecoilState(selectedDiagramState(appUuid));
+  const [selectedDiagramId, setSelecteDiagramId] = useRecoilState(selectedUmlDiagramState(appUuid));
   const [selectedElement, setSelectedElement] = useRecoilState(selectedElementState(appUuid));
   const getSourceRelations = useGetSourceRelations(appUuid);
   const getTargetRelations = useGetTargetRelations(appUuid);

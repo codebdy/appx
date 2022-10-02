@@ -12,14 +12,14 @@ import { RelationType } from "../meta/RelationMeta";
 import { useRecoilValue } from "recoil";
 import {
   drawingLineState,
-  selectedDiagramState,
+  selectedUmlDiagramState,
   selectedElementState,
 } from "../recoil/atoms";
 import { useDiagramEdges } from "../hooks/useDiagramEdges";
 import { ID } from "../../shared";
 
 export function useEdgesShow(graph: Graph | undefined, appUuid: ID) {
-  const selectedDiagram = useRecoilValue(selectedDiagramState(appUuid));
+  const selectedDiagram = useRecoilValue(selectedUmlDiagramState(appUuid));
   const selectedElement = useRecoilValue(selectedElementState(appUuid));
   const drawingLine = useRecoilValue(drawingLineState(appUuid));
 

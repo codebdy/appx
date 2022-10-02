@@ -3,7 +3,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import {
   minMapState,
   redoListState,
-  selectedDiagramState,
+  selectedUmlDiagramState,
   selectedElementState,
   undoListState,
 } from "../recoil/atoms";
@@ -23,7 +23,7 @@ export const UmlToolbar = memo(() => {
   const appUuid = useEdittingAppUuid();
   const undoList = useRecoilValue(undoListState(appUuid));
   const redoList = useRecoilValue(redoListState(appUuid));
-  const selectedDiagram = useRecoilValue(selectedDiagramState(appUuid));
+  const selectedDiagram = useRecoilValue(selectedUmlDiagramState(appUuid));
   const selectedElement = useRecoilValue(selectedElementState(appUuid));
   const { attribute } = useAttribute(selectedElement || "", appUuid);
   const undo = useUndo(appUuid);

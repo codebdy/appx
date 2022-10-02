@@ -21,78 +21,78 @@ export interface Snapshot {
 }
 
 export const minMapState = atomFamily<boolean, string>({
-  key: "local.minMap",
+  key: "uml.minMap",
   default: true,
 });
 
 export const publishedIdState = atomFamily<ID | undefined, string>({
-  key: "local.publishedId",
+  key: "uml.publishedId",
   default: undefined,
 });
 
 export const changedState = atomFamily<boolean, string>({
-  key: "local.changed",
+  key: "uml.changed",
   default: false,
 });
 
 export const diagramsState = atomFamily<DiagramMeta[], string>({
-  key: "local.diagrams",
+  key: "uml.diagrams",
   default: [],
 });
 
 
 export const metaState = atomFamily<Meta | undefined, string>({
-  key: "local.meta",
+  key: "uml.meta",
   default: undefined,
 });
 
 export const packagesState = atomFamily<PackageMeta[], string>({
-  key: "local.packages",
+  key: "uml.packages",
   default: [],
 })
 
 export const classesState = atomFamily<ClassMeta[], string>({
-  key: "local.classes",
+  key: "uml.classes",
   default: [],
 });
 
 export const relationsState = atomFamily<RelationMeta[], string>({
-  key: "local.relations",
+  key: "uml.relations",
   default: [],
 });
 
 export const x6NodesState = atomFamily<X6NodeMeta[], string>({
-  key: "local.x6Nodes",
+  key: "uml.x6Nodes",
   default: [],
 });
 
 export const x6EdgesState = atomFamily<X6EdgeMeta[], string>({
-  key: "local.x6Edges",
+  key: "uml.x6Edges",
   default: [],
 });
 
 export const undoListState = atomFamily<Snapshot[], string>({
-  key: "local.undoList",
+  key: "uml.undoList",
   default: [],
 });
 
 export const redoListState = atomFamily<Snapshot[], string>({
-  key: "local.redoList",
+  key: "uml.redoList",
   default: [],
 });
 
 export const selectedElementState = atomFamily<string | undefined, string>({
-  key: "local.selectedElement",
+  key: "uml.selectedElement",
   default: undefined,
 });
 
-export const selectedDiagramState = atomFamily<string | undefined, string>({
-  key: "local.selectedDiagram",
+export const selectedUmlDiagramState = atomFamily<string | undefined, string>({
+  key: "uml.selectedDiagram",
   default: undefined,
 });
 
 export const drawingLineState = atomFamily<LineAction | undefined, string>({
-  key: "local.drawingLine",
+  key: "uml.drawingLine",
   default: undefined,
 });
 
@@ -100,11 +100,11 @@ export const pressedLineTypeState = atomFamily<
   RelationType | undefined,
   ID
 >({
-  key: "local.pressedLineType",
+  key: "uml.pressedLineType",
   default: undefined,
 });
 
 export const prepareLinkToNodeState = atomFamily<string | undefined, string>({
-  key: "local.prepareLinkToNode",
+  key: "uml.prepareLinkToNode",
   default: undefined,
 });

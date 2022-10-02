@@ -1,12 +1,12 @@
 import { useCallback, useEffect } from "react";
 import { Graph, Node } from "@antv/x6";
-import { selectedDiagramState, selectedElementState, x6NodesState } from "../recoil/atoms";
+import { selectedUmlDiagramState, selectedElementState, x6NodesState } from "../recoil/atoms";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
 import { ID } from "../../shared";
 
 export function useNodeChange(graph: Graph | undefined, appUuid: ID) {
-  const selectedDiagram = useRecoilValue(selectedDiagramState(appUuid));
+  const selectedDiagram = useRecoilValue(selectedUmlDiagramState(appUuid));
   const setNodes = useSetRecoilState(x6NodesState(appUuid));
   const backupSnapshot = useBackupSnapshot(appUuid);
   const setSelectedElement = useSetRecoilState(selectedElementState(appUuid));
