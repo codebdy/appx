@@ -10,7 +10,7 @@ import { MenuOutlined } from '@ant-design/icons';
 import { SortableContainerProps, SortEnd } from 'react-sortable-hoc';
 import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
 import { arrayMoveImmutable } from "array-move";
-import { Types } from "../../../../AppUml/meta/Type";
+import { Type, Types } from "../../../../AppUml/meta/Type";
 import { ArgMeta } from "../../../../AppUml/meta/MethodMeta";
 import { createUuid } from "../../../../shared";
 import { LazyInput } from "./LazyInput";
@@ -46,6 +46,13 @@ export const ArgsInput = memo((
       })
     })
   }, [])
+  const handleTypeChange = useCallback((uuid: string, type: Type) => {
+    setItems(items => {
+      return items.map(item => {
+        return item.uuid === uuid ? { ...item, type } : item
+      })
+    })
+  }, [])
 
   const columns: ColumnsType<ArgMeta> = useMemo(() => [
     {
@@ -74,36 +81,24 @@ export const ArgsInput = memo((
       dataIndex: 'type',
       className: 'drag-visible',
       width: 150,
-      render: (_, { type }) => (
-        <Select style={{ width: 150 }} value={type}>
+      render: (_, { uuid, type }) => (
+        <Select
+          style={{ width: 150 }}
+          value={type}
+          onChange={(value) => handleTypeChange(uuid, value)}
+        >
           <Option value={Types.ID}>ID</Option>
           <Option value={Types.Int}>Int</Option>
           <Option value={Types.Float}>Float</Option>
           <Option value={Types.Boolean}>Boolean</Option>
           <Option value={Types.String}>String</Option>
           <Option value={Types.Date}>Date</Option>
-          <Option value={Types.Enum}>{t("AppUml.Enum")}</Option>
           <Option value={Types.JSON}>JSON</Option>
-          <Option value={Types.ValueObject}>{t("AppUml.ValueClass")}</Option>
-          <Option value={Types.Entity}>{t("AppUml.Entity")}</Option>
-          <Option value={Types.File}>{t("File")}</Option>
           <Option value={Types.IDArray}>ID {t("AppUml.Array")}</Option>
           <Option value={Types.IntArray}>Int {t("AppUml.Array")}</Option>
           <Option value={Types.FloatArray}>Float {t("AppUml.Array")}</Option>
           <Option value={Types.StringArray}>String {t("AppUml.Array")}</Option>
           <Option value={Types.DateArray}>Date {t("AppUml.Array")}</Option>
-          <Option value={Types.EnumArray}>
-            {t("AppUml.Enum")}
-            {t("AppUml.Array")}
-          </Option>
-          <Option value={Types.ValueObjectArray}>
-            {t("AppUml.ValueClass")}
-            {t("AppUml.Array")}
-          </Option>
-          <Option value={Types.EntityArray}>
-            {t("AppUml.Entity")}
-            {t("AppUml.Array")}
-          </Option>
         </Select>
       ),
     },
