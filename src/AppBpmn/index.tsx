@@ -13,6 +13,7 @@ import "./style.less"
 import { PropertyBox } from "../common/ModelBoard/PropertyBox";
 import { useSelectedElement } from "./hooks/useSelectedElement";
 import { PropertyPanel } from "./PropertyPanel";
+import AppRoot from "../shared/AppRoot";
 
 export const AppBpmn = memo((props) => {
   const { t } = useTranslation();
@@ -77,22 +78,24 @@ export const AppBpmn = memo((props) => {
   }
 
   return (
-    <ModelBoard
-      listWidth={200}
-      toolbar={<ModelToolbar>
-        工具栏
-        <div style={{ flex: 1 }}></div>
-        <Button type="primary">
-          {t("Save")}
-        </Button>
-      </ModelToolbar>
-      }
-      propertyBox={<PropertyBox title={t("Properties")} >
-        <PropertyPanel element={element} modeler={bpmnModeler} />
-      </PropertyBox>}
-    >
-      <div className="react-bpmn-diagram-container" ref={containerRef}>
-      </div>
-    </ModelBoard>
+    <AppRoot>
+      <ModelBoard
+        listWidth={200}
+        toolbar={<ModelToolbar>
+          工具栏
+          <div style={{ flex: 1 }}></div>
+          <Button type="primary">
+            {t("Save")}
+          </Button>
+        </ModelToolbar>
+        }
+        propertyBox={<PropertyBox title={t("Properties")} >
+          <PropertyPanel element={element} modeler={bpmnModeler} />
+        </PropertyBox>}
+      >
+        <div className="react-bpmn-diagram-container" ref={containerRef}>
+        </div>
+      </ModelBoard>
+    </AppRoot>
   );
 })

@@ -1,8 +1,8 @@
 import { gql } from "awesome-graphql-client";
 import { IPageCategory } from "../../model";
-import { useAppParams } from "../../plugin-sdk/contexts/appRoot";
 import { useQuery } from "../../enthooks/hooks/useQuery";
 import { useMemo } from "react";
+import { useParams } from "react-router-dom";
 
 const categoriesGql = gql`
 query ($appUuid:String!, $device:String!){
@@ -36,16 +36,16 @@ query ($appUuid:String!, $device:String!){
 `
 
 export function useQueryCagegories() {
-  const params = useAppParams();
+  const { device, appUuid } = useParams();
 
   const args = useMemo(() => {
     return {
       gql: categoriesGql,
-      params: { device: params.device, appUuid: params.app.uuid },
+      params: { device: device, appUuid: appUuid },
       depEntityNames: ["PageCategory"]
     }
-  }, [params])
+  }, [device, appUuid])
   const { data, error, loading } = useQuery<IPageCategory>(args)
 
-  return { categories: data?.pageCategory?.nodes, error, loading }
+  return { categories: data?.pageCategories?.nodes, error, loading }
 }
