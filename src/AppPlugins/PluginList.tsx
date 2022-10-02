@@ -4,8 +4,7 @@ import { useAppParams } from '../plugin-sdk/contexts/appRoot';
 import { PluginItem } from './PluginItem';
 
 export const PluginList = memo(() => {
-  const { uploadedPlugins, debugPlugins } = useAppParams();
-
+  const { uploadedPlugins, debugPlugins, app } = useAppParams();
   const items = useMemo(() => {
     return [
       ...uploadedPlugins,

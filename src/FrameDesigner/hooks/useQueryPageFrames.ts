@@ -6,7 +6,7 @@ import { IPageFrame } from "../../model";
 
 const pageFramesGql = gql`
 query ($device:String!, $appUuid:String!){
-  pageFrame(
+  pageFrames(
     where:{
       _and:[
         {
@@ -48,5 +48,5 @@ export function useQueryPageFrames() {
 
   const { data, error, loading } = useQuery<IPageFrame>(args)
 
-  return { pageFrames: data?.pageFrame?.nodes, error, loading }
+  return { pageFrames: data?.pageFrames?.nodes, error, loading }
 }
