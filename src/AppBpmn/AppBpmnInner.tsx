@@ -14,6 +14,7 @@ import { PropertyBox } from "../common/ModelBoard/PropertyBox";
 import { useSelectedElement } from "./hooks/useSelectedElement";
 import { PropertyPanel } from "./PropertyPanel";
 import AppRoot from "../shared/AppRoot";
+import { ProcessList } from "./ProcessList";
 
 export const AppBpmnInner = memo((props) => {
   const { t } = useTranslation();
@@ -89,9 +90,7 @@ export const AppBpmnInner = memo((props) => {
       </ModelToolbar>
       }
       modelList={
-        <div>
-          列表
-        </div>
+        <ProcessList />
       }
       propertyBox={<PropertyBox title={t("Properties")} >
         <PropertyPanel element={element} modeler={bpmnModeler} />

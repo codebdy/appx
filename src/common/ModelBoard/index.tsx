@@ -18,7 +18,7 @@ export const ModelBoard = memo((
   return (
     <div className="appx-model-board">
       {
-        modelList && <ResizableColumn minWidth={200} maxWidth={500} width={listWidth}>
+        modelList && <ResizableColumn minWidth={50} maxWidth={500} width={listWidth}>
           <div className="model-tree-shell">
             {modelList}
           </div>
