@@ -70,6 +70,10 @@ export const ArgsInput = memo((
     })
   }, [])
 
+  const handleRemove = useCallback((uuid: string) => {
+    setItems(items => items.filter(item => item.uuid !== uuid));
+  }, [])
+
   const columns: ColumnsType<ArgMeta> = useMemo(() => [
     {
       dataIndex: 'sort',
@@ -121,8 +125,13 @@ export const ArgsInput = memo((
     {
       dataIndex: 'operate',
       className: 'drag-visible',
-      render: () => (
-        <Button shape="circle" type="text" icon={<DeleteOutlined />} />
+      render: (_, { uuid }) => (
+        <Button
+          shape="circle"
+          type="text"
+          icon={<DeleteOutlined />}
+          onClick={() => handleRemove(uuid)}
+        />
       ),
     },
   ], []);
