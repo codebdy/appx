@@ -14,6 +14,21 @@ export const ProcessList = memo(() => {
   const { app } = useAppParams();
   const [selectedDiagramId, setSelecteDiagramId] = useRecoilState(selectedBpmnDiagramState(app.uuid));
   const { t } = useTranslation();
+  const getCategoryNodes = useCallback(() => {
+    return [
+      {
+        title: t("AppBpmn.ApprovalFlow"),
+        key: "approval-model",
+        //children: clses.map(cls => getClassNode(cls))
+      },
+      {
+        title: t("AppBpmn.WorkFlow"),
+        key: "approval-work",
+        //children: clses.map(cls => getClassNode(cls))
+      },
+    ]
+  }, [])
+
   const treeData: DataNode[] = useMemo(() => [
     {
       icon: <SvgIcon>
@@ -26,10 +41,10 @@ export const ProcessList = memo(() => {
           <div>{t("AppBpmn.BpmnModel")}</div>
         </TreeNodeLabel>,
       key: "0",
-      //children: getPackageNodes()
+      children: getCategoryNodes()
     },
 
-  ], [t]);
+  ], [getCategoryNodes, t]);
   const handleSelect = useCallback((keys: string[]) => {
     // for (const uuid of keys) {
     //   if (isDiagram(uuid)) {
