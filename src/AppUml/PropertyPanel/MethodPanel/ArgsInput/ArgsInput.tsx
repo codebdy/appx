@@ -10,10 +10,12 @@ import { MenuOutlined } from '@ant-design/icons';
 import { SortableContainerProps, SortEnd } from 'react-sortable-hoc';
 import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
 import { arrayMoveImmutable } from "array-move";
-import { Type, Types } from "../../../../AppUml/meta/Type";
+import { Type, Types } from "../../../meta/Type";
 import { ArgMeta } from "../../../../AppUml/meta/MethodMeta";
 import { createUuid } from "../../../../shared";
 import { LazyInput } from "./LazyInput";
+import { useGetTypeLabel } from "../../../hooks/useGetTypeLabel";
+import { useEdittingAppUuid } from "../../../../hooks/useEdittingAppUuid";
 
 const { Option } = Select;
 
@@ -27,16 +29,23 @@ const SortableBody: any = SortableContainer((props: React.HTMLAttributes<HTMLTab
 ));
 export const ArgsInput = memo((
   props: {
-    args?: ArgMeta[]
+    value?: ArgMeta[],
+    onChange?: (value?: ArgMeta[]) => void,
   }
 ) => {
-  const { args } = props;
+  const { value, onChange } = props;
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState<ArgMeta[]>([]);
+  const appUuid = useEdittingAppUuid();
+  const getTypeLabel = useGetTypeLabel(appUuid);
+
+  const reset = useCallback(() => {
+    setItems(value?.map((arg, index) => ({ ...arg, index })) || [])
+  }, [value]);
 
   useEffect(() => {
-    setItems(args?.map((arg, index) => ({ ...arg, index })) || [])
-  }, [args])
+    reset();
+  }, [reset])
 
   const { t } = useTranslation();
   const handleNameChange = useCallback((uuid: string, name: string) => {
@@ -49,7 +58,14 @@ export const ArgsInput = memo((
   const handleTypeChange = useCallback((uuid: string, type: Type) => {
     setItems(items => {
       return items.map(item => {
-        return item.uuid === uuid ? { ...item, type } : item
+        return item.uuid === uuid
+          ?
+          {
+            ...item,
+            type,
+            typeLabel: getTypeLabel(type),
+          }
+          : item
       })
     })
   }, [])
@@ -145,6 +161,7 @@ export const ArgsInput = memo((
           uuid: createUuid(),
           name: "arg",
           type: Types.String,
+          typeLabel: getTypeLabel(Types.String),
         }
       ]
     })
@@ -156,11 +173,13 @@ export const ArgsInput = memo((
 
   const handleOk = useCallback(() => {
     setOpen(false);
-  }, [])
+    onChange && onChange(items);
+  }, [onChange, items])
 
   const handleCancel = useCallback(() => {
     setOpen(false);
-  }, [])
+    reset();
+  }, [reset])
 
 
   return (
