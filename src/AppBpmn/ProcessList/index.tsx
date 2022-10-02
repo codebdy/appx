@@ -8,7 +8,6 @@ import SvgIcon from "../../common/SvgIcon";
 import TreeNodeLabel from "../../common/TreeNodeLabel";
 import { useAppParams } from "../../plugin-sdk";
 import { selectedBpmnDiagramState } from "../recoil/atoms";
-import RootAction from "./RootAction";
 const { DirectoryTree } = Tree;
 
 export const ProcessList = memo(() => {
@@ -23,7 +22,7 @@ export const ProcessList = memo(() => {
         </svg>
       </SvgIcon>,
       title:
-        <TreeNodeLabel fixedAction action={<RootAction />}>
+        <TreeNodeLabel fixedAction>
           <div>{t("AppBpmn.BpmnModel")}</div>
         </TreeNodeLabel>,
       key: "0",
