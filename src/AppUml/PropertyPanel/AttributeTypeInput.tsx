@@ -28,7 +28,7 @@ export const AttributeTypeInput = memo(
     return (
       <>
         <Form.Item
-          label={t("AppUml.DataType")}
+          label={t("Type")}
           name="type"
         >
           <Select disabled={isId}>
