@@ -26,7 +26,7 @@ export const ProcessList = memo(() => {
                 type="text"
                 size="small"
                 icon={<PlusOutlined />}
-                onClick = {e=>e.stopPropagation()}
+                onClick={e => e.stopPropagation()}
               ></Button>
             }
           >
@@ -44,7 +44,7 @@ export const ProcessList = memo(() => {
                 type="text"
                 size="small"
                 icon={<PlusOutlined />}
-                onClick = {e=>e.stopPropagation()}
+                onClick={e => e.stopPropagation()}
               ></Button>
             }
           >
@@ -64,7 +64,17 @@ export const ProcessList = memo(() => {
         </svg>
       </SvgIcon>,
       title:
-        <TreeNodeLabel fixedAction>
+        <TreeNodeLabel
+          action={
+            <Button
+              shape="circle"
+              type="text"
+              size="small"
+              icon={<PlusOutlined />}
+              onClick={e => e.stopPropagation()}
+            ></Button>
+          }
+        >
           <div>{t("AppBpmn.BpmnModel")}</div>
         </TreeNodeLabel>,
       key: "0",
