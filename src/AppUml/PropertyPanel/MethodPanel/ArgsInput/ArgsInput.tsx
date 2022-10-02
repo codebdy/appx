@@ -12,6 +12,8 @@ import { SortableContainer, SortableElement, SortableHandle } from 'react-sortab
 import { arrayMoveImmutable } from "array-move";
 import { Types } from "../../../../AppUml/meta/Type";
 import { ArgMeta } from "../../../../AppUml/meta/MethodMeta";
+import { createUuid } from "../../../../shared";
+import { LazyInput } from "./LazyInput";
 
 const { Option } = Select;
 
@@ -37,6 +39,13 @@ export const ArgsInput = memo((
   }, [args])
 
   const { t } = useTranslation();
+  const handleNameChange = useCallback((uuid: string, name: string) => {
+    setItems(items => {
+      return items.map(item => {
+        return item.uuid === uuid ? { ...item, name } : item
+      })
+    })
+  }, [])
 
   const columns: ColumnsType<ArgMeta> = useMemo(() => [
     {
@@ -50,8 +59,14 @@ export const ArgsInput = memo((
       dataIndex: 'name',
       className: 'drag-visible',
       width: 200,
-      render: (_, { name }) => (
-        <Input value={name} style={{ width: 200 }} />
+      render: (_, { uuid, name }) => (
+        <LazyInput
+          value={name}
+          style={{ width: 200 }}
+          onChange={
+            (value) => handleNameChange(uuid, value)
+          }
+        />
       ),
     },
     {
@@ -127,6 +142,18 @@ export const ArgsInput = memo((
     return <SortableItem index={index} {...restProps} />;
   };
 
+  const handleAdd = useCallback(() => {
+    setItems(items => {
+      return [
+        ...items,
+        {
+          uuid: createUuid(),
+          name: "arg",
+          type: Types.String,
+        }
+      ]
+    })
+  }, [])
 
   const showModal = useCallback(() => {
     setOpen(true)
@@ -139,6 +166,8 @@ export const ArgsInput = memo((
   const handleCancel = useCallback(() => {
     setOpen(false);
   }, [])
+
+
   return (
     <>
       <Button block onClick={showModal}>
@@ -171,6 +200,7 @@ export const ArgsInput = memo((
             type="dashed"
             block
             icon={<PlusOutlined />}
+            onClick={handleAdd}
           >
             {t("Add")}
           </Button>
