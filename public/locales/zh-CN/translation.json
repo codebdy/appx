@@ -250,8 +250,12 @@
     "Query": "查询",
     "Mutation": "变更"
   },
-  "AppBpmn":{
-    "BpmnModel":"工作流模型"
+  "AppBpmn": {
+    "BpmnModel": "工作流模型",
+    "ApprovalFlow": "审批流",
+    "WorkFlow": "工作流",
+    "AddApprovalFlow": "添加审批流",
+    "AddWorkFlow": "添加工作流"
   },
   "SettingsForm": {
     "Properties": "属性",

@@ -25,7 +25,7 @@ const RootAction = memo(() => {
       items={[
         {
           icon: <FolderAddOutlined />,
-          label: t("AppUml.AddPackage"),
+          label: t("AppBpmn.AddApprovalFlow"),
           key: '0',
           onClick: e => {
             e.domEvent.stopPropagation();
@@ -34,14 +34,9 @@ const RootAction = memo(() => {
         },
         {
           icon: <DownloadOutlined />,
-          label: t("AppUml.ExportModel"),
+          label: t("AppBpmn.AddWorkFlow"),
           key: '1',
           //onClick: expotJson
-        },
-        {
-          icon: <ImportOutlined />,
-          label: t("AppUml.ImportModel"),
-          key: '2',
         },
       ]}
     />
