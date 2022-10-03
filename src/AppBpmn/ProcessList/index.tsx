@@ -1,4 +1,4 @@
-import { Tree } from "antd";
+import { Spin, Tree } from "antd";
 import { DataNode } from "antd/lib/tree";
 import React, { useCallback, useMemo } from "react";
 import { memo } from "react";
@@ -6,24 +6,31 @@ import { useTranslation } from "react-i18next";
 import { useRecoilState } from "recoil";
 import { ProcessType } from "../../model/process";
 import SvgIcon from "../../common/SvgIcon";
-import { useAppParams } from "../../plugin-sdk";
+import { useAppParams, useParseLangMessage } from "../../plugin-sdk";
 import { selectedBpmnDiagramState } from "../recoil/atoms";
 import { CategoryLabel } from "./CategoryLabel";
+import { useQueryProcesses } from "../hooks/useQueryProcesses";
+import { useShowError } from "../../hooks/useShowError";
 const { DirectoryTree } = Tree;
 
 export const ProcessList = memo(() => {
   const { app } = useAppParams();
   const [selectedDiagramId, setSelecteDiagramId] = useRecoilState(selectedBpmnDiagramState(app.uuid));
+  const { processes, error, loading } = useQueryProcesses();
   const { t } = useTranslation();
+  const p = useParseLangMessage();
+  
+  useShowError(error);
+
   const getCategoryNodes = useCallback(() => {
     return [
       {
-        title: <CategoryLabel  processType={ProcessType.approvalFlow}  title={t("AppBpmn.ApprovalFlow")} />,
+        title: <CategoryLabel processType={ProcessType.approvalFlow} title={t("AppBpmn.ApprovalFlow")} />,
         key: "approval-model",
         //children: clses.map(cls => getClassNode(cls))
       },
       {
-        title: <CategoryLabel processType={ProcessType.workFlow}  title={t("AppBpmn.WorkFlow")} />,
+        title: <CategoryLabel processType={ProcessType.workFlow} title={t("AppBpmn.WorkFlow")} />,
         key: "approval-work",
         //children: clses.map(cls => getClassNode(cls))
       },
@@ -66,12 +73,14 @@ export const ProcessList = memo(() => {
         padding: 8,
       }}
     >
-      <DirectoryTree
-        defaultExpandedKeys={["0"]}
-        selectedKeys={[selectedDiagramId]}
-        onSelect={handleSelect}
-        treeData={treeData}
-      />
+      <Spin spinning={loading}>
+        <DirectoryTree
+          defaultExpandedKeys={["0"]}
+          selectedKeys={[selectedDiagramId]}
+          onSelect={handleSelect}
+          treeData={treeData}
+        />
+      </Spin>
     </div>
   )
 })
