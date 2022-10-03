@@ -1,9 +1,11 @@
-import { MoreOutlined, EditOutlined, DeleteOutlined, LockOutlined } from "@ant-design/icons";
+import { MoreOutlined, EditOutlined, DeleteOutlined, LoadingOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next";
 import { IProcess } from "../../model/process";
-import { useEdittingAppUuid } from "../../hooks/useEdittingAppUuid";
+
+import { useDeleteProcess } from "../hooks/useDeleteProcess";
+import { useShowError } from "../../hooks/useShowError";
 
 export const ProcessAction = memo((
   props: {
@@ -13,14 +15,16 @@ export const ProcessAction = memo((
   }
 ) => {
   const { process, onEdit, onVisibleChange } = props;
-  const appUuid = useEdittingAppUuid();
-  // const getPagcage = useGetPackage(appUuid)
-  // const deleteDiagram = useDeleteDiagram(appUuid)
+  const [doDelete, { error, loading }] = useDeleteProcess({
+    onCompleted: () => {
+      onVisibleChange(false);
+    }
+  });
+  useShowError(error);
   const { t } = useTranslation();
 
   const handleDelete = useCallback(() => {
-    //deleteDiagram(diagram.uuid)
-    onVisibleChange(false);
+    doDelete(process.id);
   }, [onVisibleChange, process.id]);
 
   const menu = useMemo(() => (
@@ -44,7 +48,6 @@ export const ProcessAction = memo((
             onClick: e => {
               e.domEvent.stopPropagation();
               handleDelete();
-              onVisibleChange(false);
             }
           },
         ]}
@@ -59,7 +62,14 @@ export const ProcessAction = memo((
       trigger={['click']}
     >
       <Button type="text" shape='circle' size='small' onClick={e => e.stopPropagation()}>
-        <MoreOutlined/>
+        {
+          loading
+            ?
+            <LoadingOutlined />
+            :
+            <MoreOutlined />
+        }
+
       </Button>
     </Dropdown>
   )
