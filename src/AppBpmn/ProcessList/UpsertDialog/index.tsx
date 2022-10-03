@@ -1,8 +1,31 @@
 import { PlusOutlined } from "@ant-design/icons"
-import { Button } from "antd"
-import React from "react"
+import { Button, Modal } from "antd"
+import React, { memo, useCallback, useState } from "react"
+import { useTranslation } from "react-i18next"
+import { ID } from "../../../shared"
 
-export const UpsertDialog = () => {
+export const UpsertDialog = memo((
+  props: {
+    processId?: ID
+  }
+) => {
+  const { processId } = props;
+  const [open, setOpen] = useState(false);
+  const { t } = useTranslation();
+
+  const handleOpen = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    setOpen(true);
+  }, [])
+
+  const handleClose = useCallback(() => {
+    setOpen(false);
+  }, []);
+
+  const handleConfirm = useCallback(() => {
+    setOpen(false);
+  }, []);
+
   return (
     <>
       <Button
@@ -10,8 +33,20 @@ export const UpsertDialog = () => {
         type="text"
         size="small"
         icon={<PlusOutlined />}
-        onClick={e => e.stopPropagation()}
+        onClick={handleOpen}
       ></Button>
+
+      <Modal
+        title={t(processId ? "AppBpmn.EidtProcess" : "AppBpmn.AddProcess")}
+        open={open}
+        width={580}
+        cancelText={t("Cancel")}
+        okText={t("Confirm")}
+        onCancel={handleClose}
+        onOk={handleConfirm}
+        confirmLoading={false}
+      >
+      </Modal>
     </>
   )
-}
+})

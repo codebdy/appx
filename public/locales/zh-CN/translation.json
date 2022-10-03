@@ -255,8 +255,8 @@
     "BpmnModel": "工作流模型",
     "ApprovalFlow": "审批流",
     "WorkFlow": "工作流",
-    "AddApprovalFlow": "添加审批流",
-    "AddWorkFlow": "添加工作流"
+    "AddProcess": "添加流程",
+    "EidtProcess": "编辑流程"
   },
   "SettingsForm": {
     "Properties": "属性",
