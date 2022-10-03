@@ -5,6 +5,7 @@ import { ProcessAction } from "./ProcessAction";
 import { useEdittingAppUuid } from "../../hooks/useEdittingAppUuid";
 import { useParseLangMessage } from "../../plugin-sdk";
 import { IProcess } from "../../model/process";
+import { UpsertModal } from "./UpsertDialog/UpsertModal";
 
 export const ProcessLabel = memo((
   props: {
@@ -15,11 +16,6 @@ export const ProcessLabel = memo((
   const [editing, setEditing] = useState(false);
   const [visible, setVisible] = useState(false);
   const p = useParseLangMessage();
-  const appUuid = useEdittingAppUuid();
-  //const backup = useBackupSnapshot(appUuid);
-  //const setDiagrams = useSetRecoilState(diagramsState(appUuid));
-  //const getPagcage = useGetPackage(appUuid)
-
 
   const handleVisableChange = useCallback((visible) => {
     setVisible(visible)
@@ -29,21 +25,9 @@ export const ProcessLabel = memo((
     setEditing(true);
   }, []);
 
-  const handleChange = useCallback((value?: string) => {
-    handleEditFinish(value);
+  const handleOpenChange = useCallback((open) => {
+    setEditing(open)
   }, []);
-
-  const handleEditFinish = useCallback((value?: string) => {
-    //backup()
-    setEditing(false);
-    //setDiagrams(diagrams => diagrams.map(dm => dm.uuid === diagram.uuid ? { ...diagram, name: value || name } : dm))
-  }, [])
-
-  const handleKeyEnter = (event: React.KeyboardEvent<HTMLElement>) => {
-    if (event.key === "Enter") {
-      handleEditFinish();
-    }
-  };
 
   return (
     <TreeNodeLabel
@@ -57,6 +41,11 @@ export const ProcessLabel = memo((
       onClick={e => editing ? e.stopPropagation() : undefined}
     >
       <div>{p(process?.name)}</div>
+      {
+        editing &&
+        <UpsertModal process={process} open={editing} onOpenChange={handleOpenChange} />
+      }
+
     </TreeNodeLabel>
   )
 })
