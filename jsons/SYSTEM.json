@@ -19,6 +19,7 @@
       {
         "appUuid": "SYSTEM",
         "name": "$inline:{\"zh-CN\":\"工作流\",\"en-US\":\"Processes\"}",
+        "sharable": true,
         "uuid": "bebc8345-a0e4-41ed-8743-93c00604260c"
       }
     ],
@@ -825,58 +826,58 @@
         "uuid": "0afeac65-c0f6-48c1-846c-922e156307f5"
       },
       {
-        "uuid": "692bf0ad-532b-4720-9427-a7a0fc70a418",
-        "innerId": 1023,
-        "name": "Process",
         "attributes": [
           {
-            "uuid": "175c19f1-a818-40d6-aecd-7055a3cfc869",
             "name": "id",
-            "type": "ID",
             "primary": true,
-            "typeLabel": "ID"
+            "type": "ID",
+            "typeLabel": "ID",
+            "uuid": "175c19f1-a818-40d6-aecd-7055a3cfc869"
           },
           {
-            "uuid": "fe250d6c-0a83-47a5-919a-2e76c9e51d02",
             "name": "name",
             "type": "String",
-            "typeLabel": "String"
+            "typeLabel": "String",
+            "uuid": "fe250d6c-0a83-47a5-919a-2e76c9e51d02"
           },
           {
-            "uuid": "730429d6-db33-4c06-9808-41bccb0c267d",
             "name": "type",
             "type": "Enum",
             "typeLabel": "ProcessType",
-            "typeUuid": "d5400697-5fe9-4aa3-a8b5-a0854b184d56"
+            "typeUuid": "d5400697-5fe9-4aa3-a8b5-a0854b184d56",
+            "uuid": "730429d6-db33-4c06-9808-41bccb0c267d"
           }
         ],
+        "innerId": 1023,
         "methods": [],
-        "stereoType": "Entity",
+        "name": "Process",
+        "packageUuid": "bebc8345-a0e4-41ed-8743-93c00604260c",
         "root": true,
-        "packageUuid": "bebc8345-a0e4-41ed-8743-93c00604260c"
+        "stereoType": "Entity",
+        "uuid": "692bf0ad-532b-4720-9427-a7a0fc70a418"
       },
       {
-        "uuid": "d5400697-5fe9-4aa3-a8b5-a0854b184d56",
-        "innerId": 1021,
-        "name": "ProcessType",
         "attributes": [
           {
-            "uuid": "796e1a59-8b17-40a0-a657-8832638aa6bb",
             "name": "approvalFlow",
             "type": "String",
-            "typeLabel": "String"
+            "typeLabel": "String",
+            "uuid": "796e1a59-8b17-40a0-a657-8832638aa6bb"
           },
           {
-            "uuid": "cdc17359-8392-42c5-8d40-9a3bc2e00d80",
             "name": "workFlow",
             "type": "String",
-            "typeLabel": "String"
+            "typeLabel": "String",
+            "uuid": "cdc17359-8392-42c5-8d40-9a3bc2e00d80"
           }
         ],
+        "innerId": 1021,
         "methods": [],
-        "stereoType": "Enum",
+        "name": "ProcessType",
+        "packageUuid": "bebc8345-a0e4-41ed-8743-93c00604260c",
         "root": false,
-        "packageUuid": "bebc8345-a0e4-41ed-8743-93c00604260c"
+        "stereoType": "Enum",
+        "uuid": "d5400697-5fe9-4aa3-a8b5-a0854b184d56"
       }
     ],
     "relations": [
@@ -1107,16 +1108,16 @@
         "uuid": "84c75916-0791-4787-bbc2-a35e76a182e6"
       },
       {
-        "uuid": "5cdb2011-4d46-44b3-94ae-4867be39e84a",
+        "appUuid": "SYSTEM",
         "innerId": 1011,
         "relationType": "twoWayCombination",
-        "sourceId": "2082d665-e503-402a-a089-678115c5ed3e",
-        "targetId": "692bf0ad-532b-4720-9427-a7a0fc70a418",
-        "roleOfTarget": "processes",
         "roleOfSource": "app",
+        "roleOfTarget": "processes",
+        "sourceId": "2082d665-e503-402a-a089-678115c5ed3e",
         "sourceMutiplicity": "0..1",
+        "targetId": "692bf0ad-532b-4720-9427-a7a0fc70a418",
         "targetMultiplicity": "0..*",
-        "appUuid": "SYSTEM"
+        "uuid": "5cdb2011-4d46-44b3-94ae-4867be39e84a"
       }
     ],
     "diagrams": [
@@ -1177,11 +1178,11 @@
         "uuid": "67a8ae11-8160-4555-97bb-bcd3c4d36ed5"
       },
       {
-        "uuid": "ce4ca6f6-78b5-4c27-a515-14936ce70b39",
+        "edges": [],
         "name": "$inline:{\"zh-CN\":\"工作流\"}",
-        "packageUuid": "bebc8345-a0e4-41ed-8743-93c00604260c",
         "nodes": [],
-        "edges": []
+        "packageUuid": "bebc8345-a0e4-41ed-8743-93c00604260c",
+        "uuid": "ce4ca6f6-78b5-4c27-a515-14936ce70b39"
       }
     ],
     "x6Nodes": [
@@ -1418,28 +1419,28 @@
         "y": -330
       },
       {
+        "diagramUuid": "ce4ca6f6-78b5-4c27-a515-14936ce70b39",
+        "height": 120,
         "id": "692bf0ad-532b-4720-9427-a7a0fc70a418",
+        "width": 180,
         "x": 400,
-        "y": -16,
-        "width": 180,
-        "height": 120,
-        "diagramUuid": "ce4ca6f6-78b5-4c27-a515-14936ce70b39"
+        "y": -16
       },
       {
+        "diagramUuid": "ce4ca6f6-78b5-4c27-a515-14936ce70b39",
+        "height": 120,
         "id": "d5400697-5fe9-4aa3-a8b5-a0854b184d56",
-        "x": 290,
-        "y": -190,
         "width": 180,
-        "height": 120,
-        "diagramUuid": "ce4ca6f6-78b5-4c27-a515-14936ce70b39"
+        "x": 290,
+        "y": -190
       },
       {
-        "id": "2082d665-e503-402a-a089-678115c5ed3e",
-        "x": -46,
-        "y": -30,
-        "width": 180,
+        "diagramUuid": "ce4ca6f6-78b5-4c27-a515-14936ce70b39",
         "height": 148,
-        "diagramUuid": "ce4ca6f6-78b5-4c27-a515-14936ce70b39"
+        "id": "2082d665-e503-402a-a089-678115c5ed3e",
+        "width": 180,
+        "x": -46,
+        "y": -30
       }
     ],
     "x6Edges": [
@@ -1834,25 +1835,25 @@
         "vertices": []
       },
       {
+        "diagramUuid": "ce4ca6f6-78b5-4c27-a515-14936ce70b39",
         "id": "5cdb2011-4d46-44b3-94ae-4867be39e84a",
-        "vertices": [],
         "roleOnSourcePosition": {
           "distance": 40,
+          "offset": 20
+        },
+        "roleOnTargetPosition": {
+          "distance": -40,
           "offset": 20
         },
         "sourceMultiplicityPosition": {
           "distance": 40,
           "offset": -20
         },
-        "roleOnTargetPosition": {
-          "distance": -40,
-          "offset": 20
-        },
         "targetMultiplicityPosition": {
           "distance": -40,
           "offset": -20
         },
-        "diagramUuid": "ce4ca6f6-78b5-4c27-a515-14936ce70b39"
+        "vertices": []
       }
     ]
   }
