@@ -1,4 +1,5 @@
 import { ID } from "../shared";
+import { IAppInput } from "./input";
 
 export enum ProcessType {
   approvalFlow = "approvalFlow",
@@ -22,6 +23,7 @@ export interface IProcessInput {
   id?: ID;
   name?: string;
   type?: ProcessType;
+  app?: { sync: IAppInput }
 }
 
 export interface IProcessInstanceInput {

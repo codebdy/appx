@@ -5,6 +5,8 @@ import { useTranslation } from "react-i18next"
 import { MultiLangInput } from "../../../plugins/inputs/components/pc/MultiLangInput/view"
 import { IProcessInput, ProcessType } from "../../../model/process"
 import { ID } from "../../../shared"
+import { useUpsertProcess } from "../../hooks/useUpsertProcess"
+import { useShowError } from "../../../hooks/useShowError"
 
 const { Option } = Select;
 
@@ -19,8 +21,16 @@ export const UpsertDialog = memo((
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();
   const [form] = Form.useForm<IProcessInput>();
+  const [upsert, { error, loading }] = useUpsertProcess({
+    onCompleted: () => {
+      setOpen(false);
+      onOpenChange(false);
+    }
+  });
 
-  useEffect(()=>{
+  useShowError(error);
+
+  useEffect(() => {
     form.setFieldValue("type", processType)
   }, [processType, form])
 
@@ -36,8 +46,12 @@ export const UpsertDialog = memo((
   }, []);
 
   const handleConfirm = useCallback(() => {
-    setOpen(false);
-    onOpenChange(false);
+    form.validateFields().then((values) => {
+      upsert({
+        ...values,
+        id: processId,
+      })
+    })
   }, []);
 
   return (
@@ -58,7 +72,7 @@ export const UpsertDialog = memo((
         okText={t("Confirm")}
         onCancel={handleClose}
         onOk={handleConfirm}
-        confirmLoading={false}
+        confirmLoading={loading}
         wrapProps={
           {
             onClick: (e) => {
@@ -77,7 +91,7 @@ export const UpsertDialog = memo((
         >
           <Form.Item
             label={t("Name")}
-            name="title"
+            name="name"
             rules={[{ required: true, message: t("Required") }]}
           >
             <MultiLangInput inline title={t("Name")} />
