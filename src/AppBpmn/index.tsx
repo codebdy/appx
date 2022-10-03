@@ -107,6 +107,15 @@ export const AppBpmn = memo((props) => {
     bpmnModeler?.get('canvas').zoom('fit-viewport');
   }, [bpmnModeler])
 
+  const handleZoomOut = useCallback(() => {
+    bpmnModeler?.get('zoomScroll').stepZoom(-1);
+  }, [bpmnModeler])
+
+
+  const handleZoomIn = useCallback(() => {
+    bpmnModeler?.get('zoomScroll').stepZoom(1);
+  }, [bpmnModeler])
+
   return (
     <ModelBoard
       listWidth={240}
@@ -129,8 +138,8 @@ export const AppBpmn = memo((props) => {
           type="text"
           shape="circle"
           size="large"
-          disabled = {!selectedProcessId}
-          onClick = {handleFit}
+          disabled={!selectedProcessId}
+          onClick={handleFit}
         >
           <AimOutlined />
         </Button>
@@ -138,7 +147,8 @@ export const AppBpmn = memo((props) => {
           type="text"
           shape="circle"
           size="large"
-          disabled = {!selectedProcessId}
+          disabled={!selectedProcessId}
+          onClick={handleZoomOut}
         >
           <ZoomOutOutlined />
         </Button>
@@ -146,14 +156,15 @@ export const AppBpmn = memo((props) => {
           type="text"
           shape="circle"
           size="large"
-          disabled = {!selectedProcessId}
+          disabled={!selectedProcessId}
+          onClick={handleZoomIn}
         >
           <ZoomInOutlined />
         </Button>
         <Divider type="vertical" />
         <Button
           //disabled={undoList.length === 0}
-          disabled = {!selectedProcessId}
+          disabled={!selectedProcessId}
           type="text"
           shape="circle"
           onClick={handleUndo}
@@ -163,7 +174,7 @@ export const AppBpmn = memo((props) => {
         </Button>
         <Button
           //disabled={redoList.length === 0}
-          disabled = {!selectedProcessId}
+          disabled={!selectedProcessId}
           type="text"
           shape="circle"
           onClick={handleRedo}
