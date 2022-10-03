@@ -1,10 +1,12 @@
 import { PlusOutlined } from "@ant-design/icons"
-import { Button, Form, Modal } from "antd"
+import { Button, Form, Modal, Select } from "antd"
 import React, { memo, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { MultiLangInput } from "../../../plugins/inputs/components/pc/MultiLangInput/view"
 import { IProcessInput, ProcessType } from "../../../model/process"
 import { ID } from "../../../shared"
+
+const { Option } = Select;
 
 export const UpsertDialog = memo((
   props: {
@@ -82,6 +84,10 @@ export const UpsertDialog = memo((
             name="type"
             rules={[{ required: true, message: t("Required") }]}
           >
+            <Select>
+              <Option value={ProcessType.approvalFlow}>{t("AppBpmn.ApprovalFlow")}</Option>
+              <Option value={ProcessType.workFlow}>{t("AppBpmn.WorkFlow")}</Option>
+            </Select>
           </Form.Item>
         </Form>
       </Modal>
