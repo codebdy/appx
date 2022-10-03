@@ -2,29 +2,26 @@ import { MoreOutlined, EditOutlined, DeleteOutlined, LockOutlined } from "@ant-d
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next";
-import { DiagramMeta } from "../meta/DiagramMeta";
-import { useGetPackage } from "../hooks/useGetPackage";
-import { useDeleteDiagram } from "../hooks/useDeleteDiagram";
-import { SYSTEM_APP_UUID } from "../../consts";
+import { IProcess } from "../../model/process";
 import { useEdittingAppUuid } from "../../hooks/useEdittingAppUuid";
 
-const DiagramAction = memo((
+export const ProcessAction = memo((
   props: {
-    diagram: DiagramMeta,
+    process: IProcess,
     onEdit: () => void,
     onVisibleChange: (visible: boolean) => void,
   }
 ) => {
-  const { diagram, onEdit, onVisibleChange } = props;
+  const { process, onEdit, onVisibleChange } = props;
   const appUuid = useEdittingAppUuid();
-  const getPagcage = useGetPackage(appUuid)
-  const deleteDiagram = useDeleteDiagram(appUuid)
+  // const getPagcage = useGetPackage(appUuid)
+  // const deleteDiagram = useDeleteDiagram(appUuid)
   const { t } = useTranslation();
 
   const handleDelete = useCallback(() => {
-    deleteDiagram(diagram.uuid)
+    //deleteDiagram(diagram.uuid)
     onVisibleChange(false);
-  }, [deleteDiagram, onVisibleChange, diagram.uuid]);
+  }, [onVisibleChange, process.id]);
 
   const menu = useMemo(() => (
     <div style={{ backgroundColor: "#000" }}>
@@ -56,21 +53,14 @@ const DiagramAction = memo((
   ), [handleDelete, onEdit, onVisibleChange, t]);
 
   return (
-    getPagcage(diagram.packageUuid)?.sharable && appUuid !== SYSTEM_APP_UUID ?
-      <Button type="text" shape='circle' size='small'>
-        <LockOutlined />
+    <Dropdown
+      overlay={menu}
+      onOpenChange={onVisibleChange}
+      trigger={['click']}
+    >
+      <Button type="text" shape='circle' size='small' onClick={e => e.stopPropagation()}>
+        <MoreOutlined />
       </Button>
-      :
-      <Dropdown
-        overlay={menu}
-        onOpenChange={onVisibleChange}
-        trigger={['click']}
-      >
-        <Button type="text" shape='circle' size='small' onClick={e => e.stopPropagation()}>
-          <MoreOutlined />
-        </Button>
-      </Dropdown>
+    </Dropdown>
   )
 })
-
-export default DiagramAction;

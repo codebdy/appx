@@ -79,7 +79,7 @@ export const AppBpmn = memo((props) => {
 
   return (
     <ModelBoard
-      listWidth={200}
+      listWidth={240}
       toolbar={<ModelToolbar>
         工具栏
         <div style={{ flex: 1 }}></div>

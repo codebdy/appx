@@ -11,6 +11,7 @@ import { selectedBpmnDiagramState } from "../recoil/atoms";
 import { CategoryLabel } from "./CategoryLabel";
 import { useQueryProcesses } from "../hooks/useQueryProcesses";
 import { useShowError } from "../../hooks/useShowError";
+import { ProcessLabel } from "./ProcessLabel";
 const { DirectoryTree } = Tree;
 
 export const ProcessList = memo(() => {
@@ -26,7 +27,7 @@ export const ProcessList = memo(() => {
     return processes?.filter(proc => proc.type === type).map(process => {
       return {
         key: process.id,
-        title: p(process.name),
+        title: <ProcessLabel process={process} />,
         isLeaf: true,
       }
     })
