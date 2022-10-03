@@ -16,12 +16,14 @@ const AppEntry = memo(() => {
   useShowError(error);
 
   return (
-    <Layout className="rx-studio">
-      <EntryHeader app={app} />
-      <Content className='content'>
-        <Outlet />
-      </Content>
-    </Layout>
+    <AppRoot>
+      <Layout className="rx-studio">
+        <EntryHeader app={app} />
+        <Content className='content'>
+          <Outlet />
+        </Content>
+      </Layout>
+    </AppRoot>
   )
 })
 
