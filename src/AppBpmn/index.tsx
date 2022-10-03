@@ -33,6 +33,8 @@ export const AppBpmn = memo((props) => {
   const selectedProcessId = useRecoilValue(selectedBpmnProcessIdState(app?.uuid));
   const { process, loading, error } = useQueryOneProcess(selectedProcessId)
   const [minMap, setMinMap] = useRecoilState(minMapState(app?.uuid));
+  const minMapRef = useRef(minMap);
+  minMapRef.current = minMap;
 
   useShowError(error);
 
@@ -74,7 +76,7 @@ export const AppBpmn = memo((props) => {
 
         } else {
           bpmnModeler.get('canvas').zoom('fit-viewport');
-          minMap && bpmnModeler.get('minimap').open();
+          minMapRef.current && bpmnModeler.get('minimap').open();
           container.classList.remove('with-error')
           container.classList.add('with-diagram');
         }
@@ -87,7 +89,7 @@ export const AppBpmn = memo((props) => {
         bpmnModeler?.destroy();
       }
     }
-  }, [process, minMap])
+  }, [process])
 
   const toggleMinMap = useCallback(() => {
     setMinMap(minMap => !minMap)
