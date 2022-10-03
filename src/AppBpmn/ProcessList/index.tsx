@@ -88,6 +88,7 @@ export const ProcessList = memo(() => {
       }}
     >
       <DirectoryTree
+        defaultExpandedKeys={["0"]}
         selectedKeys={[selectedDiagramId]}
         onSelect={handleSelect}
         treeData={treeData}

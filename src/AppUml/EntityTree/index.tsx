@@ -259,6 +259,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
       }}
     >
       <DirectoryTree
+        defaultExpandedKeys={["0"]}
         selectedKeys={[selectedDiagramId]}
         onSelect={handleSelect}
         treeData={treeData}
