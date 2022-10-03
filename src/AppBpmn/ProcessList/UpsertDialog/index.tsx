@@ -1,6 +1,6 @@
 import { PlusOutlined } from "@ant-design/icons"
 import { Button, Form, Modal, Select } from "antd"
-import React, { memo, useCallback, useState } from "react"
+import React, { memo, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { MultiLangInput } from "../../../plugins/inputs/components/pc/MultiLangInput/view"
 import { IProcessInput, ProcessType } from "../../../model/process"
@@ -19,6 +19,10 @@ export const UpsertDialog = memo((
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();
   const [form] = Form.useForm<IProcessInput>();
+
+  useEffect(()=>{
+    form.setFieldValue("type", processType)
+  }, [processType, form])
 
   const handleOpen = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
