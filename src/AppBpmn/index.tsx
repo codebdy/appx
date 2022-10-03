@@ -20,8 +20,8 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { minMapState, selectedBpmnProcessIdState } from "./recoil/atoms";
 import { useAppParams } from "../plugin-sdk";
 import { useShowError } from "../hooks/useShowError";
+import { ToolbarActions } from "./ToolbarActions";
 import { PRIMARY_COLOR } from "../consts";
-import { AimOutlined, RedoOutlined, UndoOutlined, ZoomInOutlined, ZoomOutOutlined } from "@ant-design/icons";
 
 export const AppBpmn = memo((props) => {
   const { app } = useAppParams();
@@ -46,7 +46,6 @@ export const AppBpmn = memo((props) => {
         bpmnModeler.get('minimap').close();
       }
     }
-
   }, [minMap, bpmnModeler])
 
   useEffect(() => {
@@ -95,26 +94,6 @@ export const AppBpmn = memo((props) => {
     setMinMap(minMap => !minMap)
   }, [])
 
-  const handleUndo = useCallback(() => {
-    bpmnModeler?.get('commandStack').undo()
-  }, [bpmnModeler])
-
-  const handleRedo = useCallback(() => {
-    bpmnModeler?.get('commandStack').redo()
-  }, [bpmnModeler])
-
-  const handleFit = useCallback(() => {
-    bpmnModeler?.get('canvas').zoom('fit-viewport');
-  }, [bpmnModeler])
-
-  const handleZoomOut = useCallback(() => {
-    bpmnModeler?.get('zoomScroll').stepZoom(-1);
-  }, [bpmnModeler])
-
-
-  const handleZoomIn = useCallback(() => {
-    bpmnModeler?.get('zoomScroll').stepZoom(1);
-  }, [bpmnModeler])
 
   return (
     <ModelBoard
@@ -134,54 +113,10 @@ export const AppBpmn = memo((props) => {
             />
           </svg>
         </Button>
-        <Button
-          type="text"
-          shape="circle"
-          size="large"
-          disabled={!selectedProcessId}
-          onClick={handleFit}
-        >
-          <AimOutlined />
-        </Button>
-        <Button
-          type="text"
-          shape="circle"
-          size="large"
-          disabled={!selectedProcessId}
-          onClick={handleZoomOut}
-        >
-          <ZoomOutOutlined />
-        </Button>
-        <Button
-          type="text"
-          shape="circle"
-          size="large"
-          disabled={!selectedProcessId}
-          onClick={handleZoomIn}
-        >
-          <ZoomInOutlined />
-        </Button>
-        <Divider type="vertical" />
-        <Button
-          //disabled={undoList.length === 0}
-          disabled={!selectedProcessId}
-          type="text"
-          shape="circle"
-          onClick={handleUndo}
-          size="large"
-        >
-          <UndoOutlined />
-        </Button>
-        <Button
-          //disabled={redoList.length === 0}
-          disabled={!selectedProcessId}
-          type="text"
-          shape="circle"
-          onClick={handleRedo}
-          size="large"
-        >
-          <RedoOutlined />
-        </Button>
+        <ToolbarActions
+          bpmnModeler={bpmnModeler}
+          selectedProcessId={selectedProcessId}
+        />
         <div style={{ flex: 1 }}></div>
         <Button type="primary">
           {t("Save")}
