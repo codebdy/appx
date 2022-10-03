@@ -6,7 +6,7 @@ import { ID } from "../../../shared"
 
 export const UpsertDialog = memo((
   props: {
-    processId?: ID
+    processId?: ID,
   }
 ) => {
   const { processId } = props;
@@ -45,6 +45,14 @@ export const UpsertDialog = memo((
         onCancel={handleClose}
         onOk={handleConfirm}
         confirmLoading={false}
+        wrapProps={
+          {
+            onClick: (e) => {
+              console.log("哈哈")
+              e.stopPropagation()
+            },
+          }
+        }
       >
       </Modal>
     </>
