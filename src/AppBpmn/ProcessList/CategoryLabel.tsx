@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react"
 import { memo } from "react"
 import { ProcessType } from "../../model/process"
 import TreeNodeLabel from "../../common/TreeNodeLabel"
-import { UpsertDialog } from "./UpsertDialog"
+import { CreateDialog } from "./UpsertDialog/CreateDialog"
 
 export const CategoryLabel = memo((
   props: {
@@ -21,7 +21,7 @@ export const CategoryLabel = memo((
     <TreeNodeLabel
       fixedAction={open}
       action={
-        <UpsertDialog onOpenChange={handleOpenChange} processType= {processType} />
+        <CreateDialog onOpenChange={handleOpenChange} processType= {processType} />
       }
     >
       <div>{title}</div>

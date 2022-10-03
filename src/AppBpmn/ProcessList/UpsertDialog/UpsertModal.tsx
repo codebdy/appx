@@ -1,5 +1,4 @@
-import { PlusOutlined } from "@ant-design/icons"
-import { Button, Form, Modal, Select } from "antd"
+import {  Form, Modal, Select } from "antd"
 import React, { memo, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { MultiLangInput } from "../../../plugins/inputs/components/pc/MultiLangInput/view"
@@ -10,20 +9,19 @@ import { useShowError } from "../../../hooks/useShowError"
 
 const { Option } = Select;
 
-export const UpsertDialog = memo((
+export const UpsertModal = memo((
   props: {
+    open?:boolean,
     processId?: ID,
     processType?: ProcessType,
     onOpenChange?: (open?: boolean) => void,
   }
 ) => {
-  const { processId, processType, onOpenChange } = props;
-  const [open, setOpen] = useState(false);
+  const { open, processId, processType, onOpenChange } = props;
   const { t } = useTranslation();
   const [form] = Form.useForm<IProcessInput>();
   const [upsert, { error, loading }] = useUpsertProcess({
     onCompleted: () => {
-      setOpen(false);
       onOpenChange(false);
     }
   });
@@ -34,14 +32,8 @@ export const UpsertDialog = memo((
     form.setFieldValue("type", processType)
   }, [processType, form])
 
-  const handleOpen = useCallback((e: React.MouseEvent) => {
-    e.stopPropagation();
-    setOpen(true);
-    onOpenChange(true);
-  }, [])
 
   const handleClose = useCallback(() => {
-    setOpen(false);
     onOpenChange(false);
   }, []);
 
@@ -55,15 +47,6 @@ export const UpsertDialog = memo((
   }, []);
 
   return (
-    <>
-      <Button
-        shape="circle"
-        type="text"
-        size="small"
-        icon={<PlusOutlined />}
-        onClick={handleOpen}
-      ></Button>
-
       <Modal
         title={t(processId ? "AppBpmn.EidtProcess" : "AppBpmn.AddProcess")}
         open={open}
@@ -109,6 +92,5 @@ export const UpsertDialog = memo((
           </Form.Item>
         </Form>
       </Modal>
-    </>
   )
 })
