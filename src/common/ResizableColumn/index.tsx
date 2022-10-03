@@ -81,7 +81,7 @@ export const ResizableColumn = memo(
       <div
         ref={ref}
         style={{
-          height: "100%",
+          //height: "100%",
           width: hidden ? 0 : realWidth,
           boxSizing: "border-box",
           display: "flex",
