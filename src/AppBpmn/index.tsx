@@ -96,12 +96,12 @@ export const AppBpmn = memo((props) => {
   }, [])
 
   const handleUndo = useCallback(() => {
-
-  }, [])
+    bpmnModeler?.get('commandStack').undo()
+  }, [bpmnModeler])
 
   const handleRedo = useCallback(() => {
-
-  }, [])
+    bpmnModeler?.get('commandStack').redo()
+  }, [bpmnModeler])
 
   const handleFit = useCallback(() => {
     bpmnModeler?.get('canvas').zoom('fit-viewport');
