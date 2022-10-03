@@ -66,7 +66,7 @@ export const AppBpmn = memo((props) => {
         bpmnModeler?.destroy();
       }
     }
-  }, [process?.xml])
+  }, [process])
 
   function onShown() {
     console.log('diagram shown');
