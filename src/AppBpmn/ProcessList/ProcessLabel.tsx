@@ -33,10 +33,9 @@ export const ProcessLabel = memo((
     <TreeNodeLabel
       fixedAction={visible}
       action={
-        !editing ?
-          <ProcessAction process={process}
-            onEdit={handleEdit}
-            onVisibleChange={handleVisableChange} /> : undefined
+        <ProcessAction process={process}
+          onEdit={handleEdit}
+          onVisibleChange={handleVisableChange} />
       }
       onClick={e => editing ? e.stopPropagation() : undefined}
     >

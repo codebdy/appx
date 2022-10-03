@@ -62,18 +62,7 @@ export const ProcessList = memo(() => {
 
   ], [getCategoryNodes, t]);
   const handleSelect = useCallback((keys: string[]) => {
-    // for (const uuid of keys) {
-    //   if (isDiagram(uuid)) {
-    //     setSelecteDiagramId(uuid);
-    //   } else if (isElement(uuid)) {
-    //     setSelectedElement(uuid);
-    //   } else {
-    //     const relationUuid = parseRelationUuid(uuid);
-    //     if (relationUuid) {
-    //       setSelectedElement(relationUuid);
-    //     }
-    //   }
-    // }
+    setSelecteDiagramId(keys?.[0])
   }, [setSelecteDiagramId])
 
   return (
@@ -86,6 +75,7 @@ export const ProcessList = memo(() => {
     >
       <Spin spinning={loading}>
         <DirectoryTree
+          multiple={false}
           defaultExpandedKeys={["0"]}
           selectedKeys={[selectedDiagramId]}
           onSelect={handleSelect}
