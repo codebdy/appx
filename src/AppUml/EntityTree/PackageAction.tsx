@@ -28,7 +28,7 @@ const PackageAction = memo((
   const setClasses = useSetRecoilState(classesState(appUuid));
   const backupSnapshot = useBackupSnapshot(appUuid);
   const { t } = useTranslation();
-  
+
   const setSelectedDiagram = useSetRecoilState(
     selectedUmlDiagramState(appUuid)
   );
@@ -57,6 +57,23 @@ const PackageAction = memo((
     },
     [backupSnapshot, createNewDiagram, onVisibleChange, pkg.uuid, setSelectedDiagram]
   );
+
+  const shareItems = useMemo(() => {
+    return appUuid === SYSTEM_APP_UUID
+      ? [
+        {
+          icon: <ShareAltOutlined />,
+          label: t("Share"),
+          key: '5',
+          onClick: e => {
+            e.domEvent.stopPropagation();
+            //onEdit();
+            onVisibleChange(false);
+          }
+        },
+      ]
+      : []
+  }, [onVisibleChange])
 
   const menu = useMemo(() => (
     <div style={{ backgroundColor: "#000" }}>
@@ -119,16 +136,7 @@ const PackageAction = memo((
               },
             ]
           },
-          {
-            icon: <ShareAltOutlined />,
-            label: t("Share"),
-            key: '5',
-            onClick: e => {
-              e.domEvent.stopPropagation();
-              //onEdit();
-              onVisibleChange(false);
-            }
-          },
+          ...shareItems,
           {
             icon: <EditOutlined />,
             label: t("Edit"),
@@ -152,7 +160,7 @@ const PackageAction = memo((
         ]}
       />
     </div>
-  ), [addClass, handleAddDiagram, handleDelete, onEdit, onVisibleChange, t]);
+  ), [addClass, handleAddDiagram, handleDelete, onEdit, onVisibleChange, shareItems, t]);
 
   return (
     pkg.sharable && appUuid !== SYSTEM_APP_UUID ?
@@ -162,7 +170,7 @@ const PackageAction = memo((
       :
       <Dropdown
         overlay={menu}
-        onVisibleChange={onVisibleChange}
+        onOpenChange={onVisibleChange}
         trigger={['click']}
       >
         <Button type="text" shape='circle' size='small' onClick={e => e.stopPropagation()}>
