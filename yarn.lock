@@ -4759,6 +4759,16 @@ diagram-js-direct-editing@^1.7.0:
     min-dash "^3.5.2"
     min-dom "^3.1.3"
 
+diagram-js-minimap@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmmirror.com/diagram-js-minimap/-/diagram-js-minimap-3.0.0.tgz#f932f368dae6dd199420015292fe91c3b9451b9c"
+  integrity sha512-ntjlGZpfnlkBS8YpMD8mwUETtA4NijVP8Wxh+4/FLEVhqYZw1fO8SpoSEOLjievCfkJwmN49FME0wa/fqz5qzA==
+  dependencies:
+    css.escape "^1.5.1"
+    min-dash "^4.0.0"
+    min-dom "^4.0.2"
+    tiny-svg "^3.0.0"
+
 diagram-js@^8.9.0:
   version "8.9.0"
   resolved "https://registry.npmmirror.com/diagram-js/-/diagram-js-8.9.0.tgz#851e8bda1a97d0e2995a3c853691cd4261a1777b"
@@ -8679,6 +8689,11 @@ min-dash@^3.0.0, min-dash@^3.5.2, min-dash@^3.8.1:
   resolved "https://registry.npmmirror.com/min-dash/-/min-dash-3.8.1.tgz#09a8bd8a041d65eec4732042cde9cb24a6e84b0d"
   integrity sha512-evumdlmIlg9mbRVPbC4F5FuRhNmcMS5pvuBUbqb1G9v09Ro0ImPEgz5n3khir83lFok1inKqVDjnKEg3GpDxQg==
 
+min-dash@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.npmmirror.com/min-dash/-/min-dash-4.0.0.tgz#4a1afec4c4d70f510b6e241d0550493d4ac0f161"
+  integrity sha512-piIvVJ/nxuA4+LpnYIzF6oCtRvdtDvQJteSC+H768H2UvPKFKIt5oiJnUVtr0ZdchneXTcvUZ91vIrvWVIN0AA==
+
 min-dom@^3.1.3, min-dom@^3.2.0, min-dom@^3.2.1:
   version "3.2.1"
   resolved "https://registry.npmmirror.com/min-dom/-/min-dom-3.2.1.tgz#c272a814397d8bfe97edd12670e7ac34123c043f"
@@ -8698,6 +8713,15 @@ min-dom@^4.0.1:
     component-event "^0.1.4"
     domify "^1.4.1"
     min-dash "^3.8.1"
+
+min-dom@^4.0.2:
+  version "4.0.3"
+  resolved "https://registry.npmmirror.com/min-dom/-/min-dom-4.0.3.tgz#659aa6017bb2eae5a22bfe62d4a7fb87248da3fa"
+  integrity sha512-5zQyCMe8rtGiDIRjfGeqnF2YPJ7OAPFdJQeC7MakHais3dh4VG4PV2a0FacziKTzJjYK5qnPKm2sq1wSXB1wTQ==
+  dependencies:
+    component-event "^0.1.4"
+    domify "^1.4.1"
+    min-dash "^4.0.0"
 
 min-indent@^1.0.0:
   version "1.0.1"
@@ -11959,6 +11983,11 @@ tiny-svg@^2.2.2, tiny-svg@^2.2.4:
   version "2.2.4"
   resolved "https://registry.npmmirror.com/tiny-svg/-/tiny-svg-2.2.4.tgz#8d4a16bd2c4644c8444fd3c2ece91db7631cfb35"
   integrity sha512-NOi39lBknf4UdDEahNkbEAJnzhu1ZcN2j75IS2vLRmIhsfxdZpTChfLKBcN1ShplVmPIXJAIafk6YY5/Aa80lQ==
+
+tiny-svg@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmmirror.com/tiny-svg/-/tiny-svg-3.0.0.tgz#2a441d7f9cb27982e548e757f86a0a123a6f7e38"
+  integrity sha512-+u6VomQO7MbI7CQe5q1IwNePpbVKG/HVdUQBmaEpSCdP/QmeyjhrS6WKFsNetXlvf9LWu/f5woRqjMdxBMe/0w==
 
 tinycolor2@^1.4.1:
   version "1.4.2"

@@ -9,6 +9,8 @@ import "bpmn-js/dist/assets/bpmn-js.css";
 import "bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css";
 import "bpmn-js-properties-panel/dist/assets/properties-panel.css";
 import "./style.less"
+import minimapModule from 'diagram-js-minimap';
+import "diagram-js-minimap/assets/diagram-js-minimap.css";
 import { PropertyBox } from "../common/ModelBoard/PropertyBox";
 import { useSelectedElement } from "./hooks/useSelectedElement";
 import { PropertyPanel } from "./PropertyPanel";
@@ -25,6 +27,7 @@ export const AppBpmn = memo((props) => {
   const { app } = useAppParams();
   const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>();
+  const canvasrRef = useRef<HTMLDivElement>();
   const [bpmnModeler, setBpmnModeler] = useState<any>()
   const { element } = useSelectedElement(bpmnModeler);
   const selectedProcessId = useRecoilValue(selectedBpmnProcessIdState(app?.uuid));
@@ -33,18 +36,20 @@ export const AppBpmn = memo((props) => {
 
   useShowError(error);
 
+  console.log("哈哈", minimapModule)
+
   useEffect(() => {
-    const container = containerRef?.current;
-    if (container && selectedProcessId) {
+    const container = containerRef.current;
+    const canvas = canvasrRef?.current;
+    if (canvas && selectedProcessId) {
       const bpmnModeler = new BpmnModeler({
-        container: container,
+        container: canvas,
         propertiesPanel: {
           parent: '#js-properties-panel'
         },
-        // additionalModules: [
-        //   BpmnPropertiesPanelModule,
-        //   BpmnPropertiesProviderModule
-        // ]
+        additionalModules: [
+          minimapModule
+        ]
       });
       setBpmnModeler(bpmnModeler)
       bpmnModeler.on('import.done', (event) => {
@@ -55,10 +60,14 @@ export const AppBpmn = memo((props) => {
 
         if (error) {
           console.error(error)
-          //return handleError(error);
+          container.classList.remove('with-diagram')
+          container.classList.add('with-error');
 
         } else {
           bpmnModeler.get('canvas').zoom('fit-viewport');
+          bpmnModeler.get('minimap').open();
+          container.classList.remove('with-error')
+          container.classList.add('with-diagram');
         }
       });
 
@@ -71,15 +80,15 @@ export const AppBpmn = memo((props) => {
     }
   }, [process])
 
-  const toggleMinMap = useCallback(()=>{
+  const toggleMinMap = useCallback(() => {
 
   }, [])
 
-  const handleUndo = useCallback(()=>{
+  const handleUndo = useCallback(() => {
 
   }, [])
 
-  const handleRedo = useCallback(()=>{
+  const handleRedo = useCallback(() => {
 
   }, [])
 
@@ -136,7 +145,19 @@ export const AppBpmn = memo((props) => {
       </PropertyBox>}
     >
       <Spin spinning={loading}>
-        <div className="react-bpmn-diagram-container" ref={containerRef}>
+        <div className="bmpm-content react-bpmn-diagram-container" ref={containerRef} id="js-drop-zone">
+          <div className="message error">
+            <div className="note">
+              <p>Ooops, we could not display the BPMN 2.0 diagram.</p>
+
+              <div className="details">
+                <span>cause of the problem</span>
+                <pre></pre>
+              </div>
+            </div>
+          </div>
+
+          <div className="canvas" ref={canvasrRef} id="js-canvas"></div>
         </div>
       </Spin>
     </ModelBoard>
