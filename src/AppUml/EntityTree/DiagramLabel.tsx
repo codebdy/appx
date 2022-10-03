@@ -72,7 +72,7 @@ const DiagramLabel = memo((
       {
         editing ?
           <MultiLangInput
-            //size="small"
+            inline
             value={name}
             onClick={e => e.stopPropagation()}
             onChange={handleChange}
