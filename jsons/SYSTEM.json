@@ -1,5 +1,5 @@
 {
-  "id": "1507236403010867326",
+  "appUuid": "SYSTEM",
   "content": {
     "packages": [
       {
@@ -818,6 +818,66 @@
         "root": true,
         "stereoType": "Service",
         "uuid": "0afeac65-c0f6-48c1-846c-922e156307f5"
+      },
+      {
+        "attributes": [
+          {
+            "name": "id",
+            "primary": true,
+            "type": "ID",
+            "typeLabel": "ID",
+            "uuid": "153e8109-2b4a-4bc2-8622-794819b7c979"
+          },
+          {
+            "name": "type",
+            "type": "Enum",
+            "typeLabel": "ProcessType",
+            "typeUuid": "0b2e6b2b-f562-4d86-8b29-38324db9fcb1",
+            "uuid": "3c0556de-ace5-4fef-be9a-ab705e492a73"
+          },
+          {
+            "name": "name",
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "ea9a46fc-bafe-4642-a21d-66626b2483c8"
+          },
+          {
+            "uuid": "b4a60f40-52f9-4c2b-a6e3-0dddff662fe3",
+            "name": "appUuid",
+            "type": "String",
+            "typeLabel": "String"
+          }
+        ],
+        "innerId": 1021,
+        "methods": [],
+        "name": "Process",
+        "packageUuid": "PACKAGE_APPX_UUID",
+        "root": true,
+        "stereoType": "Entity",
+        "uuid": "40c7699e-e4bb-4774-a1be-641ff7ebcd6a"
+      },
+      {
+        "attributes": [
+          {
+            "name": "approvalFlow",
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "7e66d355-c03d-461e-8bee-2071d89a67d9"
+          },
+          {
+            "name": "workFlow",
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "dcd875aa-dd66-492b-a675-c02bd53396b6"
+          }
+        ],
+        "innerId": 1022,
+        "methods": [],
+        "name": "ProcessType",
+        "packageUuid": "PACKAGE_APPX_UUID",
+        "root": false,
+        "stereoType": "Enum",
+        "uuid": "0b2e6b2b-f562-4d86-8b29-38324db9fcb1"
       }
     ],
     "relations": [
@@ -1345,6 +1405,22 @@
         "width": 360,
         "x": -1130,
         "y": -330
+      },
+      {
+        "id": "40c7699e-e4bb-4774-a1be-641ff7ebcd6a",
+        "x": 320,
+        "y": 64.00000000000006,
+        "width": 180,
+        "height": 190,
+        "diagramUuid": "2242ac47-13fc-4732-8822-b5f4e33f4474"
+      },
+      {
+        "diagramUuid": "2242ac47-13fc-4732-8822-b5f4e33f4474",
+        "height": 120,
+        "id": "0b2e6b2b-f562-4d86-8b29-38324db9fcb1",
+        "width": 180,
+        "x": 320,
+        "y": -110
       }
     ],
     "x6Edges": [
