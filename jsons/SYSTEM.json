@@ -840,12 +840,6 @@
             "type": "String",
             "typeLabel": "String",
             "uuid": "ea9a46fc-bafe-4642-a21d-66626b2483c8"
-          },
-          {
-            "uuid": "b4a60f40-52f9-4c2b-a6e3-0dddff662fe3",
-            "name": "appUuid",
-            "type": "String",
-            "typeLabel": "String"
           }
         ],
         "innerId": 1021,
@@ -1106,6 +1100,18 @@
         "targetId": "087b2915-5582-496d-bafb-ae2f5623a70d",
         "targetMultiplicity": "0..1",
         "uuid": "84c75916-0791-4787-bbc2-a35e76a182e6"
+      },
+      {
+        "appUuid": "SYSTEM",
+        "innerId": 1011,
+        "relationType": "twoWayCombination",
+        "roleOfSource": "app",
+        "roleOfTarget": "processes",
+        "sourceId": "2082d665-e503-402a-a089-678115c5ed3e",
+        "sourceMutiplicity": "0..1",
+        "targetId": "40c7699e-e4bb-4774-a1be-641ff7ebcd6a",
+        "targetMultiplicity": "0..*",
+        "uuid": "f3ccc37e-1d1e-4ea6-a36e-ef338bf245a3"
       }
     ],
     "diagrams": [
@@ -1407,12 +1413,20 @@
         "y": -330
       },
       {
+        "diagramUuid": "2242ac47-13fc-4732-8822-b5f4e33f4474",
+        "height": 120,
         "id": "40c7699e-e4bb-4774-a1be-641ff7ebcd6a",
-        "x": 320,
-        "y": 64.00000000000006,
         "width": 180,
-        "height": 190,
-        "diagramUuid": "2242ac47-13fc-4732-8822-b5f4e33f4474"
+        "x": 500,
+        "y": 64
+      },
+      {
+        "diagramUuid": "2242ac47-13fc-4732-8822-b5f4e33f4474",
+        "height": 148,
+        "id": "2082d665-e503-402a-a089-678115c5ed3e",
+        "width": 180,
+        "x": 80,
+        "y": 50
       },
       {
         "diagramUuid": "2242ac47-13fc-4732-8822-b5f4e33f4474",
@@ -1812,6 +1826,27 @@
       {
         "diagramUuid": "33546200-9c95-4747-94ee-a7198b6bd85c",
         "id": "84c75916-0791-4787-bbc2-a35e76a182e6",
+        "vertices": []
+      },
+      {
+        "diagramUuid": "2242ac47-13fc-4732-8822-b5f4e33f4474",
+        "id": "f3ccc37e-1d1e-4ea6-a36e-ef338bf245a3",
+        "roleOnSourcePosition": {
+          "distance": 40,
+          "offset": 20
+        },
+        "roleOnTargetPosition": {
+          "distance": -40,
+          "offset": 20
+        },
+        "sourceMultiplicityPosition": {
+          "distance": 40,
+          "offset": -20
+        },
+        "targetMultiplicityPosition": {
+          "distance": -40,
+          "offset": -20
+        },
         "vertices": []
       }
     ]
