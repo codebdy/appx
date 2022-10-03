@@ -32,7 +32,7 @@ export const AppBpmn = memo((props) => {
 
   useEffect(() => {
     const container = containerRef?.current;
-    if (container) {
+    if (container && selectedProcessId) {
       const bpmnModeler = new BpmnModeler({
         container: container,
         propertiesPanel: {
@@ -57,21 +57,17 @@ export const AppBpmn = memo((props) => {
         } else {
           bpmnModeler.get('canvas').zoom('fit-viewport');
         }
-
-        //return handleShown(warnings);
       });
+
+      if(process?.xml){
+        bpmnModeler.importXML(process?.xml);
+      }
     }
 
     return () => {
       bpmnModeler?.destroy();
     }
-  }, [])
-
-  useEffect(() => {
-    if (process?.xml && bpmnModeler) {
-      bpmnModeler.importXML(process?.xml);
-    }
-  }, [process?.xml, bpmnModeler])
+  }, [process?.xml])
 
   function onShown() {
     console.log('diagram shown');
