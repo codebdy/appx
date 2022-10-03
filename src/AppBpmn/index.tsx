@@ -103,6 +103,10 @@ export const AppBpmn = memo((props) => {
 
   }, [])
 
+  const handleFit = useCallback(() => {
+    bpmnModeler?.get('canvas').zoom('fit-viewport');
+  }, [bpmnModeler])
+
   return (
     <ModelBoard
       listWidth={240}
@@ -126,6 +130,7 @@ export const AppBpmn = memo((props) => {
           shape="circle"
           size="large"
           disabled = {!selectedProcessId}
+          onClick = {handleFit}
         >
           <AimOutlined />
         </Button>
