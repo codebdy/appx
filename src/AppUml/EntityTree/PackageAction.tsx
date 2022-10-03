@@ -1,4 +1,4 @@
-import { MoreOutlined, EditOutlined, DeleteOutlined, FileAddOutlined, PlusSquareOutlined, ShareAltOutlined, LockOutlined } from "@ant-design/icons";
+import { MoreOutlined, EditOutlined, DeleteOutlined, FileAddOutlined, PlusSquareOutlined, ShareAltOutlined, LockOutlined, StopOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
 import { useSetRecoilState } from 'recoil';
@@ -12,6 +12,7 @@ import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
 import { useTranslation } from "react-i18next";
 import { SYSTEM_APP_UUID } from "../../consts";
 import { useEdittingAppUuid } from "../../hooks/useEdittingAppUuid";
+import { useChangePackage } from "../hooks/useChangePackage";
 
 const PackageAction = memo((
   props: {
@@ -28,6 +29,8 @@ const PackageAction = memo((
   const setClasses = useSetRecoilState(classesState(appUuid));
   const backupSnapshot = useBackupSnapshot(appUuid);
   const { t } = useTranslation();
+
+  const updatePackage = useChangePackage();
 
   const setSelectedDiagram = useSetRecoilState(
     selectedUmlDiagramState(appUuid)
@@ -58,19 +61,29 @@ const PackageAction = memo((
     [backupSnapshot, createNewDiagram, onVisibleChange, pkg.uuid, setSelectedDiagram]
   );
 
+  const handleShare = useCallback(()=>{
+    backupSnapshot();
+    updatePackage({...pkg, sharable: true});
+  }, [backupSnapshot, updatePackage]);
+
+  const handleCancelShare = useCallback(()=>{
+    backupSnapshot();
+    updatePackage({...pkg, sharable: false});
+  }, [backupSnapshot, updatePackage]);
+
   const shareItems = useMemo(() => {
     return appUuid === SYSTEM_APP_UUID
       ? [
         pkg?.sharable
           ?
           {
-            icon: <ShareAltOutlined />,
+            icon: <StopOutlined />,
             label: t("CancelShare"),
             key: '5',
             onClick: e => {
               e.domEvent.stopPropagation();
-              //onEdit();
               onVisibleChange(false);
+              handleCancelShare();
             }
           }
           :
@@ -80,14 +93,14 @@ const PackageAction = memo((
             key: '5',
             onClick: e => {
               e.domEvent.stopPropagation();
-              //onEdit();
               onVisibleChange(false);
+              handleShare();
             }
           }
         ,
       ]
       : []
-  }, [pkg, onVisibleChange])
+  }, [pkg, onVisibleChange, handleCancelShare, handleShare])
 
   const menu = useMemo(() => (
     <div style={{ backgroundColor: "#000" }}>
