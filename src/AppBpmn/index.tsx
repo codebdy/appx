@@ -59,13 +59,12 @@ export const AppBpmn = memo((props) => {
         }
       });
 
-      if(process?.xml){
+      if (process?.xml) {
         bpmnModeler.importXML(process?.xml);
       }
-    }
-
-    return () => {
-      bpmnModeler?.destroy();
+      return () => {
+        bpmnModeler?.destroy();
+      }
     }
   }, [process?.xml])
 
