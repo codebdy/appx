@@ -1,4 +1,4 @@
-import React, { useCallback } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import { memo } from "react"
 import { AimOutlined, RedoOutlined, UndoOutlined, ZoomInOutlined, ZoomOutOutlined } from "@ant-design/icons";
 import { ID } from "../../shared";
@@ -11,6 +11,21 @@ export const ToolbarActions = memo((
   }
 ) => {
   const { bpmnModeler, selectedProcessId } = props;
+  const [undoDisabled, setUndoDisabled] = useState(true);
+  const [redoDisabled, setRedoDisabled] = useState(true);
+
+  const handleElementChanged = useCallback((e) => {
+    const cammandStack = bpmnModeler?.get('commandStack');
+    setUndoDisabled(cammandStack?._stackIdx === -1);
+    setRedoDisabled(cammandStack?._stackIdx + 1 === cammandStack?._stack?.length)
+  }, [bpmnModeler])
+
+  useEffect(() => {
+    bpmnModeler?.on('commandStack.changed', handleElementChanged);
+    return () => {
+      bpmnModeler?.off('commandStack.changed', handleElementChanged)
+    }
+  }, [bpmnModeler, handleElementChanged])
 
   const handleUndo = useCallback(() => {
     bpmnModeler?.get('commandStack').undo()
@@ -65,8 +80,7 @@ export const ToolbarActions = memo((
       </Button>
       <Divider type="vertical" />
       <Button
-        //disabled={undoList.length === 0}
-        disabled={!selectedProcessId}
+        disabled={!selectedProcessId || undoDisabled}
         type="text"
         shape="circle"
         onClick={handleUndo}
@@ -76,7 +90,7 @@ export const ToolbarActions = memo((
       </Button>
       <Button
         //disabled={redoList.length === 0}
-        disabled={!selectedProcessId}
+        disabled={!selectedProcessId || redoDisabled}
         type="text"
         shape="circle"
         onClick={handleRedo}
