@@ -36,7 +36,16 @@ export const AppBpmn = memo((props) => {
 
   useShowError(error);
 
-  console.log("哈哈", minimapModule)
+  useEffect(() => {
+    if (bpmnModeler) {
+      if (minMap) {
+        bpmnModeler.get('minimap').open();
+      } else {
+        bpmnModeler.get('minimap').close();
+      }
+    }
+
+  }, [minMap, bpmnModeler])
 
   useEffect(() => {
     const container = containerRef.current;
@@ -65,7 +74,7 @@ export const AppBpmn = memo((props) => {
 
         } else {
           bpmnModeler.get('canvas').zoom('fit-viewport');
-          bpmnModeler.get('minimap').open();
+          minMap && bpmnModeler.get('minimap').open();
           container.classList.remove('with-error')
           container.classList.add('with-diagram');
         }
@@ -78,10 +87,10 @@ export const AppBpmn = memo((props) => {
         bpmnModeler?.destroy();
       }
     }
-  }, [process])
+  }, [process, minMap])
 
   const toggleMinMap = useCallback(() => {
-
+    setMinMap(minMap => !minMap)
   }, [])
 
   const handleUndo = useCallback(() => {
