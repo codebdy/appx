@@ -19,7 +19,7 @@ const PublishButton = memo(() => {
   const { publishedId, error: querPublishError, refresh } = useQueryPublishedMetaId();
 
   const disablePublished = React.useMemo(() => {
-    return !!meta?.publishedAt || (publishedId === meta?.id && !changed);
+    return !!meta?.publishedAt || publishedId === meta?.id || changed;
   }, [changed, meta?.id, meta?.publishedAt, publishedId]);
 
   const [publish, { loading, error }] = usePublishMeta(appUuid, {
