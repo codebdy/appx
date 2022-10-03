@@ -7,14 +7,16 @@ import { useShowError } from '../../hooks/useShowError';
 import { useEdittingAppUuid } from '../../hooks/useEdittingAppUuid';
 import { usePublishMeta } from '../hooks/usePublishMeta';
 import { MetaStatus } from '../meta/Meta';
-import { changedState, publishedIdState, metaState } from '../recoil/atoms';
+import { changedState, metaState } from '../recoil/atoms';
+import { useQueryPublishedMetaId } from '../hooks/useQueryPublishedMetaId';
 
-const SyncButton = memo(() => {
+const PublishButton = memo(() => {
   const appUuid = useEdittingAppUuid();
   const changed = useRecoilValue(changedState(appUuid))
   const [meta, setMeta] = useRecoilState(metaState(appUuid));
   const { t } = useTranslation();
-  const [publishedId, setPublishedId] = useRecoilState(publishedIdState(appUuid));
+  //const [publishedId, setPublishedId] = useRecoilState(publishedIdState(appUuid));
+  const { publishedId, error: querPublishError, refresh } = useQueryPublishedMetaId();
 
   const disablePublished = React.useMemo(() => {
     return !!meta?.publishedAt || (publishedId === meta?.id && !changed);
@@ -22,13 +24,14 @@ const SyncButton = memo(() => {
 
   const [publish, { loading, error }] = usePublishMeta(appUuid, {
     onCompleted() {
-      setPublishedId(meta?.id);
+      //setPublishedId(meta?.id);
+      refresh();
       setMeta(meta => (meta ? { ...meta, status: MetaStatus.META_STATUS_PUBLISHED } : undefined));
       message.success(t("OperateSuccess"));
     },
   });
 
-  useShowError(error);
+  useShowError(error || querPublishError);
 
   const handlePublish = useCallback(() => {
     publish()
@@ -48,4 +51,4 @@ const SyncButton = memo(() => {
   )
 });
 
-export default SyncButton;
+export default PublishButton;

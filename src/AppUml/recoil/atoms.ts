@@ -25,10 +25,10 @@ export const minMapState = atomFamily<boolean, string>({
   default: true,
 });
 
-export const publishedIdState = atomFamily<ID | undefined, string>({
-  key: "uml.publishedId",
-  default: undefined,
-});
+// export const publishedIdState = atomFamily<ID | undefined, string>({
+//   key: "uml.publishedId",
+//   default: undefined,
+// });
 
 export const changedState = atomFamily<boolean, string>({
   key: "uml.changed",

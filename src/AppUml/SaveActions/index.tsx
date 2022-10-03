@@ -2,7 +2,7 @@ import { Space, Button, message } from "antd";
 import React, { useCallback } from "react";
 import { memo } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import SyncButton from "./SyncButton";
+import PublishButton from "./PublishButton";
 import { changedState, metaState } from "../recoil/atoms";
 import { EntityNameMeta, Meta } from "../meta/Meta";
 import { useValidate } from "../hooks/useValidate";
@@ -52,7 +52,7 @@ const SaveActions = memo((props: {
       >
         {t("Save")}
       </Button>
-      <SyncButton />
+      <PublishButton />
     </Space>
   )
 })
