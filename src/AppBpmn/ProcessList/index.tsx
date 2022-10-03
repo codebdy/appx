@@ -5,10 +5,9 @@ import { memo } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilState } from "recoil";
 import SvgIcon from "../../common/SvgIcon";
-import TreeNodeLabel from "../../common/TreeNodeLabel";
 import { useAppParams } from "../../plugin-sdk";
 import { selectedBpmnDiagramState } from "../recoil/atoms";
-import { UpsertDialog } from "./UpsertDialog";
+import { CategoryLabel } from "./CategoryLabel";
 const { DirectoryTree } = Tree;
 
 export const ProcessList = memo(() => {
@@ -18,26 +17,12 @@ export const ProcessList = memo(() => {
   const getCategoryNodes = useCallback(() => {
     return [
       {
-        title:
-          <TreeNodeLabel
-            action={
-              <UpsertDialog />
-            }
-          >
-            {t("AppBpmn.ApprovalFlow")}
-          </TreeNodeLabel>,
+        title:<CategoryLabel title={t("AppBpmn.ApprovalFlow")} />,
         key: "approval-model",
         //children: clses.map(cls => getClassNode(cls))
       },
       {
-        title:
-          <TreeNodeLabel
-            action={
-              <UpsertDialog />
-            }
-          >
-            {t("AppBpmn.WorkFlow")}
-          </TreeNodeLabel>,
+        title:<CategoryLabel title={t("AppBpmn.WorkFlow")} />,
         key: "approval-work",
         //children: clses.map(cls => getClassNode(cls))
       },
@@ -51,14 +36,7 @@ export const ProcessList = memo(() => {
           <path d="M480 384h320a96.11 96.11 0 0 0 96-96V160a96.11 96.11 0 0 0-96-96H480a96.11 96.11 0 0 0-96 96v32H224a96.11 96.11 0 0 0-96 96v160a96.11 96.11 0 0 0 96 96h576a32 32 0 0 1 32 32v160a32 32 0 0 1-32 32H640v-32a96.11 96.11 0 0 0-96-96H224a96.11 96.11 0 0 0-96 96v128a96.11 96.11 0 0 0 96 96h320a96.11 96.11 0 0 0 96-96v-32h160a96.11 96.11 0 0 0 96-96V576a96.11 96.11 0 0 0-96-96H224a32 32 0 0 1-32-32V288a32 32 0 0 1 32-32h160v32a96.11 96.11 0 0 0 96 96z m96 480a32 32 0 0 1-32 32H224a32 32 0 0 1-32-32V736a32 32 0 0 1 32-32h320a32 32 0 0 1 32 32zM448 160a32 32 0 0 1 32-32h320a32 32 0 0 1 32 32v128a32 32 0 0 1-32 32H480a32 32 0 0 1-32-32z" p-id="6008"></path>
         </svg>
       </SvgIcon>,
-      title:
-        <TreeNodeLabel
-          action={
-            <UpsertDialog />
-          }
-        >
-          <div>{t("AppBpmn.BpmnModel")}</div>
-        </TreeNodeLabel>,
+      title: <CategoryLabel title={t("AppBpmn.BpmnModel")} />,
       key: "0",
       children: getCategoryNodes()
     },

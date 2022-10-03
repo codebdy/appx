@@ -2,28 +2,34 @@ import { PlusOutlined } from "@ant-design/icons"
 import { Button, Modal } from "antd"
 import React, { memo, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
+import { ProcessType } from "../../../model/process"
 import { ID } from "../../../shared"
 
 export const UpsertDialog = memo((
   props: {
     processId?: ID,
+    processType?: ProcessType,
+    onOpenChange?: (open?: boolean) => void,
   }
 ) => {
-  const { processId } = props;
+  const { processId, processType, onOpenChange } = props;
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();
 
   const handleOpen = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
     setOpen(true);
+    onOpenChange(true);
   }, [])
 
   const handleClose = useCallback(() => {
     setOpen(false);
+    onOpenChange(false);
   }, []);
 
   const handleConfirm = useCallback(() => {
     setOpen(false);
+    onOpenChange(false);
   }, []);
 
   return (
