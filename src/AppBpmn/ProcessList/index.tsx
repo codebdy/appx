@@ -1,5 +1,4 @@
-import { PlusOutlined } from "@ant-design/icons";
-import { Button, Tree } from "antd";
+import { Tree } from "antd";
 import { DataNode } from "antd/lib/tree";
 import React, { useCallback, useMemo } from "react";
 import { memo } from "react";
@@ -9,6 +8,7 @@ import SvgIcon from "../../common/SvgIcon";
 import TreeNodeLabel from "../../common/TreeNodeLabel";
 import { useAppParams } from "../../plugin-sdk";
 import { selectedBpmnDiagramState } from "../recoil/atoms";
+import { UpsertDialog } from "./UpsertDialog";
 const { DirectoryTree } = Tree;
 
 export const ProcessList = memo(() => {
@@ -21,13 +21,7 @@ export const ProcessList = memo(() => {
         title:
           <TreeNodeLabel
             action={
-              <Button
-                shape="circle"
-                type="text"
-                size="small"
-                icon={<PlusOutlined />}
-                onClick={e => e.stopPropagation()}
-              ></Button>
+              <UpsertDialog />
             }
           >
             {t("AppBpmn.ApprovalFlow")}
@@ -39,13 +33,7 @@ export const ProcessList = memo(() => {
         title:
           <TreeNodeLabel
             action={
-              <Button
-                shape="circle"
-                type="text"
-                size="small"
-                icon={<PlusOutlined />}
-                onClick={e => e.stopPropagation()}
-              ></Button>
+              <UpsertDialog />
             }
           >
             {t("AppBpmn.WorkFlow")}
@@ -66,13 +54,7 @@ export const ProcessList = memo(() => {
       title:
         <TreeNodeLabel
           action={
-            <Button
-              shape="circle"
-              type="text"
-              size="small"
-              icon={<PlusOutlined />}
-              onClick={e => e.stopPropagation()}
-            ></Button>
+            <UpsertDialog />
           }
         >
           <div>{t("AppBpmn.BpmnModel")}</div>

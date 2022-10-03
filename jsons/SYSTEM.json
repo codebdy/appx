@@ -878,6 +878,30 @@
         "root": false,
         "stereoType": "Enum",
         "uuid": "d5400697-5fe9-4aa3-a8b5-a0854b184d56"
+      },
+      {
+        "uuid": "dcd6fd70-eac1-4853-9dd2-62ab2b2d4fe1",
+        "innerId": 1022,
+        "name": "ProcessInstance",
+        "attributes": [
+          {
+            "uuid": "851f2c5c-a504-428d-a51a-fabe59c5ba95",
+            "name": "id",
+            "type": "ID",
+            "primary": true,
+            "typeLabel": "ID"
+          },
+          {
+            "uuid": "32ef28b8-2335-4e9b-bf28-39e6db79a6a3",
+            "name": "approvalStatus",
+            "type": "String",
+            "typeLabel": "String"
+          }
+        ],
+        "methods": [],
+        "stereoType": "Entity",
+        "root": true,
+        "packageUuid": "bebc8345-a0e4-41ed-8743-93c00604260c"
       }
     ],
     "relations": [
@@ -1118,6 +1142,18 @@
         "targetId": "692bf0ad-532b-4720-9427-a7a0fc70a418",
         "targetMultiplicity": "0..*",
         "uuid": "5cdb2011-4d46-44b3-94ae-4867be39e84a"
+      },
+      {
+        "uuid": "e59908e2-381c-409e-8b6e-d6fd8beeb59c",
+        "innerId": 1012,
+        "relationType": "twoWayCombination",
+        "sourceId": "692bf0ad-532b-4720-9427-a7a0fc70a418",
+        "targetId": "dcd6fd70-eac1-4853-9dd2-62ab2b2d4fe1",
+        "roleOfTarget": "instances",
+        "roleOfSource": "process",
+        "sourceMutiplicity": "0..1",
+        "targetMultiplicity": "0..*",
+        "appUuid": "SYSTEM"
       }
     ],
     "diagrams": [
@@ -1427,12 +1463,12 @@
         "y": -16
       },
       {
-        "diagramUuid": "ce4ca6f6-78b5-4c27-a515-14936ce70b39",
-        "height": 120,
         "id": "d5400697-5fe9-4aa3-a8b5-a0854b184d56",
+        "x": 230,
+        "y": -200,
         "width": 180,
-        "x": 290,
-        "y": -190
+        "height": 120,
+        "diagramUuid": "ce4ca6f6-78b5-4c27-a515-14936ce70b39"
       },
       {
         "diagramUuid": "ce4ca6f6-78b5-4c27-a515-14936ce70b39",
@@ -1441,6 +1477,14 @@
         "width": 180,
         "x": -46,
         "y": -30
+      },
+      {
+        "id": "dcd6fd70-eac1-4853-9dd2-62ab2b2d4fe1",
+        "x": 763,
+        "y": -16,
+        "width": 180,
+        "height": 120,
+        "diagramUuid": "ce4ca6f6-78b5-4c27-a515-14936ce70b39"
       }
     ],
     "x6Edges": [
@@ -1854,6 +1898,27 @@
           "offset": -20
         },
         "vertices": []
+      },
+      {
+        "id": "e59908e2-381c-409e-8b6e-d6fd8beeb59c",
+        "vertices": [],
+        "roleOnSourcePosition": {
+          "distance": 40,
+          "offset": 20
+        },
+        "sourceMultiplicityPosition": {
+          "distance": 40,
+          "offset": -20
+        },
+        "roleOnTargetPosition": {
+          "distance": -40,
+          "offset": 20
+        },
+        "targetMultiplicityPosition": {
+          "distance": -40,
+          "offset": -20
+        },
+        "diagramUuid": "ce4ca6f6-78b5-4c27-a515-14936ce70b39"
       }
     ]
   }
