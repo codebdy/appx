@@ -19,23 +19,33 @@ export const ProcessList = memo(() => {
   const { processes, error, loading } = useQueryProcesses();
   const { t } = useTranslation();
   const p = useParseLangMessage();
-  
+
   useShowError(error);
+
+  const getProcessNodes = useCallback((type: ProcessType) => {
+    return processes?.filter(proc => proc.type === type).map(process => {
+      return {
+        key: process.id,
+        title: p(process.name),
+        isLeaf: true,
+      }
+    })
+  }, [processes, p])
 
   const getCategoryNodes = useCallback(() => {
     return [
       {
         title: <CategoryLabel processType={ProcessType.approvalFlow} title={t("AppBpmn.ApprovalFlow")} />,
         key: "approval-model",
-        //children: clses.map(cls => getClassNode(cls))
+        children: getProcessNodes(ProcessType.approvalFlow)
       },
       {
         title: <CategoryLabel processType={ProcessType.workFlow} title={t("AppBpmn.WorkFlow")} />,
         key: "approval-work",
-        //children: clses.map(cls => getClassNode(cls))
+        children: getProcessNodes(ProcessType.workFlow)
       },
     ]
-  }, [])
+  }, [getProcessNodes])
 
   const treeData: DataNode[] = useMemo(() => [
     {
