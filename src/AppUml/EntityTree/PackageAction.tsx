@@ -61,19 +61,33 @@ const PackageAction = memo((
   const shareItems = useMemo(() => {
     return appUuid === SYSTEM_APP_UUID
       ? [
-        {
-          icon: <ShareAltOutlined />,
-          label: t("Share"),
-          key: '5',
-          onClick: e => {
-            e.domEvent.stopPropagation();
-            //onEdit();
-            onVisibleChange(false);
+        pkg?.sharable
+          ?
+          {
+            icon: <ShareAltOutlined />,
+            label: t("CancelShare"),
+            key: '5',
+            onClick: e => {
+              e.domEvent.stopPropagation();
+              //onEdit();
+              onVisibleChange(false);
+            }
           }
-        },
+          :
+          {
+            icon: <ShareAltOutlined />,
+            label: t("Share"),
+            key: '5',
+            onClick: e => {
+              e.domEvent.stopPropagation();
+              //onEdit();
+              onVisibleChange(false);
+            }
+          }
+        ,
       ]
       : []
-  }, [onVisibleChange])
+  }, [pkg, onVisibleChange])
 
   const menu = useMemo(() => (
     <div style={{ backgroundColor: "#000" }}>
