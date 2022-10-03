@@ -7,7 +7,7 @@ import { useRecoilState } from "recoil";
 import { ProcessType } from "../../model/process";
 import SvgIcon from "../../common/SvgIcon";
 import { useAppParams, useParseLangMessage } from "../../plugin-sdk";
-import { selectedBpmnDiagramState } from "../recoil/atoms";
+import { selectedBpmnProcessIdState } from "../recoil/atoms";
 import { CategoryLabel } from "./CategoryLabel";
 import { useQueryProcesses } from "../hooks/useQueryProcesses";
 import { useShowError } from "../../hooks/useShowError";
@@ -16,7 +16,7 @@ const { DirectoryTree } = Tree;
 
 export const ProcessList = memo(() => {
   const { app } = useAppParams();
-  const [selectedDiagramId, setSelecteDiagramId] = useRecoilState(selectedBpmnDiagramState(app.uuid));
+  const [selectedProcessId, setSelecteProcessId] = useRecoilState(selectedBpmnProcessIdState(app.uuid));
   const { processes, error, loading } = useQueryProcesses();
   const { t } = useTranslation();
   const p = useParseLangMessage();
@@ -62,8 +62,8 @@ export const ProcessList = memo(() => {
 
   ], [getCategoryNodes, t]);
   const handleSelect = useCallback((keys: string[]) => {
-    setSelecteDiagramId(keys?.[0])
-  }, [setSelecteDiagramId])
+    setSelecteProcessId(keys?.[0])
+  }, [setSelecteProcessId])
 
   return (
     <div
@@ -77,7 +77,7 @@ export const ProcessList = memo(() => {
         <DirectoryTree
           multiple={false}
           defaultExpandedKeys={["0"]}
-          selectedKeys={[selectedDiagramId]}
+          selectedKeys={[selectedProcessId]}
           onSelect={handleSelect}
           treeData={treeData}
         />

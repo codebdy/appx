@@ -10,6 +10,7 @@ export interface IProcess {
   id: ID;
   name?: string;
   type?: ProcessType;
+  xml?: string,
   instances?: IProcessInstance[];
 }
 
@@ -23,6 +24,7 @@ export interface IProcessInput {
   id?: ID;
   name?: string;
   type?: ProcessType;
+  xml?: string,
   app?: { sync: IAppInput }
 }
 

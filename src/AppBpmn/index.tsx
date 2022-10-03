@@ -1,9 +1,8 @@
 import React, { memo, useEffect, useRef, useState } from "react";
 import { ModelToolbar } from "../common/ModelBoard/ModelToolbar";
 import { ModelBoard } from "../common/ModelBoard";
-import { Button } from "antd";
+import { Button, Spin } from "antd";
 import { useTranslation } from "react-i18next";
-import { useLoadDiagramXML } from "./hooks/useLoadDiagramXML";
 import BpmnModeler from 'bpmn-js/lib/Modeler';
 import "bpmn-js/dist/assets/diagram-js.css";
 import "bpmn-js/dist/assets/bpmn-js.css";
@@ -14,13 +13,22 @@ import { PropertyBox } from "../common/ModelBoard/PropertyBox";
 import { useSelectedElement } from "./hooks/useSelectedElement";
 import { PropertyPanel } from "./PropertyPanel";
 import { ProcessList } from "./ProcessList";
+import { useQueryOneProcess } from "./hooks/useQueryOneProcess";
+import { useRecoilValue } from "recoil";
+import { selectedBpmnProcessIdState } from "./recoil/atoms";
+import { useAppParams } from "../plugin-sdk";
+import { useShowError } from "../hooks/useShowError";
 
 export const AppBpmn = memo((props) => {
+  const { app } = useAppParams();
   const { t } = useTranslation();
-  const { diagramXML } = useLoadDiagramXML();
   const containerRef = useRef<HTMLDivElement>();
   const [bpmnModeler, setBpmnModeler] = useState<any>()
   const { element } = useSelectedElement(bpmnModeler);
+  const selectedProcessId = useRecoilValue(selectedBpmnProcessIdState(app?.uuid));
+  const { process, loading, error } = useQueryOneProcess(selectedProcessId)
+
+  useShowError(error);
 
   useEffect(() => {
     const container = containerRef?.current;
@@ -60,10 +68,10 @@ export const AppBpmn = memo((props) => {
   }, [])
 
   useEffect(() => {
-    if (diagramXML && bpmnModeler) {
-      bpmnModeler.importXML(diagramXML);
+    if (process?.xml && bpmnModeler) {
+      bpmnModeler.importXML(process?.xml);
     }
-  }, [diagramXML, bpmnModeler])
+  }, [process?.xml, bpmnModeler])
 
   function onShown() {
     console.log('diagram shown');
@@ -95,8 +103,10 @@ export const AppBpmn = memo((props) => {
         <PropertyPanel element={element} modeler={bpmnModeler} />
       </PropertyBox>}
     >
-      <div className="react-bpmn-diagram-container" ref={containerRef}>
-      </div>
+      <Spin spinning={loading}>
+        <div className="react-bpmn-diagram-container" ref={containerRef}>
+        </div>
+      </Spin>
     </ModelBoard>
   );
 })
