@@ -27,6 +27,7 @@ import { CONST_ID } from "../../meta/Meta";
 import { CLASS_BACKGROUND_COLOR } from "../../consts";
 import ClassActions from "./ClassActions";
 import PlugIcon from "../../../icons/PlugIcon";
+import { useParseLangMessage } from "../../../plugin-sdk";
 
 export const ClassView = memo(
   (props: {
@@ -57,6 +58,7 @@ export const ClassView = memo(
     const [data, setData] = useState<ClassNodeData>();
     const [menuOpened, setMenuOpend] = useState(false);
     const [pressedLineType, setPressedLineType] = useState<RelationType>();
+    const p = useParseLangMessage();
 
     useEffect(() => {
       setData(node?.data);
@@ -273,7 +275,7 @@ export const ClassView = memo(
             <div className={"nameItem"}>{data?.name}</div>
             {data?.packageName && (
               <div className={classNames("nameItem", "smFont")}>
-                <em>{data?.packageName}</em>
+                <em>{p(data?.packageName)}</em>
               </div>
             )}
             {((hover && !disableHover) || menuOpened) && (
