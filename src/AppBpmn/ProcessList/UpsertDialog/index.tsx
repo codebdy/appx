@@ -48,7 +48,6 @@ export const UpsertDialog = memo((
         wrapProps={
           {
             onClick: (e) => {
-              console.log("哈哈")
               e.stopPropagation()
             },
           }
