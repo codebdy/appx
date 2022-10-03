@@ -15,6 +15,11 @@
         "sharable": false,
         "system": true,
         "uuid": "PACKAGE_APPX_UUID"
+      },
+      {
+        "appUuid": "SYSTEM",
+        "name": "$inline:{\"zh-CN\":\"工作流\",\"en-US\":\"Processes\"}",
+        "uuid": "bebc8345-a0e4-41ed-8743-93c00604260c"
       }
     ],
     "classes": [
@@ -820,58 +825,58 @@
         "uuid": "0afeac65-c0f6-48c1-846c-922e156307f5"
       },
       {
+        "uuid": "692bf0ad-532b-4720-9427-a7a0fc70a418",
+        "innerId": 1023,
+        "name": "Process",
         "attributes": [
           {
+            "uuid": "175c19f1-a818-40d6-aecd-7055a3cfc869",
             "name": "id",
-            "primary": true,
             "type": "ID",
-            "typeLabel": "ID",
-            "uuid": "153e8109-2b4a-4bc2-8622-794819b7c979"
+            "primary": true,
+            "typeLabel": "ID"
           },
           {
+            "uuid": "fe250d6c-0a83-47a5-919a-2e76c9e51d02",
+            "name": "name",
+            "type": "String",
+            "typeLabel": "String"
+          },
+          {
+            "uuid": "730429d6-db33-4c06-9808-41bccb0c267d",
             "name": "type",
             "type": "Enum",
             "typeLabel": "ProcessType",
-            "typeUuid": "0b2e6b2b-f562-4d86-8b29-38324db9fcb1",
-            "uuid": "3c0556de-ace5-4fef-be9a-ab705e492a73"
-          },
-          {
-            "name": "name",
-            "type": "String",
-            "typeLabel": "String",
-            "uuid": "ea9a46fc-bafe-4642-a21d-66626b2483c8"
+            "typeUuid": "d5400697-5fe9-4aa3-a8b5-a0854b184d56"
           }
         ],
-        "innerId": 1021,
         "methods": [],
-        "name": "Process",
-        "packageUuid": "PACKAGE_APPX_UUID",
-        "root": true,
         "stereoType": "Entity",
-        "uuid": "40c7699e-e4bb-4774-a1be-641ff7ebcd6a"
+        "root": true,
+        "packageUuid": "bebc8345-a0e4-41ed-8743-93c00604260c"
       },
       {
+        "uuid": "d5400697-5fe9-4aa3-a8b5-a0854b184d56",
+        "innerId": 1021,
+        "name": "ProcessType",
         "attributes": [
           {
+            "uuid": "796e1a59-8b17-40a0-a657-8832638aa6bb",
             "name": "approvalFlow",
             "type": "String",
-            "typeLabel": "String",
-            "uuid": "7e66d355-c03d-461e-8bee-2071d89a67d9"
+            "typeLabel": "String"
           },
           {
+            "uuid": "cdc17359-8392-42c5-8d40-9a3bc2e00d80",
             "name": "workFlow",
             "type": "String",
-            "typeLabel": "String",
-            "uuid": "dcd875aa-dd66-492b-a675-c02bd53396b6"
+            "typeLabel": "String"
           }
         ],
-        "innerId": 1022,
         "methods": [],
-        "name": "ProcessType",
-        "packageUuid": "PACKAGE_APPX_UUID",
-        "root": false,
         "stereoType": "Enum",
-        "uuid": "0b2e6b2b-f562-4d86-8b29-38324db9fcb1"
+        "root": false,
+        "packageUuid": "bebc8345-a0e4-41ed-8743-93c00604260c"
       }
     ],
     "relations": [
@@ -1102,16 +1107,16 @@
         "uuid": "84c75916-0791-4787-bbc2-a35e76a182e6"
       },
       {
-        "appUuid": "SYSTEM",
+        "uuid": "5cdb2011-4d46-44b3-94ae-4867be39e84a",
         "innerId": 1011,
         "relationType": "twoWayCombination",
-        "roleOfSource": "app",
-        "roleOfTarget": "processes",
         "sourceId": "2082d665-e503-402a-a089-678115c5ed3e",
+        "targetId": "692bf0ad-532b-4720-9427-a7a0fc70a418",
+        "roleOfTarget": "processes",
+        "roleOfSource": "app",
         "sourceMutiplicity": "0..1",
-        "targetId": "40c7699e-e4bb-4774-a1be-641ff7ebcd6a",
         "targetMultiplicity": "0..*",
-        "uuid": "f3ccc37e-1d1e-4ea6-a36e-ef338bf245a3"
+        "appUuid": "SYSTEM"
       }
     ],
     "diagrams": [
@@ -1172,11 +1177,11 @@
         "uuid": "67a8ae11-8160-4555-97bb-bcd3c4d36ed5"
       },
       {
-        "edges": [],
+        "uuid": "ce4ca6f6-78b5-4c27-a515-14936ce70b39",
         "name": "$inline:{\"zh-CN\":\"工作流\"}",
+        "packageUuid": "bebc8345-a0e4-41ed-8743-93c00604260c",
         "nodes": [],
-        "packageUuid": "PACKAGE_APPX_UUID",
-        "uuid": "2242ac47-13fc-4732-8822-b5f4e33f4474"
+        "edges": []
       }
     ],
     "x6Nodes": [
@@ -1413,28 +1418,28 @@
         "y": -330
       },
       {
-        "diagramUuid": "2242ac47-13fc-4732-8822-b5f4e33f4474",
-        "height": 120,
-        "id": "40c7699e-e4bb-4774-a1be-641ff7ebcd6a",
+        "id": "692bf0ad-532b-4720-9427-a7a0fc70a418",
+        "x": 400,
+        "y": -16,
         "width": 180,
-        "x": 500,
-        "y": 64
+        "height": 120,
+        "diagramUuid": "ce4ca6f6-78b5-4c27-a515-14936ce70b39"
       },
       {
-        "diagramUuid": "2242ac47-13fc-4732-8822-b5f4e33f4474",
-        "height": 148,
+        "id": "d5400697-5fe9-4aa3-a8b5-a0854b184d56",
+        "x": 290,
+        "y": -190,
+        "width": 180,
+        "height": 120,
+        "diagramUuid": "ce4ca6f6-78b5-4c27-a515-14936ce70b39"
+      },
+      {
         "id": "2082d665-e503-402a-a089-678115c5ed3e",
+        "x": -46,
+        "y": -30,
         "width": 180,
-        "x": 80,
-        "y": 50
-      },
-      {
-        "diagramUuid": "2242ac47-13fc-4732-8822-b5f4e33f4474",
-        "height": 120,
-        "id": "0b2e6b2b-f562-4d86-8b29-38324db9fcb1",
-        "width": 180,
-        "x": 320,
-        "y": -110
+        "height": 148,
+        "diagramUuid": "ce4ca6f6-78b5-4c27-a515-14936ce70b39"
       }
     ],
     "x6Edges": [
@@ -1829,25 +1834,25 @@
         "vertices": []
       },
       {
-        "diagramUuid": "2242ac47-13fc-4732-8822-b5f4e33f4474",
-        "id": "f3ccc37e-1d1e-4ea6-a36e-ef338bf245a3",
+        "id": "5cdb2011-4d46-44b3-94ae-4867be39e84a",
+        "vertices": [],
         "roleOnSourcePosition": {
           "distance": 40,
-          "offset": 20
-        },
-        "roleOnTargetPosition": {
-          "distance": -40,
           "offset": 20
         },
         "sourceMultiplicityPosition": {
           "distance": 40,
           "offset": -20
         },
+        "roleOnTargetPosition": {
+          "distance": -40,
+          "offset": 20
+        },
         "targetMultiplicityPosition": {
           "distance": -40,
           "offset": -20
         },
-        "vertices": []
+        "diagramUuid": "ce4ca6f6-78b5-4c27-a515-14936ce70b39"
       }
     ]
   }
