@@ -1,8 +1,9 @@
 import { PlusOutlined } from "@ant-design/icons"
-import { Button, Modal } from "antd"
+import { Button, Form, Modal } from "antd"
 import React, { memo, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { ProcessType } from "../../../model/process"
+import { MultiLangInput } from "../../../plugins/inputs/components/pc/MultiLangInput/view"
+import { IProcessInput, ProcessType } from "../../../model/process"
 import { ID } from "../../../shared"
 
 export const UpsertDialog = memo((
@@ -15,6 +16,7 @@ export const UpsertDialog = memo((
   const { processId, processType, onOpenChange } = props;
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();
+  const [form] = Form.useForm<IProcessInput>();
 
   const handleOpen = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
@@ -59,7 +61,29 @@ export const UpsertDialog = memo((
           }
         }
       >
-        
+        <Form
+          name="editProcess"
+          labelCol={{ span: 6 }}
+          wrapperCol={{ span: 16 }}
+          initialValues={{ title: "", description: "" }}
+          form={form}
+          autoComplete="off"
+        >
+          <Form.Item
+            label={t("Name")}
+            name="title"
+            rules={[{ required: true, message: t("Required") }]}
+          >
+            <MultiLangInput inline title={t("Name")} />
+          </Form.Item>
+
+          < Form.Item
+            label={t("Type")}
+            name="type"
+            rules={[{ required: true, message: t("Required") }]}
+          >
+          </Form.Item>
+        </Form>
       </Modal>
     </>
   )
