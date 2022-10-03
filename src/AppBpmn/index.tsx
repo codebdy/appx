@@ -21,7 +21,7 @@ import { minMapState, selectedBpmnProcessIdState } from "./recoil/atoms";
 import { useAppParams } from "../plugin-sdk";
 import { useShowError } from "../hooks/useShowError";
 import { PRIMARY_COLOR } from "../consts";
-import { RedoOutlined, UndoOutlined } from "@ant-design/icons";
+import { RedoOutlined, UndoOutlined, ZoomInOutlined, ZoomOutOutlined } from "@ant-design/icons";
 
 export const AppBpmn = memo((props) => {
   const { app } = useAppParams();
@@ -108,9 +108,9 @@ export const AppBpmn = memo((props) => {
       listWidth={240}
       toolbar={<ModelToolbar>
         <Button
-          className={"no-border"}
           type="text"
           shape="circle"
+          size="large"
           disabled={!selectedProcessId}
           onClick={toggleMinMap}
         >
@@ -121,10 +121,26 @@ export const AppBpmn = memo((props) => {
             />
           </svg>
         </Button>
+        <Button
+          type="text"
+          shape="circle"
+          size="large"
+          disabled = {!selectedProcessId}
+        >
+          <ZoomOutOutlined />
+        </Button>
+        <Button
+          type="text"
+          shape="circle"
+          size="large"
+          disabled = {!selectedProcessId}
+        >
+          <ZoomInOutlined />
+        </Button>
         <Divider type="vertical" />
         <Button
-          className="no-border"
           //disabled={undoList.length === 0}
+          disabled = {!selectedProcessId}
           type="text"
           shape="circle"
           onClick={handleUndo}
@@ -133,8 +149,8 @@ export const AppBpmn = memo((props) => {
           <UndoOutlined />
         </Button>
         <Button
-          className={"no-border"}
           //disabled={redoList.length === 0}
+          disabled = {!selectedProcessId}
           type="text"
           shape="circle"
           onClick={handleRedo}

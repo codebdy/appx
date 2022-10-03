@@ -50,7 +50,6 @@ export const UmlToolbar = memo(() => {
   return (
     <ModelToolbar>
       <Button
-        className={"no-border"}
         type="text"
         shape="circle"
         disabled={!selectedDiagram}
@@ -65,7 +64,6 @@ export const UmlToolbar = memo(() => {
       </Button>
       <Divider type="vertical" />
       <Button
-        className="no-border"
         disabled={undoList.length === 0}
         type="text"
         shape="circle"
@@ -75,7 +73,6 @@ export const UmlToolbar = memo(() => {
         <UndoOutlined />
       </Button>
       <Button
-        className={"no-border"}
         disabled={redoList.length === 0}
         type="text"
         shape="circle"
@@ -85,7 +82,6 @@ export const UmlToolbar = memo(() => {
         <RedoOutlined />
       </Button>
       <Button
-        className={"no-border"}
         disabled={
           (attribute && attribute.name === CONST_ID) || !selectedElement
         }
