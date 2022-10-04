@@ -14,18 +14,18 @@ export const ToolbarActions = memo((
   const [undoDisabled, setUndoDisabled] = useState(true);
   const [redoDisabled, setRedoDisabled] = useState(true);
 
-  const handleElementChanged = useCallback((e) => {
+  const handleCommandStackChanged = useCallback((e) => {
     const cammandStack = bpmnModeler?.get('commandStack');
-    setUndoDisabled(cammandStack?._stackIdx === -1);
-    setRedoDisabled(cammandStack?._stackIdx + 1 === cammandStack?._stack?.length)
+    setUndoDisabled(!cammandStack.canUndo());
+    setRedoDisabled(!cammandStack.canRedo());
   }, [bpmnModeler])
 
   useEffect(() => {
-    bpmnModeler?.on('commandStack.changed', handleElementChanged);
+    bpmnModeler?.on('commandStack.changed', handleCommandStackChanged);
     return () => {
-      bpmnModeler?.off('commandStack.changed', handleElementChanged)
+      bpmnModeler?.off('commandStack.changed', handleCommandStackChanged)
     }
-  }, [bpmnModeler, handleElementChanged])
+  }, [bpmnModeler, handleCommandStackChanged])
 
   const handleUndo = useCallback(() => {
     bpmnModeler?.get('commandStack').undo()
