@@ -1,18 +1,22 @@
 import { observer } from "@formily/reactive-react"
 import React from "react"
+import cls from "classnames"
+import "./style.less"
+import { Space } from "antd"
 
 export interface IApprovalBarProps {
+  className?: string,
   children?: React.ReactNode,
 }
 
 export const ApprovalBar = observer((props: IApprovalBarProps) => {
-  const { children, ...other } = props;
+  const { className, children, ...other } = props;
 
   return (
-    <div {...other}>
+    <Space className={cls("appx-arroval-bar", className)} {...other}>
       {
         children
       }
-    </div>
+    </Space>
   )
 })

@@ -7,9 +7,7 @@ export const ApprovalBarDesigner: DnFC<IApprovalBarProps> = observer((props: IAp
   return (
     props.children
       ?
-      <ApprovalBar {...props}>
-        {props.children}
-      </ApprovalBar>
+      <ApprovalBar {...props} />
       :
       <DroppableWidget>
         {props.children}
