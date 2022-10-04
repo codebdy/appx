@@ -9,7 +9,7 @@ const behaviors: IBehavior[] = [
     extends: ['Field'],
     selector: (node) => node.props['x-component'] === Name,
     designerProps: {
-      droppable: false,
+      droppable: true,
     },
     designerLocales: locales,
     schema
