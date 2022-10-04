@@ -848,12 +848,12 @@
             "uuid": "730429d6-db33-4c06-9808-41bccb0c267d"
           },
           {
-            "uuid": "58d10573-64d6-4916-8842-be0f92792a50",
+            "length": 50000,
             "name": "xml",
+            "nullable": true,
             "type": "String",
             "typeLabel": "String",
-            "nullable": true,
-            "length": 50000
+            "uuid": "58d10573-64d6-4916-8842-be0f92792a50"
           }
         ],
         "innerId": 1023,
@@ -897,7 +897,7 @@
             "uuid": "851f2c5c-a504-428d-a51a-fabe59c5ba95"
           },
           {
-            "name": "approvalStatus",
+            "name": "status",
             "type": "String",
             "typeLabel": "String",
             "uuid": "32ef28b8-2335-4e9b-bf28-39e6db79a6a3"
@@ -1463,12 +1463,12 @@
         "y": -330
       },
       {
-        "id": "692bf0ad-532b-4720-9427-a7a0fc70a418",
-        "x": 400,
-        "y": -41,
-        "width": 180,
+        "diagramUuid": "ce4ca6f6-78b5-4c27-a515-14936ce70b39",
         "height": 170,
-        "diagramUuid": "ce4ca6f6-78b5-4c27-a515-14936ce70b39"
+        "id": "692bf0ad-532b-4720-9427-a7a0fc70a418",
+        "width": 180,
+        "x": 400,
+        "y": -41
       },
       {
         "diagramUuid": "ce4ca6f6-78b5-4c27-a515-14936ce70b39",

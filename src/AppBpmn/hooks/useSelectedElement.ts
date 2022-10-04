@@ -7,6 +7,7 @@ export function useSelectedElement(modeler?: any) {
   const handleSelectionsChanged = useCallback((e) => {
     setSelection(e.newSelection);
     setElement(e.newSelection[0]);
+    //console.log("Lane 跟踪", e.newSelection?.[0]?.businessObject?.lanes)
   }, [])
 
 
