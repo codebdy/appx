@@ -22,6 +22,7 @@ import { useAppParams } from "../plugin-sdk";
 import { useShowError } from "../hooks/useShowError";
 import { ToolbarActions } from "./ToolbarActions";
 import { PRIMARY_COLOR } from "../consts";
+import { useChanged } from "./hooks/useChanged";
 
 export const AppBpmn = memo((props) => {
   const { app } = useAppParams();
@@ -33,9 +34,9 @@ export const AppBpmn = memo((props) => {
   const selectedProcessId = useRecoilValue(selectedBpmnProcessIdState(app?.uuid));
   const { process, loading, error } = useQueryOneProcess(selectedProcessId)
   const [minMap, setMinMap] = useRecoilState(minMapState(app?.uuid));
+  const changed = useChanged(bpmnModeler);
   const minMapRef = useRef(minMap);
   minMapRef.current = minMap;
-
   useShowError(error);
 
   useEffect(() => {
@@ -121,12 +122,12 @@ export const AppBpmn = memo((props) => {
         <Space>
           <Button
             type="primary"
-            disabled={!selectedProcessId}
+            disabled={!selectedProcessId || !changed}
           >
             {t("Save")}
           </Button>
           <Button
-            disabled={!selectedProcessId}
+            disabled={!selectedProcessId || changed}
           >
             {t("Publish")}
           </Button>
