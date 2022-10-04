@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { ModelToolbar } from "../common/ModelBoard/ModelToolbar";
 import { ModelBoard } from "../common/ModelBoard";
-import { Button, Divider, Spin } from "antd";
+import { Button, Space, Spin } from "antd";
 import { useTranslation } from "react-i18next";
 import BpmnModeler from 'bpmn-js/lib/Modeler';
 import "bpmn-js/dist/assets/diagram-js.css";
@@ -118,9 +118,20 @@ export const AppBpmn = memo((props) => {
           selectedProcessId={selectedProcessId}
         />
         <div style={{ flex: 1 }}></div>
-        <Button type="primary">
-          {t("Save")}
-        </Button>
+        <Space>
+          <Button
+            type="primary"
+            disabled={!selectedProcessId}
+          >
+            {t("Save")}
+          </Button>
+          <Button
+            disabled={!selectedProcessId}
+          >
+            {t("Publish")}
+          </Button>
+        </Space>
+
       </ModelToolbar>
       }
       modelList={

@@ -21,6 +21,8 @@ export const ToolbarActions = memo((
   }, [bpmnModeler])
 
   useEffect(() => {
+    setRedoDisabled(true);
+    setUndoDisabled(true);
     bpmnModeler?.on('commandStack.changed', handleCommandStackChanged);
     return () => {
       bpmnModeler?.off('commandStack.changed', handleCommandStackChanged)
