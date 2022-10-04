@@ -22,11 +22,12 @@ import { useAppParams } from "../plugin-sdk";
 import { useShowError } from "../hooks/useShowError";
 import { ToolbarActions } from "./ToolbarActions";
 import { PRIMARY_COLOR } from "../consts";
-import { useChanged } from "./hooks/useChanged";
+import { useUpsertProcess } from "./hooks/useUpsertProcess";
 
 export const AppBpmn = memo((props) => {
   const { app } = useAppParams();
   const { t } = useTranslation();
+  const [changed, setChanged] = useState(false);
   const containerRef = useRef<HTMLDivElement>();
   const canvasrRef = useRef<HTMLDivElement>();
   const [bpmnModeler, setBpmnModeler] = useState<any>()
@@ -34,10 +35,28 @@ export const AppBpmn = memo((props) => {
   const selectedProcessId = useRecoilValue(selectedBpmnProcessIdState(app?.uuid));
   const { process, loading, error } = useQueryOneProcess(selectedProcessId)
   const [minMap, setMinMap] = useRecoilState(minMapState(app?.uuid));
-  const changed = useChanged(bpmnModeler);
   const minMapRef = useRef(minMap);
   minMapRef.current = minMap;
-  useShowError(error);
+
+  const [upsert, { error: saveError, loading: saving }] = useUpsertProcess({
+    onCompleted: () => {
+      setChanged(false);
+    }
+  });
+
+  useShowError(error || saveError);
+
+  const handleCommandStackChanged = useCallback((e) => {
+    setChanged(true);
+  }, [bpmnModeler])
+
+  useEffect(() => {
+    setChanged(false);
+    bpmnModeler?.on('commandStack.changed', handleCommandStackChanged);
+    return () => {
+      bpmnModeler?.off('commandStack.changed', handleCommandStackChanged);
+    }
+  }, [bpmnModeler, handleCommandStackChanged])
 
   useEffect(() => {
     if (bpmnModeler) {
@@ -95,6 +114,15 @@ export const AppBpmn = memo((props) => {
     setMinMap(minMap => !minMap)
   }, [])
 
+  const handleSave = useCallback(() => {
+    bpmnModeler.saveXML({ format: true })
+    .then((xml) => {
+      upsert({ ...process, xml })
+    })
+    .catch(err => {
+      console.error(err)
+    })
+  }, [bpmnModeler, process])
 
   return (
     <ModelBoard
@@ -123,6 +151,8 @@ export const AppBpmn = memo((props) => {
           <Button
             type="primary"
             disabled={!selectedProcessId || !changed}
+            loading={saving}
+            onClick={handleSave}
           >
             {t("Save")}
           </Button>
