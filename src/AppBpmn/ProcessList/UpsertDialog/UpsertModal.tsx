@@ -5,23 +5,25 @@ import { MultiLangInput } from "../../../plugins/inputs/components/pc/MultiLangI
 import { IProcess, IProcessInput, ProcessType } from "../../../model/process"
 import { useUpsertProcess } from "../../hooks/useUpsertProcess"
 import { useShowError } from "../../../hooks/useShowError"
+import { createUuid } from "../../../shared"
 
 const { Option } = Select;
 
 const empertyBpmn = `
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn">
-  <bpmn2:process id="Process_1" isExecutable="false">
-    <bpmn2:startEvent id="StartEvent_1"/>
-  </bpmn2:process>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="59c8727" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.0.0" camunda:diagramRelationId="ea0ce2e3-b302-4fb4-941a-2ce99ea8b1aa">
+  <bpmn:process id="$processId" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" />
+  </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="$processId">
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
-        <dc:Bounds height="36.0" width="36.0" x="412.0" y="240.0"/>
+        <dc:Bounds x="150" y="100" width="36" height="36" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
-</bpmn2:definitions>`
+</bpmn:definitions>
+`
 
 export const UpsertModal = memo((
   props: {
@@ -58,7 +60,7 @@ export const UpsertModal = memo((
       upsert({
         ...process || {},
         ...values,
-        xml: process?.xml || empertyBpmn,
+        xml: process?.xml || empertyBpmn.replace("$processId", "Process_" + createUuid()),
       })
     })
   }, []);

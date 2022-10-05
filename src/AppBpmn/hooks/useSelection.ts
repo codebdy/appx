@@ -1,14 +1,28 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export function useSelection(modeler?: any) {
   const [selection, setSelection] = useState<any>();
   const [element, setElement] = useState<any>();
 
+  useEffect(() => {
+    const canvas = modeler?.get('canvas')
+    setElement(canvas?.getRootElement())
+  }, [modeler])
+
   const handleSelectionsChanged = useCallback((e) => {
+    if (!modeler) {
+      return;
+    }
     setSelection(e.newSelection);
-    setElement(e.newSelection[0]);
+    if (!e.newSelection?.length) {
+      const canvas = modeler.get('canvas')
+      setElement(canvas.getRootElement())
+    } else {
+      setElement(e.newSelection?.[0]);
+    }
+
     //console.log("Lane 跟踪", e.newSelection?.[0]?.businessObject?.lanes)
-  }, [])
+  }, [modeler])
 
 
   useEffect(() => {
