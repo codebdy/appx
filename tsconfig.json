@@ -1,6 +1,6 @@
 {
-  "strict": true,
   "compilerOptions": {
+    //"strict": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
     "jsx": "react",
