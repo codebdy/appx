@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
-export function useSelectedElement(modeler?: any) {
+export function useSelection(modeler?: any) {
   const [selection, setSelection] = useState<any>();
   const [element, setElement] = useState<any>();
 

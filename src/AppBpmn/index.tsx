@@ -12,7 +12,7 @@ import "./style.less"
 import minimapModule from 'diagram-js-minimap';
 import "diagram-js-minimap/assets/diagram-js-minimap.css";
 import { PropertyBox } from "../common/ModelBoard/PropertyBox";
-import { useSelectedElement } from "./hooks/useSelectedElement";
+import { useSelection } from "./hooks/useSelection";
 import { PropertyPanel } from "./PropertyPanel";
 import { ProcessList } from "./ProcessList";
 import { useQueryOneProcess } from "./hooks/useQueryOneProcess";
@@ -31,7 +31,7 @@ export const AppBpmn = memo((props) => {
   const containerRef = useRef<HTMLDivElement>();
   const canvasrRef = useRef<HTMLDivElement>();
   const [bpmnModeler, setBpmnModeler] = useState<any>()
-  const { element } = useSelectedElement(bpmnModeler);
+  const { element } = useSelection(bpmnModeler);
   const selectedProcessId = useRecoilValue(selectedBpmnProcessIdState(app?.uuid));
   const { process, loading, error } = useQueryOneProcess(selectedProcessId)
   const [minMap, setMinMap] = useRecoilState(minMapState(app?.uuid));
