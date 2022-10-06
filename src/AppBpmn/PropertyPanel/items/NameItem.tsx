@@ -1,7 +1,7 @@
-import { Form } from "antd";
+import { Form, Input } from "antd";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { MultiLangInput } from "../../../plugins/inputs/components/pc/MultiLangInput/view";
+//import { MultiLangInput } from "../../../plugins/inputs/components/pc/MultiLangInput/view";
 
 export const NameItem = () => {
   const { t } = useTranslation()
@@ -10,7 +10,8 @@ export const NameItem = () => {
       label={t("Name")}
       name="name"
     >
-      <MultiLangInput inline multiline />
+      {/* <MultiLangInput inline multiline title={t("Name")} /> */}
+      <Input.TextArea rows = {3} />
     </Form.Item>
   )
 }
