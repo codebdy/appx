@@ -5,6 +5,7 @@ import { useEventBasedGateway } from "./useEventBasedGateway";
 import { useExclusiveGateway } from "./useExclusiveGateway";
 import { useInclusiveGateway } from "./useInclusiveGateway";
 import { useIntermediateThrowEvent } from "./useIntermediateThrowEvent";
+import { useManualTask } from "./useManualTask";
 import { useParallelGateway } from "./useParallelGateway";
 import { useProcess } from "./useProcess";
 import { useReceiveTask } from "./useReceiveTask";
@@ -27,6 +28,7 @@ export function useElementView(element: any, modeler: any) {
   const sendTask = useSendTask(element, modeler);
   const receiveTask = useReceiveTask(element, modeler);
   const userTask = useUserTask(element, modeler);
+  const manualTask = useManualTask(element, modeler);
 
   const elementView = useMemo(() => {
     switch (element?.type) {
@@ -56,6 +58,8 @@ export function useElementView(element: any, modeler: any) {
         return receiveTask;
       case "bpmn:UserTask":
         return userTask;
+      case "bpmn:ManualTask":
+        return manualTask;
     }
   }, [process, element])
 
