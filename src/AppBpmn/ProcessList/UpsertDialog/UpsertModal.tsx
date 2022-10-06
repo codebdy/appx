@@ -58,9 +58,9 @@ export const UpsertModal = memo((
   const handleConfirm = useCallback(() => {
     form.validateFields().then((values) => {
       upsert({
-        ...process || {},
+        id: process?.id,
         ...values,
-        xml: process?.xml || empertyBpmn.replace("$processId", "Process_" + createUuid()),
+        xml: !process?.id ? empertyBpmn.replace("$processId", "Process_" + createUuid()) : undefined,
       })
     })
   }, []);

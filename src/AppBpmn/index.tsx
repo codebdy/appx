@@ -129,7 +129,7 @@ export const AppBpmn = memo((props) => {
   const handleSave = useCallback(() => {
     bpmnModeler.saveXML({ format: true })
       .then((xml) => {
-        upsert({ ...process, xml })
+        upsert({ id:process?.id, xml })
       })
       .catch(err => {
         console.error(err)
