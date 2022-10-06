@@ -35,6 +35,9 @@ export default class CustomReplaceMenuProvider {
       delete entries["replace-with-signal-end"]
       delete entries["replace-with-terminate-end"]
 
+      //网关
+      delete entries["replace-with-complex-gateway"]
+
       return entries;
     };
   }

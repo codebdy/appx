@@ -25,6 +25,7 @@ import { PRIMARY_COLOR } from "../consts";
 import { useUpsertProcess } from "./hooks/useUpsertProcess";
 import CustomPaletteModule from "./plugins/palette";
 import CustomReplaceMenuModule from "./plugins/replace";
+import CustomContextPadModule from "./plugins/context-pad";
 import { useCustomTranslate } from "./hooks/useCustomTranslate";
 
 export const AppBpmn = memo((props) => {
@@ -89,6 +90,7 @@ export const AppBpmn = memo((props) => {
           CustomPaletteModule,
           CustomReplaceMenuModule,
           customTranslateModule,
+          CustomContextPadModule
         ]
       });
       setBpmnModeler(bpmnModeler)
