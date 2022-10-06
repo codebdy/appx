@@ -375,7 +375,8 @@
     "Append TimerIntermediateCatchEvent": "追加时间中间事件",
     "Participant": "参与者",
     "Lane": "泳道",
-    "Group": "组"
+    "Group": "组",
+    "Text Annotation": "文本注释"
   },
   "SettingsForm": {
     "Properties": "属性",

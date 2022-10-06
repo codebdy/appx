@@ -21,6 +21,7 @@ import { useSendTask } from "./useSendTask";
 import { useServiceTask } from "./useServiceTask";
 import { useStartEvent } from "./useStartEvent";
 import { useTask } from "./useTask";
+import { useTextAnnotation } from "./useTextAnnotation";
 import { useUserTask } from "./useUserTask";
 
 export function useElementView(element: any, modeler: any) {
@@ -45,8 +46,9 @@ export function useElementView(element: any, modeler: any) {
   const collapsedSubProcess = useCollapsedSubProcess(element, modeler);
   const expandedSubProcess = useExpandedSubProcess(element, modeler);
   const participant = useParticipant(element, modeler);
-  const lane = useLane(element, modeler)
-  const group = useGroup(element, modeler)
+  const lane = useLane(element, modeler);
+  const group = useGroup(element, modeler);
+  const annotation = useTextAnnotation(element, modeler);
 
   const elementView = useMemo(() => {
 
@@ -94,7 +96,9 @@ export function useElementView(element: any, modeler: any) {
       case "bpmn:Lane":
         return lane;
       case "bpmn:Group":
-        return group;        
+        return group;
+      case "bpmn:TextAnnotation":
+        return annotation;
     }
   }, [process, element])
 
