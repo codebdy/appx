@@ -3,6 +3,7 @@ import React, { useCallback, useEffect } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next"
 import { useElementView } from "./elements"
+import { DocumentItem } from "./items/DocumentItem"
 import { IdItem } from "./items/idItem"
 import { NameItem } from "./items/NameItem"
 import "./style.less"
@@ -77,12 +78,7 @@ export const PropertyPanel = memo((props: {
                   }
                 </Panel>
                 <Panel header={t("Model.Documentation")} key="document">
-                  <Form.Item
-                    label={t("Model.ElementDocumentation")}
-                    name="documentation"
-                  >
-                    <Input.TextArea rows={3} />
-                  </Form.Item>
+                  <DocumentItem />
                 </Panel>
               </Collapse>
             </>
