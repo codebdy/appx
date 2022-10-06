@@ -372,7 +372,8 @@
     "Append Task": "追加任务",
     "Append Intermediate/Boundary Event": "追加中间或边界事件",
     "Append MessageIntermediateCatchEvent": "追加消息中间捕获事件",
-    "Append TimerIntermediateCatchEvent": "追加时间中间事件"
+    "Append TimerIntermediateCatchEvent": "追加时间中间事件",
+    "Participant": "参与者"
   },
   "SettingsForm": {
     "Properties": "属性",
