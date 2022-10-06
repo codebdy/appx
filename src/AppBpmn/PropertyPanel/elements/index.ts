@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { useCollaboration } from "./useCollaboration";
 import { useEndEvent } from "./useEndEvent";
+import { useExclusiveGateway } from "./useExclusiveGateway";
 import { useIntermediateThrowEvent } from "./useIntermediateThrowEvent";
 import { useProcess } from "./useProcess";
 import { useStartEvent } from "./useStartEvent";
@@ -11,6 +12,7 @@ export function useElementView(element: any, modeler: any) {
   const startEvent = useStartEvent(element, modeler);
   const intermediateThrowEvent = useIntermediateThrowEvent(element, modeler);
   const endEvent = useEndEvent(element, modeler);
+  const exclusiveGateway = useExclusiveGateway(element, modeler);
 
   const elementView = useMemo(() => {
     switch (element?.type) {
@@ -24,6 +26,8 @@ export function useElementView(element: any, modeler: any) {
         return intermediateThrowEvent;
       case "bpmn:EndEvent":
         return endEvent;
+      case "bpmn:ExclusiveGateway":
+        return exclusiveGateway;
     }
   }, [process, element])
 
