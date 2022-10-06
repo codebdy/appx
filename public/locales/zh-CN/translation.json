@@ -377,7 +377,8 @@
     "Lane": "泳道",
     "Group": "组",
     "Text Annotation": "文本注释",
-    "Association": "关联"
+    "Association": "关联",
+    "Sequence Flow": "序列流"
   },
   "SettingsForm": {
     "Properties": "属性",

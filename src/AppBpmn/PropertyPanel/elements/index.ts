@@ -19,6 +19,7 @@ import { useProcess } from "./useProcess";
 import { useReceiveTask } from "./useReceiveTask";
 import { useScriptTask } from "./useScriptTask";
 import { useSendTask } from "./useSendTask";
+import { useSequenceFlow } from "./useSequenceFlow";
 import { useServiceTask } from "./useServiceTask";
 import { useStartEvent } from "./useStartEvent";
 import { useTask } from "./useTask";
@@ -51,6 +52,7 @@ export function useElementView(element: any, modeler: any) {
   const group = useGroup(element, modeler);
   const annotation = useTextAnnotation(element, modeler);
   const association = useAssociation(element, modeler);
+  const sequenceFlow = useSequenceFlow(element, modeler);
 
   const elementView = useMemo(() => {
 
@@ -103,6 +105,8 @@ export function useElementView(element: any, modeler: any) {
         return annotation;
       case "bpmn:Association":
         return association;
+      case "bpmn:SequenceFlow":
+        return sequenceFlow;
     }
   }, [process, element])
 
