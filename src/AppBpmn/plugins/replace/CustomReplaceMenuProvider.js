@@ -38,6 +38,9 @@ export default class CustomReplaceMenuProvider {
       //网关
       delete entries["replace-with-complex-gateway"]
 
+      //子流程
+      delete entries["replace-with-collapsed-subprocess"]
+      delete entries["replace-with-transaction"]
       return entries;
     };
   }
