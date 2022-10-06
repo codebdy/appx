@@ -3,6 +3,10 @@ import { useCallback, useEffect, useState } from "react";
 export function useElementName(element: any, modeler: any): string {
   const [name, setName] = useState("");
 
+  useEffect(() => {
+    setName(element?.businessObject?.name || "")
+  }, [element])
+
   const handleElementChanged = useCallback((e) => {
     if (element?.businessObject && element?.businessObject?.id === e.element?.businessObject?.id) {
       setName(e.element?.businessObject?.name)
