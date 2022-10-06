@@ -24,6 +24,11 @@ import { ToolbarActions } from "./ToolbarActions";
 import { PRIMARY_COLOR } from "../consts";
 import { useUpsertProcess } from "./hooks/useUpsertProcess";
 import CustomPaletteModule from "./Palette";
+import customTranslate from './customTranslate/customTranslate';
+
+const customTranslateModule = {
+  translate: [ 'value', customTranslate ]
+};
 
 export const AppBpmn = memo((props) => {
   const { app } = useAppParams();
@@ -81,6 +86,7 @@ export const AppBpmn = memo((props) => {
         additionalModules: [
           minimapModule,
           CustomPaletteModule,
+          customTranslateModule,
         ]
       });
       setBpmnModeler(bpmnModeler)

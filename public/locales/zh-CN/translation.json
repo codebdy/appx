@@ -258,7 +258,8 @@
     "AddProcess": "添加流程",
     "EidtProcess": "编辑流程",
     "Process": "流程",
-    "Collaboration": "协作"
+    "Collaboration": "协作",
+    "StartEvent": "开始事件"
   },
   "SettingsForm": {
     "Properties": "属性",
