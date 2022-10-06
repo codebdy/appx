@@ -14,9 +14,12 @@ export default class CustomReplaceMenuProvider {
     const self = this;
     return function (entries) {
       console.log("Replace 菜单", entries)
+
+      //开始事件
       delete entries["replace-with-conditional-start"]
       delete entries["replace-with-signal-start"]
 
+      //中间抛出事件
       delete entries["replace-with-compensation-intermediate-throw"]
       delete entries["replace-with-conditional-intermediate-catch"]
       delete entries["replace-with-escalation-intermediate-throw"]
@@ -25,6 +28,12 @@ export default class CustomReplaceMenuProvider {
       delete entries["replace-with-link-intermediate-throw"]
       delete entries["replace-with-signal-intermediate-catch"]
       delete entries["replace-with-signal-intermediate-throw"]
+
+      //结束事件
+      delete entries["replace-with-compensation-end"]
+      delete entries["replace-with-escalation-end"]
+      delete entries["replace-with-signal-end"]
+      delete entries["replace-with-terminate-end"]
 
       return entries;
     };
