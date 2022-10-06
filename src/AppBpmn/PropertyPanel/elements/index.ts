@@ -9,6 +9,7 @@ import { useExclusiveGateway } from "./useExclusiveGateway";
 import { useExpandedSubProcess } from "./useExpandedSubProcess";
 import { useInclusiveGateway } from "./useInclusiveGateway";
 import { useIntermediateThrowEvent } from "./useIntermediateThrowEvent";
+import { useLane } from "./useLane";
 import { useManualTask } from "./useManualTask";
 import { useParallelGateway } from "./useParallelGateway";
 import { useParticipant } from "./useParticipant";
@@ -43,6 +44,7 @@ export function useElementView(element: any, modeler: any) {
   const collapsedSubProcess = useCollapsedSubProcess(element, modeler);
   const expandedSubProcess = useExpandedSubProcess(element, modeler);
   const participant = useParticipant(element, modeler);
+  const lane = useLane(element, modeler)
 
   const elementView = useMemo(() => {
 
@@ -87,6 +89,8 @@ export function useElementView(element: any, modeler: any) {
         return element?.collapsed ? collapsedSubProcess : expandedSubProcess;
       case "bpmn:Participant":
         return participant;
+      case "bpmn:Lane":
+        return lane;
     }
   }, [process, element])
 
