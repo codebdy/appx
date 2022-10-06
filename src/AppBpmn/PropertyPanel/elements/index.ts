@@ -7,6 +7,7 @@ import { useEndEvent } from "./useEndEvent";
 import { useEventBasedGateway } from "./useEventBasedGateway";
 import { useExclusiveGateway } from "./useExclusiveGateway";
 import { useExpandedSubProcess } from "./useExpandedSubProcess";
+import { useGroup } from "./useGroup";
 import { useInclusiveGateway } from "./useInclusiveGateway";
 import { useIntermediateThrowEvent } from "./useIntermediateThrowEvent";
 import { useLane } from "./useLane";
@@ -45,6 +46,7 @@ export function useElementView(element: any, modeler: any) {
   const expandedSubProcess = useExpandedSubProcess(element, modeler);
   const participant = useParticipant(element, modeler);
   const lane = useLane(element, modeler)
+  const group = useGroup(element, modeler)
 
   const elementView = useMemo(() => {
 
@@ -91,6 +93,8 @@ export function useElementView(element: any, modeler: any) {
         return participant;
       case "bpmn:Lane":
         return lane;
+      case "bpmn:Group":
+        return group;        
     }
   }, [process, element])
 

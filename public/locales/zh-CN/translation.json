@@ -374,7 +374,8 @@
     "Append MessageIntermediateCatchEvent": "追加消息中间捕获事件",
     "Append TimerIntermediateCatchEvent": "追加时间中间事件",
     "Participant": "参与者",
-    "Lane": "泳道"
+    "Lane": "泳道",
+    "Group": "组"
   },
   "SettingsForm": {
     "Properties": "属性",
