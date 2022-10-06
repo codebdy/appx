@@ -1,8 +1,9 @@
-import { Collapse, Form, Input, List } from "antd"
+import { Collapse, Empty, Form, Input, List } from "antd"
 import React, { useCallback, useEffect } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next"
 import { userTaskIcon } from "../icons"
+import { useElementView } from "./elements"
 import "./style.less"
 
 const { Panel } = Collapse;
@@ -14,7 +15,7 @@ export const PropertyPanel = memo((props: {
   const { element, modeler } = props;
   const { t } = useTranslation();
   const [form] = Form.useForm();
-
+  const elementView = useElementView(element);
   useEffect(() => {
     form.setFieldValue("id", element?.businessObject?.id || '')
     form.setFieldValue("name", element?.businessObject?.name || '')
@@ -33,6 +34,8 @@ export const PropertyPanel = memo((props: {
     }
   }, [modeler, element])
 
+  console.log("哈哈", element)
+
   return (
     <div className="property-pannel-form">
       <Form
@@ -46,43 +49,50 @@ export const PropertyPanel = memo((props: {
         size="small"
         onValuesChange={handleValueChange}
       >
-        <div className="element-summary">
-          <div className="element-icon">
-            {userTaskIcon}
-          </div>
-          <div className="element-text">
-            <div className="element-type">
-              用户任务
-            </div>
-            <div className="element-name">
-              发送邮件
-            </div>
-          </div>
-        </div>
-        <Collapse defaultActiveKey={['general']} expandIconPosition="end">
-          <Panel header={t("Model.General")} key="general">
-            <Form.Item
-              label="ID"
-              name="id"
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item
-              label={t("Name")}
-              name="name"
-            >
-              <Input.TextArea rows={2} />
-            </Form.Item>
-          </Panel>
-          <Panel header={t("Model.Documentation")} key="document">
-            <Form.Item
-              label={t("Model.ElementDocumentation")}
-              name="documentation"
-            >
-              <Input.TextArea rows={3} />
-            </Form.Item>
-          </Panel>
-        </Collapse>
+        {
+          elementView ?
+            <>
+              <div className="element-summary">
+                <div className="element-icon">
+                  {userTaskIcon}
+                </div>
+                <div className="element-text">
+                  <div className="element-type">
+                    用户任务
+                  </div>
+                  <div className="element-name">
+                    发送邮件
+                  </div>
+                </div>
+              </div>
+              <Collapse defaultActiveKey={['general']} expandIconPosition="end">
+                <Panel header={t("Model.General")} key="general">
+                  <Form.Item
+                    label="ID"
+                    name="id"
+                  >
+                    <Input />
+                  </Form.Item>
+                  <Form.Item
+                    label={t("Name")}
+                    name="name"
+                  >
+                    <Input.TextArea rows={2} />
+                  </Form.Item>
+                </Panel>
+                <Panel header={t("Model.Documentation")} key="document">
+                  <Form.Item
+                    label={t("Model.ElementDocumentation")}
+                    name="documentation"
+                  >
+                    <Input.TextArea rows={3} />
+                  </Form.Item>
+                </Panel>
+              </Collapse>
+            </>
+            : <Empty />
+        }
+
       </Form>
     </div>
   )
