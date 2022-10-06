@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useRef, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ModelToolbar } from "../common/ModelBoard/ModelToolbar";
 import { ModelBoard } from "../common/ModelBoard";
 import { Button, Space, Spin } from "antd";
@@ -24,15 +24,12 @@ import { ToolbarActions } from "./ToolbarActions";
 import { PRIMARY_COLOR } from "../consts";
 import { useUpsertProcess } from "./hooks/useUpsertProcess";
 import CustomPaletteModule from "./Palette";
-import customTranslate from './customTranslate/customTranslate';
-
-const customTranslateModule = {
-  translate: [ 'value', customTranslate ]
-};
+import { useCustomTranslate } from "./hooks/useCustomTranslate";
 
 export const AppBpmn = memo((props) => {
   const { app } = useAppParams();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  console.log("呵呵呵呵呵呵", i18n.language)
   const [changed, setChanged] = useState(false);
   const containerRef = useRef<HTMLDivElement>();
   const canvasrRef = useRef<HTMLDivElement>();
@@ -43,6 +40,10 @@ export const AppBpmn = memo((props) => {
   const [minMap, setMinMap] = useRecoilState(minMapState(app?.uuid));
   const minMapRef = useRef(minMap);
   minMapRef.current = minMap;
+  const translate = useCustomTranslate();
+  const customTranslateModule = useMemo(() => ({
+    translate: ['value', translate]
+  }), [translate]);
 
   const [upsert, { error: saveError, loading: saving }] = useUpsertProcess({
     onCompleted: () => {
@@ -116,7 +117,7 @@ export const AppBpmn = memo((props) => {
         bpmnModeler?.destroy();
       }
     }
-  }, [process])
+  }, [process, customTranslateModule])
 
   const toggleMinMap = useCallback(() => {
     setMinMap(minMap => !minMap)
@@ -124,12 +125,12 @@ export const AppBpmn = memo((props) => {
 
   const handleSave = useCallback(() => {
     bpmnModeler.saveXML({ format: true })
-    .then((xml) => {
-      upsert({ ...process, xml })
-    })
-    .catch(err => {
-      console.error(err)
-    })
+      .then((xml) => {
+        upsert({ ...process, xml })
+      })
+      .catch(err => {
+        console.error(err)
+      })
   }, [bpmnModeler, process])
 
   return (
