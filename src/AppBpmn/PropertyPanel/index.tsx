@@ -2,7 +2,6 @@ import { Collapse, Empty, Form, Input, List } from "antd"
 import React, { useCallback, useEffect } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next"
-import { userTaskIcon } from "../icons"
 import { useElementView } from "./elements"
 import "./style.less"
 
