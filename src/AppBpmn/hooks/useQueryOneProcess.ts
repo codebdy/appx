@@ -23,7 +23,7 @@ export function useQueryOneProcess(id?: string) {
     {
       gql: id && processGql,
       params: { id },
-      depEntityNames: ["Process"]
+      depEntityNames: []
     }
   ), [id]);
 

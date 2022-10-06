@@ -8,6 +8,7 @@ import { useIntermediateThrowEvent } from "./useIntermediateThrowEvent";
 import { useParallelGateway } from "./useParallelGateway";
 import { useProcess } from "./useProcess";
 import { useStartEvent } from "./useStartEvent";
+import { useTask } from "./useTask";
 
 export function useElementView(element: any, modeler: any) {
   const process = useProcess(element, modeler);
@@ -19,6 +20,7 @@ export function useElementView(element: any, modeler: any) {
   const parallelGateway = useParallelGateway(element, modeler);
   const inclusiveGateway = useInclusiveGateway(element, modeler);
   const eventBasedGateway = useEventBasedGateway(element, modeler);
+  const task = useTask(element, modeler);
 
   const elementView = useMemo(() => {
     switch (element?.type) {
@@ -40,7 +42,8 @@ export function useElementView(element: any, modeler: any) {
         return inclusiveGateway;
       case "bpmn:EventBasedGateway":
         return eventBasedGateway;
-
+      case "bpmn:Task":
+        return task;
     }
   }, [process, element])
 
