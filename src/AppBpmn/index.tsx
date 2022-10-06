@@ -29,7 +29,6 @@ import { useCustomTranslate } from "./hooks/useCustomTranslate";
 export const AppBpmn = memo((props) => {
   const { app } = useAppParams();
   const { t, i18n } = useTranslation();
-  console.log("呵呵呵呵呵呵", i18n.language)
   const [changed, setChanged] = useState(false);
   const containerRef = useRef<HTMLDivElement>();
   const canvasrRef = useRef<HTMLDivElement>();
