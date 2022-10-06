@@ -23,8 +23,8 @@ import { useShowError } from "../hooks/useShowError";
 import { ToolbarActions } from "./ToolbarActions";
 import { PRIMARY_COLOR } from "../consts";
 import { useUpsertProcess } from "./hooks/useUpsertProcess";
-import CustomPaletteModule from "./palette2";
-import CustomReplaceMenuModule from "./replace";
+import CustomPaletteModule from "./plugins/palette";
+import CustomReplaceMenuModule from "./plugins/replace";
 import { useCustomTranslate } from "./hooks/useCustomTranslate";
 
 export const AppBpmn = memo((props) => {
