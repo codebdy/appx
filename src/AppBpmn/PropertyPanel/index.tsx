@@ -3,6 +3,8 @@ import React, { useCallback, useEffect } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next"
 import { useElementView } from "./elements"
+import { IdItem } from "./items/idItem"
+import { NameItem } from "./items/NameItem"
 import "./style.less"
 
 const { Panel } = Collapse;
@@ -68,18 +70,11 @@ export const PropertyPanel = memo((props: {
               </div>
               <Collapse defaultActiveKey={['general']} expandIconPosition="end">
                 <Panel header={t("Model.General")} key="general">
-                  <Form.Item
-                    label="ID"
-                    name="id"
-                  >
-                    <Input />
-                  </Form.Item>
-                  <Form.Item
-                    label={t("Name")}
-                    name="name"
-                  >
-                    <Input.TextArea rows={2} />
-                  </Form.Item>
+                  <IdItem />
+                  {
+                    elementView?.name !== false &&
+                    <NameItem />
+                  }
                 </Panel>
                 <Panel header={t("Model.Documentation")} key="document">
                   <Form.Item
