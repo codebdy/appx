@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { useAssociation } from "./useAssociation";
 import { useBusinessRuleTask } from "./useBusinessRuleTask";
 import { useCallActivity } from "./useCallActivity";
 import { useCollaboration } from "./useCollaboration";
@@ -49,6 +50,7 @@ export function useElementView(element: any, modeler: any) {
   const lane = useLane(element, modeler);
   const group = useGroup(element, modeler);
   const annotation = useTextAnnotation(element, modeler);
+  const association = useAssociation(element, modeler);
 
   const elementView = useMemo(() => {
 
@@ -99,6 +101,8 @@ export function useElementView(element: any, modeler: any) {
         return group;
       case "bpmn:TextAnnotation":
         return annotation;
+      case "bpmn:Association":
+        return association;
     }
   }, [process, element])
 
