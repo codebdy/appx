@@ -25,7 +25,8 @@ export const PropertyPanel = memo((props: {
   const handleValueChange = useCallback((changedValue) => {
     const modeling = modeler.get('modeling');
     if (changedValue?.name) {
-      modeling.updateLabel(element, changedValue.name);
+      //modeling.updateLabel(element, changedValue.name);
+      modeling.updateProperties(element, { name: changedValue?.name })
     } else if (changedValue?.documentation) {
       modeling.updateProperties(element, { documentation: changedValue?.documentation })
     } else if (changedValue?.id) {
