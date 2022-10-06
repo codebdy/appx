@@ -8,5 +8,5 @@ export const selectedBpmnProcessIdState = atomFamily<ID | undefined, string>({
 
 export const minMapState = atomFamily<boolean, string>({
   key: "bpmn.minMap",
-  default: true,
+  default: false,
 });
