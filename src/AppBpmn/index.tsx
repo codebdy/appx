@@ -23,6 +23,7 @@ import { useShowError } from "../hooks/useShowError";
 import { ToolbarActions } from "./ToolbarActions";
 import { PRIMARY_COLOR } from "../consts";
 import { useUpsertProcess } from "./hooks/useUpsertProcess";
+import CustomPaletteModule from "./Palette";
 
 export const AppBpmn = memo((props) => {
   const { app } = useAppParams();
@@ -78,7 +79,8 @@ export const AppBpmn = memo((props) => {
           parent: '#js-properties-panel'
         },
         additionalModules: [
-          minimapModule
+          minimapModule,
+          CustomPaletteModule,
         ]
       });
       setBpmnModeler(bpmnModeler)
