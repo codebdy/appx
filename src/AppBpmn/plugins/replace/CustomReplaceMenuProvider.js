@@ -41,6 +41,10 @@ export default class CustomReplaceMenuProvider {
       //子流程
       delete entries["replace-with-collapsed-subprocess"]
       delete entries["replace-with-transaction"]
+
+      //序列流
+      delete entries["replace-with-conditional-flow"]
+      delete entries["replace-with-default-flow"]
       return entries;
     };
   }
