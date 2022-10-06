@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 import { useProcess } from "./useProcess";
 
-export function useElementView(element?: any) {
-  const process = useProcess();
+export function useElementView(element: any, modeler: any) {
+  const process = useProcess(element, modeler);
 
   const elementView = useMemo(()=>{
     switch(element?.type){

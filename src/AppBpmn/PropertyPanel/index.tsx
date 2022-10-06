@@ -1,4 +1,4 @@
-import { Collapse, Empty, Form, Input, List } from "antd"
+import { Collapse, Empty, Form, Input } from "antd"
 import React, { useCallback, useEffect } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next"
@@ -14,13 +14,12 @@ export const PropertyPanel = memo((props: {
   const { element, modeler } = props;
   const { t } = useTranslation();
   const [form] = Form.useForm();
-  const elementView = useElementView(element);
+  const elementView = useElementView(element, modeler);
   useEffect(() => {
     form.setFieldValue("id", element?.businessObject?.id || '')
     form.setFieldValue("name", element?.businessObject?.name || '')
     form.setFieldValue("documentation", element?.businessObject?.documentation || '')
   }, [element?.businessObject])
-  console.log("Element的 businessObject", element?.businessObject)
 
   const handleValueChange = useCallback((changedValue) => {
     const modeling = modeler.get('modeling');
@@ -33,8 +32,6 @@ export const PropertyPanel = memo((props: {
       modeling.updateProperties(element, { id: changedValue?.id })
     }
   }, [modeler, element])
-
-  console.log("哈哈", element)
 
   return (
     <div className="property-pannel-form" key={element?.id}>
