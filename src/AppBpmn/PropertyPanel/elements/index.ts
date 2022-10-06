@@ -11,6 +11,7 @@ import { useParallelGateway } from "./useParallelGateway";
 import { useProcess } from "./useProcess";
 import { useReceiveTask } from "./useReceiveTask";
 import { useSendTask } from "./useSendTask";
+import { useServiceTask } from "./useServiceTask";
 import { useStartEvent } from "./useStartEvent";
 import { useTask } from "./useTask";
 import { useUserTask } from "./useUserTask";
@@ -31,6 +32,7 @@ export function useElementView(element: any, modeler: any) {
   const userTask = useUserTask(element, modeler);
   const manualTask = useManualTask(element, modeler);
   const businessRuleTask = useBusinessRuleTask(element, modeler);
+  const serviceTask = useServiceTask(element, modeler);
 
   const elementView = useMemo(() => {
     switch (element?.type) {
@@ -64,6 +66,8 @@ export function useElementView(element: any, modeler: any) {
         return manualTask;
       case "bpmn:BusinessRuleTask":
         return businessRuleTask;
+      case "bpmn:ServiceTask":
+        return serviceTask;
     }
   }, [process, element])
 
