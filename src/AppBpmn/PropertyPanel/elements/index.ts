@@ -3,6 +3,7 @@ import { useCollaboration } from "./useCollaboration";
 import { useEndEvent } from "./useEndEvent";
 import { useExclusiveGateway } from "./useExclusiveGateway";
 import { useIntermediateThrowEvent } from "./useIntermediateThrowEvent";
+import { useParallelGateway } from "./useParallelGateway";
 import { useProcess } from "./useProcess";
 import { useStartEvent } from "./useStartEvent";
 
@@ -13,6 +14,7 @@ export function useElementView(element: any, modeler: any) {
   const intermediateThrowEvent = useIntermediateThrowEvent(element, modeler);
   const endEvent = useEndEvent(element, modeler);
   const exclusiveGateway = useExclusiveGateway(element, modeler);
+  const parallelGateway = useParallelGateway(element, modeler);
 
   const elementView = useMemo(() => {
     switch (element?.type) {
@@ -27,7 +29,9 @@ export function useElementView(element: any, modeler: any) {
       case "bpmn:EndEvent":
         return endEvent;
       case "bpmn:ExclusiveGateway":
-        return exclusiveGateway;
+        return exclusiveGateway;      
+        case "bpmn:ParallelGateway":
+        return parallelGateway;
     }
   }, [process, element])
 
