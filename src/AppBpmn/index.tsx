@@ -23,7 +23,8 @@ import { useShowError } from "../hooks/useShowError";
 import { ToolbarActions } from "./ToolbarActions";
 import { PRIMARY_COLOR } from "../consts";
 import { useUpsertProcess } from "./hooks/useUpsertProcess";
-import CustomPaletteModule from "./Palette";
+import CustomPaletteModule from "./palette2";
+import CustomReplaceMenuModule from "./replace";
 import { useCustomTranslate } from "./hooks/useCustomTranslate";
 
 export const AppBpmn = memo((props) => {
@@ -86,6 +87,7 @@ export const AppBpmn = memo((props) => {
         additionalModules: [
           minimapModule,
           CustomPaletteModule,
+          CustomReplaceMenuModule,
           customTranslateModule,
         ]
       });
