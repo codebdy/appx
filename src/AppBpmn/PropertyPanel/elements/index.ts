@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { useBusinessRuleTask } from "./useBusinessRuleTask";
 import { useCollaboration } from "./useCollaboration";
 import { useEndEvent } from "./useEndEvent";
 import { useEventBasedGateway } from "./useEventBasedGateway";
@@ -29,6 +30,7 @@ export function useElementView(element: any, modeler: any) {
   const receiveTask = useReceiveTask(element, modeler);
   const userTask = useUserTask(element, modeler);
   const manualTask = useManualTask(element, modeler);
+  const businessRuleTask = useBusinessRuleTask(element, modeler);
 
   const elementView = useMemo(() => {
     switch (element?.type) {
@@ -60,6 +62,8 @@ export function useElementView(element: any, modeler: any) {
         return userTask;
       case "bpmn:ManualTask":
         return manualTask;
+      case "bpmn:BusinessRuleTask":
+        return businessRuleTask;
     }
   }, [process, element])
 
