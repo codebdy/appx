@@ -370,7 +370,9 @@
     "Append EndEvent": "追加终止事件",
     "Append Gateway": "追加网关",
     "Append Task": "追加任务",
-    "Append Intermediate/Boundary Event": "追加中间或边界事件"
+    "Append Intermediate/Boundary Event": "追加中间或边界事件",
+    "Append MessageIntermediateCatchEvent": "追加消息中间捕获事件",
+    "Append TimerIntermediateCatchEvent": "追加时间中间事件"
   },
   "SettingsForm": {
     "Properties": "属性",
