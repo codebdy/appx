@@ -6,6 +6,7 @@ import { useCollapsedSubProcess } from "./useCollapsedSubProcess";
 import { useEndEvent } from "./useEndEvent";
 import { useEventBasedGateway } from "./useEventBasedGateway";
 import { useExclusiveGateway } from "./useExclusiveGateway";
+import { useExpandedSubProcess } from "./useExpandedSubProcess";
 import { useInclusiveGateway } from "./useInclusiveGateway";
 import { useIntermediateThrowEvent } from "./useIntermediateThrowEvent";
 import { useManualTask } from "./useManualTask";
@@ -39,8 +40,10 @@ export function useElementView(element: any, modeler: any) {
   const scriptTask = useScriptTask(element, modeler);
   const callActivity = useCallActivity(element, modeler);
   const collapsedSubProcess = useCollapsedSubProcess(element, modeler);
+  const expandedSubProcess = useExpandedSubProcess(element, modeler);
 
   const elementView = useMemo(() => {
+
     switch (element?.type) {
       case "bpmn:Process":
         return process;
@@ -79,7 +82,7 @@ export function useElementView(element: any, modeler: any) {
       case "bpmn:CallActivity":
         return callActivity;
       case "bpmn:SubProcess":
-        return collapsedSubProcess;        
+        return element?.collapsed ? collapsedSubProcess : expandedSubProcess;
     }
   }, [process, element])
 
