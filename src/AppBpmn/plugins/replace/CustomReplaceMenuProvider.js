@@ -13,8 +13,19 @@ export default class CustomReplaceMenuProvider {
   getPopupMenuEntries(element) {
     const self = this;
     return function (entries) {
+      console.log("Replace 菜单", entries)
       delete entries["replace-with-conditional-start"]
       delete entries["replace-with-signal-start"]
+
+      delete entries["replace-with-compensation-intermediate-throw"]
+      delete entries["replace-with-conditional-intermediate-catch"]
+      delete entries["replace-with-escalation-intermediate-throw"]
+      delete entries["replace-with-escalation-intermediate-catch"]
+      delete entries["replace-with-link-intermediate-catch"]
+      delete entries["replace-with-link-intermediate-throw"]
+      delete entries["replace-with-signal-intermediate-catch"]
+      delete entries["replace-with-signal-intermediate-throw"]
+
       return entries;
     };
   }
