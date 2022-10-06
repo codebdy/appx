@@ -20,6 +20,7 @@ export const PropertyPanel = memo((props: {
     form.setFieldValue("name", element?.businessObject?.name || '')
     form.setFieldValue("documentation", element?.businessObject?.documentation || '')
   }, [element?.businessObject])
+  console.log("Element的 businessObject", element?.businessObject)
 
   const handleValueChange = useCallback((changedValue) => {
     const modeling = modeler.get('modeling');

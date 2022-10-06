@@ -10,7 +10,7 @@ export function useProcess(element: any, modeler: any): IElement {
   const { t } = useTranslation();
   const p = useParseLangMessage();
   const name = useElementName(element, modeler);
-  const processElement: IElement = useMemo(() => {
+  const iElement: IElement = useMemo(() => {
     return {
       type: t("AppBpmn.Process"),
       name: p(name),
@@ -21,5 +21,5 @@ export function useProcess(element: any, modeler: any): IElement {
     }
   }, [element, name]);
 
-  return processElement;
+  return iElement;
 }
