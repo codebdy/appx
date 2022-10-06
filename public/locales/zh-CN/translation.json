@@ -256,7 +256,8 @@
     "ApprovalFlow": "审批流",
     "WorkFlow": "工作流",
     "AddProcess": "添加流程",
-    "EidtProcess": "编辑流程"
+    "EidtProcess": "编辑流程",
+    "Process": "流程"
   },
   "SettingsForm": {
     "Properties": "属性",

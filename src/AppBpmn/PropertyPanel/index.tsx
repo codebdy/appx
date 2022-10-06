@@ -37,7 +37,7 @@ export const PropertyPanel = memo((props: {
   console.log("哈哈", element)
 
   return (
-    <div className="property-pannel-form">
+    <div className="property-pannel-form" key={element?.id}>
       <Form
         name="taskform"
         labelCol={{ span: 8 }}
@@ -54,15 +54,18 @@ export const PropertyPanel = memo((props: {
             <>
               <div className="element-summary">
                 <div className="element-icon">
-                  {userTaskIcon}
+                  {elementView.icon}
                 </div>
                 <div className="element-text">
                   <div className="element-type">
-                    用户任务
+                    {elementView.type}
                   </div>
-                  <div className="element-name">
-                    发送邮件
-                  </div>
+                  {
+                    elementView?.name !== false &&
+                    <div className="element-name">
+                      {elementView.name}
+                    </div>
+                  }
                 </div>
               </div>
               <Collapse defaultActiveKey={['general']} expandIconPosition="end">
