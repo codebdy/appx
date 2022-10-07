@@ -57,10 +57,7 @@
   "Document": "文档",
   "Test": "测试",
   "Model": {
-    "Title": "模型",
-    "General": "通用",
-    "Documentation": "文档",
-    "ElementDocumentation": "元素文档"
+    "Title": "模型"
   },
   "install": {
     "Title": "安装Appx",
@@ -252,6 +249,12 @@
     "Mutation": "变更"
   },
   "AppBpmn": {
+    "General": "通用",
+    "Documentation": "文档",
+    "ElementDocumentation": "元素文档",
+    "Assignment": "分配",
+    "Assignee": "受托人",
+    "Candidate groups": "候选组",
     "BpmnModel": "工作流模型",
     "ApprovalFlow": "审批流",
     "WorkFlow": "工作流",

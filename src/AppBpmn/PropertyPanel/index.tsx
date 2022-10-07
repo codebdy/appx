@@ -70,14 +70,14 @@ export const PropertyPanel = memo((props: {
                 </div>
               </div>
               <Collapse defaultActiveKey={['general']} expandIconPosition="end">
-                <Panel header={t("Model.General")} key="general">
+                <Panel header={t("AppBpmn.General")} key="general">
                   <IdItem />
                   {
                     elementView?.name !== false &&
                     <NameItem />
                   }
                 </Panel>
-                <Panel header={t("Model.Documentation")} key="document">
+                <Panel header={t("AppBpmn.Documentation")} key="document">
                   <DocumentItem />
                 </Panel>
               </Collapse>
