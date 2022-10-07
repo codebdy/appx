@@ -27,10 +27,11 @@ import CustomPaletteModule from "./plugins/palette";
 import CustomReplaceMenuModule from "./plugins/replace";
 import CustomContextPadModule from "./plugins/context-pad";
 import { useCustomTranslate } from "./hooks/useCustomTranslate";
+import zeebeExtension from './resources/zeebe.json';
 
 export const AppBpmn = memo((props) => {
   const { app } = useAppParams();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [changed, setChanged] = useState(false);
   const containerRef = useRef<HTMLDivElement>();
   const canvasrRef = useRef<HTMLDivElement>();
@@ -91,7 +92,10 @@ export const AppBpmn = memo((props) => {
           CustomReplaceMenuModule,
           customTranslateModule,
           CustomContextPadModule
-        ]
+        ],
+        moddleExtensions: {
+          zeebe: zeebeExtension
+        }
       });
       setBpmnModeler(bpmnModeler)
       bpmnModeler.on('import.done', (event) => {

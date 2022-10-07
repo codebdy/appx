@@ -34,6 +34,8 @@ export const PropertyPanel = memo((props: {
       modeling.updateProperties(element, { documentation: changedValue?.documentation })
     } else if (changedValue?.id) {
       modeling.updateProperties(element, { id: changedValue?.id })
+    } else{
+      modeling.updateProperties(element, changedValue)
     }
   }, [modeler, element])
 
@@ -77,6 +79,15 @@ export const PropertyPanel = memo((props: {
                     <NameItem />
                   }
                 </Panel>
+                {
+                  elementView?.itemGroups?.map((item) => {
+                    return (
+                      <Panel header={item.title} key={item.key}>
+                        {item.items}
+                      </Panel>
+                    )
+                  })
+                }
                 <Panel header={t("AppBpmn.Documentation")} key="document">
                   <DocumentItem />
                 </Panel>
