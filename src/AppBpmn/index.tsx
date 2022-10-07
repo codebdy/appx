@@ -59,6 +59,8 @@ export const AppBpmn = memo((props) => {
     setChanged(true);
   }, [bpmnModeler])
 
+  console.log("呵呵 bpmnModeler", bpmnModeler)
+
   useEffect(() => {
     setChanged(false);
     bpmnModeler?.on('commandStack.changed', handleCommandStackChanged);

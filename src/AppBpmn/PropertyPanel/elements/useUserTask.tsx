@@ -19,11 +19,11 @@ export function useUserTask(element: any, modeler: any): IElement {
         {
           title: t("AppBpmn.Assignment"),
           key: "assignment",
-          items:<AssgnmentItem />
+          items: <AssgnmentItem element={element} modeler={modeler} />
         }
       ]
     }
-  }, [element, name]);
+  }, [element, name, modeler]);
 
   return iElement;
 }

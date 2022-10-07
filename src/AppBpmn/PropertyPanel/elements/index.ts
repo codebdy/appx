@@ -108,7 +108,36 @@ export function useElementView(element: any, modeler: any) {
       case "bpmn:SequenceFlow":
         return sequenceFlow;
     }
-  }, [process, element])
+  }, [
+    element, 
+    modeler,
+    process,
+    collaboration,
+    startEvent,
+    intermediateThrowEvent,
+    endEvent,
+    exclusiveGateway,
+    parallelGateway,
+    inclusiveGateway,
+    eventBasedGateway,
+    task,
+    sendTask,
+    receiveTask,
+    userTask,
+    manualTask,
+    businessRuleTask,
+    serviceTask,
+    scriptTask,
+    callActivity,
+    collapsedSubProcess,
+    expandedSubProcess,
+    participant,
+    lane,
+    group,
+    annotation,
+    association,
+    sequenceFlow
+  ])
 
   return elementView
 }

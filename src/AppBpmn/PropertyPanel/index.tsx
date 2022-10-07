@@ -18,6 +18,7 @@ export const PropertyPanel = memo((props: {
   const { t } = useTranslation();
   const [form] = Form.useForm();
   const elementView = useElementView(element, modeler);
+
   useEffect(() => {
     form.setFieldValue("id", element?.businessObject?.id || '')
     form.setFieldValue("name", element?.businessObject?.name || '')
