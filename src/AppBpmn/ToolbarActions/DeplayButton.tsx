@@ -1,4 +1,4 @@
-import { Button } from "antd"
+import { Button, message } from "antd"
 import React, { useCallback } from "react";
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
@@ -13,7 +13,11 @@ export const DeplayButton = memo((
   }
 ) => {
   const { selectedProcessId, changed } = props;
-  const [deloy, { error, loading }] = useDeployProcess(selectedProcessId);
+  const [deloy, { error, loading }] = useDeployProcess(selectedProcessId, {
+    onCompleted: () => {
+      message.success(t("OperateSuccess"));
+    }
+  });
   const { t } = useTranslation();
 
   useShowError(error);
