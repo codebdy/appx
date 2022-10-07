@@ -2,6 +2,7 @@ import { Collapse, Empty, Form, Input } from "antd"
 import React, { useCallback, useEffect } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next"
+import { useAssignment } from "../hooks/useAssignment"
 import { useElementView } from "./elements"
 import { DocumentItem } from "./items/DocumentItem"
 import { IdItem } from "./items/idItem"
@@ -18,12 +19,14 @@ export const PropertyPanel = memo((props: {
   const { t } = useTranslation();
   const [form] = Form.useForm();
   const elementView = useElementView(element, modeler);
-
+  const [assignment, updateAssignment] = useAssignment(element, modeler);
   useEffect(() => {
     form.setFieldValue("id", element?.businessObject?.id || '')
     form.setFieldValue("name", element?.businessObject?.name || '')
     form.setFieldValue("documentation", element?.businessObject?.documentation || '')
-  }, [element?.businessObject])
+    form.setFieldValue("assignee", assignment?.assignee);
+    form.setFieldValue("candidateGroups", assignment?.candidateGroups);
+  }, [element?.businessObject, assignment])
   console.log("Element的 businessObject", element?.businessObject)
 
   const handleValueChange = useCallback((changedValue) => {
@@ -35,10 +38,14 @@ export const PropertyPanel = memo((props: {
       modeling.updateProperties(element, { documentation: changedValue?.documentation })
     } else if (changedValue?.id) {
       modeling.updateProperties(element, { id: changedValue?.id })
-    } else{
+    } else if (changedValue.assignee) {
+      updateAssignment("assignee", changedValue.assignee)
+    } else if (changedValue.candidateGroups) {
+      updateAssignment("candidateGroups", changedValue.candidateGroups)
+    } else {
       modeling.updateProperties(element, changedValue)
     }
-  }, [modeler, element])
+  }, [modeler, element, updateAssignment])
 
   return (
     <div className="property-pannel-form" key={element?.id}>
