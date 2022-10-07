@@ -28,6 +28,7 @@ import CustomReplaceMenuModule from "./plugins/replace";
 import CustomContextPadModule from "./plugins/context-pad";
 import { useCustomTranslate } from "./hooks/useCustomTranslate";
 import zeebeExtension from './resources/zeebe.json';
+import { DeplayButton } from "./ToolbarActions/DeplayButton";
 
 export const AppBpmn = memo((props) => {
   const { app } = useAppParams();
@@ -172,11 +173,7 @@ export const AppBpmn = memo((props) => {
           >
             {t("Save")}
           </Button>
-          <Button
-            disabled={!selectedProcessId || changed}
-          >
-            {t("Publish")}
-          </Button>
+          <DeplayButton selectedProcessId = {selectedProcessId} changed = {changed}/>
         </Space>
 
       </ModelToolbar>
