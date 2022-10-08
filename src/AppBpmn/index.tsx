@@ -29,6 +29,7 @@ import CustomContextPadModule from "./plugins/context-pad";
 import { useCustomTranslate } from "./hooks/useCustomTranslate";
 import zeebeExtension from './resources/zeebe.json';
 import { DeplayButton } from "./ToolbarActions/DeplayButton";
+import { XmlEditor } from "./XmlEditor";
 
 export const AppBpmn = memo((props) => {
   const { app } = useAppParams();
@@ -42,6 +43,7 @@ export const AppBpmn = memo((props) => {
   const { process, loading, error } = useQueryOneProcess(selectedProcessId)
   const [minMap, setMinMap] = useRecoilState(minMapState(app?.uuid));
   const [xml, setXml] = useState<string>();
+  const [showXml, setShowXml] = useState<boolean>();
   const minMapRef = useRef(minMap);
   minMapRef.current = minMap;
   const translate = useCustomTranslate();
@@ -135,7 +137,7 @@ export const AppBpmn = memo((props) => {
   const handleSave = useCallback(() => {
     bpmnModeler.saveXML({ format: true })
       .then((xml) => {
-        upsert({ id: process?.id, xml })
+        upsert({ id: process?.id, xml:xml?.xml })
       })
       .catch(err => {
         console.error(err)
@@ -143,7 +145,17 @@ export const AppBpmn = memo((props) => {
   }, [bpmnModeler, process])
 
   const handleToggleCode = useCallback(() => {
+    setShowXml(showXml => !showXml);
+    bpmnModeler.saveXML({ format: true })
+      .then((xml) => {
+        setXml(xml?.xml)
+      })
+      .catch(err => {
+        console.error(err)
+      })
+  }, [bpmnModeler, process]);
 
+  const handleXMLChange = useCallback(() => {
   }, []);
 
   return (
@@ -159,7 +171,7 @@ export const AppBpmn = memo((props) => {
         >
           <svg style={{ width: '18px', height: '18px', marginTop: "4px" }} viewBox="0 0 24 24">
             <path
-              fill={!!xml && selectedProcessId ? PRIMARY_COLOR : "currentColor"}
+              fill={showXml && selectedProcessId ? PRIMARY_COLOR : "currentColor"}
               d="M12.89,3L14.85,3.4L11.11,21L9.15,20.6L12.89,3M19.59,12L16,8.41V5.58L22.42,12L16,18.41V15.58L19.59,12M1.58,12L8,5.58V8.41L4.41,12L8,15.58V18.41L1.58,12Z" />
           </svg>
         </Button>
@@ -205,7 +217,14 @@ export const AppBpmn = memo((props) => {
       </PropertyBox>}
     >
       <Spin spinning={loading}>
-        <div className="bmpm-content react-bpmn-diagram-container" ref={containerRef} id="js-drop-zone">
+        <div
+          className="bmpm-content react-bpmn-diagram-container"
+          ref={containerRef}
+          id="js-drop-zone"
+          style={{
+            display: showXml ? "none" : undefined
+          }}
+        >
           <div className="message error">
             <div className="note">
               <p>Ooops, we could not display the BPMN 2.0 diagram.</p>
@@ -218,6 +237,13 @@ export const AppBpmn = memo((props) => {
           </div>
           <div className="canvas" ref={canvasrRef} id="js-canvas"></div>
         </div>
+        {
+          showXml &&
+          <div className="bpmn-xml-editor"        >
+            <XmlEditor value={xml} onChange={handleXMLChange} />
+          </div>
+        }
+
       </Spin>
     </ModelBoard>
   );
