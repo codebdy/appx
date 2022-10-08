@@ -145,17 +145,23 @@ export const AppBpmn = memo((props) => {
   }, [bpmnModeler, process])
 
   const handleToggleCode = useCallback(() => {
-    setShowXml(showXml => !showXml);
-    bpmnModeler.saveXML({ format: true })
+    if(showXml){
+      bpmnModeler.importXML(xml);
+    }else{
+      bpmnModeler.saveXML({ format: true })
       .then((xml) => {
         setXml(xml?.xml)
       })
       .catch(err => {
         console.error(err)
       })
-  }, [bpmnModeler, process]);
+    }
+    setShowXml(showXml => !showXml);
 
-  const handleXMLChange = useCallback(() => {
+  }, [bpmnModeler, process,showXml, xml]);
+
+  const handleXMLChange = useCallback((value:string) => {
+    setXml(value);
   }, []);
 
   return (

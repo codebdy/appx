@@ -14,7 +14,7 @@ export function useElementName(element: any, modeler: any): string {
   }, [modeler, element])
 
   useEffect(() => {
-    console.log("eventBus事件列表", modeler?.get('eventBus'))
+    //console.log("eventBus事件列表", modeler?.get('eventBus'))
     modeler?.on('element.changed', handleElementChanged);
     return () => {
       modeler?.off('element.changed', handleElementChanged)

@@ -18,7 +18,10 @@ export function useSelection(modeler?: any) {
       const canvas = modeler.get('canvas')
       setElement(canvas.getRootElement())
     } else {
-      setElement(e.newSelection?.[0]);
+      let ele = e.newSelection?.[0];
+      const elementRegistry = modeler.get('elementRegistry');
+      ele = elementRegistry.get(ele?.businessObject?.id)
+      setElement(ele);
     }
 
     //console.log("Lane 跟踪", e.newSelection?.[0]?.businessObject?.lanes)

@@ -53,10 +53,8 @@ export function useElementView(element: any, modeler: any) {
   const annotation = useTextAnnotation(element, modeler);
   const association = useAssociation(element, modeler);
   const sequenceFlow = useSequenceFlow(element, modeler);
-
   const elementView = useMemo(() => {
-
-    switch (element?.type) {
+    switch (element?.businessObject?.$type) {
       case "bpmn:Process":
         return process;
       case "bpmn:Collaboration":
