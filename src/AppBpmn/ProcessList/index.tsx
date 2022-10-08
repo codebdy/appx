@@ -42,7 +42,7 @@ export const ProcessList = memo(() => {
         selectable: false,
       },
       {
-        title: <CategoryLabel processType={ProcessType.workFlow} title={t("AppBpmn.WorkFlow")} />,
+        title: <CategoryLabel processType={ProcessType.workFlow} title={t("AppBpmn.BusinessFlow")} />,
         key: "approval-work",
         children: getProcessNodes(ProcessType.workFlow),
         selectable: false,

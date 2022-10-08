@@ -106,7 +106,7 @@ export const UpsertModal = memo((
         >
           <Select>
             <Option value={ProcessType.approvalFlow}>{t("AppBpmn.ApprovalFlow")}</Option>
-            <Option value={ProcessType.workFlow}>{t("AppBpmn.WorkFlow")}</Option>
+            <Option value={ProcessType.workFlow}>{t("AppBpmn.BusinessFlow")}</Option>
           </Select>
         </Form.Item>
       </Form>

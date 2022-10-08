@@ -257,7 +257,7 @@
     "Candidate groups": "候选组",
     "BpmnModel": "工作流模型",
     "ApprovalFlow": "审批流",
-    "WorkFlow": "工作流",
+    "BusinessFlow": "业务流",
     "AddProcess": "添加流程",
     "EidtProcess": "编辑流程",
     "Process": "流程",
