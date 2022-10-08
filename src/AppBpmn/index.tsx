@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ModelToolbar } from "../common/ModelBoard/ModelToolbar";
 import { ModelBoard } from "../common/ModelBoard";
-import { Button, Space, Spin } from "antd";
+import { Button, Divider, Space, Spin } from "antd";
 import { useTranslation } from "react-i18next";
 import BpmnModeler from 'bpmn-js/lib/Modeler';
 import "bpmn-js/dist/assets/diagram-js.css";
@@ -134,17 +134,33 @@ export const AppBpmn = memo((props) => {
   const handleSave = useCallback(() => {
     bpmnModeler.saveXML({ format: true })
       .then((xml) => {
-        upsert({ id:process?.id, xml })
+        upsert({ id: process?.id, xml })
       })
       .catch(err => {
         console.error(err)
       })
   }, [bpmnModeler, process])
 
+  const handleToggleCode = useCallback(() => {
+
+  }, []);
+
   return (
     <ModelBoard
       listWidth={240}
       toolbar={<ModelToolbar>
+        <Button
+          type="text"
+          shape="circle"
+          size="large"
+          disabled={!selectedProcessId}
+          onClick={handleToggleCode}
+        >
+          <svg style={{ width: '18px', height: '18px', marginTop: "4px" }} viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12.89,3L14.85,3.4L11.11,21L9.15,20.6L12.89,3M19.59,12L16,8.41V5.58L22.42,12L16,18.41V15.58L19.59,12M1.58,12L8,5.58V8.41L4.41,12L8,15.58V18.41L1.58,12Z" />
+          </svg>
+        </Button>
+        <Divider type="vertical" />
         <Button
           type="text"
           shape="circle"
@@ -173,7 +189,7 @@ export const AppBpmn = memo((props) => {
           >
             {t("Save")}
           </Button>
-          <DeplayButton selectedProcessId = {selectedProcessId} changed = {changed}/>
+          <DeplayButton selectedProcessId={selectedProcessId} changed={changed} />
         </Space>
 
       </ModelToolbar>
