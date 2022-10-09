@@ -1,7 +1,7 @@
 import { Card, Tabs } from "antd"
 import React from "react"
 import { memo } from "react"
-import Container from "../plugins/framelayouts/pc/Container/view"
+import { Kanban } from "./Kanban"
 import "./style.less"
 
 export const ProcessEngineBoard = memo(() => {
@@ -16,9 +16,9 @@ export const ProcessEngineBoard = memo(() => {
             children: `Content of Tab Pane 1`,
           },
           {
-            label: `概览`,
+            label: `看板`,
             key: '2',
-            children: `Content of Tab Pane 1`,
+            children: <Kanban />,
           },
           {
             label: `流程`,
