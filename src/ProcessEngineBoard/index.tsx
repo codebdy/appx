@@ -1,10 +1,13 @@
 import { Card, Tabs } from "antd"
 import React from "react"
 import { memo } from "react"
+import { useProcessInstances } from "./hooks/useProcessInstances"
 import { Kanban } from "./Kanban"
 import "./style.less"
 
 export const ProcessEngineBoard = memo(() => {
+  useProcessInstances();
+  
   return (
     <div className="process-border-paper">
       <Tabs
