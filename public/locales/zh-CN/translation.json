@@ -19,7 +19,6 @@
   "App": "应用",
   "AppTemplates": "应用模板",
   "Template": "模板",
-  "Engines": "引擎中心",
   "SystemConfig": "系统管理",
   "Upload": "上传",
   "UploadHint1": "将文件拖拽到此处，或",
@@ -69,6 +68,11 @@
     "Install": "安装",
     "Finished": "完成",
     "InstalledMessage": "应用已经安装，请直接登录"
+  },
+  "Engines": {
+    "Title": "引擎中心",
+    "ProcessEngine":"工作流引擎",
+    "NotificationEngin":"消息引擎"
   },
   "System": {
     "Model": "系统模型",
