@@ -1,5 +1,5 @@
 import { Form, Modal, Select } from "antd"
-import React, { memo } from "react"
+import React, { memo, useCallback, useEffect } from "react"
 import { useTranslation } from "react-i18next"
 import { PackageMeta, PackageStereoType } from "../../meta/PackageMeta"
 import { MultiLangInput } from "../../../plugins/inputs/components/pc/MultiLangInput/view"
@@ -16,7 +16,17 @@ export const PackageDialog = memo((
 ) => {
   const { open, pkg, onClose, onConfirm } = props;
   const [form] = Form.useForm<PackageMeta>();
+  useEffect(() => {
+    form.setFieldsValue(pkg)
+  }, [form, pkg])
   const { t } = useTranslation();
+
+  const handleConfirm = useCallback(() => {
+    form.validateFields().then(changeValues => {
+      onConfirm({ ...pkg, ...changeValues })
+    })
+  }, [onConfirm, form])
+
   return (
     <Modal
       title={t("AppUml.PackageInfo")}
@@ -25,7 +35,7 @@ export const PackageDialog = memo((
       cancelText={t("Cancel")}
       okText={t("Confirm")}
       onCancel={onClose}
-      onOk={() => onConfirm(pkg)}
+      onOk={handleConfirm}
       wrapProps={
         {
           onClick: (e) => {
@@ -54,7 +64,7 @@ export const PackageDialog = memo((
           label={t("AppUml.StereoType")}
           name="stereoType"
         >
-          <Select>
+          <Select defaultValue={PackageStereoType.Normal}>
             <Option value={PackageStereoType.Normal}>{t("AppUml.NormPackage")}</Option>
             <Option value={PackageStereoType.ThirdParty}>{t("AppUml.ThirdPartyPackage")}</Option>
           </Select>
