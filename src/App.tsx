@@ -23,6 +23,8 @@ import { PredefinedPluginsRoot } from './plugin/PredefinedPluginsRoot';
 import { PredefinedMaterialsRoot } from './material/PredefinedMaterialsRoot';
 import { AppBpmn } from './AppBpmn';
 import { AppDmn } from './AppDmn';
+import { ProcessEngineBoard } from './ProcessEngineBoard';
+import { NotificationEngineBoard } from './NotificationEngineBoard';
 
 const App = memo(() => {
   return (
@@ -39,6 +41,8 @@ const App = memo(() => {
               <Route path={AppManagerRoutes.Api} element={<ApiBoard />} />
               <Route path={AppManagerRoutes.Auth} element={<AuthBoard />} />
               <Route path={AppManagerRoutes.Config} element={<AppConfig />} />
+              <Route path={AppManagerRoutes.ProcessEngine} element={<ProcessEngineBoard />} />
+              <Route path={AppManagerRoutes.NotificationEngine} element={<NotificationEngineBoard />} />
             </Route>
             <Route path="/config-app/:appUuid" element={<AppEntry />}>
               <Route path={AppConfigRouts.Config} element={<AppConfig />} />
