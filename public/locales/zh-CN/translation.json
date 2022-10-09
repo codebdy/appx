@@ -71,8 +71,9 @@
   },
   "Engines": {
     "Title": "引擎中心",
-    "ProcessEngine":"工作流引擎",
-    "NotificationEngin":"消息引擎"
+    "ProcessEngine": "工作流引擎",
+    "NotificationEngine": "消息引擎",
+    "SearchEngine": "搜索引擎"
   },
   "System": {
     "Model": "系统模型",

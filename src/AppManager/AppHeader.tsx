@@ -1,4 +1,4 @@
-import { AppstoreOutlined, QuestionCircleOutlined, GithubOutlined, DownOutlined, SettingOutlined, NodeIndexOutlined, BellOutlined } from "@ant-design/icons"
+import { AppstoreOutlined, QuestionCircleOutlined, GithubOutlined, DownOutlined, SettingOutlined, NodeIndexOutlined, BellOutlined, FileSearchOutlined } from "@ant-design/icons"
 import { Divider, Space, Button, Menu, Dropdown } from "antd"
 import { Header } from "antd/lib/layout/layout"
 import React, { memo, useCallback } from "react"
@@ -19,6 +19,7 @@ export enum AppManagerRoutes {
   Devices = "devices",
   ProcessEngine = "porcess-engine",
   NotificationEngine = "notification-engine",
+  SearchEngine = "searche-engine",
 }
 
 const AppHeader = memo((props: {
@@ -57,6 +58,10 @@ const AppHeader = memo((props: {
     navigate(AppManagerRoutes.NotificationEngine)
   }, [navigate])
 
+  const handleGotoSerchEngine = useCallback(() => {
+    navigate(AppManagerRoutes.SearchEngine)
+  }, [navigate])
+
   const engineMenu = (
     <Menu
       selectedKeys={[match.pathname.substring(1)]}
@@ -72,7 +77,13 @@ const AppHeader = memo((props: {
         icon={<BellOutlined style={{ fontSize: 16 }} />}
         onClick={handleGotoNotification}
       >
-        {t("Engines.NotificationEngin")}
+        {t("Engines.NotificationEngine")}
+      </Menu.Item>
+      <Menu.Item key={AppManagerRoutes.NotificationEngine}
+        icon={<FileSearchOutlined style={{ fontSize: 16 }}/>}
+        onClick={handleGotoSerchEngine}
+      >
+        {t("Engines.SearchEngine")}
       </Menu.Item>
     </Menu>
   );
