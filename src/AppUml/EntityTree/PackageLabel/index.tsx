@@ -9,7 +9,7 @@ import { packagesState } from '../../recoil/atoms';
 import { SYSTEM_APP_UUID } from "../../../consts";
 import { useEdittingAppUuid } from "../../../hooks/useEdittingAppUuid";
 import { useParseLangMessage } from "../../../plugin-sdk";
-import { MultiLangInput } from "../../../plugins/inputs/components/pc/MultiLangInput/view";
+import { PackageDialog } from "./PackageDialog";
 
 const PackageLabel = memo((
   props: {
@@ -39,22 +39,16 @@ const PackageLabel = memo((
     setEditing(true);
   }, []);
 
-  const handleChange = useCallback((value?: string) => {
-    setName(value);
-    handleEditFinish(value);
-  }, []);
 
-  const handleEditFinish = useCallback((value?: string) => {
+  const handleEditFinish = useCallback((newPkg?: PackageMeta) => {
     backup()
     setEditing(false);
-    setPackages(packages => packages.map(pg => pg.uuid === pkg.uuid ? { ...pkg, name: value || name } : pg))
+    setPackages(packages => packages.map(pg => pg.uuid === newPkg.uuid ? newPkg : pg))
   }, [backup, name, pkg, setPackages])
 
-  const handleKeyEnter = (event: React.KeyboardEvent<HTMLElement>) => {
-    if (event.key === "Enter") {
-      handleEditFinish();
-    }
-  };
+  const handleClose = useCallback(() => {
+    setEditing(false);
+  }, [])
 
   return (
     <TreeNodeLabel
@@ -66,19 +60,11 @@ const PackageLabel = memo((
       }
       onClick={e => editing ? e.stopPropagation() : undefined}
     >
+      <div>{p(name)}</div>
       {
-        editing ?
-          <MultiLangInput
-            inline
-            value={name}
-            onClick={e => e.stopPropagation()}
-            onChange={handleChange}
-            onKeyUp={handleKeyEnter}
-          />
-          :
-          <div>{p(name)}</div>
+        editing &&
+        <PackageDialog pkg={pkg} open={editing} onClose={handleClose} onConfirm={handleEditFinish} />
       }
-
     </TreeNodeLabel>
   )
 })
