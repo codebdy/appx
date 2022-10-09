@@ -1,16 +1,15 @@
-import { Input } from "antd";
-import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { memo } from "react";
-import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
-import { PackageMeta } from "../meta/PackageMeta";
+import { useBackupSnapshot } from "../../hooks/useBackupSnapshot";
+import { PackageMeta } from "../../meta/PackageMeta";
 import PackageAction from "./PackageAction";
-import TreeNodeLabel from "../../common/TreeNodeLabel";
+import TreeNodeLabel from "../../../common/TreeNodeLabel";
 import { useSetRecoilState } from 'recoil';
-import { packagesState } from './../recoil/atoms';
-import { SYSTEM_APP_UUID } from "../../consts";
-import { useEdittingAppUuid } from "../../hooks/useEdittingAppUuid";
-import { useParseLangMessage } from "../../plugin-sdk";
-import { MultiLangInput } from "../../plugins/inputs/components/pc/MultiLangInput/view";
+import { packagesState } from '../../recoil/atoms';
+import { SYSTEM_APP_UUID } from "../../../consts";
+import { useEdittingAppUuid } from "../../../hooks/useEdittingAppUuid";
+import { useParseLangMessage } from "../../../plugin-sdk";
+import { MultiLangInput } from "../../../plugins/inputs/components/pc/MultiLangInput/view";
 
 const PackageLabel = memo((
   props: {

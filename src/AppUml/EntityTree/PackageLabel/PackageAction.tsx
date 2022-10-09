@@ -2,17 +2,17 @@ import { MoreOutlined, EditOutlined, DeleteOutlined, FileAddOutlined, PlusSquare
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
 import { useSetRecoilState } from 'recoil';
-import { classesState, selectedUmlDiagramState } from "../recoil/atoms";
-import { PackageMeta } from "../meta/PackageMeta";
-import { useDeletePackage } from './../hooks/useDeletePackage';
-import { useCreateNewClass } from "../hooks/useCreateNewClass";
-import { useCreateNewDiagram } from "../hooks/useCreateNewDiagram";
-import { StereoType } from "../meta/ClassMeta";
-import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
+import { classesState, selectedUmlDiagramState } from "../../recoil/atoms";
+import { PackageMeta } from "../../meta/PackageMeta";
+import { useDeletePackage } from '../../hooks/useDeletePackage';
+import { useCreateNewClass } from "../../hooks/useCreateNewClass";
+import { useCreateNewDiagram } from "../../hooks/useCreateNewDiagram";
+import { StereoType } from "../../meta/ClassMeta";
+import { useBackupSnapshot } from "../../hooks/useBackupSnapshot";
 import { useTranslation } from "react-i18next";
-import { SYSTEM_APP_UUID } from "../../consts";
-import { useEdittingAppUuid } from "../../hooks/useEdittingAppUuid";
-import { useChangePackage } from "../hooks/useChangePackage";
+import { useEdittingAppUuid } from "../../../hooks/useEdittingAppUuid";
+import { useChangePackage } from "../../hooks/useChangePackage";
+import { SYSTEM_APP_UUID } from "../../../consts";
 
 const PackageAction = memo((
   props: {
