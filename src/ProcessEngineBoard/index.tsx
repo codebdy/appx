@@ -30,6 +30,11 @@ export const ProcessEngineBoard = memo(() => {
             key: '4',
             children: `Content of Tab Pane 3`,
           },
+          {
+            label: `任务`,
+            key: '5',
+            children: `Content of Tab Pane 3`,
+          },
         ]}
       />
     </div>
