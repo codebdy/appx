@@ -25,8 +25,14 @@ export function useProcessInstances() {
     fetch("http://localhost:18080/auth/realms/camunda-platform/protocol/openid-connect/token",
       {
         method: 'POST',
-        headers: myHeaders,
-        body: urlencoded,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: JSON.stringify({
+          client_id: "appx",
+          client_secret: "bx5Ono2y0FYEVRWB7zw6S55pOEmKQ2kW",
+          grant_type: "client_credentials"
+        }),
         redirect: 'follow',
         mode: "cors",
       }
@@ -42,3 +48,25 @@ export function useProcessInstances() {
       .catch(error => console.error('error', error));
   }, [])
 }
+
+/*
+
+fetch("http://localhost:18080/auth/realms/camunda-platform/protocol/openid-connect/token", 
+  {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    body: JSON.stringify({
+      client_id: "appx",
+      client_secret: "bx5Ono2y0FYEVRWB7zw6S55pOEmKQ2kW",
+      grant_type: "client_credentials"
+    }),
+    redirect: 'follow',
+    mode: "cors",
+  }
+)
+  .then(response => response.text())
+  .then(result => callback(result))
+  .catch(error => callback('error'+error.message));
+  */
