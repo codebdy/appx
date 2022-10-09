@@ -251,7 +251,11 @@
     "Multiplicity": "重数",
     "OperateType": "操作类型",
     "Query": "查询",
-    "Mutation": "变更"
+    "Mutation": "变更",
+    "StereoType": "版型",
+    "NormPackage": "普通包",
+    "ThirdPartyPackage": "第三方接口",
+    "PackageInfo": "包信息"
   },
   "AppBpmn": {
     "General": "通用",

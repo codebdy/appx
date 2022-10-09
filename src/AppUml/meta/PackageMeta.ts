@@ -1,6 +1,6 @@
-export enum PackageStatus{
-  EDITING = 'EDITING',
-  SYNCED = 'SYNCED'
+export enum PackageStereoType{
+  Normal = 'Normal',
+  ThirdParty = 'ThirdParty'
 }
 
 /**
@@ -12,4 +12,6 @@ export interface PackageMeta{
   system?: boolean;
   sharable?: boolean;
   appUuid: string;
+  stereoType?: PackageStereoType;
+  tokenScript?: string;
 }

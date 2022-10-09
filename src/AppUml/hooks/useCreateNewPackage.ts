@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
 import { createUuid, ID } from "../../shared";
-import { PackageMeta } from "../meta/PackageMeta";
+import { PackageMeta, PackageStereoType } from "../meta/PackageMeta";
 import { packagesState } from './../recoil/atoms';
 
 export function useCreateNewPackage(appUuid: ID) {
@@ -25,6 +25,7 @@ export function useCreateNewPackage(appUuid: ID) {
         appUuid,
         uuid: createUuid(),
         name: getNewPackageName(),
+        stereoType: PackageStereoType.Normal,
       };
       return newPackage;
     },
