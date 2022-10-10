@@ -5,6 +5,7 @@ import { Form, Input, Switch } from "antd";
 import { useTranslation } from "react-i18next";
 import { MultiLangInput } from "../../plugins/inputs/components/pc/MultiLangInput/view";
 import { useEdittingAppUuid } from "../../hooks/useEdittingAppUuid";
+import { ScriptInput } from "./ScriptInput/ScriptInput";
 
 export const ClassPanel = (props: { cls: ClassMeta }) => {
   const { cls } = props;
@@ -67,6 +68,15 @@ export const ClassPanel = (props: { cls: ClassMeta }) => {
               <Switch disabled={cls.stereoType === StereoType.Service} />
             </Form.Item>
           )}
+        {
+          cls.stereoType === StereoType.ThirdParty &&
+          <Form.Item
+            label={t("AppUml.Script")}
+            name="script"
+          >
+            <ScriptInput />
+          </Form.Item>
+        }
         <Form.Item
           label={t("AppUml.Description")}
           name="description"
