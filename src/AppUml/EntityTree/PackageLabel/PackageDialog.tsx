@@ -44,11 +44,12 @@ export const PackageDialog = memo((
     <Modal
       title={t("AppUml.PackageInfo")}
       open={open}
-      width={580}
+      width={620}
       cancelText={t("Cancel")}
       okText={t("Confirm")}
       onCancel={onClose}
       onOk={handleConfirm}
+      centered
       wrapProps={
         {
           onClick: (e) => {
@@ -59,10 +60,9 @@ export const PackageDialog = memo((
     >
       <Form
         name="editProcess"
-        labelCol={{ span: 4 }}
-        wrapperCol={{ span: 18 }}
         labelWrap
         initialValues={{ title: "", description: "" }}
+        layout="vertical"
         form={form}
         autoComplete="off"
         onValuesChange={hanleValuesChange}
@@ -89,6 +89,7 @@ export const PackageDialog = memo((
           <Form.Item
             label={t("AppUml.Token script")}
             name="tokenScript"
+            style={{ marginBottom: 0 }}
           >
             <MonacoEditor
               language="javascript"
@@ -97,7 +98,7 @@ export const PackageDialog = memo((
               }}
               theme={'vs-dark'}
               editorDidMount={handleEditorDidMount}
-              height="300px"
+              height="250px"
             />
           </Form.Item>
         }
