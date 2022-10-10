@@ -235,6 +235,8 @@
     "Arguments": "参数",
     "ConfigArgs": "配置参数",
     "Script": "脚本",
+    "QueryScript": "查询脚本",
+    "MutationScript": "变更脚本",
     "ConfigScript": "配置脚本",
     "Entity": "实体",
     "Array": "数组",

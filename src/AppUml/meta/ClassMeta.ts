@@ -45,5 +45,6 @@ export interface ClassMeta {
   system?: boolean;
   //id不转换，直接从1开始计数，用于App类
   idNoShift?: boolean;
-  script?: string;
+  queryScript?: string;
+  muationScript?: string;
 }

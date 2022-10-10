@@ -70,12 +70,20 @@ export const ClassPanel = (props: { cls: ClassMeta }) => {
           )}
         {
           cls.stereoType === StereoType.ThirdParty &&
-          <Form.Item
-            label={t("AppUml.Script")}
-            name="script"
-          >
-            <ScriptInput />
-          </Form.Item>
+          <>
+            <Form.Item
+              label={t("AppUml.QueryScript")}
+              name="queryScript"
+            >
+              <ScriptInput />
+            </Form.Item>
+            <Form.Item
+              label={t("AppUml.MutationScript")}
+              name="mutationScript"
+            >
+              <ScriptInput />
+            </Form.Item>
+          </>
         }
         <Form.Item
           label={t("AppUml.Description")}
