@@ -1,12 +1,9 @@
-import { useSetRecoilState } from "recoil";
-import { diagramsState } from "../recoil/atoms";
 import { useGetDiagramByName } from "./useGetDiagramByName";
 import { useCallback } from "react";
 import { createUuid, ID } from "../../shared";
 import { useTranslation } from "react-i18next";
 
 export function useCreateNewDiagram(appUuid: ID) {
-  const setDiagrams = useSetRecoilState(diagramsState(appUuid));
   const getDiagramByName = useGetDiagramByName(appUuid);
   const { t } = useTranslation();
   
@@ -28,9 +25,8 @@ export function useCreateNewDiagram(appUuid: ID) {
       nodes: [],
       edges: [],
     };
-    setDiagrams((entites) => [...entites, newDiagram]);
     return newDiagram;
-  }, [getNewDiagramName, setDiagrams]);
+  }, [getNewDiagramName]);
 
   return createNewDiagram;
 }

@@ -1,8 +1,8 @@
 import { MoreOutlined, EditOutlined, DeleteOutlined, FileAddOutlined, PlusSquareOutlined, ShareAltOutlined, LockOutlined, StopOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Button } from "antd";
-import React, { memo, useCallback, useMemo } from "react"
+import React, { memo, useCallback, useMemo, useState } from "react"
 import { useSetRecoilState } from 'recoil';
-import { classesState, selectedUmlDiagramState } from "../../recoil/atoms";
+import { classesState, diagramsState, selectedUmlDiagramState } from "../../recoil/atoms";
 import { PackageMeta } from "../../meta/PackageMeta";
 import { useDeletePackage } from '../../hooks/useDeletePackage';
 import { useCreateNewClass } from "../../hooks/useCreateNewClass";
@@ -13,6 +13,8 @@ import { useTranslation } from "react-i18next";
 import { useEdittingAppUuid } from "../../../hooks/useEdittingAppUuid";
 import { useChangePackage } from "../../hooks/useChangePackage";
 import { SYSTEM_APP_UUID } from "../../../consts";
+import { DiagramMeta } from "../../meta/DiagramMeta";
+import { DiagramDialog } from "../DiagramLabel/DiagramDialog";
 
 const PackageAction = memo((
   props: {
@@ -23,11 +25,13 @@ const PackageAction = memo((
 ) => {
   const { pkg, onEdit, onVisibleChange } = props;
   const appUuid = useEdittingAppUuid();
+  const [newDiagram, setNewDiagram] = useState<DiagramMeta>();
   const deletePackage = useDeletePackage(appUuid)
   const createNewClass = useCreateNewClass(appUuid);
   const createNewDiagram = useCreateNewDiagram(appUuid);
   const setClasses = useSetRecoilState(classesState(appUuid));
   const backupSnapshot = useBackupSnapshot(appUuid);
+  const setDiagrams = useSetRecoilState(diagramsState(appUuid));
   const { t } = useTranslation();
 
   const updatePackage = useChangePackage();
@@ -53,23 +57,31 @@ const PackageAction = memo((
 
   const handleAddDiagram = useCallback(
     () => {
-      backupSnapshot();
-      const newDiagram = createNewDiagram(pkg.uuid);
-      setSelectedDiagram(newDiagram.uuid);
-      onVisibleChange(false);
+      setNewDiagram(createNewDiagram(pkg.uuid));
     },
-    [backupSnapshot, createNewDiagram, onVisibleChange, pkg.uuid, setSelectedDiagram]
+    [createNewDiagram, pkg.uuid]
   );
 
-  const handleShare = useCallback(()=>{
+  const handleShare = useCallback(() => {
     backupSnapshot();
-    updatePackage({...pkg, sharable: true});
+    updatePackage({ ...pkg, sharable: true });
   }, [backupSnapshot, updatePackage]);
 
-  const handleCancelShare = useCallback(()=>{
+  const handleCancelShare = useCallback(() => {
     backupSnapshot();
-    updatePackage({...pkg, sharable: false});
+    updatePackage({ ...pkg, sharable: false });
   }, [backupSnapshot, updatePackage]);
+
+  const handleClose = useCallback(() => {
+    setNewDiagram(undefined)
+  }, []);
+
+  const handleConfirm = useCallback((diagram: DiagramMeta) => {
+    backupSnapshot();
+    setDiagrams((diams) => [...diams, diagram]);
+    setSelectedDiagram(diagram.uuid);
+    setNewDiagram(undefined);
+  }, [backupSnapshot, setDiagrams, setSelectedDiagram, updatePackage]);
 
   const shareItems = useMemo(() => {
     return appUuid === SYSTEM_APP_UUID
@@ -195,15 +207,26 @@ const PackageAction = memo((
         <LockOutlined />
       </Button>
       :
-      <Dropdown
-        overlay={menu}
-        onOpenChange={onVisibleChange}
-        trigger={['click']}
-      >
-        <Button type="text" shape='circle' size='small' onClick={e => e.stopPropagation()}>
-          <MoreOutlined />
-        </Button>
-      </Dropdown>
+      <>
+        <Dropdown
+          overlay={menu}
+          onOpenChange={onVisibleChange}
+          trigger={['click']}
+        >
+          <Button type="text" shape='circle' size='small' onClick={e => e.stopPropagation()}>
+            <MoreOutlined />
+          </Button>
+        </Dropdown>
+        {
+          newDiagram &&
+          <DiagramDialog
+            diagram={newDiagram}
+            open={!!newDiagram}
+            onClose={handleClose}
+            onConfirm={handleConfirm}
+          />
+        }
+      </>
   )
 })
 
