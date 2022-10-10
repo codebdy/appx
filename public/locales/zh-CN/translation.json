@@ -255,7 +255,8 @@
     "StereoType": "版型",
     "NormPackage": "普通包",
     "ThirdPartyPackage": "第三方接口",
-    "PackageInfo": "包信息"
+    "PackageInfo": "包信息",
+    "Token script": "Token获取脚本"
   },
   "AppBpmn": {
     "General": "通用",

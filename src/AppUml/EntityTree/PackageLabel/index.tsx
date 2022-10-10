@@ -10,6 +10,7 @@ import { SYSTEM_APP_UUID } from "../../../consts";
 import { useEdittingAppUuid } from "../../../hooks/useEdittingAppUuid";
 import { useParseLangMessage } from "../../../plugin-sdk";
 import { PackageDialog } from "./PackageDialog";
+import "./style.less";
 
 const PackageLabel = memo((
   props: {
