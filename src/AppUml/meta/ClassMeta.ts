@@ -13,6 +13,7 @@ export enum StereoType {
   ValueObject = "ValueObject",
   Entity = "Entity",
   Service = "Service",
+  ThirdParty = "ThirdParty"
   //GQLInterface = "GQLInterface",
   //Association = "Association",
   //External = "External",//外部实体

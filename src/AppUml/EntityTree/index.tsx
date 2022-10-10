@@ -179,6 +179,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     const entities = classes.filter(cls => cls.stereoType === StereoType.Entity && cls.packageUuid === pkg.uuid)
     const enums = classes.filter(cls => cls.stereoType === StereoType.Enum && cls.packageUuid === pkg.uuid)
     const valueObjects = classes.filter(cls => cls.stereoType === StereoType.ValueObject && cls.packageUuid === pkg.uuid)
+    const thirdParties = classes.filter(cls => cls.stereoType === StereoType.ThirdParty && cls.packageUuid === pkg.uuid)
     const services = classes.filter(cls => cls.stereoType === StereoType.Service && cls.packageUuid === pkg.uuid)
 
     if (abstracts.length > 0) {
@@ -192,6 +193,9 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     }
     if (valueObjects.length > 0) {
       packageChildren.push(getClassCategoryNode(t("AppUml.ValueClass"), pkg.uuid + "valueObjects", valueObjects))
+    }
+    if (thirdParties.length > 0) {
+      packageChildren.push(getClassCategoryNode(t("AppUml.ThirdPartyClass"), pkg.uuid + "thirdParties", thirdParties))
     }
     if (services.length > 0) {
       packageChildren.push(getClassCategoryNode(t("AppUml.ServiceClass"), pkg.uuid + "services", services))
