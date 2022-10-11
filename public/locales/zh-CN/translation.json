@@ -55,6 +55,7 @@
   "Version": "版本",
   "Document": "文档",
   "Test": "测试",
+  "Async": "异步",
   "Model": {
     "Title": "模型"
   },

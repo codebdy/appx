@@ -15,7 +15,7 @@ export const createDisplaySchemaTab = (options?: IDisplayTabOptions) => {
           type: 'object',
           properties: {
             dataBind: {
-              type: 'string',
+              type: 'object',
               'x-decorator': 'FormItem',
               'x-component': 'DataSourceInput',
               'x-component-props': {
@@ -32,7 +32,7 @@ export const createDisplaySchemaTab = (options?: IDisplayTabOptions) => {
     ?
     {
       "x-field-source": {
-        type: 'string',
+        type: 'object',
         'x-decorator': 'FormItem',
         'x-component': 'FieldSourceInput',
         'x-component-props': {

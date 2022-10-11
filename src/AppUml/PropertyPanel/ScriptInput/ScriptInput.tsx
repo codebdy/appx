@@ -1,5 +1,5 @@
 import { PlayCircleOutlined } from "@ant-design/icons";
-import { Button, Modal, Space } from "antd"
+import { Button, Modal, Space, Switch } from "antd"
 import React, { useCallback, useState } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
