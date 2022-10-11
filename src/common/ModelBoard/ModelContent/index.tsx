@@ -45,9 +45,12 @@ export const ModelContent = memo((
             {children}
           </div>
 
-          <div className="property-box-area">
-            {propertyBox}
-          </div>
+          {
+            propertyBox &&
+            <div className="property-box-area">
+              {propertyBox}
+            </div>
+          }
         </div>
       </div>
     </div>
