@@ -7,13 +7,14 @@ import { useReadMeta } from "./hooks/useReadMeta";
 import { useShowError } from "../hooks/useShowError";
 import { Spin } from "antd";
 import { ModelBoard } from "../common/ModelBoard";
-import { minMapState, selectedUmlDiagramState } from "./recoil/atoms";
+import { minMapState, selectedCodeState, selectedUmlDiagramState } from "./recoil/atoms";
 import { useRecoilValue } from "recoil";
 import { Toolbox } from "./Toolbox";
 import { UmlToolbar } from "./UmlToolbar";
 import { GraphCanvas } from "./GraphCanvas";
 import { PropertyPanel } from "./PropertyPanel";
 import { useEdittingAppUuid } from "../hooks/useEdittingAppUuid";
+import { CodeEditor } from "./CodeEditor";
 
 const AppUml = memo((
   props: {
@@ -25,6 +26,7 @@ const AppUml = memo((
   const { loading, error } = useReadMeta(appUuid);
   const minMap = useRecoilValue(minMapState(appUuid));
   const selectedDiagram = useRecoilValue(selectedUmlDiagramState(appUuid));
+  const selectedCode = useRecoilValue(selectedCodeState(appUuid));
   useShowError(error);
 
   return (
@@ -36,7 +38,9 @@ const AppUml = memo((
         propertyBox={<PropertyPanel />}
       >
         {
-          selectedDiagram && <>
+          <div style={{
+            display: selectedDiagram ? undefined : "none"
+          }}>
             <GraphCanvas
               graph={graph}
               onSetGraph={setGraph}
@@ -48,7 +52,11 @@ const AppUml = memo((
               }}
               id="mini-map"
             ></div>
-          </>
+          </div>
+        }
+        {
+          selectedCode &&
+          <CodeEditor />
         }
       </ModelBoard>
     </Spin>
