@@ -50,7 +50,7 @@ export const PackageDialog = memo((
       }
     >
       <Form
-        name="editProcess"
+        name="editPackage"
         labelWrap
         initialValues={{ title: "", description: "" }}
         labelCol={{ span: 5 }}

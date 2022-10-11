@@ -2,32 +2,32 @@ import { Form, Modal } from "antd"
 import React, { memo, useCallback, useEffect } from "react"
 import { useTranslation } from "react-i18next"
 import { MultiLangInput } from "../../../plugins/inputs/components/pc/MultiLangInput/view"
-import { DiagramMeta } from "../../meta/DiagramMeta"
+import { CodeMeta } from "../../meta/CodeMeta"
 
-export const DiagramDialog = memo((
+export const CodeDialog = memo((
   props: {
     open?: boolean,
-    diagram: DiagramMeta,
+    code: CodeMeta,
     onClose: () => void,
-    onConfirm: (diagram: DiagramMeta) => void,
+    onConfirm: (code: CodeMeta) => void,
   }
 ) => {
-  const { open, diagram: diagram, onClose, onConfirm } = props;
-  const [form] = Form.useForm<DiagramMeta>();
+  const { open, code, onClose, onConfirm } = props;
+  const [form] = Form.useForm<CodeMeta>();
   useEffect(() => {
-    form.setFieldsValue(diagram)
-  }, [form, diagram])
+    form.setFieldsValue(code)
+  }, [form, code])
   const { t } = useTranslation();
 
   const handleConfirm = useCallback(() => {
     form.validateFields().then(changeValues => {
-      onConfirm({ ...diagram, ...changeValues })
+      onConfirm({ ...code, ...changeValues })
     })
   }, [onConfirm, form])
 
   return (
     <Modal
-      title={t("AppUml.PackageInfo")}
+      title={t("AppUml.CodeInfo")}
       open={open}
       cancelText={t("Cancel")}
       okText={t("Confirm")}
@@ -43,7 +43,7 @@ export const DiagramDialog = memo((
       }
     >
       <Form
-        name="editDialog"
+        name="editCode"
         labelWrap
         initialValues={{ title: "", description: "" }}
         form={form}
