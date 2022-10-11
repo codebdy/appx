@@ -43,7 +43,7 @@ const DiagramLabel = memo((
     backup()
     setEditing(false);
     setDiagrams(diagrams => diagrams.map(dm => dm.uuid === diagram.uuid ? diagram : dm))
-  }, [backup, diagram, setDiagrams]);
+  }, [backup, setDiagrams]);
 
 
   const handleClose = useCallback(() => {

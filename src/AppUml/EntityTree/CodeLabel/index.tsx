@@ -3,7 +3,7 @@ import { memo } from "react";
 import { useBackupSnapshot } from "../../hooks/useBackupSnapshot";
 import TreeNodeLabel from "../../../common/TreeNodeLabel";
 import { useSetRecoilState } from 'recoil';
-import { diagramsState } from '../../recoil/atoms';
+import { codesState, diagramsState } from '../../recoil/atoms';
 import { DiagramMeta } from "../../meta/DiagramMeta";
 import { useGetPackage } from "../../hooks/useGetPackage";
 import { SYSTEM_APP_UUID } from "../../../consts";
@@ -25,7 +25,7 @@ const CodeLabel = memo((
   const p = useParseLangMessage();
   const appUuid = useEdittingAppUuid();
   const backup = useBackupSnapshot(appUuid);
-  const setDiagrams = useSetRecoilState(diagramsState(appUuid));
+  const setCodes = useSetRecoilState(codesState(appUuid));
   const getPagcage = useGetPackage(appUuid)
 
   useEffect(() => {
@@ -40,12 +40,11 @@ const CodeLabel = memo((
     setEditing(true);
   }, []);
 
-  const handleConfirm = useCallback((diagram?: DiagramMeta) => {
+  const handleConfirm = useCallback((code?: CodeMeta) => {
     backup()
     setEditing(false);
-    setDiagrams(diagrams => diagrams.map(dm => dm.uuid === diagram.uuid ? diagram : dm))
-  }, [backup, code, setDiagrams]);
-
+    setCodes(codes => codes.map(dm => dm.uuid === code.uuid ? code : dm))
+  }, [backup, setCodes]);
 
   const handleClose = useCallback(() => {
     setEditing(false);
