@@ -8,9 +8,11 @@ import { X6NodeMeta } from "../meta/X6NodeMeta";
 import { LineAction } from "./LineAction";
 import { ID } from "../../shared";
 import { PackageMeta } from "../meta/PackageMeta";
+import { CodeMeta } from "../meta/CodeMeta";
 
 export interface Snapshot {
   diagrams: DiagramMeta[];
+  codes: CodeMeta[];
   packages: PackageMeta[];
   classes: ClassMeta[];
   relations: RelationMeta[];
@@ -18,6 +20,7 @@ export interface Snapshot {
   x6Edges: X6EdgeMeta[];
   selectedElement?: string;
   selectedDiagram?: string;
+  selectedCode?: string;
 }
 
 export const minMapState = atomFamily<boolean, string>({
@@ -40,6 +43,10 @@ export const diagramsState = atomFamily<DiagramMeta[], string>({
   default: [],
 });
 
+export const codesState = atomFamily<CodeMeta[], string>({
+  key: "uml.codes",
+  default: [],
+});
 
 export const metaState = atomFamily<Meta | undefined, string>({
   key: "uml.meta",
@@ -90,6 +97,12 @@ export const selectedUmlDiagramState = atomFamily<string | undefined, string>({
   key: "uml.selectedDiagram",
   default: undefined,
 });
+
+export const selectedCodeState = atomFamily<string | undefined, string>({
+  key: "uml.selectedCode",
+  default: undefined,
+});
+
 
 export const drawingLineState = atomFamily<LineAction | undefined, string>({
   key: "uml.drawingLine",

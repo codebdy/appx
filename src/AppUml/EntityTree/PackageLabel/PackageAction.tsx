@@ -2,7 +2,7 @@ import { MoreOutlined, EditOutlined, DeleteOutlined, FileAddOutlined, PlusSquare
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo, useState } from "react"
 import { useSetRecoilState } from 'recoil';
-import { classesState, diagramsState, selectedUmlDiagramState } from "../../recoil/atoms";
+import { classesState, codesState, diagramsState, selectedCodeState, selectedUmlDiagramState } from "../../recoil/atoms";
 import { PackageMeta } from "../../meta/PackageMeta";
 import { useDeletePackage } from '../../hooks/useDeletePackage';
 import { useCreateNewClass } from "../../hooks/useCreateNewClass";
@@ -15,6 +15,9 @@ import { useChangePackage } from "../../hooks/useChangePackage";
 import { SYSTEM_APP_UUID } from "../../../consts";
 import { DiagramMeta } from "../../meta/DiagramMeta";
 import { DiagramDialog } from "../DiagramLabel/DiagramDialog";
+import { useCreateNewCode } from "../../hooks/useCreateNewCode";
+import { CodeMeta } from "../../meta/CodeMeta";
+import { CodeDialog } from "../CodeLabel/CodeDialog";
 
 const PackageAction = memo((
   props: {
@@ -26,12 +29,15 @@ const PackageAction = memo((
   const { pkg, onEdit, onVisibleChange } = props;
   const appUuid = useEdittingAppUuid();
   const [newDiagram, setNewDiagram] = useState<DiagramMeta>();
+  const [newCode, setNewCode] = useState<CodeMeta>();
   const deletePackage = useDeletePackage(appUuid)
   const createNewClass = useCreateNewClass(appUuid);
   const createNewDiagram = useCreateNewDiagram(appUuid);
+  const createNewCode = useCreateNewCode(appUuid);
   const setClasses = useSetRecoilState(classesState(appUuid));
   const backupSnapshot = useBackupSnapshot(appUuid);
   const setDiagrams = useSetRecoilState(diagramsState(appUuid));
+  const setCodes = useSetRecoilState(codesState(appUuid));
   const { t } = useTranslation();
 
   const updatePackage = useChangePackage();
@@ -39,6 +45,8 @@ const PackageAction = memo((
   const setSelectedDiagram = useSetRecoilState(
     selectedUmlDiagramState(appUuid)
   );
+
+  const setSelectedCode = useSetRecoilState(selectedCodeState(appUuid));
 
   const handleDelete = useCallback(() => {
     deletePackage(pkg.uuid)
@@ -61,6 +69,13 @@ const PackageAction = memo((
     },
     [createNewDiagram, pkg.uuid]
   );
+  
+  const handleAddCode = useCallback(
+    () => {
+      setNewCode(createNewCode(pkg.uuid));
+    },
+    [createNewCode, pkg.uuid]
+  );
 
   const handleShare = useCallback(() => {
     backupSnapshot();
@@ -81,8 +96,18 @@ const PackageAction = memo((
     setDiagrams((diams) => [...diams, diagram]);
     setSelectedDiagram(diagram.uuid);
     setNewDiagram(undefined);
-  }, [backupSnapshot, setDiagrams, setSelectedDiagram, updatePackage]);
+  }, [backupSnapshot, setDiagrams, setSelectedDiagram]);
 
+  const handleCodeClose = useCallback(() => {
+    setNewCode(undefined)
+  }, []);
+
+  const handleCodeConfirm = useCallback((code: CodeMeta) => {
+    backupSnapshot();
+    setCodes((cods) => [...cods, code]);
+    setSelectedCode(code.uuid);
+    setNewCode(undefined);
+  }, [backupSnapshot, setCodes, setSelectedCode]);
   const shareItems = useMemo(() => {
     return appUuid === SYSTEM_APP_UUID
       ? [
@@ -189,7 +214,7 @@ const PackageAction = memo((
             key: '4',
             onClick: e => {
               e.domEvent.stopPropagation();
-              
+              handleAddCode();
               onVisibleChange(false);
             }
           },
@@ -242,6 +267,15 @@ const PackageAction = memo((
             open={!!newDiagram}
             onClose={handleClose}
             onConfirm={handleConfirm}
+          />
+        }
+        {
+          newCode &&
+          <CodeDialog
+            code={newCode}
+            open={!!newCode}
+            onClose={handleCodeClose}
+            onConfirm={handleCodeConfirm}
           />
         }
       </>

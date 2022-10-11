@@ -4,13 +4,14 @@ import { useSetRecoilState } from "recoil";
 import { SYSTEM_APP_UUID } from "../../consts";
 import { useQueryOne } from "../../enthooks/hooks/useQueryOne";
 import { Meta } from "../meta/Meta";
-import { metaState, classesState, relationsState, diagramsState, x6NodesState, x6EdgesState, packagesState } from "../recoil/atoms";
+import { metaState, classesState, relationsState, diagramsState, x6NodesState, x6EdgesState, packagesState, codesState } from "../recoil/atoms";
 
 export function useReadMeta(appUuid: string): { error?: Error; loading?: boolean } {
   const setMeta = useSetRecoilState(metaState(appUuid));
   const setClasses = useSetRecoilState(classesState(appUuid));
   const setRelations = useSetRecoilState(relationsState(appUuid));
   const setDiagrams = useSetRecoilState(diagramsState(appUuid));
+  const setCodes = useSetRecoilState(codesState(appUuid));
   const setX6Nodes = useSetRecoilState(x6NodesState(appUuid));
   const setX6Edges = useSetRecoilState(x6EdgesState(appUuid));
   const setPackages = useSetRecoilState(packagesState(appUuid))
@@ -67,11 +68,25 @@ export function useReadMeta(appUuid: string): { error?: Error; loading?: boolean
       setPackages([...systemPackages, ...meta?.content?.packages || []]);
       setClasses([...systemClasses, ...meta?.content?.classes || []]);
       setRelations(meta?.content?.relations || []);
+      setCodes(meta?.content?.codes || []);
       setDiagrams(meta?.content?.diagrams || []);
       setX6Nodes(meta?.content?.x6Nodes || []);
       setX6Edges(meta?.content?.x6Edges || []);
     }
-  }, [data, queryName, setDiagrams, setClasses, setMeta, setPackages, setRelations, setX6Edges, setX6Nodes, systemData, appUuid]);
+  }, [
+    data,
+    queryName,
+    setCodes,
+    setDiagrams,
+    setClasses,
+    setMeta,
+    setPackages,
+    setRelations,
+    setX6Edges,
+    setX6Nodes,
+    systemData,
+    appUuid
+  ]);
 
   return { error: error || systemError, loading: loading || systemLoading };
 }
