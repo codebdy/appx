@@ -5,6 +5,7 @@ import { DiagramMeta } from "./DiagramMeta";
 import { ID } from "../../shared";
 import { X6NodeMeta } from "./X6NodeMeta";
 import { X6EdgeMeta } from "./X6EdgeMeta";
+import { CodeMeta } from "./CodeMeta";
 
 export const EntityNameMeta = "Meta";
 
@@ -22,6 +23,7 @@ export interface Meta {
     classes?: ClassMeta[];
     diagrams?: DiagramMeta[];
     relations: RelationMeta[];
+    codes?: CodeMeta[];
     x6Nodes: X6NodeMeta[];
     x6Edges: X6EdgeMeta[];
   };

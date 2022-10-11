@@ -1,4 +1,4 @@
-import { MoreOutlined, EditOutlined, DeleteOutlined, FileAddOutlined, PlusSquareOutlined, ShareAltOutlined, LockOutlined, StopOutlined } from "@ant-design/icons";
+import { MoreOutlined, EditOutlined, DeleteOutlined, FileAddOutlined, PlusSquareOutlined, ShareAltOutlined, LockOutlined, StopOutlined, CodeOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo, useState } from "react"
 import { useSetRecoilState } from 'recoil';
@@ -166,14 +166,32 @@ const PackageAction = memo((
                 },
               },
               {
-                label: t("AppUml.AddService"),
+                label: t("AppUml.AddThirdParty"),
                 key: '5',
+                onClick: e => {
+                  e.domEvent.stopPropagation();
+                  addClass(StereoType.ThirdParty);
+                },
+              },
+              {
+                label: t("AppUml.AddService"),
+                key: '6',
                 onClick: e => {
                   e.domEvent.stopPropagation();
                   addClass(StereoType.Service);
                 },
               },
             ]
+          },
+          {
+            icon: <CodeOutlined />,
+            label: t("AppUml.AddCode"),
+            key: '4',
+            onClick: e => {
+              e.domEvent.stopPropagation();
+              
+              onVisibleChange(false);
+            }
           },
           ...shareItems,
           {
