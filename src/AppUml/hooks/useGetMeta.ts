@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
 import { Meta, MetaStatus } from "../meta/Meta";
-import { metaState, classesState, relationsState, diagramsState, x6NodesState, x6EdgesState, packagesState } from "../recoil/atoms";
+import { metaState, classesState, relationsState, diagramsState, x6NodesState, x6EdgesState, packagesState, codesState } from "../recoil/atoms";
 import { useClassPackage } from "./useClassPackage";
 
 export function useGetMeta(appUuid: string) {
@@ -10,6 +10,7 @@ export function useGetMeta(appUuid: string) {
   const classes = useRecoilValue(classesState(appUuid));
   const relations = useRecoilValue(relationsState(appUuid));
   const diagrams = useRecoilValue(diagramsState(appUuid));
+  const codes = useRecoilValue(codesState(appUuid));
   const x6Nodes = useRecoilValue(x6NodesState(appUuid));
   const x6Edges = useRecoilValue(x6EdgesState(appUuid));
   const getPackage = useClassPackage(appUuid);
@@ -20,10 +21,10 @@ export function useGetMeta(appUuid: string) {
       classes: classes.filter(cls=>getPackage(cls)?.appUuid === appUuid),
       relations,
       diagrams,
+      codes,
       x6Nodes,
       x6Edges,
     };
-
     const data: Meta =
       meta?.status === MetaStatus.META_STATUS_PUBLISHED || !meta
         ? {
@@ -35,7 +36,7 @@ export function useGetMeta(appUuid: string) {
           content,
         };
     return data;
-  }, [appUuid, classes, diagrams, getPackage, meta, packages, relations, x6Edges, x6Nodes]);
+  }, [appUuid, classes, diagrams, codes, getPackage, meta, packages, relations, x6Edges, x6Nodes]);
 
   return getMeta
 }
