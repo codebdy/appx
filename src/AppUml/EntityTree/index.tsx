@@ -31,6 +31,8 @@ import PlugIcon from "../../icons/PlugIcon";
 import DiagramLabel from "./DiagramLabel";
 import { useParams } from "react-router-dom";
 import { CodeMeta } from "../meta/CodeMeta";
+import CodeLabel from "./CodeLabel";
+import { CodeOutlined } from "@ant-design/icons";
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
@@ -175,13 +177,21 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     }
   }, [getClassNode])
 
+  const getCodeNode = useCallback((code: CodeMeta) => {
+    return {
+      title: <CodeLabel code={code} />,
+      key: code.uuid,
+      isLeaf: true,
+      icon: <CodeOutlined />
+    }
+  }, [])
   const getCodesNode = useCallback((title: string, key: string, codes: CodeMeta[]) => {
     return {
       title: title,
       key: key,
-      //children: codes.map(cls => getClassNode(cls))
+      children: codes.map(code => getCodeNode(code))
     }
-  }, [])
+  }, [getCodeNode])
 
   const getPackageChildren = useCallback((pkg: PackageMeta) => {
     const packageChildren: DataNode[] = []
