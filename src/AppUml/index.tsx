@@ -35,21 +35,29 @@ const AppUml = memo((
         modelList={<EntityTree graph={graph}></EntityTree>}
         toolbox={selectedDiagram && <Toolbox graph={graph}></Toolbox>}
         toolbar={<UmlToolbar />}
-        propertyBox={selectedDiagram ? <PropertyPanel /> : undefined}
+        propertyBox={selectedDiagram && <PropertyPanel />}
       >
-        <GraphCanvas
-          graph={graph}
-          onSetGraph={setGraph}
-          hidden={!selectedDiagram}
-        ></GraphCanvas>
-
-        <div
-          className="model-minimap"
-          style={{
-            display: selectedDiagram && minMap ? "block" : "none"
-          }}
-          id="mini-map"
-        ></div>
+        {
+          selectedDiagram &&
+          <div style={{
+            display: "flex",
+            flex: 1,
+            flexFlow: "column",
+            overflow: "auto"
+          }}>
+            <GraphCanvas
+              graph={graph}
+              onSetGraph={setGraph}
+            ></GraphCanvas>
+            <div
+              className="model-minimap"
+              style={{
+                display: minMap ? "block" : "none"
+              }}
+              id="mini-map"
+            ></div>
+          </div>
+        }
         {
           selectedCode &&
           <CodeEditor />

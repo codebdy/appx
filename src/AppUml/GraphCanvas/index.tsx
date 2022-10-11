@@ -19,9 +19,8 @@ export const GraphCanvas = memo(
   (props: {
     graph?: Graph;
     onSetGraph: (graph?: Graph) => void,
-    hidden?: boolean,
   }) => {
-    const { graph, onSetGraph, hidden } = props;
+    const { graph, onSetGraph } = props;
     const appUuid = useEdittingAppUuid();
 
     useEffect(() => {
@@ -54,7 +53,6 @@ export const GraphCanvas = memo(
           flex: 1,
           overflow: "auto",
           position: "relative",
-          display: hidden ? "node" : undefined
         }}
       ></div>
     );
