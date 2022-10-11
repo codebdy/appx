@@ -69,7 +69,7 @@ const PackageAction = memo((
     },
     [createNewDiagram, pkg.uuid]
   );
-  
+
   const handleAddCode = useCallback(
     () => {
       setNewCode(createNewCode(pkg.uuid));
@@ -95,8 +95,9 @@ const PackageAction = memo((
     backupSnapshot();
     setDiagrams((diams) => [...diams, diagram]);
     setSelectedDiagram(diagram.uuid);
+    setSelectedCode(undefined);
     setNewDiagram(undefined);
-  }, [backupSnapshot, setDiagrams, setSelectedDiagram]);
+  }, [backupSnapshot, setDiagrams, setSelectedDiagram, setSelectedCode]);
 
   const handleCodeClose = useCallback(() => {
     setNewCode(undefined)
@@ -106,8 +107,9 @@ const PackageAction = memo((
     backupSnapshot();
     setCodes((cods) => [...cods, code]);
     setSelectedCode(code.uuid);
+    setSelectedDiagram(undefined);
     setNewCode(undefined);
-  }, [backupSnapshot, setCodes, setSelectedCode]);
+  }, [backupSnapshot, setCodes, setSelectedCode, setSelectedDiagram]);
   const shareItems = useMemo(() => {
     return appUuid === SYSTEM_APP_UUID
       ? [

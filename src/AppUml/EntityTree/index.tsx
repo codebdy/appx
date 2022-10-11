@@ -5,7 +5,7 @@ import { DataNode } from "antd/lib/tree";
 import SvgIcon from "../../common/SvgIcon";
 import RootAction from "./RootAction";
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { packagesState, diagramsState, classesState, selectedUmlDiagramState, selectedElementState, codesState } from './../recoil/atoms';
+import { packagesState, diagramsState, classesState, selectedUmlDiagramState, selectedElementState, codesState, selectedCodeState } from './../recoil/atoms';
 import TreeNodeLabel from "../../common/TreeNodeLabel";
 import PackageLabel from "./PackageLabel";
 import { PackageMeta, PackageStereoType } from "../meta/PackageMeta";
@@ -33,6 +33,7 @@ import { useParams } from "react-router-dom";
 import { CodeMeta } from "../meta/CodeMeta";
 import CodeLabel from "./CodeLabel";
 import { CodeOutlined } from "@ant-design/icons";
+import { useIsCode } from "../hooks/useIsCode";
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
@@ -44,8 +45,10 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   const codes = useRecoilValue(codesState(appUuid));
   const isDiagram = useIsDiagram(appUuid);
   const isElement = useIsElement(appUuid);
+  const isCode = useIsCode(appUuid);
   const parseRelationUuid = useParseRelationUuid(appUuid);
   const [selectedDiagramId, setSelecteDiagramId] = useRecoilState(selectedUmlDiagramState(appUuid));
+  const [selectedCodeId, setSelectedCodeId] = useRecoilState(selectedCodeState(appUuid));
   const [selectedElement, setSelectedElement] = useRecoilState(selectedElementState(appUuid));
   const getSourceRelations = useGetSourceRelations(appUuid);
   const getTargetRelations = useGetTargetRelations(appUuid);
@@ -201,7 +204,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     const valueObjects = classes.filter(cls => cls.stereoType === StereoType.ValueObject && cls.packageUuid === pkg.uuid)
     const thirdParties = classes.filter(cls => cls.stereoType === StereoType.ThirdParty && cls.packageUuid === pkg.uuid)
     const services = classes.filter(cls => cls.stereoType === StereoType.Service && cls.packageUuid === pkg.uuid)
-    const pgkCodes = codes.filter(code =>code.packageUuid === pkg.uuid)
+    const pgkCodes = codes.filter(code => code.packageUuid === pkg.uuid)
 
     if (abstracts.length > 0) {
       packageChildren.push(getClassCategoryNode(t("AppUml.AbstractClass"), pkg.uuid + "abstracts", abstracts))
@@ -273,8 +276,12 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     for (const uuid of keys) {
       if (isDiagram(uuid)) {
         setSelecteDiagramId(uuid);
+        setSelectedCodeId(undefined);
       } else if (isElement(uuid)) {
         setSelectedElement(uuid);
+      } else if (isCode(uuid)) {
+        setSelectedCodeId(uuid);
+        setSelecteDiagramId(undefined);
       } else {
         const relationUuid = parseRelationUuid(uuid);
         if (relationUuid) {
@@ -282,7 +289,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
         }
       }
     }
-  }, [isDiagram, isElement, parseRelationUuid, setSelecteDiagramId, setSelectedElement])
+  }, [isDiagram, isElement, isCode, parseRelationUuid, setSelecteDiagramId, setSelectedElement, setSelectedCodeId])
 
   return (
     <div
@@ -294,7 +301,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     >
       <DirectoryTree
         defaultExpandedKeys={["0"]}
-        selectedKeys={[selectedDiagramId]}
+        selectedKeys={[selectedDiagramId || selectedCodeId]}
         onSelect={handleSelect}
         treeData={treeData}
       />
