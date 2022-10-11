@@ -5,7 +5,7 @@ import { DataNode } from "antd/lib/tree";
 import SvgIcon from "../../common/SvgIcon";
 import RootAction from "./RootAction";
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { packagesState, diagramsState, classesState, selectedUmlDiagramState, selectedElementState } from './../recoil/atoms';
+import { packagesState, diagramsState, classesState, selectedUmlDiagramState, selectedElementState, codesState } from './../recoil/atoms';
 import TreeNodeLabel from "../../common/TreeNodeLabel";
 import PackageLabel from "./PackageLabel";
 import { PackageMeta, PackageStereoType } from "../meta/PackageMeta";
@@ -30,6 +30,7 @@ import { useTranslation } from "react-i18next";
 import PlugIcon from "../../icons/PlugIcon";
 import DiagramLabel from "./DiagramLabel";
 import { useParams } from "react-router-dom";
+import { CodeMeta } from "../meta/CodeMeta";
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
@@ -38,6 +39,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   const packages = useRecoilValue(packagesState(appUuid));
   const diagrams = useRecoilValue(diagramsState(appUuid));
   const classes = useRecoilValue(classesState(appUuid));
+  const codes = useRecoilValue(codesState(appUuid));
   const isDiagram = useIsDiagram(appUuid);
   const isElement = useIsElement(appUuid);
   const parseRelationUuid = useParseRelationUuid(appUuid);
@@ -173,6 +175,14 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     }
   }, [getClassNode])
 
+  const getCodesNode = useCallback((title: string, key: string, codes: CodeMeta[]) => {
+    return {
+      title: title,
+      key: key,
+      //children: codes.map(cls => getClassNode(cls))
+    }
+  }, [])
+
   const getPackageChildren = useCallback((pkg: PackageMeta) => {
     const packageChildren: DataNode[] = []
     const abstracts = classes.filter(cls => cls.stereoType === StereoType.Abstract && cls.packageUuid === pkg.uuid)
@@ -181,6 +191,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     const valueObjects = classes.filter(cls => cls.stereoType === StereoType.ValueObject && cls.packageUuid === pkg.uuid)
     const thirdParties = classes.filter(cls => cls.stereoType === StereoType.ThirdParty && cls.packageUuid === pkg.uuid)
     const services = classes.filter(cls => cls.stereoType === StereoType.Service && cls.packageUuid === pkg.uuid)
+    const pgkCodes = codes.filter(code =>code.packageUuid === pkg.uuid)
 
     if (abstracts.length > 0) {
       packageChildren.push(getClassCategoryNode(t("AppUml.AbstractClass"), pkg.uuid + "abstracts", abstracts))
@@ -201,6 +212,10 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
       packageChildren.push(getClassCategoryNode(t("AppUml.ServiceClass"), pkg.uuid + "services", services))
     }
 
+    if (pgkCodes.length > 0) {
+      packageChildren.push(getCodesNode(t("AppUml.CustomCode"), pkg.uuid + "codes", pgkCodes))
+    }
+
     for (const diagram of diagrams.filter(diagram => diagram.packageUuid === pkg.uuid)) {
       packageChildren.push({
         title: <DiagramLabel diagram={diagram} />,
@@ -210,7 +225,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     }
 
     return packageChildren;
-  }, [classes, getClassCategoryNode, t, diagrams])
+  }, [classes, codes, getClassCategoryNode, t, diagrams])
 
   const getPackageNodes = useCallback(() => {
     return packages.map((pkg) => {
