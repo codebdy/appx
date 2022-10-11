@@ -47,7 +47,6 @@ export const DiagramDialog = memo((
         name="editProcess"
         labelWrap
         initialValues={{ title: "", description: "" }}
-        layout="vertical"
         form={form}
         autoComplete="off"
       >

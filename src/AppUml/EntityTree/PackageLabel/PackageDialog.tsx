@@ -3,8 +3,6 @@ import React, { memo, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { PackageMeta, PackageStereoType } from "../../meta/PackageMeta"
 import { MultiLangInput } from "../../../plugins/inputs/components/pc/MultiLangInput/view"
-import MonacoEditor from "react-monaco-editor"
-
 const { Option } = Select;
 
 export const PackageDialog = memo((
@@ -17,10 +15,8 @@ export const PackageDialog = memo((
 ) => {
   const { open, pkg, onClose, onConfirm } = props;
   const [form] = Form.useForm<PackageMeta>();
-  const [stereoType, setStereoType] = useState(PackageStereoType.Normal);
   useEffect(() => {
     form.setFieldsValue(pkg)
-    setStereoType(pkg.stereoType)
   }, [form, pkg])
   const { t } = useTranslation();
 
@@ -29,10 +25,6 @@ export const PackageDialog = memo((
       onConfirm({ ...pkg, ...changeValues })
     })
   }, [onConfirm, form])
-
-  const hanleValuesChange = useCallback((values: PackageMeta) => {
-    values.stereoType && setStereoType(values.stereoType)
-  }, [])
 
   const handleEditorDidMount = useCallback((monaco: any) => {
     // monaco.languages?.json.jsonDefaults.setDiagnosticsOptions({
@@ -44,7 +36,6 @@ export const PackageDialog = memo((
     <Modal
       title={t("AppUml.PackageInfo")}
       open={open}
-      width={620}
       cancelText={t("Cancel")}
       okText={t("Confirm")}
       onCancel={onClose}
@@ -62,10 +53,10 @@ export const PackageDialog = memo((
         name="editProcess"
         labelWrap
         initialValues={{ title: "", description: "" }}
-        layout="vertical"
+        labelCol={{ span: 5 }}
+        wrapperCol={{ span: 16 }}
         form={form}
         autoComplete="off"
-        onValuesChange={hanleValuesChange}
       >
         <Form.Item
           label={t("Name")}
@@ -84,25 +75,6 @@ export const PackageDialog = memo((
             <Option value={PackageStereoType.ThirdParty}>{t("AppUml.ThirdPartyPackage")}</Option>
           </Select>
         </Form.Item>
-        {
-          stereoType === PackageStereoType.ThirdParty &&
-          <Form.Item
-            label={t("AppUml.Token script")}
-            name="tokenScript"
-            style={{ marginBottom: 0 }}
-          >
-            <MonacoEditor
-              language="javascript"
-              options={{
-                selectOnLineNumbers: true
-              }}
-              theme={'vs-dark'}
-              editorDidMount={handleEditorDidMount}
-              height="250px"
-            />
-          </Form.Item>
-        }
-
       </Form>
     </Modal>
   )
