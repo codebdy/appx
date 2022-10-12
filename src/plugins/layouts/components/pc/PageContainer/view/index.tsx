@@ -18,7 +18,7 @@ import PageTitle, { IPageTitleProps } from "./PageTitle";
 const { TabPane } = Tabs;
 
 export const Component: React.FC<IPageContainerProps> & {
-  PageTitle?:React.FC<IPageTitleProps>,
+  PageTitle?: React.FC<IPageTitleProps>,
   HeaderActions?: React.FC<IHeaderActionsProps>,
   HeaderContent?: React.FC<IPageHeaderContentProps>,
   HeaderContentExtra?: React.FC<IPageHeaderContentExtraProps>,
@@ -42,6 +42,7 @@ export const Component: React.FC<IPageContainerProps> & {
   const fieldSchema = useFieldSchema()
   const slots = useMemo(() => {
     const slts = {
+      title: null,
       headerExtra: null,
       headerContent: null,
       headerContentExtra: null,
@@ -52,7 +53,9 @@ export const Component: React.FC<IPageContainerProps> & {
 
     for (const child of Schema.getOrderProperties(fieldSchema)) {
       const childSchema = child?.schema;
-      if (childSchema["x-component"] === 'PageContainer.HeaderActions') {
+      if (childSchema["x-component"] === 'PageContainer.PageTitle') {
+        slts.title = childSchema
+      } else if (childSchema["x-component"] === 'PageContainer.HeaderActions') {
         slts.headerExtra = childSchema
       } else if (childSchema["x-component"] === 'PageContainer.HeaderContent') {
         slts.headerContent = childSchema
@@ -84,9 +87,9 @@ export const Component: React.FC<IPageContainerProps> & {
       <PageHeader
         className="rx-page-header-responsive"
         onBack={hasGobackButton ? () => window.history.back() : undefined}
-        title={title}
+        title={<RecursionField schema={slots.title} name={slots.title.name} />}
         subTitle={subtitle}
-        extra={hasActions && slots.headerExtra && <RecursionField schema={slots.headerExtra} name={slots.headerExtra.name}/>}
+        extra={hasActions && slots.headerExtra && <RecursionField schema={slots.headerExtra} name={slots.headerExtra.name} />}
         footer={
           hasTabs && slots.tabs && <Tabs activeKey={selectedTabKey} onChange={handleSelectTab}>
             {
@@ -103,22 +106,22 @@ export const Component: React.FC<IPageContainerProps> & {
       >
         <Row>
           {hasHeaderContent && slots.headerContent && <RecursionField schema={slots.headerContent} name={slots.headerContent.name} />}
-          {hasHeaderContentExtra && slots.headerContentExtra && <RecursionField schema={slots.headerContentExtra} name={slots.headerContentExtra.name}/>}
+          {hasHeaderContentExtra && slots.headerContentExtra && <RecursionField schema={slots.headerContentExtra} name={slots.headerContentExtra.name} />}
         </Row>
 
       </PageHeader>
       <PageBody>
-        {hasTabs && selectedTab && <RecursionField schema={selectedTab} name={selectedTab.name}/>}
+        {hasTabs && selectedTab && <RecursionField schema={selectedTab} name={selectedTab.name} />}
         {
           slots.otherChildren?.map((child, index) => {
             return (
               <div key={index}>
-                <RecursionField key={index} schema={child} name={child.name}/>
+                <RecursionField key={index} schema={child} name={child.name} />
               </div>
             )
           })
         }
-        {hasFooterToolbar && slots.footer && <RecursionField schema={slots.footer} name={slots.footer.name}/>}
+        {hasFooterToolbar && slots.footer && <RecursionField schema={slots.footer} name={slots.footer.name} />}
       </PageBody>
     </PageContainerShell>
   )

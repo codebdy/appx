@@ -9,7 +9,7 @@ export const PageHeader = (props: PageHeaderProps) => {
   return (
     <AntdPageHeader
       className={clx(className, "rx-page-header-responsive")}
-      title={p(title as any)}
+      title={title}
       subTitle={p(subTitle as any)}
       {...other}
     >{children}

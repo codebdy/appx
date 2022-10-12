@@ -45,7 +45,6 @@ const ComponentDesigner: DnFC<IPageContainerProps> & {
 } = observer((props) => {
   const {
     children,
-    title,
     subtitle,
     hasBreadcrumb,
     hasGobackButton,
@@ -58,6 +57,7 @@ const ComponentDesigner: DnFC<IPageContainerProps> & {
   } = props;
   const [selectedTabKey, setSelectedTabKey] = useState<string>()
   const node = useTreeNode()
+  const pageTitle = useFindNode("PageTitle");
   const headerActions = useFindNode('HeaderActions');
   const headerContent = useFindNode("HeaderContent");
   const headerContentExtra = useFindNode("HeaderContentExtra");
@@ -73,6 +73,7 @@ const ComponentDesigner: DnFC<IPageContainerProps> & {
     child.id !== headerContent?.id &&
     child.id !== headerContentExtra?.id &&
     child.id !== footer?.id &&
+    child.id !== pageTitle?.id &&
     !tabs?.find(tab => tab.id === child.id)
   ), [footer?.id, headerActions?.id, headerContent?.id, headerContentExtra?.id, node.children, tabs])
 
@@ -126,7 +127,7 @@ const ComponentDesigner: DnFC<IPageContainerProps> & {
     <PageContainerShell {...other} >
       <PageHeader
         onBack={hasGobackButton ? () => { } : undefined}
-        title={title}
+        title={pageTitle && <TreeNodeWidget node={pageTitle} />}
         subTitle={subtitle}
         extra={hasActions && headerActions && <TreeNodeWidget node={headerActions} />}
         footer={
