@@ -87,7 +87,7 @@ export const Component: React.FC<IPageContainerProps> & {
       <PageHeader
         className="rx-page-header-responsive"
         onBack={hasGobackButton ? () => window.history.back() : undefined}
-        title={<RecursionField schema={slots.title} name={slots.title.name} />}
+        title={slots.title && <RecursionField schema={slots.title} name={slots.title?.name} />}
         subTitle={subtitle}
         extra={hasActions && slots.headerExtra && <RecursionField schema={slots.headerExtra} name={slots.headerExtra.name} />}
         footer={
