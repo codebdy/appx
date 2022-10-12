@@ -8,6 +8,7 @@ import { PlayCircleOutlined } from "@ant-design/icons";
 import { TextWidget } from '@designable/react'
 import { useGetEntity } from "../../../../datasource/hooks/useGetEntity";
 import { objToString, stringToObj } from "../../../../shared";
+import { useParseLangMessage } from "../../../../plugin-sdk";
 
 const { OptGroup, Option } = Select;
 var pluralize = require('pluralize')
@@ -57,6 +58,7 @@ export const DataSourceInput = memo((
   const [form] = Form.useForm();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const packages = usePackages();
+  const p = useParseLangMessage();
   const getEntity = useGetEntity();
   const getPackageEntities = useGetPackageRootEntities();
   useEffect(() => {
@@ -141,11 +143,11 @@ export const DataSourceInput = memo((
               {
                 packages?.map(pkg => {
                   return (
-                    <OptGroup key={pkg.uuid} label={pkg.name}>
+                    <OptGroup key={pkg.uuid} label={p(pkg.name)}>
                       {
                         getPackageEntities(pkg.uuid)?.map(entity => {
                           return (
-                            <Option key={entity.uuid} value={entity.uuid}>{entity.name}</Option>
+                            <Option key={entity.uuid} value={entity.uuid}>{p(entity.label) || entity.name}</Option>
                           )
                         })
                       }
