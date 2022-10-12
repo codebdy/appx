@@ -7,7 +7,7 @@ export interface IPageTitleProps {
 
 const PageTitle = observer((props: IPageTitleProps) => {
   return (
-    <div {...props}>
+    <div className="rx-page-header-title" {...props}>
       {props.children}
     </div>
   )
