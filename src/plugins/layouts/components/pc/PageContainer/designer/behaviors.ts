@@ -11,6 +11,8 @@ import HeaderContentExtraSchema from "./HeaderContentExtraDesigner/schema";
 import locales from "./locales";
 import TabPanelLocales from "./PageTabPanelDesigner/locales";
 import TabPanelSchema from "./PageTabPanelDesigner/schema";
+import PageTitleLocales from "./PageTitleDesigner/locales";
+import PageTitleSchema from "./PageTitleDesigner/schema";
 import schema from "./schema";
 
 const behaviors: IBehavior[] = [
@@ -23,6 +25,19 @@ const behaviors: IBehavior[] = [
     },
     designerLocales: locales,
     schema: schema,
+  },
+  {
+    name: 'PageContainer.PageTitle',
+    extends: ['Field'],
+    selector: (node) => node.props['x-component'] === 'PageContainer.PageTitle',
+    designerProps: {
+      droppable: true,
+      draggable: false,
+      deletable: false,
+      cloneable: false,
+    },
+    designerLocales: PageTitleLocales,
+    schema: PageTitleSchema,
   },
   {
     name: 'PageContainer.HeaderActions',

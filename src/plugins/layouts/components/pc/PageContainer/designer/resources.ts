@@ -11,7 +11,6 @@ const resources: IResourceCreator[] = [
           type: 'void',
           'x-component': Name,
           'x-component-props': {
-            title: "Page title",
             //subtitle: "PageContainer subtitle",
             hasBreadcrumb: false,
             hasGobackButton: false,
@@ -23,6 +22,15 @@ const resources: IResourceCreator[] = [
           },
         },
         children: [
+          {
+            componentName: 'Field',
+            props: {
+              type: 'void',
+              'x-component': 'PageContainer.PageTitle',
+              'x-component-props': {
+              },
+            },
+          },
           {
             componentName: 'Field',
             props: {

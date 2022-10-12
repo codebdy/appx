@@ -20,6 +20,8 @@ import { useFindNode, queryNodesByComponentPath, useRemoveNode } from '../../../
 import { PageContainerShell } from '../view/PageContainerShell'
 import { PageHeader } from '../view/PageHeader'
 import { PageBody } from '../view/PageBody'
+import { IPageTitleProps } from '../view/PageTitle'
+import { PageTitleDesigner } from './PageTitleDesigner'
 
 const { TabPane } = Tabs;
 export const routesPlaceholder = [
@@ -34,6 +36,7 @@ export const routesPlaceholder = [
 ];
 
 const ComponentDesigner: DnFC<IPageContainerProps> & {
+  PageTitle?:React.FC<IPageTitleProps>,
   HeaderActions?: React.FC<IHeaderActionsProps>,
   HeaderContent?: React.FC<IPageHeaderContentProps>,
   HeaderContentExtra?: React.FC<IPageHeaderContentExtraProps>,
@@ -178,6 +181,8 @@ const ComponentDesigner: DnFC<IPageContainerProps> & {
   )
 })
 
+
+ComponentDesigner.PageTitle = PageTitleDesigner,
 ComponentDesigner.HeaderActions = HeaderActionsDesigner
 ComponentDesigner.HeaderContent = HeaderContentDesigner
 ComponentDesigner.HeaderContentExtra = HeaderContentExtraDesigner

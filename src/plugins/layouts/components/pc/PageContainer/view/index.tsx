@@ -13,10 +13,12 @@ import { PageContainerShell } from "./PageContainerShell";
 import { useBreadcumbItems } from "./hooks/useBreadcumbItems";
 import PageHeaderContentExtra, { IPageHeaderContentExtraProps } from "./PageHeaderContentExtra";
 import { Schema } from "@formily/react";
+import PageTitle, { IPageTitleProps } from "./PageTitle";
 
 const { TabPane } = Tabs;
 
 export const Component: React.FC<IPageContainerProps> & {
+  PageTitle?:React.FC<IPageTitleProps>,
   HeaderActions?: React.FC<IHeaderActionsProps>,
   HeaderContent?: React.FC<IPageHeaderContentProps>,
   HeaderContentExtra?: React.FC<IPageHeaderContentExtraProps>,
@@ -122,6 +124,7 @@ export const Component: React.FC<IPageContainerProps> & {
   )
 }
 
+Component.PageTitle = PageTitle
 Component.HeaderActions = PageHeaderActions
 Component.HeaderContent = PageHeaderContent
 Component.HeaderContentExtra = PageHeaderContentExtra
