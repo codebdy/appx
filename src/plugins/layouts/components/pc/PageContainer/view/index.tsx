@@ -14,6 +14,7 @@ import { useBreadcumbItems } from "./hooks/useBreadcumbItems";
 import PageHeaderContentExtra, { IPageHeaderContentExtraProps } from "./PageHeaderContentExtra";
 import { Schema } from "@formily/react";
 import PageTitle, { IPageTitleProps } from "./PageTitle";
+import { useParseLangMessage } from "../../../../../../plugin-sdk";
 
 const { TabPane } = Tabs;
 
@@ -40,6 +41,7 @@ export const Component: React.FC<IPageContainerProps> & {
   } = props;
   const [selectedTabKey, setSelectedTabKey] = useState("1")
   const fieldSchema = useFieldSchema()
+  const p = useParseLangMessage();
   const slots = useMemo(() => {
     const slts = {
       title: null,
@@ -95,7 +97,7 @@ export const Component: React.FC<IPageContainerProps> & {
             {
               slots.tabs.map((tab, index) => {
                 return (
-                  <TabPane tab={tab['x-component-props']?.["title"]} key={index + 1} />
+                  <TabPane tab={p(tab['x-component-props']?.["title"])} key={index + 1} />
                 )
               })
             }

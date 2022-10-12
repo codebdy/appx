@@ -4,12 +4,11 @@ const TabPanelSchema: IPropsSchema = {
   props: {
     type: 'object',
     properties: {
-      gridSpan: {
-        type: 'number',
+      title: {
+        type: 'string',
         'x-decorator': 'FormItem',
-        'x-component': 'NumberPicker',
+        'x-component': 'MultiLangInput',
         'x-component-props': {
-          defaultValue: 1,
         },
       },
     },

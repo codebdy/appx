@@ -22,6 +22,7 @@ import { PageHeader } from '../view/PageHeader'
 import { PageBody } from '../view/PageBody'
 import { IPageTitleProps } from '../view/PageTitle'
 import { PageTitleDesigner } from './PageTitleDesigner'
+import { useParseLangMessage } from "../../../../../../plugin-sdk";
 
 const { TabPane } = Tabs;
 export const routesPlaceholder = [
@@ -62,7 +63,7 @@ const ComponentDesigner: DnFC<IPageContainerProps> & {
   const headerContent = useFindNode("HeaderContent");
   const headerContentExtra = useFindNode("HeaderContentExtra");
   const footer = useFindNode('FooterToolbar');
-
+  const p = useParseLangMessage();
   const tabs = queryNodesByComponentPath(node, [
     'PageContainer',
     'PageContainer.TabPanel',
@@ -135,7 +136,7 @@ const ComponentDesigner: DnFC<IPageContainerProps> & {
             {
               tabs.map((tab) => {
                 return (
-                  <TabPane tab={tab?.props?.['x-component-props']?.["title"]} key={tab.id} />
+                  <TabPane tab={p(tab?.props?.['x-component-props']?.["title"])} key={tab.id} />
                 )
               })
             }
