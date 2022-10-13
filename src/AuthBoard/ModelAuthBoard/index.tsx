@@ -1,8 +1,16 @@
 import React from "react"
 import { memo } from "react"
+import { ListConentLayout } from "../../common/ListConentLayout"
 
-export const ModelAuthBoard = memo(()=>{
+export const ModelAuthBoard = memo(() => {
   return (
-    <div>ModelAuthBoard</div>
+    <ListConentLayout
+      listWidth={200}
+      list={
+        <>哈哈</>
+      }
+    >
+      hehe
+    </ListConentLayout>
   )
 })
