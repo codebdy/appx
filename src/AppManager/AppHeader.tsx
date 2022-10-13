@@ -105,7 +105,7 @@ const AppHeader = memo((props: {
           {t("System.API")}
         </Button>
         <Button
-          type={match.pathname === match.pathnameBase + AppManagerRoutes.Auth ? "primary" : undefined}
+          type={match.pathname.startsWith(match.pathnameBase + AppManagerRoutes.Auth) ? "primary" : undefined}
           shape="round"
           icon={<SvgIcon>
             <svg style={{ width: "16px", height: "16px" }} fill="currentColor" viewBox="0 0 968 968">
