@@ -74,8 +74,7 @@ export const AuthBoard = memo(() => {
           <Menu
             style={{ flex: 1 }}
             onClick={onClick}
-            defaultSelectedKeys={['1']}
-            defaultOpenKeys={['sub1']}
+            defaultSelectedKeys={[AuthRoutes.UiAuth]}
             mode="inline"
             items={items}
           />
