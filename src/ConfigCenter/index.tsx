@@ -7,6 +7,7 @@ import { Menu } from 'antd';
 import { BellOutlined, FileSearchOutlined, NodeIndexOutlined, SettingOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import { AppManagerRoutes } from "../AppManager/AppHeader";
+import "./style.less";
 
 export enum ConfigsRoutes {
   SystemConfig = "system-config",
@@ -51,6 +52,7 @@ export const ConfigCenter = memo(() => {
 
   return (
     <ListConentLayout
+      className="appx-configs"
       list={
         <Menu
           onClick={onClick}
