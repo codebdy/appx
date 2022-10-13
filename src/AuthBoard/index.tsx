@@ -70,6 +70,7 @@ export const AuthBoard = memo(() => {
     <Spin tip="Loading..." spinning={loading}>
       <ListConentLayout
         className="appx-auth-board"
+        listWidth={200}
         list={
           <Menu
             style={{ flex: 1 }}
