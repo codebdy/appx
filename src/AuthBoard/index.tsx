@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from "react"
 import { memo } from "react"
-import { Outlet, useNavigate } from "react-router-dom"
+import { Outlet, useMatch, useNavigate } from "react-router-dom"
 import { ListConentLayout } from "../common/ListConentLayout"
 import { MenuProps, Spin } from 'antd';
 import { Menu } from 'antd';
@@ -14,6 +14,7 @@ import { useShowError } from "../hooks/useShowError";
 import { useRecoilValue } from "recoil";
 import { packagesState } from "../AppUml/recoil/atoms";
 import { useParseLangMessage } from "../plugin-sdk";
+import { AppManagerRoutes } from "../AppManager/AppHeader";
 
 export enum AuthRoutes {
   UiAuth = "ui-auth",
@@ -46,7 +47,7 @@ export const AuthBoard = memo(() => {
   const { loading, error } = useReadMeta(appUuid);
   const packages = useRecoilValue(packagesState(appUuid))
   const p = useParseLangMessage();
-
+  const match = useMatch(`/${AppManagerRoutes.Auth}/*`)
   useShowError(error);
 
   const items: MenuProps['items'] = useMemo(() => [
@@ -63,7 +64,6 @@ export const AuthBoard = memo(() => {
 
   const onClick: MenuProps['onClick'] = useCallback(e => {
     navigate(e.key)
-    console.log('click ', e);
   }, [navigate]);
 
   return (
@@ -74,7 +74,7 @@ export const AuthBoard = memo(() => {
           <Menu
             style={{ flex: 1 }}
             onClick={onClick}
-            defaultSelectedKeys={[AuthRoutes.UiAuth]}
+            activeKey={match?.params?.["*"] || AuthRoutes.UiAuth}
             mode="inline"
             items={items}
           />
