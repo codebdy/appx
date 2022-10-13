@@ -6,6 +6,7 @@ import { MenuProps } from 'antd';
 import { Menu } from 'antd';
 import { BellOutlined, FileSearchOutlined, NodeIndexOutlined, SettingOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
+import { AppManagerRoutes } from "../AppManager/AppHeader";
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -45,12 +46,7 @@ export const ConfigCenter = memo(() => {
       getItem('Option 11', '11'),
       getItem('Option 12', '12'),
     ]),
-    getItem(t("Configs.SystemConfig"), 'sub4', <SettingOutlined />, [
-      getItem('Option 9', '9'),
-      getItem('Option 10', '10'),
-      getItem('Option 11', '11'),
-      getItem('Option 12', '12'),
-    ]),
+    getItem(t("Configs.SystemConfig"), AppManagerRoutes.SystemConfig, <SettingOutlined />, null),
   ], []);
 
   const onClick: MenuProps['onClick'] = useCallback(e => {

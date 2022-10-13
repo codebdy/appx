@@ -15,8 +15,8 @@ export enum AppManagerRoutes {
   Model = "system-model",
   Api = "system-api",
   Auth = "system-auth",
-  Config = "system-config",
-  Engines = "engines",
+  SystemConfig = "system-config",
+  Configs = "configs",
   Devices = "devices",
   ProcessEngine = "porcess-engine",
   NotificationEngine = "notification-engine",
@@ -48,18 +48,18 @@ const AppHeader = memo((props: {
   }, [navigate])
 
   const handleGotoConfig = useCallback(() => {
-    navigate(AppManagerRoutes.Config)
+    navigate(AppManagerRoutes.SystemConfig)
   }, [navigate])
 
   const handleGotoEngines = useCallback(() => {
-    navigate(AppManagerRoutes.Engines)
+    navigate(AppManagerRoutes.Configs)
   }, [navigate])
 
   const systemMenu = (
     <Menu
       selectedKeys={[match.pathname.substring(1)]}
     >
-      <Menu.Item key={AppManagerRoutes.Config}
+      <Menu.Item key={AppManagerRoutes.SystemConfig}
         icon={<SettingOutlined style={{ fontSize: 16 }} />}
         onClick={handleGotoConfig}
       >
@@ -151,7 +151,7 @@ const AppHeader = memo((props: {
               match.pathname === match.pathnameBase + AppManagerRoutes.Model ||
                 match.pathname === match.pathnameBase + AppManagerRoutes.Api ||
                 match.pathname === match.pathnameBase + AppManagerRoutes.Auth ||
-                match.pathname === match.pathnameBase + AppManagerRoutes.Config
+                match.pathname === match.pathnameBase + AppManagerRoutes.SystemConfig
                 ?
                 "primary"
                 :
@@ -172,7 +172,7 @@ const AppHeader = memo((props: {
             </SvgIcon>
           }
           type={
-            match.pathname.startsWith(match.pathnameBase + AppManagerRoutes.Engines)
+            match.pathname.startsWith(match.pathnameBase + AppManagerRoutes.Configs)
               ?
               "primary"
               :

@@ -41,8 +41,8 @@ const App = memo(() => {
               <Route path={AppManagerRoutes.Model} element={<AppUml />} />
               <Route path={AppManagerRoutes.Api} element={<ApiBoard />} />
               <Route path={AppManagerRoutes.Auth} element={<AuthBoard />} />
-              <Route path={AppManagerRoutes.Config} element={<AppConfig />} />
-              <Route path={AppManagerRoutes.Engines} element={<ConfigCenter />}>
+              <Route path={AppManagerRoutes.SystemConfig} element={<AppConfig />} />
+              <Route path={AppManagerRoutes.Configs} element={<ConfigCenter />}>
                 <Route path={AppManagerRoutes.ProcessEngine} element={<ProcessEngineBoard />} />
                 <Route path={AppManagerRoutes.NotificationEngine} element={<NotificationEngineBoard />} />
                 <Route path="" element={<ProcessEngineBoard />} />
