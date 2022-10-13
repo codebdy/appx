@@ -1,13 +1,14 @@
 import React from "react"
 import { memo } from "react"
 import { ListConentLayout } from "../../common/ListConentLayout"
+import { RoleList } from "../ModelAuthBoard/RoleList"
 
 export const UiAuthBoard = memo(() => {
   return (
     <ListConentLayout
       listWidth={200}
       list={
-        <>哈哈2</>
+        <RoleList />
       }
     >
       hehe2
