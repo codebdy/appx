@@ -23,9 +23,10 @@ import { PredefinedPluginsRoot } from './plugin/PredefinedPluginsRoot';
 import { PredefinedMaterialsRoot } from './material/PredefinedMaterialsRoot';
 import { AppBpmn } from './AppBpmn';
 import { AppDmn } from './AppDmn';
-import { ConfigCenter } from './ConfigCenter';
+import { ConfigCenter, ConfigsRoutes } from './ConfigCenter';
 import { NotificationEngineBoard } from './ConfigCenter/NotificationEngineBoard';
 import { ProcessEngineBoard } from './ConfigCenter/ProcessEngineBoard';
+import { SearchEngineBoard } from './ConfigCenter/SearchEngineBoard';
 
 const App = memo(() => {
   return (
@@ -43,13 +44,14 @@ const App = memo(() => {
               <Route path={AppManagerRoutes.Auth} element={<AuthBoard />} />
               <Route path={AppManagerRoutes.SystemConfig} element={<AppConfig />} />
               <Route path={AppManagerRoutes.Configs} element={<ConfigCenter />}>
-                <Route path={AppManagerRoutes.ProcessEngine} element={<ProcessEngineBoard />} />
-                <Route path={AppManagerRoutes.NotificationEngine} element={<NotificationEngineBoard />} />
+                <Route path={ConfigsRoutes.ProcessEngine} element={<ProcessEngineBoard />} />
+                <Route path={ConfigsRoutes.NotificationEngine} element={<NotificationEngineBoard />} />
+                <Route path={ConfigsRoutes.SearchEngine} element={<SearchEngineBoard />} />
+                <Route path={ConfigsRoutes.SystemConfig} element={<AppConfig />} />
                 <Route path="" element={<ProcessEngineBoard />} />
               </Route>
             </Route>
             <Route path="/config-app/:appUuid" element={<AppEntry />}>
-              <Route path={AppConfigRouts.Config} element={<AppConfig />} />
               <Route path={AppConfigRouts.App} element={<AppUis />} />
               <Route path={AppConfigRouts.Bpmn} element={<AppBpmn />} />
               <Route path={AppConfigRouts.Dmn} element={<AppDmn />} />

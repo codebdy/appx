@@ -1,12 +1,20 @@
 import React, { useCallback, useMemo } from "react"
 import { memo } from "react"
-import { Outlet } from "react-router-dom"
+import { Outlet, useNavigate } from "react-router-dom"
 import { ListConentLayout } from "../common/ListConentLayout"
 import { MenuProps } from 'antd';
 import { Menu } from 'antd';
 import { BellOutlined, FileSearchOutlined, NodeIndexOutlined, SettingOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import { AppManagerRoutes } from "../AppManager/AppHeader";
+
+export enum ConfigsRoutes {
+  SystemConfig = "system-config",
+  ProcessEngine = "porcess-engine",
+  NotificationEngine = "notification-engine",
+  SearchEngine = "search-engine",
+}
+
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -28,30 +36,18 @@ function getItem(
 
 export const ConfigCenter = memo(() => {
   const { t } = useTranslation();
+  const navigate = useNavigate()
   const items: MenuProps['items'] = useMemo(() => [
-    getItem(t("Configs.ProcessEngine"), 'sub1', <NodeIndexOutlined />, [
-      getItem('Item 1', 'g1', null),
-      getItem('Item 2', 'g2', null),
-    ]),
-
-    getItem(t("Configs.NotificationEngine"), 'sub2', <BellOutlined />, [
-      getItem('Option 5', '5'),
-      getItem('Option 6', '6'),
-      getItem('Submenu', 'sub3', null, [getItem('Option 7', '7'), getItem('Option 8', '8')]),
-    ]),
-
-    getItem(t("Configs.SearchEngine"), 'sub4', <FileSearchOutlined />, [
-      getItem('Option 9', '9'),
-      getItem('Option 10', '10'),
-      getItem('Option 11', '11'),
-      getItem('Option 12', '12'),
-    ]),
+    getItem(t("Configs.ProcessEngine"), ConfigsRoutes.ProcessEngine, <NodeIndexOutlined />, null),
+    getItem(t("Configs.NotificationEngine"), ConfigsRoutes.NotificationEngine, <BellOutlined />, null),
+    getItem(t("Configs.SearchEngine"), ConfigsRoutes.SearchEngine, <FileSearchOutlined />, null),
     getItem(t("Configs.SystemConfig"), AppManagerRoutes.SystemConfig, <SettingOutlined />, null),
   ], []);
 
   const onClick: MenuProps['onClick'] = useCallback(e => {
+    navigate(e.key)
     console.log('click ', e);
-  }, []);
+  }, [navigate]);
 
   return (
     <ListConentLayout

@@ -18,9 +18,6 @@ export enum AppManagerRoutes {
   SystemConfig = "system-config",
   Configs = "configs",
   Devices = "devices",
-  ProcessEngine = "porcess-engine",
-  NotificationEngine = "notification-engine",
-  SearchEngine = "searche-engine",
 }
 
 const AppHeader = memo((props: {
