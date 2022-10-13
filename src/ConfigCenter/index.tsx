@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom"
 import { ListConentLayout } from "../common/ListConentLayout"
 import { MenuProps } from 'antd';
 import { Menu } from 'antd';
-import { BellOutlined, FileSearchOutlined, NodeIndexOutlined } from "@ant-design/icons";
+import { BellOutlined, FileSearchOutlined, NodeIndexOutlined, SettingOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
 type MenuItem = Required<MenuProps>['items'][number];
@@ -25,21 +25,27 @@ function getItem(
   } as MenuItem;
 }
 
-export const AppEngines = memo(() => {
+export const ConfigCenter = memo(() => {
   const { t } = useTranslation();
   const items: MenuProps['items'] = useMemo(() => [
-    getItem(t("Engines.ProcessEngine"), 'sub1', <NodeIndexOutlined />, [
+    getItem(t("Configs.ProcessEngine"), 'sub1', <NodeIndexOutlined />, [
       getItem('Item 1', 'g1', null),
       getItem('Item 2', 'g2', null),
     ]),
 
-    getItem(t("Engines.NotificationEngine"), 'sub2', <BellOutlined />, [
+    getItem(t("Configs.NotificationEngine"), 'sub2', <BellOutlined />, [
       getItem('Option 5', '5'),
       getItem('Option 6', '6'),
       getItem('Submenu', 'sub3', null, [getItem('Option 7', '7'), getItem('Option 8', '8')]),
     ]),
 
-    getItem(t("Engines.SearchEngine"), 'sub4', <FileSearchOutlined />, [
+    getItem(t("Configs.SearchEngine"), 'sub4', <FileSearchOutlined />, [
+      getItem('Option 9', '9'),
+      getItem('Option 10', '10'),
+      getItem('Option 11', '11'),
+      getItem('Option 12', '12'),
+    ]),
+    getItem(t("Configs.SystemConfig"), 'sub4', <SettingOutlined />, [
       getItem('Option 9', '9'),
       getItem('Option 10', '10'),
       getItem('Option 11', '11'),
