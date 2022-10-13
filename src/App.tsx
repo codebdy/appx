@@ -6,7 +6,6 @@ import AppDesigner from './AppDesigner';
 import AppEntry from './AppEntry/index';
 import AppsContent from './AppManager/AppsContent';
 import ApiBoard from './ApiBoard';
-import AuthBoard from './AuthBoard';
 import { AppManagerRoutes } from './AppManager/AppHeader';
 import Install from './Install';
 import { INDEX_URL, INSTALL_URL, LOGIN_URL } from './consts';
@@ -27,6 +26,7 @@ import { ConfigCenter, ConfigsRoutes } from './ConfigCenter';
 import { NotificationEngineBoard } from './ConfigCenter/NotificationEngineBoard';
 import { ProcessEngineBoard } from './ConfigCenter/ProcessEngineBoard';
 import { SearchEngineBoard } from './ConfigCenter/SearchEngineBoard';
+import { AuthBoard } from './AuthBoard';
 
 const App = memo(() => {
   return (
