@@ -55,6 +55,7 @@ export const ConfigCenter = memo(() => {
       className="appx-configs"
       list={
         <Menu
+          style={{ flex: 1 }}
           onClick={onClick}
           defaultSelectedKeys={['1']}
           defaultOpenKeys={['sub1']}
