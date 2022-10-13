@@ -16,6 +16,7 @@ export enum AppManagerRoutes {
   Api = "system-api",
   Auth = "system-auth",
   Config = "system-config",
+  Engines = "engines",
   Devices = "devices",
   ProcessEngine = "porcess-engine",
   NotificationEngine = "notification-engine",
@@ -50,43 +51,9 @@ const AppHeader = memo((props: {
     navigate(AppManagerRoutes.Config)
   }, [navigate])
 
-  const handleGotoProcess = useCallback(() => {
-    navigate(AppManagerRoutes.ProcessEngine)
+  const handleGotoEngines = useCallback(() => {
+    navigate(AppManagerRoutes.Engines)
   }, [navigate])
-
-  const handleGotoNotification = useCallback(() => {
-    navigate(AppManagerRoutes.NotificationEngine)
-  }, [navigate])
-
-  const handleGotoSerchEngine = useCallback(() => {
-    navigate(AppManagerRoutes.SearchEngine)
-  }, [navigate])
-
-  const engineMenu = (
-    <Menu
-      selectedKeys={[match.pathname.substring(1)]}
-    >
-      <Menu.Item key={AppManagerRoutes.ProcessEngine}
-        icon={<NodeIndexOutlined style={{ fontSize: 16 }} />}
-
-        onClick={handleGotoProcess}
-      >
-        {t("Engines.ProcessEngine")}
-      </Menu.Item>
-      <Menu.Item key={AppManagerRoutes.NotificationEngine}
-        icon={<BellOutlined style={{ fontSize: 16 }} />}
-        onClick={handleGotoNotification}
-      >
-        {t("Engines.NotificationEngine")}
-      </Menu.Item>
-      <Menu.Item key={AppManagerRoutes.NotificationEngine}
-        icon={<FileSearchOutlined style={{ fontSize: 16 }}/>}
-        onClick={handleGotoSerchEngine}
-      >
-        {t("Engines.SearchEngine")}
-      </Menu.Item>
-    </Menu>
-  );
 
   const systemMenu = (
     <Menu
@@ -157,29 +124,26 @@ const AppHeader = memo((props: {
         >
           {t("App")}
         </Button>
-        <Dropdown overlay={engineMenu} trigger={['click']}>
-          <Button shape="round"
-            className='nav-button'
-            icon={
-              <SvgIcon>
-                <svg className='nav-icon' fill="currentColor" style={{ width: 18, height: 16 }} viewBox="0 0 1024 1024">
-                  <path d="M512.474 644.74c-4.077 0-8.154-1.137-11.662-3.507L138.145 404.196c-6.068-3.983-9.67-10.62-9.67-17.826s3.602-13.937 9.67-17.825l362.667-237.037a21.259 21.259 0 0 1 23.324 0l362.667 237.037c6.068 3.982 9.671 10.62 9.671 17.825s-3.603 13.938-9.671 17.826l-134.732 88.083c-9.86 6.447-23.04 3.697-29.487-6.163-6.448-9.861-3.698-23.04 6.163-29.488l107.425-70.163L512.474 174.84 188.776 386.37l323.698 211.532 111.882-73.197c9.86-6.447 23.04-3.698 29.487 6.163 6.447 9.86 3.698 23.04-6.163 29.488l-123.639 80.782c-3.413 2.465-7.49 3.603-11.567 3.603z m0 251.26c-4.077 0-8.154-1.138-11.662-3.508L138.145 655.455c-6.068-3.982-9.67-10.62-9.67-17.825s3.602-13.938 9.67-17.826l134.732-88.083c9.86-6.447 23.04-3.697 29.487 6.163 6.448 9.861 3.698 23.04-6.163 29.488l-107.425 70.163 323.698 211.532 323.698-211.532-323.698-211.437-111.881 73.197c-9.861 6.447-23.04 3.698-29.488-6.163-6.447-9.86-3.698-23.04 6.163-29.488l123.639-80.782a21.259 21.259 0 0 1 23.324 0L886.898 619.9c6.068 3.982 9.67 10.62 9.67 17.825s-3.602 13.938-9.67 17.826L524.23 892.587A21.99 21.99 0 0 1 512.474 896z m0-474.074c-11.757 0-21.333-9.576-21.333-21.333v-251.26c0-11.757 9.576-21.333 21.333-21.333s21.333 9.576 21.333 21.333v251.26c0 11.757-9.576 21.333-21.333 21.333z m0 474.074c-11.757 0-21.333-9.576-21.333-21.333v-251.26c0-11.757 9.576-21.333 21.333-21.333s21.333 9.576 21.333 21.333v251.26c0 11.757-9.576 21.333-21.333 21.333z" p-id="11663"></path>
-                </svg>
-              </SvgIcon>
-            }
-            type={
-              match.pathname === match.pathnameBase + AppManagerRoutes.ProcessEngine ||
-                match.pathname === match.pathnameBase + AppManagerRoutes.NotificationEngine
-                ?
-                "primary"
-                :
-                undefined
-            }
-          >
-            {t("Engines.Title")}
-            <DownOutlined style={{ fontSize: 12 }} />
-          </Button>
-        </Dropdown>
+        <Button shape="round"
+          className='nav-button'
+          icon={
+            <SvgIcon>
+              <svg className='nav-icon' fill="currentColor" style={{ width: 18, height: 16 }} viewBox="0 0 1024 1024">
+                <path d="M512.474 644.74c-4.077 0-8.154-1.137-11.662-3.507L138.145 404.196c-6.068-3.983-9.67-10.62-9.67-17.826s3.602-13.937 9.67-17.825l362.667-237.037a21.259 21.259 0 0 1 23.324 0l362.667 237.037c6.068 3.982 9.671 10.62 9.671 17.825s-3.603 13.938-9.671 17.826l-134.732 88.083c-9.86 6.447-23.04 3.697-29.487-6.163-6.448-9.861-3.698-23.04 6.163-29.488l107.425-70.163L512.474 174.84 188.776 386.37l323.698 211.532 111.882-73.197c9.86-6.447 23.04-3.698 29.487 6.163 6.447 9.86 3.698 23.04-6.163 29.488l-123.639 80.782c-3.413 2.465-7.49 3.603-11.567 3.603z m0 251.26c-4.077 0-8.154-1.138-11.662-3.508L138.145 655.455c-6.068-3.982-9.67-10.62-9.67-17.825s3.602-13.938 9.67-17.826l134.732-88.083c9.86-6.447 23.04-3.697 29.487 6.163 6.448 9.861 3.698 23.04-6.163 29.488l-107.425 70.163 323.698 211.532 323.698-211.532-323.698-211.437-111.881 73.197c-9.861 6.447-23.04 3.698-29.488-6.163-6.447-9.86-3.698-23.04 6.163-29.488l123.639-80.782a21.259 21.259 0 0 1 23.324 0L886.898 619.9c6.068 3.982 9.67 10.62 9.67 17.825s-3.602 13.938-9.67 17.826L524.23 892.587A21.99 21.99 0 0 1 512.474 896z m0-474.074c-11.757 0-21.333-9.576-21.333-21.333v-251.26c0-11.757 9.576-21.333 21.333-21.333s21.333 9.576 21.333 21.333v251.26c0 11.757-9.576 21.333-21.333 21.333z m0 474.074c-11.757 0-21.333-9.576-21.333-21.333v-251.26c0-11.757 9.576-21.333 21.333-21.333s21.333 9.576 21.333 21.333v251.26c0 11.757-9.576 21.333-21.333 21.333z" p-id="11663"></path>
+              </svg>
+            </SvgIcon>
+          }
+          type={
+            match.pathname.startsWith(match.pathnameBase + AppManagerRoutes.Engines) 
+              ?
+              "primary"
+              :
+              undefined
+          }
+          onClick={handleGotoEngines}
+        >
+          {t("Engines.Title")}
+        </Button>
         {/* <Button shape="round" className='nav-button' icon={
           <SvgIcon>
             <svg className='nav-icon' viewBox="0 0 24 24">

@@ -12,41 +12,7 @@ const KeyCloak = "http://localhost:18080/auth/realms/camunda-platform/protocol/o
 // --data-urlencode 'grant_type=client_credentials'
 
 export function useProcessInstances() {
-  useEffect(() => {
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-    myHeaders.append("origin", "http://127.0.0.1:3000");
 
-    var urlencoded = new URLSearchParams();
-    urlencoded.append("client_id", "appx");
-    urlencoded.append("client_secret", "bx5Ono2y0FYEVRWB7zw6S55pOEmKQ2kW");
-    urlencoded.append("grant_type", "client_credentials");
-
-    fetch("http://localhost:18080/auth/realms/camunda-platform/protocol/openid-connect/token",
-      {
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: JSON.stringify({
-          client_id: "appx",
-          client_secret: "bx5Ono2y0FYEVRWB7zw6S55pOEmKQ2kW",
-          grant_type: "client_credentials"
-        }),
-        redirect: 'follow',
-        mode: "cors",
-      }
-    )
-      .then(response => {
-        console.log("呵呵", response)
-        return response.text()
-      })
-      .then(result => {
-        console.log("哈哈", result)
-        console.log(result)
-      })
-      .catch(error => console.error('error', error));
-  }, [])
 }
 
 /*
