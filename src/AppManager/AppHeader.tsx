@@ -1,5 +1,5 @@
-import { AppstoreOutlined, QuestionCircleOutlined, GithubOutlined, DownOutlined, SettingOutlined, NodeIndexOutlined, BellOutlined, FileSearchOutlined } from "@ant-design/icons"
-import { Divider, Space, Button, Menu, Dropdown } from "antd"
+import { AppstoreOutlined, QuestionCircleOutlined, GithubOutlined } from "@ant-design/icons"
+import { Divider, Space, Button } from "antd"
 import { Header } from "antd/lib/layout/layout"
 import React, { memo, useCallback } from "react"
 import SvgIcon from "../common/SvgIcon"
@@ -44,26 +44,10 @@ const AppHeader = memo((props: {
     navigate(AppManagerRoutes.Auth)
   }, [navigate])
 
-  const handleGotoConfig = useCallback(() => {
-    navigate(AppManagerRoutes.SystemConfig)
-  }, [navigate])
-
   const handleGotoEngines = useCallback(() => {
     navigate(AppManagerRoutes.Configs)
   }, [navigate])
 
-  const systemMenu = (
-    <Menu
-      selectedKeys={[match.pathname.substring(1)]}
-    >
-      <Menu.Item key={AppManagerRoutes.SystemConfig}
-        icon={<SettingOutlined style={{ fontSize: 16 }} />}
-        onClick={handleGotoConfig}
-      >
-        {t("System.Config")}
-      </Menu.Item>
-    </Menu>
-  );
   return (
     <Header className={clx("header", { "float": scrolled })}>
       <div className='logo'>
@@ -98,7 +82,7 @@ const AppHeader = memo((props: {
           type={match.pathname === match.pathnameBase + AppManagerRoutes.Model ? "primary" : undefined}
           shape="round"
           icon={<SvgIcon>
-            <svg style={{ width: "16px", height: "16px" }} viewBox="0 0 1024 1024">
+            <svg style={{ width: "16px", height: "16px" }} fill="currentColor" viewBox="0 0 1024 1024">
               <path d="M907.8 226.4l0.1-0.2L526 98.2l-13.4-4.5c-0.4-0.1-0.8-0.1-1.2 0l-13.3 4.5-381.8 128 0.1 0.2c-7.7 3.2-13.4 10.7-13.4 20v509.4c0 0.7 0.4 1.4 1.1 1.7l382 162.1 13.2 5.6 12.1 5.1c0.5 0.2 1 0.2 1.4 0l12.1-5.1 13.2-5.6 382-162.1c0.7-0.3 1.1-0.9 1.1-1.7V246.3c-0.1-9.2-5.8-16.7-13.4-19.9zM483.5 862L156 723c-0.7-0.3-1.1-0.9-1.1-1.7V294.9c0-1.3 1.3-2.2 2.5-1.7l327.5 139c0.7 0.3 1.1 0.9 1.1 1.7v426.4c0 1.3-1.3 2.2-2.5 1.7z m27.8-475L201.9 255.6c-1.5-0.7-1.5-2.9 0.1-3.4l310.1-103.9 310 103.9c1.6 0.5 1.7 2.7 0.1 3.4L512.7 387c-0.4 0.2-1 0.2-1.4 0zM868 723L540.5 862c-1.2 0.5-2.5-0.4-2.5-1.7V433.9c0-0.7 0.4-1.4 1.1-1.7l327.5-139c1.2-0.5 2.5 0.4 2.5 1.7v426.4c0 0.7-0.4 1.4-1.1 1.7z" p-id="16762"></path>
             </svg>
           </SvgIcon>
@@ -124,7 +108,7 @@ const AppHeader = memo((props: {
           type={match.pathname === match.pathnameBase + AppManagerRoutes.Auth ? "primary" : undefined}
           shape="round"
           icon={<SvgIcon>
-            <svg style={{ width: "16px", height: "16px" }} viewBox="0 0 1024 1024">
+            <svg style={{ width: "16px", height: "16px" }} fill="currentColor" viewBox="0 0 1024 1024">
               <path d="M513.169577 0L115.983092 126.164413c-14.864629 4.708299-24.960981 18.503314-24.980974 34.09768l2.04926 496.120737 0.46983 5.667952a347.046602 347.046602 0 0 0 98.244502 166.21994c62.43744 61.587747 215.662075 142.098656 281.048449 176.456242 10.276287 5.408046 17.943517 9.416598 22.331931 11.84572l7.457305 4.048537a17.468688 17.468688 0 0 0 16.324102 0.209924l10.866074-5.537999c38.366137-18.753224 232.545975-115.808155 304.749885-186.982438 47.872702-44.953757 81.970382-102.602927 98.284487-166.21994l2.299169-501.618751a35.791068 35.791068 0 0 0-24.980973-34.307604L513.169577 0z m355.171667 652.834113a295.624183 295.624183 0 0 1-79.791169 130.632798c-57.239318 56.469596-212.38326 137.110458-268.772885 165.540186a17.403712 17.403712 0 0 1-16.064196 0C446.21377 918.837998 293.628904 838.666966 237.969015 783.726817a294.415619 294.415619 0 0 1-79.831155-130.632798L156.128586 192.140574a15.91425 15.91425 0 0 1 11.036013-15.174517L502.383475 70.414557a35.401209 35.401209 0 0 1 21.312299 0l335.218876 106.5515a15.902254 15.902254 0 0 1 11.12598 15.174517l-1.919307 460.703535h0.219921zM519.227389 239.413493c38.805978-0.079971 76.062516 15.254488 103.562579 42.614602a142.950348 142.950348 0 0 1 42.624599 102.273046 142.968342 142.968342 0 0 1-43.224382 102.01314 146.032234 146.032234 0 0 1-67.215713 37.126585l-0.419848 60.478148h60.6081c9.646514-0.079971 18.933159 3.688667 25.800678 10.476214a36.234907 36.234907 0 0 1 10.776106 25.670725 35.860043 35.860043 0 0 1-10.826088 25.57076A36.746722 36.746722 0 0 1 614.962797 656.212892h-60.608101l-0.259906 100.93353a35.877037 35.877037 0 0 1-10.826088 25.57076 36.677747 36.677747 0 0 1-25.950624 10.566182c-9.646514 0.079971-18.933159-3.688667-25.800677-10.476214a36.251901 36.251901 0 0 1-10.776106-25.670725l0.899675-233.905483a145.674364 145.674364 0 0 1-66.955807-37.336509 143.0843 143.0843 0 0 1 0.46983-204.586078 146.827947 146.827947 0 0 1 103.912453-42.114782l0.159943 0.21992z m88.138153 143.158273a83.41486 83.41486 0 0 0-25.100931-60.13827c-33.84777-33.217997-88.038189-33.337954-122.025908-0.24991a83.175946 83.175946 0 0 0-25.570761 59.878364 84.142597 84.142597 0 0 0 25.100931 60.218242 85.863975 85.863975 0 0 0 60.868006 24.891006c46.973027-0.459834 85.209212-37.906303 86.648692-84.859338l0.079971 0.259906z m0 0" p-id="7181"></path>
             </svg>
           </SvgIcon>
@@ -134,31 +118,6 @@ const AppHeader = memo((props: {
         >
           {t("System.Auth")}
         </Button>
-        <Dropdown overlay={systemMenu} trigger={['click']}>
-          <Button
-            shape="round" className='nav-button'
-            icon={
-              <SvgIcon>
-                <svg className='nav-icon' viewBox="0 0 24 24">
-                  <path fill="currentColor" d="M21.7 18.6V17.6L22.8 16.8C22.9 16.7 23 16.6 22.9 16.5L21.9 14.8C21.9 14.7 21.7 14.7 21.6 14.7L20.4 15.2C20.1 15 19.8 14.8 19.5 14.7L19.3 13.4C19.3 13.3 19.2 13.2 19.1 13.2H17.1C16.9 13.2 16.8 13.3 16.8 13.4L16.6 14.7C16.3 14.9 16.1 15 15.8 15.2L14.6 14.7C14.5 14.7 14.4 14.7 14.3 14.8L13.3 16.5C13.3 16.6 13.3 16.7 13.4 16.8L14.5 17.6V18.6L13.4 19.4C13.3 19.5 13.2 19.6 13.3 19.7L14.3 21.4C14.4 21.5 14.5 21.5 14.6 21.5L15.8 21C16 21.2 16.3 21.4 16.6 21.5L16.8 22.8C16.9 22.9 17 23 17.1 23H19.1C19.2 23 19.3 22.9 19.3 22.8L19.5 21.5C19.8 21.3 20 21.2 20.3 21L21.5 21.4C21.6 21.4 21.7 21.4 21.8 21.3L22.8 19.6C22.9 19.5 22.9 19.4 22.8 19.4L21.7 18.6M18 19.5C17.2 19.5 16.5 18.8 16.5 18S17.2 16.5 18 16.5 19.5 17.2 19.5 18 18.8 19.5 18 19.5M12.3 22H3C1.9 22 1 21.1 1 20V4C1 2.9 1.9 2 3 2H21C22.1 2 23 2.9 23 4V13.1C22.4 12.5 21.7 12 21 11.7V6H3V20H11.3C11.5 20.7 11.8 21.4 12.3 22Z" />
-                </svg>
-              </SvgIcon>
-            }
-            type={
-              match.pathname === match.pathnameBase + AppManagerRoutes.Model ||
-                match.pathname === match.pathnameBase + AppManagerRoutes.Api ||
-                match.pathname === match.pathnameBase + AppManagerRoutes.Auth ||
-                match.pathname === match.pathnameBase + AppManagerRoutes.SystemConfig
-                ?
-                "primary"
-                :
-                undefined
-            }
-          >
-            {t("SystemConfig")}
-            <DownOutlined style={{ fontSize: 12 }} />
-          </Button>
-        </Dropdown>
         <Button shape="round"
           className='nav-button'
           icon={
