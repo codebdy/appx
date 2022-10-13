@@ -77,10 +77,14 @@
     "SearchEngine": "搜索引擎",
     "SystemConfig": "系统配置"
   },
+  "Auth": {
+    "Title": "权限管理",
+    "UiAuth": "界面权限",
+    "ModelAuth": "模型权限"
+  },
   "System": {
     "Model": "系统模型",
     "API": "系统接口",
-    "Auth": "权限管理",
     "Config": "系统配置",
     "Devices": "设备管理"
   },

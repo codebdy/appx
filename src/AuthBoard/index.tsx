@@ -4,18 +4,14 @@ import { Outlet, useNavigate } from "react-router-dom"
 import { ListConentLayout } from "../common/ListConentLayout"
 import { MenuProps } from 'antd';
 import { Menu } from 'antd';
-import { BellOutlined, FileSearchOutlined, NodeIndexOutlined, SettingOutlined } from "@ant-design/icons";
+import { BellOutlined, NodeIndexOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
-import { AppManagerRoutes } from "../AppManager/AppHeader";
 import "./style.less";
 
-export enum ConfigsRoutes {
-  SystemConfig = "system-config",
-  ProcessEngine = "porcess-engine",
-  NotificationEngine = "notification-engine",
-  SearchEngine = "search-engine",
+export enum AuthRoutes {
+  UiAuth = "ui-auth",
+  ModelAuth = "model-auth",
 }
-
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -39,10 +35,8 @@ export const AuthBoard = memo(() => {
   const { t } = useTranslation();
   const navigate = useNavigate()
   const items: MenuProps['items'] = useMemo(() => [
-    getItem(t("Configs.ProcessEngine"), ConfigsRoutes.ProcessEngine, <NodeIndexOutlined />, null),
-    getItem(t("Configs.NotificationEngine"), ConfigsRoutes.NotificationEngine, <BellOutlined />, null),
-    getItem(t("Configs.SearchEngine"), ConfigsRoutes.SearchEngine, <FileSearchOutlined />, null),
-    getItem(t("Configs.SystemConfig"), AppManagerRoutes.SystemConfig, <SettingOutlined />, null),
+    getItem(t("Auth.UiAuth"), AuthRoutes.UiAuth, <NodeIndexOutlined />, null),
+    getItem(t("Auth.ModelAuth"), AuthRoutes.ModelAuth, <BellOutlined />, null),
   ], []);
 
   const onClick: MenuProps['onClick'] = useCallback(e => {

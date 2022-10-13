@@ -116,7 +116,7 @@ const AppHeader = memo((props: {
           className='nav-button'
           onClick={handleGotoAuth}
         >
-          {t("System.Auth")}
+          {t("Auth.Title")}
         </Button>
         <Button shape="round"
           className='nav-button'
