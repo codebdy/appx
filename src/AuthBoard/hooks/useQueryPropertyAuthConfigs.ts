@@ -1,7 +1,7 @@
 import { gql } from "awesome-graphql-client";
 import { useMemo } from "react";
 import { useQuery } from "../../enthooks/hooks/useQuery";
-import { IProperyAuthConfig } from "../../model";
+import { IPropertyAuthConfig } from "../../model";
 import { useAppParams } from "../../plugin-sdk/contexts/appRoot";
 
 const authConfigGql = gql`
@@ -37,7 +37,7 @@ export function useQueryPropertyAuthConfigs() {
     }
   }, [appParams])
 
-  const { data, error, loading } = useQuery<IProperyAuthConfig>(args)
+  const { data, error, loading } = useQuery<IPropertyAuthConfig>(args)
 
   return { properyAuthConfigs: data?.properyAuthConfigs?.nodes, error, loading }
 }

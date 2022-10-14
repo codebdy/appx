@@ -6,6 +6,7 @@ import { IAuthConfig, RowType } from "./IAuthConfig";
 import { ExpandSwitch } from "./ExpandSwitch";
 import { ID } from "../../shared";
 import { ClassAuthChecker } from "./ClassAuthChecker";
+import { PropertyAuthChecker } from "./PropertyAuthChecker";
 
 export function useColumns(roleId: ID) {
   const { t } = useTranslation();
@@ -62,15 +63,29 @@ export function useColumns(roleId: ID) {
       dataIndex: 'read',
       key: 'read',
       width: '12%',
-      render: (_, { rowType, classUuid, classConfig }) => {
-        return rowType === RowType.Class &&
-          <ClassAuthChecker
-            classConfig={classConfig}
-            classUuid={classUuid}
-            roleId={roleId}
-            field={"canRead"}
-            expressionField="readExpression"
-          />
+      render: (_, { rowType, classUuid, classConfig, propertyConfig, propertyUuid }) => {
+        return <>
+          {
+            rowType === RowType.Class &&
+            <ClassAuthChecker
+              classConfig={classConfig}
+              classUuid={classUuid}
+              roleId={roleId}
+              field={"canRead"}
+              expressionField="readExpression"
+            />
+          }
+          {
+            rowType === RowType.Property &&
+            <PropertyAuthChecker
+              propertyUuid={propertyUuid}
+              propertyConfig={propertyConfig}
+              roleId={roleId}
+              field={"canRead"}
+              expressionField="readExpression"
+            />
+          }
+        </>
       }
     },
     {
@@ -78,15 +93,28 @@ export function useColumns(roleId: ID) {
       dataIndex: 'update',
       key: 'update',
       width: '12%',
-      render: (_, { rowType, classUuid, classConfig }) => {
-        return rowType === RowType.Class &&
-          <ClassAuthChecker
-            classConfig={classConfig}
-            classUuid={classUuid}
-            roleId={roleId}
-            field={"canUpdate"}
-            expressionField="upateExpression"
-          />
+      render: (_, { rowType, classUuid, classConfig, propertyConfig, propertyUuid }) => {
+        return <>
+          {rowType === RowType.Class &&
+            <ClassAuthChecker
+              classConfig={classConfig}
+              classUuid={classUuid}
+              roleId={roleId}
+              field={"canUpdate"}
+              expressionField="upateExpression"
+            />
+          }
+          {
+            rowType === RowType.Property &&
+            <PropertyAuthChecker
+              propertyUuid={propertyUuid}
+              propertyConfig={propertyConfig}
+              roleId={roleId}
+              field={"canUpdate"}
+              expressionField="upateExpression"
+            />
+          }
+        </>
       }
     },
   ], [roleId]);

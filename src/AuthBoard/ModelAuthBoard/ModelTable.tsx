@@ -7,14 +7,14 @@ import { useEdittingAppUuid } from '../../hooks/useEdittingAppUuid';
 import { useColumns } from './useColumns';
 import { IAuthConfig, RowType } from './IAuthConfig';
 import { useGetPackageCanAuthClasses } from '../hooks/useGetPackageCanAuthClasses';
-import { IClassAuthConfig, IProperyAuthConfig } from '../../model';
+import { IClassAuthConfig, IPropertyAuthConfig } from '../../model';
 import { ID } from '../../shared';
 import { useGetClassAttributes } from '../hooks/useGetClassAttributes';
 
 export const ModelTable = memo((
   props: {
     classConfigs: IClassAuthConfig[],
-    propertyConfigs: IProperyAuthConfig[],
+    propertyConfigs: IPropertyAuthConfig[],
     roleId: ID,
   }
 ) => {
@@ -54,7 +54,7 @@ export const ModelTable = memo((
                   key: attr.uuid,
                   attributeUuid: attr.uuid,
                   name: p(attr.label || attr.name),
-                  rowType: RowType.Atrribute,
+                  rowType: RowType.Property,
                   propertyConfig: getPropertyConfig(attr.uuid),
                 }
               })

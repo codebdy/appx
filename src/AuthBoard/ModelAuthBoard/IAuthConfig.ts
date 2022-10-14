@@ -1,15 +1,15 @@
-import { IClassAuthConfig, IProperyAuthConfig } from "../../model";
+import { IClassAuthConfig, IPropertyAuthConfig } from "../../model";
 
 export enum RowType {
   Package,
   Class,
-  Atrribute,
+  Property,
 }
 
 export interface IAuthConfig {
   classUuid?: string;
-  attributeUuid?: string;
+  propertyUuid?: string;
   rowType: RowType;
   classConfig?: IClassAuthConfig;
-  propertyConfig?: IProperyAuthConfig;
+  propertyConfig?: IPropertyAuthConfig;
 }

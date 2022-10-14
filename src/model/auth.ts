@@ -22,7 +22,7 @@ export interface IClassAuthConfig extends IModelAuthConfig {
   classUuid?: string;
 }
 
-export interface IProperyAuthConfig extends IModelAuthConfig {
+export interface IPropertyAuthConfig extends IModelAuthConfig {
   propertyUuid?: string;
 }
 
@@ -49,6 +49,6 @@ export interface IClassAuthConfigInput extends IModelAuthConfigInput {
   classUuid?: string;
 }
 
-export interface IProperyAuthConfigInput extends IModelAuthConfigInput {
+export interface IPropertyAuthConfigInput extends IModelAuthConfigInput {
   propertyUuid?: string;
 }
