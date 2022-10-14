@@ -54,8 +54,8 @@ export const AuthBoard = memo(() => {
   useShowError(error || rolesError);
 
   const items: MenuProps['items'] = useMemo(() => [
-    getItem(t("Auth.MenuAuth"), AuthRoutes.MenuAuth, <MenuOutlined />, null),
-    getItem(t("Auth.ComponentAuth"), AuthRoutes.ComponentAuth, <LayoutOutlined />, null),
+    getItem(t("Auth.MenuAuth"), AuthRoutes.MenuAuth, <MenuOutlined />, []),
+    getItem(t("Auth.ComponentAuth"), AuthRoutes.ComponentAuth, <LayoutOutlined />, []),
     getItem(t("Auth.ModelAuth"),
       AuthRoutes.ModelAuth,
       <SvgIcon>

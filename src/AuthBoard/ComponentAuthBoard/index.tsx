@@ -1,7 +1,7 @@
 import React from "react"
 import { memo } from "react"
 import { ListConentLayout } from "../../common/ListConentLayout"
-import { RoleList } from "../ModelAuthBoard/RoleList"
+import { RoleList } from "../RoleList"
 
 export const ComponentAuthBoard = memo(() => {
   return (
