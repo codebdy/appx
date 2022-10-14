@@ -64,7 +64,7 @@ export const ModelTable = memo((
         }),
       }
     }) || []
-  }, [packages, getClassConfig])
+  }, [packages, getClasses, getClassConfig, getPropertyConfig])
 
   return (
     <Table
