@@ -1,11 +1,12 @@
 import { Button, Checkbox, Switch } from "antd"
-import React, { useCallback } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import { memo } from "react"
 import { IClassAuthConfig } from "../../model"
 import { useUpsertClassAuthConfig } from "../hooks/useUpsertClassAuthConfig";
 import { useShowError } from "../../hooks/useShowError";
 import { ID } from "../../shared";
-import { FunctionOutlined } from "@ant-design/icons";
+import { FunctionOutlined, LoadingOutlined } from "@ant-design/icons";
+import { CheckboxChangeEvent } from "antd/es/checkbox";
 
 export const ClassAuthChecker = memo((
   props: {
@@ -16,29 +17,46 @@ export const ClassAuthChecker = memo((
     expressionField: string,
   }
 ) => {
+  const [checked, setChecked] = useState(false);
   const { classUuid, classConfig, roleId, field } = props;
   const [postClassConfig, { error, loading }] = useUpsertClassAuthConfig();
   useShowError(error)
 
-  const handleChange = useCallback((checked: boolean) => {
+  useEffect(() => {
+    setChecked(classConfig?.[field])
+  }, [classConfig, field])
+
+  const handleChange = useCallback((e: CheckboxChangeEvent) => {
+    setChecked(e.target.checked);
     postClassConfig(
       {
         ...classConfig,
         classUuid,
         roleId,
-        expanded: checked,
+        [field]: e.target.checked,
       }
     )
   }, [postClassConfig, roleId])
 
   return (
     <>
-      <Checkbox
-        //loading={loading}
-        checked={classConfig?.[field]}
-      //onChange={handleChange}
-      />
-      <Button type="text" shape="circle" icon={<FunctionOutlined />} />
+      {
+        loading
+          ? <LoadingOutlined />
+          : <Checkbox
+            checked={checked}
+            onChange={handleChange}
+          />
+      }
+      {
+        classConfig?.[field] &&
+        <Button
+          type="text"
+          shape="circle"
+          icon={<FunctionOutlined />}
+        />
+      }
+
     </>
   )
 })
