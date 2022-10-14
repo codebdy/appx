@@ -32,7 +32,10 @@ export const ModelAuthBoard = memo(() => {
         <Breadcrumb.Item>{p(selectedRole?.name)}</Breadcrumb.Item>
       </Breadcrumb>
       <div style={{ flex: 1, overflow: "auto" }}>
-        <ModelTable />
+        {
+          selectedRole &&
+          <ModelTable />
+        }
       </div>
     </ListConentLayout>
   )
