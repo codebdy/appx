@@ -1,7 +1,8 @@
 import { Space, Switch, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import type { TableRowSelection } from 'antd/es/table/interface';
-import React, { memo, useState } from 'react';
+import React, { memo, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface DataType {
   key: React.ReactNode;
@@ -11,25 +12,7 @@ interface DataType {
   children?: DataType[];
 }
 
-const columns: ColumnsType<DataType> = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-  },
-  {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
-    width: '12%',
-  },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-    width: '30%',
-    key: 'address',
-  },
-];
+
 
 const data: DataType[] = [
   {
@@ -110,7 +93,26 @@ const rowSelection: TableRowSelection<DataType> = {
 };
 
 export const ModelTable: React.FC = memo(() => {
-  const [checkStrictly, setCheckStrictly] = useState(false);
+  const { t } = useTranslation();
+  const columns: ColumnsType<DataType> = useMemo(() => [
+    {
+      title: t("AppUml.Class"),
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: 'Age',
+      dataIndex: 'age',
+      key: 'age',
+      width: '12%',
+    },
+    {
+      title: 'Address',
+      dataIndex: 'address',
+      width: '30%',
+      key: 'address',
+    },
+  ], []);
 
   return (
     <Table
