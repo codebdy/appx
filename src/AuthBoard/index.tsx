@@ -47,7 +47,7 @@ export const AuthBoard = memo(() => {
   const navigate = useNavigate()
   const appUuid = useEdittingAppUuid();
   const { loading, error } = useReadMeta(appUuid);
-  const { roles, loading: rolesLoading, error: rolesError } = useQueryRoles();
+  const { loading: rolesLoading, error: rolesError } = useQueryRoles();
   const packages = useRecoilValue(packagesState(appUuid))
   const p = useParseLangMessage();
   const match = useMatch(`/${AppManagerRoutes.Auth}/*`)
