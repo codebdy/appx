@@ -1,20 +1,9 @@
-import { Space, Switch, Table } from 'antd';
-import type { ColumnsType } from 'antd/es/table';
-import type { TableRowSelection } from 'antd/es/table/interface';
-import React, { memo, useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-
-interface DataType {
-  key: React.ReactNode;
-  name: string;
-  age: number;
-  address: string;
-  children?: DataType[];
-}
+import { Table } from 'antd';
+import React, { memo } from 'react';
+import { useColumns } from './useColumns';
 
 
-
-const data: DataType[] = [
+const data: any = [
   {
     key: 1,
     name: 'John Brown sr.',
@@ -79,40 +68,8 @@ const data: DataType[] = [
   },
 ];
 
-// rowSelection objects indicates the need for row selection
-const rowSelection: TableRowSelection<DataType> = {
-  onChange: (selectedRowKeys, selectedRows) => {
-    console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-  },
-  onSelect: (record, selected, selectedRows) => {
-    console.log(record, selected, selectedRows);
-  },
-  onSelectAll: (selected, selectedRows, changeRows) => {
-    console.log(selected, selectedRows, changeRows);
-  },
-};
-
 export const ModelTable: React.FC = memo(() => {
-  const { t } = useTranslation();
-  const columns: ColumnsType<DataType> = useMemo(() => [
-    {
-      title: t("AppUml.Class"),
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
-      width: '12%',
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      width: '30%',
-      key: 'address',
-    },
-  ], []);
+  const columns = useColumns();
 
   return (
     <Table
