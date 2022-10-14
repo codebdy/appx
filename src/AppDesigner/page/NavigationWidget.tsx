@@ -3,7 +3,7 @@ import { ArrowLeftOutlined } from '@ant-design/icons'
 import { Breadcrumb, Button, Divider } from 'antd'
 import { useNavigate, useParams } from "react-router-dom"
 import { IApp } from '../../model';
-import { AppConfigRouts } from '../../AppEntry/AppConfigRouts';
+import { AppEntryRouts } from '../../AppEntry/AppEntryRouts';
 import { useParseLangMessage } from '../../plugin-sdk/hooks/useParseLangMessage';
 import { DesignerRoutes } from '../AppDesignerContent';
 import { useTranslation } from 'react-i18next';
@@ -22,7 +22,7 @@ export const NavigationWidget = memo((
   const navigate = useNavigate()
   const parse = useParseLangMessage();
   const handleBack = useCallback(() => {
-    navigate(`/config-app/${appUuid}/${AppConfigRouts.App}`)
+    navigate(`/config-app/${appUuid}/${AppEntryRouts.App}`)
   }, [appUuid, navigate]);
   const pageId = useSelectedPageId();
   const pages = usePages();

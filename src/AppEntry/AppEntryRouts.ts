@@ -1,4 +1,4 @@
-export enum AppConfigRouts {
+export enum AppEntryRouts {
   Config = "config",
   Ui = "ui",
   App = "app",

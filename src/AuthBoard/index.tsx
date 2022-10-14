@@ -17,6 +17,7 @@ import { useParseLangMessage } from "../plugin-sdk";
 import { AppManagerRoutes } from "../AppManager/AppHeader";
 import { useQueryRoles } from "./hooks/useQueryRoles";
 import { SYSTEM_APP_UUID } from "../consts";
+import { AppEntryRouts } from "../AppEntry/AppEntryRouts";
 
 export enum AuthRoutes {
   MenuAuth = "menu-auth",
@@ -51,7 +52,12 @@ export const AuthBoard = memo(() => {
   const { loading: rolesLoading, error: rolesError } = useQueryRoles();
   const packages = useRecoilValue(packagesState(appUuid))
   const p = useParseLangMessage();
-  const match = useMatch(`/${AppManagerRoutes.Auth}/*`)
+  const matchString = useMemo(() => {
+    return appUuid === SYSTEM_APP_UUID
+      ? `/${AppManagerRoutes.Auth}/*`
+      : `/config-app/${appUuid}/${AppEntryRouts.Auth}/*`
+  }, [])
+  const match = useMatch(matchString)
   useShowError(error || rolesError);
 
   const appItems = useMemo(() => {
@@ -91,6 +97,11 @@ export const AuthBoard = memo(() => {
     navigate(e.key)
   }, [navigate]);
 
+  const activeKey = useMemo(() => {
+    return match?.params?.["*"] ||
+      (appUuid === SYSTEM_APP_UUID ? AuthRoutes.ModelAuth : AuthRoutes.MenuAuth)
+  }, [match])
+
   return (
     <Spin tip="Loading..." spinning={loading || rolesLoading}>
       <ListConentLayout
@@ -98,9 +109,10 @@ export const AuthBoard = memo(() => {
         listWidth={200}
         list={
           <Menu
+            key = {activeKey}
             style={{ flex: 1 }}
             onClick={onClick}
-            activeKey={match?.params?.["*"] || AuthRoutes.MenuAuth}
+            activeKey={activeKey}
             mode="inline"
             items={items}
           />

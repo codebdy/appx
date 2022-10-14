@@ -5,7 +5,7 @@ import React, { useCallback } from "react"
 import { memo } from "react"
 import { useMatch, useNavigate, useParams } from "react-router-dom"
 import { IApp } from "../model"
-import { AppConfigRouts } from "./AppConfigRouts"
+import { AppEntryRouts } from "./AppEntryRouts"
 import { useTranslation } from "react-i18next"
 import SelectLang from "../plugins/framewidgets/pc/LangSelect/view"
 import { useParseLangMessage } from "../plugin-sdk/hooks/useParseLangMessage"
@@ -42,7 +42,7 @@ const EntryHeader = memo((props: {
         onSelect={handleSelect}
         items={[
           {
-            key: AppConfigRouts.Ui,
+            key: AppEntryRouts.Ui,
             label: <>
               {
                 t("AppEntry.UIDesign")
@@ -52,7 +52,7 @@ const EntryHeader = memo((props: {
             icon: <DesktopOutlined />,
             children: [
               {
-                key: AppConfigRouts.App,
+                key: AppEntryRouts.App,
                 label: t("AppEntry.PageDesign"),
                 icon: <SvgIcon>
                   <svg style={{ width: "14px", height: "14px" }} viewBox="0 0 1024 1024">
@@ -63,7 +63,7 @@ const EntryHeader = memo((props: {
                 </SvgIcon>
               },
               {
-                key: AppConfigRouts.Frame,
+                key: AppEntryRouts.Frame,
                 label: t("AppEntry.FrameDesign"),
                 icon: <LayoutOutlined />
               },
@@ -71,7 +71,7 @@ const EntryHeader = memo((props: {
           },
 
           {
-            key: AppConfigRouts.Model,
+            key: AppEntryRouts.Model,
             label: <>
               {t("AppEntry.Model")}
               <DownOutlined style={{ fontSize: 10, marginLeft: 8 }} />
@@ -81,7 +81,7 @@ const EntryHeader = memo((props: {
             </SvgIcon>,
             children: [
               {
-                key: AppConfigRouts.Uml,
+                key: AppEntryRouts.Uml,
                 label: t("AppEntry.UMLModel"),
                 icon: <SvgIcon>
                   <svg style={{ width: "16px", height: "16px" }} viewBox="0 0 900 900">
@@ -91,7 +91,7 @@ const EntryHeader = memo((props: {
 
               },
               {
-                key: AppConfigRouts.Bpmn,
+                key: AppEntryRouts.Bpmn,
                 label: t("AppEntry.BPMNFlow"),
                 icon: <SvgIcon>
                   <svg style={{ width: "15px", height: "15px" }} viewBox="0 0 1024 1024">
@@ -100,7 +100,7 @@ const EntryHeader = memo((props: {
                 </SvgIcon>
               },
               {
-                key: AppConfigRouts.Dmn,
+                key: AppEntryRouts.Dmn,
                 label: t("AppEntry.DMN"),
                 icon: <SvgIcon>
                   <svg style={{ width: "16px", height: "16px" }} viewBox="0 0 900 900">
@@ -111,19 +111,19 @@ const EntryHeader = memo((props: {
             ]
           },
           {
-            key: AppConfigRouts.Api,
+            key: AppEntryRouts.Api,
             label: t("AppEntry.AppApi"),
             icon: <ApiOutlined />,
           },
           {
-            key: AppConfigRouts.Auth,
+            key: AppEntryRouts.Auth,
             label: t("AppEntry.ModelAuth"),
             icon: <SvgIcon>
               <svg style={{ width: "15px", height: "15px" }} viewBox="0 0 1024 1024" version="1.1"><path d="M936.91319 88.823861a27.370771 27.370771 0 0 0-18.982318-7.167597c-277.055212 6.143655-388.231738-75.417303-388.704327-75.889892a27.213241 27.213241 0 0 0-33.435661 0c-1.535914 0-104.442135 75.811128-359.285671 75.811127-9.806219 0-20.085026 0-30.954569-0.472589a25.401651 25.401651 0 0 0-18.50973 7.167598 26.583123 26.583123 0 0 0-8.270305 18.903554v372.557541c0 4.135152-5.198477 405.835672 424.699844 543.162114a22.251058 22.251058 0 0 0 8.270305 1.063325c2.756768-0.078765 5.552919-0.393824 8.270305-1.063325C935.337894 893.760815 944.592759 484.93208 945.183495 480.324339V107.294209a28.434096 28.434096 0 0 0-8.270305-18.470348z m-45.801735 45.014088v346.368242c0 3.623181-10.239425 370.430891-379.370697 490.389694-384.096585-126.96887-379.961433-474.991174-379.961433-489.798957v-346.958979h4.135152c218.848019 0 333.096372-51.669714 375.235545-76.795688 42.729908 25.125974 156.505673 76.795688 375.235544 76.795688h4.725889z" p-id="8408"></path><path d="M679.470416 452.953568h-29.576185V393.761815A118.462271 118.462271 0 0 0 531.786401 275.73275a118.462271 118.462271 0 0 0-118.107829 118.068447V452.953568h-29.65495a29.694333 29.694333 0 0 0-29.576185 29.536803v236.294423a29.694333 29.694333 0 0 0 29.536803 29.576186h295.368029a29.694333 29.694333 0 0 0 29.536803-29.536803v-236.294424a29.418656 29.418656 0 0 0-29.418656-29.536803zM457.905012 393.761815c0-41.312142 32.451101-73.842007 73.881389-73.842007 41.469671 0 73.88139 32.411718 73.88139 73.842007V452.953568H457.905012V393.879962z m206.75762 310.057666H398.792023v-206.718238h265.870609v206.75762z" p-id="8409"></path><path d="M512.095199 512.027174c-22.369205 0-39.500551 20.47885-39.500551 47.298267 0 16.934434 7.482657 32.529866 19.691202 40.997082v45.683589c0 12.996193 8.821658 23.550678 19.691202 23.550678s19.691202-10.554484 19.691202-23.59006v-45.644207c11.893486-7.797716 19.691202-23.550678 19.691202-40.997082 0.118147-26.780035-17.013198-47.298267-39.264257-47.298267z" p-id="8410"></path></svg>
             </SvgIcon>
           },
           {
-            key: AppConfigRouts.Plugins,
+            key: AppEntryRouts.Plugins,
             label: t("AppEntry.Plugins"),
             icon:
               <SvgIcon>
@@ -133,7 +133,7 @@ const EntryHeader = memo((props: {
               </SvgIcon>
           },
           {
-            key: AppConfigRouts.Config,
+            key: AppEntryRouts.Config,
             label: t("AppEntry.BaseConfig"),
             icon: <SettingOutlined />
           },

@@ -10,7 +10,7 @@ import { AppManagerRoutes } from './AppManager/AppHeader';
 import Install from './Install';
 import { INDEX_URL, INSTALL_URL, LOGIN_URL } from './consts';
 import AppUml from './AppUml';
-import { AppConfigRouts } from './AppEntry/AppConfigRouts';
+import { AppEntryRouts } from './AppEntry/AppEntryRouts';
 import AppUis from './AppEntry/AppUis';
 import AppRunner from './AppRunner';
 import AppConfig from './AppConfig';
@@ -60,14 +60,14 @@ const App = memo(() => {
               </Route>
             </Route>
             <Route path="/config-app/:appUuid" element={<AppEntry />}>
-              <Route path={AppConfigRouts.App} element={<AppUis />} />
-              <Route path={AppConfigRouts.Bpmn} element={<AppBpmn />} />
-              <Route path={AppConfigRouts.Dmn} element={<AppDmn />} />
-              <Route path={AppConfigRouts.Uml} element={<AppUml />} />
-              <Route path={AppConfigRouts.Api} element={<ApiBoard />} />
-              <Route path={AppConfigRouts.Plugins} element={<AppPlugins />} />
-              <Route path={AppConfigRouts.Frame} element={<AppFrames />} />
-              <Route path={AppConfigRouts.Auth} element={<AuthBoard />}>
+              <Route path={AppEntryRouts.App} element={<AppUis />} />
+              <Route path={AppEntryRouts.Bpmn} element={<AppBpmn />} />
+              <Route path={AppEntryRouts.Dmn} element={<AppDmn />} />
+              <Route path={AppEntryRouts.Uml} element={<AppUml />} />
+              <Route path={AppEntryRouts.Api} element={<ApiBoard />} />
+              <Route path={AppEntryRouts.Plugins} element={<AppPlugins />} />
+              <Route path={AppEntryRouts.Frame} element={<AppFrames />} />
+              <Route path={AppEntryRouts.Auth} element={<AuthBoard />}>
                 <Route path={AuthRoutes.MenuAuth} element={<MenuAuthBoard />} />
                 <Route path={AuthRoutes.PageAuth} element={<PageAuthBoard />} />
                 <Route path={AuthRoutes.ModelAuth} element={<ModelAuthBoard />} />

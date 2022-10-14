@@ -4,7 +4,7 @@ import Meta from "antd/lib/card/Meta"
 import React, { memo, useCallback, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
-import { AppConfigRouts } from "../AppEntry/AppConfigRouts"
+import { AppEntryRouts } from "../AppEntry/AppEntryRouts"
 import { useParseLangMessage } from "../plugin-sdk/hooks/useParseLangMessage"
 import { useRemoveApp } from "../hooks/useRemoveApp"
 import { IApp } from "../model"
@@ -23,7 +23,7 @@ const AppCard = memo((props: {
   const parse = useParseLangMessage();
 
   const handleEdit = useCallback(() => {
-    navigate(`/config-app/${app.uuid}/${AppConfigRouts.App}`)
+    navigate(`/config-app/${app.uuid}/${AppEntryRouts.App}`)
   }, [app.uuid, navigate])
 
   const handleRemove = useCallback(() => {
