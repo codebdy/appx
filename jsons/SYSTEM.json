@@ -1154,7 +1154,7 @@
         ],
         "innerId": 1028,
         "methods": [],
-        "name": "AuthConfig",
+        "name": "ModelAuthConfig",
         "packageUuid": "PACKAGE_APPX_UUID",
         "root": false,
         "stereoType": "Abstract",
@@ -1506,7 +1506,7 @@
       },
       {
         "edges": [],
-        "name": "$inline:{\"zh-CN\":\"权限配置\"}",
+        "name": "$inline:{\"zh-CN\":\"模型权限配置\"}",
         "nodes": [],
         "packageUuid": "PACKAGE_APPX_UUID",
         "uuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826"
