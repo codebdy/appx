@@ -34,18 +34,20 @@ export const ModelTable = memo((
         name: p(pkg.name),
         rowType: RowType.Package,
         children: getClasses(pkg.uuid).map(cls => {
+          const classConfig = getClassConfig(cls.uuid);
           return {
             key: cls.uuid,
             classUuid: cls.uuid,
             name: p(cls.label || cls.name),
             rowType: RowType.Class,
-            classConfig: getClassConfig(cls.uuid),
+            classConfig: classConfig,
+            children: classConfig?.expanded ? [] : undefined,
           }
         }),
       }
     }) || []
   }, [packages, getClassConfig])
-  
+
   return (
     <Table
       columns={columns}

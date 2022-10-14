@@ -13,6 +13,7 @@ import { classesState, entitiesState, packagesState } from "../recoil";
 import _ from "lodash";
 import { AssociationMeta } from "../model";
 import { AssociationType } from "../model/IFieldSource";
+import { getParentClasses } from "./getParentClasses";
 
 export const sort = (array: { name: string }[]) => {
   return array.sort((a, b) => {
@@ -29,6 +30,37 @@ export const sort = (array: { name: string }[]) => {
     return 0;
   }) as any
 }
+
+const getEntityAssociations = (classUuid: string, classMetas: ClassMeta[], relations: RelationMeta[]) => {
+  const associations: AssociationMeta[] = [];
+  for (const relation of relations) {
+    if (relation.relationType === RelationType.INHERIT) {
+      continue;
+    }
+
+    if (!classMetas.find(cls => cls.uuid === relation.targetId) || !classMetas.find(cls => cls.uuid === relation.sourceId)) {
+      continue;
+    }
+
+    if (relation.sourceId === classUuid) {
+      associations.push({
+        name: relation.roleOfTarget,
+        label: relation.labelOfTarget,
+        typeUuid: relation.targetId,
+        associationType: relation.targetMultiplicity === RelationMultiplicity.ZERO_MANY ? AssociationType.HasMany : AssociationType.HasOne,
+      })
+    } else if (relation.targetId === classUuid) {
+      associations.push({
+        name: relation.roleOfSource,
+        label: relation.labelOfSource,
+        typeUuid: relation.sourceId,
+        associationType: relation.sourceMutiplicity === RelationMultiplicity.ZERO_MANY ? AssociationType.HasMany : AssociationType.HasOne
+      })
+    }
+  }
+  return associations;
+}
+
 
 export function useBuildMeta(): { error?: Error; loading?: boolean } {
   const appUuid = useSelectedAppUuid();
@@ -69,7 +101,7 @@ export function useBuildMeta(): { error?: Error; loading?: boolean } {
   `;
   }, [queryName]);
 
-  const metParams = useMemo(()=>({ appUuid }), [appUuid]);
+  const metParams = useMemo(() => ({ appUuid }), [appUuid]);
 
   const { data, error, loading } = useQueryOne<Meta>(
     {
@@ -79,7 +111,7 @@ export function useBuildMeta(): { error?: Error; loading?: boolean } {
 
   );
 
-  const systemParams = useMemo(()=>({appUuid: SYSTEM_APP_UUID}), []);
+  const systemParams = useMemo(() => ({ appUuid: SYSTEM_APP_UUID }), []);
   const { data: systemData, error: systemError, loading: systemLoading } = useQueryOne<Meta>(
     {
       gql: appUuid !== SYSTEM_APP_UUID ? queryGql : undefined,
@@ -87,54 +119,6 @@ export function useBuildMeta(): { error?: Error; loading?: boolean } {
     }
 
   );
-
-  const getParentClasses = useCallback((classUuid: string, classMetas: ClassMeta[], relations: RelationMeta[]) => {
-    const classes: ClassMeta[] = [];
-    for (const relation of relations) {
-      if (relation.relationType === RelationType.INHERIT) {
-        if (relation.sourceId === classUuid) {
-          const parent = classMetas.find(cls => cls.uuid === relation.targetId)
-          if (parent) {
-            classes.push(parent);
-            const parentsOfParent = getParentClasses(parent.uuid, classMetas, relations);
-            classes.push(...parentsOfParent)
-          }
-        }
-      }
-    }
-    return classes;
-  }, [])
-
-  const getEntityAssociations = useCallback((classUuid: string, classMetas: ClassMeta[], relations: RelationMeta[]) => {
-    const associations: AssociationMeta[] = [];
-    for (const relation of relations) {
-      if (relation.relationType === RelationType.INHERIT) {
-        continue;
-      }
-
-      if (!classMetas.find(cls => cls.uuid === relation.targetId) || !classMetas.find(cls => cls.uuid === relation.sourceId)) {
-        continue;
-      }
-
-      if (relation.sourceId === classUuid) {
-        associations.push({
-          name: relation.roleOfTarget,
-          label: relation.labelOfTarget,
-          typeUuid: relation.targetId,
-          associationType: relation.targetMultiplicity === RelationMultiplicity.ZERO_MANY ? AssociationType.HasMany : AssociationType.HasOne,
-        })
-      } else if (relation.targetId === classUuid) {
-        associations.push({
-          name: relation.roleOfSource,
-          label: relation.labelOfSource,
-          typeUuid: relation.sourceId,
-          associationType: relation.sourceMutiplicity === RelationMultiplicity.ZERO_MANY ? AssociationType.HasMany : AssociationType.HasOne
-        })
-      }
-    }
-    return associations;
-  }, [])
-
 
   const makeEntity = useCallback((cls: ClassMeta, classMetas: ClassMeta[], relations: RelationMeta[]) => {
     const parentClasses = getParentClasses(cls.uuid, classMetas, relations);
@@ -164,7 +148,7 @@ export function useBuildMeta(): { error?: Error; loading?: boolean } {
       const systemPackages = systemMeta?.content?.packages?.filter(pkg => pkg.sharable) || [];
       const systemClasses = systemMeta?.content?.classes?.filter(cls => getPackage(cls.packageUuid).sharable) || []
       const allClasses: ClassMeta[] = [...systemClasses, ...meta?.content?.classes || []];
-      const allRelations: RelationMeta[] = [...systemMeta?.content?.relations||[], ...meta?.content?.relations||[]];
+      const allRelations: RelationMeta[] = [...systemMeta?.content?.relations || [], ...meta?.content?.relations || []];
       setPackages([...systemPackages, ...meta?.content?.packages || []]);
       setClasses(allClasses);
       setEntitiesState(
