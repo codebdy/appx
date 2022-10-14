@@ -2,14 +2,9 @@ import { useTranslation } from "react-i18next";
 import { ColumnsType } from 'antd/es/table';
 import { useMemo } from "react";
 
-
-export interface IAuthConfig{
-
-}
-
-export function useColumns(){
+export function useColumns() {
   const { t } = useTranslation();
-  const columns: ColumnsType<IAuthConfig> = useMemo(() => [
+  const columns: ColumnsType = useMemo(() => [
     {
       title: t("AppUml.Class"),
       dataIndex: 'name',
