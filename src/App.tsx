@@ -27,9 +27,10 @@ import { NotificationEngineBoard } from './ConfigCenter/NotificationEngineBoard'
 import { ProcessEngineBoard } from './ConfigCenter/ProcessEngineBoard';
 import { SearchEngineBoard } from './ConfigCenter/SearchEngineBoard';
 import { AuthBoard, AuthRoutes } from './AuthBoard';
-import { UiAuthBoard } from './AuthBoard/UiAuthBoard';
+import { MenuAuthBoard } from './AuthBoard/MenuAuthBoard';
 import { ModelAuthBoard } from './AuthBoard/ModelAuthBoard';
 import { AppAuthBoard } from './AuthBoard/AppAuthBoard';
+import { ComponentAuthBoard } from './AuthBoard/ComponentAuthBoard';
 
 const App = memo(() => {
   return (
@@ -45,10 +46,11 @@ const App = memo(() => {
               <Route path={AppManagerRoutes.Model} element={<AppUml />} />
               <Route path={AppManagerRoutes.Api} element={<ApiBoard />} />
               <Route path={AppManagerRoutes.Auth} element={<AuthBoard />}>
-                <Route path={AuthRoutes.UiAuth} element={<UiAuthBoard />} />
+                <Route path={AuthRoutes.MenuAuth} element={<MenuAuthBoard />} />
+                <Route path={AuthRoutes.ComponentAuth} element={<ComponentAuthBoard />} />
                 <Route path={AuthRoutes.ModelAuth} element={<ModelAuthBoard />} />
                 <Route path={AuthRoutes.AppAuth} element={<AppAuthBoard />} />
-                <Route path="" element={<UiAuthBoard />} />
+                <Route path="" element={<MenuAuthBoard />} />
               </Route>
               <Route path={AppManagerRoutes.SystemConfig} element={<AppConfig />} />
               <Route path={AppManagerRoutes.Configs} element={<ConfigCenter />}>

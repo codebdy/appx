@@ -3,7 +3,7 @@ import { memo } from "react"
 import { ListConentLayout } from "../../common/ListConentLayout"
 import { RoleList } from "../ModelAuthBoard/RoleList"
 
-export const UiAuthBoard = memo(() => {
+export const MenuAuthBoard = memo(() => {
   return (
     <ListConentLayout
       listWidth={200}

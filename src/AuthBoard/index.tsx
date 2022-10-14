@@ -4,7 +4,7 @@ import { Outlet, useMatch, useNavigate } from "react-router-dom"
 import { ListConentLayout } from "../common/ListConentLayout"
 import { MenuProps, Spin } from 'antd';
 import { Menu } from 'antd';
-import { AppstoreOutlined, DesktopOutlined } from "@ant-design/icons";
+import { AppstoreOutlined, DesktopOutlined, LayoutOutlined, MenuOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import "./style.less";
 import SvgIcon from "../common/SvgIcon";
@@ -17,7 +17,8 @@ import { useParseLangMessage } from "../plugin-sdk";
 import { AppManagerRoutes } from "../AppManager/AppHeader";
 
 export enum AuthRoutes {
-  UiAuth = "ui-auth",
+  MenuAuth = "menu-auth",
+  ComponentAuth = "component-auth",
   ModelAuth = "model-auth",
   AppAuth = "app-auth"
 }
@@ -51,7 +52,8 @@ export const AuthBoard = memo(() => {
   useShowError(error);
 
   const items: MenuProps['items'] = useMemo(() => [
-    getItem(t("Auth.UiAuth"), AuthRoutes.UiAuth, <DesktopOutlined />, null),
+    getItem(t("Auth.MenuAuth"), AuthRoutes.MenuAuth, <MenuOutlined />, null),
+    getItem(t("Auth.ComponentAuth"), AuthRoutes.ComponentAuth, <LayoutOutlined />, null),
     getItem(t("Auth.ModelAuth"),
       AuthRoutes.ModelAuth,
       <SvgIcon>
@@ -75,7 +77,7 @@ export const AuthBoard = memo(() => {
           <Menu
             style={{ flex: 1 }}
             onClick={onClick}
-            activeKey={match?.params?.["*"] || AuthRoutes.UiAuth}
+            activeKey={match?.params?.["*"] || AuthRoutes.MenuAuth}
             mode="inline"
             items={items}
           />

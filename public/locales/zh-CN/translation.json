@@ -79,7 +79,8 @@
   },
   "Auth": {
     "Title": "权限管理",
-    "UiAuth": "界面权限",
+    "MenuAuth": "菜单权限",
+    "ComponentAuth": "控件权限",
     "ModelAuth": "模型权限",
     "AppAuth": "应用权限",
     "Role List": "角色列表"
