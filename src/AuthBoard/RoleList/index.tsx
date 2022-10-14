@@ -27,13 +27,18 @@ function getItem(
 
 
 
-export const RoleList = memo(() => {
-  const [selectedRoleId, setSelectedId] = useState<ID>();
+export const RoleList = memo((
+  props: {
+    selectedRoleId?: ID,
+    onSelect?: (selectedRoleId?: ID) => void,
+  }
+) => {
+  const {selectedRoleId, onSelect} = props;
   const roles = useRoles();
   const p = useParseLangMessage();
   const { t } = useTranslation();
   const handleSelect = useCallback((info) => {
-    setSelectedId(info.key)
+    onSelect && onSelect(info.key)
   }, [])
 
   const items: MenuProps['items'] = useMemo(
