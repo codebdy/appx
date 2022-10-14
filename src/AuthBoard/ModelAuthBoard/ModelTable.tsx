@@ -44,7 +44,8 @@ export const ModelTable = memo((
         }),
       }
     }) || []
-  }, [packages])
+  }, [packages, getClassConfig])
+  
   return (
     <Table
       columns={columns}

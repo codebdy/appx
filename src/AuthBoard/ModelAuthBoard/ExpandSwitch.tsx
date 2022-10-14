@@ -15,7 +15,6 @@ export const ExpandSwitch = memo((
 ) => {
   const { classUuid, classConfig, roleId } = props;
   const [postClassConfig, { error, loading }] = useUpsertClassAuthConfig();
-
   useShowError(error)
 
   const handleChange = useCallback((checked: boolean) => {
