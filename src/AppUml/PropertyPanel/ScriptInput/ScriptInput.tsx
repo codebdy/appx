@@ -35,9 +35,9 @@ export const ScriptInput = memo((
     // });
   }
 
-  const handleChange = (valueStr: string) => {
+  const handleChange = useCallback((valueStr: string) => {
     onChange && onChange(valueStr)
-  }
+  }, [onChange])
   return (
     <>
       <Button block onClick={showModal}>
