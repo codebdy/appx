@@ -1068,7 +1068,7 @@
             "uuid": "c0df5a91-6102-412f-a317-f7e60d65eac0"
           },
           {
-            "name": "properyUuid",
+            "name": "propertyUuid",
             "type": "String",
             "typeLabel": "String",
             "uuid": "176ae195-9d91-4a32-b9fc-8f40532a9f6b"
@@ -1149,34 +1149,34 @@
         "uuid": "3fd0b1e1-b2ee-491d-be5a-a40109f3c65a"
       },
       {
-        "uuid": "3502291d-5e64-4c31-82b0-c04c6c70e6a7",
-        "innerId": 1029,
-        "name": "AuthConfig",
         "attributes": [
           {
-            "uuid": "01445fc0-728a-4110-9bf0-a7d704f4e47f",
             "name": "id",
-            "type": "ID",
             "primary": true,
-            "typeLabel": "ID"
+            "type": "ID",
+            "typeLabel": "ID",
+            "uuid": "01445fc0-728a-4110-9bf0-a7d704f4e47f"
           },
           {
-            "uuid": "961029a7-4736-4194-8a88-b1833059e772",
             "name": "appUuid",
             "type": "String",
-            "typeLabel": "String"
+            "typeLabel": "String",
+            "uuid": "961029a7-4736-4194-8a88-b1833059e772"
           },
           {
-            "uuid": "76afd151-b970-43a6-827f-ace04922513f",
             "name": "roleId",
             "type": "ID",
-            "typeLabel": "ID"
+            "typeLabel": "ID",
+            "uuid": "76afd151-b970-43a6-827f-ace04922513f"
           }
         ],
+        "innerId": 1029,
         "methods": [],
-        "stereoType": "Abstract",
+        "name": "AuthConfig",
+        "packageUuid": "PACKAGE_APPX_UUID",
         "root": false,
-        "packageUuid": "PACKAGE_APPX_UUID"
+        "stereoType": "Abstract",
+        "uuid": "3502291d-5e64-4c31-82b0-c04c6c70e6a7"
       }
     ],
     "relations": [
@@ -1451,14 +1451,14 @@
         "uuid": "65301629-3710-4f9e-aa21-09eb208762e2"
       },
       {
-        "uuid": "31faad2a-ca4e-47e3-823a-348a31ee04ee",
+        "appUuid": "SYSTEM",
         "innerId": 0,
         "relationType": "inherit",
         "sourceId": "3fd0b1e1-b2ee-491d-be5a-a40109f3c65a",
-        "targetId": "3502291d-5e64-4c31-82b0-c04c6c70e6a7",
         "sourceMutiplicity": "0..1",
+        "targetId": "3502291d-5e64-4c31-82b0-c04c6c70e6a7",
         "targetMultiplicity": "0..1",
-        "appUuid": "SYSTEM"
+        "uuid": "31faad2a-ca4e-47e3-823a-348a31ee04ee"
       }
     ],
     "diagrams": [
@@ -1834,32 +1834,32 @@
         "height": 190,
         "id": "42252d97-5b4c-40bc-8117-3fd4b7e92926",
         "width": 180,
-        "x": -1170,
-        "y": 210
+        "x": -1100,
+        "y": 175
       },
       {
         "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826",
         "height": 120,
         "id": "106e8308-4f13-48bc-917a-938aa5542ac5",
         "width": 240,
-        "x": -740,
-        "y": 200
+        "x": -820,
+        "y": 175
       },
       {
-        "id": "3fd0b1e1-b2ee-491d-be5a-a40109f3c65a",
-        "x": -940,
-        "y": -260,
-        "width": 180,
+        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826",
         "height": 250,
-        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826"
+        "id": "3fd0b1e1-b2ee-491d-be5a-a40109f3c65a",
+        "width": 180,
+        "x": -940,
+        "y": -190
       },
       {
-        "id": "3502291d-5e64-4c31-82b0-c04c6c70e6a7",
-        "x": -940,
-        "y": -450,
-        "width": 180,
+        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826",
         "height": 120,
-        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826"
+        "id": "3502291d-5e64-4c31-82b0-c04c6c70e6a7",
+        "width": 180,
+        "x": -940,
+        "y": -380
       }
     ],
     "x6Edges": [
@@ -2300,7 +2300,7 @@
         "id": "8b78e9e4-ae05-4581-9f31-3adabc11dabe",
         "vertices": [
           {
-            "x": -1080,
+            "x": -1010,
             "y": 130
           },
           {
@@ -2314,7 +2314,7 @@
         "id": "65301629-3710-4f9e-aa21-09eb208762e2",
         "vertices": [
           {
-            "x": -620,
+            "x": -700,
             "y": 130
           },
           {
@@ -2324,9 +2324,9 @@
         ]
       },
       {
+        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826",
         "id": "31faad2a-ca4e-47e3-823a-348a31ee04ee",
-        "vertices": [],
-        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826"
+        "vertices": []
       }
     ]
   }

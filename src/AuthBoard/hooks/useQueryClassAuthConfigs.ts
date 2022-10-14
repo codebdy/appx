@@ -1,10 +1,10 @@
 import { gql } from "awesome-graphql-client";
 import { useMemo } from "react";
 import { useQuery } from "../../enthooks/hooks/useQuery";
-import { IPage } from "../../model";
+import { IClassAuthConfig, IPage } from "../../model";
 import { useAppParams } from "../../plugin-sdk/contexts/appRoot";
 
-const pagesGql = gql`
+const authConfigGql = gql`
 query ($appUuid:String!){
   classAuthConfigs(where:{
     app:{
@@ -38,13 +38,13 @@ export function useQueryClassAuthConfigs() {
 
   const args = useMemo(() => {
     return {
-      gql: pagesGql,
-      params: { device: appParams.device, appUuid: appParams.app.uuid },
+      gql: authConfigGql,
+      params: { appUuid: appParams.app.uuid },
       depEntityNames: ["ClassAuthConfig"]
     }
   }, [appParams])
 
-  const { data, error, loading } = useQuery<IPage>(args)
+  const { data, error, loading } = useQuery<IClassAuthConfig>(args)
 
   return { classAuthConfigs: data?.classAuthConfigs?.nodes, error, loading }
 }
