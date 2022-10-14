@@ -1050,16 +1050,18 @@
             "uuid": "2e0dd1b1-ced7-4b99-977e-e13de57599b5"
           },
           {
-            "uuid": "484a5138-dcd3-43e2-8bd6-7466c96ce2ac",
             "name": "canDelete",
             "type": "Boolean",
-            "typeLabel": "Boolean"
+            "typeLabel": "Boolean",
+            "uuid": "484a5138-dcd3-43e2-8bd6-7466c96ce2ac",
+            "nullable": true
           },
           {
-            "uuid": "4e689ec7-6258-4202-9087-903e94a000d6",
             "name": "deleteExpression",
             "type": "String",
-            "typeLabel": "String"
+            "typeLabel": "String",
+            "uuid": "4e689ec7-6258-4202-9087-903e94a000d6",
+            "nullable": true
           }
         ],
         "innerId": 1026,
@@ -1828,12 +1830,12 @@
         "y": 90
       },
       {
-        "id": "42252d97-5b4c-40bc-8117-3fd4b7e92926",
-        "x": -1100,
-        "y": 175,
-        "width": 180,
+        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826",
         "height": 210,
-        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826"
+        "id": "42252d97-5b4c-40bc-8117-3fd4b7e92926",
+        "width": 180,
+        "x": -1100,
+        "y": 175
       },
       {
         "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826",
@@ -1844,20 +1846,20 @@
         "y": 175
       },
       {
-        "id": "3fd0b1e1-b2ee-491d-be5a-a40109f3c65a",
-        "x": -940,
-        "y": -150.00000000000006,
-        "width": 180,
+        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826",
         "height": 210,
-        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826"
+        "id": "3fd0b1e1-b2ee-491d-be5a-a40109f3c65a",
+        "width": 180,
+        "x": -940,
+        "y": -150.00000000000006
       },
       {
-        "id": "3502291d-5e64-4c31-82b0-c04c6c70e6a7",
-        "x": -940,
-        "y": -340,
-        "width": 180,
+        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826",
         "height": 120,
-        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826"
+        "id": "3502291d-5e64-4c31-82b0-c04c6c70e6a7",
+        "width": 180,
+        "x": -940,
+        "y": -340
       }
     ],
     "x6Edges": [

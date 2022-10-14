@@ -7,6 +7,7 @@ export enum RowType {
 }
 
 export interface IAuthConfig {
+  classUuid?: string;
   rowType: RowType;
   classConfig?: IClassAuthConfig;
   propertyConfig?: IProperyAuthConfig;

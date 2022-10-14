@@ -1,11 +1,12 @@
 import { useTranslation } from "react-i18next";
 import { ColumnsType } from 'antd/es/table';
 import { useMemo } from "react";
-import { Switch } from "antd";
 import React from "react";
 import { IAuthConfig, RowType } from "./IAuthConfig";
+import { ExpandSwitch } from "./ExpandSwitch";
+import { ID } from "../../shared";
 
-export function useColumns() {
+export function useColumns(roleId: ID) {
   const { t } = useTranslation();
   const columns: ColumnsType<IAuthConfig> = useMemo(() => [
     {
@@ -18,8 +19,9 @@ export function useColumns() {
       dataIndex: 'expand',
       key: 'expand',
       width: '12%',
-      render: (_, { rowType }) => {
-        return rowType === RowType.Class && <Switch size="small" />
+      render: (_, { rowType, classUuid, classConfig }) => {
+        return rowType === RowType.Class &&
+          <ExpandSwitch classConfig={classConfig} classUuid={classUuid} roleId={roleId} />
       }
     },
     {

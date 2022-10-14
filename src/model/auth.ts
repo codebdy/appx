@@ -25,3 +25,30 @@ export interface IClassAuthConfig extends IModelAuthConfig {
 export interface IProperyAuthConfig extends IModelAuthConfig {
   propertyUuid?: string;
 }
+
+// input
+export interface IAuthConfigInput {
+  id?: ID;
+  appUuid?: string;
+  roleId?: ID;
+}
+
+export interface IModelAuthConfigInput extends IAuthConfigInput {
+  canRead?: boolean;
+  readExpression?: string;
+  canUpdate?: boolean;
+  updateExpression?: string;
+  canDelete?: boolean;
+  deleteExpression?: string;
+}
+
+export interface IClassAuthConfigInput extends IModelAuthConfigInput {
+  expanded?: boolean;
+  canCreate?: boolean;
+  createExpression?: string;
+  classUuid?: string;
+}
+
+export interface IProperyAuthConfigInput extends IModelAuthConfigInput {
+  propertyUuid?: string;
+}

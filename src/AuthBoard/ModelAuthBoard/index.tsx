@@ -42,7 +42,11 @@ export const ModelAuthBoard = memo(() => {
         <div style={{ flex: 1, overflow: "auto" }}>
           {
             selectedRoleId &&
-            <ModelTable classConfigs={classAuthConfigs || []} propertyConfigs={properyAuthConfigs || []} />
+            <ModelTable
+              classConfigs={classAuthConfigs || []}
+              propertyConfigs={properyAuthConfigs || []}
+              roleId={selectedRoleId}
+            />
           }
         </div>
       </ListConentLayout>
