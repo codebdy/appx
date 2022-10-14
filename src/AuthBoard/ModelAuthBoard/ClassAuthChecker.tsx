@@ -13,6 +13,7 @@ export const ClassAuthChecker = memo((
     classConfig?: IClassAuthConfig,
     roleId: ID,
     field: string,
+    expressionField: string,
   }
 ) => {
   const { classUuid, classConfig, roleId, field } = props;

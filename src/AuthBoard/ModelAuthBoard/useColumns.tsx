@@ -32,7 +32,13 @@ export function useColumns(roleId: ID) {
       width: '12%',
       render: (_, { rowType, classUuid, classConfig }) => {
         return rowType === RowType.Class &&
-          <ClassAuthChecker classConfig={classConfig} classUuid={classUuid} roleId={roleId} field={"canCreate"} />
+          <ClassAuthChecker
+            classConfig={classConfig}
+            classUuid={classUuid}
+            roleId={roleId}
+            field={"canCreate"}
+            expressionField="createExpression"
+          />
       }
     },
     {
@@ -40,18 +46,48 @@ export function useColumns(roleId: ID) {
       dataIndex: 'delete',
       key: 'delete',
       width: '12%',
+      render: (_, { rowType, classUuid, classConfig }) => {
+        return rowType === RowType.Class &&
+          <ClassAuthChecker
+            classConfig={classConfig}
+            classUuid={classUuid}
+            roleId={roleId}
+            field={"canDelete"}
+            expressionField="deleteExpression"
+          />
+      }
     },
     {
       title: t('Auth.Read'),
       dataIndex: 'read',
       key: 'read',
       width: '12%',
+      render: (_, { rowType, classUuid, classConfig }) => {
+        return rowType === RowType.Class &&
+          <ClassAuthChecker
+            classConfig={classConfig}
+            classUuid={classUuid}
+            roleId={roleId}
+            field={"canRead"}
+            expressionField="readExpression"
+          />
+      }
     },
     {
       title: t('Auth.Update'),
       dataIndex: 'update',
       key: 'update',
       width: '12%',
+      render: (_, { rowType, classUuid, classConfig }) => {
+        return rowType === RowType.Class &&
+          <ClassAuthChecker
+            classConfig={classConfig}
+            classUuid={classUuid}
+            roleId={roleId}
+            field={"canUpdate"}
+            expressionField="upateExpression"
+          />
+      }
     },
   ], [roleId]);
 
