@@ -6,7 +6,7 @@ import { useAppParams } from "../../plugin-sdk/contexts/appRoot";
 
 const authConfigGql = gql`
 query ($appUuid:String!){
-  properyAuthConfigs(where:{
+  propertyAuthConfigs(where:{
     appUuid:{
       _eq:$appUuid
     }
@@ -21,6 +21,7 @@ query ($appUuid:String!){
       appUuid
       roleId
       propertyUuid
+      classUuid
     }
   }
 }
@@ -33,11 +34,11 @@ export function useQueryPropertyAuthConfigs() {
     return {
       gql: authConfigGql,
       params: { appUuid: appParams.app.uuid },
-      depEntityNames: ["ProperyAuthConfig"]
+      depEntityNames: ["PropertyAuthConfig"]
     }
   }, [appParams])
 
   const { data, error, loading } = useQuery<IPropertyAuthConfig>(args)
 
-  return { properyAuthConfigs: data?.properyAuthConfigs?.nodes, error, loading }
+  return { propertyAuthConfigs: data?.propertyAuthConfigs?.nodes, error, loading }
 }

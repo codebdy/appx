@@ -2,13 +2,13 @@ import { useCallback } from "react";
 import { AttributeMeta } from "../meta/AttributeMeta";
 import { ClassMeta } from "../meta/ClassMeta";
 import { useChangeClass } from "./useChangeClass";
-import { useCheckClassProperyName } from "./useCheckClassProperyName";
+import { useCheckClassPropertyName } from "./useCheckClassPropertyName";
 import { ID } from "../../shared";
 import { useTranslation } from "react-i18next";
 
 export function useChangeAttribute(appUuid: ID) {
   const changeEntity = useChangeClass(appUuid);
-  const chackName = useCheckClassProperyName(appUuid);
+  const chackName = useCheckClassPropertyName(appUuid);
   const { t } = useTranslation();
   
   const changeAttribute = useCallback(

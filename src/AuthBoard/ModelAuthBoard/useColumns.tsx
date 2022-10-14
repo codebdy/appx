@@ -78,6 +78,7 @@ export function useColumns(roleId: ID) {
           {
             rowType === RowType.Property &&
             <PropertyAuthChecker
+              classUuid={classUuid}
               propertyUuid={propertyUuid}
               propertyConfig={propertyConfig}
               roleId={roleId}
@@ -107,6 +108,7 @@ export function useColumns(roleId: ID) {
           {
             rowType === RowType.Property &&
             <PropertyAuthChecker
+              classUuid={classUuid}
               propertyUuid={propertyUuid}
               propertyConfig={propertyConfig}
               roleId={roleId}

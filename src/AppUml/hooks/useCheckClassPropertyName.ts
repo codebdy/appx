@@ -4,7 +4,7 @@ import { ID } from "../../shared";
 import { relationsState } from "../recoil/atoms";
 import { useGetClass } from "./useGetClass";
 
-export function useCheckClassProperyName(appUuid: ID) {
+export function useCheckClassPropertyName(appUuid: ID) {
   const getClass = useGetClass(appUuid);
   const relations = useRecoilValue(relationsState(appUuid));
 

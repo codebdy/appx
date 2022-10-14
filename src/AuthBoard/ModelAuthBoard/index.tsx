@@ -19,7 +19,7 @@ export const ModelAuthBoard = memo(() => {
   const { t } = useTranslation();
   const selectedRole = useRole(selectedRoleId);
   const { classAuthConfigs, error, loading } = useQueryClassAuthConfigs();
-  const { properyAuthConfigs, error: propertyEror, loading: propertyLoading } = useQueryPropertyAuthConfigs();
+  const { propertyAuthConfigs, error: propertyEror, loading: propertyLoading } = useQueryPropertyAuthConfigs();
 
   useShowError(error || propertyEror)
 
@@ -44,7 +44,7 @@ export const ModelAuthBoard = memo(() => {
             selectedRoleId &&
             <ModelTable
               classConfigs={classAuthConfigs || []}
-              propertyConfigs={properyAuthConfigs || []}
+              propertyConfigs={propertyAuthConfigs || []}
               roleId={selectedRoleId}
             />
           }

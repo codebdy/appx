@@ -11,6 +11,7 @@ import { useUpsertPropertyAuthConfig } from "../hooks/useUpsertPropertyAuthConfi
 
 export const PropertyAuthChecker = memo((
   props: {
+    classUuid: string,
     propertyUuid: string,
     propertyConfig?: IPropertyAuthConfig,
     roleId: ID,
@@ -18,7 +19,7 @@ export const PropertyAuthChecker = memo((
     expressionField: string,
   }
 ) => {
-  const { propertyUuid, propertyConfig, roleId, field, expressionField } = props;
+  const { classUuid, propertyUuid, propertyConfig, roleId, field, expressionField } = props;
   const [open, setOpen] = useState(false);
   const [checked, setChecked] = useState(false);
   const [upsert, { error, loading }] = useUpsertPropertyAuthConfig({
@@ -37,7 +38,8 @@ export const PropertyAuthChecker = memo((
     upsert(
       {
         ...propertyConfig,
-        propertyUuid: propertyUuid,
+        classUuid,
+        propertyUuid,
         roleId,
         [field]: e.target.checked,
       }
@@ -56,7 +58,8 @@ export const PropertyAuthChecker = memo((
     upsert(
       {
         ...propertyConfig,
-        propertyUuid: propertyUuid,
+        classUuid,
+        propertyUuid,
         roleId,
         [expressionField]: expression,
       }

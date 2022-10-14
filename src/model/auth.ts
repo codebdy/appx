@@ -40,13 +40,13 @@ export interface IModelAuthConfigInput extends IAuthConfigInput {
   updateExpression?: string;
   canDelete?: boolean;
   deleteExpression?: string;
+  classUuid?: string;
 }
 
 export interface IClassAuthConfigInput extends IModelAuthConfigInput {
   expanded?: boolean;
   canCreate?: boolean;
   createExpression?: string;
-  classUuid?: string;
 }
 
 export interface IPropertyAuthConfigInput extends IModelAuthConfigInput {

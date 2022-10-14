@@ -52,7 +52,8 @@ export const ModelTable = memo((
               ? getClassAttributes(cls).map(attr => {
                 return {
                   key: attr.uuid,
-                  attributeUuid: attr.uuid,
+                  classUuid: cls.uuid,
+                  propertyUuid: attr.uuid,
                   name: p(attr.label || attr.name),
                   rowType: RowType.Property,
                   propertyConfig: getPropertyConfig(attr.uuid),

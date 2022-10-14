@@ -4,11 +4,11 @@ import { ID } from "../../shared";
 import { ClassMeta } from "../meta/ClassMeta";
 import { MethodMeta } from "../meta/MethodMeta";
 import { useChangeClass } from "./useChangeClass";
-import { useCheckClassProperyName } from "./useCheckClassProperyName";
+import { useCheckClassPropertyName } from "./useCheckClassPropertyName";
 
 export function useChangeMethod(appUuid: ID) {
   const changeClass = useChangeClass(appUuid);
-  const chackName = useCheckClassProperyName(appUuid);
+  const chackName = useCheckClassPropertyName(appUuid);
   const { t } = useTranslation();
   const changeMethod = useCallback(
     (method: MethodMeta, cls: ClassMeta) => {

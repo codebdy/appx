@@ -1051,17 +1051,17 @@
           },
           {
             "name": "canDelete",
+            "nullable": true,
             "type": "Boolean",
             "typeLabel": "Boolean",
-            "uuid": "484a5138-dcd3-43e2-8bd6-7466c96ce2ac",
-            "nullable": true
+            "uuid": "484a5138-dcd3-43e2-8bd6-7466c96ce2ac"
           },
           {
             "name": "deleteExpression",
+            "nullable": true,
             "type": "String",
             "typeLabel": "String",
-            "uuid": "4e689ec7-6258-4202-9087-903e94a000d6",
-            "nullable": true
+            "uuid": "4e689ec7-6258-4202-9087-903e94a000d6"
           }
         ],
         "innerId": 1026,
@@ -1090,7 +1090,7 @@
         ],
         "innerId": 1027,
         "methods": [],
-        "name": "ProperyAuthConfig",
+        "name": "PropertyAuthConfig",
         "packageUuid": "PACKAGE_APPX_UUID",
         "root": true,
         "stereoType": "Entity",
