@@ -23,7 +23,8 @@ export const ExpandSwitch = memo((
       {
         ...classConfig,
         classUuid,
-        roleId
+        roleId,
+        expanded: checked,
       }
     )
   }, [postClassConfig])
