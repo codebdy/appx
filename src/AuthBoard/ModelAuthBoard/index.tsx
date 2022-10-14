@@ -33,7 +33,7 @@ export const ModelAuthBoard = memo(() => {
       </Breadcrumb>
       <div style={{ flex: 1, overflow: "auto" }}>
         {
-          selectedRole &&
+          selectedRoleId &&
           <ModelTable />
         }
       </div>
