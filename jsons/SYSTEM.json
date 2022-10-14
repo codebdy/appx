@@ -21,6 +21,13 @@
         "name": "$inline:{\"zh-CN\":\"工作流\",\"en-US\":\"Processes\"}",
         "sharable": true,
         "uuid": "bebc8345-a0e4-41ed-8743-93c00604260c"
+      },
+      {
+        "appUuid": "SYSTEM",
+        "name": "$inline:{\"zh-CN\":\"Camunda\"}",
+        "stereoType": "ThirdParty",
+        "tokenScript": "goFetch(\"http://localhost:18080/auth/realms/camunda-platform/protocol/openid-connect/token\", \r\n    {\r\n      method: 'POST',\r\n      headers: {\r\n        \"Content-Type\": \"application/x-www-form-urlencoded\"\r\n      },\r\n      body: \"client_id=appx&client_secret=bx5Ono2y0FYEVRWB7zw6S55pOEmKQ2kW&grant_type=client_credentials\",\r\n    }\r\n  )\r\n  .then(result => callback(result))\r\n  .catch(error => callback('error'+error.message));",
+        "uuid": "f7624c29-88cc-44de-a108-94af9f54d4e4"
       }
     ],
     "classes": [
@@ -805,15 +812,16 @@
             ],
             "name": "firstMethod",
             "operateType": "query",
-            "script": "\r\nvar test = arg1*arg2\r\nreturn arg1 + arg2 + \"-\" +query() + \"-\" + test;",
+            "script": "let result = iFetch(\"http://localhost:18080/auth/realms/camunda-platform/protocol/openid-connect/token\", \r\n    {\r\n      method: 'POST',\r\n      headers: {\r\n        \"Content-Type\": \"application/x-www-form-urlencoded\"\r\n      },\r\n      body: \"client_id=appx&client_secret=bx5Ono2y0FYEVRWB7zw6S55pOEmKQ2kW&grant_type=client_credentials\",\r\n    }\r\n  )\r\nreturn result;",
             "type": "String",
             "typeLabel": "String",
             "uuid": "e6affd42-a603-4da7-985f-802981e6b624"
           },
           {
             "args": [],
-            "name": "newMethod1",
+            "name": "test",
             "operateType": "query",
+            "script": "const t = new Test2();\r\nreturn t.test();",
             "type": "String",
             "typeLabel": "String",
             "uuid": "3c72362e-1fc4-4f99-8264-91b02e671a53"
@@ -904,12 +912,247 @@
           }
         ],
         "innerId": 1022,
-        "methods": [],
+        "methods": [
+          {
+            "args": [],
+            "name": "newMethod1",
+            "operateType": "query",
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "18db9225-b791-4206-9059-b3d5028faf8b"
+          },
+          {
+            "args": [],
+            "name": "newMethod2",
+            "operateType": "query",
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "9d5dd263-1c91-40e5-ac7a-160c62d1c887"
+          }
+        ],
         "name": "ProcessInstance",
         "packageUuid": "bebc8345-a0e4-41ed-8743-93c00604260c",
         "root": true,
         "stereoType": "Entity",
         "uuid": "dcd6fd70-eac1-4853-9dd2-62ab2b2d4fe1"
+      },
+      {
+        "attributes": [
+          {
+            "name": "id",
+            "primary": true,
+            "type": "ID",
+            "typeLabel": "ID",
+            "uuid": "c14e9d40-7868-4d6c-9748-19d75811a2b4"
+          },
+          {
+            "name": "bpmnProcessId",
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "6e7e1fac-9ad0-457d-9b1b-2d5ec36d32d5"
+          },
+          {
+            "name": "endDate",
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "8516f664-d424-4def-a96a-6d07db4f7add"
+          },
+          {
+            "name": "key",
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "bf8b3209-8c6a-44b8-aab2-f2dc0dc7edcf"
+          },
+          {
+            "name": "processDefinitionKey",
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "ed3eb7ce-3582-46a8-8519-d3b6cdba8814"
+          },
+          {
+            "name": "processVersion",
+            "type": "Int",
+            "typeLabel": "Int",
+            "uuid": "557cf61d-2149-45fe-9b39-c012a1f4456d"
+          },
+          {
+            "name": "startDate",
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "1fefd672-2a71-4082-966a-73f2d3908a04"
+          },
+          {
+            "name": "state",
+            "type": "String",
+            "typeLabel": "String",
+            "uuid": "d453d3a2-5528-4030-a40d-bc3dc2cda518"
+          }
+        ],
+        "innerId": 1024,
+        "methods": [],
+        "mutationScript": "",
+        "name": "ProcessDefination",
+        "packageUuid": "f7624c29-88cc-44de-a108-94af9f54d4e4",
+        "queryScript": "const token = getToken()\r\n\r\nconst result =  JSON.parse(\r\n    searchProcesses(\r\n        token,\r\n        JSON.stringify({}),\r\n    )\r\n)\r\n\r\nreturn {\r\n    nodes:result?.items?.map(item=>{\r\n        return{\r\n            ...item,\r\n            id:item.key\r\n        }\r\n    }),\r\n    total:result?.total,\r\n}",
+        "root": true,
+        "script": "test",
+        "stereoType": "ThirdParty",
+        "uuid": "f00fe4ad-70b8-4339-96b9-ca2f50cc1a15"
+      },
+      {
+        "attributes": [],
+        "innerId": 1025,
+        "methods": [
+          {
+            "args": [],
+            "name": "first",
+            "operateType": "query",
+            "script": "const token = getToken()\r\n\r\nconst tokenObj = JSON.parse(token)\r\n\r\nreturn  JSON.parse(getProcesses(tokenObj.token_type + \" \" + tokenObj.access_token))",
+            "type": "JSON",
+            "typeLabel": "JSON",
+            "uuid": "fdb6973f-c6cf-4447-a68a-946f4789aff9"
+          }
+        ],
+        "name": "CodeTest",
+        "packageUuid": "f7624c29-88cc-44de-a108-94af9f54d4e4",
+        "root": true,
+        "stereoType": "Service",
+        "uuid": "d786be1a-75c5-4e92-86e8-657eb2accd09"
+      },
+      {
+        "attributes": [
+          {
+            "name": "id",
+            "primary": true,
+            "type": "ID",
+            "typeLabel": "ID",
+            "uuid": "515157fe-e062-45ca-8b9c-61655b776660"
+          },
+          {
+            "uuid": "d9ee98d4-f3f5-44c0-a305-0d2fcbc2b4b2",
+            "name": "canCreate",
+            "type": "Boolean",
+            "typeLabel": "Boolean",
+            "nullable": true
+          },
+          {
+            "uuid": "45ac296c-d8b4-4633-92ec-cf0005e1e484",
+            "name": "createExpression",
+            "type": "String",
+            "typeLabel": "String",
+            "nullable": true
+          },
+          {
+            "uuid": "2e0dd1b1-ced7-4b99-977e-e13de57599b5",
+            "name": "expanded",
+            "type": "Boolean",
+            "typeLabel": "Boolean",
+            "nullable": true
+          }
+        ],
+        "innerId": 1026,
+        "methods": [],
+        "name": "ClassAuthConfig",
+        "packageUuid": "PACKAGE_APPX_UUID",
+        "root": true,
+        "stereoType": "Entity",
+        "uuid": "42252d97-5b4c-40bc-8117-3fd4b7e92926"
+      },
+      {
+        "attributes": [
+          {
+            "name": "id",
+            "primary": true,
+            "type": "ID",
+            "typeLabel": "ID",
+            "uuid": "c0df5a91-6102-412f-a317-f7e60d65eac0"
+          },
+          {
+            "uuid": "176ae195-9d91-4a32-b9fc-8f40532a9f6b",
+            "name": "properyUuid",
+            "type": "String",
+            "typeLabel": "String"
+          }
+        ],
+        "innerId": 1027,
+        "methods": [],
+        "name": "ProperyAuthConfig",
+        "packageUuid": "PACKAGE_APPX_UUID",
+        "root": true,
+        "stereoType": "Entity",
+        "uuid": "106e8308-4f13-48bc-917a-938aa5542ac5"
+      },
+      {
+        "uuid": "3fd0b1e1-b2ee-491d-be5a-a40109f3c65a",
+        "innerId": 1028,
+        "name": "AuthConfig",
+        "attributes": [
+          {
+            "uuid": "dae1f4a3-9358-4df7-9c52-77450e51f0ec",
+            "name": "id",
+            "type": "ID",
+            "primary": true,
+            "typeLabel": "ID"
+          },
+          {
+            "uuid": "6bfd8a41-8d95-4de7-8529-cf68e3cce702",
+            "name": "canRead",
+            "type": "Boolean",
+            "typeLabel": "Boolean",
+            "nullable": true
+          },
+          {
+            "uuid": "16bcc331-b85c-432f-926e-44de32aef197",
+            "name": "readExpression",
+            "type": "String",
+            "typeLabel": "String",
+            "nullable": true
+          },
+          {
+            "uuid": "cfb6f371-b565-4a8e-838f-8926025b7f2e",
+            "name": "canUpdate",
+            "type": "Boolean",
+            "typeLabel": "Boolean",
+            "nullable": true
+          },
+          {
+            "uuid": "d546740f-9d40-4cd1-b579-9c9f56b403cb",
+            "name": "updateExpression",
+            "type": "String",
+            "typeLabel": "String",
+            "nullable": true
+          },
+          {
+            "uuid": "01f29ed9-a00c-44f9-ac65-ae2752c57fc0",
+            "name": "canDelete",
+            "type": "Boolean",
+            "typeLabel": "Boolean",
+            "nullable": true
+          },
+          {
+            "uuid": "15478595-c550-48be-8fbf-765fa39522a0",
+            "name": "deleteExpression",
+            "type": "String",
+            "typeLabel": "String",
+            "nullable": true
+          },
+          {
+            "uuid": "215b326e-a674-4fc8-b8fe-ba6b9f3a918f",
+            "name": "appUuid",
+            "type": "String",
+            "typeLabel": "String"
+          },
+          {
+            "uuid": "7f3eb084-24d0-4ccc-868c-958bf9dcb757",
+            "name": "classUuid",
+            "type": "String",
+            "typeLabel": "String"
+          }
+        ],
+        "methods": [],
+        "stereoType": "Abstract",
+        "root": false,
+        "packageUuid": "PACKAGE_APPX_UUID"
       }
     ],
     "relations": [
@@ -1162,33 +1405,53 @@
         "targetId": "dcd6fd70-eac1-4853-9dd2-62ab2b2d4fe1",
         "targetMultiplicity": "0..*",
         "uuid": "e59908e2-381c-409e-8b6e-d6fd8beeb59c"
+      },
+      {
+        "uuid": "8b78e9e4-ae05-4581-9f31-3adabc11dabe",
+        "innerId": 0,
+        "relationType": "inherit",
+        "sourceId": "42252d97-5b4c-40bc-8117-3fd4b7e92926",
+        "targetId": "3fd0b1e1-b2ee-491d-be5a-a40109f3c65a",
+        "sourceMutiplicity": "0..1",
+        "targetMultiplicity": "0..1",
+        "appUuid": "SYSTEM"
+      },
+      {
+        "uuid": "65301629-3710-4f9e-aa21-09eb208762e2",
+        "innerId": 0,
+        "relationType": "inherit",
+        "sourceId": "106e8308-4f13-48bc-917a-938aa5542ac5",
+        "targetId": "3fd0b1e1-b2ee-491d-be5a-a40109f3c65a",
+        "sourceMutiplicity": "0..1",
+        "targetMultiplicity": "0..1",
+        "appUuid": "SYSTEM"
       }
     ],
     "diagrams": [
       {
         "edges": [],
-        "name": "Appx diagram",
+        "name": "$inline:{\"zh-CN\":\"Appx类图\"}",
         "nodes": [],
         "packageUuid": "PACKAGE_APPX_UUID",
         "uuid": "8518245f-af73-43b5-a17f-468eefce5acc"
       },
       {
         "edges": [],
-        "name": "Multi language",
+        "name": "$inline:{\"zh-CN\":\"多语言配置\"}",
         "nodes": [],
         "packageUuid": "PACKAGE_APPX_UUID",
         "uuid": "31fc35da-2b84-4108-bf1c-e701513db91a"
       },
       {
         "edges": [],
-        "name": "User config",
+        "name": "$inline:{\"zh-CN\":\"用户页面配置\"}",
         "nodes": [],
         "packageUuid": "PACKAGE_APPX_UUID",
         "uuid": "bd5c2470-2d87-47b8-8fdc-40cedce87375"
       },
       {
         "edges": [],
-        "name": "类图",
+        "name": "$inline:{\"zh-CN\":\"用户\"}",
         "nodes": [],
         "packageUuid": "PACKAGE_SYSTEM_UUID",
         "uuid": "4910a0fd-a454-4882-8250-88d77b5144aa"
@@ -1227,6 +1490,28 @@
         "nodes": [],
         "packageUuid": "bebc8345-a0e4-41ed-8743-93c00604260c",
         "uuid": "ce4ca6f6-78b5-4c27-a515-14936ce70b39"
+      },
+      {
+        "edges": [],
+        "name": "新建类图1",
+        "nodes": [],
+        "packageUuid": "f7624c29-88cc-44de-a108-94af9f54d4e4",
+        "uuid": "941a738c-98e6-4eb4-be3c-b045d27c75b4"
+      },
+      {
+        "edges": [],
+        "name": "$inline:{\"zh-CN\":\"权限配置\"}",
+        "nodes": [],
+        "packageUuid": "PACKAGE_APPX_UUID",
+        "uuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826"
+      }
+    ],
+    "codes": [
+      {
+        "code": "\r\n\r\nfunction converToken(tokenObj) {\r\n  return tokenObj.token_type + \" \" + tokenObj.access_token;\r\n}\r\nfunction getToken() {\r\n  const tokenCache = readFromCache(\"camundaToken\");\r\n\r\n  if (tokenCache) {\r\n    if (tokenCache.value.expires_in > Date.now() - tokenCache.createdAt + 10) {\r\n      return converToken(tokenCache.value)\r\n    }\r\n  }\r\n  const result = iFetch(\"http://localhost:18080/auth/realms/camunda-platform/protocol/openid-connect/token\",\r\n    {\r\n      method: 'POST',\r\n      headers: {\r\n        \"Content-Type\": \"application/x-www-form-urlencoded\"\r\n      },\r\n      body: \"client_id=appx&client_secret=bx5Ono2y0FYEVRWB7zw6S55pOEmKQ2kW&grant_type=client_credentials\",\r\n    }\r\n  )\r\n  const tokenObj = JSON.parse(result)\r\n  writeToCache(\"camundaToken\", {\r\n    value: tokenObj,\r\n    createdAt: Date.now(),\r\n  })\r\n  return converToken(tokenObj);\r\n}\r\n\r\nfunction searchProcesses(token, body) {\r\n  let result = iFetch(\"http://localhost:8081/v1/process-instances/search\",\r\n    {\r\n      method: 'POST',\r\n      headers: {\r\n        \"Content-Type\": \"application/json\",\r\n        \"accept\": \"application/json\",\r\n        \"Authorization\": token,\r\n      },\r\n      body: body,\r\n    }\r\n  )\r\n  return result;\r\n}\r\n",
+        "name": "$inline:{\"zh-CN\":\"取数据\"}",
+        "packageUuid": "f7624c29-88cc-44de-a108-94af9f54d4e4",
+        "uuid": "79b29a66-9a09-40d9-898c-01eadc68add6"
       }
     ],
     "x6Nodes": [
@@ -1304,11 +1589,11 @@
       },
       {
         "diagramUuid": "bd5c2470-2d87-47b8-8fdc-40cedce87375",
-        "height": 278,
+        "height": 370,
         "id": "META_USER_UUID",
         "width": 180,
-        "x": -940,
-        "y": -39
+        "x": -950,
+        "y": -80
       },
       {
         "diagramUuid": "bd5c2470-2d87-47b8-8fdc-40cedce87375",
@@ -1459,8 +1744,8 @@
         "height": 120,
         "id": "0afeac65-c0f6-48c1-846c-922e156307f5",
         "width": 360,
-        "x": -1130,
-        "y": -330
+        "x": -930,
+        "y": -500
       },
       {
         "diagramUuid": "ce4ca6f6-78b5-4c27-a515-14936ce70b39",
@@ -1488,11 +1773,51 @@
       },
       {
         "diagramUuid": "ce4ca6f6-78b5-4c27-a515-14936ce70b39",
-        "height": 120,
+        "height": 180,
         "id": "dcd6fd70-eac1-4853-9dd2-62ab2b2d4fe1",
         "width": 180,
-        "x": 763,
-        "y": -16
+        "x": 773,
+        "y": -46
+      },
+      {
+        "diagramUuid": "941a738c-98e6-4eb4-be3c-b045d27c75b4",
+        "height": 290,
+        "id": "f00fe4ad-70b8-4339-96b9-ca2f50cc1a15",
+        "width": 210,
+        "x": 149.9999999999997,
+        "y": 100.00000000000024
+      },
+      {
+        "diagramUuid": "941a738c-98e6-4eb4-be3c-b045d27c75b4",
+        "height": 120,
+        "id": "d786be1a-75c5-4e92-86e8-657eb2accd09",
+        "width": 180,
+        "x": 410,
+        "y": 90
+      },
+      {
+        "id": "42252d97-5b4c-40bc-8117-3fd4b7e92926",
+        "x": -1170,
+        "y": 210,
+        "width": 180,
+        "height": 190,
+        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826"
+      },
+      {
+        "id": "106e8308-4f13-48bc-917a-938aa5542ac5",
+        "x": -740,
+        "y": 200,
+        "width": 240,
+        "height": 120,
+        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826"
+      },
+      {
+        "id": "3fd0b1e1-b2ee-491d-be5a-a40109f3c65a",
+        "x": -940.0000000000001,
+        "y": -229.9999999999999,
+        "width": 180,
+        "height": 290,
+        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826"
       }
     ],
     "x6Edges": [
@@ -1927,6 +2252,34 @@
           "offset": -20
         },
         "vertices": []
+      },
+      {
+        "id": "8b78e9e4-ae05-4581-9f31-3adabc11dabe",
+        "vertices": [
+          {
+            "x": -1080,
+            "y": 130
+          },
+          {
+            "x": -850,
+            "y": 130
+          }
+        ],
+        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826"
+      },
+      {
+        "id": "65301629-3710-4f9e-aa21-09eb208762e2",
+        "vertices": [
+          {
+            "x": -620,
+            "y": 130
+          },
+          {
+            "x": -850,
+            "y": 130
+          }
+        ],
+        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826"
       }
     ]
   }
