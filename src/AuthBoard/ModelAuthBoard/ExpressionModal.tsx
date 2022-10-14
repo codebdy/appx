@@ -8,11 +8,12 @@ export const ExpressionModal = memo((
   props: {
     value?: string,
     open?: boolean,
+    saving?: boolean,
     onOpenChange?: (open?: boolean) => void,
     onChange?: (value?: string) => void,
   }
 ) => {
-  const { value, open, onOpenChange, onChange } = props;
+  const { value, open, saving, onOpenChange, onChange } = props;
   const [expression, setExpression] = useState<string>();
   const { t } = useTranslation();
 
@@ -27,7 +28,7 @@ export const ExpressionModal = memo((
   }
 
   const handleOk = useCallback(() => {
-    onOpenChange && onOpenChange(false);
+    //onOpenChange && onOpenChange(false);
     onChange && onChange(expression);
   }, [onChange, onOpenChange])
 
@@ -50,6 +51,9 @@ export const ExpressionModal = memo((
       onCancel={handleCancel}
       okText={t("Confirm")}
       cancelText={t("Cancel")}
+      okButtonProps={{
+        loading: saving
+      }}
     >
       <div className="input-modal-body">
         <MonacoEditor

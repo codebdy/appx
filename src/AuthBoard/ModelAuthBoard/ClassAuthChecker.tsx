@@ -18,10 +18,14 @@ export const ClassAuthChecker = memo((
     expressionField: string,
   }
 ) => {
+  const { classUuid, classConfig, roleId, field, expressionField } = props;
   const [open, setOpen] = useState(false);
   const [checked, setChecked] = useState(false);
-  const { classUuid, classConfig, roleId, field } = props;
-  const [postClassConfig, { error, loading }] = useUpsertClassAuthConfig();
+  const [postClassConfig, { error, loading }] = useUpsertClassAuthConfig({
+    onCompleted: () => {
+      setOpen(false);
+    }
+  });
   useShowError(error)
 
   useEffect(() => {
@@ -48,6 +52,16 @@ export const ClassAuthChecker = memo((
     setOpen(open);
   }, [])
 
+  const handleExrpessionChange = useCallback((expression: string) => {
+    postClassConfig(
+      {
+        ...classConfig,
+        classUuid,
+        roleId,
+        [expressionField]: expression,
+      }
+    )
+  }, [postClassConfig, roleId])
 
   return (
     <>
@@ -69,7 +83,14 @@ export const ClassAuthChecker = memo((
             onClick={handleOpenExpressionDialog}
           />
           {
-            open && <ExpressionModal open={open} onOpenChange={handleOpenChange} />
+            open &&
+            <ExpressionModal
+              value={classConfig?.[expressionField]}
+              open={open}
+              onOpenChange={handleOpenChange}
+              saving={loading}
+              onChange={handleExrpessionChange}
+            />
           }
         </>
       }
