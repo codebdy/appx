@@ -1,3 +1,4 @@
+import { IClassAuthConfig, IProperyAuthConfig } from "../../model";
 
 export enum RowType {
   Package,
@@ -7,4 +8,6 @@ export enum RowType {
 
 export interface IAuthConfig {
   rowType: RowType;
+  classConfig?: IClassAuthConfig;
+  propertyConfig?: IProperyAuthConfig;
 }
