@@ -6,11 +6,9 @@ import { useAppParams } from "../../plugin-sdk/contexts/appRoot";
 
 const authConfigGql = gql`
 query ($appUuid:String!){
-  properyAuthConfig(where:{
-    app:{
-      uuid:{
-        _eq:$appUuid
-      }
+  properyAuthConfigs(where:{
+    appUuid:{
+      _eq:$appUuid
     }
   }
  ){
@@ -41,5 +39,5 @@ export function useQueryPropertyAuthConfigs() {
 
   const { data, error, loading } = useQuery<IProperyAuthConfig>(args)
 
-  return { classAuthConfigs: data?.classAuthConfigs?.nodes, error, loading }
+  return { properyAuthConfigs: data?.properyAuthConfigs?.nodes, error, loading }
 }

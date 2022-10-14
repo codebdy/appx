@@ -7,10 +7,8 @@ import { useAppParams } from "../../plugin-sdk/contexts/appRoot";
 const authConfigGql = gql`
 query ($appUuid:String!){
   classAuthConfigs(where:{
-    app:{
-      uuid:{
-        _eq:$appUuid
-      }
+    appUuid:{
+      _eq:$appUuid
     }
   }
  ){
