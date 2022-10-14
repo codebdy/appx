@@ -30,7 +30,7 @@ export const ExpressionModal = memo((
   const handleOk = useCallback(() => {
     //onOpenChange && onOpenChange(false);
     onChange && onChange(expression);
-  }, [onChange, onOpenChange])
+  }, [onChange, onOpenChange, expression])
 
   const handleCancel = useCallback(() => {
     onOpenChange && onOpenChange(false);
