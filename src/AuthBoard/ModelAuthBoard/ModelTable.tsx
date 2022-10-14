@@ -9,6 +9,7 @@ import { IAuthConfig, RowType } from './IAuthConfig';
 import { useGetPackageCanAuthClasses } from '../hooks/useGetPackageCanAuthClasses';
 import { IClassAuthConfig, IProperyAuthConfig } from '../../model';
 import { ID } from '../../shared';
+import { useGetClassAttributes } from '../hooks/useGetClassAttributes';
 
 export const ModelTable = memo((
   props: {
@@ -23,9 +24,15 @@ export const ModelTable = memo((
   const appUuid = useEdittingAppUuid();
   const packages = useRecoilValue(packagesState(appUuid));
   const getClasses = useGetPackageCanAuthClasses(appUuid)
+  const getClassAttributes = useGetClassAttributes(appUuid);
+
   const getClassConfig = useCallback((classUuid: string) => {
     return classConfigs.find(config => config.classUuid === classUuid && config.roleId === roleId);
   }, [classConfigs, roleId])
+
+  const getPropertyConfig = useCallback((propertyUuid: string) => {
+    return propertyConfigs.find(config => config.propertyUuid === propertyUuid && config.roleId === roleId);
+  }, [propertyConfigs, roleId])
 
   const data: IAuthConfig[] = useMemo(() => {
     return packages.map(pkg => {
@@ -41,7 +48,17 @@ export const ModelTable = memo((
             name: p(cls.label || cls.name),
             rowType: RowType.Class,
             classConfig: classConfig,
-            children: classConfig?.expanded ? [] : undefined,
+            children: classConfig?.expanded
+              ? getClassAttributes(cls).map(attr => {
+                return {
+                  key: attr.uuid,
+                  attributeUuid: attr.uuid,
+                  name: p(attr.label || attr.name),
+                  rowType: RowType.Atrribute,
+                  propertyConfig: getPropertyConfig(attr.uuid),
+                }
+              })
+              : undefined,
           }
         }),
       }

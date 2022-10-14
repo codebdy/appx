@@ -12,7 +12,7 @@ export function useGetPackageCanAuthClasses(appUuid:ID) {
     return classes.filter(
       cls => cls.packageUuid === packageUuid &&
         (cls.stereoType === StereoType.Entity ||
-          cls.stereoType === StereoType.Service ||
+          //cls.stereoType === StereoType.Service ||
           cls.stereoType === StereoType.ThirdParty
         ))
   }, [classes])
