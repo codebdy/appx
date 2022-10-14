@@ -5,6 +5,7 @@ import { IUser } from "../enthooks/hooks/useQueryMe";
 import { Device, IMaterialTab } from "@rxdrag/appx-plugin-sdk";
 
 export * from "./role"
+export * from "./auth"
 
 export interface ILang {
   key: string,

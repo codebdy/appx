@@ -19,7 +19,7 @@ import { useQueryRoles } from "./hooks/useQueryRoles";
 
 export enum AuthRoutes {
   MenuAuth = "menu-auth",
-  ComponentAuth = "component-auth",
+  PageAuth = "component-auth",
   ModelAuth = "model-auth",
   AppAuth = "app-auth"
 }
@@ -55,7 +55,7 @@ export const AuthBoard = memo(() => {
 
   const items: MenuProps['items'] = useMemo(() => [
     getItem(t("Auth.MenuAuth"), AuthRoutes.MenuAuth, <MenuOutlined />, []),
-    getItem(t("Auth.ComponentAuth"), AuthRoutes.ComponentAuth, <LayoutOutlined />, []),
+    getItem(t("Auth.PageAuth"), AuthRoutes.PageAuth, <LayoutOutlined />, []),
     getItem(t("Auth.ModelAuth"),
       AuthRoutes.ModelAuth,
       <SvgIcon>

@@ -30,7 +30,7 @@ import { AuthBoard, AuthRoutes } from './AuthBoard';
 import { MenuAuthBoard } from './AuthBoard/MenuAuthBoard';
 import { ModelAuthBoard } from './AuthBoard/ModelAuthBoard';
 import { AppAuthBoard } from './AuthBoard/AppAuthBoard';
-import { ComponentAuthBoard } from './AuthBoard/ComponentAuthBoard';
+import { PageAuthBoard } from './AuthBoard/PageAuthBoard';
 
 const App = memo(() => {
   return (
@@ -47,7 +47,7 @@ const App = memo(() => {
               <Route path={AppManagerRoutes.Api} element={<ApiBoard />} />
               <Route path={AppManagerRoutes.Auth} element={<AuthBoard />}>
                 <Route path={AuthRoutes.MenuAuth} element={<MenuAuthBoard />} />
-                <Route path={AuthRoutes.ComponentAuth} element={<ComponentAuthBoard />} />
+                <Route path={AuthRoutes.PageAuth} element={<PageAuthBoard />} />
                 <Route path={AuthRoutes.ModelAuth} element={<ModelAuthBoard />} />
                 <Route path={AuthRoutes.AppAuth} element={<AppAuthBoard />} />
                 <Route path="" element={<MenuAuthBoard />} />
