@@ -46,8 +46,6 @@ const App = memo(() => {
               <Route path={AppManagerRoutes.Model} element={<AppUml />} />
               <Route path={AppManagerRoutes.Api} element={<ApiBoard />} />
               <Route path={AppManagerRoutes.Auth} element={<AuthBoard />}>
-                <Route path={AuthRoutes.MenuAuth} element={<MenuAuthBoard />} />
-                <Route path={AuthRoutes.PageAuth} element={<PageAuthBoard />} />
                 <Route path={AuthRoutes.ModelAuth} element={<ModelAuthBoard />} />
                 <Route path={AuthRoutes.AppAuth} element={<AppAuthBoard />} />
                 <Route path="" element={<MenuAuthBoard />} />
@@ -67,9 +65,14 @@ const App = memo(() => {
               <Route path={AppConfigRouts.Dmn} element={<AppDmn />} />
               <Route path={AppConfigRouts.Uml} element={<AppUml />} />
               <Route path={AppConfigRouts.Api} element={<ApiBoard />} />
-              <Route path={AppConfigRouts.Auth} element={<AuthBoard />} />
               <Route path={AppConfigRouts.Plugins} element={<AppPlugins />} />
               <Route path={AppConfigRouts.Frame} element={<AppFrames />} />
+              <Route path={AppConfigRouts.Auth} element={<AuthBoard />}>
+                <Route path={AuthRoutes.MenuAuth} element={<MenuAuthBoard />} />
+                <Route path={AuthRoutes.PageAuth} element={<PageAuthBoard />} />
+                <Route path={AuthRoutes.ModelAuth} element={<ModelAuthBoard />} />
+                <Route path="" element={<MenuAuthBoard />} />
+              </Route>
             </Route>
             <Route path="/design-app/:device/:appUuid" element={<AppDesigner />} />
             <Route path="/design-frame/:device/:appUuid" element={<FrameDesigner />} />
