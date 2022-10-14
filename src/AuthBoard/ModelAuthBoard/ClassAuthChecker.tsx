@@ -1,4 +1,4 @@
-import { Button, Checkbox, Switch } from "antd"
+import { Button, Checkbox } from "antd"
 import React, { useCallback, useEffect, useState } from "react"
 import { memo } from "react"
 import { IClassAuthConfig } from "../../model"
@@ -7,6 +7,7 @@ import { useShowError } from "../../hooks/useShowError";
 import { ID } from "../../shared";
 import { FunctionOutlined, LoadingOutlined } from "@ant-design/icons";
 import { CheckboxChangeEvent } from "antd/es/checkbox";
+import { ExpressionModal } from "./ExpressionModal";
 
 export const ClassAuthChecker = memo((
   props: {
@@ -17,6 +18,7 @@ export const ClassAuthChecker = memo((
     expressionField: string,
   }
 ) => {
+  const [open, setOpen] = useState(false);
   const [checked, setChecked] = useState(false);
   const { classUuid, classConfig, roleId, field } = props;
   const [postClassConfig, { error, loading }] = useUpsertClassAuthConfig();
@@ -38,6 +40,15 @@ export const ClassAuthChecker = memo((
     )
   }, [postClassConfig, roleId])
 
+  const handleOpenExpressionDialog = useCallback(() => {
+    setOpen(true);
+  }, [])
+
+  const handleOpenChange = useCallback((open: boolean) => {
+    setOpen(open);
+  }, [])
+
+
   return (
     <>
       {
@@ -50,11 +61,17 @@ export const ClassAuthChecker = memo((
       }
       {
         classConfig?.[field] &&
-        <Button
-          type="text"
-          shape="circle"
-          icon={<FunctionOutlined />}
-        />
+        <>
+          <Button
+            type="text"
+            shape="circle"
+            icon={<FunctionOutlined />}
+            onClick={handleOpenExpressionDialog}
+          />
+          {
+            open && <ExpressionModal open={open} onOpenChange={handleOpenChange} />
+          }
+        </>
       }
 
     </>

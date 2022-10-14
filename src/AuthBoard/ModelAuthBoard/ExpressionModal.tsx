@@ -33,7 +33,8 @@ export const ExpressionModal = memo((
 
   const handleCancel = useCallback(() => {
     onOpenChange && onOpenChange(false);
-  }, [onOpenChange])
+    setExpression(value);
+  }, [value, onOpenChange])
 
   const handleChange = useCallback((valueStr: string) => {
     setExpression(valueStr)
@@ -42,7 +43,7 @@ export const ExpressionModal = memo((
   return (
     <Modal
       className="expression-input-modal"
-      title={t("AppUml.ConfigScript")}
+      title={t("Auth.EditExpression")}
       width={800}
       open={open}
       onOk={handleOk}
