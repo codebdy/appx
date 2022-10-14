@@ -1,7 +1,7 @@
 import { gql } from "awesome-graphql-client";
 import { useMemo } from "react";
 import { useQuery } from "../../enthooks/hooks/useQuery";
-import { IClassAuthConfig, IPage, IProperyAuthConfig } from "../../model";
+import { IProperyAuthConfig } from "../../model";
 import { useAppParams } from "../../plugin-sdk/contexts/appRoot";
 
 const authConfigGql = gql`
@@ -16,13 +16,10 @@ query ($appUuid:String!){
  ){
     nodes{
       id
-      expanded
       canRead
       readExpression
       canUpdate
       updateExpression
-      canDelete
-      deleteExpression
       appUuid
       roleId
       propertyUuid

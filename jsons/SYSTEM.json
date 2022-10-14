@@ -1048,6 +1048,18 @@
             "type": "Boolean",
             "typeLabel": "Boolean",
             "uuid": "2e0dd1b1-ced7-4b99-977e-e13de57599b5"
+          },
+          {
+            "uuid": "484a5138-dcd3-43e2-8bd6-7466c96ce2ac",
+            "name": "canDelete",
+            "type": "Boolean",
+            "typeLabel": "Boolean"
+          },
+          {
+            "uuid": "4e689ec7-6258-4202-9087-903e94a000d6",
+            "name": "deleteExpression",
+            "type": "String",
+            "typeLabel": "String"
           }
         ],
         "innerId": 1026,
@@ -1118,20 +1130,6 @@
             "type": "String",
             "typeLabel": "String",
             "uuid": "d546740f-9d40-4cd1-b579-9c9f56b403cb"
-          },
-          {
-            "name": "canDelete",
-            "nullable": true,
-            "type": "Boolean",
-            "typeLabel": "Boolean",
-            "uuid": "01f29ed9-a00c-44f9-ac65-ae2752c57fc0"
-          },
-          {
-            "name": "deleteExpression",
-            "nullable": true,
-            "type": "String",
-            "typeLabel": "String",
-            "uuid": "15478595-c550-48be-8fbf-765fa39522a0"
           },
           {
             "name": "classUuid",
@@ -1830,12 +1828,12 @@
         "y": 90
       },
       {
-        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826",
-        "height": 190,
         "id": "42252d97-5b4c-40bc-8117-3fd4b7e92926",
-        "width": 180,
         "x": -1100,
-        "y": 175
+        "y": 175,
+        "width": 180,
+        "height": 210,
+        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826"
       },
       {
         "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826",
@@ -1846,20 +1844,20 @@
         "y": 175
       },
       {
-        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826",
-        "height": 250,
         "id": "3fd0b1e1-b2ee-491d-be5a-a40109f3c65a",
-        "width": 180,
         "x": -940,
-        "y": -190
+        "y": -150.00000000000006,
+        "width": 180,
+        "height": 210,
+        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826"
       },
       {
-        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826",
-        "height": 120,
         "id": "3502291d-5e64-4c31-82b0-c04c6c70e6a7",
-        "width": 180,
         "x": -940,
-        "y": -380
+        "y": -340,
+        "width": 180,
+        "height": 120,
+        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826"
       }
     ],
     "x6Edges": [

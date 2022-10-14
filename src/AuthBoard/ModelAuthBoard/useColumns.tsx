@@ -29,6 +29,12 @@ export function useColumns() {
       width: '12%',
     },
     {
+      title: t('Auth.Delete'),
+      dataIndex: 'delete',
+      key: 'delete',
+      width: '12%',
+    },
+    {
       title: t('Auth.Read'),
       dataIndex: 'read',
       key: 'read',
@@ -38,12 +44,6 @@ export function useColumns() {
       title: t('Auth.Update'),
       dataIndex: 'update',
       key: 'update',
-      width: '12%',
-    },
-    {
-      title: t('Auth.Delete'),
-      dataIndex: 'delete',
-      key: 'delete',
       width: '12%',
     },
   ], []);

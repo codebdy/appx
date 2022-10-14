@@ -1,7 +1,7 @@
 import { gql } from "awesome-graphql-client";
 import { useMemo } from "react";
 import { useQuery } from "../../enthooks/hooks/useQuery";
-import { IClassAuthConfig, IPage } from "../../model";
+import { IClassAuthConfig } from "../../model";
 import { useAppParams } from "../../plugin-sdk/contexts/appRoot";
 
 const authConfigGql = gql`
