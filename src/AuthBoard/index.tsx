@@ -4,7 +4,7 @@ import { Outlet, useMatch, useNavigate } from "react-router-dom"
 import { ListConentLayout } from "../common/ListConentLayout"
 import { MenuProps, Spin } from 'antd';
 import { Menu } from 'antd';
-import { AppstoreOutlined, DesktopOutlined, LayoutOutlined, MenuOutlined } from "@ant-design/icons";
+import { AppstoreOutlined, LayoutOutlined, MenuOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import "./style.less";
 import SvgIcon from "../common/SvgIcon";
@@ -15,6 +15,7 @@ import { useRecoilValue } from "recoil";
 import { packagesState } from "../AppUml/recoil/atoms";
 import { useParseLangMessage } from "../plugin-sdk";
 import { AppManagerRoutes } from "../AppManager/AppHeader";
+import { useQueryRoles } from "./hooks/useQueryRoles";
 
 export enum AuthRoutes {
   MenuAuth = "menu-auth",
@@ -46,10 +47,11 @@ export const AuthBoard = memo(() => {
   const navigate = useNavigate()
   const appUuid = useEdittingAppUuid();
   const { loading, error } = useReadMeta(appUuid);
+  const { roles, loading: rolesLoading, error: rolesError } = useQueryRoles();
   const packages = useRecoilValue(packagesState(appUuid))
   const p = useParseLangMessage();
   const match = useMatch(`/${AppManagerRoutes.Auth}/*`)
-  useShowError(error);
+  useShowError(error || rolesError);
 
   const items: MenuProps['items'] = useMemo(() => [
     getItem(t("Auth.MenuAuth"), AuthRoutes.MenuAuth, <MenuOutlined />, null),
@@ -69,7 +71,7 @@ export const AuthBoard = memo(() => {
   }, [navigate]);
 
   return (
-    <Spin tip="Loading..." spinning={loading}>
+    <Spin tip="Loading..." spinning={loading || rolesLoading}>
       <ListConentLayout
         className="appx-auth-board"
         listWidth={200}

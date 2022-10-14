@@ -4,6 +4,8 @@ import { ISchema } from '@formily/json-schema'
 import { IUser } from "../enthooks/hooks/useQueryMe";
 import { Device, IMaterialTab } from "@rxdrag/appx-plugin-sdk";
 
+export * from "./role"
+
 export interface ILang {
   key: string,
   abbr: string,
