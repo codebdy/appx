@@ -1,18 +1,27 @@
 import { ID } from "../shared";
 
-export interface IAuthConfig{
-  id:ID;
-
+export interface IAuthConfig {
+  id: ID;
+  appUuid: string;
+  roleId: ID;
 }
 
-export interface IModelAuthConfig{
-
+export interface IModelAuthConfig extends IAuthConfig {
+  canRead?: boolean;
+  readExpression?: string;
+  canUpdate?: boolean;
+  updateExpression?: string;
+  canDelete?: boolean;
+  deleteExpression?: string;
 }
 
-export interface IClassAuthConfig{
-
+export interface IClassAuthConfig extends IModelAuthConfig {
+  expanded?: boolean;
+  canCreate?: boolean;
+  createExpression?: string;
+  classUuid?: string;
 }
 
-export interface IProperyAuthConfig{
-
+export interface IProperyAuthConfig extends IModelAuthConfig {
+  properyUuid?: string;
 }
