@@ -26,7 +26,7 @@ export const ExpandSwitch = memo((
         expanded: checked,
       }
     )
-  }, [postClassConfig])
+  }, [postClassConfig, roleId])
 
   return (
     <Switch

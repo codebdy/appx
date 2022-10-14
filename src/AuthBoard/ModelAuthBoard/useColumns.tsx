@@ -48,7 +48,7 @@ export function useColumns(roleId: ID) {
       key: 'update',
       width: '12%',
     },
-  ], []);
+  ], [roleId]);
 
   return columns;
 }
