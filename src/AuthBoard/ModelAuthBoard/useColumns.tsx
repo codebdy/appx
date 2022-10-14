@@ -5,6 +5,7 @@ import React from "react";
 import { IAuthConfig, RowType } from "./IAuthConfig";
 import { ExpandSwitch } from "./ExpandSwitch";
 import { ID } from "../../shared";
+import { ClassAuthChecker } from "./ClassAuthChecker";
 
 export function useColumns(roleId: ID) {
   const { t } = useTranslation();
@@ -29,6 +30,10 @@ export function useColumns(roleId: ID) {
       dataIndex: 'create',
       key: 'create',
       width: '12%',
+      render: (_, { rowType, classUuid, classConfig }) => {
+        return rowType === RowType.Class &&
+          <ClassAuthChecker classConfig={classConfig} classUuid={classUuid} roleId={roleId} field={"canCreate"} />
+      }
     },
     {
       title: t('Auth.Delete'),
