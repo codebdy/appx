@@ -12,7 +12,7 @@ export function useColumns(roleId: ID) {
   const { t } = useTranslation();
   const columns: ColumnsType<IAuthConfig> = useMemo(() => [
     {
-      title: t("AppUml.Class"),
+      title: t("AppUml.Entity"),
       dataIndex: 'name',
       key: 'name',
     },
