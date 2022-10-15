@@ -206,17 +206,24 @@ export const createDisplaySchemaTab = (options?: IDisplayTabOptions) => {
             'x-auth': {
               type: "object",
               properties: {
-                authable:{
+                authable: {
                   type: 'boolean',
                   'x-decorator': 'FormItem',
                   'x-component': 'Switch',
                 },
-                authTitle:{
+                authTitle: {
                   type: 'string',
                   'x-decorator': 'FormItem',
                   'x-component': 'MultiLangInput',
+                  'x-reactions': {
+                    fulfill: {
+                      state: {
+                        hidden: '{{!$form.values["x-auth"]?.authable}}',
+                      },
+                    },
+                  },
                 },
-                reactType:{
+                reactType: {
                   type: 'string',
                   enum: ['hidden', 'disabled'],
                   'x-decorator': 'FormItem',
@@ -224,6 +231,13 @@ export const createDisplaySchemaTab = (options?: IDisplayTabOptions) => {
                   'x-component-props': {
                     defaultValue: 'hidden',
                     optionType: 'button',
+                  },
+                  'x-reactions': {
+                    fulfill: {
+                      state: {
+                        hidden: '{{!$form.values["x-auth"]?.authable}}',
+                      },
+                    },
                   },
                 }
               }
