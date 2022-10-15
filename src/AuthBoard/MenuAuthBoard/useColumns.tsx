@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import React from "react";
 import { ID } from "../../shared";
 import { IUiAuthRow } from "../IUiAuthConfig";
+import { MenuAuthChecker } from "./MenuAuthChecker";
 
 
 export function useColumns(roleId: ID) {
@@ -20,6 +21,9 @@ export function useColumns(roleId: ID) {
       dataIndex: 'permit',
       key: 'permit',
       width: '12%',
+      render: (_, { menuConfig }) => {
+        return <MenuAuthChecker roleId={roleId} menuAuthConfig={menuConfig} />
+      }
     },
     {
       title: "",
@@ -27,7 +31,7 @@ export function useColumns(roleId: ID) {
       key: 'blank',
     },
 
-  ], [roleId]);
+  ], [roleId, roleId]);
 
   return columns;
 }

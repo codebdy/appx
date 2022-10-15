@@ -26,8 +26,9 @@ export const MenuPanal = memo((
       uuid: item.uuid,
       name: p(item.title),
       children: item.type === MenuItemType.Group ? item.children?.map(itm => makeItem(itm)) : undefined,
+      menuConfig: menuConfigs?.find(config => config.roleId === roleId && config.menuItemUuid === item.uuid)
     }
-  }, [p])
+  }, [p, menuConfigs, roleId])
 
   const data: IUiAuthRow[] = useMemo(() => {
     return menu?.schemaJson?.items.map(item => makeItem(item)) || []

@@ -17,7 +17,7 @@ query ($appUuid:String!){
       appUuid
       roleId
       device
-      refuse
+      refused
       menuItemUuid
     }
   }

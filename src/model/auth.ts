@@ -56,7 +56,7 @@ export interface IPropertyAuthConfigInput extends IModelAuthConfigInput {
 
 export interface IUiAuthConfig extends IAuthConfig{
   device: Device;
-  refuse?: Boolean;
+  refused?: Boolean;
 }
 
 export interface IMenuAuthConfig extends IUiAuthConfig {

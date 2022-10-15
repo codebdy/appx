@@ -1229,36 +1229,36 @@
         "uuid": "4a0a79fa-70ba-4297-a71f-a28336b1b7e5"
       },
       {
-        "uuid": "02e50e9a-23e2-4b69-81d6-22de373a35d6",
-        "innerId": 1032,
-        "name": "UiAuthConfig",
         "attributes": [
           {
-            "uuid": "96a2fdad-b742-48ac-94ef-52c63e77eb40",
             "name": "id",
-            "type": "ID",
             "primary": true,
-            "typeLabel": "ID"
+            "type": "ID",
+            "typeLabel": "ID",
+            "uuid": "96a2fdad-b742-48ac-94ef-52c63e77eb40"
           },
           {
-            "uuid": "b51ccaf1-fbca-4215-a53b-322cd6fa006f",
             "name": "device",
             "type": "Enum",
             "typeLabel": "Device",
-            "typeUuid": "65dc043c-daaf-408c-b74c-f6ff4952bd5a"
+            "typeUuid": "65dc043c-daaf-408c-b74c-f6ff4952bd5a",
+            "uuid": "b51ccaf1-fbca-4215-a53b-322cd6fa006f"
           },
           {
-            "uuid": "3fcf0901-7871-4eb8-875c-6a419cd4d1ea",
-            "name": "refuse",
+            "name": "refused",
+            "nullable": true,
             "type": "Boolean",
             "typeLabel": "Boolean",
-            "nullable": true
+            "uuid": "3fcf0901-7871-4eb8-875c-6a419cd4d1ea"
           }
         ],
+        "innerId": 1032,
         "methods": [],
-        "stereoType": "Abstract",
+        "name": "UiAuthConfig",
+        "packageUuid": "PACKAGE_APPX_UUID",
         "root": false,
-        "packageUuid": "PACKAGE_APPX_UUID"
+        "stereoType": "Abstract",
+        "uuid": "02e50e9a-23e2-4b69-81d6-22de373a35d6"
       }
     ],
     "relations": [
@@ -1543,34 +1543,34 @@
         "uuid": "31faad2a-ca4e-47e3-823a-348a31ee04ee"
       },
       {
-        "uuid": "b2998d74-dafa-405f-bc09-b2dd160299cd",
+        "appUuid": "SYSTEM",
         "innerId": 0,
         "relationType": "inherit",
         "sourceId": "8f77f9f7-a39d-4f9e-8c21-023a48e4858d",
-        "targetId": "02e50e9a-23e2-4b69-81d6-22de373a35d6",
         "sourceMutiplicity": "0..1",
+        "targetId": "02e50e9a-23e2-4b69-81d6-22de373a35d6",
         "targetMultiplicity": "0..1",
-        "appUuid": "SYSTEM"
+        "uuid": "b2998d74-dafa-405f-bc09-b2dd160299cd"
       },
       {
-        "uuid": "086ba83d-042f-4bd8-aeaf-2c06a38740b3",
+        "appUuid": "SYSTEM",
         "innerId": 0,
         "relationType": "inherit",
         "sourceId": "4a0a79fa-70ba-4297-a71f-a28336b1b7e5",
-        "targetId": "02e50e9a-23e2-4b69-81d6-22de373a35d6",
         "sourceMutiplicity": "0..1",
+        "targetId": "02e50e9a-23e2-4b69-81d6-22de373a35d6",
         "targetMultiplicity": "0..1",
-        "appUuid": "SYSTEM"
+        "uuid": "086ba83d-042f-4bd8-aeaf-2c06a38740b3"
       },
       {
-        "uuid": "274cb5fb-362a-4769-be10-62be85ffb498",
+        "appUuid": "SYSTEM",
         "innerId": 0,
         "relationType": "inherit",
         "sourceId": "02e50e9a-23e2-4b69-81d6-22de373a35d6",
-        "targetId": "3502291d-5e64-4c31-82b0-c04c6c70e6a7",
         "sourceMutiplicity": "0..1",
+        "targetId": "3502291d-5e64-4c31-82b0-c04c6c70e6a7",
         "targetMultiplicity": "0..1",
-        "appUuid": "SYSTEM"
+        "uuid": "274cb5fb-362a-4769-be10-62be85ffb498"
       }
     ],
     "diagrams": [
@@ -1974,28 +1974,28 @@
         "y": -370
       },
       {
+        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826",
+        "height": 120,
         "id": "8f77f9f7-a39d-4f9e-8c21-023a48e4858d",
-        "x": -490,
-        "y": 140,
         "width": 210,
-        "height": 120,
-        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826"
+        "x": -490,
+        "y": 140
       },
       {
+        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826",
+        "height": 120,
         "id": "4a0a79fa-70ba-4297-a71f-a28336b1b7e5",
-        "x": -190,
-        "y": 140,
         "width": 240,
-        "height": 120,
-        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826"
+        "x": -190,
+        "y": 140
       },
       {
-        "id": "02e50e9a-23e2-4b69-81d6-22de373a35d6",
-        "x": -340,
-        "y": -150,
-        "width": 180,
+        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826",
         "height": 150,
-        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826"
+        "id": "02e50e9a-23e2-4b69-81d6-22de373a35d6",
+        "width": 180,
+        "x": -340,
+        "y": -150
       }
     ],
     "x6Edges": [
@@ -2474,6 +2474,7 @@
         ]
       },
       {
+        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826",
         "id": "b2998d74-dafa-405f-bc09-b2dd160299cd",
         "vertices": [
           {
@@ -2484,10 +2485,10 @@
             "x": -250,
             "y": 70
           }
-        ],
-        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826"
+        ]
       },
       {
+        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826",
         "id": "086ba83d-042f-4bd8-aeaf-2c06a38740b3",
         "vertices": [
           {
@@ -2498,10 +2499,10 @@
             "x": -250,
             "y": 70
           }
-        ],
-        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826"
+        ]
       },
       {
+        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826",
         "id": "274cb5fb-362a-4769-be10-62be85ffb498",
         "vertices": [
           {
@@ -2512,8 +2513,7 @@
             "x": -570,
             "y": -190
           }
-        ],
-        "diagramUuid": "875b48cc-3aa7-40dd-a92d-cf042f0d6826"
+        ]
       }
     ]
   }
