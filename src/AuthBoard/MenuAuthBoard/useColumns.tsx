@@ -10,7 +10,7 @@ export function useColumns(roleId: ID) {
   const { t } = useTranslation();
   const columns: ColumnsType<IUiAuthConfig> = useMemo(() => [
     {
-      title: t("AppUml.Entity"),
+      title: t("Auth.MenuItem"),
       dataIndex: 'name',
       key: 'name',
       width: '30%',
