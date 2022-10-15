@@ -90,7 +90,8 @@
     "Create": "创建",
     "Update": "更新",
     "Delete": "删除",
-    "EditExpression": "编辑表达式"
+    "EditExpression": "编辑表达式",
+    "Permit": "许可"
   },
   "System": {
     "Model": "系统模型",

@@ -13,3 +13,9 @@ export interface IAuthConfig {
   classConfig?: IClassAuthConfig;
   propertyConfig?: IPropertyAuthConfig;
 }
+
+export interface IUiAuthConfig {
+  name: string,
+  label?: string,
+  refuse?: boolean,
+}
