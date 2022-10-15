@@ -26,7 +26,7 @@ export const MenuAuthBoard = memo(() => {
         <RoleList selectedRoleId={selectedRoleId} onSelect={handleSelectRole} />
       }
     >
-      <Breadcrumb className="bottom-border auth-breadcrumb">
+      <Breadcrumb className=" auth-breadcrumb">
         <Breadcrumb.Item>{t("Auth.MenuAuth")}</Breadcrumb.Item>
         <Breadcrumb.Item>{p(selectedRole?.name)}</Breadcrumb.Item>
       </Breadcrumb>
