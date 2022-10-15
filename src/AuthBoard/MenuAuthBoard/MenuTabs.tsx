@@ -1,28 +1,25 @@
 import { Tabs } from "antd"
-import React from "react"
+import React, { useMemo } from "react"
 import { memo } from "react"
+import { useDevices } from "../../hooks/useDevices";
 
 export const MenuTabs = memo(() => {
+  const devices = useDevices();
+
+  const items = useMemo(() => {
+    return devices.map(device => {
+      return {
+        key: device.key,
+        label: device.name,
+        children: <></>
+      }
+    })
+  }, [devices])
+
   return (
     <Tabs
       defaultActiveKey="1"
-      items={[
-        {
-          label: `Tab 1`,
-          key: '1',
-          children: `Content of Tab Pane 1`,
-        },
-        {
-          label: `Tab 2`,
-          key: '2',
-          children: `Content of Tab Pane 2`,
-        },
-        {
-          label: `Tab 3`,
-          key: '3',
-          children: `Content of Tab Pane 3`,
-        },
-      ]}
+      items={items}
     />
   )
 })
