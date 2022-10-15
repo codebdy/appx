@@ -1,3 +1,4 @@
+import { Device } from "@rxdrag/appx-plugin-sdk";
 import { ID } from "../shared";
 
 export interface IAuthConfig {
@@ -51,4 +52,14 @@ export interface IClassAuthConfigInput extends IModelAuthConfigInput {
 
 export interface IPropertyAuthConfigInput extends IModelAuthConfigInput {
   propertyUuid?: string;
+}
+
+export interface IMenuAuthConfig extends IAuthConfig {
+  menuItemUuid: string;
+  device: Device;
+}
+
+export interface IMenuAuthConfigInput extends IAuthConfigInput {
+  menuItemUuid?: string;
+  device?: Device;
 }
