@@ -2,9 +2,15 @@ import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Device } from "@rxdrag/appx-plugin-sdk";
 
+export interface IDevice {
+  key: string;
+  name: string;
+  imageUrl: string;
+}
+
 export function useDevices() {
-  const {t} = useTranslation();
-  const devices = useMemo(() => {
+  const { t } = useTranslation();
+  const devices: IDevice[] = useMemo(() => {
     return [
       {
         key: Device.PC,

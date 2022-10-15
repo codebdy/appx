@@ -2,6 +2,7 @@ import { Tabs } from "antd"
 import React, { useMemo } from "react"
 import { memo } from "react"
 import { useDevices } from "../../hooks/useDevices";
+import { MenuPanal } from "./MenuPanal";
 
 export const MenuTabs = memo(() => {
   const devices = useDevices();
@@ -11,7 +12,7 @@ export const MenuTabs = memo(() => {
       return {
         key: device.key,
         label: device.name,
-        children: <></>
+        children: <MenuPanal device={device} />
       }
     })
   }, [devices])
