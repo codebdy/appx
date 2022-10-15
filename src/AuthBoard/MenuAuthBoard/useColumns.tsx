@@ -3,12 +3,12 @@ import { ColumnsType } from 'antd/es/table';
 import { useMemo } from "react";
 import React from "react";
 import { ID } from "../../shared";
-import { IUiAuthConfig } from "../ModelAuthBoard/IUiAuthConfig";
+import { IUiAuthRow } from "../IUiAuthConfig";
 
 
 export function useColumns(roleId: ID) {
   const { t } = useTranslation();
-  const columns: ColumnsType<IUiAuthConfig> = useMemo(() => [
+  const columns: ColumnsType<IUiAuthRow> = useMemo(() => [
     {
       title: t("Auth.MenuItem"),
       dataIndex: 'name',

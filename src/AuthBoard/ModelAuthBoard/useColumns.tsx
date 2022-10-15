@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { ColumnsType } from 'antd/es/table';
 import { useMemo } from "react";
 import React from "react";
-import { IAuthConfig, RowType } from "./IAuthConfig";
+import { IAuthRow, RowType } from "./IAuthRow";
 import { ExpandSwitch } from "./ExpandSwitch";
 import { ID } from "../../shared";
 import { ClassAuthChecker } from "./ClassAuthChecker";
@@ -10,7 +10,7 @@ import { PropertyAuthChecker } from "./PropertyAuthChecker";
 
 export function useColumns(roleId: ID) {
   const { t } = useTranslation();
-  const columns: ColumnsType<IAuthConfig> = useMemo(() => [
+  const columns: ColumnsType<IAuthRow> = useMemo(() => [
     {
       title: t("AppUml.Entity"),
       dataIndex: 'name',

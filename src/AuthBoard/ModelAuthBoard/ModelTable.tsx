@@ -5,7 +5,7 @@ import { useParseLangMessage } from '../../plugin-sdk';
 import { packagesState } from '../../AppUml/recoil/atoms';
 import { useEdittingAppUuid } from '../../hooks/useEdittingAppUuid';
 import { useColumns } from './useColumns';
-import { IAuthConfig, RowType } from './IAuthConfig';
+import { IAuthRow, RowType } from './IAuthRow';
 import { useGetPackageCanAuthClasses } from '../hooks/useGetPackageCanAuthClasses';
 import { IClassAuthConfig, IPropertyAuthConfig } from '../../model';
 import { ID } from '../../shared';
@@ -34,7 +34,7 @@ export const ModelTable = memo((
     return propertyConfigs.find(config => config.propertyUuid === propertyUuid && config.roleId === roleId);
   }, [propertyConfigs, roleId])
 
-  const data: IAuthConfig[] = useMemo(() => {
+  const data: IAuthRow[] = useMemo(() => {
     return packages.map(pkg => {
       return {
         key: pkg.uuid,

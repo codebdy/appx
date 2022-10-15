@@ -1,7 +1,7 @@
 import { gql } from "awesome-graphql-client";
 import { useMemo } from "react";
 import { useQuery } from "../../enthooks/hooks/useQuery";
-import { IClassAuthConfig, IMenuAuthConfig } from "../../model";
+import { IMenuAuthConfig } from "../../model";
 import { useAppParams } from "../../plugin-sdk/contexts/appRoot";
 
 const authConfigGql = gql`
@@ -16,6 +16,9 @@ query ($appUuid:String!){
       id
       appUuid
       roleId
+      device
+      refuse
+      menuItemUuid
     }
   }
 }
@@ -34,5 +37,5 @@ export function useQueryMenuAuthConfigs() {
 
   const { data, error, loading } = useQuery<IMenuAuthConfig>(args)
 
-  return { menuAuthConfigs: data?.menuAuthConfigs?.nodes, error, loading }
+  return { menuConfigs: data?.menuAuthConfigs?.nodes, error, loading }
 }

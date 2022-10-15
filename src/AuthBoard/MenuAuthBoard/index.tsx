@@ -10,6 +10,7 @@ import { MenuTabs } from "./MenuTabs"
 import { useRoleName } from "../hooks/useRoleName"
 import { useQueryAppMenus } from "../hooks/useQueryAppMenus"
 import { useShowError } from "../../hooks/useShowError"
+import { useQueryMenuAuthConfigs } from "../hooks/useQueryMenuAuthConfigs"
 
 export const MenuAuthBoard = memo(() => {
   const [selectedRoleId, setSelectedRoleId] = useState<ID>();
@@ -17,8 +18,9 @@ export const MenuAuthBoard = memo(() => {
   const roleName = useRoleName(selectedRoleId);
 
   const { menus, error } = useQueryAppMenus();
+  const { menuConfigs, error: configError } = useQueryMenuAuthConfigs()
 
-  useShowError(error);
+  useShowError(error || configError);
 
   const handleSelectRole = useCallback((selectedRoleId?: ID) => {
     setSelectedRoleId(selectedRoleId)
@@ -39,7 +41,7 @@ export const MenuAuthBoard = memo(() => {
       <div className="menu-auth-content">
         {
           selectedRoleId &&
-          <MenuTabs menus={menus || []} />
+          <MenuTabs menus={menus || []} roleId={selectedRoleId} menuConfigs={menuConfigs || []} />
         }
       </div>
     </ListConentLayout>

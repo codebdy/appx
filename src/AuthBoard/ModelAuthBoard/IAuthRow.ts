@@ -6,7 +6,7 @@ export enum RowType {
   Property,
 }
 
-export interface IAuthConfig {
+export interface IAuthRow {
   classUuid?: string;
   propertyUuid?: string;
   rowType: RowType;
