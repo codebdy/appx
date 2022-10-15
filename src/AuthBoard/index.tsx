@@ -65,8 +65,8 @@ export const AuthBoard = memo(() => {
       return []
     } else {
       return [
-        getItem(t("Auth.MenuAuth"), AuthRoutes.MenuAuth, <MenuOutlined />, []),
-        getItem(t("Auth.PageAuth"), AuthRoutes.PageAuth, <LayoutOutlined />, []),
+        getItem(t("Auth.MenuAuth"), AuthRoutes.MenuAuth, <MenuOutlined />, null),
+        getItem(t("Auth.PageAuth"), AuthRoutes.PageAuth, <LayoutOutlined />, null),
       ]
     }
   }, [appUuid])
