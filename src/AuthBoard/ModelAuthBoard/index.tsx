@@ -35,7 +35,7 @@ export const ModelAuthBoard = memo(() => {
           <RoleList selectedRoleId={selectedRoleId} onSelect={handleSelectRole} />
         }
       >
-        <Breadcrumb style={{ padding: "8px 16px" }}>
+        <Breadcrumb className ="bottom-border auth-breadcrumb">
           <Breadcrumb.Item>{t("Auth.ModelAuth")}</Breadcrumb.Item>
           <Breadcrumb.Item>{p(selectedRole?.name)}</Breadcrumb.Item>
         </Breadcrumb>

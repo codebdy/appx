@@ -6,6 +6,7 @@ import { GUEST_ROLE_ID } from "../../consts";
 import { useParseLangMessage } from "../../plugin-sdk";
 import { ID } from "../../shared";
 import { useRoles } from "../hooks/useRoles";
+import "./style.less";
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -33,7 +34,7 @@ export const RoleList = memo((
     onSelect?: (selectedRoleId?: ID) => void,
   }
 ) => {
-  const {selectedRoleId, onSelect} = props;
+  const { selectedRoleId, onSelect } = props;
   const roles = useRoles();
   const p = useParseLangMessage();
   const { t } = useTranslation();
