@@ -21,12 +21,15 @@ export const MenuPanal = memo((
   const p = useParseLangMessage();
 
   const makeItem = useCallback((item: IMenuItem) => {
+    const menuItemConfig = menuConfigs?.find(config => config.roleId === roleId && config.menuItemUuid === item.uuid);
     return {
       key: item.uuid,
       menuItemUuid: item.uuid,
       name: p(item.title),
-      children: item.type === MenuItemType.Group ? item.children?.map(itm => makeItem(itm)) : undefined,
-      menuConfig: menuConfigs?.find(config => config.roleId === roleId && config.menuItemUuid === item.uuid),
+      children: (item.type === MenuItemType.Group && !menuItemConfig?.refused)
+        ? item.children?.map(itm => makeItem(itm))
+        : undefined,
+      menuConfig: menuItemConfig,
       device: device.key
     }
   }, [p, menuConfigs, roleId, device])
