@@ -30,6 +30,8 @@ const EntryHeader = memo((props: {
     navigate(`/config-app/${app?.uuid}/${info.key}`)
   }, [app?.uuid, navigate]);
 
+  console.log("哈哈", match)
+
   return (
     <Header className="header">
       <Button className="no-border" shape="circle" onClick={handleBack}><HomeOutlined /></Button>
@@ -38,7 +40,7 @@ const EntryHeader = memo((props: {
       <Menu
         className="app-entry-menu"
         mode="horizontal"
-        defaultSelectedKeys={[match?.params?.["*"]]}
+        defaultSelectedKeys={[match?.params?.["*"]?.split("/")?.[0]]}
         onSelect={handleSelect}
         items={[
           {
