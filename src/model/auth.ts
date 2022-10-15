@@ -54,12 +54,25 @@ export interface IPropertyAuthConfigInput extends IModelAuthConfigInput {
   propertyUuid?: string;
 }
 
-export interface IMenuAuthConfig extends IAuthConfig {
-  menuItemUuid: string;
+export interface IUiAuthConfig extends IAuthConfig{
   device: Device;
+  refuse?: Boolean;
+}
+
+export interface IMenuAuthConfig extends IUiAuthConfig {
+  menuItemUuid: string;
 }
 
 export interface IMenuAuthConfigInput extends IAuthConfigInput {
   menuItemUuid?: string;
-  device?: Device;
+}
+
+
+export interface ICompoentAuthConfig extends IUiAuthConfig {
+  componentId: string;
+}
+
+
+export interface ICompoentAuthConfigIput extends IAuthConfigInput {
+  componentId?: string;
 }
