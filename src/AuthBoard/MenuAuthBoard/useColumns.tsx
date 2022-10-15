@@ -3,7 +3,7 @@ import { ColumnsType } from 'antd/es/table';
 import { useMemo } from "react";
 import React from "react";
 import { ID } from "../../shared";
-import { IUiAuthConfig } from "../ModelAuthBoard/IAuthConfig";
+import { IUiAuthConfig } from "../ModelAuthBoard/IUiAuthConfig";
 
 
 export function useColumns(roleId: ID) {

@@ -14,8 +14,4 @@ export interface IAuthConfig {
   propertyConfig?: IPropertyAuthConfig;
 }
 
-export interface IUiAuthConfig {
-  name: string,
-  label?: string,
-  refuse?: boolean,
-}
+
