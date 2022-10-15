@@ -203,11 +203,31 @@ export const createDisplaySchemaTab = (options?: IDisplayTabOptions) => {
             },
           },
           properties: {
-            viewAuth: {
-              type: 'string',
-              'x-decorator': 'FormItem',
-              'x-component': 'Input',
-            },
+            'x-auth': {
+              type: "object",
+              properties: {
+                authable:{
+                  type: 'boolean',
+                  'x-decorator': 'FormItem',
+                  'x-component': 'Switch',
+                },
+                authTitle:{
+                  type: 'string',
+                  'x-decorator': 'FormItem',
+                  'x-component': 'MultiLangInput',
+                },
+                reactType:{
+                  type: 'string',
+                  enum: ['hidden', 'disabled'],
+                  'x-decorator': 'FormItem',
+                  'x-component': 'Radio.Group',
+                  'x-component-props': {
+                    defaultValue: 'hidden',
+                    optionType: 'button',
+                  },
+                }
+              }
+            }
           }
         },
       },

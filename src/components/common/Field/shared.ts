@@ -1,3 +1,36 @@
+
+
+
+
+
+
+
+
+
+
+/***********************************
+ * 
+ * 
+ * 
+ * 本文件代码已废除，择机删除
+ * 
+ * 
+ * 
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import { ISchema } from '@formily/json-schema'
 import {
   ReactionsSetter,
@@ -260,11 +293,21 @@ export const createDisplaySchemaTab = (options?: IFieldOptions) => {
             },
           },
           properties: {
-            viewAuth: {
-              type: 'string',
-              'x-decorator': 'FormItem',
-              'x-component': 'Input',
-            },
+            'x-auth': {
+              type: "object",
+              properties: {
+                authable:{
+                  type: 'boolean',
+                  'x-decorator': 'FormItem',
+                  'x-component': 'Switch',
+                },
+                authTitle:{
+                  type: 'string',
+                  'x-decorator': 'FormItem',
+                  'x-component': 'MultiLangInput',
+                }
+              }
+            }
           }
         },
       },

@@ -29,11 +29,18 @@ export const FieldLocales = {
       'display-group': "显示属性",
       'data-bind-group': "数据绑定",
       'auth-group': "权限设置",
+      'x-auth': {
+        authable: "允许赋权",
+        authTitle: "权限标题",
+        reactType: {
+          title: "响应类型",
+          dataSource: ['隐藏', '无效'],
+        },
+      },
       'component-tab': '属性',
       'style-tab': '样式',
       'data-tab': '数据',
       'action-tab': '动作',
-      viewAuth: "权限",
       "x-field-source": "字段源",
       "x-field-params": "字段参数",
       'x-component-props': {
