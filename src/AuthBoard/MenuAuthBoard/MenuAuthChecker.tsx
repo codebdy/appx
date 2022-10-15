@@ -7,16 +7,19 @@ import { ID } from "../../shared";
 import { LoadingOutlined } from "@ant-design/icons";
 import { CheckboxChangeEvent } from "antd/es/checkbox";
 import { useUpsertMenuAuthConfig } from "../hooks/useUpsertMenuAuthConfig";
+import { Device } from "@rxdrag/appx-plugin-sdk";
 
 export const MenuAuthChecker = memo((
   props: {
     menuAuthConfig?: IMenuAuthConfig,
     roleId: ID,
+    menuItemUuid: string,
+    device: Device,
   }
 ) => {
-  const { menuAuthConfig, roleId } = props;
+  const { menuAuthConfig, roleId, menuItemUuid, device } = props;
   const [checked, setChecked] = useState(false);
-  const [postClassConfig, { error, loading }] = useUpsertMenuAuthConfig();
+  const [upsertMenuConfig, { error, loading }] = useUpsertMenuAuthConfig();
   useShowError(error)
 
   useEffect(() => {
@@ -25,13 +28,16 @@ export const MenuAuthChecker = memo((
 
   const handleChange = useCallback((e: CheckboxChangeEvent) => {
     setChecked(e.target.checked);
-    postClassConfig(
+    upsertMenuConfig(
       {
         ...menuAuthConfig,
         roleId,
+        menuItemUuid,
+        device,
+        refused: !checked,
       }
     )
-  }, [postClassConfig, roleId])
+  }, [upsertMenuConfig, roleId, menuItemUuid, device, checked])
 
   return (
     <>

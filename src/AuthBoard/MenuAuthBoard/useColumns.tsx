@@ -21,8 +21,13 @@ export function useColumns(roleId: ID) {
       dataIndex: 'permit',
       key: 'permit',
       width: '12%',
-      render: (_, { menuConfig }) => {
-        return <MenuAuthChecker roleId={roleId} menuAuthConfig={menuConfig} />
+      render: (_, { menuItemUuid, menuConfig, device }) => {
+        return <MenuAuthChecker
+          roleId={roleId}
+          menuAuthConfig={menuConfig}
+          menuItemUuid={menuItemUuid}
+          device={device}
+        />
       }
     },
     {

@@ -23,12 +23,13 @@ export const MenuPanal = memo((
   const makeItem = useCallback((item: IMenuItem) => {
     return {
       key: item.uuid,
-      uuid: item.uuid,
+      menuItemUuid: item.uuid,
       name: p(item.title),
       children: item.type === MenuItemType.Group ? item.children?.map(itm => makeItem(itm)) : undefined,
-      menuConfig: menuConfigs?.find(config => config.roleId === roleId && config.menuItemUuid === item.uuid)
+      menuConfig: menuConfigs?.find(config => config.roleId === roleId && config.menuItemUuid === item.uuid),
+      device: device.key
     }
-  }, [p, menuConfigs, roleId])
+  }, [p, menuConfigs, roleId, device])
 
   const data: IUiAuthRow[] = useMemo(() => {
     return menu?.schemaJson?.items.map(item => makeItem(item)) || []

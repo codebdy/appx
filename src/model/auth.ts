@@ -59,11 +59,17 @@ export interface IUiAuthConfig extends IAuthConfig{
   refused?: Boolean;
 }
 
+export interface IUiAuthConfigInput extends IAuthConfigInput{
+  device: Device;
+  refused?: Boolean;
+}
+
+
 export interface IMenuAuthConfig extends IUiAuthConfig {
   menuItemUuid: string;
 }
 
-export interface IMenuAuthConfigInput extends IAuthConfigInput {
+export interface IMenuAuthConfigInput extends IUiAuthConfigInput {
   menuItemUuid?: string;
 }
 
@@ -73,6 +79,6 @@ export interface ICompoentAuthConfig extends IUiAuthConfig {
 }
 
 
-export interface ICompoentAuthConfigIput extends IAuthConfigInput {
+export interface ICompoentAuthConfigIput extends IUiAuthConfigInput {
   componentId?: string;
 }
