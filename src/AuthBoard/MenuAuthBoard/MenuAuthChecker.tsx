@@ -34,10 +34,10 @@ export const MenuAuthChecker = memo((
         roleId,
         menuItemUuid,
         device,
-        refused: !checked,
+        refused: !e.target.checked,
       }
     )
-  }, [upsertMenuConfig, roleId, menuItemUuid, device, checked])
+  }, [upsertMenuConfig, roleId, menuItemUuid, device])
 
   return (
     <>
