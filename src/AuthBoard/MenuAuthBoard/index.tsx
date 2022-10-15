@@ -4,15 +4,22 @@ import { ID } from "../../shared"
 import { ListConentLayout } from "../../common/ListConentLayout"
 import { RoleList } from "../RoleList"
 import { useTranslation } from "react-i18next"
-import { Breadcrumb } from "antd"
+import { Breadcrumb, Spin } from "antd"
 import "./style.less"
 import { MenuTabs } from "./MenuTabs"
 import { useRoleName } from "../hooks/useRoleName"
+import { useQueryAppMenus } from "../hooks/useQueryAppMenus"
+import { useShowError } from "../../hooks/useShowError"
 
 export const MenuAuthBoard = memo(() => {
   const [selectedRoleId, setSelectedRoleId] = useState<ID>();
   const { t } = useTranslation();
   const roleName = useRoleName(selectedRoleId);
+
+  const { menus, error } = useQueryAppMenus();
+
+  useShowError(error);
+
   const handleSelectRole = useCallback((selectedRoleId?: ID) => {
     setSelectedRoleId(selectedRoleId)
   }, [])
@@ -32,7 +39,7 @@ export const MenuAuthBoard = memo(() => {
       <div className="menu-auth-content">
         {
           selectedRoleId &&
-          <MenuTabs />
+          <MenuTabs menus={menus || []} />
         }
       </div>
     </ListConentLayout>

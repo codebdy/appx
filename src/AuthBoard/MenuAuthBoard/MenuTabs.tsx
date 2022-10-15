@@ -1,10 +1,16 @@
 import { Tabs } from "antd"
 import React, { useMemo } from "react"
 import { memo } from "react"
+import { IMenu } from "../../model";
 import { useDevices } from "../../hooks/useDevices";
 import { MenuPanal } from "./MenuPanal";
 
-export const MenuTabs = memo(() => {
+export const MenuTabs = memo((
+  props: {
+    menus: IMenu[]
+  }
+) => {
+  const { menus } = props;
   const devices = useDevices();
 
   const items = useMemo(() => {
@@ -12,7 +18,7 @@ export const MenuTabs = memo(() => {
       return {
         key: device.key,
         label: device.name,
-        children: <MenuPanal device={device} />
+        children: <MenuPanal device={device} menu={menus.find(menu => menu.device === device.key)} />
       }
     })
   }, [devices])
