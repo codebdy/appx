@@ -30,8 +30,6 @@ const EntryHeader = memo((props: {
     navigate(`/config-app/${app?.uuid}/${info.key}`)
   }, [app?.uuid, navigate]);
 
-  console.log("哈哈", match)
-
   return (
     <Header className="header">
       <Button className="no-border" shape="circle" onClick={handleBack}><HomeOutlined /></Button>
