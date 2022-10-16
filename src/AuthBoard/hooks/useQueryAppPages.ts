@@ -2,7 +2,7 @@ import { gql } from "awesome-graphql-client";
 import { useMemo } from "react";
 import { useQuery } from "../../enthooks/hooks/useQuery";
 import { useEdittingAppUuid } from "../../hooks/useEdittingAppUuid";
-import { IMenu, IPage } from "../../model";
+import { IPage } from "../../model";
 
 const pagesGql = gql`
 query ($appUuid:String!){

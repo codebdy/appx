@@ -14,6 +14,7 @@ export function useParseSchema() {
     }
 
     if (schema["x-auth"]) {
+      console.log("呵呵2", schema["x-auth"])
       coms.push({
         name: schema.name,
         title: p(schema["x-auth"].authTitle)
