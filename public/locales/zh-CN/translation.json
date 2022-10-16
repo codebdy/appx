@@ -92,7 +92,8 @@
     "Delete": "删除",
     "EditExpression": "编辑表达式",
     "Permit": "许可",
-    "MenuItem": "菜单项"
+    "MenuItem": "菜单项",
+    "Component": "组件"
   },
   "System": {
     "Model": "系统模型",
