@@ -30,7 +30,7 @@ export const FieldLocales = {
       'data-bind-group': "数据绑定",
       'auth-group': "权限设置",
       'x-auth': {
-        authable: "允许赋权",
+        authable: "可赋权",
         authTitle: "权限标题",
         reactType: {
           title: "响应类型",
