@@ -11,6 +11,7 @@ import { useQueryAppPages } from "../hooks/useQueryAppPages"
 import { PageTabs } from "./PageTabs"
 import { useQueryComponentAuthConfigs } from "../hooks/useQueryComponentAuthConfigs"
 import { useShowError } from "../../hooks/useShowError"
+import { useQueryAppPageCagegories } from "../hooks/useQueryAppPageCagegories"
 
 export const PageAuthBoard = memo(() => {
   const [selectedRoleId, setSelectedRoleId] = useState<ID>();
@@ -18,8 +19,9 @@ export const PageAuthBoard = memo(() => {
   const roleName = useRoleName(selectedRoleId);
   const { pages, error } = useQueryAppPages();
   const { componentConfigs, error: configError } = useQueryComponentAuthConfigs();
+  const { categories, error: categoriesError } = useQueryAppPageCagegories();
 
-  useShowError(error || configError)
+  useShowError(error || configError || categoriesError)
 
   const handleSelectRole = useCallback((selectedRoleId?: ID) => {
     setSelectedRoleId(selectedRoleId)
@@ -39,7 +41,11 @@ export const PageAuthBoard = memo(() => {
       <div className="page-auth-content">
         {
           selectedRoleId &&
-          <PageTabs pages={pages || []} roleId={selectedRoleId} compoentConfigs={componentConfigs || []} />
+          <PageTabs
+            pages={pages || []} roleId={selectedRoleId}
+            compoentConfigs={componentConfigs || []}
+            categories={categories || []}
+          />
         }
       </div>
     </ListConentLayout>
