@@ -6,9 +6,11 @@ import { Table } from "antd";
 import { useColumns } from "./useColumns";
 import { ID } from "../../shared";
 import { IUiAuthRow } from "../IUiAuthConfig";
-import { IMenuItem, MenuItemType, useParseLangMessage } from "../../plugin-sdk";
+import { useParseLangMessage } from "../../plugin-sdk";
 import { usePagesWithoutCategory } from "../hooks/usePagesWithoutCategory";
-import { useGetCategoryPages } from "../hooks/useGetCategoryPages";
+import { useAuthCategories } from "../hooks/useAuthCategories";
+import { useAuthPages } from "../hooks/useAuthPages";
+import { IAuthCategory, IAuthComponent, IAuthPage } from "../hooks/model";
 
 export const PageAuthPanal = memo((
   props: {
@@ -22,51 +24,43 @@ export const PageAuthPanal = memo((
   const { device, categories, pages, roleId, componentConfigs } = props;
   const columns = useColumns(roleId);
   const p = useParseLangMessage();
-  const pagesWithoutCategory = usePagesWithoutCategory(pages, categories);
-  const getCategoryPages = useGetCategoryPages(pages);
+  const authPages = useAuthPages(pages);
+  const pagesWithoutCategory = usePagesWithoutCategory(authPages, categories);
+  const authCategories = useAuthCategories(categories, authPages);
 
-  const makeComponentItem = useCallback((item: IMenuItem) => {
-    const menuItemConfig = componentConfigs?.find(config => config.roleId === roleId && config.componentId === item.uuid);
+  const makeComponentItem = useCallback((item: IAuthComponent) => {
     return {
-      key: item.uuid,
-      menuItemUuid: item.uuid,
+      key: item.name,
+      componentId: item.name,
       name: p(item.title),
-      menuConfig: menuItemConfig,
-      device: device.key
+      //menuConfig: menuItemConfig,
+      device: device.key as any
     }
   }, [p, componentConfigs, roleId, device])
 
-  const makePageItem = useCallback((page: IPage) => {
-    const menuItemConfig = componentConfigs?.find(config => config.roleId === roleId && config.componentId === item.uuid);
+  const makePageItem = useCallback((page: IAuthPage) => {
     return {
-      key: item.uuid,
-      menuItemUuid: item.uuid,
-      name: p(item.title),
-      children: (item.type === MenuItemType.Group && !menuItemConfig?.refused)
-        ? item.children?.map(itm => makeItem(itm))
-        : undefined,
-      menuConfig: menuItemConfig,
-      device: device.key
+      key: page.page.id,
+      name: p(page.page.title),
+      children: page.components.map(com=>makeComponentItem(com)),
+      device: device.key as any
     }
   }, [p, componentConfigs, roleId, device])
 
-  const makeCategoryItem = useCallback((category: IPageCategory) => {
-    const menuItemConfig = componentConfigs?.find(config => config.roleId === roleId && config.componentId === category.uuid);
+  const makeCategoryItem = useCallback((category: IAuthCategory) => {
     return {
-      key: category.id,
-      menuItemUuid: category.id,
-      name: p(category.title),
-      children: getCategoryPages(category.id).map(page => makePageItem(page)),
-      menuConfig: menuItemConfig,
-      device: device.key
+      key: category.cagegory.id,
+      name: p(category.cagegory.title),
+      children: category.pages.map(page=>makePageItem(page)),
+      device: device.key as any
     }
   }, [p, componentConfigs, roleId, device, makePageItem])
 
   const data: IUiAuthRow[] = useMemo(() => {
-    const categoryItems = categories.map(category => makeCategoryItem(category))
+    const categoryItems = authCategories.map(category => makeCategoryItem(category))
     const pageItems = pagesWithoutCategory.map(page => makePageItem(page))
     return [...categoryItems, ...pageItems]
-  }, [categories, makeCategoryItem, pagesWithoutCategory, makePageItem])
+  }, [authCategories, makeCategoryItem, pagesWithoutCategory, makePageItem])
 
   return (
     <Table

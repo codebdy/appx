@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { ISchema } from '@formily/json-schema'
 import { isArr, isObj } from '@designable/shared'
 import { useParseLangMessage } from "../../plugin-sdk";
-import { IAuthComponent } from "./IAuthComponent";
+import { IAuthComponent } from "./model";
 
 export function useParseSchema() {
   const p = useParseLangMessage();

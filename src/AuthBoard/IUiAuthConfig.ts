@@ -5,7 +5,8 @@ export interface IUiAuthRow {
   name: string;
   label?: string;
   refused?: boolean;
-  menuItemUuid: string;
+  menuItemUuid?: string;
+  componentId?: string;
   menuConfig?: IMenuAuthConfig;
   device: Device;
   componentConfig?: IComponentAuthConfig;

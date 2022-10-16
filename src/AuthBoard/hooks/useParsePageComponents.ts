@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { IPage } from "../../model";
-import { IAuthComponent } from "./IAuthComponent";
+import { IAuthComponent } from "./model";
 import { useParseSchema } from "./useParseSchema";
 
 export function useParsePageComponents() {
