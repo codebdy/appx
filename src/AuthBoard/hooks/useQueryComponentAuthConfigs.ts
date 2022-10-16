@@ -37,5 +37,5 @@ export function useQueryComponentAuthConfigs() {
 
   const { data, error, loading } = useQuery<IComponentAuthConfig>(args)
 
-  return { componentConfigs: data?.componentAuthConfig?.nodes, error, loading }
+  return { componentConfigs: data?.componentAuthConfigs?.nodes, error, loading }
 }

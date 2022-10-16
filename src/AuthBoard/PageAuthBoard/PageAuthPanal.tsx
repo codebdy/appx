@@ -28,12 +28,12 @@ export const PageAuthPanal = memo((
   const pagesWithoutCategory = usePagesWithoutCategory(authPages, categories);
   const authCategories = useAuthCategories(categories, authPages);
 
-  const makeComponentItem = useCallback((item: IAuthComponent) => {
+  const makeComponentItem = useCallback((com: IAuthComponent) => {
     return {
-      key: item.name,
-      componentId: item.name,
-      name: p(item.title),
-      //menuConfig: menuItemConfig,
+      key: com.name,
+      componentId: com.name,
+      name: p(com.title),
+      componentConfig: componentConfigs.find(config => config.componentId === com.name),
       device: device.key as any
     }
   }, [p, componentConfigs, roleId, device])
@@ -42,7 +42,7 @@ export const PageAuthPanal = memo((
     return {
       key: page.page.id,
       name: p(page.page.title),
-      children: page.components.map(com=>makeComponentItem(com)),
+      children: page.components.map(com => makeComponentItem(com)),
       device: device.key as any
     }
   }, [p, componentConfigs, roleId, device])
@@ -51,7 +51,7 @@ export const PageAuthPanal = memo((
     return {
       key: category.category.id,
       name: p(category.category.title),
-      children: category.pages.map(page=>makePageItem(page)),
+      children: category.pages.map(page => makePageItem(page)),
       device: device.key as any
     }
   }, [p, componentConfigs, roleId, device, makePageItem])
