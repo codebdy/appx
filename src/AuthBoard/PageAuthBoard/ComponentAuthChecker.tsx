@@ -1,7 +1,7 @@
 import { Checkbox } from "antd"
 import React, { useCallback, useEffect, useState } from "react"
 import { memo } from "react"
-import { IMenuAuthConfig } from "../../model"
+import { IComponentAuthConfig } from "../../model"
 import { useShowError } from "../../hooks/useShowError";
 import { ID } from "../../shared";
 import { LoadingOutlined } from "@ant-design/icons";
@@ -11,33 +11,33 @@ import { Device } from "@rxdrag/appx-plugin-sdk";
 
 export const ComponentAuthChecker = memo((
   props: {
-    menuAuthConfig?: IMenuAuthConfig,
+    componentAuthConfig?: IComponentAuthConfig,
     roleId: ID,
-    menuItemUuid: string,
+    componentId: string,
     device: Device,
   }
 ) => {
-  const { menuAuthConfig, roleId, menuItemUuid, device } = props;
+  const { componentAuthConfig, roleId, componentId, device } = props;
   const [checked, setChecked] = useState(false);
   const [upsertMenuConfig, { error, loading }] = useUpsertMenuAuthConfig();
   useShowError(error)
 
   useEffect(() => {
-    setChecked(!menuAuthConfig?.refused)
-  }, [menuAuthConfig])
+    setChecked(!componentAuthConfig?.refused)
+  }, [componentAuthConfig])
 
   const handleChange = useCallback((e: CheckboxChangeEvent) => {
     setChecked(e.target.checked);
     upsertMenuConfig(
       {
-        ...menuAuthConfig,
+        ...componentAuthConfig,
         roleId,
-        menuItemUuid,
+        menuItemUuid: componentId,
         device,
         refused: !e.target.checked,
       }
     )
-  }, [upsertMenuConfig, roleId, menuItemUuid, device])
+  }, [upsertMenuConfig, roleId, componentId, device])
 
   return (
     <>
