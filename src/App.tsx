@@ -69,7 +69,7 @@ const App = memo(() => {
               <Route path={AppEntryRouts.Frame} element={<AppFrames />} />
               <Route path={AppEntryRouts.Auth} element={<AuthBoard />}>
                 <Route path={AuthRoutes.MenuAuth} element={<MenuAuthBoard />} />
-                <Route path={AuthRoutes.PageAuth} element={<PageAuthBoard />} />
+                <Route path={AuthRoutes.ComponentAuth} element={<PageAuthBoard />} />
                 <Route path={AuthRoutes.ModelAuth} element={<ModelAuthBoard />} />
                 <Route path="" element={<MenuAuthBoard />} />
               </Route>

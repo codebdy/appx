@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import React from "react";
 import { ID } from "../../shared";
 import { IUiAuthRow } from "../IUiAuthConfig";
-import { MenuAuthChecker } from "./MenuAuthChecker";
+import { ComponentAuthChecker } from "./ComponentAuthChecker";
 
 
 export function useColumns(roleId: ID) {
@@ -22,7 +22,7 @@ export function useColumns(roleId: ID) {
       key: 'permit',
       width: '12%',
       render: (_, { menuItemUuid, menuConfig, device }) => {
-        return <MenuAuthChecker
+        return <ComponentAuthChecker
           roleId={roleId}
           menuAuthConfig={menuConfig}
           menuItemUuid={menuItemUuid}

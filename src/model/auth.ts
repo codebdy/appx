@@ -74,11 +74,11 @@ export interface IMenuAuthConfigInput extends IUiAuthConfigInput {
 }
 
 
-export interface ICompoentAuthConfig extends IUiAuthConfig {
+export interface IComponentAuthConfig extends IUiAuthConfig {
   componentId: string;
 }
 
 
-export interface ICompoentAuthConfigIput extends IUiAuthConfigInput {
+export interface IComponentAuthConfigIput extends IUiAuthConfigInput {
   componentId?: string;
 }

@@ -21,7 +21,7 @@ import { AppEntryRouts } from "../AppEntry/AppEntryRouts";
 
 export enum AuthRoutes {
   MenuAuth = "menu-auth",
-  PageAuth = "component-auth",
+  ComponentAuth = "component-auth",
   ModelAuth = "model-auth",
   AppAuth = "app-auth"
 }
@@ -66,7 +66,7 @@ export const AuthBoard = memo(() => {
     } else {
       return [
         getItem(t("Auth.MenuAuth"), AuthRoutes.MenuAuth, <MenuOutlined />, null),
-        getItem(t("Auth.PageAuth"), AuthRoutes.PageAuth, <LayoutOutlined />, null),
+        getItem(t("Auth.ComponentAuth"), AuthRoutes.ComponentAuth, <LayoutOutlined />, null),
       ]
     }
   }, [appUuid])

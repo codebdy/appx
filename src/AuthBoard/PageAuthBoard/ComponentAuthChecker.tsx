@@ -9,7 +9,7 @@ import { CheckboxChangeEvent } from "antd/es/checkbox";
 import { useUpsertMenuAuthConfig } from "../hooks/useUpsertMenuAuthConfig";
 import { Device } from "@rxdrag/appx-plugin-sdk";
 
-export const MenuAuthChecker = memo((
+export const ComponentAuthChecker = memo((
   props: {
     menuAuthConfig?: IMenuAuthConfig,
     roleId: ID,

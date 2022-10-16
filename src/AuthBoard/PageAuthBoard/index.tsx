@@ -7,11 +7,14 @@ import { useRoleName } from "../hooks/useRoleName"
 import { RoleList } from "../RoleList"
 import { Breadcrumb } from "antd"
 import "./style.less"
+import { useQueryAppPages } from "../hooks/useQueryAppPages"
+import { PageTabs } from "./PageTabs"
 
 export const PageAuthBoard = memo(() => {
   const [selectedRoleId, setSelectedRoleId] = useState<ID>();
   const { t } = useTranslation();
   const roleName = useRoleName(selectedRoleId);
+  const {pages, error} = useQueryAppPages()
 
   const handleSelectRole = useCallback((selectedRoleId?: ID) => {
     setSelectedRoleId(selectedRoleId)
@@ -25,13 +28,13 @@ export const PageAuthBoard = memo(() => {
       }
     >
       <Breadcrumb className=" auth-breadcrumb">
-        <Breadcrumb.Item>{t("Auth.PageAuth")}</Breadcrumb.Item>
+        <Breadcrumb.Item>{t("Auth.ComponentAuth")}</Breadcrumb.Item>
         <Breadcrumb.Item>{roleName}</Breadcrumb.Item>
       </Breadcrumb>
       <div className="page-auth-content">
         {
           selectedRoleId &&
-          <PageTabs menus={menus || []} roleId={selectedRoleId} menuConfigs={menuConfigs || []} />
+          <PageTabs pages={pages || []} roleId={selectedRoleId} compoentConfigs={menuConfigs || []} />
         }
       </div>
     </ListConentLayout>

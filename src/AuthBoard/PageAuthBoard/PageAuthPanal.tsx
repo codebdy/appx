@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from "react"
 import { memo } from "react"
-import { IMenu, IMenuAuthConfig } from "../../model";
+import { IComponentAuthConfig, IPage } from "../../model";
 import { IDevice } from "../../hooks/useDevices"
 import { Table } from "antd";
 import { useColumns } from "./useColumns";
@@ -11,17 +11,17 @@ import { IMenuItem, MenuItemType, useParseLangMessage } from "../../plugin-sdk";
 export const PageAuthPanal = memo((
   props: {
     device: IDevice,
-    menu: IMenu,
+    page: IPage,
     roleId: ID,
-    menuConfigs: IMenuAuthConfig[],
+    componentConfigs: IComponentAuthConfig[],
   }
 ) => {
-  const { device, menu, roleId, menuConfigs } = props;
+  const { device, page, roleId, componentConfigs } = props;
   const columns = useColumns(roleId);
   const p = useParseLangMessage();
 
   const makeItem = useCallback((item: IMenuItem) => {
-    const menuItemConfig = menuConfigs?.find(config => config.roleId === roleId && config.menuItemUuid === item.uuid);
+    const menuItemConfig = componentConfigs?.find(config => config.roleId === roleId && config.componentId === item.uuid);
     return {
       key: item.uuid,
       menuItemUuid: item.uuid,
@@ -32,11 +32,11 @@ export const PageAuthPanal = memo((
       menuConfig: menuItemConfig,
       device: device.key
     }
-  }, [p, menuConfigs, roleId, device])
+  }, [p, componentConfigs, roleId, device])
 
   const data: IUiAuthRow[] = useMemo(() => {
-    return menu?.schemaJson?.items.map(item => makeItem(item)) || []
-  }, [menu, makeItem])
+    return []//page?.schemaJson?.items.map(item => makeItem(item)) || []
+  }, [page, makeItem])
 
   return (
     <Table

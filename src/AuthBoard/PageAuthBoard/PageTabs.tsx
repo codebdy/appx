@@ -1,19 +1,19 @@
 import { Tabs } from "antd"
 import React, { useMemo } from "react"
 import { memo } from "react"
-import { IMenu, IMenuAuthConfig } from "../../model";
+import { IComponentAuthConfig, IMenuAuthConfig, IPage } from "../../model";
 import { useDevices } from "../../hooks/useDevices";
 import { PageAuthPanal } from "./PageAuthPanal";
 import { ID } from "../../shared";
 
 export const PageTabs = memo((
   props: {
-    menus: IMenu[],
-    menuConfigs: IMenuAuthConfig[],
+    pages: IPage[],
+    compoentConfigs: IComponentAuthConfig[],
     roleId: ID,
   }
 ) => {
-  const { menus, menuConfigs, roleId } = props;
+  const { pages, compoentConfigs, roleId } = props;
   const devices = useDevices();
 
   const items = useMemo(() => {
@@ -23,13 +23,13 @@ export const PageTabs = memo((
         label: device.name,
         children: <PageAuthPanal
           device={device}
-          menu={menus.find(menu => menu.device === device.key)}
+          page={pages.find(menu => menu.device === device.key)}
           roleId={roleId}
-          menuConfigs={menuConfigs.filter(item => item.roleId === roleId && item.device === device.key)}
+          componentConfigs={compoentConfigs.filter(item => item.roleId === roleId && item.device === device.key)}
         />
       }
     })
-  }, [devices, menuConfigs, roleId])
+  }, [devices, compoentConfigs, roleId])
 
   return (
     <Tabs
