@@ -7,22 +7,21 @@ import { IAuthComponent } from "./model";
 export function useParseSchema() {
   const p = useParseLangMessage();
 
-  const parse = useCallback((schema?: ISchema): IAuthComponent[] => {
+  const parse = useCallback((schema: ISchema | undefined, key?: string): IAuthComponent[] => {
     const coms = [];
     if (!schema || !isObj(schema)) {
       return coms;
     }
 
-    if (schema["x-auth"]) {
-      console.log("呵呵2", schema["x-auth"])
+    if (schema["x-auth"] && schema["x-auth"].authable) {
       coms.push({
-        name: schema.name,
-        title: p(schema["x-auth"].authTitle)
+        name: key,
+        title: p(schema["x-auth"].authTitle) || key
       })
     }
 
     for (const key of Object.keys(schema.properties || {})) {
-      coms.push(...parse(schema.properties[key]));
+      coms.push(...parse(schema.properties[key], key));
     }
 
     if (isArr(schema.items)) {
@@ -32,7 +31,7 @@ export function useParseSchema() {
     } else if (schema.items) {
       const properties = (schema.items as any).properties;
       for (const key of Object.keys(properties || {})) {
-        coms.push(...parse(properties[key]));
+        coms.push(...parse(properties[key], key));
       }
     }
     return coms
