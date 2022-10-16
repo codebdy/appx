@@ -62,7 +62,6 @@ export const PageAuthPanal = memo((
     return [...categoryItems, ...pageItems]
   }, [authCategories, makeCategoryItem, pagesWithoutCategory, makePageItem])
 
-  console.log("哈哈", data, categories, pages)
   return (
     <Table
       columns={columns}

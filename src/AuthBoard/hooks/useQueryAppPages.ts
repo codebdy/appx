@@ -16,6 +16,7 @@ query ($appUuid:String!){
  ){
     nodes{
       id
+      title
       device
       schemaJson      
     }
