@@ -20,6 +20,5 @@ export function useAuthPages(pages: IPage[]) {
     return pgs;
 
   }, [pages])
-
   return authPages;
 }

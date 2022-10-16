@@ -16,7 +16,6 @@ export const PageTabs = memo((
 ) => {
   const { pages, categories, compoentConfigs, roleId } = props;
   const devices = useDevices();
-
   const items = useMemo(() => {
     return devices.map(device => {
       return {
@@ -24,14 +23,14 @@ export const PageTabs = memo((
         label: device.name,
         children: <PageAuthPanal
           device={device}
-          categories = {categories.filter(category=>category.device === device.key)}
-          pages={pages.filter(menu => menu.device === device.key)}
+          categories={categories.filter(category => category.device === device.key)}
+          pages={pages.filter(page => page.device === device.key)}
           roleId={roleId}
           componentConfigs={compoentConfigs.filter(item => item.roleId === roleId && item.device === device.key)}
         />
       }
     })
-  }, [devices, compoentConfigs, roleId])
+  }, [devices, pages, compoentConfigs, roleId])
 
   return (
     <Tabs

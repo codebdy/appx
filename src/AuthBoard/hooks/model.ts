@@ -11,6 +11,6 @@ export interface IAuthPage {
 }
 
 export interface IAuthCategory {
-  cagegory: IPageCategory,
+  category: IPageCategory,
   pages: IAuthPage[]
 }

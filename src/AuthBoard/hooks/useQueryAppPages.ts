@@ -18,7 +18,10 @@ query ($appUuid:String!){
       id
       title
       device
-      schemaJson      
+      schemaJson     
+      category{
+        id
+      } 
     }
   }
 }
