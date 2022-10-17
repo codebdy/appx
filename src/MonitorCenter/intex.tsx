@@ -31,6 +31,7 @@ function getItem(
     children,
     label,
     type,
+    onClick: e => e.domEvent.stopPropagation(),
   } as MenuItem;
 }
 
@@ -94,7 +95,6 @@ export const MonitorCenter = memo(() => {
       className="monitor-board"
       list={
         <Menu
-          key={activeKey}
           style={{ flex: 1 }}
           onClick={onClick}
           activeKey={activeKey}
