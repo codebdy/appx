@@ -28,9 +28,9 @@ export const PageAuthPanal = memo((
   const pagesWithoutCategory = usePagesWithoutCategory(authPages, categories);
   const authCategories = useAuthCategories(categories, authPages);
 
-  const makeComponentItem = useCallback((com: IAuthComponent) => {
+  const makeComponentItem = useCallback((com: IAuthComponent, pageId: ID) => {
     return {
-      key: com.name,
+      key: pageId + com.name,
       componentId: com.name,
       name: p(com.title),
       componentConfig: componentConfigs.find(config => config.componentId === com.name),
@@ -42,7 +42,7 @@ export const PageAuthPanal = memo((
     return {
       key: page.page.id,
       name: p(page.page.title),
-      children: page.components.map(com => makeComponentItem(com)),
+      children: page.components.map(com => makeComponentItem(com, page.page.id)),
       device: device.key as any
     }
   }, [p, componentConfigs, roleId, device])

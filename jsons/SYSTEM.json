@@ -1291,7 +1291,8 @@
             "name": "stack",
             "type": "String",
             "typeLabel": "String",
-            "nullable": true
+            "nullable": true,
+            "length": 10000
           }
         ],
         "methods": [],
