@@ -514,7 +514,9 @@
     "GraphqlExpressionError": "Graphql 表达式错误："
   },
   "Monitor": {
-    "Title": "监控中心"
+    "Title": "监控中心",
+    "ServerStatus":"服务器状态",
+    "Logs":"日志中心"
   },
   "Lang": {
     "Title": "语言",

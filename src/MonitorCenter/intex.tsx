@@ -2,20 +2,15 @@ import { Menu, MenuProps } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next";
 import { Outlet, useMatch, useNavigate } from "react-router-dom";
-import { useParseLangMessage } from "../plugin-sdk";
-import { useEdittingAppUuid } from "../hooks/useEdittingAppUuid";
 import "./style.less"
 import { AppManagerRoutes } from "../AppManager/AppHeader";
-import { SYSTEM_APP_UUID } from "../consts";
-import { AppstoreOutlined, LayoutOutlined, MenuOutlined } from "@ant-design/icons";
 import SvgIcon from "../common/SvgIcon";
 import { ListConentLayout } from "../common/ListConentLayout";
+import { DashboardOutlined } from "@ant-design/icons";
 
-export enum AuthRoutes {
-  MenuAuth = "menu-auth",
-  ComponentAuth = "component-auth",
-  ModelAuth = "model-auth",
-  AppAuth = "app-auth"
+export enum MonitorRoutes {
+  ServerStatus = "server-status",
+  Logs = "logs",
 }
 
 type MenuItem = Required<MenuProps>['items'][number];
@@ -39,53 +34,34 @@ function getItem(
 export const MonitorCenter = memo(() => {
   const { t } = useTranslation();
   const navigate = useNavigate()
-  const appUuid = useEdittingAppUuid();
-  const p = useParseLangMessage();
   const matchString = useMemo(() => {
     return `/${AppManagerRoutes.Auth}/*`
   }, [])
   const match = useMatch(matchString)
 
-  const appItems = useMemo(() => {
-    if (appUuid === SYSTEM_APP_UUID) {
-      return []
-    } else {
-      return [
-        getItem(t("Auth.MenuAuth"), AuthRoutes.MenuAuth, <MenuOutlined />, null),
-        getItem(t("Auth.ComponentAuth"), AuthRoutes.ComponentAuth, <LayoutOutlined />, null),
-      ]
-    }
-  }, [appUuid])
-
-  const rootItems = useMemo(() => {
-    if (appUuid === SYSTEM_APP_UUID) {
-      return [getItem(t("Auth.AppAuth"), AuthRoutes.AppAuth, <AppstoreOutlined />, null)]
-    } else {
-      return []
-    }
-  }, [appUuid])
-
   const items: MenuProps['items'] = useMemo(() => [
-    ...appItems,
-    getItem(t("Auth.ModelAuth"),
-      AuthRoutes.ModelAuth,
+    getItem(t("Monitor.ServerStatus"),
+      MonitorRoutes.ServerStatus,
+      <DashboardOutlined />,
+      null,
+    ),
+    getItem(t("Monitor.Logs"),
+      MonitorRoutes.Logs,
       <SvgIcon>
-        <svg style={{ width: "16px", height: "16px" }} viewBox="0 0 968 968" version="1.1">
-          <path d="M513.89 950.72c-5.5 0-11-1.4-15.99-4.2L143.84 743c-9.85-5.73-15.99-16.17-15.99-27.64V308.58c0-11.33 6.14-21.91 15.99-27.64L497.9 77.43c9.85-5.73 22.14-5.73 31.99 0l354.06 203.52c9.85 5.73 15.99 16.17 15.99 27.64V715.5c0 11.33-6.14 21.91-15.99 27.64L529.89 946.52c-4.99 2.8-10.49 4.2-16 4.2zM191.83 697.15L513.89 882.2l322.07-185.05V326.92L513.89 141.87 191.83 326.92v370.23z m322.06-153.34c-5.37 0-10.88-1.4-15.99-4.33L244.29 393.91c-15.35-8.79-20.6-28.27-11.77-43.56 8.83-15.28 28.41-20.5 43.76-11.72l253.61 145.7c15.35 8.79 20.6 28.27 11.77 43.56-6.01 10.32-16.76 15.92-27.77 15.92z m0 291.52c-17.66 0-31.99-14.26-31.99-31.84V530.44L244.55 393.91s-0.13 0-0.13-0.13l-100.45-57.69c-15.35-8.79-20.6-28.27-11.77-43.56s28.41-20.5 43.76-11.72l354.06 203.52c9.85 5.73 15.99 16.17 15.99 27.64v291.39c-0.13 17.71-14.46 31.97-32.12 31.97z m0 115.39c-17.66 0-31.99-14.26-31.99-31.84V511.97c0-17.58 14.33-31.84 31.99-31.84s31.99 14.26 31.99 31.84v406.91c0 17.7-14.33 31.84-31.99 31.84z m0-406.91c-11 0-21.75-5.73-27.77-15.92-8.83-15.28-3.58-34.64 11.77-43.56l354.06-203.52c15.35-8.79 34.8-3.57 43.76 11.72 8.83 15.28 3.58 34.64-11.77 43.56L529.89 539.61c-4.99 2.93-10.49 4.2-16 4.2z"></path>
+        <svg style={{ width: "16px", height: "16px" }} fill="currentColor" viewBox="0 0 968 968">
+          <path d="M311.2 288H682v64H311.2zM311.2 480H682v64H311.2zM311.2 672H682v64H311.2z" p-id="4858"></path><path d="M960 512c0-59.4-39.5-109.1-92.7-123.4V192c0-52.9-41.6-96-92.7-96H218.5c-51.1 0-92.7 43.1-92.7 96v160H64v64h61.8v192H64v64h61.8v160c0 52.9 41.6 96 92.7 96h556.1c51.1 0 92.7-43.1 92.7-96V635.4c53.2-14.3 92.7-64 92.7-123.4zM774.6 864H218.5c-17 0-30.9-14.4-30.9-32V672h61.8v-64h-61.8V416h61.8v-64h-61.8V192c0-17.6 13.8-32 30.9-32h556.1c17 0 30.9 14.4 30.9 32v196.6c-53.2 14.3-92.7 64-92.7 123.4s39.5 109.1 92.7 123.4V832c0 17.6-13.8 32-30.9 32z m61.8-288c-34.1 0-61.8-28.7-61.8-64s27.7-64 61.8-64c34.1 0 61.8 28.7 61.8 64s-27.7 64-61.8 64z" p-id="4859"></path>
         </svg>
       </SvgIcon>,
       null,
     ),
-    ...rootItems
-  ], [appItems, rootItems, p]);
+  ], []);
 
   const onClick: MenuProps['onClick'] = useCallback(e => {
     navigate(e.key)
   }, [navigate]);
 
   const activeKey = useMemo(() => {
-    return match?.params?.["*"] ||
-      (appUuid === SYSTEM_APP_UUID ? AuthRoutes.ModelAuth : AuthRoutes.MenuAuth)
+    return match?.params?.["*"] || MonitorRoutes.ServerStatus
   }, [match])
 
   return (
