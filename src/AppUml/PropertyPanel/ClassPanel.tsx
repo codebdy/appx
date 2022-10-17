@@ -67,7 +67,19 @@ export const ClassPanel = (props: { cls: ClassMeta }) => {
             >
               <Switch disabled={cls.stereoType === StereoType.Service} />
             </Form.Item>
-          )}
+          )
+        }
+        {cls.stereoType === StereoType.Entity &&
+          (
+            <Form.Item
+              name="enableVersion"
+              valuePropName="checked"
+              label={t("AppUml.EnableVersion")}
+            >
+              <Switch />
+            </Form.Item>
+          )
+        }
         {
           cls.stereoType === StereoType.ThirdParty &&
           <>
