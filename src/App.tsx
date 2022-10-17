@@ -31,8 +31,12 @@ import { MenuAuthBoard } from './AuthBoard/MenuAuthBoard';
 import { ModelAuthBoard } from './AuthBoard/ModelAuthBoard';
 import { AppAuthBoard } from './AuthBoard/AppAuthBoard';
 import { PageAuthBoard } from './AuthBoard/PageAuthBoard';
-import { MonitorCenter } from './MonitorCenter/intex';
+import { MonitorCenter, MonitorRoutes } from './MonitorCenter/intex';
 import { ReportEngineBoard } from './ConfigCenter/ReportEngineBoard';
+import { BusinessLogsBoard } from './MonitorCenter/BusinessLogsBoard';
+import { ModelLogsBoard } from './MonitorCenter/ModelLogsBoard';
+import { DebugLogsBoard } from './MonitorCenter/DebugLogsBoard';
+import { ServerBoard } from './MonitorCenter/ServerBoard';
 
 const App = memo(() => {
   return (
@@ -53,7 +57,13 @@ const App = memo(() => {
                 <Route path="" element={<ModelAuthBoard />} />
               </Route>
               <Route path={AppManagerRoutes.SystemConfig} element={<AppConfig />} />
-              <Route path={AppManagerRoutes.Monitor} element={<MonitorCenter />} />
+              <Route path={AppManagerRoutes.Monitor} element={<MonitorCenter />}>
+                <Route path={MonitorRoutes.ServerStatus} element={<ServerBoard />} />
+                <Route path={MonitorRoutes.BusinessLogs} element={<BusinessLogsBoard />} />
+                <Route path={MonitorRoutes.ModelLogs} element={<ModelLogsBoard />} />
+                <Route path={MonitorRoutes.DebugLogs} element={<DebugLogsBoard />} />
+                <Route path="" element={<ServerBoard />} />
+              </Route>
               <Route path={AppManagerRoutes.Configs} element={<ConfigCenter />}>
                 <Route path={ConfigsRoutes.ProcessEngine} element={<ProcessEngineBoard />} />
                 <Route path={ConfigsRoutes.NotificationEngine} element={<NotificationEngineBoard />} />
