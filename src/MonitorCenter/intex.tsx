@@ -1,23 +1,15 @@
-import React, { useCallback, useMemo } from "react"
-import { memo } from "react"
-import { Outlet, useMatch, useNavigate } from "react-router-dom"
-import { ListConentLayout } from "../common/ListConentLayout"
-import { MenuProps, Spin } from 'antd';
-import { Menu } from 'antd';
-import { AppstoreOutlined, LayoutOutlined, MenuOutlined } from "@ant-design/icons";
+import { Menu, MenuProps } from "antd";
+import React, { memo, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next";
-import "./style.less";
-import SvgIcon from "../common/SvgIcon";
-import { useEdittingAppUuid } from "../hooks/useEdittingAppUuid";
-import { useReadMeta } from "../AppUml/hooks/useReadMeta";
-import { useShowError } from "../hooks/useShowError";
-import { useRecoilValue } from "recoil";
-import { packagesState } from "../AppUml/recoil/atoms";
+import { Outlet, useMatch, useNavigate } from "react-router-dom";
 import { useParseLangMessage } from "../plugin-sdk";
+import { useEdittingAppUuid } from "../hooks/useEdittingAppUuid";
+import "./style.less"
 import { AppManagerRoutes } from "../AppManager/AppHeader";
-import { useQueryRoles } from "./hooks/useQueryRoles";
 import { SYSTEM_APP_UUID } from "../consts";
-import { AppEntryRouts } from "../AppEntry/AppEntryRouts";
+import { AppstoreOutlined, LayoutOutlined, MenuOutlined } from "@ant-design/icons";
+import SvgIcon from "../common/SvgIcon";
+import { ListConentLayout } from "../common/ListConentLayout";
 
 export enum AuthRoutes {
   MenuAuth = "menu-auth",
@@ -44,20 +36,15 @@ function getItem(
   } as MenuItem;
 }
 
-export const AuthBoard = memo(() => {
+export const MonitorCenter = memo(() => {
   const { t } = useTranslation();
   const navigate = useNavigate()
   const appUuid = useEdittingAppUuid();
-  const { loading, error } = useReadMeta(appUuid);
-  const { loading: rolesLoading, error: rolesError } = useQueryRoles();
   const p = useParseLangMessage();
   const matchString = useMemo(() => {
-    return appUuid === SYSTEM_APP_UUID
-      ? `/${AppManagerRoutes.Auth}/*`
-      : `/config-app/${appUuid}/${AppEntryRouts.Auth}/*`
+    return `/${AppManagerRoutes.Auth}/*`
   }, [])
   const match = useMatch(matchString)
-  useShowError(error || rolesError);
 
   const appItems = useMemo(() => {
     if (appUuid === SYSTEM_APP_UUID) {
@@ -102,23 +89,20 @@ export const AuthBoard = memo(() => {
   }, [match])
 
   return (
-    <Spin tip="Loading..." spinning={loading || rolesLoading}>
-      <ListConentLayout
-        className="appx-auth-board"
-        listWidth={200}
-        list={
-          <Menu
-            key = {activeKey}
-            style={{ flex: 1 }}
-            onClick={onClick}
-            activeKey={activeKey}
-            mode="inline"
-            items={items}
-          />
-        }
-      >
-        <Outlet />
-      </ListConentLayout>
-    </Spin>
+    <ListConentLayout
+      className="monitor-board"
+      list={
+        <Menu
+          key={activeKey}
+          style={{ flex: 1 }}
+          onClick={onClick}
+          activeKey={activeKey}
+          mode="inline"
+          items={items}
+        />
+      }
+    >
+      <Outlet />
+    </ListConentLayout>
   )
 })
