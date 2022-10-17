@@ -56,7 +56,7 @@ export function useLazyRequest<T1>(options?: RequestOptions<any>)
         .catch((err: GraphQLRequestError) => {
           setLoading(false);
           setError(err);
-          console.error(err);
+          console.log("哈哈", err.extensions);
           options?.onError && options?.onError(err);
         });
     },
