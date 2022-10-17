@@ -4,7 +4,7 @@ import { Outlet, useNavigate } from "react-router-dom"
 import { ListConentLayout } from "../common/ListConentLayout"
 import { MenuProps } from 'antd';
 import { Menu } from 'antd';
-import { BellOutlined, FileSearchOutlined, NodeIndexOutlined, SettingOutlined } from "@ant-design/icons";
+import { BellOutlined, FileSearchOutlined, FundOutlined, NodeIndexOutlined, SettingOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import { AppManagerRoutes } from "../AppManager/AppHeader";
 import "./style.less";
@@ -14,6 +14,7 @@ export enum ConfigsRoutes {
   ProcessEngine = "porcess-engine",
   NotificationEngine = "notification-engine",
   SearchEngine = "search-engine",
+  ReportEngine = "report-engine",
 }
 
 
@@ -42,6 +43,7 @@ export const ConfigCenter = memo(() => {
     getItem(t("Configs.ProcessEngine"), ConfigsRoutes.ProcessEngine, <NodeIndexOutlined />, null),
     getItem(t("Configs.NotificationEngine"), ConfigsRoutes.NotificationEngine, <BellOutlined />, null),
     getItem(t("Configs.SearchEngine"), ConfigsRoutes.SearchEngine, <FileSearchOutlined />, null),
+    getItem(t("Configs.ReportEngine"), ConfigsRoutes.ReportEngine, <FundOutlined />, null),
     getItem(t("Configs.SystemConfig"), AppManagerRoutes.SystemConfig, <SettingOutlined />, null),
   ], []);
 
