@@ -44,7 +44,7 @@ export const MonitorCenter = memo(() => {
   const { t } = useTranslation();
   const navigate = useNavigate()
   const matchString = useMemo(() => {
-    return `/${AppManagerRoutes.Auth}/*`
+    return `/${AppManagerRoutes.Monitor}/*`
   }, [])
   const match = useMatch(matchString)
 

@@ -1,10 +1,10 @@
 import React from "react"
 import { memo } from "react"
 
-export const ModelLogBoard = memo(()=>{
+export const ModelLogsBoard = memo(()=>{
   return(
     <>
-    ModelLogBoard
+    ModelLogsBoard
     </>
   )
 })
