@@ -32,6 +32,7 @@ import { ModelAuthBoard } from './AuthBoard/ModelAuthBoard';
 import { AppAuthBoard } from './AuthBoard/AppAuthBoard';
 import { PageAuthBoard } from './AuthBoard/PageAuthBoard';
 import { LogsCenter } from './LogsCenter/intex';
+import { ReportEngineBoard } from './ConfigCenter/ReportEngineBoard';
 
 const App = memo(() => {
   return (
@@ -57,6 +58,7 @@ const App = memo(() => {
                 <Route path={ConfigsRoutes.ProcessEngine} element={<ProcessEngineBoard />} />
                 <Route path={ConfigsRoutes.NotificationEngine} element={<NotificationEngineBoard />} />
                 <Route path={ConfigsRoutes.SearchEngine} element={<SearchEngineBoard />} />
+                <Route path={ConfigsRoutes.ReportEngine} element={<ReportEngineBoard />} />
                 <Route path={ConfigsRoutes.SystemConfig} element={<AppConfig />} />
                 <Route path="" element={<ProcessEngineBoard />} />
               </Route>
