@@ -34,6 +34,12 @@ function getItem(
   } as MenuItem;
 }
 
+const dotIcon = <SvgIcon>
+  <svg style={{ width: 16, height: 16 }} viewBox="0 0 24 24">
+    <path fill="currentColor" d="M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8Z" />
+  </svg>
+</SvgIcon>
+
 export const MonitorCenter = memo(() => {
   const { t } = useTranslation();
   const navigate = useNavigate()
@@ -58,17 +64,17 @@ export const MonitorCenter = memo(() => {
       [
         getItem(t("Monitor.BusinessLogs"),
           MonitorRoutes.BusinessLogs,
-          <CloudServerOutlined style={{ fontSize: 16 }} />,
+          dotIcon,
           null,
         ),
         getItem(t("Monitor.ModelLogs"),
           MonitorRoutes.ModelLogs,
-          <CloudServerOutlined style={{ fontSize: 16 }} />,
+          dotIcon,
           null,
         ),
         getItem(t("Monitor.DebugLogs"),
           MonitorRoutes.DebugLogs,
-          <CloudServerOutlined style={{ fontSize: 16 }} />,
+          dotIcon,
           null,
         ),
       ],
