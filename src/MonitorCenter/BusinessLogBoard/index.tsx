@@ -4,7 +4,7 @@ import { memo } from "react"
 export const ServerBoard = memo(()=>{
   return(
     <>
-    ServerBoard
+    BusinessLogBoard
     </>
   )
 })

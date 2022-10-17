@@ -11,6 +11,9 @@ import { CloudServerOutlined } from "@ant-design/icons";
 export enum MonitorRoutes {
   ServerStatus = "server-status",
   Logs = "logs",
+  DebugLogs = "debug-logs",
+  ModelLogs = "model-logs",
+  BusinessLogs = "business-logs",
 }
 
 type MenuItem = Required<MenuProps>['items'][number];
@@ -52,7 +55,23 @@ export const MonitorCenter = memo(() => {
           <path d="M311.2 288H682v64H311.2zM311.2 480H682v64H311.2zM311.2 672H682v64H311.2z" p-id="4858"></path><path d="M960 512c0-59.4-39.5-109.1-92.7-123.4V192c0-52.9-41.6-96-92.7-96H218.5c-51.1 0-92.7 43.1-92.7 96v160H64v64h61.8v192H64v64h61.8v160c0 52.9 41.6 96 92.7 96h556.1c51.1 0 92.7-43.1 92.7-96V635.4c53.2-14.3 92.7-64 92.7-123.4zM774.6 864H218.5c-17 0-30.9-14.4-30.9-32V672h61.8v-64h-61.8V416h61.8v-64h-61.8V192c0-17.6 13.8-32 30.9-32h556.1c17 0 30.9 14.4 30.9 32v196.6c-53.2 14.3-92.7 64-92.7 123.4s39.5 109.1 92.7 123.4V832c0 17.6-13.8 32-30.9 32z m61.8-288c-34.1 0-61.8-28.7-61.8-64s27.7-64 61.8-64c34.1 0 61.8 28.7 61.8 64s-27.7 64-61.8 64z" p-id="4859"></path>
         </svg>
       </SvgIcon>,
-      [],
+      [
+        getItem(t("Monitor.BusinessLogs"),
+          MonitorRoutes.BusinessLogs,
+          <CloudServerOutlined style={{ fontSize: 16 }} />,
+          null,
+        ),
+        getItem(t("Monitor.ModelLogs"),
+          MonitorRoutes.ModelLogs,
+          <CloudServerOutlined style={{ fontSize: 16 }} />,
+          null,
+        ),
+        getItem(t("Monitor.DebugLogs"),
+          MonitorRoutes.DebugLogs,
+          <CloudServerOutlined style={{ fontSize: 16 }} />,
+          null,
+        ),
+      ],
     ),
   ], []);
 

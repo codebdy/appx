@@ -515,8 +515,11 @@
   },
   "Monitor": {
     "Title": "监控中心",
-    "ServerStatus":"服务器状态",
-    "Logs":"日志中心"
+    "ServerStatus": "服务器状态",
+    "Logs": "日志中心",
+    "BusinessLogs": "业务日志",
+    "ModelLogs": "模型日志",
+    "DebugLogs": "调试日志"
   },
   "Lang": {
     "Title": "语言",
