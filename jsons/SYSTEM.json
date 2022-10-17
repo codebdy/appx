@@ -1283,7 +1283,15 @@
             "name": "operateType",
             "type": "Enum",
             "typeLabel": "DebugOperateType",
-            "typeUuid": "607d0741-9a9f-4e3e-a888-88f612dc0fb3"
+            "typeUuid": "607d0741-9a9f-4e3e-a888-88f612dc0fb3",
+            "nullable": true
+          },
+          {
+            "uuid": "290be3b9-e331-4de0-a351-76533fd09d3d",
+            "name": "stack",
+            "type": "String",
+            "typeLabel": "String",
+            "nullable": true
           }
         ],
         "methods": [],
@@ -2352,10 +2360,10 @@
       },
       {
         "id": "0423f482-6522-45be-9143-d6f16a0d206f",
-        "x": 59.999999999999886,
+        "x": 59.99999999999994,
         "y": 220,
         "width": 230,
-        "height": 100,
+        "height": 140,
         "diagramUuid": "8389303f-3593-4ae3-ba2f-14a6d9bf1ac2"
       },
       {
