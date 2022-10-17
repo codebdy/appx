@@ -206,7 +206,7 @@ export const createDisplaySchemaTab = (options?: IDisplayTabOptions) => {
             'x-auth': {
               type: "object",
               properties: {
-                authable: {
+                enableAuth: {
                   type: 'boolean',
                   'x-decorator': 'FormItem',
                   'x-component': 'Switch',
@@ -218,7 +218,7 @@ export const createDisplaySchemaTab = (options?: IDisplayTabOptions) => {
                   'x-reactions': {
                     fulfill: {
                       state: {
-                        hidden: '{{!$form.values["x-auth"]?.authable}}',
+                        hidden: '{{!$form.values["x-auth"]?.enableAuth}}',
                       },
                     },
                   },
@@ -235,7 +235,7 @@ export const createDisplaySchemaTab = (options?: IDisplayTabOptions) => {
                   'x-reactions': {
                     fulfill: {
                       state: {
-                        hidden: '{{!$form.values["x-auth"]?.authable}}',
+                        hidden: '{{!$form.values["x-auth"]?.enableAuth}}',
                       },
                     },
                   },

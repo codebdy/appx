@@ -296,7 +296,7 @@ export const createDisplaySchemaTab = (options?: IFieldOptions) => {
             'x-auth': {
               type: "object",
               properties: {
-                authable:{
+                enableAuth:{
                   type: 'boolean',
                   'x-decorator': 'FormItem',
                   'x-component': 'Switch',

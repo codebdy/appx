@@ -13,7 +13,7 @@ export function useParseSchema() {
       return coms;
     }
 
-    if (schema["x-auth"] && schema["x-auth"].authable) {
+    if (schema["x-auth"] && schema["x-auth"].enableAuth) {
       coms.push({
         name: key,
         title: p(schema["x-auth"].authTitle) || key
