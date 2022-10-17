@@ -6,7 +6,7 @@ import "./style.less"
 import { AppManagerRoutes } from "../AppManager/AppHeader";
 import SvgIcon from "../common/SvgIcon";
 import { ListConentLayout } from "../common/ListConentLayout";
-import { DashboardOutlined } from "@ant-design/icons";
+import { CloudServerOutlined } from "@ant-design/icons";
 
 export enum MonitorRoutes {
   ServerStatus = "server-status",
@@ -42,7 +42,7 @@ export const MonitorCenter = memo(() => {
   const items: MenuProps['items'] = useMemo(() => [
     getItem(t("Monitor.ServerStatus"),
       MonitorRoutes.ServerStatus,
-      <DashboardOutlined />,
+      <CloudServerOutlined style={{ fontSize: 16 }} />,
       null,
     ),
     getItem(t("Monitor.Logs"),
