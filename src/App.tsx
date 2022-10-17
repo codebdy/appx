@@ -31,6 +31,7 @@ import { MenuAuthBoard } from './AuthBoard/MenuAuthBoard';
 import { ModelAuthBoard } from './AuthBoard/ModelAuthBoard';
 import { AppAuthBoard } from './AuthBoard/AppAuthBoard';
 import { PageAuthBoard } from './AuthBoard/PageAuthBoard';
+import { AppLogs } from './AppLogs/intex';
 
 const App = memo(() => {
   return (
@@ -51,6 +52,7 @@ const App = memo(() => {
                 <Route path="" element={<ModelAuthBoard />} />
               </Route>
               <Route path={AppManagerRoutes.SystemConfig} element={<AppConfig />} />
+              <Route path={AppManagerRoutes.Logs} element={<AppLogs />} />
               <Route path={AppManagerRoutes.Configs} element={<ConfigCenter />}>
                 <Route path={ConfigsRoutes.ProcessEngine} element={<ProcessEngineBoard />} />
                 <Route path={ConfigsRoutes.NotificationEngine} element={<NotificationEngineBoard />} />
