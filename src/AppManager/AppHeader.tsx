@@ -1,4 +1,4 @@
-import { AppstoreOutlined, QuestionCircleOutlined, GithubOutlined, SettingOutlined } from "@ant-design/icons"
+import { AppstoreOutlined, QuestionCircleOutlined, GithubOutlined, SettingOutlined, DashboardOutlined } from "@ant-design/icons"
 import { Divider, Space, Button } from "antd"
 import { Header } from "antd/lib/layout/layout"
 import React, { memo, useCallback } from "react"
@@ -18,7 +18,7 @@ export enum AppManagerRoutes {
   SystemConfig = "system-config",
   Configs = "configs",
   Devices = "devices",
-  Logs = "logs",
+  Monitor = "logs",
 }
 
 const AppHeader = memo((props: {
@@ -50,7 +50,7 @@ const AppHeader = memo((props: {
   }, [navigate])
 
   const handleGotoLog = useCallback(() => {
-    navigate(AppManagerRoutes.Logs)
+    navigate(AppManagerRoutes.Monitor)
   }, [navigate])
 
   return (
@@ -124,18 +124,13 @@ const AppHeader = memo((props: {
           {t("Auth.Title")}
         </Button>
         <Button
-          type={match.pathname.startsWith(match.pathnameBase + AppManagerRoutes.Logs) ? "primary" : undefined}
+          type={match.pathname.startsWith(match.pathnameBase + AppManagerRoutes.Monitor) ? "primary" : undefined}
           shape="round"
-          icon={<SvgIcon>
-            <svg style={{ width: "16px", height: "16px" }} fill="currentColor" viewBox="0 0 968 968">
-              <path d="M311.2 288H682v64H311.2zM311.2 480H682v64H311.2zM311.2 672H682v64H311.2z" p-id="4858"></path><path d="M960 512c0-59.4-39.5-109.1-92.7-123.4V192c0-52.9-41.6-96-92.7-96H218.5c-51.1 0-92.7 43.1-92.7 96v160H64v64h61.8v192H64v64h61.8v160c0 52.9 41.6 96 92.7 96h556.1c51.1 0 92.7-43.1 92.7-96V635.4c53.2-14.3 92.7-64 92.7-123.4zM774.6 864H218.5c-17 0-30.9-14.4-30.9-32V672h61.8v-64h-61.8V416h61.8v-64h-61.8V192c0-17.6 13.8-32 30.9-32h556.1c17 0 30.9 14.4 30.9 32v196.6c-53.2 14.3-92.7 64-92.7 123.4s39.5 109.1 92.7 123.4V832c0 17.6-13.8 32-30.9 32z m61.8-288c-34.1 0-61.8-28.7-61.8-64s27.7-64 61.8-64c34.1 0 61.8 28.7 61.8 64s-27.7 64-61.8 64z" p-id="4859"></path>
-            </svg>
-          </SvgIcon>
-          }
+          icon={<DashboardOutlined />}
           className='nav-button'
           onClick={handleGotoLog}
         >
-          {t("Logs.Title")}
+          {t("Monitor.Title")}
         </Button>
         <Button shape="round"
           className='nav-button'

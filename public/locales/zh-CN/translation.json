@@ -512,8 +512,8 @@
   "Query": {
     "GraphqlExpressionError": "Graphql 表达式错误："
   },
-  "Logs": {
-    "Title": "日志中心"
+  "Monitor": {
+    "Title": "监控中心"
   },
   "Lang": {
     "Title": "语言",
