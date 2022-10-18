@@ -1,55 +1,25 @@
 import { Table } from 'antd';
-import React from 'react';
+import React, { useMemo } from 'react';
+import { useShowError } from '../../hooks/useShowError';
 import { useColumns } from './hooks/useColumns';
-
-interface DataType {
-  key: React.Key;
-  name: string;
-  age: string;
-  address: string;
-  description: string;
-}
-
-
-const data: DataType[] = [
-  {
-    key: 1,
-    name: 'John Brown',
-    age: "Muataion",
-    address: 'New York No. 1 Lake Park',
-    description: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
-  },
-  {
-    key: 2,
-    name: 'Jim Green',
-    age: "Muataion",
-    address: 'London No. 1 Lake Park',
-    description: 'My name is Jim Green, I am 42 years old, living in London No. 1 Lake Park.',
-  },
-  {
-    key: 3,
-    name: 'Not Expandable',
-    age: "Query",
-    address: 'Jiangsu No. 1 Lake Park',
-    description: 'This not expandable',
-  },
-  {
-    key: 4,
-    name: 'Joe Black',
-    age: "Query",
-    address: 'Sidney No. 1 Lake Park',
-    description: 'My name is Joe Black, I am 32 years old, living in Sidney No. 1 Lake Park.',
-  },
-];
+import { useQueryModelLogs } from './hooks/useQueryModelLogs';
 
 export const ModelLogsTable: React.FC = () => {
+  const { logs, total, error, loading } = useQueryModelLogs();
+  useShowError(error);
   const columns = useColumns()
+
+  const data = useMemo(() => logs?.map(log => {
+    return { ...log, key: log.id }
+  }), [logs])
+
   return (<Table
+    loading={loading}
     columns={columns}
     expandable={{
       expandedRowRender: record => <p style={{ margin: 0 }}>{record.gql}</p>,
     }}
-    dataSource={[]}
+    dataSource={data || []}
   />
   );
 }

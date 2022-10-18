@@ -6,6 +6,7 @@ import { useEndpoint } from "../context";
 import { EVENT_DATA_POSTED, EVENT_DATA_REMOVED, EVENT_DATA_UPDATED, off, on } from "../events";
 import { MutateFn } from './useQueryOne';
 import { IQueryInput } from './IQueryInput';
+import { GraphQLRequestError } from '../awesome-graphql-client';
 
 export interface QueryResult<T> {
   [key: string]: {
@@ -19,7 +20,7 @@ export type QueryResponse<T> = {
   refresh: MutateFn<T>;
   loading?: boolean;
   revalidating?: boolean;
-  error?: Error;
+  error?: GraphQLRequestError;
 }
 
 export function useQuery<T>(input: IQueryInput): QueryResponse<T> {

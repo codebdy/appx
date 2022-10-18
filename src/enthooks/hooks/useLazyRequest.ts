@@ -13,14 +13,14 @@ export function useLazyRequest<T1>(options?: RequestOptions<any>)
   : [
     (gql: string | undefined, input?: T1) => void,
     {
-      error?: Error,
+      error?: GraphQLRequestError,
       loading?: boolean,
       data?:any,
     }
   ] {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<any>(undefined);
-  const [error, setError] = useState<Error | undefined>();
+  const [error, setError] = useState<GraphQLRequestError | undefined>();
   const endpoint = useEndpoint();
   const token = useToken();
   const mountRef = useMountRef();

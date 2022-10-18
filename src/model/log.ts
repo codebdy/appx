@@ -16,6 +16,7 @@ export enum OperateResult {
 export interface IModelLog {
   id: ID;
   user?: IUser;
+  ip?: string;
   appUuid?: string;
   createdAt?: Date;
   operateType?: ModelOperateType;
