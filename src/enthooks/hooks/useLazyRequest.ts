@@ -6,7 +6,7 @@ import { useMountRef } from "./useMountRef";
 
 export interface RequestOptions<T> {
   onCompleted?: (data: T) => void;
-  onError?: (error: Error) => void;
+  onError?: (error: GraphQLRequestError) => void;
 }
 
 export function useLazyRequest<T1>(options?: RequestOptions<any>)

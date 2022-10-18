@@ -2,6 +2,8 @@ import { Spin } from "antd";
 import React from "react"
 import { memo } from "react"
 import { Outlet } from "react-router-dom"
+import { SYSTEM_APP_UUID } from "../consts";
+import AppRoot from "../shared/AppRoot";
 import { useQueryMe } from "../enthooks/hooks/useQueryMe";
 import { useLoginCheck } from "../hooks/useLoginCheck";
 import { useShowError } from "../hooks/useShowError";
@@ -18,8 +20,10 @@ export const LoggedInPanel = memo(() => {
       ?
       <Spin />
       :
-      <UserContext.Provider value={me}>
-        <Outlet />
-      </UserContext.Provider>
+      <AppRoot appUuid={SYSTEM_APP_UUID}>
+        <UserContext.Provider value={me}>
+          <Outlet />
+        </UserContext.Provider>
+      </AppRoot>
   )
 })
