@@ -29,7 +29,7 @@ export function useLazyRequest<T1>(options?: RequestOptions<any>)
   const request = useCallback(
     (gql: string | undefined, params?: T1) => {
       if (!gql || !endpoint) {
-        console.log("gql or endpoint is null")
+        console.error("gql or endpoint is null")
         return;
       }
 
@@ -56,7 +56,8 @@ export function useLazyRequest<T1>(options?: RequestOptions<any>)
         .catch((err: GraphQLRequestError) => {
           setLoading(false);
           setError(err);
-          console.log("哈哈", err.extensions);
+          console.error(err);
+          console.error("哈哈", err.extensions);
           options?.onError && options?.onError(err);
         });
     },
