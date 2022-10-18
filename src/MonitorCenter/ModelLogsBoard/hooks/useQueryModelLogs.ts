@@ -4,6 +4,7 @@ import { useEffect, useMemo } from "react";
 import { IModelLog } from "../../../model/log";
 
 export function useQueryModelLogs(
+  offset: number,
   limit: number = 20,
 ) {
   const logsGql = useMemo(() => {
@@ -13,6 +14,7 @@ query {
     orderBy:{
       id:desc
     },
+    offset:${offset},
     limit:${limit}
   ){
     nodes{
@@ -34,7 +36,7 @@ query {
   }
 }
 `
-  }, [limit])
+  }, [limit, offset])
 
   const queryParams = useMemo(() => {
     return {
@@ -42,12 +44,10 @@ query {
       depEntityNames: ["ModelLog"]
     }
   }, [logsGql])
-  const { data, error, loading, refresh } = useQuery<IModelLog>(queryParams)
-  console.log("哈哈哈", data)
-
-  useEffect(()=>{
+  const { data, error, loading, refresh, revalidating } = useQuery<IModelLog>(queryParams)
+  useEffect(() => {
     refresh()
   }, [logsGql])
 
-  return { logs: data?.modelLogs?.nodes, total: data?.modelLogs?.total, error, loading }
+  return { logs: data?.modelLogs?.nodes, total: data?.modelLogs?.total, error, loading: loading || revalidating }
 }

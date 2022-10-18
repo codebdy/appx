@@ -5,8 +5,9 @@ import { useColumns } from './hooks/useColumns';
 import { useQueryModelLogs } from './hooks/useQueryModelLogs';
 
 export const ModelLogsTable: React.FC = () => {
-  const [size, setSize] = useState(20);
-  const { logs, total, error, loading } = useQueryModelLogs(size);
+  const [page, setPage] = useState(1);
+  const [size, setSize] = useState(10);
+  const { logs, total, error, loading } = useQueryModelLogs((page - 1) * size, size);
   useShowError(error);
   const columns = useColumns()
 
@@ -15,8 +16,13 @@ export const ModelLogsTable: React.FC = () => {
   }), [logs])
 
   const handleChange = useCallback((page, pageSize) => {
+    if (pageSize !== size) {
+      setPage(1);
+    } else {
+      setPage(page);
+    }
     setSize(pageSize);
-  }, [])
+  }, [size])
 
   return (<Table
     loading={loading}
