@@ -1,7 +1,7 @@
 import { ColumnsType } from 'antd/es/table';
 import { useMemo } from "react";
 import { useTranslation } from 'react-i18next';
-import { IModelLog } from "../../model/log";
+import { IModelLog } from "../../../model/log";
 
 export function useColumns() {
   const { t } = useTranslation();

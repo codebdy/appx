@@ -1,6 +1,6 @@
 import { Table } from 'antd';
 import React from 'react';
-import { useColumns } from './useColumns';
+import { useColumns } from './hooks/useColumns';
 
 interface DataType {
   key: React.Key;
