@@ -16,7 +16,12 @@ const AppRoot = memo((
   const token = useToken();
   const config = useMemo(() => {
     const localStorageToken = localStorage.getItem(tokenName)
-    return { endpoint: SERVER_URL, appUuid: props.appUuid || appUuid, token: token || localStorageToken }
+    return {
+      endpoint: SERVER_URL,
+      appUuid: props.appUuid || appUuid,
+      token: token || localStorageToken,
+      tokenName
+    }
   }, [props.appUuid, token, tokenName])
 
   return (

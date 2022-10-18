@@ -8,6 +8,7 @@ export const EntiRoot = memo((
       token?: string;
       endpoint: string;
       appUuid: string;
+      tokenName: string;
     },
     children: React.ReactNode,
   }

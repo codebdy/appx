@@ -8,7 +8,7 @@ import AppsContent from './AppManager/AppsContent';
 import ApiBoard from './ApiBoard';
 import { AppManagerRoutes } from './AppManager/AppHeader';
 import Install from './Install';
-import { INDEX_URL, INSTALL_URL, LOGIN_URL, SERVER_URL, SYSTEM_APP_UUID } from './consts';
+import { DESIGNER_TOKEN_NAME, INDEX_URL, INSTALL_URL, LOGIN_URL, SERVER_URL, SYSTEM_APP_UUID } from './consts';
 import AppUml from './AppUml';
 import { AppEntryRouts } from './AppEntry/AppEntryRouts';
 import AppUis from './AppEntry/AppUis';
@@ -41,7 +41,7 @@ import { EntiRoot } from './enthooks';
 
 const App = memo(() => {
   return (
-    <EntiRoot config={{ endpoint: SERVER_URL, appUuid: SYSTEM_APP_UUID }} >
+    <EntiRoot config={{ endpoint: SERVER_URL, appUuid: SYSTEM_APP_UUID, tokenName: DESIGNER_TOKEN_NAME }} >
       <PredefinedPluginsRoot>
         <PredefinedMaterialsRoot>
           <Routes>
