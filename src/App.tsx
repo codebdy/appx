@@ -89,6 +89,7 @@ const App = memo(() => {
                   <Route path={AuthRoutes.ModelAuth} element={<ModelAuthBoard />} />
                   <Route path="" element={<MenuAuthBoard />} />
                 </Route>
+                <Route path={AppEntryRouts.Config} element={<AppConfig />}></Route>
               </Route>
               <Route path="/design-app/:device/:appUuid" element={<AppDesigner />} />
               <Route path="/design-frame/:device/:appUuid" element={<FrameDesigner />} />
