@@ -530,9 +530,10 @@
     "DebugLogs": "调试日志",
     "Success": "成功",
     "Failure": "失败",
-    "Query":"查询",
-    "Upsert":"更新或插入",
-    "Delete":"删除"
+    "Query": "查询",
+    "Upsert": "更新或插入",
+    "Delete": "删除",
+    "RootApp": "平台"
   },
   "Lang": {
     "Title": "语言",

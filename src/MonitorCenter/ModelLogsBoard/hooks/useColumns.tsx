@@ -4,11 +4,19 @@ import React from 'react';
 import { useMemo } from "react";
 import { useTranslation } from 'react-i18next';
 import { IModelLog, ModelOperateType, OperateResult } from "../../../model/log";
+import { useGetAppName } from './useGetAppName';
 
 export function useColumns() {
   const { t } = useTranslation();
+  const getAppName = useGetAppName();
   const columns: ColumnsType<IModelLog> = useMemo(() => [
-    { title: t('Monitor.App'), dataIndex: 'appUuid', key: 'appUuid' },
+    {
+      title:
+        t('Monitor.App'),
+      dataIndex: 'appUuid',
+      key: 'appUuid',
+      render: (_, { appUuid }) => getAppName(appUuid),
+    },
     {
       title: t('Monitor.User'),
       dataIndex: 'user',
@@ -60,7 +68,7 @@ export function useColumns() {
       dataIndex: 'createdAt',
       key: 'createdAt',
     },
-  ], [t]);
+  ], [t, getAppName]);
 
   return columns
 }
