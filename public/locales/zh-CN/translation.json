@@ -519,6 +519,12 @@
     "Title": "监控中心",
     "ServerStatus": "服务器状态",
     "Logs": "日志中心",
+    "App": "应用",
+    "User": "用户",
+    "Class": "类",
+    "OperateType": "操作类型",
+    "OperateResult": "操作结果",
+    "DateTime": "时间",
     "BusinessLogs": "业务日志",
     "ModelLogs": "模型日志",
     "DebugLogs": "调试日志"

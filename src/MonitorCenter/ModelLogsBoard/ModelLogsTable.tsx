@@ -1,6 +1,6 @@
 import { Table } from 'antd';
-import { ColumnsType } from 'antd/es/table';
 import React from 'react';
+import { useColumns } from './useColumns';
 
 interface DataType {
   key: React.Key;
@@ -10,18 +10,6 @@ interface DataType {
   description: string;
 }
 
-const columns: ColumnsType<DataType> = [
-  { title: '用户', dataIndex: 'name', key: 'name' },
-  { title: 'IP', dataIndex: 'ip', key: 'ip' },
-  { title: '实体', dataIndex: 'address', key: 'address' },
-  { title: '操作类型', dataIndex: 'age', key: 'age' },
-  { title: '操作结果', dataIndex: 'result', key: 'result' },
-  {
-    title: '日期',
-    dataIndex: '',
-    key: 'x',
-  },
-];
 
 const data: DataType[] = [
   {
@@ -54,13 +42,15 @@ const data: DataType[] = [
   },
 ];
 
-export const ModelLogsTable: React.FC = () => (
-  <Table
+export const ModelLogsTable: React.FC = () => {
+  const columns = useColumns()
+  return (<Table
     columns={columns}
     expandable={{
-      expandedRowRender: record => <p style={{ margin: 0 }}>{record.description}</p>,
-      rowExpandable: record => record.name !== 'Not Expandable',
+      expandedRowRender: record => <p style={{ margin: 0 }}>{record.gql}</p>,
     }}
-    dataSource={data}
+    dataSource={[]}
   />
-);
+  );
+}
+
