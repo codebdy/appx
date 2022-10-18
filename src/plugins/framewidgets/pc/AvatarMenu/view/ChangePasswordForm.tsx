@@ -7,7 +7,7 @@ import { Form, FormButtonGroup, FormItem, Password, Submit } from "@formily/antd
 import { useShowError } from "../../../../../hooks/useShowError";
 import { message } from "antd";
 import { useSetToken } from "../../../../../enthooks";
-import { TOKEN_NAME } from "../../../../../consts";
+import { DESIGNER_TOKEN_NAME } from "../../../../../consts";
 import { useTranslation } from "react-i18next";
 
 const SchemaField = createSchemaField({
@@ -38,8 +38,8 @@ const ChangePasswordForm = memo((
       if (token) {
         message.success(t("OperateSuccess"))
         setToken(token);
-        if (localStorage.getItem(TOKEN_NAME)) {
-          localStorage.setItem(TOKEN_NAME, token)
+        if (localStorage.getItem(DESIGNER_TOKEN_NAME)) {
+          localStorage.setItem(DESIGNER_TOKEN_NAME, token)
         }
         onClose()
       }

@@ -4,7 +4,7 @@ import React, { memo, useCallback, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useMe } from "../../../../../plugin-sdk/contexts/login";
-import { LOGIN_URL, TOKEN_NAME } from "../../../../../consts";
+import { LOGIN_URL, DESIGNER_TOKEN_NAME } from "../../../../../consts";
 import { useLogout, useSetToken } from "../../../../../enthooks";
 import ChangePasswordForm from "./ChangePasswordForm";
 import "./style.less"
@@ -25,7 +25,7 @@ const AvatarMenu = memo((props: IComponentProps) => {
 
   const handleLogout = useCallback(() => {
     setToken(undefined);
-    localStorage.removeItem(TOKEN_NAME);
+    localStorage.removeItem(DESIGNER_TOKEN_NAME);
     navigate(LOGIN_URL)
     logout();
   }, [logout, navigate, setToken])

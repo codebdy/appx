@@ -6,6 +6,7 @@ import { Outlet, useParams } from "react-router-dom";
 import { useQueryApp } from "../hooks/useQueryApp";
 import { useShowError } from '../hooks/useShowError';
 import AppRoot from "../shared/AppRoot";
+import { DESIGNER_TOKEN_NAME } from "../consts";
 
 const { Content } = Layout;
 
@@ -16,7 +17,7 @@ const AppEntry = memo(() => {
   useShowError(error);
 
   return (
-    <AppRoot>
+    <AppRoot tokenName={DESIGNER_TOKEN_NAME}>
       <Layout className="rx-studio">
         <EntryHeader app={app} />
         <Content className='content'>

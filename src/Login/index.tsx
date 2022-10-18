@@ -7,7 +7,7 @@ import { Card, message } from 'antd'
 import * as ICONS from '@ant-design/icons'
 import { observer } from "@formily/reactive-react"
 import { useLogin, useSetToken } from "../enthooks"
-import { INDEX_URL, TOKEN_NAME } from "../consts"
+import { INDEX_URL, DESIGNER_TOKEN_NAME } from "../consts"
 import { useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 
@@ -80,9 +80,9 @@ const Login = observer(() => {
     onCompleted(atoken: string) {
       if (atoken) {
         if (rememberMeRef.current) {
-          localStorage.setItem(TOKEN_NAME, atoken);
+          localStorage.setItem(DESIGNER_TOKEN_NAME, atoken);
         } else {
-          localStorage.removeItem(TOKEN_NAME);
+          localStorage.removeItem(DESIGNER_TOKEN_NAME);
         }
         setToken(atoken);
         navigate(INDEX_URL);

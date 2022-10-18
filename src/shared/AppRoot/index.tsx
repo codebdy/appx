@@ -9,13 +9,15 @@ const AppRoot = memo((
   props: {
     children: React.ReactNode,
     appUuid?: string,
+    tokenName: string | undefined,
   }
 ) => {
-  const { appUuid } = useParams();
+  const { tokenName, appUuid } = useParams();
   const token = useToken();
   const config = useMemo(() => {
-    return { endpoint: SERVER_URL, appUuid: props.appUuid || appUuid, token }
-  }, [props.appUuid, token])
+    const localStorageToken = localStorage.getItem(tokenName)
+    return { endpoint: SERVER_URL, appUuid: props.appUuid || appUuid, token: token || localStorageToken }
+  }, [props.appUuid, token, tokenName])
 
   return (
     <EntiRoot config={config} >
