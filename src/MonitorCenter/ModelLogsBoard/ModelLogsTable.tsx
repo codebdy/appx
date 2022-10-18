@@ -12,6 +12,7 @@ interface DataType {
 
 const columns: ColumnsType<DataType> = [
   { title: '用户', dataIndex: 'name', key: 'name' },
+  { title: 'IP', dataIndex: 'ip', key: 'ip' },
   { title: '实体', dataIndex: 'address', key: 'address' },
   { title: '操作类型', dataIndex: 'age', key: 'age' },
   { title: '操作结果', dataIndex: 'result', key: 'result' },
