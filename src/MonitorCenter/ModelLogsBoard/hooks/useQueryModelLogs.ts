@@ -3,7 +3,9 @@ import { useQuery } from "../../../enthooks/hooks/useQuery";
 import { useMemo } from "react";
 import { IModelLog } from "../../../model/log";
 
-const logsGql = gql`
+export function useQueryModelLogs() {
+  const logsGql = useMemo(() => {
+    return gql`
 query {
   modelLogs(
     orderBy:{
@@ -29,14 +31,14 @@ query {
   }
 }
 `
+  }, [])
 
-export function useQueryModelLogs() {
   const queryParams = useMemo(() => {
     return {
       gql: logsGql,
       depEntityNames: ["ModelLog"]
     }
-  }, [])
+  }, [logsGql])
   const { data, error, loading } = useQuery<IModelLog>(queryParams)
 
   return { logs: data?.modelLogs?.nodes, total: data?.modelLogs?.total, error, loading }
