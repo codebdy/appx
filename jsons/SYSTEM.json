@@ -1292,10 +1292,10 @@
             "uuid": "290be3b9-e331-4de0-a351-76533fd09d3d"
           },
           {
-            "uuid": "bc214535-37f3-4692-ad81-012ca07387f1",
             "name": "message",
             "type": "String",
-            "typeLabel": "String"
+            "typeLabel": "String",
+            "uuid": "bc214535-37f3-4692-ad81-012ca07387f1"
           }
         ],
         "innerId": 1033,
@@ -1454,24 +1454,32 @@
             "uuid": "72c05005-6630-43fe-b839-2b7cecf18955"
           },
           {
-            "uuid": "1c629044-0a3a-41da-86f6-bac2683ab5e5",
             "name": "className",
             "type": "String",
-            "typeLabel": "String"
+            "typeLabel": "String",
+            "uuid": "1c629044-0a3a-41da-86f6-bac2683ab5e5"
           },
           {
-            "uuid": "9faaf732-07fe-4d3e-94a6-85979f150174",
+            "length": 1000,
             "name": "gql",
             "type": "String",
             "typeLabel": "String",
-            "length": 1000
+            "uuid": "9faaf732-07fe-4d3e-94a6-85979f150174"
           },
           {
-            "uuid": "ca3c17e3-f5a8-4ea9-b1b2-cfac9ad69033",
             "name": "variables",
+            "nullable": true,
             "type": "JSON",
             "typeLabel": "JSON",
-            "nullable": true
+            "uuid": "ca3c17e3-f5a8-4ea9-b1b2-cfac9ad69033"
+          },
+          {
+            "uuid": "d9644ad6-f985-4c79-92ff-f46bd39a87a8",
+            "name": "result",
+            "type": "Enum",
+            "typeLabel": "OperateResult",
+            "nullable": true,
+            "typeUuid": "55907de3-802b-4e36-868c-3afc57813f20"
           }
         ],
         "innerId": 1037,
@@ -1567,6 +1575,29 @@
         "root": false,
         "stereoType": "Enum",
         "uuid": "607d0741-9a9f-4e3e-a888-88f612dc0fb3"
+      },
+      {
+        "uuid": "55907de3-802b-4e36-868c-3afc57813f20",
+        "innerId": 1041,
+        "name": "OperateResult",
+        "attributes": [
+          {
+            "uuid": "b0063ec6-3ce8-474c-a4e1-04c1282ba53e",
+            "name": "success",
+            "type": "String",
+            "typeLabel": "String"
+          },
+          {
+            "uuid": "97476319-5ef0-49e4-aa7b-816b98f40c42",
+            "name": "failure",
+            "type": "String",
+            "typeLabel": "String"
+          }
+        ],
+        "methods": [],
+        "stereoType": "Enum",
+        "root": false,
+        "packageUuid": "8ff26c85-bd4c-49fa-9c9f-c2a736767936"
       }
     ],
     "relations": [
@@ -2374,12 +2405,12 @@
         "y": -150
       },
       {
-        "id": "0423f482-6522-45be-9143-d6f16a0d206f",
-        "x": 59.999999999999915,
-        "y": 220,
-        "width": 230,
+        "diagramUuid": "8389303f-3593-4ae3-ba2f-14a6d9bf1ac2",
         "height": 160,
-        "diagramUuid": "8389303f-3593-4ae3-ba2f-14a6d9bf1ac2"
+        "id": "0423f482-6522-45be-9143-d6f16a0d206f",
+        "width": 230,
+        "x": 59.999999999999915,
+        "y": 220
       },
       {
         "diagramUuid": "b461d043-93be-4b0e-99cd-c96df8862b54",
@@ -2410,7 +2441,7 @@
         "x": 556,
         "y": 220.00000000000023,
         "width": 210,
-        "height": 200,
+        "height": 230,
         "diagramUuid": "8389303f-3593-4ae3-ba2f-14a6d9bf1ac2"
       },
       {
@@ -2444,6 +2475,14 @@
         "width": 180,
         "x": 109.99999999999994,
         "y": -45.000000000000014
+      },
+      {
+        "id": "55907de3-802b-4e36-868c-3afc57813f20",
+        "x": 980,
+        "y": -60.000000000000014,
+        "width": 180,
+        "height": 120,
+        "diagramUuid": "8389303f-3593-4ae3-ba2f-14a6d9bf1ac2"
       }
     ],
     "x6Edges": [
@@ -3001,11 +3040,11 @@
         "vertices": [
           {
             "x": 661,
-            "y": 460
+            "y": 490
           },
           {
             "x": 840,
-            "y": 460
+            "y": 490
           }
         ],
         "roleOnSourcePosition": {
@@ -3041,11 +3080,11 @@
         "vertices": [
           {
             "x": 430,
-            "y": 490
+            "y": 510
           },
           {
             "x": 910.4,
-            "y": 490
+            "y": 510
           }
         ],
         "roleOnSourcePosition": {
