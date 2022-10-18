@@ -5,6 +5,7 @@ import { useMemo } from "react";
 import { useTranslation } from 'react-i18next';
 import { IModelLog, ModelOperateType, OperateResult } from "../../../model/log";
 import { useGetAppName } from './useGetAppName';
+import moment from 'moment'
 
 export function useColumns() {
   const { t } = useTranslation();
@@ -67,6 +68,7 @@ export function useColumns() {
       title: t('Monitor.DateTime'),
       dataIndex: 'createdAt',
       key: 'createdAt',
+      render: (_, { createdAt }) => moment(createdAt).format("YYYY-MM-DD HH:mm:ss"),
     },
   ], [t, getAppName]);
 
