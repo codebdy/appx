@@ -1290,12 +1290,6 @@
             "type": "String",
             "typeLabel": "String",
             "uuid": "290be3b9-e331-4de0-a351-76533fd09d3d"
-          },
-          {
-            "name": "message",
-            "type": "String",
-            "typeLabel": "String",
-            "uuid": "bc214535-37f3-4692-ad81-012ca07387f1"
           }
         ],
         "innerId": 1033,
@@ -1390,6 +1384,13 @@
             "type": "String",
             "typeLabel": "String",
             "uuid": "c1a70ce7-f5a3-4374-a3fc-678ba10fd1c5"
+          },
+          {
+            "uuid": "a58aa981-12de-4c87-b362-79e6f18f2bda",
+            "name": "message",
+            "type": "String",
+            "typeLabel": "String",
+            "nullable": true
           }
         ],
         "innerId": 1035,
@@ -1462,6 +1463,7 @@
           {
             "length": 1000,
             "name": "gql",
+            "nullable": true,
             "type": "String",
             "typeLabel": "String",
             "uuid": "9faaf732-07fe-4d3e-94a6-85979f150174"

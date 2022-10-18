@@ -7,7 +7,7 @@ const logsGql = gql`
 query {
   modelLogs(
     orderBy:{
-      id:asc
+      id:desc
     }
   ){
     nodes{
