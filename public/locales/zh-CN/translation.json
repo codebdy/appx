@@ -527,7 +527,12 @@
     "DateTime": "时间",
     "BusinessLogs": "业务日志",
     "ModelLogs": "模型日志",
-    "DebugLogs": "调试日志"
+    "DebugLogs": "调试日志",
+    "Success": "成功",
+    "Failure": "失败",
+    "Query":"查询",
+    "Upsert":"更新或插入",
+    "Delete":"删除"
   },
   "Lang": {
     "Title": "语言",
