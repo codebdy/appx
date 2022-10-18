@@ -76,6 +76,7 @@
     "NotificationEngine": "消息引擎",
     "SearchEngine": "搜索引擎",
     "ReportEngine": "报表引擎",
+    "SystemPages": "系统页面",
     "SystemConfig": "系统配置"
   },
   "Auth": {
