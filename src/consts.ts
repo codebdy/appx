@@ -17,3 +17,5 @@ export const INSTALL_URL = "/install"
 export const INDEX_URL = "/"
 
 export const SYSTEM_APP_UUID = "SYSTEM"
+
+export const CODE_LOGIN_EXPIRED = "entix.0001"
