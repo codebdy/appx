@@ -17,7 +17,11 @@ export const ModelLogsTable: React.FC = () => {
     loading={loading}
     columns={columns}
     expandable={{
-      expandedRowRender: record => <p style={{ margin: 0 }}>{record.gql}</p>,
+      expandedRowRender: record => <>
+        {record.message && <p>{record.message}</p>}
+        <p style={{ margin: 0 }}>{record.gql}</p>
+      </>
+      ,
     }}
     dataSource={data || []}
   />

@@ -24,4 +24,5 @@ export interface IModelLog {
   className?: string;
   gql?: string;
   result?: OperateResult;
+  message?: string;
 }
