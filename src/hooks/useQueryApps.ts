@@ -24,5 +24,7 @@ export function useQueryApps() {
       depEntityNames: ["App"]
     }
   }, [])
-  return useQuery<IApp>(queryParams)
+  const { data, error, loading } = useQuery<IApp>(queryParams)
+
+  return { apps: data?.apps?.nodes, error, loading }
 }

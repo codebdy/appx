@@ -3,9 +3,9 @@ import { memo } from "react"
 import AppFooter from "./AppFooter"
 import { AppList } from "./AppList"
 import AppManagebar from "./AppManagebar"
-import { useQueryApps } from '../hooks/useQueryApps';
-import { useShowError } from "../hooks/useShowError"
 import { Card, Col, Row, Skeleton } from "antd"
+import { useRecoilValue } from "recoil"
+import { appsLoadingState, appsState } from "../recoil/atoms"
 
 const AppsSkeleton = () => {
   return (
@@ -29,9 +29,8 @@ const AppsSkeleton = () => {
 }
 
 const AppsContent = memo(() => {
-  const { data, error, loading } = useQueryApps();
-  useShowError(error)
-
+  const loading = useRecoilValue(appsLoadingState);
+  const apps = useRecoilValue(appsState);
   return (
     <>
       <AppManagebar />
@@ -41,7 +40,7 @@ const AppsContent = memo(() => {
             ?
             <AppsSkeleton />
             :
-            <AppList apps={data?.apps?.nodes || []} />
+            <AppList apps={apps || []} />
         }
         <AppFooter />
       </div>
