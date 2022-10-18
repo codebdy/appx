@@ -1,4 +1,4 @@
-import { gql } from "awesome-graphql-client";
+import { gql } from "../../enthooks";
 import { useMemo } from "react";
 import { useQueryOne } from "../../enthooks/hooks/useQueryOne";
 import { IPageFrame } from "../../model";

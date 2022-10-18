@@ -1,5 +1,5 @@
 import { Card, Spin } from 'antd';
-import { gql } from 'awesome-graphql-client';
+import { gql } from '../enthooks';
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useRequest } from '../enthooks/hooks/useRequest';

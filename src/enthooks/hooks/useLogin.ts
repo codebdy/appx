@@ -1,4 +1,4 @@
-import { gql } from 'awesome-graphql-client'
+import { gql } from '../../enthooks'
 import { useCallback, useState } from "react";
 import { useSetToken } from '../context';
 import { useLazyRequest } from './useLazyRequest';

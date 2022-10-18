@@ -1,5 +1,5 @@
 import { Device } from "@rxdrag/appx-plugin-sdk";
-import { gql } from "awesome-graphql-client";
+import { gql } from "../enthooks";
 import { useMemo } from "react";
 import { SYSTEM_APP_UUID } from "../consts";
 import { useQueryOne } from "../enthooks/hooks/useQueryOne";

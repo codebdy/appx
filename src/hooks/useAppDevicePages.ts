@@ -1,6 +1,6 @@
 import { ID } from "../shared";
 import { IApp } from "../model";
-import { gql } from "awesome-graphql-client";
+import { gql } from "../enthooks";
 import { useQueryOne } from "../enthooks/hooks/useQueryOne";
 import { useMemo } from "react";
 import { Device } from "@rxdrag/appx-plugin-sdk";

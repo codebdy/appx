@@ -1,7 +1,6 @@
-import { gql } from "awesome-graphql-client";
+import { gql, useQuery } from "../../enthooks";
 import { useMemo } from "react";
 import { IProcess } from "../../model/process";
-import { useQuery } from "../../enthooks/hooks/useQuery";
 import { useAppParams } from "../../plugin-sdk/contexts/appRoot";
 
 const processesGql = gql`

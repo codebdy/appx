@@ -1,6 +1,5 @@
-import { gql } from "awesome-graphql-client";
+import { gql, useQuery } from "../../enthooks";
 import { IPageCategory } from "../../model";
-import { useQuery } from "../../enthooks/hooks/useQuery";
 import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 

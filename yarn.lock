@@ -1714,6 +1714,11 @@
     "@n1ru4l/push-pull-async-iterable-iterator" "^3.1.0"
     meros "^1.1.4"
 
+"@graphql-typed-document-node/core@^3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@graphql-typed-document-node/core/-/core-3.1.1.tgz#076d78ce99822258cf813ecc1e7fa460fa74d052"
+  integrity sha512-NQ17ii0rK1b34VZonlmT2QMJFI70m0TRwbknO/ihlbatXyaktDhN/98vBiUU6kNBPljqGqyIrl2T4nY2RpFANg==
+
 "@humanwhocodes/config-array@^0.5.0":
   version "0.5.0"
   resolved "https://registry.npmmirror.com/@humanwhocodes/config-array/-/config-array-0.5.0.tgz#1407967d4c6eecd7388f83acf1eaf4d0c6e58ef9"
@@ -2200,6 +2205,11 @@
   integrity sha512-FSdLaZh2UxaMuLp9lixWaHq/golWTRWOnRsAXzDTDSDOQLuZb1nsdCt6pJSPWSEQt2eFZ2YVk3oYhn+1kLMeMA==
   dependencies:
     "@babel/types" "^7.3.0"
+
+"@types/extract-files@8.1.1":
+  version "8.1.1"
+  resolved "https://registry.yarnpkg.com/@types/extract-files/-/extract-files-8.1.1.tgz#11b67e795ad2c8b483431e8d4f190db2fd22944b"
+  integrity sha512-dMJJqBqyhsfJKuK7p7HyyNmki7qj1AlwhUKWx6KrU7i1K2T2SPsUsSUTWFmr/sEM1q8rfR8j5IyUmYrDbrhfjQ==
 
 "@types/glob@^7.1.1":
   version "7.2.0"
@@ -3192,11 +3202,6 @@ attr-accept@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/attr-accept/-/attr-accept-2.2.2.tgz#646613809660110749e92f2c10833b70968d929b"
   integrity sha512-7prDjvt9HmqiZ0cl5CRjtS84sEyhsHP2coDkaZKRKVfCDo9s7iw7ChVmar78Gu9pC4SoR/28wFu/G5JJhTnqEg==
-
-awesome-graphql-client@^0.12.1:
-  version "0.12.1"
-  resolved "https://registry.yarnpkg.com/awesome-graphql-client/-/awesome-graphql-client-0.12.1.tgz#c8e97c2a79afd9f5c4560276f619d00a43efa816"
-  integrity sha512-ixOiK72AKynowRcsoNKKX8yVY36pfQxYDxOEerhDB85YUhNJjDxmlL0IxezLtgt3xyRVy6k6/BgknvYntvxrlA==
 
 axe-core@^4.4.3:
   version "4.4.3"
@@ -5704,6 +5709,11 @@ extglob@^2.0.4:
     regex-not "^1.0.0"
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
+
+extract-files@8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/extract-files/-/extract-files-8.0.0.tgz#72b5d048868e741c8562e852188c3241a655026d"
+  integrity sha512-TsYR7plS+8iZGaB01A6IH91stHJzWu8K3Kr1jEjFy7YDHpDXhgMepjEQ/qGeNOlTUXor0MTL9Rudwg85ElOnNw==
 
 fast-deep-equal@^3.1.1, fast-deep-equal@^3.1.3:
   version "3.1.3"

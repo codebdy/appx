@@ -1,4 +1,4 @@
-import { gql } from "awesome-graphql-client";
+import { gql } from "../../enthooks";
 import { useEffect, useMemo } from "react";
 import { useSetRecoilState } from "recoil";
 import { useQuery } from "../../enthooks/hooks/useQuery";

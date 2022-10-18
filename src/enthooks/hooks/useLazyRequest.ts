@@ -1,4 +1,4 @@
-import { AwesomeGraphQLClient, GraphQLRequestError } from "awesome-graphql-client";
+import { AwesomeGraphQLClient, GraphQLRequestError } from "../../enthooks";
 import { useCallback, useState } from "react";
 import { HEADER_APPX_APPUUID, HEADER_AUTHORIZATION, TOKEN_PREFIX } from "../../consts";
 import { useEnthooksAppUuid, useEndpoint, useToken } from "../context";
@@ -57,7 +57,6 @@ export function useLazyRequest<T1>(options?: RequestOptions<any>)
           setLoading(false);
           setError(err);
           console.error(err);
-          console.error("哈哈", err.extensions);
           options?.onError && options?.onError(err);
         });
     },

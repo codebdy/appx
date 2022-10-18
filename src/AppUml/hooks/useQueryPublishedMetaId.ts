@@ -1,4 +1,4 @@
-import { gql } from "awesome-graphql-client";
+import { gql } from "../../enthooks";
 import { useMemo } from "react";
 import { useEdittingAppUuid } from "../../hooks/useEdittingAppUuid";
 import { useQueryOne } from "../../enthooks/hooks/useQueryOne";

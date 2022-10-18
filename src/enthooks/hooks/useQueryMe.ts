@@ -1,4 +1,4 @@
-import { gql } from "awesome-graphql-client";
+import { gql } from "../../enthooks";
 import { ID } from "../../shared";
 
 import { useRequest } from "./useRequest";

@@ -1,4 +1,4 @@
-import { gql } from "awesome-graphql-client";
+import { gql } from "../";
 import { useCallback, useMemo } from "react";
 import { EVENT_DATA_POSTED, trigger } from "../events";
 import { useLazyRequest } from "./useLazyRequest";

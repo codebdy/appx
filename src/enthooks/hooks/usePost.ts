@@ -1,24 +1,24 @@
-import { gql } from "awesome-graphql-client";
+import { gql } from "../";
 import { useCallback, useMemo } from "react";
 import { EVENT_DATA_POSTED, trigger } from "../events";
 import { useLazyRequest } from "./useLazyRequest";
 
-export interface IPostOptions<T> {
+export interface IMultiPostOptions<T> {
   fieldsGql?:string,
   onCompleted?: (data: T[]) => void;
   onError?: (error: Error) => void;
   noRefresh?: boolean;
 }
 
-export type PostResponse<T> = [
+export type MultiPostResponse<T> = [
   (data: T[]) => void,
   { loading?: boolean; error?: Error }
 ]
 
 export function usePost<T, T2>(
   __type: string,
-  options?: IPostOptions<T2>
-): PostResponse<T> {
+  options?: IMultiPostOptions<T2>
+): MultiPostResponse<T> {
   const postName = useMemo(() => ("upsert" + __type), [__type]);
 
   const [doPost, { error, loading }] = useLazyRequest({

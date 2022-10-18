@@ -1,6 +1,5 @@
-import { gql } from "awesome-graphql-client";
+import { gql, useQueryOne } from "../../enthooks";
 import { useMemo } from "react";
-import { useQueryOne } from "../../enthooks/hooks/useQueryOne";
 import { IProcess } from "../../model/process";
 
 const processGql = gql`

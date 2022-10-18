@@ -11,7 +11,7 @@ export interface IEntxConfig {
 
 export const empertyConfig = {
   endpoint: "",
-  appUuid:SYSTEM_APP_UUID,
+  appUuid: SYSTEM_APP_UUID,
   setToken: () => {
     throw new Error("Not implement setToken")
   },
@@ -26,7 +26,7 @@ export const useEntix = (): IEntxConfig => useContext(EntixContext);
 
 export const useToken = () => {
   const iEntx = useEntix();
-  return iEntx?.token || localStorage.getItem(TOKEN_NAME)
+  return iEntx?.token
 }
 
 export const useSetToken = () => {
@@ -39,7 +39,7 @@ export const useEndpoint = () => {
   return iEntx?.endpoint
 }
 
-export const useEnthooksAppUuid = ()=>{
+export const useEnthooksAppUuid = () => {
   const iEntx = useEntix();
   return iEntx?.appUuid
 }

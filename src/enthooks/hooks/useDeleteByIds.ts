@@ -1,10 +1,10 @@
-import { gql } from "awesome-graphql-client";
+import { gql } from "../";
 import { useCallback, useMemo } from "react";
 import { ID } from "../../shared";
 import { EVENT_DATA_REMOVED, trigger } from "../events";
 import { useLazyRequest } from "./useLazyRequest";
 
-export interface IDeleteOptions<T> {
+export interface IMultiDeleteOptions<T> {
   onCompleted?: (data: T[]) => void;
   onError?: (error: Error) => void;
   noRefresh?: boolean;
@@ -15,7 +15,7 @@ export type DeleteByIdsResponse = [
   { loading?: boolean; error?: Error }
 ]
 
-export function useDeleteByIds<T>(__type: string, options?: IDeleteOptions<T>): DeleteByIdsResponse {
+export function useDeleteByIds<T>(__type: string, options?: IMultiDeleteOptions<T>): DeleteByIdsResponse {
   const methodName = useMemo(() => (`delete${__type}`), [__type]);
 
   const [doRemove, { error, loading }] = useLazyRequest({
