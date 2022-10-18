@@ -1,8 +1,8 @@
 import 'antd/dist/antd.less'
-import React, { memo } from 'react'
+import React, { memo, useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 import { SERVER_URL, SYSTEM_APP_UUID } from '../../consts'
-import { EntiRoot } from '../../enthooks'
+import { EntiRoot, useToken } from '../../enthooks'
 import { AppRootInner } from './AppRootInner'
 
 const AppRoot = memo((
@@ -12,9 +12,13 @@ const AppRoot = memo((
   }
 ) => {
   const { appUuid } = useParams();
+  const token = useToken();
+  const config = useMemo(() => {
+    return { endpoint: SERVER_URL, appUuid: props.appUuid || appUuid, token }
+  }, [props.appUuid, token])
 
   return (
-    <EntiRoot config={{ endpoint: SERVER_URL, appUuid: props.appUuid || appUuid }} >
+    <EntiRoot config={config} >
       <AppRootInner>
         {props.children}
       </AppRootInner>
