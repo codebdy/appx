@@ -46,9 +46,9 @@ export function useCheckCanLinkTo(appUuid: ID) {
       }
 
       //虚类不接受关联
-      if (!isInherit && target.stereoType === StereoType.Abstract) {
-        return false;
-      }
+      // if (!isInherit && target.stereoType === StereoType.Abstract) {
+      //   return false;
+      // }
 
       //继承不能重复
       for (const relation of relations) {

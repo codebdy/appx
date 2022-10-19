@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { GraphQLRequestError } from "../awesome-graphql-client";
 import { useEndpoint } from "../context";
 import { EVENT_DATA_POSTED, EVENT_DATA_REMOVED, EVENT_DATA_UPDATED, off, on } from "../events";
 import { IQueryInput } from "./IQueryInput";
@@ -15,7 +16,7 @@ export type QueryOneResponse<T> = {
   refresh: MutateFn<T>;
   loading?: boolean;
   revalidating?: boolean;
-  error?: Error;
+  error?: GraphQLRequestError;
 }
 
 export function useQueryOne<T>(input: IQueryInput): QueryOneResponse<T> {

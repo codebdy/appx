@@ -1,4 +1,4 @@
-import { gql } from "../../enthooks";
+import { gql, GraphQLRequestError } from "../../enthooks";
 import { useMemo, useEffect } from "react";
 import { useSetRecoilState } from "recoil";
 import { SYSTEM_APP_UUID } from "../../consts";
@@ -6,7 +6,7 @@ import { useQueryOne } from "../../enthooks/hooks/useQueryOne";
 import { Meta } from "../meta/Meta";
 import { metaState, classesState, relationsState, diagramsState, x6NodesState, x6EdgesState, packagesState, codesState } from "../recoil/atoms";
 
-export function useReadMeta(appUuid: string): { error?: Error; loading?: boolean } {
+export function useReadMeta(appUuid: string): { error?: GraphQLRequestError; loading?: boolean } {
   const setMeta = useSetRecoilState(metaState(appUuid));
   const setClasses = useSetRecoilState(classesState(appUuid));
   const setRelations = useSetRecoilState(relationsState(appUuid));

@@ -15,7 +15,7 @@ export function canStartLink(lineType: RelationType, classMeta: ClassMeta) {
     }
   }else {
     if(classMeta.stereoType === StereoType.Abstract){
-      return false;
+      return true;
     }
     if(classMeta.stereoType === StereoType.Entity){
       return true;
