@@ -3,7 +3,7 @@ import { ColumnsType } from 'antd/es/table';
 import React from 'react';
 import { useMemo } from "react";
 import { useTranslation } from 'react-i18next';
-import { IBusinessLog, ModelOperateType, OperateResult } from "../../../model/log";
+import { BusinessOperateType, IBusinessLog, ModelOperateType, OperateResult } from "../../../model/log";
 import { useGetAppName } from '../../hooks/useGetAppName';
 import moment from 'moment'
 
@@ -32,16 +32,20 @@ export function useColumns() {
       render: (_, { operateType }) => {
         return <>
           {
-            operateType === ModelOperateType.query &&
-            t("Monitor.Query")
+            operateType === BusinessOperateType.login &&
+            t("Monitor.Login")
           }
           {
-            operateType === ModelOperateType.upsert &&
-            t("Monitor.Upsert")
+            operateType === BusinessOperateType.logout &&
+            t("Monitor.Logout")
           }
           {
-            operateType === ModelOperateType.delete &&
-            t("Monitor.Delete")
+            operateType === BusinessOperateType.publishMeta &&
+            t("Monitor.PublishMeta")
+          }
+                    {
+            operateType === BusinessOperateType.install &&
+            t("Monitor.Install")
           }
         </>
       },

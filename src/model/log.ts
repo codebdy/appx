@@ -42,7 +42,7 @@ export interface IBusinessLog {
   ip?: string;
   appUuid?: string;
   createdAt?: Date;
-  operateType?: ModelOperateType;
+  operateType?: BusinessOperateType;
   result?: OperateResult;
   message?: string;
 }
