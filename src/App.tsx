@@ -32,15 +32,17 @@ const App = memo(() => {
         <PredefinedMaterialsRoot>
           <Routes>
             <Route path={INDEX_URL} element={<LoggedInPanel />}>
-              <Route path={"/:device?/:appUuid?"} element={<AppRunner />}>
-                <Route path=":menuUuid" element={<></>}>
-                  <Route path=":pageId" element={<></>}>
-                    <Route path=":dataId" element={<></>} />
+              <Route path={INDEX_URL} element={<AppRunner />}>
+                <Route path={"/:device/:appUuid"} element={<></>}>
+                  <Route path=":menuUuid" element={<></>}>
+                    <Route path=":pageId" element={<></>}>
+                      <Route path=":dataId" element={<></>} />
+                      <Route path="" element={<></>} />
+                    </Route>
                     <Route path="" element={<></>} />
                   </Route>
                   <Route path="" element={<></>} />
                 </Route>
-                <Route path="" element={<></>} />
               </Route>
               <Route path="/app-designer/:appId" element={<AppDesigner />}>
                 <Route path={AppEntryRouts.App} element={<AppUis />} />
