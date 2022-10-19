@@ -8,7 +8,7 @@ import { AppEntryRouts } from "../AppDesigner/DesignerHeader/AppEntryRouts"
 import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage"
 import { useRemoveApp } from "../hooks/useRemoveApp"
 import { IApp } from "../model"
-import { useShowError } from './~/hooks/useShowError';
+import { useShowError } from '~/hooks/useShowError';
 import { UpsertAppModel } from "./AppModal/UpsertAppModel";
 import { DESIGN } from "~/consts"
 

@@ -2,8 +2,8 @@ import { createBehavior, createResource } from '@designable/core'
 import { DnFC } from '@designable/react'
 import { EnumTagsSchema } from './schema'
 import { EnumTagsLocales } from './locales'
-import { createFieldSchema, FieldsType } from "../~/common/Field/shared"
-import { EnumTags, IEnumTagsProps } from '../view'
+// import { createFieldSchema, FieldsType } from "../../../../common/Field/shared"
+// import { EnumTags, IEnumTagsProps } from '../view'
 import { observer } from '@formily/reactive-react'
 import React from 'react'
 
@@ -20,7 +20,7 @@ EnumTagsDesigner.Behavior = createBehavior({
   selector: (node) => node.props['x-component'] === 'EnumTags',
   designerProps: {
     droppable: false,
-    propsSchema: createFieldSchema(EnumTagsSchema, { fieldSourceType: FieldsType.Single }),
+    //propsSchema: createFieldSchema(EnumTagsSchema, { fieldSourceType: FieldsType.Single }),
   },
   designerLocales: EnumTagsLocales,
 })
