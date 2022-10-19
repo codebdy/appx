@@ -3,14 +3,14 @@ import { ColumnsType } from 'antd/es/table';
 import React from 'react';
 import { useMemo } from "react";
 import { useTranslation } from 'react-i18next';
-import { IModelLog, ModelOperateType, OperateResult } from "../../../model/log";
+import { IBusinessLog, ModelOperateType, OperateResult } from "../../../model/log";
 import { useGetAppName } from '../../hooks/useGetAppName';
 import moment from 'moment'
 
 export function useColumns() {
   const { t } = useTranslation();
   const getAppName = useGetAppName();
-  const columns: ColumnsType<IModelLog> = useMemo(() => [
+  const columns: ColumnsType<IBusinessLog> = useMemo(() => [
     {
       title:
         t('Monitor.App'),
@@ -25,7 +25,6 @@ export function useColumns() {
       render: (_, { user }) => user?.name,
     },
     { title: t('IP'), dataIndex: 'ip', key: 'ip' },
-    { title: t('Monitor.Class'), dataIndex: 'className', key: 'className' },
     {
       title: t('Monitor.OperateType'),
       dataIndex: 'operateType',
@@ -64,6 +63,7 @@ export function useColumns() {
         </>
       },
     },
+    { title: t('Monitor.Message'), dataIndex: 'message', key: 'message' },
     {
       title: t('Monitor.DateTime'),
       dataIndex: 'createdAt',

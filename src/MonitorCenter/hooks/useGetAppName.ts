@@ -1,9 +1,9 @@
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
-import { SYSTEM_APP_UUID } from "../../../consts";
-import { useParseLangMessage } from "../../../plugin-sdk";
-import { appsState } from "../../../recoil/atoms";
+import { SYSTEM_APP_UUID } from "../../consts";
+import { useParseLangMessage } from "../../plugin-sdk";
+import { appsState } from "../../recoil/atoms";
 
 export function useGetAppName() {
   const { t } = useTranslation();

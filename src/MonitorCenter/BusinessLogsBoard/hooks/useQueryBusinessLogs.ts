@@ -1,16 +1,16 @@
 import { gql } from "../../../enthooks";
 import { useQuery } from "../../../enthooks/hooks/useQuery";
 import { useEffect, useMemo } from "react";
-import { IModelLog } from "../../../model/log";
+import { IBusinessLog, IModelLog } from "../../../model/log";
 
-export function useQueryModelLogs(
+export function useQueryBusinessLogs(
   offset: number,
   limit: number = 20,
 ) {
   const logsGql = useMemo(() => {
     return gql`
 query {
-  modelLogs(
+  businessLogs(
     orderBy:{
       id:desc
     },
@@ -27,11 +27,8 @@ query {
       appUuid
       createdAt
       operateType
-      classUuid
-      className
-      gql
-      result
       message
+      result
     }
     total
   }
@@ -42,13 +39,13 @@ query {
   const queryParams = useMemo(() => {
     return {
       gql: logsGql,
-      depEntityNames: ["ModelLog"]
+      depEntityNames: ["BusinessLog"]
     }
   }, [logsGql])
-  const { data, error, loading, refresh, revalidating } = useQuery<IModelLog>(queryParams)
+  const { data, error, loading, refresh, revalidating } = useQuery<IBusinessLog>(queryParams)
   useEffect(() => {
     refresh()
   }, [logsGql])
 
-  return { logs: data?.modelLogs?.nodes, total: data?.modelLogs?.total, error, loading: loading || revalidating }
+  return { logs: data?.businessLogs?.nodes, total: data?.businessLogs?.total, error, loading: loading || revalidating }
 }

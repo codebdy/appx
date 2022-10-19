@@ -2,6 +2,7 @@ import { Breadcrumb } from "antd"
 import React from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
+import { BusinessLogsTable } from "./BusinessLogsTable";
 
 export const BusinessLogsBoard = memo(()=>{
   const { t } = useTranslation();
@@ -13,6 +14,7 @@ export const BusinessLogsBoard = memo(()=>{
         <Breadcrumb.Item>{t("Monitor.Logs")}</Breadcrumb.Item>
         <Breadcrumb.Item>{t("Monitor.BusinessLogs")}</Breadcrumb.Item>
       </Breadcrumb>
+      <BusinessLogsTable />
     </div>
   )
 })
