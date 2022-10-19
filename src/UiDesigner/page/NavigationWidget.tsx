@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { IApp } from '../../model';
 import { AppEntryRouts } from '../../AppEntry/AppEntryRouts';
 import { useParseLangMessage } from '../../plugin-sdk/hooks/useParseLangMessage';
-import { DesignerRoutes } from '../AppDesignerContent';
+import { DesignerRoutes } from '../UiDesignerContent';
 import { useTranslation } from 'react-i18next';
 import { useSelectedPageId } from '../hooks/useSelectedPageId';
 import { usePages } from '../hooks/usePages';

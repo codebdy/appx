@@ -1,4 +1,4 @@
-import { gql } from "../../enthooks";
+import { gql, GraphQLRequestError } from "../../enthooks";
 import { useMemo, useEffect, useCallback } from "react";
 import { useSetRecoilState } from "recoil";
 import { SYSTEM_APP_UUID } from "../../consts";
@@ -62,7 +62,7 @@ const getEntityAssociations = (classUuid: string, classMetas: ClassMeta[], relat
 }
 
 
-export function useBuildMeta(): { error?: Error; loading?: boolean } {
+export function useBuildMeta(): { error?: GraphQLRequestError; loading?: boolean } {
   const appUuid = useSelectedAppUuid();
   const setEntitiesState = useSetRecoilState(entitiesState(appUuid));
   const setClasses = useSetRecoilState(classesState(appUuid));

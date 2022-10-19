@@ -3,22 +3,22 @@ import React, { memo } from 'react'
 import {
   setNpmCDNRegistry,
 } from '@designable/react-settings-form'
-import AppDesignerContent from './AppDesignerContent'
+import UiDesignerContent from './UiDesignerContent'
 import AppRoot from '../shared/AppRoot'
 import { DESIGNER_TOKEN_NAME } from '../consts'
 
 setNpmCDNRegistry('//unpkg.com')
 
-const AppDesigner = memo(() => {
+const UiDesigner = memo(() => {
 
   return (
     <AppRoot tokenName={DESIGNER_TOKEN_NAME}>
-      <AppDesignerContent />
+      <UiDesignerContent />
     </AppRoot>
   )
 })
 
-export default AppDesigner;
+export default UiDesigner;
 
 
 

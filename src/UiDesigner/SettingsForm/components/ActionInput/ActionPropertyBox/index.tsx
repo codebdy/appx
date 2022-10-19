@@ -4,7 +4,7 @@ import { memo } from "react";
 import { Form } from "antd";
 import { OpenPagePanel } from "./OpenPagePanel";
 import { useTranslation } from "react-i18next";
-import { useGetPage } from "../../../../../AppDesigner/hooks/useGetPage";
+import { useGetPage } from "../../../../../UiDesigner/hooks/useGetPage";
 import { SuccessMessagePanel } from "./SuccessMessagePanel";
 import { ConfirmPanel } from "./ConfirmPanel";
 import { MultiLangInput } from "../../../../../plugins/inputs/components/pc/MultiLangInput/view";

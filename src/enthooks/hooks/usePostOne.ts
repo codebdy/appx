@@ -1,4 +1,4 @@
-import { gql } from "../";
+import { gql, GraphQLRequestError } from "../";
 import { useCallback, useMemo } from "react";
 import { EVENT_DATA_POSTED, trigger } from "../events";
 import { useLazyRequest } from "./useLazyRequest";
@@ -6,13 +6,13 @@ import { useLazyRequest } from "./useLazyRequest";
 export interface IPostOptions<T> {
   fieldsGql?:string,
   onCompleted?: (data: T) => void;
-  onError?: (error: Error) => void;
+  onError?: (error: GraphQLRequestError) => void;
   noRefresh?: boolean;
 }
 
 export type PostResponse<T> = [
   (data: T) => void,
-  { loading?: boolean; error?: Error }
+  { loading?: boolean; error?: GraphQLRequestError }
 ]
 
 export function usePostOne<T, T2>(

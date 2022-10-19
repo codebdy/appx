@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import AppManager from './AppManager';
 import { Routes, Route } from "react-router-dom";
 import Login from './Login';
-import AppDesigner from './AppDesigner';
+import UiDesigner from './UiDesigner';
 import AppEntry from './AppEntry/index';
 import AppsContent from './AppManager/AppsContent';
 import ApiBoard from './ApiBoard';
@@ -89,7 +89,7 @@ const App = memo(() => {
                 </Route>
                 <Route path={AppEntryRouts.Config} element={<AppConfig />}></Route>
               </Route>
-              <Route path="/design-app/:device/:appUuid" element={<AppDesigner />} />
+              <Route path="/design-app/:device/:appUuid" element={<UiDesigner />} />
               <Route path="/design-frame/:device/:appUuid" element={<FrameDesigner />} />
               <Route path={"/app/:device/:appUuid"} element={<AppRunner />}>
                 <Route path=":menuUuid" element={<></>}>

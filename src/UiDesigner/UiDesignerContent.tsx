@@ -43,7 +43,7 @@ export enum DesignerRoutes {
   Settings = "settings"
 }
 
-const AppDesignerContent = memo(() => {
+const UiDesignerContent = memo(() => {
   const { app, device } = useAppParams();
   const key = useAppViewKey()
   const [activeKey, setActiveKey] = useState<string>(DesignerRoutes.Pages);
@@ -186,7 +186,7 @@ const AppDesignerContent = memo(() => {
   )
 })
 
-export default AppDesignerContent;
+export default UiDesignerContent;
 
 
 
