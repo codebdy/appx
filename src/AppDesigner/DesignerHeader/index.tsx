@@ -4,15 +4,15 @@ import { Header } from "antd/lib/layout/layout"
 import React, { useCallback } from "react"
 import { memo } from "react"
 import { useMatch, useNavigate, useParams } from "react-router-dom"
-import { IApp } from "../model"
+import { IApp } from "../../model"
 import { AppEntryRouts } from "./AppEntryRouts"
 import { useTranslation } from "react-i18next"
-import SelectLang from "../plugins/framewidgets/pc/LangSelect/view"
-import { useParseLangMessage } from "../plugin-sdk/hooks/useParseLangMessage"
-import AvatarMenu from "../plugins/framewidgets/pc/AvatarMenu/view"
-import SvgIcon from "../common/SvgIcon"
+import SelectLang from "../../plugins/framewidgets/pc/LangSelect/view"
+import { useParseLangMessage } from "../../plugin-sdk/hooks/useParseLangMessage"
+import AvatarMenu from "../../plugins/framewidgets/pc/AvatarMenu/view"
+import SvgIcon from "../../common/SvgIcon"
 
-const EntryHeader = memo((props: {
+const DesignerHeader = memo((props: {
   app?: IApp,
 }) => {
   const { app } = props;
@@ -156,5 +156,5 @@ const EntryHeader = memo((props: {
   )
 })
 
-export default EntryHeader
+export default DesignerHeader
 

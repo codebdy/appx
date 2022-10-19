@@ -4,7 +4,7 @@ import React from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
-import { useDevices } from "../hooks/useDevices"
+import { useDevices } from "../../hooks/useDevices"
 
 const AppUis = memo((props: {
   loading?: boolean

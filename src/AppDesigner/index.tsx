@@ -1,7 +1,7 @@
 import React from "react"
 import { memo } from "react"
 import { Layout } from 'antd';
-import EntryHeader from "./EntryHeader";
+import DesignerHeader from "./DesignerHeader";
 import { Outlet, useParams } from "react-router-dom";
 import { useQueryApp } from "../hooks/useQueryApp";
 import { useShowError } from '../hooks/useShowError';
@@ -19,7 +19,7 @@ const AppEntry = memo(() => {
   return (
     <AppRoot tokenName={DESIGNER_TOKEN_NAME}>
       <Layout className="rx-studio">
-        <EntryHeader app={app} />
+        <DesignerHeader app={app} />
         <Content className='content'>
           <Outlet />
         </Content>

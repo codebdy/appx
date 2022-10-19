@@ -3,7 +3,7 @@ import { ArrowLeftOutlined } from '@ant-design/icons'
 import { Breadcrumb, Button, Divider } from 'antd'
 import { useNavigate, useParams } from "react-router-dom"
 import { IApp } from '../../model';
-import { AppEntryRouts } from '../../AppEntry/AppEntryRouts';
+import { AppEntryRouts } from '../../AppDesigner/DesignerHeader/AppEntryRouts';
 import { useParseLangMessage } from '../../plugin-sdk/hooks/useParseLangMessage';
 import { DesignerRoutes } from '../UiDesignerContent';
 import { useTranslation } from 'react-i18next';

@@ -17,7 +17,7 @@ import { useParseLangMessage } from "../plugin-sdk";
 import { AppManagerRoutes } from "../AppManager/AppHeader";
 import { useQueryRoles } from "./hooks/useQueryRoles";
 import { SYSTEM_APP_UUID } from "../consts";
-import { AppEntryRouts } from "../AppEntry/AppEntryRouts";
+import { AppEntryRouts } from "../AppDesigner/AppEntry/AppEntryRouts";
 
 export enum AuthRoutes {
   MenuAuth = "menu-auth",
