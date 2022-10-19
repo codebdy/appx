@@ -11,10 +11,10 @@ export function useMaterialComponents() {
   const materialComponents = useMemo(() => {
     const designers = {} as any;
     const plugins: IPlugin[] = [
-      ...uploadedPlugins.map(insPlugin => insPlugin.plugin),
-      ...debugPlugins.map(insPlugin => insPlugin.plugin),
-      ...predefinedPlugins.basicPlugins,
-      ...predefinedPlugins.frameworkPlugins
+      ...(uploadedPlugins?.map(insPlugin => insPlugin.plugin) || []),
+      ...(debugPlugins?.map(insPlugin => insPlugin.plugin) || []),
+      ...(predefinedPlugins.basicPlugins || []),
+      ...(predefinedPlugins.frameworkPlugins || [])
     ];
     for (const plugin of plugins) {
       for (const material of plugin?.components[device] || []) {
