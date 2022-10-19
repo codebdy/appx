@@ -14,7 +14,7 @@ import { useShowError } from "~/hooks/useShowError";
 import { useParseLangMessage } from "@rxdrag/plugin-sdk";
 import { AppManagerRoutes } from "~/AppManager/AppHeader";
 import { useQueryRoles } from "./hooks/useQueryRoles";
-import { SYSTEM_APP_UUID } from "~/consts";
+import { DESIGN, SYSTEM_APP_UUID } from "~/consts";
 import { AppEntryRouts } from "../DesignerHeader/AppEntryRouts";
 
 
@@ -53,7 +53,7 @@ export const AuthBoard = memo(() => {
   const matchString = useMemo(() => {
     return appUuid === SYSTEM_APP_UUID
       ? `/${AppManagerRoutes.Auth}/*`
-      : `/config-app/${appUuid}/${AppEntryRouts.Auth}/*`
+      : `/${DESIGN}/${appUuid}/${AppEntryRouts.Auth}/*`
   }, [])
   const match = useMatch(matchString)
   useShowError(error || rolesError);

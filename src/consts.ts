@@ -15,6 +15,9 @@ export const GUEST_ROLE_ID = "1"
 export const LOGIN_URL = "/login"
 export const INSTALL_URL = "/install"
 export const INDEX_URL = "/"
+export const DESIGN = "design"
+export const DESIGN_UI = "design-ui"
+export const DESIGN_FRAME = "design-frame"
 
 export const SYSTEM_APP_UUID = "SYSTEM"
 

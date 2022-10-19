@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Login from './Login';
 import AppDesigner from './AppDesigner/index';
 import Install from './Install';
-import { DESIGNER_TOKEN_NAME, INDEX_URL, INSTALL_URL, LOGIN_URL, SERVER_URL, SYSTEM_APP_UUID } from './consts';
+import { DESIGN, DESIGNER_TOKEN_NAME, DESIGN_FRAME, DESIGN_UI, INDEX_URL, INSTALL_URL, LOGIN_URL, SERVER_URL, SYSTEM_APP_UUID } from './consts';
 import { AppEntryRouts } from './AppDesigner/DesignerHeader/AppEntryRouts';
 import AppUis from './AppDesigner/DesignerHeader/AppUis';
 import AppRunner from './AppRunner';
@@ -33,35 +33,55 @@ const App = memo(() => {
           <Routes>
             <Route path={INDEX_URL} element={<LoggedInPanel />}>
               <Route path={INDEX_URL} element={<AppRunner />}>
-                <Route path={"/:device/:appUuid"} element={<></>}>
-                  <Route path=":menuUuid" element={<></>}>
-                    <Route path=":pageId" element={<></>}>
-                      <Route path=":dataId" element={<></>} />
-                      <Route path="" element={<></>} />
+                <Route path={"/:device/:appUuid"} >
+                  <Route path=":menuUuid" >
+                    <Route path=":pageId">
+                      <Route path=":dataId" />
+                      <Route path="" />
                     </Route>
-                    <Route path="" element={<></>} />
+                    <Route path="" />
                   </Route>
-                  <Route path="" element={<></>} />
+                  <Route path="" />
                 </Route>
               </Route>
-              <Route path="/app-designer/:appId" element={<AppDesigner />}>
-                <Route path={AppEntryRouts.App} element={<AppUis />} />
-                <Route path={AppEntryRouts.Bpmn} element={<AppBpmn />} />
-                <Route path={AppEntryRouts.Dmn} element={<AppDmn />} />
-                <Route path={AppEntryRouts.Uml} element={<AppUml />} />
-                <Route path={AppEntryRouts.Api} element={<ApiBoard />} />
-                <Route path={AppEntryRouts.Plugins} element={<AppPlugins />} />
-                <Route path={AppEntryRouts.Frame} element={<AppFrames />} />
-                <Route path={AppEntryRouts.Auth} element={<AuthBoard />}>
-                  <Route path={AuthRoutes.MenuAuth} element={<MenuAuthBoard />} />
-                  <Route path={AuthRoutes.ComponentAuth} element={<PageAuthBoard />} />
-                  <Route path={AuthRoutes.ModelAuth} element={<ModelAuthBoard />} />
-                  <Route path="" element={<MenuAuthBoard />} />
+              <Route path={`/${DESIGN}`} element={<AppDesigner />}>
+                <Route path=":appId">
+                  <Route path={AppEntryRouts.App} element={<AppUis />} />
+                  <Route path={AppEntryRouts.Bpmn} element={<AppBpmn />} />
+                  <Route path={AppEntryRouts.Dmn} element={<AppDmn />} />
+                  <Route path={AppEntryRouts.Uml} element={<AppUml />} />
+                  <Route path={AppEntryRouts.Api} element={<ApiBoard />} />
+                  <Route path={AppEntryRouts.Plugins} element={<AppPlugins />} />
+                  <Route path={AppEntryRouts.Frame} element={<AppFrames />} />
+                  <Route path={AppEntryRouts.Auth} element={<AuthBoard />}>
+                    <Route path={AuthRoutes.MenuAuth} element={<MenuAuthBoard />} />
+                    <Route path={AuthRoutes.ComponentAuth} element={<PageAuthBoard />} />
+                    <Route path={AuthRoutes.ModelAuth} element={<ModelAuthBoard />} />
+                    <Route path="" element={<MenuAuthBoard />} />
+                  </Route>
+                  <Route path={AppEntryRouts.Config} element={<AppConfig />}></Route>
+                  <Route path="" element={<AppUis />}></Route>
                 </Route>
-                <Route path={AppEntryRouts.Config} element={<AppConfig />}></Route>
+                <Route path="" >
+                  <Route path={AppEntryRouts.App} element={<AppUis />} />
+                  <Route path={AppEntryRouts.Bpmn} element={<AppBpmn />} />
+                  <Route path={AppEntryRouts.Dmn} element={<AppDmn />} />
+                  <Route path={AppEntryRouts.Uml} element={<AppUml />} />
+                  <Route path={AppEntryRouts.Api} element={<ApiBoard />} />
+                  <Route path={AppEntryRouts.Plugins} element={<AppPlugins />} />
+                  <Route path={AppEntryRouts.Frame} element={<AppFrames />} />
+                  <Route path={AppEntryRouts.Auth} element={<AuthBoard />}>
+                    <Route path={AuthRoutes.MenuAuth} element={<MenuAuthBoard />} />
+                    <Route path={AuthRoutes.ComponentAuth} element={<PageAuthBoard />} />
+                    <Route path={AuthRoutes.ModelAuth} element={<ModelAuthBoard />} />
+                    <Route path="" element={<MenuAuthBoard />} />
+                  </Route>
+                  <Route path={AppEntryRouts.Config} element={<AppConfig />}></Route>
+                  <Route path="" element={<AppUis />}></Route>
+                </Route>
               </Route>
-              <Route path="/design-ui/:device/:appId" element={<UiDesigner />} />
-              <Route path="/design-frame/:device/:appId" element={<FrameDesigner />} />
+              <Route path={`/${DESIGN_UI}/:device/:appId`} element={<UiDesigner />} />
+              <Route path={`/${DESIGN_FRAME}/:device/:appId`} element={<FrameDesigner />} />
 
             </Route>
             <Route path={LOGIN_URL} element={<Login />} />

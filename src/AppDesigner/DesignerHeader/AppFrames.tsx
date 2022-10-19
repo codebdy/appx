@@ -4,6 +4,7 @@ import React, { useCallback } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
+import { DESIGN_FRAME } from "~/consts";
 import { useDevices } from "../../hooks/useDevices";
 
 export const AppFrames = memo(() => {
@@ -13,7 +14,7 @@ export const AppFrames = memo(() => {
   const { appUuid } = useParams();
 
   const handleClick = useCallback((key: string) => {
-    navigate(`/design-frame/${key}/${appUuid}/`)
+    navigate(`/${DESIGN_FRAME}/${key}/${appUuid}/`)
   }, [navigate]);
 
   return (

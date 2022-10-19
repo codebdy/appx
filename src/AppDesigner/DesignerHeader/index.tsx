@@ -11,6 +11,7 @@ import SelectLang from "~/plugins/framewidgets/pc/LangSelect/view"
 import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage"
 import AvatarMenu from "~/plugins/framewidgets/pc/AvatarMenu/view"
 import SvgIcon from "~/common/SvgIcon"
+import { DESIGN } from "~/consts"
 
 const DesignerHeader = memo((props: {
   app?: IApp,
@@ -24,10 +25,10 @@ const DesignerHeader = memo((props: {
   const { t } = useTranslation();
 
   const { appUuid } = useParams();
-  const match = useMatch(`/config-app/${appUuid}/*`)
+  const match = useMatch(`/${DESIGN}/${appUuid}/*`)
   const parse = useParseLangMessage();
   const handleSelect = useCallback((info) => {
-    navigate(`/config-app/${app?.uuid}/${info.key}`)
+    navigate(`/${DESIGN}/${app?.uuid}/${info.key}`)
   }, [app?.uuid, navigate]);
 
   return (

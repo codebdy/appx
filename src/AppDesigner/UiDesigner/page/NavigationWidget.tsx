@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelectedPageId } from '../hooks/useSelectedPageId';
 import { usePages } from '../hooks/usePages';
 import { AppEntryRouts } from '~/AppDesigner/DesignerHeader/AppEntryRouts';
+import { DESIGN } from '~/consts';
 
 export const NavigationWidget = memo((
   props: {
@@ -22,7 +23,7 @@ export const NavigationWidget = memo((
   const navigate = useNavigate()
   const parse = useParseLangMessage();
   const handleBack = useCallback(() => {
-    navigate(`/config-app/${appUuid}/${AppEntryRouts.App}`)
+    navigate(`/${DESIGN}/${appUuid}/${AppEntryRouts.App}`)
   }, [appUuid, navigate]);
   const pageId = useSelectedPageId();
   const pages = usePages();

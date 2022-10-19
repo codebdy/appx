@@ -10,6 +10,7 @@ import { useRemoveApp } from "../hooks/useRemoveApp"
 import { IApp } from "../model"
 import { useShowError } from './~/hooks/useShowError';
 import { UpsertAppModel } from "./AppModal/UpsertAppModel";
+import { DESIGN } from "~/consts"
 
 const AppCard = memo((props: {
   app: IApp
@@ -23,7 +24,7 @@ const AppCard = memo((props: {
   const parse = useParseLangMessage();
 
   const handleEdit = useCallback(() => {
-    navigate(`/config-app/${app.uuid}/${AppEntryRouts.App}`)
+    navigate(`/${DESIGN}/${app.uuid}/${AppEntryRouts.App}`)
   }, [app.uuid, navigate])
 
   const handleRemove = useCallback(() => {
