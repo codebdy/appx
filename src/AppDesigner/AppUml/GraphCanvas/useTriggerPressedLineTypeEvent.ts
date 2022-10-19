@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useRecoilValue } from "recoil";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { pressedLineTypeState } from "../recoil/atoms";
 import { EVENT_PRESSED_LINE_TYPE, triggerCanvasEvent } from "./events";
 

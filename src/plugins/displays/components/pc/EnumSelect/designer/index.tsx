@@ -2,10 +2,10 @@ import { createBehavior, createResource } from '@designable/core'
 import { DnFC } from '@designable/react'
 import { EnumSelectSchema } from './schema'
 import { EnumSelectLocales } from './locales'
-import { createFieldSchema, FieldsType } from "../../common/Field/shared"
 import { EnumSelect, IEnumSelectProps } from '../view'
 import { observer } from '@formily/reactive-react'
 import React from 'react'
+import { FieldsType } from '@rxdrag/appx-plugin-sdk'
 
 export const EnumSelectDesigner: DnFC<IEnumSelectProps> = observer((props: IEnumSelectProps) => {
   const {value, ...other} = props;
@@ -20,7 +20,7 @@ EnumSelectDesigner.Behavior = createBehavior({
   selector: (node) => node.props['x-component'] === 'EnumSelect',
   designerProps: {
     droppable: false,
-    propsSchema: createFieldSchema(EnumSelectSchema, { fieldSourceType: FieldsType.Single }),
+    //propsSchema: createFieldSchema(EnumSelectSchema, { fieldSourceType: FieldsType.Single }),
   },
   designerLocales: EnumSelectLocales,
 })

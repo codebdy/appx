@@ -3,7 +3,7 @@ import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { useQueryApps } from '../hooks/useQueryApps';
-import { useShowError } from '../hooks/useShowError';
+import { useShowError } from '~/hooks/useShowError';
 import { appsLoadingState, appsState } from '../recoil/atoms';
 import AppHeader from './AppHeader';
 import "./style.less";

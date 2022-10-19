@@ -2,20 +2,20 @@ import React, { useCallback, useEffect } from "react"
 import { memo } from "react"
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { useSetRecoilState } from "recoil";
-import { IPage } from "../../model";
+import { IPage } from "~/model";
 import { isNavigationDirtyState, menuIdState, navigationNodesState, navigationRootNodeState } from "./atoms";
 import { COLLAPSE_GROUP_ID, CUSTOMIZED_LINK_ID, DIVIDER_ID, PAGE_LIST_ID } from "./consts";
 import { useGetMenuNode } from "./hooks/useGetMenuNode";
 import { useInsertAt } from "./hooks/useInsertAt";
-import { IMenuItem, IMenuNode, MenuItemType } from "../../plugin-sdk/model/IMenuNode";
+import { IMenuItem, IMenuNode, MenuItemType } from "@rxdrag/plugin-sdk/model/IMenuNode";
 import { useTranslation } from "react-i18next";
 import "./index.less"
-import { useAppViewKey } from "../../plugin-sdk/contexts/appRoot";
-import { useQueryMenu } from "../../shared/AppRoot/hooks/useQueryMenu";
-import { useShowError } from "../../hooks/useShowError";
+import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useQueryMenu } from "~/shared/AppRoot/hooks/useQueryMenu";
+import { useShowError } from "~/hooks/useShowError";
 import { cloneObject } from "./utils/cloneObject";
 import { parseMeta } from "./hooks/useParseMenuMeta";
-import { createUuid } from "../../shared";
+import { createUuid } from "~/shared";
 import { useGetPage } from "../hooks/useGetPage";
 
 const rootMeta: IMenuItem = { type: MenuItemType.Group, uuid: createUuid(), };

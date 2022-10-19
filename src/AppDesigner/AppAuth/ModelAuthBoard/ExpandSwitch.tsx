@@ -1,10 +1,10 @@
 import { Switch } from "antd"
 import React, { useCallback } from "react"
 import { memo } from "react"
-import { IClassAuthConfig } from "../../model"
+import { IClassAuthConfig } from "model"
 import { useUpsertClassAuthConfig } from "../hooks/useUpsertClassAuthConfig";
-import { useShowError } from "../../hooks/useShowError";
-import { ID } from "../../shared";
+import { useShowError } from "~/hooks/useShowError";
+import { ID } from "~/shared";
 
 export const ExpandSwitch = memo((
   props: {

@@ -10,8 +10,8 @@ import { DeleteOutlined, RedoOutlined, UndoOutlined } from '@ant-design/icons';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import { useTranslation } from 'react-i18next';
 import { ActionsView } from './ActionsView';
-import { ActionType, IAppxAction, OpenPageType } from '../../../../plugin-sdk/model/action';
-import { createUuid } from '../../../../shared';
+import { ActionType, IAppxAction, OpenPageType } from '@rxdrag/plugin-sdk/model/action';
+import { createUuid } from '~/shared';
 import { ActionPropertyBox } from './ActionPropertyBox';
 
 export interface IActionsSnapshot {

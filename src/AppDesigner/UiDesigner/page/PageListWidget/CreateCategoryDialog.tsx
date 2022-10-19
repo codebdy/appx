@@ -1,10 +1,10 @@
 import { Button, Modal } from "antd";
-import SvgIcon from "../../../common/SvgIcon";
+import SvgIcon from "~/common/SvgIcon";
 import React, { useCallback, useState } from "react";
 import { memo } from "react";
 import { useForm } from "antd/lib/form/Form";
 import { useUpsertCategory } from "../../hooks/useUpsertCategory";
-import { useShowError } from "../../../hooks/useShowError";
+import { useShowError } from "~/hooks/useShowError";
 import CategoryForm from "./CategoryForm";
 import { useTranslation } from "react-i18next";
 

@@ -1,4 +1,4 @@
-import { IPage, IPageCategory } from "../../model";
+import { IPage, IPageCategory } from "model";
 
 export interface IAuthComponent {
   name: string;

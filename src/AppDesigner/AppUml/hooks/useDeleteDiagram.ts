@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useSetRecoilState } from "recoil";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { diagramsState, x6EdgesState, x6NodesState } from "../recoil/atoms";
 import { useBackupSnapshot } from "./useBackupSnapshot";
 

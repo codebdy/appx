@@ -1,8 +1,8 @@
 import { useCallback } from "react";
-import { IPostOptions, usePostOne } from "../../enthooks/hooks/usePostOne";
-import { IMenuInput } from "../../model/input";
-import { IMenu } from "../../model";
-import { useAppParams } from "../../plugin-sdk/contexts/appRoot";
+import { IPostOptions, usePostOne } from "~/enthooks/hooks/usePostOne";
+import { IMenuInput } from "~/model/input";
+import { IMenu } from "~/model";
+import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
 
 export function useUpsertMenu(options?: IPostOptions<any>): [
   (menu: IMenuInput) => void,

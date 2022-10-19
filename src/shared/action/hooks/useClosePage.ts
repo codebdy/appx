@@ -1,9 +1,9 @@
 import { useCallback } from "react";
 import { useSetRecoilState } from "recoil";
-import { useAppViewKey } from "../../../plugin-sdk/contexts/appRoot";
-import { pagePopupsState } from "../../../plugin-sdk/atoms";
+import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { pagePopupsState } from "@rxdrag/plugin-sdk/atoms";
 import { useExpressionScope } from '@formily/react';
-import { OpenPageType } from "../../../plugin-sdk";
+import { OpenPageType } from "@rxdrag/plugin-sdk";
 
 export function useClosePage() {
   const key = useAppViewKey();

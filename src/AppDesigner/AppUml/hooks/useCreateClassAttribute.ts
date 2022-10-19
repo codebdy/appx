@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { ClassMeta } from "../meta/ClassMeta";
 import { useChangeClass } from "./useChangeClass";
 import { useCreateAttribute } from "./useCreateAttribute";

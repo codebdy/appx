@@ -1,7 +1,7 @@
 import { Graph } from "@antv/x6";
 import { useCallback, useEffect } from "react";
 import { useRecoilValue } from "recoil";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { drawingLineState } from "../recoil/atoms";
 export const HOVER_COLOR = "rgba(115,103,240,0.3)";
 

@@ -1,7 +1,7 @@
 import { Form, Input } from "antd";
 import React from "react";
 import { useTranslation } from "react-i18next";
-//import { MultiLangInput } from "../../../plugins/inputs/components/pc/MultiLangInput/view";
+//import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/view";
 
 export const NameItem = () => {
   const { t } = useTranslation()

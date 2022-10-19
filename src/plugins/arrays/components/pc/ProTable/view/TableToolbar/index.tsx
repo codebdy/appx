@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react"
-import { IProTableConfig, useProTableParams } from "../../../../../../../plugin-sdk/contexts/propTable"
-import { useComponentConfig } from "../../../../../../../shared/AppRoot/hooks/useComponentConfig"
+import { IProTableConfig, useProTableParams } from "@rxdrag/plugin-sdk/contexts/propTable"
+import { useComponentConfig } from "~/shared/AppRoot/hooks/useComponentConfig"
 import { observer } from "@formily/reactive-react"
 import { TableToolbarShell } from "./TableToolbarShell"
 import { RecursionField, useFieldSchema } from '@formily/react';

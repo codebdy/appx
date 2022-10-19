@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { createUuid, ID } from "../../shared";
+import { createUuid, ID } from "~/shared";
 import { AttributeMeta } from "../meta/AttributeMeta";
 import { Types } from "../meta/Type";
 import { useGetTypeLabel } from "./useGetTypeLabel";

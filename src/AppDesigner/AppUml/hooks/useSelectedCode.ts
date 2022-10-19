@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { codesState, selectedCodeState } from "../recoil/atoms";
 
 export function useSelectedCode(appUuid: ID) {

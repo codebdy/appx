@@ -4,8 +4,8 @@ import {
   setNpmCDNRegistry,
 } from '@designable/react-settings-form'
 import UiDesignerContent from './UiDesignerContent'
-import AppRoot from '../shared/AppRoot'
-import { DESIGNER_TOKEN_NAME } from '../consts'
+import AppRoot from '~/shared/AppRoot'
+import { DESIGNER_TOKEN_NAME } from '~/consts'
 
 setNpmCDNRegistry('//unpkg.com')
 

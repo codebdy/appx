@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import React from "react";
 import { IAuthRow, RowType } from "./IAuthRow";
 import { ExpandSwitch } from "./ExpandSwitch";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { ClassAuthChecker } from "./ClassAuthChecker";
 import { PropertyAuthChecker } from "./PropertyAuthChecker";
 

@@ -17,9 +17,9 @@ import { ClassRect } from "./ClassRect";
 import { StereoType } from "../meta/ClassMeta";
 import { Collapse } from "antd";
 import "./index.less";
-import { PRIMARY_COLOR } from "../../consts";
+import { PRIMARY_COLOR } from "~/consts";
 import { useTranslation } from "react-i18next";
-import { useEdittingAppUuid } from "../../hooks/useEdittingAppUuid";
+import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
 
 const { Dnd } = Addon;
 const { Panel } = Collapse;

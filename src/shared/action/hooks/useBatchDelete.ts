@@ -1,6 +1,6 @@
 import { useCallback, useRef } from "react";
-import { useProTableParams } from "../../../plugin-sdk";
-import { useDeleteByIds } from "../../../enthooks/hooks/useDeleteByIds";
+import { useProTableParams } from "@rxdrag/plugin-sdk";
+import { useDeleteByIds } from "~/enthooks/hooks/useDeleteByIds";
 
 export function useBatchDelete() {
   const resolveRef = useRef<(value: unknown) => void>();

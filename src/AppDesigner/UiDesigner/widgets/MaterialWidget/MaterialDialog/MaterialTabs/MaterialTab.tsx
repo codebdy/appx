@@ -4,7 +4,7 @@ import { IMaterialCollapseItem, IMaterialTab } from "@rxdrag/appx-plugin-sdk";
 import React, { useCallback } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
-import { createUuid } from "../../../../../shared";
+import { createUuid } from "~/shared";
 import { GroupLabel } from "./GroupLabel";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import clx from "classnames";

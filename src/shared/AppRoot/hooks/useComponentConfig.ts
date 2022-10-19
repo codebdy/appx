@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { useUserConfig } from "../../../plugin-sdk/contexts/appRoot";
+import { useUserConfig } from "@rxdrag/plugin-sdk/contexts/appRoot";
 
 export function useComponentConfig(path: string) {
   const userConfig = useUserConfig();

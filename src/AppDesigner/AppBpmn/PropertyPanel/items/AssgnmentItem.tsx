@@ -1,7 +1,6 @@
 import { Form, Input } from "antd";
-import React, { useEffect } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
-import { useAssignment } from "../../hooks/useAssignment";
 
 export const AssgnmentItem = (props: { element: any, modeler: any }) => {
   const { element, modeler } = props;

@@ -5,7 +5,7 @@ import { useLocalTranslations } from "../hooks/useLocalTranslations"
 import ColumnsSettings from "./ColumnsSettings"
 import HeightMenu from "./HeightMenu"
 import clx from "classnames"
-import { useProTableParams } from "../../../../../../../plugin-sdk/contexts/propTable"
+import { useProTableParams } from "@rxdrag/plugin-sdk/contexts/propTable"
 import { observer } from "@formily/reactive-react"
 import { ITableToolbarProps } from "."
 

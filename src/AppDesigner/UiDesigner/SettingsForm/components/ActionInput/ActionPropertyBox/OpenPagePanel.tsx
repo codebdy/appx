@@ -3,8 +3,8 @@ import React from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next"
 import { PageSelect } from "../../PageSelect"
-import { IOpenPageAction, OpenPageType } from "../../../../../plugin-sdk/model/action"
-import { MultiLangInput } from "../../../../../plugins/inputs/components/pc/MultiLangInput/view"
+import { IOpenPageAction, OpenPageType } from "@rxdrag/plugin-sdk/model/action"
+import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/view"
 const { Option } = Select;
 
 export const OpenPagePanel = memo((

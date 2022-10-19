@@ -1,10 +1,10 @@
 import { Tabs } from "antd"
 import React, { useMemo } from "react"
 import { memo } from "react"
-import { IComponentAuthConfig, IMenuAuthConfig, IPage, IPageCategory } from "../../model";
-import { useDevices } from "../../hooks/useDevices";
+import { IComponentAuthConfig, IMenuAuthConfig, IPage, IPageCategory } from "model";
+import { useDevices } from "~/hooks/useDevices";
 import { PageAuthPanal } from "./PageAuthPanal";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 
 export const PageTabs = memo((
   props: {

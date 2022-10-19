@@ -1,6 +1,6 @@
 import { Field } from "@formily/core";
 import { createContext, useContext } from "react";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 
 export interface IInstance {
   field?: Field,

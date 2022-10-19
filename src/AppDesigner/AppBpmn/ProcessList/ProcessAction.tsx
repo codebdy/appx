@@ -2,10 +2,10 @@ import { MoreOutlined, EditOutlined, DeleteOutlined, LoadingOutlined } from "@an
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next";
-import { IProcess } from "../../model/process";
+import { IProcess } from "~/model/process";
 
 import { useDeleteProcess } from "../hooks/useDeleteProcess";
-import { useShowError } from "../../hooks/useShowError";
+import { useShowError } from "~/hooks/useShowError";
 
 export const ProcessAction = memo((
   props: {

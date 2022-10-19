@@ -6,7 +6,7 @@ import { RelationMeta, RelationType } from "../meta/RelationMeta";
 import { X6EdgeMeta } from "../meta/X6EdgeMeta";
 import { X6NodeMeta } from "../meta/X6NodeMeta";
 import { LineAction } from "./LineAction";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { PackageMeta } from "../meta/PackageMeta";
 import { CodeMeta } from "../meta/CodeMeta";
 

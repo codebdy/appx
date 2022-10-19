@@ -1,4 +1,4 @@
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { useBackupSnapshot } from "./useBackupSnapshot";
 import { useCallback } from 'react';
 import { useSetRecoilState } from 'recoil';

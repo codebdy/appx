@@ -5,8 +5,8 @@ import {
 } from "../atoms";
 import { useCallback } from "react";
 import { useSetRecoilState } from "recoil";
-import { IMenuItem, IMenuNode } from "../../../plugin-sdk/model/IMenuNode";
-import { useAppViewKey } from "../../../plugin-sdk/contexts/appRoot";
+import { IMenuItem, IMenuNode } from "@rxdrag/plugin-sdk/model/IMenuNode";
+import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
 
 export const parseMeta = (
   meta: IMenuItem,

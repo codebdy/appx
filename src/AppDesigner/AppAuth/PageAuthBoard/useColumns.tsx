@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { ColumnsType } from 'antd/es/table';
 import { useMemo } from "react";
 import React from "react";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { IUiAuthRow } from "../IUiAuthConfig";
 import { ComponentAuthChecker } from "./ComponentAuthChecker";
 

@@ -1,8 +1,8 @@
 import { useCallback } from "react";
-import { IPostOptions, usePostOne } from "../../enthooks/hooks/usePostOne";
-import { IPageInput } from "../../model/input";
-import { IPage } from "../../model";
-import { useAppParams } from "../../plugin-sdk/contexts/appRoot";
+import { IPostOptions, usePostOne } from "~/enthooks/hooks/usePostOne";
+import { IPageInput } from "~/model/input";
+import { IPage } from "~/model";
+import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
 
 export function useUpsertPage(options?: IPostOptions<any>): [
   (page: IPageInput) => void,

@@ -1,7 +1,7 @@
-import { gql } from "../../../enthooks";
-import { IMenu } from "../../../model";
-import { useAppParams } from "../../../plugin-sdk/contexts/appRoot";
-import { useQueryOne } from "../../../enthooks/hooks/useQueryOne";
+import { gql } from "~/enthooks";
+import { IMenu } from "model";
+import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useQueryOne } from "~/enthooks/hooks/useQueryOne";
 import { useMemo } from "react";
 
 const menuGql = gql`

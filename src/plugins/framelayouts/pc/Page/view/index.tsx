@@ -1,12 +1,12 @@
 import { observer } from "@formily/reactive-react"
 import React from "react"
-import { useAppParams, useAppViewKey } from "../../../../../plugin-sdk/contexts/appRoot";
-import { pagePopupsState } from "../../../../../plugin-sdk/atoms";
-import { useParseLangMessage } from "../../../../../plugin-sdk/hooks/useParseLangMessage";
+import { useAppParams, useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { pagePopupsState } from "@rxdrag/plugin-sdk/atoms";
+import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage";
 import { useRecoilValue } from "recoil";
 import { RootPage } from "./RootPage";
 import { ExpressionScope } from "@formily/react";
-import { OpenPageType } from "../../../../../plugin-sdk/model/action";
+import { OpenPageType } from "@rxdrag/plugin-sdk/model/action";
 import { PageDialog } from "./PageDialog";
 import { PageDrawer } from "./PageDrawer";
 

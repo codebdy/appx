@@ -1,6 +1,6 @@
-import { ID } from "../../shared";
-import { IDeleteOptions, useDeleteById } from "../../enthooks/hooks/useDeleteById";
-import { IPageCategory } from "../../model";
+import { ID } from "~/shared";
+import { IDeleteOptions, useDeleteById } from "~/enthooks/hooks/useDeleteById";
+import { IPageCategory } from "~/model";
 
 export function useDeleteCategory(options?: IDeleteOptions<IPageCategory>): [
   (id: ID) => void,

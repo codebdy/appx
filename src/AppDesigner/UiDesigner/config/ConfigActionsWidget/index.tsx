@@ -2,12 +2,12 @@ import React, { useCallback } from 'react'
 import { Button, message } from 'antd'
 import { TextWidget } from '@designable/react'
 import { observer } from '@formily/react'
-import { useShowError } from '../../../hooks/useShowError'
+import { useShowError } from '~/hooks/useShowError'
 import { useTranslation } from 'react-i18next'
-import { useAppParams, useAppViewKey } from '../../../plugin-sdk/contexts/appRoot'
+import { useAppParams, useAppViewKey } from '@rxdrag/plugin-sdk/contexts/appRoot'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { deviceConfigChangedState, deviceConfigState } from '../../recoil/atom'
-import { useUpsertAppDeviceConfig } from '../../../hooks/useUpsertAppDeviceConfig'
+import { useUpsertAppDeviceConfig } from '~/hooks/useUpsertAppDeviceConfig'
 
 export const ConfigActionsWidget = observer(() => {
   const { device } = useAppParams();

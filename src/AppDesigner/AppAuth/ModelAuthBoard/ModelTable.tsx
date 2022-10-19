@@ -1,14 +1,14 @@
 import { Table } from 'antd';
 import React, { memo, useCallback, useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
-import { useParseLangMessage } from '../../plugin-sdk';
+import { useParseLangMessage } from '@rxdrag/plugin-sdk';
 import { packagesState } from '../../AppUml/recoil/atoms';
-import { useEdittingAppUuid } from '../../hooks/useEdittingAppUuid';
+import { useEdittingAppUuid } from '~/hooks/useEdittingAppUuid';
 import { useColumns } from './useColumns';
 import { IAuthRow, RowType } from './IAuthRow';
 import { useGetPackageCanAuthClasses } from '../hooks/useGetPackageCanAuthClasses';
-import { IClassAuthConfig, IPropertyAuthConfig } from '../../model';
-import { ID } from '../../shared';
+import { IClassAuthConfig, IPropertyAuthConfig } from '~/model';
+import { ID } from '~/shared';
 import { useGetClassAttributes } from '../hooks/useGetClassAttributes';
 
 export const ModelTable = memo((

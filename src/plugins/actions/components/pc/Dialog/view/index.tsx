@@ -9,7 +9,7 @@ import { Field } from "@formily/core";
 import { DialogTitle, IDialogTitleProps } from "./DialogTitle";
 import { DialogContent, IDialogContentProps } from "./DialogContent";
 import { DialogFooter, IDialogFooterProps } from "./DialogFooter";
-import { IconView, IIcon, useParseLangMessage, useInstanceParams } from '../../../../../../plugin-sdk'
+import { IconView, IIcon, useParseLangMessage, useInstanceParams } from '@rxdrag/plugin-sdk'
 
 export interface IDialogProps {
   title?: string,

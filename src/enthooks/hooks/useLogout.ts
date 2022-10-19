@@ -1,5 +1,5 @@
 import { useSetToken } from "../context";
-import { gql } from '../../enthooks'
+import { gql } from '~/enthooks'
 import { useLazyRequest } from "./useLazyRequest";
 import { useCallback } from "react";
 

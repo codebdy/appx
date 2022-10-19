@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { IAuthPage } from "./model";
 
 export function useGetCategoryPages(pages: IAuthPage[]) {

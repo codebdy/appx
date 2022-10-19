@@ -1,6 +1,6 @@
 import { useGetDiagramByName } from "./useGetDiagramByName";
 import { useCallback } from "react";
-import { createUuid, ID } from "../../shared";
+import { createUuid, ID } from "~/shared";
 import { useTranslation } from "react-i18next";
 
 export function useCreateNewDiagram(appUuid: ID) {

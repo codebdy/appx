@@ -9,5 +9,5 @@ export enum AppEntryRouts {
   Uml = "uml",
   Api = "api",
   Auth = "auth",
-  Plugins = "plugins",
+  Plugins = "~/plugins",
 }

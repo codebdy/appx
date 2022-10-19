@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { IAppxAction } from "../../../plugin-sdk/model/action";
+import { IAppxAction } from "@rxdrag/plugin-sdk/model/action";
 import { useDoOneAction } from "./useDoOneAction";
 
 export function useDoActions() {

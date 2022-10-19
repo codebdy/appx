@@ -1,7 +1,7 @@
 import { useCallback } from "react";
-import { IPostOptions, usePostOne } from "../../enthooks/hooks/usePostOne";
-import { IProcessInput, IProcess } from "../../model/process";
-import { useAppParams } from "../../plugin-sdk/contexts/appRoot";
+import { IPostOptions, usePostOne } from "~/enthooks/hooks/usePostOne";
+import { IProcessInput, IProcess } from "~/model/process";
+import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
 
 export function useUpsertProcess(options?: IPostOptions<any>): [
   (page: IProcessInput) => void,

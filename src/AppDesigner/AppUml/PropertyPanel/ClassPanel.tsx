@@ -3,8 +3,8 @@ import { ClassMeta, StereoType } from "../meta/ClassMeta";
 import { useChangeClass } from "../hooks/useChangeClass";
 import { Form, Input, Switch } from "antd";
 import { useTranslation } from "react-i18next";
-import { MultiLangInput } from "../../plugins/inputs/components/pc/MultiLangInput/view";
-import { useEdittingAppUuid } from "../../hooks/useEdittingAppUuid";
+import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/view";
+import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
 import { ScriptInput } from "./ScriptInput/ScriptInput";
 
 export const ClassPanel = (props: { cls: ClassMeta }) => {

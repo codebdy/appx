@@ -1,7 +1,7 @@
 import { observer } from "@formily/reactive-react"
 import React, { CSSProperties, useMemo, useState } from "react"
 import { IDropdownMenuItemProps, MenuItem } from "./MenuItem"
-import { IconView, IIcon, useParseLangMessage } from '../../../../../../plugin-sdk'
+import { IconView, IIcon, useParseLangMessage } from '@rxdrag/plugin-sdk'
 import { Button, Dropdown, Menu } from "antd"
 import { DownOutlined } from "@ant-design/icons"
 import { DropdownContext } from "./context"

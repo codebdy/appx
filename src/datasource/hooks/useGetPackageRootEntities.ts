@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
-import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
+import { useSelectedAppUuid } from "@rxdrag/plugin-sdk/contexts/appRoot";
 import { entitiesState } from "../recoil";
 
 export function useGetPackageRootEntities() {

@@ -18,7 +18,7 @@ import { useCreateRelationInnerId } from "../hooks/useCreateRelationInnerId";
 import { canStartLink } from "./canStartLink";
 import { EVENT_PREPARE_LINK_TO, triggerCanvasEvent } from "./events";
 import { useCheckCanLinkTo } from "./useCheckCanLinkTo";
-import { createUuid, ID } from "../../shared";
+import { createUuid, ID } from "~/shared";
 import _ from "lodash";
 
 export function useEdgeLineDraw(graph: Graph | undefined, appUuid: ID) {

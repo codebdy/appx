@@ -1,20 +1,20 @@
 
 import { memo, useState } from 'react';
 import React from 'react';
-import { useShowError } from '../../hooks/useShowError';
+import { useShowError } from '~/hooks/useShowError';
 import { Spin } from 'antd';
-import { useQueryMenu } from '../../shared/AppRoot/hooks/useQueryMenu';
-import { RouteContext, RunnerContext } from '../../plugin-sdk/contexts/runner';
-import { IMenuItem } from '../../plugin-sdk/model/IMenuNode';
+import { useQueryMenu } from '~/shared/AppRoot/hooks/useQueryMenu';
+import { RouteContext, RunnerContext } from '@rxdrag/plugin-sdk/contexts/runner';
+import { IMenuItem } from '@rxdrag/plugin-sdk/model/IMenuNode';
 import { FormItem } from "@formily/antd";
 import { useMemo } from "react";
 import { useParseLangSchema } from "../../hooks/useParseLangSchema";
-import { IUser } from "../../enthooks/hooks/useQueryMe";
-import { useMe } from "../../plugin-sdk/contexts/login";
+import { IUser } from "~/enthooks/hooks/useQueryMe";
+import { useMe } from "@rxdrag/plugin-sdk/contexts/login";
 import { createSchemaField, ExpressionScope, FormProvider } from '@formily/react';
 import { createForm } from '@formily/core';
 import { useQueryPageFrame } from '../hooks/useQueryPageFrame';
-import { useMaterialComponents } from '../../material/hooks/useMaterialComponents';
+import { useMaterialComponents } from '~/material/hooks/useMaterialComponents';
 
 export class Me {
   constructor(private me?: IUser) { }

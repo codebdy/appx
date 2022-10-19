@@ -1,10 +1,10 @@
 import { Button, Checkbox } from "antd"
 import React, { useCallback, useEffect, useState } from "react"
 import { memo } from "react"
-import { IClassAuthConfig } from "../../model"
+import { IClassAuthConfig } from "model"
 import { useUpsertClassAuthConfig } from "../hooks/useUpsertClassAuthConfig";
-import { useShowError } from "../../hooks/useShowError";
-import { ID } from "../../shared";
+import { useShowError } from "~/hooks/useShowError";
+import { ID } from "~/shared";
 import { FunctionOutlined, LoadingOutlined } from "@ant-design/icons";
 import { CheckboxChangeEvent } from "antd/es/checkbox";
 import { ExpressionModal } from "./ExpressionModal";

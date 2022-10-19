@@ -2,13 +2,13 @@ import React, { memo, useCallback, useMemo } from 'react'
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import { Breadcrumb, Button, Divider } from 'antd'
 import { useNavigate, useParams } from "react-router-dom"
-import { IApp } from '../../model';
-import { AppEntryRouts } from '../../AppDesigner/DesignerHeader/AppEntryRouts';
-import { useParseLangMessage } from '../../plugin-sdk/hooks/useParseLangMessage';
+import { IApp } from '~/model';
+import { useParseLangMessage } from '@rxdrag/plugin-sdk/hooks/useParseLangMessage';
 import { DesignerRoutes } from '../UiDesignerContent';
 import { useTranslation } from 'react-i18next';
 import { useSelectedPageId } from '../hooks/useSelectedPageId';
 import { usePages } from '../hooks/usePages';
+import { AppEntryRouts } from '~/AppDesigner/DesignerHeader/AppEntryRouts';
 
 export const NavigationWidget = memo((
   props: {

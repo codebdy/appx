@@ -1,10 +1,10 @@
 import { useRef, useState } from 'react';
 import { useCallback } from 'react';
 import { useEffect } from 'react';
-import { useEndpoint } from '../../enthooks';
-import { EVENT_DATA_POSTED, EVENT_DATA_REMOVED, EVENT_DATA_UPDATED, off, on } from '../../enthooks/events';
-import { useLazyRequest } from '../../enthooks/hooks/useLazyRequest';
-import { MutateFn } from '../../enthooks/hooks/useQueryOne';
+import { useEndpoint } from '~/enthooks';
+import { EVENT_DATA_POSTED, EVENT_DATA_REMOVED, EVENT_DATA_UPDATED, off, on } from '~/enthooks/events';
+import { useLazyRequest } from '~/enthooks/hooks/useLazyRequest';
+import { MutateFn } from '~/enthooks/hooks/useQueryOne';
 import { IQueryParams } from './useQueryParams';
 
 export type QueryResponse = {

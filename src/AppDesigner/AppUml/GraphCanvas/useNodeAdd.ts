@@ -10,7 +10,7 @@ import {
 } from "../recoil/atoms";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
 import { useCreateClassInnerId } from "../hooks/useCreateClassInnerId";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 
 export function useNodeAdd(graph: Graph | undefined, appUuid: ID) {
   const selectedDiagramUuid = useRecoilValue(selectedUmlDiagramState(appUuid));

@@ -1,6 +1,6 @@
-import { gql } from "../../enthooks";
+import { gql } from "~/enthooks";
 import { useCallback } from "react";
-import { RequestOptions, useLazyRequest } from "../../enthooks/hooks/useLazyRequest";
+import { RequestOptions, useLazyRequest } from "~/enthooks/hooks/useLazyRequest";
 import { Meta } from "../meta/Meta";
 
 const publishGql = gql`

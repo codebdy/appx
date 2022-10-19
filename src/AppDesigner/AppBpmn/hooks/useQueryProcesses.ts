@@ -1,7 +1,7 @@
-import { gql, useQuery } from "../../enthooks";
+import { gql, useQuery } from "~/enthooks";
 import { useMemo } from "react";
-import { IProcess } from "../../model/process";
-import { useAppParams } from "../../plugin-sdk/contexts/appRoot";
+import { IProcess } from "~/model/process";
+import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
 
 const processesGql = gql`
 query ($appId:ID!){

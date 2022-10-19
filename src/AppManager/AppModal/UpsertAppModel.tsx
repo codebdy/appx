@@ -3,12 +3,12 @@ import React, { useCallback, useEffect } from "react";
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
 import { useUpsertApp } from "../../hooks/useUpsertApp";
-import { useShowError } from "../../hooks/useShowError";
-import { IAppInput } from "../../model/input";
-import { createUuid } from "../../shared";
-import { IApp } from "../../model";
-import { MultiLangInput } from "../../plugins/inputs/components/pc/MultiLangInput/view";
-import ImageUploader from "../../plugins/inputs/components/pc/ImageUploader/view";
+import { useShowError } from "~/hooks/useShowError";
+import { IAppInput } from "~/model/input";
+import { createUuid } from "~/shared";
+import { IApp } from "~/model";
+import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/view";
+import ImageUploader from "~/plugins/inputs/components/pc/ImageUploader/view";
 
 export const UpsertAppModel = memo((
   props: {

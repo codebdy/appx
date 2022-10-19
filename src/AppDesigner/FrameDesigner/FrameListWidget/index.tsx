@@ -3,10 +3,10 @@ import React, { memo, useCallback } from 'react';
 import "./style.less"
 import { DataNode } from 'antd/lib/tree';
 import FrameLabel from './FrameLabel';
-import { ID } from '../../shared';
+import { ID } from '~/shared';
 import CreateFrameDialog from './CreateFrameDialog';
 import { FileOutlined } from '@ant-design/icons';
-import { IPageFrame } from '../../model';
+import { IPageFrame } from '~/model';
 
 export const FrameListWidget = memo((
   props: {

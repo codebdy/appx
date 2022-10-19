@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { ISchema } from '@formily/json-schema'
 import { isArr, isObj } from '@designable/shared'
-import { useParseLangMessage } from "../../plugin-sdk";
+import { useParseLangMessage } from "@rxdrag/plugin-sdk";
 import { IAuthComponent } from "./model";
 
 export function useParseSchema() {

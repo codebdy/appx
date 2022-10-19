@@ -4,7 +4,7 @@ import Dropzone from 'react-dropzone';
 import { useTranslation } from 'react-i18next';
 import "./style.less"
 import { FileView, IFileTask } from './FileView';
-import { createId } from '../../shared';
+import { createId } from '~/shared';
 
 export const Dragger = memo((props: {
   maxFiles?: number,

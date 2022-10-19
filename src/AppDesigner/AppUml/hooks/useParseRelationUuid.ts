@@ -1,4 +1,4 @@
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { useCallback } from 'react';
 
 export function useParseRelationUuid(appUuid: ID) {

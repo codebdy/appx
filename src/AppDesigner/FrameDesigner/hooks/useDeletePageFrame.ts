@@ -1,6 +1,6 @@
-import { ID } from "../../shared";
-import { IDeleteOptions, useDeleteById } from "../../enthooks/hooks/useDeleteById";
-import { IPageFrame } from "../../model";
+import { ID } from "~/shared";
+import { IDeleteOptions, useDeleteById } from "~/enthooks/hooks/useDeleteById";
+import { IPageFrame } from "~/model";
 
 export function useDeletePageFrame(options?: IDeleteOptions<IPageFrame>): [
   (id: ID) => void,

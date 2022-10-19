@@ -3,12 +3,12 @@ import { Button, Form, Input, message, Modal, Radio, RadioChangeEvent, UploadFil
 import React, { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useUpsertPluginInfo } from './hooks/useUpsertPluginInfo';
-import { useShowError } from '../hooks/useShowError';
-import { IPluginInfo, PluginType } from '../model';
-import { PluginStatus } from '../plugin/model';
+import { useShowError } from '~/hooks/useShowError';
+import { IPluginInfo, PluginType } from '~/model';
+import { PluginStatus } from '~/plugin/model';
 import { useUploadPlugin } from './hooks/useUploadPlugin';
 import Dragger from 'antd/lib/upload/Dragger';
-import { useLoadPlugins, useLoadPlugin } from '../plugin/hooks';
+import { useLoadPlugins, useLoadPlugin } from '~/plugin/hooks';
 import { useUpsertPluginInfos } from './hooks/useUpsertPluginInfos';
 
 export const UploadDialog: React.FC = memo(() => {
@@ -49,7 +49,7 @@ export const UploadDialog: React.FC = memo(() => {
         load(formData.url || "", PluginType.debug)
           .then((data) => {
             if (data?.pluginInfo && data.status !== PluginStatus.Error) {
-              upsert(data?.pluginInfo)
+              upsert(data?.pluginInfo as any)
             }
           })
           .catch((err) => {
@@ -63,7 +63,7 @@ export const UploadDialog: React.FC = memo(() => {
         multipleLoad(uploadedPlugins).then(data => {
           const succedPlugins = data.filter(plugin => plugin.status !== PluginStatus.Error);
           if (succedPlugins.length) {
-            upsertMany(succedPlugins.map(plugin => plugin.pluginInfo))
+            upsertMany(succedPlugins.map(plugin => plugin.pluginInfo) as any)
           }
         }).catch((err) => {
           console.error(err);

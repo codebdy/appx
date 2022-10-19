@@ -3,11 +3,11 @@ import React from "react"
 import { memo } from "react"
 import { Outlet } from "react-router-dom"
 import { SYSTEM_APP_UUID, DESIGNER_TOKEN_NAME } from "../consts";
-import AppRoot from "../shared/AppRoot";
+import AppRoot from "~/shared/AppRoot";
 import { useQueryMe } from "../enthooks/hooks/useQueryMe";
 import { useLoginCheck } from "../hooks/useLoginCheck";
-import { useShowError } from "../hooks/useShowError";
-import { UserContext } from "../plugin-sdk/contexts/login";
+import { useShowError } from "~/hooks/useShowError";
+import { UserContext } from "@rxdrag/plugin-sdk/contexts/login";
 
 export const LoggedInPanel = memo(() => {
   useLoginCheck();

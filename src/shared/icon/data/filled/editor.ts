@@ -1,5 +1,5 @@
 import { CopyFilled, DeleteFilled, DiffFilled, EditFilled, HighlightFilled, SnippetsFilled } from "@ant-design/icons";
-import { IIconGroup } from "../../model";
+import { IIconGroup } from "~/model";
 
 export const editor: IIconGroup = {
   name: "Editor",

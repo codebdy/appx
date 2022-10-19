@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import {
   changedState,
   diagramsState,

@@ -1,15 +1,15 @@
 import { Form, Input, Select } from 'antd';
-import IconInput from '../../../../shared/icon/IconInput';
+import IconInput from '~/shared/icon/IconInput';
 import React, { memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { navigationSelectedIdState } from '../../atoms';
 import { useRecoilValue } from 'recoil';
 import { useMenuNode } from '../../hooks/useMenuNode';
 import { useSetMeta } from '../../hooks/useSetMeta';
-import { useAppViewKey } from '../../../../plugin-sdk/contexts/appRoot';
-import { MenuItemType } from '../../../../plugin-sdk/model/IMenuNode';
+import { useAppViewKey } from '@rxdrag/plugin-sdk/contexts/appRoot';
+import { MenuItemType } from '@rxdrag/plugin-sdk/model/IMenuNode';
 import { useGetPage } from '../../../hooks/useGetPage';
-import { MultiLangInput } from '../../../../plugins/inputs/components/pc/MultiLangInput/view';
+import { MultiLangInput } from '~/plugins/inputs/components/pc/MultiLangInput/view';
 import { PageSelect } from '../../../SettingsForm/components/PageSelect';
 
 const { Option } = Select;

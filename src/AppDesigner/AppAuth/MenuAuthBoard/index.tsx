@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react"
 import { memo } from "react"
-import { ID } from "../../shared"
-import { ListConentLayout } from "../../common/ListConentLayout"
+import { ID } from "~/shared"
+import { ListConentLayout } from "~/common/ListConentLayout"
 import { RoleList } from "../RoleList"
 import { useTranslation } from "react-i18next"
 import { Breadcrumb, Spin } from "antd"
@@ -9,7 +9,7 @@ import "./style.less"
 import { MenuTabs } from "./MenuTabs"
 import { useRoleName } from "../hooks/useRoleName"
 import { useQueryAppMenus } from "../hooks/useQueryAppMenus"
-import { useShowError } from "../../hooks/useShowError"
+import { useShowError } from "~/hooks/useShowError"
 import { useQueryMenuAuthConfigs } from "../hooks/useQueryMenuAuthConfigs"
 
 export const MenuAuthBoard = memo(() => {

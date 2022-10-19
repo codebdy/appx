@@ -15,8 +15,8 @@ import { IQueryFormProps } from "../view/QueryForm"
 import { ITableToolbarProps } from "../view/TableToolbar"
 import { ITableToolbarActionsProps } from "../view/TableToolbarActions"
 import { ITableBatchActionsProps } from "../view/TableBatchActions"
-import { useFindNode } from "../../../../../../plugin-sdk"
-import { ProTableContext } from "../../../../../../plugin-sdk/contexts/propTable"
+import { useFindNode } from "@rxdrag/plugin-sdk"
+import { ProTableContext } from "@rxdrag/plugin-sdk/contexts/propTable"
 
 const ComponentDesigner: DnFC<IProTableProps> & {
   QueryForm?: React.FC<IQueryFormProps>,

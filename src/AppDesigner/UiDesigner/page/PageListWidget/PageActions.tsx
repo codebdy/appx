@@ -1,10 +1,10 @@
 import { MoreOutlined, EditOutlined, DeleteOutlined, LoadingOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
-import { ID } from "../../../shared";
+import { ID } from "~/shared";
 import { useDeletePage } from "../../hooks/useDeletePage";
-import { IPage } from "../../../model";
-import { useShowError } from "../../../hooks/useShowError";
+import { IPage } from "model";
+import { useShowError } from "~/hooks/useShowError";
 import { useTranslation } from "react-i18next";
 
 const PageActions = memo((

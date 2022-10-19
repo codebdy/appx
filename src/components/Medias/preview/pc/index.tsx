@@ -1,7 +1,7 @@
 import { CloudUploadOutlined, FilterOutlined, HomeOutlined, SortAscendingOutlined } from "@ant-design/icons"
 import { observer } from "@formily/reactive-react"
 import { Breadcrumb, Button, Col, Input, Row, Space } from "antd"
-import { ResizableColumn } from "../../../../common/ResizableColumn"
+import { ResizableColumn } from "~/common/ResizableColumn"
 import React from "react"
 import "./style.less"
 import { FolderTree } from "./FolderTree"

@@ -2,9 +2,9 @@ import React, { CSSProperties, useCallback, useEffect, useState } from "react"
 import { CheckOutlined, CloseOutlined, DeleteOutlined, EditOutlined, HolderOutlined } from "@ant-design/icons"
 import clx from "classnames";
 import { IMaterialTab } from "@rxdrag/appx-plugin-sdk";
-import { useParseLangMessage } from "../../../../../plugin-sdk/hooks/useParseLangMessage";
+import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage";
 import { Button, Space } from "antd";
-import { MultiLangInput } from "../../../../../plugins/inputs/components/pc/MultiLangInput/view";
+import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/view";
 
 export const TabDragableLabel = React.forwardRef((
   props: {

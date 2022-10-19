@@ -1,5 +1,5 @@
 import { Form, FormInstance } from "antd";
-import { MultiLangInput } from "../../../plugins/inputs/components/pc/MultiLangInput/view";
+import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/view";
 import React, { useCallback } from "react";
 import { memo } from "react";
 import { useTranslation } from "react-i18next";

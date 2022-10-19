@@ -1,13 +1,13 @@
 import { Drawer } from "antd";
-import { useAppViewKey } from "../../../../../../plugin-sdk/contexts/appRoot";
+import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
 import React, { useCallback, useMemo } from "react"
 import { memo } from "react"
-import { IPagePopup, pagePopupsState } from "../../../../../../plugin-sdk/atoms";
+import { IPagePopup, pagePopupsState } from "@rxdrag/plugin-sdk/atoms";
 import { useRecoilValue } from "recoil";
-import { useParseLangMessage } from "../../../../../../plugin-sdk/hooks/useParseLangMessage";
-import { PageEngine } from "../../../../../../plugins/framelayouts/PageEngine";
-import { useRunnerParams } from "../../../../../../plugin-sdk/contexts/runner";
-import { useClosePage } from "../../../../../../shared/action/hooks/useClosePage";
+import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage";
+import { PageEngine } from "~/plugins/framelayouts/PageEngine";
+import { useRunnerParams } from "@rxdrag/plugin-sdk/contexts/runner";
+import { useClosePage } from "~/shared/action/hooks/useClosePage";
 
 export const PageDrawer = memo((
   props: {

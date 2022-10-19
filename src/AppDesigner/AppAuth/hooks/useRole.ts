@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useRecoilValue } from "recoil";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { authRolesState } from "../recoil/atoms";
 
 export function useRole(roleId?: ID) {

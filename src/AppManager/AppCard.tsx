@@ -5,10 +5,10 @@ import React, { memo, useCallback, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import { AppEntryRouts } from "../AppDesigner/DesignerHeader/AppEntryRouts"
-import { useParseLangMessage } from "../plugin-sdk/hooks/useParseLangMessage"
+import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage"
 import { useRemoveApp } from "../hooks/useRemoveApp"
 import { IApp } from "../model"
-import { useShowError } from './../hooks/useShowError';
+import { useShowError } from './~/hooks/useShowError';
 import { UpsertAppModel } from "./AppModal/UpsertAppModel";
 
 const AppCard = memo((props: {

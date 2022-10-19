@@ -1,8 +1,8 @@
-import { gql } from "../../enthooks";
+import { gql } from "~/enthooks";
 import { useMemo } from "react";
-import { useQuery } from "../../enthooks/hooks/useQuery";
-import { IPage } from "../../model";
-import { useAppParams } from "../../plugin-sdk/contexts/appRoot";
+import { useQuery } from "~/enthooks/hooks/useQuery";
+import { IPage } from "~/model";
+import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
 
 const pagesGql = gql`
 query ($appUuid:String!, $device:String!){

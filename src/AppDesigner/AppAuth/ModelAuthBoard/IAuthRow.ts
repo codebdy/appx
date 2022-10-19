@@ -1,4 +1,4 @@
-import { IClassAuthConfig, IPropertyAuthConfig } from "../../model";
+import { IClassAuthConfig, IPropertyAuthConfig } from "model";
 
 export enum RowType {
   Package,

@@ -8,4 +8,3 @@ export * from "./useLoadPlugin";
 export * from "./useLoadPlugins";
 export * from "./useLoadPredefinedPlugins";
 export * from "./useQueryPluginInfos";
-export * from "../../AppPlugins/hooks/useUpsertPluginInfo";

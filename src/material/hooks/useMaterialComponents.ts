@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { usePredefinedPlugins } from "../../plugin/contexts";
-import { useAppParams } from "../../plugin-sdk/contexts/appRoot";
+import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
 import { IPlugin } from "@rxdrag/appx-plugin-sdk";
 import { useConvertMaterialFromPlugin } from "./useConvertMaterialFromPlugin";
 

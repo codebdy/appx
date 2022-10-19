@@ -14,7 +14,7 @@ import { useBreadcumbItems } from "./hooks/useBreadcumbItems";
 import PageHeaderContentExtra, { IPageHeaderContentExtraProps } from "./PageHeaderContentExtra";
 import { Schema } from "@formily/react";
 import PageTitle, { IPageTitleProps } from "./PageTitle";
-import { useParseLangMessage } from "../../../../../../plugin-sdk";
+import { useParseLangMessage } from "@rxdrag/plugin-sdk";
 
 const { TabPane } = Tabs;
 

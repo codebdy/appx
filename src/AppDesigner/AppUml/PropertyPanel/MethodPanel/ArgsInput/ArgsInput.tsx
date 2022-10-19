@@ -11,11 +11,11 @@ import { SortableContainerProps, SortEnd } from 'react-sortable-hoc';
 import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
 import { arrayMoveImmutable } from "array-move";
 import { Type, Types } from "../../../meta/Type";
-import { ArgMeta } from "../../../../AppUml/meta/MethodMeta";
-import { createUuid } from "../../../../shared";
+import { ArgMeta } from "../../../meta/MethodMeta";
+import { createUuid } from "~/shared";
 import { LazyInput } from "./LazyInput";
 import { useGetTypeLabel } from "../../../hooks/useGetTypeLabel";
-import { useEdittingAppUuid } from "../../../../hooks/useEdittingAppUuid";
+import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
 
 const { Option } = Select;
 

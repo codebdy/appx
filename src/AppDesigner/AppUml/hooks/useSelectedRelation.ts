@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { relationsState, selectedElementState } from "../recoil/atoms";
 
 export function useSelectedRelation(appUuid: ID) {

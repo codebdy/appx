@@ -1,14 +1,14 @@
 import React, { useCallback, useMemo } from "react"
 import { memo } from "react"
 import { Outlet, useNavigate } from "react-router-dom"
-import { ListConentLayout } from "../common/ListConentLayout"
+import { ListConentLayout } from "~/common/ListConentLayout"
 import { MenuProps } from 'antd';
 import { Menu } from 'antd';
 import { BellOutlined, FileOutlined, FileSearchOutlined, FundOutlined, NodeIndexOutlined, SettingOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import { AppManagerRoutes } from "../AppManager/AppHeader";
 import "./style.less";
-import SvgIcon from "../common/SvgIcon";
+import SvgIcon from "~/common/SvgIcon";
 
 export enum ConfigsRoutes {
   SystemConfig = "system-config",

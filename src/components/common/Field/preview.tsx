@@ -22,7 +22,7 @@ import {
 import { isArr, isStr } from '@designable/shared'
 import { Container } from '@designable/formily-antd/lib/common/Container'
 import { FieldLocales } from './locales'
-import { useParseLangMessage } from '../../../plugin-sdk/hooks/useParseLangMessage'
+import { useParseLangMessage } from '@rxdrag/plugin-sdk/hooks/useParseLangMessage'
 
 Schema.silent(true)
 

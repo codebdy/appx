@@ -1,5 +1,5 @@
 import { IPropsSchema } from "@rxdrag/appx-plugin-sdk";
-import { FormGridSchema } from "../../../../../../../plugin-sdk";
+import { FormGridSchema } from "@rxdrag/plugin-sdk";
 
 const QueryFormSchema: IPropsSchema = {
   props: {

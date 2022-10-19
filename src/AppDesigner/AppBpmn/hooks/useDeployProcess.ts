@@ -1,7 +1,7 @@
-import { gql } from "../../enthooks";
+import { gql } from "~/enthooks";
 import { useCallback } from "react";
-import { ID } from "../../shared";
-import { RequestOptions, useLazyRequest } from "../../enthooks/hooks/useLazyRequest";
+import { ID } from "~/shared";
+import { RequestOptions, useLazyRequest } from "~/enthooks/hooks/useLazyRequest";
 
 const deployGql = gql`
   mutation ($id:ID!) {

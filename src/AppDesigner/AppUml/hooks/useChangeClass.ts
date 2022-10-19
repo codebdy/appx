@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { EVENT_CLASS_CHANGED, triggerCanvasEvent } from "../GraphCanvas/events";
 import { ClassMeta } from "../meta/ClassMeta";
 import { classesState } from "../recoil/atoms";

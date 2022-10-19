@@ -2,8 +2,8 @@ import { Button, message } from "antd"
 import React, { useCallback } from "react";
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
-import { useShowError } from "../../hooks/useShowError";
-import { ID } from "../../shared"
+import { useShowError } from "~/hooks/useShowError";
+import { ID } from "~/shared"
 import { useDeployProcess } from "../hooks/useDeployProcess";
 
 export const DeplayButton = memo((

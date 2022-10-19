@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { ClassMeta } from "../meta/ClassMeta";
 import { MethodMeta } from "../meta/MethodMeta";
 import { useChangeClass } from "./useChangeClass";

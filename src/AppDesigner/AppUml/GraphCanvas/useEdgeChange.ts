@@ -15,7 +15,7 @@ import {
   ROLE_SOURCE_TARGET_CONST,
 } from "./constLabelPosition";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 
 export function useEdgeChange(graph: Graph | undefined, appUuid: ID) {
   const selectedDiagram = useRecoilValue(selectedUmlDiagramState(appUuid));

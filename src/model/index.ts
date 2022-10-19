@@ -1,5 +1,5 @@
-import { ID } from "../shared";
-import { IMenuItem } from "../plugin-sdk/model/IMenuNode";
+import { ID } from "~/shared";
+import { IMenuItem } from "@rxdrag/plugin-sdk/model/IMenuNode";
 import { ISchema } from '@formily/json-schema'
 import { IUser } from "../enthooks/hooks/useQueryMe";
 import { Device, IMaterialTab } from "@rxdrag/appx-plugin-sdk";

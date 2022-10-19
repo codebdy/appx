@@ -1,11 +1,11 @@
 import { Form, Input, Modal } from "antd";
-import { ILangLocalInput } from "../../../model/input";
+import { ILangLocalInput } from "~/model/input";
 import React, { useCallback, useEffect, useState } from "react";
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
-import { useAppConfig, useAppParams } from "../../../plugin-sdk/contexts/appRoot";
-import { useUpsertLangLocal } from "../../../hooks/useUpsertLangLocal";
-import { useShowError } from "../../../hooks/useShowError";
+import { useAppConfig, useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useUpsertLangLocal } from "~/hooks/useUpsertLangLocal";
+import { useShowError } from "~/hooks/useShowError";
 
 const LangLocalEditDialog = memo((
   props: {

@@ -1,12 +1,12 @@
 import { ColumnHeightOutlined } from "@ant-design/icons";
 import { observer } from "@formily/reactive-react";
 import { Button, Dropdown, Menu, Tooltip } from "antd";
-import { useUpdateComponentConfig } from "../../../../../../../shared/AppRoot/hooks/useUpdateComponentConfig";
+import { useUpdateComponentConfig } from "~/shared/AppRoot/hooks/useUpdateComponentConfig";
 import React, { useCallback } from "react"
-import { useProTableParams } from "../../../../../../../plugin-sdk/contexts/propTable";
+import { useProTableParams } from "@rxdrag/plugin-sdk/contexts/propTable";
 import { useLocalTranslations } from "../hooks/useLocalTranslations";
 import { toJS } from "@formily/reactive";
-import { useShowError } from "../../../../../../../hooks/useShowError";
+import { useShowError } from "~/hooks/useShowError";
 
 const HeightMenu = observer(() => {
   const { t } = useLocalTranslations();

@@ -1,7 +1,7 @@
-import { AwesomeGraphQLClient, GraphQLRequestError } from "../../enthooks";
+import { AwesomeGraphQLClient, GraphQLRequestError } from "~/enthooks";
 import { useCallback } from "react";
-import { useEnthooksAppUuid, useEndpoint, useToken } from "../../enthooks";
-import { HEADER_APPX_APPUUID, HEADER_AUTHORIZATION, TOKEN_PREFIX } from "../../consts";
+import { useEnthooksAppUuid, useEndpoint, useToken } from "~/enthooks";
+import { HEADER_APPX_APPUUID, HEADER_AUTHORIZATION, TOKEN_PREFIX } from "~/consts";
 
 const gql = `
   mutation ($file:Upload!){

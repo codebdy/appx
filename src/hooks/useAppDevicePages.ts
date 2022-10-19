@@ -1,4 +1,4 @@
-import { ID } from "../shared";
+import { ID } from "~/shared";
 import { IApp } from "../model";
 import { gql } from "../enthooks";
 import { useQueryOne } from "../enthooks/hooks/useQueryOne";

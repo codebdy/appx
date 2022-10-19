@@ -1,4 +1,4 @@
-import { IDataBindSource } from "../../datasource";
+import { IDataBindSource } from "~/datasource";
 
 
 export interface IDataSourceableProps {

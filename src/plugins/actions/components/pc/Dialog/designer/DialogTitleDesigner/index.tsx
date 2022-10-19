@@ -1,6 +1,6 @@
 import { observer } from "@formily/react"
 import React from "react"
-import { useParseLangMessage } from "../../../../../../../plugin-sdk"
+import { useParseLangMessage } from "@rxdrag/plugin-sdk"
 import { IDialogTitleProps } from "../../view/DialogTitle"
 
 export const DialogTitleDesigner = observer((props: IDialogTitleProps) => {

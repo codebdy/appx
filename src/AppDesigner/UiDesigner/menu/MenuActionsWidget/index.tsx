@@ -2,14 +2,14 @@ import React, { useCallback } from 'react'
 import { Space, Button, message } from 'antd'
 import { TextWidget } from '@designable/react'
 import { observer } from '@formily/react'
-import { useShowError } from '../../../hooks/useShowError'
+import { useShowError } from '~/hooks/useShowError'
 import { useTranslation } from 'react-i18next'
-import { useAppViewKey } from '../../../plugin-sdk/contexts/appRoot'
+import { useAppViewKey } from '@rxdrag/plugin-sdk/contexts/appRoot'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { isNavigationDirtyState, menuIdState, navigationRootNodeState } from '../atoms'
 import { useUpsertMenu } from '../../hooks/useUpsertMenu'
-import { IMenu } from 'packages/studio/src/model'
 import { useExtractMenuNodeMeta } from '../hooks/useExtractMenuNodeMeta'
+import { IMenu } from '~/model'
 
 export const MenuActionsWidget = observer(() => {
   const { t } = useTranslation();

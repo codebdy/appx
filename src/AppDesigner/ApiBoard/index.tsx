@@ -3,10 +3,10 @@ import "graphiql/graphiql.css";
 import { createGraphiQLFetcher } from "@graphiql/toolkit";
 import { memo, useMemo } from "react";
 import React from "react";
-import { HEADER_AUTHORIZATION, TOKEN_PREFIX, HEADER_APPX_APPUUID } from "../consts";
+import { HEADER_AUTHORIZATION, TOKEN_PREFIX, HEADER_APPX_APPUUID } from "~/consts";
 import "./index.less";
-import { useEndpoint, useToken } from "../enthooks";
-import { useEdittingAppUuid } from "../hooks/useEdittingAppUuid";
+import { useEndpoint, useToken } from "~/enthooks";
+import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
 
 //例子連接
 //https://github.com/graphql/graphiql/blob/main/packages/graphiql-toolkit/docs/create-fetcher.md#subscriptionurl

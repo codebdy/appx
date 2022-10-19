@@ -1,5 +1,5 @@
 import { EllipsisOutlined, MoreOutlined, PauseCircleOutlined, PauseOutlined, PlusCircleOutlined, PlusOutlined, QuestionCircleOutlined, QuestionOutlined } from "@ant-design/icons";
-import { IIconGroup } from "../../model";
+import { IIconGroup } from "~/model";
 
 export const suggested: IIconGroup = {
   name: "Suggested",

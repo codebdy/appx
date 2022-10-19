@@ -4,8 +4,8 @@ import { Layout } from 'antd';
 import DesignerHeader from "./DesignerHeader";
 import { Outlet, useParams } from "react-router-dom";
 import { useQueryApp } from "../hooks/useQueryApp";
-import { useShowError } from '../hooks/useShowError';
-import AppRoot from "../shared/AppRoot";
+import { useShowError } from '~/hooks/useShowError';
+import AppRoot from "~/shared/AppRoot";
 import { DESIGNER_TOKEN_NAME } from "../consts";
 
 const { Content } = Layout;

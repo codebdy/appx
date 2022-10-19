@@ -1,10 +1,10 @@
 import { Tabs } from "antd"
 import React, { useMemo } from "react"
 import { memo } from "react"
-import { IMenu, IMenuAuthConfig } from "../../model";
-import { useDevices } from "../../hooks/useDevices";
+import { IMenu, IMenuAuthConfig } from "model";
+import { useDevices } from "~/hooks/useDevices";
 import { MenuPanal } from "./MenuPanal";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 
 export const MenuTabs = memo((
   props: {

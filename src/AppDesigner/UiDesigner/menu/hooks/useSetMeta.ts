@@ -6,8 +6,8 @@ import {
 import { useCallback } from "react";
 import { useRecoilState } from "recoil";
 import { useBackupSnapshot } from "./useBackupSnapshot";
-import { IMenuItem } from "../../../plugin-sdk/model/IMenuNode";
-import { useAppViewKey } from "../../../plugin-sdk/contexts/appRoot";
+import { IMenuItem } from "@rxdrag/plugin-sdk/model/IMenuNode";
+import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
 
 export function useSetMeta() {
   const key = useAppViewKey();

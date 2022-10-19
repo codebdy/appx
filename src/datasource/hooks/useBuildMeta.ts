@@ -1,19 +1,15 @@
-import { gql, GraphQLRequestError } from "../../enthooks";
+import { gql, GraphQLRequestError } from "~/enthooks";
 import { useMemo, useEffect, useCallback } from "react";
 import { useSetRecoilState } from "recoil";
-import { SYSTEM_APP_UUID } from "../../consts";
-import { useQueryOne } from "../../enthooks/hooks/useQueryOne";
-import { AttributeMeta } from "../../AppUml/meta/AttributeMeta";
-import { ClassMeta, StereoType } from "../../AppUml/meta/ClassMeta";
-import { Meta } from "../../AppUml/meta/Meta";
-import { MethodMeta } from "../../AppUml/meta/MethodMeta";
-import { RelationMeta, RelationMultiplicity, RelationType } from "../../AppUml/meta/RelationMeta";
-import { useSelectedAppUuid } from "../../plugin-sdk/contexts/appRoot";
+import { SYSTEM_APP_UUID } from "~/consts";
+import { useQueryOne } from "~/enthooks/hooks/useQueryOne";
+import { useSelectedAppUuid } from "@rxdrag/plugin-sdk/contexts/appRoot";
 import { classesState, entitiesState, packagesState } from "../recoil";
 import _ from "lodash";
 import { AssociationMeta } from "../model";
 import { AssociationType } from "../model/IFieldSource";
 import { getParentClasses } from "./getParentClasses";
+import { AttributeMeta, ClassMeta, Meta, MethodMeta, RelationMeta, RelationMultiplicity, RelationType, StereoType } from "~/AppDesigner/AppUml/meta";
 
 export const sort = (array: { name: string }[]) => {
   return array.sort((a, b) => {

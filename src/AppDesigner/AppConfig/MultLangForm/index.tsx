@@ -1,9 +1,9 @@
 import { Form, message, Switch } from 'antd';
 import React, { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useShowError } from '../../hooks/useShowError';
-import { useUpsertAppConfig } from '../../hooks/useUpsertAppConfig';
-import { useAppConfig } from '../../plugin-sdk/contexts/appRoot';
+import { useShowError } from '~/hooks/useShowError';
+import { useUpsertAppConfig } from '~/hooks/useUpsertAppConfig';
+import { useAppConfig } from '@rxdrag/plugin-sdk/contexts/appRoot';
 import LangResourceEditor from './LangResourceEditor';
 import LangSelect from './LangSelect';
 import "./style.less"

@@ -1,5 +1,5 @@
-import { ClassMeta } from "../../AppUml/meta/ClassMeta";
-import { RelationMeta, RelationType } from "../../AppUml/meta/RelationMeta";
+import { ClassMeta, RelationMeta, RelationType } from "~/AppDesigner/AppUml/meta";
+
 
 export const getParentClasses = (classUuid: string, classMetas: ClassMeta[], relations: RelationMeta[]) => {
   const classes: ClassMeta[] = [];

@@ -1,7 +1,7 @@
 import { Node } from "@antv/x6";
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { useGetAllParentUuids } from "../hooks/useGetAllParentUuids";
 import { useGetClass } from "../hooks/useGetClass";
 import { StereoType } from "../meta/ClassMeta";

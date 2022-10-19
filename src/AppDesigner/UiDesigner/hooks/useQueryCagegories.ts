@@ -1,5 +1,5 @@
-import { gql, useQuery } from "../../enthooks";
-import { IPageCategory } from "../../model";
+import { gql, useQuery } from "~/enthooks";
+import { IPageCategory } from "~/model";
 import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 

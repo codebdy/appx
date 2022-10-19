@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { IPage } from "../../model";
+import { IPage } from "model";
 import { IAuthPage } from "./model";
 import { useParsePageComponents } from "./useParsePageComponents";
 

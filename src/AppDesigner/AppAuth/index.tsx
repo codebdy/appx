@@ -1,23 +1,22 @@
 import React, { useCallback, useMemo } from "react"
 import { memo } from "react"
 import { Outlet, useMatch, useNavigate } from "react-router-dom"
-import { ListConentLayout } from "../common/ListConentLayout"
+import { ListConentLayout } from "~/common/ListConentLayout"
 import { MenuProps, Spin } from 'antd';
 import { Menu } from 'antd';
 import { AppstoreOutlined, LayoutOutlined, MenuOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import "./style.less";
-import SvgIcon from "../common/SvgIcon";
-import { useEdittingAppUuid } from "../hooks/useEdittingAppUuid";
+import SvgIcon from "~/common/SvgIcon";
+import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
 import { useReadMeta } from "../AppUml/hooks/useReadMeta";
-import { useShowError } from "../hooks/useShowError";
-import { useRecoilValue } from "recoil";
-import { packagesState } from "../AppUml/recoil/atoms";
-import { useParseLangMessage } from "../plugin-sdk";
-import { AppManagerRoutes } from "../AppManager/AppHeader";
+import { useShowError } from "~/hooks/useShowError";
+import { useParseLangMessage } from "@rxdrag/plugin-sdk";
+import { AppManagerRoutes } from "~/AppManager/AppHeader";
 import { useQueryRoles } from "./hooks/useQueryRoles";
-import { SYSTEM_APP_UUID } from "../consts";
-import { AppEntryRouts } from "../AppDesigner/AppEntry/AppEntryRouts";
+import { SYSTEM_APP_UUID } from "~/consts";
+import { AppEntryRouts } from "../DesignerHeader/AppEntryRouts";
+
 
 export enum AuthRoutes {
   MenuAuth = "menu-auth",

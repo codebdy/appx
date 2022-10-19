@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
-import { createUuid, ID } from "../../shared";
+import { createUuid, ID } from "~/shared";
 import { PackageMeta, PackageStereoType } from "../meta/PackageMeta";
 import { packagesState } from './../recoil/atoms';
 

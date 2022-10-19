@@ -1,10 +1,10 @@
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { Modal } from "antd";
-import { useParseLangMessage } from "../../../plugin-sdk/hooks/useParseLangMessage";
+import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage";
 import React from "react";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { IConfirmAction } from "../../../plugin-sdk/model/action";
+import { IConfirmAction } from "@rxdrag/plugin-sdk/model/action";
 
 export function useConfirm() {
   const { t } = useTranslation();

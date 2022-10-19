@@ -1,13 +1,13 @@
-import { ActionType, IAppxAction } from "../../../../../plugin-sdk/model/action";
+import { ActionType, IAppxAction } from "@rxdrag/plugin-sdk/model/action";
 import React, { useCallback, useEffect, useMemo } from "react";
 import { memo } from "react";
 import { Form } from "antd";
 import { OpenPagePanel } from "./OpenPagePanel";
 import { useTranslation } from "react-i18next";
-import { useGetPage } from "../../../../../UiDesigner/hooks/useGetPage";
+import { useGetPage } from "../../../../hooks/useGetPage";
 import { SuccessMessagePanel } from "./SuccessMessagePanel";
 import { ConfirmPanel } from "./ConfirmPanel";
-import { MultiLangInput } from "../../../../../plugins/inputs/components/pc/MultiLangInput/view";
+import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/view";
 
 const pannels: { [key: string]: React.FC<{ payload: any }> } = {
   [ActionType.OpenPage]: OpenPagePanel,

@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react"
 import { memo } from "react"
-import { ProcessType } from "../../model/process"
-import TreeNodeLabel from "../../common/TreeNodeLabel"
+import { ProcessType } from "~/model/process"
+import TreeNodeLabel from "~/common/TreeNodeLabel"
 import { CreateDialog } from "./UpsertDialog/CreateDialog"
 
 export const CategoryLabel = memo((

@@ -1,6 +1,6 @@
 import React from "react"
 import { memo } from "react"
-import { useParseLangMessage } from "../../plugin-sdk/hooks/useParseLangMessage";
+import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage";
 
 const MultLangWidget = memo((
   props: {

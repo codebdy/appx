@@ -1,4 +1,4 @@
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { useRecoilValue } from 'recoil';
 import { diagramsState } from "../recoil/atoms";
 import { selectedUmlDiagramState } from '../recoil/atoms';

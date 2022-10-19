@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { IPageCategory } from "../../model";
+import { IPageCategory } from "model";
 import { IAuthPage } from "./model";
 import { useGetCategoryPages } from "./useGetCategoryPages";
 

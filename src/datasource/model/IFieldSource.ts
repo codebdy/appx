@@ -1,4 +1,4 @@
-import { BaseDataType } from "../../shared/BaseDataType";
+import { BaseDataType } from "~/shared/BaseDataType";
 import { IDataBindSource } from "./IDataBindSource";
 
 

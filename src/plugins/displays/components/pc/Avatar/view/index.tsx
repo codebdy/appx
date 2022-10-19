@@ -1,5 +1,5 @@
 import { observer } from "@formily/reactive-react"
-import { IconView, IIcon } from "../../../../../../plugin-sdk/"
+import { IconView, IIcon } from "@rxdrag/plugin-sdk/"
 import React from "react"
 import { Avatar as AntdAvatar } from "antd"
 import { UserOutlined } from "@ant-design/icons"

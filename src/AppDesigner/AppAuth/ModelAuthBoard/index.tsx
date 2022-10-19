@@ -1,15 +1,15 @@
 import React, { useCallback, useState } from "react"
 import { memo } from "react"
-import { ListConentLayout } from "../../common/ListConentLayout"
+import { ListConentLayout } from "~/common/ListConentLayout"
 import { ModelTable } from "./ModelTable"
 import { RoleList } from "../RoleList"
 import "./style.less"
 import { Breadcrumb, Spin } from "antd"
 import { useTranslation } from "react-i18next"
-import { ID } from "../../shared"
+import { ID } from "~/shared"
 import { useQueryClassAuthConfigs } from "../hooks/useQueryClassAuthConfigs"
 import { useQueryPropertyAuthConfigs } from "../hooks/useQueryPropertyAuthConfigs"
-import { useShowError } from "../../hooks/useShowError"
+import { useShowError } from "~/hooks/useShowError"
 import { useRoleName } from "../hooks/useRoleName"
 
 export const ModelAuthBoard = memo(() => {

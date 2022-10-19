@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { relationsState } from "../recoil/atoms";
 
 export function useGetRelation(appUuid: ID) {

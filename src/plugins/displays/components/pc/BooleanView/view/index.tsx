@@ -1,6 +1,6 @@
 import { observer } from "@formily/reactive-react"
 import React, { useMemo } from "react"
-import { IconView, IIcon } from "../../../../../../plugin-sdk"
+import { IconView, IIcon } from "@rxdrag/plugin-sdk"
 import { CheckOutlined } from "@ant-design/icons"
 
 export interface IBooleanViewProps {

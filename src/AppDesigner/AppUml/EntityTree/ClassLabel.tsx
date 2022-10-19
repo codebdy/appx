@@ -2,8 +2,8 @@ import { Addon, Graph } from "@antv/x6"
 import React, { useCallback, useEffect } from "react"
 import { memo } from "react"
 import { ClassMeta } from "../meta/ClassMeta"
-import TreeNodeLabel from "../../common/TreeNodeLabel"
-import { PRIMARY_COLOR } from "../../consts";
+import TreeNodeLabel from "~/common/TreeNodeLabel"
+import { PRIMARY_COLOR } from "~/consts";
 import { NODE_INIT_SIZE } from "../GraphCanvas/nodeInitSize";
 import { ClassView } from "../GraphCanvas/ClassView";
 import { useRecoilValue } from 'recoil';
@@ -11,7 +11,7 @@ import { selectedElementState, classesState } from './../recoil/atoms';
 import { Button } from "antd"
 import { DeleteOutlined } from "@ant-design/icons"
 import { useDeleteClass } from "../hooks/useDeleteClass"
-import { useEdittingAppUuid } from "../../hooks/useEdittingAppUuid"
+import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid"
 
 const { Dnd } = Addon;
 

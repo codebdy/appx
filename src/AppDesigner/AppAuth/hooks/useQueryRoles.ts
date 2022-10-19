@@ -1,8 +1,8 @@
-import { gql } from "../../enthooks";
+import { gql } from "~/enthooks";
 import { useEffect, useMemo } from "react";
 import { useSetRecoilState } from "recoil";
-import { useQuery } from "../../enthooks/hooks/useQuery";
-import { IRole } from "../../model";
+import { useQuery } from "~/enthooks/hooks/useQuery";
+import { IRole } from "model";
 import { authRolesState } from "../recoil/atoms";
 
 const rolesGql = gql`

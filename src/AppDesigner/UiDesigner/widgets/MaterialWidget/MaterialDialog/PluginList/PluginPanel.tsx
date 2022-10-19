@@ -1,12 +1,12 @@
 import { IMaterialTab, IPlugin } from "@rxdrag/appx-plugin-sdk"
 import React, { useMemo } from "react"
 import { Collapse, Empty } from "antd";
-import { useGetPluginLocalMessage } from "../../../../../plugin/hooks/useGetPluginLocalMessage";
+import { useGetPluginLocalMessage } from "~/plugin/hooks/useGetPluginLocalMessage";
 import cls from "classnames";
 import { Draggable, Droppable } from "react-beautiful-dnd";
-import { DraggableLabel } from "../../../../common/DraggableLabel";
-import { useGetComponentLocalTitle } from "../../../../../plugin/hooks/useGetComponentLocalTitle";
+import { useGetComponentLocalTitle } from "~/plugin/hooks/useGetComponentLocalTitle";
 import { useGetNotCategoriedComponents } from "../hooks/useGetNotCategoriedComponents";
+import { DraggableLabel } from "../../../../common/DraggableLabel";
 const { Panel } = Collapse;
 
 export const PluginPanel = React.forwardRef((

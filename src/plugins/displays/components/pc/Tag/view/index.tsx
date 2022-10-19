@@ -2,7 +2,7 @@ import { observer } from "@formily/reactive-react"
 import React from "react"
 import { Tag as AntdTag } from "antd"
 import { isNum, isStr } from "@formily/shared"
-import { IconView, IIcon, useParseLangMessage } from "../../../../../../plugin-sdk"
+import { IconView, IIcon, useParseLangMessage } from "@rxdrag/plugin-sdk"
 
 export interface ITagProps {
   icon?: IIcon,

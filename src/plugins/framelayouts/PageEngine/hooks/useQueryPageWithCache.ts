@@ -1,8 +1,8 @@
 import { useEffect, useMemo } from "react";
 import { useRecoilState } from "recoil";
-import { useQueryPage } from "../../../../hooks/useQueryPage";
-import { useAppViewKey } from "../../../../plugin-sdk/contexts/appRoot";
-import { pagesCacheState } from "../../../../plugin-sdk/atoms";
+import { useQueryPage } from "~/hooks/useQueryPage";
+import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { pagesCacheState } from "@rxdrag/plugin-sdk/atoms";
 
 export function useQueryPageWithCache(id?: string) {
   const key = useAppViewKey();

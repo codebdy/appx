@@ -7,11 +7,11 @@ import {
 import { CollapseGroup } from "./CollapseGroup";
 import { PageNav } from "./PageNav";
 import { MenuDivider } from "./MenuDivider";
-import { IMenuNode, MenuItemType } from "../../../../plugin-sdk/model/IMenuNode";
+import { IMenuNode, MenuItemType } from "@rxdrag/plugin-sdk/model/IMenuNode";
 import { useGetMenuNode } from "../../hooks/useGetMenuNode";
 import { useSetRecoilState } from "recoil";
 import { navigationSelectedIdState } from "../../atoms";
-import { useAppViewKey } from "../../../../plugin-sdk/contexts/appRoot";
+import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
 import { LinkItem } from "./LinkItem";
 
 export const NavItemListInner = (props: {

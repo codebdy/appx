@@ -4,16 +4,16 @@ import { Graph } from "@antv/x6";
 import "@antv/x6-react-shape";
 import "./style.less"
 import { useReadMeta } from "./hooks/useReadMeta";
-import { useShowError } from "../hooks/useShowError";
+import { useShowError } from "~/hooks/useShowError";
 import { Spin } from "antd";
-import { ModelBoard } from "../common/ModelBoard";
+import { ModelBoard } from "~/common/ModelBoard";
 import { minMapState, selectedCodeState, selectedUmlDiagramState } from "./recoil/atoms";
 import { useRecoilValue } from "recoil";
 import { Toolbox } from "./Toolbox";
 import { UmlToolbar } from "./UmlToolbar";
 import { GraphCanvas } from "./GraphCanvas";
 import { PropertyPanel } from "./PropertyPanel";
-import { useEdittingAppUuid } from "../hooks/useEdittingAppUuid";
+import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
 import { CodeEditor } from "./CodeEditor";
 
 const AppUml = memo((

@@ -3,8 +3,8 @@ import { useRecoilValue } from "recoil";
 import { useGetMenuNode } from "./useGetMenuNode";
 import { navigationNodesState } from "../atoms";
 import { cloneObject } from "../utils/cloneObject";
-import { useAppViewKey } from "../../../plugin-sdk/contexts/appRoot";
-import { IMenuItem } from "../../../plugin-sdk/model/IMenuNode";
+import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { IMenuItem } from "@rxdrag/plugin-sdk/model/IMenuNode";
 
 export function useExtractMenuNodeMeta() {
   const key = useAppViewKey();

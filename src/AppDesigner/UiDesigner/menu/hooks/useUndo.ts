@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { useAppViewKey } from "../../../plugin-sdk/contexts/appRoot"
+import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot"
 import { isNavigationDirtyState, navigationNodesState, navigationRootNodeState, navigationSelectedIdState, redoListState, undoListState } from "../atoms";
 
 export function useUndo() {

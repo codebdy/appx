@@ -1,5 +1,5 @@
 import { IPropsSchema } from '@rxdrag/appx-plugin-sdk'
-import { Events } from '../../../../../../plugin-sdk';
+import { Events } from '@rxdrag/plugin-sdk';
 
 const schema: IPropsSchema = {
   actions: [Events.onClick],

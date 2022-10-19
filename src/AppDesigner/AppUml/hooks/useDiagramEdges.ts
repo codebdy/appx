@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useRecoilValue } from "recoil";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { RelationMeta } from "../meta/RelationMeta";
 import { X6EdgeMeta } from "../meta/X6EdgeMeta";
 import { relationsState, x6EdgesState } from "../recoil/atoms";

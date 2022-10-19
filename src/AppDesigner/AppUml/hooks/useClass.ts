@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { classesState } from "../recoil/atoms";
 
 export function useClass(uuid: string, appUuid: ID) {

@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { ActionType, IAppxAction, IConfirmAction, IOpenPageAction, ISuccessAction } from "../../../plugin-sdk/model/action";
+import { ActionType, IAppxAction, IConfirmAction, IOpenPageAction, ISuccessAction } from "@rxdrag/plugin-sdk/model/action";
 import { useBatchDelete } from "./useBatchDelete";
 import { useBatchUpdate } from "./useBatchUpdate";
 import { useCloseDialog } from "./useCloseDialog";

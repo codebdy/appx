@@ -1,8 +1,8 @@
 import { message } from "antd";
-import { useParseLangMessage } from "../../../plugin-sdk/hooks/useParseLangMessage";
+import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { ISuccessAction } from "../../../plugin-sdk/model/action";
+import { ISuccessAction } from "@rxdrag/plugin-sdk/model/action";
 
 export function useShowSuccess() {
   const { t } = useTranslation();

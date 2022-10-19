@@ -1,6 +1,6 @@
 import { observer } from '@formily/reactive-react'
 import { Card as AntdCard, CardProps } from 'antd'
-import { useParseLangMessage } from '../../../../../../plugin-sdk/hooks/useParseLangMessage';
+import { useParseLangMessage } from '@rxdrag/plugin-sdk/hooks/useParseLangMessage';
 import React from 'react';
 
 const Component = observer((props: CardProps) => {

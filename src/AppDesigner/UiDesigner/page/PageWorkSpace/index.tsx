@@ -9,17 +9,17 @@ import {
 import { ViewPanel, WorkspacePanel, ToolbarPanel, ViewportPanel, SettingsPanel } from '../../panels'
 import { Workspace } from '../../containers'
 import { SettingsForm } from '../../SettingsForm'
-import { Field } from '../../../components/common/Field'
+import { Field } from '~/components/common/Field'
 import { useTranslation } from "react-i18next";
 import { Spin } from "antd";
-import { ID } from "../../../shared";
-import { useShowError } from "../../../hooks/useShowError";
+import { ID } from "~/shared";
+import { useShowError } from "~/hooks/useShowError";
 import { transformToTreeNode } from "../../transformer";
 import { useDesigner } from '@designable/react'
-import { useLazyQueryPage } from "../../../hooks/useLazyQueryPage";
-import { FormDesigner } from "../../../components/pc/FormDesigner";
+import { useLazyQueryPage } from "~/hooks/useLazyQueryPage";
+import { FormDesigner } from "~/components/pc/FormDesigner";
 import { ObjectContainer } from "@designable/formily-antd";
-import { useMaterialDesigners } from "../../../material/hooks/useMaterialDesigners";
+import { useMaterialDesigners } from "~/material/hooks/useMaterialDesigners";
 
 const PageWorkSpace = (props: {
   pageId: ID,

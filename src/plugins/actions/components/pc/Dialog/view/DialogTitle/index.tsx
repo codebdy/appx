@@ -1,4 +1,4 @@
-import { useParseLangMessage } from "../../../../../../../plugin-sdk";
+import { useParseLangMessage } from "@rxdrag/plugin-sdk";
 import React from "react";
 
 export interface IDialogTitleProps {

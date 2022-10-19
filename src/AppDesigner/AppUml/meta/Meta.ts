@@ -2,7 +2,7 @@ import { RelationMeta } from "./RelationMeta";
 import { PackageMeta } from "./PackageMeta";
 import { ClassMeta } from "./ClassMeta";
 import { DiagramMeta } from "./DiagramMeta";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { X6NodeMeta } from "./X6NodeMeta";
 import { X6EdgeMeta } from "./X6EdgeMeta";
 import { CodeMeta } from "./CodeMeta";

@@ -1,6 +1,6 @@
 import { useCallback } from "react";
-import { useAppParams } from "../../plugin-sdk/contexts/appRoot";
-import { IPluginInfo, PluginType } from "../../model";
+import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { IPluginInfo, PluginType } from "~/model";
 import { IInstalledPlugin, PluginStatus } from "../model";
 import { useGetPluginInfo } from "./useGetPluginInfo";
 import { loadDebugPlugin, loadPlugin } from "./useLoadPlugin";

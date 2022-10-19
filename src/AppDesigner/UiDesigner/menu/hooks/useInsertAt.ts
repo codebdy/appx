@@ -5,10 +5,10 @@ import {
 } from "../atoms";
 import { useCallback } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { IMenuNode } from "../../../plugin-sdk/model/IMenuNode";
+import { IMenuNode } from "@rxdrag/plugin-sdk/model/IMenuNode";
 import { useBackupSnapshot } from "./useBackupSnapshot";
 import { useGetMenuNode } from "./useGetMenuNode";
-import { useAppViewKey } from "../../../plugin-sdk/contexts/appRoot";
+import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
 
 export function useInsertAt() {
   const key = useAppViewKey();

@@ -1,11 +1,11 @@
 import { Form, Modal, Select } from "antd"
 import React, { memo, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { MultiLangInput } from "../../../plugins/inputs/components/pc/MultiLangInput/view"
-import { IProcess, IProcessInput, ProcessType } from "../../../model/process"
+import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/view"
+import { IProcess, IProcessInput, ProcessType } from "~/model/process"
+import { useShowError } from "~/hooks/useShowError"
+import { createUuid } from "~/shared"
 import { useUpsertProcess } from "../../hooks/useUpsertProcess"
-import { useShowError } from "../../../hooks/useShowError"
-import { createUuid } from "../../../shared"
 
 const { Option } = Select;
 

@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
 import { classesState } from "../../AppUml/recoil/atoms";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { StereoType } from "../../AppUml/meta/ClassMeta";
 
 export function useGetPackageCanAuthClasses(appUuid:ID) {

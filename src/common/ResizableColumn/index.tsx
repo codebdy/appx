@@ -1,6 +1,6 @@
 import React, { CSSProperties, memo, useCallback, useEffect, useRef, useState } from "react";
 import { isNumber } from "lodash";
-import { PRIMARY_COLOR } from "../../consts";
+import { PRIMARY_COLOR } from "~/consts";
 import "./style.less";
 
 const handlerWidth = 5;

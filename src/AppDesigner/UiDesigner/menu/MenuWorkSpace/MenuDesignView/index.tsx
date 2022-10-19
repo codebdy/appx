@@ -1,11 +1,11 @@
 import { Card } from "antd";
-import { IApp } from "../../../../model";
+import { IApp } from "../model";
 import React, { memo, useCallback, useState } from "react";
 import { useRecoilValue } from "recoil";
-import { useAppViewKey } from "../../../../plugin-sdk/contexts/appRoot";
+import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
 import { navigationRootNodeState } from "../../atoms";
 import NavItemList from "./NavItemList";
-import { useParseLangMessage } from "../../../../plugin-sdk/hooks/useParseLangMessage";
+import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage";
 
 const MenuDesignView = memo((
   props: {

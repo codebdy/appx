@@ -1,6 +1,6 @@
-import { usePostOne } from "../../../enthooks/hooks/usePostOne";
+import { usePostOne } from "~/enthooks/hooks/usePostOne";
 import { useCallback, useRef } from "react";
-import { useInstanceParams } from "../../../plugin-sdk/contexts/instance";
+import { useInstanceParams } from "@rxdrag/plugin-sdk/contexts/instance";
 import { useExtractFieldInput } from "./useExtractFieldInput";
 import { useRecentObjectField } from "./useRecentObjectField";
 

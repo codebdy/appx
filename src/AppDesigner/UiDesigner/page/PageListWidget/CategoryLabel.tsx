@@ -1,10 +1,10 @@
-import TreeNodeLabel from "../../../common/TreeNodeLabel"
+import TreeNodeLabel from "~/common/TreeNodeLabel"
 import React, { useCallback, useState } from "react"
 import CategoryActions from "./CategoryActions"
 import EditCategoryDialog from "./EditCategoryDialog"
 import CreatePageModal from "./CreatePageModal"
 import { IPageCategory } from "packages/studio/src/model"
-import { useParseLangMessage } from "../../../plugin-sdk/hooks/useParseLangMessage"
+import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage"
 
 const CategoryLabel = (
   props: {

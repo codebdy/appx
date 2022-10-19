@@ -1,9 +1,9 @@
 import { Checkbox } from "antd"
 import React, { useCallback, useEffect, useState } from "react"
 import { memo } from "react"
-import { IComponentAuthConfig } from "../../model"
-import { useShowError } from "../../hooks/useShowError";
-import { ID } from "../../shared";
+import { IComponentAuthConfig } from "model"
+import { useShowError } from "~/hooks/useShowError";
+import { ID } from "~/shared";
 import { LoadingOutlined } from "@ant-design/icons";
 import { CheckboxChangeEvent } from "antd/es/checkbox";
 import { Device } from "@rxdrag/appx-plugin-sdk";

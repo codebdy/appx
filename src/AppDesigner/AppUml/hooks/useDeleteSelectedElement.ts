@@ -9,7 +9,7 @@ import { useClass } from "./useClass";
 import { useRelation } from "./useRelation";
 import { useMethod } from "./useMethod";
 import { useDeleteMethod } from "./useDeleteMethod";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 
 /**
  * 本方法不需要备份状态

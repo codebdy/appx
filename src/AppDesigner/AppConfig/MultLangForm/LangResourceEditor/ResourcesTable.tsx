@@ -1,14 +1,14 @@
 import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Input, Space, Table } from 'antd';
-import { useAppConfig, useAppParams } from '../../../plugin-sdk/contexts/appRoot';
+import { useAppConfig, useAppParams } from '@rxdrag/plugin-sdk/contexts/appRoot';
 import React, { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ILangLocalInput } from '../../../model/input';
+import { ILangLocalInput } from '~/model/input';
 import LangLocalEditDialog from './LangLocalEditDialog';
-import { ID } from '../../../shared';
-import { ILangLocal } from '../../../model';
-import { useDeleteLangLocal } from '../../../hooks/useDeleteLangLocal';
-import { useShowError } from '../../../hooks/useShowError';
+import { ID } from '~/shared';
+import { ILangLocal } from '~/model';
+import { useDeleteLangLocal } from '~/hooks/useDeleteLangLocal';
+import { useShowError } from '~/hooks/useShowError';
 
 const ResourcesTable = memo(() => {
   const [keyword, setKeyWord] = useState("");

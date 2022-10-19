@@ -1,6 +1,6 @@
-import { AwesomeGraphQLClient, GraphQLRequestError } from "../../enthooks";
+import { AwesomeGraphQLClient, GraphQLRequestError } from "~/enthooks";
 import { useCallback } from "react";
-import { HEADER_APPX_APPUUID, HEADER_AUTHORIZATION, TOKEN_PREFIX } from "../../consts";
+import { HEADER_APPX_APPUUID, HEADER_AUTHORIZATION, TOKEN_PREFIX } from "~/consts";
 import { useEnthooksAppUuid, useEndpoint, useToken } from "../context";
 
 const gql = `

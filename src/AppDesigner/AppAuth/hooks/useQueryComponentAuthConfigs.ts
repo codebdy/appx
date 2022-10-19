@@ -1,8 +1,8 @@
-import { gql } from "../../enthooks";
+import { gql } from "~/enthooks";
 import { useMemo } from "react";
-import { useQuery } from "../../enthooks/hooks/useQuery";
-import { IComponentAuthConfig, IMenuAuthConfig } from "../../model";
-import { useAppParams } from "../../plugin-sdk/contexts/appRoot";
+import { useQuery } from "~/enthooks/hooks/useQuery";
+import { IComponentAuthConfig, IMenuAuthConfig } from "model";
+import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
 
 const authConfigGql = gql`
 query ($appUuid:String!){

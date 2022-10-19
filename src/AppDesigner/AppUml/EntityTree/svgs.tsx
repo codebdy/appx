@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { IconProps } from "../../icons/InterfaceIcon";
+import { IconProps } from "icons/InterfaceIcon";
 
 export const ClassIcon = memo((props: IconProps) => {
   return (

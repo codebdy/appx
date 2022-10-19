@@ -4,7 +4,7 @@ import { IMaterialTab } from '@rxdrag/appx-plugin-sdk';
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TabDragableLabel } from './TabDragableLabel';
-import { createUuid } from '../../../../../shared';
+import { createUuid } from '~/shared';
 import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
 
 const TABS_ID = "TABS_ID";

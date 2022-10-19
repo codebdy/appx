@@ -1,4 +1,4 @@
-import { useAppParams } from "../../../../../plugin-sdk/contexts/appRoot";
+import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
 import React from "react";
 import { memo } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";

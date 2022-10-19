@@ -6,7 +6,7 @@ import {
 } from '@designable/react'
 import { observer } from '@formily/reactive-react'
 import React from 'react'
-import { queryNodesByComponentPath } from '../../../../../../plugin-sdk/funcs'
+import { queryNodesByComponentPath } from '@rxdrag/plugin-sdk/funcs'
 import { IArrayPanelProps } from '../view'
 
 

@@ -4,8 +4,8 @@ import { useDesigner, TextWidget } from '@designable/react'
 import { observer } from '@formily/react'
 import { useTranslation } from 'react-i18next'
 import { transformToSchema } from '../UiDesigner/transformer'
-import { useShowError } from '../hooks/useShowError'
-import { ID } from '../shared'
+import { useShowError } from '~/hooks/useShowError'
+import { ID } from '~/shared'
 import { useUpsertPageFrame } from './hooks/useUpsertPageFrame'
 
 export const ActionsWidget = observer((props: {

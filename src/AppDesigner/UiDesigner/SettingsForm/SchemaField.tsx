@@ -40,8 +40,8 @@ import {
 } from '@designable/react-settings-form'
 import SettingsTab from './components/SettingsTab'
 import { DataSourceInput, FieldSourceInput, FieldParamsInput, ActionInput } from './components'
-import { MultiLangInput } from '../../plugins/inputs/components/pc/MultiLangInput/view'
-import IconInput from '../../shared/icon/IconInput'
+import { MultiLangInput } from '~/plugins/inputs/components/pc/MultiLangInput/view'
+import IconInput from '~/shared/icon/IconInput'
 
 export const SchemaField = createSchemaField({
   components: {

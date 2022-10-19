@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from "react"
 import { Button as AntdButton, ButtonProps, message } from "antd"
 import { observer } from "@formily/reactive-react"
-import { IAppxAction, IconView, IIcon, useParseLangMessage } from "../../../../../../plugin-sdk"
-import { useDoActions } from "../../../../../../shared/action"
+import { IAppxAction, IconView, IIcon, useParseLangMessage } from "@rxdrag/plugin-sdk"
+import { useDoActions } from "~/shared/action"
 
 
 export type IButtonProps = ButtonProps &

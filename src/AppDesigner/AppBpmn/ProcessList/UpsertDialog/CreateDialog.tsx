@@ -1,8 +1,8 @@
 import { PlusOutlined } from "@ant-design/icons"
 import { Button } from "antd"
 import React, { memo, useCallback, useState } from "react"
-import { ProcessType } from "../../../model/process"
-import { ID } from "../../../shared"
+import { ProcessType } from "~/model/process"
+import { ID } from "~/shared"
 import { UpsertModal } from "./UpsertModal"
 
 export const CreateDialog = memo((

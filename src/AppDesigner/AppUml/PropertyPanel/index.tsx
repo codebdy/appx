@@ -11,8 +11,8 @@ import { useMethod } from "../hooks/useMethod";
 import { MethodPanel } from "./MethodPanel";
 import { Empty } from "antd";
 import { useTranslation } from "react-i18next";
-import { PropertyBox } from "../../common/ModelBoard/PropertyBox";
-import { useEdittingAppUuid } from "../../hooks/useEdittingAppUuid";
+import { PropertyBox } from "~/common/ModelBoard/PropertyBox";
+import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
 
 export const PropertyPanel = memo(() => {
   const appUuid = useEdittingAppUuid();

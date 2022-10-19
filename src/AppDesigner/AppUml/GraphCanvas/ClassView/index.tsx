@@ -24,10 +24,10 @@ import "./index.less"
 import { RelationType } from "../../meta/RelationMeta";
 import { StereoType } from "../../meta/ClassMeta";
 import { CONST_ID } from "../../meta/Meta";
-import { CLASS_BACKGROUND_COLOR } from "../../consts";
+import { CLASS_BACKGROUND_COLOR } from "~/consts";
 import ClassActions from "./ClassActions";
-import PlugIcon from "../../../icons/PlugIcon";
-import { useParseLangMessage } from "../../../plugin-sdk";
+import PlugIcon from "~/icons/PlugIcon";
+import { useParseLangMessage } from "@rxdrag/plugin-sdk";
 
 export const ClassView = memo(
   (props: {

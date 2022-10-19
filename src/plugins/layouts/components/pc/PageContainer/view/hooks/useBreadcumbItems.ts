@@ -1,7 +1,7 @@
 import { Route } from "antd/lib/breadcrumb/Breadcrumb";
 import { useCallback, useMemo } from "react";
 import { useParams } from "react-router-dom";
-import { IMenuItem, useParseLangMessage, useRunnerParams } from "../../../../../../../plugin-sdk";
+import { IMenuItem, useParseLangMessage, useRunnerParams } from "@rxdrag/plugin-sdk";
 
 export function useBreadcumbItems() {
   const { menu } = useRunnerParams();

@@ -1,9 +1,9 @@
 import { useCallback } from "react";
-import { usePost } from "../../enthooks/hooks/usePost";
-import { IPostOptions } from "../../enthooks/hooks/usePostOne";
-import { IPluginInfo } from "../../model";
-import { IPluginInfoInput } from "../../model/input";
-import { useAppParams } from "../../plugin-sdk/contexts/appRoot";
+import { usePost } from "~/enthooks/hooks/usePost";
+import { IPostOptions } from "~/enthooks/hooks/usePostOne";
+import { IPluginInfo } from "model";
+import { IPluginInfoInput } from "~/model/input";
+import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
 
 export function useUpsertPluginInfos(options?: IPostOptions<any>): [
   (pluginInfos: IPluginInfoInput[]) => void,

@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { useDialogParams } from "../../../plugins/actions/components/pc/Dialog/view/context";
+import { useDialogParams } from "~/plugins/actions/components/pc/Dialog/view/context";
 
 export function useCloseDialog() {
   const {onClose} = useDialogParams()

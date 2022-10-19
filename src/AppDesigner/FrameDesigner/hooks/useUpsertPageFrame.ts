@@ -1,9 +1,9 @@
 import { useCallback } from "react";
-import { useAppParams } from "../../plugin-sdk/contexts/appRoot";
-import { IPostOptions, usePostOne } from "../../enthooks/hooks/usePostOne";
-import { IPageFrame } from "../../model";
-import { IPageFrameInput } from "../../model/input";
-import { GraphQLRequestError } from "../../enthooks";
+import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { IPostOptions, usePostOne } from "~/enthooks/hooks/usePostOne";
+import { IPageFrame } from "~/model";
+import { IPageFrameInput } from "~/model/input";
+import { GraphQLRequestError } from "~/enthooks";
 
 export function useUpsertPageFrame(options?: IPostOptions<any>): [
   (template: IPageFrameInput) => void,

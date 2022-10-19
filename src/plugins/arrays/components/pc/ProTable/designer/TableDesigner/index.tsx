@@ -15,10 +15,10 @@ import {
   queryNodesByComponentPath,
   hasNodeByComponentPath,
   createEnsureTypeItemsNode,
-} from '../../../../../../../plugin-sdk/funcs'
+} from '@rxdrag/plugin-sdk/funcs'
 import { LoadTemplate } from '@designable/formily-antd/lib/common/LoadTemplate'
-import { useParseLangMessage } from '../../../../../../../plugin-sdk/hooks/useParseLangMessage'
-import { useSelectable } from '../../../../../../../plugin-sdk/contexts/propTable'
+import { useParseLangMessage } from '@rxdrag/plugin-sdk/hooks/useParseLangMessage'
+import { useSelectable } from '@rxdrag/plugin-sdk/contexts/propTable'
 
 const ensureObjectItemsNode = createEnsureTypeItemsNode('object')
 

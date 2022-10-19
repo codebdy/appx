@@ -30,7 +30,7 @@ export const PropertyPanel = memo((props: {
   console.log("Element的 businessObject", element?.businessObject)
 
   const handleValueChange = useCallback((changedValue) => {
-    const modeling = modeler.get('modeling');
+    const modeling = modeler.get('~/modeling');
     if (changedValue?.name) {
       //modeling.updateLabel(element, changedValue.name);
       modeling.updateProperties(element, { name: changedValue?.name })

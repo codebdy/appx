@@ -4,13 +4,13 @@ import React, { useCallback, useMemo } from "react";
 import { memo } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilState } from "recoil";
-import { ProcessType } from "../../model/process";
-import SvgIcon from "../../common/SvgIcon";
-import { useAppParams, useParseLangMessage } from "../../plugin-sdk";
+import { ProcessType } from "~/model/process";
+import SvgIcon from "~/common/SvgIcon";
+import { useAppParams, useParseLangMessage } from "@rxdrag/plugin-sdk";
 import { selectedBpmnProcessIdState } from "../recoil/atoms";
 import { CategoryLabel } from "./CategoryLabel";
 import { useQueryProcesses } from "../hooks/useQueryProcesses";
-import { useShowError } from "../../hooks/useShowError";
+import { useShowError } from "~/hooks/useShowError";
 import { ProcessLabel } from "./ProcessLabel";
 const { DirectoryTree } = Tree;
 

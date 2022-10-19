@@ -3,7 +3,7 @@ import { ArrowLeftOutlined } from '@ant-design/icons'
 import { Breadcrumb, Button, Divider } from 'antd'
 import { useParams } from "react-router-dom"
 import { useTranslation } from 'react-i18next';
-import { useDevices } from '../hooks/useDevices';
+import { useDevices } from '~/hooks/useDevices';
 
 export const NavigationWidget = memo(() => {
   const { device } = useParams();

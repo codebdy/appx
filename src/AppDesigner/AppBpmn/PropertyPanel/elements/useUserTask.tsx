@@ -1,7 +1,7 @@
 import React from "react";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { useParseLangMessage } from "../../../plugin-sdk";
+import { useParseLangMessage } from "@rxdrag/plugin-sdk";
 import { AssgnmentItem } from "../items/AssgnmentItem";
 import { IElement } from "./IElement";
 import { useElementName } from "./useElementName";

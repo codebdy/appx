@@ -1,6 +1,6 @@
-import { gql } from "../../../enthooks";
-import { IUserConfig } from "../../../model";
-import { useQueryOne } from "../../../enthooks/hooks/useQueryOne";
+import { gql } from "~/enthooks";
+import { IUserConfig } from "model";
+import { useQueryOne } from "~/enthooks/hooks/useQueryOne";
 import { useMemo } from "react";
 import { ID } from "../..";
 import { Device } from "@rxdrag/appx-plugin-sdk";

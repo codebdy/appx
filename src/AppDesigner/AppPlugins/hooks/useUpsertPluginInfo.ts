@@ -1,8 +1,8 @@
 import { useCallback } from "react";
-import { IPostOptions, usePostOne } from "../../enthooks/hooks/usePostOne";
-import { IPluginInfo } from "../../model";
-import { IPluginInfoInput } from "../../model/input";
-import { useAppParams } from "../../plugin-sdk/contexts/appRoot";
+import { IPostOptions, usePostOne } from "~/enthooks/hooks/usePostOne";
+import { IPluginInfo } from "model";
+import { IPluginInfoInput } from "~/model/input";
+import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
 
 export function useUpsertPluginInfo(options?: IPostOptions<any>): [
   (pluginInfo: IPluginInfoInput) => void,

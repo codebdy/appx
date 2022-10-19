@@ -1,8 +1,8 @@
-import { useSet } from "../../../enthooks/hooks/useSet";
+import { useSet } from "~/enthooks/hooks/useSet";
 import { useCallback, useRef } from "react";
 import { useRecentObjectField } from "./useRecentObjectField";
 import { useExtractFieldInput } from "./useExtractFieldInput";
-import { useProTableParams } from "../../../plugin-sdk";
+import { useProTableParams } from "@rxdrag/plugin-sdk";
 
 export function useBatchUpdate() {
   const resolveRef = useRef<(value: unknown) => void>();

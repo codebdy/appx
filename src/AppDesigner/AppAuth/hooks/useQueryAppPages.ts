@@ -1,8 +1,8 @@
-import { gql } from "../../enthooks";
+import { gql } from "~/enthooks";
 import { useMemo } from "react";
-import { useQuery } from "../../enthooks/hooks/useQuery";
-import { useEdittingAppUuid } from "../../hooks/useEdittingAppUuid";
-import { IPage } from "../../model";
+import { useQuery } from "~/enthooks/hooks/useQuery";
+import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
+import { IPage } from "model";
 
 const pagesGql = gql`
 query ($appUuid:String!){

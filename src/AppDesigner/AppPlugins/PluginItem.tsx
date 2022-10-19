@@ -3,12 +3,12 @@ import { Avatar, Button, List } from "antd"
 import React, { useCallback, useMemo } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next"
-import SvgIcon from "../common/SvgIcon"
-import { useShowError } from "../hooks/useShowError"
-import { PluginType } from "../model"
-import { useGetPluginLocalMessage } from "../plugin/hooks"
-import { useDeletePluginInfo } from "../plugin/hooks/useDeletePluginInfo"
-import { IInstalledPlugin, PluginStatus } from "../plugin/model"
+import SvgIcon from "~/common/SvgIcon"
+import { useShowError } from "~/hooks/useShowError"
+import { PluginType } from "~/model"
+import { useGetPluginLocalMessage } from "~/plugin/hooks"
+import { useDeletePluginInfo } from "~/plugin/hooks/useDeletePluginInfo"
+import { IInstalledPlugin, PluginStatus } from "~/plugin/model"
 
 export const PluginItem = memo((
   props: {

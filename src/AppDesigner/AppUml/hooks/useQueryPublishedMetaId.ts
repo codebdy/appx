@@ -1,7 +1,7 @@
-import { gql } from "../../enthooks";
+import { gql } from "~/enthooks";
 import { useMemo } from "react";
-import { useEdittingAppUuid } from "../../hooks/useEdittingAppUuid";
-import { useQueryOne } from "../../enthooks/hooks/useQueryOne";
+import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
+import { useQueryOne } from "~/enthooks/hooks/useQueryOne";
 import { Meta } from "../meta/Meta";
 
 const queryGql = gql`

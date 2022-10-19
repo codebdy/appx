@@ -1,6 +1,6 @@
-import { ID } from "../../shared";
-import { IDeleteOptions, useDeleteById } from "../../enthooks/hooks/useDeleteById";
-import { IProcess } from "../../model/process";
+import { ID } from "~/shared";
+import { IDeleteOptions, useDeleteById } from "~/enthooks/hooks/useDeleteById";
+import { IProcess } from "~/model/process";
 
 export function useDeleteProcess(options?: IDeleteOptions<IProcess>): [
   (id: ID) => void,

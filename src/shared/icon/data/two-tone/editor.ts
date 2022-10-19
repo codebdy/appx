@@ -1,5 +1,5 @@
 import { EditTwoTone, CopyTwoTone, DeleteTwoTone, SnippetsTwoTone, DiffTwoTone, HighlightTwoTone } from "@ant-design/icons";
-import { IIconGroup } from "../../model";
+import { IIconGroup } from "~/model";
 
 export const editor: IIconGroup = {
   name: "Editor",

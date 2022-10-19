@@ -1,6 +1,6 @@
 import { useCallback } from "react";
-import { IMenuItem } from "../../../../../../plugin-sdk/model/IMenuNode";
-import { useRunnerParams } from "../../../../../../plugin-sdk/contexts/runner";
+import { IMenuItem } from "@rxdrag/plugin-sdk/model/IMenuNode";
+import { useRunnerParams } from "@rxdrag/plugin-sdk/contexts/runner";
 
 export function useGetMenuItem() {
   const { menu } = useRunnerParams();

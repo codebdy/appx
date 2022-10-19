@@ -1,10 +1,9 @@
 import React, { useCallback, useState } from "react";
 import { memo } from "react";
-import TreeNodeLabel from "../../common/TreeNodeLabel";
+import TreeNodeLabel from "~/common/TreeNodeLabel";
 import { ProcessAction } from "./ProcessAction";
-import { useEdittingAppUuid } from "../../hooks/useEdittingAppUuid";
-import { useParseLangMessage } from "../../plugin-sdk";
-import { IProcess } from "../../model/process";
+import { useParseLangMessage } from "@rxdrag/plugin-sdk";
+import { IProcess } from "~/model/process";
 import { UpsertModal } from "./UpsertDialog/UpsertModal";
 
 export const ProcessLabel = memo((

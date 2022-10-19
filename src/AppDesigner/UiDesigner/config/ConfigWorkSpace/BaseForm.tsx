@@ -2,13 +2,13 @@ import { Form, Select } from 'antd';
 import React, { memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { useShowError } from '../../../hooks/useShowError';
+import { useShowError } from '~/hooks/useShowError';
 import { useQueryPageFrames } from '../../../FrameDesigner/hooks/useQueryPageFrames';
-import { useAppParams, useAppViewKey } from '../../../plugin-sdk/contexts/appRoot';
+import { useAppParams, useAppViewKey } from '@rxdrag/plugin-sdk/contexts/appRoot';
 import { deviceConfigChangedState, deviceConfigState } from '../../recoil/atom';
 import { PageSelect } from '../../SettingsForm/components/PageSelect';
 import "./style.less"
-import { useParseLangMessage } from '../../../plugin-sdk/hooks/useParseLangMessage';
+import { useParseLangMessage } from '@rxdrag/plugin-sdk/hooks/useParseLangMessage';
 const { Option } = Select
 
 export const BaseLangForm = memo(() => {

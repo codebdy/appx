@@ -19,7 +19,7 @@ import { useCreateClassAttribute } from "../hooks/useCreateClassAttribute";
 import { ClassNodeData } from "./ClassView/ClassNodeData";
 import { useDeleteClass } from "../hooks/useDeleteClass";
 import { useCreateClassMethod } from "../hooks/useCreateClassMethod";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import React from "react";
 import { useGetPackage } from "../hooks/useGetPackage";
 import { useSelectedDiagramPackageUuid } from "../hooks/useSelectedDiagramPackageUuid";

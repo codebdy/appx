@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { useCreateNewClass } from "./useCreateNewClass";
 import { NODE_INIT_SIZE } from "../GraphCanvas/nodeInitSize";
 import { StereoType } from "../meta/ClassMeta";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { useSelectedDiagramPackageUuid } from "./useSelectedDiagramPackageUuid";
 
 export function useCreateTempClassNodeForNew(appUuid: ID) {

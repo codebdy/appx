@@ -18,7 +18,7 @@ export function useAssignment(element: any, modeler: any) {
     }
     const businessObject = getBusinessObject(element);
     const moddle = modeler.get('moddle');
-    const modeling = modeler.get('modeling');
+    const modeling = modeler.get('~/modeling');
     // 获取或者创建一个 ExtensionElements 并更新节点业务属性
     let extensionElements = businessObject.get('extensionElements')
     if (!extensionElements) {

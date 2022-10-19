@@ -4,8 +4,8 @@ import { useTranslation } from "react-i18next";
 import { Outlet, useMatch, useNavigate } from "react-router-dom";
 import "./style.less"
 import { AppManagerRoutes } from "../AppManager/AppHeader";
-import SvgIcon from "../common/SvgIcon";
-import { ListConentLayout } from "../common/ListConentLayout";
+import SvgIcon from "~/common/SvgIcon";
+import { ListConentLayout } from "~/common/ListConentLayout";
 import { CloudServerOutlined } from "@ant-design/icons";
 
 export enum MonitorRoutes {

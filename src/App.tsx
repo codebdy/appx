@@ -1,10 +1,7 @@
 import React, { memo } from 'react';
-import AppManager from './AppManager';
 import { Routes, Route } from "react-router-dom";
 import Login from './Login';
 import AppDesigner from './AppDesigner/index';
-import AppsContent from './AppManager/AppsContent';
-import { AppManagerRoutes } from './AppManager/AppHeader';
 import Install from './Install';
 import { DESIGNER_TOKEN_NAME, INDEX_URL, INSTALL_URL, LOGIN_URL, SERVER_URL, SYSTEM_APP_UUID } from './consts';
 import { AppEntryRouts } from './AppDesigner/DesignerHeader/AppEntryRouts';
@@ -14,10 +11,6 @@ import { LoggedInPanel } from './Login/LoggedInPanel';
 import { AppFrames } from './AppDesigner/DesignerHeader/AppFrames';
 import { PredefinedPluginsRoot } from './plugin/PredefinedPluginsRoot';
 import { PredefinedMaterialsRoot } from './material/PredefinedMaterialsRoot';
-import { ConfigCenter, ConfigsRoutes } from './ConfigCenter';
-import { NotificationEngineBoard } from './ConfigCenter/NotificationEngineBoard';
-import { ProcessEngineBoard } from './ConfigCenter/ProcessEngineBoard';
-import { SearchEngineBoard } from './ConfigCenter/SearchEngineBoard';
 import { AppBpmn } from './AppDesigner/AppBpmn';
 import { AppDmn } from './AppDesigner/AppDmn';
 import { AppPlugins } from './AppDesigner/AppPlugins';
@@ -29,13 +22,7 @@ import { FrameDesigner } from './AppDesigner/FrameDesigner';
 import { AuthBoard, AuthRoutes } from './AppDesigner/AppAuth';
 import { MenuAuthBoard } from './AppDesigner/AppAuth/MenuAuthBoard';
 import { ModelAuthBoard } from './AppDesigner/AppAuth/ModelAuthBoard';
-import { AppAuthBoard } from './AppDesigner/AppAuth/AppAuthBoard';
 import { PageAuthBoard } from './AppDesigner/AppAuth/PageAuthBoard';
-import { MonitorCenter, MonitorRoutes } from './MonitorCenter/intex';
-import { ReportEngineBoard } from './ConfigCenter/ReportEngineBoard';
-import { BusinessLogsBoard } from './MonitorCenter/BusinessLogsBoard';
-import { ModelLogsBoard } from './MonitorCenter/ModelLogsBoard';
-import { ServerBoard } from './MonitorCenter/ServerBoard';
 import { EntiRoot } from './enthooks';
 
 const App = memo(() => {

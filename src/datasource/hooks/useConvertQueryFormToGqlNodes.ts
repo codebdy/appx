@@ -1,8 +1,8 @@
 import { isArr, isObj, isStr } from "@formily/shared";
 import { ObjectFieldNode } from "graphql";
 import { useCallback } from "react";
-import { ISearchText } from "../../components/pc";
-import { IRangeValue } from "../../components/pc/RangePicker";
+import { ISearchText } from "~/components/pc";
+import { IRangeValue } from "~/components/pc/RangePicker";
 import { IQueryForm } from "../model/IQueryForm";
 import { createObjectFieldNode } from "./createObjectFieldNode";
 import { createSeachFieldNode } from "./createSeachFieldNode";

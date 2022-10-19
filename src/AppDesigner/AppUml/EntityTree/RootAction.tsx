@@ -7,7 +7,7 @@ import { packagesState } from "../recoil/atoms";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
 import { useExportJson } from "../hooks/useExportJson";
 import { useTranslation } from "react-i18next";
-import { useEdittingAppUuid } from "../../hooks/useEdittingAppUuid";
+import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
 import { PackageDialog } from "./PackageLabel/PackageDialog";
 import { PackageMeta } from "../meta/PackageMeta";
 

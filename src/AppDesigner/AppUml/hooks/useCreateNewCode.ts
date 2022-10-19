@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { createUuid, ID } from "../../shared";
+import { createUuid, ID } from "~/shared";
 import { useTranslation } from "react-i18next";
 import { useGetCodeByName } from "./useGetCodeByName";
 

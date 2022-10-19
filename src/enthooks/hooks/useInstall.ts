@@ -1,4 +1,4 @@
-import { gql } from "../../enthooks";
+import { gql } from "~/enthooks";
 import { useCallback } from "react";
 import { RequestOptions, useLazyRequest } from "./useLazyRequest";
 

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react"
 import { memo } from "react"
 import { AimOutlined, RedoOutlined, UndoOutlined, ZoomInOutlined, ZoomOutOutlined } from "@ant-design/icons";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { Button, Divider } from "antd";
 
 export const ToolbarActions = memo((

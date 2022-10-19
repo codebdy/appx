@@ -3,11 +3,11 @@ import {
   DraggableProvided,
   DraggableStateSnapshot,
 } from "react-beautiful-dnd";
-import { IMenuNode } from "../../../../plugin-sdk/model/IMenuNode";
+import { IMenuNode } from "@rxdrag/plugin-sdk/model/IMenuNode";
 import { memo, useMemo } from "react";
 import { useRecoilState } from "recoil";
 import { navigationSelectedIdState } from "../../atoms";
-import { useAppViewKey } from "../../../../plugin-sdk/contexts/appRoot";
+import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
 import React from "react";
 import { Divider } from "antd";
 import clx from "classnames";

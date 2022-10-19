@@ -1,5 +1,5 @@
 import { DownCircleTwoTone, LeftCircleTwoTone, PlayCircleTwoTone, RightCircleTwoTone, UpCircleTwoTone, UpSquareTwoTone } from "@ant-design/icons";
-import { IIconGroup } from "../../model";
+import { IIconGroup } from "~/model";
 
 export const directional: IIconGroup = {
   name: "Directional",

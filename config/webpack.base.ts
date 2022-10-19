@@ -1,4 +1,4 @@
-import path from 'path'
+import path, { resolve } from 'path'
 //import fs from 'fs-extra'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 //import { getThemeVariables } from 'antd/dist/theme'
@@ -22,6 +22,10 @@ export default {
     modules: ['node_modules'],
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     //alias: getAlias(),
+    alias: {
+      '~': resolve('src'),
+      '@rxdrag/plugin-sdk': resolve('src/plugin-sdk'),
+    }
   },
   externals: {
     // '@formily/reactive': 'Formily.Reactive',

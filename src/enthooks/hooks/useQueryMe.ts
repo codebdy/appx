@@ -1,5 +1,5 @@
-import { gql } from "../../enthooks";
-import { ID } from "../../shared";
+import { gql } from "~/enthooks";
+import { ID } from "~/shared";
 
 import { useRequest } from "./useRequest";
 

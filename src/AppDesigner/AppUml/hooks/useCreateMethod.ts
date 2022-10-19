@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { createUuid, ID } from "../../shared";
+import { createUuid, ID } from "~/shared";
 import {
   MethodMeta,
   MethodOperateType,

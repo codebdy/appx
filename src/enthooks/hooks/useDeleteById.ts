@@ -1,6 +1,6 @@
-import { gql } from "../../enthooks";
+import { gql } from "~/enthooks";
 import { useCallback, useMemo } from "react";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { EVENT_DATA_REMOVED, trigger } from "../events";
 import { useLazyRequest } from "./useLazyRequest";
 

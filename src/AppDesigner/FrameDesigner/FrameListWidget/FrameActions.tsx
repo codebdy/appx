@@ -2,9 +2,9 @@ import { MoreOutlined, EditOutlined, DeleteOutlined, LoadingOutlined } from "@an
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next";
-import { useShowError } from "../../hooks/useShowError";
-import { IPageFrame } from "../../model";
-import { ID } from "../../shared";
+import { useShowError } from "~/hooks/useShowError";
+import { IPageFrame } from "~/model";
+import { ID } from "~/shared";
 import { useDeletePageFrame } from "../hooks/useDeletePageFrame";
 
 const FrameActions = memo((

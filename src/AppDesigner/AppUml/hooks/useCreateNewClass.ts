@@ -4,7 +4,7 @@ import { ClassMeta, StereoType } from "../meta/ClassMeta";
 import { CONST_ID } from "../meta/Meta";
 import { useCreateClassInnerId } from "./useCreateClassInnerId";
 import { useGetClassByName } from "./useGetClassByName";
-import { createUuid, ID } from "../../shared";
+import { createUuid, ID } from "~/shared";
 
 export function useCreateNewClass(appUuid: ID) {
   const getClassByName = useGetClassByName(appUuid);

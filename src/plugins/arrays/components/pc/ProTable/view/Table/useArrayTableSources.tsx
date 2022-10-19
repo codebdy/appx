@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo } from 'react';
 import { useFieldSchema } from '@formily/react';
 import { Schema } from '@formily/json-schema';
 import { isArr } from '@formily/shared';
-import { useParseLangMessage } from '../../../../../../../plugin-sdk/hooks/useParseLangMessage';
+import { useParseLangMessage } from '@rxdrag/plugin-sdk/hooks/useParseLangMessage';
 import { ObservableColumnSource } from './index';
 
 export const isColumnComponent = (schema: Schema) => {

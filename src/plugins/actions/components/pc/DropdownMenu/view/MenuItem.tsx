@@ -1,8 +1,8 @@
 import { observer } from "@formily/reactive-react"
 import { Menu, message } from "antd"
 import React, { useCallback } from "react"
-import { useDoActions } from "../../../../../../shared/action"
-import { IIcon, IconView, useParseLangMessage, IAppxAction } from '../../../../../../plugin-sdk'
+import { useDoActions } from "~/shared/action"
+import { IIcon, IconView, useParseLangMessage, IAppxAction } from '@rxdrag/plugin-sdk'
 import { useDropdownParams } from "./context"
 
 export interface IDropdownMenuItemProps {

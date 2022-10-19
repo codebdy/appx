@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useRecoilValue } from "recoil";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { x6NodesState } from "../recoil/atoms";
 
 export function useDiagramNodes(diagramUuid:string, appUuid: ID){

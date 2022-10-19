@@ -3,7 +3,7 @@ import { ColumnsType } from 'antd/es/table';
 import React from 'react';
 import { useMemo } from "react";
 import { useTranslation } from 'react-i18next';
-import { BusinessOperateType, IBusinessLog, ModelOperateType, OperateResult } from "../../../model/log";
+import { BusinessOperateType, IBusinessLog, ModelOperateType, OperateResult } from "~/model/log";
 import { useGetAppName } from '../../hooks/useGetAppName';
 import moment from 'moment'
 

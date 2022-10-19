@@ -1,9 +1,9 @@
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
 import { classesState, relationsState } from "../../AppUml/recoil/atoms";
-import { getParentClasses } from "../../datasource/hooks/getParentClasses";
+import { getParentClasses } from "~/datasource/hooks/getParentClasses";
 import { AttributeMeta, ClassMeta, CONST_ID } from "../../AppUml/meta";
-import { sort } from "../../datasource";
+import { sort } from "~/datasource";
 import _ from "lodash";
 
 export function useGetClassAttributes(appUuid?: string) {

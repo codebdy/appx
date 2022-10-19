@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useRecoilValue } from "recoil";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { selectedElementState } from "../recoil/atoms";
 import { EVENT_ELEMENT_SELECTED_CHANGE, triggerCanvasEvent } from "./events";
 

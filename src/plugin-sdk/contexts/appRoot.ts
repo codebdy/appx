@@ -1,6 +1,6 @@
 import { Device } from "@rxdrag/appx-plugin-sdk";
 import { createContext, useContext, useMemo } from "react";
-import { IApp, IAppConfig, IAppDeviceConfig, ILangLocal, IMaterialConfig, IUserConfig } from "../../model";
+import { IApp, IAppConfig, IAppDeviceConfig, ILangLocal, IMaterialConfig, IUserConfig } from "~/model";
 import { IInstalledPlugin } from "../../plugin/model";
 
 export interface IAppContextParams {

@@ -5,8 +5,8 @@ import { PageEngine } from "../../../../PageEngine";
 import { ExpressionScope } from '@formily/react';
 import { useGetMenuItem } from "../../../../../framewidgets/pc/AppMenu/view/hooks/useGetMenuItem";
 import { useEntryPageId } from "../../../../../framewidgets/pc/AppMenu/view/hooks/useEntryPageId";
-import { OpenPageType } from "../../../../../../plugin-sdk/model/action";
-import { useRunnerParams } from "../../../../../../plugin-sdk/contexts/runner";
+import { OpenPageType } from "@rxdrag/plugin-sdk/model/action";
+import { useRunnerParams } from "@rxdrag/plugin-sdk/contexts/runner";
 
 export interface ILoadingSpanProps {
   spinning?: boolean,

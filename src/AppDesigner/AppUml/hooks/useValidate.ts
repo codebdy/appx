@@ -3,7 +3,7 @@ import _ from "lodash";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilValue } from "recoil";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { classesState } from "../recoil/atoms";
 import { useGetClassAssociations } from "./useGetClassAssociations";
 

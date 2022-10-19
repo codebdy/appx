@@ -1,6 +1,6 @@
 import { List } from 'antd';
 import React, { memo, useMemo } from 'react';
-import { useAppParams } from '../plugin-sdk/contexts/appRoot';
+import { useAppParams } from '@rxdrag/plugin-sdk/contexts/appRoot';
 import { PluginItem } from './PluginItem';
 
 export const PluginList = memo(() => {

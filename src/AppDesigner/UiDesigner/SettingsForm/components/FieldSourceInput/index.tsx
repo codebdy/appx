@@ -2,13 +2,13 @@ import { observer } from "@formily/reactive-react";
 import React, { useCallback, useMemo } from "react";
 import "./style.less"
 import { Select } from 'antd';
-import { useCurrentEntity } from "../../../../datasource/hooks/useCurrentEntity";
+import { useCurrentEntity } from "~/datasource/hooks/useCurrentEntity";
 import { TextWidget } from '@designable/react'
-import { useParseLangMessage } from "../../../../plugin-sdk/hooks/useParseLangMessage";
-import { FieldSourceType, IFieldSource } from "../../../../datasource/model/IFieldSource";
-import { useGetEntity } from "../../../../datasource/hooks/useGetEntity";
+import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage";
+import { FieldSourceType, IFieldSource } from "~/datasource/model/IFieldSource";
+import { useGetEntity } from "~/datasource/hooks/useGetEntity";
 import { isArr } from "@formily/shared";
-import { AttributeMeta } from "../../../../AppUml/meta/AttributeMeta";
+import { AttributeMeta } from "../AppUml/meta/AttributeMeta";
 const { Option, OptGroup } = Select;
 
 export const FieldSourceInput = observer((

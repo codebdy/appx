@@ -1,7 +1,7 @@
-import { gql } from "../../enthooks";
+import { gql } from "~/enthooks";
 import { useMemo } from "react";
-import { useQueryOne } from "../../enthooks/hooks/useQueryOne";
-import { IPageFrame } from "../../model";
+import { useQueryOne } from "~/enthooks/hooks/useQueryOne";
+import { IPageFrame } from "~/model";
 import { usePageFrameId } from "./usePageFrameId";
 
 const pageFrameGql = gql`

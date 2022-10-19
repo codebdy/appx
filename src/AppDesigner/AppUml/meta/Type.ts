@@ -1,4 +1,4 @@
-import { BaseDataType } from "../../shared/BaseDataType";
+import { BaseDataType } from "~/shared/BaseDataType";
 
 /**
  * 字段类型，目前版本仅支持这些类型，后续可以扩展

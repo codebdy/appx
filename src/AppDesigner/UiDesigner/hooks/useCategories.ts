@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { useAppViewKey } from "../../plugin-sdk/contexts/appRoot";
+import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
 import { categoriesState } from "../recoil/atom";
 
 export function useCategories() {

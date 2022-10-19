@@ -2,10 +2,10 @@ import { observer } from "@formily/reactive-react"
 import { Input, message } from "antd"
 import React, { useCallback, useMemo } from "react"
 import { useFieldSchema } from "@formily/react"
-import { IFieldSource } from "../../../../../../datasource/model/IFieldSource"
+import { IFieldSource } from "~/datasource/model/IFieldSource"
 import { isArr } from "@formily/shared"
-import { useDoActions } from "../../../../../../shared/action"
-import { IAppxAction } from "../../../../../../plugin-sdk/model/action"
+import { useDoActions } from "~/shared/action"
+import { IAppxAction } from "@rxdrag/plugin-sdk/model/action"
 
 export interface ISearchText {
   isFuzzy?: boolean,

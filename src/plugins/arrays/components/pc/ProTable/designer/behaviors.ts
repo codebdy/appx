@@ -4,7 +4,7 @@ import locales from "./locales";
 import schema from "./schema";
 import _ from "lodash";
 import QueryFormSchema from "./QueryFormDesigner/schema";
-import { FormGridLocales } from "../../../../../../plugin-sdk";
+import { FormGridLocales } from "@rxdrag/plugin-sdk";
 import QueryFormLocales from "./QueryFormDesigner/locales";
 import TableToolbarLocales from "./TableToolbarDesigner/locales";
 import TableToolbarSchema from "./TableToolbarDesigner/schema";

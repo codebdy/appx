@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { IPostOptions, usePostOne } from "../enthooks/hooks/usePostOne";
 import { IAppDeviceConfig } from "../model";
 import { IAppDeviceConfigInput } from "../model/input";
-import { useAppParams } from "../plugin-sdk/contexts/appRoot";
+import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
 
 export function useUpsertAppDeviceConfig(options?: IPostOptions<any>): [
   (config: IAppDeviceConfigInput) => void,

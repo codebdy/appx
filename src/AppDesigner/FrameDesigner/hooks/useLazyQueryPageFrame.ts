@@ -1,9 +1,9 @@
-import { gql } from "../../enthooks";
+import { gql } from "~/enthooks";
 import { useCallback } from "react";
-import { useLazyRequest } from "../../enthooks/hooks/useLazyRequest";
-import { IPageFrame } from "../../model";
-import { IPageFrameInput } from "../../model/input";
-import { ID } from "../../shared";
+import { useLazyRequest } from "~/enthooks/hooks/useLazyRequest";
+import { IPageFrame } from "~/model";
+import { IPageFrameInput } from "~/model/input";
+import { ID } from "~/shared";
 
 const pageFrameGql = gql`
 query ($id:ID!){

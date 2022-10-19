@@ -1,9 +1,9 @@
-import { IAppxAction } from "../../../../plugin-sdk/model/action"
+import { IAppxAction } from "@rxdrag/plugin-sdk/model/action"
 import React from "react"
 import { memo } from "react"
 import { Draggable, Droppable } from "react-beautiful-dnd"
 import DraggableLabel from "./DraggableLabel"
-import { useParseLangMessage } from "../../../../plugin-sdk/hooks/useParseLangMessage"
+import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage"
 
 export const ACTIONS_VIEW_ID = "ACTIONS_VIEW_ID"
 

@@ -3,11 +3,11 @@ import React, { useCallback } from "react";
 import { memo } from "react";
 import FormTemplates from "./FormTemplates";
 import { IPageInput } from "packages/studio/src/model/input";
-import { IPage, IPageCategory } from "../../../model";
+import { IPage, IPageCategory } from "model";
 import { useTranslation } from "react-i18next";
-import { ID } from "../../../shared";
-import { MultiLangInput } from "../../../plugins/inputs/components/pc/MultiLangInput/view";
-import { useParseLangMessage } from "../../../plugin-sdk/hooks/useParseLangMessage";
+import { ID } from "~/shared";
+import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/view";
+import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage";
 const { TabPane } = Tabs;
 const { Option } = Select;
 

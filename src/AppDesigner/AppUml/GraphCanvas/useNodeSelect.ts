@@ -4,7 +4,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { selectedUmlDiagramState, selectedElementState } from "../recoil/atoms";
 import { useGetDiagramNode } from "../hooks/useGetDiagramNode";
 import { CONST_CANVAS_CLICK } from "../consts";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 
 export function useNodeSelect(graph: Graph | undefined, appUuid: ID) {
   const [selectedElement, setSelectedElement] =

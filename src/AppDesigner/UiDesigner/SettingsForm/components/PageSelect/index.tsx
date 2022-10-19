@@ -1,12 +1,12 @@
 import { TreeSelect } from "antd";
-import { useGetCategoryPages } from "../../../../UiDesigner/hooks/useGetCategoryPages";
-import { useParseLangMessage } from "../../../../plugin-sdk/hooks/useParseLangMessage";
+import { useGetCategoryPages } from "../../../hooks/useGetCategoryPages";
+import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage";
 import React, { useCallback } from "react";
 import { memo } from "react"
 import { useTranslation } from "react-i18next"
 import { useCategories } from "../../../hooks/useCategories";
 import { usePagesWithoutCategory } from "../../../hooks/usePagesWithoutCategory";
-import { ID } from "../../../../shared";
+import { ID } from "~/shared";
 const { TreeNode } = TreeSelect;
 
 export const PageSelect = memo((

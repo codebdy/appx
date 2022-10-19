@@ -2,7 +2,7 @@ import { AppstoreOutlined, QuestionCircleOutlined, GithubOutlined, SettingOutlin
 import { Divider, Space, Button } from "antd"
 import { Header } from "antd/lib/layout/layout"
 import React, { memo, useCallback } from "react"
-import SvgIcon from "../common/SvgIcon"
+import SvgIcon from "~/common/SvgIcon"
 import clx from "classnames"
 import { useMatch, useNavigate } from "react-router-dom"
 import { InerfaceSvg } from "../icons/InterfaceIcon"

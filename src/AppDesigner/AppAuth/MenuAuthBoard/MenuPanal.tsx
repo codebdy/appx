@@ -1,12 +1,12 @@
 import React, { useCallback, useMemo } from "react"
 import { memo } from "react"
-import { IMenu, IMenuAuthConfig } from "../../model";
-import { IDevice } from "../../hooks/useDevices"
+import { IMenu, IMenuAuthConfig } from "model";
+import { IDevice } from "~/hooks/useDevices"
 import { Table } from "antd";
 import { useColumns } from "./useColumns";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { IUiAuthRow } from "../IUiAuthConfig";
-import { IMenuItem, MenuItemType, useParseLangMessage } from "../../plugin-sdk";
+import { IMenuItem, MenuItemType, useParseLangMessage } from "@rxdrag/plugin-sdk";
 
 export const MenuPanal = memo((
   props: {

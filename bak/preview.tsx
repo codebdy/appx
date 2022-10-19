@@ -29,7 +29,7 @@ import { Field, GeneralField } from '@formily/core'
 import './styles.less'
 import { define, observable } from '@formily/reactive'
 import { Locale } from 'antd/es/locale-provider'
-import { findNodeByComponentPath } from '../../shared'
+import { findNodeByComponentPath } from '~/shared'
 
 
 export interface IDialogProps extends ModalProps, IDialogRef {

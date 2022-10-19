@@ -1,4 +1,4 @@
-import { IApp } from "../../../model";
+import { IApp } from "model";
 import React, { memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { SettingsPanel, ToolbarPanel, ViewportPanel, WorkspacePanel } from "../../panels";
@@ -7,7 +7,7 @@ import MenuDesignView from "./MenuDesignView";
 import "./style.less"
 import { useRecoilState } from "recoil";
 import { navigationSelectedIdState } from "../atoms";
-import { useAppViewKey } from "../../../plugin-sdk/contexts/appRoot";
+import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
 import MenuSettingsForm from "./MenuSettingsForm";
 import { Empty } from "antd";
 

@@ -1,7 +1,7 @@
 import { IPlugin } from "@rxdrag/appx-plugin-sdk";
 import { useCallback } from "react";
-import { IPluginInfo, PluginType } from "../../model";
-import { useAppParams } from "../../plugin-sdk/contexts/appRoot";
+import { IPluginInfo, PluginType } from "~/model";
+import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
 import { useGetPluginLocalMessage } from "./useGetPluginLocalMessage";
 
 export function useGetPluginInfo() {

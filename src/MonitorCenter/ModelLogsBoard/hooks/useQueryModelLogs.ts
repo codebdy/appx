@@ -1,7 +1,7 @@
-import { gql } from "../../../enthooks";
-import { useQuery } from "../../../enthooks/hooks/useQuery";
+import { gql } from "~/enthooks";
+import { useQuery } from "~/enthooks/hooks/useQuery";
 import { useEffect, useMemo } from "react";
-import { IModelLog } from "../../../model/log";
+import { IModelLog } from "~/model/log";
 
 export function useQueryModelLogs(
   offset: number,

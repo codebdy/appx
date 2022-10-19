@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { ID } from "../../shared";
+import { ID } from "~/shared";
 import { RelationType } from "../meta/RelationMeta";
 import { relationsState } from "../recoil/atoms";
 
