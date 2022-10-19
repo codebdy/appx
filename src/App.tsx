@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import AppManager from './AppManager';
 import { Routes, Route } from "react-router-dom";
 import Login from './Login';
-import AppEntry from './AppDesigner/index';
+import AppDesigner from './AppDesigner/index';
 import AppsContent from './AppManager/AppsContent';
 import { AppManagerRoutes } from './AppManager/AppHeader';
 import Install from './Install';
@@ -45,35 +45,17 @@ const App = memo(() => {
         <PredefinedMaterialsRoot>
           <Routes>
             <Route path={INDEX_URL} element={<LoggedInPanel />}>
-              <Route path={INDEX_URL} element={<AppManager />}>
-                <Route
-                  path={AppManagerRoutes.Root}
-                  element={<AppsContent />}
-                />
-                <Route path={AppManagerRoutes.Model} element={<AppUml />} />
-                <Route path={AppManagerRoutes.Api} element={<ApiBoard />} />
-                <Route path={AppManagerRoutes.Auth} element={<AuthBoard />}>
-                  <Route path={AuthRoutes.ModelAuth} element={<ModelAuthBoard />} />
-                  <Route path={AuthRoutes.AppAuth} element={<AppAuthBoard />} />
-                  <Route path="" element={<ModelAuthBoard />} />
+              <Route path={"/:device?/:appUuid?"} element={<AppRunner />}>
+                <Route path=":menuUuid" element={<></>}>
+                  <Route path=":pageId" element={<></>}>
+                    <Route path=":dataId" element={<></>} />
+                    <Route path="" element={<></>} />
+                  </Route>
+                  <Route path="" element={<></>} />
                 </Route>
-                <Route path={AppManagerRoutes.SystemConfig} element={<AppConfig />} />
-                <Route path={AppManagerRoutes.Monitor} element={<MonitorCenter />}>
-                  <Route path={MonitorRoutes.ServerStatus} element={<ServerBoard />} />
-                  <Route path={MonitorRoutes.BusinessLogs} element={<BusinessLogsBoard />} />
-                  <Route path={MonitorRoutes.ModelLogs} element={<ModelLogsBoard />} />
-                  <Route path="" element={<ServerBoard />} />
-                </Route>
-                <Route path={AppManagerRoutes.Configs} element={<ConfigCenter />}>
-                  <Route path={ConfigsRoutes.ProcessEngine} element={<ProcessEngineBoard />} />
-                  <Route path={ConfigsRoutes.NotificationEngine} element={<NotificationEngineBoard />} />
-                  <Route path={ConfigsRoutes.SearchEngine} element={<SearchEngineBoard />} />
-                  <Route path={ConfigsRoutes.ReportEngine} element={<ReportEngineBoard />} />
-                  <Route path={ConfigsRoutes.SystemConfig} element={<AppConfig />} />
-                  <Route path="" element={<ProcessEngineBoard />} />
-                </Route>
+                <Route path="" element={<></>} />
               </Route>
-              <Route path="/config-app/:appUuid" element={<AppEntry />}>
+              <Route path="/app-designer/:appId" element={<AppDesigner />}>
                 <Route path={AppEntryRouts.App} element={<AppUis />} />
                 <Route path={AppEntryRouts.Bpmn} element={<AppBpmn />} />
                 <Route path={AppEntryRouts.Dmn} element={<AppDmn />} />
@@ -89,18 +71,9 @@ const App = memo(() => {
                 </Route>
                 <Route path={AppEntryRouts.Config} element={<AppConfig />}></Route>
               </Route>
-              <Route path="/design-app/:device/:appUuid" element={<UiDesigner />} />
-              <Route path="/design-frame/:device/:appUuid" element={<FrameDesigner />} />
-              <Route path={"/app/:device/:appUuid"} element={<AppRunner />}>
-                <Route path=":menuUuid" element={<></>}>
-                  <Route path=":pageId" element={<></>}>
-                    <Route path=":dataId" element={<></>} />
-                    <Route path="" element={<></>} />
-                  </Route>
-                  <Route path="" element={<></>} />
-                </Route>
-                <Route path="" element={<></>} />
-              </Route>
+              <Route path="/design-ui/:device/:appId" element={<UiDesigner />} />
+              <Route path="/design-frame/:device/:appId" element={<FrameDesigner />} />
+
             </Route>
             <Route path={LOGIN_URL} element={<Login />} />
             <Route path={INSTALL_URL} element={<Install />} />

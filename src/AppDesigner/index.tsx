@@ -10,7 +10,7 @@ import { DESIGNER_TOKEN_NAME } from "../consts";
 
 const { Content } = Layout;
 
-const AppEntry = memo(() => {
+const AppDesigner = memo(() => {
   const { appUuid } = useParams();
   const { app, error } = useQueryApp(appUuid)
 
@@ -28,4 +28,4 @@ const AppEntry = memo(() => {
   )
 })
 
-export default AppEntry;
+export default AppDesigner;
