@@ -26,3 +26,23 @@ export interface IModelLog {
   result?: OperateResult;
   message?: string;
 }
+export enum BusinessOperateType {
+  login = "login",
+  logout = "logout",
+  deployProcess = "deployProcess",
+  startProcess = "startProcess",
+  complateJob = "complateJob",
+  publishMeta = "publishMeta",
+  install = "install",
+}
+
+export interface IBusinessLog {
+  id: ID;
+  user?: IUser;
+  ip?: string;
+  appUuid?: string;
+  createdAt?: Date;
+  operateType?: ModelOperateType;
+  result?: OperateResult;
+  message?: string;
+}

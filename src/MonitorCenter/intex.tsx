@@ -11,7 +11,6 @@ import { CloudServerOutlined } from "@ant-design/icons";
 export enum MonitorRoutes {
   ServerStatus = "server-status",
   Logs = "logs",
-  DebugLogs = "debug-logs",
   ModelLogs = "model-logs",
   BusinessLogs = "business-logs",
 }
@@ -70,11 +69,6 @@ export const MonitorCenter = memo(() => {
         ),
         getItem(t("Monitor.ModelLogs"),
           MonitorRoutes.ModelLogs,
-          dotIcon,
-          null,
-        ),
-        getItem(t("Monitor.DebugLogs"),
-          MonitorRoutes.DebugLogs,
           dotIcon,
           null,
         ),

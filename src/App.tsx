@@ -35,7 +35,6 @@ import { MonitorCenter, MonitorRoutes } from './MonitorCenter/intex';
 import { ReportEngineBoard } from './ConfigCenter/ReportEngineBoard';
 import { BusinessLogsBoard } from './MonitorCenter/BusinessLogsBoard';
 import { ModelLogsBoard } from './MonitorCenter/ModelLogsBoard';
-import { DebugLogsBoard } from './MonitorCenter/DebugLogsBoard';
 import { ServerBoard } from './MonitorCenter/ServerBoard';
 import { EntiRoot } from './enthooks';
 
@@ -63,7 +62,6 @@ const App = memo(() => {
                   <Route path={MonitorRoutes.ServerStatus} element={<ServerBoard />} />
                   <Route path={MonitorRoutes.BusinessLogs} element={<BusinessLogsBoard />} />
                   <Route path={MonitorRoutes.ModelLogs} element={<ModelLogsBoard />} />
-                  <Route path={MonitorRoutes.DebugLogs} element={<DebugLogsBoard />} />
                   <Route path="" element={<ServerBoard />} />
                 </Route>
                 <Route path={AppManagerRoutes.Configs} element={<ConfigCenter />}>
