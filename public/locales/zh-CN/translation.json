@@ -59,7 +59,7 @@
   "Model": {
     "Title": "模型"
   },
-  "install": {
+  "Install": {
     "Title": "安装Appx",
     "Next": "下一步",
     "Previous": "上一步",

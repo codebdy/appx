@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { LOGIN_URL } from '../consts';
 import { useInstall } from '../enthooks/hooks/useInstall';
 import { useShowError } from '~/hooks/useShowError';
-import * as meta from './data.json';
+//import * as meta from './data.json';
 
 const InstallForm = memo(() => {
   const [current, setCurrent] = useState(0);
@@ -34,7 +34,7 @@ const InstallForm = memo(() => {
   const handleInstall = useCallback(() => {
     form.validateFields().then((values) => {
       install({
-        meta,
+        //meta,
         ...values
       })
     })
@@ -69,7 +69,7 @@ const InstallForm = memo(() => {
             autoComplete="off"
           >
             <Form.Item
-              label={t("install.Account")}
+              label={t("Install.Account")}
               name="admin"
               rules={[{ required: true, message: t("Required") }]}
             >
@@ -77,7 +77,7 @@ const InstallForm = memo(() => {
             </Form.Item>
 
             <Form.Item
-              label={t("install.Password")}
+              label={t("Install.Password")}
               name="password"
               rules={[{ required: true, message: t("Required") }]}
             >
@@ -85,7 +85,7 @@ const InstallForm = memo(() => {
             </Form.Item>
 
             <Form.Item name="withDemo" valuePropName="checked" wrapperCol={{ offset: 7, span: 16 }}>
-              <Checkbox>{t("install.WithDemo")}</Checkbox>
+              <Checkbox>{t("Install.WithDemo")}</Checkbox>
             </Form.Item>
           </Form>
         }
@@ -108,27 +108,27 @@ const InstallForm = memo(() => {
           {
             current === 1 &&
             <Button onClick={prev}>
-              {t("install.Previous")}
+              {t("Install.Previous")}
             </Button>
           }
 
           {
             current === 0 &&
             <Button type="primary" onClick={next}>
-              {t("install.next")}
+              {t("Install.Next")}
             </Button>
           }
 
           {
             current === 1 &&
             <Button type="primary" onClick={handleInstall} loading={loading}>
-              {t("install.Install")}
+              {t("Install.Install")}
             </Button>
           }
           {
             current === 2 &&
             <Button type="primary" onClick={handleFinished}>
-              {t("install.Finished")}
+              {t("Install.Finished")}
             </Button>
           }
         </Space>

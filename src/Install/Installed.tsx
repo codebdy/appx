@@ -17,7 +17,7 @@ const Installed = memo(() => {
       alignItems: "center",
     }}>
       <div style={{ marginTop: "-16px" }}>
-        {t("install.InstalledMessage")}
+        {t("Install.InstalledMessage")}
       </div>
       <div style={{ marginTop: "16px" }}>
         <Button type="primary" onClick={handleLogin}>
