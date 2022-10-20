@@ -68,7 +68,11 @@
     "WithDemo": "安装演示账号",
     "Install": "安装",
     "Finished": "完成",
-    "InstalledMessage": "应用已经安装，请直接登录"
+    "InstalledMessage": "应用已经安装，请直接登录",
+    "Success1":"您已经成功安装Appx",
+    "Success2":"马上开启神奇之旅吧！",
+    "Start1":"Appx 低代码平台，强大、高效！",
+    "Start2":"请点击“下一步”，开始安装。"
   },
   "Configs": {
     "Title": "配置中心",

@@ -54,8 +54,9 @@ const InstallForm = memo(() => {
         {
           current === 0 &&
           <>
-            <p>Appx 低代码平台，强大、高效！</p>
-            <p>请点击“下一步”，开始安装。</p>
+            <p></p>
+            <p>{t("Install.Start1")}</p>
+            <p>{t("Install.Start2")}</p>
           </>
         }
         {
@@ -92,8 +93,8 @@ const InstallForm = memo(() => {
         {
           current === 2 &&
           <>
-            <p>您已经成功安装Appx</p>
-            <p>马上开启神奇之旅吧！</p>
+            <p>{t("Install.Success1")}</p>
+            <p>{t("Install.Success2")}</p>
           </>
         }
       </div>
