@@ -22,20 +22,16 @@ export const AppRootInner = memo((
     children: React.ReactNode
   }
 ) => {
-  const { appUuid = SYSTEM_APP_ID, device = Device.PC } = useParams();
+  const { appId = SYSTEM_APP_ID, device = Device.PC } = useParams();
   const me = useMe();
-  const { app, loading, error } = useQueryApp(appUuid)
-  const { config, loading: configLoading, error: configError } = useQueryAppConfig(appUuid);
-  const { deviceConfig, loading: deviceLoading, error: deviceError } = useQueryAppDeviceConfig(appUuid, device as any)
-  const { langLocales, loading: localLoading, error: localError } = useQueryLangLocales(appUuid);
-  const { userConfig, loading: userConfigLoading, error: userConfigError } = useQueryUserConfig(appUuid, device as any, me?.id)
-  const { materialConfig, loading: materialConfigLoading, error: materialConfigError } = useQueryMaterialConfig(appUuid, device as any)
-  const { plugins, loading: pluginLoading, error: pluginError } = useIntalledPlugins(appUuid);
+  const { app, loading, error } = useQueryApp(appId)
+  const { config, loading: configLoading, error: configError } = useQueryAppConfig(appId);
+  const { deviceConfig, loading: deviceLoading, error: deviceError } = useQueryAppDeviceConfig(appId, device as any)
+  const { langLocales, loading: localLoading, error: localError } = useQueryLangLocales(appId);
+  const { userConfig, loading: userConfigLoading, error: userConfigError } = useQueryUserConfig(appId, device as any, me?.id)
+  const { materialConfig, loading: materialConfigLoading, error: materialConfigError } = useQueryMaterialConfig(appId, device as any)
+  const { plugins, loading: pluginLoading, error: pluginError } = useIntalledPlugins(appId);
   useShowError(error || configError || localError || deviceError || userConfigError || materialConfigError || pluginError);
-
-  const realApp = useMemo(() => {
-    return appUuid === SYSTEM_APP_ID ? { id: "System", uuid: SYSTEM_APP_ID, title: "System" } : app
-  }, [app, appUuid])
 
   const debugPlugins = useMemo(
     () => plugins?.filter(plugin => plugin.pluginInfo?.type === PluginType.debug) || [],
@@ -43,7 +39,7 @@ export const AppRootInner = memo((
 
   const contextValue = useMemo(() => {
     return {
-      app: realApp,
+      app: app,
       device: device as Device,
       config,
       langLocales,
@@ -53,11 +49,11 @@ export const AppRootInner = memo((
       debugPlugins: debugPlugins,
       materialConfig
     }
-  }, [config, debugPlugins, device, deviceConfig, langLocales, materialConfig, plugins, realApp, userConfig])
+  }, [config, debugPlugins, device, deviceConfig, langLocales, materialConfig, plugins, app, userConfig])
 
 
   return (
-    realApp ?
+    app ?
       <AppContext.Provider
         value={contextValue}
       >
