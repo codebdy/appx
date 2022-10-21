@@ -1,5 +1,5 @@
 import { ID } from "~/shared";
-import { IAppInput } from "./input";
+import { IAppInput } from "./app";
 
 export enum ProcessType {
   approvalFlow = "approvalFlow",

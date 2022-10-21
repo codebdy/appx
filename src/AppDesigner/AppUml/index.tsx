@@ -22,11 +22,11 @@ const AppUml = memo((
   }
 ) => {
   const [graph, setGraph] = useState<Graph>();
-  const appUuid = useEdittingAppId();
-  const { loading, error } = useReadMeta(appUuid);
-  const minMap = useRecoilValue(minMapState(appUuid));
-  const selectedDiagram = useRecoilValue(selectedUmlDiagramState(appUuid));
-  const selectedCode = useRecoilValue(selectedCodeState(appUuid));
+  const appId = useEdittingAppId();
+  const { loading, error } = useReadMeta(appId);
+  const minMap = useRecoilValue(minMapState(appId));
+  const selectedDiagram = useRecoilValue(selectedUmlDiagramState(appId));
+  const selectedCode = useRecoilValue(selectedCodeState(appId));
   useShowError(error);
 
   return (
