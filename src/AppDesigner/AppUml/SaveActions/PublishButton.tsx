@@ -8,7 +8,6 @@ import { useEdittingAppId } from '~/hooks/useEdittingAppUuid';
 import { usePublishMeta } from '../hooks/usePublishMeta';
 import { MetaStatus } from '../meta/Meta';
 import { changedState, metaState } from '../recoil/atoms';
-import { useQueryPublishedMetaId } from '../hooks/useQueryPublishedMetaId';
 
 const PublishButton = memo(() => {
   const appUuid = useEdittingAppId();
@@ -16,22 +15,16 @@ const PublishButton = memo(() => {
   const [meta, setMeta] = useRecoilState(metaState(appUuid));
   const { t } = useTranslation();
   //const [publishedId, setPublishedId] = useRecoilState(publishedIdState(appUuid));
-  const { publishedId, error: querPublishError, refresh } = useQueryPublishedMetaId();
-
-  const disablePublished = React.useMemo(() => {
-    return !!meta?.publishedAt || publishedId === meta?.id || changed;
-  }, [changed, meta?.id, meta?.publishedAt, publishedId]);
 
   const [publish, { loading, error }] = usePublishMeta(appUuid, {
     onCompleted() {
       //setPublishedId(meta?.id);
-      refresh();
       setMeta(meta => (meta ? { ...meta, status: MetaStatus.META_STATUS_PUBLISHED } : undefined));
       message.success(t("OperateSuccess"));
     },
   });
 
-  useShowError(error || querPublishError);
+  useShowError(error);
 
   const handlePublish = useCallback(() => {
     publish()
@@ -40,7 +33,7 @@ const PublishButton = memo(() => {
 
   return (
     <Button
-      disabled={disablePublished}
+      //disabled={disablePublished}
       type='primary'
       loading={loading}
       icon={<SyncOutlined />}
