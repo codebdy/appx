@@ -15,22 +15,14 @@ export enum MetaStatus {
   META_STATUS_MIGRATION_ERROR = "migrationError",
 }
 
-export interface Meta {
-  id?: ID;
-  appUuid?: ID;
-  content: {
-    packages: PackageMeta[];
-    classes?: ClassMeta[];
-    diagrams?: DiagramMeta[];
-    relations: RelationMeta[];
-    codes?: CodeMeta[];
-    x6Nodes: X6NodeMeta[];
-    x6Edges: X6EdgeMeta[];
-  };
-  status?: MetaStatus;
-  publishedAt?: Date;
-  createdAt?: Date;
-  updatedAt?: Date;
+export interface MetaContent {
+  packages: PackageMeta[];
+  classes?: ClassMeta[];
+  diagrams?: DiagramMeta[];
+  relations: RelationMeta[];
+  codes?: CodeMeta[];
+  x6Nodes: X6NodeMeta[];
+  x6Edges: X6EdgeMeta[];
 }
 
 export const CONST_ID = "id"

@@ -1,4 +1,5 @@
 import { Device } from "@rxdrag/appx-plugin-sdk";
+import { MetaContent } from "~/AppDesigner/AppUml/meta";
 import { ID } from "~/shared";
 import { ILang } from "./lang";
 import { IMenu } from "./menu";
@@ -57,8 +58,9 @@ export interface IApp {
   menus?: IMenu[];
   imageUrl?: string;
   pageFrames?: IPageFrame[];
+  meta?: MetaContent;
+  publishedMeta?: MetaContent;
 }
-
 
 export interface IAppInput {
   id?: ID;

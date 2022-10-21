@@ -3,79 +3,71 @@ import { useMemo, useEffect } from "react";
 import { useSetRecoilState } from "recoil";
 import { SYSTEM_APP_ID } from "~/consts";
 import { useQueryOne } from "~/enthooks/hooks/useQueryOne";
-import { Meta } from "../meta/Meta";
 import { metaState, classesState, relationsState, diagramsState, x6NodesState, x6EdgesState, packagesState, codesState } from "../recoil/atoms";
+import { IApp } from "~/model";
+import { ID } from "~/shared";
 
-export function useReadMeta(appUuid: string): { error?: GraphQLRequestError; loading?: boolean } {
-  const setMeta = useSetRecoilState(metaState(appUuid));
-  const setClasses = useSetRecoilState(classesState(appUuid));
-  const setRelations = useSetRecoilState(relationsState(appUuid));
-  const setDiagrams = useSetRecoilState(diagramsState(appUuid));
-  const setCodes = useSetRecoilState(codesState(appUuid));
-  const setX6Nodes = useSetRecoilState(x6NodesState(appUuid));
-  const setX6Edges = useSetRecoilState(x6EdgesState(appUuid));
-  const setPackages = useSetRecoilState(packagesState(appUuid))
-
-  const queryName = useMemo(() => "oneMeta", []);
-  const queryGql = useMemo(() => {
-    return gql`
-    query ${queryName}($appUuid:String!) {
-      ${queryName}(
-        where:{
-            appUuid:{
-            _eq:$appUuid
-          }
-        },
-        orderBy:[
-          {
-            id:desc
-          }
-        ]
-      ){
-        id
-        content
-        status
+const queryGql = gql`
+query ($appId:ID!) {
+  oneApp(
+    where:{
+        id:{
+        _eq:$appId
       }
     }
-  `;
-  }, [queryName]);
+  ){
+    id
+    meta
+    publishedMeta
+  }
+}
+`
+
+export function useReadMeta(appId: ID): { error?: GraphQLRequestError; loading?: boolean } {
+  const setMeta = useSetRecoilState(metaState(appId));
+  const setClasses = useSetRecoilState(classesState(appId));
+  const setRelations = useSetRecoilState(relationsState(appId));
+  const setDiagrams = useSetRecoilState(diagramsState(appId));
+  const setCodes = useSetRecoilState(codesState(appId));
+  const setX6Nodes = useSetRecoilState(x6NodesState(appId));
+  const setX6Edges = useSetRecoilState(x6EdgesState(appId));
+  const setPackages = useSetRecoilState(packagesState(appId))
 
   const input = useMemo(() => ({
     gql: queryGql,
-    params: { appUuid }
-  }), [appUuid, queryGql])
+    params: { appId }
+  }), [appId, queryGql])
 
-  const { data, error, loading } = useQueryOne<Meta>(input);
+  const { data, error, loading } = useQueryOne<IApp>(input);
 
   const systemInput = useMemo(() => (
     {
-      gql: appUuid !== SYSTEM_APP_ID ? queryGql : undefined,
-      params: { appUuid: SYSTEM_APP_ID }
+      gql: appId !== SYSTEM_APP_ID ? queryGql : undefined,
+      params: { appId: SYSTEM_APP_ID }
     }
-  ), [appUuid, queryGql])
-  const { data: systemData, error: systemError, loading: systemLoading } = useQueryOne<Meta>(systemInput);
+  ), [appId, queryGql])
+  const { data: systemData, error: systemError, loading: systemLoading } = useQueryOne<IApp>(systemInput);
 
   useEffect(() => {
-    if (data && (systemData || appUuid === SYSTEM_APP_ID)) {
-      const meta = data[queryName];
-      const systemMeta = systemData?.[queryName];
+    if (data && (systemData || appId === SYSTEM_APP_ID)) {
+      const meta = data.oneApp?.meta
+      const systemMeta = systemData?.oneApp?.publishedMeta;
       const getPackage = (packageUuid: string) => {
-        return systemMeta?.content?.packages?.find(pkg => pkg.uuid === packageUuid);
+        return systemMeta?.packages?.find(pkg => pkg.uuid === packageUuid);
       }
-      const systemPackages = systemMeta?.content?.packages?.filter(pkg => pkg.sharable) || [];
-      const systemClasses = systemMeta?.content?.classes?.filter(cls => getPackage(cls.packageUuid).sharable) || []
+      const systemPackages = systemMeta?.packages?.filter(pkg => pkg.sharable) || [];
+      const systemClasses = systemMeta?.classes?.filter(cls => getPackage(cls.packageUuid).sharable) || []
       setMeta(meta);
-      setPackages([...systemPackages, ...meta?.content?.packages || []]);
-      setClasses([...systemClasses, ...meta?.content?.classes || []]);
-      setRelations(meta?.content?.relations || []);
-      setCodes(meta?.content?.codes || []);
-      setDiagrams(meta?.content?.diagrams || []);
-      setX6Nodes(meta?.content?.x6Nodes || []);
-      setX6Edges(meta?.content?.x6Edges || []);
+      setPackages([...systemPackages, ...meta?.packages || []]);
+      setClasses([...systemClasses, ...meta?.classes || []]);
+      setRelations(meta?.relations || []);
+      setCodes(meta?.codes || []);
+      setDiagrams(meta?.diagrams || []);
+      setX6Nodes(meta?.x6Nodes || []);
+      setX6Edges(meta?.x6Edges || []);
     }
   }, [
     data,
-    queryName,
     setCodes,
     setDiagrams,
     setClasses,
@@ -85,7 +77,7 @@ export function useReadMeta(appUuid: string): { error?: GraphQLRequestError; loa
     setX6Edges,
     setX6Nodes,
     systemData,
-    appUuid
+    appId
   ]);
 
   return { error: error || systemError, loading: loading || systemLoading };
