@@ -12,6 +12,7 @@ import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessag
 import AvatarMenu from "~/plugins/framewidgets/pc/AvatarMenu/view"
 import SvgIcon from "~/common/SvgIcon"
 import { DESIGN } from "~/consts"
+import { useEdittingAppId } from "~/hooks/useEdittingAppUuid"
 
 const DesignerHeader = memo((props: {
   app?: IApp,
@@ -24,12 +25,12 @@ const DesignerHeader = memo((props: {
 
   const { t } = useTranslation();
 
-  const { appUuid } = useParams();
-  const match = useMatch(`/${DESIGN}/${appUuid}/*`)
+  const appId = useEdittingAppId();
+  const match = useMatch(`/${DESIGN}/${appId}/*`)
   const parse = useParseLangMessage();
   const handleSelect = useCallback((info) => {
-    navigate(`/${DESIGN}/${app?.uuid}/${info.key}`)
-  }, [app?.uuid, navigate]);
+    navigate(`/${DESIGN}/${appId}/${info.key}`)
+  }, [appId, navigate]);
 
   return (
     <Header className="header">
