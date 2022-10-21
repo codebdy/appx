@@ -2,15 +2,15 @@ import React from "react"
 import { memo } from "react"
 import { Layout } from 'antd';
 import DesignerHeader from "./DesignerHeader";
-import { Outlet, useParams } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { useQueryApp } from "../hooks/useQueryApp";
 import { useShowError } from '~/hooks/useShowError';
-import { SYSTEM_APP_ID } from "~/consts";
+import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 
 const { Content } = Layout;
 
 const AppDesigner = memo(() => {
-  const { appId = SYSTEM_APP_ID } = useParams();
+  const appId = useEdittingAppId();
   const { app, error } = useQueryApp(appId)
 
   useShowError(error);
