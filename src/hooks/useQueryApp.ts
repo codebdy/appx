@@ -6,10 +6,10 @@ import { IApp } from "../model";
 import { ID } from "~/shared";
 
 const appGql = gql`
-query ($id:String!){
+query ($appId:ID!){
   oneApp(where:{
     id:{
-      _eq:$id
+      _eq:$appId
     }
   }){
     id
@@ -21,7 +21,7 @@ query ($id:String!){
 
 export function useQueryApp(id: ID) {
   const params = useMemo(() => ({
-    id: id || SYSTEM_APP_ID
+    appId: id || SYSTEM_APP_ID
   }), [id])
   
   const { data, error, loading } = useQueryOne<IApp>(
