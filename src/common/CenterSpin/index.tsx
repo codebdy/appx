@@ -11,7 +11,7 @@ export const CenterSpin = memo((
   const { loading } = props;
   return (
     <div className="center-loading-spin">
-      <Spin spinning={loading} />
+      <Spin spinning={loading} size = "large" />
     </div>
   )
 })
