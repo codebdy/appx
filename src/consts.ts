@@ -6,7 +6,7 @@ export const SERVER_SUBSCRIPTION_URL = "ws://localhost:8080/subscriptions";
 
 export const HEADER_AUTHORIZATION = "Authorization"
 export const TOKEN_PREFIX= "Bearer "
-export const HEADER_APPX_APPUUID ="Appx-appuuid"
+export const HEADER_APPX_APPID ="Appx-appid"
 export const DESIGNER_TOKEN_NAME = "EntifyDesignerToken";
 
 //普通角色的ID永远不会是1
@@ -19,6 +19,6 @@ export const DESIGN = "design"
 export const DESIGN_UI = "design-ui"
 export const DESIGN_FRAME = "design-frame"
 
-export const SYSTEM_APP_UUID = "SYSTEM"
+export const SYSTEM_APP_ID = "1"
 
 export const CODE_LOGIN_EXPIRED = "entix.0001"

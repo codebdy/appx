@@ -7,12 +7,12 @@ import { packagesState } from "../recoil/atoms";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
 import { useExportJson } from "../hooks/useExportJson";
 import { useTranslation } from "react-i18next";
-import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
+import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 import { PackageDialog } from "./PackageLabel/PackageDialog";
 import { PackageMeta } from "../meta/PackageMeta";
 
 const RootAction = memo(() => {
-  const appUuid = useEdittingAppUuid();
+  const appUuid = useEdittingAppId();
   const [newPackage, setNewPackage] = useState<PackageMeta>();
   const setPackages = useSetRecoilState(packagesState(appUuid));
   const createNewPackage = useCreateNewPackage(appUuid);

@@ -2,7 +2,7 @@ import { gql } from "~/enthooks";
 import { IPageCategory } from "model";
 import { useQuery } from "~/enthooks/hooks/useQuery";
 import { useMemo } from "react";
-import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
+import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 
 const categoriesGql = gql`
 query ($appUuid:String!){
@@ -27,7 +27,7 @@ query ($appUuid:String!){
 `
 
 export function useQueryAppPageCagegories() {
-  const appUuid = useEdittingAppUuid()
+  const appUuid = useEdittingAppId()
 
   const args = useMemo(() => {
     return {

@@ -1,7 +1,7 @@
 import { gql } from "~/enthooks";
 import { useMemo } from "react";
 import { useQuery } from "~/enthooks/hooks/useQuery";
-import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
+import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 import { IPage } from "model";
 
 const pagesGql = gql`
@@ -28,7 +28,7 @@ query ($appUuid:String!){
 `
 
 export function useQueryAppPages() {
-  const appUuid = useEdittingAppUuid();
+  const appUuid = useEdittingAppId();
 
   const input = useMemo(() => ({
     gql: pagesGql,

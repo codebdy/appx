@@ -7,8 +7,8 @@ import { diagramsState } from '../../recoil/atoms';
 import { DiagramMeta } from "../../meta/DiagramMeta";
 import DiagramAction from "./DiagramAction";
 import { useGetPackage } from "../../hooks/useGetPackage";
-import { SYSTEM_APP_UUID } from "~/consts";
-import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
+import { SYSTEM_APP_ID } from "~/consts";
+import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 import { useParseLangMessage } from "@rxdrag/plugin-sdk";
 import { DiagramDialog } from "./DiagramDialog";
 
@@ -22,7 +22,7 @@ const DiagramLabel = memo((
   const [editing, setEditing] = useState(false);
   const [visible, setVisible] = useState(false);
   const p = useParseLangMessage();
-  const appUuid = useEdittingAppUuid();
+  const appUuid = useEdittingAppId();
   const backup = useBackupSnapshot(appUuid);
   const setDiagrams = useSetRecoilState(diagramsState(appUuid));
   const getPagcage = useGetPackage(appUuid)
@@ -52,7 +52,7 @@ const DiagramLabel = memo((
 
   return (
     <TreeNodeLabel
-      fixedAction={visible || (getPagcage(diagram.packageUuid)?.sharable && appUuid !== SYSTEM_APP_UUID)}
+      fixedAction={visible || (getPagcage(diagram.packageUuid)?.sharable && appUuid !== SYSTEM_APP_ID)}
       action={
         !editing ?
           <DiagramAction diagram={diagram}

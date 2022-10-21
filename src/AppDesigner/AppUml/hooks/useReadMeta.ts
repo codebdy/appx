@@ -1,7 +1,7 @@
 import { gql, GraphQLRequestError } from "~/enthooks";
 import { useMemo, useEffect } from "react";
 import { useSetRecoilState } from "recoil";
-import { SYSTEM_APP_UUID } from "~/consts";
+import { SYSTEM_APP_ID } from "~/consts";
 import { useQueryOne } from "~/enthooks/hooks/useQueryOne";
 import { Meta } from "../meta/Meta";
 import { metaState, classesState, relationsState, diagramsState, x6NodesState, x6EdgesState, packagesState, codesState } from "../recoil/atoms";
@@ -49,14 +49,14 @@ export function useReadMeta(appUuid: string): { error?: GraphQLRequestError; loa
 
   const systemInput = useMemo(() => (
     {
-      gql: appUuid !== SYSTEM_APP_UUID ? queryGql : undefined,
-      params: { appUuid: SYSTEM_APP_UUID }
+      gql: appUuid !== SYSTEM_APP_ID ? queryGql : undefined,
+      params: { appUuid: SYSTEM_APP_ID }
     }
   ), [appUuid, queryGql])
   const { data: systemData, error: systemError, loading: systemLoading } = useQueryOne<Meta>(systemInput);
 
   useEffect(() => {
-    if (data && (systemData || appUuid === SYSTEM_APP_UUID)) {
+    if (data && (systemData || appUuid === SYSTEM_APP_ID)) {
       const meta = data[queryName];
       const systemMeta = systemData?.[queryName];
       const getPackage = (packageUuid: string) => {

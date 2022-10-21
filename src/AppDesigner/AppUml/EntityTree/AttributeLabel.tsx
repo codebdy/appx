@@ -9,7 +9,7 @@ import { DeleteOutlined } from "@ant-design/icons"
 import { AttributeMeta } from './../meta/AttributeMeta';
 import { useDeleteAttribute } from "../hooks/useDeleteAttribute";
 import { CONST_ID } from "../meta/Meta";
-import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
+import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 
 const AttributeLabel = memo((
   props: {
@@ -17,7 +17,7 @@ const AttributeLabel = memo((
   }
 ) => {
   const { attr } = props;
-  const appUuid = useEdittingAppUuid();
+  const appUuid = useEdittingAppId();
   const selectedElement = useRecoilValue(selectedElementState(appUuid));
   const removeAttribute = useDeleteAttribute(appUuid);
 

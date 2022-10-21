@@ -1,6 +1,6 @@
 import { gql } from "~/enthooks";
 import { useMemo } from "react";
-import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
+import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 import { useQueryOne } from "~/enthooks/hooks/useQueryOne";
 import { Meta } from "../meta/Meta";
 
@@ -36,7 +36,7 @@ query ($appUuid:String!) {
 `
 
 export function useQueryPublishedMetaId() {
-  const appUuid = useEdittingAppUuid();
+  const appUuid = useEdittingAppId();
   const input = useMemo(() => {
     return {
       gql: queryGql,

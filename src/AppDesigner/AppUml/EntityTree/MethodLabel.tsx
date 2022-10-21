@@ -8,7 +8,7 @@ import { Button } from "antd"
 import { DeleteOutlined } from "@ant-design/icons"
 import { MethodMeta } from "../meta/MethodMeta";
 import { useDeleteMethod } from "../hooks/useDeleteMethod";
-import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
+import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 
 const MethodLabel = memo((
   props: {
@@ -16,7 +16,7 @@ const MethodLabel = memo((
   }
 ) => {
   const { method } = props;
-  const appUuid = useEdittingAppUuid();
+  const appUuid = useEdittingAppId();
   const selectedElement = useRecoilValue(selectedElementState(appUuid));
   const removeMethod = useDeleteMethod(appUuid);
 

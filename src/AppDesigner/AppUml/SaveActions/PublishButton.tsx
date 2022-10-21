@@ -4,14 +4,14 @@ import React, { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useShowError } from '~/hooks/useShowError';
-import { useEdittingAppUuid } from '~/hooks/useEdittingAppUuid';
+import { useEdittingAppId } from '~/hooks/useEdittingAppUuid';
 import { usePublishMeta } from '../hooks/usePublishMeta';
 import { MetaStatus } from '../meta/Meta';
 import { changedState, metaState } from '../recoil/atoms';
 import { useQueryPublishedMetaId } from '../hooks/useQueryPublishedMetaId';
 
 const PublishButton = memo(() => {
-  const appUuid = useEdittingAppUuid();
+  const appUuid = useEdittingAppId();
   const changed = useRecoilValue(changedState(appUuid))
   const [meta, setMeta] = useRecoilState(metaState(appUuid));
   const { t } = useTranslation();

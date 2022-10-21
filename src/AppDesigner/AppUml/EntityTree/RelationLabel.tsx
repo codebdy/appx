@@ -8,7 +8,7 @@ import { Button } from "antd"
 import { DeleteOutlined } from "@ant-design/icons"
 import { RelationMeta } from "../meta/RelationMeta";
 import { useDeleteRelation } from "../hooks/useDeleteRelation";
-import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
+import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 
 const RelationLabel = memo((
   props: {
@@ -17,7 +17,7 @@ const RelationLabel = memo((
   }
 ) => {
   const { title, relation } = props;
-  const appUuid = useEdittingAppUuid();
+  const appUuid = useEdittingAppId();
   const selectedElement = useRecoilValue(selectedElementState(appUuid));
   const removeRelation = useDeleteRelation(appUuid);
 

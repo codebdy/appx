@@ -1,7 +1,7 @@
 import 'antd/dist/antd.less'
 import React, { memo, useMemo } from 'react'
 import { useParams } from 'react-router-dom'
-import { SERVER_URL, SYSTEM_APP_UUID } from '~/consts'
+import { SERVER_URL, SYSTEM_APP_ID } from '~/consts'
 import { EntiRoot, useToken } from '~/enthooks'
 import { AppRootInner } from './AppRootInner'
 

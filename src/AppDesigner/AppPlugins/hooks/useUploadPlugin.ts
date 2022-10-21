@@ -1,7 +1,7 @@
 import { AwesomeGraphQLClient, GraphQLRequestError } from "~/enthooks";
 import { useCallback } from "react";
-import { useEnthooksAppUuid, useEndpoint, useToken } from "~/enthooks";
-import { HEADER_APPX_APPUUID, HEADER_AUTHORIZATION, TOKEN_PREFIX } from "~/consts";
+import { useEnthooksAppId, useEndpoint, useToken } from "~/enthooks";
+import { HEADER_APPX_APPID, HEADER_AUTHORIZATION, TOKEN_PREFIX } from "~/consts";
 
 const gql = `
   mutation ($file:Upload!){
@@ -12,7 +12,7 @@ const gql = `
 export function useUploadPlugin() {
   const endpoint = useEndpoint();
   const token = useToken();
-  const appUuid = useEnthooksAppUuid();
+  const appId = useEnthooksAppId();
 
   const upload = useCallback((file: File) => {
     const p = new Promise<string>((resolve, reject) => {
@@ -21,7 +21,7 @@ export function useUploadPlugin() {
         .request(gql, { file }, {
           headers: {
             [HEADER_AUTHORIZATION]: token ? `${TOKEN_PREFIX}${token}` : "",
-            [HEADER_APPX_APPUUID]: appUuid,
+            [HEADER_APPX_APPID]: appId,
           }
         })
         .then((data) => {
@@ -32,7 +32,7 @@ export function useUploadPlugin() {
         });
     })
     return p;
-  }, [appUuid, endpoint, token])
+  }, [appId, endpoint, token])
 
   return upload;
 }

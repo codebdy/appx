@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 import { AttributeTypeInput } from "./AttributeTypeInput";
 import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/view";
 import { isStr } from "@formily/shared";
-import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
+import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 
 export const AttributePanel = (props: {
   attribute: AttributeMeta;
@@ -18,7 +18,7 @@ export const AttributePanel = (props: {
 }) => {
   const { attribute, cls } = props;
   const [nameError, setNameError] = useState<string>();
-  const appUuid = useEdittingAppUuid();
+  const appUuid = useEdittingAppId();
   const changeAttribute = useChangeAttribute(appUuid);
   const getTypeLabel = useGetTypeLabel(appUuid);
   const { t } = useTranslation();

@@ -1,7 +1,7 @@
 import { AwesomeGraphQLClient, GraphQLRequestError } from "~/enthooks";
 import { useEffect, useState } from "react";
-import { HEADER_APPX_APPUUID, HEADER_AUTHORIZATION, TOKEN_PREFIX } from "~/consts";
-import { useEnthooksAppUuid, useEndpoint, useToken } from "../context";
+import { HEADER_APPX_APPID, HEADER_AUTHORIZATION, TOKEN_PREFIX } from "~/consts";
+import { useEnthooksAppId, useEndpoint, useToken } from "../context";
 
 
 export function useRequest(gql: string | undefined, params?: { [key: string]: any })
@@ -15,7 +15,7 @@ export function useRequest(gql: string | undefined, params?: { [key: string]: an
   const [error, setError] = useState<Error | undefined>();
   const endpoint = useEndpoint();
   const token = useToken();
-  const appUuid = useEnthooksAppUuid();
+  const appId = useEnthooksAppId();
 
   useEffect(
     () => {
@@ -29,7 +29,7 @@ export function useRequest(gql: string | undefined, params?: { [key: string]: an
         .request(gql, params, {
           headers: {
             [HEADER_AUTHORIZATION]: token ? `${TOKEN_PREFIX}${token}` : "",
-            [HEADER_APPX_APPUUID]: appUuid,
+            [HEADER_APPX_APPID]: appId,
           }
         })
         .then((data) => {
@@ -42,7 +42,7 @@ export function useRequest(gql: string | undefined, params?: { [key: string]: an
           console.error(err);
         });
     },
-    [gql, endpoint, params, token, appUuid]
+    [gql, endpoint, params, token, appId]
   );
 
   return { loading, error, data }

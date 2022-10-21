@@ -10,9 +10,9 @@ import { useCreateNewDiagram } from "../../hooks/useCreateNewDiagram";
 import { StereoType } from "../../meta/ClassMeta";
 import { useBackupSnapshot } from "../../hooks/useBackupSnapshot";
 import { useTranslation } from "react-i18next";
-import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
+import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 import { useChangePackage } from "../../hooks/useChangePackage";
-import { SYSTEM_APP_UUID } from "~/consts";
+import { SYSTEM_APP_ID } from "~/consts";
 import { DiagramMeta } from "../../meta/DiagramMeta";
 import { DiagramDialog } from "../DiagramLabel/DiagramDialog";
 import { useCreateNewCode } from "../../hooks/useCreateNewCode";
@@ -27,7 +27,7 @@ const PackageAction = memo((
   }
 ) => {
   const { pkg, onEdit, onVisibleChange } = props;
-  const appUuid = useEdittingAppUuid();
+  const appUuid = useEdittingAppId();
   const [newDiagram, setNewDiagram] = useState<DiagramMeta>();
   const [newCode, setNewCode] = useState<CodeMeta>();
   const deletePackage = useDeletePackage(appUuid)
@@ -111,7 +111,7 @@ const PackageAction = memo((
     setNewCode(undefined);
   }, [backupSnapshot, setCodes, setSelectedCode, setSelectedDiagram]);
   const shareItems = useMemo(() => {
-    return appUuid === SYSTEM_APP_UUID
+    return appUuid === SYSTEM_APP_ID
       ? [
         pkg?.sharable
           ?
@@ -247,7 +247,7 @@ const PackageAction = memo((
   ), [addClass, handleAddDiagram, handleDelete, onEdit, onVisibleChange, shareItems, t]);
 
   return (
-    pkg.sharable && appUuid !== SYSTEM_APP_UUID ?
+    pkg.sharable && appUuid !== SYSTEM_APP_ID ?
       <Button type="text" shape='circle' size='small'>
         <LockOutlined />
       </Button>

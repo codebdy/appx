@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Login from './Login';
 import AppDesigner from './AppDesigner/index';
 import Install from './Install';
-import { DESIGN, DESIGNER_TOKEN_NAME, DESIGN_FRAME, DESIGN_UI, INDEX_URL, INSTALL_URL, LOGIN_URL, SERVER_URL, SYSTEM_APP_UUID } from './consts';
+import { DESIGN, DESIGNER_TOKEN_NAME, DESIGN_FRAME, DESIGN_UI, INDEX_URL, INSTALL_URL, LOGIN_URL, SERVER_URL, SYSTEM_APP_ID } from './consts';
 import { AppEntryRouts } from './AppDesigner/DesignerHeader/AppEntryRouts';
 import AppUis from './AppDesigner/DesignerHeader/AppUis';
 import AppRunner from './AppRunner';
@@ -27,13 +27,13 @@ import { EntiRoot } from './enthooks';
 
 const App = memo(() => {
   return (
-    <EntiRoot config={{ endpoint: SERVER_URL, appUuid: SYSTEM_APP_UUID, tokenName: DESIGNER_TOKEN_NAME }} >
+    <EntiRoot config={{ endpoint: SERVER_URL, tokenName: DESIGNER_TOKEN_NAME }} >
       <PredefinedPluginsRoot>
         <PredefinedMaterialsRoot>
           <Routes>
             <Route path={INDEX_URL} element={<LoggedInPanel />}>
               <Route path={INDEX_URL} element={<AppRunner />}>
-                <Route path={"/:device/:appUuid"} >
+                <Route path={"/:device/:appId"} >
                   <Route path=":menuUuid" >
                     <Route path=":pageId">
                       <Route path=":dataId" />

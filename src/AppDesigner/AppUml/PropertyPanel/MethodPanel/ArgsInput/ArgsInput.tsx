@@ -15,7 +15,7 @@ import { ArgMeta } from "../../../meta/MethodMeta";
 import { createUuid } from "~/shared";
 import { LazyInput } from "./LazyInput";
 import { useGetTypeLabel } from "../../../hooks/useGetTypeLabel";
-import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
+import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 
 const { Option } = Select;
 
@@ -36,7 +36,7 @@ export const ArgsInput = memo((
   const { value, onChange } = props;
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState<ArgMeta[]>([]);
-  const appUuid = useEdittingAppUuid();
+  const appUuid = useEdittingAppId();
   const getTypeLabel = useGetTypeLabel(appUuid);
 
   const reset = useCallback(() => {

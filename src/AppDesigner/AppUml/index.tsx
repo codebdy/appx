@@ -13,7 +13,7 @@ import { Toolbox } from "./Toolbox";
 import { UmlToolbar } from "./UmlToolbar";
 import { GraphCanvas } from "./GraphCanvas";
 import { PropertyPanel } from "./PropertyPanel";
-import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
+import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 import { CodeEditor } from "./CodeEditor";
 
 const AppUml = memo((
@@ -22,7 +22,7 @@ const AppUml = memo((
   }
 ) => {
   const [graph, setGraph] = useState<Graph>();
-  const appUuid = useEdittingAppUuid();
+  const appUuid = useEdittingAppId();
   const { loading, error } = useReadMeta(appUuid);
   const minMap = useRecoilValue(minMapState(appUuid));
   const selectedDiagram = useRecoilValue(selectedUmlDiagramState(appUuid));

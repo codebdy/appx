@@ -8,13 +8,13 @@ import { AppstoreOutlined, LayoutOutlined, MenuOutlined } from "@ant-design/icon
 import { useTranslation } from "react-i18next";
 import "./style.less";
 import SvgIcon from "~/common/SvgIcon";
-import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
+import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 import { useReadMeta } from "../AppUml/hooks/useReadMeta";
 import { useShowError } from "~/hooks/useShowError";
 import { useParseLangMessage } from "@rxdrag/plugin-sdk";
 import { AppManagerRoutes } from "~/AppManager/AppHeader";
 import { useQueryRoles } from "./hooks/useQueryRoles";
-import { DESIGN, SYSTEM_APP_UUID } from "~/consts";
+import { DESIGN, SYSTEM_APP_ID } from "~/consts";
 import { AppEntryRouts } from "../DesignerHeader/AppEntryRouts";
 
 
@@ -46,12 +46,12 @@ function getItem(
 export const AuthBoard = memo(() => {
   const { t } = useTranslation();
   const navigate = useNavigate()
-  const appUuid = useEdittingAppUuid();
+  const appUuid = useEdittingAppId();
   const { loading, error } = useReadMeta(appUuid);
   const { loading: rolesLoading, error: rolesError } = useQueryRoles();
   const p = useParseLangMessage();
   const matchString = useMemo(() => {
-    return appUuid === SYSTEM_APP_UUID
+    return appUuid === SYSTEM_APP_ID
       ? `/${AppManagerRoutes.Auth}/*`
       : `/${DESIGN}/${appUuid}/${AppEntryRouts.Auth}/*`
   }, [])
@@ -59,7 +59,7 @@ export const AuthBoard = memo(() => {
   useShowError(error || rolesError);
 
   const appItems = useMemo(() => {
-    if (appUuid === SYSTEM_APP_UUID) {
+    if (appUuid === SYSTEM_APP_ID) {
       return []
     } else {
       return [
@@ -70,7 +70,7 @@ export const AuthBoard = memo(() => {
   }, [appUuid])
 
   const rootItems = useMemo(() => {
-    if (appUuid === SYSTEM_APP_UUID) {
+    if (appUuid === SYSTEM_APP_ID) {
       return [getItem(t("Auth.AppAuth"), AuthRoutes.AppAuth, <AppstoreOutlined />, null)]
     } else {
       return []
@@ -97,7 +97,7 @@ export const AuthBoard = memo(() => {
 
   const activeKey = useMemo(() => {
     return match?.params?.["*"] ||
-      (appUuid === SYSTEM_APP_UUID ? AuthRoutes.ModelAuth : AuthRoutes.MenuAuth)
+      (appUuid === SYSTEM_APP_ID ? AuthRoutes.ModelAuth : AuthRoutes.MenuAuth)
   }, [match])
 
   return (

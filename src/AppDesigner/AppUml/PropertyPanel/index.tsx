@@ -12,10 +12,10 @@ import { MethodPanel } from "./MethodPanel";
 import { Empty } from "antd";
 import { useTranslation } from "react-i18next";
 import { PropertyBox } from "~/common/ModelBoard/PropertyBox";
-import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
+import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 
 export const PropertyPanel = memo(() => {
-  const appUuid = useEdittingAppUuid();
+  const appUuid = useEdittingAppId();
   const selectedElement = useRecoilValue(selectedElementState(appUuid));
   const selectedEntity = useClass(selectedElement || "", appUuid);
   const { t } = useTranslation();

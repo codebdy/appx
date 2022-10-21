@@ -7,7 +7,7 @@ import { useQueryLangLocales } from '../../hooks/useQueryLangLocales'
 import { useQueryAppConfig } from '../../hooks/useQueryAppConfig'
 import { useShowError } from '~/hooks/useShowError'
 import { AppContext } from '@rxdrag/plugin-sdk/contexts/appRoot'
-import { SYSTEM_APP_UUID } from '~/consts'
+import { SYSTEM_APP_ID } from '~/consts'
 import { useQueryAppDeviceConfig } from '../../hooks/useQueryAppDeviceConfig'
 import { useMe } from '@rxdrag/plugin-sdk/contexts/login'
 import { useQueryUserConfig } from './hooks/useQueryUserConfig'
@@ -22,7 +22,7 @@ export const AppRootInner = memo((
     children: React.ReactNode
   }
 ) => {
-  const { appUuid = SYSTEM_APP_UUID, device = Device.PC } = useParams();
+  const { appUuid = SYSTEM_APP_ID, device = Device.PC } = useParams();
   const me = useMe();
   const { app, loading, error } = useQueryApp(appUuid)
   const { config, loading: configLoading, error: configError } = useQueryAppConfig(appUuid);
@@ -34,7 +34,7 @@ export const AppRootInner = memo((
   useShowError(error || configError || localError || deviceError || userConfigError || materialConfigError || pluginError);
 
   const realApp = useMemo(() => {
-    return appUuid === SYSTEM_APP_UUID ? { id: "System", uuid: SYSTEM_APP_UUID, title: "System" } : app
+    return appUuid === SYSTEM_APP_ID ? { id: "System", uuid: SYSTEM_APP_ID, title: "System" } : app
   }, [app, appUuid])
 
   const debugPlugins = useMemo(

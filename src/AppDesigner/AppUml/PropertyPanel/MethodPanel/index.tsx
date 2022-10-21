@@ -7,14 +7,14 @@ import { Form, Input, Radio } from "antd";
 import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/view";
 import { useTranslation } from "react-i18next";
 import { MethodTypeInput } from "./MethodTypeInput";
-import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
+import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 import { ScriptInput } from "../ScriptInput/ScriptInput";
 import { ArgsInput } from "./ArgsInput/ArgsInput";
 
 export const MethodPanel = memo((props: { method: MethodMeta; cls: ClassMeta }) => {
   const { method, cls } = props;
   const [nameError, setNameError] = useState<string>();
-  const appUuid = useEdittingAppUuid();
+  const appUuid = useEdittingAppId();
   const changeMethod = useChangeMethod(appUuid);
   const getTypeLabel = useGetTypeLabel(appUuid);
   const { t } = useTranslation();

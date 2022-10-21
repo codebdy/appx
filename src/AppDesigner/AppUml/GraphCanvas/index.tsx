@@ -13,7 +13,7 @@ import { useEdgeSelect } from "./useEdgeSelect";
 import { useTriggerSelectedEvent } from "./useTriggerSelectedEvent";
 import { useEdgeHover } from "./useEdgeHover";
 import { useTriggerPressedLineTypeEvent } from "./useTriggerPressedLineTypeEvent";
-import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
+import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 
 export const GraphCanvas = memo(
   (props: {
@@ -21,7 +21,7 @@ export const GraphCanvas = memo(
     onSetGraph: (graph?: Graph) => void,
   }) => {
     const { graph, onSetGraph } = props;
-    const appUuid = useEdittingAppUuid();
+    const appUuid = useEdittingAppId();
 
     useEffect(() => {
       const config = getGraphConfig();

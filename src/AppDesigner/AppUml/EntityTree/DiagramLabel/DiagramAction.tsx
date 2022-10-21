@@ -5,8 +5,8 @@ import { useTranslation } from "react-i18next";
 import { DiagramMeta } from "../../meta/DiagramMeta";
 import { useGetPackage } from "../../hooks/useGetPackage";
 import { useDeleteDiagram } from "../../hooks/useDeleteDiagram";
-import { SYSTEM_APP_UUID } from "~/consts";
-import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
+import { SYSTEM_APP_ID } from "~/consts";
+import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 
 const DiagramAction = memo((
   props: {
@@ -16,7 +16,7 @@ const DiagramAction = memo((
   }
 ) => {
   const { diagram, onEdit, onVisibleChange } = props;
-  const appUuid = useEdittingAppUuid();
+  const appUuid = useEdittingAppId();
   const getPagcage = useGetPackage(appUuid)
   const deleteDiagram = useDeleteDiagram(appUuid)
   const { t } = useTranslation();
@@ -56,7 +56,7 @@ const DiagramAction = memo((
   ), [handleDelete, onEdit, onVisibleChange, t]);
 
   return (
-    getPagcage(diagram.packageUuid)?.sharable && appUuid !== SYSTEM_APP_UUID ?
+    getPagcage(diagram.packageUuid)?.sharable && appUuid !== SYSTEM_APP_ID ?
       <Button type="text" shape='circle' size='small'>
         <LockOutlined />
       </Button>

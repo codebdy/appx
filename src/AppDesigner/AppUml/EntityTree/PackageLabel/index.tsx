@@ -6,8 +6,8 @@ import PackageAction from "./PackageAction";
 import TreeNodeLabel from "~/common/TreeNodeLabel";
 import { useSetRecoilState } from 'recoil';
 import { packagesState } from '../../recoil/atoms';
-import { SYSTEM_APP_UUID } from "~/consts";
-import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
+import { SYSTEM_APP_ID } from "~/consts";
+import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 import { useParseLangMessage } from "@rxdrag/plugin-sdk";
 import { PackageDialog } from "./PackageDialog";
 import "./style.less";
@@ -28,7 +28,7 @@ const PackageLabel = memo((
     setName(pkg.name)
   }, [pkg])
 
-  const appUuid = useEdittingAppUuid();
+  const appUuid = useEdittingAppId();
   const backup = useBackupSnapshot(appUuid);
   const setPackages = useSetRecoilState(packagesState(appUuid));
 
@@ -53,7 +53,7 @@ const PackageLabel = memo((
 
   return (
     <TreeNodeLabel
-      fixedAction={visible || (pkg.sharable && appUuid !== SYSTEM_APP_UUID)}
+      fixedAction={visible || (pkg.sharable && appUuid !== SYSTEM_APP_ID)}
       action={!editing ?
         <PackageAction pkg={pkg}
           onEdit={handleEdit}

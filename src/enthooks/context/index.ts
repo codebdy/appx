@@ -1,11 +1,11 @@
 import { createContext, useContext } from "react";
-import { SYSTEM_APP_UUID } from "~/consts";
+import { SYSTEM_APP_ID } from "~/consts";
 
 export interface IEntxConfig {
   token?: string,
   tokenName: string,
   endpoint: string,
-  appUuid: string,
+  appId?: string,
   setToken: (token: string | undefined) => void,
   setEndpoint: (endpoint: string) => void,
 }
@@ -13,7 +13,7 @@ export interface IEntxConfig {
 export const empertyConfig = {
   endpoint: "",
   tokenName: "",
-  appUuid: SYSTEM_APP_UUID,
+  appUuid: SYSTEM_APP_ID,
   setToken: () => {
     throw new Error("Not implement setToken")
   },
@@ -41,9 +41,9 @@ export const useEndpoint = () => {
   return iEntx?.endpoint
 }
 
-export const useEnthooksAppUuid = () => {
+export const useEnthooksAppId = () => {
   const iEntx = useEntix();
-  return iEntx?.appUuid
+  return iEntx?.appId
 }
 
 export const useSetEndpoint = () => {

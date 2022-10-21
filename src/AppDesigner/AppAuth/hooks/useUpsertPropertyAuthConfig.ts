@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
+import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 import { IPostOptions, usePostOne } from "~/enthooks/hooks/usePostOne";
 import { IPropertyAuthConfig, IPropertyAuthConfigInput } from "model";
 
@@ -7,7 +7,7 @@ export function useUpsertPropertyAuthConfig(options?: IPostOptions<any>): [
   (config: IPropertyAuthConfigInput) => void,
   { loading?: boolean; error?: Error }
 ] {
-  const appUuid = useEdittingAppUuid()
+  const appUuid = useEdittingAppId()
   const [post, { error, loading }] = usePostOne<IPropertyAuthConfigInput, IPropertyAuthConfig>("PropertyAuthConfig",
     options
   )

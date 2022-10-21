@@ -1,7 +1,7 @@
 import { gql, GraphQLRequestError } from "~/enthooks";
 import { useMemo, useEffect, useCallback } from "react";
 import { useSetRecoilState } from "recoil";
-import { SYSTEM_APP_UUID } from "~/consts";
+import { SYSTEM_APP_ID } from "~/consts";
 import { useQueryOne } from "~/enthooks/hooks/useQueryOne";
 import { useSelectedAppUuid } from "@rxdrag/plugin-sdk/contexts/appRoot";
 import { classesState, entitiesState, packagesState } from "../recoil";
@@ -107,10 +107,10 @@ export function useBuildMeta(): { error?: GraphQLRequestError; loading?: boolean
 
   );
 
-  const systemParams = useMemo(() => ({ appUuid: SYSTEM_APP_UUID }), []);
+  const systemParams = useMemo(() => ({ appUuid: SYSTEM_APP_ID }), []);
   const { data: systemData, error: systemError, loading: systemLoading } = useQueryOne<Meta>(
     {
-      gql: appUuid !== SYSTEM_APP_UUID ? queryGql : undefined,
+      gql: appUuid !== SYSTEM_APP_ID ? queryGql : undefined,
       params: systemParams
     }
 
@@ -135,7 +135,7 @@ export function useBuildMeta(): { error?: GraphQLRequestError; loading?: boolean
   }, [getEntityAssociations, getParentClasses]);
 
   useEffect(() => {
-    if (data && (systemData || appUuid === SYSTEM_APP_UUID)) {
+    if (data && (systemData || appUuid === SYSTEM_APP_ID)) {
       const meta = data[queryName];
       const systemMeta = systemData?.[queryName];
       const getPackage = (packageUuid: string) => {

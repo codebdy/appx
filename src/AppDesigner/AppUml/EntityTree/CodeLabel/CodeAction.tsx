@@ -4,8 +4,8 @@ import React, { memo, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next";
 import { useGetPackage } from "../../hooks/useGetPackage";
 import { useDeleteDiagram } from "../../hooks/useDeleteDiagram";
-import { SYSTEM_APP_UUID } from "~/consts";
-import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
+import { SYSTEM_APP_ID } from "~/consts";
+import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 import { CodeMeta } from "../../meta/CodeMeta";
 
 const CodeAction = memo((
@@ -16,7 +16,7 @@ const CodeAction = memo((
   }
 ) => {
   const { code, onEdit, onVisibleChange } = props;
-  const appUuid = useEdittingAppUuid();
+  const appUuid = useEdittingAppId();
   const getPagcage = useGetPackage(appUuid)
   const deleteDiagram = useDeleteDiagram(appUuid)
   const { t } = useTranslation();
@@ -56,7 +56,7 @@ const CodeAction = memo((
   ), [handleDelete, onEdit, onVisibleChange, t]);
 
   return (
-    getPagcage(code.packageUuid)?.sharable && appUuid !== SYSTEM_APP_UUID ?
+    getPagcage(code.packageUuid)?.sharable && appUuid !== SYSTEM_APP_ID ?
       <Button type="text" shape='circle' size='small'>
         <LockOutlined />
       </Button>

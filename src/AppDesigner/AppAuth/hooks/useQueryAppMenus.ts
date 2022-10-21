@@ -1,7 +1,7 @@
 import { gql } from "~/enthooks";
 import { useMemo } from "react";
 import { useQuery } from "~/enthooks/hooks/useQuery";
-import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
+import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 import { IMenu } from "model";
 
 const menuGql = gql`
@@ -24,7 +24,7 @@ query ($appUuid:String!){
 `
 
 export function useQueryAppMenus() {
-  const appUuid = useEdittingAppUuid();
+  const appUuid = useEdittingAppId();
 
   const input = useMemo(() => ({
     gql: menuGql,

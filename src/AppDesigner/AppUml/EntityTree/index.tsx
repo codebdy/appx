@@ -21,7 +21,7 @@ import { useGetTargetRelations } from './../hooks/useGetTargetRelations';
 import { useGetClass } from "../hooks/useGetClass";
 import { MethodMeta } from "../meta/MethodMeta";
 import AttributeLabel from "./AttributeLabel";
-import { PRIMARY_COLOR, SYSTEM_APP_UUID } from "~/consts";
+import { PRIMARY_COLOR, SYSTEM_APP_ID } from "~/consts";
 import MethodLabel from "./MethodLabel";
 import AttributesLabel from "./AttributesLabel";
 import MethodsLabel from "./MethodsLabel";
@@ -38,7 +38,7 @@ const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
   const { graph } = props;
-  const { appUuid = SYSTEM_APP_UUID } = useParams();
+  const { appUuid = SYSTEM_APP_ID } = useParams();
   const packages = useRecoilValue(packagesState(appUuid));
   const diagrams = useRecoilValue(diagramsState(appUuid));
   const classes = useRecoilValue(classesState(appUuid));

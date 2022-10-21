@@ -3,7 +3,7 @@ import React, { memo, useCallback, useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 import { useParseLangMessage } from '@rxdrag/plugin-sdk';
 import { packagesState } from '../../AppUml/recoil/atoms';
-import { useEdittingAppUuid } from '~/hooks/useEdittingAppUuid';
+import { useEdittingAppId } from '~/hooks/useEdittingAppUuid';
 import { useColumns } from './useColumns';
 import { IAuthRow, RowType } from './IAuthRow';
 import { useGetPackageCanAuthClasses } from '../hooks/useGetPackageCanAuthClasses';
@@ -21,7 +21,7 @@ export const ModelTable = memo((
   const { classConfigs, propertyConfigs, roleId } = props;
   const p = useParseLangMessage();
   const columns = useColumns(roleId);
-  const appUuid = useEdittingAppUuid();
+  const appUuid = useEdittingAppId();
   const packages = useRecoilValue(packagesState(appUuid));
   const getClasses = useGetPackageCanAuthClasses(appUuid)
   const getClassAttributes = useGetClassAttributes(appUuid);

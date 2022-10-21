@@ -8,7 +8,7 @@ import { Types } from "../meta/Type";
 import { useTranslation } from "react-i18next";
 import { AttributeMeta } from "../meta/AttributeMeta";
 import { CONST_ID } from "../meta/Meta";
-import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
+import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 const { Option } = Select;
 
 export const AttributeTypeInput = memo(
@@ -18,7 +18,7 @@ export const AttributeTypeInput = memo(
     }
   ) => {
     const { attribute } = props;
-    const appUuid = useEdittingAppUuid();
+    const appUuid = useEdittingAppId();
     const enums = useEnums(appUuid);
     const valueObjects = useValueObjects(appUuid);
     const entities = useEntities(appUuid);

@@ -5,8 +5,8 @@ import TreeNodeLabel from "~/common/TreeNodeLabel";
 import { useSetRecoilState } from 'recoil';
 import { codesState, diagramsState } from '../../recoil/atoms';
 import { useGetPackage } from "../../hooks/useGetPackage";
-import { SYSTEM_APP_UUID } from "~/consts";
-import { useEdittingAppUuid } from "~/hooks/useEdittingAppUuid";
+import { SYSTEM_APP_ID } from "~/consts";
+import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 import { useParseLangMessage } from "@rxdrag/plugin-sdk";
 import CodeAction from "./CodeAction";
 import { CodeDialog } from "./CodeDialog";
@@ -22,7 +22,7 @@ const CodeLabel = memo((
   const [editing, setEditing] = useState(false);
   const [visible, setVisible] = useState(false);
   const p = useParseLangMessage();
-  const appUuid = useEdittingAppUuid();
+  const appUuid = useEdittingAppId();
   const backup = useBackupSnapshot(appUuid);
   const setCodes = useSetRecoilState(codesState(appUuid));
   const getPagcage = useGetPackage(appUuid)
@@ -51,7 +51,7 @@ const CodeLabel = memo((
 
   return (
     <TreeNodeLabel
-      fixedAction={visible || (getPagcage(code.packageUuid)?.sharable && appUuid !== SYSTEM_APP_UUID)}
+      fixedAction={visible || (getPagcage(code.packageUuid)?.sharable && appUuid !== SYSTEM_APP_ID)}
       action={
         !editing ?
           <CodeAction code={code}
