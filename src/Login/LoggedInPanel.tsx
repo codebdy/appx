@@ -1,13 +1,11 @@
-import { Spin } from "antd";
 import React from "react"
 import { memo } from "react"
 import { Outlet } from "react-router-dom"
-import { SYSTEM_APP_ID, DESIGNER_TOKEN_NAME } from "../consts";
-import AppRoot from "~/shared/AppRoot";
 import { useQueryMe } from "../enthooks/hooks/useQueryMe";
 import { useLoginCheck } from "../hooks/useLoginCheck";
 import { useShowError } from "~/hooks/useShowError";
 import { UserContext } from "@rxdrag/plugin-sdk/contexts/login";
+import { CenterSpin } from "~/common/CenterSpin";
 
 export const LoggedInPanel = memo(() => {
   useLoginCheck();
@@ -17,7 +15,7 @@ export const LoggedInPanel = memo(() => {
   return (
     loading
       ?
-      <Spin />
+      <CenterSpin loading={loading} />
       :
       <UserContext.Provider value={me}>
         <Outlet />

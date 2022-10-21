@@ -9,6 +9,7 @@ import { useShowError } from "~/hooks/useShowError"
 import { Spin } from "antd"
 import { useParams } from "react-router-dom"
 import { Device } from "@rxdrag/appx-plugin-sdk"
+import { CenterSpin } from "~/common/CenterSpin"
 
 const AppRunner = memo(() => {
   const { device = Device.PC } = useParams();
@@ -20,17 +21,22 @@ const AppRunner = memo(() => {
     return app?.deviceConfigs?.find(config => config.device === device)
   }, [device, app])
 
-  return (
-    <Spin spinning={loading}>
-      {
-        deviceConfig?.published
-          ? <AppRoot tokenName={DESIGNER_TOKEN_NAME} app={app}>
-            <RunnerEngine />
-          </AppRoot>
-          : <>哈</>
-      }
+  const render = useMemo(() => {
+    if (loading) {
+      return <CenterSpin loading = {loading} />
+    }
 
-    </Spin>
+    if (deviceConfig?.published) {
+      return <AppRoot tokenName={DESIGNER_TOKEN_NAME} app={app}>
+        <RunnerEngine />
+      </AppRoot>
+    }
+
+    return <>哈</>
+  }, [loading])
+
+  return (
+    render
   )
 })
 
