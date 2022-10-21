@@ -23,7 +23,7 @@ export const NavigationWidget = memo((
   const navigate = useNavigate()
   const parse = useParseLangMessage();
   const handleBack = useCallback(() => {
-    navigate(`/${DESIGN}/${appUuid}/${AppEntryRouts.App}`)
+    navigate(`/${DESIGN}/${appUuid}/${AppEntryRouts.AppUis}`)
   }, [appUuid, navigate]);
   const pageId = useSelectedPageId();
   const pages = usePages();

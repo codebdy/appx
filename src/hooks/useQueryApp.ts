@@ -3,12 +3,13 @@ import { useMemo } from "react";
 import { SYSTEM_APP_ID } from "../consts";
 import { useQueryOne } from "../enthooks/hooks/useQueryOne";
 import { IApp } from "../model";
+import { ID } from "~/shared";
 
 const appGql = gql`
-query ($uuid:String!){
+query ($id:String!){
   oneApp(where:{
-    uuid:{
-      _eq:$uuid
+    id:{
+      _eq:$id
     }
   }){
     id
@@ -18,10 +19,10 @@ query ($uuid:String!){
 }
 `
 
-export function useQueryApp(uuid: string) {
+export function useQueryApp(id: ID) {
   const params = useMemo(() => ({
-    uuid: uuid || SYSTEM_APP_ID
-  }), [uuid])
+    id: id || SYSTEM_APP_ID
+  }), [id])
   
   const { data, error, loading } = useQueryOne<IApp>(
     {

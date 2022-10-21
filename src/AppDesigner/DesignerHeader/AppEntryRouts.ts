@@ -1,7 +1,7 @@
 export enum AppEntryRouts {
   Config = "config",
   Ui = "ui",
-  App = "app",
+  AppUis = "app-uis",
   Frame = "frame",
   Bpmn = "bpmn",
   Dmn = "dmn",
@@ -9,5 +9,5 @@ export enum AppEntryRouts {
   Uml = "uml",
   Api = "api",
   Auth = "auth",
-  Plugins = "~/plugins",
+  Plugins = "plugins",
 }

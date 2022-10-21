@@ -53,7 +53,7 @@ const DesignerHeader = memo((props: {
             icon: <DesktopOutlined />,
             children: [
               {
-                key: AppEntryRouts.App,
+                key: AppEntryRouts.AppUis,
                 label: t("AppEntry.PageDesign"),
                 icon: <SvgIcon>
                   <svg style={{ width: "14px", height: "14px" }} viewBox="0 0 1024 1024">

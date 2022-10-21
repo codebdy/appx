@@ -24,7 +24,7 @@ const AppCard = memo((props: {
   const parse = useParseLangMessage();
 
   const handleEdit = useCallback(() => {
-    navigate(`/${DESIGN}/${app.uuid}/${AppEntryRouts.App}`)
+    navigate(`/${DESIGN}/${app.uuid}/${AppEntryRouts.AppUis}`)
   }, [app.uuid, navigate])
 
   const handleRemove = useCallback(() => {
