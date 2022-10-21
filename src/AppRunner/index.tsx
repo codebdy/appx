@@ -1,15 +1,36 @@
-import React from "react"
+import React, { useMemo } from "react"
 import { memo } from "react"
 import { DESIGNER_TOKEN_NAME } from "../consts"
 import AppRoot from "~/shared/AppRoot"
 import RunnerEngine from "./RunnerEngine"
+import { useEdittingAppId } from "~/hooks/useEdittingAppUuid"
+import { useQueryApp } from "~/hooks/useQueryApp"
+import { useShowError } from "~/hooks/useShowError"
+import { Spin } from "antd"
+import { useParams } from "react-router-dom"
+import { Device } from "@rxdrag/appx-plugin-sdk"
 
 const AppRunner = memo(() => {
+  const { device = Device.PC } = useParams();
+  const appId = useEdittingAppId();
+  const { app, loading, error } = useQueryApp(appId)
+  useShowError(error);
+
+  const deviceConfig = useMemo(() => {
+    return app?.deviceConfigs?.find(config => config.device === device)
+  }, [device, app])
 
   return (
-    <AppRoot tokenName={DESIGNER_TOKEN_NAME}>
-      <RunnerEngine />
-    </AppRoot>
+    <Spin spinning={loading}>
+      {
+        deviceConfig?.published
+          ? <AppRoot tokenName={DESIGNER_TOKEN_NAME} app={app}>
+            <RunnerEngine />
+          </AppRoot>
+          : <>哈</>
+      }
+
+    </Spin>
   )
 })
 

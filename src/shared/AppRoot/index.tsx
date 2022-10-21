@@ -1,32 +1,32 @@
 import 'antd/dist/antd.less'
 import React, { memo, useMemo } from 'react'
-import { useParams } from 'react-router-dom'
 import { SERVER_URL, SYSTEM_APP_ID } from '~/consts'
 import { EntiRoot, useToken } from '~/enthooks'
+import { IApp } from '~/model'
 import { AppRootInner } from './AppRootInner'
 
 const AppRoot = memo((
   props: {
     children: React.ReactNode,
-    appUuid?: string,
+    app: IApp,
     tokenName: string | undefined,
   }
 ) => {
-  const { tokenName, appUuid } = useParams();
+  const { app, tokenName } = props;
   const token = useToken();
   const config = useMemo(() => {
     const localStorageToken = localStorage.getItem(tokenName)
     return {
       endpoint: SERVER_URL,
-      appUuid: props.appUuid || appUuid,
+      appId: app.id,
       token: token || localStorageToken,
       tokenName
     }
-  }, [props.appUuid, token, tokenName])
+  }, [app, token, tokenName])
 
   return (
     <EntiRoot config={config} >
-      <AppRootInner>
+      <AppRootInner app={app}>
         {props.children}
       </AppRootInner>
     </EntiRoot>
