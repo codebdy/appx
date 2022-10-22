@@ -40,7 +40,7 @@ const DesignerHeader = memo((props: {
       <Menu
         className="app-entry-menu"
         mode="horizontal"
-        defaultSelectedKeys={[match?.params?.["*"]?.split("/")?.[0]]}
+        defaultSelectedKeys={[match?.params?.["*"]?.split("/")?.[0]|| AppEntryRouts.AppUis]}
         onSelect={handleSelect}
         items={[
           {
