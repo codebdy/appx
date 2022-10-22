@@ -35,7 +35,7 @@ const AppUml = memo((
         modelList={<EntityTree graph={graph}></EntityTree>}
         toolbox={selectedDiagram && <Toolbox graph={graph}></Toolbox>}
         toolbar={<UmlToolbar />}
-        propertyBox={selectedDiagram && <PropertyPanel />}
+        propertyBox={<PropertyPanel />}
       >
         {
           selectedDiagram &&
