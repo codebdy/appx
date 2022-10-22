@@ -7,15 +7,16 @@ import { useShowError } from '~/hooks/useShowError';
 import { useEdittingAppId } from '~/hooks/useEdittingAppUuid';
 import { usePublishMeta } from '../hooks/usePublishMeta';
 import { changedState } from '../recoil/atoms';
+import { usePublished } from '../hooks/usePublished';
 
 const PublishButton = memo(() => {
-  const appUuid = useEdittingAppId();
-  const changed = useRecoilValue(changedState(appUuid))
-  //const [meta, setMeta] = useRecoilState(metaState(appUuid));
+  const appId = useEdittingAppId();
+  const changed = useRecoilValue(changedState(appId))
+  const published = usePublished(appId)
   const { t } = useTranslation();
   //const [publishedId, setPublishedId] = useRecoilState(publishedIdState(appUuid));
 
-  const [publish, { loading, error }] = usePublishMeta(appUuid, {
+  const [publish, { loading, error }] = usePublishMeta(appId, {
     onCompleted() {
       //setPublishedId(meta?.id);
       //setMeta(meta => (meta ? { ...meta, status: MetaStatus.META_STATUS_PUBLISHED } : undefined));
@@ -32,7 +33,7 @@ const PublishButton = memo(() => {
 
   return (
     <Button
-      //disabled={disablePublished}
+      disabled={published || changed}
       type='primary'
       loading={loading}
       icon={<SyncOutlined />}

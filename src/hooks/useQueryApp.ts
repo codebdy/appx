@@ -15,6 +15,8 @@ query ($appId:ID!){
     id
     uuid
     title
+    saveMetaAt
+    publishMetaAt
   }
 }
 `
