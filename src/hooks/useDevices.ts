@@ -15,17 +15,17 @@ export function useDevices() {
       {
         key: Device.PC,
         name: t("Devices." + Device.PC),
-        imageUrl: "/public/img/pc.svg",
+        imageUrl: "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
       },
       {
         key: Device.Mobile,
         name: t("Devices." + Device.Mobile),
-        imageUrl: "/public/img/mobile.png",
+        imageUrl: "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
       },
       {
         key: Device.Website,
         name: t("Devices." + Device.Website),
-        imageUrl: "/public/img/website.png",
+        imageUrl: "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
       },
     ];
   }, [t]);
