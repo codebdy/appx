@@ -2,7 +2,7 @@ import { SyncOutlined } from '@ant-design/icons';
 import { Button, message } from 'antd';
 import React, { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { useShowError } from '~/hooks/useShowError';
 import { useEdittingAppId } from '~/hooks/useEdittingAppUuid';
 import { usePublishMeta } from '../hooks/usePublishMeta';

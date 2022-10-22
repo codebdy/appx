@@ -5,7 +5,6 @@ import { useRecoilState } from "recoil";
 import PublishButton from "./PublishButton";
 import { changedState } from "../recoil/atoms";
 import { useValidate } from "../hooks/useValidate";
-import { usePostOne } from "~/enthooks/hooks/usePostOne";
 import { useShowError } from "~/hooks/useShowError";
 import { useGetMeta } from "../hooks/useGetMeta";
 import { useTranslation } from "react-i18next";
