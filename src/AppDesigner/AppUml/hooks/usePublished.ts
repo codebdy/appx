@@ -1,3 +1,4 @@
+import moment from "moment";
 import { useMemo } from "react";
 import { useQueryApp } from "~/hooks/useQueryApp";
 import { ID } from "~/shared";
@@ -9,7 +10,7 @@ export function usePublished(appId: ID) {
     if (!app) {
       return false;
     }
-    if (app.publishMetaAt && (new Date(app.publishMetaAt).getMilliseconds() >= new Date(app.saveMetaAt).getMilliseconds())) {
+    if (app.publishMetaAt && (moment(app?.saveMetaAt).diff(moment(app?.publishMetaAt)) <= 0)) {
       return true;
     }
 
@@ -20,6 +21,7 @@ export function usePublished(appId: ID) {
       return true;
     }
   }, [app])
+
 
   return published;
 }
