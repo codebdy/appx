@@ -3,27 +3,29 @@ import { useMemo } from "react";
 import { SYSTEM_APP_ID } from "../consts";
 import { useQueryOne } from "../enthooks/hooks/useQueryOne";
 import { IAppConfig } from "../model";
+import { ID } from "~/shared";
 
 const configGql = gql`
-query ($appUuid:String){
+query ($appId:ID){
   oneAppConfig(where:{
-    appUuid:{
-      _eq:$appUuid
+    app:{
+      id:{
+        _eq:$appId
+      }
     }
   }){
     id
-    appUuid
     schemaJson
   }
 }
 `
 
-export function useQueryAppConfig(appUuid: string) {
+export function useQueryAppConfig(appID: ID) {
   const input = useMemo(() => ({
     gql: configGql,
-    params: { appUuid: appUuid || SYSTEM_APP_ID },
+    params: { appID: appID || SYSTEM_APP_ID },
     depEntityNames: ["AppConfig"]
-  }), [appUuid])
+  }), [appID])
 
   const { data, error, loading } = useQueryOne<IAppConfig>(input)
   return { config: data?.oneAppConfig, error, loading }

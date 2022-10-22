@@ -4,7 +4,7 @@ import { useAppParams } from '@rxdrag/plugin-sdk/contexts/appRoot';
 import { PluginItem } from './PluginItem';
 
 export const PluginList = memo(() => {
-  const { uploadedPlugins, debugPlugins, app } = useAppParams();
+  const { uploadedPlugins, debugPlugins } = useAppParams();
   const items = useMemo(() => {
     return [
       ...uploadedPlugins,

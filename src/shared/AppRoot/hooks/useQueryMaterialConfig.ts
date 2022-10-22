@@ -1,16 +1,19 @@
 import { gql } from "~/enthooks";
 import { useMemo } from "react";
 import { useQueryOne } from "~/enthooks/hooks/useQueryOne";
-import { IMaterialConfig } from "model";
 import { Device } from "@rxdrag/appx-plugin-sdk";
+import { IMaterialConfig } from "~/model";
+import { ID } from "~/shared";
 
 const materialConfigGql = gql`
-query ($appUuid:String!, $device:String!){
+query ($appId:ID!, $device:String!){
   oneMaterialConfig(where:{
     _and:[
       {
-        appUuid:{
-          _eq:$appUuid
+        app:{
+          id:{
+            _eq:$appId
+          }
         }
       },
       {
@@ -22,19 +25,18 @@ query ($appUuid:String!, $device:String!){
   }
  ){
     id
-    appUuid
     device
     schemaJson
   }
 }
 `
 
-export function useQueryMaterialConfig(appUuid: string, device: Device){
+export function useQueryMaterialConfig(appId: ID, device: Device){
   const input = useMemo(()=>({
-    gql: appUuid && materialConfigGql,
-    params: { device: device, appUuid: appUuid },
+    gql: appId && materialConfigGql,
+    params: { device: device, appId },
     depEntityNames: ["MaterialConfig"]
-  }), [appUuid, device]);
+  }), [appId, device]);
   
   const { data, error, loading } = useQueryOne<IMaterialConfig>(input)
 

@@ -1,18 +1,18 @@
 import { gql } from "~/enthooks";
-import { IUserConfig } from "model";
 import { useQueryOne } from "~/enthooks/hooks/useQueryOne";
 import { useMemo } from "react";
 import { ID } from "../..";
 import { Device } from "@rxdrag/appx-plugin-sdk";
+import { IUserConfig } from "~/model/user";
 
 const userConfigGql = gql`
-query ($appUuid:String!, $device:String!, $userId:ID!){
+query ($appId:ID!, $device:String!, $userId:ID!){
   oneUserConfig(where:{
     _and:[
       {
         app:{
-          uuid:{
-            _eq:$appUuid
+          id:{
+            _eq:$appId
           }
         }
       },
@@ -38,12 +38,12 @@ query ($appUuid:String!, $device:String!, $userId:ID!){
 }
 `
 
-export function useQueryUserConfig(appUuid: string, device: Device, userId?:ID) {
+export function useQueryUserConfig(appId: ID, device: Device, userId?:ID) {
   const input = useMemo(()=>({
     gql: userId && userConfigGql,
-    params: { device: device, appUuid: appUuid, userId: userId },
+    params: { device: device, appId, userId: userId },
     depEntityNames: ["UserConfig"]
-  }), [appUuid, device, userId]);
+  }), [appId, device, userId]);
   
   const { data, error, loading } = useQueryOne<IUserConfig>(input)
 
