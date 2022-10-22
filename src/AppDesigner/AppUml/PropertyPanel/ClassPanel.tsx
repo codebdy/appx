@@ -103,6 +103,14 @@ export const ClassPanel = (props: { cls: ClassMeta }) => {
         >
           <Input.TextArea />
         </Form.Item>
+        {cls.stereoType === StereoType.Entity &&
+          <Form.Item
+            label={"InnerId"}
+            name="innerId"
+          >
+            <Input disabled />
+          </Form.Item>
+        }
       </Form>
     </div>
   );

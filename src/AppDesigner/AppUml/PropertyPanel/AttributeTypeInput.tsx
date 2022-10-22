@@ -43,6 +43,7 @@ export const AttributeTypeInput = memo(
             <Option value={Types.ValueObject}>{t("AppUml.ValueClass")}</Option>
             <Option value={Types.Entity}>{t("AppUml.Entity")}</Option>
             <Option value={Types.File}>{t("File")}</Option>
+            <Option value={Types.Password}>{t("Password")}</Option>
             <Option value={Types.IDArray}>ID {t("AppUml.Array")}</Option>
             <Option value={Types.IntArray}>Int {t("AppUml.Array")}</Option>
             <Option value={Types.FloatArray}>Float {t("AppUml.Array")}</Option>

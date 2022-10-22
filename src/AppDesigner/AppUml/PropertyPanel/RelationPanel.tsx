@@ -135,7 +135,19 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
                   <Input.TextArea />
                 </Form.Item>
               </Panel>
+              {
+                RelationType.INHERIT !== relation.relationType &&
+                <Panel header={t("AppUml.Other")} key="3">
+                  <Form.Item
+                    label={"InnerId"}
+                    name="innerId"
+                  >
+                    <Input disabled />
+                  </Form.Item>
+                </Panel>
+              }
             </Collapse>
+
           </Form>
       }
     </div>
