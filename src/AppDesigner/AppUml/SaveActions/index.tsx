@@ -1,34 +1,34 @@
 import { Space, Button, message } from "antd";
 import React, { useCallback } from "react";
 import { memo } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import PublishButton from "./PublishButton";
-import { changedState, metaState } from "../recoil/atoms";
-import { EntityNameMeta, Meta } from "../meta/Meta";
+import { changedState } from "../recoil/atoms";
 import { useValidate } from "../hooks/useValidate";
 import { usePostOne } from "~/enthooks/hooks/usePostOne";
 import { useShowError } from "~/hooks/useShowError";
 import { useGetMeta } from "../hooks/useGetMeta";
 import { useTranslation } from "react-i18next";
 import { SaveOutlined } from "@ant-design/icons";
+import { ID } from "~/shared";
+import { useUpsertApp } from "~/hooks/useUpsertApp";
+import { IApp } from "~/model";
 
 const SaveActions = memo((props: {
-  appUuid: string
+  appId: ID
 }) => {
-  const {appUuid} = props;
-  const [changed, setChanged] = useRecoilState(changedState(appUuid));
-  const setMeta = useSetRecoilState(metaState(appUuid));
-  const getMeta = useGetMeta(appUuid);
+  const { appId } = props;
+  const [changed, setChanged] = useRecoilState(changedState(appId));
+  const getMeta = useGetMeta(appId);
   const { t } = useTranslation();
-  
-  const validate = useValidate(appUuid);
-  const [excuteSave, { loading, error }] = usePostOne<Meta, any>(EntityNameMeta, {
-    onCompleted(data: Meta) {
+  const [save, { loading, error }] = useUpsertApp({
+    onCompleted(data: IApp) {
       message.success(t("OperateSuccess"));
       setChanged(false);
-      setMeta(data);
-    },
-  });
+    }
+  })
+
+  const validate = useValidate(appId);
 
   useShowError(error);
 
@@ -37,9 +37,8 @@ const SaveActions = memo((props: {
       return;
     }
     const data = getMeta()
-    excuteSave(data);
-  }, [excuteSave, getMeta, validate]);
-
+    save({ id: appId, meta: data, saveMetaAt: new Date() });
+  }, [save, appId, getMeta, validate]);
 
   return (
     <Space>

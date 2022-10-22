@@ -6,20 +6,19 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { useShowError } from '~/hooks/useShowError';
 import { useEdittingAppId } from '~/hooks/useEdittingAppUuid';
 import { usePublishMeta } from '../hooks/usePublishMeta';
-import { MetaStatus } from '../meta/Meta';
-import { changedState, metaState } from '../recoil/atoms';
+import { changedState } from '../recoil/atoms';
 
 const PublishButton = memo(() => {
   const appUuid = useEdittingAppId();
   const changed = useRecoilValue(changedState(appUuid))
-  const [meta, setMeta] = useRecoilState(metaState(appUuid));
+  //const [meta, setMeta] = useRecoilState(metaState(appUuid));
   const { t } = useTranslation();
   //const [publishedId, setPublishedId] = useRecoilState(publishedIdState(appUuid));
 
   const [publish, { loading, error }] = usePublishMeta(appUuid, {
     onCompleted() {
       //setPublishedId(meta?.id);
-      setMeta(meta => (meta ? { ...meta, status: MetaStatus.META_STATUS_PUBLISHED } : undefined));
+      //setMeta(meta => (meta ? { ...meta, status: MetaStatus.META_STATUS_PUBLISHED } : undefined));
       message.success(t("OperateSuccess"));
     },
   });

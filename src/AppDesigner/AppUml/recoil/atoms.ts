@@ -1,7 +1,6 @@
 import { atomFamily } from "recoil";
 import { DiagramMeta } from "../meta/DiagramMeta";
 import { ClassMeta } from "../meta/ClassMeta";
-import { Meta } from "../meta/Meta";
 import { RelationMeta, RelationType } from "../meta/RelationMeta";
 import { X6EdgeMeta } from "../meta/X6EdgeMeta";
 import { X6NodeMeta } from "../meta/X6NodeMeta";
@@ -46,11 +45,6 @@ export const diagramsState = atomFamily<DiagramMeta[], string>({
 export const codesState = atomFamily<CodeMeta[], string>({
   key: "uml.codes",
   default: [],
-});
-
-export const metaState = atomFamily<Meta | undefined, string>({
-  key: "uml.meta",
-  default: undefined,
 });
 
 export const packagesState = atomFamily<PackageMeta[], string>({

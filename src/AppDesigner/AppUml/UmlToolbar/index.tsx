@@ -93,7 +93,7 @@ export const UmlToolbar = memo(() => {
         <DeleteOutlined />
       </Button>
       <div style={{ flex: 1 }} />
-      <SaveActions appUuid={appUuid} />
+      <SaveActions appId={appUuid} />
     </ModelToolbar>
   );
 });

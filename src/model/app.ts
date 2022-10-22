@@ -61,7 +61,9 @@ export interface IApp {
   imageUrl?: string;
   pageFrames?: IPageFrame[];
   meta?: MetaContent;
+  saveMetaAt?: Date;
   publishedMeta?: MetaContent;
+  publishMetaAt?: Date;
   deviceConfigs?: IAppDeviceConfig[];
 }
 
@@ -71,5 +73,8 @@ export interface IAppInput {
   title?: string;
   description?: string;
   imageUrl?: string;
-  // image?: IFileInput
+  meta?: MetaContent;
+  saveMetaAt?: Date;
+  publishedMeta?: MetaContent;
+  publishMetaAt?: Date;
 }

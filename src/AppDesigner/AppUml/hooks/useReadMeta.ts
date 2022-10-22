@@ -3,7 +3,7 @@ import { useMemo, useEffect } from "react";
 import { useSetRecoilState } from "recoil";
 import { SYSTEM_APP_ID } from "~/consts";
 import { useQueryOne } from "~/enthooks/hooks/useQueryOne";
-import { metaState, classesState, relationsState, diagramsState, x6NodesState, x6EdgesState, packagesState, codesState } from "../recoil/atoms";
+import { classesState, relationsState, diagramsState, x6NodesState, x6EdgesState, packagesState, codesState } from "../recoil/atoms";
 import { IApp } from "~/model";
 import { ID } from "~/shared";
 
@@ -24,7 +24,6 @@ query ($appId:ID!) {
 `
 
 export function useReadMeta(appId: ID): { error?: GraphQLRequestError; loading?: boolean } {
-  const setMeta = useSetRecoilState(metaState(appId));
   const setClasses = useSetRecoilState(classesState(appId));
   const setRelations = useSetRecoilState(relationsState(appId));
   const setDiagrams = useSetRecoilState(diagramsState(appId));
@@ -57,7 +56,6 @@ export function useReadMeta(appId: ID): { error?: GraphQLRequestError; loading?:
       }
       const systemPackages = systemMeta?.packages?.filter(pkg => pkg.sharable) || [];
       const systemClasses = systemMeta?.classes?.filter(cls => getPackage(cls.packageUuid).sharable) || []
-      setMeta(meta);
       setPackages([...systemPackages, ...meta?.packages || []]);
       setClasses([...systemClasses, ...meta?.classes || []]);
       setRelations(meta?.relations || []);
@@ -71,7 +69,6 @@ export function useReadMeta(appId: ID): { error?: GraphQLRequestError; loading?:
     setCodes,
     setDiagrams,
     setClasses,
-    setMeta,
     setPackages,
     setRelations,
     setX6Edges,
