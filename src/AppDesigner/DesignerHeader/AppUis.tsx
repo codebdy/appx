@@ -19,7 +19,7 @@ const AppUis = memo((props: {
   return (
     <div className='content-inner'>
       <div className="content-show-block">
-        <div className="config-content" style={{ marginTop: 16 }}>
+        <div className="ui-list-content" style={{ marginTop: 16 }}>
           {
             loading ?
               <Skeleton active={true}></Skeleton>
@@ -28,7 +28,7 @@ const AppUis = memo((props: {
                 {
                   devices.map((device) => {
                     return (
-                      <Col span={6}>
+                      <Col span={8}>
                         <Card
                           className="hover-float"
                           cover={

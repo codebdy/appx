@@ -20,13 +20,13 @@ export const AppFrames = memo(() => {
   return (
     <div className='content-inner'>
       <div className="content-show-block">
-        <div className="config-content" style={{ marginTop: 16 }}>
+        <div className="ui-list-content" style={{ marginTop: 16 }}>
           {
             <Row className="app-row" gutter={24}>
               {
                 devices.map((device) => {
                   return (
-                    <Col span={6}>
+                    <Col span={8}>
                       <Card
                         className="hover-float"
                         style={{
