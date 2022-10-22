@@ -1,19 +1,17 @@
 import { gql } from "~/enthooks";
 import { useCallback } from "react";
 import { RequestOptions, useLazyRequest } from "~/enthooks/hooks/useLazyRequest";
-import { Meta } from "../meta/Meta";
+import { ID } from "~/shared";
 
 const publishGql = gql`
-  mutation publish($appUuid:String!) {
-    publish (appUuid:$appUuid){
-      id
-    }
+  mutation publish($appId:ID!) {
+    publish (appId:$appId)
   }
 `;
 
 export function usePublishMeta(
-  appUuid: string,
-  options?: RequestOptions<Meta>
+  appId: ID,
+  options?: RequestOptions<boolean>
 ): [
     () => void,
     { loading: boolean; error: Error | undefined }
@@ -22,8 +20,8 @@ export function usePublishMeta(
   const [doPublish, { loading, error }] = useLazyRequest(options)
 
   const publish = useCallback(() => {
-    doPublish(publishGql, {appUuid})
-  }, [appUuid, doPublish]);
+    doPublish(publishGql, {appId})
+  }, [appId, doPublish]);
 
   return [publish, { loading, error }];
 }

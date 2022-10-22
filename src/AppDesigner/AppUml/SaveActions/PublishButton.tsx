@@ -14,12 +14,9 @@ const PublishButton = memo(() => {
   const changed = useRecoilValue(changedState(appId))
   const published = usePublished(appId)
   const { t } = useTranslation();
-  //const [publishedId, setPublishedId] = useRecoilState(publishedIdState(appUuid));
 
   const [publish, { loading, error }] = usePublishMeta(appId, {
     onCompleted() {
-      //setPublishedId(meta?.id);
-      //setMeta(meta => (meta ? { ...meta, status: MetaStatus.META_STATUS_PUBLISHED } : undefined));
       message.success(t("OperateSuccess"));
     },
   });
