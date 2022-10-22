@@ -6,10 +6,10 @@ import RunnerEngine from "./RunnerEngine"
 import { useEdittingAppId } from "~/hooks/useEdittingAppUuid"
 import { useQueryApp } from "~/hooks/useQueryApp"
 import { useShowError } from "~/hooks/useShowError"
-import { Spin } from "antd"
 import { useParams } from "react-router-dom"
 import { Device } from "@rxdrag/appx-plugin-sdk"
 import { CenterSpin } from "~/common/CenterSpin"
+import { NotPublished } from "./NotPublished"
 
 const AppRunner = memo(() => {
   const { device = Device.PC } = useParams();
@@ -32,7 +32,7 @@ const AppRunner = memo(() => {
       </AppRoot>
     }
 
-    return <>哈</>
+    return <NotPublished/>
   }, [loading])
 
   return (
