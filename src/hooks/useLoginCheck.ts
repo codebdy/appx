@@ -1,15 +1,16 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { LOGIN_URL } from "../consts";
-import { useToken } from "../enthooks";
+import { useEntix, useToken } from "../enthooks";
 
 export function useLoginCheck() {
   const navigate = useNavigate();
+  const entix = useEntix();
   const token = useToken()
 
   useEffect(() => {
-    if (!token) {
+    if (entix?.tokenName && !token) {
       navigate(LOGIN_URL);
     }
-  }, [token, navigate])
+  }, [entix, token, navigate])
 }
