@@ -8,6 +8,7 @@ import { useEdittingAppId } from '~/hooks/useEdittingAppUuid';
 import { usePublishMeta } from '../hooks/usePublishMeta';
 import { changedState } from '../recoil/atoms';
 import { usePublished } from '../hooks/usePublished';
+import { EVENT_DATA_POSTED, trigger } from '~/enthooks/events';
 
 const PublishButton = memo(() => {
   const appId = useEdittingAppId();
@@ -17,6 +18,7 @@ const PublishButton = memo(() => {
 
   const [publish, { loading, error }] = usePublishMeta(appId, {
     onCompleted() {
+      trigger(EVENT_DATA_POSTED, { entity: "App" })
       message.success(t("OperateSuccess"));
     },
   });
