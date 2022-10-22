@@ -1,14 +1,17 @@
+import { EditOutlined } from "@ant-design/icons"
 import { Button, Card } from "antd"
 import React from "react"
 import { memo } from "react"
+import { useTranslation } from "react-i18next"
 import "./style.less"
 
 export const NotPublished = memo(() => {
+  const { t } = useTranslation();
   return (
     <div className="not-published-page">
       <div className="float card">
         <div className="logo">
-          <svg style={{ width: "60px", height: "60px" }} viewBox="0 0 24 24">
+          <svg style={{ width: "80px", height: "80px" }} viewBox="0 0 24 24">
             <defs>
               <linearGradient id="logo_color" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#3ca9f2" />
@@ -22,9 +25,9 @@ export const NotPublished = memo(() => {
             />
           </svg>
         </div>
-        <div className="content">应用尚未发布，请先编辑发布</div>
+        <div className="content">{t("NotPublishedTip")}</div>
         <div className="footer">
-          <Button type="primary" size="large">去编辑</Button>
+          <Button type="primary" size="large" icon={<EditOutlined />}>{t("GoEdit")}</Button>
         </div>
 
       </div>
