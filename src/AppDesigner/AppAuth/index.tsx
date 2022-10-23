@@ -13,7 +13,7 @@ import { useReadMeta } from "../AppUml/hooks/useReadMeta";
 import { useShowError } from "~/hooks/useShowError";
 import { useParseLangMessage } from "@rxdrag/plugin-sdk";
 import { useQueryRoles } from "./hooks/useQueryRoles";
-import { DESIGN, SYSTEM_APP_ID } from "~/consts";
+import { DESIGN, DESIGN_BOARD, SYSTEM_APP_ID } from "~/consts";
 import { AppEntryRouts } from "../DesignerHeader/AppEntryRouts";
 
 
@@ -50,8 +50,9 @@ export const AuthBoard = memo(() => {
   const { loading: rolesLoading, error: rolesError } = useQueryRoles();
   const p = useParseLangMessage();
   const matchString = useMemo(() => {
-    return `/${DESIGN}/${appId}/${AppEntryRouts.Auth}/*`
-  }, [])
+    return `/${DESIGN}/${appId}/${DESIGN_BOARD}/${AppEntryRouts.Auth}/*`
+  }, [appId])
+
   const match = useMatch(matchString)
   useShowError(error || rolesError);
 
@@ -84,7 +85,6 @@ export const AuthBoard = memo(() => {
         listWidth={200}
         list={
           <Menu
-            key={activeKey}
             style={{ flex: 1 }}
             onClick={onClick}
             activeKey={activeKey}
