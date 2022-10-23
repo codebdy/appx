@@ -16,7 +16,9 @@ query ($appId:ID!){
  ){
     nodes{
       id
-      roleId
+      role{
+        id
+      }
       device
       refused
       menuItemUuid
