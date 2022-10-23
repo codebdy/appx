@@ -4,6 +4,7 @@ import React, { useCallback } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
+import { DESIGN_BOARD } from "~/consts"
 import { useEdittingAppId } from "~/hooks/useEdittingAppUuid"
 import "./style.less"
 
@@ -12,8 +13,8 @@ export const NotPublished = memo(() => {
   const appId = useEdittingAppId();
   const navigate = useNavigate();
 
-  const handleGoEdit = useCallback(()=>{
-    navigate(`/design/${appId}`)
+  const handleGoEdit = useCallback(() => {
+    navigate(`/design/${appId}/${DESIGN_BOARD}`)
   }, [navigate])
 
   return (
@@ -36,11 +37,11 @@ export const NotPublished = memo(() => {
         </div>
         <div className="content">{t("NotPublishedTip")}</div>
         <div className="footer">
-          <Button 
-          type="primary" 
-          size="large" 
-          icon={<EditOutlined />}
-          onClick = {handleGoEdit}
+          <Button
+            type="primary"
+            size="large"
+            icon={<EditOutlined />}
+            onClick={handleGoEdit}
           >{t("GoEdit")}</Button>
         </div>
 

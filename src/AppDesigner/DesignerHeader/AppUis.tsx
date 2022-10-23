@@ -4,7 +4,7 @@ import React from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
-import { DESIGN_UI } from "~/consts"
+import { DESIGN, DESIGN_UI } from "~/consts"
 import { useDevices } from "../../hooks/useDevices"
 import Container from "~/plugins/framelayouts/pc/Container/view"
 
@@ -43,7 +43,7 @@ const AppUis = memo((props: {
                               key="design"
                               shape="round"
                               type="primary"
-                              onClick={() => { navigate(`/${DESIGN_UI}/${device.key}/${appId}`) }}
+                              onClick={() => { navigate(`/${DESIGN}/${appId}/${DESIGN_UI}/${device.key}`) }}
                             >
                               {t("AppManager.ToDesign")}
                             </Button>,

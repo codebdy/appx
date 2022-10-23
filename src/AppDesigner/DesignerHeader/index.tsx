@@ -11,7 +11,7 @@ import SelectLang from "~/plugins/framewidgets/pc/LangSelect/view"
 import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage"
 import AvatarMenu from "~/plugins/framewidgets/pc/AvatarMenu/view"
 import SvgIcon from "~/common/SvgIcon"
-import { DESIGN } from "~/consts"
+import { DESIGN, DESIGN_BOARD } from "~/consts"
 import { useEdittingAppId } from "~/hooks/useEdittingAppUuid"
 
 const DesignerHeader = memo((props: {
@@ -26,10 +26,10 @@ const DesignerHeader = memo((props: {
   const { t } = useTranslation();
 
   const appId = useEdittingAppId();
-  const match = useMatch(`/${DESIGN}/${appId}/*`)
+  const match = useMatch(`/${DESIGN}/${appId}/${DESIGN_BOARD}/*`)
   const parse = useParseLangMessage();
   const handleSelect = useCallback((info) => {
-    navigate(`/${DESIGN}/${appId}/${info.key}`)
+    navigate(`/${DESIGN}/${appId}/${DESIGN_BOARD}/${info.key}`)
   }, [appId, navigate]);
 
   return (
@@ -40,7 +40,7 @@ const DesignerHeader = memo((props: {
       <Menu
         className="app-entry-menu"
         mode="horizontal"
-        defaultSelectedKeys={[match?.params?.["*"]?.split("/")?.[0]|| AppEntryRouts.AppUis]}
+        defaultSelectedKeys={[match?.params?.["*"]?.split("/")?.[0] || AppEntryRouts.AppUis]}
         onSelect={handleSelect}
         items={[
           {
