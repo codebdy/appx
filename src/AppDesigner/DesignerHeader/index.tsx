@@ -142,6 +142,15 @@ const DesignerHeader = memo((props: {
         ]}
       />
       <Space>
+        <span>
+          V 1.0
+        </span>
+        <Button>
+          操作
+        </Button>
+        <Button>
+          发布
+        </Button>
         <Button className='min-button' size='large' shape="circle" icon={<QuestionCircleOutlined />} />
         <Button
           className='min-button'
