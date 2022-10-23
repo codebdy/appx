@@ -50,7 +50,6 @@ const ComponentDesigner: DnFC<IComponentProps> = observer((
       {...other}
       defaultSelectedKeys={[]}
       defaultOpenKeys={[]}
-      mode="horizontal"
       items={items}
     />
   )

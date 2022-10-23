@@ -3,6 +3,10 @@ const locales = {
     title: '菜单',
     settings: {
       'x-component-props': {
+        mode:{
+          title:"模式",
+          dataSource: ['垂直', '水平', '内联'],
+        }
       },
     },
   },
