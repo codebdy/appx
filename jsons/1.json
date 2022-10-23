@@ -3969,22 +3969,44 @@
       "uuid": "b057542e-c291-4a6c-b7f5-f6cc634c2bab"
     },
     {
-      "uuid": "0655bc25-af80-4856-be68-f53eb77fa970",
       "innerId": 0,
       "relationType": "inherit",
       "sourceId": "e90f69e9-1be0-45e2-95a6-269da4d2fada",
-      "targetId": "6be09899-afed-4115-b214-4511adc0e813",
       "sourceMutiplicity": "0..1",
-      "targetMultiplicity": "0..1"
+      "targetId": "6be09899-afed-4115-b214-4511adc0e813",
+      "targetMultiplicity": "0..1",
+      "uuid": "0655bc25-af80-4856-be68-f53eb77fa970"
     },
     {
-      "uuid": "7155615f-a7f9-4d4f-ad31-fe2c91f18d0b",
       "innerId": 0,
       "relationType": "inherit",
       "sourceId": "f9288fd0-2747-4fa0-8b3d-4c8bdaeb5dd8",
-      "targetId": "6be09899-afed-4115-b214-4511adc0e813",
       "sourceMutiplicity": "0..1",
-      "targetMultiplicity": "0..1"
+      "targetId": "6be09899-afed-4115-b214-4511adc0e813",
+      "targetMultiplicity": "0..1",
+      "uuid": "7155615f-a7f9-4d4f-ad31-fe2c91f18d0b"
+    },
+    {
+      "innerId": 1006,
+      "relationType": "twoWayAggregation",
+      "roleOfSource": "category",
+      "roleOfTarget": "pages",
+      "sourceId": "e90f69e9-1be0-45e2-95a6-269da4d2fada",
+      "sourceMutiplicity": "0..1",
+      "targetId": "f9288fd0-2747-4fa0-8b3d-4c8bdaeb5dd8",
+      "targetMultiplicity": "0..*",
+      "uuid": "6b3bcf02-2d62-4376-8312-69c9088cc821"
+    },
+    {
+      "innerId": 1007,
+      "relationType": "twoWayCombination",
+      "roleOfSource": "app",
+      "roleOfTarget": "pageCategories",
+      "sourceId": "APP_ENTITY_UUID",
+      "sourceMutiplicity": "0..1",
+      "targetId": "e90f69e9-1be0-45e2-95a6-269da4d2fada",
+      "targetMultiplicity": "0..*",
+      "uuid": "2cdb4c7c-ce16-4744-8405-cffaef63ba55"
     }
   ],
   "diagrams": [
@@ -4186,7 +4208,7 @@
       "id": "f9288fd0-2747-4fa0-8b3d-4c8bdaeb5dd8",
       "width": 180,
       "x": 30,
-      "y": 230
+      "y": 256
     },
     {
       "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
@@ -4197,20 +4219,20 @@
       "y": 230
     },
     {
-      "id": "e90f69e9-1be0-45e2-95a6-269da4d2fada",
-      "x": -280,
-      "y": 243,
-      "width": 180,
+      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
       "height": 148,
-      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464"
+      "id": "e90f69e9-1be0-45e2-95a6-269da4d2fada",
+      "width": 180,
+      "x": -280,
+      "y": 243
     },
     {
-      "id": "6be09899-afed-4115-b214-4511adc0e813",
-      "x": -160,
-      "y": -20,
-      "width": 180,
+      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
       "height": 122,
-      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464"
+      "id": "6be09899-afed-4115-b214-4511adc0e813",
+      "width": 180,
+      "x": -160,
+      "y": -20
     }
   ],
   "x6Edges": [
@@ -4485,6 +4507,7 @@
       ]
     },
     {
+      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
       "id": "0655bc25-af80-4856-be68-f53eb77fa970",
       "vertices": [
         {
@@ -4495,10 +4518,10 @@
           "x": -70,
           "y": 180
         }
-      ],
-      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464"
+      ]
     },
     {
+      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
       "id": "7155615f-a7f9-4d4f-ad31-fe2c91f18d0b",
       "vertices": [
         {
@@ -4509,8 +4532,59 @@
           "x": -70,
           "y": 180
         }
-      ],
-      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464"
+      ]
+    },
+    {
+      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
+      "id": "6b3bcf02-2d62-4376-8312-69c9088cc821",
+      "roleOnSourcePosition": {
+        "distance": 40,
+        "offset": 20
+      },
+      "roleOnTargetPosition": {
+        "angle": 0,
+        "distance": 0.7777777777777778,
+        "offset": 13
+      },
+      "sourceMultiplicityPosition": {
+        "distance": 40,
+        "offset": -20
+      },
+      "targetMultiplicityPosition": {
+        "distance": -40,
+        "offset": -20
+      },
+      "vertices": []
+    },
+    {
+      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
+      "id": "2cdb4c7c-ce16-4744-8405-cffaef63ba55",
+      "roleOnSourcePosition": {
+        "distance": 40,
+        "offset": 20
+      },
+      "roleOnTargetPosition": {
+        "distance": -40,
+        "offset": 20
+      },
+      "sourceMultiplicityPosition": {
+        "distance": 40,
+        "offset": -20
+      },
+      "targetMultiplicityPosition": {
+        "distance": -40,
+        "offset": -20
+      },
+      "vertices": [
+        {
+          "x": -330,
+          "y": -108
+        },
+        {
+          "x": -330,
+          "y": 320
+        }
+      ]
     }
   ]
 }
