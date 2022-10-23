@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from "react"
 import { memo } from "react"
-import { IMenu, IMenuAuthConfig } from "model";
+import { IMenu, IMenuAuthConfig } from "~/model";
 import { IDevice } from "~/hooks/useDevices"
 import { Table } from "antd";
 import { useColumns } from "./useColumns";

@@ -1,6 +1,6 @@
 import TreeNodeLabel from "~/common/TreeNodeLabel"
 import React, { useCallback, useState } from "react"
-import { IPage, IPageCategory } from "model"
+import { IPage, IPageCategory } from "~/model"
 import PageActions from "./PageActions"
 import EditPageDialog from "./EditPageDialog"
 import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage"

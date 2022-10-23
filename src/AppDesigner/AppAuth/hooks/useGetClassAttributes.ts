@@ -5,10 +5,11 @@ import { getParentClasses } from "~/datasource/hooks/getParentClasses";
 import { AttributeMeta, ClassMeta, CONST_ID } from "../../AppUml/meta";
 import { sort } from "~/datasource";
 import _ from "lodash";
+import { ID } from "~/shared";
 
-export function useGetClassAttributes(appUuid?: string) {
-  const classMetas = useRecoilValue(classesState(appUuid))
-  const relations = useRecoilValue(relationsState(appUuid));
+export function useGetClassAttributes(appId?: ID) {
+  const classMetas = useRecoilValue(classesState(appId))
+  const relations = useRecoilValue(relationsState(appId));
   const getAttrs = useCallback((cls: ClassMeta) => {
     const parentClasses = getParentClasses(cls.uuid, classMetas, relations);
     const parentAttributes: AttributeMeta[] = [];

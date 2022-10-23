@@ -30,7 +30,11 @@ export interface IPropertyAuthConfig extends IModelAuthConfig {
 // input
 export interface IAuthConfigInput {
   id?: ID;
-  appUuid?: string;
+  app?: {
+    sync?:{
+      id: ID;
+    }
+  };
   roleId?: ID;
 }
 

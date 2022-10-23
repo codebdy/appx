@@ -45,12 +45,12 @@ function getItem(
 export const AuthBoard = memo(() => {
   const { t } = useTranslation();
   const navigate = useNavigate()
-  const appUuid = useEdittingAppId();
-  const { loading, error } = useReadMeta(appUuid);
+  const appId = useEdittingAppId();
+  const { loading, error } = useReadMeta(appId);
   const { loading: rolesLoading, error: rolesError } = useQueryRoles();
   const p = useParseLangMessage();
   const matchString = useMemo(() => {
-    return `/${DESIGN}/${appUuid}/${AppEntryRouts.Auth}/*`
+    return `/${DESIGN}/${appId}/${AppEntryRouts.Auth}/*`
   }, [])
   const match = useMatch(matchString)
   useShowError(error || rolesError);

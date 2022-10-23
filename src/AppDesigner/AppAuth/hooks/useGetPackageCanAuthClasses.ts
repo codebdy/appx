@@ -4,9 +4,9 @@ import { classesState } from "../../AppUml/recoil/atoms";
 import { ID } from "~/shared";
 import { StereoType } from "../../AppUml/meta/ClassMeta";
 
-export function useGetPackageCanAuthClasses(appUuid:ID) {
+export function useGetPackageCanAuthClasses(appId:ID) {
 
-  const classes = useRecoilValue(classesState(appUuid));
+  const classes = useRecoilValue(classesState(appId));
 
   const getClasses = useCallback((packageUuid: ID) => {
     return classes.filter(

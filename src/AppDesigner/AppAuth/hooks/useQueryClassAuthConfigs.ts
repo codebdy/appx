@@ -7,8 +7,10 @@ import { IClassAuthConfig } from "~/model";
 const authConfigGql = gql`
 query ($appId:ID!){
   classAuthConfigs(where:{
-    appUuid:{
-      _eq:$appId
+    app:{
+      id:{
+        _eq:$appId
+      }
     }
   }
  ){
@@ -23,8 +25,9 @@ query ($appId:ID!){
       deleteExpression
       canCreate
       createExpression
-      appUuid
-      roleId
+      role{
+        id
+      }
       classUuid
     }
   }

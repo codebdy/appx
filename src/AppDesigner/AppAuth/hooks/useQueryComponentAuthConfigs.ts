@@ -5,16 +5,20 @@ import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
 import { IComponentAuthConfig } from "~/model";
 
 const authConfigGql = gql`
-query ($appId:String!){
+query ($appId:ID!){
   componentAuthConfigs(where:{
-    appUuid:{
-      _eq:$appId
+    app:{
+      id:{
+        _eq:$appId
+      }
     }
   }
  ){
     nodes{
       id
-      roleId
+      role{
+        id
+      }
       device
       refused
       componentId

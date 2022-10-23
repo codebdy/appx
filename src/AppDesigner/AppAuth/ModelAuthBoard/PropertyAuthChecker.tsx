@@ -1,7 +1,7 @@
 import { Button, Checkbox } from "antd"
 import React, { useCallback, useEffect, useState } from "react"
 import { memo } from "react"
-import { IPropertyAuthConfig } from "model"
+import { IPropertyAuthConfig } from "~/model"
 import { useShowError } from "~/hooks/useShowError";
 import { ID } from "~/shared";
 import { FunctionOutlined, LoadingOutlined } from "@ant-design/icons";

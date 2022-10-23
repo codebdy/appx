@@ -1,4 +1,4 @@
-import { IApp } from "model";
+import { IApp } from "~/model";
 import React, { memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { SettingsPanel, ToolbarPanel, ViewportPanel, WorkspacePanel } from "../../panels";

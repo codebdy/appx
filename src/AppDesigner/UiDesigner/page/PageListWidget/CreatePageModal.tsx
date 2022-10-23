@@ -5,7 +5,7 @@ import PageForm from "./PageForm";
 import { useUpsertPage } from "../../hooks/useUpsertPage";
 import { useShowError } from "~/hooks/useShowError";
 import { useTranslation } from "react-i18next";
-import { IPageCategory } from "model";
+import { IPageCategory } from "~/model";
 import { ID } from "~/shared";
 
 const CreatePageModal = memo((

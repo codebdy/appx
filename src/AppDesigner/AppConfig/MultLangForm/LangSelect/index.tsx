@@ -7,7 +7,7 @@ import { DragDropContext, Draggable, Droppable, DropResult } from "react-beautif
 import { useTranslation } from "react-i18next";
 import { useShowError } from "~/hooks/useShowError";
 import { useUpsertAppConfig } from "~/hooks/useUpsertAppConfig";
-import { ILang } from "model";
+import { ILang } from "~/model";
 import LangLabel from "./LangLabel";
 import { langs } from "./langs";
 
