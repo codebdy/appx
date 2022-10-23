@@ -1,14 +1,16 @@
 import { gql } from "~/enthooks";
 import { useMemo } from "react";
 import { useQuery } from "~/enthooks/hooks/useQuery";
-import { IPropertyAuthConfig } from "model";
 import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { IPropertyAuthConfig } from "~/model";
 
 const authConfigGql = gql`
-query ($appUuid:String!){
+query ($appId:ID!){
   propertyAuthConfigs(where:{
-    appUuid:{
-      _eq:$appUuid
+    app:{
+      id:{
+        _eq:$appId
+      }
     }
   }
  ){
@@ -18,7 +20,6 @@ query ($appUuid:String!){
       readExpression
       canUpdate
       updateExpression
-      appUuid
       roleId
       propertyUuid
       classUuid
@@ -33,7 +34,7 @@ export function useQueryPropertyAuthConfigs() {
   const args = useMemo(() => {
     return {
       gql: authConfigGql,
-      params: { appUuid: appParams.app.uuid },
+      params: { appId: appParams.app.id },
       depEntityNames: ["PropertyAuthConfig"]
     }
   }, [appParams])

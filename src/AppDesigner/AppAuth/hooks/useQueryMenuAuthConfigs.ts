@@ -1,20 +1,21 @@
 import { gql } from "~/enthooks";
 import { useMemo } from "react";
 import { useQuery } from "~/enthooks/hooks/useQuery";
-import { IMenuAuthConfig } from "model";
 import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { IMenuAuthConfig } from "~/model";
 
 const authConfigGql = gql`
-query ($appUuid:String!){
+query ($appId:ID!){
   menuAuthConfigs(where:{
-    appUuid:{
-      _eq:$appUuid
+    app:{
+      id:{
+        _eq:$appId
+      }
     }
   }
  ){
     nodes{
       id
-      appUuid
       roleId
       device
       refused
@@ -30,7 +31,7 @@ export function useQueryMenuAuthConfigs() {
   const args = useMemo(() => {
     return {
       gql: authConfigGql,
-      params: { appUuid: appParams.app.uuid },
+      params: { appId: appParams.app.id },
       depEntityNames: ["MenuAuthConfig"]
     }
   }, [appParams])

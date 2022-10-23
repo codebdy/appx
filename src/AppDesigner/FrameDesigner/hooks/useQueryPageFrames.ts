@@ -5,14 +5,14 @@ import { useQuery } from "~/enthooks/hooks/useQuery";
 import { IPageFrame } from "~/model";
 
 const pageFramesGql = gql`
-query ($device:String!, $appUuid:String!){
+query ($device:String!, $appId:ID!){
   pageFrames(
     where:{
       _and:[
         {
           app:{
-            uuid:{
-              _eq:$appUuid
+            id:{
+              _eq:$appId
             }
           }
         },
@@ -41,7 +41,7 @@ export function useQueryPageFrames() {
   const args = useMemo(() => {
     return {
       gql: pageFramesGql,
-      params: { device: params.device, appUuid: params.app.uuid },
+      params: { device: params.device, appId: params.app.id },
       depEntityNames: ["PageFrame"]
     }
   }, [params])

@@ -9,7 +9,8 @@ import _ from "lodash";
 import { AssociationMeta } from "../model";
 import { AssociationType } from "../model/IFieldSource";
 import { getParentClasses } from "./getParentClasses";
-import { AttributeMeta, ClassMeta, Meta, MethodMeta, RelationMeta, RelationMultiplicity, RelationType, StereoType } from "~/AppDesigner/AppUml/meta";
+import { AttributeMeta, ClassMeta, MethodMeta, RelationMeta, RelationMultiplicity, RelationType, StereoType } from "~/AppDesigner/AppUml/meta";
+import { IApp } from "~/model";
 
 export const sort = (array: { name: string }[]) => {
   return array.sort((a, b) => {
@@ -59,29 +60,20 @@ const getEntityAssociations = (classUuid: string, classMetas: ClassMeta[], relat
 
 
 export function useBuildMeta(): { error?: GraphQLRequestError; loading?: boolean } {
-  const appUuid = useSelectedAppUuid();
-  const setEntitiesState = useSetRecoilState(entitiesState(appUuid));
-  const setClasses = useSetRecoilState(classesState(appUuid));
-  const setPackages = useSetRecoilState(packagesState(appUuid))
+  const appId = useSelectedAppUuid();
+  const setEntitiesState = useSetRecoilState(entitiesState(appId));
+  const setClasses = useSetRecoilState(classesState(appId));
+  const setPackages = useSetRecoilState(packagesState(appId))
 
-  const queryName = useMemo(() => "oneMeta", []);
+  const queryName = useMemo(() => "oneApp", []);
   const queryGql = useMemo(() => {
     return gql`
-    query ${queryName}($appUuid:String!) {
+    query ${queryName}($appId:ID!) {
       ${queryName}(
         where:{
-          _and:[
-            {
-              appUuid:{
-                _eq:$appUuid
-              }            
-            },
-            {
-              status:{
-                _eq:"published"
-              }            
-            },
-          ]
+          id:{
+            _eq:$appId
+          }
         },
         orderBy:[
           {
@@ -90,16 +82,15 @@ export function useBuildMeta(): { error?: GraphQLRequestError; loading?: boolean
         ]
       ){
         id
-        content
-        status
+        publishedMeta
       }
     }
   `;
   }, [queryName]);
 
-  const metParams = useMemo(() => ({ appUuid }), [appUuid]);
+  const metParams = useMemo(() => ({ appId }), [appId]);
 
-  const { data, error, loading } = useQueryOne<Meta>(
+  const { data, error, loading } = useQueryOne<IApp>(
     {
       gql: queryGql,
       params: metParams
@@ -107,10 +98,10 @@ export function useBuildMeta(): { error?: GraphQLRequestError; loading?: boolean
 
   );
 
-  const systemParams = useMemo(() => ({ appUuid: SYSTEM_APP_ID }), []);
-  const { data: systemData, error: systemError, loading: systemLoading } = useQueryOne<Meta>(
+  const systemParams = useMemo(() => ({ appId: SYSTEM_APP_ID }), []);
+  const { data: systemData, error: systemError, loading: systemLoading } = useQueryOne<IApp>(
     {
-      gql: appUuid !== SYSTEM_APP_ID ? queryGql : undefined,
+      gql: appId !== SYSTEM_APP_ID ? queryGql : undefined,
       params: systemParams
     }
 
@@ -135,17 +126,17 @@ export function useBuildMeta(): { error?: GraphQLRequestError; loading?: boolean
   }, [getEntityAssociations, getParentClasses]);
 
   useEffect(() => {
-    if (data && (systemData || appUuid === SYSTEM_APP_ID)) {
+    if (data && (systemData || appId === SYSTEM_APP_ID)) {
       const meta = data[queryName];
       const systemMeta = systemData?.[queryName];
       const getPackage = (packageUuid: string) => {
-        return systemMeta?.content?.packages?.find(pkg => pkg.uuid === packageUuid);
+        return systemMeta?.publishedMeta?.packages?.find(pkg => pkg.uuid === packageUuid);
       }
-      const systemPackages = systemMeta?.content?.packages?.filter(pkg => pkg.sharable) || [];
-      const systemClasses = systemMeta?.content?.classes?.filter(cls => getPackage(cls.packageUuid).sharable) || []
-      const allClasses: ClassMeta[] = [...systemClasses, ...meta?.content?.classes || []];
-      const allRelations: RelationMeta[] = [...systemMeta?.content?.relations || [], ...meta?.content?.relations || []];
-      setPackages([...systemPackages, ...meta?.content?.packages || []]);
+      const systemPackages = systemMeta?.publishedMeta?.packages?.filter(pkg => pkg.sharable) || [];
+      const systemClasses = systemMeta?.publishedMeta?.classes?.filter(cls => getPackage(cls.packageUuid).sharable) || []
+      const allClasses: ClassMeta[] = [...systemClasses, ...meta?.publishedMeta?.classes || []];
+      const allRelations: RelationMeta[] = [...systemMeta?.publishedMeta?.relations || [], ...meta?.publishedMeta?.relations || []];
+      setPackages([...systemPackages, ...meta?.publishedMeta?.packages || []]);
       setClasses(allClasses);
       setEntitiesState(
         sort(
@@ -161,7 +152,7 @@ export function useBuildMeta(): { error?: GraphQLRequestError; loading?: boolean
         )
       )
     }
-  }, [data, queryName, setClasses, setPackages, systemData, appUuid, setEntitiesState, makeEntity]);
+  }, [data, queryName, setClasses, setPackages, systemData, appId, setEntitiesState, makeEntity]);
 
   return { error: error || systemError, loading: loading || systemLoading };
 }

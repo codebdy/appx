@@ -1,15 +1,15 @@
 import { gql } from "~/enthooks";
-import { IPageCategory } from "model";
 import { useQuery } from "~/enthooks/hooks/useQuery";
 import { useMemo } from "react";
 import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
+import { IPageCategory } from "~/model";
 
 const categoriesGql = gql`
-query ($appUuid:String!){
+query ($appId:ID!){
   pageCategories(where:{
     app:{
-      uuid:{
-        _eq:$appUuid
+      id:{
+        _eq:$appId
       }
     }
   },
@@ -27,15 +27,15 @@ query ($appUuid:String!){
 `
 
 export function useQueryAppPageCagegories() {
-  const appUuid = useEdittingAppId()
+  const appId = useEdittingAppId()
 
   const args = useMemo(() => {
     return {
       gql: categoriesGql,
-      params: { appUuid },
+      params: { appId },
       depEntityNames: ["PageCategory"]
     }
-  }, [appUuid])
+  }, [appId])
   const { data, error, loading } = useQuery<IPageCategory>(args)
 
   return { categories: data?.pageCategories?.nodes, error, loading }

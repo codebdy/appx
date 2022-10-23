@@ -2,14 +2,14 @@ import { gql } from "~/enthooks";
 import { useMemo } from "react";
 import { useQuery } from "~/enthooks/hooks/useQuery";
 import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
-import { IMenu } from "model";
+import { IMenu } from "~/model";
 
 const menuGql = gql`
-query ($appUuid:String!){
+query ($appId:ID!){
   menus(where:{
     app:{
-      uuid:{
-        _eq:$appUuid
+      id:{
+        _eq:$appId
       }
     }
   }
@@ -24,13 +24,13 @@ query ($appUuid:String!){
 `
 
 export function useQueryAppMenus() {
-  const appUuid = useEdittingAppId();
+  const appId = useEdittingAppId();
 
   const input = useMemo(() => ({
     gql: menuGql,
-    params: { appUuid },
+    params: { appId },
     depEntityNames: ["Menu"]
-  }), [appUuid]);
+  }), [appId]);
 
   const { data, error, loading } = useQuery<IMenu>(input)
 

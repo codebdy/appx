@@ -5,13 +5,13 @@ import { IPage } from "~/model";
 import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
 
 const pagesGql = gql`
-query ($appUuid:String!, $device:String!){
+query ($appId:ID!, $device:String!){
   pages(where:{
     _and:[
       {
         app:{
-          uuid:{
-            _eq:$appUuid
+          id:{
+            _eq:$appId
           }
         }
       },
@@ -44,7 +44,7 @@ export function useQueryPages() {
   const args = useMemo(() => {
     return {
       gql: pagesGql,
-      params: { device: appParams.device, appUuid: appParams.app.uuid },
+      params: { device: appParams.device, appId: appParams.app.id },
       depEntityNames: ["Page"]
     }
   }, [appParams])

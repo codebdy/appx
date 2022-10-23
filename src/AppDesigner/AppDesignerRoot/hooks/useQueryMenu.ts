@@ -1,17 +1,17 @@
 import { gql } from "~/enthooks";
-import { IMenu } from "model";
 import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
 import { useQueryOne } from "~/enthooks/hooks/useQueryOne";
 import { useMemo } from "react";
+import { IMenu } from "~/model";
 
 const menuGql = gql`
-query queryMenu($appUuid:String!, $device:String!){
+query queryMenu($appId:ID!, $device:String!){
   oneMenu(where:{
     _and:[
       {
         app:{
-          uuid:{
-            _eq:$appUuid
+          id:{
+            _eq:$appId
           }
         }
       },
@@ -35,9 +35,9 @@ export function useQueryMenu() {
 
   const input = useMemo(()=>({
     gql: menuGql,
-    params: { device: params.device, appUuid: params.app.uuid },
+    params: { device: params.device, appId: params.app.id },
     depEntityNames: ["Menu"]
-  }), [params.app.uuid, params.device]);
+  }), [params.app.id, params.device]);
   
   const { data, error, loading } = useQueryOne<IMenu>(input)
 

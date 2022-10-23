@@ -1,20 +1,19 @@
 import { gql } from "~/enthooks";
 import { useMemo } from "react";
 import { useQuery } from "~/enthooks/hooks/useQuery";
-import { IComponentAuthConfig, IMenuAuthConfig } from "model";
 import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { IComponentAuthConfig } from "~/model";
 
 const authConfigGql = gql`
-query ($appUuid:String!){
+query ($appId:String!){
   componentAuthConfigs(where:{
     appUuid:{
-      _eq:$appUuid
+      _eq:$appId
     }
   }
  ){
     nodes{
       id
-      appUuid
       roleId
       device
       refused
@@ -30,7 +29,7 @@ export function useQueryComponentAuthConfigs() {
   const args = useMemo(() => {
     return {
       gql: authConfigGql,
-      params: { appUuid: appParams.app.uuid },
+      params: { appId: appParams.app.id },
       depEntityNames: ["ComponentAuthConfig"]
     }
   }, [appParams])

@@ -4,13 +4,13 @@ import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 
 const categoriesGql = gql`
-query ($appUuid:String!, $device:String!){
+query ($appId:ID!, $device:String!){
   pageCategories(where:{
     _and:[
       {
         app:{
-          uuid:{
-            _eq:$appUuid
+          id:{
+            _eq:$appId
           }
         }
       },
@@ -35,15 +35,15 @@ query ($appUuid:String!, $device:String!){
 `
 
 export function useQueryCagegories() {
-  const { device, appUuid } = useParams();
+  const { device, appId } = useParams();
 
   const args = useMemo(() => {
     return {
       gql: categoriesGql,
-      params: { device: device, appUuid: appUuid },
+      params: { device: device, appId },
       depEntityNames: ["PageCategory"]
     }
-  }, [device, appUuid])
+  }, [device, appId])
   const { data, error, loading } = useQuery<IPageCategory>(args)
 
   return { categories: data?.pageCategories?.nodes, error, loading }

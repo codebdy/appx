@@ -1,14 +1,14 @@
 import { gql } from "~/enthooks";
 import { useMemo } from "react";
 import { useQuery } from "~/enthooks/hooks/useQuery";
-import { IClassAuthConfig } from "model";
 import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { IClassAuthConfig } from "~/model";
 
 const authConfigGql = gql`
-query ($appUuid:String!){
+query ($appId:ID!){
   classAuthConfigs(where:{
     appUuid:{
-      _eq:$appUuid
+      _eq:$appId
     }
   }
  ){
@@ -37,7 +37,7 @@ export function useQueryClassAuthConfigs() {
   const args = useMemo(() => {
     return {
       gql: authConfigGql,
-      params: { appUuid: appParams.app.uuid },
+      params: { appId: appParams.app.id },
       depEntityNames: ["ClassAuthConfig"]
     }
   }, [appParams])

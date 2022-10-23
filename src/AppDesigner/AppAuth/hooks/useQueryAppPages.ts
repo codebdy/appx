@@ -2,14 +2,14 @@ import { gql } from "~/enthooks";
 import { useMemo } from "react";
 import { useQuery } from "~/enthooks/hooks/useQuery";
 import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
-import { IPage } from "model";
+import { IPage } from "~/model";
 
 const pagesGql = gql`
-query ($appUuid:String!){
+query ($appId:ID!){
   pages(where:{
     app:{
-      uuid:{
-        _eq:$appUuid
+      id:{
+        _eq:$appId
       }
     }
   }
@@ -28,13 +28,13 @@ query ($appUuid:String!){
 `
 
 export function useQueryAppPages() {
-  const appUuid = useEdittingAppId();
+  const appId = useEdittingAppId();
 
   const input = useMemo(() => ({
     gql: pagesGql,
-    params: { appUuid },
+    params: { appId },
     depEntityNames: ["Page"]
-  }), [appUuid]);
+  }), [appId]);
 
   const { data, error, loading } = useQuery<IPage>(input)
 
