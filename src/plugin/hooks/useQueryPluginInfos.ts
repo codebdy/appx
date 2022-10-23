@@ -3,17 +3,19 @@ import { useMemo } from "react";
 import { IQueryInput } from "~/enthooks/hooks/IQueryInput";
 import { useQuery } from "~/enthooks/hooks/useQuery";
 import { IPluginInfo } from "~/model";
+import { ID } from "~/shared";
 
 const pluginsGql = gql`
-query ($appUuid:String!){
+query ($appId:ID!){
   pluginInfos(where:{
-    appUuid:{
-      _eq:$appUuid
+    app:{
+      id:{
+        _eq:$appId
+      }
     }
   }){
     nodes{
       id
-      appUuid
       url 
       title
       pluginId
@@ -26,14 +28,14 @@ query ($appUuid:String!){
 }
 `
 
-export function useQueryPluginInfos(appUuid: string) {
+export function useQueryPluginInfos(appId: ID) {
   const queryParams = useMemo((): IQueryInput => {
     return {
-      gql: appUuid && pluginsGql,
+      gql: appId && pluginsGql,
       depEntityNames: ["PluginInfo"],
-      params: { appUuid },
+      params: { appId },
 
     }
-  }, [appUuid])
+  }, [appId])
   return useQuery<IPluginInfo>(queryParams)
 }

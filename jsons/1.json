@@ -1889,54 +1889,6 @@
           "unsigned": false,
           "updateDate": false,
           "uuid": "4cfe85c6-38dc-4902-9f54-1d1c983488e0"
-        },
-        {
-          "createDate": false,
-          "default": "",
-          "deleteDate": false,
-          "description": "",
-          "floatD": 0,
-          "floatM": 0,
-          "hidden": false,
-          "index": false,
-          "label": "",
-          "length": 0,
-          "name": "schemaJson",
-          "nullable": false,
-          "primary": false,
-          "readonly": false,
-          "system": false,
-          "type": "JSON",
-          "typeLabel": "JSON",
-          "typeUuid": "",
-          "unique": false,
-          "unsigned": false,
-          "updateDate": false,
-          "uuid": "2732ca02-363f-4782-b15e-aaa5a1e1c162"
-        },
-        {
-          "createDate": false,
-          "default": "",
-          "deleteDate": false,
-          "description": "",
-          "floatD": 0,
-          "floatM": 0,
-          "hidden": false,
-          "index": false,
-          "label": "",
-          "length": 0,
-          "name": "appUuid",
-          "nullable": true,
-          "primary": false,
-          "readonly": false,
-          "system": false,
-          "type": "String",
-          "typeLabel": "String",
-          "typeUuid": "",
-          "unique": false,
-          "unsigned": false,
-          "updateDate": false,
-          "uuid": "71d3349a-1baf-4263-acf7-70355f55ab71"
         }
       ],
       "description": "",
@@ -2480,30 +2432,6 @@
           "index": false,
           "label": "",
           "length": 0,
-          "name": "appUuid",
-          "nullable": false,
-          "primary": false,
-          "readonly": false,
-          "system": false,
-          "type": "String",
-          "typeLabel": "String",
-          "typeUuid": "",
-          "unique": false,
-          "unsigned": false,
-          "updateDate": false,
-          "uuid": "06af7a45-a782-41a6-b7d9-9981a331450d"
-        },
-        {
-          "createDate": false,
-          "default": "",
-          "deleteDate": false,
-          "description": "",
-          "floatD": 0,
-          "floatM": 0,
-          "hidden": false,
-          "index": false,
-          "label": "",
-          "length": 0,
           "name": "title",
           "nullable": true,
           "primary": false,
@@ -2905,6 +2833,28 @@
       "targetId": "de56ae19-aaac-4479-8bf9-6573ad22a482",
       "targetMultiplicity": "0..*",
       "uuid": "e05e5f31-796f-418a-9045-ac27788f2b1e"
+    },
+    {
+      "appUuid": "1",
+      "innerId": 0,
+      "relationType": "inherit",
+      "sourceId": "ddbecde2-3e2d-4391-a327-63d4c8c6a2c3",
+      "sourceMutiplicity": "0..1",
+      "targetId": "087b2915-5582-496d-bafb-ae2f5623a70d",
+      "targetMultiplicity": "0..1",
+      "uuid": "1240b020-d5f1-4ee5-bdbe-9f571007dc22"
+    },
+    {
+      "appUuid": "1",
+      "innerId": 1003,
+      "relationType": "twoWayCombination",
+      "roleOfSource": "app",
+      "roleOfTarget": "plugins",
+      "sourceId": "APP_ENTITY_UUID",
+      "sourceMutiplicity": "0..1",
+      "targetId": "f0fa4b0f-4b91-4092-a93b-beaa13896e86",
+      "targetMultiplicity": "0..*",
+      "uuid": "49373514-a5a4-40ee-a236-44670c439f3e"
     }
   ],
   "diagrams": [
@@ -2914,6 +2864,13 @@
       "nodes": [],
       "packageUuid": "PACKAGE_SYSTEM_UUID",
       "uuid": "ff40de16-1759-407e-b52c-915c307f5c74"
+    },
+    {
+      "edges": [],
+      "name": "界面",
+      "nodes": [],
+      "packageUuid": "PACKAGE_SYSTEM_UUID",
+      "uuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464"
     }
   ],
   "codes": [],
@@ -2973,6 +2930,30 @@
       "width": 180,
       "x": -438,
       "y": 56
+    },
+    {
+      "diagramUuid": "ff40de16-1759-407e-b52c-915c307f5c74",
+      "height": 110,
+      "id": "ddbecde2-3e2d-4391-a327-63d4c8c6a2c3",
+      "width": 180,
+      "x": 610,
+      "y": -49.99999999999992
+    },
+    {
+      "diagramUuid": "ff40de16-1759-407e-b52c-915c307f5c74",
+      "height": 230,
+      "id": "f0fa4b0f-4b91-4092-a93b-beaa13896e86",
+      "width": 180,
+      "x": -360,
+      "y": -200
+    },
+    {
+      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
+      "height": 80,
+      "id": "APP_ENTITY_UUID",
+      "width": 180,
+      "x": 20,
+      "y": -40
     }
   ],
   "x6Edges": [
@@ -3043,6 +3024,32 @@
     {
       "diagramUuid": "ff40de16-1759-407e-b52c-915c307f5c74",
       "id": "e05e5f31-796f-418a-9045-ac27788f2b1e",
+      "roleOnSourcePosition": {
+        "distance": 40,
+        "offset": 20
+      },
+      "roleOnTargetPosition": {
+        "distance": -40,
+        "offset": 20
+      },
+      "sourceMultiplicityPosition": {
+        "distance": 40,
+        "offset": -20
+      },
+      "targetMultiplicityPosition": {
+        "distance": -40,
+        "offset": -20
+      },
+      "vertices": []
+    },
+    {
+      "diagramUuid": "ff40de16-1759-407e-b52c-915c307f5c74",
+      "id": "1240b020-d5f1-4ee5-bdbe-9f571007dc22",
+      "vertices": []
+    },
+    {
+      "diagramUuid": "ff40de16-1759-407e-b52c-915c307f5c74",
+      "id": "49373514-a5a4-40ee-a236-44670c439f3e",
       "roleOnSourcePosition": {
         "distance": 40,
         "offset": 20

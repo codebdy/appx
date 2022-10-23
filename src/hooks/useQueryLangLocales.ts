@@ -5,28 +5,29 @@ import { useQuery } from "../enthooks/hooks/useQuery";
 import { ILangLocal } from "../model";
 
 const langLocalGql = gql`
-query ($appUuid:String){
+query ($appId:ID!){
   langLocals(where:{
-    appUuid:{
-      _eq:$appUuid
+    app:{
+      id:{
+        _eq:$appId
+      }
     }
   }){
     nodes{
       id
       name
-      appUuid
       schemaJson      
     }
   }
 }
 `
 
-export function useQueryLangLocales(appUuid: string) {
+export function useQueryLangLocales(appId: string) {
   const input = useMemo(() => ({
     gql: langLocalGql,
-    params: { appUuid: appUuid || SYSTEM_APP_ID },
+    params: { appId: appId || SYSTEM_APP_ID },
     depEntityNames: ["LangLocal"]
-  }), [appUuid])
+  }), [appId])
   const { data, error, loading } = useQuery<ILangLocal>(input)
   return { langLocales: data?.langLocals?.nodes, error, loading }
 }
