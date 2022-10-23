@@ -9,12 +9,16 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useGetMenuItem } from "./hooks/useGetMenuItem";
 import { useEntryPageId } from "./hooks/useEntryPageId";
 import { useGetMenuItemByPageId } from "./hooks/useGetMenuItemByPageId";
+import "./style.less"
+import cls from "classnames";
 
-export interface IComponentProps{
-  
+export interface IComponentProps {
+  mode?: "vertical" | "horizontal" | "inline",
+  className?: string,
 }
 
-const AppMenu = memo(() => {
+const AppMenu = memo((props: IComponentProps) => {
+  const { className, ...other } = props;
   const { menu } = useRunnerParams();
   const p = useParseLangMessage();
   const { device, appId, menuUuid } = useParams();
@@ -56,8 +60,8 @@ const AppMenu = memo(() => {
   return (
     <>
       <Menu
-        //theme="dark"
-        mode="inline"
+        className={cls("app-menu", className)}
+        {...other}
         selectedKeys={[(menuUuid !== "no" && menuUuid) || getMenuItemByPageId(entryId)?.uuid]}
         items={data}
         onClick={handleClick}
