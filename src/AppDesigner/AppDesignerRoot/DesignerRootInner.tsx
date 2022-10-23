@@ -14,6 +14,7 @@ import { useQueryMaterialConfig } from './hooks/useQueryMaterialConfig'
 import { useIntalledPlugins } from '../../plugin/hooks/useIntalledPlugins'
 import { IApp, PluginType } from '~/model'
 import { MaterialTabRoot } from '~/material/MaterialTabRoot'
+import { PredefinedMaterialsRoot } from '~/material/PredefinedMaterialsRoot'
 
 export const DesignerRootInner = memo((
   props: {
@@ -57,21 +58,23 @@ export const DesignerRootInner = memo((
       <AppContext.Provider
         value={contextValue}
       >
-        <MaterialTabRoot>
-          <Spin
-            style={{ height: "100vh" }}
-            spinning={
-              configLoading ||
-              localLoading ||
-              deviceLoading ||
-              userConfigLoading ||
-              materialConfigLoading ||
-              pluginLoading
-            }
-          >
-            {props.children}
-          </Spin>
-        </MaterialTabRoot>
+        <PredefinedMaterialsRoot>
+          <MaterialTabRoot>
+            <Spin
+              style={{ height: "100vh" }}
+              spinning={
+                configLoading ||
+                localLoading ||
+                deviceLoading ||
+                userConfigLoading ||
+                materialConfigLoading ||
+                pluginLoading
+              }
+            >
+              {props.children}
+            </Spin>
+          </MaterialTabRoot>
+        </PredefinedMaterialsRoot>
       </AppContext.Provider>
       : <></>
   )
