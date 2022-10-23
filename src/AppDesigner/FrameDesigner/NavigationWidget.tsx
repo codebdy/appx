@@ -1,17 +1,22 @@
 import React, { memo, useCallback, useMemo } from 'react'
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import { Breadcrumb, Button, Divider } from 'antd'
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useTranslation } from 'react-i18next';
 import { useDevices } from '~/hooks/useDevices';
+import { DESIGN, DESIGN_BOARD } from '~/consts';
+import { AppEntryRouts } from '../DesignerHeader/AppEntryRouts';
+import { useAppParams } from '~/plugin-sdk';
 
 export const NavigationWidget = memo(() => {
+  const { app } = useAppParams();
   const { device } = useParams();
   const { t } = useTranslation();
   const devices = useDevices();
+  const navigate = useNavigate()
   const handleBack = useCallback(() => {
-    window.history.back()
-  }, []);
+    navigate(`/${DESIGN}/${app?.id}/${DESIGN_BOARD}/${AppEntryRouts.AppUis}`)
+  }, [app]);
 
   const deviceInfo = useMemo(() => devices.find(dvc => dvc.key === device), [device, devices]);
 

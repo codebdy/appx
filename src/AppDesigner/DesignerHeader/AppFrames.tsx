@@ -15,7 +15,7 @@ export const AppFrames = memo(() => {
   const { appId } = useParams();
 
   const handleClick = useCallback((key: string) => {
-    navigate(`${DESIGN}/${appId}/${DESIGN_FRAME}/${key}`)
+    navigate(`/${DESIGN}/${appId}/${DESIGN_FRAME}/${key}`)
   }, [navigate]);
 
   return (
