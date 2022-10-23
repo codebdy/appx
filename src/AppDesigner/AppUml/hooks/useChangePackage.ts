@@ -5,8 +5,8 @@ import { PackageMeta } from "../meta/PackageMeta";
 import { packagesState } from "../recoil/atoms";
 
 export function useChangePackage() {
-  const appUuid = useEdittingAppId();
-  const setPackages = useSetRecoilState(packagesState(appUuid));
+  const appId = useEdittingAppId();
+  const setPackages = useSetRecoilState(packagesState(appId));
   const change = useCallback((pkg: PackageMeta) => {
     setPackages(packages => packages.map(pg => pg.uuid === pkg.uuid ? pkg : pg))
   }, [])

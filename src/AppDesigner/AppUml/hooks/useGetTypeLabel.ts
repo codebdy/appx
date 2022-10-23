@@ -3,8 +3,8 @@ import { ID } from "~/shared";
 import { Type, Types } from "../meta/Type";
 import { useGetClass } from "./useGetClass";
 
-export function useGetTypeLabel(appUuid: ID) {
-  const getClass = useGetClass(appUuid);
+export function useGetTypeLabel(appId: ID) {
+  const getClass = useGetClass(appId);
 
   const typeName = useCallback(
     (type: Type, typeUuid?: string): string => {

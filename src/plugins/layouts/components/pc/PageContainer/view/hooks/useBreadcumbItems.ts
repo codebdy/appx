@@ -5,7 +5,7 @@ import { IMenuItem, useParseLangMessage, useRunnerParams } from "@rxdrag/plugin-
 
 export function useBreadcumbItems() {
   const { menu } = useRunnerParams();
-  const { device, appUuid, menuUuid } = useParams();
+  const { device, appId, menuUuid } = useParams();
   const p = useParseLangMessage();
 
   const getMenuItemPath = useCallback((uuid: string, items?: IMenuItem[]): IMenuItem[] => {
@@ -31,11 +31,11 @@ export function useBreadcumbItems() {
     for (const item of menuPath) {
       items.push({
         breadcrumbName: p(item.title),
-        path: item.route?.pageId && `/app/${device}/${appUuid}/${item.route?.pageId}`
+        path: item.route?.pageId && `/app/${device}/${appId}/${item.route?.pageId}`
       })
     }
     return items;
-  }, [appUuid, device, getMenuItemPath, menuUuid, p])
+  }, [appId, device, getMenuItemPath, menuUuid, p])
 
   return breadCumbs;
 }

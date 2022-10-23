@@ -21,7 +21,7 @@ export const GraphCanvas = memo(
     onSetGraph: (graph?: Graph) => void,
   }) => {
     const { graph, onSetGraph } = props;
-    const appUuid = useEdittingAppId();
+    const appId = useEdittingAppId();
 
     useEffect(() => {
       const config = getGraphConfig();
@@ -34,17 +34,17 @@ export const GraphCanvas = memo(
     }, [onSetGraph]);
 
     useExplorerScrollbarHide();
-    useTriggerSelectedEvent(appUuid);
-    useTriggerPressedLineTypeEvent(appUuid);
-    useNodeSelect(graph, appUuid);
-    useEdgeSelect(graph, appUuid);
-    useNodesShow(graph, appUuid);
-    useEdgeLineDraw(graph, appUuid);
-    useEdgesShow(graph, appUuid);
-    useNodeChange(graph, appUuid);
-    useEdgeChange(graph, appUuid);
-    useNodeAdd(graph, appUuid);
-    useEdgeHover(graph, appUuid);
+    useTriggerSelectedEvent(appId);
+    useTriggerPressedLineTypeEvent(appId);
+    useNodeSelect(graph, appId);
+    useEdgeSelect(graph, appId);
+    useNodesShow(graph, appId);
+    useEdgeLineDraw(graph, appId);
+    useEdgesShow(graph, appId);
+    useNodeChange(graph, appId);
+    useEdgeChange(graph, appId);
+    useNodeAdd(graph, appId);
+    useEdgeHover(graph, appId);
 
     return (
       <div

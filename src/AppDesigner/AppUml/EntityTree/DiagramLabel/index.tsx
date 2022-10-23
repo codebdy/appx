@@ -22,10 +22,10 @@ const DiagramLabel = memo((
   const [editing, setEditing] = useState(false);
   const [visible, setVisible] = useState(false);
   const p = useParseLangMessage();
-  const appUuid = useEdittingAppId();
-  const backup = useBackupSnapshot(appUuid);
-  const setDiagrams = useSetRecoilState(diagramsState(appUuid));
-  const getPagcage = useGetPackage(appUuid)
+  const appId = useEdittingAppId();
+  const backup = useBackupSnapshot(appId);
+  const setDiagrams = useSetRecoilState(diagramsState(appId));
+  const getPagcage = useGetPackage(appId)
 
   useEffect(() => {
     setName(diagram.name)
@@ -52,7 +52,7 @@ const DiagramLabel = memo((
 
   return (
     <TreeNodeLabel
-      fixedAction={visible || (getPagcage(diagram.packageUuid)?.sharable && appUuid !== SYSTEM_APP_ID)}
+      fixedAction={visible || (getPagcage(diagram.packageUuid)?.sharable && appId !== SYSTEM_APP_ID)}
       action={
         !editing ?
           <DiagramAction diagram={diagram}

@@ -17,9 +17,9 @@ const RelationLabel = memo((
   }
 ) => {
   const { title, relation } = props;
-  const appUuid = useEdittingAppId();
-  const selectedElement = useRecoilValue(selectedElementState(appUuid));
-  const removeRelation = useDeleteRelation(appUuid);
+  const appId = useEdittingAppId();
+  const selectedElement = useRecoilValue(selectedElementState(appId));
+  const removeRelation = useDeleteRelation(appId);
 
   const handleDelete = useCallback((event: React.MouseEvent) => {
     event.stopPropagation();

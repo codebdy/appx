@@ -4,8 +4,8 @@ import { ID } from "~/shared";
 import { RelationType } from "../meta/RelationMeta";
 import { relationsState } from "../recoil/atoms";
 
-export function useGetFirstParentUuids(appUuid: ID) {
-  const relations = useRecoilValue(relationsState(appUuid));
+export function useGetFirstParentUuids(appId: ID) {
+  const relations = useRecoilValue(relationsState(appId));
   const getParentUuid = useCallback(
     (uuid: string) => {
       const uuids: string[] = [];

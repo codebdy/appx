@@ -18,12 +18,12 @@ import {
 import { useDiagramEdges } from "../hooks/useDiagramEdges";
 import { ID } from "~/shared";
 
-export function useEdgesShow(graph: Graph | undefined, appUuid: ID) {
-  const selectedDiagram = useRecoilValue(selectedUmlDiagramState(appUuid));
-  const selectedElement = useRecoilValue(selectedElementState(appUuid));
-  const drawingLine = useRecoilValue(drawingLineState(appUuid));
+export function useEdgesShow(graph: Graph | undefined, appId: ID) {
+  const selectedDiagram = useRecoilValue(selectedUmlDiagramState(appId));
+  const selectedElement = useRecoilValue(selectedElementState(appId));
+  const drawingLine = useRecoilValue(drawingLineState(appId));
 
-  const edges = useDiagramEdges(selectedDiagram || "", appUuid);
+  const edges = useDiagramEdges(selectedDiagram || "", appId);
 
   useEffect(() => {
     edges?.forEach((edgeMeta) => {

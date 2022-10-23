@@ -14,9 +14,9 @@ export function useColumns() {
     {
       title:
         t('Monitor.App'),
-      dataIndex: 'appUuid',
-      key: 'appUuid',
-      render: (_, { appUuid }) => getAppName(appUuid),
+      dataIndex: 'appId',
+      key: 'appId',
+      render: (_, { app }) => getAppName(app.id),
     },
     {
       title: t('Monitor.User'),
@@ -43,7 +43,7 @@ export function useColumns() {
             operateType === BusinessOperateType.publishMeta &&
             t("Monitor.PublishMeta")
           }
-                    {
+          {
             operateType === BusinessOperateType.install &&
             t("Monitor.Install")
           }

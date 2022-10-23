@@ -3,8 +3,8 @@ import { useRecoilValue } from "recoil";
 import { ID } from "~/shared";
 import { diagramsState } from "../recoil/atoms";
 
-export function useGetDiagramByName(appUuid: ID) {
-  const diagrams = useRecoilValue(diagramsState(appUuid));
+export function useGetDiagramByName(appId: ID) {
+  const diagrams = useRecoilValue(diagramsState(appId));
 
   const getDiagramByName = useCallback((name: string) => {
     return diagrams.find((diagram) => diagram.name === name);

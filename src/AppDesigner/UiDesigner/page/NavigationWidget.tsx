@@ -18,13 +18,13 @@ export const NavigationWidget = memo((
   }
 ) => {
   const { app, activeKey } = props;
-  const { appUuid } = useParams();
+  const { appId } = useParams();
   const { t } = useTranslation();
   const navigate = useNavigate()
   const parse = useParseLangMessage();
   const handleBack = useCallback(() => {
-    navigate(`/${DESIGN}/${appUuid}/${AppEntryRouts.AppUis}`)
-  }, [appUuid, navigate]);
+    navigate(`/${DESIGN}/${appId}/${AppEntryRouts.AppUis}`)
+  }, [appId, navigate]);
   const pageId = useSelectedPageId();
   const pages = usePages();
   const selectedPage = useMemo(() => {

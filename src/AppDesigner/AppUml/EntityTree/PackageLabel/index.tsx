@@ -28,9 +28,9 @@ const PackageLabel = memo((
     setName(pkg.name)
   }, [pkg])
 
-  const appUuid = useEdittingAppId();
-  const backup = useBackupSnapshot(appUuid);
-  const setPackages = useSetRecoilState(packagesState(appUuid));
+  const appId = useEdittingAppId();
+  const backup = useBackupSnapshot(appId);
+  const setPackages = useSetRecoilState(packagesState(appId));
 
   const handleVisableChange = useCallback((visible) => {
     setVisible(visible)
@@ -53,7 +53,7 @@ const PackageLabel = memo((
 
   return (
     <TreeNodeLabel
-      fixedAction={visible || (pkg.sharable && appUuid !== SYSTEM_APP_ID)}
+      fixedAction={visible || (pkg.sharable && appId !== SYSTEM_APP_ID)}
       action={!editing ?
         <PackageAction pkg={pkg}
           onEdit={handleEdit}

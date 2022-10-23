@@ -1,4 +1,5 @@
 import { ID } from "~/shared";
+import { IApp, IAppInput } from "./app";
 
 export enum PluginType {
   uploaded = "uploaded",
@@ -8,7 +9,7 @@ export enum PluginType {
 
 export interface IPluginInfo {
   id?: ID;
-  appUuid?: string;
+  app?: IApp;
   title?: string;
   url?: string;
   pluginId?: string,
@@ -20,7 +21,9 @@ export interface IPluginInfo {
 
 export interface IPluginInfoInput {
   id?: ID;
-  appUuid?: string;
+  app?: {
+    sync: IAppInput
+  };
   title?: string;
   url?: string;
   type?: PluginType,

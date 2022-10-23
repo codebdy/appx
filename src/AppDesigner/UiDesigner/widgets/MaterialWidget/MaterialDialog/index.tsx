@@ -20,7 +20,7 @@ export const MaterialDialog = memo(() => {
   const { t } = useTranslation();
   const getUnCategoriedComponents = useGetNotCategoriedComponents(tabs);
   const [upsert, { loading, error }] = useUpsertMaterialConfig({
-    onCompleted:()=>{
+    onCompleted: () => {
       setIsModalVisible(false);
     }
   });
@@ -36,7 +36,7 @@ export const MaterialDialog = memo(() => {
   }, []);
 
   const handleOk = useCallback(() => {
-    upsert({...materialConfig, appUuid: app.uuid, device, schemaJson:{tabs}})
+    upsert({ ...materialConfig, app: { sync: { id: app.id } }, device, schemaJson: { tabs } })
   }, [app.uuid, device, materialConfig, tabs, upsert]);
 
   const handleCancel = useCallback(() => {
@@ -143,22 +143,22 @@ export const MaterialDialog = memo(() => {
           loading: loading
         }}
       >
-      <DragDropContext onDragEnd={onDragEnd}>
-        <div className='material-dialog-content'>
-          <div className='material-dialog-tabs right-border'>
-            <MaterialTabs tabs={tabs} onTabsChange={handleTabsChange} />
-          </div>
-          <div className="material-dialog-plugins">
-            <div className='content-title'>
-              <div className='title-text bottom-border'>{t("Materials.ComponentsForChoose")}</div>
+        <DragDropContext onDragEnd={onDragEnd}>
+          <div className='material-dialog-content'>
+            <div className='material-dialog-tabs right-border'>
+              <MaterialTabs tabs={tabs} onTabsChange={handleTabsChange} />
             </div>
-            <div className='plugin-content'>
-              <PluginList tabs={tabs} />
+            <div className="material-dialog-plugins">
+              <div className='content-title'>
+                <div className='title-text bottom-border'>{t("Materials.ComponentsForChoose")}</div>
+              </div>
+              <div className='plugin-content'>
+                <PluginList tabs={tabs} />
+              </div>
             </div>
           </div>
-        </div>
-      </DragDropContext>
-    </Modal>
+        </DragDropContext>
+      </Modal>
     </>
   );
 })

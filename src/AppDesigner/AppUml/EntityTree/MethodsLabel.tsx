@@ -14,8 +14,8 @@ const MethodsLabel = memo((
   }
 ) => {
   const { cls } = props;
-  const appUuid = useEdittingAppId();
-  const addMethod = useCreateClassMethod(appUuid);
+  const appId = useEdittingAppId();
+  const addMethod = useCreateClassMethod(appId);
   const { t } = useTranslation();
   
   return (

@@ -24,7 +24,9 @@ query {
         id
         name
       }
-      appUuid
+      app{
+        id
+      }
       createdAt
       operateType
       classUuid

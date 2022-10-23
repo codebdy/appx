@@ -11,10 +11,10 @@ export const AppFrames = memo(() => {
   const { t } = useTranslation();
   const devices = useDevices();
   const navigate = useNavigate();
-  const { appUuid } = useParams();
+  const { appId } = useParams();
 
   const handleClick = useCallback((key: string) => {
-    navigate(`/${DESIGN_FRAME}/${key}/${appUuid}/`)
+    navigate(`/${DESIGN_FRAME}/${key}/${appId}/`)
   }, [navigate]);
 
   return (

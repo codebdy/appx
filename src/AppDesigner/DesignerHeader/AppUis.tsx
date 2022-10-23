@@ -11,7 +11,7 @@ const AppUis = memo((props: {
   loading?: boolean
 }) => {
   const { loading } = props;
-  const { appUuid } = useParams();
+  const { appId } = useParams();
   const navigate = useNavigate();
   const { t } = useTranslation();
   const devices = useDevices();
@@ -42,14 +42,14 @@ const AppUis = memo((props: {
                               key="design"
                               shape="round"
                               type="primary"
-                              onClick={() => { navigate(`/${DESIGN_UI}/${device.key}/${appUuid}`) }}
+                              onClick={() => { navigate(`/${DESIGN_UI}/${device.key}/${appId}`) }}
                             >
                               {t("AppManager.ToDesign")}
                             </Button>,
                             <Button
                               key="preview"
                               shape="round"
-                              onClick={() => { window.open(`/app/${device.key}/${appUuid}`) }}
+                              onClick={() => { window.open(`/app/${device.key}/${appId}`) }}
                             >
                               {t("AppManager.ToPreview")}
                             </Button>,

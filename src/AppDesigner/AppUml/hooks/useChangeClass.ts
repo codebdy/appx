@@ -7,10 +7,10 @@ import { ClassMeta } from "../meta/ClassMeta";
 import { classesState } from "../recoil/atoms";
 import { useBackupSnapshot } from "./useBackupSnapshot";
 
-export function useChangeClass(appUuid: ID) {
-  const backupSnapshot = useBackupSnapshot(appUuid);
-  const setClasses = useSetRecoilState(classesState(appUuid));
-  const classes = useRecoilValue(classesState(appUuid));
+export function useChangeClass(appId: ID) {
+  const backupSnapshot = useBackupSnapshot(appId);
+  const setClasses = useSetRecoilState(classesState(appId));
+  const classes = useRecoilValue(classesState(appId));
   const { t } = useTranslation();
 
   const changeClass = useCallback(

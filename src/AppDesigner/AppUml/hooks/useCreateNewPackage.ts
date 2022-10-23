@@ -5,8 +5,8 @@ import { createUuid, ID } from "~/shared";
 import { PackageMeta, PackageStereoType } from "../meta/PackageMeta";
 import { packagesState } from './../recoil/atoms';
 
-export function useCreateNewPackage(appUuid: ID) {
-  const packages = useRecoilValue(packagesState(appUuid));
+export function useCreateNewPackage(appId: ID) {
+  const packages = useRecoilValue(packagesState(appId));
   const { t } = useTranslation();
   const getNewPackageName = useCallback(() => {
     const prefix = t("AppUml.NewPackage");
@@ -22,14 +22,13 @@ export function useCreateNewPackage(appUuid: ID) {
   const createNewPackage = useCallback(
     () => {
       const newPackage: PackageMeta = {
-        appUuid,
         uuid: createUuid(),
         name: getNewPackageName(),
         stereoType: PackageStereoType.Normal,
       };
       return newPackage;
     },
-    [appUuid, getNewPackageName]
+    [appId, getNewPackageName]
   );
 
   return createNewPackage;

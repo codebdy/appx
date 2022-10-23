@@ -5,9 +5,9 @@ import { StereoType } from "../meta/ClassMeta";
 import { ID } from "~/shared";
 import { useSelectedDiagramPackageUuid } from "./useSelectedDiagramPackageUuid";
 
-export function useCreateTempClassNodeForNew(appUuid: ID) {
-  const packageUuid = useSelectedDiagramPackageUuid(appUuid)
-  const creatNewClassMeta = useCreateNewClass(appUuid);
+export function useCreateTempClassNodeForNew(appId: ID) {
+  const packageUuid = useSelectedDiagramPackageUuid(appId)
+  const creatNewClassMeta = useCreateNewClass(appId);
   const createTempClassNodeForNew = useCallback(
     (stereoType: StereoType) => {
       const classMeta = creatNewClassMeta(stereoType, packageUuid);

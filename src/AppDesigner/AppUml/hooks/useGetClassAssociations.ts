@@ -9,16 +9,15 @@ export interface Association {
   relation: RelationMeta;
 }
 
-export function useGetClassAssociations(appUuid: ID) {
-  const relations = useRecoilValue(relationsState(appUuid));
+export function useGetClassAssociations(appId: ID) {
+  const relations = useRecoilValue(relationsState(appId));
 
   const getClassAssociations = useCallback(
     (classUuid: string) => {
       const associations: Association[] = [];
       for (const relation of relations) {
         if (
-          relation.relationType === RelationType.INHERIT ||
-          relation.relationType === RelationType.LINK_LINE
+          relation.relationType === RelationType.INHERIT 
         ) {
           continue;
         }

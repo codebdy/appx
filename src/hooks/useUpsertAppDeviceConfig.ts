@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { IPostOptions, usePostOne } from "../enthooks/hooks/usePostOne";
 import { IAppDeviceConfig } from "../model";
-import { IAppDeviceConfigInput } from "../model/input";
+import { IAppDeviceConfigInput } from "../model";
 import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
 
 export function useUpsertAppDeviceConfig(options?: IPostOptions<any>): [
@@ -13,14 +13,14 @@ export function useUpsertAppDeviceConfig(options?: IPostOptions<any>): [
   const [post, { error, loading }] = usePostOne<IAppDeviceConfigInput, IAppDeviceConfig>("AppDeviceConfig",
     {
       ...options,
-      fieldsGql: " device appUuid schemaJson"
+      fieldsGql: " device schemaJson"
     }
   )
 
   const upsert = useCallback((config: IAppDeviceConfigInput) => {
     const newConfig = {
       ...config,
-      appUuid: params.app.uuid,
+      app: { sync: { id: params.app.id } },
     }
     post({ ...newConfig })
   }, [params?.app, post]);

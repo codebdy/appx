@@ -1,4 +1,5 @@
 import { ID } from "~/shared";
+import { IApp, IAppInput } from "./app";
 
 export interface ILang {
   key: string,
@@ -8,14 +9,16 @@ export interface ILang {
 export interface ILangLocal {
   id: ID;
   name: string;
-  appUuid?: string;
+  app?: IApp;
   schemaJson?: any;
 }
 
 export interface ILangLocalInput {
   id?: ID;
   name?: string;
-  appUuid?: string;
+  app?: {
+    sync: IAppInput
+  };
   schemaJson?: any;
 }
 

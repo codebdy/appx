@@ -3,9 +3,9 @@ import { IInstalledPlugin } from "../model";
 import { useLoadPlugins } from "./useLoadPlugins";
 import { useQueryPluginInfos } from "./useQueryPluginInfos";
 
-export function useIntalledPlugins(appUuid: string) {
+export function useIntalledPlugins(appId: string) {
   const [installedPlugins, setInstalledPlugins] = useState<IInstalledPlugin[]>([])
-  const { data, error, loading } = useQueryPluginInfos(appUuid);
+  const { data, error, loading } = useQueryPluginInfos(appId);
 
   const load = useLoadPlugins();
 

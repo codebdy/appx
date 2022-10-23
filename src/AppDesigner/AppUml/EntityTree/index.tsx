@@ -38,21 +38,21 @@ const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
   const { graph } = props;
-  const { appUuid = SYSTEM_APP_ID } = useParams();
-  const packages = useRecoilValue(packagesState(appUuid));
-  const diagrams = useRecoilValue(diagramsState(appUuid));
-  const classes = useRecoilValue(classesState(appUuid));
-  const codes = useRecoilValue(codesState(appUuid));
-  const isDiagram = useIsDiagram(appUuid);
-  const isElement = useIsElement(appUuid);
-  const isCode = useIsCode(appUuid);
-  const parseRelationUuid = useParseRelationUuid(appUuid);
-  const [selectedDiagramId, setSelecteDiagramId] = useRecoilState(selectedUmlDiagramState(appUuid));
-  const [selectedCodeId, setSelectedCodeId] = useRecoilState(selectedCodeState(appUuid));
-  const [selectedElement, setSelectedElement] = useRecoilState(selectedElementState(appUuid));
-  const getSourceRelations = useGetSourceRelations(appUuid);
-  const getTargetRelations = useGetTargetRelations(appUuid);
-  const getClass = useGetClass(appUuid);
+  const { appId = SYSTEM_APP_ID } = useParams();
+  const packages = useRecoilValue(packagesState(appId));
+  const diagrams = useRecoilValue(diagramsState(appId));
+  const classes = useRecoilValue(classesState(appId));
+  const codes = useRecoilValue(codesState(appId));
+  const isDiagram = useIsDiagram(appId);
+  const isElement = useIsElement(appId);
+  const isCode = useIsCode(appId);
+  const parseRelationUuid = useParseRelationUuid(appId);
+  const [selectedDiagramId, setSelecteDiagramId] = useRecoilState(selectedUmlDiagramState(appId));
+  const [selectedCodeId, setSelectedCodeId] = useRecoilState(selectedCodeState(appId));
+  const [selectedElement, setSelectedElement] = useRecoilState(selectedElementState(appId));
+  const getSourceRelations = useGetSourceRelations(appId);
+  const getTargetRelations = useGetTargetRelations(appId);
+  const getClass = useGetClass(appId);
   const { t } = useTranslation();
 
   const getAttributeNode = useCallback((attr: AttributeMeta) => {

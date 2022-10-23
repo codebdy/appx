@@ -6,9 +6,9 @@ import { useCreateClassInnerId } from "./useCreateClassInnerId";
 import { useGetClassByName } from "./useGetClassByName";
 import { createUuid, ID } from "~/shared";
 
-export function useCreateNewClass(appUuid: ID) {
-  const getClassByName = useGetClassByName(appUuid);
-  const createInnerId = useCreateClassInnerId(appUuid);
+export function useCreateNewClass(appId: ID) {
+  const getClassByName = useGetClassByName(appId);
+  const createInnerId = useCreateClassInnerId(appId);
 
   const getNewClassName = useCallback(() => {
     const prefix = "NewClass";

@@ -18,9 +18,9 @@ export const AttributePanel = (props: {
 }) => {
   const { attribute, cls } = props;
   const [nameError, setNameError] = useState<string>();
-  const appUuid = useEdittingAppId();
-  const changeAttribute = useChangeAttribute(appUuid);
-  const getTypeLabel = useGetTypeLabel(appUuid);
+  const appId = useEdittingAppId();
+  const changeAttribute = useChangeAttribute(appId);
+  const getTypeLabel = useGetTypeLabel(appId);
   const { t } = useTranslation();
   const [form] = Form.useForm()
 

@@ -11,7 +11,7 @@ export function useGetPluginInfo() {
 
   const getPlugInfo = useCallback((plugin: IPlugin, url: string, type: PluginType): IPluginInfo => {
     return {
-      appUuid: app?.uuid,
+      app: app,
       url,
       type,
       title: getTitle(plugin),

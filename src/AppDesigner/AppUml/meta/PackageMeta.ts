@@ -11,7 +11,6 @@ export interface PackageMeta{
   name: string;
   system?: boolean;
   sharable?: boolean;
-  appUuid: string;
   stereoType?: PackageStereoType;
   tokenScript?: string;
 }

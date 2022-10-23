@@ -1,9 +1,10 @@
 import { Device } from "@rxdrag/appx-plugin-sdk";
 import { ID } from "~/shared";
+import { IApp } from "./app";
 
 export interface IAuthConfig {
   id: ID;
-  appUuid: string;
+  app?: IApp;
   roleId: ID;
 }
 

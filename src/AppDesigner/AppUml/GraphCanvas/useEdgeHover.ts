@@ -5,8 +5,8 @@ import { ID } from "~/shared";
 import { drawingLineState } from "../recoil/atoms";
 export const HOVER_COLOR = "rgba(115,103,240,0.3)";
 
-export function useEdgeHover(graph: Graph | undefined, appUuid: ID) {
-  const drawingLine = useRecoilValue(drawingLineState(appUuid));
+export function useEdgeHover(graph: Graph | undefined, appId: ID) {
+  const drawingLine = useRecoilValue(drawingLineState(appId));
 
   const handleEdgeMouseEnter = useCallback(({ edge }) => {
     if (edge && drawingLine?.tempEdgeId !== edge.id) {

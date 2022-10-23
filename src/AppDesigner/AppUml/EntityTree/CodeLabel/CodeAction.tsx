@@ -16,9 +16,9 @@ const CodeAction = memo((
   }
 ) => {
   const { code, onEdit, onVisibleChange } = props;
-  const appUuid = useEdittingAppId();
-  const getPagcage = useGetPackage(appUuid)
-  const deleteDiagram = useDeleteDiagram(appUuid)
+  const appId = useEdittingAppId();
+  const getPagcage = useGetPackage(appId)
+  const deleteDiagram = useDeleteDiagram(appId)
   const { t } = useTranslation();
 
   const handleDelete = useCallback(() => {
@@ -56,7 +56,7 @@ const CodeAction = memo((
   ), [handleDelete, onEdit, onVisibleChange, t]);
 
   return (
-    getPagcage(code.packageUuid)?.sharable && appUuid !== SYSTEM_APP_ID ?
+    getPagcage(code.packageUuid)?.sharable && appId !== SYSTEM_APP_ID ?
       <Button type="text" shape='circle' size='small'>
         <LockOutlined />
       </Button>

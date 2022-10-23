@@ -15,19 +15,19 @@ import { PropertyBox } from "~/common/ModelBoard/PropertyBox";
 import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 
 export const PropertyPanel = memo(() => {
-  const appUuid = useEdittingAppId();
-  const selectedElement = useRecoilValue(selectedElementState(appUuid));
-  const selectedEntity = useClass(selectedElement || "", appUuid);
+  const appId = useEdittingAppId();
+  const selectedElement = useRecoilValue(selectedElementState(appId));
+  const selectedEntity = useClass(selectedElement || "", appId);
   const { t } = useTranslation();
   const { cls: attributeCls, attribute } = useAttribute(
     selectedElement || "",
-    appUuid
+    appId
   );
   const { cls: methodCls, method } = useMethod(
     selectedElement || "",
-    appUuid
+    appId
   );
-  const relation = useRelation(selectedElement || "", appUuid);
+  const relation = useRelation(selectedElement || "", appId);
 
   return (
     <PropertyBox title={t("AppUml.Properties")} >

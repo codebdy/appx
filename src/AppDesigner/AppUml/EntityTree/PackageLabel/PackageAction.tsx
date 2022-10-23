@@ -27,26 +27,26 @@ const PackageAction = memo((
   }
 ) => {
   const { pkg, onEdit, onVisibleChange } = props;
-  const appUuid = useEdittingAppId();
+  const appId = useEdittingAppId();
   const [newDiagram, setNewDiagram] = useState<DiagramMeta>();
   const [newCode, setNewCode] = useState<CodeMeta>();
-  const deletePackage = useDeletePackage(appUuid)
-  const createNewClass = useCreateNewClass(appUuid);
-  const createNewDiagram = useCreateNewDiagram(appUuid);
-  const createNewCode = useCreateNewCode(appUuid);
-  const setClasses = useSetRecoilState(classesState(appUuid));
-  const backupSnapshot = useBackupSnapshot(appUuid);
-  const setDiagrams = useSetRecoilState(diagramsState(appUuid));
-  const setCodes = useSetRecoilState(codesState(appUuid));
+  const deletePackage = useDeletePackage(appId)
+  const createNewClass = useCreateNewClass(appId);
+  const createNewDiagram = useCreateNewDiagram(appId);
+  const createNewCode = useCreateNewCode(appId);
+  const setClasses = useSetRecoilState(classesState(appId));
+  const backupSnapshot = useBackupSnapshot(appId);
+  const setDiagrams = useSetRecoilState(diagramsState(appId));
+  const setCodes = useSetRecoilState(codesState(appId));
   const { t } = useTranslation();
 
   const updatePackage = useChangePackage();
 
   const setSelectedDiagram = useSetRecoilState(
-    selectedUmlDiagramState(appUuid)
+    selectedUmlDiagramState(appId)
   );
 
-  const setSelectedCode = useSetRecoilState(selectedCodeState(appUuid));
+  const setSelectedCode = useSetRecoilState(selectedCodeState(appId));
 
   const handleDelete = useCallback(() => {
     deletePackage(pkg.uuid)
@@ -111,7 +111,7 @@ const PackageAction = memo((
     setNewCode(undefined);
   }, [backupSnapshot, setCodes, setSelectedCode, setSelectedDiagram]);
   const shareItems = useMemo(() => {
-    return appUuid === SYSTEM_APP_ID
+    return appId === SYSTEM_APP_ID
       ? [
         pkg?.sharable
           ?
@@ -247,7 +247,7 @@ const PackageAction = memo((
   ), [addClass, handleAddDiagram, handleDelete, onEdit, onVisibleChange, shareItems, t]);
 
   return (
-    pkg.sharable && appUuid !== SYSTEM_APP_ID ?
+    pkg.sharable && appId !== SYSTEM_APP_ID ?
       <Button type="text" shape='circle' size='small'>
         <LockOutlined />
       </Button>

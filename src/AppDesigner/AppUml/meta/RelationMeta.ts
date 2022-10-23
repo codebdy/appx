@@ -74,5 +74,4 @@ export interface RelationMeta {
   };
 
   system?: boolean;
-  appUuid: string;
 }

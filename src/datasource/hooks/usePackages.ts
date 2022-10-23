@@ -3,7 +3,7 @@ import { useSelectedAppUuid } from "@rxdrag/plugin-sdk/contexts/appRoot";
 import { packagesState } from "../recoil";
 
 export function usePackages(){
-  const appUuid = useSelectedAppUuid();
+  const appId = useSelectedAppUuid();
 
-  return useRecoilValue(packagesState(appUuid));
+  return useRecoilValue(packagesState(appId));
 }

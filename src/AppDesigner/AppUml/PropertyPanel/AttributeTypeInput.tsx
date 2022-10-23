@@ -18,10 +18,10 @@ export const AttributeTypeInput = memo(
     }
   ) => {
     const { attribute } = props;
-    const appUuid = useEdittingAppId();
-    const enums = useEnums(appUuid);
-    const valueObjects = useValueObjects(appUuid);
-    const entities = useEntities(appUuid);
+    const appId = useEdittingAppId();
+    const enums = useEnums(appId);
+    const valueObjects = useValueObjects(appId);
+    const entities = useEntities(appId);
     const { t } = useTranslation();
     const isId = useMemo(() => attribute.name === CONST_ID, [attribute.name]);
 

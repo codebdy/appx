@@ -7,8 +7,8 @@ import {
 import { Types } from "../meta/Type";
 import { useGetTypeLabel } from "./useGetTypeLabel";
 
-export function useCreateMethod(appUuid: ID) {
-  const getTypeName = useGetTypeLabel(appUuid);
+export function useCreateMethod(appID: ID) {
+  const getTypeName = useGetTypeLabel(appID);
 
   const createMethod = useCallback(
     (methods: MethodMeta[]) => {

@@ -30,7 +30,7 @@ export function useLoadPlugins() {
         installedPlugins.push({
           pluginInfo: {
             ...pluginInfo || {},
-            appUuid: app?.uuid,
+            app: app,
             url: pluginInfo.url,
             type: pluginInfo.type
           },

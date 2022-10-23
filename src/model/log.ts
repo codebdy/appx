@@ -1,5 +1,6 @@
 import { IUser } from "../enthooks";
 import { ID } from "~/shared";
+import { IApp } from "./app";
 
 export enum ModelOperateType {
   query = "query",
@@ -17,7 +18,7 @@ export interface IModelLog {
   id: ID;
   user?: IUser;
   ip?: string;
-  appUuid?: string;
+  app?: IApp;
   createdAt?: Date;
   operateType?: ModelOperateType;
   classUuid?: string;
@@ -40,7 +41,7 @@ export interface IBusinessLog {
   id: ID;
   user?: IUser;
   ip?: string;
-  appUuid?: string;
+  app?: IApp;
   createdAt?: Date;
   operateType?: BusinessOperateType;
   result?: OperateResult;

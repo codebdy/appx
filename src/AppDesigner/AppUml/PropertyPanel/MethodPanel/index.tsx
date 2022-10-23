@@ -14,9 +14,9 @@ import { ArgsInput } from "./ArgsInput/ArgsInput";
 export const MethodPanel = memo((props: { method: MethodMeta; cls: ClassMeta }) => {
   const { method, cls } = props;
   const [nameError, setNameError] = useState<string>();
-  const appUuid = useEdittingAppId();
-  const changeMethod = useChangeMethod(appUuid);
-  const getTypeLabel = useGetTypeLabel(appUuid);
+  const appId = useEdittingAppId();
+  const changeMethod = useChangeMethod(appId);
+  const getTypeLabel = useGetTypeLabel(appId);
   const { t } = useTranslation();
   const [form] = Form.useForm()
 

@@ -18,13 +18,13 @@ export const downloadFile = function (filename: string, content: string) {
 };
 
 
-export function useExportJson(appUuid: string) {
-  const getMeta = useGetMeta(appUuid)
+export function useExportJson(appId: string) {
+  const getMeta = useGetMeta(appId)
   const doExport = useCallback(() => {
 
     const data: Meta =getMeta();
-    downloadFile(appUuid + '.json', JSON.stringify(data, null, 2));
-  }, [appUuid, getMeta]);
+    downloadFile(appId + '.json', JSON.stringify(data, null, 2));
+  }, [appId, getMeta]);
 
   return doExport
 }

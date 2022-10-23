@@ -3,8 +3,8 @@ import { useRecoilValue } from "recoil";
 import { ID } from "~/shared";
 import { relationsState } from "../recoil/atoms";
 
-export function useCreateRelationInnerId(appUuid: ID) {
-  const relations = useRecoilValue(relationsState(appUuid));
+export function useCreateRelationInnerId(appid: ID) {
+  const relations = useRecoilValue(relationsState(appid));
   const findRelationByInnerId = useCallback((id:number)=>{
     for (const relation of relations) {
       if(relation.innerId === id ){

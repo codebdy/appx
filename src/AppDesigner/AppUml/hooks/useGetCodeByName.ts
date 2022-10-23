@@ -3,8 +3,8 @@ import { useRecoilValue } from "recoil";
 import { ID } from "~/shared";
 import { codesState } from "../recoil/atoms";
 
-export function useGetCodeByName(appUuid: ID) {
-  const codes = useRecoilValue(codesState(appUuid));
+export function useGetCodeByName(appId: ID) {
+  const codes = useRecoilValue(codesState(appId));
 
   const getCodeByName = useCallback((name: string) => {
     return codes.find((code) => code.name === name);

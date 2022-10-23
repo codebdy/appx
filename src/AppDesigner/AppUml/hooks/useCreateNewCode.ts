@@ -3,8 +3,8 @@ import { createUuid, ID } from "~/shared";
 import { useTranslation } from "react-i18next";
 import { useGetCodeByName } from "./useGetCodeByName";
 
-export function useCreateNewCode(appUuid: ID) {
-  const getCodeByName = useGetCodeByName(appUuid);
+export function useCreateNewCode(appId: ID) {
+  const getCodeByName = useGetCodeByName(appId);
   const { t } = useTranslation();
 
   const getNewCodeName = useCallback(() => {

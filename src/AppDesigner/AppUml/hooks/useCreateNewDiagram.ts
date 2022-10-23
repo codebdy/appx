@@ -3,8 +3,8 @@ import { useCallback } from "react";
 import { createUuid, ID } from "~/shared";
 import { useTranslation } from "react-i18next";
 
-export function useCreateNewDiagram(appUuid: ID) {
-  const getDiagramByName = useGetDiagramByName(appUuid);
+export function useCreateNewDiagram(appId: ID) {
+  const getDiagramByName = useGetDiagramByName(appId);
   const { t } = useTranslation();
   
   const getNewDiagramName = useCallback(() => {

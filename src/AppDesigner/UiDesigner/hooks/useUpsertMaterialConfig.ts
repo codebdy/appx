@@ -20,7 +20,7 @@ export function useUpsertMaterialConfig(options?: IPostOptions<any>): [
   const upsert = useCallback((config: IMaterialConfigInput) => {
     const newConfig = {
       ...config,
-      appUuid: params.app.uuid,
+      app: { sync: { id: params.app.id } },
     }
     post({ ...newConfig })
   }, [params?.app, post]);

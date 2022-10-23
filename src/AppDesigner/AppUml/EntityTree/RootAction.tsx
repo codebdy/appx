@@ -12,12 +12,12 @@ import { PackageDialog } from "./PackageLabel/PackageDialog";
 import { PackageMeta } from "../meta/PackageMeta";
 
 const RootAction = memo(() => {
-  const appUuid = useEdittingAppId();
+  const appId = useEdittingAppId();
   const [newPackage, setNewPackage] = useState<PackageMeta>();
-  const setPackages = useSetRecoilState(packagesState(appUuid));
-  const createNewPackage = useCreateNewPackage(appUuid);
-  const backup = useBackupSnapshot(appUuid);
-  const expotJson = useExportJson(appUuid);
+  const setPackages = useSetRecoilState(packagesState(appId));
+  const createNewPackage = useCreateNewPackage(appId);
+  const backup = useBackupSnapshot(appId);
+  const expotJson = useExportJson(appId);
   const { t } = useTranslation();
   const handleAddPackage = useCallback(
     () => {

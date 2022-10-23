@@ -4,9 +4,9 @@ import { ID } from "~/shared";
 import { classesState } from "../recoil/atoms";
 import { useChangeClass } from "./useChangeClass";
 
-export function useDeleteAttribute(appUuid: ID) {
-  const changeClass = useChangeClass(appUuid);
-  const clses = useRecoilValue(classesState(appUuid))
+export function useDeleteAttribute(appId: ID) {
+  const changeClass = useChangeClass(appId);
+  const clses = useRecoilValue(classesState(appId))
 
   const deleteAttribute = useCallback(
     (attributeUuid: string) => {

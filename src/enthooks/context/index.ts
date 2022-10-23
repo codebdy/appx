@@ -13,7 +13,7 @@ export interface IEntxConfig {
 export const empertyConfig = {
   endpoint: "",
   tokenName: "",
-  appUuid: SYSTEM_APP_ID,
+  appId: SYSTEM_APP_ID,
   setToken: () => {
     throw new Error("Not implement setToken")
   },

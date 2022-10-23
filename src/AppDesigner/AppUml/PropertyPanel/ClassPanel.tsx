@@ -10,8 +10,8 @@ import { ScriptInput } from "./ScriptInput/ScriptInput";
 export const ClassPanel = (props: { cls: ClassMeta }) => {
   const { cls } = props;
   const [nameError, setNameError] = useState<string>();
-  const appUuid = useEdittingAppId();
-  const changeClass = useChangeClass(appUuid);
+  const appId = useEdittingAppId();
+  const changeClass = useChangeClass(appId);
   const { t } = useTranslation();
   const [form] = Form.useForm()
 

@@ -8,7 +8,7 @@ import { IPageFrame } from "./pageframe";
 
 export interface IAppConfig {
   id: ID;
-  appUuid?: string;
+  app?: IApp;
   schemaJson?: {
     multiLang: {
       open?: boolean,
@@ -19,7 +19,7 @@ export interface IAppConfig {
 
 export interface IAppDeviceConfig {
   id: ID;
-  appUuid?: string;
+  app?: IApp;
   device?: Device;
   published?: boolean;
   schemaJson?: {
@@ -31,7 +31,9 @@ export interface IAppDeviceConfig {
 
 export interface IAppConfigInput {
   id?: ID;
-  appUuid?: string;
+  app?: {
+    sync: IAppInput
+  };
   schemaJson?: {
     multiLang?: {
       open?: boolean,
@@ -42,7 +44,9 @@ export interface IAppConfigInput {
 
 export interface IAppDeviceConfigInput {
   id?: ID;
-  appUuid?: string;
+  app?: {
+    sync: IAppInput
+  };
   device?: Device;
   published?: boolean;
   schemaJson?: {

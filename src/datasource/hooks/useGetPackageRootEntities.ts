@@ -4,8 +4,8 @@ import { useSelectedAppUuid } from "@rxdrag/plugin-sdk/contexts/appRoot";
 import { entitiesState } from "../recoil";
 
 export function useGetPackageRootEntities() {
-  const appUuid = useSelectedAppUuid();
-  const entities = useRecoilValue(entitiesState(appUuid))
+  const appId = useSelectedAppUuid();
+  const entities = useRecoilValue(entitiesState(appId))
 
   const getPackageEntities = useCallback((packageUuid: string) => {
     return entities?.filter(entity => entity.packageUuid === packageUuid && entity.root) || [];

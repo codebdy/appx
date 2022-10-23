@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { IPostOptions, usePostOne } from "../enthooks/hooks/usePostOne";
 import { IPage } from "../model";
-import { IPageInput } from "../model/input";
+import { IPageInput } from "../model";
 
 export function useUpdatePage(options?: IPostOptions<any>): [
   (page: IPageInput) => void,

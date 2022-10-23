@@ -20,16 +20,16 @@ import { ModelToolbar } from "~/common/ModelBoard/ModelToolbar";
 import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 
 export const UmlToolbar = memo(() => {
-  const appUuid = useEdittingAppId();
-  const undoList = useRecoilValue(undoListState(appUuid));
-  const redoList = useRecoilValue(redoListState(appUuid));
-  const selectedDiagram = useRecoilValue(selectedUmlDiagramState(appUuid));
-  const selectedElement = useRecoilValue(selectedElementState(appUuid));
-  const { attribute } = useAttribute(selectedElement || "", appUuid);
-  const undo = useUndo(appUuid);
-  const redo = useRedo(appUuid);
-  const deleteSelectedElement = useDeleteSelectedElement(appUuid);
-  const [minMap, setMinMap] = useRecoilState(minMapState(appUuid));
+  const appId = useEdittingAppId();
+  const undoList = useRecoilValue(undoListState(appId));
+  const redoList = useRecoilValue(redoListState(appId));
+  const selectedDiagram = useRecoilValue(selectedUmlDiagramState(appId));
+  const selectedElement = useRecoilValue(selectedElementState(appId));
+  const { attribute } = useAttribute(selectedElement || "", appId);
+  const undo = useUndo(appId);
+  const redo = useRedo(appId);
+  const deleteSelectedElement = useDeleteSelectedElement(appId);
+  const [minMap, setMinMap] = useRecoilState(minMapState(appId));
 
   const toggleMinMap = useCallback(() => {
     setMinMap((a) => !a);
@@ -93,7 +93,7 @@ export const UmlToolbar = memo(() => {
         <DeleteOutlined />
       </Button>
       <div style={{ flex: 1 }} />
-      <SaveActions appId={appUuid} />
+      <SaveActions appId={appId} />
     </ModelToolbar>
   );
 });

@@ -18,26 +18,26 @@ import {
   selectedCodeState,
 } from "../recoil/atoms";
 
-export function useUndo(appUuid: ID) {
-  const [undoList, setUndoList] = useRecoilState(undoListState(appUuid));
-  const setRedoList = useSetRecoilState(redoListState(appUuid));
-  const [packages, setPackages] = useRecoilState(packagesState(appUuid))
-  const [diagrams, setDiagrams] = useRecoilState(diagramsState(appUuid));
-  const [codes, setCodes] = useRecoilState(codesState(appUuid));
-  const [entities, setEntities] = useRecoilState(classesState(appUuid));
-  const [relations, setRelations] = useRecoilState(relationsState(appUuid));
-  const [x6Nodes, setX6Nodes] = useRecoilState(x6NodesState(appUuid));
-  const [x6Edges, setX6Edges] = useRecoilState(x6EdgesState(appUuid));
-  const setChanged = useSetRecoilState(changedState(appUuid));
+export function useUndo(appId: ID) {
+  const [undoList, setUndoList] = useRecoilState(undoListState(appId));
+  const setRedoList = useSetRecoilState(redoListState(appId));
+  const [packages, setPackages] = useRecoilState(packagesState(appId))
+  const [diagrams, setDiagrams] = useRecoilState(diagramsState(appId));
+  const [codes, setCodes] = useRecoilState(codesState(appId));
+  const [entities, setEntities] = useRecoilState(classesState(appId));
+  const [relations, setRelations] = useRecoilState(relationsState(appId));
+  const [x6Nodes, setX6Nodes] = useRecoilState(x6NodesState(appId));
+  const [x6Edges, setX6Edges] = useRecoilState(x6EdgesState(appId));
+  const setChanged = useSetRecoilState(changedState(appId));
 
   const [selectedDiagram, setSelectedDiagram] =
-    useRecoilState(selectedUmlDiagramState(appUuid));
+    useRecoilState(selectedUmlDiagramState(appId));
     
   const [selectedCode, setSelectedCode] = useRecoilState(
-    selectedCodeState(appUuid)
+    selectedCodeState(appId)
   );
   const [selectedElement, setSelectedElement] =
-    useRecoilState(selectedElementState(appUuid));
+    useRecoilState(selectedElementState(appId));
 
   const undo = useCallback(() => {
     const snapshot = undoList[undoList.length - 1];

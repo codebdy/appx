@@ -6,11 +6,11 @@ import { useGetDiagramNode } from "../hooks/useGetDiagramNode";
 import { CONST_CANVAS_CLICK } from "../consts";
 import { ID } from "~/shared";
 
-export function useNodeSelect(graph: Graph | undefined, appUuid: ID) {
+export function useNodeSelect(graph: Graph | undefined, appId: ID) {
   const [selectedElement, setSelectedElement] =
-    useRecoilState(selectedElementState(appUuid));
-  const selectedDiagram = useRecoilValue(selectedUmlDiagramState(appUuid));
-  const getDiagramNode = useGetDiagramNode(appUuid);
+    useRecoilState(selectedElementState(appId));
+  const selectedDiagram = useRecoilValue(selectedUmlDiagramState(appId));
+  const getDiagramNode = useGetDiagramNode(appId);
 
   useEffect(() => {
     if (selectedElement) {

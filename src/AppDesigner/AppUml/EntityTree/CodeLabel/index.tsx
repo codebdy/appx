@@ -22,10 +22,10 @@ const CodeLabel = memo((
   const [editing, setEditing] = useState(false);
   const [visible, setVisible] = useState(false);
   const p = useParseLangMessage();
-  const appUuid = useEdittingAppId();
-  const backup = useBackupSnapshot(appUuid);
-  const setCodes = useSetRecoilState(codesState(appUuid));
-  const getPagcage = useGetPackage(appUuid)
+  const appId = useEdittingAppId();
+  const backup = useBackupSnapshot(appId);
+  const setCodes = useSetRecoilState(codesState(appId));
+  const getPagcage = useGetPackage(appId)
 
   useEffect(() => {
     setName(code.name)
@@ -51,7 +51,7 @@ const CodeLabel = memo((
 
   return (
     <TreeNodeLabel
-      fixedAction={visible || (getPagcage(code.packageUuid)?.sharable && appUuid !== SYSTEM_APP_ID)}
+      fixedAction={visible || (getPagcage(code.packageUuid)?.sharable && appId !== SYSTEM_APP_ID)}
       action={
         !editing ?
           <CodeAction code={code}

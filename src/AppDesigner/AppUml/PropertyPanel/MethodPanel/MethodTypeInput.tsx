@@ -17,10 +17,10 @@ export const MethodTypeInput = memo(
     }
   ) => {
     const { method } = props;
-    const appUuid = useEdittingAppId();
-    const enums = useEnums(appUuid);
-    const valueObjects = useValueObjects(appUuid);
-    const entities = useEntities(appUuid);
+    const appId = useEdittingAppId();
+    const enums = useEnums(appId);
+    const valueObjects = useValueObjects(appId);
+    const entities = useEntities(appId);
     const { t } = useTranslation();
 
     return (

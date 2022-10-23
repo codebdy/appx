@@ -6,9 +6,9 @@ import { MethodMeta } from "../meta/MethodMeta";
 import { useChangeClass } from "./useChangeClass";
 import { useCheckClassPropertyName } from "./useCheckClassPropertyName";
 
-export function useChangeMethod(appUuid: ID) {
-  const changeClass = useChangeClass(appUuid);
-  const chackName = useCheckClassPropertyName(appUuid);
+export function useChangeMethod(appId: ID) {
+  const changeClass = useChangeClass(appId);
+  const chackName = useCheckClassPropertyName(appId);
   const { t } = useTranslation();
   const changeMethod = useCallback(
     (method: MethodMeta, cls: ClassMeta) => {

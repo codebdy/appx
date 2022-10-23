@@ -16,10 +16,10 @@ const { Option } = Select;
 
 export const RelationPanel = (props: { relation: RelationMeta }) => {
   const { relation } = props;
-  const appUuid = useEdittingAppId();
-  const source = useClass(relation.sourceId, appUuid);
-  const target = useClass(relation.targetId, appUuid);
-  const changeRelation = useChangeRelation(appUuid);
+  const appId = useEdittingAppId();
+  const source = useClass(relation.sourceId, appId);
+  const target = useClass(relation.targetId, appId);
+  const changeRelation = useChangeRelation(appId);
   const { t } = useTranslation();
 
   const [form] = Form.useForm()

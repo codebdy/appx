@@ -36,8 +36,8 @@ export const ArgsInput = memo((
   const { value, onChange } = props;
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState<ArgMeta[]>([]);
-  const appUuid = useEdittingAppId();
-  const getTypeLabel = useGetTypeLabel(appUuid);
+  const appId = useEdittingAppId();
+  const getTypeLabel = useGetTypeLabel(appId);
 
   const reset = useCallback(() => {
     setItems(value?.map((arg, index) => ({ ...arg, index })) || [])

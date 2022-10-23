@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { IPostOptions, usePostOne } from "../enthooks/hooks/usePostOne";
 import { ILangLocal } from "../model";
-import { ILangLocalInput } from "../model/input";
+import { ILangLocalInput } from "../model";
 import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
 
 export function useUpsertLangLocal(options?: IPostOptions<any>): [
@@ -20,7 +20,7 @@ export function useUpsertLangLocal(options?: IPostOptions<any>): [
   const upsert = useCallback((localInput: ILangLocalInput) => {
     const newLocal = {
       ...localInput,
-      appUuid: params.app.uuid,
+      app: { sync: { id: params.app.id } },
     }
     post({ ...newLocal })
   }, [params?.app, post]);

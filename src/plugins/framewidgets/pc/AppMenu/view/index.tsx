@@ -17,7 +17,7 @@ export interface IComponentProps{
 const AppMenu = memo(() => {
   const { menu } = useRunnerParams();
   const p = useParseLangMessage();
-  const { device, appUuid, menuUuid } = useParams();
+  const { device, appId, menuUuid } = useParams();
   const navigate = useNavigate();
 
   const entryId = useEntryPageId();
@@ -49,9 +49,9 @@ const AppMenu = memo(() => {
     if (item?.type === MenuItemType.Link) {
       item?.link && window.open(item?.link)
     } else if (item?.type !== MenuItemType.Divider) {
-      navigate(`/app/${device}/${appUuid}/${item.uuid}`)
+      navigate(`/app/${device}/${appId}/${item.uuid}`)
     }
-  }, [appUuid, device, getMenuItem, navigate]);
+  }, [appId, device, getMenuItem, navigate]);
 
   return (
     <>

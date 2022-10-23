@@ -8,11 +8,11 @@ import { StereoType } from "../meta/ClassMeta";
 import { RelationType } from "../meta/RelationMeta";
 import { drawingLineState, relationsState } from "../recoil/atoms";
 
-export function useCheckCanLinkTo(appUuid: ID) {
-  const drawingLine = useRecoilValue(drawingLineState(appUuid));
-  const relations = useRecoilValue(relationsState(appUuid));
-  const getClass = useGetClass(appUuid);
-  const getParentUuids = useGetAllParentUuids(appUuid);
+export function useCheckCanLinkTo(appId: ID) {
+  const drawingLine = useRecoilValue(drawingLineState(appId));
+  const relations = useRecoilValue(relationsState(appId));
+  const getClass = useGetClass(appId);
+  const getParentUuids = useGetAllParentUuids(appId);
   const checkCanLinkTo = useCallback(
     (node: Node) => {
       if (!drawingLine) {

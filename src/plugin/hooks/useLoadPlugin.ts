@@ -137,7 +137,7 @@ export function useLoadPlugin() {
       return {
         pluginInfo: {
           ...oldInfo || {},
-          appUuid: app?.uuid,
+          app: app,
           url,
           type
         },

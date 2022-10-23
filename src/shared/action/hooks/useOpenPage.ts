@@ -8,7 +8,7 @@ import { useInstanceId } from "@rxdrag/plugin-sdk/contexts/instance";
 import { IOpenPageAction, OpenPageType } from "@rxdrag/plugin-sdk/model/action";
 
 export function useOpenPage() {
-  const { device, appUuid, menuUuid } = useParams();
+  const { device, appId, menuUuid } = useParams();
   const dataId = useInstanceId();
   const key = useAppViewKey();
   const setPagePopups = useSetRecoilState(pagePopupsState(key));
@@ -16,7 +16,7 @@ export function useOpenPage() {
 
   const open = useCallback((action: IOpenPageAction) => {
     if (action.openType === OpenPageType.RouteTo) {
-      navigate(`/app/${device}/${appUuid}/${menuUuid || "no"}/${action.pageId}/${dataId || ""}`)
+      navigate(`/app/${device}/${appId}/${menuUuid || "no"}/${action.pageId}/${dataId || ""}`)
     } else if (action.openType === OpenPageType.Dialog || action.openType === OpenPageType.Drawer) {
       setPagePopups(pgPops => ([...pgPops, {
         id: createId(),
@@ -24,7 +24,7 @@ export function useOpenPage() {
         dataId
       }]))
     }
-  }, [appUuid, dataId, device, menuUuid, navigate, setPagePopups]);
+  }, [appId, dataId, device, menuUuid, navigate, setPagePopups]);
 
   return open;
 }

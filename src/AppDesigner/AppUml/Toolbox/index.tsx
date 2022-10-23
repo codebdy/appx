@@ -57,12 +57,12 @@ export const Toolbox = memo((props: { graph?: Graph }) => {
   const { graph } = props;
   const [dnd, setDnd] = React.useState<any>();
   const { t } = useTranslation();
-  const appUuid = useEdittingAppId();
-  const setSelemedElement = useSetRecoilState(selectedElementState(appUuid))
+  const appId = useEdittingAppId();
+  const setSelemedElement = useSetRecoilState(selectedElementState(appId))
   const [pressedLineType, setPressedLineType] = useRecoilState(
-    pressedLineTypeState(appUuid)
+    pressedLineTypeState(appId)
   );
-  const createTempClassNodeForNew = useCreateTempClassNodeForNew(appUuid);
+  const createTempClassNodeForNew = useCreateTempClassNodeForNew(appId);
 
   useEffect(() => {
     const theDnd = graph

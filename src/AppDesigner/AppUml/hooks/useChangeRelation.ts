@@ -5,9 +5,9 @@ import { RelationMeta } from "../meta/RelationMeta";
 import { relationsState } from "../recoil/atoms";
 import { useBackupSnapshot } from "./useBackupSnapshot";
 
-export function useChangeRelation(appUuid: ID) {
-  const backupSnapshot = useBackupSnapshot(appUuid);
-  const setRelations = useSetRecoilState(relationsState(appUuid));
+export function useChangeRelation(appId: ID) {
+  const backupSnapshot = useBackupSnapshot(appId);
+  const setRelations = useSetRecoilState(relationsState(appId));
 
   const changeRelation = useCallback(
     (relation: RelationMeta) => {

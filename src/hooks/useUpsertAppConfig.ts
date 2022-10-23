@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { IPostOptions, usePostOne } from "../enthooks/hooks/usePostOne";
 import { IAppConfig } from "../model";
-import { IAppConfigInput } from "../model/input";
+import { IAppConfigInput } from "../model";
 import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
 
 export function useUpsertAppConfig(options?: IPostOptions<any>): [
@@ -20,7 +20,11 @@ export function useUpsertAppConfig(options?: IPostOptions<any>): [
   const upsert = useCallback((config: IAppConfigInput) => {
     const newConfig = {
       ...config,
-      appUuid: params.app.uuid,
+      app: {
+        sync: {
+          id: params.app?.id
+        }
+      }
     }
     post({ ...newConfig })
   }, [params?.app, post]);
