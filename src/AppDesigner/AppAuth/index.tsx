@@ -4,7 +4,7 @@ import { Outlet, useMatch, useNavigate } from "react-router-dom"
 import { ListConentLayout } from "~/common/ListConentLayout"
 import { MenuProps, Spin } from 'antd';
 import { Menu } from 'antd';
-import { AppstoreOutlined, LayoutOutlined, MenuOutlined } from "@ant-design/icons";
+import { LayoutOutlined, MenuOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import "./style.less";
 import SvgIcon from "~/common/SvgIcon";
@@ -12,7 +12,6 @@ import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 import { useReadMeta } from "../AppUml/hooks/useReadMeta";
 import { useShowError } from "~/hooks/useShowError";
 import { useParseLangMessage } from "@rxdrag/plugin-sdk";
-import { AppManagerRoutes } from "~/AppManager/AppHeader";
 import { useQueryRoles } from "./hooks/useQueryRoles";
 import { DESIGN, SYSTEM_APP_ID } from "~/consts";
 import { AppEntryRouts } from "../DesignerHeader/AppEntryRouts";
@@ -51,34 +50,14 @@ export const AuthBoard = memo(() => {
   const { loading: rolesLoading, error: rolesError } = useQueryRoles();
   const p = useParseLangMessage();
   const matchString = useMemo(() => {
-    return appUuid === SYSTEM_APP_ID
-      ? `/${AppManagerRoutes.Auth}/*`
-      : `/${DESIGN}/${appUuid}/${AppEntryRouts.Auth}/*`
+    return `/${DESIGN}/${appUuid}/${AppEntryRouts.Auth}/*`
   }, [])
   const match = useMatch(matchString)
   useShowError(error || rolesError);
 
-  const appItems = useMemo(() => {
-    if (appUuid === SYSTEM_APP_ID) {
-      return []
-    } else {
-      return [
-        getItem(t("Auth.MenuAuth"), AuthRoutes.MenuAuth, <MenuOutlined />, null),
-        getItem(t("Auth.ComponentAuth"), AuthRoutes.ComponentAuth, <LayoutOutlined />, null),
-      ]
-    }
-  }, [appUuid])
-
-  const rootItems = useMemo(() => {
-    if (appUuid === SYSTEM_APP_ID) {
-      return [getItem(t("Auth.AppAuth"), AuthRoutes.AppAuth, <AppstoreOutlined />, null)]
-    } else {
-      return []
-    }
-  }, [appUuid])
-
   const items: MenuProps['items'] = useMemo(() => [
-    ...appItems,
+    getItem(t("Auth.MenuAuth"), AuthRoutes.MenuAuth, <MenuOutlined />, null),
+    getItem(t("Auth.ComponentAuth"), AuthRoutes.ComponentAuth, <LayoutOutlined />, null),
     getItem(t("Auth.ModelAuth"),
       AuthRoutes.ModelAuth,
       <SvgIcon>
@@ -88,16 +67,14 @@ export const AuthBoard = memo(() => {
       </SvgIcon>,
       null,
     ),
-    ...rootItems
-  ], [appItems, rootItems, p]);
+  ], [getItem, p]);
 
   const onClick: MenuProps['onClick'] = useCallback(e => {
     navigate(e.key)
   }, [navigate]);
 
   const activeKey = useMemo(() => {
-    return match?.params?.["*"] ||
-      (appUuid === SYSTEM_APP_ID ? AuthRoutes.ModelAuth : AuthRoutes.MenuAuth)
+    return match?.params?.["*"] || AuthRoutes.MenuAuth
   }, [match])
 
   return (
@@ -107,7 +84,7 @@ export const AuthBoard = memo(() => {
         listWidth={200}
         list={
           <Menu
-            key = {activeKey}
+            key={activeKey}
             style={{ flex: 1 }}
             onClick={onClick}
             activeKey={activeKey}
