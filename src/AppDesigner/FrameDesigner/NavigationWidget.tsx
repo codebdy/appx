@@ -15,7 +15,7 @@ export const NavigationWidget = memo(() => {
   const devices = useDevices();
   const navigate = useNavigate()
   const handleBack = useCallback(() => {
-    navigate(`/${DESIGN}/${app?.id}/${DESIGN_BOARD}/${AppEntryRouts.AppUis}`)
+    navigate(`/${DESIGN}/${app?.id}/${DESIGN_BOARD}/${AppEntryRouts.Frame}`)
   }, [app]);
 
   const deviceInfo = useMemo(() => devices.find(dvc => dvc.key === device), [device, devices]);
