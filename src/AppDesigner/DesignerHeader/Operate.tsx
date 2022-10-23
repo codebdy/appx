@@ -43,7 +43,7 @@ export const Operate: React.FC = () => (
     <Button type="text" onClick={e => e.preventDefault()}>
       <Space>
         操作
-        <DownOutlined style={{ fontSize: 14 }} />
+        <DownOutlined style={{ fontSize: 12 }} />
       </Space>
     </Button>
   </Dropdown>
