@@ -2679,6 +2679,31 @@
       "stereoType": "Enum",
       "system": false,
       "uuid": "58d3b299-cd9a-4066-929f-26341023a62a"
+    },
+    {
+      "attributes": [
+        {
+          "name": "id",
+          "primary": true,
+          "type": "ID",
+          "typeLabel": "ID",
+          "uuid": "609c2fa5-1ceb-4eab-9de3-4f3cc119dab7"
+        },
+        {
+          "name": "device",
+          "type": "Enum",
+          "typeLabel": "Device",
+          "typeUuid": "65dc043c-daaf-408c-b74c-f6ff4952bd5a",
+          "uuid": "79a13d8e-0825-4826-bd27-8d811ea1f38b"
+        }
+      ],
+      "innerId": 1001,
+      "methods": [],
+      "name": "UiPart",
+      "packageUuid": "PACKAGE_SYSTEM_UUID",
+      "root": false,
+      "stereoType": "Abstract",
+      "uuid": "0068083c-88f9-4170-8763-c6a3313bab73"
     }
   ],
   "relations": [
@@ -2855,6 +2880,26 @@
       "targetId": "f0fa4b0f-4b91-4092-a93b-beaa13896e86",
       "targetMultiplicity": "0..*",
       "uuid": "49373514-a5a4-40ee-a236-44670c439f3e"
+    },
+    {
+      "appUuid": "1",
+      "innerId": 0,
+      "relationType": "inherit",
+      "sourceId": "0068083c-88f9-4170-8763-c6a3313bab73",
+      "sourceMutiplicity": "0..1",
+      "targetId": "087b2915-5582-496d-bafb-ae2f5623a70d",
+      "targetMultiplicity": "0..1",
+      "uuid": "167dd6a4-c8cf-479b-825d-ad3e397b6610"
+    },
+    {
+      "appUuid": "1",
+      "innerId": 0,
+      "relationType": "inherit",
+      "sourceId": "660a55fe-c2f1-4b17-921e-38aa14737a1c",
+      "sourceMutiplicity": "0..1",
+      "targetId": "0068083c-88f9-4170-8763-c6a3313bab73",
+      "targetMultiplicity": "0..1",
+      "uuid": "165e1065-60c0-45a4-aa81-1d0d8a7aa890"
     }
   ],
   "diagrams": [
@@ -2952,8 +2997,32 @@
       "height": 80,
       "id": "APP_ENTITY_UUID",
       "width": 180,
-      "x": 20,
-      "y": -40
+      "x": -50,
+      "y": -148
+    },
+    {
+      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
+      "height": 96,
+      "id": "660a55fe-c2f1-4b17-921e-38aa14737a1c",
+      "width": 180,
+      "x": 300,
+      "y": 210
+    },
+    {
+      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
+      "height": 122,
+      "id": "087b2915-5582-496d-bafb-ae2f5623a70d",
+      "width": 180,
+      "x": 300,
+      "y": -169
+    },
+    {
+      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
+      "height": 120,
+      "id": "0068083c-88f9-4170-8763-c6a3313bab73",
+      "width": 180,
+      "x": 300,
+      "y": 10
     }
   ],
   "x6Edges": [
@@ -3066,6 +3135,16 @@
         "distance": -40,
         "offset": -20
       },
+      "vertices": []
+    },
+    {
+      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
+      "id": "167dd6a4-c8cf-479b-825d-ad3e397b6610",
+      "vertices": []
+    },
+    {
+      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
+      "id": "165e1065-60c0-45a4-aa81-1d0d8a7aa890",
       "vertices": []
     }
   ]
