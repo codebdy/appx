@@ -11,12 +11,12 @@ import { IMenuItem, IMenuNode, MenuItemType } from "@rxdrag/plugin-sdk/model/IMe
 import { useTranslation } from "react-i18next";
 import "./index.less"
 import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
-import { useQueryMenu } from "~/shared/AppRoot/hooks/useQueryMenu";
 import { useShowError } from "~/hooks/useShowError";
 import { cloneObject } from "./utils/cloneObject";
 import { parseMeta } from "./hooks/useParseMenuMeta";
 import { createUuid } from "~/shared";
 import { useGetPage } from "../hooks/useGetPage";
+import { useQueryMenu } from "~/AppDesigner/AppDesignerRoot/hooks/useQueryMenu";
 
 const rootMeta: IMenuItem = { type: MenuItemType.Group, uuid: createUuid(), };
 
