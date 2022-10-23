@@ -2585,30 +2585,6 @@
           "unsigned": false,
           "updateDate": false,
           "uuid": "7346a7a6-dadc-471c-a1d6-cbe95ba92848"
-        },
-        {
-          "createDate": false,
-          "default": "",
-          "deleteDate": false,
-          "description": "",
-          "floatD": 0,
-          "floatM": 0,
-          "hidden": false,
-          "index": false,
-          "label": "",
-          "length": 0,
-          "name": "device",
-          "nullable": false,
-          "primary": false,
-          "readonly": false,
-          "system": false,
-          "type": "Enum",
-          "typeLabel": "Device",
-          "typeUuid": "65dc043c-daaf-408c-b74c-f6ff4952bd5a",
-          "unique": false,
-          "unsigned": false,
-          "updateDate": false,
-          "uuid": "80c52b12-ebc4-4276-b49e-280ac88237b7"
         }
       ],
       "description": "",
@@ -2816,6 +2792,13 @@
           "unsigned": false,
           "updateDate": false,
           "uuid": "b063950e-f5e1-4c9c-815b-f3e283cb5ed4"
+        },
+        {
+          "name": "title",
+          "nullable": true,
+          "type": "String",
+          "typeLabel": "String",
+          "uuid": "d48284c3-ed1c-4787-81b5-a3d239dcfa48"
         }
       ],
       "description": "",
@@ -3659,28 +3642,6 @@
       "relationType": "inherit",
       "roleOfSource": "",
       "roleOfTarget": "",
-      "sourceId": "51d35ee7-6757-4e1f-8a08-13b274bbaf3d",
-      "sourceMutiplicity": "0..1",
-      "system": false,
-      "targetId": "087b2915-5582-496d-bafb-ae2f5623a70d",
-      "targetMultiplicity": "0..1",
-      "uuid": "3d8b7aeb-0319-49a1-ad16-5b2b27ebb009"
-    },
-    {
-      "AppId": 1,
-      "associationClass": {
-        "attributes": null,
-        "name": ""
-      },
-      "descriptionOnSource": "",
-      "descriptionOnTarget": "",
-      "enableAssociaitonClass": false,
-      "innerId": 0,
-      "labelOfSource": "",
-      "labelOfTarget": "",
-      "relationType": "inherit",
-      "roleOfSource": "",
-      "roleOfTarget": "",
       "sourceId": "0e31f942-ce6f-4f6e-bd1b-0a5eb126d204",
       "sourceMutiplicity": "0..1",
       "system": false,
@@ -3953,22 +3914,66 @@
       "uuid": "0e01b6ec-70f9-4c76-b1bf-3da8a80e308a"
     },
     {
-      "uuid": "6c14e01c-4d63-417b-9569-05840362fe66",
+      "AppId": 1,
+      "associationClass": {
+        "attributes": null,
+        "name": ""
+      },
+      "descriptionOnSource": "",
+      "descriptionOnTarget": "",
+      "enableAssociaitonClass": false,
       "innerId": 0,
+      "labelOfSource": "",
+      "labelOfTarget": "",
       "relationType": "inherit",
+      "roleOfSource": "",
+      "roleOfTarget": "",
       "sourceId": "42252d97-5b4c-40bc-8117-3fd4b7e92926",
-      "targetId": "3fd0b1e1-b2ee-491d-be5a-a40109f3c65a",
       "sourceMutiplicity": "0..1",
-      "targetMultiplicity": "0..1"
+      "system": false,
+      "targetId": "3fd0b1e1-b2ee-491d-be5a-a40109f3c65a",
+      "targetMultiplicity": "0..1",
+      "uuid": "6c14e01c-4d63-417b-9569-05840362fe66"
     },
     {
-      "uuid": "5a34022e-bd1e-4ed6-b28c-c9348c91aca4",
+      "AppId": 1,
+      "associationClass": {
+        "attributes": null,
+        "name": ""
+      },
+      "descriptionOnSource": "",
+      "descriptionOnTarget": "",
+      "enableAssociaitonClass": false,
+      "innerId": 0,
+      "labelOfSource": "",
+      "labelOfTarget": "",
+      "relationType": "inherit",
+      "roleOfSource": "",
+      "roleOfTarget": "",
+      "sourceId": "4a0a79fa-70ba-4297-a71f-a28336b1b7e5",
+      "sourceMutiplicity": "0..1",
+      "system": false,
+      "targetId": "02e50e9a-23e2-4b69-81d6-22de373a35d6",
+      "targetMultiplicity": "0..1",
+      "uuid": "5a34022e-bd1e-4ed6-b28c-c9348c91aca4"
+    },
+    {
       "innerId": 0,
       "relationType": "inherit",
-      "sourceId": "4a0a79fa-70ba-4297-a71f-a28336b1b7e5",
-      "targetId": "02e50e9a-23e2-4b69-81d6-22de373a35d6",
+      "sourceId": "f9288fd0-2747-4fa0-8b3d-4c8bdaeb5dd8",
       "sourceMutiplicity": "0..1",
-      "targetMultiplicity": "0..1"
+      "targetId": "0068083c-88f9-4170-8763-c6a3313bab73",
+      "targetMultiplicity": "0..1",
+      "uuid": "1d6437c7-e295-4f4d-8223-14e6ed52f366"
+    },
+    {
+      "innerId": 0,
+      "relationType": "inherit",
+      "sourceId": "51d35ee7-6757-4e1f-8a08-13b274bbaf3d",
+      "sourceMutiplicity": "0..1",
+      "targetId": "0068083c-88f9-4170-8763-c6a3313bab73",
+      "targetMultiplicity": "0..1",
+      "uuid": "b057542e-c291-4a6c-b7f5-f6cc634c2bab"
     }
   ],
   "diagrams": [
@@ -4031,14 +4036,6 @@
     {
       "diagramUuid": "ff40de16-1759-407e-b52c-915c307f5c74",
       "height": 122,
-      "id": "51d35ee7-6757-4e1f-8a08-13b274bbaf3d",
-      "width": 180,
-      "x": 390,
-      "y": 199
-    },
-    {
-      "diagramUuid": "ff40de16-1759-407e-b52c-915c307f5c74",
-      "height": 122,
       "id": "de56ae19-aaac-4479-8bf9-6573ad22a482",
       "width": 180,
       "x": -70,
@@ -4082,7 +4079,7 @@
       "id": "660a55fe-c2f1-4b17-921e-38aa14737a1c",
       "width": 180,
       "x": 300,
-      "y": 210
+      "y": 243
     },
     {
       "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
@@ -4117,20 +4114,20 @@
       "y": 170
     },
     {
-      "id": "4a0a79fa-70ba-4297-a71f-a28336b1b7e5",
-      "x": 640,
-      "y": 170,
-      "width": 180,
+      "diagramUuid": "014aa54a-38c4-4911-a4ce-091943d9b5d8",
       "height": 122,
-      "diagramUuid": "014aa54a-38c4-4911-a4ce-091943d9b5d8"
+      "id": "4a0a79fa-70ba-4297-a71f-a28336b1b7e5",
+      "width": 180,
+      "x": 640,
+      "y": 170
     },
     {
-      "id": "42252d97-5b4c-40bc-8117-3fd4b7e92926",
-      "x": 380,
-      "y": 170,
-      "width": 180,
+      "diagramUuid": "014aa54a-38c4-4911-a4ce-091943d9b5d8",
       "height": 226,
-      "diagramUuid": "014aa54a-38c4-4911-a4ce-091943d9b5d8"
+      "id": "42252d97-5b4c-40bc-8117-3fd4b7e92926",
+      "width": 180,
+      "x": 380,
+      "y": 170
     },
     {
       "diagramUuid": "014aa54a-38c4-4911-a4ce-091943d9b5d8",
@@ -4171,6 +4168,22 @@
       "width": 180,
       "x": 880,
       "y": -405
+    },
+    {
+      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
+      "height": 122,
+      "id": "f9288fd0-2747-4fa0-8b3d-4c8bdaeb5dd8",
+      "width": 180,
+      "x": 30,
+      "y": 230
+    },
+    {
+      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
+      "height": 122,
+      "id": "51d35ee7-6757-4e1f-8a08-13b274bbaf3d",
+      "width": 180,
+      "x": 580,
+      "y": 230
     }
   ],
   "x6Edges": [
@@ -4222,11 +4235,6 @@
           "y": 130
         }
       ]
-    },
-    {
-      "diagramUuid": "ff40de16-1759-407e-b52c-915c307f5c74",
-      "id": "3d8b7aeb-0319-49a1-ad16-5b2b27ebb009",
-      "vertices": []
     },
     {
       "diagramUuid": "ff40de16-1759-407e-b52c-915c307f5c74",
@@ -4394,6 +4402,7 @@
       ]
     },
     {
+      "diagramUuid": "014aa54a-38c4-4911-a4ce-091943d9b5d8",
       "id": "6c14e01c-4d63-417b-9569-05840362fe66",
       "vertices": [
         {
@@ -4404,10 +4413,10 @@
           "x": 340,
           "y": 100
         }
-      ],
-      "diagramUuid": "014aa54a-38c4-4911-a4ce-091943d9b5d8"
+      ]
     },
     {
+      "diagramUuid": "014aa54a-38c4-4911-a4ce-091943d9b5d8",
       "id": "5a34022e-bd1e-4ed6-b28c-c9348c91aca4",
       "vertices": [
         {
@@ -4418,8 +4427,35 @@
           "x": 850,
           "y": 80
         }
-      ],
-      "diagramUuid": "014aa54a-38c4-4911-a4ce-091943d9b5d8"
+      ]
+    },
+    {
+      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
+      "id": "1d6437c7-e295-4f4d-8223-14e6ed52f366",
+      "vertices": [
+        {
+          "x": 120,
+          "y": 180
+        },
+        {
+          "x": 390,
+          "y": 180
+        }
+      ]
+    },
+    {
+      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
+      "id": "b057542e-c291-4a6c-b7f5-f6cc634c2bab",
+      "vertices": [
+        {
+          "x": 670,
+          "y": 180
+        },
+        {
+          "x": 390,
+          "y": 180
+        }
+      ]
     }
   ]
 }

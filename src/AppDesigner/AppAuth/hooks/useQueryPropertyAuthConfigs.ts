@@ -20,7 +20,9 @@ query ($appId:ID!){
       readExpression
       canUpdate
       updateExpression
-      roleId
+      role{
+        id
+      }
       propertyUuid
       classUuid
     }
