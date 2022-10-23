@@ -1,39 +1,38 @@
 import 'antd/dist/antd.less'
 import React, { memo, useMemo } from 'react'
-import { SERVER_URL, SYSTEM_APP_ID } from '~/consts'
+import { DESIGNER_TOKEN_NAME, SERVER_URL, SYSTEM_APP_ID } from '~/consts'
 import { EntiRoot, useToken } from '~/enthooks'
 import { IApp } from '~/model'
-import { AppRootInner } from './AppRootInner'
+import { DesignerRootInner } from './DesignerRootInner'
 
-const AppRoot = memo((
+const AppDesignerRoot = memo((
   props: {
     children: React.ReactNode,
     app: IApp,
-    tokenName: string | undefined,
   }
 ) => {
-  const { app, tokenName } = props;
+  const { app } = props;
   const token = useToken();
   const config = useMemo(() => {
-    const localStorageToken = localStorage.getItem(tokenName)
+    const localStorageToken = localStorage.getItem(DESIGNER_TOKEN_NAME)
     return {
       endpoint: SERVER_URL,
       appId: app.id,
       token: token || localStorageToken,
-      tokenName
+      tokenName: DESIGNER_TOKEN_NAME,
     }
-  }, [app, token, tokenName])
+  }, [app, token])
 
   return (
     <EntiRoot config={config} >
-      <AppRootInner app={app}>
+      <DesignerRootInner app={app}>
         {props.children}
-      </AppRootInner>
+      </DesignerRootInner>
     </EntiRoot>
   )
 })
 
-export default AppRoot;
+export default AppDesignerRoot;
 
 
 

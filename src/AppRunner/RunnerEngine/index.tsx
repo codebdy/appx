@@ -3,7 +3,6 @@ import { memo, useState } from 'react';
 import React from 'react';
 import { useShowError } from '~/hooks/useShowError';
 import { Spin } from 'antd';
-import { useQueryMenu } from '~/shared/AppRoot/hooks/useQueryMenu';
 import { RouteContext, RunnerContext } from '@rxdrag/plugin-sdk/contexts/runner';
 import { IMenuItem } from '@rxdrag/plugin-sdk/model/IMenuNode';
 import { FormItem } from "@formily/antd";
@@ -15,6 +14,7 @@ import { createSchemaField, ExpressionScope, FormProvider } from '@formily/react
 import { createForm } from '@formily/core';
 import { useQueryPageFrame } from '../hooks/useQueryPageFrame';
 import { useMaterialComponents } from '~/material/hooks/useMaterialComponents';
+import { useQueryMenu } from '~/AppDesigner/AppDesignerRoot/hooks/useQueryMenu';
 
 export class Me {
   constructor(private me?: IUser) { }

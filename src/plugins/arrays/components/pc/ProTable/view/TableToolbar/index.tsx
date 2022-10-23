@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo } from "react"
 import { IProTableConfig, useProTableParams } from "@rxdrag/plugin-sdk/contexts/propTable"
-import { useComponentConfig } from "~/shared/AppRoot/hooks/useComponentConfig"
 import { observer } from "@formily/reactive-react"
 import { TableToolbarShell } from "./TableToolbarShell"
 import { RecursionField, useFieldSchema } from '@formily/react';
 import { Schema } from "@formily/react";
 import "./style.less";
+import { useComponentConfig } from "~/AppDesigner/AppDesignerRoot/hooks/useComponentConfig";
 
 export interface ITableToolbarProps {
   className?: string,

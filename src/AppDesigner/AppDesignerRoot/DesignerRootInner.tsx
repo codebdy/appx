@@ -15,7 +15,7 @@ import { useIntalledPlugins } from '../../plugin/hooks/useIntalledPlugins'
 import { IApp, PluginType } from '~/model'
 import { MaterialTabRoot } from '~/material/MaterialTabRoot'
 
-export const AppRootInner = memo((
+export const DesignerRootInner = memo((
   props: {
     app: IApp,
     children: React.ReactNode

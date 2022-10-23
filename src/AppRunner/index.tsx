@@ -1,7 +1,6 @@
 import React, { useMemo } from "react"
 import { memo } from "react"
 import { DESIGNER_TOKEN_NAME } from "../consts"
-import AppRoot from "~/shared/AppRoot"
 import RunnerEngine from "./RunnerEngine"
 import { useEdittingAppId } from "~/hooks/useEdittingAppUuid"
 import { useQueryApp } from "~/hooks/useQueryApp"
@@ -10,6 +9,7 @@ import { useParams } from "react-router-dom"
 import { Device } from "@rxdrag/appx-plugin-sdk"
 import { CenterSpin } from "~/common/CenterSpin"
 import { NotPublished } from "./NotPublished"
+import { AppRoot } from "./AppRoot"
 
 const AppRunner = memo(() => {
   const { device = Device.PC } = useParams();
@@ -27,7 +27,7 @@ const AppRunner = memo(() => {
     }
 
     if (deviceConfig?.published) {
-      return <AppRoot tokenName={DESIGNER_TOKEN_NAME} app={app}>
+      return <AppRoot app={app}>
         <RunnerEngine />
       </AppRoot>
     }
