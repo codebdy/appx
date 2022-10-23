@@ -1,12 +1,13 @@
 import { observer } from "@formily/reactive-react"
-import React from "react"
+import React, { CSSProperties } from "react"
 import cls from "classnames"
 import "./style.less"
 
 export interface IComponentProps {
   className?: string,
-  maxWidth?: "xs" | "sm" | "md" | "lg" | "xl" | "xxl" | false ,
-  children?: React.ReactNode
+  maxWidth?: "xs" | "sm" | "md" | "lg" | "xl" | "xxl" | false,
+  children?: React.ReactNode,
+  style?: CSSProperties,
 }
 
 const Component = observer((props: IComponentProps) => {
@@ -18,11 +19,11 @@ const Component = observer((props: IComponentProps) => {
     maxWidth === "lg" ||
     maxWidth === "xl" ||
     maxWidth === "xxl") {
-      maxWidthClass = "max-" + maxWidth;
+    maxWidthClass = "max-" + maxWidth;
   }
 
   return (
-    <div className={cls("appx-container", className, maxWidthClass)} {...other}/>
+    <div className={cls("appx-container", className, maxWidthClass)}  {...other} />
   )
 })
 

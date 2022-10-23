@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
 import { DESIGN_UI } from "~/consts"
 import { useDevices } from "../../hooks/useDevices"
+import Container from "~/plugins/framelayouts/pc/Container/view"
 
 const AppUis = memo((props: {
   loading?: boolean
@@ -19,7 +20,7 @@ const AppUis = memo((props: {
   return (
     <div className='content-inner'>
       <div className="content-show-block">
-        <div className="ui-list-content" style={{ marginTop: 16 }}>
+        <Container style={{ marginTop: 16 }}>
           {
             loading ?
               <Skeleton active={true}></Skeleton>
@@ -65,7 +66,7 @@ const AppUis = memo((props: {
                 }
               </Row>
           }
-        </div>
+        </Container>
       </div>
     </div>
   )

@@ -5,6 +5,7 @@ import { memo } from "react"
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import { DESIGN_FRAME } from "~/consts";
+import Container from "~/plugins/framelayouts/pc/Container/view";
 import { useDevices } from "../../hooks/useDevices";
 
 export const AppFrames = memo(() => {
@@ -20,7 +21,7 @@ export const AppFrames = memo(() => {
   return (
     <div className='content-inner'>
       <div className="content-show-block">
-        <div className="ui-list-content" style={{ marginTop: 16 }}>
+        <Container style={{ marginTop: 16 }}>
           {
             <Row className="app-row" gutter={24}>
               {
@@ -60,7 +61,7 @@ export const AppFrames = memo(() => {
               }
             </Row>
           }
-        </div>
+        </Container>
       </div>
     </div>
   )
