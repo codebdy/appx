@@ -13,6 +13,7 @@ import AvatarMenu from "~/plugins/framewidgets/pc/AvatarMenu/view"
 import SvgIcon from "~/common/SvgIcon"
 import { DESIGN, DESIGN_BOARD } from "~/consts"
 import { useEdittingAppId } from "~/hooks/useEdittingAppUuid"
+import { Operate } from "./Operate"
 
 const DesignerHeader = memo((props: {
   app?: IApp,
@@ -145,12 +146,7 @@ const DesignerHeader = memo((props: {
         <span>
           V 1.0
         </span>
-        <Button>
-          操作
-        </Button>
-        <Button>
-          发布
-        </Button>
+        <Operate />
         <Button className='min-button' size='large' shape="circle" icon={<QuestionCircleOutlined />} />
         <Button
           className='min-button'
