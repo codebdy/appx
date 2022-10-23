@@ -20,12 +20,12 @@ query ($appId:ID){
 }
 `
 
-export function useQueryAppConfig(appID: ID) {
+export function useQueryAppConfig(appId: ID) {
   const input = useMemo(() => ({
     gql: configGql,
-    params: { appID: appID || SYSTEM_APP_ID },
+    params: { appId: appId || SYSTEM_APP_ID },
     depEntityNames: ["AppConfig"]
-  }), [appID])
+  }), [appId])
 
   const { data, error, loading } = useQueryOne<IAppConfig>(input)
   return { config: data?.oneAppConfig, error, loading }
