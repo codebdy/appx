@@ -16,9 +16,7 @@ query ($appId:ID!){
  ){
     nodes{
       id
-      role{
-        id
-      }
+      roleId
       device
       refused
       componentId

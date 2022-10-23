@@ -25,9 +25,7 @@ query ($appId:ID!){
       deleteExpression
       canCreate
       createExpression
-      role{
-        id
-      }
+      roleId
       classUuid
     }
   }
