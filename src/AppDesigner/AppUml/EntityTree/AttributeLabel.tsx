@@ -17,9 +17,9 @@ const AttributeLabel = memo((
   }
 ) => {
   const { attr } = props;
-  const appUuid = useEdittingAppId();
-  const selectedElement = useRecoilValue(selectedElementState(appUuid));
-  const removeAttribute = useDeleteAttribute(appUuid);
+  const appId = useEdittingAppId();
+  const selectedElement = useRecoilValue(selectedElementState(appId));
+  const removeAttribute = useDeleteAttribute(appId);
 
   const handleDelete = useCallback((event: React.MouseEvent) => {
     event.stopPropagation();

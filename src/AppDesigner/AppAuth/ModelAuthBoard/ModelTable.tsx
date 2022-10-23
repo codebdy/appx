@@ -21,10 +21,10 @@ export const ModelTable = memo((
   const { classConfigs, propertyConfigs, roleId } = props;
   const p = useParseLangMessage();
   const columns = useColumns(roleId);
-  const appUuid = useEdittingAppId();
-  const packages = useRecoilValue(packagesState(appUuid));
-  const getClasses = useGetPackageCanAuthClasses(appUuid)
-  const getClassAttributes = useGetClassAttributes(appUuid);
+  const appId = useEdittingAppId();
+  const packages = useRecoilValue(packagesState(appId));
+  const getClasses = useGetPackageCanAuthClasses(appId)
+  const getClassAttributes = useGetClassAttributes(appId);
 
   const getClassConfig = useCallback((classUuid: string) => {
     return classConfigs.find(config => config.classUuid === classUuid && config.roleId === roleId);

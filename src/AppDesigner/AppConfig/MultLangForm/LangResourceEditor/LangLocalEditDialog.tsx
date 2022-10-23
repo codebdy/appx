@@ -1,5 +1,5 @@
 import { Form, Input, Modal } from "antd";
-import { ILangLocalInput } from "~/model/input";
+import { ILangLocalInput } from "~/model";
 import React, { useCallback, useEffect, useState } from "react";
 import { memo } from "react"
 import { useTranslation } from "react-i18next";

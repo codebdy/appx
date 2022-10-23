@@ -4,7 +4,7 @@ import { memo } from "react"
 import { useTranslation } from "react-i18next";
 import { useUpsertApp } from "../../hooks/useUpsertApp";
 import { useShowError } from "~/hooks/useShowError";
-import { IAppInput } from "~/model/input";
+import { IAppInput } from "~/model";
 import { createUuid } from "~/shared";
 import { IApp } from "~/model";
 import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/view";

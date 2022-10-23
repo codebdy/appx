@@ -7,14 +7,14 @@ export function useUpsertPropertyAuthConfig(options?: IPostOptions<any>): [
   (config: IPropertyAuthConfigInput) => void,
   { loading?: boolean; error?: Error }
 ] {
-  const appUuid = useEdittingAppId()
+  const appId = useEdittingAppId()
   const [post, { error, loading }] = usePostOne<IPropertyAuthConfigInput, IPropertyAuthConfig>("PropertyAuthConfig",
     options
   )
 
   const upsert = useCallback((config: IPropertyAuthConfigInput) => {
-    post({ ...config, appUuid })
-  }, [post, appUuid]);
+    post({ ...config, app: { sync: { id: appId } } })
+  }, [post, appId]);
 
 
   return [upsert, { error, loading }]

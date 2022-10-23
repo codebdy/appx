@@ -23,10 +23,10 @@ const ClassLabel = memo((
 ) => {
   const { cls, graph } = props;
   const [dnd, setDnd] = React.useState<any>();
-  const appUuid = useEdittingAppId();
-  const classes = useRecoilValue(classesState(appUuid));
-  const selectedElement = useRecoilValue(selectedElementState(appUuid));
-  const deleteClass = useDeleteClass(appUuid);
+  const appId = useEdittingAppId();
+  const classes = useRecoilValue(classesState(appId));
+  const selectedElement = useRecoilValue(selectedElementState(appId));
+  const deleteClass = useDeleteClass(appId);
 
   useEffect(() => {
     const theDnd = graph

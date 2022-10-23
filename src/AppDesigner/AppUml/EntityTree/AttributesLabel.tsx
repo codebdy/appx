@@ -15,8 +15,8 @@ const AttributesLabel = memo((
 ) => {
   const { cls } = props;
   const { t } = useTranslation();
-  const appUuid = useEdittingAppId();
-  const addAttribute = useCreateClassAttribute(appUuid);
+  const appId = useEdittingAppId();
+  const addAttribute = useCreateClassAttribute(appId);
   
   return (
     <TreeNodeLabel

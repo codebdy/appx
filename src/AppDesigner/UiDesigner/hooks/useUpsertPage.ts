@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { IPostOptions, usePostOne } from "~/enthooks/hooks/usePostOne";
-import { IPageInput } from "~/model/input";
+import { IPageInput } from "~/model";
 import { IPage } from "~/model";
 import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
 

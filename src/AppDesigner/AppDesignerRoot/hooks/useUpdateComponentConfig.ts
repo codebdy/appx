@@ -1,6 +1,6 @@
 import { IPostOptions, usePostOne } from "~/enthooks/hooks/usePostOne";
 import { IUserConfig } from "~/model";
-import { IUserConfigInput } from "~/model/input";
+import { IUserConfigInput } from "~/model";
 import { useCallback } from "react";
 import { useAppParams, useUserConfig } from "@rxdrag/plugin-sdk/contexts/appRoot";
 import { useMe } from "@rxdrag/plugin-sdk/contexts/login";

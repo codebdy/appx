@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { IPostOptions, usePostOne } from "~/enthooks/hooks/usePostOne";
 import { IPluginInfo } from "~/model";
-import { IPluginInfoInput } from "~/model/input";
+import { IPluginInfoInput } from "~/model";
 import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
 
 export function useUpsertPluginInfo(options?: IPostOptions<any>): [
@@ -19,7 +19,11 @@ export function useUpsertPluginInfo(options?: IPostOptions<any>): [
   const upsert = useCallback((pluginInfo: IPluginInfoInput) => {
     const newInfo = {
       ...pluginInfo,
-      appUuid: params?.app?.uuid,
+      app: {
+        sync: {
+          id: params?.app?.id,
+        }
+      },
     }
     post(newInfo)
   }, [params?.app, post]);

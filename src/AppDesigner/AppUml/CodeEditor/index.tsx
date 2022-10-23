@@ -7,10 +7,10 @@ import { useSelectedCode } from "../hooks/useSelectedCode";
 import { codesState } from "../recoil/atoms";
 
 export const CodeEditor = memo(() => {
-  const appUuid = useEdittingAppId();
-  const code = useSelectedCode(appUuid);
-  const setCodes = useSetRecoilState(codesState(appUuid))
-  const backup = useBackupSnapshot(appUuid);
+  const appId = useEdittingAppId();
+  const code = useSelectedCode(appId);
+  const setCodes = useSetRecoilState(codesState(appId))
+  const backup = useBackupSnapshot(appId);
   const handleChange = useCallback((value: string) => {
     backup();
     setCodes(codes => codes.map(cd => cd.uuid === code.uuid ? { ...cd, code: value } : cd))
