@@ -31,7 +31,7 @@ const EditPageDialog = memo((
       if (values.categoryId) {
         upsert({ ...page as any, title: values.title, category: { sync: { id: values.categoryId } } });
       } else {
-        upsert({ ...page as any, title: values.title });
+        upsert({ ...page as any, title: values.title, category: { delete: true } });
       }
     });
   }, [form, page, upsert]);
