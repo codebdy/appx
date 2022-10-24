@@ -29,7 +29,7 @@ export const MakeVersionDialog = memo((
     form.validateFields().then((values: MakeVersionInput) => {
       create({
         appId,
-        instaneId: appId,
+        instanceId: appId,
         version: values?.version,
         description: values?.description
       })

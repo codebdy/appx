@@ -4,7 +4,7 @@ import { ID } from "~/shared"
 
 export interface MakeVersionInput {
   appId: ID;
-  instaneId: ID;
+  instanceId: ID;
   version?: string;
   description?: string;
 }
