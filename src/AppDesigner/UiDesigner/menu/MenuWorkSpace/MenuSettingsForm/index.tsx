@@ -19,10 +19,6 @@ for (let i = 10; i < 36; i++) {
   children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
 }
 
-const handleAuthPointsChange = (value: string[]) => {
-  console.log(`selected ${value}`);
-};
-
 const MenuSettingsForm = memo((
   props: {
   }
@@ -132,22 +128,6 @@ const MenuSettingsForm = memo((
             <Input.TextArea rows={3} />
           </Form.Item>
         }
-
-        <Form.Item
-          label={t("AuthPoints")}
-          name="authPoints"
-        >
-          <Select
-            mode="multiple"
-            allowClear
-            style={{ width: '100%' }}
-            placeholder="Please select"
-            defaultValue={['a10', 'c12']}
-            onChange={handleAuthPointsChange}
-          >
-            {children}
-          </Select>
-        </Form.Item>
       </Form>
     </div>
   );
