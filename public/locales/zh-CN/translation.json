@@ -56,8 +56,8 @@
   "Document": "文档",
   "Test": "测试",
   "Async": "异步",
-  "NotPublishedTip":"应用尚未发布，请先编辑并发布",
-  "GoEdit":"去编辑",
+  "NotPublishedTip": "应用尚未发布，请先编辑并发布",
+  "GoEdit": "去编辑",
   "Model": {
     "Title": "模型"
   },
@@ -71,10 +71,10 @@
     "Install": "安装",
     "Finished": "完成",
     "InstalledMessage": "应用已经安装，请直接登录",
-    "Success1":"您已经成功安装Appx",
-    "Success2":"马上开启神奇之旅吧！",
-    "Start1":"Appx 低代码平台，强大、高效！",
-    "Start2":"请点击“下一步”，开始安装。"
+    "Success1": "您已经成功安装Appx",
+    "Success2": "马上开启神奇之旅吧！",
+    "Start1": "Appx 低代码平台，强大、高效！",
+    "Start2": "请点击“下一步”，开始安装。"
   },
   "Configs": {
     "Title": "配置中心",
@@ -133,7 +133,13 @@
     "EntryPage": "入口页面",
     "TextView": "文本展示",
     "Preview": "预览",
-    "PleasePageFrame": "请选择页面架构"
+    "PleasePageFrame": "请选择页面架构",
+    "Version": "版本",
+    "Operate": "操作",
+    "CreateVersion": "创建版本",
+    "Import": "导入",
+    "Export": "导出",
+    "Publish": "发布"
   },
   "Plugins": {
     "Title": "插件",
@@ -293,7 +299,7 @@
     "PackageInfo": "包信息",
     "CodeInfo": "代码信息",
     "EnableVersion": "开启版本",
-    "Other":"其它"
+    "Other": "其它"
   },
   "AppBpmn": {
     "General": "通用",
