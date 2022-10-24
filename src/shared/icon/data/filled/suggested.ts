@@ -1,5 +1,5 @@
 import { QuestionCircleFilled, PlusCircleFilled, PauseCircleFilled, MinusCircleFilled, PlusSquareFilled, MinusSquareFilled } from "@ant-design/icons";
-import { IIconGroup } from "~/model";
+import { IIconGroup } from "../../model";
 
 export const suggested: IIconGroup = {
   name: "Suggested",

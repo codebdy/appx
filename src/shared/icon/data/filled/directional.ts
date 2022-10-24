@@ -1,5 +1,5 @@
 import { CaretDownFilled, CaretUpFilled, FastBackwardFilled, FastForwardFilled, StepBackwardFilled, StepForwardFilled } from "@ant-design/icons";
-import { IIconGroup } from "~/model";
+import { IIconGroup } from "../../model";
 
 export const directional: IIconGroup = {
   name: "Directional",
