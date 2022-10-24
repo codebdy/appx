@@ -35,7 +35,6 @@ export const ClassPanel = (props: { cls: ClassMeta }) => {
     const errMsg = changeClass({ ...cls, ...formData });
     setNameError(errMsg)
   }, [changeClass, cls])
-  console.log("哈哈", packages)
 
   return (
     <div className="property-pannel">
