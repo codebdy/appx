@@ -16,7 +16,6 @@ export const Operate = memo(() => {
         {
           key: '2',
           label: t("Designer.Export"),
-          icon: <SmileOutlined />,
         },
         {
           key: '3',
