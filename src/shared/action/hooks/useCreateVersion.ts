@@ -10,7 +10,7 @@ export interface MakeVersionInput {
 }
 
 const makeMutation = gql`
-  mutation ($appId: ID!, $instanceId ID!, $version: String!, $description:String) {
+  mutation ($appId: ID!, $instanceId: ID!, $version: String!, $description:String) {
     makeVersion(appId: $appId, instanceId:$instanceId, version:$version, description:$description)
   }
 `;
