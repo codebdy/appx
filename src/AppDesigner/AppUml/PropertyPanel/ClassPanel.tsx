@@ -1,18 +1,24 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { ClassMeta, StereoType } from "../meta/ClassMeta";
 import { useChangeClass } from "../hooks/useChangeClass";
-import { Form, Input, Switch } from "antd";
+import { Form, Input, Select, Switch } from "antd";
 import { useTranslation } from "react-i18next";
 import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/view";
 import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 import { ScriptInput } from "./ScriptInput/ScriptInput";
+import { useParseLangMessage } from "~/plugin-sdk";
+import { packagesState } from "../recoil/atoms";
+import { useRecoilValue } from "recoil";
+const { Option } = Select;
 
 export const ClassPanel = (props: { cls: ClassMeta }) => {
   const { cls } = props;
   const [nameError, setNameError] = useState<string>();
   const appId = useEdittingAppId();
   const changeClass = useChangeClass(appId);
+  const packages = useRecoilValue(packagesState(appId));
   const { t } = useTranslation();
+  const p = useParseLangMessage();
   const [form] = Form.useForm()
 
   useEffect(() => {
@@ -29,6 +35,7 @@ export const ClassPanel = (props: { cls: ClassMeta }) => {
     const errMsg = changeClass({ ...cls, ...formData });
     setNameError(errMsg)
   }, [changeClass, cls])
+  console.log("哈哈", packages)
 
   return (
     <div className="property-pannel">
@@ -56,6 +63,20 @@ export const ClassPanel = (props: { cls: ClassMeta }) => {
           name="label"
         >
           <MultiLangInput inline title={t("Label")} />
+        </Form.Item>
+        <Form.Item
+          label={t("AppUml.Package")}
+          name="packageUuid"
+        >
+          <Select >
+            {
+              packages?.map(pkg => {
+                return (
+                  <Option key={pkg.uuid} value={pkg.uuid}>{p(pkg.name)}</Option>
+                )
+              })
+            }
+          </Select>
         </Form.Item>
         {cls.stereoType !== StereoType.Enum &&
           cls.stereoType !== StereoType.ValueObject &&
