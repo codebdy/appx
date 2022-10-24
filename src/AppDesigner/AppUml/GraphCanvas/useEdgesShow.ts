@@ -15,7 +15,7 @@ import {
   selectedUmlDiagramState,
   selectedElementState,
 } from "../recoil/atoms";
-import { useDiagramEdges } from "../hooks/useDiagramEdges";
+import { EdgeConfig, useDiagramEdges } from "../hooks/useDiagramEdges";
 import { ID } from "~/shared";
 
 export function useEdgesShow(graph: Graph | undefined, appId: ID) {
@@ -39,49 +39,15 @@ export function useEdgesShow(graph: Graph | undefined, appId: ID) {
         }
 
         if (grahpEdge.data.relationType !== edgeMeta.relationType) {
-          grahpEdge.setData({ relationType: edgeMeta.relationType });
-          grahpEdge.setAttrs(
-            getRelationGraphAttrs(edgeMeta.relationType)
-          );
+          // grahpEdge.setData({ relationType: edgeMeta.relationType });
+          // grahpEdge.setAttrs(
+          //   getRelationGraphAttrs(edgeMeta.relationType)
+          // );
+          grahpEdge.remove();
+          grahpEdge = addNewEdge(grahpEdge, graph, edgeMeta, selectedElement);
         }
       } else {
-        grahpEdge = graph?.addEdge({
-          id: edgeMeta.id,
-          source: {
-            cell: edgeMeta.sourceId,
-            anchor: edgeMeta.sourceAnchor,
-          },
-          target: {
-            cell: edgeMeta.targetId,
-            anchor: edgeMeta.targetAnchor,
-          },
-          vertices: edgeMeta.vertices,
-          args: {
-            stopPropagation: false,
-          },
-          //connector: { name: "rounded" },
-          //解决直连时，不能显示选中状态的bug
-          tools:
-            selectedElement === edgeMeta.id
-              ? [
-                "boundary",
-                {
-                  name: "vertices",
-                  args: {
-                    stopPropagation: false,
-                  },
-                },
-                {
-                  name: "segments",
-                  args: {
-                    stopPropagation: false,
-                  },
-                },
-              ]
-              : [],
-          attrs: getRelationGraphAttrs(edgeMeta.relationType),
-          data: { relationType: edgeMeta.relationType },
-        });
+        grahpEdge = addNewEdge(grahpEdge, graph, edgeMeta, selectedElement);
       }
 
       //如果是跟自己连接，那么需要增加2个中间点
@@ -163,5 +129,45 @@ export function useEdgesShow(graph: Graph | undefined, appId: ID) {
         graph?.removeEdge(edge.id);
       }
     });
-  }, [drawingLine?.tempEdgeId, edges, graph, selectedElement]);
+  }, [drawingLine?.tempEdgeId, edges, graph, selectedElement,]);
 }
+function addNewEdge(grahpEdge: Edge<Edge.Properties>, graph: Graph, edgeMeta: EdgeConfig, selectedElement: string) {
+  grahpEdge = graph?.addEdge({
+    id: edgeMeta.id,
+    source: {
+      cell: edgeMeta.sourceId,
+      anchor: edgeMeta.sourceAnchor,
+    },
+    target: {
+      cell: edgeMeta.targetId,
+      anchor: edgeMeta.targetAnchor,
+    },
+    vertices: edgeMeta.vertices,
+    args: {
+      stopPropagation: false,
+    },
+    //connector: { name: "rounded" },
+    //解决直连时，不能显示选中状态的bug
+    tools: selectedElement === edgeMeta.id
+      ? [
+        "boundary",
+        {
+          name: "vertices",
+          args: {
+            stopPropagation: false,
+          },
+        },
+        {
+          name: "segments",
+          args: {
+            stopPropagation: false,
+          },
+        },
+      ]
+      : [],
+    attrs: getRelationGraphAttrs(edgeMeta.relationType),
+    data: { relationType: edgeMeta.relationType },
+  });
+  return grahpEdge;
+}
+
