@@ -1,7 +1,10 @@
-import { Form, Modal } from "antd";
+import { Form, message, Modal } from "antd";
 import React, { memo, useCallback } from "react"
 import { useTranslation } from "react-i18next";
+import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
+import { useShowError } from "~/hooks/useShowError";
 import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/view";
+import { MakeVersionInput, useCreateVersion } from "~/shared/action/hooks/useCreateVersion";
 
 export const MakeVersionDialog = memo((
   props: {
@@ -10,10 +13,28 @@ export const MakeVersionDialog = memo((
   }
 ) => {
   const { open, onOpenChange } = props;
-  const { t } = useTranslation()
+  const appId = useEdittingAppId();
+  const { t } = useTranslation();
   const [form] = Form.useForm<any>();
+  const [create, { loading, error }] = useCreateVersion({
+    onCompleted: () => {
+      onOpenChange(false);
+      message.success(t("OperateSuccess"))
+    }
+  });
+
+  useShowError(error)
+
   const handleOk = useCallback(() => {
-    onOpenChange(false);
+    form.validateFields().then((values: MakeVersionInput) => {
+      create({
+        appId,
+        instaneId: appId,
+        version: values?.version,
+        description: values?.description
+      })
+    })
+
   }, [onOpenChange])
 
   const handleCancel = useCallback(() => {
@@ -27,6 +48,9 @@ export const MakeVersionDialog = memo((
       open={open}
       onOk={handleOk}
       onCancel={handleCancel}
+      okButtonProps={{
+        loading: loading
+      }}
     >
       <Form
         name="makeVersion"
