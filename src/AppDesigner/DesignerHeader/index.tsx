@@ -143,9 +143,9 @@ const DesignerHeader = memo((props: {
         ]}
       />
       <Space>
-        <span style={{ fontSize: 13 }}>
+        {/* <span style={{ fontSize: 13 }}>
           {t("Designer.Version")} 1.0
-        </span>
+        </span> */}
         <Operate />
         <Button className='min-button' size='large' shape="circle" icon={<QuestionCircleOutlined />} />
         <Button
