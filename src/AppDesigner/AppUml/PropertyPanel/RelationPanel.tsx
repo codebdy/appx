@@ -139,6 +139,17 @@ export const RelationPanel = (props: { relation: RelationMeta }) => {
                 RelationType.INHERIT !== relation.relationType &&
                 <Panel header={t("AppUml.Other")} key="3">
                   <Form.Item
+                    label={t("AppUml.Type")}
+                    name="relationType"
+                  >
+                    <Select>
+                      <Option value={RelationType.TWO_WAY_ASSOCIATION}> {t("AppUml.Association")}</Option>
+                      <Option value={RelationType.TWO_WAY_AGGREGATION}> {t("AppUml.Aggregation")}</Option>
+                      <Option value={RelationType.TWO_WAY_COMBINATION}> {t("AppUml.Combination")}</Option>
+                      <Option value={RelationType.ONE_WAY_AGGREGATION}> {t("AppUml.OneWanAssociation")}</Option>
+                    </Select>
+                  </Form.Item>
+                  <Form.Item
                     label={"InnerId"}
                     name="innerId"
                   >
