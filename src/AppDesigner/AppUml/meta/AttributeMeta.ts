@@ -84,4 +84,6 @@ export interface AttributeMeta {
   typeLabel:string;
 
   system?: boolean;
+
+  autoIncrement?: boolean;
 }

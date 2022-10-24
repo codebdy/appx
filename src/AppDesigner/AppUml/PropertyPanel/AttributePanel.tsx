@@ -50,6 +50,8 @@ export const AttributePanel = (props: {
     setNameError(errMsg)
   }, [changeAttribute, attribute, getTypeLabel, cls])
 
+  console.log("哈哈哈", attribute)
+
   return (
     <div className="property-pannel">
       <Form
@@ -89,24 +91,28 @@ export const AttributePanel = (props: {
               <>
                 <Form.Item
                   label={t("AppUml.Nullable")}
+                  valuePropName="checked"
                   name="nullable"
                 >
                   <Switch />
                 </Form.Item>
                 <Form.Item
                   label={t("AppUml.Unique")}
+                  valuePropName="checked"
                   name="unique"
                 >
                   <Switch />
                 </Form.Item>
                 <Form.Item
                   label={t("AppUml.Index")}
+                  valuePropName="checked"
                   name="index"
                 >
                   <Switch />
                 </Form.Item>
                 <Form.Item
                   label={t("AppUml.HiddenField")}
+                  valuePropName="checked"
                   name="hidden"
                 >
                   <Switch />
@@ -114,22 +120,35 @@ export const AttributePanel = (props: {
               </>
             }
             {
+              attribute.type === Types.Int &&
+              <Form.Item
+                label={t("AppUml.AutoIncrement")}
+                valuePropName="checked"
+                name="autoIncrement"
+              >
+                <Switch />
+              </Form.Item>
+            }
+            {
               attribute.type === Types.Date &&
               <>
                 <Form.Item
                   label={t("AppUml.CreateDate")}
+                  valuePropName="checked"
                   name="createDate"
                 >
                   <Switch />
                 </Form.Item>
                 <Form.Item
                   label={t("AppUml.UpdateDate")}
+                  valuePropName="checked"
                   name="updateDate"
                 >
                   <Switch />
                 </Form.Item>
                 <Form.Item
                   label={t("AppUml.DeleteDate")}
+                  valuePropName="checked"
                   name="deleteDate"
                 >
                   <Switch />
