@@ -3,6 +3,13 @@ import { Button, Dropdown, Menu, Space } from 'antd';
 import React, { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
+enum OperateEnum{
+  createVaresion = 1,
+  export, 
+  import,
+  publish
+}
+
 export const Operate = memo(() => {
 
   const { t } = useTranslation();
@@ -10,19 +17,19 @@ export const Operate = memo(() => {
     <Menu
       items={[
         {
-          key: '1',
+          key: OperateEnum.createVaresion,
           label: t("Designer.CreateVersion"),
         },
         {
-          key: '2',
+          key: OperateEnum.export,
           label: t("Designer.Export"),
         },
         {
-          key: '3',
+          key: OperateEnum.import,
           label: t("Designer.Import"),
         },
         {
-          key: '4',
+          key: OperateEnum.publish,
           label: t("Designer.Publish"),
         },
       ]}
