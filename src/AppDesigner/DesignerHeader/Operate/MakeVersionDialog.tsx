@@ -47,7 +47,6 @@ export const MakeVersionDialog = memo((
         <Form.Item
           label={t("Description")}
           name="description"
-          rules={[{ required: true, message: t("Required") }]}
         >
           <MultiLangInput inline multiline title={t("Description")} />
         </Form.Item>
