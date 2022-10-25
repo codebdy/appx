@@ -62,11 +62,11 @@ export const MakeVersionDialog = memo((
         autoComplete="off"
       >
         <Form.Item
-          label={t("Name")}
+          label={t("Designer.VersionNumber")}
           name="version"
           rules={[{ required: true, message: t("Required") }]}
         >
-          <MultiLangInput inline title={t("Name")} />
+          <MultiLangInput inline title={t("Designer.VersionNumber")} />
         </Form.Item>
         <Form.Item
           label={t("Description")}

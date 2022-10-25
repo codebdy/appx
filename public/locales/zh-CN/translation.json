@@ -135,6 +135,7 @@
     "Preview": "预览",
     "PleasePageFrame": "请选择页面架构",
     "Version": "版本",
+    "VersionNumber": "版本号",
     "Operate": "操作",
     "CreateVersion": "创建版本",
     "Import": "导入",
@@ -247,7 +248,7 @@
     "AddCode": "添加代码",
     "NewDiagram": "新建类图",
     "NewCode": "新建代码",
-    "Package":"包",
+    "Package": "包",
     "Class": "类",
     "AbstractClass": "抽象类",
     "EntityClass": "实体类",
@@ -301,8 +302,8 @@
     "CodeInfo": "代码信息",
     "EnableVersion": "开启版本",
     "Other": "其它",
-    "Type":"类型",
-    "AutoIncrement":"自增长"
+    "Type": "类型",
+    "AutoIncrement": "自增长"
   },
   "AppBpmn": {
     "General": "通用",
