@@ -1,9 +1,10 @@
-import { Form, message, Modal } from "antd";
+import { Form, message, Modal, Select } from "antd";
 import React, { memo, useCallback } from "react"
 import { useTranslation } from "react-i18next";
 import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 import { useShowError } from "~/hooks/useShowError";
 import { useCreateVersion } from "~/enthooks/hooks/useCreateVersion";
+const { Option } = Select;
 
 export const ExportDialog = memo((
   props: {
@@ -60,7 +61,11 @@ export const ExportDialog = memo((
           name="version"
           rules={[{ required: true, message: t("Required") }]}
         >
-
+          <Select >
+            <Option value="jack">Jack</Option>
+            <Option value="lucy">Lucy</Option>
+            <Option value="Yiminghe">yiminghe</Option>
+          </Select>
         </Form.Item>
       </Form>
     </Modal>
