@@ -23,7 +23,7 @@ query ($appId:ID!, $instanceId:ID!){
     ]
   },
   orderBy:{
-    id:asc
+    id:desc
   }
  ){
     nodes{

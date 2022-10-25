@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { gql, RequestOptions, useLazyRequest } from "~/enthooks";
 import { ID } from "~/shared"
+import { trigger, EVENT_DATA_POSTED } from "../events";
 
 export interface MakeVersionInput {
   appId: ID;
@@ -21,8 +22,14 @@ export function useCreateVersion(options?: RequestOptions<any>): [
     error?: Error,
     loading?: boolean,
   }
-] {
-  const [doCreate, { error, loading }] = useLazyRequest(options)
+] { 
+  const [doCreate, { error, loading }] = useLazyRequest({
+    ...options||{},
+    onCompleted:(data)=>{
+      trigger(EVENT_DATA_POSTED, { entity: "Snapshot" })
+      options?.onCompleted(data);
+    }
+  })
 
   const create = useCallback((input: MakeVersionInput) => {
     doCreate(makeMutation, input)
