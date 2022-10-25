@@ -140,7 +140,8 @@
     "CreateVersion": "创建版本",
     "Import": "导入",
     "Export": "导出",
-    "Publish": "发布"
+    "Publish": "发布",
+    "ExportSuccess":"导出成功，正在下载..."
   },
   "Plugins": {
     "Title": "插件",

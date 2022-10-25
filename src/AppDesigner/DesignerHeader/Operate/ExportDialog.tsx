@@ -3,9 +3,10 @@ import React, { memo, useCallback } from "react"
 import { useTranslation } from "react-i18next";
 import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 import { useShowError } from "~/hooks/useShowError";
-import { useCreateVersion } from "~/enthooks/hooks/useCreateVersion";
 import { useQueryVersions } from "~/enthooks/hooks/useQueryVersions";
 import { useParseLangMessage } from "~/plugin-sdk";
+import { useExportApp } from "~/enthooks/hooks/useExportApp";
+import { ID } from "~/shared";
 const { Option } = Select;
 
 export const ExportDialog = memo((
@@ -18,13 +19,13 @@ export const ExportDialog = memo((
   const appId = useEdittingAppId();
   const { t } = useTranslation();
   const p = useParseLangMessage();
-  const [form] = Form.useForm<{ version?: string }>();
+  const [form] = Form.useForm<{ snapshotId?: ID }>();
   const { snapshots, error: queryError } = useQueryVersions(appId, appId)
 
-  const [create, { loading, error }] = useCreateVersion({
+  const [exportApp, { loading, error }] = useExportApp({
     onCompleted: () => {
       onOpenChange(false);
-      message.success(t("OperateSuccess"));
+      message.success(t("Designer.ExportSuccess"));
       form.resetFields()
     }
   });
@@ -32,8 +33,8 @@ export const ExportDialog = memo((
   useShowError(error || queryError)
 
   const handleOk = useCallback(() => {
-    form.validateFields().then((values: { version?: string }) => {
-
+    form.validateFields().then((values: { snapshotId?: ID }) => {
+      exportApp(values?.snapshotId)
     })
 
   }, [onOpenChange, appId])
