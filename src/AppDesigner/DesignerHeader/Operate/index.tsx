@@ -76,9 +76,12 @@ export const Operate = memo(() => {
         : undefined;
       if (zipFile) {
         importApp(zipFile)
+        if(fileInputRef.current){
+          fileInputRef.current.value = ""
+        }
       }
     },
-    [importApp]
+    [importApp, fileInputRef]
   );
 
   return (

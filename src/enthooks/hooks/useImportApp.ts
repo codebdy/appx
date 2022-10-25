@@ -2,8 +2,8 @@ import { RequestOptions, useLazyRequest } from "~/enthooks";
 import { useCallback } from "react";
 
 const importGql = `
-  mutation ($file:Upload!){
-    importApp(appFile:$file)
+  mutation ($appFile:Upload!){
+    importApp(appFile:$appFile)
   }
 `
 
@@ -17,8 +17,8 @@ export function useImportApp(options?: RequestOptions<any>): [
 
   const [doImport, { error, loading }] = useLazyRequest(options)
 
-  const importApp = useCallback((file: File) => {
-    doImport(importGql, { appFile: file })
+  const importApp = useCallback((appFile: File) => {
+    doImport(importGql, { appFile })
   }, [doImport]);
 
   return [importApp, { error, loading }];
