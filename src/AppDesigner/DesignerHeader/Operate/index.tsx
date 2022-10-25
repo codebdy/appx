@@ -22,8 +22,12 @@ export const Operate = memo(() => {
 
   const [importApp, { error, loading }] = useImportApp(
     {
-      onCompleted: () => {
-        message.success(t("OperateSuccess"))
+      onCompleted: (data) => {
+        if (data?.importApp) {
+          message.success(t("Designer.ImportSuccess"))
+        } else {
+          message.error(t("Designer.ImportFailed"))
+        }
       }
     }
   );
@@ -76,7 +80,7 @@ export const Operate = memo(() => {
         : undefined;
       if (zipFile) {
         importApp(zipFile)
-        if(fileInputRef.current){
+        if (fileInputRef.current) {
           fileInputRef.current.value = ""
         }
       }

@@ -141,7 +141,9 @@
     "Import": "导入",
     "Export": "导出",
     "Publish": "发布",
-    "ExportSuccess":"导出成功，正在下载..."
+    "ExportSuccess":"导出成功，正在下载...",
+    "ImportSuccess":"导入成功",
+    "ImportFailed":"导入失败"
   },
   "Plugins": {
     "Title": "插件",
