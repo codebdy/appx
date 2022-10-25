@@ -5,6 +5,31 @@ import { useTranslation } from 'react-i18next';
 import { ExportDialog } from './ExportDialog';
 import { MakeVersionDialog } from './MakeVersionDialog';
 
+export const pickerTypes = [
+  {
+    description: "zip files",
+    accept: {
+      "text/zip": [".zip"],
+    },
+  },
+];
+
+const pickerOpts = {
+  types: pickerTypes,
+  excludeAcceptAllOption: false,
+  multiple: false,
+};
+
+let fileHandle;
+
+async function getTheFile() {
+  // open file picker
+  [fileHandle] = await (window as any).showOpenFilePicker(pickerOpts);
+
+  // get file contents
+  return fileHandle;
+}
+
 enum OperateEnum {
   createVaresion = "createVaresion",
   export = "export",
@@ -22,10 +47,10 @@ export const Operate = memo(() => {
 
     if (key === OperateEnum.createVaresion) {
       setMakeVersionOpen(true)
-    }
-
-    if (key === OperateEnum.export) {
+    } else if (key === OperateEnum.export) {
       setExportOpen(true)
+    } else if (key === OperateEnum.import) {
+      getTheFile()
     }
   }, [])
 

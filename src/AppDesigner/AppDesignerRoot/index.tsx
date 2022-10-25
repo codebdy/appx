@@ -21,7 +21,7 @@ const AppDesignerRoot = memo((
       token: token || localStorageToken,
       tokenName: DESIGNER_TOKEN_NAME,
     }
-  }, [app, token])
+  }, [app, SERVER_URL, token])
 
   console.log("哈哈", config)
   return (
