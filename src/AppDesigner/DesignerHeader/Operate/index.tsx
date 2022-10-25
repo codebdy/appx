@@ -1,34 +1,11 @@
 import { DownOutlined } from '@ant-design/icons';
-import { Button, Dropdown, Menu, Space } from 'antd';
-import React, { memo, useCallback, useMemo, useState } from 'react';
+import { Button, Dropdown, Menu, message, Space } from 'antd';
+import React, { memo, useCallback, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useImportApp } from '~/enthooks/hooks/useImportApp';
+import { useShowError } from '~/hooks/useShowError';
 import { ExportDialog } from './ExportDialog';
 import { MakeVersionDialog } from './MakeVersionDialog';
-
-export const pickerTypes = [
-  {
-    description: "zip files",
-    accept: {
-      "text/zip": [".zip"],
-    },
-  },
-];
-
-const pickerOpts = {
-  types: pickerTypes,
-  excludeAcceptAllOption: false,
-  multiple: false,
-};
-
-let fileHandle;
-
-async function getTheFile() {
-  // open file picker
-  [fileHandle] = await (window as any).showOpenFilePicker(pickerOpts);
-
-  // get file contents
-  return fileHandle;
-}
 
 enum OperateEnum {
   createVaresion = "createVaresion",
@@ -40,8 +17,18 @@ enum OperateEnum {
 export const Operate = memo(() => {
   const [makeVersionOpen, setMakeVersionOpen] = useState(false);
   const [exportOpen, setExportOpen] = useState(false);
-
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const { t } = useTranslation();
+
+  const [importApp, { error, loading }] = useImportApp(
+    {
+      onCompleted: () => {
+        message.success(t("OperateSuccess"))
+      }
+    }
+  );
+
+  useShowError(error);
 
   const handleMenuClick = useCallback(({ key }) => {
 
@@ -50,9 +37,9 @@ export const Operate = memo(() => {
     } else if (key === OperateEnum.export) {
       setExportOpen(true)
     } else if (key === OperateEnum.import) {
-      getTheFile()
+      fileInputRef.current?.click()
     }
-  }, [])
+  }, [fileInputRef])
 
   const menu = useMemo(() => (
     <Menu
@@ -82,10 +69,22 @@ export const Operate = memo(() => {
     setMakeVersionOpen(open);
   }, [])
 
+  const handleAppFileInputChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const zipFile = event.target.files
+        ? event.target.files[0]
+        : undefined;
+      if (zipFile) {
+        importApp(zipFile)
+      }
+    },
+    [importApp]
+  );
+
   return (
     <>
       <Dropdown overlay={menu}>
-        <Button type="text" onClick={e => e.preventDefault()}>
+        <Button type="text" onClick={e => e.preventDefault()} loading={loading}>
           <Space>
             {t("Designer.Operate")}
             <DownOutlined style={{ fontSize: 12 }} />
@@ -94,6 +93,14 @@ export const Operate = memo(() => {
       </Dropdown>
       <MakeVersionDialog open={makeVersionOpen} onOpenChange={handleMakeVersionOpenChange} />
       <ExportDialog open={exportOpen} onOpenChange={setExportOpen} />
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept=".zip"
+        style={{ display: "none" }}
+        multiple={false}
+        onChange={handleAppFileInputChange}
+      />
     </>
   )
 });
