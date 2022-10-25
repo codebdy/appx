@@ -662,54 +662,6 @@
           "index": false,
           "label": "",
           "length": 0,
-          "name": "appUuid",
-          "nullable": false,
-          "primary": false,
-          "readonly": false,
-          "system": false,
-          "type": "String",
-          "typeLabel": "String",
-          "typeUuid": "",
-          "unique": false,
-          "unsigned": false,
-          "updateDate": false,
-          "uuid": "8aed8ca4-e4a8-4e3f-82e1-c00b5819b70b"
-        },
-        {
-          "createDate": false,
-          "default": "",
-          "deleteDate": false,
-          "description": "",
-          "floatD": 0,
-          "floatM": 0,
-          "hidden": false,
-          "index": false,
-          "label": "",
-          "length": 0,
-          "name": "entityUuid",
-          "nullable": false,
-          "primary": false,
-          "readonly": false,
-          "system": false,
-          "type": "String",
-          "typeLabel": "String",
-          "typeUuid": "",
-          "unique": false,
-          "unsigned": false,
-          "updateDate": false,
-          "uuid": "e653d43e-07e7-4540-8231-a5e6e50e9186"
-        },
-        {
-          "createDate": false,
-          "default": "",
-          "deleteDate": false,
-          "description": "",
-          "floatD": 0,
-          "floatM": 0,
-          "hidden": false,
-          "index": false,
-          "label": "",
-          "length": 0,
           "name": "version",
           "nullable": false,
           "primary": false,
@@ -794,6 +746,12 @@
           "unsigned": false,
           "updateDate": false,
           "uuid": "10db4f63-fbff-4eb4-a723-4418be1e1c30"
+        },
+        {
+          "uuid": "b82a34b5-a806-442a-8bb1-bfe43282e957",
+          "name": "instanceId",
+          "type": "ID",
+          "typeLabel": "ID"
         }
       ],
       "description": "",
@@ -3070,9 +3028,27 @@
           "uuid": "01445fc0-728a-4110-9bf0-a7d704f4e47f"
         },
         {
+          "createDate": false,
+          "default": "",
+          "deleteDate": false,
+          "description": "",
+          "floatD": 0,
+          "floatM": 0,
+          "hidden": false,
+          "index": false,
+          "label": "",
+          "length": 0,
           "name": "roleId",
+          "nullable": false,
+          "primary": false,
+          "readonly": false,
+          "system": false,
           "type": "ID",
           "typeLabel": "ID",
+          "typeUuid": "",
+          "unique": false,
+          "unsigned": false,
+          "updateDate": false,
           "uuid": "3ccba263-77d4-47c1-a555-3db8935ab33c"
         }
       ],
@@ -4067,13 +4043,37 @@
       "uuid": "2cdb4c7c-ce16-4744-8405-cffaef63ba55"
     },
     {
+      "AppId": 1,
+      "associationClass": {
+        "attributes": null,
+        "name": ""
+      },
+      "descriptionOnSource": "",
+      "descriptionOnTarget": "",
+      "enableAssociaitonClass": false,
       "innerId": 0,
+      "labelOfSource": "",
+      "labelOfTarget": "",
       "relationType": "inherit",
+      "roleOfSource": "",
+      "roleOfTarget": "",
       "sourceId": "3a450ffa-e784-415f-b6c2-bc415e2dfd8c",
       "sourceMutiplicity": "0..1",
+      "system": false,
       "targetId": "0068083c-88f9-4170-8763-c6a3313bab73",
       "targetMultiplicity": "0..1",
       "uuid": "c813d688-bb04-484b-a8d9-32202760d6f0"
+    },
+    {
+      "uuid": "e148c5c4-ef02-4541-b2ca-df4ec3a48b43",
+      "innerId": 1005,
+      "relationType": "twoWayAggregation",
+      "sourceId": "APP_ENTITY_UUID",
+      "targetId": "SNAPSHOT_ENTITY_UUID",
+      "roleOfTarget": "snapshots",
+      "roleOfSource": "app",
+      "sourceMutiplicity": "0..1",
+      "targetMultiplicity": "0..1"
     }
   ],
   "diagrams": [
@@ -4099,8 +4099,8 @@
       "uuid": "014aa54a-38c4-4911-a4ce-091943d9b5d8"
     },
     {
-      "uuid": "9af8d5ce-e05e-4236-a944-9715e545e2db",
-      "name": "$inline:{\"zh-CN\":\"插件\"}",
+      "uuid": "2b8c005d-fc0b-4200-a109-7cc085b268d9",
+      "name": "版本管理",
       "packageUuid": "PACKAGE_SYSTEM_UUID",
       "nodes": [],
       "edges": []
@@ -4163,6 +4163,14 @@
       "width": 180,
       "x": 670,
       "y": 270
+    },
+    {
+      "diagramUuid": "ff40de16-1759-407e-b52c-915c307f5c74",
+      "height": 230,
+      "id": "f0fa4b0f-4b91-4092-a93b-beaa13896e86",
+      "width": 180,
+      "x": -360,
+      "y": -140
     },
     {
       "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
@@ -4302,19 +4310,19 @@
     },
     {
       "id": "APP_ENTITY_UUID",
-      "x": -320,
-      "y": -120,
+      "x": -100,
+      "y": -220,
       "width": 180,
       "height": 330,
-      "diagramUuid": "9af8d5ce-e05e-4236-a944-9715e545e2db"
+      "diagramUuid": "2b8c005d-fc0b-4200-a109-7cc085b268d9"
     },
     {
-      "id": "f0fa4b0f-4b91-4092-a93b-beaa13896e86",
-      "x": 21,
-      "y": -81,
+      "id": "SNAPSHOT_ENTITY_UUID",
+      "x": 270,
+      "y": -181,
       "width": 180,
       "height": 252,
-      "diagramUuid": "9af8d5ce-e05e-4236-a944-9715e545e2db"
+      "diagramUuid": "2b8c005d-fc0b-4200-a109-7cc085b268d9"
     }
   ],
   "x6Edges": [
@@ -4687,6 +4695,27 @@
           "y": 180
         }
       ]
+    },
+    {
+      "id": "e148c5c4-ef02-4541-b2ca-df4ec3a48b43",
+      "vertices": [],
+      "roleOnSourcePosition": {
+        "distance": 40,
+        "offset": 20
+      },
+      "sourceMultiplicityPosition": {
+        "distance": 40,
+        "offset": -20
+      },
+      "roleOnTargetPosition": {
+        "distance": -40,
+        "offset": 20
+      },
+      "targetMultiplicityPosition": {
+        "distance": -40,
+        "offset": -20
+      },
+      "diagramUuid": "2b8c005d-fc0b-4200-a109-7cc085b268d9"
     }
   ]
 }

@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 import { useShowError } from "~/hooks/useShowError";
 import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/view";
-import { MakeVersionInput, useCreateVersion } from "~/shared/action/hooks/useCreateVersion";
+import { MakeVersionInput, useCreateVersion } from "~/enthooks/hooks/useCreateVersion";
 
 export const MakeVersionDialog = memo((
   props: {
@@ -35,7 +35,7 @@ export const MakeVersionDialog = memo((
       })
     })
 
-  }, [onOpenChange])
+  }, [onOpenChange, appId])
 
   const handleCancel = useCallback(() => {
     onOpenChange(false);

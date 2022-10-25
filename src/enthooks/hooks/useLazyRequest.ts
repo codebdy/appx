@@ -29,7 +29,7 @@ export function useLazyRequest<T1>(options?: RequestOptions<any>)
   const request = useCallback(
     (gql: string | undefined, params?: T1) => {
       if (!gql || !endpoint) {
-        console.error("gql or endpoint is null")
+        console.error("gql or endpoint is null", endpoint, gql)
         return;
       }
 
