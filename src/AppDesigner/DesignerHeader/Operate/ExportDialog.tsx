@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 import { useShowError } from "~/hooks/useShowError";
 import { useCreateVersion } from "~/enthooks/hooks/useCreateVersion";
+import { useQueryVersions } from "~/enthooks/hooks/useQueryVersions";
+import { useParseLangMessage } from "~/plugin-sdk";
 const { Option } = Select;
 
 export const ExportDialog = memo((
@@ -15,7 +17,9 @@ export const ExportDialog = memo((
   const { open, onOpenChange } = props;
   const appId = useEdittingAppId();
   const { t } = useTranslation();
+  const p = useParseLangMessage();
   const [form] = Form.useForm<{ version?: string }>();
+  const { snapshots, error: queryError } = useQueryVersions(appId, appId)
   const [create, { loading, error }] = useCreateVersion({
     onCompleted: () => {
       onOpenChange(false);
@@ -23,7 +27,7 @@ export const ExportDialog = memo((
     }
   });
 
-  useShowError(error)
+  useShowError(error || queryError)
 
   const handleOk = useCallback(() => {
     form.validateFields().then((values: { version?: string }) => {
@@ -62,9 +66,13 @@ export const ExportDialog = memo((
           rules={[{ required: true, message: t("Required") }]}
         >
           <Select >
-            <Option value="jack">Jack</Option>
-            <Option value="lucy">Lucy</Option>
-            <Option value="Yiminghe">yiminghe</Option>
+            {
+              snapshots?.map(snapshot => {
+                return (
+                  <Option key={snapshot.id} value={snapshot.id}>{p(snapshot.version)}</Option>
+                )
+              })
+            }
           </Select>
         </Form.Item>
       </Form>
