@@ -4,10 +4,24 @@ import { useTranslation } from "react-i18next";
 import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
 import { useShowError } from "~/hooks/useShowError";
 import { useQueryVersions } from "~/enthooks/hooks/useQueryVersions";
-import { useParseLangMessage } from "~/plugin-sdk";
+import { useAppParams, useParseLangMessage } from "~/plugin-sdk";
 import { useExportApp } from "~/enthooks/hooks/useExportApp";
 import { ID } from "~/shared";
 const { Option } = Select;
+
+export const downloadFile = function (url: string, filename: string) {
+  // 创建隐藏的可下载链接
+  var eleLink = document.createElement('a');
+  eleLink.download = filename;
+  eleLink.style.display = 'none';
+  eleLink.href = url;
+  // 触发点击
+  document.body.appendChild(eleLink);
+  eleLink.click();
+  // 然后移除
+  document.body.removeChild(eleLink);
+};
+
 
 export const ExportDialog = memo((
   props: {
@@ -17,15 +31,20 @@ export const ExportDialog = memo((
 ) => {
   const { open, onOpenChange } = props;
   const appId = useEdittingAppId();
+  const { app } = useAppParams();
   const { t } = useTranslation();
   const p = useParseLangMessage();
   const [form] = Form.useForm<{ snapshotId?: ID }>();
   const { snapshots, error: queryError } = useQueryVersions(appId, appId)
 
   const [exportApp, { loading, error }] = useExportApp({
-    onCompleted: () => {
+    onCompleted: (data) => {
       onOpenChange(false);
       message.success(t("Designer.ExportSuccess"));
+      if (data?.exportApp) {
+        downloadFile(data?.exportApp, (p(app.title) || ("app" + appId)) + ".zip")
+      }
+
       form.resetFields()
     }
   });

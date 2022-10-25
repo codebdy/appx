@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { Meta } from "../meta/Meta";
+import { MetaContent } from "../meta";
 import { useGetMeta } from "./useGetMeta";
 
 export const downloadFile = function (filename: string, content: string) {
@@ -22,7 +22,7 @@ export function useExportJson(appId: string) {
   const getMeta = useGetMeta(appId)
   const doExport = useCallback(() => {
 
-    const data: Meta =getMeta();
+    const data: MetaContent =getMeta();
     downloadFile(appId + '.json', JSON.stringify(data, null, 2));
   }, [appId, getMeta]);
 
