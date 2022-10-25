@@ -2,6 +2,7 @@ import { DownOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Menu, Space } from 'antd';
 import React, { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ExportDialog } from './ExportDialog';
 import { MakeVersionDialog } from './MakeVersionDialog';
 
 enum OperateEnum {
@@ -13,6 +14,7 @@ enum OperateEnum {
 
 export const Operate = memo(() => {
   const [makeVersionOpen, setMakeVersionOpen] = useState(false);
+  const [exportOpen, setExportOpen] = useState(false);
 
   const { t } = useTranslation();
 
@@ -20,6 +22,10 @@ export const Operate = memo(() => {
 
     if (key === OperateEnum.createVaresion) {
       setMakeVersionOpen(true)
+    }
+
+    if (key === OperateEnum.export) {
+      setExportOpen(true)
     }
   }, [])
 
@@ -62,6 +68,7 @@ export const Operate = memo(() => {
         </Button>
       </Dropdown>
       <MakeVersionDialog open={makeVersionOpen} onOpenChange={handleMakeVersionOpenChange} />
+      <ExportDialog open={exportOpen} onOpenChange={setExportOpen} />
     </>
   )
 });
