@@ -19,7 +19,8 @@ export const MakeVersionDialog = memo((
   const [create, { loading, error }] = useCreateVersion({
     onCompleted: () => {
       onOpenChange(false);
-      message.success(t("OperateSuccess"))
+      message.success(t("OperateSuccess"));
+      form.resetFields();
     }
   });
 
@@ -39,7 +40,8 @@ export const MakeVersionDialog = memo((
 
   const handleCancel = useCallback(() => {
     onOpenChange(false);
-  }, [onOpenChange])
+    form.resetFields()
+  }, [onOpenChange, form])
   return (
     <Modal
       title={t("Designer.CreateVersion")}

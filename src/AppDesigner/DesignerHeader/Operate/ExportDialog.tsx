@@ -1,4 +1,4 @@
-import { Form, message, Modal, Select } from "antd";
+import { Form, Input, message, Modal, Select } from "antd";
 import React, { memo, useCallback } from "react"
 import { useTranslation } from "react-i18next";
 import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
@@ -20,10 +20,12 @@ export const ExportDialog = memo((
   const p = useParseLangMessage();
   const [form] = Form.useForm<{ version?: string }>();
   const { snapshots, error: queryError } = useQueryVersions(appId, appId)
+
   const [create, { loading, error }] = useCreateVersion({
     onCompleted: () => {
       onOpenChange(false);
-      message.success(t("OperateSuccess"))
+      message.success(t("OperateSuccess"));
+      form.resetFields()
     }
   });
 
@@ -37,8 +39,15 @@ export const ExportDialog = memo((
   }, [onOpenChange, appId])
 
   const handleCancel = useCallback(() => {
+    form.resetFields();
     onOpenChange(false);
-  }, [onOpenChange])
+  }, [onOpenChange, form])
+
+  const handleValueChange = useCallback((changeValues) => {
+    if (changeValues?.snapshotId) {
+      form.setFieldValue("description", snapshots?.find(snapshot => snapshot.id === changeValues?.snapshotId)?.description)
+    }
+  }, [form, snapshots])
   return (
     <Modal
       title={t("Designer.Export")}
@@ -59,10 +68,11 @@ export const ExportDialog = memo((
         wrapperCol={{ span: 16 }}
         form={form}
         autoComplete="off"
+        onValuesChange={handleValueChange}
       >
         <Form.Item
           label={t("Designer.VersionNumber")}
-          name="version"
+          name="snapshotId"
           rules={[{ required: true, message: t("Required") }]}
         >
           <Select >
@@ -74,6 +84,12 @@ export const ExportDialog = memo((
               })
             }
           </Select>
+        </Form.Item>
+        <Form.Item
+          label={t("Description")}
+          name="description"
+        >
+          <Input.TextArea disabled />
         </Form.Item>
       </Form>
     </Modal>
