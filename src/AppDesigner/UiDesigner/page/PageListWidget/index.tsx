@@ -36,7 +36,7 @@ const PageListWidget = memo((
       dataNodes.push({
         title: <CategoryLabel categories={categories} category={category} />,
         key: category.id,
-        children: getCategoryPages(category.id)?.map((page) => {
+        children: getCategoryPages(category.uuid)?.map((page) => {
           return {
             title: page && <PageLabel page={page} categories={categories} />,
             key: page.id,

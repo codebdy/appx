@@ -41,7 +41,7 @@ export const PageSelect = memo((
           return (
             <TreeNode value={category.title} title={p(category.title)} selectable={false}>
               {
-                getCategoryPages(category.id)?.map(page => {
+                getCategoryPages(category.uuid)?.map(page => {
                   return (
                     <TreeNode value={page.id} title={p(page.title)} />
                   )

@@ -4,8 +4,8 @@ import { usePages } from "./usePages";
 
 export function useGetCategoryPages() {
   const pages = usePages();
-  const getPages = useCallback((categoryId?: ID) => {
-    return pages?.filter(page => page.category?.id === categoryId)
+  const getPages = useCallback((categoryUuid?: ID) => {
+    return pages?.filter(page => page.categoryUuid === categoryUuid)
   }, [pages]);
 
   return getPages

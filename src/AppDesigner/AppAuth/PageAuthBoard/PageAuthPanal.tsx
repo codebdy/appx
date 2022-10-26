@@ -49,7 +49,7 @@ export const PageAuthPanal = memo((
 
   const makeCategoryItem = useCallback((category: IAuthCategory) => {
     return {
-      key: category.category.id,
+      key: category.category.uuid,
       name: p(category.category.title),
       children: category.pages.map(page => makePageItem(page)),
       device: device.key as any

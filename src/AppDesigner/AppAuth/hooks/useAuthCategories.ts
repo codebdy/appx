@@ -8,7 +8,7 @@ export function useAuthCategories(categories: IPageCategory[], authPages: IAuthP
   const authCategories = useMemo(() => {
     const athCats = [];
     for (const category of categories) {
-      const pgs = getPages(category.id);
+      const pgs = getPages(category.uuid);
       if (pgs.length > 0) {
         athCats.push({
           category,

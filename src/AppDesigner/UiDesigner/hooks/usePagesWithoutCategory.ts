@@ -9,7 +9,7 @@ export function usePagesWithoutCategory() {
   const pagesWithoutCategory = useMemo(() => {
     const pgs = [];
     for (const page of pages || []) {
-      if (!categories.find(category => category.id === page.category?.id)) {
+      if (!categories.find(category => category.uuid === page.categoryUuid)) {
         pgs.push(page)
       }
     }

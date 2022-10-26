@@ -32,7 +32,7 @@ const PagesTree = memo((
                 {(provided) => (
                   <div ref={provided.innerRef}>
                     {
-                      getCategoryPage(category.id)?.map((page, index) => {
+                      getCategoryPage(category.uuid)?.map((page, index) => {
                         return (
                           <Draggable key={page.id} draggableId={page.id} index={index}>
                             {(provided, snapshot) => (
