@@ -6,13 +6,12 @@ import { memo } from "react"
 import { useTranslation } from "react-i18next"
 import { useCategories } from "../../../hooks/useCategories";
 import { usePagesWithoutCategory } from "../../../hooks/usePagesWithoutCategory";
-import { ID } from "~/shared";
 const { TreeNode } = TreeSelect;
 
 export const PageSelect = memo((
   props: {
-    value?: ID,
-    onChange?: (value?: ID) => void,
+    value?: string,
+    onChange?: (value?: string) => void,
   }
 ) => {
   const { value, onChange } = props;
@@ -43,7 +42,7 @@ export const PageSelect = memo((
               {
                 getCategoryPages(category.uuid)?.map(page => {
                   return (
-                    <TreeNode value={page.id} title={p(page.title)} />
+                    <TreeNode value={page.uuid} title={p(page.title)} />
                   )
                 })
               }
@@ -54,7 +53,7 @@ export const PageSelect = memo((
       {
         pagesWithoutCategory?.map(page => {
           return (
-            <TreeNode value={page.id} title={p(page.title)} />
+            <TreeNode value={page.uuid} title={p(page.title)} />
           )
         })
       }

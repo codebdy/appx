@@ -11,7 +11,7 @@ import "./style.less"
 import { useParseLangMessage } from '@rxdrag/plugin-sdk/hooks/useParseLangMessage';
 const { Option } = Select
 
-export const BaseLangForm = memo(() => {
+export const BaseConfigForm = memo(() => {
   const { t } = useTranslation();
   const key = useAppViewKey();
   const [config, setConfig] = useRecoilState(deviceConfigState(key));
@@ -26,8 +26,8 @@ export const BaseLangForm = memo(() => {
     setConfig(deviceConfig);
     form.resetFields();
     form.setFieldsValue({
-      entryId: deviceConfig?.schemaJson?.entryUuid,
-      pageFrameId: deviceConfig?.schemaJson?.pageFrameUuid,
+      entryUuid: deviceConfig?.schemaJson?.entryUuid,
+      pageFrameUuid: deviceConfig?.schemaJson?.pageFrameUuid,
     });
   }, [deviceConfig, form, setConfig])
 
@@ -55,7 +55,7 @@ export const BaseLangForm = memo(() => {
     >
       <Form.Item
         label={t("Designer.PageFrame")}
-        name="pageFrameId"
+        name="pageFrameUuid"
       >
         <Select
           allowClear loading={loading}
@@ -64,7 +64,7 @@ export const BaseLangForm = memo(() => {
           {
             pageFrames?.map(frame => {
               return (
-                <Option value={frame.id}>{p(frame.title)}</Option>
+                <Option value={frame.uuid}>{p(frame.title)}</Option>
               )
             })
           }
@@ -72,7 +72,7 @@ export const BaseLangForm = memo(() => {
       </Form.Item>
       <Form.Item
         label={t("Designer.EntryPage")}
-        name="entryId"
+        name="entryUuid"
       >
         <PageSelect />
       </Form.Item>

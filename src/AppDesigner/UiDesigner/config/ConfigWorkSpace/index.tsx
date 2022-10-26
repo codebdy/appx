@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { ViewportPanel, WorkspacePanel } from "../../panels";
 import "./style.less"
 import { Collapse } from "antd";
-import { BaseLangForm } from "./BaseForm";
+import { BaseConfigForm } from "./BaseConfigForm";
 const { Panel } = Collapse;
 
 const MenuWorkSpace = memo(() => {
@@ -25,7 +25,7 @@ const MenuWorkSpace = memo(() => {
             >
               <Collapse defaultActiveKey={['base']}>
                 <Panel header={t("Designer.BaseConfig")} key="base">
-                  <BaseLangForm />
+                  <BaseConfigForm />
                 </Panel>
               </Collapse>
             </div>

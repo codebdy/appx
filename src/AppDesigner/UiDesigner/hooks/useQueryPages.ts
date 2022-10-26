@@ -31,6 +31,7 @@ query ($appId:ID!, $device:String!){
       device
       title
       categoryUuid
+      uuid
     }
   }
 }
