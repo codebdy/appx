@@ -62,7 +62,7 @@ const CategoryLabel = (
         />
         <CreatePageModal
           categories={categories}
-          categoryUuid={category?.id}
+          categoryUuid={category?.uuid}
           isModalVisible={pageModalOpen}
           onClose={handleClosePageModal}
         />

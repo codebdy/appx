@@ -28,7 +28,8 @@ query ($appId:ID!, $device:String!){
     nodes{
       id
       device
-      title      
+      title     
+      uuid 
     }
   }
 }
