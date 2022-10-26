@@ -36,7 +36,6 @@ export interface IPageInput {
   schemaJson?: any;
   device?: Device;
   app?: { sync: IAppInput };
-  category?: { sync: IPageCategoryInput, delete?: boolean };
   categoryUuid?: string;
   uuid?: string;
 }

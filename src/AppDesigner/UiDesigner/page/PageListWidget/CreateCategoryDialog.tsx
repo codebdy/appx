@@ -7,6 +7,7 @@ import { useUpsertCategory } from "../../hooks/useUpsertCategory";
 import { useShowError } from "~/hooks/useShowError";
 import CategoryForm from "./CategoryForm";
 import { useTranslation } from "react-i18next";
+import { createUuid } from "~/shared";
 
 const CreateCategoryDialog = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -32,7 +33,7 @@ const CreateCategoryDialog = memo(() => {
 
   const handleConfirm = useCallback((values: any) => {
     form.validateFields().then((values) => {
-      create({ title: values.title })
+      create({ title: values.title, uuid: createUuid() })
     });
   }, [create, form]);
 

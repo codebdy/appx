@@ -6,17 +6,17 @@ import { useUpsertPage } from "../../hooks/useUpsertPage";
 import { useShowError } from "~/hooks/useShowError";
 import { useTranslation } from "react-i18next";
 import { IPageCategory } from "~/model";
-import { ID } from "~/shared";
+import { createUuid, ID } from "~/shared";
 
 const CreatePageModal = memo((
   props: {
-    categoryId?: ID,
+    categoryUuid?: string,
     categories: IPageCategory[],
     isModalVisible: boolean,
     onClose: () => void,
   }
 ) => {
-  const { categoryId, categories, isModalVisible, onClose } = props;
+  const { categoryUuid, categories, isModalVisible, onClose } = props;
   const [form] = Form.useForm();
   const { t } = useTranslation();
   const [upsert, { loading, error }] = useUpsertPage({
@@ -30,15 +30,15 @@ const CreatePageModal = memo((
 
   const handleConfirm = useCallback(() => {
     form.validateFields().then((values: any) => {
-      if (values.categoryId) {
-        upsert({ title: values.title, category: { sync: { id: values.categoryId } } });
+      if (values.categoryUuid) {
+        upsert({ title: values.title, uuid: createUuid(), categoryUuid: values.categoryUuid });
       } else {
-        upsert({ title: values.title });
+        upsert({ title: values.title, uuid: createUuid() });
       }
     });
   }, [upsert, form]);
 
-  const handleCancel = useCallback((values: any) => {
+  const handleCancel = useCallback(() => {
     form.resetFields();
     onClose()
   }, [form, onClose]);
@@ -55,7 +55,7 @@ const CreatePageModal = memo((
       onOk={handleConfirm}
       confirmLoading={loading}
     >
-      <PageForm categoryId={categoryId} categories={categories} form={form} />
+      <PageForm categoryUuid={categoryUuid} categories={categories} form={form} />
     </Modal>
   )
 })

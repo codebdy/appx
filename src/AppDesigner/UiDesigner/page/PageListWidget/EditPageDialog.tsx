@@ -28,10 +28,10 @@ const EditPageDialog = memo((
 
   const handleConfirm = useCallback((values: any) => {
     form.validateFields().then((values: any) => {
-      if (values.categoryId) {
-        upsert({ ...page as any, title: values.title, category: { sync: { id: values.categoryId } } });
+      if (values.categoryUuid) {
+        upsert({ ...page as any, title: values.title, categoryUuid: values.categoryUuid });
       } else {
-        upsert({ ...page as any, title: values.title, category: { clear: true } });
+        upsert({ ...page as any, title: values.title, categoryUuid: "" });
       }
     });
   }, [form, page, upsert]);

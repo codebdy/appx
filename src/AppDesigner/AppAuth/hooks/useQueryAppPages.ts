@@ -19,9 +19,7 @@ query ($appId:ID!){
       title
       device
       schemaJson     
-      category{
-        id
-      } 
+      categoryUuid
     }
   }
 }

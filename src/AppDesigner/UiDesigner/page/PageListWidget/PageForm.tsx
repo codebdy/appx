@@ -11,12 +11,12 @@ const { TabPane } = Tabs;
 const { Option } = Select;
 
 const PageForm = memo((props: {
-  categoryId?: ID,
+  categoryUuid?: string,
   page?: IPage,
   categories: IPageCategory[],
   form: FormInstance<IPageInput>
 }) => {
-  const { categoryId, page, categories, form } = props;
+  const { categoryUuid, page, categories, form } = props;
   const { t } = useTranslation();
   const p = useParseLangMessage();
 
@@ -30,7 +30,7 @@ const PageForm = memo((props: {
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 16 }}
       form={form}
-      initialValues={{ title: page?.title || "", categoryId: page?.category?.id || categoryId || "" }}
+      initialValues={{ title: page?.title || "", categoryUuid: page?.categoryUuid || categoryUuid || "" }}
       autoComplete="off"
       onKeyUp={handleKeyUp}
     >
@@ -47,14 +47,14 @@ const PageForm = memo((props: {
         <Col span={12}>
           <Form.Item
             label={t("Pages.SelectCategory")}
-            name="categoryId"
+            name="categoryUuid"
           >
             <Select>
               <Option value=""><em>None</em></Option>
               {
                 categories.map((category) => {
                   return (
-                    <Option key={category.id} value={category.id}>
+                    <Option key={category.uuid} value={category.uuid}>
                       {p(category.title)}
                     </Option>
                   )

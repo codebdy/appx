@@ -3,8 +3,8 @@ import React, { useCallback, useState } from "react"
 import CategoryActions from "./CategoryActions"
 import EditCategoryDialog from "./EditCategoryDialog"
 import CreatePageModal from "./CreatePageModal"
-import { IPageCategory } from "packages/studio/src/model"
 import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage"
+import { IPageCategory } from "~/model"
 
 const CategoryLabel = (
   props: {
@@ -62,7 +62,7 @@ const CategoryLabel = (
         />
         <CreatePageModal
           categories={categories}
-          categoryId={category?.id}
+          categoryUuid={category?.id}
           isModalVisible={pageModalOpen}
           onClose={handleClosePageModal}
         />
