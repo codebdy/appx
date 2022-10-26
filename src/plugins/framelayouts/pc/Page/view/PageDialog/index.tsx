@@ -34,7 +34,7 @@ export const PageDialog = memo((
       onCancel={handleCancel}
     >
       <PageEngine
-        pageId={pageDialog.pageId}
+        pageUuid={pageDialog.pageId}
         components={components}
       />
     </Modal>

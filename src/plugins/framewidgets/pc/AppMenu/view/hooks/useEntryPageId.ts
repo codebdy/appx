@@ -1,7 +1,7 @@
 import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
 
-export function useEntryPageId() {
+export function useEntryPageUuid() {
   const { deviceConfig } = useAppParams();
 
-  return deviceConfig?.schemaJson?.entryId;
+  return deviceConfig?.schemaJson?.entryUuid;
 }

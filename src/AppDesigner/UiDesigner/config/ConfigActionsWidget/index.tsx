@@ -33,7 +33,7 @@ export const ConfigActionsWidget = observer(() => {
       device,
       schemaJson: {
         ...appDeviceConfig?.schemaJson || {},
-        entryId: appDeviceConfig?.schemaJson?.entryId,
+        entryId: appDeviceConfig?.schemaJson?.entryUuid,
       }
     })
   }, [appDeviceConfig, device, upsert])

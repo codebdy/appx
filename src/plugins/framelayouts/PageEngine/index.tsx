@@ -35,17 +35,17 @@ type IComponents = Record<string, JSXComponent>;
 
 export const PageEngine = memo((
   props: {
-    pageId?: ID,
+    pageUuid?: ID,
     LoadingSpan?: React.FC<ILoadingSpanProps>,
     components: IComponents,
   }
 ) => {
-  const { pageId, LoadingSpan = Spin, components = {} } = props;
-  const { page, loading, error } = useQueryPageWithCache(pageId);
+  const { pageUuid, LoadingSpan = Spin, components = {} } = props;
+  const { page, loading, error } = useQueryPageWithCache(pageUuid);
   const me = useMe();
   const $me = useMemo(() => new Me(me), [me]);
   const expScope = useExpressionScope()
-  console.log("PageEngine 刷新", pageId, page)
+  console.log("PageEngine 刷新", pageUuid, page)
   const p = useParseLangSchema();
   useShowError(error);
 

@@ -39,7 +39,7 @@ const MenuSettingsForm = memo((
       icon: node.meta?.icon,
       badge: node.meta?.badge,
       link: node.meta?.link,
-      "route.pageId": node.meta?.route?.pageId,
+      "route.pageUuid": node.meta?.route?.pageUuid,
       "route.payload": node.meta?.route?.payload,
     })
   }, [form, node.meta])
@@ -55,10 +55,10 @@ const MenuSettingsForm = memo((
 
   const handleChange = useCallback((form) => {
     let title = node.meta.title;
-    if (form["route.pageId"]) {
-      title = getPge(form["route.pageId"])?.title;
+    if (form["route.pageUuid"]) {
+      title = getPge(form["route.pageUuid"])?.title;
     }
-    predetailForm(form, "pageId");
+    predetailForm(form, "pageUuid");
     predetailForm(form, "payload");
     setMeta(node.meta.uuid, { ...node.meta, title, ...form });
   }, [getPge, node.meta, predetailForm, setMeta])
@@ -106,7 +106,7 @@ const MenuSettingsForm = memo((
           <>
             <Form.Item
               label={t("Menu.Page")}
-              name="route.pageId"
+              name="route.pageUuid"
             >
               <PageSelect />
             </Form.Item>

@@ -25,7 +25,7 @@ export interface IMenuItem {
   link?: string;
   //auths?: RxAuth[];
   route?: {
-    pageId?: ID;
+    pageUuid?: string;
     payload?: any;
   };
 }

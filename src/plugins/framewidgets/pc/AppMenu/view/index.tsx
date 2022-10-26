@@ -7,8 +7,8 @@ import { ItemType } from "antd/lib/menu/hooks/useItems";
 import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetMenuItem } from "./hooks/useGetMenuItem";
-import { useEntryPageId } from "./hooks/useEntryPageId";
-import { useGetMenuItemByPageId } from "./hooks/useGetMenuItemByPageId";
+import { useEntryPageUuid } from "./hooks/useEntryPageId";
+import { useGetMenuItemByPageUuid } from "./hooks/useGetMenuItemByPageUuid";
 import "./style.less"
 import cls from "classnames";
 
@@ -24,10 +24,10 @@ const AppMenu = memo((props: IComponentProps) => {
   const { device, appId, menuUuid } = useParams();
   const navigate = useNavigate();
 
-  const entryId = useEntryPageId();
+  const entryId = useEntryPageUuid();
 
   const getMenuItem = useGetMenuItem();
-  const getMenuItemByPageId = useGetMenuItemByPageId();
+  const getMenuItemByPageId = useGetMenuItemByPageUuid();
 
   const makeItem = useCallback((item: IMenuItem) => {
     return ({

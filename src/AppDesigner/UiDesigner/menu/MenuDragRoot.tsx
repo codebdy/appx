@@ -96,7 +96,7 @@ const MenuDragRoot = memo((
                 uuid: createUuid(),
                 type: MenuItemType.Item,
                 title: page.title,
-                route: { pageId: page.id },
+                route: { pageUuid: page.uuid },
               },
               childIds: [],
             };

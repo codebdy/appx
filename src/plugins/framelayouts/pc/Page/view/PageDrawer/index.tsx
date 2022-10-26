@@ -36,7 +36,7 @@ export const PageDrawer = memo((
       onClose={handleClose}
     >
       <PageEngine
-        pageId={pageDrawer.pageId}
+        pageUuid={pageDrawer.pageId}
         components={components}
       />
     </Drawer>

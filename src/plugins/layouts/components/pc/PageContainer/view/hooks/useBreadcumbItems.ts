@@ -31,7 +31,7 @@ export function useBreadcumbItems() {
     for (const item of menuPath) {
       items.push({
         breadcrumbName: p(item.title),
-        path: item.route?.pageId && `/app/${device}/${appId}/${item.route?.pageId}`
+        path: item.route?.pageUuid && `/app/${device}/${appId}/${item.route?.pageUuid}`
       })
     }
     return items;

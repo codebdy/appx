@@ -23,8 +23,8 @@ export interface IAppDeviceConfig {
   device?: Device;
   published?: boolean;
   schemaJson?: {
-    entryId?: ID,
-    pageFrameId?: ID,
+    entryUuid?: string,
+    pageFrameUuid?: string,
   }
 }
 

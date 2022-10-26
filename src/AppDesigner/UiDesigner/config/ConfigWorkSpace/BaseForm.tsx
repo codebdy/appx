@@ -26,13 +26,13 @@ export const BaseLangForm = memo(() => {
     setConfig(deviceConfig);
     form.resetFields();
     form.setFieldsValue({
-      entryId: deviceConfig?.schemaJson?.entryId,
-      pageFrameId: deviceConfig?.schemaJson?.pageFrameId,
+      entryId: deviceConfig?.schemaJson?.entryUuid,
+      pageFrameId: deviceConfig?.schemaJson?.pageFrameUuid,
     });
   }, [deviceConfig, form, setConfig])
 
   useEffect(() => {
-    form.setFieldsValue({ entryId: config?.schemaJson?.entryId });
+    form.setFieldsValue({ entryId: config?.schemaJson?.entryUuid });
   }, [config, form])
 
   const handleValuesChange = useCallback((changeValues, formValues) => {
