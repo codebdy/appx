@@ -748,10 +748,28 @@
           "uuid": "10db4f63-fbff-4eb4-a723-4418be1e1c30"
         },
         {
-          "uuid": "b82a34b5-a806-442a-8bb1-bfe43282e957",
+          "createDate": false,
+          "default": "",
+          "deleteDate": false,
+          "description": "",
+          "floatD": 0,
+          "floatM": 0,
+          "hidden": false,
+          "index": false,
+          "label": "",
+          "length": 0,
           "name": "instanceId",
+          "nullable": false,
+          "primary": false,
+          "readonly": false,
+          "system": false,
           "type": "ID",
-          "typeLabel": "ID"
+          "typeLabel": "ID",
+          "typeUuid": "",
+          "unique": false,
+          "unsigned": false,
+          "updateDate": false,
+          "uuid": "b82a34b5-a806-442a-8bb1-bfe43282e957"
         }
       ],
       "description": "",
@@ -1595,6 +1613,15 @@
           "unsigned": false,
           "updateDate": false,
           "uuid": "fcdbc399-e651-4b35-8b9b-bf3882324bf6"
+        },
+        {
+          "uuid": "b143da5c-5716-41f8-8eb8-376508adc763",
+          "name": "uuid",
+          "type": "String",
+          "typeLabel": "String",
+          "index": true,
+          "unique": true,
+          "length": 255
         }
       ],
       "description": "",
@@ -2216,6 +2243,15 @@
           "unsigned": false,
           "updateDate": false,
           "uuid": "74d97d91-2545-4b09-9324-54949431db2e"
+        },
+        {
+          "uuid": "30b61e1f-8afc-4c56-9f32-248da5368e3a",
+          "name": "uuid",
+          "type": "String",
+          "typeLabel": "String",
+          "unique": true,
+          "index": true,
+          "length": 255
         }
       ],
       "description": "",
@@ -2750,6 +2786,22 @@
           "unsigned": false,
           "updateDate": false,
           "uuid": "b063950e-f5e1-4c9c-815b-f3e283cb5ed4"
+        },
+        {
+          "uuid": "1543ae1d-b8d8-4a78-a8bd-6a39d9199495",
+          "name": "uuid",
+          "type": "String",
+          "typeLabel": "String",
+          "unique": true,
+          "index": true,
+          "length": 255
+        },
+        {
+          "uuid": "a7f0dce4-4221-4508-9c02-2ba8d77c4396",
+          "name": "categoryUuid",
+          "type": "String",
+          "typeLabel": "String",
+          "nullable": true
         }
       ],
       "description": "",
@@ -4007,28 +4059,6 @@
       "descriptionOnSource": "",
       "descriptionOnTarget": "",
       "enableAssociaitonClass": false,
-      "innerId": 1006,
-      "labelOfSource": "",
-      "labelOfTarget": "",
-      "relationType": "twoWayAggregation",
-      "roleOfSource": "category",
-      "roleOfTarget": "pages",
-      "sourceId": "e90f69e9-1be0-45e2-95a6-269da4d2fada",
-      "sourceMutiplicity": "0..1",
-      "system": false,
-      "targetId": "f9288fd0-2747-4fa0-8b3d-4c8bdaeb5dd8",
-      "targetMultiplicity": "0..*",
-      "uuid": "6b3bcf02-2d62-4376-8312-69c9088cc821"
-    },
-    {
-      "AppId": 1,
-      "associationClass": {
-        "attributes": null,
-        "name": ""
-      },
-      "descriptionOnSource": "",
-      "descriptionOnTarget": "",
-      "enableAssociaitonClass": false,
       "innerId": 1007,
       "labelOfSource": "",
       "labelOfTarget": "",
@@ -4065,15 +4095,26 @@
       "uuid": "c813d688-bb04-484b-a8d9-32202760d6f0"
     },
     {
-      "uuid": "e148c5c4-ef02-4541-b2ca-df4ec3a48b43",
+      "AppId": 1,
+      "associationClass": {
+        "attributes": null,
+        "name": ""
+      },
+      "descriptionOnSource": "",
+      "descriptionOnTarget": "",
+      "enableAssociaitonClass": false,
       "innerId": 1005,
+      "labelOfSource": "",
+      "labelOfTarget": "",
       "relationType": "twoWayAggregation",
-      "sourceId": "APP_ENTITY_UUID",
-      "targetId": "SNAPSHOT_ENTITY_UUID",
-      "roleOfTarget": "snapshots",
       "roleOfSource": "app",
+      "roleOfTarget": "snapshots",
+      "sourceId": "APP_ENTITY_UUID",
       "sourceMutiplicity": "0..1",
-      "targetMultiplicity": "0..1"
+      "system": false,
+      "targetId": "SNAPSHOT_ENTITY_UUID",
+      "targetMultiplicity": "0..1",
+      "uuid": "e148c5c4-ef02-4541-b2ca-df4ec3a48b43"
     }
   ],
   "diagrams": [
@@ -4099,11 +4140,11 @@
       "uuid": "014aa54a-38c4-4911-a4ce-091943d9b5d8"
     },
     {
-      "uuid": "2b8c005d-fc0b-4200-a109-7cc085b268d9",
+      "edges": [],
       "name": "版本管理",
-      "packageUuid": "PACKAGE_SYSTEM_UUID",
       "nodes": [],
-      "edges": []
+      "packageUuid": "PACKAGE_SYSTEM_UUID",
+      "uuid": "2b8c005d-fc0b-4200-a109-7cc085b268d9"
     }
   ],
   "codes": [],
@@ -4269,12 +4310,12 @@
       "y": -150
     },
     {
-      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
-      "height": 122,
       "id": "f9288fd0-2747-4fa0-8b3d-4c8bdaeb5dd8",
+      "x": 29.99999999999993,
+      "y": 256.0000000000001,
       "width": 180,
-      "x": 30,
-      "y": 256
+      "height": 160,
+      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464"
     },
     {
       "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
@@ -4309,20 +4350,20 @@
       "y": 230
     },
     {
-      "id": "APP_ENTITY_UUID",
-      "x": -100,
-      "y": -220,
-      "width": 180,
+      "diagramUuid": "2b8c005d-fc0b-4200-a109-7cc085b268d9",
       "height": 330,
-      "diagramUuid": "2b8c005d-fc0b-4200-a109-7cc085b268d9"
+      "id": "APP_ENTITY_UUID",
+      "width": 180,
+      "x": -100,
+      "y": -220
     },
     {
-      "id": "SNAPSHOT_ENTITY_UUID",
-      "x": 270,
-      "y": -181,
-      "width": 180,
+      "diagramUuid": "2b8c005d-fc0b-4200-a109-7cc085b268d9",
       "height": 252,
-      "diagramUuid": "2b8c005d-fc0b-4200-a109-7cc085b268d9"
+      "id": "SNAPSHOT_ENTITY_UUID",
+      "width": 180,
+      "x": 270,
+      "y": -181
     }
   ],
   "x6Edges": [
@@ -4631,46 +4672,7 @@
       ]
     },
     {
-      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
-      "id": "6b3bcf02-2d62-4376-8312-69c9088cc821",
-      "roleOnSourcePosition": {
-        "distance": 40,
-        "offset": 20
-      },
-      "roleOnTargetPosition": {
-        "angle": 0,
-        "distance": 0.7777777777777778,
-        "offset": 13
-      },
-      "sourceMultiplicityPosition": {
-        "distance": 40,
-        "offset": -20
-      },
-      "targetMultiplicityPosition": {
-        "distance": -40,
-        "offset": -20
-      },
-      "vertices": []
-    },
-    {
-      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
       "id": "2cdb4c7c-ce16-4744-8405-cffaef63ba55",
-      "roleOnSourcePosition": {
-        "distance": 40,
-        "offset": 20
-      },
-      "roleOnTargetPosition": {
-        "distance": -40,
-        "offset": 20
-      },
-      "sourceMultiplicityPosition": {
-        "distance": 40,
-        "offset": -20
-      },
-      "targetMultiplicityPosition": {
-        "distance": -40,
-        "offset": -20
-      },
       "vertices": [
         {
           "x": -330,
@@ -4680,7 +4682,26 @@
           "x": -330,
           "y": 320
         }
-      ]
+      ],
+      "roleOnSourcePosition": {
+        "distance": 40,
+        "offset": 20
+      },
+      "sourceMultiplicityPosition": {
+        "distance": 40,
+        "offset": -20
+      },
+      "roleOnTargetPosition": {
+        "distance": 0.9230633957055033,
+        "offset": 50,
+        "angle": 0
+      },
+      "targetMultiplicityPosition": {
+        "distance": 0.9631290299491312,
+        "offset": -9.568630600716334,
+        "angle": 0
+      },
+      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464"
     },
     {
       "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
@@ -4697,25 +4718,25 @@
       ]
     },
     {
+      "diagramUuid": "2b8c005d-fc0b-4200-a109-7cc085b268d9",
       "id": "e148c5c4-ef02-4541-b2ca-df4ec3a48b43",
-      "vertices": [],
       "roleOnSourcePosition": {
         "distance": 40,
+        "offset": 20
+      },
+      "roleOnTargetPosition": {
+        "distance": -40,
         "offset": 20
       },
       "sourceMultiplicityPosition": {
         "distance": 40,
         "offset": -20
       },
-      "roleOnTargetPosition": {
-        "distance": -40,
-        "offset": 20
-      },
       "targetMultiplicityPosition": {
         "distance": -40,
         "offset": -20
       },
-      "diagramUuid": "2b8c005d-fc0b-4200-a109-7cc085b268d9"
+      "vertices": []
     }
   ]
 }
