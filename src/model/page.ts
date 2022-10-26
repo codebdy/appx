@@ -8,6 +8,7 @@ export interface IPageCategory {
   title?: string;
   device?: Device;
   app?: IApp;
+  uuid: string;
 }
 
 
@@ -17,7 +18,8 @@ export interface IPage {
   schemaJson: { form: any, schema: ISchema };
   device: Device;
   app?: IApp;
-  category?: IPageCategory;
+  categoryUuid?: string;
+  uuid: string;
 }
 
 export interface IPageCategoryInput {
@@ -25,6 +27,7 @@ export interface IPageCategoryInput {
   title?: string;
   device?: Device;
   app?: { sync: IAppInput };
+  uuid?: string;
 }
 
 export interface IPageInput {
@@ -34,4 +37,6 @@ export interface IPageInput {
   device?: Device;
   app?: { sync: IAppInput };
   category?: { sync: IPageCategoryInput, delete?: boolean };
+  categoryUuid?: string;
+  uuid?: string;
 }

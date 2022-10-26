@@ -7,6 +7,7 @@ import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/vi
 import { useShowError } from "~/hooks/useShowError";
 import { IPageFrame } from "~/model";
 import { useUpsertPageFrame } from "../hooks/useUpsertPageFrame";
+import { createUuid } from "~/shared";
 
 export const EditFrameDialog = memo((
   props: {
@@ -33,7 +34,7 @@ export const EditFrameDialog = memo((
 
   const handleConfirm = useCallback((values: any) => {
     form.validateFields().then((values: any) => {
-      upsert({ ...frame as any, ...values });
+      frame?.id ? upsert({ ...frame as any, ...values }) : upsert({ uuid:createUuid(), ...values })
     });
   }, [form, frame, upsert]);
 

@@ -29,6 +29,7 @@ query ($device:String!, $appId:ID!){
       title 
       device 
       imageUrl
+      uuid
     }
     total
   }

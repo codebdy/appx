@@ -17,6 +17,7 @@ query ($id:ID!){
     device
     imageUrl
     schemaJson
+    uuid
   }
 }
 `
