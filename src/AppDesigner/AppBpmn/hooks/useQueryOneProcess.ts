@@ -11,7 +11,8 @@ query ($id:ID!){
   }){
     id
     name
-    type
+    uuid
+    categoryUuid
     xml
   }
 }

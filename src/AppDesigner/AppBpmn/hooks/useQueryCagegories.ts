@@ -37,5 +37,5 @@ export function useQueryCagegories() {
   }, [appId])
   const { data, error, loading } = useQuery<IProcessCategory>(args)
 
-  return { categories: data?.pageCategories?.nodes, error, loading }
+  return { categories: data?.processCategories?.nodes, error, loading }
 }
