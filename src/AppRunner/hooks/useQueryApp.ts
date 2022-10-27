@@ -27,11 +27,6 @@ query ($id: ID!) {
       id
       schemaJson
     }
-    partsOfUserConfig {
-      id
-      device
-      schemaJson
-    }
     partsOfAppDeviceConfig {
       id
       device
@@ -51,18 +46,17 @@ query ($id: ID!) {
 `
 
 export function useQueryApp(id: ID) {
-  const params = useMemo(() => ({
-    appId: id || SYSTEM_APP_ID
-  }), [id])
-  
-  const { data, error, loading } = useQueryOne<IApp>(
-    {
+ 
+  const inputArgs = useMemo(()=>{
+    return     {
       gql: appGql,
-      params,
+      params:{
+        id: id || SYSTEM_APP_ID
+      },
       depEntityNames: ["App"],
     }
-
-  )
+  }, [id])
+  const { data, error, loading } = useQueryOne<IApp>(inputArgs)
 
   return { app: data?.oneApp, error, loading }
 }
