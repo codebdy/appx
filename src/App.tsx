@@ -63,6 +63,9 @@ const App = memo(() => {
                 <Route path="" element={<AppUis />}></Route>
               </Route>
             </Route>
+            <Route path="" element={<AppDesignBoard />} >
+              <Route path="" element={<AppUis />}></Route>
+            </Route>
           </Route>
         </Route>
         <Route path={LOGIN_URL} element={<Login />} />

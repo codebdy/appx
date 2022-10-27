@@ -58,6 +58,7 @@ const RunnerEngine = memo(() => {
     }
   }, [components])
 
+  console.log("呵呵", pageFrame);
   return (
     <RunnerContext.Provider value={runnerContextValue}>
       <RouteContext.Provider value={{ menuItem: mentItem, setMenuItem: setMenuItem as any }}>

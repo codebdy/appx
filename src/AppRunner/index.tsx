@@ -14,7 +14,7 @@ const AppRunner = memo(() => {
   const { app, loading, error } = useQueryApp(appId)
   useShowError(error);
 
-  const render = useMemo(() => {
+   const render = useMemo(() => {
     if (loading) {
       return <CenterSpin loading={loading} />
     }
