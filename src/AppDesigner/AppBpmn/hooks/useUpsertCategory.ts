@@ -13,7 +13,7 @@ export function useUpsertCategory(options?: IPostOptions<any>): [
   const [post, { error, loading }] = usePostOne<IProcessCategoryInput, IPageCategory>("ProcessCategory",
     {
       ...options,
-      fieldsGql: " title"
+      fieldsGql: " name"
     }
   )
 

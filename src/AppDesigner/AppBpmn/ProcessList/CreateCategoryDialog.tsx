@@ -49,10 +49,10 @@ const CreateCategoryDialog = memo(() => {
         }
         onClick={showModal}
       >
-        {t("Pages.NewCategory")}
+        {t("AppBpmn.NewCategory")}
       </Button>
       <Modal
-        title={t("Pages.NewCategory")}
+        title={t("AppBpmn.NewCategory")}
         open={isModalVisible}
         width={400}
         cancelText={t("Cancel")}

@@ -173,7 +173,7 @@ export const AppBpmn = memo((props) => {
 
   return (
     <ModelBoard
-      listWidth={240}
+      listWidth={280}
       toolbar={<ModelToolbar>
         <Button
           type="text"
