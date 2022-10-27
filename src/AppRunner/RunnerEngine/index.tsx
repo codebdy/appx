@@ -12,10 +12,11 @@ import { IUser } from "~/enthooks/hooks/useQueryMe";
 import { useMe } from "@rxdrag/plugin-sdk/contexts/login";
 import { createSchemaField, ExpressionScope, FormProvider } from '@formily/react';
 import { createForm } from '@formily/core';
-import { useQueryPageFrame } from '../hooks/useQueryPageFrame';
+import { useQueryUiFrame } from '../hooks/useQueryUiFrame';
 import { useMaterialComponents } from '~/material/hooks/useMaterialComponents';
 import { NotPublished } from '../NotPublished';
 import { NotFinieshed } from '../NotFinieshed';
+import { useAppParams } from '~/plugin-sdk/contexts/app';
 
 export class Me {
   constructor(private me?: IUser) { }
@@ -33,8 +34,7 @@ export class Me {
 const RunnerEngine = memo(() => {
   const [mentItem, setMenuItem] = useState<IMenuItem>()
   const p = useParseLangSchema();
-  const { pageFrame, error: frameError, loading: frameLoading } = useQueryPageFrame();
-  useShowError(frameError);
+  const { uiFrame } = useAppParams()
   const components = useMaterialComponents();
   const me = useMe();
   const $me = useMemo(() => new Me(me), [me]);
@@ -60,22 +60,20 @@ const RunnerEngine = memo(() => {
     }
   }, [components])
 
-  console.log("呵呵", pageFrame);
+  console.log("呵呵", uiFrame);
   return (
-    pageFrame ?
+    uiFrame?.schemaJson?.schema ?
       <RunnerContext.Provider value={runnerContextValue}>
         <RouteContext.Provider value={{ menuItem: mentItem, setMenuItem: setMenuItem as any }}>
-          <Spin spinning={frameLoading}>
-            <FormProvider form={form}>
-              <ExpressionScope value={newExpScope} >
-                {
-                  pageFrame?.schemaJson?.schema &&
-                  <SchemaField schema={p(pageFrame?.schemaJson?.schema || {})}>
-                  </SchemaField>
-                }
-              </ExpressionScope>
-            </FormProvider>
-          </Spin>
+          <FormProvider form={form}>
+            <ExpressionScope value={newExpScope} >
+              {
+                uiFrame.schemaJson.schema &&
+                <SchemaField schema={p(uiFrame?.schemaJson?.schema || {})}>
+                </SchemaField>
+              }
+            </ExpressionScope>
+          </FormProvider>
         </RouteContext.Provider>
       </RunnerContext.Provider>
       : <NotFinieshed />

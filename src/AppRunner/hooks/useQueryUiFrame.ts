@@ -1,7 +1,7 @@
 import { gql } from "~/enthooks";
 import { useMemo } from "react";
 import { useQueryOne } from "~/enthooks/hooks/useQueryOne";
-import { IApp, IUiFrame } from "~/model";
+import { IUiFrame } from "~/model";
 import { useFrameUuid } from "./useFrameUuid";
 
 const pageFrameGql = gql`
@@ -18,8 +18,7 @@ query ($uuid:String!){
   }
 }
 `
-export function useQueryPageFrame() {
-  const uuid = useFrameUuid();
+export function useQueryUiFrame(uuid?:string) {
   const input = useMemo(() => (
     {
       gql: uuid && pageFrameGql,
@@ -30,5 +29,5 @@ export function useQueryPageFrame() {
 
   const { data, error, loading } = useQueryOne<IUiFrame>(input);
 
-  return { pageFrame: data?.onePageFrame, error, loading }
+  return { uiFrame: data?.onePageFrame, error, loading }
 }
