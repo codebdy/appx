@@ -1,8 +1,8 @@
 import { useRecoilValue } from "recoil";
-import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerViewKey } from "~/plugin-sdk/contexts/desinger";
 import { selectedPageIdState } from "../recoil/atom";
 
 export function useSelectedPageId(){
-  const key = useAppViewKey()
+  const key = useDesignerViewKey()
   return useRecoilValue(selectedPageIdState(key))
 }

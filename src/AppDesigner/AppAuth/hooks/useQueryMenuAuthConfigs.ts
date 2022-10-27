@@ -1,7 +1,7 @@
 import { gql } from "~/enthooks";
 import { useMemo } from "react";
 import { useQuery } from "~/enthooks/hooks/useQuery";
-import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerParams } from "~/plugin-sdk/contexts/desinger";
 import { IMenuAuthConfig } from "~/model";
 
 const authConfigGql = gql`
@@ -26,7 +26,7 @@ query ($appId:ID!){
 `
 
 export function useQueryMenuAuthConfigs() {
-  const appParams = useAppParams();
+  const appParams = useDesignerParams();
 
   const args = useMemo(() => {
     return {

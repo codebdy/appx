@@ -17,7 +17,7 @@ import { PropertyPanel } from "./PropertyPanel";
 import { useQueryOneProcess } from "./hooks/useQueryOneProcess";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { categoriesState, minMapState, processesState, selectedBpmnProcessIdState } from "./recoil/atoms";
-import { useAppParams } from "@rxdrag/plugin-sdk";
+import { useDesignerParams } from "@rxdrag/plugin-sdk";
 import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import { ToolbarActions } from "./ToolbarActions";
 import { PRIMARY_COLOR } from "~/consts";
@@ -34,7 +34,7 @@ import ProcessList from "./ProcessList";
 import { useQueryCagegories } from "./hooks/useQueryCagegories";
 
 export const AppBpmn = memo((props) => {
-  const { app } = useAppParams();
+  const { app } = useDesignerParams();
   const { t } = useTranslation();
   const [changed, setChanged] = useState(false);
   const containerRef = useRef<HTMLDivElement>();

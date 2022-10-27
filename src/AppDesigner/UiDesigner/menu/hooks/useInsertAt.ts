@@ -8,10 +8,10 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import { IMenuNode } from "@rxdrag/plugin-sdk/model/IMenuNode";
 import { useBackupSnapshot } from "./useBackupSnapshot";
 import { useGetMenuNode } from "./useGetMenuNode";
-import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerViewKey } from "~/plugin-sdk/contexts/desinger";
 
 export function useInsertAt() {
-  const key = useAppViewKey();
+  const key = useDesignerViewKey();
   const [rootNode, setRootNode] = useRecoilState(navigationRootNodeState(key));
   const setSelectedId = useSetRecoilState(navigationSelectedIdState(key));
   const [nodes, setNodes] = useRecoilState(navigationNodesState(key));

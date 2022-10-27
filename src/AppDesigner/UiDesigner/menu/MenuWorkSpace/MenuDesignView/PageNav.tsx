@@ -7,7 +7,7 @@ import { IMenuNode } from "@rxdrag/plugin-sdk/model/IMenuNode";
 import { navigationSelectedIdState } from "../../atoms";
 import { memo } from "react";
 import { useRecoilState } from "recoil";
-import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerViewKey } from "~/plugin-sdk/contexts/desinger";
 import React from "react";
 import clx from "classnames";
 import ItemIcon from "./ItemIcon";
@@ -21,7 +21,7 @@ const PageNavInner = memo(
     node: IMenuNode;
   }) => {
     const { provided, snapshot, node } = props;
-    const key = useAppViewKey();
+    const key = useDesignerViewKey();
     const p = useParseLangMessage();
     const [selectedId, setSelectedId] = useRecoilState(
       navigationSelectedIdState(key)

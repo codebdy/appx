@@ -1,6 +1,6 @@
 import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Input, Space, Table } from 'antd';
-import { useAppConfig, useAppParams } from '@rxdrag/plugin-sdk/contexts/appRoot';
+import { useDesignerAppConfig, useDesignerParams } from '~/plugin-sdk/contexts/desinger';
 import React, { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ILangLocalInput } from '~/model';
@@ -14,8 +14,8 @@ const ResourcesTable = memo(() => {
   const [keyword, setKeyWord] = useState("");
   const [editingLocal, setEditingLocal] = useState<ILangLocalInput>();
   const { t } = useTranslation();
-  const appConfig = useAppConfig();
-  const { langLocales } = useAppParams();
+  const appConfig = useDesignerAppConfig();
+  const { langLocales } = useDesignerParams();
   const [deletingId, setDeletingId] = useState<ID>();
   const getLocal = useCallback((id: ID) => {
     return langLocales.find(lang => lang.id === id);

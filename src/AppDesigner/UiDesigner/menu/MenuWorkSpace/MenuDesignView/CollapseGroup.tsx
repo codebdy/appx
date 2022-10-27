@@ -7,7 +7,7 @@ import {
 import { IMenuNode } from "@rxdrag/plugin-sdk/model/IMenuNode";
 import { useRecoilState } from "recoil";
 import { navigationSelectedIdState } from "../../atoms";
-import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerViewKey } from "~/plugin-sdk/contexts/desinger";
 import React from "react";
 import NavItemList from "./NavItemList";
 import { Collapse } from "antd";
@@ -32,7 +32,7 @@ const CollpaseGroupInner = memo(
     const [mouseOver, setMouseHover] = useState(false);
     const [hover, setHover] = useState(false);
     const [canDrop, setCanDrop] = useState(true);
-    const key = useAppViewKey();
+    const key = useDesignerViewKey();
     const [selectedId, setSelectedId] = useRecoilState(
       navigationSelectedIdState(key)
     );

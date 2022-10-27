@@ -1,7 +1,7 @@
-import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerParams } from "~/plugin-sdk/contexts/desinger";
 
 export function usePageFrameId() {
-  const { deviceConfig } = useAppParams();
+  const { deviceConfig } = useDesignerParams();
 
   return deviceConfig?.schemaJson?.pageFrameUuid;
 }

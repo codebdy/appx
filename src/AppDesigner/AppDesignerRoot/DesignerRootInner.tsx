@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import { useQueryLangLocales } from '../hooks/useQueryLangLocales'
 import { useQueryAppConfig } from '../hooks/useQueryAppConfig'
 import { useShowError } from '~/AppDesigner/hooks/useShowError'
-import { AppContext } from '@rxdrag/plugin-sdk/contexts/appRoot'
+import { DesignerContext } from '~/plugin-sdk/contexts/desinger'
 import { useQueryAppDeviceConfig } from '../hooks/useQueryAppDeviceConfig'
 import { useMe } from '@rxdrag/plugin-sdk/contexts/login'
 import { useQueryUserConfig } from './hooks/useQueryUserConfig'
@@ -56,7 +56,7 @@ export const DesignerRootInner = memo((
 
   return (
     app ?
-      <AppContext.Provider
+      <DesignerContext.Provider
         value={contextValue}
       >
         <PredefinedPluginsRoot>
@@ -78,7 +78,7 @@ export const DesignerRootInner = memo((
             </MaterialTabRoot>
           </PredefinedMaterialsRoot>
         </PredefinedPluginsRoot>
-      </AppContext.Provider>
+      </DesignerContext.Provider>
       : <></>
   )
 })

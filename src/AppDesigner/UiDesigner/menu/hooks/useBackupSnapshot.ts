@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useSetRecoilState, useRecoilValue } from "recoil";
-import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerViewKey } from "~/plugin-sdk/contexts/desinger";
 import {
   isNavigationDirtyState,
   navigationNodesState,
@@ -11,7 +11,7 @@ import {
 } from "../atoms";
 
 export function useBackupSnapshot() {
-  const key = useAppViewKey();
+  const key = useDesignerViewKey();
   const rootNode = useRecoilValue(navigationRootNodeState(key));
   const setIsDirty = useSetRecoilState(isNavigationDirtyState(key));
   const selectedId = useRecoilValue(navigationSelectedIdState(key));

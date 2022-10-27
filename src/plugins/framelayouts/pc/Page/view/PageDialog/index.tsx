@@ -1,5 +1,5 @@
 import { Modal } from "antd";
-import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerViewKey } from "~/plugin-sdk/contexts/desinger";
 import React, { useCallback, useMemo } from "react"
 import { memo } from "react"
 import { IPagePopup, pagePopupsState } from "@rxdrag/plugin-sdk/atoms";
@@ -15,7 +15,7 @@ export const PageDialog = memo((
   }
 ) => {
   const { pageDialog } = props;
-  const key = useAppViewKey();
+  const key = useDesignerViewKey();
   const { components } = useRunnerParams();
   const pagePopups = useRecoilValue(pagePopupsState(key));
   const p = useParseLangMessage();

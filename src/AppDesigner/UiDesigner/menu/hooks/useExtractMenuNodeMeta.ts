@@ -3,11 +3,11 @@ import { useRecoilValue } from "recoil";
 import { useGetMenuNode } from "./useGetMenuNode";
 import { navigationNodesState } from "../atoms";
 import { cloneObject } from "../utils/cloneObject";
-import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerViewKey } from "~/plugin-sdk/contexts/desinger";
 import { IMenuItem } from "@rxdrag/plugin-sdk/model/IMenuNode";
 
 export function useExtractMenuNodeMeta() {
-  const key = useAppViewKey();
+  const key = useDesignerViewKey();
   const nodes  = useRecoilValue(navigationNodesState(key));
   const getNode = useGetMenuNode();
   const extractNodeMeta = useCallback(

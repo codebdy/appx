@@ -9,7 +9,7 @@ import DraggableLabel from "./DraggableLabel";
 import "./style.less"
 import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import { toJS } from "@formily/reactive";
-import { useUpdateComponentConfig } from "~/AppDesigner/AppDesignerRoot/hooks/useUpdateComponentConfig";
+import { useUpdateComponentConfig } from "~/AppRunner/hooks/useUpdateComponentConfig";
 
 enum CheckState {
   half = 1,

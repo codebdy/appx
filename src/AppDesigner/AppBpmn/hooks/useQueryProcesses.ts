@@ -1,7 +1,7 @@
 import { gql, useQuery } from "~/enthooks";
 import { useMemo } from "react";
 import { IProcess } from "~/model/process";
-import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerParams } from "~/plugin-sdk/contexts/desinger";
 
 const processesGql = gql`
 query ($appId:ID!){
@@ -27,7 +27,7 @@ query ($appId:ID!){
 `
 
 export function useQueryProcesses() {
-  const appParams = useAppParams();
+  const appParams = useDesignerParams();
 
   const args = useMemo(() => {
     return {

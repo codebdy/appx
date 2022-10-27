@@ -1,10 +1,10 @@
 import { useCallback } from "react";
 import { IPlugin } from "@rxdrag/appx-plugin-sdk";
-import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerParams } from "~/plugin-sdk/contexts/desinger";
 import { useConvertMaterialFromPlugin } from "./useConvertMaterialFromPlugin";
 
 export function useExtractMaterialsFromPlugin() {
-  const { device } = useAppParams();
+  const { device } = useDesignerParams();
   const convert = useConvertMaterialFromPlugin();
 
   const extractMaterialsFromPlugin = useCallback((plugin: IPlugin) => {

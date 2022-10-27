@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
 import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import { useQueryVersions } from "~/enthooks/hooks/useQueryVersions";
-import { useAppParams, useParseLangMessage } from "~/plugin-sdk";
+import { useDesignerParams, useParseLangMessage } from "~/plugin-sdk";
 import { useExportApp } from "~/enthooks/hooks/useExportApp";
 import { ID } from "~/shared";
 const { Option } = Select;
@@ -31,7 +31,7 @@ export const ExportDialog = memo((
 ) => {
   const { open, onOpenChange } = props;
   const appId = useEdittingAppId();
-  const { app } = useAppParams();
+  const { app } = useDesignerParams();
   const { t } = useTranslation();
   const p = useParseLangMessage();
   const [form] = Form.useForm<{ snapshotId?: ID }>();

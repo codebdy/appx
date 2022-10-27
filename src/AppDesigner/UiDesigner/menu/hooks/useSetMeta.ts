@@ -7,10 +7,10 @@ import { useCallback } from "react";
 import { useRecoilState } from "recoil";
 import { useBackupSnapshot } from "./useBackupSnapshot";
 import { IMenuItem } from "@rxdrag/plugin-sdk/model/IMenuNode";
-import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerViewKey } from "~/plugin-sdk/contexts/desinger";
 
 export function useSetMeta() {
-  const key = useAppViewKey();
+  const key = useDesignerViewKey();
   const [rootNode, setRootNode] = useRecoilState(navigationRootNodeState(key));
   const [nodes, setNodes] = useRecoilState(navigationNodesState(key));
   const backupSnapshot = useBackupSnapshot();

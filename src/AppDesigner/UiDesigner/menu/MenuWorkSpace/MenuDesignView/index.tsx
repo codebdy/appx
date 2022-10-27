@@ -1,7 +1,7 @@
 import { Card } from "antd";
 import React, { memo, useCallback, useState } from "react";
 import { useRecoilValue } from "recoil";
-import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerViewKey } from "~/plugin-sdk/contexts/desinger";
 import { navigationRootNodeState } from "../../atoms";
 import NavItemList from "./NavItemList";
 import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage";
@@ -14,7 +14,7 @@ const MenuDesignView = memo((
 ) => {
   const { app } = props;
   const [canDrop, setCanDrop] = useState(true);
-  const key = useAppViewKey();
+  const key = useDesignerViewKey();
   const rootNode = useRecoilValue(navigationRootNodeState(key));
   const p = useParseLangMessage();
 

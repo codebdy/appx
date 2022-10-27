@@ -2,13 +2,13 @@ import { useCallback } from "react";
 import { IPostOptions, usePostOne } from "~/enthooks/hooks/usePostOne";
 import { IMaterialConfig } from "~/model";
 import { IMaterialConfigInput } from "~/model";
-import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerParams } from "~/plugin-sdk/contexts/desinger";
 
 export function useUpsertMaterialConfig(options?: IPostOptions<any>): [
   (config: IMaterialConfigInput) => void,
   { loading?: boolean; error?: Error }
 ] {
-  const params = useAppParams();
+  const params = useDesignerParams();
 
   const [post, { error, loading }] = usePostOne<IMaterialConfigInput, IMaterialConfig>("MaterialConfig",
     {

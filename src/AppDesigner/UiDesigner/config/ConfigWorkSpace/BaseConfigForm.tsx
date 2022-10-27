@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { useShowError } from '~/AppDesigner/hooks/useShowError';
 import { useQueryPageFrames } from '../../../FrameDesigner/hooks/useQueryPageFrames';
-import { useAppParams, useAppViewKey } from '@rxdrag/plugin-sdk/contexts/appRoot';
+import { useDesignerParams, useDesignerViewKey } from '~/plugin-sdk/contexts/desinger';
 import { deviceConfigChangedState, deviceConfigState } from '../../recoil/atom';
 import { PageSelect } from '../../SettingsForm/components/PageSelect';
 import "./style.less"
@@ -13,10 +13,10 @@ const { Option } = Select
 
 export const BaseConfigForm = memo(() => {
   const { t } = useTranslation();
-  const key = useAppViewKey();
+  const key = useDesignerViewKey();
   const [config, setConfig] = useRecoilState(deviceConfigState(key));
   const setChanged = useSetRecoilState(deviceConfigChangedState(key));
-  const { deviceConfig } = useAppParams()
+  const { deviceConfig } = useDesignerParams()
   const [form] = Form.useForm();
   const p = useParseLangMessage();
   const { pageFrames, loading, error } = useQueryPageFrames();

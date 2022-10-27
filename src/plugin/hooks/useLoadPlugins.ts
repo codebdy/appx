@@ -1,12 +1,12 @@
 import { useCallback } from "react";
-import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerParams } from "~/plugin-sdk/contexts/desinger";
 import { IPluginInfo, PluginType } from "~/model";
 import { IInstalledPlugin, PluginStatus } from "../model";
 import { useGetPluginInfo } from "./useGetPluginInfo";
 import { loadDebugPlugin, loadPlugin } from "./useLoadPlugin";
 
 export function useLoadPlugins() {
-  const { app } = useAppParams();
+  const { app } = useDesignerParams();
   
   const getPlugInfo = useGetPluginInfo();
   const load = useCallback(async (pluginInfos: IPluginInfo[]) => {

@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerParams } from "~/plugin-sdk/contexts/desinger";
 import { IPostOptions, usePostOne } from "~/enthooks/hooks/usePostOne";
 import { IPageFrame } from "~/model";
 import { IPageFrameInput } from "~/model";
@@ -9,7 +9,7 @@ export function useUpsertPageFrame(options?: IPostOptions<any>): [
   (template: IPageFrameInput) => void,
   { loading?: boolean; error?: GraphQLRequestError }
 ] {
-  const params = useAppParams();
+  const params = useDesignerParams();
   const [post, { error, loading }] = usePostOne<IPageFrameInput, IPageFrame>("PageFrame",
     {
       ...options,

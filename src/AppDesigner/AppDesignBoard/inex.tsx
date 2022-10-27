@@ -2,12 +2,12 @@
 import { Layout } from 'antd';
 import React, { memo } from 'react';
 import { Outlet } from 'react-router-dom';
-import { useAppParams } from '~/plugin-sdk';
+import { useDesignerParams } from '~/plugin-sdk';
 import DesignerHeader from "../DesignerHeader";
 
 const { Content } = Layout;
 export const AppDesignBoard = memo(() => {
-  const { app } = useAppParams();
+  const { app } = useDesignerParams();
   return (
     <Layout className="rx-studio">
       <DesignerHeader app={app} />

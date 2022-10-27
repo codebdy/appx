@@ -2,7 +2,7 @@ import { AutoComplete, Form, Input, Modal, Radio, RadioChangeEvent } from "antd"
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
-import { useAppConfig, useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerAppConfig, useDesignerParams } from "~/plugin-sdk/contexts/desinger";
 import { useUpsertLangLocal } from "~/AppDesigner/hooks/useUpsertLangLocal";
 import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import { LANG_INLINE_PREFIX, LANG_RESOURCE_PREFIX } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage";
@@ -30,9 +30,9 @@ const ResourceEditDialog = memo((
   const [searchText, setSearchText] = useState<string>();
   const [inputType, setInputType] = useState(MultilangType.Inline);
   const { t } = useTranslation()
-  const appConfig = useAppConfig();
+  const appConfig = useDesignerAppConfig();
   const [form] = Form.useForm();
-  const { langLocales } = useAppParams();
+  const { langLocales } = useDesignerParams();
 
   const options = useMemo(() => {
     return langLocales?.filter(lang => {

@@ -2,7 +2,7 @@ import { TranslationOutlined } from "@ant-design/icons";
 import { Button, Input } from "antd";
 import React, { useCallback, useMemo, useState } from "react";
 import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage";
-import { useAppConfig } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerAppConfig } from "~/plugin-sdk/contexts/desinger";
 import ResourceEditDialog from "./ResourceEditDialog";
 
 export const MultiLangInput = (
@@ -18,7 +18,7 @@ export const MultiLangInput = (
   }
 ) => {
   const { multiline, onChange, onKeyUp, onClick, value, inline, title, rows, ...other } = props;
-  const appConfig = useAppConfig();
+  const appConfig = useDesignerAppConfig();
   const [visiable, setVisiable] = useState(false);
   const parse = useParseLangMessage();
 

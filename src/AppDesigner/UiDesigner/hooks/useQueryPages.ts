@@ -2,7 +2,7 @@ import { gql } from "~/enthooks";
 import { useMemo } from "react";
 import { useQuery } from "~/enthooks/hooks/useQuery";
 import { IPage } from "~/model";
-import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerParams } from "~/plugin-sdk/contexts/desinger";
 
 const pagesGql = gql`
 query ($appId:ID!, $device:String!){
@@ -38,7 +38,7 @@ query ($appId:ID!, $device:String!){
 `
 
 export function useQueryPages() {
-  const appParams = useAppParams();
+  const appParams = useDesignerParams();
 
   const args = useMemo(() => {
     return {

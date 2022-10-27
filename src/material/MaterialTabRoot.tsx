@@ -2,7 +2,7 @@ import React, { useMemo } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
 import { useExtractMaterialGroupFromPlugin } from "./hooks/useExtractMaterialGroupFromPlugin";
-import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerParams } from "~/plugin-sdk/contexts/desinger";
 import { AppMaterialTabsContext } from "./context";
 import { useUploadedMaterialTabs } from "./hooks/useUploadedMaterialTabs";
 
@@ -14,7 +14,7 @@ export const MaterialTabRoot = memo((
   const { children } = props;
   const extract = useExtractMaterialGroupFromPlugin();
   const { t } = useTranslation();
-  const { debugPlugins } = useAppParams();
+  const { debugPlugins } = useDesignerParams();
   const uploadedMaterialTabs = useUploadedMaterialTabs();
   const contextValue = useMemo(() => {
     return {

@@ -6,7 +6,7 @@ import { useProTableParams } from "@rxdrag/plugin-sdk/contexts/propTable";
 import { useLocalTranslations } from "../hooks/useLocalTranslations";
 import { toJS } from "@formily/reactive";
 import { useShowError } from "~/AppDesigner/hooks/useShowError";
-import { useUpdateComponentConfig } from "~/AppDesigner/AppDesignerRoot/hooks/useUpdateComponentConfig";
+import { useUpdateComponentConfig } from "~/AppRunner/hooks/useUpdateComponentConfig";
 
 const HeightMenu = observer(() => {
   const { t } = useLocalTranslations();

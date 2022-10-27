@@ -7,7 +7,7 @@ import MenuDesignView from "./MenuDesignView";
 import "./style.less"
 import { useRecoilState } from "recoil";
 import { navigationSelectedIdState } from "../atoms";
-import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerViewKey } from "~/plugin-sdk/contexts/desinger";
 import MenuSettingsForm from "./MenuSettingsForm";
 import { Empty } from "antd";
 
@@ -18,7 +18,7 @@ const MenuWorkSpace = memo((
 ) => {
   const { app } = props;
   const { t } = useTranslation();
-  const key = useAppViewKey();
+  const key = useDesignerViewKey();
   const [selectedId, setSelectedId] = useRecoilState(
     navigationSelectedIdState(key)
   );

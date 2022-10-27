@@ -4,7 +4,7 @@ import { TextWidget } from '@designable/react'
 import { observer } from '@formily/react'
 import { useShowError } from '~/AppDesigner/hooks/useShowError'
 import { useTranslation } from 'react-i18next'
-import { useAppViewKey } from '@rxdrag/plugin-sdk/contexts/appRoot'
+import { useDesignerViewKey } from '~/plugin-sdk/contexts/desinger'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { isNavigationDirtyState, menuIdState, navigationRootNodeState } from '../atoms'
 import { useUpsertMenu } from '../../hooks/useUpsertMenu'
@@ -13,7 +13,7 @@ import { IMenu } from '~/model'
 
 export const MenuActionsWidget = observer(() => {
   const { t } = useTranslation();
-  const key = useAppViewKey();
+  const key = useDesignerViewKey();
   const rootNode = useRecoilValue(navigationRootNodeState(key));
   const isDirty = useRecoilValue(isNavigationDirtyState(key));
   const [meunId, setMenuId] = useRecoilState(menuIdState(key));

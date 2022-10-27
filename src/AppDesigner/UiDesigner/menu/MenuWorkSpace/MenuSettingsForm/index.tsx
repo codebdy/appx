@@ -6,7 +6,7 @@ import { navigationSelectedIdState } from '../../atoms';
 import { useRecoilValue } from 'recoil';
 import { useMenuNode } from '../../hooks/useMenuNode';
 import { useSetMeta } from '../../hooks/useSetMeta';
-import { useAppViewKey } from '@rxdrag/plugin-sdk/contexts/appRoot';
+import { useDesignerViewKey } from '~/plugin-sdk/contexts/desinger';
 import { MenuItemType } from '@rxdrag/plugin-sdk/model/IMenuNode';
 import { useGetPage } from '../../../hooks/useGetPage';
 import { MultiLangInput } from '~/plugins/inputs/components/pc/MultiLangInput/view';
@@ -25,7 +25,7 @@ const MenuSettingsForm = memo((
 ) => {
   const getPge = useGetPage();
   const { t } = useTranslation();
-  const key = useAppViewKey();
+  const key = useDesignerViewKey();
   const selectedId = useRecoilValue(navigationSelectedIdState(key));
   const node = useMenuNode(selectedId);
   const setMeta = useSetMeta();

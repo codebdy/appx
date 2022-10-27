@@ -23,7 +23,7 @@ import { useShowError } from '~/AppDesigner/hooks/useShowError'
 import { Button, Space, Spin } from 'antd'
 import { useSelectedPageId } from './hooks/useSelectedPageId'
 import MenuDragRoot from './menu/MenuDragRoot'
-import { useAppParams, useAppViewKey } from '@rxdrag/plugin-sdk/contexts/appRoot'
+import { useDesignerParams, useDesignerViewKey } from '~/plugin-sdk/contexts/desinger'
 import { useQueryCagegories } from './hooks/useQueryCagegories'
 import { useQueryPages } from './hooks/useQueryPages'
 import { SettingOutlined } from '@ant-design/icons'
@@ -44,8 +44,8 @@ export enum DesignerRoutes {
 }
 
 export const UiDesigner = memo(() => {
-  const { app, device } = useAppParams();
-  const key = useAppViewKey()
+  const { app, device } = useDesignerParams();
+  const key = useDesignerViewKey()
   const [activeKey, setActiveKey] = useState<string>(DesignerRoutes.Pages);
   const { t } = useTranslation();
   const setCategories = useSetRecoilState(categoriesState(key))

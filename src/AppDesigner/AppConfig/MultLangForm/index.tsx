@@ -3,14 +3,14 @@ import React, { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useShowError } from '~/AppDesigner/hooks/useShowError';
 import { useUpsertAppConfig } from '~/AppDesigner/hooks/useUpsertAppConfig';
-import { useAppConfig } from '@rxdrag/plugin-sdk/contexts/appRoot';
+import { useDesignerAppConfig } from '~/plugin-sdk/contexts/desinger';
 import LangResourceEditor from './LangResourceEditor';
 import LangSelect from './LangSelect';
 import "./style.less"
 
 const MultLangForm = memo(() => {
   const { t } = useTranslation();
-  const appConfig = useAppConfig();
+  const appConfig = useDesignerAppConfig();
   const [upsert, { loading, error }] = useUpsertAppConfig(
     {
       onCompleted: () => {

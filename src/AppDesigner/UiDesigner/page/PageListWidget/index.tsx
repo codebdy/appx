@@ -5,7 +5,7 @@ import { DataNode } from 'antd/lib/tree';
 import CreateCategoryDialog from './CreateCategoryDialog';
 import CreatePageDialog from './CreatePageDialog';
 import { useRecoilState } from 'recoil';
-import { useAppViewKey } from '@rxdrag/plugin-sdk/contexts/appRoot';
+import { useDesignerViewKey } from '~/plugin-sdk/contexts/desinger';
 import CategoryLabel from './CategoryLabel';
 import PageLabel from './PageLabel';
 import { selectedPageIdState } from '../../recoil/atom';
@@ -21,7 +21,7 @@ const PageListWidget = memo((
   }
 ) => {
   const categories = useCategories();
-  const key = useAppViewKey();
+  const key = useDesignerViewKey();
 
   const getPage = useGetPage();
 

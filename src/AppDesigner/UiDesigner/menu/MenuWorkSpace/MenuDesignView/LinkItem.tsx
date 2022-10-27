@@ -7,7 +7,7 @@ import { IMenuNode } from "~/plugin-sdk/model/IMenuNode";
 import { memo, useMemo } from "react";
 import { useRecoilState } from "recoil";
 import { navigationSelectedIdState } from "../../atoms";
-import { useAppViewKey } from "~/plugin-sdk/contexts/appRoot";
+import { useDesignerViewKey } from "~/plugin-sdk/contexts/desinger";
 import React from "react";
 import clx from "classnames";
 import ItemIcon from "./ItemIcon";
@@ -20,7 +20,7 @@ const LinkItemInner = memo(
     node: IMenuNode;
   }) => {
     const { provided, node, snapshot } = props;
-    const key = useAppViewKey();
+    const key = useDesignerViewKey();
     const [selectedId, setSelectedId] = useRecoilState(
       navigationSelectedIdState(key)
     );

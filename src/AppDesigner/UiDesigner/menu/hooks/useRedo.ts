@@ -1,10 +1,10 @@
 import { useCallback } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot"
+import { useDesignerViewKey } from "~/plugin-sdk/contexts/desinger"
 import { isNavigationDirtyState, navigationNodesState, navigationRootNodeState, navigationSelectedIdState, redoListState, undoListState } from "../atoms";
 
 export function useRedo() {
-  const key = useAppViewKey();
+  const key = useDesignerViewKey();
   const setChanged = useSetRecoilState(isNavigationDirtyState(key));
   const setUndoList = useSetRecoilState(undoListState(key));
   const [reddoList, setRedoList] = useRecoilState(redoListState(key));

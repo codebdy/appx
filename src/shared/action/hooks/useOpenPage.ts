@@ -3,14 +3,14 @@ import { useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { createId } from "../..";
-import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerViewKey } from "~/plugin-sdk/contexts/desinger";
 import { useInstanceId } from "@rxdrag/plugin-sdk/contexts/instance";
 import { IOpenPageAction, OpenPageType } from "@rxdrag/plugin-sdk/model/action";
 
 export function useOpenPage() {
   const { device, appId, menuUuid } = useParams();
   const dataId = useInstanceId();
-  const key = useAppViewKey();
+  const key = useDesignerViewKey();
   const setPagePopups = useSetRecoilState(pagePopupsState(key));
   const navigate = useNavigate();
 

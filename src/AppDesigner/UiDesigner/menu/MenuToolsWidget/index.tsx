@@ -6,7 +6,7 @@ import {
 } from "@designable/react"
 import cls from 'classnames'
 import './styles.less'
-import { useAppViewKey } from '@rxdrag/plugin-sdk/contexts/appRoot'
+import { useDesignerViewKey } from '~/plugin-sdk/contexts/desinger'
 import { useRecoilValue } from 'recoil'
 import { navigationSelectedIdState } from '../atoms'
 import { useRedo } from '../hooks/useRedo'
@@ -20,7 +20,7 @@ export type IMenuToolsWidgetProps = {
 
 export const MenuToolsWidget: React.FC<IMenuToolsWidgetProps> =
   memo((props) => {
-    const key = useAppViewKey();
+    const key = useDesignerViewKey();
     const { redoDisabled, redo } = useRedo();
     const { undoDisabled, undo } = useUndo();
     const remove = useRemoveMenuNode()

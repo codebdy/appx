@@ -1,6 +1,6 @@
 import { gql } from "~/enthooks";
 import { useMemo } from "react";
-import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerParams } from "~/plugin-sdk/contexts/desinger";
 import { useQuery } from "~/enthooks/hooks/useQuery";
 import { IPageFrame } from "~/model";
 
@@ -37,7 +37,7 @@ query ($device:String!, $appId:ID!){
 `
 
 export function useQueryPageFrames() {
-  const params = useAppParams();
+  const params = useDesignerParams();
 
   const args = useMemo(() => {
     return {

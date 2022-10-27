@@ -1,7 +1,7 @@
 import { IPlugin } from "@rxdrag/appx-plugin-sdk";
 import { useCallback } from "react";
 import { IPluginInfo, PluginType } from "~/model";
-import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerParams } from "~/plugin-sdk/contexts/desinger";
 import { IInstalledPlugin, PluginStatus } from "../model";
 import { useGetPluginInfo } from "./useGetPluginInfo";
 
@@ -113,7 +113,7 @@ export function loadDebugPlugin(url: string): Promise<IPlugin> {
 
 
 export function useLoadPlugin() {
-  const { app } = useAppParams();
+  const { app } = useDesignerParams();
   const getPlugInfo = useGetPluginInfo();
   const load = useCallback(async (url: string, type: PluginType, oldInfo?: IPluginInfo): Promise<IInstalledPlugin> => {
     console.assert(url, "Plugin url is emperty");

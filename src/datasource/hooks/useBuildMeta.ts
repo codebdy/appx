@@ -3,7 +3,7 @@ import { useMemo, useEffect, useCallback } from "react";
 import { useSetRecoilState } from "recoil";
 import { SYSTEM_APP_ID } from "~/consts";
 import { useQueryOne } from "~/enthooks/hooks/useQueryOne";
-import { useSelectedAppUuid } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useSelectedAppUuid } from "~/plugin-sdk/contexts/desinger";
 import { classesState, entitiesState, packagesState } from "../recoil";
 import _ from "lodash";
 import { AssociationMeta } from "../model";

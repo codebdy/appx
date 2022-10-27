@@ -1,11 +1,11 @@
 import { useMemo } from "react";
 import { usePredefinedPlugins } from "../../plugin/contexts";
-import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerParams } from "~/plugin-sdk/contexts/desinger";
 import { IPlugin } from "@rxdrag/appx-plugin-sdk";
 import { useConvertMaterialFromPlugin } from "./useConvertMaterialFromPlugin";
 
 export function useMaterialComponents() {
-  const { uploadedPlugins, debugPlugins, device } = useAppParams();
+  const { uploadedPlugins, debugPlugins, device } = useDesignerParams();
   const predefinedPlugins = usePredefinedPlugins();
   const convert = useConvertMaterialFromPlugin();
   const materialComponents = useMemo(() => {

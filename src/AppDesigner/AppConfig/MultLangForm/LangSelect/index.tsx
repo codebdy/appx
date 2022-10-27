@@ -1,6 +1,6 @@
 import { FormOutlined } from "@ant-design/icons";
 import { Input, message, Modal, Tag } from "antd";
-import { useAppConfig } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerAppConfig } from "~/plugin-sdk/contexts/desinger";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { memo } from "react";
 import { DragDropContext, Draggable, Droppable, DropResult } from "react-beautiful-dnd";
@@ -21,7 +21,7 @@ const LangSelect = memo(() => {
   const [changed, setChanged] = useState(false);
   const [keyword, setKeyWord] = useState("");
   const { t } = useTranslation();
-  const appConfig = useAppConfig();
+  const appConfig = useDesignerAppConfig();
   const getLang = useCallback((key) => {
     return langs.find(lang => lang.key === key)
   }, [])

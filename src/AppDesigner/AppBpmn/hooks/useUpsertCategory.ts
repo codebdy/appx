@@ -2,13 +2,13 @@ import { useCallback } from "react";
 import { IPostOptions, usePostOne } from "~/enthooks/hooks/usePostOne";
 import { IProcessCategoryInput } from "~/model";
 import { IPageCategory } from "~/model";
-import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerParams } from "~/plugin-sdk/contexts/desinger";
 
 export function useUpsertCategory(options?: IPostOptions<any>): [
   (category: IProcessCategoryInput) => void,
   { loading?: boolean; error?: Error }
 ] {
-  const params = useAppParams();
+  const params = useDesignerParams();
 
   const [post, { error, loading }] = usePostOne<IProcessCategoryInput, IPageCategory>("ProcessCategory",
     {

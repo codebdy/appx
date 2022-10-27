@@ -1,10 +1,10 @@
 import { List } from 'antd';
 import React, { memo, useMemo } from 'react';
-import { useAppParams } from '@rxdrag/plugin-sdk/contexts/appRoot';
+import { useDesignerParams } from '~/plugin-sdk/contexts/desinger';
 import { PluginItem } from './PluginItem';
 
 export const PluginList = memo(() => {
-  const { uploadedPlugins, debugPlugins } = useAppParams();
+  const { uploadedPlugins, debugPlugins } = useDesignerParams();
   const items = useMemo(() => {
     return [
       ...uploadedPlugins,

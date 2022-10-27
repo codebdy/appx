@@ -1,10 +1,10 @@
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
-import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerViewKey } from "~/plugin-sdk/contexts/desinger";
 import { navigationNodesState } from "../atoms";
 
 export function useGetMenuNode() {
-  const key = useAppViewKey();
+  const key = useDesignerViewKey();
   const nodes = useRecoilValue(navigationNodesState(key));
 
   const getNode = useCallback(

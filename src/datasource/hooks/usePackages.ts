@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { useSelectedAppUuid } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useSelectedAppUuid } from "~/plugin-sdk/contexts/desinger";
 import { packagesState } from "../recoil";
 
 export function usePackages(){

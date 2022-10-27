@@ -4,14 +4,14 @@ import { TextWidget } from '@designable/react'
 import { observer } from '@formily/react'
 import { useShowError } from '~/AppDesigner/hooks/useShowError'
 import { useTranslation } from 'react-i18next'
-import { useAppParams, useAppViewKey } from '@rxdrag/plugin-sdk/contexts/appRoot'
+import { useDesignerParams, useDesignerViewKey } from '~/plugin-sdk/contexts/desinger'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { deviceConfigChangedState, deviceConfigState } from '../../recoil/atom'
 import { useUpsertAppDeviceConfig } from '~/AppDesigner/hooks/useUpsertAppDeviceConfig'
 
 export const ConfigActionsWidget = observer(() => {
-  const { device } = useAppParams();
-  const key = useAppViewKey();
+  const { device } = useDesignerParams();
+  const key = useDesignerViewKey();
   const [changed, setChanged] = useRecoilState(deviceConfigChangedState(key));
   const appDeviceConfig = useRecoilValue(deviceConfigState(key));
   const { t } = useTranslation();

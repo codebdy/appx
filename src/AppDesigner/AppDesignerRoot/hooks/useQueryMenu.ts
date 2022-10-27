@@ -1,5 +1,5 @@
 import { gql } from "~/enthooks";
-import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerParams } from "~/plugin-sdk/contexts/desinger";
 import { useQueryOne } from "~/enthooks/hooks/useQueryOne";
 import { useMemo } from "react";
 import { IMenu } from "~/model";
@@ -31,7 +31,7 @@ query queryMenu($appId:ID!, $device:String!){
 `
 
 export function useQueryMenu() {
-  const params = useAppParams();
+  const params = useDesignerParams();
 
   const input = useMemo(()=>({
     gql: menuGql,

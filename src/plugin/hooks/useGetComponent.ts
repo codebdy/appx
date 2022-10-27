@@ -1,8 +1,8 @@
 import { useCallback } from "react";
-import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerParams } from "~/plugin-sdk/contexts/desinger";
 
 export function useGetComponent() {
-  const { uploadedPlugins, device } = useAppParams();
+  const { uploadedPlugins, device } = useDesignerParams();
 
   const getCompoent = useCallback((name: string) => {
     for (const plugin of uploadedPlugins) {

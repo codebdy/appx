@@ -4,26 +4,24 @@ import { IApp, IAppConfig, IAppDeviceConfig, ILangLocal, IMaterialConfig } from 
 import { IUserConfig } from "~/model/user";
 import { IInstalledPlugin } from "../../plugin/model";
 
-export interface IAppContextParams {
+export interface IDesignerContextParams {
   app: IApp,
   device: Device | undefined,
   config: IAppConfig | undefined,
   deviceConfig: IAppDeviceConfig | undefined,
   langLocales: ILangLocal[] | undefined,
-  userConfig?: IUserConfig,
   uploadedPlugins?: IInstalledPlugin[],
   debugPlugins?: IInstalledPlugin[],
   materialConfig?: IMaterialConfig,
 }
 
-export const AppContext = createContext<IAppContextParams>({} as any);
+export const DesignerContext = createContext<IDesignerContextParams>({} as any);
 
-export const useAppParams = (): IAppContextParams => useContext(AppContext);
-export const useAppConfig = (): IAppConfig | undefined => useContext(AppContext)?.config;
-export const useUserConfig = (): IUserConfig | undefined => useContext(AppContext)?.userConfig;
+export const useDesignerParams = (): IDesignerContextParams => useContext(DesignerContext);
+export const useDesignerAppConfig = (): IAppConfig | undefined => useContext(DesignerContext)?.config;
 
-export const useAppViewKey = () => {
-  const params = useAppParams()
+export const useDesignerViewKey = () => {
+  const params = useDesignerParams()
 
   const key = useMemo(() => {
     return params ? params.device + params.app.uuid : ""
@@ -33,5 +31,5 @@ export const useAppViewKey = () => {
 }
 
 export function useSelectedAppUuid() {
-  return useAppParams()?.app?.uuid
+  return useDesignerParams()?.app?.uuid
 }

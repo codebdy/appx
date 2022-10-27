@@ -1,4 +1,4 @@
-import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerParams } from "~/plugin-sdk/contexts/desinger";
 import React from "react";
 import { memo } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
@@ -12,7 +12,7 @@ export const PluginList = memo((
   }
 ) => {
   const { tabs } = props;
-  const { uploadedPlugins } = useAppParams();
+  const { uploadedPlugins } = useDesignerParams();
 
   return (
     <div>

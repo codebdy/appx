@@ -10,7 +10,7 @@ import { useInsertAt } from "./hooks/useInsertAt";
 import { IMenuItem, IMenuNode, MenuItemType } from "@rxdrag/plugin-sdk/model/IMenuNode";
 import { useTranslation } from "react-i18next";
 import "./index.less"
-import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerViewKey } from "~/plugin-sdk/contexts/desinger";
 import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import { cloneObject } from "./utils/cloneObject";
 import { parseMeta } from "./hooks/useParseMenuMeta";
@@ -25,7 +25,7 @@ const MenuDragRoot = memo((
     children: React.ReactNode
   }
 ) => {
-  const key = useAppViewKey();
+  const key = useDesignerViewKey();
   const setRootNode = useSetRecoilState(navigationRootNodeState(key));
   const setIsDirty = useSetRecoilState(isNavigationDirtyState(key));
   const setMenuId = useSetRecoilState(menuIdState(key))

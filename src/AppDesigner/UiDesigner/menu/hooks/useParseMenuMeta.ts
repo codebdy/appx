@@ -6,7 +6,7 @@ import {
 import { useCallback } from "react";
 import { useSetRecoilState } from "recoil";
 import { IMenuItem, IMenuNode } from "@rxdrag/plugin-sdk/model/IMenuNode";
-import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerViewKey } from "~/plugin-sdk/contexts/desinger";
 
 export const parseMeta = (
   meta: IMenuItem,
@@ -28,7 +28,7 @@ export const parseMeta = (
 };
 
 export function useParseMenuMeta() {
-  const key = useAppViewKey();
+  const key = useDesignerViewKey();
   const setRootNode = useSetRecoilState(navigationRootNodeState(key));
   const setSelectedId = useSetRecoilState(navigationSelectedIdState(key));
   const setNodes = useSetRecoilState(navigationNodesState(key));

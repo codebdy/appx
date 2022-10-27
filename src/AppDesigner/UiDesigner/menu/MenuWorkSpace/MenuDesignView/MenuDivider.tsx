@@ -7,7 +7,7 @@ import { IMenuNode } from "@rxdrag/plugin-sdk/model/IMenuNode";
 import { memo, useMemo } from "react";
 import { useRecoilState } from "recoil";
 import { navigationSelectedIdState } from "../../atoms";
-import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerViewKey } from "~/plugin-sdk/contexts/desinger";
 import React from "react";
 import { Divider } from "antd";
 import clx from "classnames";
@@ -19,7 +19,7 @@ const DividerInner = memo(
     node: IMenuNode;
   }) => {
     const { provided, node, snapshot } = props;
-    const key = useAppViewKey();
+    const key = useDesignerViewKey();
     const [selectedId, setSelectedId] = useRecoilState(
       navigationSelectedIdState(key)
     );

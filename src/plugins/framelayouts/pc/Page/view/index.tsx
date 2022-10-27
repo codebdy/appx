@@ -1,6 +1,6 @@
 import { observer } from "@formily/reactive-react"
 import React from "react"
-import { useAppParams, useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerParams, useDesignerViewKey } from "~/plugin-sdk/contexts/desinger";
 import { pagePopupsState } from "@rxdrag/plugin-sdk/atoms";
 import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage";
 import { useRecoilValue } from "recoil";
@@ -15,9 +15,9 @@ export interface IComponentProps {
 }
 
 const Component = observer((props: IComponentProps) => {
-  const { app } = useAppParams();
+  const { app } = useDesignerParams();
   const p = useParseLangMessage();
-  const key = useAppViewKey();
+  const key = useDesignerViewKey();
   const pagePopups = useRecoilValue(pagePopupsState(key));
 
   return (

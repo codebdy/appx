@@ -2,13 +2,13 @@ import { useCallback } from "react";
 import { IPostOptions, usePostOne } from "../../enthooks/hooks/usePostOne";
 import { IAppConfig } from "../../model";
 import { IAppConfigInput } from "../../model";
-import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerParams } from "~/plugin-sdk/contexts/desinger";
 
 export function useUpsertAppConfig(options?: IPostOptions<any>): [
   (config: IAppConfigInput) => void,
   { loading?: boolean; error?: Error }
 ] {
-  const params = useAppParams();
+  const params = useDesignerParams();
 
   const [post, { error, loading }] = usePostOne<IAppConfigInput, IAppConfig>("AppConfig",
     {

@@ -8,14 +8,14 @@ import { IMaterialCollapseItem, IMaterialTab } from '@rxdrag/appx-plugin-sdk';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import { PluginList, PLUGINS_LIST_ID } from './PluginList';
 import { GROUP_TYPE } from './MaterialTabs/MaterialTab';
-import { useAppParams } from '@rxdrag/plugin-sdk/contexts/appRoot';
+import { useDesignerParams } from '~/plugin-sdk/contexts/desinger';
 import { useGetNotCategoriedComponents } from './hooks/useGetNotCategoriedComponents';
 import { useUpsertMaterialConfig } from '../../../hooks/useUpsertMaterialConfig';
 import { useShowError } from '~/AppDesigner/hooks/useShowError';
 
 export const MaterialDialog = memo(() => {
   const [tabs, setTabs] = useState<IMaterialTab[]>([]);
-  const { uploadedPlugins, materialConfig, app, device } = useAppParams();
+  const { uploadedPlugins, materialConfig, app, device } = useDesignerParams();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const { t } = useTranslation();
   const getUnCategoriedComponents = useGetNotCategoriedComponents(tabs);

@@ -1,14 +1,14 @@
 import { isStr } from "@formily/shared";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { useAppParams } from "../contexts/appRoot";
+import { useDesignerParams } from "../contexts/desinger";
 
 export const LANG_RESOURCE_PREFIX = "$src:";
 export const LANG_INLINE_PREFIX = "$inline:"
 
 export function useParseLangMessage() {
   const { i18n } = useTranslation();
-  const { langLocales } = useAppParams() || {};
+  const { langLocales } = useDesignerParams() || {};
 
   const parse = useCallback((message?: string) => {
     if(!isStr(message)){

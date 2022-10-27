@@ -1,13 +1,13 @@
 import { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useDesignerParams } from "~/plugin-sdk/contexts/desinger";
 import { MaterialTab } from "../model";
 import { useConvertMaterialFromPlugin } from "./useConvertMaterialFromPlugin";
 import { useExtractMaterialGroupFromPlugin } from "./useExtractMaterialGroupFromPlugin";
 
 export function useUploadedMaterialTabs() {
-  const { device } = useAppParams();
-  const { uploadedPlugins, materialConfig } = useAppParams();
+  const { device } = useDesignerParams();
+  const { uploadedPlugins, materialConfig } = useDesignerParams();
   const { t } = useTranslation();
   const convert = useConvertMaterialFromPlugin();
   const getComponent = useCallback((name: string) => {
