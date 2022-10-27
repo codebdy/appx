@@ -11,4 +11,5 @@ export interface IAppContextParams {
 }
 export const AppContext = createContext<IAppContextParams>({} as any);
 export const useUserConfig = (): IUserConfig | undefined => useContext(AppContext)?.userConfig;
+export const useAppParams = (): IAppContextParams | undefined => useContext(AppContext);
 export const useApp = (): IApp | undefined => useContext(AppContext)?.app;

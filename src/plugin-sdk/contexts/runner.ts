@@ -1,9 +1,7 @@
 import { createContext, useContext } from "react";
-import { IMenu, IUiFrame } from "~/model";
 import { IMenuItem } from "../model/IMenuNode";
 
 export interface IRunnerContextParams {
-  menu?: IMenu,
   components: (React.FC<any> | React.Component)[],
 }
 

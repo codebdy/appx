@@ -14,7 +14,6 @@ import { createSchemaField, ExpressionScope, FormProvider } from '@formily/react
 import { createForm } from '@formily/core';
 import { useQueryPageFrame } from '../hooks/useQueryPageFrame';
 import { useMaterialComponents } from '~/material/hooks/useMaterialComponents';
-import { useQueryMenu } from '~/AppDesigner/AppDesignerRoot/hooks/useQueryMenu';
 
 export class Me {
   constructor(private me?: IUser) { }
@@ -32,9 +31,8 @@ export class Me {
 const RunnerEngine = memo(() => {
   const [mentItem, setMenuItem] = useState<IMenuItem>()
   const p = useParseLangSchema();
-  const { menu, error, loading } = useQueryMenu();
   const { pageFrame, error: frameError, loading: frameLoading } = useQueryPageFrame();
-  useShowError(error || frameError);
+  useShowError(frameError);
   const components = useMaterialComponents();
   const me = useMe();
   const $me = useMemo(() => new Me(me), [me]);
@@ -56,15 +54,14 @@ const RunnerEngine = memo(() => {
 
   const runnerContextValue = useMemo(() => {
     return {
-      menu,
       components: components || [],
     }
-  }, [menu, components])
+  }, [components])
 
   return (
     <RunnerContext.Provider value={runnerContextValue}>
       <RouteContext.Provider value={{ menuItem: mentItem, setMenuItem: setMenuItem as any }}>
-        <Spin spinning={loading || frameLoading}>
+        <Spin spinning={frameLoading}>
           <FormProvider form={form}>
             <ExpressionScope value={newExpScope} >
               {

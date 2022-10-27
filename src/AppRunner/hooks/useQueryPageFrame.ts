@@ -1,31 +1,32 @@
 import { gql } from "~/enthooks";
 import { useMemo } from "react";
 import { useQueryOne } from "~/enthooks/hooks/useQueryOne";
-import { IUiFrame } from "~/model";
-import { usePageFrameId } from "./usePageFrameId";
+import { IApp, IUiFrame } from "~/model";
+import { useFrameUuid } from "./useFrameUuid";
 
 const pageFrameGql = gql`
-query ($id:ID!){
+query ($uuid:String!){
   onePageFrame(where:{
-    id:{
-      _eq:$id
+    uuid:{
+      _eq:$uuid
     }
   }){
     id
+    uuid
     title
     schemaJson
   }
 }
 `
 export function useQueryPageFrame() {
-  const pageFrameId = usePageFrameId();
+  const uuid = useFrameUuid();
   const input = useMemo(() => (
     {
-      gql: pageFrameId && pageFrameGql,
-      params: { id: pageFrameId },
+      gql: uuid && pageFrameGql,
+      params: { uuid },
       depEntityNames: ["PageFrame"]
     }
-  ), [pageFrameId]);
+  ), [uuid]);
 
   const { data, error, loading } = useQueryOne<IUiFrame>(input);
 
