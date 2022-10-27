@@ -2015,6 +2015,13 @@
           "unsigned": false,
           "updateDate": false,
           "uuid": "01da62ca-ad8d-4306-9420-732e779a8b83"
+        },
+        {
+          "uuid": "ed33e4b0-51df-482f-80b4-beab605bff32",
+          "name": "schemaJson",
+          "type": "JSON",
+          "typeLabel": "JSON",
+          "nullable": true
         }
       ],
       "description": "",
@@ -3835,28 +3842,6 @@
       "descriptionOnSource": "",
       "descriptionOnTarget": "",
       "enableAssociaitonClass": false,
-      "innerId": 0,
-      "labelOfSource": "",
-      "labelOfTarget": "",
-      "relationType": "inherit",
-      "roleOfSource": "",
-      "roleOfTarget": "",
-      "sourceId": "de56ae19-aaac-4479-8bf9-6573ad22a482",
-      "sourceMutiplicity": "0..1",
-      "system": false,
-      "targetId": "087b2915-5582-496d-bafb-ae2f5623a70d",
-      "targetMultiplicity": "0..1",
-      "uuid": "7757cf44-3fc8-450b-86bd-4db6ee6f8a49"
-    },
-    {
-      "AppId": 1,
-      "associationClass": {
-        "attributes": null,
-        "name": ""
-      },
-      "descriptionOnSource": "",
-      "descriptionOnTarget": "",
-      "enableAssociaitonClass": false,
       "innerId": 1002,
       "labelOfSource": "",
       "labelOfTarget": "",
@@ -4287,6 +4272,17 @@
       "targetId": "a6a1dc39-0e2a-47e5-905e-307e9008b8d1",
       "targetMultiplicity": "0..*",
       "uuid": "57732ce2-ffa2-456a-9e93-c2df43401ca0"
+    },
+    {
+      "uuid": "88caf839-bd0d-4d67-b75f-7ea89bb7fa75",
+      "innerId": 1009,
+      "relationType": "twoWayAggregation",
+      "sourceId": "APP_ENTITY_UUID",
+      "targetId": "de56ae19-aaac-4479-8bf9-6573ad22a482",
+      "roleOfTarget": "userConfigs",
+      "roleOfSource": "app",
+      "sourceMutiplicity": "0..1",
+      "targetMultiplicity": "0..*"
     }
   ],
   "diagrams": [
@@ -4361,20 +4357,20 @@
       "y": -99
     },
     {
-      "diagramUuid": "ff40de16-1759-407e-b52c-915c307f5c74",
-      "height": 122,
       "id": "de56ae19-aaac-4479-8bf9-6573ad22a482",
+      "x": 0,
+      "y": 189,
       "width": 180,
-      "x": -10,
-      "y": 283
+      "height": 160,
+      "diagramUuid": "ff40de16-1759-407e-b52c-915c307f5c74"
     },
     {
-      "diagramUuid": "ff40de16-1759-407e-b52c-915c307f5c74",
-      "height": 278,
       "id": "META_USER_UUID",
+      "x": -350,
+      "y": 127,
       "width": 180,
-      "x": -330,
-      "y": 205
+      "height": 278,
+      "diagramUuid": "ff40de16-1759-407e-b52c-915c307f5c74"
     },
     {
       "diagramUuid": "ff40de16-1759-407e-b52c-915c307f5c74",
@@ -4625,20 +4621,6 @@
       "vertices": [
         {
           "x": 530,
-          "y": 160
-        },
-        {
-          "x": 410,
-          "y": 160
-        }
-      ]
-    },
-    {
-      "diagramUuid": "ff40de16-1759-407e-b52c-915c307f5c74",
-      "id": "7757cf44-3fc8-450b-86bd-4db6ee6f8a49",
-      "vertices": [
-        {
-          "x": 80,
           "y": 160
         },
         {
@@ -4984,6 +4966,29 @@
         "offset": -20
       },
       "vertices": []
+    },
+    {
+      "id": "88caf839-bd0d-4d67-b75f-7ea89bb7fa75",
+      "vertices": [],
+      "roleOnSourcePosition": {
+        "distance": 0.23030303030303031,
+        "offset": 40,
+        "angle": 0
+      },
+      "sourceMultiplicityPosition": {
+        "distance": 40,
+        "offset": -20
+      },
+      "roleOnTargetPosition": {
+        "distance": 0.7757575757575758,
+        "offset": 70,
+        "angle": 0
+      },
+      "targetMultiplicityPosition": {
+        "distance": -40,
+        "offset": -20
+      },
+      "diagramUuid": "ff40de16-1759-407e-b52c-915c307f5c74"
     }
   ]
 }

@@ -1,9 +1,10 @@
 import { Device } from "@rxdrag/appx-plugin-sdk";
 import { MetaContent } from "~/AppDesigner/AppUml/meta";
 import { ID } from "~/shared";
-import { ILang } from "./lang";
+import { ILang, ILangLocal } from "./lang";
 import { IMenu } from "./menu";
 import { IPage } from "./page";
+import { IPluginInfo } from "./plugin";
 import { IUiFrame } from "./uiframe";
 
 export interface IAppConfig {
@@ -57,12 +58,13 @@ export interface IAppDeviceConfigInput {
 export interface IApp {
   id: ID;
   uuid: string;
-  title: string;
-  description?: string;
-  pages?: IPage[];
-  menus?: IMenu[];
+  title?: string;
   imageUrl?: string;
-  pageFrames?: IUiFrame[];
+  partsOfMenu?: IMenu[];
+  partsOfLangLocal?:ILangLocal[];
+  partsOfAppConfig?: IAppConfig[];
+  partsOfAppDeviceConfig?:IAppDeviceConfig[];
+  plugins?:IPluginInfo[]
   meta?: MetaContent;
   saveMetaAt?: Date;
   publishedMeta?: MetaContent;
