@@ -1,19 +1,18 @@
 import React, { useMemo } from "react"
 import { memo } from "react"
-import { DESIGNER_TOKEN_NAME } from "../consts"
 import RunnerEngine from "./RunnerEngine"
-import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid"
-import { useQueryApp } from "~/AppDesigner/hooks/useQueryApp"
-import { useShowError } from "~/AppDesigner/hooks/useShowError"
 import { useParams } from "react-router-dom"
 import { Device } from "@rxdrag/appx-plugin-sdk"
 import { CenterSpin } from "~/common/CenterSpin"
 import { NotPublished } from "./NotPublished"
 import { AppRoot } from "./AppRoot"
+import { SYSTEM_APP_ID } from "~/consts"
+import { useQueryApp } from "./hooks/useQueryApp"
+import { useShowError } from "./hooks/useShowError"
 
 const AppRunner = memo(() => {
   const { device = Device.PC } = useParams();
-  const appId = useEdittingAppId();
+  const { appId = SYSTEM_APP_ID } = useParams();
   const { app, loading, error } = useQueryApp(appId)
   useShowError(error);
 
@@ -23,7 +22,7 @@ const AppRunner = memo(() => {
 
   const render = useMemo(() => {
     if (loading) {
-      return <CenterSpin loading = {loading} />
+      return <CenterSpin loading={loading} />
     }
 
     if (deviceConfig?.published) {
@@ -32,7 +31,7 @@ const AppRunner = memo(() => {
       </AppRoot>
     }
 
-    return <NotPublished/>
+    return <NotPublished />
   }, [loading])
 
   return (
