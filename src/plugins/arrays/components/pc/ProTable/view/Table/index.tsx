@@ -12,7 +12,7 @@ import { isArr, isObj } from '@formily/shared'
 import { observer } from '@formily/reactive-react';
 import { QueryType, useQueryParams } from '~/datasource/hooks/useQueryParams';
 import { useDataQuery } from '~/datasource/hooks/useDataQuery';
-import { useShowError } from '~/hooks/useShowError';
+import { useShowError } from '~/AppDesigner/hooks/useShowError';
 import {
   useField
 } from '@formily/react'

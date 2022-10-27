@@ -1,9 +1,9 @@
 import { Device } from "@rxdrag/appx-plugin-sdk";
-import { gql } from "../enthooks";
+import { gql } from "../../enthooks";
 import { useMemo } from "react";
-import { SYSTEM_APP_ID } from "../consts";
-import { useQueryOne } from "../enthooks/hooks/useQueryOne";
-import { IAppDeviceConfig } from "../model";
+import { SYSTEM_APP_ID } from "../../consts";
+import { useQueryOne } from "../../enthooks/hooks/useQueryOne";
+import { IAppDeviceConfig } from "../../model";
 import { ID } from "~/shared";
 
 const configGql = gql`

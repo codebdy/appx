@@ -5,7 +5,7 @@ import { memo } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import { DESIGN_BOARD } from "~/consts"
-import { useEdittingAppId } from "~/hooks/useEdittingAppUuid"
+import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid"
 import "./style.less"
 
 export const NotPublished = memo(() => {

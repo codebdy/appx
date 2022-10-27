@@ -1,6 +1,6 @@
 import { Table } from 'antd';
 import React, { useCallback, useMemo, useState } from 'react';
-import { useShowError } from '~/hooks/useShowError';
+import { useShowError } from '~/AppDesigner/hooks/useShowError';
 import { useColumns } from './hooks/useColumns';
 import { useQueryModelLogs } from './hooks/useQueryModelLogs';
 

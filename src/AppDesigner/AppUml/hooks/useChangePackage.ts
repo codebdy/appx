@@ -1,6 +1,6 @@
 import { useCallback } from "react"
 import { useSetRecoilState } from "recoil";
-import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
+import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
 import { PackageMeta } from "../meta/PackageMeta";
 import { packagesState } from "../recoil/atoms";
 

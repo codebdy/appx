@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from "react";
 import { useRecoilState } from "recoil";
-import { useQueryPage } from "~/hooks/useQueryPage";
+import { useQueryPage } from "~/AppDesigner/hooks/useQueryPage";
 import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
 import { pagesCacheState } from "@rxdrag/plugin-sdk/atoms";
 

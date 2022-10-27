@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next"
 import { ID } from "~/shared"
 import { useQueryClassAuthConfigs } from "../hooks/useQueryClassAuthConfigs"
 import { useQueryPropertyAuthConfigs } from "../hooks/useQueryPropertyAuthConfigs"
-import { useShowError } from "~/hooks/useShowError"
+import { useShowError } from "~/AppDesigner/hooks/useShowError"
 import { useRoleName } from "../hooks/useRoleName"
 
 export const ModelAuthBoard = memo(() => {

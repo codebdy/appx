@@ -2,10 +2,10 @@ import React, { useCallback } from 'react'
 import { Button, message } from 'antd'
 import { useDesigner, TextWidget } from '@designable/react'
 import { observer } from '@formily/react'
-import { useUpdatePage } from '~/hooks/useUpdatePage'
+import { useUpdatePage } from '~/AppDesigner/hooks/useUpdatePage'
 import { useSelectedPageId } from '../hooks/useSelectedPageId'
 import { transformToSchema } from '../transformer'
-import { useShowError } from '~/hooks/useShowError'
+import { useShowError } from '~/AppDesigner/hooks/useShowError'
 import { useTranslation } from 'react-i18next'
 
 export const ActionsWidget = observer(() => {

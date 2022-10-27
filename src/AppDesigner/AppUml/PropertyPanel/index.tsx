@@ -12,7 +12,7 @@ import { MethodPanel } from "./MethodPanel";
 import { Empty } from "antd";
 import { useTranslation } from "react-i18next";
 import { PropertyBox } from "~/common/ModelBoard/PropertyBox";
-import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
+import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
 
 export const PropertyPanel = memo(() => {
   const appId = useEdittingAppId();

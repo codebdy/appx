@@ -10,7 +10,7 @@ import { useAppParams, useParseLangMessage } from "@rxdrag/plugin-sdk";
 import { selectedBpmnProcessIdState } from "../recoil/atoms";
 import { CategoryLabel } from "./CategoryLabel";
 import { useQueryProcesses } from "../hooks/useQueryProcesses";
-import { useShowError } from "~/hooks/useShowError";
+import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import { ProcessLabel } from "./ProcessLabel";
 const { DirectoryTree } = Tree;
 

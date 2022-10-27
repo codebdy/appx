@@ -4,7 +4,7 @@ import { memo } from "react";
 import { useTranslation } from "react-i18next";
 import ImageUploader from "~/plugins/inputs/components/pc/ImageUploader/view";
 import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/view";
-import { useShowError } from "~/hooks/useShowError";
+import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import { IPageFrame } from "~/model";
 import { useUpsertPageFrame } from "../hooks/useUpsertPageFrame";
 import { createUuid } from "~/shared";

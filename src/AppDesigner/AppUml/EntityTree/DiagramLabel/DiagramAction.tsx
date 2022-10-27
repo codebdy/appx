@@ -6,7 +6,7 @@ import { DiagramMeta } from "../../meta/DiagramMeta";
 import { useGetPackage } from "../../hooks/useGetPackage";
 import { useDeleteDiagram } from "../../hooks/useDeleteDiagram";
 import { SYSTEM_APP_ID } from "~/consts";
-import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
+import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
 
 const DiagramAction = memo((
   props: {

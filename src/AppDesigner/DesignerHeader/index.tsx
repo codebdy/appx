@@ -12,7 +12,7 @@ import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessag
 import AvatarMenu from "~/plugins/framewidgets/pc/AvatarMenu/view"
 import SvgIcon from "~/common/SvgIcon"
 import { DESIGN, DESIGN_BOARD } from "~/consts"
-import { useEdittingAppId } from "~/hooks/useEdittingAppUuid"
+import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid"
 import { Operate } from "./Operate"
 
 const DesignerHeader = memo((props: {

@@ -17,7 +17,7 @@ import { DeleteOutlined, RedoOutlined, UndoOutlined } from "@ant-design/icons";
 import { PRIMARY_COLOR } from "~/consts";
 import SaveActions from "../SaveActions";
 import { ModelToolbar } from "~/common/ModelBoard/ModelToolbar";
-import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
+import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
 
 export const UmlToolbar = memo(() => {
   const appId = useEdittingAppId();

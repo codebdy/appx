@@ -1,8 +1,8 @@
-import { gql } from "../enthooks";
+import { gql } from "../../enthooks";
 import { useMemo } from "react";
-import { SYSTEM_APP_ID } from "../consts";
-import { useQueryOne } from "../enthooks/hooks/useQueryOne";
-import { IAppConfig } from "../model";
+import { SYSTEM_APP_ID } from "../../consts";
+import { useQueryOne } from "../../enthooks/hooks/useQueryOne";
+import { IAppConfig } from "../../model";
 import { ID } from "~/shared";
 
 const configGql = gql`

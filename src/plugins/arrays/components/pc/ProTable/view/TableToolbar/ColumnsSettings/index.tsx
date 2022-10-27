@@ -7,7 +7,7 @@ import { useProTableParams } from "@rxdrag/plugin-sdk/contexts/propTable";
 import { useLocalTranslations } from "../../hooks/useLocalTranslations";
 import DraggableLabel from "./DraggableLabel";
 import "./style.less"
-import { useShowError } from "~/hooks/useShowError";
+import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import { toJS } from "@formily/reactive";
 import { useUpdateComponentConfig } from "~/AppDesigner/AppDesignerRoot/hooks/useUpdateComponentConfig";
 

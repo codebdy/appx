@@ -1,7 +1,7 @@
-import { gql } from "../enthooks";
+import { gql } from "../../enthooks";
 import { useMemo } from "react";
-import { useQuery } from "../enthooks/hooks/useQuery";
-import { IPageFrame } from "../model";
+import { useQuery } from "../../enthooks/hooks/useQuery";
+import { IPageFrame } from "../../model";
 
 const templatesGql = gql`
 query{

@@ -11,7 +11,7 @@ import { GROUP_TYPE } from './MaterialTabs/MaterialTab';
 import { useAppParams } from '@rxdrag/plugin-sdk/contexts/appRoot';
 import { useGetNotCategoriedComponents } from './hooks/useGetNotCategoriedComponents';
 import { useUpsertMaterialConfig } from '../../../hooks/useUpsertMaterialConfig';
-import { useShowError } from '~/hooks/useShowError';
+import { useShowError } from '~/AppDesigner/hooks/useShowError';
 
 export const MaterialDialog = memo(() => {
   const [tabs, setTabs] = useState<IMaterialTab[]>([]);

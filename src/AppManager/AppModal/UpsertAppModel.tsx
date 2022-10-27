@@ -2,8 +2,8 @@ import { Form, message, Modal } from "antd"
 import React, { useCallback, useEffect } from "react";
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
-import { useUpsertApp } from "../../hooks/useUpsertApp";
-import { useShowError } from "~/hooks/useShowError";
+import { useUpsertApp } from "../../AppDesigner/hooks/useUpsertApp";
+import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import { IAppInput } from "~/model";
 import { createUuid } from "~/shared";
 import { IApp } from "~/model";

@@ -3,8 +3,8 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
 import { useAppConfig, useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
-import { useUpsertLangLocal } from "~/hooks/useUpsertLangLocal";
-import { useShowError } from "~/hooks/useShowError";
+import { useUpsertLangLocal } from "~/AppDesigner/hooks/useUpsertLangLocal";
+import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import { LANG_INLINE_PREFIX, LANG_RESOURCE_PREFIX } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage";
 import { ID } from "~/shared";
 import { ILangLocal } from "~/model";

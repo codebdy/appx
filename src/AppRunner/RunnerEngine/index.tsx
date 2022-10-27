@@ -1,13 +1,13 @@
 
 import { memo, useState } from 'react';
 import React from 'react';
-import { useShowError } from '~/hooks/useShowError';
+import { useShowError } from '~/AppDesigner/hooks/useShowError';
 import { Spin } from 'antd';
 import { RouteContext, RunnerContext } from '@rxdrag/plugin-sdk/contexts/runner';
 import { IMenuItem } from '@rxdrag/plugin-sdk/model/IMenuNode';
 import { FormItem } from "@formily/antd";
 import { useMemo } from "react";
-import { useParseLangSchema } from "../../hooks/useParseLangSchema";
+import { useParseLangSchema } from "../../AppDesigner/hooks/useParseLangSchema";
 import { IUser } from "~/enthooks/hooks/useQueryMe";
 import { useMe } from "@rxdrag/plugin-sdk/contexts/login";
 import { createSchemaField, ExpressionScope, FormProvider } from '@formily/react';

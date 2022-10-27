@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { LOGIN_URL } from "../consts";
-import { useEntix, useToken } from "../enthooks";
+import { LOGIN_URL } from "../../consts";
+import { useEntix, useToken } from "../../enthooks";
 
 export function useLoginCheck() {
   const navigate = useNavigate();

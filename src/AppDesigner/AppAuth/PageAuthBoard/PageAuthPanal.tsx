@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from "react"
 import { memo } from "react"
 import { IComponentAuthConfig, IPage, IPageCategory } from "~/model";
-import { IDevice } from "~/hooks/useDevices"
+import { IDevice } from "~/AppDesigner/hooks/useDevices"
 import { Table } from "antd";
 import { useColumns } from "./useColumns";
 import { ID } from "~/shared";

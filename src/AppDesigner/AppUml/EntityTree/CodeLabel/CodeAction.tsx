@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useGetPackage } from "../../hooks/useGetPackage";
 import { useDeleteDiagram } from "../../hooks/useDeleteDiagram";
 import { SYSTEM_APP_ID } from "~/consts";
-import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
+import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
 import { CodeMeta } from "../../meta/CodeMeta";
 
 const CodeAction = memo((

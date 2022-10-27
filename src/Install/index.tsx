@@ -3,7 +3,7 @@ import { gql } from '../enthooks';
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useRequest } from '../enthooks/hooks/useRequest';
-import { useShowError } from '~/hooks/useShowError';
+import { useShowError } from '~/AppDesigner/hooks/useShowError';
 import Installed from './Installed';
 import InstallForm from './InstallForm';
 

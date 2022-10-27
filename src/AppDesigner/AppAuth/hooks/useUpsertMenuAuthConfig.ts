@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
+import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
 import { IPostOptions, usePostOne } from "~/enthooks/hooks/usePostOne";
 import { IMenuAuthConfig, IMenuAuthConfigInput } from "~/model";
 import { GraphQLRequestError } from "~/enthooks";

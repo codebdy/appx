@@ -3,7 +3,7 @@ import React, { memo, useCallback, useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 import { useParseLangMessage } from '@rxdrag/plugin-sdk';
 import { packagesState } from '../../AppUml/recoil/atoms';
-import { useEdittingAppId } from '~/hooks/useEdittingAppUuid';
+import { useEdittingAppId } from '~/AppDesigner/hooks/useEdittingAppUuid';
 import { useColumns } from './useColumns';
 import { IAuthRow, RowType } from './IAuthRow';
 import { useGetPackageCanAuthClasses } from '../hooks/useGetPackageCanAuthClasses';

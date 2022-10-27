@@ -7,8 +7,8 @@ import { ILangLocalInput } from '~/model';
 import LangLocalEditDialog from './LangLocalEditDialog';
 import { ID } from '~/shared';
 import { ILangLocal } from '~/model';
-import { useDeleteLangLocal } from '~/hooks/useDeleteLangLocal';
-import { useShowError } from '~/hooks/useShowError';
+import { useDeleteLangLocal } from '~/AppDesigner/hooks/useDeleteLangLocal';
+import { useShowError } from '~/AppDesigner/hooks/useShowError';
 
 const ResourcesTable = memo(() => {
   const [keyword, setKeyWord] = useState("");

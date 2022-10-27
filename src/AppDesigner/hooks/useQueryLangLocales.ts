@@ -1,8 +1,8 @@
-import { gql } from "../enthooks";
+import { gql } from "../../enthooks";
 import { useMemo } from "react";
-import { SYSTEM_APP_ID } from "../consts";
-import { useQuery } from "../enthooks/hooks/useQuery";
-import { ILangLocal } from "../model";
+import { SYSTEM_APP_ID } from "../../consts";
+import { useQuery } from "../../enthooks/hooks/useQuery";
+import { ILangLocal } from "../../model";
 
 const langLocalGql = gql`
 query ($appId:ID!){

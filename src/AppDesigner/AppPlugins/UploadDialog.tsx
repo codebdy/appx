@@ -3,7 +3,7 @@ import { Button, Form, Input, message, Modal, Radio, RadioChangeEvent, UploadFil
 import React, { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useUpsertPluginInfo } from './hooks/useUpsertPluginInfo';
-import { useShowError } from '~/hooks/useShowError';
+import { useShowError } from '~/AppDesigner/hooks/useShowError';
 import { IPluginInfo, PluginType } from '~/model';
 import { PluginStatus } from '~/plugin/model';
 import { useUploadPlugin } from './hooks/useUploadPlugin';

@@ -5,7 +5,7 @@ import { useDesigner } from '@designable/react'
 import { transformToTreeNode } from "../../UiDesigner/transformer";
 import { Field, ObjectContainer } from "@designable/formily-antd";
 import { ComponentTreeWidget, DesignerToolsWidget, PreviewWidget, SchemaEditorWidget, ViewToolsWidget } from "../../UiDesigner/widgets";
-import { useShowError } from "~/hooks/useShowError";
+import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import { ID } from "~/shared";
 import { Workspace } from "../../UiDesigner/containers";
 import { SettingsPanel, ToolbarPanel, ViewPanel, ViewportPanel, WorkspacePanel } from "../../UiDesigner/panels";

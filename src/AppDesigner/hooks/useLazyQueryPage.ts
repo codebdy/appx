@@ -1,8 +1,8 @@
-import { gql } from "../enthooks";
+import { gql } from "../../enthooks";
 import { useCallback } from "react";
-import { useLazyRequest } from "../enthooks/hooks/useLazyRequest";
-import { IPage } from "../model";
-import { IPageInput } from "../model";
+import { useLazyRequest } from "../../enthooks/hooks/useLazyRequest";
+import { IPage } from "../../model";
+import { IPageInput } from "../../model";
 import { ID } from "~/shared";
 
 const pageGql = gql`

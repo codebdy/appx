@@ -1,8 +1,8 @@
 import { Form, message, Modal } from "antd";
 import React, { memo, useCallback } from "react"
 import { useTranslation } from "react-i18next";
-import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
-import { useShowError } from "~/hooks/useShowError";
+import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
+import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/view";
 import { MakeVersionInput, useCreateVersion } from "~/enthooks/hooks/useCreateVersion";
 

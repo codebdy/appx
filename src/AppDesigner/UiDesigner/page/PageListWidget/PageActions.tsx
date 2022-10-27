@@ -4,7 +4,7 @@ import React, { memo, useCallback, useMemo } from "react"
 import { ID } from "~/shared";
 import { useDeletePage } from "../../hooks/useDeletePage";
 import { IPage } from "~/model";
-import { useShowError } from "~/hooks/useShowError";
+import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import { useTranslation } from "react-i18next";
 
 const PageActions = memo((

@@ -2,7 +2,7 @@ import { MoreOutlined, FileAddOutlined, EditOutlined, DeleteOutlined, LoadingOut
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
 import { useDeleteCategory } from "../../hooks/useDeleteCategory";
-import { useShowError } from "~/hooks/useShowError";
+import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import { useTranslation } from "react-i18next";
 import { ID } from "~/shared";
 

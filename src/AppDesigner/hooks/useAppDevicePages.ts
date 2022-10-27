@@ -1,7 +1,7 @@
 import { ID } from "~/shared";
-import { IApp } from "../model";
-import { gql } from "../enthooks";
-import { useQueryOne } from "../enthooks/hooks/useQueryOne";
+import { IApp } from "../../model";
+import { gql } from "../../enthooks";
+import { useQueryOne } from "../../enthooks/hooks/useQueryOne";
 import { useMemo } from "react";
 import { Device } from "@rxdrag/appx-plugin-sdk";
 

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { LOGIN_URL } from '../consts';
 import { useInstall } from '../enthooks/hooks/useInstall';
-import { useShowError } from '~/hooks/useShowError';
+import { useShowError } from '~/AppDesigner/hooks/useShowError';
 //import * as meta from './data.json';
 
 const InstallForm = memo(() => {

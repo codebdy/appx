@@ -1,7 +1,7 @@
-import { gql } from "../enthooks";
+import { gql } from "../../enthooks";
 import { useMemo } from "react";
-import { useQueryOne } from "../enthooks/hooks/useQueryOne";
-import { IPage } from "../model";
+import { useQueryOne } from "../../enthooks/hooks/useQueryOne";
+import { IPage } from "../../model";
 
 const pageGql = gql`
 query ($id:ID!){

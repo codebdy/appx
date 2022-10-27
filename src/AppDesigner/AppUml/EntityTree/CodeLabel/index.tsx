@@ -6,7 +6,7 @@ import { useSetRecoilState } from 'recoil';
 import { codesState, diagramsState } from '../../recoil/atoms';
 import { useGetPackage } from "../../hooks/useGetPackage";
 import { SYSTEM_APP_ID } from "~/consts";
-import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
+import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
 import { useParseLangMessage } from "@rxdrag/plugin-sdk";
 import CodeAction from "./CodeAction";
 import { CodeDialog } from "./CodeDialog";

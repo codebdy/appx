@@ -10,7 +10,7 @@ import { useCreateNewDiagram } from "../../hooks/useCreateNewDiagram";
 import { StereoType } from "../../meta/ClassMeta";
 import { useBackupSnapshot } from "../../hooks/useBackupSnapshot";
 import { useTranslation } from "react-i18next";
-import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
+import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
 import { useChangePackage } from "../../hooks/useChangePackage";
 import { SYSTEM_APP_ID } from "~/consts";
 import { DiagramMeta } from "../../meta/DiagramMeta";

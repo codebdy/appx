@@ -10,7 +10,7 @@ import "./style.less"
 import { useQueryAppPages } from "../hooks/useQueryAppPages"
 import { PageTabs } from "./PageTabs"
 import { useQueryComponentAuthConfigs } from "../hooks/useQueryComponentAuthConfigs"
-import { useShowError } from "~/hooks/useShowError"
+import { useShowError } from "~/AppDesigner/hooks/useShowError"
 import { useQueryAppPageCagegories } from "../hooks/useQueryAppPageCagegories"
 
 export const PageAuthBoard = memo(() => {

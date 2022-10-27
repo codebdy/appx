@@ -2,8 +2,8 @@ import React from "react"
 import { memo } from "react"
 import { Outlet } from "react-router-dom"
 import { useQueryMe } from "../enthooks/hooks/useQueryMe";
-import { useLoginCheck } from "../hooks/useLoginCheck";
-import { useShowError } from "~/hooks/useShowError";
+import { useLoginCheck } from "../AppDesigner/hooks/useLoginCheck";
+import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import { UserContext } from "@rxdrag/plugin-sdk/contexts/login";
 import { CenterSpin } from "~/common/CenterSpin";
 

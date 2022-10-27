@@ -7,7 +7,7 @@ import { useValueObjects } from "../../hooks/useValueObjects";
 import { Types } from "../../meta/Type";
 import { useTranslation } from "react-i18next";
 import { MethodMeta } from "../../meta/MethodMeta";
-import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
+import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
 const { Option } = Select;
 
 export const MethodTypeInput = memo(

@@ -9,7 +9,7 @@ import "./style.less"
 import { MenuTabs } from "./MenuTabs"
 import { useRoleName } from "../hooks/useRoleName"
 import { useQueryAppMenus } from "../hooks/useQueryAppMenus"
-import { useShowError } from "~/hooks/useShowError"
+import { useShowError } from "~/AppDesigner/hooks/useShowError"
 import { useQueryMenuAuthConfigs } from "../hooks/useQueryMenuAuthConfigs"
 
 export const MenuAuthBoard = memo(() => {

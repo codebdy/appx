@@ -1,5 +1,5 @@
-import { IDeleteOptions, useDeleteById } from "../enthooks/hooks/useDeleteById";
-import { ILangLocal } from "../model";
+import { IDeleteOptions, useDeleteById } from "../../enthooks/hooks/useDeleteById";
+import { ILangLocal } from "../../model";
 import { ID } from "~/shared";
 
 

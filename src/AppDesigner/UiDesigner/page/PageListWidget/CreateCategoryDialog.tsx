@@ -4,7 +4,7 @@ import React, { useCallback, useState } from "react";
 import { memo } from "react";
 import { useForm } from "antd/lib/form/Form";
 import { useUpsertCategory } from "../../hooks/useUpsertCategory";
-import { useShowError } from "~/hooks/useShowError";
+import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import CategoryForm from "./CategoryForm";
 import { useTranslation } from "react-i18next";
 import { createUuid } from "~/shared";

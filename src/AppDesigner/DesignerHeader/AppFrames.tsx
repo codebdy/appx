@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import { DESIGN, DESIGN_FRAME } from "~/consts";
 import Container from "~/plugins/framelayouts/pc/Container/view";
-import { useDevices } from "../../hooks/useDevices";
+import { useDevices } from "../hooks/useDevices";
 
 export const AppFrames = memo(() => {
   const { t } = useTranslation();

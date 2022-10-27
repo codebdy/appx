@@ -3,11 +3,11 @@ import { Button, Dropdown, Menu, message, Space } from 'antd';
 import React, { memo, useCallback, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useImportApp } from '~/enthooks/hooks/useImportApp';
-import { useEdittingAppId } from '~/hooks/useEdittingAppUuid';
-import { useShowError } from '~/hooks/useShowError';
-import { useUpsertApp } from '~/hooks/useUpsertApp';
+import { useEdittingAppId } from '~/AppDesigner/hooks/useEdittingAppUuid';
+import { useShowError } from '~/AppDesigner/hooks/useShowError';
 import { ExportDialog } from './ExportDialog';
 import { MakeVersionDialog } from './MakeVersionDialog';
+import { useUpsertApp } from '~/AppDesigner/hooks/useUpsertApp';
 
 enum OperateEnum {
   createVaresion = "createVaresion",

@@ -7,7 +7,7 @@ import { Form, Input, Radio } from "antd";
 import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/view";
 import { useTranslation } from "react-i18next";
 import { MethodTypeInput } from "./MethodTypeInput";
-import { useEdittingAppId } from "~/hooks/useEdittingAppUuid";
+import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
 import { ScriptInput } from "../ScriptInput/ScriptInput";
 import { ArgsInput } from "./ArgsInput/ArgsInput";
 

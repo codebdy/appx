@@ -1,7 +1,7 @@
 import { useCallback } from "react";
-import { IPostOptions, usePostOne } from "../enthooks/hooks/usePostOne";
-import { IAppConfig } from "../model";
-import { IAppConfigInput } from "../model";
+import { IPostOptions, usePostOne } from "../../enthooks/hooks/usePostOne";
+import { IAppConfig } from "../../model";
+import { IAppConfigInput } from "../../model";
 import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
 
 export function useUpsertAppConfig(options?: IPostOptions<any>): [

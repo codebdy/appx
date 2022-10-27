@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { IProcess } from "~/model/process";
 
 import { useDeleteProcess } from "../hooks/useDeleteProcess";
-import { useShowError } from "~/hooks/useShowError";
+import { useShowError } from "~/AppDesigner/hooks/useShowError";
 
 export const ProcessAction = memo((
   props: {

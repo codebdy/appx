@@ -1,6 +1,6 @@
 import moment from "moment";
 import { useMemo } from "react";
-import { useQueryApp } from "~/hooks/useQueryApp";
+import { useQueryApp } from "~/AppDesigner/hooks/useQueryApp";
 import { ID } from "~/shared";
 
 export function usePublished(appId: ID) {

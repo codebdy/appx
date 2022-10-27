@@ -3,7 +3,7 @@ import React, { memo, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/view"
 import { IProcess, IProcessInput, ProcessType } from "~/model/process"
-import { useShowError } from "~/hooks/useShowError"
+import { useShowError } from "~/AppDesigner/hooks/useShowError"
 import { createUuid } from "~/shared"
 import { useUpsertProcess } from "../../hooks/useUpsertProcess"
 

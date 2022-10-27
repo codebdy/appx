@@ -19,7 +19,7 @@ import { useQueryOneProcess } from "./hooks/useQueryOneProcess";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { minMapState, selectedBpmnProcessIdState } from "./recoil/atoms";
 import { useAppParams } from "@rxdrag/plugin-sdk";
-import { useShowError } from "~/hooks/useShowError";
+import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import { ToolbarActions } from "./ToolbarActions";
 import { PRIMARY_COLOR } from "~/consts";
 import { useUpsertProcess } from "./hooks/useUpsertProcess";

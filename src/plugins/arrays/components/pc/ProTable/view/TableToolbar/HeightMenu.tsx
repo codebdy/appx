@@ -5,7 +5,7 @@ import React, { useCallback } from "react"
 import { useProTableParams } from "@rxdrag/plugin-sdk/contexts/propTable";
 import { useLocalTranslations } from "../hooks/useLocalTranslations";
 import { toJS } from "@formily/reactive";
-import { useShowError } from "~/hooks/useShowError";
+import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import { useUpdateComponentConfig } from "~/AppDesigner/AppDesignerRoot/hooks/useUpdateComponentConfig";
 
 const HeightMenu = observer(() => {
