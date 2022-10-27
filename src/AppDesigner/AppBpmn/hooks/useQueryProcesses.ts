@@ -19,7 +19,8 @@ query ($appId:ID!){
     nodes{
       id
       name
-      type
+      categoryUuid
+      uuid
     }
   }
 }

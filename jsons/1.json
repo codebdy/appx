@@ -6,6 +6,11 @@
       "stereoType": "",
       "system": true,
       "uuid": "PACKAGE_SYSTEM_UUID"
+    },
+    {
+      "name": "工作流",
+      "stereoType": "Normal",
+      "uuid": "3fe21970-0b51-4c8c-8521-f6eb6ff621c2"
     }
   ],
   "classes": [
@@ -253,11 +258,11 @@
           "uuid": "APP_COLUMN_IMAGE_URL_UUID"
         },
         {
-          "uuid": "c367685c-9a32-4ebc-be41-a44fce867b74",
           "name": "published",
+          "nullable": true,
           "type": "Boolean",
           "typeLabel": "Boolean",
-          "nullable": true
+          "uuid": "c367685c-9a32-4ebc-be41-a44fce867b74"
         }
       ],
       "description": "",
@@ -3588,6 +3593,76 @@
       "stereoType": "Entity",
       "system": false,
       "uuid": "106e8308-4f13-48bc-917a-938aa5542ac5"
+    },
+    {
+      "attributes": [
+        {
+          "name": "id",
+          "primary": true,
+          "type": "ID",
+          "typeLabel": "ID",
+          "uuid": "f782d84e-349b-4ea8-ba97-475b8240cf7a"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "typeLabel": "String",
+          "uuid": "d75c1b3d-23d3-4a89-af56-c42ea0261330"
+        },
+        {
+          "index": true,
+          "length": 255,
+          "name": "uuid",
+          "type": "String",
+          "typeLabel": "String",
+          "uuid": "379fe842-7463-4c94-9012-1d7be9870118"
+        },
+        {
+          "name": "categoryUuid",
+          "type": "String",
+          "typeLabel": "String",
+          "uuid": "53be1e20-b093-4630-bbf8-d77448e46f71"
+        }
+      ],
+      "innerId": 1002,
+      "methods": [],
+      "name": "Process",
+      "packageUuid": "3fe21970-0b51-4c8c-8521-f6eb6ff621c2",
+      "root": true,
+      "stereoType": "Entity",
+      "uuid": "a6a1dc39-0e2a-47e5-905e-307e9008b8d1"
+    },
+    {
+      "attributes": [
+        {
+          "name": "id",
+          "primary": true,
+          "type": "ID",
+          "typeLabel": "ID",
+          "uuid": "3b70a43a-be5f-4643-be96-d8b90ef608ef"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "typeLabel": "String",
+          "uuid": "8799217a-5098-4717-88b2-c4fdbd2ad5aa"
+        },
+        {
+          "index": true,
+          "length": 255,
+          "name": "uuid",
+          "type": "String",
+          "typeLabel": "String",
+          "uuid": "de82b8ac-18aa-42ad-92e6-17e997abc678"
+        }
+      ],
+      "innerId": 1014,
+      "methods": [],
+      "name": "ProcessCategory",
+      "packageUuid": "3fe21970-0b51-4c8c-8521-f6eb6ff621c2",
+      "root": true,
+      "stereoType": "Entity",
+      "uuid": "ab9a0f7c-ba28-45a2-89f8-1e99f57758cb"
     }
   ],
   "relations": [
@@ -4184,6 +4259,26 @@
       "targetId": "SNAPSHOT_ENTITY_UUID",
       "targetMultiplicity": "0..1",
       "uuid": "e148c5c4-ef02-4541-b2ca-df4ec3a48b43"
+    },
+    {
+      "innerId": 0,
+      "relationType": "inherit",
+      "sourceId": "a6a1dc39-0e2a-47e5-905e-307e9008b8d1",
+      "sourceMutiplicity": "0..1",
+      "targetId": "087b2915-5582-496d-bafb-ae2f5623a70d",
+      "targetMultiplicity": "0..1",
+      "uuid": "865062d0-dd91-41d7-9920-6a12ed95a41d"
+    },
+    {
+      "innerId": 1006,
+      "relationType": "twoWayCombination",
+      "roleOfSource": "app",
+      "roleOfTarget": "processCategories",
+      "sourceId": "APP_ENTITY_UUID",
+      "sourceMutiplicity": "0..1",
+      "targetId": "ab9a0f7c-ba28-45a2-89f8-1e99f57758cb",
+      "targetMultiplicity": "0..*",
+      "uuid": "92bedc93-cd8f-4822-b435-55fca754a9cf"
     }
   ],
   "diagrams": [
@@ -4214,6 +4309,13 @@
       "nodes": [],
       "packageUuid": "PACKAGE_SYSTEM_UUID",
       "uuid": "2b8c005d-fc0b-4200-a109-7cc085b268d9"
+    },
+    {
+      "edges": [],
+      "name": "工作流",
+      "nodes": [],
+      "packageUuid": "3fe21970-0b51-4c8c-8521-f6eb6ff621c2",
+      "uuid": "257ffd9c-ba91-449d-aa96-11e96d1dbe01"
     }
   ],
   "codes": [],
@@ -4433,6 +4535,38 @@
       "width": 180,
       "x": 270,
       "y": -181
+    },
+    {
+      "diagramUuid": "257ffd9c-ba91-449d-aa96-11e96d1dbe01",
+      "height": 170,
+      "id": "a6a1dc39-0e2a-47e5-905e-307e9008b8d1",
+      "width": 180,
+      "x": 530,
+      "y": 370
+    },
+    {
+      "diagramUuid": "257ffd9c-ba91-449d-aa96-11e96d1dbe01",
+      "height": 356,
+      "id": "APP_ENTITY_UUID",
+      "width": 180,
+      "x": 50,
+      "y": 33
+    },
+    {
+      "diagramUuid": "257ffd9c-ba91-449d-aa96-11e96d1dbe01",
+      "height": 140,
+      "id": "ab9a0f7c-ba28-45a2-89f8-1e99f57758cb",
+      "width": 180,
+      "x": 49.99999999999997,
+      "y": 560
+    },
+    {
+      "diagramUuid": "257ffd9c-ba91-449d-aa96-11e96d1dbe01",
+      "height": 122,
+      "id": "087b2915-5582-496d-bafb-ae2f5623a70d",
+      "width": 180,
+      "x": 530,
+      "y": 150
     }
   ],
   "x6Edges": [
@@ -4804,6 +4938,34 @@
       "targetMultiplicityPosition": {
         "distance": -40,
         "offset": -20
+      },
+      "vertices": []
+    },
+    {
+      "diagramUuid": "257ffd9c-ba91-449d-aa96-11e96d1dbe01",
+      "id": "865062d0-dd91-41d7-9920-6a12ed95a41d",
+      "vertices": []
+    },
+    {
+      "diagramUuid": "257ffd9c-ba91-449d-aa96-11e96d1dbe01",
+      "id": "92bedc93-cd8f-4822-b435-55fca754a9cf",
+      "roleOnSourcePosition": {
+        "distance": 40,
+        "offset": 20
+      },
+      "roleOnTargetPosition": {
+        "angle": 0,
+        "distance": 0.8922155688622755,
+        "offset": 60
+      },
+      "sourceMultiplicityPosition": {
+        "distance": 40,
+        "offset": -20
+      },
+      "targetMultiplicityPosition": {
+        "angle": 0,
+        "distance": 0.8922155688622755,
+        "offset": -50
       },
       "vertices": []
     }

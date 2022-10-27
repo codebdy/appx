@@ -9,7 +9,7 @@ export function useMaterialDesigners() {
 
     for (const tab of [...uploadedMaterialTabs, basicTab, frameworkTab]) {
       for (const group of tab?.groups || []) {
-        for (const material of group.materials || []) {
+        for (const material of group?.materials || []) {
           designers[material.name] = material.designer
         }
       }
