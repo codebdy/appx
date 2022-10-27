@@ -16,7 +16,7 @@ import { useSelection } from "./hooks/useSelection";
 import { PropertyPanel } from "./PropertyPanel";
 import { useQueryOneProcess } from "./hooks/useQueryOneProcess";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { minMapState, processesState, selectedBpmnProcessIdState } from "./recoil/atoms";
+import { categoriesState, minMapState, processesState, selectedBpmnProcessIdState } from "./recoil/atoms";
 import { useAppParams } from "@rxdrag/plugin-sdk";
 import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import { ToolbarActions } from "./ToolbarActions";
@@ -31,6 +31,7 @@ import { DeplayButton } from "./ToolbarActions/DeplayButton";
 import { XmlEditor } from "./XmlEditor";
 import { useQueryProcesses } from "./hooks/useQueryProcesses";
 import ProcessList from "./ProcessList";
+import { useQueryCagegories } from "./hooks/useQueryCagegories";
 
 export const AppBpmn = memo((props) => {
   const { app } = useAppParams();
@@ -41,9 +42,11 @@ export const AppBpmn = memo((props) => {
   const [bpmnModeler, setBpmnModeler] = useState<any>()
   const { element } = useSelection(bpmnModeler);
   const setProcesses = useSetRecoilState(processesState(app?.uuid))
+  const setCategories = useSetRecoilState(categoriesState(app?.uuid))
   const selectedProcessId = useRecoilValue(selectedBpmnProcessIdState(app?.uuid));
   const { process, loading, error } = useQueryOneProcess(selectedProcessId)
   const { processes, error: listError, loading: listLoading } = useQueryProcesses();
+  const { categories, loading: categoriesLoading, error: categoryierError } = useQueryCagegories();
   const [minMap, setMinMap] = useRecoilState(minMapState(app?.uuid));
   const [xml, setXml] = useState<string>();
   const [showXml, setShowXml] = useState<boolean>();
@@ -58,13 +61,17 @@ export const AppBpmn = memo((props) => {
     setProcesses(processes || [])
   }, [processes, setProcesses])
 
+  useEffect(()=>{
+    setCategories(categories||[])
+  }, [categories, setCategories])
+
   const [upsert, { error: saveError, loading: saving }] = useUpsertProcess({
     onCompleted: () => {
       setChanged(false);
     }
   });
 
-  useShowError(error || saveError || listError);
+  useShowError(error || saveError || listError || categoryierError);
 
   const handleCommandStackChanged = useCallback((e) => {
     setChanged(true);
@@ -229,7 +236,7 @@ export const AppBpmn = memo((props) => {
         <PropertyPanel element={element} modeler={bpmnModeler} />
       </PropertyBox>}
     >
-      <Spin spinning={loading || listLoading}>
+      <Spin spinning={loading || listLoading || categoriesLoading}>
         <div
           className="bmpm-content react-bpmn-diagram-container"
           ref={containerRef}

@@ -18,8 +18,7 @@ query ($appId:ID!){
  ){
     nodes{
       id
-      device
-      title     
+      name     
       uuid 
     }
   }
