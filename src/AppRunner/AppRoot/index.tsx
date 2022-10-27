@@ -29,7 +29,7 @@ export const AppRoot = memo((
       app: app,
       device: device as Device,
       userConfig: userConfig,
-      frame: uiFrame,
+      uiFrame: uiFrame,
     }
   }, [app, device, userConfig, uiFrame])
   const isLoading = useMemo(() => loading || userConfigLoading, [loading, userConfigLoading])

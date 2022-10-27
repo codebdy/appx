@@ -7,7 +7,7 @@ export interface IAppContextParams {
   app: IApp,
   device: Device | undefined,
   userConfig?: IUserConfig,
-  frame?: IUiFrame,
+  uiFrame?: IUiFrame,
 }
 export const AppContext = createContext<IAppContextParams>({} as any);
 export const useUserConfig = (): IUserConfig | undefined => useContext(AppContext)?.userConfig;

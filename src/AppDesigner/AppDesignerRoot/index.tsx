@@ -23,7 +23,6 @@ const AppDesignerRoot = memo((
     }
   }, [app, SERVER_URL, token])
 
-  console.log("哈哈", config)
   return (
     <EntiRoot config={config} >
       <DesignerRootInner app={app}>

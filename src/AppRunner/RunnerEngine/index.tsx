@@ -60,7 +60,6 @@ const RunnerEngine = memo(() => {
     }
   }, [components])
 
-  console.log("呵呵", uiFrame);
   return (
     uiFrame?.schemaJson?.schema ?
       <RunnerContext.Provider value={runnerContextValue}>
