@@ -4,16 +4,18 @@ import { SYSTEM_APP_ID } from "../../consts";
 import { useQueryOne } from "../../enthooks/hooks/useQueryOne";
 import { IApp } from "../../model";
 import { ID } from "~/shared";
+import { useParams } from "react-router-dom";
+import { Device } from "@rxdrag/appx-plugin-sdk";
 
 const appGql = gql`
-query ($id: ID!) {
+query ($id: ID!, $device:String!) {
   oneApp(where: {id: {_eq: $id}}) {
     id
     uuid
     title
     imageUrl
     published
-    partsOfMenu {
+    partsOfMenu(where: {device: {_eq: $device}}){
       id
       device
       schemaJson
@@ -27,7 +29,7 @@ query ($id: ID!) {
       id
       schemaJson
     }
-    partsOfAppDeviceConfig {
+    partsOfAppDeviceConfig(where: {device: {_eq: $device}}){
       id
       device
       schemaJson
@@ -46,12 +48,13 @@ query ($id: ID!) {
 `
 
 export function useQueryApp(id: ID) {
- 
-  const inputArgs = useMemo(()=>{
-    return     {
+  const { device = Device.PC } = useParams();
+  const inputArgs = useMemo(() => {
+    return {
       gql: appGql,
-      params:{
-        id: id || SYSTEM_APP_ID
+      params: {
+        id: id || SYSTEM_APP_ID,
+        device
       },
       depEntityNames: ["App"],
     }
