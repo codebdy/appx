@@ -10,7 +10,7 @@ import { IUser } from "~/enthooks/hooks/useQueryMe";
 import { useMe } from "@rxdrag/plugin-sdk/contexts/login";
 import { createSchemaField, ExpressionScope, FormProvider } from '@formily/react';
 import { createForm } from '@formily/core';
-import { useMaterialComponents } from '~/material/hooks/useMaterialComponents';
+import { usePluginComponents } from '~/AppRunner/hooks/usePluginComponents';
 import { NotFinieshed } from '../NotFinieshed';
 import { useAppParams } from '~/plugin-sdk/contexts/app';
 
@@ -31,7 +31,7 @@ const RunnerEngine = memo(() => {
   const [mentItem, setMenuItem] = useState<IMenuItem>()
   const p = useParseLangSchema();
   const { uiFrame } = useAppParams()
-  const components = useMaterialComponents();
+  const components = usePluginComponents();
   const me = useMe();
   const $me = useMemo(() => new Me(me), [me]);
   const SchemaField = useMemo(() => createSchemaField({

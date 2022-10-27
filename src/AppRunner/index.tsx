@@ -8,13 +8,14 @@ import { AppRoot } from "./AppRoot"
 import { SYSTEM_APP_ID } from "~/consts"
 import { useQueryApp } from "./hooks/useQueryApp"
 import { useShowError } from "./hooks/useShowError"
+import { PredefinedPluginsRoot } from "~/plugin/PredefinedPluginsRoot"
 
 const AppRunner = memo(() => {
   const { appId = SYSTEM_APP_ID } = useParams();
   const { app, loading, error } = useQueryApp(appId)
   useShowError(error);
 
-   const render = useMemo(() => {
+  const render = useMemo(() => {
     if (loading) {
       return <CenterSpin loading={loading} />
     }
@@ -29,7 +30,9 @@ const AppRunner = memo(() => {
   }, [loading, app])
 
   return (
-    render
+    <PredefinedPluginsRoot>
+      {render}
+    </PredefinedPluginsRoot>
   )
 })
 

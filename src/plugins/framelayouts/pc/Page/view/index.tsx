@@ -1,23 +1,20 @@
 import { observer } from "@formily/reactive-react"
 import React from "react"
-import { useDesignerParams, useDesignerViewKey } from "~/plugin-sdk/contexts/desinger";
 import { pagePopupsState } from "@rxdrag/plugin-sdk/atoms";
-import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage";
 import { useRecoilValue } from "recoil";
 import { RootPage } from "./RootPage";
 import { ExpressionScope } from "@formily/react";
 import { OpenPageType } from "@rxdrag/plugin-sdk/model/action";
 import { PageDialog } from "./PageDialog";
 import { PageDrawer } from "./PageDrawer";
+import { useAppViewKey } from "~/plugin-sdk/contexts/app";
 
 
 export interface IComponentProps {
 }
 
 const Component = observer((props: IComponentProps) => {
-  const { app } = useDesignerParams();
-  const p = useParseLangMessage();
-  const key = useDesignerViewKey();
+  const key = useAppViewKey();
   const pagePopups = useRecoilValue(pagePopupsState(key));
 
   return (
