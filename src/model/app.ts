@@ -21,7 +21,6 @@ export interface IAppDeviceConfig {
   id: ID;
   app?: IApp;
   device?: Device;
-  published?: boolean;
   schemaJson?: {
     entryUuid?: string,
     pageFrameUuid?: string,
@@ -69,6 +68,7 @@ export interface IApp {
   publishedMeta?: MetaContent;
   publishMetaAt?: Date;
   deviceConfigs?: IAppDeviceConfig[];
+  published?: boolean;
 }
 
 export interface IAppInput {
