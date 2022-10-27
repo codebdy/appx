@@ -1,30 +1,74 @@
-import React, { useCallback, useState } from "react"
-import { memo } from "react"
-import { ProcessType } from "~/model/process"
 import TreeNodeLabel from "~/common/TreeNodeLabel"
-import { CreateDialog } from "./UpsertDialog/CreateDialog"
+import React, { useCallback, useState } from "react"
+import CategoryActions from "./CategoryActions"
+import EditCategoryDialog from "./EditCategoryDialog"
+import CreateProcessModal from "./CreateProcessModal"
+import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage"
+import { IPageCategory } from "~/model"
 
-export const CategoryLabel = memo((
+const CategoryLabel = (
   props: {
-    title: string,
-    processType?: ProcessType,
+    categories: IPageCategory[],
+    category: IPageCategory
   }
 ) => {
-  const { title,  processType} = props;
-  const [open, setOpen] = useState(false);
+  const { categories, category } = props;
+  const [visible, setVisible] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [pageModalOpen, setPageModalOpen] = useState(false);
+  const p = useParseLangMessage();
 
-  const handleOpenChange = useCallback((open?: boolean) => {
-    setOpen(open)
+  const handleVisableChange = useCallback((visible) => {
+    setVisible(visible)
+  }, []);
+
+  const handleCloseModal = useCallback(() => {
+    setModalOpen(false);
   }, [])
+
+  const handleEdit = useCallback(() => {
+    setModalOpen(true);
+  }, [])
+
+  const handleAddPage = useCallback(() => {
+    setPageModalOpen(true);
+  }, [])
+
+  const handleClosePageModal = useCallback(() => {
+    setPageModalOpen(false);
+  }, []);
+
 
   return (
     <TreeNodeLabel
-      fixedAction={open}
+      fixedAction={visible}
       action={
-        <CreateDialog onOpenChange={handleOpenChange} processType= {processType} />
+        <CategoryActions
+          id={category.id}
+          onVisibleChange={handleVisableChange}
+          onEdit={handleEdit}
+          onAddPage={handleAddPage}
+        />
       }
     >
-      <div>{title}</div>
+      {p(category.title)}
+      <div
+        onClick={e => e.stopPropagation()}
+      >
+        <EditCategoryDialog
+          category={category}
+          isModalVisible={modalOpen}
+          onClose={handleCloseModal}
+        />
+        <CreateProcessModal
+          categories={categories}
+          categoryUuid={category?.uuid}
+          isModalVisible={pageModalOpen}
+          onClose={handleClosePageModal}
+        />
+      </div>
     </TreeNodeLabel>
   )
-})
+}
+
+export default CategoryLabel

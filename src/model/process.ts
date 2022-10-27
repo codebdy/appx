@@ -1,15 +1,18 @@
 import { ID } from "~/shared";
 import { IAppInput } from "./app";
 
-export enum ProcessType {
-  approvalFlow = "approvalFlow",
-  workFlow = "workFlow"
+
+export interface IProcessCategory {
+  id: ID;
+  uuid: string;
+  name?: string;
 }
 
 export interface IProcess {
   id: ID;
+  uuid: string;
   name?: string;
-  type?: ProcessType;
+  categoryUuid?: string;
   xml?: string,
   instances?: IProcessInstance[];
 }
@@ -23,7 +26,7 @@ export interface IProcessInstance {
 export interface IProcessInput {
   id?: ID;
   name?: string;
-  type?: ProcessType;
+  categoryuuid?: string;
   xml?: string,
   app?: { sync: IAppInput }
 }
