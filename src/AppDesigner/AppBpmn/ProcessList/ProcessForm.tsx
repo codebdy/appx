@@ -1,4 +1,4 @@
-import { FormInstance, Col, Form, Row, Tabs, Select } from "antd";
+import { FormInstance, Form, Select } from "antd";
 import React, { useCallback } from "react";
 import { memo } from "react";
 import { IPageInput, IProcess, IProcessCategory } from "~/model";
@@ -24,43 +24,38 @@ const ProcessForm = memo((props: {
   return (
     <Form
       name="editPage"
-      labelCol={{ span: 8 }}
+      labelCol={{ span: 5 }}
       wrapperCol={{ span: 16 }}
       form={form}
       initialValues={{ name: process?.name || "", categoryUuid: process?.categoryUuid || categoryUuid || "" }}
       autoComplete="off"
       onKeyUp={handleKeyUp}
     >
-      <Row gutter={12}>
-        <Col span={12}> 
-          <Form.Item
-            label={t("Name")}
-            name="name"
-            rules={[{ required: true, message: t("Required") }]}
-          >
-            <MultiLangInput title={t("Name")} />
-          </Form.Item>
-        </Col>
-        <Col span={12}>
-          <Form.Item
-            label={t("AppBpmn.SelectCategory")}
-            name="categoryUuid"
-          >
-            <Select>
-              <Option value=""><em>None</em></Option>
-              {
-                categories.map((category) => {
-                  return (
-                    <Option key={category.uuid} value={category.uuid}>
-                      {p(category.name)}
-                    </Option>
-                  )
-                })
-              }
-            </Select>
-          </Form.Item>
-        </Col>
-      </Row>
+      <Form.Item
+        label={t("Name")}
+        name="name"
+        rules={[{ required: true, message: t("Required") }]}
+      >
+        <MultiLangInput title={t("Name")} />
+      </Form.Item>
+
+      <Form.Item
+        label={t("AppBpmn.SelectCategory")}
+        name="categoryUuid"
+      >
+        <Select>
+          <Option value=""><em>None</em></Option>
+          {
+            categories.map((category) => {
+              return (
+                <Option key={category.uuid} value={category.uuid}>
+                  {p(category.name)}
+                </Option>
+              )
+            })
+          }
+        </Select>
+      </Form.Item>
     </Form>
   )
 })

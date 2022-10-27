@@ -2,7 +2,7 @@ import { Button } from "antd";
 import SvgIcon from "~/common/SvgIcon";
 import React, { useCallback, useState } from "react";
 import { memo } from "react";
-import CreateProcessModal from "./CreateProcessModal";
+import ProcessModal from "./ProcessModal";
 import { useTranslation } from "react-i18next";
 import { IPageCategory } from "~/model";
 
@@ -37,7 +37,7 @@ const CreateProcessDialog = memo((
       >
         {t("AppBpmn.NewPorcess")}
       </Button>
-      <CreateProcessModal categories={categories} isModalVisible={isModalVisible} onClose={handleClose} />
+      <ProcessModal categories={categories} isModalVisible={isModalVisible} onClose={handleClose} />
     </>
   )
 })

@@ -2,7 +2,7 @@ import TreeNodeLabel from "~/common/TreeNodeLabel"
 import React, { useCallback, useState } from "react"
 import CategoryActions from "./CategoryActions"
 import EditCategoryDialog from "./EditCategoryDialog"
-import CreateProcessModal from "./CreateProcessModal"
+import ProcessModal from "./ProcessModal"
 import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage"
 import { IPageCategory } from "~/model"
 
@@ -60,7 +60,7 @@ const CategoryLabel = (
           isModalVisible={modalOpen}
           onClose={handleCloseModal}
         />
-        <CreateProcessModal
+        <ProcessModal
           categories={categories}
           categoryUuid={category?.uuid}
           isModalVisible={pageModalOpen}

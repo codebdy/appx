@@ -24,7 +24,7 @@ const empertyBpmn = `
 </bpmn:definitions>
 `
 
-const CreateProcessModal = memo((
+const ProcessModal = memo((
   props: {
     categoryUuid?: string,
     categories: IPageCategory[],
@@ -66,7 +66,6 @@ const CreateProcessModal = memo((
     <Modal
       title={t("AppBpmn.AddProcess")}
       open={isModalVisible}
-      width={580}
       cancelText={t("Cancel")}
       okText={t("Confirm")}
       onCancel={handleCancel}
@@ -78,4 +77,4 @@ const CreateProcessModal = memo((
   )
 })
 
-export default CreateProcessModal;
+export default ProcessModal;
