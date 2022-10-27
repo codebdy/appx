@@ -4,12 +4,12 @@ import CategoryActions from "./CategoryActions"
 import EditCategoryDialog from "./EditCategoryDialog"
 import ProcessModal from "./ProcessModal"
 import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage"
-import { IPageCategory } from "~/model"
+import { IProcessCategory } from "~/model"
 
 const CategoryLabel = (
   props: {
-    categories: IPageCategory[],
-    category: IPageCategory
+    categories: IProcessCategory[],
+    category: IProcessCategory
   }
 ) => {
   const { categories, category } = props;
@@ -51,7 +51,7 @@ const CategoryLabel = (
         />
       }
     >
-      {p(category.title)}
+      {p(category.name)}
       <div
         onClick={e => e.stopPropagation()}
       >
