@@ -3622,6 +3622,12 @@
           "type": "String",
           "typeLabel": "String",
           "uuid": "53be1e20-b093-4630-bbf8-d77448e46f71"
+        },
+        {
+          "name": "xml",
+          "type": "String",
+          "typeLabel": "String",
+          "uuid": "12fa4b62-7c78-4e66-a3dc-4e3a2f833199"
         }
       ],
       "innerId": 1002,
@@ -4261,15 +4267,6 @@
       "uuid": "e148c5c4-ef02-4541-b2ca-df4ec3a48b43"
     },
     {
-      "innerId": 0,
-      "relationType": "inherit",
-      "sourceId": "a6a1dc39-0e2a-47e5-905e-307e9008b8d1",
-      "sourceMutiplicity": "0..1",
-      "targetId": "087b2915-5582-496d-bafb-ae2f5623a70d",
-      "targetMultiplicity": "0..1",
-      "uuid": "865062d0-dd91-41d7-9920-6a12ed95a41d"
-    },
-    {
       "innerId": 1006,
       "relationType": "twoWayCombination",
       "roleOfSource": "app",
@@ -4279,6 +4276,17 @@
       "targetId": "ab9a0f7c-ba28-45a2-89f8-1e99f57758cb",
       "targetMultiplicity": "0..*",
       "uuid": "92bedc93-cd8f-4822-b435-55fca754a9cf"
+    },
+    {
+      "innerId": 1008,
+      "relationType": "twoWayCombination",
+      "roleOfSource": "app",
+      "roleOfTarget": "processes",
+      "sourceId": "APP_ENTITY_UUID",
+      "sourceMutiplicity": "0..1",
+      "targetId": "a6a1dc39-0e2a-47e5-905e-307e9008b8d1",
+      "targetMultiplicity": "0..*",
+      "uuid": "57732ce2-ffa2-456a-9e93-c2df43401ca0"
     }
   ],
   "diagrams": [
@@ -4541,8 +4549,8 @@
       "height": 170,
       "id": "a6a1dc39-0e2a-47e5-905e-307e9008b8d1",
       "width": 180,
-      "x": 530,
-      "y": 370
+      "x": 400,
+      "y": 126
     },
     {
       "diagramUuid": "257ffd9c-ba91-449d-aa96-11e96d1dbe01",
@@ -4559,14 +4567,6 @@
       "width": 180,
       "x": 49.99999999999997,
       "y": 560
-    },
-    {
-      "diagramUuid": "257ffd9c-ba91-449d-aa96-11e96d1dbe01",
-      "height": 122,
-      "id": "087b2915-5582-496d-bafb-ae2f5623a70d",
-      "width": 180,
-      "x": 530,
-      "y": 150
     }
   ],
   "x6Edges": [
@@ -4943,11 +4943,6 @@
     },
     {
       "diagramUuid": "257ffd9c-ba91-449d-aa96-11e96d1dbe01",
-      "id": "865062d0-dd91-41d7-9920-6a12ed95a41d",
-      "vertices": []
-    },
-    {
-      "diagramUuid": "257ffd9c-ba91-449d-aa96-11e96d1dbe01",
       "id": "92bedc93-cd8f-4822-b435-55fca754a9cf",
       "roleOnSourcePosition": {
         "distance": 40,
@@ -4966,6 +4961,27 @@
         "angle": 0,
         "distance": 0.8922155688622755,
         "offset": -50
+      },
+      "vertices": []
+    },
+    {
+      "diagramUuid": "257ffd9c-ba91-449d-aa96-11e96d1dbe01",
+      "id": "57732ce2-ffa2-456a-9e93-c2df43401ca0",
+      "roleOnSourcePosition": {
+        "distance": 40,
+        "offset": 20
+      },
+      "roleOnTargetPosition": {
+        "distance": -40,
+        "offset": 20
+      },
+      "sourceMultiplicityPosition": {
+        "distance": 40,
+        "offset": -20
+      },
+      "targetMultiplicityPosition": {
+        "distance": -40,
+        "offset": -20
       },
       "vertices": []
     }
