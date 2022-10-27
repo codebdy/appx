@@ -1,23 +1,23 @@
 import { useCallback } from "react";
 import { useDesignerParams } from "~/plugin-sdk/contexts/desinger";
 import { IPostOptions, usePostOne } from "~/enthooks/hooks/usePostOne";
-import { IPageFrame } from "~/model";
-import { IPageFrameInput } from "~/model";
+import { IUiFrame } from "~/model";
+import { IUiFrameInput } from "~/model";
 import { GraphQLRequestError } from "~/enthooks";
 
 export function useUpsertPageFrame(options?: IPostOptions<any>): [
-  (template: IPageFrameInput) => void,
+  (template: IUiFrameInput) => void,
   { loading?: boolean; error?: GraphQLRequestError }
 ] {
   const params = useDesignerParams();
-  const [post, { error, loading }] = usePostOne<IPageFrameInput, IPageFrame>("PageFrame",
+  const [post, { error, loading }] = usePostOne<IUiFrameInput, IUiFrame>("PageFrame",
     {
       ...options,
       fieldsGql: "id title device schemaJson"
     }
   )
 
-  const update = useCallback((template: IPageFrameInput) => {
+  const update = useCallback((template: IUiFrameInput) => {
     post({
       device: params.device,
       app: {

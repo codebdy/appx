@@ -1,13 +1,13 @@
 import React, { useCallback, useState } from "react"
 import TreeNodeLabel from "../../../common/TreeNodeLabel";
 import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage";
-import { IPageFrame } from "~/model";
+import { IUiFrame } from "~/model";
 import { EditFrameDialog } from "./EditFrameDialog";
 import FrameActions from "./FrameActions"
 
 const FrameLabel = (
   props: {
-    frame: IPageFrame
+    frame: IUiFrame
   }
 ) => {
   const { frame } = props;

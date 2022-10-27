@@ -1,5 +1,5 @@
 import { atomFamily } from "recoil";
-import { IAppDeviceConfig, IPage, IPageCategory, IPageFrame } from "~/model";
+import { IAppDeviceConfig, IPage, IPageCategory, IUiFrame } from "~/model";
 import { ID } from "~/shared";
 
 export const selectedPageIdState = atomFamily<ID | undefined, string>({
@@ -17,7 +17,7 @@ export const pagesState = atomFamily<IPage[], string>({
   default: [],
 })
 
-export const pageFramesState = atomFamily<IPageFrame[], string>({
+export const pageFramesState = atomFamily<IUiFrame[], string>({
   key: "designer.pageFrames",
   default: [],
 })

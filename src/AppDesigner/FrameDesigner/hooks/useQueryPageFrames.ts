@@ -2,7 +2,7 @@ import { gql } from "~/enthooks";
 import { useMemo } from "react";
 import { useDesignerParams } from "~/plugin-sdk/contexts/desinger";
 import { useQuery } from "~/enthooks/hooks/useQuery";
-import { IPageFrame } from "~/model";
+import { IUiFrame } from "~/model";
 
 const pageFramesGql = gql`
 query ($device:String!, $appId:ID!){
@@ -47,7 +47,7 @@ export function useQueryPageFrames() {
     }
   }, [params])
 
-  const { data, error, loading } = useQuery<IPageFrame>(args)
+  const { data, error, loading } = useQuery<IUiFrame>(args)
 
   return { pageFrames: data?.pageFrames?.nodes, error, loading }
 }

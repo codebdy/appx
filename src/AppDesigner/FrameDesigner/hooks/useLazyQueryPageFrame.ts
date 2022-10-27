@@ -1,8 +1,8 @@
 import { gql } from "~/enthooks";
 import { useCallback } from "react";
 import { useLazyRequest } from "~/enthooks/hooks/useLazyRequest";
-import { IPageFrame } from "~/model";
-import { IPageFrameInput } from "~/model";
+import { IUiFrame } from "~/model";
+import { IUiFrameInput } from "~/model";
 import { ID } from "~/shared";
 
 const pageFrameGql = gql`
@@ -25,12 +25,12 @@ query ($id:ID!){
 export function useLazyQueryPageFrame(): [
   (id: ID) => void,
   {
-    pageFrame?: IPageFrame,
+    pageFrame?: IUiFrame,
     loading?: boolean,
     error?: Error,
   }
 ] {
-  const [doQuery, { data, error, loading }] = useLazyRequest<IPageFrameInput>()
+  const [doQuery, { data, error, loading }] = useLazyRequest<IUiFrameInput>()
 
   const query = useCallback((id: ID) => {
     doQuery(pageFrameGql, { id })

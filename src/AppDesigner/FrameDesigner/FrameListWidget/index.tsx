@@ -6,11 +6,11 @@ import FrameLabel from './FrameLabel';
 import { ID } from '~/shared';
 import CreateFrameDialog from './CreateFrameDialog';
 import { FileOutlined } from '@ant-design/icons';
-import { IPageFrame } from '~/model';
+import { IUiFrame } from '~/model';
 
 export const FrameListWidget = memo((
   props: {
-    templates?: IPageFrame[],
+    templates?: IUiFrame[],
     selectedId?: ID,
     onSelected: (selectedId?: ID) => void,
   }

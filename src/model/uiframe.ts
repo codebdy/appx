@@ -3,7 +3,7 @@ import { Device } from "@rxdrag/appx-plugin-sdk";
 import { ID } from "~/shared";
 import { IApp, IAppInput } from "./app";
 
-export interface IPageFrame {
+export interface IUiFrame {
   id: ID;
   title: string;
   uuid: string;
@@ -12,7 +12,7 @@ export interface IPageFrame {
   app?: IApp;
 }
 
-export interface IPageFrameInput {
+export interface IUiFrameInput {
   id?: ID;
   title?: string;
   uuid?: string;

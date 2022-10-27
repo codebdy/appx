@@ -1,7 +1,7 @@
 import { gql } from "../../enthooks";
 import { useMemo } from "react";
 import { useQuery } from "../../enthooks/hooks/useQuery";
-import { IPageFrame } from "../../model";
+import { IUiFrame } from "../../model";
 
 const templatesGql = gql`
 query{
@@ -24,5 +24,5 @@ export function useQueryAllTemplates() {
       depEntityNames: ["Template"],
     }
   }, [])
-  return useQuery<IPageFrame>(args)
+  return useQuery<IUiFrame>(args)
 }

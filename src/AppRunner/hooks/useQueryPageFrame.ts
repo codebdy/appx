@@ -1,7 +1,7 @@
 import { gql } from "~/enthooks";
 import { useMemo } from "react";
 import { useQueryOne } from "~/enthooks/hooks/useQueryOne";
-import { IPageFrame } from "~/model";
+import { IUiFrame } from "~/model";
 import { usePageFrameId } from "./usePageFrameId";
 
 const pageFrameGql = gql`
@@ -27,7 +27,7 @@ export function useQueryPageFrame() {
     }
   ), [pageFrameId]);
 
-  const { data, error, loading } = useQueryOne<IPageFrame>(input);
+  const { data, error, loading } = useQueryOne<IUiFrame>(input);
 
   return { pageFrame: data?.onePageFrame, error, loading }
 }

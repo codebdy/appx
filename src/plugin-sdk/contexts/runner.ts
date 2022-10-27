@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { IMenu, IPageFrame } from "~/model";
+import { IMenu, IUiFrame } from "~/model";
 import { IMenuItem } from "../model/IMenuNode";
 
 export interface IRunnerContextParams {

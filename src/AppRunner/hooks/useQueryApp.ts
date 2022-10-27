@@ -6,18 +6,46 @@ import { IApp } from "../../model";
 import { ID } from "~/shared";
 
 const appGql = gql`
-query ($appId:ID!){
-  oneApp(where:{
-    id:{
-      _eq:$appId
-    }
-  }){
+query ($id: ID!) {
+  oneApp(where: {id: {_eq: $id}}) {
     id
     uuid
     title
-    saveMetaAt
-    publishMetaAt
+    imageUrl
     published
+    partsOfMenu {
+      id
+      device
+      schemaJson
+    }
+    partsOfLangLocal {
+      id
+      name
+      schemaJson
+    }
+    partsOfAppConfig {
+      id
+      schemaJson
+    }
+    partsOfUserConfig {
+      id
+      device
+      schemaJson
+    }
+    partsOfAppDeviceConfig {
+      id
+      device
+      schemaJson
+    }
+    plugins {
+      id
+      url
+      title
+      pluginId
+      type
+      description
+      version
+    }
   }
 }
 `

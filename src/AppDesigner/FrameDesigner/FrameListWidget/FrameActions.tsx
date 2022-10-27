@@ -3,7 +3,7 @@ import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next";
 import { useShowError } from "~/AppDesigner/hooks/useShowError";
-import { IPageFrame } from "~/model";
+import { IUiFrame } from "~/model";
 import { ID } from "~/shared";
 import { useDeletePageFrame } from "../hooks/useDeletePageFrame";
 
@@ -17,7 +17,7 @@ const FrameActions = memo((
   const { frameId, onVisibleChange, onEdit } = props;
   const { t } = useTranslation();
   const [remove, { loading, error }] = useDeletePageFrame({
-    onCompleted: (data: IPageFrame) => {
+    onCompleted: (data: IUiFrame) => {
       onVisibleChange(false);
     }
   });

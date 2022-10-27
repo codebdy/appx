@@ -4,7 +4,7 @@ import { ID } from "~/shared";
 import { ILang } from "./lang";
 import { IMenu } from "./menu";
 import { IPage } from "./page";
-import { IPageFrame } from "./pageframe";
+import { IUiFrame } from "./uiframe";
 
 export interface IAppConfig {
   id: ID;
@@ -62,7 +62,7 @@ export interface IApp {
   pages?: IPage[];
   menus?: IMenu[];
   imageUrl?: string;
-  pageFrames?: IPageFrame[];
+  pageFrames?: IUiFrame[];
   meta?: MetaContent;
   saveMetaAt?: Date;
   publishedMeta?: MetaContent;
