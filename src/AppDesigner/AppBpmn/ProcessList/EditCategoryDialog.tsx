@@ -4,12 +4,12 @@ import { memo } from "react";
 import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import CategoryForm from "./CategoryForm";
 import { useTranslation } from "react-i18next";
-import { useUpsertCategory } from "../../hooks/useUpsertCategory";
-import { IPageCategory } from "~/model";
+import { IProcessCategory } from "~/model";
+import { useUpsertCategory } from "../hooks/useUpsertCategory";
 
 const EditCategoryDialog = memo((
   props: {
-    category: IPageCategory,
+    category: IProcessCategory,
     isModalVisible: boolean,
     onClose: () => void,
   }
@@ -29,7 +29,7 @@ const EditCategoryDialog = memo((
 
   const handleConfirm = useCallback((values) => {
     form.validateFields().then((values) => {
-      update({ id: category.id, title: values.title })
+      update({ id: category.id, name: values.name })
     });
   }, [form, update, category.id]);
 
@@ -44,7 +44,7 @@ const EditCategoryDialog = memo((
       onOk={handleConfirm}
       confirmLoading={loading}
     >
-      <CategoryForm title={category.title} form={form} />
+      <CategoryForm name={category.name} form={form} />
     </Modal>
   )
 })

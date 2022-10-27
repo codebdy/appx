@@ -141,10 +141,10 @@
     "Import": "导入",
     "Export": "导出",
     "Publish": "发布",
-    "ExportSuccess":"导出成功，正在下载...",
-    "ImportSuccess":"导入成功",
-    "ImportFailed":"导入失败",
-    "PublishSuccess":"发布成功"
+    "ExportSuccess": "导出成功，正在下载...",
+    "ImportSuccess": "导入成功",
+    "ImportFailed": "导入失败",
+    "PublishSuccess": "发布成功"
   },
   "Plugins": {
     "Title": "插件",
@@ -322,6 +322,9 @@
     "AddProcess": "添加流程",
     "EidtProcess": "编辑流程",
     "Process": "流程",
+    "SelectCategory": "选择分组",
+    "NewProcess": "新建流程",
+    "CagegoryName": "分类名称",
     "Collaboration": "协作",
     "Activate the create/remove space tool": "启动创建/删除空间工具",
     "Activate the global connect tool": "启动全局连接工具",

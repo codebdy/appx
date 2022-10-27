@@ -1,11 +1,19 @@
 import { ID } from "~/shared";
-import { IAppInput } from "./app";
+import { IApp, IAppInput } from "./app";
 
 
 export interface IProcessCategory {
   id: ID;
   uuid: string;
   name?: string;
+  app?: IApp;
+}
+
+export interface IProcessCategoryInput {
+  id?: ID;
+  uuid?: string;
+  name?: string;
+  app?: { sync: IAppInput };
 }
 
 export interface IProcess {
@@ -25,8 +33,9 @@ export interface IProcessInstance {
 
 export interface IProcessInput {
   id?: ID;
+  uuid?: string;
   name?: string;
-  categoryuuid?: string;
+  categoryUuid?: string;
   xml?: string,
   app?: { sync: IAppInput }
 }

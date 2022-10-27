@@ -7,14 +7,14 @@ export function useProcessesWithoutCategory() {
   const categories = useCategories();
 
   const processessWithoutCategory = useMemo(() => {
-    const pgs = [];
+    const pcs = [];
     for (const process of processes || []) {
       if (!categories.find(category => category.uuid === process.categoryUuid)) {
-        pgs.push(process)
+        pcs.push(process)
       }
     }
 
-    return pgs;
+    return pcs;
   }, [categories, processes])
 
   return processessWithoutCategory;

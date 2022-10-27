@@ -14,10 +14,9 @@ import "diagram-js-minimap/assets/diagram-js-minimap.css";
 import { PropertyBox } from "~/common/ModelBoard/PropertyBox";
 import { useSelection } from "./hooks/useSelection";
 import { PropertyPanel } from "./PropertyPanel";
-import { ProcessList } from "./ProcessList";
 import { useQueryOneProcess } from "./hooks/useQueryOneProcess";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { minMapState, selectedBpmnProcessIdState } from "./recoil/atoms";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { minMapState, processesState, selectedBpmnProcessIdState } from "./recoil/atoms";
 import { useAppParams } from "@rxdrag/plugin-sdk";
 import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import { ToolbarActions } from "./ToolbarActions";
@@ -30,6 +29,8 @@ import { useCustomTranslate } from "./hooks/useCustomTranslate";
 import zeebeExtension from './resources/zeebe.json';
 import { DeplayButton } from "./ToolbarActions/DeplayButton";
 import { XmlEditor } from "./XmlEditor";
+import { useQueryProcesses } from "./hooks/useQueryProcesses";
+import ProcessList from "./ProcessList";
 
 export const AppBpmn = memo((props) => {
   const { app } = useAppParams();
@@ -39,8 +40,10 @@ export const AppBpmn = memo((props) => {
   const canvasrRef = useRef<HTMLDivElement>();
   const [bpmnModeler, setBpmnModeler] = useState<any>()
   const { element } = useSelection(bpmnModeler);
+  const setProcesses = useSetRecoilState(processesState(app?.uuid))
   const selectedProcessId = useRecoilValue(selectedBpmnProcessIdState(app?.uuid));
   const { process, loading, error } = useQueryOneProcess(selectedProcessId)
+  const { processes, error: listError, loading: listLoading } = useQueryProcesses();
   const [minMap, setMinMap] = useRecoilState(minMapState(app?.uuid));
   const [xml, setXml] = useState<string>();
   const [showXml, setShowXml] = useState<boolean>();
@@ -51,13 +54,17 @@ export const AppBpmn = memo((props) => {
     translate: ['value', translate]
   }), [translate]);
 
+  useEffect(() => {
+    setProcesses(processes || [])
+  }, [processes, setProcesses])
+
   const [upsert, { error: saveError, loading: saving }] = useUpsertProcess({
     onCompleted: () => {
       setChanged(false);
     }
   });
 
-  useShowError(error || saveError);
+  useShowError(error || saveError || listError);
 
   const handleCommandStackChanged = useCallback((e) => {
     setChanged(true);
@@ -137,7 +144,7 @@ export const AppBpmn = memo((props) => {
   const handleSave = useCallback(() => {
     bpmnModeler.saveXML({ format: true })
       .then((xml) => {
-        upsert({ id: process?.id, xml:xml?.xml })
+        upsert({ id: process?.id, xml: xml?.xml })
       })
       .catch(err => {
         console.error(err)
@@ -145,22 +152,22 @@ export const AppBpmn = memo((props) => {
   }, [bpmnModeler, process])
 
   const handleToggleCode = useCallback(() => {
-    if(showXml){
+    if (showXml) {
       bpmnModeler.importXML(xml);
-    }else{
+    } else {
       bpmnModeler.saveXML({ format: true })
-      .then((xml) => {
-        setXml(xml?.xml)
-      })
-      .catch(err => {
-        console.error(err)
-      })
+        .then((xml) => {
+          setXml(xml?.xml)
+        })
+        .catch(err => {
+          console.error(err)
+        })
     }
     setShowXml(showXml => !showXml);
 
-  }, [bpmnModeler, process,showXml, xml]);
+  }, [bpmnModeler, process, showXml, xml]);
 
-  const handleXMLChange = useCallback((value:string) => {
+  const handleXMLChange = useCallback((value: string) => {
     setXml(value);
   }, []);
 
@@ -222,7 +229,7 @@ export const AppBpmn = memo((props) => {
         <PropertyPanel element={element} modeler={bpmnModeler} />
       </PropertyBox>}
     >
-      <Spin spinning={loading}>
+      <Spin spinning={loading || listLoading}>
         <div
           className="bmpm-content react-bpmn-diagram-container"
           ref={containerRef}

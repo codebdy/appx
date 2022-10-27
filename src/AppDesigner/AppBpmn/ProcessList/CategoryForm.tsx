@@ -6,11 +6,11 @@ import { useTranslation } from "react-i18next";
 
 const CategoryForm = memo((
   props: {
-    title?: string,
+    name?: string,
     form: FormInstance<any>
   }
 ) => {
-  const { title, form } = props;
+  const { name, form } = props;
   const { t } = useTranslation();
   const handleKeyUp = useCallback((event: React.KeyboardEvent<HTMLElement>) => {
     event.stopPropagation();
@@ -23,15 +23,15 @@ const CategoryForm = memo((
       wrapperCol={{ span: 16 }}
       form={form}
       autoComplete="off"
-      initialValues={{ title: title }}
+      initialValues={{ name }}
       onKeyUp={handleKeyUp}
     >
       <Form.Item
-        label={t("Pages.CagegoryName")}
-        name="title"
+        label={t("AppBpmn.CagegoryName")}
+        name="name"
         rules={[{ required: true, message: t("Required") }]}
       >
-        <MultiLangInput title={t("Pages.CagegoryName")} />
+        <MultiLangInput title={t("AppBpmn.CagegoryName")} />
       </Form.Item>
     </Form>
   )

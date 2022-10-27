@@ -2,10 +2,10 @@ import { MoreOutlined, EditOutlined, DeleteOutlined, LoadingOutlined } from "@an
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
 import { ID } from "~/shared";
-import { useDeletePage } from "../../hooks/useDeletePage";
-import { IPage } from "~/model";
+import { IProcess } from "~/model";
 import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import { useTranslation } from "react-i18next";
+import { useDeleteProcess } from "../hooks/useDeleteProcess";
 
 const ProcessActions = memo((
   props: {
@@ -16,8 +16,8 @@ const ProcessActions = memo((
 ) => {
   const { pageId, onVisibleChange, onEdit } = props;
   const { t } = useTranslation();
-  const [remove, { loading, error }] = useDeletePage({
-    onCompleted: (data: IPage) => {
+  const [remove, { loading, error }] = useDeleteProcess({
+    onCompleted: (data: IProcess) => {
       onVisibleChange(false);
     }
   });

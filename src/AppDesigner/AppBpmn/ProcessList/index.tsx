@@ -5,30 +5,30 @@ import { DataNode } from 'antd/lib/tree';
 import CreateCategoryDialog from './CreateCategoryDialog';
 import CreateProcessDialog from './CreateProcessDialog';
 import { useRecoilState } from 'recoil';
-import { useAppViewKey } from '@rxdrag/plugin-sdk/contexts/appRoot';
 import CategoryLabel from './CategoryLabel';
-import ProcessLabel from './PageLabel';
-import { selectedPageIdState } from '../../recoil/atom';
-import { useGetPage } from '../../hooks/useGetPage';
-import { usePagesWithoutCategory } from '../../hooks/usePagesWithoutCategory';
-import { useGetCategoryPages } from '../../hooks/useGetCategoryPages';
-import { useCategories } from '../../hooks/useCategories';
+import ProcessLabel from './ProcessLabel';
+import { useCategories } from '../hooks/useCategories';
+import { useGetProcess } from '../hooks/useGetProcess';
+import { selectedBpmnProcessIdState } from '../recoil/atoms';
+import { useProcessesWithoutCategory } from '../hooks/useProcessesWithoutCategory';
+import { useGetCategoryProcesses } from '../hooks/useGetCategoryProcesses';
+import { useAppParams } from '~/plugin-sdk';
 
 const { DirectoryTree } = Tree;
 
-const PageListWidget = memo((
+const ProcessList = memo((
   props: {
   }
 ) => {
   const categories = useCategories();
-  const key = useAppViewKey();
+  const { app } = useAppParams()
 
-  const getPage = useGetPage();
+  const getProcess = useGetProcess();
 
   // const getPageCategory = useGetPageCategory();
-  const [selectedPageId, setSelectedPageId] = useRecoilState(selectedPageIdState(key));
-  const pagesWithoutCategory = usePagesWithoutCategory();
-  const getCategoryPages = useGetCategoryPages();
+  const [selectedProcessId, setSelectedProcessId] = useRecoilState(selectedBpmnProcessIdState(app?.uuid));
+  const pagesWithoutCategory = useProcessesWithoutCategory();
+  const getCategoryProcesses = useGetCategoryProcesses();
 
   const getTreeData = useCallback(() => {
     const dataNodes: DataNode[] = []
@@ -36,9 +36,9 @@ const PageListWidget = memo((
       dataNodes.push({
         title: <CategoryLabel categories={categories} category={category} />,
         key: category.id,
-        children: getCategoryPages(category.uuid)?.map((page) => {
+        children: getCategoryProcesses(category.uuid)?.map((page) => {
           return {
-            title: page && <ProcessLabel page={page} categories={categories} />,
+            title: page && <ProcessLabel process={page} categories={categories} />,
             key: page.id,
             isLeaf: true,
           }
@@ -48,18 +48,18 @@ const PageListWidget = memo((
 
     for (const page of pagesWithoutCategory) {
       dataNodes.push({
-        title: page && <ProcessLabel page={page} categories={categories}/>,
+        title: page && <ProcessLabel process={page} categories={categories}/>,
         key: page.id,
         isLeaf: true,
       })
     }
     return dataNodes
-  }, [categories, getCategoryPages, pagesWithoutCategory])
+  }, [categories, getCategoryProcesses, pagesWithoutCategory])
 
   const onSelect = (selectedKeys) => {
-    const page = getPage(selectedKeys?.[0]);
+    const page = getProcess(selectedKeys?.[0]);
     if (page?.id) {
-      setSelectedPageId(page?.id);
+      setSelectedProcessId(page?.id);
     }
   };
 
@@ -71,7 +71,7 @@ const PageListWidget = memo((
       </div>
       <DirectoryTree
         className='process-list-tree'
-        selectedKeys={[selectedPageId]}
+        selectedKeys={[selectedProcessId]}
         onSelect={onSelect}
         treeData={getTreeData()}
       />
@@ -79,4 +79,4 @@ const PageListWidget = memo((
   );
 });
 
-export default PageListWidget;
+export default ProcessList;

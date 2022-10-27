@@ -1,10 +1,10 @@
 import { MoreOutlined, FileAddOutlined, EditOutlined, DeleteOutlined, LoadingOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
-import { useDeleteCategory } from "../../hooks/useDeleteCategory";
 import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import { useTranslation } from "react-i18next";
 import { ID } from "~/shared";
+import { useDeleteCategory } from "../hooks/useDeleteCategory";
 
 const CategoryActions = memo((
   props: {
@@ -44,7 +44,7 @@ const CategoryActions = memo((
       items={[
         {
           icon: <FileAddOutlined />,
-          label: t("Pages.NewPage"),
+          label: t("AppBpmn.NewProcess"),
           key: '0',
           onClick: (e => {
             e.domEvent.stopPropagation();

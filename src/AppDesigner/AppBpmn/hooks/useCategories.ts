@@ -1,8 +1,8 @@
 import { useRecoilValue } from "recoil";
-import { useAppViewKey } from "@rxdrag/plugin-sdk/contexts/appRoot";
+import { useAppParams } from "@rxdrag/plugin-sdk/contexts/appRoot";
 import { categoriesState } from "../recoil/atoms";
 
 export function useCategories() {
-  const key = useAppViewKey()
-  return useRecoilValue(categoriesState(key))
+  const { app } = useAppParams()
+  return useRecoilValue(categoriesState(app?.uuid))
 }

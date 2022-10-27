@@ -3,11 +3,11 @@ import SvgIcon from "~/common/SvgIcon";
 import React, { useCallback, useState } from "react";
 import { memo } from "react";
 import { useForm } from "antd/lib/form/Form";
-import { useUpsertCategory } from "../../hooks/useUpsertCategory";
 import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import CategoryForm from "./CategoryForm";
 import { useTranslation } from "react-i18next";
 import { createUuid } from "~/shared";
+import { useUpsertCategory } from "../hooks/useUpsertCategory";
 
 const CreateCategoryDialog = memo(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -33,7 +33,7 @@ const CreateCategoryDialog = memo(() => {
 
   const handleConfirm = useCallback((values: any) => {
     form.validateFields().then((values) => {
-      create({ title: values.title, uuid: createUuid() })
+      create({ name: values.name, uuid: createUuid() })
     });
   }, [create, form]);
 

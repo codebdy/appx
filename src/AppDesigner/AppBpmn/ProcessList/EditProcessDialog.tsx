@@ -2,22 +2,22 @@ import { Form, Modal } from "antd";
 import React, { useCallback } from "react";
 import { memo } from "react";
 import ProcessForm from "./ProcessForm";
-import { IPage, IPageCategory } from "~/model";
+import { IProcess, IProcessCategory } from "~/model";
 import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import { useTranslation } from "react-i18next";
-import { useUpsertPage } from "../../hooks/useUpsertPage";
+import { useUpsertProcess } from "../hooks/useUpsertProcess";
 
 const EditProccessDialog = memo((
   props: {
-    page: IPage,
-    categories?: IPageCategory[],
+    process: IProcess,
+    categories?: IProcessCategory[],
     isModalVisible: boolean,
     onClose: () => void,
   }
 ) => {
-  const { page, categories, isModalVisible, onClose } = props;
+  const { process, categories, isModalVisible, onClose } = props;
   const [form] = Form.useForm()
-  const [upsert, { loading, error }] = useUpsertPage({
+  const [upsert, { loading, error }] = useUpsertProcess({
     onCompleted: () => {
       form.resetFields();
       onClose();
@@ -26,15 +26,15 @@ const EditProccessDialog = memo((
   const { t } = useTranslation();
   useShowError(error);
 
-  const handleConfirm = useCallback((values: any) => {
+  const handleConfirm = useCallback(() => {
     form.validateFields().then((values: any) => {
       if (values.categoryUuid) {
-        upsert({ ...page as any, title: values.title, categoryUuid: values.categoryUuid });
+        upsert({ ...process as any, name: values.title, categoryUuid: values.categoryUuid });
       } else {
-        upsert({ ...page as any, title: values.title, categoryUuid: "" });
+        upsert({ ...process as any, name: values.title, categoryUuid: "" });
       }
     });
-  }, [form, page, upsert]);
+  }, [form, process, upsert]);
 
   return (
     <Modal
@@ -47,7 +47,7 @@ const EditProccessDialog = memo((
       onOk={handleConfirm}
       confirmLoading={loading}
     >
-      <ProcessForm page={page} categories={categories} form={form} />
+      <ProcessForm process={process} categories={categories} form={form} />
     </Modal>
   )
 })

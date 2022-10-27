@@ -1,17 +1,17 @@
 import TreeNodeLabel from "~/common/TreeNodeLabel"
 import React, { useCallback, useState } from "react"
-import { IPage, IPageCategory } from "~/model"
+import { IProcess, IProcessCategory } from "~/model"
 import ProcessActions from "./ProcessActions"
 import EditProccessDialog from "./EditProcessDialog"
 import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage"
 
 const ProcessLabel = (
   props: {
-    page: IPage,
-    categories: IPageCategory[]
+    process: IProcess,
+    categories: IProcessCategory[]
   }
 ) => {
-  const { page, categories } = props;
+  const { process, categories } = props;
   const [visible, setVisible] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const p = useParseLangMessage();
@@ -31,16 +31,16 @@ const ProcessLabel = (
     <TreeNodeLabel fixedAction={visible}
       action={
         <ProcessActions
-          pageId={page.id}
+          pageId={process.id}
           onVisibleChange={handleVisableChange}
           onEdit={handleEdit}
         />
       }>
-      {p(page.title)}
+      {p(process.name)}
       <div
         onClick={e => e.stopPropagation()}
       >
-        <EditProccessDialog page={page} categories={categories} isModalVisible={modalOpen} onClose={handleClose} />
+        <EditProccessDialog process={process} categories={categories} isModalVisible={modalOpen} onClose={handleClose} />
       </div>
     </TreeNodeLabel>
   )
