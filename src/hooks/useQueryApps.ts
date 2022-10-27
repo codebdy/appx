@@ -11,6 +11,7 @@ query {
       uuid
       title
       imageUrl 
+      published
     }
     total
   }

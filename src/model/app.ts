@@ -81,4 +81,5 @@ export interface IAppInput {
   saveMetaAt?: Date;
   publishedMeta?: MetaContent;
   publishMetaAt?: Date;
+  published?: boolean;
 }

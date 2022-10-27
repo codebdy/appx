@@ -3,7 +3,9 @@ import { Button, Dropdown, Menu, message, Space } from 'antd';
 import React, { memo, useCallback, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useImportApp } from '~/enthooks/hooks/useImportApp';
+import { useEdittingAppId } from '~/hooks/useEdittingAppUuid';
 import { useShowError } from '~/hooks/useShowError';
+import { useUpsertApp } from '~/hooks/useUpsertApp';
 import { ExportDialog } from './ExportDialog';
 import { MakeVersionDialog } from './MakeVersionDialog';
 
@@ -15,6 +17,7 @@ enum OperateEnum {
 }
 
 export const Operate = memo(() => {
+  const appId = useEdittingAppId();
   const [makeVersionOpen, setMakeVersionOpen] = useState(false);
   const [exportOpen, setExportOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -32,7 +35,15 @@ export const Operate = memo(() => {
     }
   );
 
-  useShowError(error);
+  const [upsert, { loading: publishing, error: publishError }] = useUpsertApp(
+    {
+      onCompleted:()=>{
+        message.success(t("Designer.PublishSuccess"))
+      }
+    }
+  );
+
+  useShowError(error || publishError);
 
   const handleMenuClick = useCallback(({ key }) => {
 
@@ -42,8 +53,10 @@ export const Operate = memo(() => {
       setExportOpen(true)
     } else if (key === OperateEnum.import) {
       fileInputRef.current?.click()
-    }
-  }, [fileInputRef])
+    } else if(key === OperateEnum.publish) {
+      upsert({id:appId, published:true })
+    } 
+  }, [fileInputRef, appId, upsert])
 
   const menu = useMemo(() => (
     <Menu
@@ -91,7 +104,7 @@ export const Operate = memo(() => {
   return (
     <>
       <Dropdown overlay={menu}>
-        <Button type="text" onClick={e => e.preventDefault()} loading={loading}>
+        <Button type="text" onClick={e => e.preventDefault()} loading={loading || publishing}>
           <Space>
             {t("Designer.Operate")}
             <DownOutlined style={{ fontSize: 12 }} />

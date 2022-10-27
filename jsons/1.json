@@ -251,6 +251,13 @@
           "unsigned": false,
           "updateDate": false,
           "uuid": "APP_COLUMN_IMAGE_URL_UUID"
+        },
+        {
+          "uuid": "c367685c-9a32-4ebc-be41-a44fce867b74",
+          "name": "published",
+          "type": "Boolean",
+          "typeLabel": "Boolean",
+          "nullable": true
         }
       ],
       "description": "",
@@ -1615,13 +1622,28 @@
           "uuid": "fcdbc399-e651-4b35-8b9b-bf3882324bf6"
         },
         {
-          "uuid": "b143da5c-5716-41f8-8eb8-376508adc763",
+          "createDate": false,
+          "default": "",
+          "deleteDate": false,
+          "description": "",
+          "floatD": 0,
+          "floatM": 0,
+          "hidden": false,
+          "index": true,
+          "label": "",
+          "length": 255,
           "name": "uuid",
+          "nullable": false,
+          "primary": false,
+          "readonly": false,
+          "system": false,
           "type": "String",
           "typeLabel": "String",
-          "index": true,
+          "typeUuid": "",
           "unique": true,
-          "length": 255
+          "unsigned": false,
+          "updateDate": false,
+          "uuid": "b143da5c-5716-41f8-8eb8-376508adc763"
         }
       ],
       "description": "",
@@ -2245,13 +2267,28 @@
           "uuid": "74d97d91-2545-4b09-9324-54949431db2e"
         },
         {
-          "uuid": "30b61e1f-8afc-4c56-9f32-248da5368e3a",
+          "createDate": false,
+          "default": "",
+          "deleteDate": false,
+          "description": "",
+          "floatD": 0,
+          "floatM": 0,
+          "hidden": false,
+          "index": true,
+          "label": "",
+          "length": 255,
           "name": "uuid",
+          "nullable": false,
+          "primary": false,
+          "readonly": false,
+          "system": false,
           "type": "String",
           "typeLabel": "String",
+          "typeUuid": "",
           "unique": true,
-          "index": true,
-          "length": 255
+          "unsigned": false,
+          "updateDate": false,
+          "uuid": "30b61e1f-8afc-4c56-9f32-248da5368e3a"
         }
       ],
       "description": "",
@@ -2788,20 +2825,52 @@
           "uuid": "b063950e-f5e1-4c9c-815b-f3e283cb5ed4"
         },
         {
-          "uuid": "1543ae1d-b8d8-4a78-a8bd-6a39d9199495",
+          "createDate": false,
+          "default": "",
+          "deleteDate": false,
+          "description": "",
+          "floatD": 0,
+          "floatM": 0,
+          "hidden": false,
+          "index": true,
+          "label": "",
+          "length": 255,
           "name": "uuid",
+          "nullable": false,
+          "primary": false,
+          "readonly": false,
+          "system": false,
           "type": "String",
           "typeLabel": "String",
+          "typeUuid": "",
           "unique": true,
-          "index": true,
-          "length": 255
+          "unsigned": false,
+          "updateDate": false,
+          "uuid": "1543ae1d-b8d8-4a78-a8bd-6a39d9199495"
         },
         {
-          "uuid": "a7f0dce4-4221-4508-9c02-2ba8d77c4396",
+          "createDate": false,
+          "default": "",
+          "deleteDate": false,
+          "description": "",
+          "floatD": 0,
+          "floatM": 0,
+          "hidden": false,
+          "index": false,
+          "label": "",
+          "length": 0,
           "name": "categoryUuid",
+          "nullable": true,
+          "primary": false,
+          "readonly": false,
+          "system": false,
           "type": "String",
           "typeLabel": "String",
-          "nullable": true
+          "typeUuid": "",
+          "unique": false,
+          "unsigned": false,
+          "updateDate": false,
+          "uuid": "a7f0dce4-4221-4508-9c02-2ba8d77c4396"
         }
       ],
       "description": "",
@@ -4310,12 +4379,12 @@
       "y": -150
     },
     {
-      "id": "f9288fd0-2747-4fa0-8b3d-4c8bdaeb5dd8",
-      "x": 29.99999999999993,
-      "y": 256.0000000000001,
-      "width": 180,
+      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
       "height": 160,
-      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464"
+      "id": "f9288fd0-2747-4fa0-8b3d-4c8bdaeb5dd8",
+      "width": 180,
+      "x": 29.99999999999993,
+      "y": 256.0000000000001
     },
     {
       "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
@@ -4672,7 +4741,26 @@
       ]
     },
     {
+      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
       "id": "2cdb4c7c-ce16-4744-8405-cffaef63ba55",
+      "roleOnSourcePosition": {
+        "distance": 40,
+        "offset": 20
+      },
+      "roleOnTargetPosition": {
+        "angle": 0,
+        "distance": 0.9230633957055032,
+        "offset": 50
+      },
+      "sourceMultiplicityPosition": {
+        "distance": 40,
+        "offset": -20
+      },
+      "targetMultiplicityPosition": {
+        "angle": 0,
+        "distance": 0.9631290299491312,
+        "offset": -9.568630600716334
+      },
       "vertices": [
         {
           "x": -330,
@@ -4682,26 +4770,7 @@
           "x": -330,
           "y": 320
         }
-      ],
-      "roleOnSourcePosition": {
-        "distance": 40,
-        "offset": 20
-      },
-      "sourceMultiplicityPosition": {
-        "distance": 40,
-        "offset": -20
-      },
-      "roleOnTargetPosition": {
-        "distance": 0.9230633957055033,
-        "offset": 50,
-        "angle": 0
-      },
-      "targetMultiplicityPosition": {
-        "distance": 0.9631290299491312,
-        "offset": -9.568630600716334,
-        "angle": 0
-      },
-      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464"
+      ]
     },
     {
       "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
