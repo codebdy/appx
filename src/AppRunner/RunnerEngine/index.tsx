@@ -14,6 +14,8 @@ import { createSchemaField, ExpressionScope, FormProvider } from '@formily/react
 import { createForm } from '@formily/core';
 import { useQueryPageFrame } from '../hooks/useQueryPageFrame';
 import { useMaterialComponents } from '~/material/hooks/useMaterialComponents';
+import { NotPublished } from '../NotPublished';
+import { NotFinieshed } from '../NotFinieshed';
 
 export class Me {
   constructor(private me?: IUser) { }
@@ -60,21 +62,23 @@ const RunnerEngine = memo(() => {
 
   console.log("呵呵", pageFrame);
   return (
-    <RunnerContext.Provider value={runnerContextValue}>
-      <RouteContext.Provider value={{ menuItem: mentItem, setMenuItem: setMenuItem as any }}>
-        <Spin spinning={frameLoading}>
-          <FormProvider form={form}>
-            <ExpressionScope value={newExpScope} >
-              {
-                pageFrame?.schemaJson?.schema &&
-                <SchemaField schema={p(pageFrame?.schemaJson?.schema || {})}>
-                </SchemaField>
-              }
-            </ExpressionScope>
-          </FormProvider>
-        </Spin>
-      </RouteContext.Provider>
-    </RunnerContext.Provider>
+    pageFrame ?
+      <RunnerContext.Provider value={runnerContextValue}>
+        <RouteContext.Provider value={{ menuItem: mentItem, setMenuItem: setMenuItem as any }}>
+          <Spin spinning={frameLoading}>
+            <FormProvider form={form}>
+              <ExpressionScope value={newExpScope} >
+                {
+                  pageFrame?.schemaJson?.schema &&
+                  <SchemaField schema={p(pageFrame?.schemaJson?.schema || {})}>
+                  </SchemaField>
+                }
+              </ExpressionScope>
+            </FormProvider>
+          </Spin>
+        </RouteContext.Provider>
+      </RunnerContext.Provider>
+      : <NotFinieshed />
   );
 });
 

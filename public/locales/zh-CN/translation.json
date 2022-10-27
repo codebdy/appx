@@ -57,6 +57,7 @@
   "Test": "测试",
   "Async": "异步",
   "NotPublishedTip": "应用尚未发布，请先编辑并发布",
+  "NotFinieshedTip": "应用不完整，请先编辑并发布",
   "GoEdit": "去编辑",
   "Model": {
     "Title": "模型"
