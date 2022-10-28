@@ -43,13 +43,13 @@ const schema: IPropsSchema = {
         'x-decorator': 'FormItem',
         'x-component': 'Radio.Group',
         'x-component-props': {
-          defaultValue: 'bottomRight',
+          defaultValue: 'bottomCenter',
           optionType: 'button',
         },
         'x-reactions': {
           fulfill: {
             state: {
-              hidden: '{{!$form.values["hasPagination"]?.enableAuth}}',
+              hidden: '{{!$form.values["x-component-props"]?.hasPagination}}',
             },
           },
         }
@@ -63,7 +63,7 @@ const schema: IPropsSchema = {
         'x-reactions': {
           fulfill: {
             state: {
-              hidden: '{{!$form.values["hasPagination"]?.enableAuth}}',
+              hidden: '{{!$form.values["x-component-props"]?.hasPagination}}',
             },
           },
         }
