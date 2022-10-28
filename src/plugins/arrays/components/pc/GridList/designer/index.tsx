@@ -11,7 +11,6 @@ import cls from "classnames";
 import { IListHeaderProps } from '../view/ListHeader'
 import { ListHeaderDesigner } from './ListHeaderDesigner'
 import { useFindNode } from '~/plugin-sdk'
-import { DroppableWidget } from "@designable/react"
 
 export const GridListDesigner: DnFC<IGridListProps> & {
   Header?: React.FC<IListHeaderProps>
@@ -38,8 +37,9 @@ export const GridListDesigner: DnFC<IGridListProps> & {
       }
       {
         !otherChildrenNodes?.length &&
-        <DroppableWidget>
-        </DroppableWidget>
+        <div className="appx-grid-list-placeholder">
+          Please drop here
+        </div>
       }
     </div>
   )

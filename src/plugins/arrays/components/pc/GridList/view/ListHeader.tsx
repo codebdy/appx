@@ -10,6 +10,6 @@ export interface IListHeaderProps{
 export const ListHeader = (props: IListHeaderProps) => {
   const { children, className, ...other } = props
   return (
-    <div className={clx(className, 'rx_page_body')} {...other}>{children}</div>
+    <div className={clx(className, 'appx-grid-list-header')} {...other}>{children}</div>
   )
 }

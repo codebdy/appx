@@ -4,6 +4,7 @@ import React from 'react';
 import { IDataSourceableProps } from '~/plugin-sdk';
 import "./style.less"
 import cls from "classnames";
+import { ListHeader } from './ListHeader';
 
 export interface IGridListProps extends IDataSourceableProps {
   className?: string,
@@ -21,7 +22,9 @@ export interface IGridListProps extends IDataSourceableProps {
   xxl?: number,
 }
 
-export const GridList = observer((props: IGridListProps) => {
+export const GridList: React.FC<IGridListProps> & {
+  Header?: React.FC<IGridListProps>
+} = observer((props: IGridListProps) => {
   const { className, hasHeader, pagination, paginationPosition, pageSize, ...other } = props;
   const p = useParseLangMessage();
 
@@ -31,4 +34,6 @@ export const GridList = observer((props: IGridListProps) => {
     </div>
   )
 })
+
+GridList.Header = ListHeader
 

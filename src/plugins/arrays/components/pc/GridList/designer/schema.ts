@@ -1,7 +1,9 @@
-import { ISchema } from '@formily/react'
-import { IPropsSchema } from '@rxdrag/appx-plugin-sdk'
+import { DataBindSourceType, IPropsSchema } from '@rxdrag/appx-plugin-sdk'
 
 const schema: IPropsSchema = {
+  display: {
+    dataBindSourceType: DataBindSourceType.Multiple,
+  },
   props: {
     type: 'object',
     properties: {

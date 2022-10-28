@@ -15,7 +15,8 @@ const resources: IResourceCreator[] = [
           'x-component-props': {
             isFuzzy: true,
             searchStyle: true,
-          }
+          },
+          'x-field-source': [],
         },
       },
     ],

@@ -8,7 +8,7 @@ import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessag
 import { FieldSourceType, IFieldSource } from "~/datasource/model/IFieldSource";
 import { useGetEntity } from "~/datasource/hooks/useGetEntity";
 import { isArr } from "@formily/shared";
-import { AttributeMeta } from "../AppUml/meta/AttributeMeta";
+import { AttributeMeta } from "~/AppDesigner/AppUml/meta";
 const { Option, OptGroup } = Select;
 
 export const FieldSourceInput = observer((
