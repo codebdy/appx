@@ -11,6 +11,7 @@ import cls from "classnames";
 import { IListHeaderProps } from '../view/ListHeader'
 import { ListHeaderDesigner } from './ListHeaderDesigner'
 import { useFindNode } from '~/plugin-sdk'
+import { ListPagination } from '../view/ListPagination'
 
 export const GridListDesigner: DnFC<IGridListProps> & {
   Header?: React.FC<IListHeaderProps>
@@ -41,6 +42,7 @@ export const GridListDesigner: DnFC<IGridListProps> & {
           Please drop here
         </div>
       }
+      <ListPagination total={2}/>
     </div>
   )
 })

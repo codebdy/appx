@@ -3,14 +3,15 @@ const locales = {
     title: '栅格列表',
     settings: {
       'x-component-props': {
-        minWidth: '最小宽度',
-        minColumns: '最小列数',
-        maxWidth: '最大宽度',
-        maxColumns: '最大列数',
-        breakpoints: '响应式断点',
-        columnGap: '列间距',
-        rowGap: '行间距',
-        colWrap: '自动换行',
+        hasHeader: '表格头',
+        column: '列数',
+        gutter: "间隙",
+        hasPagination: '分页',
+        paginationPosition: {
+          title:"分页位置",
+          dataSource: ['左', '右', '居中'],
+        },
+        pageSize: '每页大小',
       },
     },
   },

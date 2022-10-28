@@ -7,6 +7,7 @@ import cls from "classnames";
 import { ListHeader } from './ListHeader';
 import { RecursionField, Schema, useFieldSchema } from '@formily/react';
 import { Pagination } from 'antd';
+import { ListPagination } from './ListPagination';
 
 export interface IGridListProps extends IDataSourceableProps {
   className?: string,
@@ -27,7 +28,13 @@ export interface IGridListProps extends IDataSourceableProps {
 export const GridList: React.FC<IGridListProps> & {
   Header?: React.FC<IGridListProps>
 } = observer((props: IGridListProps) => {
-  const { className, hasHeader, hasPagination, paginationPosition, pageSize, ...other } = props;
+  const { className,
+    hasHeader,
+    hasPagination,
+    paginationPosition,
+    pageSize,
+    ...other
+  } = props;
   const fieldSchema = useFieldSchema()
   const p = useParseLangMessage();
   const slots = useMemo(() => {
@@ -61,9 +68,7 @@ export const GridList: React.FC<IGridListProps> & {
         })
       }
       {
-        <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Pagination defaultCurrent={1} total={50} />
-        </div>
+        <ListPagination total={50}/>
       }
     </div>
   )

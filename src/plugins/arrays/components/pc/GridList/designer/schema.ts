@@ -7,62 +7,51 @@ const schema: IPropsSchema = {
   props: {
     type: 'object',
     properties: {
-      minWidth: {
-        type: 'number',
-        'x-decorator': 'FormItem',
-        'x-component': 'NumberPicker',
-        'x-component-props': {
-          defaultValue: 100,
-        },
-      },
-      maxWidth: {
-        type: 'number',
-        'x-decorator': 'FormItem',
-        'x-component': 'NumberPicker',
-      },
-      minColumns: {
-        type: 'number',
-        'x-decorator': 'FormItem',
-        'x-component': 'NumberPicker',
-        'x-component-props': {
-          defaultValue: 0,
-        },
-      },
-      maxColumns: {
-        type: 'number',
-        'x-decorator': 'FormItem',
-        'x-component': 'NumberPicker',
-      },
-      breakpoints: {
-        type: 'number',
-        'x-decorator': 'FormItem',
-        'x-component': 'ValueInput',
-        'x-component-props': {
-          include: ['EXPRESSION'],
-        },
-      },
-      columnGap: {
-        type: 'number',
-        'x-decorator': 'FormItem',
-        'x-component': 'NumberPicker',
-        'x-component-props': {
-          defaultValue: 10,
-        },
-      },
-      rowGap: {
-        type: 'number',
-        'x-decorator': 'FormItem',
-        'x-component': 'NumberPicker',
-        'x-component-props': {
-          defaultValue: 5,
-        },
-      },
-      colWrap: {
+      hasHeader: {
         type: 'boolean',
         'x-decorator': 'FormItem',
         'x-component': 'Switch',
         'x-component-props': {
           defaultChecked: true,
+        },
+      },
+      column: {
+        type: 'number',
+        'x-decorator': 'FormItem',
+        'x-component': 'NumberPicker',
+        'x-component-props': {
+        },
+      },
+      gutter: {
+        type: 'number',
+        'x-decorator': 'FormItem',
+        'x-component': 'NumberPicker',
+        'x-component-props': {
+        },
+      },
+      hasPagination: {
+        type: 'boolean',
+        'x-decorator': 'FormItem',
+        'x-component': 'Switch',
+        'x-component-props': {
+          defaultChecked: true,
+        },
+      },
+      paginationPosition: {
+        type: 'string',
+        enum: ['bottomLeft', 'bottomRight', 'bottomCenter'],
+        'x-decorator': 'FormItem',
+        'x-component': 'Radio.Group',
+        'x-component-props': {
+          defaultValue: 'bottomRight',
+          optionType: 'button',
+        },
+      },
+      pageSize: {
+        type: 'number',
+        'x-decorator': 'FormItem',
+        'x-component': 'NumberPicker',
+        'x-component-props': {
         },
       },
     },
