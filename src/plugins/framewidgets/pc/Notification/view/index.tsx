@@ -131,7 +131,7 @@ const Notification: React.FC = () => {
   return (
     <NoticeIcon
       className={"action"}
-      count={5}
+      count={0}
       onItemClick={(item) => {
         changeReadState(item.id!);
       }}
