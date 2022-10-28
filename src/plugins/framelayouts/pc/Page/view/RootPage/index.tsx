@@ -4,9 +4,8 @@ import { useParams } from "react-router-dom";
 import { PageEngine } from "../../../../PageEngine";
 import { ExpressionScope } from '@formily/react';
 import { useGetMenuItem } from "../../../../../framewidgets/pc/AppMenu/view/hooks/useGetMenuItem";
-import { useEntryPageUuid } from "../../../../../framewidgets/pc/AppMenu/view/hooks/useEntryPageId";
 import { OpenPageType } from "@rxdrag/plugin-sdk/model/action";
-import { useAppParams } from "~/plugin-sdk/contexts/app";
+import { useEntryPageUuid } from "~/AppRunner/hooks/useEntryPageUuid";
 
 export interface ILoadingSpanProps {
   spinning?: boolean,

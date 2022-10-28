@@ -6,7 +6,7 @@ import { ItemType } from "antd/lib/menu/hooks/useItems";
 import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetMenuItem } from "./hooks/useGetMenuItem";
-import { useEntryPageUuid } from "./hooks/useEntryPageId";
+import { useEntryPageUuid } from "./hooks/useEntryPageUuid";
 import { useGetMenuItemByPageUuid } from "./hooks/useGetMenuItemByPageUuid";
 import "./style.less"
 import cls from "classnames";
