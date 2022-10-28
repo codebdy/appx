@@ -81,7 +81,7 @@ const AppCard = memo((props: {
       >
         <Meta
           title={parse(app.title)}
-          description={app.description}
+          //description={app.description}
         />
       </Card>
       {
