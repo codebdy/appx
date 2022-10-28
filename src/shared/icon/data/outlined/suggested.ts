@@ -1,4 +1,4 @@
-import { AppstoreOutlined, EllipsisOutlined, MoreOutlined, PauseCircleOutlined, PauseOutlined, PlusCircleOutlined, PlusOutlined, QuestionCircleOutlined, QuestionOutlined } from "@ant-design/icons";
+import { AppstoreOutlined, EllipsisOutlined, MoreOutlined, PauseCircleOutlined, PauseOutlined, PlusCircleOutlined, PlusOutlined, QuestionCircleOutlined, QuestionOutlined, SendOutlined } from "@ant-design/icons";
 import { IIconGroup } from "../../model";
 
 export const suggested: IIconGroup = {
@@ -43,11 +43,16 @@ export const suggested: IIconGroup = {
       iconKey: "EllipsisOutlined",
       icon: EllipsisOutlined,
       keywords: "",
-    },    
+    },
     {
       iconKey: "AppstoreOutlined",
       icon: AppstoreOutlined,
       keywords: "",
+    },
+    {
+      iconKey: "SendOutlined",
+      icon: SendOutlined,
+      keywords: "",
     }
-  ]  
+  ]
 }
