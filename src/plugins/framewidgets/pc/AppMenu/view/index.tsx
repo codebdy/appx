@@ -1,7 +1,6 @@
 import { Menu } from "antd";
 import { IMenuItem, MenuItemType } from "@rxdrag/plugin-sdk/model/IMenuNode";
 import React, { memo, useCallback, useMemo } from "react";
-import { useRunnerParams } from "@rxdrag/plugin-sdk/contexts/runner";
 import { IconView } from "@rxdrag/plugin-sdk/icon/IconView";
 import { ItemType } from "antd/lib/menu/hooks/useItems";
 import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage";
@@ -11,6 +10,7 @@ import { useEntryPageUuid } from "./hooks/useEntryPageId";
 import { useGetMenuItemByPageUuid } from "./hooks/useGetMenuItemByPageUuid";
 import "./style.less"
 import cls from "classnames";
+import { useMenu } from "~/AppRunner/hooks/useMenu";
 
 export interface IComponentProps {
   mode?: "vertical" | "horizontal" | "inline",
@@ -19,7 +19,7 @@ export interface IComponentProps {
 
 const AppMenu = memo((props: IComponentProps) => {
   const { className, ...other } = props;
-  const { menu } = useRunnerParams();
+  const menu = useMenu()
   const p = useParseLangMessage();
   const { device, appId, menuUuid } = useParams();
   const navigate = useNavigate();

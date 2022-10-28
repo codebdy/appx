@@ -1,7 +1,6 @@
 
 import { memo, useState } from 'react';
 import React from 'react';
-import { RouteContext, RunnerContext } from '@rxdrag/plugin-sdk/contexts/runner';
 import { IMenuItem } from '@rxdrag/plugin-sdk/model/IMenuNode';
 import { FormItem } from "@formily/antd";
 import { useMemo } from "react";
@@ -10,8 +9,7 @@ import { IUser } from "~/enthooks/hooks/useQueryMe";
 import { useMe } from "@rxdrag/plugin-sdk/contexts/login";
 import { createSchemaField, ExpressionScope, FormProvider } from '@formily/react';
 import { createForm } from '@formily/core';
-import { usePluginComponents } from '~/AppRunner/hooks/usePluginComponents';
-import { useAppParams } from '~/plugin-sdk/contexts/app';
+import { RouteContext, useAppParams } from '~/plugin-sdk/contexts/app';
 import { NotReady } from '../NotReady';
 import { useTranslation } from 'react-i18next';
 
@@ -32,8 +30,7 @@ const RunnerEngine = memo(() => {
   const [mentItem, setMenuItem] = useState<IMenuItem>()
   const { t } = useTranslation();
   const p = useParseLangSchema();
-  const { uiFrame } = useAppParams()
-  const components = usePluginComponents();
+  const { uiFrame, components } = useAppParams()
   const me = useMe();
   const $me = useMemo(() => new Me(me), [me]);
   const SchemaField = useMemo(() => createSchemaField({
@@ -52,28 +49,20 @@ const RunnerEngine = memo(() => {
     [$me]
   );
 
-  const runnerContextValue = useMemo(() => {
-    return {
-      components: components || [],
-    }
-  }, [components])
-
   return (
     uiFrame?.schemaJson?.schema ?
-      <RunnerContext.Provider value={runnerContextValue}>
-        <RouteContext.Provider value={{ menuItem: mentItem, setMenuItem: setMenuItem as any }}>
-          <FormProvider form={form}>
-            <ExpressionScope value={newExpScope} >
-              {
-                uiFrame.schemaJson.schema &&
-                <SchemaField schema={p(uiFrame?.schemaJson?.schema || {})}>
-                </SchemaField>
-              }
-            </ExpressionScope>
-          </FormProvider>
-        </RouteContext.Provider>
-      </RunnerContext.Provider>
-      : <NotReady title ={t("NotFinishedTip")} />
+      <RouteContext.Provider value={{ menuItem: mentItem, setMenuItem: setMenuItem as any }}>
+        <FormProvider form={form}>
+          <ExpressionScope value={newExpScope} >
+            {
+              uiFrame.schemaJson.schema &&
+              <SchemaField schema={p(uiFrame?.schemaJson?.schema || {})}>
+              </SchemaField>
+            }
+          </ExpressionScope>
+        </FormProvider>
+      </RouteContext.Provider>
+      : <NotReady title={t("NotFinishedTip")} />
   );
 });
 

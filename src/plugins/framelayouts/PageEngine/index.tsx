@@ -10,6 +10,7 @@ import { ID } from "~/shared";
 import { useQueryPageWithCache } from "./hooks/useQueryPageWithCache";
 import { IUser } from "~/enthooks/hooks/useQueryMe";
 import { useMe } from "@rxdrag/plugin-sdk/contexts/login";
+import { IComponents, useAppParams } from "~/plugin-sdk/contexts/app";
 
 export class Me {
 
@@ -31,20 +32,18 @@ export interface ILoadingSpanProps {
   children?: React.ReactNode
 }
 
-type IComponents = Record<string, JSXComponent>;
-
 export const PageEngine = memo((
   props: {
     pageUuid?: ID,
     LoadingSpan?: React.FC<ILoadingSpanProps>,
-    components: IComponents,
   }
 ) => {
-  const { pageUuid, LoadingSpan = Spin, components = {} } = props;
+  const { pageUuid, LoadingSpan = Spin} = props;
   const { page, loading, error } = useQueryPageWithCache(pageUuid);
   const me = useMe();
   const $me = useMemo(() => new Me(me), [me]);
   const expScope = useExpressionScope()
+  const { components } = useAppParams();
   console.log("PageEngine 刷新", pageUuid, page)
   const p = useParseLangSchema();
   useShowError(error);
@@ -52,7 +51,7 @@ export const PageEngine = memo((
   const SchemaField = useMemo(() => createSchemaField({
     components: {
       FormItem,
-      ...components
+      ...components||{}
     },
   }), [components])
 

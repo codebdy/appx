@@ -1,13 +1,12 @@
 import { Drawer } from "antd";
-import { useDesignerViewKey } from "~/plugin-sdk/contexts/desinger";
 import React, { useCallback, useMemo } from "react"
 import { memo } from "react"
 import { IPagePopup, pagePopupsState } from "@rxdrag/plugin-sdk/atoms";
 import { useRecoilValue } from "recoil";
 import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage";
 import { PageEngine } from "~/plugins/framelayouts/PageEngine";
-import { useRunnerParams } from "@rxdrag/plugin-sdk/contexts/runner";
 import { useClosePage } from "~/shared/action/hooks/useClosePage";
+import { useAppViewKey } from "~/plugin-sdk/contexts/app";
 
 export const PageDrawer = memo((
   props: {
@@ -15,8 +14,7 @@ export const PageDrawer = memo((
   }
 ) => {
   const { pageDrawer } = props;
-  const key = useDesignerViewKey();
-  const { components } = useRunnerParams();
+  const key = useAppViewKey();
   const pagePopups = useRecoilValue(pagePopupsState(key));
   const p = useParseLangMessage();
   const close = useClosePage();
@@ -37,7 +35,6 @@ export const PageDrawer = memo((
     >
       <PageEngine
         pageUuid={pageDrawer.pageId}
-        components={components}
       />
     </Drawer>
   )

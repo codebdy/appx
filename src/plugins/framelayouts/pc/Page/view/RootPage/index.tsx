@@ -6,7 +6,7 @@ import { ExpressionScope } from '@formily/react';
 import { useGetMenuItem } from "../../../../../framewidgets/pc/AppMenu/view/hooks/useGetMenuItem";
 import { useEntryPageUuid } from "../../../../../framewidgets/pc/AppMenu/view/hooks/useEntryPageId";
 import { OpenPageType } from "@rxdrag/plugin-sdk/model/action";
-import { useRunnerParams } from "@rxdrag/plugin-sdk/contexts/runner";
+import { useAppParams } from "~/plugin-sdk/contexts/app";
 
 export interface ILoadingSpanProps {
   spinning?: boolean,
@@ -15,7 +15,6 @@ export interface ILoadingSpanProps {
 
 export const RootPage = memo(() => {
   const { menuUuid, pageUuid } = useParams();
-  const { components } = useRunnerParams();
   const { dataId } = useParams();
   const getMenuItem = useGetMenuItem();
   const entryUuid = useEntryPageUuid();
@@ -33,7 +32,6 @@ export const RootPage = memo(() => {
         realPageUuid &&
         <PageEngine
           pageUuid={realPageUuid}
-          components={components}
         />
       }
 

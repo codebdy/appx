@@ -7,6 +7,7 @@ import { IApp } from "~/model";
 import { useMe } from "~/plugin-sdk";
 import { AppContext } from "~/plugin-sdk/contexts/app";
 import { useFrameUuid } from "../hooks/useFrameUuid";
+import { usePluginComponents } from "../hooks/usePluginComponents";
 import { useQueryUiFrame } from "../hooks/useQueryUiFrame";
 import { useQueryUserConfig } from "../hooks/useQueryUserConfig";
 import { useShowError } from "../hooks/useShowError";
@@ -23,6 +24,7 @@ export const AppRoot = memo((
   const { userConfig, loading: userConfigLoading, error: userConfigError } = useQueryUserConfig(app.id, device as any, me?.id)
   const frameUuid = useFrameUuid(app, device as Device);
   const { uiFrame, error, loading } = useQueryUiFrame(frameUuid);
+  const components = usePluginComponents(app, device as Device);
   useShowError(error || userConfigError)
   const appParams = useMemo(() => {
     return {
@@ -30,8 +32,9 @@ export const AppRoot = memo((
       device: device as Device,
       userConfig: userConfig,
       uiFrame: uiFrame,
+      components: components,
     }
-  }, [app, device, userConfig, uiFrame])
+  }, [app, device, userConfig, uiFrame, components])
   const isLoading = useMemo(() => loading || userConfigLoading, [loading, userConfigLoading])
   return (
     isLoading ?

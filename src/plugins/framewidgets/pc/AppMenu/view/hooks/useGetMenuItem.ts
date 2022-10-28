@@ -1,9 +1,9 @@
 import { useCallback } from "react";
 import { IMenuItem } from "@rxdrag/plugin-sdk/model/IMenuNode";
-import { useRunnerParams } from "@rxdrag/plugin-sdk/contexts/runner";
+import { useMenu } from "~/AppRunner/hooks/useMenu";
 
 export function useGetMenuItem() {
-  const { menu } = useRunnerParams();
+  const  menu  = useMenu();
 
   const getMenuItem = useCallback((uuid: string, items?: IMenuItem[]): IMenuItem => {
     for (const item of items || menu?.schemaJson?.items || []) {

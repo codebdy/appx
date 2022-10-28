@@ -1,5 +1,4 @@
 import { Modal } from "antd";
-import { useDesignerViewKey } from "~/plugin-sdk/contexts/desinger";
 import React, { useCallback, useMemo } from "react"
 import { memo } from "react"
 import { IPagePopup, pagePopupsState } from "@rxdrag/plugin-sdk/atoms";
@@ -7,16 +6,14 @@ import { useRecoilValue } from "recoil";
 import { useClosePage } from "~/shared/action/hooks/useClosePage";
 import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage";
 import { PageEngine } from "../../../../PageEngine";
-import { useRunnerParams } from "@rxdrag/plugin-sdk/contexts/runner";
-
+import { useAppViewKey } from "~/plugin-sdk/contexts/app";
 export const PageDialog = memo((
   props: {
     pageDialog: IPagePopup,
   }
 ) => {
   const { pageDialog } = props;
-  const key = useDesignerViewKey();
-  const { components } = useRunnerParams();
+  const key = useAppViewKey();
   const pagePopups = useRecoilValue(pagePopupsState(key));
   const p = useParseLangMessage();
   const close = useClosePage();
@@ -35,7 +32,6 @@ export const PageDialog = memo((
     >
       <PageEngine
         pageUuid={pageDialog.pageId}
-        components={components}
       />
     </Modal>
   )
