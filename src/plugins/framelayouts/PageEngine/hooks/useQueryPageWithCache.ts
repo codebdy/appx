@@ -2,15 +2,15 @@ import { useEffect, useMemo } from "react";
 import { useRecoilState } from "recoil";
 import { pagesCacheState } from "@rxdrag/plugin-sdk/atoms";
 import { useAppViewKey } from "~/plugin-sdk/contexts/app";
-import { useQueryPage } from "~/AppRunner/hooks/useQueryPage";
+import { useQueryPageByUuid } from "./useQueryPageByUuid";
 
-export function useQueryPageWithCache(id?: string) {
+export function useQueryPageWithCache(uuid?: string) {
   const key = useAppViewKey();
   const [pages, setPages] = useRecoilState(pagesCacheState(key))
 
-  const pageInCache = useMemo(() => pages.find(pg => pg.id === id), [id, pages]);
+  const pageInCache = useMemo(() => pages.find(pg => pg.uuid === uuid), [uuid, pages]);
 
-  const { page, error, loading } = useQueryPage(pageInCache ? undefined : id);
+  const { page, error, loading } = useQueryPageByUuid(pageInCache ? undefined : uuid);
 
   useEffect(() => {
     if (page) {
