@@ -34,7 +34,7 @@ const schema: IPropsSchema = {
         'x-decorator': 'FormItem',
         'x-component': 'Switch',
         'x-component-props': {
-          defaultChecked: true,
+          defaultChecked: false,
         },
       },
       paginationPosition: {
@@ -46,6 +46,13 @@ const schema: IPropsSchema = {
           defaultValue: 'bottomRight',
           optionType: 'button',
         },
+        'x-reactions': {
+          fulfill: {
+            state: {
+              hidden: '{{!$form.values["hasPagination"]?.enableAuth}}',
+            },
+          },
+        }
       },
       pageSize: {
         type: 'number',
@@ -53,6 +60,13 @@ const schema: IPropsSchema = {
         'x-component': 'NumberPicker',
         'x-component-props': {
         },
+        'x-reactions': {
+          fulfill: {
+            state: {
+              hidden: '{{!$form.values["hasPagination"]?.enableAuth}}',
+            },
+          },
+        }
       },
     },
   }

@@ -12,6 +12,7 @@ const resources: IResourceCreator[] = [
           'x-component': Name,
           'x-component-props': {
             hasHeader: true,
+            hasPagination: true,
           },
         },
         children: [

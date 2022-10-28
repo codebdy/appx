@@ -42,7 +42,10 @@ export const GridListDesigner: DnFC<IGridListProps> & {
           Please drop here
         </div>
       }
-      <ListPagination total={2} paginationPosition={paginationPosition} />
+      {
+        hasPagination && <ListPagination total={2} paginationPosition={paginationPosition} />
+      }
+
     </div>
   )
 })
