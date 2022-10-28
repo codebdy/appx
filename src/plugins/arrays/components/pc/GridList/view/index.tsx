@@ -6,6 +6,7 @@ import "./style.less"
 import cls from "classnames";
 import { ListHeader } from './ListHeader';
 import { RecursionField, Schema, useFieldSchema } from '@formily/react';
+import { Pagination } from 'antd';
 
 export interface IGridListProps extends IDataSourceableProps {
   className?: string,
@@ -58,6 +59,11 @@ export const GridList: React.FC<IGridListProps> & {
             </div>
           )
         })
+      }
+      {
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <Pagination defaultCurrent={1} total={50} />
+        </div>
       }
     </div>
   )
