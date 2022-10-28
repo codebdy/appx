@@ -7,12 +7,13 @@ import { useNavigate, useParams } from "react-router-dom"
 import { DESIGN, DESIGN_UI } from "~/consts"
 import { useDevices } from "../hooks/useDevices"
 import Container from "~/plugins/framelayouts/pc/Container/view"
+import { useEdittingAppId } from "../hooks/useEdittingAppUuid"
 
 const AppUis = memo((props: {
   loading?: boolean
 }) => {
   const { loading } = props;
-  const { appId } = useParams();
+  const appId = useEdittingAppId();
   const navigate = useNavigate();
   const { t } = useTranslation();
   const devices = useDevices();

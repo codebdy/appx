@@ -3,16 +3,17 @@ import Meta from "antd/lib/card/Meta";
 import React, { useCallback } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { DESIGN, DESIGN_FRAME } from "~/consts";
 import Container from "~/plugins/framelayouts/pc/Container/view";
 import { useDevices } from "../hooks/useDevices";
+import { useEdittingAppId } from "../hooks/useEdittingAppUuid";
 
 export const AppFrames = memo(() => {
   const { t } = useTranslation();
   const devices = useDevices();
   const navigate = useNavigate();
-  const { appId } = useParams();
+  const appId = useEdittingAppId();
 
   const handleClick = useCallback((key: string) => {
     navigate(`/${DESIGN}/${appId}/${DESIGN_FRAME}/${key}`)

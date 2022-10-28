@@ -11,6 +11,8 @@ import { useGetMenuItemByPageUuid } from "./hooks/useGetMenuItemByPageUuid";
 import "./style.less"
 import cls from "classnames";
 import { useMenu } from "~/AppRunner/hooks/useMenu";
+import { SYSTEM_APP_ID } from "~/consts";
+import { Device } from "@rxdrag/appx-plugin-sdk";
 
 export interface IComponentProps {
   mode?: "vertical" | "horizontal" | "inline",
@@ -21,7 +23,7 @@ const AppMenu = memo((props: IComponentProps) => {
   const { className, ...other } = props;
   const menu = useMenu()
   const p = useParseLangMessage();
-  const { device, appId, menuUuid } = useParams();
+  const { device = Device.PC, appId = SYSTEM_APP_ID, menuUuid } = useParams();
   const navigate = useNavigate();
 
   const entryId = useEntryPageUuid();
@@ -53,7 +55,7 @@ const AppMenu = memo((props: IComponentProps) => {
     if (item?.type === MenuItemType.Link) {
       item?.link && window.open(item?.link)
     } else if (item?.type !== MenuItemType.Divider) {
-      navigate(`/app/${device}/${appId}/${item.uuid}`)
+      navigate(`/${device}/${appId}/${item.uuid}`)
     }
   }, [appId, device, getMenuItem, navigate]);
 

@@ -26,17 +26,8 @@ function getItem(
 }
 
 const items: MenuProps['items'] = [
-  getItem('Nav 1', 'sub1', <MailOutlined />),
-
-  getItem('Nav 2', 'sub2', <AppstoreOutlined />, [
-    getItem('Option 5', '5'),
-    getItem('Option 6', '6'),
-  ]),
-
-  getItem('Nav 3', 'sub4', <SettingOutlined />, [
-    getItem('Option 9', '9'),
-    getItem('Option 10', '10'),
-  ]),
+  getItem('Menu item 1', 'sub1', <MailOutlined />),
+  getItem('Menu item 2', 'sub2', <AppstoreOutlined />,),
 ];
 
 const ComponentDesigner: DnFC<IComponentProps> = observer((

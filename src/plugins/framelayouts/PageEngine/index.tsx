@@ -10,7 +10,7 @@ import { ID } from "~/shared";
 import { useQueryPageWithCache } from "./hooks/useQueryPageWithCache";
 import { IUser } from "~/enthooks/hooks/useQueryMe";
 import { useMe } from "@rxdrag/plugin-sdk/contexts/login";
-import { IComponents, useAppParams } from "~/plugin-sdk/contexts/app";
+import { useAppParams } from "~/plugin-sdk/contexts/app";
 
 export class Me {
 
