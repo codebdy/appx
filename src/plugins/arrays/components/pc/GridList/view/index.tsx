@@ -68,7 +68,7 @@ export const GridList: React.FC<IGridListProps> & {
         })
       }
       {
-        <ListPagination total={50}/>
+        <ListPagination total={50} paginationPosition={paginationPosition} />
       }
     </div>
   )
