@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { ActionType, IAppxAction, IConfirmAction, IOpenPageAction, ISuccessAction } from "@rxdrag/plugin-sdk/model/action";
+import { ActionType, IAppxAction, IConfirmAction, INavigateAction, IOpenPageAction, ISuccessAction } from "@rxdrag/plugin-sdk/model/action";
 import { useBatchDelete } from "./useBatchDelete";
 import { useBatchUpdate } from "./useBatchUpdate";
 import { useCloseDialog } from "./useCloseDialog";
@@ -11,6 +11,7 @@ import { useReset } from "./useReset";
 import { useSaveData } from "./useSaveData";
 import { useShowSuccess } from "./useShowSuccess";
 import { useTableSearch } from "./useTableSearch";
+import { useNavigate } from "react-router-dom";
 
 export function useDoOneAction() {
   const openPage = useOpenPage();
@@ -24,6 +25,7 @@ export function useDoOneAction() {
   const batchDelete = useBatchDelete();
   const batchUpdate = useBatchUpdate();
   const submitSearch = useTableSearch();
+  const navigate = useNavigate();
 
   const doAction = useCallback((action: IAppxAction) => {
     return new Promise(async (resolve, reject) => {
@@ -62,6 +64,9 @@ export function useDoOneAction() {
             break;
           case ActionType.SubmitSearch:
             submitSearch();
+            break;
+          case ActionType.Navigate:
+            navigate((action.payload as INavigateAction).route);
             break;
         }
       } catch (err) {

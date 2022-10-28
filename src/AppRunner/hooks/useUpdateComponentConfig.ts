@@ -43,7 +43,7 @@ export function useUpdateComponentConfig(options?: IPostOptions<any>): [
     }
 
     post(newConfig);
-  }, [app.id, device, me.id, post, userConfig])
+  }, [app?.id, device, me.id, post, userConfig])
 
   return [update, { error: error, loading: loading }];
 }

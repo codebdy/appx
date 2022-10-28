@@ -157,7 +157,7 @@ export const ActionInput = observer((props: {
         title={<TextWidget token="SettingComponents.ActionInput.Title" />}
         className="config-action-modal"
         width={900}
-        visible={isModalVisible}
+        open={isModalVisible}
         onCancel={handleCancel}
         onOk={handleOk}
         okText={<TextWidget token="SettingComponents.ActionInput.Confirm" />}
