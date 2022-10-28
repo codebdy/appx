@@ -15,7 +15,7 @@ import { useFindNode } from '~/plugin-sdk'
 export const GridListDesigner: DnFC<IGridListProps> & {
   Header?: React.FC<IListHeaderProps>
 } = observer((props) => {
-  const { className, hasHeader, pagination, paginationPosition, pageSize, ...other } = props;
+  const { className, hasHeader, hasPagination, paginationPosition, pageSize, ...other } = props;
   const node = useTreeNode()
   const header = useFindNode('Header');
   const otherChildrenNodes = useMemo(() => node.children?.filter(child =>
