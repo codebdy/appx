@@ -8,11 +8,13 @@ import { useGetPage } from "../../../../hooks/useGetPage";
 import { SuccessMessagePanel } from "./SuccessMessagePanel";
 import { ConfirmPanel } from "./ConfirmPanel";
 import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/view";
+import { NavigatePanel } from "./NavigatePanel";
 
 const pannels: { [key: string]: React.FC<{ payload: any }> } = {
   [ActionType.OpenPage]: OpenPagePanel,
   [ActionType.SuccessMessage]: SuccessMessagePanel,
   [ActionType.Confirm]: ConfirmPanel,
+  [ActionType.Navigate]: NavigatePanel,
 }
 
 export const ActionPropertyBox = memo((
@@ -39,7 +41,7 @@ export const ActionPropertyBox = memo((
     const { title, ...payload } = fromValues;
     if (changeValues?.pageId) {
       const page = getPage(changeValues?.pageId);
-      if(page){
+      if (page) {
         payload.pageTitle = page.title;
       }
     }

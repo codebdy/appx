@@ -80,6 +80,10 @@ export const ToolCollapse = memo(() => {
       id: ActionType.SuccessMessage,
       title: t(enumToLangKey(ActionType.SuccessMessage)),
     },
+    {
+      id: ActionType.Navigate,
+      title: t(enumToLangKey(ActionType.Navigate)),
+    },
   ], [t]);
 
 
