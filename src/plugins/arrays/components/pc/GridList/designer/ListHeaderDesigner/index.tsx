@@ -8,7 +8,7 @@ export const ListHeaderDesigner = observer((props: IListHeaderProps) => {
   const {className, ...other} = props
 
   return (
-    <DroppableWidget {...other} className = {clx("rx-page-footer-toolbar-layout", className)}>
+    <DroppableWidget {...other} className = {clx("appx-grid-list-header", className)}>
       {props.children}
     </DroppableWidget>
   )

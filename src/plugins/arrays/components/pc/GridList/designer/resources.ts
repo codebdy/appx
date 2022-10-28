@@ -10,6 +10,9 @@ const resources: IResourceCreator[] = [
         props: {
           type: 'void',
           'x-component': Name,
+          'x-component-props': {
+            hasHeader: true,
+          },
         },
         children: [
           {
