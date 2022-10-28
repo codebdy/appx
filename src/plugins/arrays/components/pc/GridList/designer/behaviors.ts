@@ -1,7 +1,9 @@
 import { IBehavior } from "@rxdrag/appx-plugin-sdk";
 import Name from "../name";
-import locales, { FormGridColumnLocales } from "./locales";
-import schema, { GridColumnSchema } from "./schema";
+import { ListHeaderLocales } from "./ListHeaderDesigner/locales";
+import { ListHeaderSchema } from "./ListHeaderDesigner/schema";
+import locales  from "./locales";
+import schema from "./schema";
 
 const behaviors: IBehavior[] = [
   {
@@ -10,44 +12,21 @@ const behaviors: IBehavior[] = [
     selector: (node) => node.props['x-component'] === Name,
     designerProps: {
       droppable: true,
-      allowDrop: (node) => node.props['x-component'] !== 'FormGrid',
     },
     designerLocales: locales,
     schema,
   },
   {
-    name: 'FormGrid.GridColumn',
+    name: 'GridList.Header',
     extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'FormGrid.GridColumn',
+    selector: (node) => node.props['x-component'] === 'GridList.Header',
     designerProps: {
       droppable: true,
-      resizable: {
-        width(node) {
-          const span = Number(node.props['x-component-props']?.gridSpan ?? 1)
-          return {
-            plus: () => {
-              if (span + 1 > 12) return
-              node.props['x-component-props'] =
-                node.props['x-component-props'] || {}
-              node.props['x-component-props'].gridSpan = span + 1
-            },
-            minus: () => {
-              if (span - 1 < 1) return
-              node.props['x-component-props'] =
-                node.props['x-component-props'] || {}
-              node.props['x-component-props'].gridSpan = span - 1
-            },
-          }
-        },
-      },
-      resizeXPath: 'x-component-props.gridSpan',
-      resizeStep: 1,
-      resizeMin: 1,
-      resizeMax: 12,
-      allowDrop: (node) => node.props['x-component'] === 'FormGrid',
+      deletable: false,
+      cloneable: false,
     },
-    designerLocales: FormGridColumnLocales,
-    schema: GridColumnSchema
+    designerLocales: ListHeaderLocales,
+    schema: ListHeaderSchema
   }
 ]
 

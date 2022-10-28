@@ -11,7 +11,7 @@ import { IListHeaderProps } from '../view/ListHeader'
 import { ListHeaderDesigner } from './ListHeaderDesigner'
 
 export const GridListDesigner: DnFC<IGridListProps> & {
-  ListHeader?: React.FC<IListHeaderProps>
+  Header?: React.FC<IListHeaderProps>
 }   = observer((props) => {
   const { className, hasHeader, pagination, paginationPosition, pageSize, ...other } = props;
   const node = useTreeNode()
@@ -23,4 +23,4 @@ export const GridListDesigner: DnFC<IGridListProps> & {
   )
 })
 
-GridListDesigner.ListHeader = ListHeaderDesigner;
+GridListDesigner.Header = ListHeaderDesigner;

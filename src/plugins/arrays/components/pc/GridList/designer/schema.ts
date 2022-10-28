@@ -68,21 +68,4 @@ const schema: IPropsSchema = {
 
 }
 
-export const GridColumnSchema: IPropsSchema = {
-  props: {
-    type: 'object',
-    properties: {
-      gridSpan: {
-        type: 'number',
-        'x-decorator': 'FormItem',
-        'x-component': 'NumberPicker',
-        'x-component-props': {
-          defaultValue: 1,
-        },
-      },
-    },
-  }
-
-}
-
 export default schema;

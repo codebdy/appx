@@ -16,21 +16,7 @@ const resources: IResourceCreator[] = [
             componentName: 'Field',
             props: {
               type: 'void',
-              'x-component': 'FormGrid.GridColumn',
-            },
-          },
-          {
-            componentName: 'Field',
-            props: {
-              type: 'void',
-              'x-component': 'FormGrid.GridColumn',
-            },
-          },
-          {
-            componentName: 'Field',
-            props: {
-              type: 'void',
-              'x-component': 'FormGrid.GridColumn',
+              'x-component': 'GridList.Header',
             },
           },
         ],
