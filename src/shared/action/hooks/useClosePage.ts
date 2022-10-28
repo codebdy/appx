@@ -1,12 +1,12 @@
 import { useCallback } from "react";
 import { useSetRecoilState } from "recoil";
-import { useDesignerViewKey } from "~/plugin-sdk/contexts/desinger";
 import { pagePopupsState } from "@rxdrag/plugin-sdk/atoms";
 import { useExpressionScope } from '@formily/react';
 import { OpenPageType } from "@rxdrag/plugin-sdk";
+import { useAppViewKey } from "~/plugin-sdk/contexts/app";
 
 export function useClosePage() {
-  const key = useDesignerViewKey();
+  const key = useAppViewKey();
   const { $params } = useExpressionScope()||{}
   const setPagePopups = useSetRecoilState(pagePopupsState(key));
   const close = useCallback(() => {

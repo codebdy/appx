@@ -3,20 +3,22 @@ import { useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { createId } from "../..";
-import { useDesignerViewKey } from "~/plugin-sdk/contexts/desinger";
 import { useInstanceId } from "@rxdrag/plugin-sdk/contexts/instance";
 import { IOpenPageAction, OpenPageType } from "@rxdrag/plugin-sdk/model/action";
+import { SYSTEM_APP_ID } from "~/consts";
+import { Device } from "@rxdrag/appx-plugin-sdk";
+import { useAppViewKey } from "~/plugin-sdk/contexts/app";
 
 export function useOpenPage() {
-  const { device, appId, menuUuid } = useParams();
+  const { device = Device.PC, appId = SYSTEM_APP_ID, menuUuid } = useParams();
   const dataId = useInstanceId();
-  const key = useDesignerViewKey();
+  const key = useAppViewKey();
   const setPagePopups = useSetRecoilState(pagePopupsState(key));
   const navigate = useNavigate();
 
   const open = useCallback((action: IOpenPageAction) => {
     if (action.openType === OpenPageType.RouteTo) {
-      navigate(`/app/${device}/${appId}/${menuUuid || "no"}/${action.pageId}/${dataId || ""}`)
+      navigate(`/${device}/${appId}/${menuUuid || "no"}/${action.pageId}/${dataId || ""}`)
     } else if (action.openType === OpenPageType.Dialog || action.openType === OpenPageType.Drawer) {
       setPagePopups(pgPops => ([...pgPops, {
         id: createId(),

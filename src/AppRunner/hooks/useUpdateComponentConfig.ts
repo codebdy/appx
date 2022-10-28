@@ -1,8 +1,7 @@
 import { IPostOptions, usePostOne } from "~/enthooks/hooks/usePostOne";
 import { useCallback } from "react";
-import { useDesignerParams, } from "~/plugin-sdk/contexts/desinger";
 import { useMe } from "@rxdrag/plugin-sdk/contexts/login";
-import { useUserConfig } from "~/plugin-sdk/contexts/app";
+import { useAppParams, useUserConfig } from "~/plugin-sdk/contexts/app";
 import { IUserConfig, IUserConfigInput } from "~/model/user";
 
 export function useUpdateComponentConfig(options?: IPostOptions<any>): [
@@ -13,7 +12,7 @@ export function useUpdateComponentConfig(options?: IPostOptions<any>): [
   }
 ] {
   const userConfig = useUserConfig();
-  const { app, device } = useDesignerParams();
+  const { app, device } = useAppParams();
   const me = useMe();
 
   const [post, { error, loading }] = usePostOne<IUserConfigInput, IUserConfig>("UserConfig",

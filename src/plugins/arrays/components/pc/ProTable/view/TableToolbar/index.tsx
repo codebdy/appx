@@ -5,7 +5,7 @@ import { TableToolbarShell } from "./TableToolbarShell"
 import { RecursionField, useFieldSchema } from '@formily/react';
 import { Schema } from "@formily/react";
 import "./style.less";
-import { useComponentConfig } from "~/AppDesigner/AppDesignerRoot/hooks/useComponentConfig";
+import { useComponentConfig } from "~/AppRunner/hooks/useComponentConfig";
 
 export interface ITableToolbarProps {
   className?: string,

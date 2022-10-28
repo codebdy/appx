@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { useUserConfig } from "~/plugin-sdk/contexts/desinger";
+import { useUserConfig } from "~/plugin-sdk/contexts/app";
 
 export function useComponentConfig(path: string) {
   const userConfig = useUserConfig();
