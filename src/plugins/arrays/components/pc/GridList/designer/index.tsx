@@ -1,30 +1,26 @@
 import React from 'react'
-import { FormGrid as FormilyGird } from '@formily/antd'
 import {
   DnFC,
   useTreeNode,
-  useNodeIdProps,
-  DroppableWidget,
 } from '@designable/react'
 import { observer } from '@formily/reactive-react'
 import './styles.less'
+import { IGridListProps } from '../view'
+import cls from "classnames";
+import { IListHeaderProps } from '../view/ListHeader'
+import { ListHeaderDesigner } from './ListHeaderDesigner'
 
-type formilyGrid = typeof FormilyGird
-
-const GridListDesigner: DnFC<React.ComponentProps<formilyGrid>> & {
-  GridColumn?: React.FC<React.ComponentProps<formilyGrid['GridColumn']>>
-} = observer((props) => {
+export const GridListDesigner: DnFC<IGridListProps> & {
+  ListHeader?: React.FC<IListHeaderProps>
+}   = observer((props) => {
+  const { className, hasHeader, pagination, paginationPosition, pageSize, ...other } = props;
   const node = useTreeNode()
-  const nodeId = useNodeIdProps()
-  if (node.children.length === 0) return <DroppableWidget {...props} />
-
-  const key = new Date().getTime()
 
   return (
-    <div {...nodeId} className="dn-grid">
+    <div {...other} className={cls("appx-grid-list", className)}>
 
     </div>
   )
 })
 
-export default GridListDesigner;
+GridListDesigner.ListHeader = ListHeaderDesigner;

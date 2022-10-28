@@ -1,18 +1,34 @@
 import { observer } from '@formily/reactive-react'
-import { Card as AntdCard, CardProps } from 'antd'
 import { useParseLangMessage } from '@rxdrag/plugin-sdk/hooks/useParseLangMessage';
 import React from 'react';
+import { IDataSourceableProps } from '~/plugin-sdk';
 import "./style.less"
+import cls from "classnames";
 
-const Component = observer((props: CardProps) => {
-  const { title, extra, ...other } = props;
+export interface IGridListProps extends IDataSourceableProps {
+  className?: string,
+  hasHeader?: boolean,
+  pagination?: boolean,
+  paginationPosition?: "bottomLeft" | "bottomCenter" | "bottomRight",
+  pageSize?: number,
+  column?: number,
+  gutter?: number,
+  xs?: number,
+  sm?: number,
+  md?: number,
+  lg?: number,
+  xl?: number,
+  xxl?: number,
+}
+
+export const GridList = observer((props: IGridListProps) => {
+  const { className, hasHeader, pagination, paginationPosition, pageSize, ...other } = props;
   const p = useParseLangMessage();
 
   return (
-    <div>
+    <div className={cls("appx-grid-list", className)} {...other}>
 
     </div>
   )
 })
 
-export default Component;
