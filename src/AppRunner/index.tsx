@@ -3,15 +3,17 @@ import { memo } from "react"
 import RunnerEngine from "./RunnerEngine"
 import { useParams } from "react-router-dom"
 import { CenterSpin } from "~/common/CenterSpin"
-import { NotPublished } from "./NotPublished"
+import { NotReady } from "./NotReady"
 import { AppRoot } from "./AppRoot"
 import { SYSTEM_APP_ID } from "~/consts"
 import { useQueryApp } from "./hooks/useQueryApp"
 import { useShowError } from "./hooks/useShowError"
 import { PredefinedPluginsRoot } from "~/plugin/PredefinedPluginsRoot"
+import { useTranslation } from "react-i18next"
 
 const AppRunner = memo(() => {
   const { appId = SYSTEM_APP_ID } = useParams();
+  const { t } = useTranslation();
   const { app, loading, error } = useQueryApp(appId)
   useShowError(error);
 
@@ -26,7 +28,7 @@ const AppRunner = memo(() => {
       </AppRoot>
     }
 
-    return <NotPublished />
+    return <NotReady title ={t("NotPublishedTip")} />
   }, [loading, app])
 
   return (

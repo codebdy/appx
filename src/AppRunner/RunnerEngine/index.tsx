@@ -11,8 +11,9 @@ import { useMe } from "@rxdrag/plugin-sdk/contexts/login";
 import { createSchemaField, ExpressionScope, FormProvider } from '@formily/react';
 import { createForm } from '@formily/core';
 import { usePluginComponents } from '~/AppRunner/hooks/usePluginComponents';
-import { NotFinieshed } from '../NotFinieshed';
 import { useAppParams } from '~/plugin-sdk/contexts/app';
+import { NotReady } from '../NotReady';
+import { useTranslation } from 'react-i18next';
 
 export class Me {
   constructor(private me?: IUser) { }
@@ -29,6 +30,7 @@ export class Me {
 
 const RunnerEngine = memo(() => {
   const [mentItem, setMenuItem] = useState<IMenuItem>()
+  const { t } = useTranslation();
   const p = useParseLangSchema();
   const { uiFrame } = useAppParams()
   const components = usePluginComponents();
@@ -71,7 +73,7 @@ const RunnerEngine = memo(() => {
           </FormProvider>
         </RouteContext.Provider>
       </RunnerContext.Provider>
-      : <NotFinieshed />
+      : <NotReady title ={t("NotFinishedTip")} />
   );
 });
 

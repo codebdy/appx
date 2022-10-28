@@ -8,7 +8,12 @@ import { DESIGN_BOARD } from "~/consts"
 import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid"
 import "./style.less"
 
-export const NotPublished = memo(() => {
+export const NotReady = memo((
+  props: {
+    title: string
+  }
+) => {
+  const { title } = props;
   const { t } = useTranslation();
   const appId = useEdittingAppId();
   const navigate = useNavigate();
@@ -35,7 +40,7 @@ export const NotPublished = memo(() => {
             />
           </svg>
         </div>
-        <div className="content">{t("NotPublishedTip")}</div>
+        <div className="content">{title}</div>
         <div className="footer">
           <Button
             type="primary"
