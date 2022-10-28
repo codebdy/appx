@@ -6,14 +6,17 @@ import './index.less'
 import { RecoilRoot } from "recoil";
 import { BrowserRouter } from "react-router-dom";
 import './i18n';
+import { PredefinedPluginsRoot } from "./plugin/PredefinedPluginsRoot";
 
 const AppRender = () => {
   return (
     <Suspense fallback="loading">
       <RecoilRoot>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <PredefinedPluginsRoot>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </PredefinedPluginsRoot>
       </RecoilRoot>
     </Suspense>
   )

@@ -38,7 +38,6 @@ export const useSetToken = () => {
 
 export const useEndpoint = () => {
   const iEntx = useEntix();
-  console.log("哈哈", iEntx)
   return iEntx?.endpoint
 }
 

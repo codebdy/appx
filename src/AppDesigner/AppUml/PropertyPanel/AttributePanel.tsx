@@ -50,7 +50,6 @@ export const AttributePanel = (props: {
     setNameError(errMsg)
   }, [changeAttribute, attribute, getTypeLabel, cls])
 
-  console.log("哈哈哈", attribute)
 
   return (
     <div className="property-pannel">
