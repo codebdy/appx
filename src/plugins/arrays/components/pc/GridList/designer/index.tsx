@@ -12,11 +12,14 @@ import { IListHeaderProps } from '../view/ListHeader'
 import { ListHeaderDesigner } from './ListHeaderDesigner'
 import { useFindNode } from '~/plugin-sdk'
 import { ListPagination } from '../view/ListPagination'
+import { List } from 'antd'
+
+const data = [{}];
 
 export const GridListDesigner: DnFC<IGridListProps> & {
   Header?: React.FC<IListHeaderProps>
 } = observer((props) => {
-  const { className, hasHeader, hasPagination, paginationPosition, pageSize, ...other } = props;
+  const { className, hasHeader, hasPagination, paginationPosition, pageSize, gutter = 16, ...other } = props;
   const node = useTreeNode()
   const header = useFindNode('Header');
   const otherChildrenNodes = useMemo(() => node.children?.filter(child =>
@@ -29,19 +32,28 @@ export const GridListDesigner: DnFC<IGridListProps> & {
       {
         hasHeader && header && <TreeNodeWidget node={header} />
       }
-      {
-        otherChildrenNodes?.map((child) => {
-          return (
-            child && <TreeNodeWidget node={child} />
-          )
-        })
-      }
-      {
-        !otherChildrenNodes?.length &&
-        <div className="appx-grid-list-placeholder">
-          Please drop here
-        </div>
-      }
+      <List
+        grid={{ gutter: 16, column: 4 }}
+        dataSource={data}
+        renderItem={item => (
+          <List.Item>
+            {
+              otherChildrenNodes?.map((child) => {
+                return (
+                  child && <TreeNodeWidget node={child} />
+                )
+              })
+            }
+            {
+              !otherChildrenNodes?.length &&
+              <div className="appx-grid-list-placeholder">
+                Please drop here
+              </div>
+            }
+          </List.Item>
+        )}
+      />
+
       {
         hasPagination && <ListPagination total={2} paginationPosition={paginationPosition} />
       }

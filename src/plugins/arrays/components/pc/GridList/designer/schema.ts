@@ -27,6 +27,7 @@ const schema: IPropsSchema = {
         'x-decorator': 'FormItem',
         'x-component': 'NumberPicker',
         'x-component-props': {
+          defaultValue: 16
         },
       },
       hasPagination: {
