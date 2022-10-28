@@ -17,8 +17,8 @@ const schema: IPropsSchema = {
       },
       column: {
         type: 'number',
-        'x-decorator': 'FormItem',
-        'x-component': 'NumberPicker',
+        //'x-decorator': 'FormItem',
+        'x-component': 'ColumnsSetter',
         'x-component-props': {
         },
       },
