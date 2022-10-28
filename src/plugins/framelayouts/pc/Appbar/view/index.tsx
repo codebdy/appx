@@ -2,6 +2,7 @@ import { observer } from "@formily/reactive-react"
 import React from "react"
 import cls from "classnames"
 import "./style.less"
+import { Header } from "antd/lib/layout/layout"
 
 export interface IComponentProps {
   className?: string,
@@ -11,7 +12,7 @@ export interface IComponentProps {
 const Component = observer((props: IComponentProps) => {
   const { className } = props;
   return (
-    <div className={cls(className, "appx-appbar", "bottom-border")} {...props}/>
+    <Header className={cls(className, "appx-appbar", "bottom-border")} {...props}/>
   )
 })
 
