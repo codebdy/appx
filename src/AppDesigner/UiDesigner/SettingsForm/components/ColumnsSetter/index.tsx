@@ -1,160 +1,78 @@
 import React from 'react'
-import { usePrefix, IconWidget } from '@designable/react'
 import { useField, Field, observer } from '@formily/react'
-import { Select, Radio, NumberPicker } from '@formily/antd'
-import { FoldItem, InputItems, SizeInput, ColorInput } from '@designable/react-settings-form'
+import { NumberPicker } from '@formily/antd'
+import { FoldItem, InputItems } from '@designable/react-settings-form'
 import cls from 'classnames'
-export interface IFontStyleSetterProps {
+import "./style.less"
+
+export interface IColumnsSetterProps {
   className?: string
   style?: React.CSSProperties
 }
 
-const createFontFamilyOptions = (fonts: string[]) => {
-  return fonts.map((font) => {
-    const splited = font.split('=')
-    const label = splited?.[0]
-    const value = splited?.[1]
-    return {
-      label: <span style={{ fontFamily: value }}>{label}</span>,
-      value,
-    }
-  })
-}
 
-const FontFamilyOptions = createFontFamilyOptions([
-  '宋体=SimSun',
-  '微软雅黑=Microsoft Yahei',
-  '苹方=PingFang SC',
-  'Andale Mono=andale mono,monospace',
-  'Arial=arial,helvetica,sans-serif',
-  'Arial Black=arial black,sans-serif',
-  'Book Antiqua=book antiqua,palatino,serif',
-  'Comic Sans MS=comic sans ms,sans-serif',
-  'Courier New=courier new,courier,monospace',
-  'Georgia=georgia,palatino,serif',
-  'Helvetica Neue=Helvetica Neue',
-  'Helvetica=helvetica,arial,sans-serif',
-  'Impact=impact,sans-serif',
-  'Symbol=symbol',
-  'Tahoma=tahoma,arial,helvetica,sans-serif',
-  'Terminal=terminal,monaco,monospace',
-  'Times New Roman=times new roman,times,serif',
-  'Trebuchet MS=trebuchet ms,geneva,sans-serif',
-  'Verdana=verdana,geneva,sans-serif',
-])
-
-export const ColumnsSetter: React.FC<IFontStyleSetterProps> = observer(
+export const ColumnsSetter: React.FC<IColumnsSetterProps> = observer(
   (props) => {
     const field = useField()
-    const prefix = usePrefix('font-style-setter')
+
     return (
       <FoldItem
         label={field.title}
-        className={cls(prefix, props.className)}
+        className={cls(props.className)}
         style={props.style}
       >
         <FoldItem.Base>
           <Field
-            name="fontFamily"
+            name="columns"
             basePath={field.address.parent()}
             component={[
-              Select,
-              { style: { width: '100%' }, placeholder: 'Helvetica Neue' },
+              NumberPicker,
+              { style: { width: '100%' }},
             ]}
-            dataSource={FontFamilyOptions}
           />
         </FoldItem.Base>
         <FoldItem.Extra>
           <InputItems>
-            <InputItems.Item icon="FontWeight" width="50%">
+            <InputItems.Item title={<div className='columns-input-title'>xs</div>} width="50%">
               <Field
-                name="fontWeight"
+                name="xs"
                 basePath={field.address.parent()}
-                component={[NumberPicker, { placeholder: '400' }]}
+                component={[NumberPicker]}
               />
             </InputItems.Item>
-            <InputItems.Item icon="FontStyle" width="50%">
+            <InputItems.Item title={<div className='columns-input-title'>sm</div>} width="50%">
               <Field
-                name="fontStyle"
+                name="sm"
                 basePath={field.address.parent()}
-                dataSource={[
-                  {
-                    label: <IconWidget infer="NormalFontStyle" />,
-                    value: 'normal',
-                  },
-                  {
-                    label: <IconWidget infer="ItalicFontStyle" />,
-                    value: 'italic',
-                  },
-                ]}
-                component={[Radio.Group, { optionType: 'button' }]}
+                component={[NumberPicker]}
               />
             </InputItems.Item>
-            <InputItems.Item icon="FontColor" width="100%">
+            <InputItems.Item title={<div className='columns-input-title'>md</div>} width="50%">
               <Field
-                name="color"
+                name="md"
                 basePath={field.address.parent()}
-                component={[ColorInput]}
+                component={[NumberPicker]}
               />
             </InputItems.Item>
-            <InputItems.Item icon="FontSize" width="50%">
+            <InputItems.Item title={<div className='columns-input-title'>lg</div>} width="50%">
               <Field
-                name="fontSize"
+                name="lg"
                 basePath={field.address.parent()}
-                component={[SizeInput, { exclude: ['auto'] }]}
+                component={[NumberPicker]}
               />
             </InputItems.Item>
-            <InputItems.Item icon="LineHeight" width="50%">
+            <InputItems.Item title={<div className='columns-input-title'>xl</div>} width="50%">
               <Field
-                name="lineHeight"
+                name="xl"
                 basePath={field.address.parent()}
-                component={[SizeInput, { exclude: ['auto'] }]}
+                component={[NumberPicker]}
               />
             </InputItems.Item>
-            <InputItems.Item icon="TextAlign">
+            <InputItems.Item title={<div className='columns-input-title'>xxl</div>} width="50%">
               <Field
-                name="textAlign"
+                name="xxl"
                 basePath={field.address.parent()}
-                dataSource={[
-                  {
-                    label: <IconWidget infer="TextAlignLeft" />,
-                    value: 'left',
-                  },
-                  {
-                    label: <IconWidget infer="TextAlignCenter" />,
-                    value: 'center',
-                  },
-                  {
-                    label: <IconWidget infer="TextAlignRight" />,
-                    value: 'right',
-                  },
-                  {
-                    label: <IconWidget infer="TextAlignJustify" />,
-                    value: 'justify',
-                  },
-                ]}
-                component={[Radio.Group, { optionType: 'button' }]}
-              />
-            </InputItems.Item>
-            <InputItems.Item icon="TextDecoration">
-              <Field
-                name="textDecoration"
-                basePath={field.address.parent()}
-                dataSource={[
-                  {
-                    label: '--',
-                    value: 'none',
-                  },
-                  {
-                    label: <IconWidget infer="TextUnderline" />,
-                    value: 'underline',
-                  },
-                  {
-                    label: <IconWidget infer="TextLineThrough" />,
-                    value: 'line-through',
-                  },
-                ]}
-                component={[Radio.Group, { optionType: 'button' }]}
+                component={[NumberPicker]}
               />
             </InputItems.Item>
           </InputItems>
