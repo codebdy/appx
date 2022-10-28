@@ -19,21 +19,30 @@ const data = [{}];
 export const GridListDesigner: DnFC<IGridListProps> & {
   Header?: React.FC<IListHeaderProps>
 } = observer((props) => {
-  const { className, hasHeader, hasPagination, paginationPosition, pageSize, gutter = 16, ...other } = props;
+  const {
+    className,
+    hasHeader,
+    hasPagination,
+    paginationPosition,
+    pageSize,
+    grid,
+    gutter,
+    ...other
+  } = props;
   const node = useTreeNode()
   const header = useFindNode('Header');
   const otherChildrenNodes = useMemo(() => node.children?.filter(child =>
     child.id !== header?.id
   ), [header?.id, node.children])
 
-
+  
   return (
     <div {...other} className={cls("appx-grid-list", className)}>
       {
         hasHeader && header && <TreeNodeWidget node={header} />
       }
       <List
-        grid={{ gutter: 16, column: 4 }}
+        grid={{ gutter, ...grid }}
         dataSource={data}
         renderItem={item => (
           <List.Item>

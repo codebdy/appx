@@ -15,11 +15,14 @@ const schema: IPropsSchema = {
           defaultChecked: true,
         },
       },
-      column: {
+      grid: {
         type: 'number',
         //'x-decorator': 'FormItem',
         'x-component': 'ColumnsSetter',
         'x-component-props': {
+          defaultValue: {
+            column: 4
+          }
         },
       },
       gutter: {

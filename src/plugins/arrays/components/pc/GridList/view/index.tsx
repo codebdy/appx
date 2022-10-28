@@ -6,8 +6,17 @@ import "./style.less"
 import cls from "classnames";
 import { ListHeader } from './ListHeader';
 import { RecursionField, Schema, useFieldSchema } from '@formily/react';
-import { Pagination } from 'antd';
 import { ListPagination } from './ListPagination';
+
+export interface IGrid {
+  column?: number,
+  xs?: number,
+  sm?: number,
+  md?: number,
+  lg?: number,
+  xl?: number,
+  xxl?: number,
+}
 
 export interface IGridListProps extends IDataSourceableProps {
   className?: string,
@@ -15,14 +24,8 @@ export interface IGridListProps extends IDataSourceableProps {
   hasPagination?: boolean,
   paginationPosition?: "bottomLeft" | "bottomCenter" | "bottomRight",
   pageSize?: number,
-  column?: number,
   gutter?: number,
-  xs?: number,
-  sm?: number,
-  md?: number,
-  lg?: number,
-  xl?: number,
-  xxl?: number,
+  grid?: IGrid,
 }
 
 export const GridList: React.FC<IGridListProps> & {
@@ -33,6 +36,7 @@ export const GridList: React.FC<IGridListProps> & {
     hasPagination,
     paginationPosition,
     pageSize,
+    grid,
     ...other
   } = props;
   const fieldSchema = useFieldSchema()
@@ -68,7 +72,7 @@ export const GridList: React.FC<IGridListProps> & {
         })
       }
       {
-        hasPagination && 
+        hasPagination &&
         <ListPagination total={50} paginationPosition={paginationPosition} />
       }
     </div>

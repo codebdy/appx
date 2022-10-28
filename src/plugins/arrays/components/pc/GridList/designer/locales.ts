@@ -4,7 +4,7 @@ const locales = {
     settings: {
       'x-component-props': {
         hasHeader: '表格头',
-        column: '列数',
+        grid: '列数',
         gutter: "间隙",
         hasPagination: '分页',
         paginationPosition: {
