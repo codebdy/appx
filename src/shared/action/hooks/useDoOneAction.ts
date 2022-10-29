@@ -12,6 +12,7 @@ import { useSaveData } from "./useSaveData";
 import { useShowSuccess } from "./useShowSuccess";
 import { useTableSearch } from "./useTableSearch";
 import { useNavigate } from "react-router-dom";
+import { useOpenFile } from "./useOpenFile";
 
 export function useDoOneAction() {
   const openPage = useOpenPage();
@@ -26,6 +27,7 @@ export function useDoOneAction() {
   const batchUpdate = useBatchUpdate();
   const submitSearch = useTableSearch();
   const navigate = useNavigate();
+  const openFile = useOpenFile();
 
   const doAction = useCallback((action: IAppxAction) => {
     return new Promise(async (resolve, reject) => {
@@ -68,6 +70,9 @@ export function useDoOneAction() {
           case ActionType.Navigate:
             navigate((action.payload as INavigateAction).route);
             break;
+          case ActionType.OpenFile:
+            await openFile();
+            break
         }
       } catch (err) {
         reject(err);

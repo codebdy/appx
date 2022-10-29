@@ -53,10 +53,14 @@ export interface INavigateAction {
   route?: string;
 }
 
+export interface IOpenFileAction{
+  multiple?: boolean;
+  accept?: string;
+}
 
 export interface IAppxAction {
   uuid: string,
   title: string,
   actionType: ActionType,
-  payload?: IOpenPageAction | ISuccessAction | IConfirmAction | INavigateAction,
+  payload?: IOpenPageAction | ISuccessAction | IConfirmAction | INavigateAction | IOpenFileAction,
 }

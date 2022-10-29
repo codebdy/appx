@@ -1,4 +1,4 @@
-import { Form } from "antd"
+import { Form, Input, Switch } from "antd"
 import React from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next"
@@ -13,16 +13,17 @@ export const OpenFilePanel = memo((
   return (
     <>
       <Form.Item
-        label={t("Title")}
-        name="boxTitle"
+        label={"Accept"}
+        name="accept"
       >
-        <MultiLangInput title={t("Title")} />
+        <Input />
       </Form.Item>
       <Form.Item
-        label={t("Message")}
-        name="message"
+        label={t("Action.Multiple")}
+        valuePropName="checked"
+        name="multiple"
       >
-        <MultiLangInput title={t("Message")} multiline />
+        <Switch />
       </Form.Item>
     </>
   )
