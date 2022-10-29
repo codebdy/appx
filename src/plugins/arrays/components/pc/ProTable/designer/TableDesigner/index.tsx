@@ -18,7 +18,7 @@ import {
 } from '@rxdrag/plugin-sdk/funcs'
 import { LoadTemplate } from '@designable/formily-antd/lib/common/LoadTemplate'
 import { useParseLangMessage } from '@rxdrag/plugin-sdk/hooks/useParseLangMessage'
-import { useSelectable } from '~/plugin-sdk/contexts/table'
+import { useSelectable } from '~/plugin-sdk/contexts/array'
 
 const ensureObjectItemsNode = createEnsureTypeItemsNode('object')
 
