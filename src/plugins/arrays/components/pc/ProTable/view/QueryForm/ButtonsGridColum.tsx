@@ -4,7 +4,7 @@ import { Button } from "antd";
 import React, { useCallback, useMemo } from "react"
 import { useLocalTranslations } from "../hooks/useLocalTranslations";
 import { useParentForm } from "@formily/react"
-import { useProTableParams } from "@rxdrag/plugin-sdk/contexts/propTable";
+import { useTableParams } from "~/plugin-sdk/contexts/table";
 import { isObjectField } from "@formily/core";
 import { observer } from "@formily/reactive-react";
 import { useTableSearch } from "~/shared/action/hooks/useTableSearch";
@@ -19,7 +19,7 @@ export const ButtonsGridColum = observer((
 ) => {
   const { layout, expanded, collapsiable, onToggle } = props;
   const { t } = useLocalTranslations();
-  const params = useProTableParams();
+  const params = useTableParams();
   const form = useParentForm();
   const objectField = useMemo(() => isObjectField(form) && form, [form]);
 

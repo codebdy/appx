@@ -16,7 +16,7 @@ import { ITableToolbarProps } from "../view/TableToolbar"
 import { ITableToolbarActionsProps } from "../view/TableToolbarActions"
 import { ITableBatchActionsProps } from "../view/TableBatchActions"
 import { useFindNode } from "@rxdrag/plugin-sdk"
-import { ProTableContext } from "@rxdrag/plugin-sdk/contexts/propTable"
+import { TableContext } from "~/plugin-sdk/contexts/table"
 
 const ComponentDesigner: DnFC<IProTableProps> & {
   QueryForm?: React.FC<IQueryFormProps>,
@@ -41,7 +41,7 @@ const ComponentDesigner: DnFC<IProTableProps> & {
   const dataTable = useFindNode("Table");
 
   return (
-    <ProTableContext.Provider value={{ selectable }}>
+    <TableContext.Provider value={{ selectable }}>
       <div className={clx("appx-pro-table", className)} {...other}>
         {
           hasQueryForm && queryForm && <TreeNodeWidget node={queryForm} />
@@ -57,7 +57,7 @@ const ComponentDesigner: DnFC<IProTableProps> & {
           <TreeNodeWidget node={dataTable} />
         </Card>
       </div>
-    </ProTableContext.Provider>
+    </TableContext.Provider>
   )
 })
 

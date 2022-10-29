@@ -2,7 +2,7 @@ import { Field } from '@formily/core';
 import { useField } from '@formily/react';
 import React from 'react';
 import { InstanceContext } from '@rxdrag/plugin-sdk/contexts/instance';
-import { useProTableParams } from '@rxdrag/plugin-sdk/contexts/propTable';
+import { useTableParams } from '~/plugin-sdk/contexts/table';
 
 export interface ICellRootProps {
   instance?: any,
@@ -13,7 +13,7 @@ export const CellRoot = (
   props: ICellRootProps
 ) => {
   const { instance, children } = props;
-  const { dataBind } = useProTableParams()
+  const { dataBind } = useTableParams()
   const field = useField();
 
   return (

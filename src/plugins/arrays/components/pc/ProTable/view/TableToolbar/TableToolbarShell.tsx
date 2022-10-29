@@ -5,7 +5,7 @@ import { useLocalTranslations } from "../hooks/useLocalTranslations"
 import ColumnsSettings from "./ColumnsSettings"
 import HeightMenu from "./HeightMenu"
 import clx from "classnames"
-import { useProTableParams } from "@rxdrag/plugin-sdk/contexts/propTable"
+import { useTableParams } from "~/plugin-sdk/contexts/table"
 import { observer } from "@formily/reactive-react"
 import { ITableToolbarProps } from "."
 
@@ -28,7 +28,7 @@ export const TableToolbarShell = observer((
     ...other
   } = props;
   const { t } = useLocalTranslations();
-  const params = useProTableParams();
+  const params = useTableParams();
 
   const handleRefresh = useCallback(() => {
     params.refreshFlag = params.refreshFlag ? (params.refreshFlag + 1) : 1

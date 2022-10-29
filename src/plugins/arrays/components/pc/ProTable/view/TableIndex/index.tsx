@@ -2,11 +2,11 @@ import { ArrayBase } from "@formily/antd"
 import { usePrefixCls } from "@formily/antd/esm/__builtins__"
 import { observer } from "@formily/reactive-react"
 import React, { useMemo } from "react"
-import { useProTableParams } from "@rxdrag/plugin-sdk/contexts/propTable"
+import { useTableParams } from "~/plugin-sdk/contexts/table"
 
 export const TableIndex = observer((props) => {
   const index = ArrayBase.useIndex()
-  const params = useProTableParams();
+  const params = useTableParams();
   const prefixCls = usePrefixCls('formily-array-base')
   const offset = useMemo(() => {
     const pageNumber = params.current ? (params.current - 1) : 0;

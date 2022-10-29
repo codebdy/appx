@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from "react"
-import { IProTableConfig, useProTableParams } from "@rxdrag/plugin-sdk/contexts/propTable"
+import { ITableConfig, useTableParams } from "~/plugin-sdk/contexts/table"
 import { observer } from "@formily/reactive-react"
 import { TableToolbarShell } from "./TableToolbarShell"
 import { RecursionField, useFieldSchema } from '@formily/react';
@@ -22,8 +22,8 @@ export const TableToolbar = observer((
   props: ITableToolbarProps
 ) => {
   const { hasActions = true, children, value, onChange, ...other } = props;
-  const params = useProTableParams();
-  const tableConfig: IProTableConfig = useComponentConfig(params.path);
+  const params = useTableParams();
+  const tableConfig: ITableConfig = useComponentConfig(params.path);
   const fieldSchema = useFieldSchema()
 
   useEffect(() => {

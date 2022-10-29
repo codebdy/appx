@@ -3,7 +3,7 @@ import { observer } from "@formily/reactive-react";
 import { Button, Checkbox, Divider, Popover, Space, Tooltip } from "antd";
 import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { DragDropContext, Draggable, Droppable, DropResult } from "react-beautiful-dnd";
-import { useProTableParams } from "@rxdrag/plugin-sdk/contexts/propTable";
+import { useTableParams } from "~/plugin-sdk/contexts/table";
 import { useLocalTranslations } from "../../hooks/useLocalTranslations";
 import DraggableLabel from "./DraggableLabel";
 import "./style.less"
@@ -22,7 +22,7 @@ const ColumnsSettings = observer(() => {
   const [sortedColumns, setSortedColumns] = useState<string[]>([]);
   const [visible, setVisable] = useState(false);
   const { t } = useLocalTranslations();
-  const protableParams = useProTableParams();
+  const protableParams = useTableParams();
 
   const reset = useCallback(() => {
     if (!protableParams.tableConfig?.columns) {

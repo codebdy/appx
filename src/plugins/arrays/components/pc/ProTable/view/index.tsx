@@ -1,6 +1,6 @@
 import { Card, TableProps } from "antd"
 import React, { useMemo } from "react"
-import { ProTableContext } from "@rxdrag/plugin-sdk/contexts/propTable"
+import { TableContext } from "~/plugin-sdk/contexts/table"
 import "./style.less"
 import locales, { LOCALES_NS } from "./locales"
 import { Table } from "./Table"
@@ -15,6 +15,7 @@ import { observable } from "@formily/reactive"
 import { ITableToolbarActionsProps, TableToolbarActions } from "./TableToolbarActions"
 import { registerResourceBundle } from "~/i18n/registerResourceBundle"
 import { IDataSourceableProps } from "@rxdrag/plugin-sdk"
+import { ArrayContext } from "~/plugin-sdk/contexts/array"
 
 registerResourceBundle(LOCALES_NS, locales);
 
@@ -49,7 +50,7 @@ const Component: React.FC<IProTableProps> & {
     ...other
   } = props;
   const field = useField();
-  const params = useMemo(() => {
+  const arrayParams = useMemo(() => {
     return observable({
       selectable,
       dataBind,
@@ -59,6 +60,12 @@ const Component: React.FC<IProTableProps> & {
       path: field.path.toString()
     });
   }, [dataBind, field.path, pageSize, paginationPosition, selectable]);
+
+  const tableParams = useMemo(() => {
+    return observable({
+    });
+  }, []);
+
   const fieldSchema = useFieldSchema();
 
   console.log("ProTable 刷新")
@@ -88,50 +95,29 @@ const Component: React.FC<IProTableProps> & {
   }, [fieldSchema.properties])
 
 
-  // const handleSelectedChange = useCallback((keys?: React.Key[]) => {
-  //   setParams(params => ({ ...params, selectedRowKeys: keys }))
-  // }, [])
-
-  // const handelSetQuery = useCallback((queryForm) => {
-  //   setParams(params => ({ ...params, queryForm: queryForm }))
-  // }, [])
-
-  // const handleTableChange = useCallback((changeParams: ITableChangeParams) => {
-  //   setParams(params => ({ ...params, ...changeParams }))
-  // }, [])
-
-  // const contextValue = useMemo(() => {
-  //   return {
-  //     ...params,
-  //     onSelectedChange: handleSelectedChange,
-  //     onSetQueryForm: handelSetQuery,
-  //     onTableChange: handleTableChange,
-  //   }
-  // }, [handelSetQuery, handleSelectedChange, handleTableChange, params])
-
-  //const basePath = useMemo(() => field.path, [field.path]);
-
   return (
-    <ProTableContext.Provider
-      value={params}
-    >
-      <div className={clx("appx-pro-table", className)} {...other}>
-        {
-          hasQueryForm && slots.queryForm && <RecursionField schema={slots.queryForm} name={slots.queryForm.name} />
-        }
-        <Card style={{ marginTop: "16px" }}>
+    <ArrayContext.Provider value = {arrayParams}>
+      <TableContext.Provider
+        value={tableParams}
+      >
+        <div className={clx("appx-pro-table", className)} {...other}>
           {
-            hasToolbar && slots.tableToolbar && <RecursionField schema={slots.tableToolbar} name={slots.tableToolbar.name} />
+            hasQueryForm && slots.queryForm && <RecursionField schema={slots.queryForm} name={slots.queryForm.name} />
           }
-          {
-            selectable && slots.tableBatchActions && <RecursionField schema={slots.tableBatchActions} name={slots.tableBatchActions.name} />
-          }
-          {
-            <RecursionField schema={slots.dataTable} name={slots.dataTable.name} />
-          }
-        </Card>
-      </div>
-    </ProTableContext.Provider>
+          <Card style={{ marginTop: "16px" }}>
+            {
+              hasToolbar && slots.tableToolbar && <RecursionField schema={slots.tableToolbar} name={slots.tableToolbar.name} />
+            }
+            {
+              selectable && slots.tableBatchActions && <RecursionField schema={slots.tableBatchActions} name={slots.tableBatchActions.name} />
+            }
+            {
+              <RecursionField schema={slots.dataTable} name={slots.dataTable.name} />
+            }
+          </Card>
+        </div>
+      </TableContext.Provider>
+    </ArrayContext.Provider>
   )
 })
 

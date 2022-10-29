@@ -1,6 +1,6 @@
 import { Table as AntdTable, TableProps } from 'antd';
 import React, { useCallback, useEffect, useMemo } from 'react';
-import { useProTableParams, useSelectable } from '@rxdrag/plugin-sdk/contexts/propTable';
+import { useTableParams } from '~/plugin-sdk/contexts/table';
 import { ArrayBase } from "@formily/antd"
 import {
   useFieldSchema
@@ -19,6 +19,7 @@ import {
 import { useGetTableColumns } from './useGetTableColumns';
 import { useArrayTableSources } from './useArrayTableSources';
 import { mapOrderBy } from "~/datasource/hooks/mapOrderBy";
+import { useArrayParams, useSelectable } from '~/plugin-sdk/contexts/array';
 
 export interface ObservableColumnSource {
   columnProps: ColumnProps<any> & { sortable?: boolean }
@@ -40,30 +41,32 @@ export const Table = observer((
     current,
     orderBys,
     refreshFlag,
-  } = useProTableParams();
-  const protableParams = useProTableParams();
+  } = useArrayParams();
+
+  const tableParams = useTableParams();
+  const arrayParams = useArrayParams();
   const selectable = useSelectable();
   const sources = useArrayTableSources()
   const getTableColumns = useGetTableColumns();
   const columns = useMemo(() => {
-    const colSources = sources.filter(source => protableParams?.tableConfig?.columns?.find(col => col === source.name))
-    return getTableColumns(protableParams?.tableConfig?.columns?.map(column => colSources.find(src => column === src.name)) || sources) || []
-  }, [getTableColumns, protableParams?.tableConfig?.columns, sources]);
+    const colSources = sources.filter(source => tableParams?.tableConfig?.columns?.find(col => col === source.name))
+    return getTableColumns(tableParams?.tableConfig?.columns?.map(column => colSources.find(src => column === src.name)) || sources) || []
+  }, [getTableColumns, tableParams?.tableConfig?.columns, sources]);
 
   useEffect(() => {
-    protableParams.columns = sources.map(source => ({
+    tableParams.columns = sources.map(source => ({
       name: source.name,
       title: source.columnProps?.title as any,
     }))
-  }, [protableParams, sources])
+  }, [tableParams, sources])
 
   const rowSelection = useMemo(() => ({
     type: 'checkbox' as any,
     selectedRowKeys: selectedRowKeys,
     onChange: (selectedRowKeys: React.Key[]) => {
-      protableParams.selectedRowKeys = selectedRowKeys
+      arrayParams.selectedRowKeys = selectedRowKeys
     },
-  }), [protableParams, selectedRowKeys]);
+  }), [tableParams, selectedRowKeys]);
 
   const schema = useFieldSchema();
   const queryParams = useQueryParams(
@@ -104,9 +107,9 @@ export const Table = observer((
           order: mapOrderBy((sorter as any)?.order)
         }]
         : []
-    protableParams.current = pagination?.current || 1;
-    protableParams.pageSize = pagination?.pageSize;
-    protableParams.orderBys = sortableColumns.map(col => ({
+    arrayParams.current = pagination?.current || 1;
+    arrayParams.pageSize = pagination?.pageSize;
+    arrayParams.orderBys = sortableColumns.map(col => ({
       field: col.name,
       order: undefined,
     })).map((orderBy) => {
@@ -114,7 +117,7 @@ export const Table = observer((
       return newOrderBy ? newOrderBy : orderBy;
     });
     console.log('params', sorter);
-  }, [protableParams, sources]);
+  }, [arrayParams, sources]);
 
   return (
     <ArrayBase>
@@ -127,9 +130,9 @@ export const Table = observer((
           position: paginationPosition as any,
           pageSize,
           total: data?.total,
-          current: protableParams.current,
+          current: arrayParams.current,
         }}
-        size={protableParams?.tableConfig?.size}
+        size={tableParams?.tableConfig?.size}
         loading={loading}
         onChange={onChange}>
       </AntdTable>

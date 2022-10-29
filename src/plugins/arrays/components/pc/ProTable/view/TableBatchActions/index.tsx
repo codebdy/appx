@@ -1,6 +1,6 @@
 import { observer } from "@formily/reactive-react";
 import React, { useCallback } from "react";
-import { useProTableParams } from "@rxdrag/plugin-sdk/contexts/propTable";
+import { useTableParams } from "~/plugin-sdk/contexts/table";
 import { BatchActionsContainer } from "./BatchActionsContainer";
 
 export interface ITableBatchActionsProps {
@@ -11,7 +11,7 @@ export const TableBatchActions = observer((
   props: ITableBatchActionsProps
 ) => {
   const { children } = props;
-  const params = useProTableParams();
+  const params = useTableParams();
 
   const handleClear = useCallback(() => {
     params.selectedRowKeys = [];

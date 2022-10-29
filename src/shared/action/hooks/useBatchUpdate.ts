@@ -2,12 +2,12 @@ import { useSet } from "~/enthooks/hooks/useSet";
 import { useCallback, useRef } from "react";
 import { useRecentObjectField } from "./useRecentObjectField";
 import { useExtractFieldInput } from "./useExtractFieldInput";
-import { useProTableParams } from "@rxdrag/plugin-sdk";
+import { useTableParams } from "@rxdrag/plugin-sdk";
 
 export function useBatchUpdate() {
   const resolveRef = useRef<(value: unknown) => void>();
   const rejectRef = useRef<(reason?: any) => void>();
-  const tableParams = useProTableParams();
+  const tableParams = useTableParams();
   const { dataBind, selectedRowKeys } = tableParams;
   const objectField = useRecentObjectField();
   const extract = useExtractFieldInput();

@@ -1,11 +1,11 @@
 import { useCallback, useRef } from "react";
-import { useProTableParams } from "@rxdrag/plugin-sdk";
+import { useTableParams } from "@rxdrag/plugin-sdk";
 import { useDeleteByIds } from "~/enthooks/hooks/useDeleteByIds";
 
 export function useBatchDelete() {
   const resolveRef = useRef<(value: unknown) => void>();
   const rejectRef = useRef<(reason?: any) => void>();
-  const tableParams = useProTableParams();
+  const tableParams = useTableParams();
   const { dataBind, selectedRowKeys } = tableParams;
   const [doDelete ] = useDeleteByIds(dataBind?.entityName, {
     onCompleted: () => {
