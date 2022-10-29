@@ -1,23 +1,14 @@
 import { observer } from '@formily/reactive-react'
-import { useParseLangMessage } from '@rxdrag/plugin-sdk/hooks/useParseLangMessage';
 import React, { useMemo } from 'react';
 import { IDataSourceableProps } from '~/plugin-sdk';
 import "./style.less"
 import cls from "classnames";
 import { ListHeader } from './ListHeader';
-import { RecursionField, Schema, useFieldSchema } from '@formily/react';
+import { RecursionField, Schema, useField, useFieldSchema } from '@formily/react';
 import { ListPagination } from './ListPagination';
-import { Empty, List } from 'antd';
-
-export interface IGrid {
-  column?: number,
-  xs?: number,
-  sm?: number,
-  md?: number,
-  lg?: number,
-  xl?: number,
-  xxl?: number,
-}
+import { observable } from "@formily/reactive"
+import { ArrayContext } from '~/plugin-sdk/contexts/array';
+import { IGrid, ListBody } from './ListBody';
 
 export interface IGridListProps extends IDataSourceableProps {
   className?: string,
@@ -28,11 +19,12 @@ export interface IGridListProps extends IDataSourceableProps {
   gutter?: number,
   grid?: IGrid,
 }
-const data = [{}];
+
 export const GridList: React.FC<IGridListProps> & {
   Header?: React.FC<IGridListProps>
 } = observer((props: IGridListProps) => {
-  const { 
+  const {
+    dataBind,
     className,
     hasHeader,
     hasPagination,
@@ -43,7 +35,18 @@ export const GridList: React.FC<IGridListProps> & {
     ...other
   } = props;
   const fieldSchema = useFieldSchema()
-  const p = useParseLangMessage();
+  const field = useField();
+
+  const arrayParams = useMemo(() => {
+    return observable({
+      dataBind,
+      current: 1,
+      pageSize: pageSize || 10,
+      path: field.path.toString()
+    });
+  }, [dataBind, field.path, pageSize]);
+
+
   const slots = useMemo(() => {
     const slts = {
       header: null,
@@ -63,36 +66,18 @@ export const GridList: React.FC<IGridListProps> & {
   }, [fieldSchema])
 
   return (
-    <div className={cls("appx-grid-list", className)} {...other}>
-      {hasHeader && slots.header && <RecursionField schema={slots.header} name={slots.header.name} />}
+    <ArrayContext.Provider value={arrayParams}>
+      <div className={cls("appx-grid-list", className)} {...other}>
+        {hasHeader && slots.header && <RecursionField schema={slots.header} name={slots.header.name} />}
 
-      <List
-        grid={{ gutter, ...grid }}
-        dataSource={data}
-        renderItem={item => (
-          <List.Item>
-            {
-              slots.otherChildren?.map((child, index) => {
-                return (
-                  <div key={index}>
-                    <RecursionField key={index} schema={child} name={child.name} />
-                  </div>
-                )
-              })
-            }
-            {
-              !slots.otherChildren?.length &&
-              <Empty />
-            }
-          </List.Item>
-        )}
-      />
+        <ListBody gutter={gutter} grid={grid} childrenNodes={slots.otherChildren} />
 
-      {
-        hasPagination &&
-        <ListPagination total={50} paginationPosition={paginationPosition} />
-      }
-    </div>
+        {
+          hasPagination &&
+          <ListPagination total={50} paginationPosition={paginationPosition} />
+        }
+      </div>
+    </ArrayContext.Provider>
   )
 })
 
