@@ -5,10 +5,9 @@ import "./style.less"
 import cls from "classnames";
 import { ListHeader } from './ListHeader';
 import { RecursionField, Schema, useField, useFieldSchema } from '@formily/react';
-import { ListPagination } from './ListPagination';
 import { observable } from "@formily/reactive"
 import { ArrayContext } from '~/plugin-sdk/contexts/array';
-import { IGrid, ListBody } from './ListBody';
+import { ListBody } from './ListBody';
 
 export interface IGridListProps extends IDataSourceableProps {
   className?: string,
@@ -39,9 +38,11 @@ export const GridList: React.FC<IGridListProps> & {
       dataBind,
       current: 1,
       pageSize: pageSize || 10,
-      path: field.path.toString()
+      path: field.path.toString(),
+      hasPagination: hasPagination,
+      paginationPosition: paginationPosition,
     });
-  }, [dataBind, field.path, pageSize]);
+  }, [dataBind, field.path, pageSize, hasPagination, paginationPosition]);
 
 
   const slots = useMemo(() => {
@@ -66,13 +67,7 @@ export const GridList: React.FC<IGridListProps> & {
     <ArrayContext.Provider value={arrayParams}>
       <div className={cls("appx-grid-list", className)} {...other}>
         {hasHeader && slots.header && <RecursionField schema={slots.header} name={slots.header.name} />}
-
         {slots.body && <RecursionField schema={slots.body} name={slots.body.name} />}
-
-        {
-          hasPagination &&
-          <ListPagination total={50} paginationPosition={paginationPosition} />
-        }
       </div>
     </ArrayContext.Provider>
   )

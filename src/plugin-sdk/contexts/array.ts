@@ -9,6 +9,7 @@ export interface IArrayParams {
   selectedRowKeys?: React.Key[],
   queryForm?: IQueryForm,
   orderBys?: IOrderBy[],
+  hasPagination?: boolean,
   paginationPosition?: "bottomLeft" | "bottomCenter" | "bottomRight",
   pageSize?: number,
   current?: number,

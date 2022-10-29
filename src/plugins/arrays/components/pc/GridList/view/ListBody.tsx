@@ -1,12 +1,13 @@
-import { memo, useMemo } from "react"
+import { memo } from "react"
 import { List } from 'antd';
 import React from "react";
-import { RecursionField, Schema, useFieldSchema } from '@formily/react';
+import { observer, RecursionField, Schema, useFieldSchema } from '@formily/react';
 import { useParseLangMessage } from "~/plugin-sdk";
 import { useArrayParams } from "~/plugin-sdk/contexts/array";
 import { QueryType, useQueryParams } from "~/datasource/hooks/useQueryParams";
 import { useDataQuery } from "~/datasource";
 import { useShowError } from "~/AppDesigner/hooks/useShowError";
+import { ListPagination } from "./ListPagination";
 
 export interface IGrid {
   column?: number,
@@ -24,19 +25,25 @@ export interface IListBodyProps {
   children?: React.ReactNode,
   className?: string,
 }
-export const ListBody = memo((
+export const ListBody = observer((
   props: IListBodyProps,
 ) => {
-  const { gutter, grid, children, ...other } = props;
+  const {
+    gutter,
+    grid,
+    children,
+    ...other } = props;
   const p = useParseLangMessage();
 
   const {
     dataBind,
     queryForm,
-    pageSize,
     current,
     orderBys,
     refreshFlag,
+    paginationPosition,
+    hasPagination,
+    pageSize,
   } = useArrayParams();
 
   const schema = useFieldSchema();
@@ -57,22 +64,28 @@ export const ListBody = memo((
   useShowError(error);
 
   return (
-    <List
-      {...other}
-      grid={{ gutter, ...grid }}
-      dataSource={data?.nodes}
-      loading={loading}
-      renderItem={item => (
-        <List.Item>
-          {
-            Schema.getOrderProperties(schema).map(child=>{
-              return (
-                <RecursionField key = {child.key} schema={child.schema} name={child.schema.name} />
-              )
-            })
-          }
-        </List.Item>
-      )}
-    />
+    <>
+      <List
+        {...other}
+        grid={{ gutter, ...grid }}
+        dataSource={data?.nodes}
+        loading={loading}
+        renderItem={item => (
+          <List.Item>
+            {
+              Schema.getOrderProperties(schema).map(child => {
+                return (
+                  <RecursionField key={child.key} schema={child.schema} name={child.schema.name} />
+                )
+              })
+            }
+          </List.Item>
+        )}
+      />
+      {
+        hasPagination && data && data.total > data.nodes?.length &&
+        <ListPagination total={data.total} paginationPosition={paginationPosition} />
+      }
+    </>
   )
 })
