@@ -11,7 +11,7 @@ export interface IComponentProps {
 }
 
 const Component = observer((props: IComponentProps) => {
-  const { className, maxWidth, ...other } = props
+  const { className, maxWidth="xl", ...other } = props
   let maxWidthClass = "";
   if (maxWidth === "xs" ||
     maxWidth === "sm" ||

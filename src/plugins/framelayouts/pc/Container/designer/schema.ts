@@ -10,7 +10,7 @@ const schema: IPropsSchema = {
         'x-decorator': 'FormItem',
         'x-component': 'Select',
         'x-component-props': {
-          defaultValue: 'lg',
+          defaultValue: 'xl',
         },
       }
     },
