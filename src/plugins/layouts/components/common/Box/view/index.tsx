@@ -1,5 +1,7 @@
 import { observer } from "@formily/reactive-react"
 import React, { CSSProperties } from "react"
+import "./style.less"
+import cls from "classnames"
 
 export interface IComponentProps {
   style?: CSSProperties,
@@ -8,8 +10,9 @@ export interface IComponentProps {
 }
 
 const Component = observer((props: IComponentProps) => {
+  const { className, ...other } = props;
   return (
-    <div {...props} />
+    <div className={cls("appx-box", className)} {...other} />
   )
 })
 
