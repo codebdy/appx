@@ -1,7 +1,6 @@
 import { List } from 'antd';
-import React from "react";
-import { observer, RecursionField, ObjectField, Schema, useFieldSchema } from '@formily/react';
-import { InstanceContext, useParseLangMessage } from "~/plugin-sdk";
+import React, { useEffect, useMemo } from "react";
+import { observer, RecursionField, ObjectField, Schema, useFieldSchema, useField } from '@formily/react';
 import { useArrayParams } from "~/plugin-sdk/contexts/array";
 import { QueryType, useQueryParams } from "~/datasource/hooks/useQueryParams";
 import { useDataQuery } from "~/datasource";
@@ -9,6 +8,7 @@ import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import { ListPagination } from "./ListPagination";
 import { ArrayBase } from '@formily/antd';
 import { ItemRoot } from './ItemRoot';
+import { Field } from '@formily/core';
 
 export interface IGrid {
   column?: number,
@@ -34,7 +34,6 @@ export const ListBody = observer((
     grid,
     children,
     ...other } = props;
-  const p = useParseLangMessage();
 
   const {
     dataBind,
@@ -64,7 +63,16 @@ export const ListBody = observer((
   const { data, loading, error } = useDataQuery(queryParams);
   useShowError(error);
 
-  console.log("xxx", schema.items)
+  const field = useField();
+
+  useEffect(() => {
+    (field as Field).setInitialValue(data?.nodes);
+  }, [data?.nodes, field])
+
+  const items = useMemo(() => Array.isArray(schema.items)
+    ? schema.items[0]
+    : schema.items, [schema.items]);
+
   return (
     <>
       <ArrayBase>
@@ -74,19 +82,20 @@ export const ListBody = observer((
           dataSource={data?.nodes}
           loading={loading}
           renderItem={(item, index) => {
-            console.log("日内", item)
             return (
               <List.Item>
                 <ArrayBase.Item index={index} record={item}>
-                  <ItemRoot>
-                    {
-                      Schema.getOrderProperties(schema).map(child => {
-                        return (
-                          <RecursionField key={child.key} schema={child.schema} name={child.schema.name} />
-                        )
-                      })
-                    }
-                  </ItemRoot>
+                  <ObjectField name={index}>
+                    <ItemRoot instance={item}>
+                      {
+                        Schema.getOrderProperties(items).map(child => {
+                          return (
+                            <RecursionField key={child.key} schema={child.schema} name={child.schema.name} />
+                          )
+                        })
+                      }
+                    </ItemRoot>
+                  </ObjectField>
                 </ArrayBase.Item>
               </List.Item>
             )

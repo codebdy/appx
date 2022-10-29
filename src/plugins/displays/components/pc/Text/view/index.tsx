@@ -12,6 +12,7 @@ export interface ITextProps {
 }
 const Component = observer((props: ITextProps) => {
   const { value, ...other } = props;
+
   const tagName = props.mode === 'normal' || !props.mode ? 'div' : props.mode
   const p = useParseLangMessage();
   return React.createElement(
@@ -21,7 +22,7 @@ const Component = observer((props: ITextProps) => {
       className: cls(props.className, 'dn-text'),
       value: p(value),
     },
-    p(props.content)
+    p(props.content || value)
   )
 })
 
