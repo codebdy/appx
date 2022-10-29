@@ -1,7 +1,7 @@
-import { memo } from "react"
+import { memo, useMemo } from "react"
 import { List } from 'antd';
 import React from "react";
-import { RecursionField, useFieldSchema } from '@formily/react';
+import { RecursionField, Schema, useFieldSchema } from '@formily/react';
 import { useParseLangMessage } from "~/plugin-sdk";
 import { useArrayParams } from "~/plugin-sdk/contexts/array";
 import { QueryType, useQueryParams } from "~/datasource/hooks/useQueryParams";
@@ -56,16 +56,21 @@ export const ListBody = memo((
   const { data, loading, error } = useDataQuery(queryParams);
   useShowError(error);
 
-
   return (
     <List
       {...other}
       grid={{ gutter, ...grid }}
-      dataSource={data}
+      dataSource={data?.nodes}
       loading={loading}
       renderItem={item => (
         <List.Item>
-          <RecursionField schema={schema} name={schema.name} />
+          {
+            Schema.getOrderProperties(schema).map(child=>{
+              return (
+                <RecursionField key = {child.key} schema={child.schema} name={child.schema.name} />
+              )
+            })
+          }
         </List.Item>
       )}
     />
