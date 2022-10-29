@@ -1,13 +1,13 @@
-import { memo } from "react"
 import { List } from 'antd';
 import React from "react";
-import { observer, RecursionField, Schema, useFieldSchema } from '@formily/react';
-import { useParseLangMessage } from "~/plugin-sdk";
+import { observer, RecursionField, Field as ReactField, Schema, useFieldSchema } from '@formily/react';
+import { InstanceContext, useParseLangMessage } from "~/plugin-sdk";
 import { useArrayParams } from "~/plugin-sdk/contexts/array";
 import { QueryType, useQueryParams } from "~/datasource/hooks/useQueryParams";
 import { useDataQuery } from "~/datasource";
 import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import { ListPagination } from "./ListPagination";
+import { ArrayBase } from '@formily/antd';
 
 export interface IGrid {
   column?: number,
@@ -65,23 +65,29 @@ export const ListBody = observer((
 
   return (
     <>
-      <List
-        {...other}
-        grid={{ gutter, ...grid }}
-        dataSource={data?.nodes}
-        loading={loading}
-        renderItem={item => (
-          <List.Item>
-            {
-              Schema.getOrderProperties(schema).map(child => {
-                return (
-                  <RecursionField key={child.key} schema={child.schema} name={child.schema.name} />
-                )
-              })
-            }
-          </List.Item>
-        )}
-      />
+      <ArrayBase>
+        <List
+          {...other}
+          grid={{ gutter, ...grid }}
+          dataSource={data?.nodes}
+          loading={loading}
+          renderItem={(item, index) => (
+            <List.Item>
+              <ArrayBase.Item index={index} record={item}>
+                <ReactField name={index}>
+                  {
+                    Schema.getOrderProperties(schema).map(child => {
+                      return (
+                        <RecursionField key={child.key} schema={child.schema} name={child.schema.name} />
+                      )
+                    })
+                  }
+                </ReactField>
+              </ArrayBase.Item>
+            </List.Item>
+          )}
+        />
+      </ArrayBase>
       {
         hasPagination && data && data.total > data.nodes?.length &&
         <ListPagination total={data.total} paginationPosition={paginationPosition} />
