@@ -87,13 +87,7 @@ export const ListBody = observer((
                 <ArrayBase.Item index={index} record={item}>
                   <ObjectField name={index}>
                     <ItemRoot instance={item}>
-                      {
-                        Schema.getOrderProperties(items).map(child => {
-                          return (
-                            <RecursionField key={child.key} schema={child.schema} name={child.schema.name} />
-                          )
-                        })
-                      }
+                      <RecursionField schema={items} name={items?.["x-designable-id"]} />
                     </ItemRoot>
                   </ObjectField>
                 </ArrayBase.Item>

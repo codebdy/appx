@@ -20,7 +20,7 @@ export const ListBodyDesigner = observer((props: IListBodyProps) => {
       renderItem={item => (
         <List.Item>
           {
-            node.children
+            node.children?.length > 0
               ? node.children?.map((node) => {
                 return <TreeNodeWidget node={node} />;
               })
