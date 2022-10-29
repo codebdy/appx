@@ -1,7 +1,6 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import {
   DnFC,
-  useTreeNode,
   TreeNodeWidget,
 } from '@designable/react'
 import { observer } from '@formily/reactive-react'
@@ -12,12 +11,12 @@ import { IListHeaderProps } from '../view/ListHeader'
 import { ListHeaderDesigner } from './ListHeaderDesigner'
 import { useFindNode } from '~/plugin-sdk'
 import { ListPagination } from '../view/ListPagination'
-import { List } from 'antd'
-
-const data = [{}];
+import { IListBodyProps } from '../view/ListBody'
+import { ListBodyDesigner } from './ListBodyDesigner'
 
 export const GridListDesigner: DnFC<IGridListProps> & {
   Header?: React.FC<IListHeaderProps>
+  Body?: React.FC<IListBodyProps>
 } = observer((props) => {
   const {
     className,
@@ -25,44 +24,19 @@ export const GridListDesigner: DnFC<IGridListProps> & {
     hasPagination,
     paginationPosition,
     pageSize,
-    grid,
-    gutter,
     ...other
   } = props;
-  const node = useTreeNode()
   const header = useFindNode('Header');
-  const otherChildrenNodes = useMemo(() => node.children?.filter(child =>
-    child.id !== header?.id
-  ), [header?.id, node.children])
-
+  const body = useFindNode('Body');
   
   return (
     <div {...other} className={cls("appx-grid-list", className)}>
       {
         hasHeader && header && <TreeNodeWidget node={header} />
       }
-      <List
-        grid={{ gutter, ...grid }}
-        dataSource={data}
-        renderItem={item => (
-          <List.Item>
-            {
-              otherChildrenNodes?.map((child) => {
-                return (
-                  child && <TreeNodeWidget node={child} />
-                )
-              })
-            }
-            {
-              !otherChildrenNodes?.length &&
-              <div className="appx-grid-list-placeholder">
-                Please drop here
-              </div>
-            }
-          </List.Item>
-        )}
-      />
-
+      {
+        body && <TreeNodeWidget node={body} />
+      }
       {
         hasPagination && <ListPagination total={2} paginationPosition={paginationPosition} />
       }
@@ -72,3 +46,4 @@ export const GridListDesigner: DnFC<IGridListProps> & {
 })
 
 GridListDesigner.Header = ListHeaderDesigner;
+GridListDesigner.Body = ListBodyDesigner;

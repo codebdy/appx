@@ -64,6 +64,7 @@ export function useQueryParams(
         pms.rootFieldName = firstField?.name?.value;
         pms.entityName = dataBind?.entityName;
 
+        console.log("Gql From Schema:", fragmentFromSchema.gql)
         const shchemaFragmentAst = parse(fragmentFromSchema.gql);
         pms.variables = dataBind?.variables;
 

@@ -1,5 +1,5 @@
 import { memo } from "react"
-import { Empty, List } from 'antd';
+import { List } from 'antd';
 import React from "react";
 import { RecursionField, useFieldSchema } from '@formily/react';
 import { useParseLangMessage } from "~/plugin-sdk";
@@ -18,14 +18,16 @@ export interface IGrid {
   xxl?: number,
 }
 
+export interface IListBodyProps {
+  gutter?: number,
+  grid?: IGrid,
+  children?: React.ReactNode,
+  className?: string,
+}
 export const ListBody = memo((
-  props: {
-    gutter?: number,
-    grid?: IGrid,
-    childrenNodes?: any[]
-  }
+  props: IListBodyProps,
 ) => {
-  const { gutter, grid, childrenNodes } = props;
+  const { gutter, grid, children, ...other } = props;
   const p = useParseLangMessage();
 
   const {
@@ -54,26 +56,16 @@ export const ListBody = memo((
   const { data, loading, error } = useDataQuery(queryParams);
   useShowError(error);
 
+
   return (
     <List
+      {...other}
       grid={{ gutter, ...grid }}
       dataSource={data}
       loading={loading}
       renderItem={item => (
         <List.Item>
-          {
-            childrenNodes?.map((child, index) => {
-              return (
-                <div key={index}>
-                  <RecursionField key={index} schema={child} name={child.name} />
-                </div>
-              )
-            })
-          }
-          {
-            !childrenNodes?.length &&
-            <Empty />
-          }
+          <RecursionField schema={schema} name={schema.name} />
         </List.Item>
       )}
     />

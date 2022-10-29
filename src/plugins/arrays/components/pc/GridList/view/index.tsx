@@ -16,12 +16,11 @@ export interface IGridListProps extends IDataSourceableProps {
   hasPagination?: boolean,
   paginationPosition?: "bottomLeft" | "bottomCenter" | "bottomRight",
   pageSize?: number,
-  gutter?: number,
-  grid?: IGrid,
 }
 
 export const GridList: React.FC<IGridListProps> & {
-  Header?: React.FC<IGridListProps>
+  Header?: React.FC<IGridListProps>,
+  Body?: React.FC<IGridListProps>,
 } = observer((props: IGridListProps) => {
   const {
     dataBind,
@@ -30,8 +29,6 @@ export const GridList: React.FC<IGridListProps> & {
     hasPagination,
     paginationPosition,
     pageSize,
-    grid,
-    gutter,
     ...other
   } = props;
   const fieldSchema = useFieldSchema()
@@ -50,15 +47,15 @@ export const GridList: React.FC<IGridListProps> & {
   const slots = useMemo(() => {
     const slts = {
       header: null,
-      otherChildren: []
+      body: null
     }
 
     for (const child of Schema.getOrderProperties(fieldSchema)) {
       const childSchema = child?.schema;
       if (childSchema["x-component"] === 'GridList.Header') {
         slts.header = childSchema
-      } else {
-        slts.otherChildren.push(childSchema)
+      } else if (childSchema["x-component"] === 'GridList.Body') {
+        slts.body = childSchema
       }
     }
 
@@ -70,7 +67,7 @@ export const GridList: React.FC<IGridListProps> & {
       <div className={cls("appx-grid-list", className)} {...other}>
         {hasHeader && slots.header && <RecursionField schema={slots.header} name={slots.header.name} />}
 
-        <ListBody gutter={gutter} grid={grid} childrenNodes={slots.otherChildren} />
+        {slots.body && <RecursionField schema={slots.body} name={slots.body.name} />}
 
         {
           hasPagination &&
@@ -82,4 +79,5 @@ export const GridList: React.FC<IGridListProps> & {
 })
 
 GridList.Header = ListHeader
+GridList.Body = ListBody
 

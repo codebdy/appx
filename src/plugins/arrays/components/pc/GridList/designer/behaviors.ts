@@ -1,5 +1,7 @@
 import { IBehavior } from "@rxdrag/appx-plugin-sdk";
 import Name from "../name";
+import { ListBodyLocales } from "./ListBodyDesigner/locales";
+import { ListBodySchema } from "./ListBodyDesigner/schema";
 import { ListHeaderLocales } from "./ListHeaderDesigner/locales";
 import { ListHeaderSchema } from "./ListHeaderDesigner/schema";
 import locales  from "./locales";
@@ -11,7 +13,7 @@ const behaviors: IBehavior[] = [
     extends: ['Field'],
     selector: (node) => node.props['x-component'] === Name,
     designerProps: {
-      droppable: true,
+      droppable: false,
     },
     designerLocales: locales,
     schema,
@@ -27,6 +29,18 @@ const behaviors: IBehavior[] = [
     },
     designerLocales: ListHeaderLocales,
     schema: ListHeaderSchema
+  },
+  {
+    name: 'GridList.Body',
+    extends: ['Field'],
+    selector: (node) => node.props['x-component'] === 'GridList.Body',
+    designerProps: {
+      droppable: true,
+      deletable: false,
+      cloneable: false,
+    },
+    designerLocales: ListBodyLocales,
+    schema: ListBodySchema
   }
 ]
 
