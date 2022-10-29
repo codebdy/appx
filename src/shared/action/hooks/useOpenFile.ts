@@ -23,16 +23,23 @@ export function useOpenFile() {
     [fileInputRef]
   );
 
+  const handleCancel = useCallback((event: Event) => {
+    console.log("呵呵2", event)
+    rejectRef.current && rejectRef.current("Canceled")
+  }, [])
+
   const open = useCallback(() => {
     const p = new Promise((resolve, reject) => {
       fileInputRef.current = createInput();
       resolveRef.current = resolve;
       rejectRef.current = reject;
-      fileInputRef.current.addEventListener("change", handleFileInputChange)
+      fileInputRef.current.onchange = handleFileInputChange;
+      document.body.onfocus = handleCancel;
       fileInputRef.current?.click();
+      
     });
     return p;
-  }, [resolveRef, rejectRef, handleFileInputChange, fileInputRef])
+  }, [resolveRef, rejectRef, handleFileInputChange, handleCancel, fileInputRef])
 
   return open;
 }
