@@ -1,8 +1,9 @@
 import { observer } from "@formily/reactive-react"
-import React from "react"
+import React, { CSSProperties } from "react"
 
 export interface IComponentProps {
-  
+  style?: CSSProperties,
+  className?: string,
   children?: React.ReactNode
 }
 

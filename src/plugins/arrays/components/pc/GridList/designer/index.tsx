@@ -4,7 +4,6 @@ import {
   TreeNodeWidget,
 } from '@designable/react'
 import { observer } from '@formily/reactive-react'
-import './styles.less'
 import { IGridListProps } from '../view'
 import cls from "classnames";
 import { IListHeaderProps } from '../view/ListHeader'

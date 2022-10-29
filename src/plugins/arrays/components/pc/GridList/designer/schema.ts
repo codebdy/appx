@@ -15,24 +15,6 @@ const schema: IPropsSchema = {
           defaultChecked: true,
         },
       },
-      grid: {
-        type: 'number',
-        //'x-decorator': 'FormItem',
-        'x-component': 'ColumnsSetter',
-        'x-component-props': {
-          defaultValue: {
-            column: 4
-          }
-        },
-      },
-      gutter: {
-        type: 'number',
-        'x-decorator': 'FormItem',
-        'x-component': 'NumberPicker',
-        'x-component-props': {
-          defaultValue: 16
-        },
-      },
       hasPagination: {
         type: 'boolean',
         'x-decorator': 'FormItem',

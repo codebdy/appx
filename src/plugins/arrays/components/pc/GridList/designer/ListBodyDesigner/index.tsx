@@ -1,14 +1,12 @@
 import { observer } from "@formily/reactive-react"
 import React from "react"
 import { List } from "antd"
-import {
-  TreeNodeWidget,
-} from '@designable/react'
 import { IListBodyProps } from "../../view/ListBody"
+import './styles.less'
 
 const data = [{}]
 export const ListBodyDesigner = observer((props: IListBodyProps) => {
-  const {gutter, grid, className, ...other} = props
+  const { gutter, grid, className, children, ...other } = props
 
   return (
     <List
@@ -18,17 +16,7 @@ export const ListBodyDesigner = observer((props: IListBodyProps) => {
       renderItem={item => (
         <List.Item>
           {
-            otherChildrenNodes?.map((child) => {
-              return (
-                child && <TreeNodeWidget node={child} />
-              )
-            })
-          }
-          {
-            !otherChildrenNodes?.length &&
-            <div className="appx-grid-list-placeholder">
-              Please drop here
-            </div>
+            children ? children : <div className="appx-grid-list-placeholder">Drop here</div>
           }
         </List.Item>
       )}

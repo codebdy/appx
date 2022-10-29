@@ -3,6 +3,8 @@ export const ListBodyLocales = {
     title: '列表内容',
     settings: {
       'x-component-props': {
+        grid: '列数',
+        gutter: "间隙",
       },
     },
   },

@@ -23,6 +23,13 @@ const resources: IResourceCreator[] = [
               'x-component': 'GridList.Header',
             },
           },
+          {
+            componentName: 'Field',
+            props: {
+              type: 'void',
+              'x-component': 'GridList.Body',
+            },
+          },
         ],
       },
     ],
