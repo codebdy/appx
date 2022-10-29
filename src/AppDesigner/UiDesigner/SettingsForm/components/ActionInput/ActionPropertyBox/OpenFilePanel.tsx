@@ -4,7 +4,7 @@ import { memo } from "react"
 import { useTranslation } from "react-i18next"
 import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/view"
 
-export const ConfirmPanel = memo((
+export const OpenFilePanel = memo((
   props: {
   }
 ) => {
@@ -13,10 +13,10 @@ export const ConfirmPanel = memo((
   return (
     <>
       <Form.Item
-        label={t("Action.ConfirmTitle")}
+        label={t("Title")}
         name="boxTitle"
       >
-        <MultiLangInput title={t("Action.ConfirmTitle")} />
+        <MultiLangInput title={t("Title")} />
       </Form.Item>
       <Form.Item
         label={t("Message")}

@@ -9,12 +9,16 @@ import { SuccessMessagePanel } from "./SuccessMessagePanel";
 import { ConfirmPanel } from "./ConfirmPanel";
 import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/view";
 import { NavigatePanel } from "./NavigatePanel";
+import { OpenFilePanel } from "./OpenFilePanel";
+import { GraphqlPanel } from "./GraphqlPanel";
 
 const pannels: { [key: string]: React.FC<{ payload: any }> } = {
   [ActionType.OpenPage]: OpenPagePanel,
   [ActionType.SuccessMessage]: SuccessMessagePanel,
   [ActionType.Confirm]: ConfirmPanel,
   [ActionType.Navigate]: NavigatePanel,
+  [ActionType.OpenFile]: OpenFilePanel,
+  [ActionType.Graphql]: GraphqlPanel,
 }
 
 export const ActionPropertyBox = memo((

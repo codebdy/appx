@@ -38,13 +38,21 @@ export const ToolCollapse = memo(() => {
       title: t(enumToLangKey(ActionType.Reset)),
     },
     {
+      id: ActionType.SubmitSearch,
+      title: t(enumToLangKey(ActionType.SubmitSearch)),
+    },
+    {
+      id: ActionType.OpenFile,
+      title: t(enumToLangKey(ActionType.OpenFile)),
+    },
+    {
+      id: ActionType.Graphql,
+      title: t(enumToLangKey(ActionType.Graphql)),
+    },
+    {
       id: ActionType.Custimized,
       title: t(enumToLangKey(ActionType.Custimized)),
     },
-    {
-      id: ActionType.SubmitSearch,
-      title: t(enumToLangKey(ActionType.SubmitSearch)),
-    }
   ], [t]);
 
   const uiItems = useMemo(() => [

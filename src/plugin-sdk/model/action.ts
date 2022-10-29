@@ -21,6 +21,8 @@ export enum ActionType {
   Reset = "Reset",
   Custimized = "Custimized",
   SubmitSearch = "SubmitSearch",
+  OpenFile = "OpenFile",
+  Graphql = "Graphql"
 }
 
 export enum OpenPageType {

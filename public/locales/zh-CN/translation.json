@@ -518,13 +518,15 @@
     "BatchDelete": "批量删除",
     "SaveData": "保存数据",
     "SubmitSearch": "提交查询",
+    "OpenFile": "打开文件",
+    "Graphql": "Graphql操作",
     "DataActions": "数据操作",
     "UiActions": "界面操作",
     "Toolbox": "工具箱",
     "Properties": "属性",
     "Reset": "重置",
     "Custimized": "自定义代码",
-    "Navigate":"路由导航",
+    "Navigate": "路由导航",
     "Page": "页面",
     "OpenType": "打开类型",
     "RouteTo": "路由",
@@ -535,7 +537,8 @@
     "Right": "右侧",
     "Bottom": "底部",
     "Left": "左侧",
-    "Top": "顶部"
+    "Top": "顶部",
+    "ConfirmTitle": "确认标题"
   },
   "PageSelect": {
     "PleaseSelectPage": "请选择页面"
