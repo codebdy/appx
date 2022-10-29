@@ -14,7 +14,6 @@ const resources: IResourceCreator[] = [{
           "style": {
             "alignItems": "center",
             "display": "flex",
-            "padding": "8px 8px 8px 8px",
             "width": "100%",
           }
         },
