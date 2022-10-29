@@ -1,10 +1,10 @@
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
-import { useSelectedAppUuid } from "~/plugin-sdk/contexts/desinger";
+import { useSelectedAppId } from "~/plugin-sdk/contexts/desinger";
 import { entitiesState } from "../recoil";
 
 export function useGetPackageRootEntities() {
-  const appId = useSelectedAppUuid();
+  const appId = useSelectedAppId();
   const entities = useRecoilValue(entitiesState(appId))
 
   const getPackageEntities = useCallback((packageUuid: string) => {

@@ -15,13 +15,15 @@ import { FrameListWidget } from "./FrameListWidget"
 import { FrameWorkSpace } from "./FrameWorkSpace"
 import { useQueryPageFrames } from "./hooks/useQueryPageFrames"
 import { DesignerRoutes } from "../UiDesigner"
+import { useBuildMeta } from "~/datasource"
 
 export const FrameDesigner = memo(() => {
   const [activeKey, setActiveKey] = useState<string>(DesignerRoutes.Templates);
   const [selectedId, setSeletedId] = useState<ID>();
   const { t } = useTranslation();
   const { pageFrames, error, loading } = useQueryPageFrames();
-  useShowError(error);
+  const { error: metaError, loading: metaLoading } = useBuildMeta();
+  useShowError(error || metaError);
   const hanclePannelChange = useCallback((activeKey: string) => {
     setActiveKey(activeKey)
   }, []);
@@ -48,7 +50,7 @@ export const FrameDesigner = memo(() => {
     setSeletedId(selectedId)
   }, [])
   return (
-    <Spin spinning={loading}>
+    <Spin spinning={loading || metaLoading}>
       <Designer engine={engine}>
         <StudioPanel logo={<NavigationWidget />}
           actions={

@@ -3,7 +3,7 @@ import { useMemo, useEffect, useCallback } from "react";
 import { useSetRecoilState } from "recoil";
 import { SYSTEM_APP_ID } from "~/consts";
 import { useQueryOne } from "~/enthooks/hooks/useQueryOne";
-import { useSelectedAppUuid } from "~/plugin-sdk/contexts/desinger";
+import { useSelectedAppId } from "~/plugin-sdk/contexts/desinger";
 import { classesState, entitiesState, packagesState } from "../recoil";
 import _ from "lodash";
 import { AssociationMeta } from "../model";
@@ -60,7 +60,7 @@ const getEntityAssociations = (classUuid: string, classMetas: ClassMeta[], relat
 
 
 export function useBuildMeta(): { error?: GraphQLRequestError; loading?: boolean } {
-  const appId = useSelectedAppUuid();
+  const appId = useSelectedAppId();
   const setEntitiesState = useSetRecoilState(entitiesState(appId));
   const setClasses = useSetRecoilState(classesState(appId));
   const setPackages = useSetRecoilState(packagesState(appId))

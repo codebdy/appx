@@ -30,6 +30,6 @@ export const useDesignerViewKey = () => {
   return key;
 }
 
-export function useSelectedAppUuid() {
-  return useDesignerParams()?.app?.uuid
+export function useSelectedAppId() {
+  return useDesignerParams()?.app?.id
 }
