@@ -15,10 +15,11 @@ import { useShowError } from "../hooks/useShowError";
 export const AppRoot = memo((
   props: {
     app: IApp,
-    children?: React.ReactNode
+    children?: React.ReactNode,
+    pageCache?: boolean,
   }
 ) => {
-  const { app, children } = props;
+  const { app, children, pageCache } = props;
   const { device = Device.PC } = useParams();
   const me = useMe();
   const { userConfig, loading: userConfigLoading, error: userConfigError } = useQueryUserConfig(app.id, device as any, me?.id)
@@ -33,8 +34,9 @@ export const AppRoot = memo((
       userConfig: userConfig,
       uiFrame: uiFrame,
       components: components,
+      pageCache: pageCache,
     }
-  }, [app, device, userConfig, uiFrame, components])
+  }, [app, device, userConfig, uiFrame, components, pageCache])
   const isLoading = useMemo(() => loading || userConfigLoading, [loading, userConfigLoading])
   return (
     isLoading ?

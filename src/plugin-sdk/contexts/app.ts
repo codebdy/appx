@@ -12,6 +12,7 @@ export interface IAppContextParams {
   userConfig?: IUserConfig,
   uiFrame?: IUiFrame,
   components: IComponents,
+  pageCache?: boolean,
 }
 export const AppContext = createContext<IAppContextParams>({} as any);
 export const useUserConfig = (): IUserConfig | undefined => useContext(AppContext)?.userConfig;
