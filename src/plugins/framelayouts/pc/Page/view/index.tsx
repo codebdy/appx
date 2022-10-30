@@ -17,7 +17,6 @@ const Component = observer((props: IComponentProps) => {
   const key = useAppViewKey();
   const pagePopups = useRecoilValue(pagePopupsState(key));
 
-  console.log("哈哈哈", pagePopups)
   return (
     <>
       <RootPage />

@@ -1,13 +1,25 @@
 import { useMemo } from "react";
 import { gql, useQueryOne } from "~/enthooks";
 import { IPage } from "~/model";
+import { ID } from "~/shared";
 
 const pageGql = gql`
-query ($uuid:String!){
+query ($uuid:String!, $appId:ID!){
   onePage(where:{
-    uuid:{
-      _eq:$uuid
-    }
+    _and:[
+      {
+        uuid:{
+          _eq:$uuid
+        }
+      },
+      {
+        app:{
+          id:{
+            _eq:$appId
+          }
+        }
+      }
+    ]
   }){
     id
     uuid
@@ -17,11 +29,11 @@ query ($uuid:String!){
 }
 `
 
-export function useQueryPageByUuid(uuid?: string) {
+export function useQueryPageByUuid(appId: ID, uuid?: string) {
   const input = useMemo(() => (
     {
       gql: uuid && pageGql,
-      params: { uuid },
+      params: { uuid, appId },
       depEntityNames: ["Page"]
     }
   ), [uuid]);

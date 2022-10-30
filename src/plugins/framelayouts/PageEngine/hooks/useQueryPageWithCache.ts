@@ -6,12 +6,12 @@ import { useQueryPageByUuid } from "./useQueryPageByUuid";
 
 export function useQueryPageWithCache(uuid?: string) {
   const key = useAppViewKey();
-  const { pageCache } = useAppParams();
+  const { app, pageCache } = useAppParams();
   const [pages, setPages] = useRecoilState(pagesCacheState(key))
 
   const pageInCache = useMemo(() => pages.find(pg => pg.uuid === uuid), [uuid, pages]);
 
-  const { page, error, loading } = useQueryPageByUuid(pageInCache && pageCache ? undefined : uuid);
+  const { page, error, loading } = useQueryPageByUuid(app.id, pageInCache && pageCache ? undefined : uuid);
 
   useEffect(() => {
     if (page) {
