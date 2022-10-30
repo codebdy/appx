@@ -1,7 +1,7 @@
 import { atomFamily } from "recoil";
 import { IPage } from "~/model";
 import { ID } from "~/shared";
-import { OpenPageType } from "~/shared/action";
+import { OpenPageType } from "../model";
 
 export interface IPagePopup {
   id: string;

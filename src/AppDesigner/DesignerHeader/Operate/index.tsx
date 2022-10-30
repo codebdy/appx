@@ -92,7 +92,7 @@ export const Operate = memo(() => {
         ? event.target.files[0]
         : undefined;
       if (zipFile) {
-        importApp(zipFile)
+        importApp(zipFile, appId)
         if (fileInputRef.current) {
           fileInputRef.current.value = ""
         }

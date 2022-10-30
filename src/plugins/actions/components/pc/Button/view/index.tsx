@@ -21,6 +21,7 @@ const Component = observer((props: IButtonProps) => {
   const doActions = useDoActions();
 
   const handleClick = useCallback(() => {
+    console.log("呵呵", props)
     if (!onClick) {
       return;
     }

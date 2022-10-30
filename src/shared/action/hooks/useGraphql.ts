@@ -49,7 +49,7 @@ export function useGraphql() {
     const affectedEntities = palyload.affectedEntities?.replace("，", ",")?.split(",");
 
     for (const entityName of affectedEntities || []) {
-      trigger(EVENT_DATA_POSTED, { entity: entityName })
+      trigger(EVENT_DATA_POSTED, { entity: entityName.trim() })
     }
     return data;
   }, [endpoint, token, app])
