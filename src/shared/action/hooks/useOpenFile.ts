@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef } from "react";
 function createInput(): HTMLInputElement {
   const inputEl = document.createElement('input');
   inputEl.type = "file";
-  //inputEl.style.display = 'none';
+  inputEl.style.display = 'none';
 
   document.body.appendChild(inputEl);
   return inputEl;
@@ -27,6 +27,7 @@ export function useOpenFile() {
     console.log("呵呵2", event)
     rejectRef.current && rejectRef.current("Canceled")
     document.body.onfocus = undefined
+    document.body.removeChild(fileInputRef.current);
   }, [])
 
   const open = useCallback(() => {

@@ -2,7 +2,6 @@ import { Form, Input, Switch } from "antd"
 import React from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next"
-import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/view"
 
 export const OpenFilePanel = memo((
   props: {
