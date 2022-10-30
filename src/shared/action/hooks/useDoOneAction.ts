@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { ActionType, IAppxAction, IConfirmAction, INavigateAction, IOpenPageAction, ISuccessAction } from "@rxdrag/plugin-sdk/model/action";
+import { ActionType, IAppxAction, IConfirmAction, INavigateAction, IOpenFileAction, IOpenPageAction, ISuccessAction } from "@rxdrag/plugin-sdk/model/action";
 import { useBatchDelete } from "./useBatchDelete";
 import { useBatchUpdate } from "./useBatchUpdate";
 import { useCloseDialog } from "./useCloseDialog";
@@ -71,7 +71,7 @@ export function useDoOneAction() {
             navigate((action.payload as INavigateAction).route);
             break;
           case ActionType.OpenFile:
-            await openFile(action.payload, variables);
+            await openFile(action.payload as IOpenFileAction, variables);
             break
         }
       } catch (err) {

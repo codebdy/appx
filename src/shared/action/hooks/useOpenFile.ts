@@ -1,48 +1,34 @@
-import { useCallback, useEffect, useRef } from "react";
-import { IOpenFileAction } from "~/plugin-sdk";
+import { useCallback } from "react";
+import { IOpenFileAction, useParseLangMessage } from "~/plugin-sdk";
 
-function createInput(): HTMLInputElement {
-  const inputEl = document.createElement('input');
-  inputEl.type = "file";
-  inputEl.style.display = 'none';
+async function getTheFile(accept: string, multiple?: boolean) {
+  // open file picker
+  const fileHandles = await (window as any).showOpenFilePicker({
+    types: [{
+      accept: {
+        "file/*": accept?.split(",")
+      },
+    }],
+    excludeAcceptAllOption: false,
+    multiple: multiple,
+  });
 
-  document.body.appendChild(inputEl);
-  return inputEl;
+  return fileHandles;
 }
 
 export function useOpenFile() {
-  const resolveRef = useRef<(value: unknown) => void>();
-  const rejectRef = useRef<(reason?: any) => void>();
-  const fileInputRef = useRef<HTMLInputElement>()
+  const p = useParseLangMessage();
 
-  const handleFileInputChange = useCallback(
-    (event: Event) => {
-      console.log("呵呵", event)
-      resolveRef.current && resolveRef.current(undefined)
-      document.body.removeChild(fileInputRef.current);
-    },
-    [fileInputRef]
-  );
+  const open = useCallback(async (palyload: IOpenFileAction, variables: any) => {
+    const allFiles = await Promise.all(
+      (await getTheFile(palyload.accept, palyload.multiple)).map(async (fileHandle) => {
+        const file = await fileHandle.getFile();
+        return file;
+      })
+    );
 
-  const handleCancel = useCallback((event: Event) => {
-    console.log("呵呵2", event)
-    rejectRef.current && rejectRef.current("Canceled")
-    document.body.onfocus = undefined
-    document.body.removeChild(fileInputRef.current);
+    console.log("呵呵", allFiles)
   }, [])
-
-  const open = useCallback((palyload: IOpenFileAction, variables: any) => {
-    const p = new Promise((resolve, reject) => {
-      fileInputRef.current = createInput();
-      resolveRef.current = resolve;
-      rejectRef.current = reject;
-      fileInputRef.current.onchange = handleFileInputChange;
-      document.body.onfocus = handleCancel;
-      fileInputRef.current?.click();
-
-    });
-    return p;
-  }, [resolveRef, rejectRef, handleFileInputChange, handleCancel, fileInputRef])
 
   return open;
 }

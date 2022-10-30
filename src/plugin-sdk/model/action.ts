@@ -53,10 +53,11 @@ export interface INavigateAction {
   route?: string;
 }
 
-export interface IOpenFileAction{
+export interface IOpenFileAction {
   multiple?: boolean;
+  description?: string;
   accept?: string;
-  variableName?:string;
+  variableName?: string;
 }
 
 export interface IAppxAction {
