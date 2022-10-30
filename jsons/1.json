@@ -42,6 +42,7 @@
           "uuid": "APP_COLUMN_ID_UUID"
         },
         {
+          "autoGenerate": true,
           "createDate": false,
           "default": "",
           "deleteDate": false,
@@ -57,8 +58,8 @@
           "primary": false,
           "readonly": false,
           "system": true,
-          "type": "String",
-          "typeLabel": "String",
+          "type": "Uuid",
+          "typeLabel": "",
           "typeUuid": "",
           "unique": false,
           "unsigned": false,
@@ -373,8 +374,8 @@
           "primary": false,
           "readonly": false,
           "system": true,
-          "type": "String",
-          "typeLabel": "String",
+          "type": "Password",
+          "typeLabel": "",
           "typeUuid": "",
           "unique": false,
           "unsigned": false,
@@ -2017,11 +2018,11 @@
           "uuid": "01da62ca-ad8d-4306-9420-732e779a8b83"
         },
         {
-          "uuid": "ed33e4b0-51df-482f-80b4-beab605bff32",
           "name": "schemaJson",
+          "nullable": true,
           "type": "JSON",
           "typeLabel": "JSON",
-          "nullable": true
+          "uuid": "ed33e4b0-51df-482f-80b4-beab605bff32"
         }
       ],
       "description": "",
@@ -2294,13 +2295,14 @@
           "primary": false,
           "readonly": false,
           "system": false,
-          "type": "String",
-          "typeLabel": "String",
+          "type": "Uuid",
+          "typeLabel": "",
           "typeUuid": "",
           "unique": true,
           "unsigned": false,
           "updateDate": false,
-          "uuid": "30b61e1f-8afc-4c56-9f32-248da5368e3a"
+          "uuid": "30b61e1f-8afc-4c56-9f32-248da5368e3a",
+          "autoGenerate": true
         }
       ],
       "description": "",
@@ -4274,15 +4276,15 @@
       "uuid": "57732ce2-ffa2-456a-9e93-c2df43401ca0"
     },
     {
-      "uuid": "88caf839-bd0d-4d67-b75f-7ea89bb7fa75",
       "innerId": 1009,
       "relationType": "twoWayAggregation",
-      "sourceId": "APP_ENTITY_UUID",
-      "targetId": "de56ae19-aaac-4479-8bf9-6573ad22a482",
-      "roleOfTarget": "userConfigs",
       "roleOfSource": "app",
+      "roleOfTarget": "userConfigs",
+      "sourceId": "APP_ENTITY_UUID",
       "sourceMutiplicity": "0..1",
-      "targetMultiplicity": "0..*"
+      "targetId": "de56ae19-aaac-4479-8bf9-6573ad22a482",
+      "targetMultiplicity": "0..*",
+      "uuid": "88caf839-bd0d-4d67-b75f-7ea89bb7fa75"
     }
   ],
   "diagrams": [
@@ -4357,20 +4359,20 @@
       "y": -99
     },
     {
-      "id": "de56ae19-aaac-4479-8bf9-6573ad22a482",
-      "x": 0,
-      "y": 189,
-      "width": 180,
+      "diagramUuid": "ff40de16-1759-407e-b52c-915c307f5c74",
       "height": 160,
-      "diagramUuid": "ff40de16-1759-407e-b52c-915c307f5c74"
+      "id": "de56ae19-aaac-4479-8bf9-6573ad22a482",
+      "width": 180,
+      "x": 0,
+      "y": 189
     },
     {
-      "id": "META_USER_UUID",
-      "x": -350,
-      "y": 127,
-      "width": 180,
+      "diagramUuid": "ff40de16-1759-407e-b52c-915c307f5c74",
       "height": 278,
-      "diagramUuid": "ff40de16-1759-407e-b52c-915c307f5c74"
+      "id": "META_USER_UUID",
+      "width": 180,
+      "x": -350,
+      "y": 127
     },
     {
       "diagramUuid": "ff40de16-1759-407e-b52c-915c307f5c74",
@@ -4968,27 +4970,27 @@
       "vertices": []
     },
     {
+      "diagramUuid": "ff40de16-1759-407e-b52c-915c307f5c74",
       "id": "88caf839-bd0d-4d67-b75f-7ea89bb7fa75",
-      "vertices": [],
       "roleOnSourcePosition": {
+        "angle": 0,
         "distance": 0.23030303030303031,
-        "offset": 40,
-        "angle": 0
+        "offset": 40
+      },
+      "roleOnTargetPosition": {
+        "angle": 0,
+        "distance": 0.7757575757575758,
+        "offset": 70
       },
       "sourceMultiplicityPosition": {
         "distance": 40,
         "offset": -20
       },
-      "roleOnTargetPosition": {
-        "distance": 0.7757575757575758,
-        "offset": 70,
-        "angle": 0
-      },
       "targetMultiplicityPosition": {
         "distance": -40,
         "offset": -20
       },
-      "diagramUuid": "ff40de16-1759-407e-b52c-915c307f5c74"
+      "vertices": []
     }
   ]
 }
