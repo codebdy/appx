@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { IOpenFileAction, useParseLangMessage } from "~/plugin-sdk";
+import { IOpenFileAction } from "~/plugin-sdk";
 
 async function getTheFile(accept: string, multiple?: boolean) {
   // open file picker
@@ -17,17 +17,25 @@ async function getTheFile(accept: string, multiple?: boolean) {
 }
 
 export function useOpenFile() {
-  const p = useParseLangMessage();
-
   const open = useCallback(async (palyload: IOpenFileAction, variables: any) => {
-    const allFiles = await Promise.all(
-      (await getTheFile(palyload.accept, palyload.multiple)).map(async (fileHandle) => {
-        const file = await fileHandle.getFile();
-        return file;
-      })
-    );
+    try {
+      const allFiles = await Promise.all(
+        (await getTheFile(palyload.accept, palyload.multiple)).map(async (fileHandle) => {
+          const file = await fileHandle.getFile();
+          return file;
+        })
+      );
 
-    console.log("呵呵", allFiles)
+      if (palyload.multiple) {
+        variables[palyload.variableName] = allFiles
+      } else {
+        variables[palyload.variableName] = allFiles?.[0]
+      }
+    } catch (err) {
+      console.error(err)
+      throw undefined
+    }
+
   }, [])
 
   return open;
