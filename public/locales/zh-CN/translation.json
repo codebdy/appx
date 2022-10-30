@@ -308,7 +308,8 @@
     "EnableVersion": "开启版本",
     "Other": "其它",
     "Type": "类型",
-    "AutoIncrement": "自增长"
+    "AutoIncrement": "自增长",
+    "AutoGenerate": "自动生成"
   },
   "AppBpmn": {
     "General": "通用",

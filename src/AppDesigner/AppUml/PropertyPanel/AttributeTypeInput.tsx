@@ -38,6 +38,7 @@ export const AttributeTypeInput = memo(
             <Option value={Types.Boolean}>Boolean</Option>
             <Option value={Types.String}>String</Option>
             <Option value={Types.Date}>Date</Option>
+            <Option value={Types.Uuid}>UUID</Option>
             <Option value={Types.Enum}>{t("AppUml.Enum")}</Option>
             <Option value={Types.JSON}>JSON</Option>
             <Option value={Types.ValueObject}>{t("AppUml.ValueClass")}</Option>

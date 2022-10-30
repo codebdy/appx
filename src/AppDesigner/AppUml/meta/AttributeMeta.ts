@@ -86,4 +86,6 @@ export interface AttributeMeta {
   system?: boolean;
 
   autoIncrement?: boolean;
+
+  autoGenerate?: boolean;
 }

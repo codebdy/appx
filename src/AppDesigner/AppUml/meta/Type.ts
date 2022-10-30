@@ -17,7 +17,8 @@ import { BaseDataType } from "~/shared/BaseDataType";
   ValueObjectArray = "ValueObjectArray",
   EntityArray = "EntityArray",
   File = "File",
-  Password = "Password"
+  Password = "Password",
+  Uuid = "Uuid"
 }
 
 export type Type = ExtendType | BaseDataType

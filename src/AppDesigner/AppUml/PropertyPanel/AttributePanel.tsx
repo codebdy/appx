@@ -119,6 +119,16 @@ export const AttributePanel = (props: {
               </>
             }
             {
+              attribute.type === Types.Uuid &&
+              <Form.Item
+                label={t("AppUml.AutoGenerate")}
+                valuePropName="checked"
+                name="autoGenerate"
+              >
+                <Switch />
+              </Form.Item>
+            }
+            {
               attribute.type === Types.Int &&
               <Form.Item
                 label={t("AppUml.AutoIncrement")}
