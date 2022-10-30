@@ -56,6 +56,7 @@ export interface INavigateAction {
 export interface IOpenFileAction{
   multiple?: boolean;
   accept?: string;
+  variableName?:string;
 }
 
 export interface IAppxAction {

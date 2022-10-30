@@ -539,7 +539,8 @@
     "Left": "左侧",
     "Top": "顶部",
     "ConfirmTitle": "确认标题",
-    "Multiple":"可复选"
+    "Multiple": "可复选",
+    "VariableName": "变量名称"
   },
   "PageSelect": {
     "PleaseSelectPage": "请选择页面"

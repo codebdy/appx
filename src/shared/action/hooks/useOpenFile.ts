@@ -26,6 +26,7 @@ export function useOpenFile() {
   const handleCancel = useCallback((event: Event) => {
     console.log("呵呵2", event)
     rejectRef.current && rejectRef.current("Canceled")
+    document.body.onfocus = undefined
   }, [])
 
   const open = useCallback(() => {

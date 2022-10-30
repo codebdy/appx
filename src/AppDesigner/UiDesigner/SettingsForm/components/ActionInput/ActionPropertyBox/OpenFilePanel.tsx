@@ -25,6 +25,12 @@ export const OpenFilePanel = memo((
       >
         <Switch />
       </Form.Item>
+      <Form.Item
+        label={t("Action.VariableName")}
+        name="variableName"
+      >
+        <Input />
+      </Form.Item>
     </>
   )
 })
