@@ -62,6 +62,7 @@ export interface IOpenFileAction {
 
 export interface IGraphqlAction {
   gqlScript?: string;
+  affectedEntities?: string;
 }
 
 export interface IAppxAction {

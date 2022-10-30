@@ -543,7 +543,9 @@
     "VariableName": "变量名称",
     "GQLScript": "GQL 脚本",
     "ScriptConfig": "脚本配置",
-    "GqlScriptEmperty": "Gql 脚本是空值"
+    "GqlScriptEmperty": "Gql 脚本是空值",
+    "AffectedEntities": "受影响实体",
+    "CommaSplit": "逗号分隔"
   },
   "PageSelect": {
     "PleaseSelectPage": "请选择页面"
