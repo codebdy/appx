@@ -6,8 +6,8 @@ export function useDoActions() {
   const doOne = useDoOneAction();
 
   const doActions = useCallback(async (actions?: IAppxAction[]) => {
+    const variables = {};
     for (const action of actions || []) {
-      const variables = {};
       await doOne(action, variables);
     }
   }, [doOne])
