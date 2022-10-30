@@ -3,6 +3,7 @@ import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { HEADER_APPX_APPID, HEADER_AUTHORIZATION, TOKEN_PREFIX } from "~/consts";
 import { AwesomeGraphQLClient, useEndpoint, useToken } from "~/enthooks";
+import { EVENT_DATA_POSTED, trigger } from "~/enthooks/events";
 import { IGraphqlAction } from "~/plugin-sdk";
 import { useAppParams } from "~/plugin-sdk/contexts/app";
 
@@ -44,7 +45,12 @@ export function useGraphql() {
     const data = await graphQLClient.request(palyload.gqlScript, gqlVariables, {
       headers: headers
     })
-    console.log("进入gql 动作", data)
+
+    const affectedEntities = palyload.affectedEntities?.replace("，", ",")?.split(",");
+
+    for (const entityName of affectedEntities || []) {
+      trigger(EVENT_DATA_POSTED, { entity: entityName })
+    }
     return data;
   }, [endpoint, token, app])
 
