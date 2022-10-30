@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { ActionType, IAppxAction, IConfirmAction, INavigateAction, IOpenFileAction, IOpenPageAction, ISuccessAction } from "@rxdrag/plugin-sdk/model/action";
+import { ActionType, IAppxAction, IConfirmAction, IGraphqlAction, INavigateAction, IOpenFileAction, IOpenPageAction, ISuccessAction } from "@rxdrag/plugin-sdk/model/action";
 import { useBatchDelete } from "./useBatchDelete";
 import { useBatchUpdate } from "./useBatchUpdate";
 import { useCloseDialog } from "./useCloseDialog";
@@ -13,6 +13,7 @@ import { useShowSuccess } from "./useShowSuccess";
 import { useTableSearch } from "./useTableSearch";
 import { useNavigate } from "react-router-dom";
 import { useOpenFile } from "./useOpenFile";
+import { useGraphql } from "./useGraphql";
 
 export function useDoOneAction() {
   const openPage = useOpenPage();
@@ -28,6 +29,7 @@ export function useDoOneAction() {
   const submitSearch = useTableSearch();
   const navigate = useNavigate();
   const openFile = useOpenFile();
+  const doGraphql = useGraphql();
 
   const doAction = useCallback((action: IAppxAction, variables: any) => {
     return new Promise(async (resolve, reject) => {
@@ -72,6 +74,9 @@ export function useDoOneAction() {
             break;
           case ActionType.OpenFile:
             await openFile(action.payload as IOpenFileAction, variables);
+            break
+          case ActionType.Graphql:
+            await doGraphql(action.payload as IGraphqlAction, variables)
             break
         }
       } catch (err) {

@@ -60,9 +60,13 @@ export interface IOpenFileAction {
   variableName?: string;
 }
 
+export interface IGraphqlAction {
+  expression?: string;
+}
+
 export interface IAppxAction {
   uuid: string,
   title: string,
   actionType: ActionType,
-  payload?: IOpenPageAction | ISuccessAction | IConfirmAction | INavigateAction | IOpenFileAction,
+  payload?: IOpenPageAction | ISuccessAction | IConfirmAction | INavigateAction | IOpenFileAction | IGraphqlAction,
 }
