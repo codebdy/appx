@@ -33,6 +33,7 @@ export function useOpenFile() {
       }
     } catch (err) {
       console.error(err)
+      //中断动作链，但是不显示错误信息
       throw undefined
     }
 
