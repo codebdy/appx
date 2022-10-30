@@ -542,7 +542,8 @@
     "Multiple": "可复选",
     "VariableName": "变量名称",
     "GQLScript": "GQL 脚本",
-    "ScriptConfig": "脚本配置"
+    "ScriptConfig": "脚本配置",
+    "GqlScriptEmperty": "Gql 脚本是空值"
   },
   "PageSelect": {
     "PleaseSelectPage": "请选择页面"
