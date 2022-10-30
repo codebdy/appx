@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef } from "react";
+import { IOpenFileAction } from "~/plugin-sdk";
 
 function createInput(): HTMLInputElement {
   const inputEl = document.createElement('input');
@@ -30,7 +31,7 @@ export function useOpenFile() {
     document.body.removeChild(fileInputRef.current);
   }, [])
 
-  const open = useCallback(() => {
+  const open = useCallback((palyload: IOpenFileAction, variables: any) => {
     const p = new Promise((resolve, reject) => {
       fileInputRef.current = createInput();
       resolveRef.current = resolve;
@@ -38,7 +39,7 @@ export function useOpenFile() {
       fileInputRef.current.onchange = handleFileInputChange;
       document.body.onfocus = handleCancel;
       fileInputRef.current?.click();
-      
+
     });
     return p;
   }, [resolveRef, rejectRef, handleFileInputChange, handleCancel, fileInputRef])

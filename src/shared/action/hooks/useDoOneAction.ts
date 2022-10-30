@@ -29,7 +29,7 @@ export function useDoOneAction() {
   const navigate = useNavigate();
   const openFile = useOpenFile();
 
-  const doAction = useCallback((action: IAppxAction) => {
+  const doAction = useCallback((action: IAppxAction, variables: any) => {
     return new Promise(async (resolve, reject) => {
       try {
         switch (action.actionType) {
@@ -71,7 +71,7 @@ export function useDoOneAction() {
             navigate((action.payload as INavigateAction).route);
             break;
           case ActionType.OpenFile:
-            await openFile();
+            await openFile(action.payload, variables);
             break
         }
       } catch (err) {
