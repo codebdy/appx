@@ -3,6 +3,7 @@ import React from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next"
 import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/view"
+import { GqlScriptInput } from "../GqlScriptInput"
 
 export const GraphqlPanel = memo((
   props: {
@@ -13,16 +14,10 @@ export const GraphqlPanel = memo((
   return (
     <>
       <Form.Item
-        label={t("Title")}
-        name="boxTitle"
+        label={t("Action.GQLScript")}
+        name="gqlScript"
       >
-        <MultiLangInput title={t("Title")} />
-      </Form.Item>
-      <Form.Item
-        label={t("Message")}
-        name="message"
-      >
-        <MultiLangInput title={t("Message")} multiline />
+        <GqlScriptInput />
       </Form.Item>
     </>
   )
