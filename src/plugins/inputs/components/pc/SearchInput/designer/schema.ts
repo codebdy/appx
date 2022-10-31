@@ -1,6 +1,8 @@
 import { FieldsType, IPropsSchema } from '@rxdrag/appx-plugin-sdk'
+import { Events } from '~/plugin-sdk';
 
 const schema: IPropsSchema = {
+  actions: [Events.onSearch],
   display: {
     fieldSourceType: FieldsType.Multiple,
   },

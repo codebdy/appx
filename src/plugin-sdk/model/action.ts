@@ -1,7 +1,8 @@
 import { ID } from "~/shared";
 
 export enum Events {
-  onClick = "onClick"
+  onClick = "onClick",
+  onSearch = "onSearch"
 }
 
 export enum ActionType {
