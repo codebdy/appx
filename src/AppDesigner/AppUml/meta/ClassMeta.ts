@@ -47,5 +47,4 @@ export interface ClassMeta {
   idNoShift?: boolean;
   queryScript?: string;
   muationScript?: string;
-  sharable?: boolean;
 }

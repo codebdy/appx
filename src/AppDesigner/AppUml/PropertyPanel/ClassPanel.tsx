@@ -90,17 +90,6 @@ export const ClassPanel = (props: { cls: ClassMeta }) => {
             </Form.Item>
           )
         }
-        {cls.stereoType === StereoType.Entity && appId === SYSTEM_APP_ID &&
-          (
-            <Form.Item
-              name="sharable"
-              valuePropName="checked"
-              label={t("AppUml.Sharable")}
-            >
-              <Switch />
-            </Form.Item>
-          )
-        }
         {
           cls.stereoType === StereoType.ThirdParty &&
           <>
