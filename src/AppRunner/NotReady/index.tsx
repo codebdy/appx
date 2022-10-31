@@ -10,10 +10,11 @@ import "./style.less"
 
 export const NotReady = memo((
   props: {
-    title: string
+    title: string,
+    noEdit?: boolean,
   }
 ) => {
-  const { title } = props;
+  const { title, noEdit } = props;
   const { t } = useTranslation();
   const appId = useEdittingAppId();
   const navigate = useNavigate();
@@ -42,12 +43,15 @@ export const NotReady = memo((
         </div>
         <div className="content">{title}</div>
         <div className="footer">
-          <Button
-            type="primary"
-            size="large"
-            icon={<EditOutlined />}
-            onClick={handleGoEdit}
-          >{t("GoEdit")}</Button>
+          {
+            !noEdit && <Button
+              type="primary"
+              size="large"
+              icon={<EditOutlined />}
+              onClick={handleGoEdit}
+            >{t("GoEdit")}</Button>
+          }
+
         </div>
 
       </div>

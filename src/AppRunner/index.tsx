@@ -19,6 +19,10 @@ const AppRunner = memo(() => {
     return <CenterSpin loading={loading} />
   }
 
+  if (!app){
+    return <NotReady title={t("AppNotExist")} noEdit />
+  }
+
   if (!app?.published) {
     return <NotReady title={t("NotPublishedTip")} />
   }
