@@ -4803,18 +4803,26 @@
       ]
     },
     {
-      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
       "id": "1d6437c7-e295-4f4d-8223-14e6ed52f366",
       "vertices": [
         {
-          "x": 120,
+          "x": 150,
           "y": 180
         },
         {
           "x": 390,
           "y": 180
         }
-      ]
+      ],
+      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
+      "sourceAnchor": {
+        "name": "topLeft",
+        "args": {
+          "dx": "67%",
+          "dy": "50%",
+          "rotate": true
+        }
+      }
     },
     {
       "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
@@ -4845,18 +4853,26 @@
       ]
     },
     {
-      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
       "id": "7155615f-a7f9-4d4f-ad31-fe2c91f18d0b",
       "vertices": [
         {
-          "x": 120,
+          "x": 90,
           "y": 180
         },
         {
           "x": -70,
           "y": 180
         }
-      ]
+      ],
+      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
+      "sourceAnchor": {
+        "name": "topLeft",
+        "args": {
+          "dx": "33%",
+          "dy": "50%",
+          "rotate": true
+        }
+      }
     },
     {
       "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
