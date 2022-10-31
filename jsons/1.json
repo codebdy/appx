@@ -59,7 +59,7 @@
           "readonly": false,
           "system": true,
           "type": "Uuid",
-          "typeLabel": "",
+          "typeLabel": "Uuid",
           "typeUuid": "",
           "unique": false,
           "unsigned": false,
@@ -2280,6 +2280,7 @@
           "uuid": "74d97d91-2545-4b09-9324-54949431db2e"
         },
         {
+          "autoGenerate": true,
           "createDate": false,
           "default": "",
           "deleteDate": false,
@@ -2296,13 +2297,12 @@
           "readonly": false,
           "system": false,
           "type": "Uuid",
-          "typeLabel": "",
+          "typeLabel": "Uuid",
           "typeUuid": "",
           "unique": true,
           "unsigned": false,
           "updateDate": false,
-          "uuid": "30b61e1f-8afc-4c56-9f32-248da5368e3a",
-          "autoGenerate": true
+          "uuid": "30b61e1f-8afc-4c56-9f32-248da5368e3a"
         }
       ],
       "description": "",
