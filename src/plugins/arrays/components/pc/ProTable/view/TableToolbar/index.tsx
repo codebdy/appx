@@ -6,6 +6,7 @@ import { RecursionField, useFieldSchema } from '@formily/react';
 import { Schema } from "@formily/react";
 import "./style.less";
 import { useComponentConfig } from "~/AppRunner/hooks/useComponentConfig";
+import { useArrayParams } from "~/plugin-sdk/contexts/array";
 
 export interface ITableToolbarProps {
   className?: string,
@@ -22,12 +23,13 @@ export const TableToolbar = observer((
   props: ITableToolbarProps
 ) => {
   const { hasActions = true, children, value, onChange, ...other } = props;
-  const params = useTableParams();
+  const params = useArrayParams();
+  const tableParams = useTableParams();
   const tableConfig: ITableConfig = useComponentConfig(params.path);
   const fieldSchema = useFieldSchema()
 
   useEffect(() => {
-    params.tableConfig = tableConfig;
+    tableParams.tableConfig = tableConfig;
   }, [params, tableConfig])
 
   const slots = useMemo(() => {

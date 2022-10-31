@@ -16,6 +16,7 @@ export function useTableSearch() {
     if (objectField.validate) {
       objectField?.validate();
     }
+
     params.queryForm = toJS(objectField?.value);
     params.current = 1;
   }, [form, objectField, params])

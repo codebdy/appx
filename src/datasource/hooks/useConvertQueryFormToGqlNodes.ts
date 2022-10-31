@@ -1,8 +1,7 @@
 import { isArr, isObj, isStr } from "@formily/shared";
 import { ObjectFieldNode } from "graphql";
 import { useCallback } from "react";
-import { ISearchText } from "~/components/pc";
-import { IRangeValue } from "~/components/pc/RangePicker";
+import { ISearchText } from "~/plugins/inputs/components/pc/SearchInput/view";
 import { IQueryForm } from "../model/IQueryForm";
 import { createObjectFieldNode } from "./createObjectFieldNode";
 import { createSeachFieldNode } from "./createSeachFieldNode";
@@ -18,7 +17,7 @@ export function useConvertQueryFormToGqlNodes() {
       if (isObj(value)) {
         const anyValue = value as any;
         if (anyValue?.start || anyValue?.end) {
-          const rangeValue = value as IRangeValue
+          const rangeValue = value as any//IRangeValue
           if (rangeValue?.start) {
             const gtOp = rangeValue.startWithEqual ? "_gte" : "_gt";
             whereNodes.push(createObjectFieldNode(key, gtOp, value));
