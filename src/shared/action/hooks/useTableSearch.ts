@@ -2,10 +2,10 @@ import { useParentForm } from "@formily/react"
 import { useCallback, useMemo } from "react";
 import { isObjectField } from "@formily/core";
 import { toJS } from "@formily/reactive";
-import { useTableParams } from "@rxdrag/plugin-sdk";
+import { useArrayParams } from "~/plugin-sdk/contexts/array";
 
 export function useTableSearch() {
-  const params = useTableParams();
+  const params = useArrayParams();
   const form = useParentForm();
   const objectField = useMemo(() => (isObjectField(form) && form), [form]);
 

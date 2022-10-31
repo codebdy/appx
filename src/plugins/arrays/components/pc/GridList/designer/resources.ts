@@ -19,7 +19,7 @@ const resources: IResourceCreator[] = [
           {
             componentName: 'Field',
             props: {
-              type: 'void',
+              type: 'object',
               'x-component': 'GridList.Header',
             },
           },
