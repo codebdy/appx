@@ -20,7 +20,7 @@ export function useExportApp(options?: RequestOptions<any>): [
 
   const exportApp = useCallback((snapshotId: ID) => {
     return doExport(queryGql, { snapshotId })
-  }, [])
+  }, [doExport])
 
   return [exportApp, { error, loading }]
 }

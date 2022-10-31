@@ -36,7 +36,7 @@ export const MakeVersionDialog = memo((
       })
     })
 
-  }, [onOpenChange, appId])
+  }, [onOpenChange, create, appId])
 
   const handleCancel = useCallback(() => {
     onOpenChange(false);

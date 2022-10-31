@@ -56,7 +56,7 @@ export const ExportDialog = memo((
       exportApp(values?.snapshotId)
     })
 
-  }, [onOpenChange, appId])
+  }, [onOpenChange, exportApp, appId])
 
   const handleCancel = useCallback(() => {
     form.resetFields();
