@@ -8,28 +8,8 @@ export function useGetTypeLabel(appId: ID) {
 
   const typeName = useCallback(
     (type: Type, typeUuid?: string): string => {
-      if (
-        type === Types.ID ||
-        type === Types.Boolean ||
-        type === Types.Int ||
-        type === Types.Float ||
-        type === Types.String ||
-        type === Types.Date ||
-        type === Types.IDArray ||
-        type === Types.IntArray ||
-        type === Types.FloatArray ||
-        type === Types.StringArray ||
-        type === Types.DateArray ||
-        type === Types.File ||
-        type === Types.JSON
-      ) {
-        return type;
-      } else {
-        const cls = getClass(typeUuid || "");
-
-        if (!cls) {
-          return "";
-        }
+      const cls = getClass(typeUuid || "");
+      if (cls) {
         if (
           type === Types.Enum ||
           type === Types.ValueObject ||
@@ -44,8 +24,9 @@ export function useGetTypeLabel(appId: ID) {
           return `${cls.name}[]`;
         }
 
-        return "";
+        return ""
       }
+      return type;
     },
     [getClass]
   );
