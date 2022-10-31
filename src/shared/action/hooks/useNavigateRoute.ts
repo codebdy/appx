@@ -8,7 +8,10 @@ export function useNavigateRoute() {
   const { instance } = useInstanceParams()
   const navigateRoute = useCallback((route: string) => {
     const realRoute = route.split("{{").map((left) => {
-      return left.split("}}").map(right => Schema.shallowCompile(`{{${right}}}`, { "$this": instance })).join("")
+      return left.split("}}").map(right => {
+        return Schema.shallowCompile(`{{${right}}}`, { "$this": instance }) || right
+      }
+      ).join("")
     }).join("");
 
     navigate(realRoute)
