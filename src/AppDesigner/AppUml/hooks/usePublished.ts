@@ -10,15 +10,16 @@ export function usePublished(appId: ID) {
     if (!app) {
       return false;
     }
+
     if (app.publishMetaAt && (moment(app?.saveMetaAt).diff(moment(app?.publishMetaAt)) <= 0)) {
       return true;
     }
 
     if (!app.saveMetaAt) {
-      return false;
+      return true;
     }
     if (!app.publishMetaAt && app.saveMetaAt) {
-      return true;
+      return false;
     }
   }, [app])
 
