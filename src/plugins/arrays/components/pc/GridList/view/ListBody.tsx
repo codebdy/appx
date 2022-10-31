@@ -30,7 +30,7 @@ export const ListBody = observer((
   props: IListBodyProps,
 ) => {
   const {
-    gutter,
+    gutter = 16,
     grid,
     children,
     ...other } = props;
