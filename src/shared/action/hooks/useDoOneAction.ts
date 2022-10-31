@@ -11,9 +11,9 @@ import { useReset } from "./useReset";
 import { useSaveData } from "./useSaveData";
 import { useShowSuccess } from "./useShowSuccess";
 import { useTableSearch } from "./useTableSearch";
-import { useNavigate } from "react-router-dom";
 import { useOpenFile } from "./useOpenFile";
 import { useGraphql } from "./useGraphql";
+import { useNavigateRoute } from "./useNavigateRoute";
 
 export function useDoOneAction() {
   const openPage = useOpenPage();
@@ -27,7 +27,7 @@ export function useDoOneAction() {
   const batchDelete = useBatchDelete();
   const batchUpdate = useBatchUpdate();
   const submitSearch = useTableSearch();
-  const navigate = useNavigate();
+  const navigate = useNavigateRoute();
   const openFile = useOpenFile();
   const doGraphql = useGraphql();
 
