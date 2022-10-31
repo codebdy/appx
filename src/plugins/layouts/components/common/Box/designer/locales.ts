@@ -3,6 +3,7 @@ const locales = {
     title: '盒子',
     settings: {
       'x-component-props': {
+        cursor:"光标"
       },
     },
   },
@@ -10,6 +11,7 @@ const locales = {
     title: 'Box',
     settings: {
       'x-component-props': {
+        cursor:"Cursor"
       },
     },
   },

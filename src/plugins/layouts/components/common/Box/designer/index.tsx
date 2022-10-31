@@ -10,9 +10,9 @@ import "../view/style.less"
 const ComponentDesigner: DnFC<IComponentProps> = observer((
   props
 ) => {
-  const { style, className, ...other } = props;
+  const { style, className, onClick, cursor, ...other } = props;
   return (
-    <DroppableWidget className={cls("appx-box-designer appx-box", className)} {...other} style={{ width: "100%", ...style }} />
+    <DroppableWidget className={cls("appx-box-designer appx-box", className)} {...other} style={{ width: "100%", cursor, ...style }} />
   )
 })
 

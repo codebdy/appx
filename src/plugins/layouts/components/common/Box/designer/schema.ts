@@ -4,6 +4,11 @@ const schema: IPropsSchema = {
   props: {
     type: 'object',
     properties: {
+      cursor:{
+        type: 'string',
+        'x-decorator': 'FormItem',
+        'x-component': 'Input',
+      }
     },
   },
 }
