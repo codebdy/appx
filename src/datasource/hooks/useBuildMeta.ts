@@ -65,10 +65,10 @@ const getEntityAssociations = (classUuid: string, classMetas: ClassMeta[], relat
 
 
 const makeRelations = (classes: ClassMeta[], relations: RelationMeta[]) => {
-
   const newRelations: RelationMeta[] = []
   for (const relation of relations) {
     if (relation.relationType === RelationType.INHERIT) {
+      newRelations.push(relation);
       continue;
     }
 
