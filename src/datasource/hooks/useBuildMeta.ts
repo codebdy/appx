@@ -11,6 +11,7 @@ import { AssociationType } from "../model/IFieldSource";
 import { getParentClasses } from "./getParentClasses";
 import { AttributeMeta, ClassMeta, MethodMeta, RelationMeta, RelationMultiplicity, RelationType, StereoType } from "~/AppDesigner/AppUml/meta";
 import { IApp } from "~/model";
+import { getChildEntities } from "./getChildEntities";
 
 export const sort = (array: { name: string }[]) => {
   return array.sort((a, b) => {
@@ -28,6 +29,10 @@ export const sort = (array: { name: string }[]) => {
   }) as any
 }
 
+const getClassByUuid = (classUuid: string, classMetas: ClassMeta[]) => {
+  return classMetas.find(cls => cls.uuid === classUuid);
+}
+
 const getEntityAssociations = (classUuid: string, classMetas: ClassMeta[], relations: RelationMeta[]) => {
   const associations: AssociationMeta[] = [];
   for (const relation of relations) {
@@ -35,7 +40,7 @@ const getEntityAssociations = (classUuid: string, classMetas: ClassMeta[], relat
       continue;
     }
 
-    if (!classMetas.find(cls => cls.uuid === relation.targetId) || !classMetas.find(cls => cls.uuid === relation.sourceId)) {
+    if (!getClassByUuid(relation.targetId, classMetas) || !getClassByUuid(relation.sourceId, classMetas)) {
       continue;
     }
 
@@ -58,6 +63,40 @@ const getEntityAssociations = (classUuid: string, classMetas: ClassMeta[], relat
   return associations;
 }
 
+
+const makeRelations = (classes: ClassMeta[], relations: RelationMeta[]) => {
+  const newRelations: RelationMeta[] = []
+  for (const relation of relations) {
+    if (relation.relationType === RelationType.INHERIT) {
+      continue;
+    }
+
+    const sourceClass = getClassByUuid(relation.sourceId, classes)
+    const targetClass = getClassByUuid(relation.targetId, classes)
+
+    if (sourceClass?.stereoType === StereoType.Entity && targetClass?.stereoType === StereoType.Entity) {
+      newRelations.push(relation);
+      continue;
+    }
+
+    const sources = getChildEntities(relation.sourceId, classes, relations) || (sourceClass ? [sourceClass] : [])
+    const targets = getChildEntities(relation.targetId, classes, relations) || (targetClass ? [targetClass] : [])
+
+    for (const source of sources) {
+      for (const target of targets) {
+        newRelations.push({
+          ...relation,
+          uuid: source.uuid + target.uuid,
+          sourceId: source.uuid,
+          targetId: target.uuid,
+          labelOfSource: target.uuid === relation.targetId ? relation.labelOfSource : relation.labelOfSource + "Of" + target.name,
+          labelOfTarget: source.uuid === relation.sourceId ? relation.labelOfTarget : relation.labelOfTarget + "Of" + source.name,
+        })
+      }
+    }
+  }
+  return newRelations;
+}
 
 export function useBuildMeta(): { error?: GraphQLRequestError; loading?: boolean } {
   const appId = useSelectedAppId();
@@ -135,7 +174,7 @@ export function useBuildMeta(): { error?: GraphQLRequestError; loading?: boolean
       const systemPackages = systemMeta?.publishedMeta?.packages?.filter(pkg => pkg.sharable) || [];
       const systemClasses = systemMeta?.publishedMeta?.classes?.filter(cls => getPackage(cls.packageUuid).sharable) || []
       const allClasses: ClassMeta[] = [...systemClasses, ...meta?.publishedMeta?.classes || []];
-      const allRelations: RelationMeta[] = [...systemMeta?.publishedMeta?.relations || [], ...meta?.publishedMeta?.relations || []];
+      const allRelations: RelationMeta[] = makeRelations(allClasses, [...systemMeta?.publishedMeta?.relations || [], ...meta?.publishedMeta?.relations || []]);
       setPackages([...systemPackages, ...meta?.publishedMeta?.packages || []]);
       setClasses(allClasses);
       setEntitiesState(
