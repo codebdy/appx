@@ -3,14 +3,22 @@
     {
       "label": "",
       "name": "$inline:{\"zh-CN\":\"系统\",\"en-US\":\"System\"}",
+      "sharable": false,
       "stereoType": "",
       "system": true,
       "uuid": "PACKAGE_SYSTEM_UUID"
     },
     {
       "name": "工作流",
+      "sharable": true,
       "stereoType": "Normal",
       "uuid": "3fe21970-0b51-4c8c-8521-f6eb6ff621c2"
+    },
+    {
+      "name": "$inline:{\"zh-CN\":\"用户\"}",
+      "sharable": true,
+      "stereoType": "Normal",
+      "uuid": "5cc3e471-b676-4759-b04e-0f5af0734681"
     }
   ],
   "classes": [
@@ -487,7 +495,7 @@
       "methods": null,
       "muationScript": "",
       "name": "User",
-      "packageUuid": "PACKAGE_SYSTEM_UUID",
+      "packageUuid": "5cc3e471-b676-4759-b04e-0f5af0734681",
       "queryScript": "",
       "root": true,
       "sharable": false,
@@ -628,7 +636,7 @@
       "methods": null,
       "muationScript": "",
       "name": "Role",
-      "packageUuid": "PACKAGE_SYSTEM_UUID",
+      "packageUuid": "5cc3e471-b676-4759-b04e-0f5af0734681",
       "queryScript": "",
       "root": true,
       "sharable": false,
@@ -4322,6 +4330,13 @@
       "nodes": [],
       "packageUuid": "3fe21970-0b51-4c8c-8521-f6eb6ff621c2",
       "uuid": "257ffd9c-ba91-449d-aa96-11e96d1dbe01"
+    },
+    {
+      "edges": [],
+      "name": "类图",
+      "nodes": [],
+      "packageUuid": "5cc3e471-b676-4759-b04e-0f5af0734681",
+      "uuid": "4d61d513-8ef5-4edc-a1f0-6654aa472268"
     }
   ],
   "codes": [],
@@ -4565,6 +4580,22 @@
       "width": 180,
       "x": 49.99999999999997,
       "y": 560
+    },
+    {
+      "diagramUuid": "4d61d513-8ef5-4edc-a1f0-6654aa472268",
+      "height": 278,
+      "id": "META_USER_UUID",
+      "width": 180,
+      "x": 380,
+      "y": 70
+    },
+    {
+      "diagramUuid": "4d61d513-8ef5-4edc-a1f0-6654aa472268",
+      "height": 200,
+      "id": "META_ROLE_UUID",
+      "width": 180,
+      "x": 732,
+      "y": 109
     }
   ],
   "x6Edges": [
@@ -4803,7 +4834,16 @@
       ]
     },
     {
+      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
       "id": "1d6437c7-e295-4f4d-8223-14e6ed52f366",
+      "sourceAnchor": {
+        "args": {
+          "dx": "67%",
+          "dy": "50%",
+          "rotate": true
+        },
+        "name": "topLeft"
+      },
       "vertices": [
         {
           "x": 150,
@@ -4813,16 +4853,7 @@
           "x": 390,
           "y": 180
         }
-      ],
-      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
-      "sourceAnchor": {
-        "name": "topLeft",
-        "args": {
-          "dx": "67%",
-          "dy": "50%",
-          "rotate": true
-        }
-      }
+      ]
     },
     {
       "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
@@ -4853,7 +4884,16 @@
       ]
     },
     {
+      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
       "id": "7155615f-a7f9-4d4f-ad31-fe2c91f18d0b",
+      "sourceAnchor": {
+        "args": {
+          "dx": "33%",
+          "dy": "50%",
+          "rotate": true
+        },
+        "name": "topLeft"
+      },
       "vertices": [
         {
           "x": 90,
@@ -4863,16 +4903,7 @@
           "x": -70,
           "y": 180
         }
-      ],
-      "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
-      "sourceAnchor": {
-        "name": "topLeft",
-        "args": {
-          "dx": "33%",
-          "dy": "50%",
-          "rotate": true
-        }
-      }
+      ]
     },
     {
       "diagramUuid": "7ac6f0c2-3b71-45db-b652-b438e33e8464",
