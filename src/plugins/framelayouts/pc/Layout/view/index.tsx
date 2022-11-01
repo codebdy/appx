@@ -22,8 +22,8 @@ const Component = observer((props: IComponentProps) => {
   const { flexFlow = FlexFlow.column, className, style, ...other } = props;
   const config = useMemo(() => {
     return {
-      scrolled: scrolled,
-      setScroll: setScrolled
+      scrolled,
+      setScrolled
     }
   }, [scrolled])
   return (
