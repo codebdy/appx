@@ -65,6 +65,7 @@ const getEntityAssociations = (classUuid: string, classMetas: ClassMeta[], relat
 
 
 const makeRelations = (classes: ClassMeta[], relations: RelationMeta[]) => {
+
   const newRelations: RelationMeta[] = []
   for (const relation of relations) {
     if (relation.relationType === RelationType.INHERIT) {
@@ -79,8 +80,16 @@ const makeRelations = (classes: ClassMeta[], relations: RelationMeta[]) => {
       continue;
     }
 
-    const sources = getChildEntities(relation.sourceId, classes, relations) || (sourceClass ? [sourceClass] : [])
-    const targets = getChildEntities(relation.targetId, classes, relations) || (targetClass ? [targetClass] : [])
+    const sources = getChildEntities(relation.sourceId, classes, relations);
+    const targets = getChildEntities(relation.targetId, classes, relations);
+
+    if (sources.length === 0) {
+      sourceClass && sources.push(sourceClass)
+    }
+
+    if (targets.length === 0) {
+      targetClass && targets.push(targetClass)
+    }
 
     for (const source of sources) {
       for (const target of targets) {
@@ -89,8 +98,10 @@ const makeRelations = (classes: ClassMeta[], relations: RelationMeta[]) => {
           uuid: source.uuid + target.uuid,
           sourceId: source.uuid,
           targetId: target.uuid,
-          labelOfSource: target.uuid === relation.targetId ? relation.labelOfSource : relation.labelOfSource + "Of" + target.name,
-          labelOfTarget: source.uuid === relation.sourceId ? relation.labelOfTarget : relation.labelOfTarget + "Of" + source.name,
+          roleOfSource: target.uuid === relation.targetId ? relation.roleOfSource : relation.roleOfSource + "Of" + target.name,
+          roleOfTarget: source.uuid === relation.sourceId ? relation.roleOfTarget : relation.roleOfTarget + "Of" + source.name,
+          labelOfSource: undefined,
+          labelOfTarget: undefined,
         })
       }
     }
