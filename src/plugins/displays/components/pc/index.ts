@@ -3,6 +3,7 @@ import BooleanView from "./BooleanView";
 import Tag from "./Tag";
 import Text from "./Text";
 import Image from "./Image";
+import EnumTag from "./EnumTag";
 
 const pcComponents = [
   Image,
@@ -10,6 +11,7 @@ const pcComponents = [
   BooleanView,
   Tag,
   Text,
+  EnumTag,
 ];
 
 export default pcComponents;
