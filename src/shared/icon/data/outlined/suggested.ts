@@ -1,4 +1,4 @@
-import { AppstoreOutlined, DashboardOutlined, DeleteOutlined, EllipsisOutlined, MoreOutlined, PauseCircleOutlined, PauseOutlined, PlusCircleOutlined, PlusOutlined, QuestionCircleOutlined, QuestionOutlined, SendOutlined, SettingOutlined } from "@ant-design/icons";
+import { AppstoreOutlined, DashboardOutlined, DeleteOutlined, EllipsisOutlined, MoreOutlined, PauseCircleOutlined, PauseOutlined, PlusCircleOutlined, PlusOutlined, QuestionCircleOutlined, QuestionOutlined, SearchOutlined, SendOutlined, SettingOutlined } from "@ant-design/icons";
 import { IIconGroup } from "../../model";
 
 export const suggested: IIconGroup = {
@@ -67,6 +67,11 @@ export const suggested: IIconGroup = {
     {
       iconKey: "DashboardOutlined",
       icon: DashboardOutlined,
+      keywords: "",
+    },    
+    {
+      iconKey: "SearchOutlined",
+      icon: SearchOutlined,
       keywords: "",
     },
   ]
