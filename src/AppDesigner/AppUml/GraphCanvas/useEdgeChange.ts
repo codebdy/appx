@@ -44,10 +44,10 @@ export function useEdgeChange(graph: Graph | undefined, appId: ID) {
         targetMultiplicity,
       ] = edge.getLabels();
 
-      if (!edageData) {
-        console.log("edageData没找到");
-        return;
-      }
+      // if (!edageData) {
+      //   console.log("edageData没找到");
+      //   return;
+      // }
 
       //如果是没有修改过的并且是新建的线
       if (
@@ -77,10 +77,11 @@ export function useEdgeChange(graph: Graph | undefined, appId: ID) {
       }
 
       backupSnapshot();
-      setEdges((edages) =>
-        edages.map((eg) =>
-          eg.id === edageData?.id && eg.diagramUuid === edageData?.diagramUuid
-            ? {
+      if (edageData) {
+        setEdges((edages) =>
+          edages.map((eg) =>
+            eg.id === edageData?.id && eg.diagramUuid === edageData?.diagramUuid
+              ? {
                 id: edge.id,
                 vertices: edge.getVertices(),
                 roleOnSourcePosition: roleOnSource?.position as any,
@@ -91,9 +92,25 @@ export function useEdgeChange(graph: Graph | undefined, appId: ID) {
                 sourceAnchor: (edge.source as any)["anchor"],
                 targetAnchor: (edge.target as any)["anchor"],
               }
-            : eg
-        )
-      );
+              : eg
+          )
+        );
+      } else {
+        setEdges((edages) => [...edages,
+        {
+          id: edge.id,
+          vertices: edge.getVertices(),
+          roleOnSourcePosition: roleOnSource?.position as any,
+          sourceMultiplicityPosition: sourceMultiplicity?.position as any,
+          roleOnTargetPosition: roleOnTarget?.position as any,
+          targetMultiplicityPosition: targetMultiplicity?.position as any,
+          diagramUuid: selectedDiagram,
+          sourceAnchor: (edge.source as any)["anchor"],
+          targetAnchor: (edge.target as any)["anchor"],
+        }
+        ]);
+      }
+
     },
     [
       backupSnapshot,
