@@ -1,12 +1,15 @@
-import { DnFC } from '@designable/react'
+import { DnFC, useTreeNode } from '@designable/react'
 import { observer } from '@formily/reactive-react'
 import React from 'react'
-import { EnumTag, IEnumTagsProps } from '../view'
+import { IEnumTagsProps } from '../view'
 
 export const EnumTagDesigner: DnFC<IEnumTagsProps> = observer((props: IEnumTagsProps) => {
-  const {value, ...other} = props;
+  const { value, ...other } = props;
+  const node = useTreeNode()
   return (
-    <EnumTag {...other} />
+    <div {...other}>
+      {node.props?.["x-field-source"]?.name || "EnumTag"}
+    </div>
   )
 })
 
