@@ -94,7 +94,7 @@ const IconInput = memo((
         className="icon-select-model"
         title={t("IconInput.DialogTitle")}
         centered
-        visible={visible}
+        open={visible}
         okText={t("Confirm")}
         cancelText={t("Cancel")}
         onOk={handleConfirm}

@@ -56,7 +56,7 @@ export function useQueryApp(id: ID) {
         id: id || SYSTEM_APP_ID,
         device
       },
-      depEntityNames: ["App"],
+      depEntityNames: [/*"App"*/],
     }
   }, [id])
   const { data, error, loading } = useQueryOne<IApp>(inputArgs)
