@@ -19,7 +19,7 @@ const Component = observer((props: ITextProps) => {
     tagName,
     {
       ...other,
-      className: cls(props.className, 'dn-text'),
+      className: cls(props.className),
       value: p(value),
     },
     p(props.content || value)
