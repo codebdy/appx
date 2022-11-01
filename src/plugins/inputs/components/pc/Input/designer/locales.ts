@@ -54,6 +54,7 @@ export const TextAreaLocales = {
     title: '多行输入',
     settings: {
       'x-component-props': {
+        rows: "行数",
         maxLength: '最大长度',
         autoSize: {
           title: '自适应高度',

@@ -1,7 +1,8 @@
-import { FieldsType, IPropsSchema } from '@rxdrag/appx-plugin-sdk';
+import { DataBindSourceType, FieldsType, IPropsSchema } from '@rxdrag/appx-plugin-sdk';
 
 const schema: IPropsSchema = {
   display: {
+    dataBindSourceType: DataBindSourceType.Multiple,
     fieldSourceType: FieldsType.Single,
   },
 

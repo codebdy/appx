@@ -72,6 +72,11 @@ export const TextAreaSchema: IPropsSchema = {
   props: {
     type: 'object',
     properties: {
+      rows: {
+        type: 'number',
+        'x-decorator': 'FormItem',
+        'x-component': 'NumberPicker',
+      },
       bordered: {
         type: 'boolean',
         'x-decorator': 'FormItem',
