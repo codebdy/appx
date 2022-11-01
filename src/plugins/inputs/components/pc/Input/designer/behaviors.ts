@@ -1,7 +1,7 @@
 import { IBehavior } from "@rxdrag/appx-plugin-sdk";
 import Name, { TextAreaName } from "../name";
 import { InputLocales, TextAreaLocales } from "./locales";
-import { InputSchema } from "./schema";
+import { InputSchema, TextAreaSchema } from "./schema";
 
 const behaviors: IBehavior[] = [
   {
@@ -12,7 +12,7 @@ const behaviors: IBehavior[] = [
       droppable: false,
     },
     designerLocales: InputLocales,
-    schema:InputSchema,
+    schema: InputSchema,
   },
   {
     name: TextAreaName,
@@ -22,6 +22,7 @@ const behaviors: IBehavior[] = [
       droppable: false,
     },
     designerLocales: TextAreaLocales,
+    schema: TextAreaSchema,
   }
 ]
 
