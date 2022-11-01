@@ -16,7 +16,7 @@ export function useQueryFragmentFromSchema(schema?: Schema): IFragmentParams {
   const getFragmentFromSchema = useCallback((schema, fields: IGqlField[], orderBys: IOrderBy[], key?: string) => {
     let currentFields = fields;
     let currentOrderBys = orderBys;
-    if (schema?.["x-field-source"] && key) {
+    if (schema?.["x-field-source"]?.name && key) {
       const subFields = schema?.["x-field-source"]?.sourceType === FieldSourceType.Association ? [{ name: "id", fields: [] }] : [];
       const subOrderBys = [];
       fields.push({
