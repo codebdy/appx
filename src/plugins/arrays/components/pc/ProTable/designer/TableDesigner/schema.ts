@@ -40,7 +40,7 @@ export const DataTableSchema: IPropsSchema = {
 
 export const ColumnSchema: IPropsSchema = {
   display: {
-    fieldSourceType: FieldsType.Single,
+    //fieldSourceType: FieldsType.Single,
     hasPropTitle: true,
   },
   props: {
