@@ -28,7 +28,7 @@ const AppRunner = memo(() => {
   }
 
   return (
-    <AppRoot app={app} pageCache={false}>
+    <AppRoot app={app} pageCache={true}>
       <RunnerEngine />
     </AppRoot>
   )

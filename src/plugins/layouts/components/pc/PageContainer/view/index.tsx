@@ -106,11 +106,13 @@ export const Component: React.FC<IPageContainerProps> & {
         }
         breadcrumb={hasBreadcrumb ? { routes: breadcrumbs } : undefined}
       >
-        <Row>
-          {hasHeaderContent && slots.headerContent && <RecursionField schema={slots.headerContent} name={slots.headerContent.name} />}
-          {hasHeaderContentExtra && slots.headerContentExtra && <RecursionField schema={slots.headerContentExtra} name={slots.headerContentExtra.name} />}
-        </Row>
-
+        {
+          (hasHeaderContent || hasHeaderContentExtra) &&
+          <Row>
+            {hasHeaderContent && slots.headerContent && <RecursionField schema={slots.headerContent} name={slots.headerContent.name} />}
+            {hasHeaderContentExtra && slots.headerContentExtra && <RecursionField schema={slots.headerContentExtra} name={slots.headerContentExtra.name} />}
+          </Row>
+        }
       </PageHeader>
       <PageBody>
         {hasTabs && selectedTab && <RecursionField schema={selectedTab} name={selectedTab.name} />}

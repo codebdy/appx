@@ -104,7 +104,7 @@ const Component: React.FC<IProTableProps> & {
           {
             hasQueryForm && slots.queryForm && <RecursionField schema={slots.queryForm} name={slots.queryForm.name} />
           }
-          <Card style={{ marginTop: "16px" }}>
+          <Card>
             {
               hasToolbar && slots.tableToolbar && <RecursionField schema={slots.tableToolbar} name={slots.tableToolbar.name} />
             }
