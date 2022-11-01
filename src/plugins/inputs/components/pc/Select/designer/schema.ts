@@ -151,6 +151,24 @@ const schema: IPropsSchema = {
           defaultValue: 'middle',
         },
       },
+      labelField: {
+        type: 'string',
+        'x-decorator': 'FormItem',
+        'x-component': 'Input',
+        'x-component-props': {
+          defaultValue: 'name',
+        },
+      },
+
+      valueField: {
+        type: 'string',
+        'x-decorator': 'FormItem',
+        'x-component': 'Input',
+        'x-component-props': {
+          defaultValue: 'id',
+        },
+      },
+
     },
   }
 }

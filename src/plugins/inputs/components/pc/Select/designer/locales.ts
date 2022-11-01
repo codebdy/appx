@@ -37,6 +37,8 @@ const locales = {
         maxTagTextLength: '最多标签文本长度',
         showArrow: '显示箭头',
         virtual: '开启虚拟滚动',
+        labelField: '标签字段',
+        valueField: '值字段'
       },
     },
   },
