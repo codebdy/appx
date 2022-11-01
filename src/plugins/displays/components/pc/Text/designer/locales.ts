@@ -1,3 +1,5 @@
+import { TextType } from "../view";
+
 const locales = {
   'zh-CN': {
     title: '文本',
@@ -5,9 +7,14 @@ const locales = {
       'x-component-props': {
         content: '文本内容',
         mode: {
-          title: '文本类型',
+          title: '文本样式',
           dataSource: ['H1', 'H2', 'H3', 'Paragraph', 'Normal'],
         },
+        textType: {
+          title: "文本类型",
+          dataSource: ["文本", "日期"],
+        },
+        formatMask: "格式"
       },
     },
   },

@@ -6,7 +6,7 @@ import { ITextProps } from '../view'
 import { useParseLangMessage } from '@rxdrag/plugin-sdk'
 
 const ComponentDesigner: DnFC<ITextProps> = (props) => {
-  const { value, ...other } = props;
+  const { value, textType, formatMask, ...other } = props;
   const tagName = props.mode === 'normal' || !props.mode ? 'div' : props.mode
   const p = useParseLangMessage();
   const node = useTreeNode()
