@@ -98,10 +98,10 @@ const makeRelations = (classes: ClassMeta[], relations: RelationMeta[]) => {
           uuid: source.uuid + target.uuid,
           sourceId: source.uuid,
           targetId: target.uuid,
-          roleOfSource: target.uuid === relation.targetId ? relation.roleOfSource : relation.roleOfSource + "Of" + target.name,
-          roleOfTarget: source.uuid === relation.sourceId ? relation.roleOfTarget : relation.roleOfTarget + "Of" + source.name,
-          labelOfSource: undefined,
-          labelOfTarget: undefined,
+          roleOfSource: source.uuid === relation.sourceId ? relation.roleOfSource : relation.roleOfSource + "Of" + target.name,
+          roleOfTarget: target.uuid === relation.targetId ? relation.roleOfTarget : relation.roleOfTarget + "Of" + source.name,
+          labelOfSource: source.uuid === relation.sourceId ? relation.labelOfSource : undefined,
+          labelOfTarget: target.uuid === relation.targetId ? relation.labelOfTarget : undefined,
         })
       }
     }
