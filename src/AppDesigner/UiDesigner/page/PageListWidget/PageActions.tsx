@@ -1,4 +1,4 @@
-import { MoreOutlined, EditOutlined, DeleteOutlined, LoadingOutlined } from "@ant-design/icons";
+import { MoreOutlined, EditOutlined, DeleteOutlined, LoadingOutlined, CopyOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
 import { ID } from "~/shared";
@@ -33,6 +33,10 @@ const PageActions = memo((
     remove(pageId);
   }, [pageId, remove]);
 
+  const handleClone = useCallback(() => {
+    
+  }, [pageId]);
+
   const menu = useMemo(() => (
     <Menu
       onClick={e => e.domEvent.stopPropagation()}
@@ -47,9 +51,18 @@ const PageActions = memo((
           })
         },
         {
+          icon: <CopyOutlined />,
+          label: t("Clone"),
+          key: '2',
+          onClick: (e => {
+            e.domEvent.stopPropagation();
+            handleClone();
+          })
+        },
+        {
           icon: <DeleteOutlined />,
           label: t("Delete"),
-          key: '2',
+          key: '3',
           onClick: (e => {
             e.domEvent.stopPropagation();
             handleDelete();
