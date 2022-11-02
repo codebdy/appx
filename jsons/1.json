@@ -485,6 +485,12 @@
           "unsigned": false,
           "updateDate": true,
           "uuid": "RX_USER_UPDATEDAT_UUID"
+        },
+        {
+          "name": "avatarUrl",
+          "type": "String",
+          "typeLabel": "String",
+          "uuid": "88865caf-9cc7-4709-a568-3474c5902bce"
         }
       ],
       "description": "",
@@ -4592,12 +4598,12 @@
       "y": 109
     },
     {
-      "id": "BUSINESS_LOG_ENTITY_UUID",
-      "x": 180,
-      "y": 420,
-      "width": 230,
+      "diagramUuid": "f6bd49cf-828b-4596-bb9c-b34c78b121ea",
       "height": 120,
-      "diagramUuid": "f6bd49cf-828b-4596-bb9c-b34c78b121ea"
+      "id": "BUSINESS_LOG_ENTITY_UUID",
+      "width": 230,
+      "x": 180,
+      "y": 410
     },
     {
       "diagramUuid": "f6bd49cf-828b-4596-bb9c-b34c78b121ea",
