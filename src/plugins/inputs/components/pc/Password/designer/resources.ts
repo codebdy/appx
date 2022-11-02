@@ -1,9 +1,9 @@
 import { IResourceCreator } from "@designable/core";
-import Name, { TextAreaName } from "../name";
+import Name from "../name";
 
 const resources: IResourceCreator[] = [
   {
-    icon: 'InputSource',
+    icon: 'PasswordSource',
     elements: [
       {
         componentName: 'Field',
@@ -16,20 +16,6 @@ const resources: IResourceCreator[] = [
       },
     ],
   },
-  {
-    icon: 'TextAreaSource',
-    elements: [
-      {
-        componentName: 'Field',
-        props: {
-          type: 'string',
-          title: TextAreaName,
-          'x-decorator': 'FormItem',
-          'x-component': TextAreaName,
-        },
-      },
-    ],
-  }
 ]
 
 export default resources;

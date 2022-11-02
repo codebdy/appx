@@ -3,13 +3,15 @@ import Input from "./Input";
 import MultiLangInput from "./MultiLangInput";
 import SearchInput from "./SearchInput";
 import Select from "./Select";
+import Password from "./Password";
 
 const pcComponents = [
   MultiLangInput,
   Input,
-  SearchInput,
+  Password,
   Select,
-  ImageUploader
+  ImageUploader,
+  SearchInput,
 ];
 
 export default pcComponents;
