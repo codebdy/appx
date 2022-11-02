@@ -36,9 +36,9 @@ const App = memo(() => {
                   <Route path=":dataId" />
                   <Route path="" />
                 </Route>
-                <Route path="" />
+                <Route path="" element={<></>} />
               </Route>
-              <Route path="" />
+              <Route path="" element={<></>}/>
             </Route>
           </Route>
           <Route path={`/${DESIGN}`} element={<AppDesigner />}>

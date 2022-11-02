@@ -36,9 +36,9 @@ export function useQueryPageByUuid(appId: ID, uuid?: string) {
       params: { uuid, appId },
       depEntityNames: ["Page"]
     }
-  ), [uuid]);
+  ), [appId, uuid]);
 
   const { data, error, loading } = useQueryOne<IPage>(input);
-
+  console.log("######useQueryPageByUuid", uuid, data)
   return { page: data?.onePage, error, loading }
 }

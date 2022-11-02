@@ -38,20 +38,20 @@ export const PageEngine = memo((
     LoadingSpan?: React.FC<ILoadingSpanProps>,
   }
 ) => {
-  const { pageUuid, LoadingSpan = Spin} = props;
+  const { pageUuid, LoadingSpan = Spin } = props;
   const { page, loading, error } = useQueryPageWithCache(pageUuid);
   const me = useMe();
   const $me = useMemo(() => new Me(me), [me]);
   const expScope = useExpressionScope()
   const { components } = useAppParams();
-  console.log("PageEngine 刷新", pageUuid, page)
+  console.log("PageEngine 刷新", pageUuid, page, loading)
   const p = useParseLangSchema();
   useShowError(error);
 
   const SchemaField = useMemo(() => createSchemaField({
     components: {
       FormItem,
-      ...components||{}
+      ...components || {}
     },
   }), [components])
 
@@ -61,7 +61,7 @@ export const PageEngine = memo((
       return [createForm(), newExpScope];
     }
     ,
-    [$me, expScope]
+    [$me, expScope, pageUuid, page]
   );
 
   return (
@@ -69,7 +69,7 @@ export const PageEngine = memo((
       <FormProvider form={form}>
         <ExpressionScope value={newExpScope} >
           {
-            page?.schemaJson?.schema &&
+            page?.schemaJson?.schema && pageUuid === page.uuid &&
             <SchemaField schema={p(JSON.parse(JSON.stringify(page?.schemaJson?.schema || "{}")))}>
             </SchemaField>
           }
