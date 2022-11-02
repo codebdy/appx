@@ -11,6 +11,7 @@ export enum ActionType {
   OpenDialog = "OpenDialog",
   CloseDialog = "CloseDialog",
   Navigate = "Navigate",
+  WindowOpen = "WindowOpen",
   //OpenDrawer = "OpenDrawer",
   //CloseDrawer = "CloseDrawer",
   Confirm = "Confirm",
@@ -50,7 +51,7 @@ export interface IConfirmAction {
   message?: string;
 }
 
-export interface INavigateAction {
+export interface IRouteAction {
   route?: string;
 }
 
@@ -70,5 +71,5 @@ export interface IAppxAction {
   uuid: string,
   title: string,
   actionType: ActionType,
-  payload?: IOpenPageAction | ISuccessAction | IConfirmAction | INavigateAction | IOpenFileAction | IGraphqlAction,
+  payload?: IOpenPageAction | ISuccessAction | IConfirmAction | IRouteAction | IOpenFileAction | IGraphqlAction,
 }

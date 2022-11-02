@@ -3,7 +3,7 @@ import React from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next"
 
-export const NavigatePanel = memo((
+export const WindowOpenPanel = memo((
   props: {
   }
 ) => {
@@ -12,7 +12,7 @@ export const NavigatePanel = memo((
   return (
     <>
       <Form.Item
-        label={t("Action.RouteTo")}
+        label={t("Action.RouteOrLink")}
         name="route"
       >
         <Input />

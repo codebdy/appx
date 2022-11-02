@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { ActionType, IAppxAction, IConfirmAction, IGraphqlAction, INavigateAction, IOpenFileAction, IOpenPageAction, ISuccessAction } from "@rxdrag/plugin-sdk/model/action";
+import { ActionType, IAppxAction, IConfirmAction, IGraphqlAction, IRouteAction, IOpenFileAction, IOpenPageAction, ISuccessAction } from "@rxdrag/plugin-sdk/model/action";
 import { useBatchDelete } from "./useBatchDelete";
 import { useBatchUpdate } from "./useBatchUpdate";
 import { useCloseDialog } from "./useCloseDialog";
@@ -14,6 +14,7 @@ import { useTableSearch } from "./useTableSearch";
 import { useOpenFile } from "./useOpenFile";
 import { useGraphql } from "./useGraphql";
 import { useNavigateRoute } from "./useNavigateRoute";
+import { useWindowOpen } from "./useWindowOpen";
 
 export function useDoOneAction() {
   const openPage = useOpenPage();
@@ -28,6 +29,7 @@ export function useDoOneAction() {
   const batchUpdate = useBatchUpdate();
   const submitSearch = useTableSearch();
   const navigate = useNavigateRoute();
+  const open = useWindowOpen();
   const openFile = useOpenFile();
   const doGraphql = useGraphql();
 
@@ -70,7 +72,10 @@ export function useDoOneAction() {
             submitSearch();
             break;
           case ActionType.Navigate:
-            navigate((action.payload as INavigateAction).route);
+            navigate((action.payload as IRouteAction).route);
+            break;
+          case ActionType.WindowOpen:
+            open((action.payload as IRouteAction).route);
             break;
           case ActionType.OpenFile:
             await openFile(action.payload as IOpenFileAction, variables);
@@ -85,7 +90,22 @@ export function useDoOneAction() {
       resolve(undefined);
     })
 
-  }, [batchDelete, batchUpdate, closeDialog, closePage, confirm, deleteData, openPage, reset, save, showSuccess, submitSearch])
+  }, [batchDelete,
+    batchUpdate,
+    closeDialog,
+    closePage,
+    confirm,
+    deleteData,
+    openPage,
+    reset,
+    save,
+    showSuccess,
+    submitSearch,
+    navigate,
+    open,
+    openFile,
+    doGraphql
+  ])
 
   return doAction;
 }

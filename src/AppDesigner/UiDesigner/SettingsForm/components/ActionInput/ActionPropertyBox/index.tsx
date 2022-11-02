@@ -11,6 +11,7 @@ import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/vi
 import { NavigatePanel } from "./NavigatePanel";
 import { OpenFilePanel } from "./OpenFilePanel";
 import { GraphqlPanel } from "./GraphqlPanel";
+import { WindowOpenPanel } from "./WindowOpenPanel";
 
 const pannels: { [key: string]: React.FC<{ payload: any }> } = {
   [ActionType.OpenPage]: OpenPagePanel,
@@ -19,6 +20,7 @@ const pannels: { [key: string]: React.FC<{ payload: any }> } = {
   [ActionType.Navigate]: NavigatePanel,
   [ActionType.OpenFile]: OpenFilePanel,
   [ActionType.Graphql]: GraphqlPanel,
+  [ActionType.WindowOpen]: WindowOpenPanel,
 }
 
 export const ActionPropertyBox = memo((

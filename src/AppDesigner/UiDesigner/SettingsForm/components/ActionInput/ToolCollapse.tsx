@@ -92,6 +92,10 @@ export const ToolCollapse = memo(() => {
       id: ActionType.Navigate,
       title: t(enumToLangKey(ActionType.Navigate)),
     },
+    {
+      id: ActionType.WindowOpen,
+      title: t(enumToLangKey(ActionType.WindowOpen)),
+    },
   ], [t]);
 
 
