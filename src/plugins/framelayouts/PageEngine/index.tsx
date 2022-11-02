@@ -61,20 +61,20 @@ export const PageEngine = memo((
       return [createForm(), newExpScope];
     }
     ,
-    [$me, expScope, pageUuid, page]
+    [$me, expScope, pageUuid]
   );
 
   return (
     <LoadingSpan spinning={loading}>
-      <FormProvider form={form}>
-        <ExpressionScope value={newExpScope} >
-          {
-            page?.schemaJson?.schema && pageUuid === page.uuid &&
+      {
+        page?.schemaJson?.schema && pageUuid === page.uuid &&
+        <FormProvider form={form}>
+          <ExpressionScope value={newExpScope} >
             <SchemaField schema={p(JSON.parse(JSON.stringify(page?.schemaJson?.schema || "{}")))}>
             </SchemaField>
-          }
-        </ExpressionScope>
-      </FormProvider>
+          </ExpressionScope>
+        </FormProvider>
+      }
     </LoadingSpan>
   )
 })
