@@ -11,9 +11,9 @@ const ComponentDesigner: DnFC<IComponentProps> = observer((
   return (
     children
       ?
-      <Component {...props} />
+      <Component {...props} fixed={false} />
       :
-      <Component {...props}>
+      <Component {...props} fixed={false}>
         <DroppableWidget style={{ flex: 1 }} />
       </Component>
   )

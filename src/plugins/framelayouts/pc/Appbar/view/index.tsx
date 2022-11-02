@@ -6,19 +6,24 @@ import { Header } from "antd/lib/layout/layout"
 import { useLayoutParams } from "~/plugin-sdk/contexts/layout"
 
 export interface IComponentProps {
+  fixed?: boolean,
   className?: string,
   children?: React.ReactNode
 }
 
 const Component = observer((props: IComponentProps) => {
-  const { className, children, ...other } = props;
+  const { className, fixed = true, children, ...other } = props;
   const { scrolled } = useLayoutParams();
   return (
     <>
-      <Header className={cls(className, "appx-appbar", "bottom-border", "fixed", { float: scrolled })} {...other}>
+      <Header className={cls(className, "appx-appbar", "bottom-border", { "fixed": fixed }, { float: scrolled })} {...other}>
         {children}
       </Header>
-      <Header className={cls(className, "appx-appbar")} {...other}></Header>
+      {
+        fixed &&
+        <Header className={cls(className, "appx-appbar")} {...other}></Header>
+      }
+
     </>
   )
 })
