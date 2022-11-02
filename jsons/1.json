@@ -896,30 +896,6 @@
           "index": false,
           "label": "",
           "length": 0,
-          "name": "appUuid",
-          "nullable": false,
-          "primary": false,
-          "readonly": false,
-          "system": false,
-          "type": "String",
-          "typeLabel": "String",
-          "typeUuid": "",
-          "unique": false,
-          "unsigned": false,
-          "updateDate": false,
-          "uuid": "c1a70ce7-f5a3-4374-a3fc-678ba10fd1c5"
-        },
-        {
-          "createDate": false,
-          "default": "",
-          "deleteDate": false,
-          "description": "",
-          "floatD": 0,
-          "floatM": 0,
-          "hidden": false,
-          "index": false,
-          "label": "",
-          "length": 0,
           "name": "message",
           "nullable": true,
           "primary": false,
@@ -4293,6 +4269,17 @@
       "targetId": "de56ae19-aaac-4479-8bf9-6573ad22a482",
       "targetMultiplicity": "0..*",
       "uuid": "88caf839-bd0d-4d67-b75f-7ea89bb7fa75"
+    },
+    {
+      "innerId": 1010,
+      "relationType": "twoWayAssociation",
+      "roleOfSource": "app",
+      "roleOfTarget": "logs",
+      "sourceId": "APP_ENTITY_UUID",
+      "sourceMutiplicity": "0..1",
+      "targetId": "LOG_ENTITY_UUID",
+      "targetMultiplicity": "0..*",
+      "uuid": "ea77af96-53c3-4ae2-9557-f9091a798e47"
     }
   ],
   "diagrams": [
@@ -4337,6 +4324,13 @@
       "nodes": [],
       "packageUuid": "5cc3e471-b676-4759-b04e-0f5af0734681",
       "uuid": "4d61d513-8ef5-4edc-a1f0-6654aa472268"
+    },
+    {
+      "edges": [],
+      "name": "日志",
+      "nodes": [],
+      "packageUuid": "PACKAGE_SYSTEM_UUID",
+      "uuid": "f6bd49cf-828b-4596-bb9c-b34c78b121ea"
     }
   ],
   "codes": [],
@@ -4596,6 +4590,46 @@
       "width": 180,
       "x": 732,
       "y": 109
+    },
+    {
+      "id": "BUSINESS_LOG_ENTITY_UUID",
+      "x": 180,
+      "y": 420,
+      "width": 230,
+      "height": 120,
+      "diagramUuid": "f6bd49cf-828b-4596-bb9c-b34c78b121ea"
+    },
+    {
+      "diagramUuid": "f6bd49cf-828b-4596-bb9c-b34c78b121ea",
+      "height": 200,
+      "id": "MODEL_LOG_ENTITY_UUID",
+      "width": 220,
+      "x": 480,
+      "y": 400
+    },
+    {
+      "diagramUuid": "f6bd49cf-828b-4596-bb9c-b34c78b121ea",
+      "height": 170,
+      "id": "LOG_ENTITY_UUID",
+      "width": 180,
+      "x": 340,
+      "y": 48
+    },
+    {
+      "diagramUuid": "f6bd49cf-828b-4596-bb9c-b34c78b121ea",
+      "height": 278,
+      "id": "META_USER_UUID",
+      "width": 180,
+      "x": 642,
+      "y": -6
+    },
+    {
+      "diagramUuid": "f6bd49cf-828b-4596-bb9c-b34c78b121ea",
+      "height": 356,
+      "id": "APP_ENTITY_UUID",
+      "width": 180,
+      "x": 10,
+      "y": -45
     }
   ],
   "x6Edges": [
@@ -5038,6 +5072,55 @@
         "offset": -20
       },
       "vertices": []
+    },
+    {
+      "diagramUuid": "f6bd49cf-828b-4596-bb9c-b34c78b121ea",
+      "id": "ea77af96-53c3-4ae2-9557-f9091a798e47",
+      "roleOnSourcePosition": {
+        "distance": 40,
+        "offset": 20
+      },
+      "roleOnTargetPosition": {
+        "distance": -40,
+        "offset": 20
+      },
+      "sourceMultiplicityPosition": {
+        "distance": 40,
+        "offset": -20
+      },
+      "targetMultiplicityPosition": {
+        "distance": -40,
+        "offset": -20
+      },
+      "vertices": []
+    },
+    {
+      "diagramUuid": "f6bd49cf-828b-4596-bb9c-b34c78b121ea",
+      "id": "5126fcc8-d75e-4014-9f2a-a41dbd751426",
+      "vertices": [
+        {
+          "x": 295,
+          "y": 330
+        },
+        {
+          "x": 430,
+          "y": 330
+        }
+      ]
+    },
+    {
+      "diagramUuid": "f6bd49cf-828b-4596-bb9c-b34c78b121ea",
+      "id": "387b84ce-f6d6-4200-97ac-00cec82ddbd4",
+      "vertices": [
+        {
+          "x": 590,
+          "y": 330
+        },
+        {
+          "x": 430,
+          "y": 330
+        }
+      ]
     }
   ]
 }
