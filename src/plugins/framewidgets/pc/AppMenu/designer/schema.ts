@@ -10,7 +10,7 @@ const schema: IPropsSchema = {
         'x-decorator': 'FormItem',
         'x-component': 'Radio.Group',
         'x-component-props': {
-          defaultValue: 'vertical',
+          defaultValue: 'inline',
           optionType: 'button',
         },
       },

@@ -10,6 +10,7 @@ const resources: IResourceCreator[] = [{
         type: 'void',
         'x-component': Name,
         'x-component-props': {
+          mode: "inline"
         },
       },
     },
