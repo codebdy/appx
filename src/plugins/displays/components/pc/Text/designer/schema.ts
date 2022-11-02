@@ -36,6 +36,9 @@ const schema: IPropsSchema = {
         type: 'string',
         'x-decorator': 'FormItem',
         'x-component': 'Input',
+        'x-component-props': {
+          placeholder: "YYYY-MM-DD HH:mm:ss"
+        },
         'x-reactions': {
           fulfill: {
             state: {

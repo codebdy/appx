@@ -5,11 +5,20 @@ import { IUiFrame } from "~/model";
 import { useFrameUuid } from "./useFrameUuid";
 
 const pageFrameGql = gql`
-query ($uuid:String!){
+query ($uuid:String!, $appId:ID!){
   onePageFrame(where:{
-    uuid:{
-      _eq:$uuid
-    }
+    _and:[
+      {
+        uuid:{
+          _eq:$uuid
+        },
+        app:{
+          id:{
+            _eq:$appId
+          }
+        }
+      }
+    ]
   }){
     id
     uuid
@@ -18,16 +27,16 @@ query ($uuid:String!){
   }
 }
 `
-export function useQueryUiFrame(uuid?:string) {
+export function useQueryUiFrame(uuid: string | undefined, appId: string | undefined) {
   const input = useMemo(() => (
     {
-      gql: uuid && pageFrameGql,
-      params: { uuid },
+      gql: uuid && appId && pageFrameGql,
+      params: { uuid, appId },
       depEntityNames: ["PageFrame"]
     }
-  ), [uuid]);
+  ), [uuid, appId]);
 
   const { data, error, loading } = useQueryOne<IUiFrame>(input);
- 
+
   return { uiFrame: data?.onePageFrame, error, loading }
 }
