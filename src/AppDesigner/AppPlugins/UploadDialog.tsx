@@ -58,6 +58,7 @@ export const UploadDialog: React.FC = memo(() => {
           })
       } else {
         if (uploadedPlugins.length === 0) {
+          message.error("Legal plugins is none")
           return;
         }
         multipleLoad(uploadedPlugins).then(data => {
@@ -73,18 +74,10 @@ export const UploadDialog: React.FC = memo(() => {
     }).catch((err) => {
       console.error("form validate error", err);
     });
-  }, [form, load, upsert, multipleLoad, upsertMany]);
+  }, [form, load, upsert, multipleLoad, upsertMany, uploadedPlugins]);
 
   const handleCancel = useCallback(() => {
     setIsModalVisible(false);
-  }, []);
-
-  const onFinish = useCallback((values: any) => {
-    console.log('Success:', values);
-  }, []);
-
-  const onFinishFailed = useCallback((errorInfo: any) => {
-    console.log('Failed:', errorInfo);
   }, []);
 
   const onTypeChange = useCallback((e: RadioChangeEvent) => {
@@ -144,8 +137,6 @@ export const UploadDialog: React.FC = memo(() => {
             }
           }
           form={form}
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
           <Form.Item
