@@ -26,10 +26,13 @@ export function useLazyRequest<T1>(options?: RequestOptions<any>)
   const mountRef = useMountRef();
   const appId = useEnthooksAppId();
   const optionsRef = useRef<RequestOptions<any>>();
+  const endpointRef = useRef<string>();
   optionsRef.current = options;
+  endpointRef.current = endpoint;
 
   const request = useCallback(
     (gql: string | undefined, params?: T1) => {
+      const endpoint = endpointRef.current;
       if (!gql || !endpoint) {
         console.error("gql or endpoint is null", endpoint, gql)
         return;
