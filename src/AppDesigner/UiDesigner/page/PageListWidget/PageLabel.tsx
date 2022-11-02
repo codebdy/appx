@@ -31,7 +31,7 @@ const PageLabel = (
     <TreeNodeLabel fixedAction={visible}
       action={
         <PageActions
-          pageId={page.id}
+          page={page}
           onVisibleChange={handleVisableChange}
           onEdit={handleEdit}
         />

@@ -60,7 +60,7 @@ export function useLazyRequest<T1>(options?: RequestOptions<any>)
           options?.onError && options?.onError(err);
         });
     },
-    [endpoint, token, appId, mountRef, options]
+    [endpoint, token, appId, mountRef/*, options*/]
   );
 
   return [request, {loading, error, data}]

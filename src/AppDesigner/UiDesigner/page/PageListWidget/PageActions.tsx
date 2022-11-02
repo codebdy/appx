@@ -1,28 +1,44 @@
 import { MoreOutlined, EditOutlined, DeleteOutlined, LoadingOutlined, CopyOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo } from "react"
-import { ID } from "~/shared";
 import { useDeletePage } from "../../hooks/useDeletePage";
 import { IPage } from "~/model";
 import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import { useTranslation } from "react-i18next";
+import { useUpsertPage } from "../../hooks/useUpsertPage";
+import { useLazyQueryPage } from "~/AppDesigner/hooks/useLazyQueryPage";
+import { createUuid } from "~/shared";
+import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
 
 const PageActions = memo((
   props: {
-    pageId: ID,
+    page: IPage,
     onVisibleChange: (visible: boolean) => void,
     onEdit: () => void,
   }
 ) => {
-  const { pageId, onVisibleChange, onEdit } = props;
+  const { page, onVisibleChange, onEdit } = props;
+  const appId = useEdittingAppId()
   const { t } = useTranslation();
   const [remove, { loading, error }] = useDeletePage({
-    onCompleted: (data: IPage) => {
+    onCompleted: () => {
       onVisibleChange(false);
     }
   });
 
-  useShowError(error);
+  const [upsert, { loading: upserting, error: upsertError }] = useUpsertPage({
+    onCompleted: () => {
+      onVisibleChange(false);
+    }
+  });
+
+  const [query, { loading: quering, error: queryError }] = useLazyQueryPage({
+    onCompleted: (page: IPage) => {
+      upsert({ ...page, id: undefined, uuid: createUuid(), app: { sync: { id: appId } }, title: page.title + t("OfCopy") })
+    }
+  });
+
+  useShowError(error || upsertError || queryError);
 
   const handleEdit = useCallback(() => {
     onEdit();
@@ -30,12 +46,12 @@ const PageActions = memo((
   }, [onEdit, onVisibleChange]);
 
   const handleDelete = useCallback(() => {
-    remove(pageId);
-  }, [pageId, remove]);
+    remove(page.id);
+  }, [page, remove]);
 
   const handleClone = useCallback(() => {
-    
-  }, [pageId]);
+    query(page.id)
+  }, [page, query]);
 
   const menu = useMemo(() => (
     <Menu
@@ -81,7 +97,7 @@ const PageActions = memo((
     >
       <Button shape='circle' type="text" size='small' onClick={e => e.stopPropagation()}>
         {
-          loading ?
+          loading || upserting || quering ?
             <LoadingOutlined />
             : <MoreOutlined color="inherit" />
         }

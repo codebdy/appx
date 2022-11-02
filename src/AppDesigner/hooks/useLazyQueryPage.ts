@@ -1,6 +1,6 @@
 import { gql } from "../../enthooks";
 import { useCallback } from "react";
-import { useLazyRequest } from "../../enthooks/hooks/useLazyRequest";
+import { RequestOptions, useLazyRequest } from "../../enthooks/hooks/useLazyRequest";
 import { IPage } from "../../model";
 import { IPageInput } from "../../model";
 import { ID } from "~/shared";
@@ -15,11 +15,12 @@ query queryPage($id:ID!){
     id
     title
     schemaJson
+    categoryUuid
   }
 }
 `
 
-export function useLazyQueryPage(): [
+export function useLazyQueryPage(options?: RequestOptions<IPage>): [
   (id: ID) => void,
   {
     page?: IPage,
@@ -27,7 +28,12 @@ export function useLazyQueryPage(): [
     error?: Error,
   }
 ] {
-  const [doQuery, { data, error, loading }] = useLazyRequest<IPageInput>()
+  const [doQuery, { data, error, loading }] = useLazyRequest<IPageInput>({
+    onCompleted: (data) => {
+      options?.onCompleted(data?.onePage)
+    },
+    onError: options?.onError
+  })
 
   const query = useCallback((id: ID) => {
     doQuery(pageGql, { id })

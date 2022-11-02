@@ -61,6 +61,7 @@
   "NotFinishedTip": "应用不完整，请先编辑并发布",
   "AppNotExist": "应用不存在",
   "GoEdit": "去编辑",
+  "OfCopy": "的副本",
   "Model": {
     "Title": "模型"
   },
