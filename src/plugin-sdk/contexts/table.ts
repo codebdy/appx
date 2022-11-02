@@ -13,6 +13,7 @@ export interface ITableParams {
     name: string,
     title?: string,
   }[],
+  path?: string,
 }
 
 export const TableContext = createContext<ITableParams>({});

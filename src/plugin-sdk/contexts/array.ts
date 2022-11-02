@@ -14,7 +14,6 @@ export interface IArrayParams {
   pageSize?: number,
   current?: number,
   refreshFlag?: number,
-  path?: string,
 }
 
 export const ArrayContext = createContext<IArrayParams>({});

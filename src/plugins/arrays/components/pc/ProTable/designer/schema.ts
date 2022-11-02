@@ -11,6 +11,9 @@ const schema: IPropsSchema = {
         type: 'boolean',
         'x-decorator': 'FormItem',
         'x-component': 'Switch',
+        'x-component-props': {
+          defaultChecked: true,
+        },
       },
       hasToolbar: {
         type: 'boolean',

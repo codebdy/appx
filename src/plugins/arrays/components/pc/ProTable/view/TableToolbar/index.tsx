@@ -25,7 +25,7 @@ export const TableToolbar = observer((
   const { hasActions = true, children, value, onChange, ...other } = props;
   const params = useArrayParams();
   const tableParams = useTableParams();
-  const tableConfig: ITableConfig = useComponentConfig(params.path);
+  const tableConfig: ITableConfig = useComponentConfig(tableParams.path);
   const fieldSchema = useFieldSchema()
 
   useEffect(() => {

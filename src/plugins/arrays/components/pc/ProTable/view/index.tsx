@@ -60,7 +60,7 @@ const Component: React.FC<IProTableProps> & {
       path: field.path.toString()
     });
   }, [dataBind, field.path, pageSize, paginationPosition, selectable]);
-  console.log("Provider前", dataBind.expression)
+
   const tableParams = useMemo(() => {
     return observable({
     });
