@@ -46,8 +46,10 @@ const RunnerEngine = memo(() => {
       return [createForm(), newExpScope];
     }
     ,
-    [$me]
+    [$me, uiFrame]
   );
+
+  console.log("哈哈哈", uiFrame?.uuid)
 
   return (
     uiFrame?.schemaJson?.schema ?

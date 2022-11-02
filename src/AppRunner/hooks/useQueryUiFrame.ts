@@ -1,5 +1,5 @@
 import { gql } from "~/enthooks";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useQueryOne } from "~/enthooks/hooks/useQueryOne";
 import { IUiFrame } from "~/model";
 import { useFrameUuid } from "./useFrameUuid";
@@ -28,6 +28,6 @@ export function useQueryUiFrame(uuid?:string) {
   ), [uuid]);
 
   const { data, error, loading } = useQueryOne<IUiFrame>(input);
-
+ 
   return { uiFrame: data?.onePageFrame, error, loading }
 }

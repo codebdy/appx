@@ -32,7 +32,6 @@ export function useQueryOne<T>(input: IQueryInput): QueryOneResponse<T> {
       setRevalidating(false)
     }
   })
-
   const loadingRef = useRef(loading);
   loadingRef.current = loading;
 
@@ -58,8 +57,7 @@ export function useQueryOne<T>(input: IQueryInput): QueryOneResponse<T> {
   }, [input.depEntityNames]);
 
   useEffect(() => {
-    if (!errorRef.current && !loadingRef.current && input.gql && endpoint) {
-      //loadedRef.current = true;
+    if (!errorRef.current && input.gql && endpoint) {
       queryRef.current && queryRef.current(input.gql, input.params);
     }
   }, [endpoint, input.gql, input.params]);
