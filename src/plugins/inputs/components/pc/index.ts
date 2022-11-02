@@ -7,6 +7,7 @@ import Password from "./Password";
 import NumberPicker from "./NumberPicker";
 import Rate from "./Rate";
 import Slider from "./Slider";
+import Switch from "./Switch";
 
 const pcComponents = [
   MultiLangInput,
@@ -17,6 +18,7 @@ const pcComponents = [
   Slider,
   Select,
   ImageUploader,
+  Switch,
   SearchInput,
 ];
 
