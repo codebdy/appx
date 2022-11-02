@@ -49,8 +49,6 @@ const RunnerEngine = memo(() => {
     [$me, uiFrame]
   );
 
-  console.log("哈哈哈", uiFrame?.uuid)
-
   return (
     uiFrame?.schemaJson?.schema ?
       <RouteContext.Provider value={{ menuItem: mentItem, setMenuItem: setMenuItem as any }}>

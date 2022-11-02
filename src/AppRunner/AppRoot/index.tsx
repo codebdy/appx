@@ -1,5 +1,4 @@
 import { Device } from "@rxdrag/appx-plugin-sdk";
-import { Spin } from "antd";
 import React, { memo, useMemo } from "react"
 import { useParams } from "react-router-dom";
 import { CenterSpin } from "~/common/CenterSpin";
@@ -25,7 +24,6 @@ export const AppRoot = memo((
   const { userConfig, loading: userConfigLoading, error: userConfigError } = useQueryUserConfig(app.id, device as any, me?.id)
   const frameUuid = useFrameUuid(app, device as Device);
   const { uiFrame, error, loading } = useQueryUiFrame(frameUuid);
-  console.log("呵呵", frameUuid, uiFrame?.uuid)
   const components = usePluginComponents(app, device as Device);
   useShowError(error || userConfigError)
   const appParams = useMemo(() => {
