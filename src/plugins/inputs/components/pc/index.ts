@@ -11,6 +11,8 @@ import Switch from "./Switch";
 import TreeSelect from "./TreeSelect";
 import Cascader from "./Cascader";
 import Transfer from "./Transfer";
+import Checkbox from "./Checkbox";
+import Radio from "./Radio";
 
 const pcComponents = [
   MultiLangInput,
@@ -23,6 +25,8 @@ const pcComponents = [
   TreeSelect,
   Cascader,
   Transfer,
+  Checkbox,
+  Radio,
   ImageUploader,
   Switch,
   SearchInput,
