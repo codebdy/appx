@@ -5,7 +5,7 @@ import { OpenPageType } from "../model";
 
 export interface IPagePopup {
   id: string;
-  pageId?: ID;
+  pageUuid?: ID;
   openType: OpenPageType;
   pageTitle?: string;
   width?: number | string;

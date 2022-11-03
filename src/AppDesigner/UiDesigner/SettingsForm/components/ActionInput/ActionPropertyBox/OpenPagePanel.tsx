@@ -19,7 +19,7 @@ export const OpenPagePanel = memo((
     <>
       <Form.Item
         label={t("Action.Page")}
-        name="pageId"
+        name="pageUuid"
       >
         <PageSelect />
       </Form.Item>
