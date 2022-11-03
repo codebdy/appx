@@ -18,7 +18,6 @@ export function useOpenPage() {
 
   const open = useCallback((action: IOpenPageAction) => {
     if (action.openType === OpenPageType.RouteTo) {
-      console.log("哈哈哈", action.pageUuid)
       navigate(`/${device}/${appId}/${menuUuid || "no"}/${action.pageUuid}/${dataId || ""}`)
     } else if (action.openType === OpenPageType.Dialog || action.openType === OpenPageType.Drawer) {
       setPagePopups(pgPops => ([...pgPops, {

@@ -1,4 +1,4 @@
-import { Row, Tabs } from "antd";
+import { Breadcrumb, Row, Tabs } from "antd";
 import React, { useMemo, useState } from "react"
 import { RecursionField, useFieldSchema } from '@formily/react';
 import "./style.less"
@@ -15,6 +15,9 @@ import PageHeaderContentExtra, { IPageHeaderContentExtraProps } from "./PageHead
 import { Schema } from "@formily/react";
 import PageTitle, { IPageTitleProps } from "./PageTitle";
 import { useParseLangMessage } from "@rxdrag/plugin-sdk";
+import { HomeOutlined } from "@ant-design/icons";
+import { useAppParams } from "~/plugin-sdk/contexts/app";
+import { useNavigate } from "react-router-dom";
 
 const { TabPane } = Tabs;
 
@@ -41,7 +44,9 @@ export const Component: React.FC<IPageContainerProps> & {
   } = props;
   const [selectedTabKey, setSelectedTabKey] = useState("1")
   const fieldSchema = useFieldSchema()
+  const { device, app } = useAppParams();
   const p = useParseLangMessage();
+  const navigate = useNavigate();
   const slots = useMemo(() => {
     const slts = {
       title: null,
@@ -104,7 +109,27 @@ export const Component: React.FC<IPageContainerProps> & {
 
           </Tabs>
         }
-        breadcrumb={hasBreadcrumb ? { routes: breadcrumbs } : undefined}
+        breadcrumb={hasBreadcrumb
+          ? <Breadcrumb>
+            <Breadcrumb.Item href="javascript:void(0)" onClick={() => navigate(`/${device}/${app.id}`)}>
+              <HomeOutlined />
+            </Breadcrumb.Item>
+            {
+              breadcrumbs.map(bread => {
+                const href = bread.path ? { href: "javascript:void(0)" } : {};
+                return (
+                  <Breadcrumb.Item
+                    {...href}
+                    onClick={() => bread.path ? navigate(bread.path) : undefined}
+                  >
+                    {bread.breadcrumbName}
+                  </Breadcrumb.Item>
+                )
+              })
+            }
+          </Breadcrumb>
+          : undefined
+        }
       >
         {
           (hasHeaderContent || hasHeaderContentExtra) &&
