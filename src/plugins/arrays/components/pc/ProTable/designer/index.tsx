@@ -44,7 +44,7 @@ const ComponentDesigner: DnFC<IProTableProps> & {
       {
         hasQueryForm && queryForm && <TreeNodeWidget node={queryForm} />
       }
-      <Card style={{ marginTop: "16px" }}>
+      <Card>
         {
           hasToolbar && toolbar && <TreeNodeWidget node={toolbar} />
         }

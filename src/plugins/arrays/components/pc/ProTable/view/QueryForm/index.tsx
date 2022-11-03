@@ -69,7 +69,7 @@ export const QueryForm: React.FC = observer((props: IQueryFormProps) => {
   }, [])
 
   return (
-    <Card {...other} style={{ ...style || {}, marginTop: "16px" }}>
+    <Card {...other} style={{ ...style || {}, marginBottom: "16px" }}>
       <FormLayout layout={layout} colon={colon} feedbackLayout="terse">
         <FormGrid
           grid={grid}
