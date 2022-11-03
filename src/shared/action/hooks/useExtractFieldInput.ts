@@ -2,6 +2,7 @@ import { useCallback } from "react";
 import { Field, GeneralField, isField } from "@formily/core";
 import { toJS } from "@formily/reactive";
 import { AssociationType } from "~/datasource/model/IFieldSource";
+import { CONST_ID } from "~/AppDesigner/AppUml/meta";
 
 interface IFieldInfo {
   name: string,
@@ -33,13 +34,13 @@ export function useExtractFieldInput() {
       if (field?.componentProps?.associationType === AssociationType.HasMany) {
         if (field.value) {
           value[name] = { sync: toJS(field.value) };
-        } else {
-          value[name] = { sync: [], delete: true };
-        }
+        } else if (value[CONST_ID]){
+          value[name] = { sync: [], delete: [] };
+        } 
       } else if (field?.componentProps?.associationType === AssociationType.HasOne) {
         if (field.value) {
           value[name] = { sync: toJS(field.value) };
-        } else {
+        } else if (value[CONST_ID]) {
           value[name] = { delete: true }
         }
       } else {
