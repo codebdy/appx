@@ -3,6 +3,9 @@ const locales = {
     title: '多语言输入框',
     settings: {
       'x-component-props': {
+        inline: "内联",
+        multiline: "多行",
+        rows: "行数",
         addonAfter: '后缀标签',
         addonBefore: '前缀标签',
         maxLength: '最大长度',

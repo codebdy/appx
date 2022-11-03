@@ -8,6 +8,32 @@ const schema: IPropsSchema = {
   props: {
     type: 'object',
     properties: {
+      inline: {
+        type: 'boolean',
+        'x-decorator': 'FormItem',
+        'x-component': 'Switch',
+        'x-component-props': {
+        },
+      },
+      multiline: {
+        type: 'boolean',
+        'x-decorator': 'FormItem',
+        'x-component': 'Switch',
+        'x-component-props': {
+        },
+      },
+      rows: {
+        type: 'number',
+        'x-decorator': 'FormItem',
+        'x-component': 'NumberPicker',
+        'x-reactions': {
+          fulfill: {
+            state: {
+              visible: '{{$form.values["x-component-props"]?.multiline === true}}',
+            },
+          },
+        },
+      },
       addonBefore: {
         type: 'string',
         'x-decorator': 'FormItem',
