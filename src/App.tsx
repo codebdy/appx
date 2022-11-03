@@ -31,14 +31,14 @@ const App = memo(() => {
         <Route path={INDEX_URL} element={<LoggedInPanel />}>
           <Route path={INDEX_URL} element={<AppRunner />}>
             <Route path={"/:device/:appId"} >
-              <Route path=":menuUuid" >
-                <Route path=":pageId">
-                  <Route path=":dataId" />
-                  <Route path="" />
+              <Route path=":menuUuid" element={<></>}>
+                <Route path=":pageUuid" element={<></>}>
+                  <Route path=":dataId" element={<></>} />
+                  <Route path="" element={<></>} />
                 </Route>
                 <Route path="" element={<></>} />
               </Route>
-              <Route path="" element={<></>}/>
+              <Route path="" element={<></>} />
             </Route>
           </Route>
           <Route path={`/${DESIGN}`} element={<AppDesigner />}>
