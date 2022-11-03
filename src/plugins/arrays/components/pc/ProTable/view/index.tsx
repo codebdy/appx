@@ -16,6 +16,7 @@ import { ITableToolbarActionsProps, TableToolbarActions } from "./TableToolbarAc
 import { registerResourceBundle } from "~/i18n/registerResourceBundle"
 import { IDataSourceableProps } from "@rxdrag/plugin-sdk"
 import { ArrayContext } from "~/plugin-sdk/contexts/array"
+import { usePage } from "~/plugin-sdk/contexts/page"
 
 registerResourceBundle(LOCALES_NS, locales);
 
@@ -57,14 +58,15 @@ const Component: React.FC<IProTableProps> & {
       current: 1,
       paginationPosition,
       pageSize: pageSize || 10,
-      path: field.path.toString()
     });
-  }, [dataBind, field.path, pageSize, paginationPosition, selectable]);
+  }, [dataBind, pageSize, paginationPosition, selectable]);
 
+  const page = usePage();
   const tableParams = useMemo(() => {
     return observable({
+      path: page.id + "/" + field.path.toString()
     });
-  }, []);
+  }, [field.path, page]);
 
   const fieldSchema = useFieldSchema();
 
@@ -96,7 +98,7 @@ const Component: React.FC<IProTableProps> & {
 
 
   return (
-    <ArrayContext.Provider value = {arrayParams}>
+    <ArrayContext.Provider value={arrayParams}>
       <TableContext.Provider
         value={tableParams}
       >

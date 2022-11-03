@@ -11,6 +11,7 @@ import { useQueryPageWithCache } from "./hooks/useQueryPageWithCache";
 import { IUser } from "~/enthooks/hooks/useQueryMe";
 import { useMe } from "@rxdrag/plugin-sdk/contexts/login";
 import { useAppParams } from "~/plugin-sdk/contexts/app";
+import { PageContext } from "~/plugin-sdk/contexts/page";
 
 export class Me {
 
@@ -68,12 +69,14 @@ export const PageEngine = memo((
     <LoadingSpan spinning={loading}>
       {
         page?.schemaJson?.schema && pageUuid === page.uuid &&
-        <FormProvider form={form}>
-          <ExpressionScope value={newExpScope} >
-            <SchemaField schema={p(JSON.parse(JSON.stringify(page?.schemaJson?.schema || "{}")))}>
-            </SchemaField>
-          </ExpressionScope>
-        </FormProvider>
+        <PageContext.Provider value={page}>
+          <FormProvider form={form}>
+            <ExpressionScope value={newExpScope} >
+              <SchemaField schema={p(JSON.parse(JSON.stringify(page?.schemaJson?.schema || "{}")))}>
+              </SchemaField>
+            </ExpressionScope>
+          </FormProvider>
+        </PageContext.Provider>
       }
     </LoadingSpan>
   )
