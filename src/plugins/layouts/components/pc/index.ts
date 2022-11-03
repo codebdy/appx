@@ -1,6 +1,7 @@
 import ArrayPanel from "./ArrayPanel";
 import Card from "./Card";
 import FormButtonGroup from "./FormButtonGroup";
+import FormCollapse from "./FormCollapse";
 import FormGrid from "./FormGrid";
 import FormLayout from "./FormLayout";
 import FormTab from "./FormTab";
@@ -14,6 +15,7 @@ export default [
   FormLayout,
   FormGrid,
   FormTab,
+  FormCollapse,
   FormButtonGroup,
   ObjectPanel,
   ArrayPanel,

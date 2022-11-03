@@ -37,7 +37,7 @@ export const FormTabSchema: IPropsSchema = {
 
 }
 
-export const FormTabPane = {
+export const FormTabPaneSchema = {
   props: {
     type: 'object',
     properties: {

@@ -1,7 +1,7 @@
 import { IBehavior } from "@rxdrag/appx-plugin-sdk";
 import Name, { TabPaneName } from "../name";
 import { FormTabLocales, FormTabPaneLocales } from "./locales";
-import { FormTabSchema, FormTabPane } from "./schema";
+import { FormTabSchema, FormTabPaneSchema } from "./schema";
 
 const behaviors: IBehavior[] = [
   {
@@ -26,7 +26,7 @@ const behaviors: IBehavior[] = [
       allowDrop: (node) => node.props['x-component'] === 'FormTab',
     },
     designerLocales: FormTabPaneLocales,
-    schema: FormTabPane,
+    schema: FormTabPaneSchema,
   }
 ]
 
