@@ -10,6 +10,7 @@ import Slider from "./Slider";
 import Switch from "./Switch";
 import TreeSelect from "./TreeSelect";
 import Cascader from "./Cascader";
+import Transfer from "./Transfer";
 
 const pcComponents = [
   MultiLangInput,
@@ -21,6 +22,7 @@ const pcComponents = [
   Select,
   TreeSelect,
   Cascader,
+  Transfer,
   ImageUploader,
   Switch,
   SearchInput,
