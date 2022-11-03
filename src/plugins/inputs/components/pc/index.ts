@@ -13,6 +13,7 @@ import Cascader from "./Cascader";
 import Transfer from "./Transfer";
 import Checkbox from "./Checkbox";
 import Radio from "./Radio";
+import DatePicker from "./DatePicker";
 
 const pcComponents = [
   MultiLangInput,
@@ -27,6 +28,7 @@ const pcComponents = [
   Transfer,
   Checkbox,
   Radio,
+  DatePicker,
   ImageUploader,
   Switch,
   SearchInput,
