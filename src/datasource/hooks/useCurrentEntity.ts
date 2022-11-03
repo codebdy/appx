@@ -13,7 +13,7 @@ export function useCurrentEntity() {
       return fieldSource?.["typeUuid"];
     }
     const dataSource = node?.parent?.props?.["x-component-props"]?.["dataBind"]
-    if (dataSource) {
+    if (dataSource?.entityUuid) {
       return dataSource?.entityUuid;
     } else if (node?.parent) {
       return getRecentDataSourceUuid(node?.parent)

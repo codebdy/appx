@@ -13,7 +13,8 @@ export interface ITagProps {
 export const Tag = observer((props: ITagProps) => {
   const { icon, value, onChange, ...other } = props;
   const p = useParseLangMessage();
-  if(!isStr(value) && !isNum(value)){
+
+  if(value && !isStr(value) && !isNum(value)){
     console.error("Tag value is not string or number")
     return <></>
   }
