@@ -8,6 +8,8 @@ import NumberPicker from "./NumberPicker";
 import Rate from "./Rate";
 import Slider from "./Slider";
 import Switch from "./Switch";
+import TreeSelect from "./TreeSelect";
+import Cascader from "./Cascader";
 
 const pcComponents = [
   MultiLangInput,
@@ -17,6 +19,8 @@ const pcComponents = [
   Rate,
   Slider,
   Select,
+  TreeSelect,
+  Cascader,
   ImageUploader,
   Switch,
   SearchInput,
