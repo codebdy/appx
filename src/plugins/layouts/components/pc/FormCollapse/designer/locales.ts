@@ -1,82 +1,82 @@
-export const FormTabLocales = {
+export const FormCollapse = {
   'zh-CN': {
-    title: '选项卡',
-    addTabPane: '添加选项卡',
+    title: '折叠面板',
+    addCollapsePanel: '添加面板',
     settings: {
       'x-component-props': {
-        animated: '启用动画过渡',
-        centered: '标签居中',
-        tab: '选项名称',
-        type: {
-          title: '类型',
-          dataSource: [
-            { label: '线框', value: 'line' },
-            { label: '卡片', value: 'card' },
-          ],
-        },
+        accordion: '手风琴模式',
+        collapsible: { title: '可折叠区域', dataSource: ['头部', '禁用'] },
+        ghost: '幽灵模式',
+        bordered: '是否有边框',
       },
     },
   },
   'en-US': {
-    title: 'Tabs',
-    addTabPane: 'Add Panel',
+    title: 'Collapse',
+    addCollapsePanel: 'Add Panel',
     settings: {
       'x-component-props': {
-        animated: 'Enable Animated',
-        centered: 'Label Centered',
-        tab: 'Tab Title',
-        type: {
-          title: 'Type',
-          dataSource: [
-            { label: 'Line', value: 'line' },
-            { label: 'Card', value: 'card' },
-          ],
+        accordion: 'Accordion Mode',
+        collapsible: {
+          title: 'Collapsible',
+          dataSource: ['Header', 'Disable'],
         },
+        ghost: 'Ghost Mode',
+        bordered: 'Bordered',
       },
     },
   },
   'ko-KR': {
-    title: '탭',
-    addTabPane: '패널 추가',
+    title: '드롭다운',
+    addCollapsePanel: '패널 추가',
     settings: {
       'x-component-props': {
-        animated: '애니메이션 활성화',
-        centered: '레이블을 가운데로',
-        tab: '텝 제목',
-        type: {
-          title: '타입',
-          dataSource: [
-            { label: '라인', value: 'line' },
-            { label: '카드', value: 'card' },
-          ],
+        accordion: 'Accordion 모드',
+        collapsible: {
+          title: '드롭 여부',
+          dataSource: ['헤더', '비활성화'],
         },
+        ghost: '고스트 모드',
+        bordered: 'Bordered',
       },
     },
   },
 }
 
-export const FormTabPaneLocales = {
+export const FormCollapsePanel = {
   'zh-CN': {
-    title: '选项卡面板',
+    title: '面板',
     settings: {
       'x-component-props': {
-        tab: '面板标题',
+        collapsible: { title: '是否可折叠', dataSource: ['头部', '禁用'] },
+        header: '标题',
+        extra: '扩展内容',
       },
     },
   },
   'en-US': {
-    title: 'Tab Panel',
+    title: 'Panel',
     settings: {
       'x-component-props': {
-        tab: 'Panel Title',
+        collapsible: {
+          title: 'Collapsible',
+          dataSource: ['Header', 'Disable'],
+        },
+        header: 'Header Title',
+        extra: 'Extra Content',
       },
     },
   },
   'ko-KR': {
-    title: '탭 패널',
+    title: '패널',
     settings: {
       'x-component-props': {
-        tab: '패널 제목',
+        collapsible: {
+          title: '드롭 여부',
+          dataSource: ['해더', '비활성화'],
+        },
+        header: '헤더 제목',
+        extra: '추가 내용',
       },
     },
   },
