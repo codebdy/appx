@@ -25,7 +25,8 @@ export function useSaveData() {
       rejectRef.current = reject;
       field.validate()
         .then(() => {
-          post({ id: instance?.id, ...extract(field) || {} });
+          const data = { id: instance?.id, ...extract(field) || {} }
+          post(data);
         })
         .catch((err: Error) => {
           reject(err)

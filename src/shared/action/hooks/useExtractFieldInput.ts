@@ -34,16 +34,16 @@ export function useExtractFieldInput() {
       if (field?.componentProps?.associationType === AssociationType.HasMany) {
         if (field.value) {
           value[name] = { sync: toJS(field.value) };
-        } else if (value[CONST_ID]){
+        } else if (value[CONST_ID]) {
           value[name] = { sync: [], delete: [] };
-        } 
+        }
       } else if (field?.componentProps?.associationType === AssociationType.HasOne) {
         if (field.value) {
           value[name] = { sync: toJS(field.value) };
         } else if (value[CONST_ID]) {
           value[name] = { delete: true }
         }
-      } else {
+      } else if (field.value != undefined) {
         value[name] = toJS(field.value);
       }
     }
