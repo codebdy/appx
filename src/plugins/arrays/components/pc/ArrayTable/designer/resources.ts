@@ -8,11 +8,8 @@ const resources: IResourceCreator[] = [
       {
         componentName: 'Field',
         props: {
-          type: 'void',
+          type: 'array',
           'x-component': Name,
-          'x-component-props': {
-            title: 'Title',
-          },
         },
       },
     ],

@@ -279,8 +279,10 @@ export const ArrayTableDesigner: DnFC<TableProps<any>> = observer((props) => {
                   'ArrayTable.Column',
                   'ArrayTable.Index',
                 ])
-              )
+              ) {
                 return
+              }
+
               const tableColumn = new TreeNode({
                 componentName: 'Field',
                 props: {
