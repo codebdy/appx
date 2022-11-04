@@ -9,21 +9,24 @@ interface IFieldInfo {
   field: GeneralField
 }
 
-const getChildrenFields = (field: GeneralField) => {
+const getChildrenFields = (fields: GeneralField[]) => {
   const children: IFieldInfo[] = []
-  const address = field.address.toString() + ".";
+  for (const field of fields) {
+    const address = field.address.toString() + ".";
 
-  for (const key of Object.keys(field.form.fields)) {
-    if (key.startsWith(address)) {
-      const fieldName = key.substring(address.length)
-      if (fieldName.split(".").length === 1) {
-        children.push({
-          name: fieldName,
-          field: field.form.fields[key]
-        })
+    for (const key of Object.keys(field.form.fields)) {
+      if (key.startsWith(address)) {
+        const fieldName = key.substring(address.length)
+        if (fieldName.split(".").length === 1) {
+          children.push({
+            name: fieldName,
+            field: field.form.fields[key]
+          })
+        }
       }
     }
   }
+
   return children
 }
 
@@ -33,10 +36,22 @@ export function useExtractFieldInput() {
     if (isField(field)) {
       if (field?.componentProps?.associationType === AssociationType.HasMany) {
         if (field.value) {
-          value[name] = { sync: toJS(field.value) };
+          const arrayValue = toJS(field.value);
+          if (Array.isArray(arrayValue)) {
+            for (let i = 0; i < arrayValue.length; i++) {
+              const children = getChildrenFields(getChildrenFields([field]).map(child => child.field));
+              for (const child of children) {
+                recursionField(child, arrayValue[i])
+              }
+            }
+          }
+          value[name] = { sync: arrayValue };
+
         } else if (value[CONST_ID]) {
-          value[name] = { sync: [], delete: [] };
+          value[name] = { sync: [] };
         }
+
+        return;
       } else if (field?.componentProps?.associationType === AssociationType.HasOne) {
         if (field.value) {
           value[name] = { sync: toJS(field.value) };
@@ -48,7 +63,7 @@ export function useExtractFieldInput() {
       }
     }
     const currentValue = isField(field) ? value[name] : value;
-    const children = getChildrenFields(field);
+    const children = getChildrenFields([field]);
     for (const child of children) {
       recursionField(child, currentValue)
     }

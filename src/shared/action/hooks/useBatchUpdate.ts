@@ -2,20 +2,20 @@ import { useSet } from "~/enthooks/hooks/useSet";
 import { useCallback, useRef } from "react";
 import { useRecentObjectField } from "./useRecentObjectField";
 import { useExtractFieldInput } from "./useExtractFieldInput";
-import { useTableParams } from "@rxdrag/plugin-sdk";
+import { useArrayParams } from "~/plugin-sdk/contexts/array";
 
 export function useBatchUpdate() {
   const resolveRef = useRef<(value: unknown) => void>();
   const rejectRef = useRef<(reason?: any) => void>();
-  const tableParams = useTableParams();
-  const { dataBind, selectedRowKeys } = tableParams;
+  const arrayParams = useArrayParams();
+  const { dataBind, selectedRowKeys } = arrayParams;
   const objectField = useRecentObjectField();
   const extract = useExtractFieldInput();
 
   const [doSet] = useSet(dataBind?.entityName, {
     onCompleted: () => {
       resolveRef.current && resolveRef.current(undefined);
-      tableParams.selectedRowKeys = [];
+      arrayParams.selectedRowKeys = [];
     },
     onError: (error) => {
       rejectRef.current && rejectRef.current(error);
