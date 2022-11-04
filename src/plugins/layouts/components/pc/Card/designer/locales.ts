@@ -1,4 +1,4 @@
-const locales = {
+export const CardLocales = {
   'zh-CN': {
     title: '卡片',
     settings: {
@@ -39,5 +39,3 @@ const locales = {
     },
   },
 }
-
-export default locales;

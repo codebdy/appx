@@ -1,7 +1,7 @@
 import { IBehavior } from "@rxdrag/appx-plugin-sdk";
 import Name from "../name";
-import locales from "./locales";
-import schema from "./schema";
+import { CardLocales } from "./locales";
+import { CardSchema } from "./schema";
 
 const behaviors: IBehavior[] = [
   {
@@ -11,8 +11,8 @@ const behaviors: IBehavior[] = [
     designerProps: {
       droppable: true,
     },
-    designerLocales: locales,
-    schema
+    designerLocales: CardLocales,
+    schema: CardSchema
   }
 ]
 

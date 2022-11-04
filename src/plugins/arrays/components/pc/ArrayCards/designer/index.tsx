@@ -12,7 +12,6 @@ import { ArrayBase } from '@formily/antd'
 import { observer } from '@formily/react'
 import { LoadTemplate } from '@designable/formily-antd/lib/common/LoadTemplate'
 import { useDropTemplate } from '@designable/formily-antd/lib/hooks'
-import { createArrayBehavior } from '../ArrayBase'
 import cls from 'classnames'
 import './styles.less'
 import { createEnsureTypeItemsNode, createNodeId, findNodeByComponentPath, hasNodeByComponentPath, queryNodesByComponentPath } from '~/plugin-sdk'
@@ -246,21 +245,3 @@ export const ArrayCards: DnFC<CardProps> = observer((props) => {
 
 ArrayBase.mixin(ArrayCards)
 
-ArrayCards.Behavior = createArrayBehavior('ArrayCards')
-
-ArrayCards.Resource = createResource({
-  icon: 'ArrayCardsSource',
-  elements: [
-    {
-      componentName: 'Field',
-      props: {
-        type: 'array',
-        'x-decorator': 'FormItem',
-        'x-component': 'ArrayCards',
-        'x-component-props': {
-          title: `Title`,
-        },
-      },
-    },
-  ],
-})

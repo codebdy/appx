@@ -1,6 +1,6 @@
 import { IPropsSchema } from '@rxdrag/appx-plugin-sdk'
 
-const schema: IPropsSchema = {
+export const CardSchema: IPropsSchema = {
   props: {
     type: 'object',
     properties: {
@@ -36,5 +36,3 @@ const schema: IPropsSchema = {
   }
 
 }
-
-export default schema;

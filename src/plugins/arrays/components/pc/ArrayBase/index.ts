@@ -1,19 +1,21 @@
-import { createBehavior } from '@designable/core'
-import { createFieldSchema, createVoidFieldSchema } from '../Field'
-import { AllSchemas } from '../../schemas'
-import { AllLocales } from '../../locales'
+import { IBehavior } from "@rxdrag/appx-plugin-sdk"
+import { ArrayCardsLocales } from "../ArrayCards/designer/locales"
+import { ArrayCardsSchema } from "../ArrayCards/designer/schema"
+import { ArrayAdditionLocales, ArrayRemoveLocales, ArrayIndexLocales, ArrayMoveUpLocales, ArrayMoveDownLocales } from "./locales"
+import { AdditionSchema } from "./schema"
 
-export const createArrayBehavior = (name: string) => {
-  return createBehavior(
+export const createArrayBehavior = (name: string): IBehavior[] => {
+  return [
     {
       name,
       extends: ['Field'],
       selector: (node) => node.props['x-component'] === name,
       designerProps: {
         droppable: true,
-        propsSchema: createFieldSchema(AllSchemas[name]),
       },
-      designerLocales: AllLocales[name],
+      designerLocales: ArrayCardsLocales,
+      schema: ArrayCardsSchema,
+
     },
     {
       name: `${name}.Addition`,
@@ -23,9 +25,9 @@ export const createArrayBehavior = (name: string) => {
         allowDrop(parent) {
           return parent.props['x-component'] === name
         },
-        propsSchema: createVoidFieldSchema(AllSchemas[name].Addition),
       },
-      designerLocales: AllLocales.ArrayAddition,
+      designerLocales: ArrayAdditionLocales,
+      schema:AdditionSchema,
     },
     {
       name: `${name}.Remove`,
@@ -35,9 +37,8 @@ export const createArrayBehavior = (name: string) => {
         allowDrop(parent) {
           return parent.props['x-component'] === name
         },
-        propsSchema: createVoidFieldSchema(),
       },
-      designerLocales: AllLocales.ArrayRemove,
+      designerLocales: ArrayRemoveLocales,
     },
     {
       name: `${name}.Index`,
@@ -47,9 +48,8 @@ export const createArrayBehavior = (name: string) => {
         allowDrop(parent) {
           return parent.props['x-component'] === name
         },
-        propsSchema: createVoidFieldSchema(),
       },
-      designerLocales: AllLocales.ArrayIndex,
+      designerLocales: ArrayIndexLocales,
     },
     {
       name: `${name}.MoveUp`,
@@ -59,9 +59,8 @@ export const createArrayBehavior = (name: string) => {
         allowDrop(parent) {
           return parent.props['x-component'] === name
         },
-        propsSchema: createVoidFieldSchema(),
       },
-      designerLocales: AllLocales.ArrayMoveUp,
+      designerLocales: ArrayMoveUpLocales,
     },
     {
       name: `${name}.MoveDown`,
@@ -71,9 +70,8 @@ export const createArrayBehavior = (name: string) => {
         allowDrop(parent) {
           return parent.props['x-component'] === 'ArrayCards'
         },
-        propsSchema: createVoidFieldSchema(),
       },
-      designerLocales: AllLocales.ArrayMoveDown,
+      designerLocales: ArrayMoveDownLocales,
     }
-  )
+  ]
 }

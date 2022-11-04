@@ -1,43 +1,20 @@
-const locales = {
+import { createLocales } from '@designable/core'
+import { CardLocales } from '~/plugins/layouts/components/pc/Card/designer/locales'
+
+export const ArrayCardsLocales = createLocales(CardLocales, {
   'zh-CN': {
-    title: '卡片',
-    settings: {
-      'x-component-props': {
-        type: '类型',
-        title: '标题',
-        extra: '右侧扩展',
-        cardTypes: { title:"卡片类型", dataSource: ['内置', '默认'] }
-      },
-    },
+    title: '自增卡片',
+    addIndex: '添加索引',
+    addOperation: '添加操作',
   },
   'en-US': {
-    title: 'Card',
-    settings: {
-      'x-component-props': {
-        type: 'Type',
-        title: 'Title',
-        extra: 'Extra',
-        cardTypes: [
-          { label: 'Inner', value: 'inner' },
-          { label: 'Default', value: '' },
-        ],
-      },
-    },
+    title: 'Array Cards',
+    addIndex: 'Add Index',
+    addOperation: 'Add Operations',
   },
   'ko-KR': {
-    title: '카드',
-    settings: {
-      'x-component-props': {
-        type: '타입',
-        title: '제목',
-        extra: '추가 항목',
-        cardTypes: [
-          { label: '안쪽', value: 'inner' },
-          { label: '기본', value: '' },
-        ],
-      },
-    },
+    title: '배열 카드',
+    addIndex: '색인 추가',
+    addOperation: '작업 추가',
   },
-}
-
-export default locales;
+})
