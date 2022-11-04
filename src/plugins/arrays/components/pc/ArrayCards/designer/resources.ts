@@ -9,6 +9,7 @@ const resources: IResourceCreator[] = [
         componentName: 'Field',
         props: {
           type: 'array',
+          'x-decorator': 'FormItem',
           'x-component': Name,
           'x-component-props': {
             title: 'Title',
