@@ -1,6 +1,10 @@
-import { IPropsSchema } from '@rxdrag/appx-plugin-sdk'
+import { FieldsType, IPropsSchema } from '@rxdrag/appx-plugin-sdk'
 
 export const ArrayTableSchema: IPropsSchema = {
+  display:{
+    fieldSourceType: FieldsType.Single,
+  },
+  
   props: {
     type: 'object',
     properties: {

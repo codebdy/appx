@@ -19,6 +19,7 @@ export const ArrayAdditionLocales = {
     title: '添加按钮',
     settings: {
       'x-component-props': {
+        title:"标题",
         method: '方法',
         defaultValue: '默认值',
       },

@@ -4,6 +4,11 @@ export const AdditionSchema: IPropsSchema = {
   props: {
     type: 'object',
     properties: {
+      title:{
+        type: 'string',
+        'x-decorator': 'FormItem',
+        'x-component': 'MultiLangInput',
+      },
       method: {
         type: 'string',
         enum: ['push', 'unshift'],

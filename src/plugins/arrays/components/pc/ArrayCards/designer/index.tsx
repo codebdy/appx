@@ -15,6 +15,7 @@ import { useDropTemplate } from '@designable/formily-antd/lib/hooks'
 import cls from 'classnames'
 import './styles.less'
 import { createEnsureTypeItemsNode, createNodeId, findNodeByComponentPath, hasNodeByComponentPath, queryNodesByComponentPath } from '~/plugin-sdk'
+import { useTranslation } from 'react-i18next'
 
 const ensureObjectItemsNode = createEnsureTypeItemsNode('object')
 
@@ -24,6 +25,7 @@ const isArrayCardsOperation = (name: string) =>
   name === 'ArrayCards.MoveUp'
 
 export const ArrayCardsDesigner: DnFC<CardProps> = observer((props) => {
+  const { t } = useTranslation();
   const node = useTreeNode()
   const nodeId = useNodeIdProps()
   const designer = useDropTemplate('ArrayCards', (source) => {
@@ -38,7 +40,7 @@ export const ArrayCardsDesigner: DnFC<CardProps> = observer((props) => {
       componentName: node.componentName,
       props: {
         type: 'void',
-        title: 'Addition',
+        title: t('Addition'),
         'x-component': 'ArrayCards.Addition',
       },
     })
