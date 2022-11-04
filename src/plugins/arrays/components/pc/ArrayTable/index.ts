@@ -1,14 +1,14 @@
-import ComponentDesigner from "./designer";
 import behaviors from "./designer/behaviors";
 import resources from "./designer/resources";
 import Name from "./name";
 import { IMaterialComponent } from "@rxdrag/appx-plugin-sdk";
-import Component from "./view";
+import { ArrayTableDesigner } from "./designer";
+import { ArrayTable } from "@formily/antd";
 
 const material: IMaterialComponent = {
   name: Name,
-  designer: ComponentDesigner,
-  component: Component,
+  designer: ArrayTableDesigner,
+  component: ArrayTable,
   behaviors,
   resources
 }

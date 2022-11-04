@@ -23,7 +23,7 @@ const isArrayCardsOperation = (name: string) =>
   name === 'ArrayCards.MoveDown' ||
   name === 'ArrayCards.MoveUp'
 
-export const ArrayCards: DnFC<CardProps> = observer((props) => {
+export const ArrayCardsDesigner: DnFC<CardProps> = observer((props) => {
   const node = useTreeNode()
   const nodeId = useNodeIdProps()
   const designer = useDropTemplate('ArrayCards', (source) => {
@@ -243,5 +243,5 @@ export const ArrayCards: DnFC<CardProps> = observer((props) => {
   )
 })
 
-ArrayBase.mixin(ArrayCards)
+ArrayBase.mixin(ArrayCardsDesigner)
 
