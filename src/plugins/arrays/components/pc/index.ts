@@ -1,4 +1,4 @@
-import { ArrayCards } from "@formily/antd";
+import ArrayCards from "./ArrayCards";
 import GridList from "./GridList";
 import ProTable from "./ProTable";
 
