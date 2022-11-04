@@ -1,4 +1,4 @@
-export const ArrayTable = {
+export const ArrayTableLocales = {
   'zh-CN': {
     title: '自增表格',
     addSortHandle: '添加排序',
@@ -72,7 +72,7 @@ export const ArrayTable = {
   },
 }
 
-export const ArrayTableColumn = {
+export const ArrayTableColumnLocales = {
   'zh-CN': {
     title: '表格列',
     settings: {

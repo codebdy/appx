@@ -4,19 +4,8 @@ import { ArrayCardsSchema } from "../ArrayCards/designer/schema"
 import { ArrayAdditionLocales, ArrayRemoveLocales, ArrayIndexLocales, ArrayMoveUpLocales, ArrayMoveDownLocales } from "./locales"
 import { AdditionSchema } from "./schema"
 
-export const createArrayBehavior = (name: string): IBehavior[] => {
+export const createArrayExtraBehavior = (name: string): IBehavior[] => {
   return [
-    {
-      name,
-      extends: ['Field'],
-      selector: (node) => node.props['x-component'] === name,
-      designerProps: {
-        droppable: true,
-      },
-      designerLocales: ArrayCardsLocales,
-      schema: ArrayCardsSchema,
-
-    },
     {
       name: `${name}.Addition`,
       extends: ['Field'],

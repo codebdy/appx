@@ -1,6 +1,6 @@
 import React from 'react'
 import { Table, TableProps } from 'antd'
-import { TreeNode, createBehavior, createResource } from '@designable/core'
+import { TreeNode } from '@designable/core'
 import {
   useTreeNode,
   TreeNodeWidget,
@@ -10,20 +10,12 @@ import {
 } from '@designable/react'
 import { ArrayBase } from '@formily/antd'
 import { observer } from '@formily/react'
-import { LoadTemplate } from '../../common/LoadTemplate'
 import cls from 'classnames'
-import {
-  queryNodesByComponentPath,
-  hasNodeByComponentPath,
-  findNodeByComponentPath,
-  createEnsureTypeItemsNode,
-} from '../../shared'
-import { useDropTemplate } from '../../hooks'
-import { createArrayBehavior } from '../ArrayBase'
 import './styles.less'
-import { createVoidFieldSchema } from '../Field'
-import { AllSchemas } from '../../schemas'
-import { AllLocales } from '../../locales'
+import { createEnsureTypeItemsNode, findNodeByComponentPath, hasNodeByComponentPath, queryNodesByComponentPath } from '~/plugin-sdk'
+import { useDropTemplate } from '@designable/formily-antd/lib/hooks'
+import { LoadTemplate } from '@designable/formily-antd/lib/common/LoadTemplate'
+
 
 const ensureObjectItemsNode = createEnsureTypeItemsNode('object')
 
@@ -430,31 +422,3 @@ export const ArrayTableDesigner: DnFC<TableProps<any>> = observer((props) => {
 })
 
 ArrayBase.mixin(ArrayTableDesigner)
-
-ArrayTableDesigner.Behavior = createBehavior(createArrayBehavior('ArrayTable'), {
-  name: 'ArrayTable.Column',
-  extends: ['Field'],
-  selector: (node) => node.props['x-component'] === 'ArrayTable.Column',
-  designerProps: {
-    droppable: true,
-    allowDrop: (node) =>
-      node.props['type'] === 'object' &&
-      node.parent?.props?.['x-component'] === 'ArrayTable',
-    propsSchema: createVoidFieldSchema(AllSchemas.ArrayTable.Column),
-  },
-  designerLocales: AllLocales.ArrayTableColumn,
-})
-
-ArrayTableDesigner.Resource = createResource({
-  icon: 'ArrayTableSource',
-  elements: [
-    {
-      componentName: 'Field',
-      props: {
-        type: 'array',
-        'x-decorator': 'FormItem',
-        'x-component': 'ArrayTable',
-      },
-    },
-  ],
-})
