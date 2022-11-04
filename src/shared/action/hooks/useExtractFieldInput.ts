@@ -41,7 +41,7 @@ export function useExtractFieldInput() {
         if (field.value) {
           value[name] = { sync: toJS(field.value) };
         } else if (value[CONST_ID]) {
-          value[name] = { delete: true }
+          value[name] = { clear: true }
         }
       } else if (field.value != undefined) {
         value[name] = toJS(field.value);
