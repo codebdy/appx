@@ -488,6 +488,7 @@
         },
         {
           "name": "avatarUrl",
+          "nullable": true,
           "type": "String",
           "typeLabel": "String",
           "uuid": "88865caf-9cc7-4709-a568-3474c5902bce"
