@@ -6,7 +6,7 @@ export function usePagesWithoutCategory(pages:IAuthPage[], categories :IPageCate
   const pagesWithoutCategory = useMemo(() => {
     const pgs = [];
     for (const page of pages || []) {
-      if (!categories.find(category => category.uuid === page.page.uuid)) {
+      if (!categories.find(category => category.uuid === page.page.categoryUuid)) {
         pgs.push(page)
       }
     }
