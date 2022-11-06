@@ -1,10 +1,10 @@
 import React, { memo, useCallback } from "react"
-import MonacoEditor from "react-monaco-editor"
 import { useSetRecoilState } from "recoil";
 import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
 import { useSelectedCode } from "../hooks/useSelectedCode";
 import { codesState } from "../recoil/atoms";
+import { MonacoInput } from '@designable/react-settings-form'
 
 export const CodeEditor = memo(() => {
   const appId = useEdittingAppId();
@@ -17,14 +17,18 @@ export const CodeEditor = memo(() => {
   }, [backup, setCodes, code])
   return (
     <div style={{ height: "100%" }}>
-      <MonacoEditor
-        language="javascript"
+      <MonacoInput
+        className="gql-input-area"
         options={{
-          selectOnLineNumbers: true
+          readOnly: false,
+          lineDecorationsWidth: 0,
+          lineNumbersMinChars: 0,
+          minimap: {
+            enabled: false,
+          }
         }}
-        theme={'vs-dark'}
+        language="json"
         value={code?.code}
-        //editorDidMount={handleEditorDidMount}
         onChange={handleChange}
       />
     </div>

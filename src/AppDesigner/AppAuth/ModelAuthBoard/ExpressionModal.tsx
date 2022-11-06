@@ -2,7 +2,7 @@ import { Modal } from "antd"
 import React, { useCallback, useEffect, useState } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
-import MonacoEditor from "react-monaco-editor";
+import { MonacoInput } from "~/AppDesigner/UiDesigner/SettingsForm/components/MonacoInput";
 
 export const ExpressionModal = memo((
   props: {
@@ -56,14 +56,18 @@ export const ExpressionModal = memo((
       }}
     >
       <div className="input-modal-body">
-        <MonacoEditor
-          language="javascript"
+        <MonacoInput
+          className="expression-input-area"
           options={{
-            selectOnLineNumbers: true
+            readOnly: false,
+            lineDecorationsWidth: 0,
+            lineNumbersMinChars: 0,
+            minimap: {
+              enabled: false,
+            }
           }}
-          theme={'vs-dark'}
+          language="javascript"
           value={expression}
-          editorDidMount={handleEditorDidMount}
           onChange={handleChange}
         />
       </div>

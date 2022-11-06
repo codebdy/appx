@@ -1,6 +1,6 @@
 import React from "react"
 import { memo } from "react"
-import MonacoEditor from "react-monaco-editor";
+import { MonacoInput } from '@designable/react-settings-form'
 
 function formatXml(xml) {
   // https://stackoverflow.com/questions/57039218/doesnt-monaco-editor-support-xml-language-by-default
@@ -11,20 +11,20 @@ function formatXml(xml) {
   xml = xml.replace(reg, '$1\r\n$2$3');
 
   return xml.split('\r\n').map((node, index) => {
-      let indent = 0;
-      if (node.match(/.+<\/\w[^>]*>$/)) {
-          indent = 0;
-      } else if (node.match(/^<\/\w/) && pad > 0) {
-          pad -= 1;
-      } else if (node.match(/^<\w[^>]*[^/]>.*$/)) {
-          indent = 1;
-      } else {
-          indent = 0;
-      }
+    let indent = 0;
+    if (node.match(/.+<\/\w[^>]*>$/)) {
+      indent = 0;
+    } else if (node.match(/^<\/\w/) && pad > 0) {
+      pad -= 1;
+    } else if (node.match(/^<\w[^>]*[^/]>.*$/)) {
+      indent = 1;
+    } else {
+      indent = 0;
+    }
 
-      pad += indent;
+    pad += indent;
 
-      return PADDING.repeat(pad - indent) + node;
+    return PADDING.repeat(pad - indent) + node;
   }).join('\r\n');
 }
 export const XmlEditor = memo((
@@ -34,7 +34,7 @@ export const XmlEditor = memo((
   }
 ) => {
   const { value, onChange } = props;
-  const handleEditorDidMount = (editor:any, monaco: any) => {
+  const handleEditorDidMount = (editor: any, monaco: any) => {
     //不起作用，先不管了
     monaco.languages?.registerDocumentFormattingEditProvider('xml', {
       async provideDocumentFormattingEdits(model, options, token) {
@@ -49,15 +49,20 @@ export const XmlEditor = memo((
   }
 
   return (
-    <MonacoEditor
-      language="xml"
+    <MonacoInput
+      className="gql-input-area"
       options={{
-        selectOnLineNumbers: true
+        readOnly: false,
+        lineDecorationsWidth: 0,
+        lineNumbersMinChars: 0,
+        minimap: {
+          enabled: false,
+        }
       }}
-      theme={'vs-dark'}
+      language="xml"
       value={value}
-      editorDidMount={handleEditorDidMount}
       onChange={onChange}
     />
+
   )
 })
