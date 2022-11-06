@@ -5,6 +5,7 @@ import { IClassAuthConfig } from "~/model"
 import { useUpsertClassAuthConfig } from "../hooks/useUpsertClassAuthConfig";
 import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import { ID } from "~/shared";
+import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
 
 export const ExpandSwitch = memo((
   props: {
@@ -16,17 +17,22 @@ export const ExpandSwitch = memo((
   const { classUuid, classConfig, roleId } = props;
   const [postClassConfig, { error, loading }] = useUpsertClassAuthConfig();
   useShowError(error)
-
+  const appId = useEdittingAppId();
   const handleChange = useCallback((checked: boolean) => {
     postClassConfig(
       {
         ...classConfig,
+        app: {
+          sync: {
+            id: appId
+          },
+        },
         classUuid,
         roleId,
         expanded: checked,
       }
     )
-  }, [postClassConfig, roleId])
+  }, [postClassConfig, roleId, appId])
 
   return (
     <Switch
