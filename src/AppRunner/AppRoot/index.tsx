@@ -9,6 +9,8 @@ import { useMe } from "~/plugin-sdk";
 import { AppContext } from "~/plugin-sdk/contexts/app";
 import { useFrameUuid } from "../hooks/useFrameUuid";
 import { usePluginComponents } from "../hooks/usePluginComponents";
+import { useQueryComponentAuthConfigs } from "../hooks/useQueryComponentAuthConfigs";
+import { useQueryMenuAuthConfigs } from "../hooks/useQueryMenuAuthConfigs";
 import { useQueryUiFrame } from "../hooks/useQueryUiFrame";
 import { useQueryUserConfig } from "../hooks/useQueryUserConfig";
 import { useShowError } from "../hooks/useShowError";
@@ -24,6 +26,8 @@ export const AppRoot = memo((
   const { device = Device.PC } = useParams();
   const me = useMe();
   const { userConfig, loading: userConfigLoading, error: userConfigError } = useQueryUserConfig(app.id, device as any, me?.id)
+  const { menuAuthConfigs, loading: menuAuthLoading, error: menuAuthError } = useQueryMenuAuthConfigs(app.id, device as Device);
+  const { comAuthConfigs, loading: comAuthLoading, error: comAuthError } = useQueryComponentAuthConfigs(app.id, device as Device);
   const frameUuid = useFrameUuid(app, device as Device);
   const { uiFrame, error, loading } = useQueryUiFrame(frameUuid, app.id);
   const components = usePluginComponents(app, device as Device);
@@ -37,8 +41,10 @@ export const AppRoot = memo((
       uiFrame: uiFrame,
       components: components,
       pageCache: pageCache,
+      menuAuthConfigs,
+      componentAuthConfigs:comAuthConfigs
     }
-  }, [app, device, userConfig, uiFrame, components, pageCache])
+  }, [app, device, userConfig, uiFrame, components, pageCache, menuAuthConfigs, comAuthConfigs])
   const config = useMemo(() => {
     const localStorageToken = localStorage.getItem(DESIGNER_TOKEN_NAME)
     return {

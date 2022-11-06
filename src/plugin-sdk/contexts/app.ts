@@ -1,7 +1,7 @@
 import { JSXComponent } from "@formily/core";
 import { Device } from "@rxdrag/appx-plugin-sdk";
 import { createContext, useContext, useMemo } from "react";
-import { IApp, IUiFrame } from "~/model";
+import { IApp, IComponentAuthConfig, IMenuAuthConfig, IUiFrame } from "~/model";
 import { IUserConfig } from "~/model/user";
 import { IMenuItem } from "../model";
 
@@ -13,6 +13,8 @@ export interface IAppContextParams {
   uiFrame?: IUiFrame,
   components: IComponents,
   pageCache?: boolean,
+  menuAuthConfigs?: IMenuAuthConfig[],
+  componentAuthConfigs?: IComponentAuthConfig[],
 }
 export const AppContext = createContext<IAppContextParams>({} as any);
 export const useUserConfig = (): IUserConfig | undefined => useContext(AppContext)?.userConfig;
