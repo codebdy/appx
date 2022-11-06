@@ -51,7 +51,7 @@ const AppUis = memo((props: {
                             <Button
                               key="preview"
                               shape="round"
-                              onClick={() => { window.open(`/app/${device.key}/${appId}`) }}
+                              onClick={() => { window.open(`/${device.key}/${appId}`) }}
                             >
                               {t("AppManager.ToPreview")}
                             </Button>,

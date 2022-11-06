@@ -1,4 +1,4 @@
-import { createForm, JSXComponent } from "@formily/core";
+import { createForm } from "@formily/core";
 import { FormProvider, createSchemaField, useExpressionScope, ExpressionScope } from '@formily/react';
 import { FormItem } from "@formily/antd";
 import React, { memo } from "react";
@@ -12,6 +12,7 @@ import { IUser } from "~/enthooks/hooks/useQueryMe";
 import { useMe } from "@rxdrag/plugin-sdk/contexts/login";
 import { useAppParams } from "~/plugin-sdk/contexts/app";
 import { PageContext } from "~/plugin-sdk/contexts/page";
+import { useCheckComponentAuth } from "./hooks/useCheckComponentAuth";
 
 export class Me {
 
@@ -47,6 +48,7 @@ export const PageEngine = memo((
   const { components } = useAppParams();
   console.log("PageEngine 刷新", pageUuid, page, loading)
   const p = useParseLangSchema();
+  const check = useCheckComponentAuth();
   useShowError(error);
 
   const SchemaField = useMemo(() => createSchemaField({
@@ -72,7 +74,7 @@ export const PageEngine = memo((
         <PageContext.Provider value={page}>
           <FormProvider form={form}>
             <ExpressionScope value={newExpScope} >
-              <SchemaField schema={p(JSON.parse(JSON.stringify(page?.schemaJson?.schema || "{}")))}>
+              <SchemaField schema={check(p(JSON.parse(JSON.stringify(page?.schemaJson?.schema || "{}"))))}>
               </SchemaField>
             </ExpressionScope>
           </FormProvider>
