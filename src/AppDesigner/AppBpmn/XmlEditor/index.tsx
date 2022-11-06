@@ -1,6 +1,6 @@
 import React from "react"
 import { memo } from "react"
-import { MonacoInput } from '@designable/react-settings-form'
+import { MonacoInput } from "~/AppDesigner/UiDesigner/SettingsForm/components/MonacoInput";
 
 function formatXml(xml) {
   // https://stackoverflow.com/questions/57039218/doesnt-monaco-editor-support-xml-language-by-default

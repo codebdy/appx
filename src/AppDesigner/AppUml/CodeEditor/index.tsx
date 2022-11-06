@@ -1,10 +1,10 @@
 import React, { memo, useCallback } from "react"
 import { useSetRecoilState } from "recoil";
 import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
+import { MonacoInput } from "~/AppDesigner/UiDesigner/SettingsForm/components/MonacoInput";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
 import { useSelectedCode } from "../hooks/useSelectedCode";
 import { codesState } from "../recoil/atoms";
-import { MonacoInput } from '@designable/react-settings-form'
 
 export const CodeEditor = memo(() => {
   const appId = useEdittingAppId();

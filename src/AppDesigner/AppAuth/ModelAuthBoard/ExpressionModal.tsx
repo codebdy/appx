@@ -66,7 +66,7 @@ export const ExpressionModal = memo((
               enabled: false,
             }
           }}
-          language="javascript"
+          language="json"
           value={expression}
           onChange={handleChange}
         />

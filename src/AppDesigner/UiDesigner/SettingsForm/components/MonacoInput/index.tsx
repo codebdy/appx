@@ -52,8 +52,6 @@ export const MonacoInput: React.FC<MonacoInputProps> & {
   const prefix = 'dn-monaco-input'
   const input = props.value || props.defaultValue
 
-  console.log("哈哈", prefix)
-
   useEffect(() => {
     unmountedRef.current = false
     initMonaco()
