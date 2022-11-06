@@ -13,6 +13,7 @@ import cls from "classnames";
 import { useMenu } from "~/AppRunner/hooks/useMenu";
 import { SYSTEM_APP_ID } from "~/consts";
 import { Device } from "@rxdrag/appx-plugin-sdk";
+import { useCheckMenuAuth } from "./hooks/useCheckMenuAuth";
 
 export interface IComponentProps {
   mode?: "vertical" | "horizontal" | "inline",
@@ -30,20 +31,24 @@ const AppMenu = memo((props: IComponentProps) => {
 
   const getMenuItem = useGetMenuItem();
   const getMenuItemByPageId = useGetMenuItemByPageUuid();
+  const checkAuth = useCheckMenuAuth();
 
   const makeItem = useCallback((item: IMenuItem) => {
+    const children = item.children?.filter(item => checkAuth(item))
     return ({
       key: item.uuid,
       icon: <IconView icon={item.icon} />,
       label: p(item.title),
-      children: !item.children?.length ? undefined : item.children?.map((child) => makeItem(child)),
+      children: !children?.length
+        ? undefined
+        : children?.map((child) => makeItem(child)),
       type: item.type === MenuItemType.Divider ? "divider" : undefined
     })
   }, [p]);
 
   const data: ItemType[] = useMemo(() => {
     const rtValue = [];
-    for (const item of menu?.schemaJson?.items || []) {
+    for (const item of menu?.schemaJson?.items?.filter(item => checkAuth(item)) || []) {
       rtValue.push(makeItem(item))
     }
     return rtValue
