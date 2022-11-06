@@ -3,7 +3,7 @@ import { Button, Modal, Space, Switch } from "antd"
 import React, { useCallback, useState } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
-import { MonacoInput } from '@designable/react-settings-form'
+import { MonacoInput } from "~/AppDesigner/UiDesigner/SettingsForm/components/MonacoInput";
 import "./style.less";
 
 export const ScriptInput = memo((
@@ -70,16 +70,18 @@ export const ScriptInput = memo((
       >
         <div className="input-modal-body">
           <MonacoInput
-            className="gql-input-area"
+            className="script-input-area"
             options={{
               readOnly: false,
               lineDecorationsWidth: 0,
               lineNumbersMinChars: 0,
-              minimap: {
-                enabled: false,
-              }
+              // minimap: {
+              //   enabled: false,
+              // }
             }}
-            language="json"
+            language="javascript"
+            theme="dark"
+            helpLink=""
             value={value}
             onChange={handleChange}
           />

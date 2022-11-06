@@ -18,6 +18,7 @@ export interface MonacoInputProps extends EditorProps {
   helpCodeViewWidth?: number | string
   extraLib?: string
   onChange?: (value: string) => void
+  theme?: string,
 }
 
 export const MonacoInput: React.FC<MonacoInputProps> & {
@@ -33,10 +34,10 @@ export const MonacoInput: React.FC<MonacoInputProps> & {
   height,
   onMount,
   onChange,
+  theme,
   ...props
 }) => {
   const [loaded, setLoaded] = useState(false)
-  const theme = useTheme()
   const valueRef = useRef('')
   const validateRef = useRef(null)
   const submitRef = useRef(null)

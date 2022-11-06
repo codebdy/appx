@@ -21,13 +21,14 @@ export const CodeEditor = memo(() => {
         className="gql-input-area"
         options={{
           readOnly: false,
-          lineDecorationsWidth: 0,
-          lineNumbersMinChars: 0,
-          minimap: {
-            enabled: false,
-          }
+          //lineDecorationsWidth: 0,
+          //lineNumbersMinChars: 0,
+          //minimap: {
+          //  enabled: false,
+          //}
         }}
-        language="json"
+        language="javascript"
+        theme="dark"
         value={code?.code}
         onChange={handleChange}
       />
