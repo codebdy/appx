@@ -6,7 +6,7 @@ import { ID } from "~/shared";
 import { Device } from "@rxdrag/appx-plugin-sdk";
 
 const authConfigGql = gql`
-query ($appId:ID!){
+query ($appId:ID!, $device:String!){
   menuAuthConfigs(where:{
     _and:[
       {

@@ -31,7 +31,7 @@ export const AppRoot = memo((
   const frameUuid = useFrameUuid(app, device as Device);
   const { uiFrame, error, loading } = useQueryUiFrame(frameUuid, app.id);
   const components = usePluginComponents(app, device as Device);
-  useShowError(error || userConfigError)
+  useShowError(error || userConfigError || menuAuthError || comAuthError)
   const token = useToken();
   const appParams = useMemo(() => {
     return {
@@ -58,7 +58,7 @@ export const AppRoot = memo((
 
   const isLoading = useMemo(() => loading || userConfigLoading, [loading, userConfigLoading])
   return (
-    isLoading ?
+    isLoading || menuAuthLoading || comAuthLoading?
       <CenterSpin />
       :
       <EntiRoot config={config} >
