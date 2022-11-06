@@ -223,23 +223,23 @@ export const createDisplaySchemaTab = (options?: IDisplayTabOptions) => {
                     },
                   },
                 },
-                reactType: {
-                  type: 'string',
-                  enum: ['hidden', 'disabled'],
-                  'x-decorator': 'FormItem',
-                  'x-component': 'Radio.Group',
-                  'x-component-props': {
-                    defaultValue: 'hidden',
-                    optionType: 'button',
-                  },
-                  'x-reactions': {
-                    fulfill: {
-                      state: {
-                        hidden: '{{!$form.values["x-auth"]?.enableAuth}}',
-                      },
-                    },
-                  },
-                }
+                // reactType: {
+                //   type: 'string',
+                //   enum: ['hidden', 'disabled'],
+                //   'x-decorator': 'FormItem',
+                //   'x-component': 'Radio.Group',
+                //   'x-component-props': {
+                //     defaultValue: 'hidden',
+                //     optionType: 'button',
+                //   },
+                //   'x-reactions': {
+                //     fulfill: {
+                //       state: {
+                //         hidden: '{{!$form.values["x-auth"]?.enableAuth}}',
+                //       },
+                //     },
+                //   },
+                // }
               }
             }
           }
