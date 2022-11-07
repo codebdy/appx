@@ -49,7 +49,7 @@ export const ClassAuthChecker = memo((
         [field]: e.target.checked,
       }
     )
-  }, [postClassConfig, field, roleId, appId])
+  }, [postClassConfig, field, classConfig, roleId, appId])
 
   const handleOpenExpressionDialog = useCallback(() => {
     setOpen(true);

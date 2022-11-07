@@ -12,6 +12,9 @@ query ($appId:ID!){
         _eq:$appId
       }
     }
+  },
+  orderBy:{
+    id:desc
   }
  ){
     nodes{

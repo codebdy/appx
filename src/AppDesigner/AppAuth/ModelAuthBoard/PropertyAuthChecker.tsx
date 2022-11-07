@@ -51,7 +51,7 @@ export const PropertyAuthChecker = memo((
         [field]: e.target.checked,
       }
     )
-  }, [upsert, field, appId, roleId])
+  }, [propertyConfig, upsert, field, appId, roleId])
 
   const handleOpenExpressionDialog = useCallback(() => {
     setOpen(true);
