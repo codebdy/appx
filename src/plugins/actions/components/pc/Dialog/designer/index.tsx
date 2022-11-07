@@ -26,24 +26,6 @@ import { DialogContentDesigner } from './DialogContentDesigner'
 import { DialogFooterDesigner } from './DialogFooterDesigner'
 import { IDialogProps } from '../view'
 
-
-
-export interface IDialogContext {
-  field: Field | GeneralField
-  schema: Schema
-  id: string
-  visible: boolean
-  // open: () => void
-  // close: () => void
-}
-
-export interface IDialogRef {
-  // open: () => void
-  // close: () => void
-  context: IDialogContext
-}
-
-
 export const DialogDesigner: DnFC<IDialogProps> & {
   Title?: React.FC<IDialogTitleProps>,
   Content?: React.FC<IDialogContentProps>,
@@ -66,7 +48,6 @@ export const DialogDesigner: DnFC<IDialogProps> & {
     style,
     ...other
   } = props;
-  const dialog = useRef<IDialogRef>()
   const tree = useTree()
   const designer = useDesigner()
   const selected = useSelected();
@@ -138,8 +119,11 @@ export const DialogDesigner: DnFC<IDialogProps> & {
             return
           }
           setVisible(true)
-          dialog.current!.context!.visible = true
-        }}>编辑弹窗内容</Button>
+        }}>
+        {
+          p(title)
+        }
+      </Button>
       {
         visible &&
         <AntdModal
@@ -154,7 +138,6 @@ export const DialogDesigner: DnFC<IDialogProps> & {
           footer={hasFooter && footer && <TreeNodeWidget node={footer} />}
           onCancel={() => {
             setVisible(false)
-            dialog.current!.context!.visible = false
           }}>
           {
             content && <TreeNodeWidget node={content} />
