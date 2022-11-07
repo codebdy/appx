@@ -5,10 +5,8 @@ import React, {
 } from 'react'
 import { Button, Modal as AntdModal, ModalProps } from 'antd'
 
-import { TreeNode } from '@designable/core'
 import {
   DnFC,
-  DroppableWidget,
   TreeNodeWidget,
   useDesigner,
   useNodeIdProps,
@@ -19,22 +17,15 @@ import {
 import { observer, Schema } from '@formily/react'
 import { Field, GeneralField } from '@formily/core'
 import './styles.less'
-import { findNodeByComponentPath } from '~/plugin-sdk'
-import Dialog from '../view'
+import { useFindNode, useParseLangMessage } from '~/plugin-sdk'
 import { IDialogTitleProps } from '../view/DialogTitle'
 import { IDialogContentProps } from '../view/DialogContent'
 import { IDialogFooterProps } from '../view/DialogFooter'
 import { DialogTitleDesigner } from './DialogTitleDesigner'
 import { DialogContentDesigner } from './DialogContentDesigner'
 import { DialogFooterDesigner } from './DialogFooterDesigner'
+import { IDialogProps } from '../view'
 
-
-export interface IDialogProps extends ModalProps, IDialogRef {
-  children?: React.ReactNode
-  target?: React.ReactNode
-  ref?: React.MutableRefObject<IDialogRef>
-  onCancel?: (event: React.MouseEvent<HTMLElement>) => boolean | undefined | void
-}
 
 
 export interface IDialogContext {
@@ -58,6 +49,23 @@ export const DialogDesigner: DnFC<IDialogProps> & {
   Content?: React.FC<IDialogContentProps>,
   Footer?: React.FC<IDialogFooterProps>,
 } = observer((props) => {
+  const {
+    title,
+    icon,
+    children,
+    width = 520,
+    centered,
+    closable = true,
+    destroyOnClose,
+    focusTriggerAfterClose,
+    keyboard,
+    mask,
+    maskClosable,
+    footer: hasFooter,
+    changeRemind,
+    style,
+    ...other
+  } = props;
   const dialog = useRef<IDialogRef>()
   const tree = useTree()
   const designer = useDesigner()
@@ -67,6 +75,10 @@ export const DialogDesigner: DnFC<IDialogProps> & {
   const dialogContainer = useRef<HTMLElement>()
   const [visible, setVisible] = useState(false)
   const antModelRef = useRef<HTMLElement>()
+  const p = useParseLangMessage();
+  const dialogTitle = useFindNode('Title');
+  const content = useFindNode("Content");
+  const footer = useFindNode("Footer");
 
   const canShow = useRef(selected?.[0] === node.id ? 1 : 0)
 
@@ -116,61 +128,6 @@ export const DialogDesigner: DnFC<IDialogProps> & {
     [designer.props.nodeIdAttrName]: null
   }
 
-  const body = findNodeByComponentPath(node, ['Dialog', 'Dialog.Body'])
-  const footer = findNodeByComponentPath(node, ['Dialog', 'Dialog.Footer'])
-
-  useEffect(() => {
-
-    const defaultBodyNode = new TreeNode({
-      componentName: 'Field',
-      props: {
-        type: 'void',
-        'x-component': 'Dialog.Body'
-      },
-      children: []
-    })
-
-    if (!body) {
-      node.append(defaultBodyNode)
-    }
-
-    const defaultFooterNodes = new TreeNode({
-      componentName: 'Field',
-      props: {
-        type: 'void',
-        'x-component': 'Dialog.Footer',
-      },
-      children: [
-        {
-          componentName: 'Field',
-          props: {
-            type: 'void',
-            'x-component': 'Button',
-            'x-component-props': {
-              title: 'Cancel'
-            }
-          },
-        },
-        {
-          componentName: 'Field',
-          props: {
-            type: 'void',
-            'x-component': 'Button',
-            'x-component-props': {
-              type: 'primary',
-              title: 'Ok'
-            }
-          },
-        },
-      ]
-    })
-
-    if (!footer) {
-      node.append(defaultFooterNodes)
-    }
-
-  }, [])
-
   return (
     <>
       <Button
@@ -188,31 +145,19 @@ export const DialogDesigner: DnFC<IDialogProps> & {
         <AntdModal
           {...dialogProps}
           open={visible}
-          title={
-            <span data-content-editable="x-component-props.title">
-              {props.title}
-            </span>
-          }
+          title={dialogTitle && <TreeNodeWidget node={dialogTitle} />}
           closable={true}
           data-dialog-id={nodeIdProps[designer.props.nodeIdAttrName]}
           getContainer={() => dialogContainer.current}
           maskClosable={false}
           transitionName={''}
-          // footer={
-          //   footer?.children.length > 0 ? <TreeNodeWidget node={footer} key={footer?.id} /> :
-          //     <DroppableWidget node={footer} />
-          // }
+          footer={hasFooter && footer && <TreeNodeWidget node={footer} />}
           onCancel={() => {
             setVisible(false)
             dialog.current!.context!.visible = false
           }}>
           {
-            visible && <>
-              {
-                body?.children.length > 0 ? <TreeNodeWidget node={body} key={body?.id} /> : <DroppableWidget node={body} />
-              }
-
-            </>
+            content && <TreeNodeWidget node={content} />
           }
         </AntdModal>
       }
