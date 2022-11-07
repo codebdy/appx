@@ -68,10 +68,10 @@ export const ToolCollapse = memo(() => {
     //   id: ActionType.OpenDialog,
     //   title: t(enumToLangKey(ActionType.OpenDialog)),
     // },
-    // {
-    //   id: ActionType.CloseDialog,
-    //   title: t(enumToLangKey(ActionType.CloseDialog)),
-    // },
+    {
+      id: ActionType.CloseDialog,
+      title: t(enumToLangKey(ActionType.CloseDialog)),
+    },
     // {
     //   id: ActionType.OpenDrawer,
     //   title: t(enumToLangKey(ActionType.OpenDrawer)),
