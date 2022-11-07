@@ -3,7 +3,7 @@ import React, {
   useRef,
   useEffect,
 } from 'react'
-import { Button, Modal as AntdModal, ModalProps } from 'antd'
+import { Button, Modal as AntdModal } from 'antd'
 
 import {
   DnFC,
@@ -14,8 +14,7 @@ import {
   useTreeNode,
   useSelected
 } from '@designable/react'
-import { observer, Schema } from '@formily/react'
-import { Field, GeneralField } from '@formily/core'
+import { observer } from '@formily/react'
 import './styles.less'
 import { useFindNode, useParseLangMessage } from '~/plugin-sdk'
 import { IDialogTitleProps } from '../view/DialogTitle'
@@ -100,7 +99,6 @@ export const DialogDesigner: DnFC<IDialogProps> & {
     } else {
       canShow.current = 0
     }
-    console.log(canShow.current)
   }, [selected?.[0]])
 
 
