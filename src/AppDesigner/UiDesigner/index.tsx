@@ -98,7 +98,7 @@ export const UiDesigner = memo(() => {
   }, [activeKey])
 
   const handlePreview = useCallback(() => {
-    window.open(`/app/${device}/${app?.uuid}`)
+    window.open(`/${device}/${app?.uuid}`)
   }, [app?.uuid, device])
 
   return (
