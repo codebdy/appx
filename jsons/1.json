@@ -3619,6 +3619,7 @@
         },
         {
           "name": "categoryUuid",
+          "nullable": true,
           "type": "String",
           "typeLabel": "String",
           "uuid": "53be1e20-b093-4630-bbf8-d77448e46f71"
@@ -3657,6 +3658,7 @@
           "index": true,
           "length": 255,
           "name": "uuid",
+          "nullable": true,
           "type": "String",
           "typeLabel": "String",
           "uuid": "de82b8ac-18aa-42ad-92e6-17e997abc678"
@@ -3950,7 +3952,7 @@
       "labelOfTarget": "",
       "relationType": "twoWayAggregation",
       "roleOfSource": "app",
-      "roleOfTarget": "configs",
+      "roleOfTarget": "authConfigs",
       "sourceId": "APP_ENTITY_UUID",
       "sourceMutiplicity": "0..1",
       "system": false,
@@ -4563,7 +4565,7 @@
       "height": 170,
       "id": "a6a1dc39-0e2a-47e5-905e-307e9008b8d1",
       "width": 180,
-      "x": 400,
+      "x": 410,
       "y": 126
     },
     {
