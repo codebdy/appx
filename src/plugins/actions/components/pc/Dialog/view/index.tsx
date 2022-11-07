@@ -112,8 +112,7 @@ const Dialog: React.FC<IDialogProps> & {
   }, [])
 
   return (
-
-    <DialogContext.Provider value={contextValue}>
+    <>
       <Button
         icon={icon && <IconView icon={icon} />}
         {...other}
@@ -126,18 +125,21 @@ const Dialog: React.FC<IDialogProps> & {
 
       {
         visiable &&
-        <ObjectField name={fieldSchema.name + "dialog"} initialValue={instanceParams?.instance}>
-          <Modal
-            title={slots.title && <RecursionField schema={slots.title} name={slots.title.name} />}
-            footer={slots.footer && <RecursionField schema={slots.footer} name={slots.footer.name} />}
-            visible={visiable}
-            onCancel={handleCancel}
-          >
-            {slots.content && <RecursionField schema={slots.content} name={slots.content.name} />}
-          </Modal>
-        </ObjectField>
+        <DialogContext.Provider value={contextValue}>
+          {/* initialValue会有堆栈溢出bug，好奇怪 */}
+          <ObjectField name={fieldSchema.name} value = {instanceParams?.instance}>
+            <Modal
+              title={slots.title && <RecursionField schema={slots.title} name={slots.title.name} />}
+              footer={slots.footer && <RecursionField schema={slots.footer} name={slots.footer.name} />}
+              open={visiable}
+              onCancel={handleCancel}
+            >
+              {slots.content && <RecursionField schema={slots.content} name={slots.content.name} />}
+            </Modal>
+          </ObjectField>
+        </DialogContext.Provider>
       }
-    </DialogContext.Provider>
+    </>
   )
 })
 
