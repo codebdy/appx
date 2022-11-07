@@ -113,6 +113,7 @@ export const DialogDesigner: DnFC<IDialogProps> & {
     <>
       <Button
         {...(!visible && nodeIdProps)}
+        {...other}
         onClick={() => {
           if (canShow.current <= 1) {
             canShow.current++
@@ -130,11 +131,18 @@ export const DialogDesigner: DnFC<IDialogProps> & {
           {...dialogProps}
           open={visible}
           title={dialogTitle && <TreeNodeWidget node={dialogTitle} />}
+          width = {width}
+          centered
+          destroyOnClose = {destroyOnClose}
+          focusTriggerAfterClose = {focusTriggerAfterClose}
+          keyboard = {keyboard}
+          mask
           closable={true}
           data-dialog-id={nodeIdProps[designer.props.nodeIdAttrName]}
           getContainer={() => dialogContainer.current}
           maskClosable={false}
           transitionName={''}
+          {...other}
           footer={hasFooter && footer && <TreeNodeWidget node={footer} />}
           onCancel={() => {
             setVisible(false)
