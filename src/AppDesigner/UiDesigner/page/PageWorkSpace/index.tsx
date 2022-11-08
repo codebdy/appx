@@ -5,14 +5,13 @@ import {
   ViewToolsWidget,
   DesignerToolsWidget,
   ComponentTreeWidget,
-  IconWidget,
 } from '../../widgets'
 import { ViewPanel, WorkspacePanel, ToolbarPanel, ViewportPanel, SettingsPanel } from '../../panels'
 import { Workspace } from '../../containers'
 import { SettingsForm } from '../../SettingsForm'
 import { Field } from '~/components/common/Field'
 import { useTranslation } from "react-i18next";
-import { Button, Spin } from "antd";
+import { Spin } from "antd";
 import { ID } from "~/shared";
 import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import { transformToTreeNode } from "../../transformer";

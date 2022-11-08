@@ -10,7 +10,6 @@ import {
   TreeNodeWidget,
   useDesigner,
   useNodeIdProps,
-  useTree,
   useTreeNode,
   useSelected
 } from '@designable/react'
@@ -47,7 +46,6 @@ export const DialogDesigner: DnFC<IDialogProps> & {
     style,
     ...other
   } = props;
-  const tree = useTree()
   const designer = useDesigner()
   const selected = useSelected();
   const node = useTreeNode()
@@ -73,7 +71,7 @@ export const DialogDesigner: DnFC<IDialogProps> & {
     if (!antModelRef.current) {
       antModelRef.current = dialogContainer.current.querySelector(`div[data-dialog-id='${nodeIdProps[name]}'] .ant-modal`)
     }
-    tree.operation.selection.clear()
+    //tree.operation.selection.clear()
 
     if (visible) {
       antModelRef.current?.setAttribute(name, nodeIdProps[name])
@@ -83,7 +81,7 @@ export const DialogDesigner: DnFC<IDialogProps> & {
 
     setTimeout(() => {
       canShow.current = 2
-      tree.operation.selection.select(nodeIdProps[name])
+      //tree.operation.selection.select(nodeIdProps[name])
     }, 100)
 
   }, [dialogContainer, visible])
