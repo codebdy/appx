@@ -149,7 +149,9 @@
     "ImportSuccess": "导入成功",
     "ImportFailed": "导入失败",
     "PublishSuccess": "发布成功",
-    "SaveAsTemplate": "保存为模板"
+    "SaveAsTemplate": "保存为模板",
+    "TemplateName": "模板名称",
+    "TemplateImage": "模板图片"
   },
   "Plugins": {
     "Title": "插件",

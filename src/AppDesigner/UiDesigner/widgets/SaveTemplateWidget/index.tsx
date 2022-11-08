@@ -1,5 +1,5 @@
 import { observer } from "@formily/reactive-react"
-import { Button, Modal } from "antd"
+import { Button, Form, Modal } from "antd"
 import React, { useCallback, useState } from "react"
 import { IconWidget } from "../IconWidget"
 import {
@@ -7,6 +7,8 @@ import {
   useSelected
 } from '@designable/react'
 import { useTranslation } from "react-i18next"
+import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/view"
+import ImageUploader from "~/plugins/inputs/components/pc/ImageUploader/view"
 
 export const SaveTemplateWidget = observer(() => {
   const [open, setOpen] = useState(false);
@@ -14,6 +16,7 @@ export const SaveTemplateWidget = observer(() => {
   const { t } = useTranslation();
   const tree = useTree()
   const node = tree.findById(selected?.[0])
+  const [form] = Form.useForm()
 
   const handleShowModal = useCallback(() => {
     setOpen(true);
@@ -46,9 +49,27 @@ export const SaveTemplateWidget = observer(() => {
         okText={t("Confirm")}
         cancelText={t("Cancel")}
       >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        <Form
+          name="saveAsTemplate"
+          labelCol={{ span: 6 }}
+          wrapperCol={{ span: 16 }}
+          form={form}
+          autoComplete="off"
+        >
+          <Form.Item
+            label={t("Designer.TemplateName")}
+            name="name"
+            rules={[{ required: true, message: t("Required") }]}
+          >
+            <MultiLangInput inline title={t("Designer.TemplateName")} />
+          </Form.Item>
+          < Form.Item
+            label={t("Designer.TemplateImage")}
+            name="imageUrl"
+          >
+            <ImageUploader title={t("Upload")} maxCount={1} />
+          </Form.Item>
+        </Form>
       </Modal>
     </Button.Group>
   )
