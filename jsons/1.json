@@ -19,6 +19,11 @@
       "sharable": true,
       "stereoType": "Normal",
       "uuid": "5cc3e471-b676-4759-b04e-0f5af0734681"
+    },
+    {
+      "name": "测试包",
+      "stereoType": "Normal",
+      "uuid": "9c35e9ea-cc68-4597-b923-001ad2c2b9d3"
     }
   ],
   "classes": [
@@ -3671,6 +3676,262 @@
       "root": true,
       "stereoType": "Entity",
       "uuid": "ab9a0f7c-ba28-45a2-89f8-1e99f57758cb"
+    },
+    {
+      "attributes": [
+        {
+          "name": "id",
+          "primary": true,
+          "type": "ID",
+          "typeLabel": "ID",
+          "uuid": "00817ff8-be85-462c-904e-0eb3c1177afb"
+        }
+      ],
+      "innerId": 1015,
+      "methods": [],
+      "name": "Color",
+      "packageUuid": "PACKAGE_SYSTEM_UUID",
+      "root": false,
+      "stereoType": "Entity",
+      "uuid": "0aa529e1-4757-4c8d-bb2f-7cf670068c18"
+    },
+    {
+      "attributes": [
+        {
+          "name": "id",
+          "primary": true,
+          "type": "ID",
+          "typeLabel": "ID",
+          "uuid": "6be1ba29-8d12-442b-be8a-39edaff6cf82"
+        },
+        {
+          "name": "currenc",
+          "type": "Enum",
+          "typeLabel": "Currency",
+          "typeUuid": "f715f4e5-226f-48c4-a777-91a533a5ea0b",
+          "uuid": "e4d12de3-6b08-47e6-b695-068a2b931eae"
+        }
+      ],
+      "innerId": 1020,
+      "methods": [],
+      "name": "Car",
+      "packageUuid": "PACKAGE_SYSTEM_UUID",
+      "root": false,
+      "stereoType": "Entity",
+      "uuid": "50b217b2-0f54-404f-848d-32510254cac0"
+    },
+    {
+      "attributes": [
+        {
+          "name": "RMB",
+          "type": "String",
+          "typeLabel": "String",
+          "uuid": "f959548d-9e29-4cd7-9e06-6f7ae9ab7085"
+        },
+        {
+          "name": "USD",
+          "type": "String",
+          "typeLabel": "String",
+          "uuid": "9ecd0519-56d4-4c71-8baf-af4dfba616c4"
+        }
+      ],
+      "innerId": 1021,
+      "methods": [],
+      "name": "Currency",
+      "packageUuid": "PACKAGE_SYSTEM_UUID",
+      "root": false,
+      "stereoType": "Enum",
+      "uuid": "f715f4e5-226f-48c4-a777-91a533a5ea0b"
+    },
+    {
+      "attributes": [
+        {
+          "name": "id",
+          "primary": true,
+          "type": "ID",
+          "typeLabel": "ID",
+          "uuid": "10d13069-4be9-43c8-ae1f-63f8efdf10ed"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "typeLabel": "String",
+          "uuid": "0847e21f-9963-4549-aaa7-fb5cfd39098c"
+        }
+      ],
+      "innerId": 1022,
+      "methods": [
+        {
+          "args": [
+            {
+              "name": "arg",
+              "type": "String",
+              "typeLabel": "String",
+              "uuid": "3bf1a47f-551b-425b-940d-d20354a9a2f4"
+            },
+            {
+              "name": "arg",
+              "type": "String",
+              "typeLabel": "String",
+              "uuid": "6652bfe2-9268-4d66-ab3d-cdc2b09b4c79"
+            }
+          ],
+          "name": "run",
+          "operateType": "query",
+          "type": "String",
+          "typeLabel": "String",
+          "uuid": "323cb77b-4156-451d-a50d-2c0aaf3ad562"
+        },
+        {
+          "args": [],
+          "name": "toysAmount",
+          "operateType": "query",
+          "script": "var tst = new Test()\n\nlet amount = 0\nfor (const toy of $this.toys) {\n  amount = amount + toy.price + tst.first()\n}\n\nretu\n",
+          "type": "String",
+          "typeLabel": "String",
+          "uuid": "b34bd5be-af68-4a98-b7f6-5a7fd829355a"
+        }
+      ],
+      "name": "Pet",
+      "packageUuid": "9c35e9ea-cc68-4597-b923-001ad2c2b9d3",
+      "root": false,
+      "stereoType": "Entity",
+      "uuid": "2e5aa880-78cf-4b87-80d1-1705a0561bd3"
+    },
+    {
+      "attributes": [
+        {
+          "name": "id",
+          "primary": true,
+          "type": "ID",
+          "typeLabel": "ID",
+          "uuid": "51398529-6850-44ab-a8da-7e371e945cdc"
+        },
+        {
+          "name": "price",
+          "type": "Float",
+          "typeLabel": "Float",
+          "uuid": "d6d454f9-1bab-4992-8311-2756cb20f780"
+        }
+      ],
+      "innerId": 1023,
+      "methods": [],
+      "name": "Toy",
+      "packageUuid": "9c35e9ea-cc68-4597-b923-001ad2c2b9d3",
+      "root": false,
+      "stereoType": "Entity",
+      "uuid": "b15a7ada-a457-445b-a626-8bfcffc2b7ba"
+    },
+    {
+      "attributes": [],
+      "innerId": 1024,
+      "methods": [
+        {
+          "args": [
+            {
+              "index": 0,
+              "name": "arg1",
+              "type": "String",
+              "typeLabel": "String",
+              "uuid": "28c1685e-534f-42fc-8b15-9a136a3d03b8"
+            },
+            {
+              "index": 1,
+              "name": "arg2",
+              "type": "String",
+              "typeLabel": "String",
+              "uuid": "b0b26b10-59b0-41b2-a31a-0d17fbc18bbd"
+            }
+          ],
+          "name": "newMethod1",
+          "operateType": "query",
+          "type": "String",
+          "typeLabel": "String",
+          "uuid": "5f1c6e0e-e8f3-4168-9e32-c9f60211b883"
+        }
+      ],
+      "name": "ServiceTest",
+      "packageUuid": "9c35e9ea-cc68-4597-b923-001ad2c2b9d3",
+      "root": true,
+      "stereoType": "Service",
+      "uuid": "ef8f25e5-6b3e-48ea-b844-a3bf3878d241"
+    },
+    {
+      "uuid": "4ed2315f-1380-44f3-b3b3-4c3150148371",
+      "innerId": 1025,
+      "name": "TemplateInfo",
+      "attributes": [
+        {
+          "uuid": "ed05c7f1-c88a-4ee8-a09e-78453cda2e68",
+          "name": "id",
+          "type": "ID",
+          "primary": true,
+          "typeLabel": "ID"
+        },
+        {
+          "uuid": "fd2d083e-2b48-4262-944f-530ebf3274d3",
+          "name": "uuid",
+          "type": "Uuid",
+          "typeLabel": "Uuid",
+          "autoGenerate": true
+        },
+        {
+          "uuid": "abb13f97-ed50-44c2-b8d6-8740e5f2671a",
+          "name": "name",
+          "type": "String",
+          "typeLabel": "String",
+          "nullable": true
+        },
+        {
+          "uuid": "48b7ce03-d015-4ce8-accb-8352ce9f0ede",
+          "name": "imageUrl",
+          "type": "String",
+          "typeLabel": "String",
+          "nullable": true
+        },
+        {
+          "uuid": "9c7db3d2-3983-45b2-a276-a455ca46ba1c",
+          "name": "templateType",
+          "type": "Enum",
+          "typeLabel": "Enum",
+          "typeUuid": "437a1482-69cd-4723-b970-45dfe2c7d3c0",
+          "nullable": true
+        },
+        {
+          "uuid": "59c63d86-8560-47f5-ab70-8968584b8fbf",
+          "name": "dependencies",
+          "type": "JSON",
+          "typeLabel": "JSON",
+          "nullable": true
+        }
+      ],
+      "methods": [],
+      "stereoType": "Entity",
+      "root": false,
+      "packageUuid": "PACKAGE_SYSTEM_UUID"
+    },
+    {
+      "uuid": "437a1482-69cd-4723-b970-45dfe2c7d3c0",
+      "innerId": 1033,
+      "name": "TemplateType",
+      "attributes": [
+        {
+          "uuid": "8675d12c-ee4d-48b6-97b0-c7893d52a793",
+          "name": "Public",
+          "type": "String",
+          "typeLabel": "String"
+        },
+        {
+          "uuid": "53202feb-8603-49e8-983c-324b1e9aa5e9",
+          "name": "Local",
+          "type": "String",
+          "typeLabel": "String"
+        }
+      ],
+      "methods": [],
+      "stereoType": "Enum",
+      "root": false,
+      "packageUuid": "PACKAGE_SYSTEM_UUID"
     }
   ],
   "relations": [
@@ -4289,6 +4550,37 @@
       "targetId": "LOG_ENTITY_UUID",
       "targetMultiplicity": "0..*",
       "uuid": "ea77af96-53c3-4ae2-9557-f9091a798e47"
+    },
+    {
+      "innerId": 1011,
+      "relationType": "twoWayAssociation",
+      "roleOfSource": "car8",
+      "roleOfTarget": "color7",
+      "sourceId": "50b217b2-0f54-404f-848d-32510254cac0",
+      "sourceMutiplicity": "0..1",
+      "targetId": "0aa529e1-4757-4c8d-bb2f-7cf670068c18",
+      "targetMultiplicity": "0..1",
+      "uuid": "dcda4036-a27f-4356-8563-3c2db9922088"
+    },
+    {
+      "innerId": 1012,
+      "relationType": "twoWayAggregation",
+      "roleOfSource": "belongsTo",
+      "roleOfTarget": "toys",
+      "sourceId": "2e5aa880-78cf-4b87-80d1-1705a0561bd3",
+      "sourceMutiplicity": "0..1",
+      "targetId": "b15a7ada-a457-445b-a626-8bfcffc2b7ba",
+      "targetMultiplicity": "0..*",
+      "uuid": "2faab802-76b9-4035-9c8f-f7172ee2336f"
+    },
+    {
+      "uuid": "9e2abebe-8cd1-4552-b0c8-72c077738e98",
+      "innerId": 0,
+      "relationType": "inherit",
+      "sourceId": "4ed2315f-1380-44f3-b3b3-4c3150148371",
+      "targetId": "0068083c-88f9-4170-8763-c6a3313bab73",
+      "sourceMutiplicity": "0..1",
+      "targetMultiplicity": "0..1"
     }
   ],
   "diagrams": [
@@ -4340,9 +4632,30 @@
       "nodes": [],
       "packageUuid": "PACKAGE_SYSTEM_UUID",
       "uuid": "f6bd49cf-828b-4596-bb9c-b34c78b121ea"
+    },
+    {
+      "edges": [],
+      "name": "新建类图1",
+      "nodes": [],
+      "packageUuid": "9c35e9ea-cc68-4597-b923-001ad2c2b9d3",
+      "uuid": "f83d1ae3-de3d-4329-94cb-e57813f3ca32"
+    },
+    {
+      "uuid": "22fafc67-a7f9-4d45-9506-7aba53ffcd10",
+      "name": "模板",
+      "packageUuid": "PACKAGE_SYSTEM_UUID",
+      "nodes": [],
+      "edges": []
     }
   ],
-  "codes": [],
+  "codes": [
+    {
+      "code": "class Test {\n  first() {}\n}\n",
+      "name": "新建代码1",
+      "packageUuid": "9c35e9ea-cc68-4597-b923-001ad2c2b9d3",
+      "uuid": "a408adba-c124-43dd-b2b9-f2e6638b24e9"
+    }
+  ],
   "x6Nodes": [
     {
       "diagramUuid": "ff40de16-1759-407e-b52c-915c307f5c74",
@@ -4565,7 +4878,7 @@
       "height": 170,
       "id": "a6a1dc39-0e2a-47e5-905e-307e9008b8d1",
       "width": 180,
-      "x": 410,
+      "x": 400,
       "y": 126
     },
     {
@@ -4639,6 +4952,94 @@
       "width": 180,
       "x": 10,
       "y": -45
+    },
+    {
+      "diagramUuid": "ff40de16-1759-407e-b52c-915c307f5c74",
+      "height": 120,
+      "id": "0aa529e1-4757-4c8d-bb2f-7cf670068c18",
+      "width": 180,
+      "x": -290,
+      "y": 510
+    },
+    {
+      "diagramUuid": "ff40de16-1759-407e-b52c-915c307f5c74",
+      "height": 120,
+      "id": "50b217b2-0f54-404f-848d-32510254cac0",
+      "width": 180,
+      "x": 110,
+      "y": 510
+    },
+    {
+      "diagramUuid": "ff40de16-1759-407e-b52c-915c307f5c74",
+      "height": 120,
+      "id": "f715f4e5-226f-48c4-a777-91a533a5ea0b",
+      "width": 180,
+      "x": -130,
+      "y": 670
+    },
+    {
+      "diagramUuid": "f83d1ae3-de3d-4329-94cb-e57813f3ca32",
+      "height": 200,
+      "id": "2e5aa880-78cf-4b87-80d1-1705a0561bd3",
+      "width": 180,
+      "x": 300,
+      "y": 120
+    },
+    {
+      "diagramUuid": "f83d1ae3-de3d-4329-94cb-e57813f3ca32",
+      "height": 120,
+      "id": "b15a7ada-a457-445b-a626-8bfcffc2b7ba",
+      "width": 180,
+      "x": 670,
+      "y": 150
+    },
+    {
+      "diagramUuid": "f83d1ae3-de3d-4329-94cb-e57813f3ca32",
+      "height": 120,
+      "id": "ef8f25e5-6b3e-48ea-b844-a3bf3878d241",
+      "width": 180,
+      "x": 480,
+      "y": 380
+    },
+    {
+      "id": "0068083c-88f9-4170-8763-c6a3313bab73",
+      "x": 40,
+      "y": -10,
+      "width": 180,
+      "height": 122,
+      "diagramUuid": "22fafc67-a7f9-4d45-9506-7aba53ffcd10"
+    },
+    {
+      "id": "087b2915-5582-496d-bafb-ae2f5623a70d",
+      "x": 40,
+      "y": -190,
+      "width": 180,
+      "height": 122,
+      "diagramUuid": "22fafc67-a7f9-4d45-9506-7aba53ffcd10"
+    },
+    {
+      "id": "APP_ENTITY_UUID",
+      "x": -290.0000000000001,
+      "y": -169,
+      "width": 180,
+      "height": 80,
+      "diagramUuid": "22fafc67-a7f9-4d45-9506-7aba53ffcd10"
+    },
+    {
+      "id": "4ed2315f-1380-44f3-b3b3-4c3150148371",
+      "x": 24.99999999999983,
+      "y": 170.0000000000001,
+      "width": 210,
+      "height": 230,
+      "diagramUuid": "22fafc67-a7f9-4d45-9506-7aba53ffcd10"
+    },
+    {
+      "id": "437a1482-69cd-4723-b970-45dfe2c7d3c0",
+      "x": 360,
+      "y": 80,
+      "width": 160,
+      "height": 120,
+      "diagramUuid": "22fafc67-a7f9-4d45-9506-7aba53ffcd10"
     }
   ],
   "x6Edges": [
@@ -5130,6 +5531,37 @@
           "y": 330
         }
       ]
+    },
+    {
+      "diagramUuid": "ff40de16-1759-407e-b52c-915c307f5c74",
+      "id": "dcda4036-a27f-4356-8563-3c2db9922088",
+      "vertices": []
+    },
+    {
+      "diagramUuid": "f83d1ae3-de3d-4329-94cb-e57813f3ca32",
+      "id": "2faab802-76b9-4035-9c8f-f7172ee2336f",
+      "roleOnSourcePosition": {
+        "distance": 40,
+        "offset": 20
+      },
+      "roleOnTargetPosition": {
+        "distance": -40,
+        "offset": 20
+      },
+      "sourceMultiplicityPosition": {
+        "distance": 40,
+        "offset": -20
+      },
+      "targetMultiplicityPosition": {
+        "distance": -40,
+        "offset": -20
+      },
+      "vertices": []
+    },
+    {
+      "id": "9e2abebe-8cd1-4552-b0c8-72c077738e98",
+      "vertices": [],
+      "diagramUuid": "22fafc67-a7f9-4d45-9506-7aba53ffcd10"
     }
   ]
 }

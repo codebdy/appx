@@ -16,7 +16,7 @@ export interface ITemplateInfo {
   schemaJson?: any;
   app?: IApp;
   device?: Device;
-  type?: TemplateType;
+  templateType?: TemplateType;
 }
 
 export interface ITemplateInfoInput {
@@ -28,5 +28,5 @@ export interface ITemplateInfoInput {
   schemaJson?: any;
   app?: { sync?: IAppInput };
   device?: Device;
-  type?: TemplateType;
+  templateType?: TemplateType;
 }
