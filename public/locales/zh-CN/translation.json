@@ -148,7 +148,8 @@
     "ExportSuccess": "导出成功，正在下载...",
     "ImportSuccess": "导入成功",
     "ImportFailed": "导入失败",
-    "PublishSuccess": "发布成功"
+    "PublishSuccess": "发布成功",
+    "SaveAsTemplate": "保存为模板"
   },
   "Plugins": {
     "Title": "插件",
