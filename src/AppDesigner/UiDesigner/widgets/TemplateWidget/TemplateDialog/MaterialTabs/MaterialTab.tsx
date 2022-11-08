@@ -1,10 +1,8 @@
-import { PlusOutlined } from "@ant-design/icons";
-import { Button, Collapse } from "antd"
+import { Collapse } from "antd"
 import { IMaterialCollapseItem, IMaterialTab } from "@rxdrag/appx-plugin-sdk";
 import React, { useCallback } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next";
-import { createUuid } from "~/shared";
 import { GroupLabel } from "./GroupLabel";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import clx from "classnames";
@@ -21,16 +19,6 @@ export const MaterialTab = memo((
 ) => {
   const { tab, onChange } = props;
   const { t } = useTranslation();
-
-  const handleAdd = useCallback(() => {
-    onChange({
-      ...tab, collopsesItems: [...tab.collopsesItems, {
-        uuid: createUuid(),
-        title: "Group",
-        components: [],
-      }]
-    })
-  }, [onChange, tab])
 
   const handleChange = useCallback((group: IMaterialCollapseItem) => {
     onChange({ ...tab, collopsesItems: tab.collopsesItems.map(item => item.uuid === group.uuid ? group : item) })
