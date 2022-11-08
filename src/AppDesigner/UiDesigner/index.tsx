@@ -37,7 +37,7 @@ export enum DesignerRoutes {
   Templates = "Templates",
   Pages = "pages",
   Components = "coms",
-  Fragments = "fratments",
+  //Fragments = "fratments",
   OutlinedTree = "outlinedTree",
   Menu = "menu",
   Settings = "settings"
@@ -167,7 +167,7 @@ export const UiDesigner = memo(() => {
                 activeKey === DesignerRoutes.Pages ||
                 activeKey === DesignerRoutes.OutlinedTree ||
                 activeKey === DesignerRoutes.Components ||
-                activeKey === DesignerRoutes.Fragments
+                activeKey === DesignerRoutes.Templates
               } />
             }
 
