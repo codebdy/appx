@@ -1,29 +1,20 @@
+import { Device } from "@rxdrag/appx-plugin-sdk";
 import { ID } from "~/shared";
 import { IApp } from "./app";
 
+export enum TemplateType {
+  Public = "Public",
+  Local = "Local"
+}
+
 export interface ITemplateInfo {
+  id?: ID;
   name?: string;
   uuid?: string;
   imageUrl?: string;
   dependencies?: any;
   schemaJson?: any;
-}
-
-export interface ITemplateTab {
-  title: string;
-  uuid: string;
-  collopsesItems: ITemplageCollapseItem[];
-}
-export interface ITemplageCollapseItem {
-  title: string;
-  uuid: string;
-  templates: string[];
-}
-
-export interface ITemplateConfig {
-  id: ID;
   app?: IApp;
-  schemaJson?: {
-    tabs: ITemplateTab[],
-  },
+  device?: Device;
+  type?: TemplateType;
 }
