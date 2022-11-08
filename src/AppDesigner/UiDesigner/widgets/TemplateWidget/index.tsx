@@ -10,6 +10,7 @@ import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessag
 import { createResource } from '@designable/core'
 import { usePrefix } from '@designable/react'
 import { ResourceNodeWidget } from "./ResourceNodeWidget";
+import { MaterialDialog } from "./MaterialDialog";
 
 const { TabPane } = Tabs;
 
@@ -98,13 +99,16 @@ export const TemplateWidget = observer((
 
   return (
     <div className="rx-material-panel">
+      <TemplateSearchWidget />
       <Tabs defaultActiveKey={withFrameMaterials ? frameworkTab.uuid : basicTab.uuid}
         animated
         size="small"
         className="materail-tabs"
+        tabBarExtraContent={
+          <MaterialDialog />
+        }
       >
         <TabPane tab={"公共模板"} key={"public"}>
-          <TemplateSearchWidget />
           <div className={"template-resources"}>
             <ResourceNodeWidget source={createResource(TestSource)[0]} />
           </div>
