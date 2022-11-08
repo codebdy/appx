@@ -6,7 +6,7 @@ import { MaterialTabs } from './MaterialTabs';
 import "./style.less";
 import { IMaterialCollapseItem, IMaterialTab } from '@rxdrag/appx-plugin-sdk';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
-import { PluginList, PLUGINS_LIST_ID } from './PluginList';
+import { PLUGINS_LIST_ID } from './PluginList';
 import { GROUP_TYPE } from './MaterialTabs/MaterialTab';
 import { useDesignerParams } from '~/plugin-sdk/contexts/desinger';
 import { useGetNotCategoriedComponents } from './hooks/useGetNotCategoriedComponents';
@@ -147,14 +147,6 @@ export const TemplateDialog = memo(() => {
           <div className='material-dialog-content'>
             <div className='material-dialog-tabs right-border'>
               <MaterialTabs tabs={tabs} onTabsChange={handleTabsChange} />
-            </div>
-            <div className="material-dialog-plugins">
-              <div className='content-title'>
-                <div className='title-text bottom-border'>{t("Materials.ComponentsForChoose")}</div>
-              </div>
-              <div className='plugin-content'>
-                <PluginList tabs={tabs} />
-              </div>
             </div>
           </div>
         </DragDropContext>

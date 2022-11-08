@@ -87,17 +87,6 @@ export const MaterialTab = memo((
           </div>
         )}
       </Droppable>
-
-      <div style={{ padding: "0 16px" }}>
-        <Button
-          type='dashed'
-          block
-          icon={<PlusOutlined />}
-          onClick={handleAdd}
-        >
-          {t("Materials.Add")}
-        </Button>
-      </div>
     </div>
   )
 })
