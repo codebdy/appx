@@ -32,6 +32,7 @@ import { useSetRecoilState } from 'recoil'
 import { categoriesState, pagesState } from './recoil/atom'
 import ConfigWorkSpace from './config/ConfigWorkSpace'
 import { ConfigActionsWidget } from './config/ConfigActionsWidget'
+import { TemplateWidget } from './widgets/TemplateWidget'
 
 export enum DesignerRoutes {
   Templates = "Templates",
@@ -138,7 +139,7 @@ export const UiDesigner = memo(() => {
                   </svg>
                 }
               >
-                代码片段
+                <TemplateWidget />
               </CompositePanel.Item>
               <CompositePanel.Item
                 key={DesignerRoutes.OutlinedTree}
