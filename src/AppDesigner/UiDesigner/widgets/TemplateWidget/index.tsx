@@ -8,6 +8,8 @@ import { useTranslation } from "react-i18next";
 import { useAppMaterialTabs, usePredefinedMaterialTab } from "~/material/context";
 import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage";
 import { createResource } from '@designable/core'
+import { usePrefix } from '@designable/react'
+import { ResourceNodeWidget } from "./ResourceNodeWidget";
 
 const { TabPane } = Tabs;
 
@@ -89,24 +91,26 @@ export const TemplateWidget = observer((
   }
 ) => {
   const { withFrameMaterials } = props;
-  const { debugMaterialTab, uploadedMaterialTabs } = useAppMaterialTabs();
   const { basicTab, frameworkTab } = usePredefinedMaterialTab();
   const { t } = useTranslation();
   const p = useParseLangMessage();
+  const prefix = usePrefix('resource')
 
   return (
     <div className="rx-material-panel">
-      <TemplateSearchWidget />
       <Tabs defaultActiveKey={withFrameMaterials ? frameworkTab.uuid : basicTab.uuid}
         animated
         size="small"
         className="materail-tabs"
       >
-        <TabPane tab={"TEST"} key={"test"}>
-          <ResourceWidget
-            title={"test2"}
-            sources={[createResource(TestSource)]}
-          />
+        <TabPane tab={"公共模板"} key={"public"}>
+          <TemplateSearchWidget />
+          <div className={"template-resources"}>
+            <ResourceNodeWidget source={createResource(TestSource)[0]} />
+          </div>
+        </TabPane>
+        <TabPane tab={"我的模板"} key={"my"}>
+          ddd
         </TabPane>
       </Tabs>
     </div>
