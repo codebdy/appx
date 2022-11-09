@@ -45,7 +45,7 @@ export async function saveFile(name: string, content: string) {
     return newHandle.name;
   }
   catch (error) {
-    console.error(error);
+    console.error("save error:", error);
     return false;
   }
 

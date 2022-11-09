@@ -35,11 +35,11 @@ export const ExportDialog = memo((
 
   const save = useSave(() => {
     message.success(t("OperateSuccess"));
+    onClose();
   })
 
   const handleOk = useCallback(() => {
     save();
-    onClose();
   }, [save, onClose])
 
   const handleSelectChange = useCallback((id: ID, checked?: boolean) => {
