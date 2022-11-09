@@ -8,6 +8,21 @@ import { TemplateList } from './TemplateList';
 import { useSave } from './useSave';
 var JSZip = require("jszip")
 
+async function getFile(template: ITemplateInfo, zip: any) {
+  const respo = await fetch(template.imageUrl);
+  const buffer = await respo.arrayBuffer();
+  const tArray = template.imageUrl?.split("/")
+  const fileName = tArray[tArray.length - 1]
+  template.imageUrl = fileName;
+  zip.file(fileName, buffer, { binary: true })
+}
+
+async function getAllFiles(templates: ITemplateInfo[], zip: any) {
+  for (const template of templates) {
+    await getFile(template, zip)
+  }
+}
+
 export const ExportDialog = memo((
   props: {
     templates?: ITemplateInfo[],
@@ -41,12 +56,22 @@ export const ExportDialog = memo((
 
   const handleOk = useCallback(() => {
     const zip = new JSZip();
-    const templates = selectedIds.map(id => templates?.find(template => template.id === id))
-    zip.file("templates.json", JSON.stringify({ templates }, null, 2))
-    zip.generateAsync({ type: "blob" })
-      .then(function (content) {
-        save("templates", content);
-      });
+    const temps = selectedIds.map(id => {
+      const template = templates?.find(template => template.id === id);
+      const newTemplate = JSON.parse(JSON.stringify(template))
+      delete newTemplate.id;
+      return newTemplate
+    })
+
+    getAllFiles(temps, zip).then(() => {
+      zip.file("templates.json", JSON.stringify({ templates: temps }, null, 2))
+      zip.generateAsync({ type: "blob" })
+        .then(function (content) {
+          save("templates", content);
+        });
+    }).catch((err) => {
+      console.error(err)
+    })
   }, [save, onClose, selectedIds, templates])
 
   const handleSelectChange = useCallback((id: ID, checked?: boolean) => {
