@@ -1,6 +1,7 @@
 import { Modal, Tabs } from 'antd';
 import React, { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import "./style.less"
 
 export const ManageDialog = memo((
   props: {
