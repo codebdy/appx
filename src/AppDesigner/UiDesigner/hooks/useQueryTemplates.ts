@@ -38,6 +38,7 @@ query ($appId:ID!, $device:String!, $templateType:String!){
       templateType
       categoryType
       schemaJson
+      imageUrl
     }
   }
 }
