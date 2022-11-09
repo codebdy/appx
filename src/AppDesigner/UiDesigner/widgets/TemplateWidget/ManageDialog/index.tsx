@@ -1,7 +1,7 @@
 import { Modal, Tabs } from 'antd';
 import React, { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ITemplateInfo } from '~/model';
+import { CategoryType, ITemplateInfo } from '~/model';
 import "./style.less"
 import { TemplateList } from './TemplateList';
 
@@ -45,12 +45,12 @@ export const ManageDialog = memo((
           {
             label: t("Designer.PublicTemplates"),
             key: '1',
-            children: <TemplateList templates={templates} />,
+            children: <TemplateList templates={templates.filter(template => template.categoryType === CategoryType.Public)} />,
           },
           {
             label: t("Designer.LocaltTemplates"),
             key: '2',
-            children: <TemplateList templates={templates} />,
+            children: <TemplateList templates={templates.filter(template => template.categoryType === CategoryType.Local)} />,
           },
         ]}
       />
