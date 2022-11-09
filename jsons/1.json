@@ -3789,7 +3789,7 @@
       "methods": [],
       "name": "TemplateInfo",
       "packageUuid": "PACKAGE_SYSTEM_UUID",
-      "root": false,
+      "root": true,
       "stereoType": "Entity",
       "uuid": "4ed2315f-1380-44f3-b3b3-4c3150148371"
     },
