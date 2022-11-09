@@ -1,4 +1,4 @@
-import { Modal } from 'antd';
+import { Modal, Tabs } from 'antd';
 import React, { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -11,12 +11,12 @@ export const ManageDialog = memo((
   const { open, onClose } = props;
   const { t } = useTranslation();
 
-  const handleOk = useCallback(()=>{
+  const handleOk = useCallback(() => {
 
   }, [])
 
 
-  const handleCancel = useCallback(()=>{
+  const handleCancel = useCallback(() => {
     onClose();
   }, [onClose])
 
@@ -33,7 +33,21 @@ export const ManageDialog = memo((
         //loading: loading
       }}
     >
-
+      <Tabs
+        defaultActiveKey="1"
+        items={[
+          {
+            label: t("Designer.PublicTemplates"),
+            key: '1',
+            children: `Content of Tab Pane 1`,
+          },
+          {
+            label: t("Designer.LocaltTemplates"),
+            key: '2',
+            children: `Content of Tab Pane 2`,
+          },
+        ]}
+      />
     </Modal>
   );
 })
