@@ -34,9 +34,10 @@ query ($appId:ID!, $device:String!, $templateType:String!){
     nodes{
       id
       device
-      title
-      categoryUuid
-      uuid
+      name
+      templateType
+      categoryType
+      schemaJson
     }
   }
 }

@@ -22,6 +22,7 @@ import { ObjectContainer } from "@designable/formily-antd";
 import { useMaterialDesigners } from "~/material/hooks/useMaterialDesigners";
 import { SaveTemplateWidget } from "../../widgets/SaveTemplateWidget";
 import { TemplateType } from "~/model";
+import { useQueryTemplates } from "../../hooks/useQueryTemplates";
 
 const PageWorkSpace = (props: {
   pageId: ID,
@@ -31,6 +32,8 @@ const PageWorkSpace = (props: {
   const designer = useDesigner();
   const [query, { page, loading, error }] = useLazyQueryPage();
   const materailDesigners = useMaterialDesigners();
+
+  const { templates, loading: templateLoading, error: templateError } = useQueryTemplates(TemplateType.Page);
 
   useEffect(() => {
     query(pageId)
@@ -44,11 +47,11 @@ const PageWorkSpace = (props: {
     )
   }, [designer, page?.schemaJson])
 
-  useShowError(error);
+  useShowError(error || templateError);
 
   return (
     visable && (
-      loading ?
+      (loading || templateLoading) ?
         <Spin>
           <div style={{ width: "calc(100vw - 280px)", height: "calc(100vh - 64px)" }}>
           </div>
