@@ -22,7 +22,7 @@ export const pickerTypes = [
   },
 ];
 
-export async function saveFile(name: string, content: string) {
+export async function saveFile(name: string, content: any) {
   const handle = getHandle();
   // create a new handle
   try {

@@ -6,6 +6,7 @@ import { ID } from '~/shared';
 import "./style.less"
 import { TemplateList } from './TemplateList';
 import { useSave } from './useSave';
+var JSZip = require("jszip")
 
 export const ExportDialog = memo((
   props: {
@@ -39,8 +40,14 @@ export const ExportDialog = memo((
   })
 
   const handleOk = useCallback(() => {
-    save();
-  }, [save, onClose])
+    const zip = new JSZip();
+    const templates = selectedIds.map(id => templates.find(template => template.id === id))
+    zip.file("templates.json", JSON.stringify({ templates }, null, 2))
+    zip.generateAsync({ type: "blob" })
+      .then(function (content) {
+        save("templates", content);
+      });
+  }, [save, onClose, selectedIds, templates])
 
   const handleSelectChange = useCallback((id: ID, checked?: boolean) => {
     setSelectedIds(ids => {
@@ -61,9 +68,9 @@ export const ExportDialog = memo((
       cancelText={t("Cancel")}
       onOk={handleOk}
       onCancel={handleCancel}
-    //okButtonProps={{
-    //loading: loading
-    //}}
+      okButtonProps={{
+        disabled: selectedIds.length === 0
+      }}
     >
       <Tabs
         defaultActiveKey="1"

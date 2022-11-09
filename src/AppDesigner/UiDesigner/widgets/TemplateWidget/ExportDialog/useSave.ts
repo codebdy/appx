@@ -4,11 +4,10 @@ import { saveFile } from "./saveFile";
 export function useSave(onSaved?: () => void) {
 
   const save = useCallback(
-    () => {
-      saveFile('template', JSON.stringify({})).then(
+    (name, content?:any) => {
+      saveFile(name, content).then(
         (savedName) => {
           if (savedName) {
-
             onSaved && onSaved();
           }
         }
