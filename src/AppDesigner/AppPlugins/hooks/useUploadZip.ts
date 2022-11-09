@@ -4,28 +4,28 @@ import { useEnthooksAppId, useEndpoint, useToken } from "~/enthooks";
 import { HEADER_APPX_APPID, HEADER_AUTHORIZATION, TOKEN_PREFIX } from "~/consts";
 
 const gql = `
-  mutation ($file:Upload!){
-    uploadPlugin(file:$file)
+  mutation ($file:Upload!, $folder: String!){
+    uploadZip(file:$file, folder:$folder)
   }
 `
 
-export function useUploadPlugin() {
+export function useUploadZip() {
   const endpoint = useEndpoint();
   const token = useToken();
   const appId = useEnthooksAppId();
 
-  const upload = useCallback((file: File) => {
+  const upload = useCallback((file: File, folder: string) => {
     const p = new Promise<string>((resolve, reject) => {
       const graphQLClient = new AwesomeGraphQLClient({ endpoint })
       graphQLClient
-        .request(gql, { file }, {
+        .request(gql, { file, folder }, {
           headers: {
             [HEADER_AUTHORIZATION]: token ? `${TOKEN_PREFIX}${token}` : "",
             [HEADER_APPX_APPID]: appId,
           }
         })
         .then((data) => {
-          resolve(data?.uploadPlugin);
+          resolve(data?.uploadZip);
         })
         .catch((err: GraphQLRequestError) => {
           reject(err);

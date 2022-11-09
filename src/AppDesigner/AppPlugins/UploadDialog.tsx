@@ -6,7 +6,7 @@ import { useUpsertPluginInfo } from './hooks/useUpsertPluginInfo';
 import { useShowError } from '~/AppDesigner/hooks/useShowError';
 import { IPluginInfo, PluginType } from '~/model';
 import { PluginStatus } from '~/plugin/model';
-import { useUploadPlugin } from './hooks/useUploadPlugin';
+import { useUploadZip } from './hooks/useUploadZip';
 import Dragger from 'antd/lib/upload/Dragger';
 import { useLoadPlugins, useLoadPlugin } from '~/plugin/hooks';
 import { useUpsertPluginInfos } from './hooks/useUpsertPluginInfos';
@@ -39,7 +39,7 @@ export const UploadDialog: React.FC = memo(() => {
 
   const load = useLoadPlugin();
   const multipleLoad = useLoadPlugins();
-  const upload = useUploadPlugin();
+  const upload = useUploadZip();
 
   useShowError(error || multiError);
 
@@ -162,7 +162,7 @@ export const UploadDialog: React.FC = memo(() => {
             >
               <Dragger
                 name='file'
-                action={upload}
+                action={(file) => upload(file, "plugins")}
                 accept={".zip"}
                 multiple
                 headers={{
