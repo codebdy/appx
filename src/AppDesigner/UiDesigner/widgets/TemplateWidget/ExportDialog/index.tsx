@@ -24,8 +24,28 @@ export const ExportDialog = memo((
   const publics = useMemo(() => templates.filter(template => template.categoryType === CategoryType.Public), [templates])
   const locales = useMemo(() => templates.filter(template => template.categoryType === CategoryType.Local), [templates])
 
+  const publicSelects = useMemo(() => {
+    return selectedIds.filter(id => publics.find(template => template.id === id))
+  }, [selectedIds, publics])
+
+  const localeSelects = useMemo(() => {
+    return selectedIds.filter(id => locales.find(template => template.id === id))
+  }, [selectedIds, locales])
+
+
   const handleOk = useCallback(() => {
   }, [])
+
+  const handleSelectChange = useCallback((id: ID, checked?: boolean) => {
+    setSelectedIds(ids => {
+      const newIds = ids.filter(aId => aId !== id);
+      if (checked) {
+        newIds.push(id);
+      }
+      return newIds;
+    })
+  }, [])
+
   return (
     <Modal
       title={t("Designer.ExportTemplates")}
@@ -43,19 +63,20 @@ export const ExportDialog = memo((
         defaultActiveKey="1"
         items={[
           {
-            label: t("Designer.PublicTemplates") + ` (0/${publics.length})`,
+            label: t("Designer.PublicTemplates") + ` (${publicSelects.length}/${publics.length})`,
             key: '1',
             children: <TemplateList
               templates={publics}
-              selectedIds={selectedIds}
+              selectedIds={publicSelects}
             />,
           },
           {
-            label: t("Designer.LocaltTemplates") + ` (0/${locales.length})`,
+            label: t("Designer.LocaltTemplates") + ` (${localeSelects.length}/${locales.length})`,
             key: '2',
             children: <TemplateList
               templates={locales}
-              selectedIds={selectedIds}
+              selectedIds={localeSelects}
+              onSelectChange={handleSelectChange}
             />,
           },
         ]}

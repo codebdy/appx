@@ -9,9 +9,10 @@ export const TemplateList = memo((
   props: {
     templates?: ITemplateInfo[],
     selectedIds?: ID[],
+    onSelectChange?: (id: ID, checked?: boolean) => void,
   }
 ) => {
-  const { selectedIds, templates } = props;
+  const { selectedIds, templates, onSelectChange } = props;
   const p = useParseLangMessage();
 
   return (
@@ -21,7 +22,14 @@ export const TemplateList = memo((
         dataSource={templates}
         renderItem={item => (
           <List.Item
-            actions={[<Checkbox checked={!!selectedIds?.find(id => id === item.id)} />]}
+            actions={[
+              <Checkbox
+                checked={!!selectedIds?.find(id => id === item.id)}
+                onChange={(e) => {
+                  onSelectChange(item.id, e.target.checked)
+                }}
+              />
+            ]}
           >
             <List.Item.Meta
               avatar={<Avatar shape="square" size={32} src={item.imageUrl} />}
