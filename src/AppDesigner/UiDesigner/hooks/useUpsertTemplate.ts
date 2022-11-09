@@ -9,7 +9,7 @@ export function useUpsertTemplate(options?: IPostOptions<any>): [
 ] {
   const params = useDesignerParams();
 
-  const [post, { error, loading }] = usePostOne<ITemplateInfoInput, ITemplateInfo>("Page",
+  const [post, { error, loading }] = usePostOne<ITemplateInfoInput, ITemplateInfo>("TemplateInfo",
     {
       ...options,
       fieldsGql: " name"
