@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { IOpenFileAction } from "~/plugin-sdk";
 
-async function getTheFile(accept: string, multiple?: boolean) {
+export async function getTheFile(accept: string, multiple?: boolean) {
   // open file picker
   const fileHandles = await (window as any).showOpenFilePicker({
     types: [{

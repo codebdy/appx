@@ -11,6 +11,7 @@ import { ExportOutlined, ImportOutlined, MoreOutlined, SettingOutlined } from "@
 import { CategoryType, ITemplateInfo, TemplateType } from "~/model";
 import { useParseLangMessage } from "~/plugin-sdk";
 import { ExportDialog } from "./ExportDialog";
+import { useImportTempltes } from "./hooks/useImportTemplates";
 
 const { TabPane } = Tabs;
 
@@ -25,6 +26,8 @@ export const TemplateWidget = observer((
   const { t } = useTranslation();
   const p = useParseLangMessage();
 
+  const doImport = useImportTempltes();
+
   const handleOpenManageDialog = useCallback(() => {
     setManageDialogOpen(true);
   }, [])
@@ -35,7 +38,8 @@ export const TemplateWidget = observer((
     {
       label: t("Designer.ImportTemplates"),
       key: '0',
-      icon: <ImportOutlined />
+      icon: <ImportOutlined />,
+      onClick: doImport,
     },
     {
       label: t("Designer.ExportTemplates"),
@@ -49,7 +53,7 @@ export const TemplateWidget = observer((
       icon: <SettingOutlined />,
       onClick: handleOpenManageDialog,
     },
-  ], [t, handleOpenManageDialog]);
+  ], [t, handleOpenExportDialog, handleOpenManageDialog, doImport]);
 
   const handleManageClose = useCallback(() => {
     setManageDialogOpen(false)
