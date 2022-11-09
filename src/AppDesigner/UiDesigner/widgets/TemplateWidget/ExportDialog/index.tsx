@@ -1,4 +1,4 @@
-import { Modal, Tabs } from 'antd';
+import { message, Modal, Tabs } from 'antd';
 import React, { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CategoryType, ITemplateInfo } from '~/model';
@@ -33,7 +33,9 @@ export const ExportDialog = memo((
     return selectedIds.filter(id => locales.find(template => template.id === id))
   }, [selectedIds, locales])
 
-  const save = useSave()
+  const save = useSave(()=>{
+    message.success(t("OperateSuccess"));
+  })
 
   const handleOk = useCallback(() => {
     save();

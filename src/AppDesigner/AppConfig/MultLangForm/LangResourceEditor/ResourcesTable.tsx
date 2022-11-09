@@ -58,7 +58,8 @@ const ResourcesTable = memo(() => {
             type="text"
             icon={<EditOutlined />}
             onClick={() => {
-              setEditingLocal(getLocal(record?.key) || {})
+              const local = getLocal(record?.key)
+              setEditingLocal({ ...local, app: { sync: { id: local?.app?.id } } })
             }}
           >
             {t("Edit")}

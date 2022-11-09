@@ -24,6 +24,11 @@ const MultLangForm = memo(() => {
   const handleOpenChange = useCallback((checked: boolean) => {
     upsert({
       ...appConfig,
+      app: {
+        sync: {
+          id: appConfig.app?.id,
+        }
+      },
       schemaJson: {
         ...appConfig?.schemaJson,
         multiLang: { ...appConfig?.schemaJson?.multiLang, open: checked }

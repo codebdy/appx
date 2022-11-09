@@ -53,9 +53,14 @@ const LangSelect = memo(() => {
   const handleOk = useCallback(() => {
     upsert({
       ...appConfig,
+      app: {
+        sync: {
+          id: appConfig.app?.id,
+        }
+      },
       schemaJson: {
         ...appConfig?.schemaJson,
-        multiLang: { ...appConfig?.schemaJson?.multiLang, langs: inputValue }
+        multiLang: { ...appConfig?.schemaJson?.multiLang, langs: inputValue },
       }
     })
   }, [appConfig, inputValue, upsert]);
