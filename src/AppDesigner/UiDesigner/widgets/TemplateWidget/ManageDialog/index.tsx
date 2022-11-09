@@ -2,6 +2,8 @@ import { Modal, Tabs } from 'antd';
 import React, { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import "./style.less"
+import { TemplateList } from './TemplateList';
+
 
 export const ManageDialog = memo((
   props: {
@@ -12,9 +14,9 @@ export const ManageDialog = memo((
   const { open, onClose } = props;
   const { t } = useTranslation();
 
-  const handleOk = useCallback(() => {
-
-  }, [])
+  // const handleOk = useCallback(() => {
+  //   onClose();
+  // }, [])
 
 
   const handleCancel = useCallback(() => {
@@ -26,13 +28,14 @@ export const ManageDialog = memo((
       title={t("Designer.ManageTemplates")}
       className='template-module-modal'
       open={open}
-      okText={t("Confirm")}
-      cancelText={t("Cancel")}
-      onOk={handleOk}
+      footer={false}
+      //okText={t("Close")}
+      //cancelText={t("Cancel")}
+      //onOk={handleOk}
       onCancel={handleCancel}
-      okButtonProps={{
-        //loading: loading
-      }}
+    //okButtonProps={{
+    //loading: loading
+    //}}
     >
       <Tabs
         defaultActiveKey="1"
@@ -40,12 +43,12 @@ export const ManageDialog = memo((
           {
             label: t("Designer.PublicTemplates"),
             key: '1',
-            children: `Content of Tab Pane 1`,
+            children: <TemplateList />,
           },
           {
             label: t("Designer.LocaltTemplates"),
             key: '2',
-            children: `Content of Tab Pane 2`,
+            children: <TemplateList />,
           },
         ]}
       />
