@@ -1,4 +1,4 @@
-import { List } from "antd";
+import { Avatar, List } from "antd";
 import React from "react";
 import { memo } from "react"
 import { ITemplateInfo } from "~/model";
@@ -24,7 +24,7 @@ export const TemplateList = memo((
             actions={[<EditTemplateDialog template={item} />, <DeleteTemplateButton template={item} />]}
           >
             <List.Item.Meta
-              //avatar={<Avatar shape="square" size={64} src={item.imageUrl} />}
+              avatar={<Avatar shape="square" size={32} src={item.imageUrl} />}
               title={p(item.name)}
             />
           </List.Item>
