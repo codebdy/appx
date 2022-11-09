@@ -41,7 +41,7 @@ export const ExportDialog = memo((
 
   const handleOk = useCallback(() => {
     const zip = new JSZip();
-    const templates = selectedIds.map(id => templates.find(template => template.id === id))
+    const templates = selectedIds.map(id => templates?.find(template => template.id === id))
     zip.file("templates.json", JSON.stringify({ templates }, null, 2))
     zip.generateAsync({ type: "blob" })
       .then(function (content) {
