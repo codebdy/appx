@@ -62,8 +62,9 @@ export const ExportDialog = memo((
     const zip = new JSZip();
     const temps = selectedIds.map(id => {
       const template = templates?.find(template => template.id === id);
-      const newTemplate = JSON.parse(JSON.stringify(template))
+      const newTemplate: ITemplateInfo = JSON.parse(JSON.stringify(template));
       delete newTemplate.id;
+      newTemplate.categoryType = CategoryType.Public;
       return newTemplate
     })
 
