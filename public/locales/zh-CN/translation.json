@@ -152,8 +152,11 @@
     "SaveAsTemplate": "保存为模板",
     "TemplateName": "模板名称",
     "TemplateImage": "模板图片",
-    "PublicTemplates":"公用模板",
-    "LocaltTemplates":"我的模板"
+    "PublicTemplates": "公用模板",
+    "LocaltTemplates": "我的模板",
+    "ImportTemplates": "导入模板",
+    "ExportTemplates": "导出模板",
+    "ManageTemplates": "管理模板"
   },
   "Plugins": {
     "Title": "插件",

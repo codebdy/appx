@@ -1,5 +1,5 @@
 import { Button, Dropdown, Menu, MenuProps, Tabs } from "antd"
-import React from "react"
+import React, { useMemo } from "react"
 import { TemplateSearchWidget } from "./TemplateSearchWidget";
 import "./style.less"
 import { observer } from "@formily/reactive-react";
@@ -7,10 +7,9 @@ import { useTranslation } from "react-i18next";
 import { usePredefinedMaterialTab } from "~/material/context";
 import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage";
 import { createResource } from '@designable/core'
-import { usePrefix } from '@designable/react'
 import { ResourceNodeWidget } from "./ResourceNodeWidget";
 import { TemplateDialog } from "./TemplateDialog";
-import { MoreOutlined } from "@ant-design/icons";
+import { ExportOutlined, ImportOutlined, MoreOutlined, SettingOutlined } from "@ant-design/icons";
 
 const { TabPane } = Tabs;
 
@@ -95,24 +94,23 @@ export const TemplateWidget = observer((
   const { basicTab, frameworkTab } = usePredefinedMaterialTab();
   const { t } = useTranslation();
   const p = useParseLangMessage();
-  const prefix = usePrefix('resource')
-  const items: MenuProps['items'] = [
+  const items: MenuProps['items'] = useMemo(() => [
     {
-      label: <a href="https://www.antgroup.com">1st menu item</a>,
+      label: t("Designer.ImportTemplates"),
       key: '0',
+      icon: <ImportOutlined />
     },
     {
-      label: <a href="https://www.aliyun.com">2nd menu item</a>,
+      label: t("Designer.ExportTemplates"),
       key: '1',
+      icon: <ExportOutlined />
     },
     {
-      type: 'divider',
-    },
-    {
-      label: '3rd menu item',
+      label: t("Designer.ManageTemplates"),
       key: '3',
+      icon: <SettingOutlined />
     },
-  ];
+  ], [t]);
 
   return (
     <div className="rx-material-panel">
