@@ -62,6 +62,7 @@
   "AppNotExist": "应用不存在",
   "GoEdit": "去编辑",
   "OfCopy": "的副本",
+  "Export": "导出",
   "Model": {
     "Title": "模型"
   },

@@ -6,7 +6,6 @@ import { ID } from '~/shared';
 import "./style.less"
 import { TemplateList } from './TemplateList';
 
-
 export const ExportDialog = memo((
   props: {
     templates?: ITemplateInfo[],
@@ -18,11 +17,6 @@ export const ExportDialog = memo((
   const [selectedIds, setSelectedIds] = useState<ID[]>([]);
   const { t } = useTranslation();
 
-  // const handleOk = useCallback(() => {
-  //   onClose();
-  // }, [])
-
-
   const handleCancel = useCallback(() => {
     onClose();
   }, [onClose])
@@ -30,15 +24,16 @@ export const ExportDialog = memo((
   const publics = useMemo(() => templates.filter(template => template.categoryType === CategoryType.Public), [templates])
   const locales = useMemo(() => templates.filter(template => template.categoryType === CategoryType.Local), [templates])
 
+  const handleOk = useCallback(() => {
+  }, [])
   return (
     <Modal
       title={t("Designer.ManageTemplates")}
       className='template-export-modal'
       open={open}
-      footer={false}
-      //okText={t("Close")}
-      //cancelText={t("Cancel")}
-      //onOk={handleOk}
+      okText={t("Export")}
+      cancelText={t("Cancel")}
+      onOk={handleOk}
       onCancel={handleCancel}
     //okButtonProps={{
     //loading: loading
