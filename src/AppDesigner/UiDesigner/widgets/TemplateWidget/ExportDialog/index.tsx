@@ -32,6 +32,7 @@ export const ExportDialog = memo((
 ) => {
   const { templates, open, onClose } = props;
   const [selectedIds, setSelectedIds] = useState<ID[]>([]);
+  const [importing, setImporting] = useState(false);
   const { t } = useTranslation();
 
   const handleCancel = useCallback(() => {
@@ -51,10 +52,12 @@ export const ExportDialog = memo((
 
   const save = useSave(() => {
     message.success(t("OperateSuccess"));
+    setImporting(true);
     onClose();
   })
 
   const handleOk = useCallback(() => {
+    setImporting(true);
     const zip = new JSZip();
     const temps = selectedIds.map(id => {
       const template = templates?.find(template => template.id === id);
@@ -70,6 +73,7 @@ export const ExportDialog = memo((
           save("templates", content);
         });
     }).catch((err) => {
+      setImporting(false);
       console.error(err)
     })
   }, [save, onClose, selectedIds, templates])
@@ -94,7 +98,8 @@ export const ExportDialog = memo((
       onOk={handleOk}
       onCancel={handleCancel}
       okButtonProps={{
-        disabled: selectedIds.length === 0
+        disabled: selectedIds.length === 0,
+        loading: importing,
       }}
     >
       <Tabs
