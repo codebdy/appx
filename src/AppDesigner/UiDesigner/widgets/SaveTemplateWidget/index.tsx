@@ -26,7 +26,6 @@ export const SaveTemplateWidget = observer((
   const selected = useSelected();
   const { t } = useTranslation();
   const tree = useTree()
-  const node = tree.findById(selected?.[0])
   const [form] = Form.useForm()
 
   const elements = useMemo(() => {
@@ -71,12 +70,33 @@ export const SaveTemplateWidget = observer((
     setOpen(false);
   }, [form]);
 
+  const disabled = useMemo(() => {
+    if (!selected?.length) {
+      return true;
+    }
+    for (const id of selected) {
+      const node = tree.findById(id);
+      if (node?.isRoot) {
+        return true
+      }
+      if (!node?.allowDelete()) {
+        return true
+      }
+
+      if (!node?.allowClone()) {
+        return true
+      }
+    }
+
+    return false
+  }, [selected, tree])
+
   return (
     <>
       <Button.Group size="small" style={{ marginRight: 20 }}>
         <Button
           size="small"
-          disabled={selected?.length !== 1 || node.isRoot || !node.allowDelete() || !node.allowClone()}
+          disabled={disabled}
           onClick={handleShowModal}
         >
           <IconWidget infer={
