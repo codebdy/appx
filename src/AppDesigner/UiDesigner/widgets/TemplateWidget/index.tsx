@@ -10,6 +10,7 @@ import { ManageDialog } from "./ManageDialog";
 import { ExportOutlined, ImportOutlined, MoreOutlined, SettingOutlined } from "@ant-design/icons";
 import { CategoryType, ITemplateInfo, TemplateType } from "~/model";
 import { useParseLangMessage } from "~/plugin-sdk";
+import { ExportDialog } from "./ExportDialog";
 
 const { TabPane } = Tabs;
 
@@ -20,14 +21,16 @@ export const TemplateWidget = observer((
 ) => {
   const { templates } = props;
   const [manageDialogOpen, setManageDialogOpen] = useState(false);
-
+  const [exportDialogOpen, setExportDialogOpen] = useState(false);
   const { t } = useTranslation();
   const p = useParseLangMessage();
 
   const handleOpenManageDialog = useCallback(() => {
     setManageDialogOpen(true);
   }, [])
-
+  const handleOpenExportDialog = useCallback(() => {
+    setExportDialogOpen(true);
+  }, [])
   const items: MenuProps['items'] = useMemo(() => [
     {
       label: t("Designer.ImportTemplates"),
@@ -37,7 +40,8 @@ export const TemplateWidget = observer((
     {
       label: t("Designer.ExportTemplates"),
       key: '1',
-      icon: <ExportOutlined />
+      icon: <ExportOutlined />,
+      onClick: handleOpenExportDialog,
     },
     {
       label: t("Designer.ManageTemplates"),
@@ -50,7 +54,9 @@ export const TemplateWidget = observer((
   const handleManageClose = useCallback(() => {
     setManageDialogOpen(false)
   }, [])
-
+  const handleExportClose = useCallback(() => {
+    setExportDialogOpen(false)
+  }, [])
   return (
     <div className="rx-template-panel">
       <TemplateSearchWidget />
@@ -102,7 +108,8 @@ export const TemplateWidget = observer((
           </Row>
         </TabPane>
       </Tabs>
-      <ManageDialog open={manageDialogOpen} onClose={handleManageClose} templates = {templates}/>
+      <ManageDialog open={manageDialogOpen} onClose={handleManageClose} templates={templates} />
+      <ExportDialog open={exportDialogOpen} onClose={handleExportClose} templates={templates} />
     </div>
   )
 })
