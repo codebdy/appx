@@ -1,4 +1,4 @@
-import { Button, Dropdown, Menu, MenuProps, Tabs } from "antd"
+import { Button, Col, Dropdown, Menu, MenuProps, Row, Tabs } from "antd"
 import React, { useCallback, useMemo, useState } from "react"
 import { TemplateSearchWidget } from "./TemplateSearchWidget";
 import "./style.less"
@@ -147,19 +147,21 @@ export const TemplateWidget = observer((
           </div>
         </TabPane>
         <TabPane tab={t("Designer.LocaltTemplates")} key={"my"}>
-          <div className={"template-resources"}>
+          <Row gutter={16}>
             {
               templates?.filter(template => template.categoryType === CategoryType.Local).map(template => {
                 return (
-                  <ResourceNodeWidget source={createResource({
-                    icon: 'OpenPageButtonSource',
-                    title: p(template.name),
-                    elements: template.schemaJson?.elements || []
-                  })?.[0]} />
+                  <Col key={template.id} xs={12}>
+                    <ResourceNodeWidget source={createResource({
+                      icon: 'OpenPageButtonSource',
+                      title: p(template.name),
+                      elements: template.schemaJson?.elements || []
+                    })?.[0]} />
+                  </Col>
                 )
               })
             }
-          </div>
+          </Row>
         </TabPane>
       </Tabs>
       <ManageDialog open={manageDialogOpen} onClose={handleManageClose} />
