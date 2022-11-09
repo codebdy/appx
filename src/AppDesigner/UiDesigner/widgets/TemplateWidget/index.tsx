@@ -13,78 +13,6 @@ import { useParseLangMessage } from "~/plugin-sdk";
 
 const { TabPane } = Tabs;
 
-const TestSource = {
-  icon: 'OpenPageButtonSource',
-  elements: [
-    {
-      componentName: 'Field',
-      props: {
-        type: 'void',
-        'x-component': "Dialog",
-        'x-component-props': {
-          title: "Dialog",
-          type: "primary",
-          footer: true
-        },
-      },
-      children: [
-        {
-          componentName: 'Field',
-          props: {
-            type: 'void',
-            'x-component': 'Dialog.Title',
-            'x-component-props': {
-              title: "Title",
-            },
-          },
-        },
-        {
-          componentName: 'Field',
-          props: {
-            type: 'void',
-            'x-component': 'Dialog.Content',
-            'x-component-props': {
-            },
-          },
-        },
-        {
-          componentName: 'Field',
-          props: {
-            type: 'void',
-            'x-component': 'Dialog.Footer',
-            'x-component-props': {
-            },
-          },
-          children: [
-            {
-              componentName: 'Field',
-              props: {
-                type: 'void',
-                'x-component': 'Button',
-                'x-component-props': {
-                  "title": "$inline:{\"zh-CN\":\"取消\"}",
-                  "type": "default"
-                },
-              },
-            },
-            {
-              componentName: 'Field',
-              props: {
-                type: 'void',
-                'x-component': 'Button',
-                'x-component-props': {
-                  "title": "$inline:{\"zh-CN\":\"确定\"}",
-                  "type": "primary"
-                },
-              },
-            },
-          ],
-        },
-      ],
-    },
-  ],
-}
-
 export const TemplateWidget = observer((
   props: {
     templates?: ITemplateInfo[]
@@ -142,9 +70,20 @@ export const TemplateWidget = observer((
         }
       >
         <TabPane tab={t("Designer.PublicTemplates")} key={"public"}>
-          <div className={"template-resources"}>
-            <TemplateNodeWidget source={createResource(TestSource)[0]} />
-          </div>
+          <Row gutter={8}>
+            {
+              templates?.filter(template => template.categoryType === CategoryType.Public).map(template => {
+                return (
+                  <Col key={template.id} xs={12}>
+                    <TemplateNodeWidget imageUrl={template.imageUrl} source={createResource({
+                      title: p(template.name),
+                      elements: template.schemaJson?.elements || []
+                    })?.[0]} />
+                  </Col>
+                )
+              })
+            }
+          </Row>
         </TabPane>
         <TabPane tab={t("Designer.LocaltTemplates")} className="templates-panel" key={"local"}>
           <Row gutter={8}>
@@ -153,7 +92,6 @@ export const TemplateWidget = observer((
                 return (
                   <Col key={template.id} xs={12}>
                     <TemplateNodeWidget imageUrl={template.imageUrl} source={createResource({
-                      //icon: 'OpenPageButtonSource',
                       title: p(template.name),
                       elements: template.schemaJson?.elements || []
                     })?.[0]} />
