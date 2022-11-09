@@ -1,15 +1,17 @@
-import { Avatar, List } from "antd";
+import { Avatar, Checkbox, List } from "antd";
 import React from "react";
 import { memo } from "react"
 import { ITemplateInfo } from "~/model";
 import { useParseLangMessage } from "~/plugin-sdk";
+import { ID } from "~/shared";
 
 export const TemplateList = memo((
   props: {
-    templates?: ITemplateInfo[]
+    templates?: ITemplateInfo[],
+    selectedIds?: ID[],
   }
 ) => {
-  const { templates } = props;
+  const { selectedIds, templates } = props;
   const p = useParseLangMessage();
 
   return (
@@ -18,7 +20,9 @@ export const TemplateList = memo((
         itemLayout="horizontal"
         dataSource={templates}
         renderItem={item => (
-          <List.Item>
+          <List.Item
+            actions={[<Checkbox checked={!!selectedIds?.find(id => id === item.id)} />]}
+          >
             <List.Item.Meta
               avatar={<Avatar shape="square" size={32} src={item.imageUrl} />}
               title={p(item.name)}
