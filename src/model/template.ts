@@ -2,10 +2,16 @@ import { Device } from "@rxdrag/appx-plugin-sdk";
 import { ID } from "~/shared";
 import { IApp, IAppInput } from "./app";
 
-export enum TemplateType {
+export enum CategoryType {
   Public = "Public",
   Local = "Local"
 }
+
+export enum TemplateType {
+  Frame = "Frame",
+  Page = "Page"
+}
+
 
 export interface ITemplateInfo {
   id: ID;
@@ -16,6 +22,7 @@ export interface ITemplateInfo {
   schemaJson?: any;
   app?: IApp;
   device?: Device;
+  categoryType?: CategoryType;
   templateType?: TemplateType;
 }
 
@@ -28,5 +35,6 @@ export interface ITemplateInfoInput {
   schemaJson?: any;
   app?: { sync?: IAppInput };
   device?: Device;
+  categoryType?: CategoryType;
   templateType?: TemplateType;
 }
