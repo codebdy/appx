@@ -150,6 +150,7 @@
     "ImportFailed": "导入失败",
     "PublishSuccess": "发布成功",
     "SaveAsTemplate": "保存为模板",
+    "EditTemplate": "编辑模板",
     "TemplateName": "模板名称",
     "TemplateImage": "模板图片",
     "PublicTemplates": "公用模板",
