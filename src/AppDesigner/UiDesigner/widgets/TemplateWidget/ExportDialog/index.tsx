@@ -28,7 +28,7 @@ export const ExportDialog = memo((
   }, [])
   return (
     <Modal
-      title={t("Designer.ManageTemplates")}
+      title={t("Designer.ExportTemplates")}
       className='template-export-modal'
       open={open}
       okText={t("Export")}
