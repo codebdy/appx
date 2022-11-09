@@ -8,7 +8,7 @@ import { createResource } from '@designable/core'
 import { ResourceNodeWidget } from "./ResourceNodeWidget";
 import { ManageDialog } from "./ManageDialog";
 import { ExportOutlined, ImportOutlined, MoreOutlined, SettingOutlined } from "@ant-design/icons";
-import { TemplateType } from "~/model";
+import { ITemplateInfo, TemplateType } from "~/model";
 
 const { TabPane } = Tabs;
 
@@ -86,10 +86,10 @@ const TestSource = {
 
 export const TemplateWidget = observer((
   props: {
-    templateType?: TemplateType
+    templates?: ITemplateInfo[]
   }
 ) => {
-  const { templateType } = props;
+  const { templates } = props;
   const [manageDialogOpen, setManageDialogOpen] = useState(false);
 
   const { t } = useTranslation();

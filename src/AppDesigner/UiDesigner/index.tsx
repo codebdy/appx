@@ -33,6 +33,8 @@ import { categoriesState, pagesState } from './recoil/atom'
 import ConfigWorkSpace from './config/ConfigWorkSpace'
 import { ConfigActionsWidget } from './config/ConfigActionsWidget'
 import { TemplateWidget } from './widgets/TemplateWidget'
+import { useQueryTemplates } from './hooks/useQueryTemplates'
+import { TemplateType } from '~/model'
 
 export enum DesignerRoutes {
   Templates = "Templates",
@@ -55,7 +57,8 @@ export const UiDesigner = memo(() => {
   const { categories, loading, error } = useQueryCagegories();
   const { pages, loading: pagesLoading, error: pagesError } = useQueryPages();
   const { error: metaError, loading: metaLoading } = useBuildMeta();
-
+  const { templates, loading: templateLoading, error: templateError } = useQueryTemplates(TemplateType.Page);
+  
   useEffect(() => {
     setPages(pages || []);
   }, [pages, setPages])
@@ -64,7 +67,7 @@ export const UiDesigner = memo(() => {
     setCategories(categories || []);
   }, [categories, setCategories])
 
-  useShowError(error || pagesError || metaError);
+  useShowError(error || pagesError || metaError || templateError);
 
   const engine = useMemo(
     () => createDesigner({
@@ -103,7 +106,7 @@ export const UiDesigner = memo(() => {
   }, [app?.uuid, device])
 
   return (
-    <Spin style={{ height: "100vh" }} spinning={loading || pagesLoading || metaLoading}>
+    <Spin style={{ height: "100vh" }} spinning={loading || pagesLoading || metaLoading || templateLoading}>
       <MenuDragRoot>
         <Designer engine={engine}>
           <StudioPanel logo={<NavigationWidget app={app} activeKey={activeKey as any} />}
@@ -139,7 +142,7 @@ export const UiDesigner = memo(() => {
                   </svg>
                 }
               >
-                <TemplateWidget />
+                <TemplateWidget templates = {templates}/>
               </CompositePanel.Item>
               <CompositePanel.Item
                 key={DesignerRoutes.OutlinedTree}
