@@ -33,13 +33,14 @@ export const ExportDialog = memo((
     return selectedIds.filter(id => locales.find(template => template.id === id))
   }, [selectedIds, locales])
 
-  const save = useSave(()=>{
+  const save = useSave(() => {
     message.success(t("OperateSuccess"));
   })
 
   const handleOk = useCallback(() => {
     save();
-  }, [save])
+    onClose();
+  }, [save, onClose])
 
   const handleSelectChange = useCallback((id: ID, checked?: boolean) => {
     setSelectedIds(ids => {
