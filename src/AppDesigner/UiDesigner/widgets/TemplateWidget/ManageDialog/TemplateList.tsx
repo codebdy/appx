@@ -1,33 +1,28 @@
-import { List } from "antd";
+import { Avatar, List } from "antd";
 import React from "react";
 import { memo } from "react"
+import { ITemplateInfo } from "~/model";
+import { useParseLangMessage } from "~/plugin-sdk";
 
-const data = [
-  {
-    title: 'Ant Design Title 1',
-  },
-  {
-    title: 'Ant Design Title 2',
-  },
-  {
-    title: 'Ant Design Title 3',
-  },
-  {
-    title: 'Ant Design Title 4',
-  },
-];
-export const TemplateList = memo(() => {
+export const TemplateList = memo((
+  props: {
+    templates?: ITemplateInfo[]
+  }
+) => {
+  const { templates } = props;
+  const p = useParseLangMessage();
+
   return (
     <List
       itemLayout="horizontal"
-      dataSource={data}
+      dataSource={templates}
       renderItem={item => (
         <List.Item
           actions={[<a key="list-loadmore-edit">edit</a>, <a key="list-loadmore-more">more</a>]}
         >
           <List.Item.Meta
-            //avatar={<Avatar src={item.picture.large} />}
-            title={item.title}
+            //avatar={<Avatar shape="square" size={64} src={item.imageUrl} />}
+            title={p(item.name)}
           />
         </List.Item>
       )}

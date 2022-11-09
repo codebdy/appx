@@ -102,7 +102,7 @@ export const TemplateWidget = observer((
           </Row>
         </TabPane>
       </Tabs>
-      <ManageDialog open={manageDialogOpen} onClose={handleManageClose} />
+      <ManageDialog open={manageDialogOpen} onClose={handleManageClose} templates = {templates}/>
     </div>
   )
 })

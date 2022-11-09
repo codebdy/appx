@@ -1,17 +1,19 @@
 import { Modal, Tabs } from 'antd';
 import React, { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ITemplateInfo } from '~/model';
 import "./style.less"
 import { TemplateList } from './TemplateList';
 
 
 export const ManageDialog = memo((
   props: {
+    templates?: ITemplateInfo[],
     open?: boolean,
     onClose?: () => void,
   }
 ) => {
-  const { open, onClose } = props;
+  const { templates, open, onClose } = props;
   const { t } = useTranslation();
 
   // const handleOk = useCallback(() => {
@@ -43,12 +45,12 @@ export const ManageDialog = memo((
           {
             label: t("Designer.PublicTemplates"),
             key: '1',
-            children: <TemplateList />,
+            children: <TemplateList templates={templates} />,
           },
           {
             label: t("Designer.LocaltTemplates"),
             key: '2',
-            children: <TemplateList />,
+            children: <TemplateList templates={templates} />,
           },
         ]}
       />
