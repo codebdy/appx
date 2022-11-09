@@ -8,7 +8,8 @@ import { createResource } from '@designable/core'
 import { ResourceNodeWidget } from "./ResourceNodeWidget";
 import { ManageDialog } from "./ManageDialog";
 import { ExportOutlined, ImportOutlined, MoreOutlined, SettingOutlined } from "@ant-design/icons";
-import { ITemplateInfo, TemplateType } from "~/model";
+import { CategoryType, ITemplateInfo, TemplateType } from "~/model";
+import { useParseLangMessage } from "~/plugin-sdk";
 
 const { TabPane } = Tabs;
 
@@ -93,6 +94,8 @@ export const TemplateWidget = observer((
   const [manageDialogOpen, setManageDialogOpen] = useState(false);
 
   const { t } = useTranslation();
+  const p = useParseLangMessage();
+
   const handleOpenManageDialog = useCallback(() => {
     setManageDialogOpen(true);
   }, [])
@@ -144,7 +147,19 @@ export const TemplateWidget = observer((
           </div>
         </TabPane>
         <TabPane tab={t("Designer.LocaltTemplates")} key={"my"}>
-          ddd
+          <div className={"template-resources"}>
+            {
+              templates?.filter(template => template.categoryType === CategoryType.Public).map(template => {
+                return (
+                  <ResourceNodeWidget source={createResource({
+                    icon: 'OpenPageButtonSource',
+                    title: p(template.name),
+                    elements: template.schemaJson?.elements || []
+                  })?.[0]} />
+                )
+              })
+            }
+          </div>
         </TabPane>
       </Tabs>
       <ManageDialog open={manageDialogOpen} onClose={handleManageClose} />
