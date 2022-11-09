@@ -52,7 +52,8 @@ export const ExportDialog = memo((
 
   const save = useSave(() => {
     message.success(t("OperateSuccess"));
-    setImporting(true);
+    setImporting(false);
+    setSelectedIds([]);
     onClose();
   })
 
