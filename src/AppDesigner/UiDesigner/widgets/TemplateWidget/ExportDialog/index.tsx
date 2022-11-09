@@ -5,6 +5,7 @@ import { CategoryType, ITemplateInfo } from '~/model';
 import { ID } from '~/shared';
 import "./style.less"
 import { TemplateList } from './TemplateList';
+import { useSave } from './useSave';
 
 export const ExportDialog = memo((
   props: {
@@ -32,9 +33,11 @@ export const ExportDialog = memo((
     return selectedIds.filter(id => locales.find(template => template.id === id))
   }, [selectedIds, locales])
 
+  const save = useSave()
 
   const handleOk = useCallback(() => {
-  }, [])
+    save();
+  }, [save])
 
   const handleSelectChange = useCallback((id: ID, checked?: boolean) => {
     setSelectedIds(ids => {
