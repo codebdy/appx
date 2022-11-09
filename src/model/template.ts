@@ -12,13 +12,16 @@ export enum TemplateType {
   Page = "Page"
 }
 
+export interface ElementsJson {
+  elements?: any[]
+}
 
 export interface ITemplateInfo {
   id: ID;
   name?: string;
   imageUrl?: string;
   dependencies?: any;
-  schemaJson?: any;
+  schemaJson?: ElementsJson;
   app?: IApp;
   device?: Device;
   categoryType?: CategoryType;
@@ -30,7 +33,7 @@ export interface ITemplateInfoInput {
   name?: string;
   imageUrl?: string;
   dependencies?: any;
-  schemaJson?: any;
+  schemaJson?: ElementsJson;
   app: { sync: IAppInput };
   device: Device;
   categoryType: CategoryType;

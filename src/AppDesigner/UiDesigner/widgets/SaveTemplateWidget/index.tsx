@@ -1,6 +1,6 @@
 import { observer } from "@formily/reactive-react"
 import { Button, Form, Modal } from "antd"
-import React, { useCallback, useState } from "react"
+import React, { useCallback, useMemo, useState } from "react"
 import { IconWidget } from "../IconWidget"
 import {
   useTree,
@@ -13,6 +13,7 @@ import { useUpsertTemplate } from "../../hooks/useUpsertTemplate"
 import { useDesignerParams } from "~/plugin-sdk"
 import { useShowError } from "~/AppDesigner/hooks/useShowError"
 import { CategoryType, TemplateType } from "~/model"
+import { transForm } from "../TemplateWidget/transform"
 
 export const SaveTemplateWidget = observer((
   props: {
@@ -27,6 +28,10 @@ export const SaveTemplateWidget = observer((
   const tree = useTree()
   const node = tree.findById(selected?.[0])
   const [form] = Form.useForm()
+
+  const elements = useMemo(() => {
+    return selected?.map(id => transForm(tree.findById(id)))
+  }, [selected, tree])
 
   const [upsert, { error, loading }] = useUpsertTemplate({
     onCompleted: () => {
@@ -52,11 +57,14 @@ export const SaveTemplateWidget = observer((
           sync: {
             id: app.id
           }
+        },
+        schemaJson: {
+          elements
         }
       })
     })
 
-  }, [upsert, templateType]);
+  }, [upsert, templateType, elements]);
 
   const handleCancel = useCallback(() => {
     form.resetFields();
