@@ -13,7 +13,7 @@ import { useUpsertTemplate } from "../../hooks/useUpsertTemplate"
 import { useDesignerParams } from "~/plugin-sdk"
 import { useShowError } from "~/AppDesigner/hooks/useShowError"
 import { CategoryType, TemplateType } from "~/model"
-import { transForm } from "../TemplateWidget/transform"
+import { transForm } from "./transform"
 
 export const SaveTemplateWidget = observer((
   props: {

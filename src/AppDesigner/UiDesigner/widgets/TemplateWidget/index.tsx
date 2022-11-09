@@ -149,7 +149,7 @@ export const TemplateWidget = observer((
         <TabPane tab={t("Designer.LocaltTemplates")} key={"my"}>
           <div className={"template-resources"}>
             {
-              templates?.filter(template => template.categoryType === CategoryType.Public).map(template => {
+              templates?.filter(template => template.categoryType === CategoryType.Local).map(template => {
                 return (
                   <ResourceNodeWidget source={createResource({
                     icon: 'OpenPageButtonSource',
