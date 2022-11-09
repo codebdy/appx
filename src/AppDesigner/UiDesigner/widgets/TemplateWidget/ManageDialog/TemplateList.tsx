@@ -15,19 +15,21 @@ export const TemplateList = memo((
   const p = useParseLangMessage();
 
   return (
-    <List
-      itemLayout="horizontal"
-      dataSource={templates}
-      renderItem={item => (
-        <List.Item
-          actions={[<EditTemplateDialog/>, <DeleteTemplateButton />]}
-        >
-          <List.Item.Meta
-            //avatar={<Avatar shape="square" size={64} src={item.imageUrl} />}
-            title={p(item.name)}
-          />
-        </List.Item>
-      )}
-    />
+    <div className="template-list-container">
+      <List
+        itemLayout="horizontal"
+        dataSource={templates}
+        renderItem={item => (
+          <List.Item
+            actions={[<EditTemplateDialog template={item} />, <DeleteTemplateButton template={item} />]}
+          >
+            <List.Item.Meta
+              //avatar={<Avatar shape="square" size={64} src={item.imageUrl} />}
+              title={p(item.name)}
+            />
+          </List.Item>
+        )}
+      />
+    </div>
   )
 })
