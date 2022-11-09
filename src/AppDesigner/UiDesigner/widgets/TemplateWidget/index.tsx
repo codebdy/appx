@@ -1,15 +1,14 @@
 import { Button, Dropdown, Menu, MenuProps, Tabs } from "antd"
-import React, { useMemo } from "react"
+import React, { useCallback, useMemo, useState } from "react"
 import { TemplateSearchWidget } from "./TemplateSearchWidget";
 import "./style.less"
 import { observer } from "@formily/reactive-react";
 import { useTranslation } from "react-i18next";
-import { usePredefinedMaterialTab } from "~/material/context";
-import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage";
 import { createResource } from '@designable/core'
 import { ResourceNodeWidget } from "./ResourceNodeWidget";
-import { TemplateDialog } from "./TemplateDialog";
+import { ManageDialog } from "./ManageDialog";
 import { ExportOutlined, ImportOutlined, MoreOutlined, SettingOutlined } from "@ant-design/icons";
+import { TemplateType } from "~/model";
 
 const { TabPane } = Tabs;
 
@@ -87,13 +86,17 @@ const TestSource = {
 
 export const TemplateWidget = observer((
   props: {
-    withFrameMaterials?: boolean
+    templateType?: TemplateType
   }
 ) => {
-  const { withFrameMaterials } = props;
-  const { basicTab, frameworkTab } = usePredefinedMaterialTab();
+  const { templateType } = props;
+  const [manageDialogOpen, setManageDialogOpen] = useState(false);
+
   const { t } = useTranslation();
-  const p = useParseLangMessage();
+  const handleOpenManageDialog = useCallback(() => {
+    setManageDialogOpen(true);
+  }, [])
+
   const items: MenuProps['items'] = useMemo(() => [
     {
       label: t("Designer.ImportTemplates"),
@@ -108,17 +111,22 @@ export const TemplateWidget = observer((
     {
       label: t("Designer.ManageTemplates"),
       key: '3',
-      icon: <SettingOutlined />
+      icon: <SettingOutlined />,
+      onClick: handleOpenManageDialog,
     },
-  ], [t]);
+  ], [t, handleOpenManageDialog]);
+
+  const handleManageClose = useCallback(() => {
+    setManageDialogOpen(false)
+  }, [])
 
   return (
-    <div className="rx-material-panel">
+    <div className="rx-template-panel">
       <TemplateSearchWidget />
-      <Tabs defaultActiveKey={withFrameMaterials ? frameworkTab.uuid : basicTab.uuid}
+      <Tabs
         animated
         size="small"
-        className="materail-tabs"
+        className="template-tabs"
         tabBarExtraContent={
           <Dropdown overlay={
             <Menu
@@ -139,6 +147,7 @@ export const TemplateWidget = observer((
           ddd
         </TabPane>
       </Tabs>
+      <ManageDialog open={manageDialogOpen} onClose={handleManageClose} />
     </div>
   )
 })
