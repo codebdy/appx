@@ -16,7 +16,6 @@ export enum TemplateType {
 export interface ITemplateInfo {
   id: ID;
   name?: string;
-  uuid?: string;
   imageUrl?: string;
   dependencies?: any;
   schemaJson?: any;
@@ -29,12 +28,11 @@ export interface ITemplateInfo {
 export interface ITemplateInfoInput {
   id?: ID;
   name?: string;
-  uuid?: string;
   imageUrl?: string;
   dependencies?: any;
   schemaJson?: any;
-  app?: { sync?: IAppInput };
-  device?: Device;
-  categoryType?: CategoryType;
-  templateType?: TemplateType;
+  app: { sync: IAppInput };
+  device: Device;
+  categoryType: CategoryType;
+  templateType: TemplateType;
 }

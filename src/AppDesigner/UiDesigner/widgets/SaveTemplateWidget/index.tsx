@@ -9,26 +9,59 @@ import {
 import { useTranslation } from "react-i18next"
 import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/view"
 import ImageUploader from "~/plugins/inputs/components/pc/ImageUploader/view"
+import { useUpsertTemplate } from "../../hooks/useUpsertTemplate"
+import { useDesignerParams } from "~/plugin-sdk"
+import { useShowError } from "~/AppDesigner/hooks/useShowError"
+import { CategoryType, TemplateType } from "~/model"
 
-export const SaveTemplateWidget = observer(() => {
+export const SaveTemplateWidget = observer((
+  props: {
+    templateType: TemplateType
+  }
+) => {
+  const { templateType } = props;
   const [open, setOpen] = useState(false);
+  const { app, device } = useDesignerParams();
   const selected = useSelected();
   const { t } = useTranslation();
   const tree = useTree()
   const node = tree.findById(selected?.[0])
   const [form] = Form.useForm()
 
+  const [upsert, { error, loading }] = useUpsertTemplate({
+    onCompleted: () => {
+      form.resetFields();
+      setOpen(false);
+    }
+  });
+
+  useShowError(error)
+
   const handleShowModal = useCallback(() => {
     setOpen(true);
   }, []);
 
   const handleOk = useCallback(() => {
-    setOpen(false);
-  }, []);
+    form.validateFields().then((values: any) => {
+      upsert({
+        ...values,
+        templateType: templateType,
+        categoryType: CategoryType.Local,
+        device,
+        app: {
+          sync: {
+            id: app.id
+          }
+        }
+      })
+    })
+
+  }, [upsert, templateType]);
 
   const handleCancel = useCallback(() => {
+    form.resetFields();
     setOpen(false);
-  }, []);
+  }, [form]);
 
   return (
     <>
@@ -50,6 +83,9 @@ export const SaveTemplateWidget = observer(() => {
         onCancel={handleCancel}
         okText={t("Confirm")}
         cancelText={t("Cancel")}
+        okButtonProps={{
+          loading: loading
+        }}
       >
         <Form
           name="saveAsTemplate"

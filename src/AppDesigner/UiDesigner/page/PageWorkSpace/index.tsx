@@ -21,6 +21,7 @@ import { FormDesigner } from "~/components/pc/FormDesigner";
 import { ObjectContainer } from "@designable/formily-antd";
 import { useMaterialDesigners } from "~/material/hooks/useMaterialDesigners";
 import { SaveTemplateWidget } from "../../widgets/SaveTemplateWidget";
+import { TemplateType } from "~/model";
 
 const PageWorkSpace = (props: {
   pageId: ID,
@@ -59,7 +60,7 @@ const PageWorkSpace = (props: {
               <ToolbarPanel>
                 <DesignerToolsWidget />
                 <div>
-                  <SaveTemplateWidget />
+                  <SaveTemplateWidget templateType={TemplateType.Page} />
                   <ViewToolsWidget
                     use={['DESIGNABLE', 'JSONTREE', 'PREVIEW']}
                   />
