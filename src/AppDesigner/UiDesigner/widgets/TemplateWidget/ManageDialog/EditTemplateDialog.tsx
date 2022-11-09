@@ -1,6 +1,6 @@
 import { EditOutlined } from "@ant-design/icons"
 import { Button, Form, Modal } from "antd"
-import React, { useCallback, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next"
 import { useShowError } from "~/AppDesigner/hooks/useShowError"
@@ -17,6 +17,11 @@ export const EditTemplateDialog = memo((
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();
   const [form] = Form.useForm()
+
+  useEffect(() => {
+    form.setFieldsValue(template);
+  }, [template, form])
+
   const [upsert, { error, loading }] = useUpsertTemplate({
     onCompleted: () => {
       form.resetFields();
