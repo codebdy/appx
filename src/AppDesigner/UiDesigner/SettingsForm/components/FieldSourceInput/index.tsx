@@ -104,7 +104,7 @@ export const FieldSourceInput = observer((
 
   const realValue = useMemo(() => {
     if (mode === "multiple") {
-      return (value as IFieldSource[])?.map(child => child.name);
+      return isArr(value) ? (value as IFieldSource[])?.map(child => child.name) : [];
     } else {
       return (value as IFieldSource)?.name;
     }

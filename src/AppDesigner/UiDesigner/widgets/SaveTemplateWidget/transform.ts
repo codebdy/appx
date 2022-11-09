@@ -19,5 +19,11 @@ export function transForm(node: ITreeNode): ITreeNode {
   if (newNode?.props?.["x-component-props"]?.["dataBind"]) {
     delete newNode?.props?.["x-component-props"]?.["dataBind"]
   }
+  if (newNode?.props?.["x-component-props"]?.["onClick"]) {
+    delete newNode?.props?.["x-component-props"]?.["onClick"]
+  }
+  if (newNode?.props?.["x-component-props"]?.["onSearch"]) {
+    delete newNode?.props?.["x-component-props"]?.["onSearch"]
+  }
   return newNode;
 }
