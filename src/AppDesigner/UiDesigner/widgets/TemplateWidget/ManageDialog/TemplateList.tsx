@@ -1,8 +1,10 @@
-import { Avatar, List } from "antd";
+import { List } from "antd";
 import React from "react";
 import { memo } from "react"
 import { ITemplateInfo } from "~/model";
 import { useParseLangMessage } from "~/plugin-sdk";
+import { DeleteTemplateButton } from "./DeleteTemplateButton";
+import { EditTemplateDialog } from "./EditTemplateDialog";
 
 export const TemplateList = memo((
   props: {
@@ -18,7 +20,7 @@ export const TemplateList = memo((
       dataSource={templates}
       renderItem={item => (
         <List.Item
-          actions={[<a key="list-loadmore-edit">edit</a>, <a key="list-loadmore-more">more</a>]}
+          actions={[<EditTemplateDialog/>, <DeleteTemplateButton />]}
         >
           <List.Item.Meta
             //avatar={<Avatar shape="square" size={64} src={item.imageUrl} />}
