@@ -71,7 +71,7 @@ export const SaveTemplateWidget = observer((
   }, [form]);
 
   const disabled = useMemo(() => {
-    if (!selected?.length) {
+    if (selected?.length !== 1) {
       return true;
     }
     for (const id of selected) {
