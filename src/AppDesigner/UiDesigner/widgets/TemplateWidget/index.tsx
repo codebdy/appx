@@ -5,7 +5,7 @@ import "./style.less"
 import { observer } from "@formily/reactive-react";
 import { useTranslation } from "react-i18next";
 import { createResource } from '@designable/core'
-import { ResourceNodeWidget } from "./ResourceNodeWidget";
+import { TemplateNodeWidget } from "./TemplateNodeWidget";
 import { ManageDialog } from "./ManageDialog";
 import { ExportOutlined, ImportOutlined, MoreOutlined, SettingOutlined } from "@ant-design/icons";
 import { CategoryType, ITemplateInfo, TemplateType } from "~/model";
@@ -143,17 +143,17 @@ export const TemplateWidget = observer((
       >
         <TabPane tab={t("Designer.PublicTemplates")} key={"public"}>
           <div className={"template-resources"}>
-            <ResourceNodeWidget source={createResource(TestSource)[0]} />
+            <TemplateNodeWidget source={createResource(TestSource)[0]} />
           </div>
         </TabPane>
-        <TabPane tab={t("Designer.LocaltTemplates")} key={"my"}>
-          <Row gutter={16}>
+        <TabPane tab={t("Designer.LocaltTemplates")} className="templates-panel" key={"local"}>
+          <Row gutter={8}>
             {
               templates?.filter(template => template.categoryType === CategoryType.Local).map(template => {
                 return (
                   <Col key={template.id} xs={12}>
-                    <ResourceNodeWidget source={createResource({
-                      icon: 'OpenPageButtonSource',
+                    <TemplateNodeWidget imageUrl={template.imageUrl} source={createResource({
+                      //icon: 'OpenPageButtonSource',
                       title: p(template.name),
                       elements: template.schemaJson?.elements || []
                     })?.[0]} />
