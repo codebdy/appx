@@ -1,16 +1,16 @@
-import { Tabs } from "antd"
+import { Button, Dropdown, Menu, MenuProps, Tabs } from "antd"
 import React from "react"
 import { TemplateSearchWidget } from "./TemplateSearchWidget";
 import "./style.less"
 import { observer } from "@formily/reactive-react";
-import { ResourceWidget } from "../ResourceWidget";
 import { useTranslation } from "react-i18next";
-import { useAppMaterialTabs, usePredefinedMaterialTab } from "~/material/context";
+import { usePredefinedMaterialTab } from "~/material/context";
 import { useParseLangMessage } from "@rxdrag/plugin-sdk/hooks/useParseLangMessage";
 import { createResource } from '@designable/core'
 import { usePrefix } from '@designable/react'
 import { ResourceNodeWidget } from "./ResourceNodeWidget";
 import { TemplateDialog } from "./TemplateDialog";
+import { MoreOutlined } from "@ant-design/icons";
 
 const { TabPane } = Tabs;
 
@@ -96,6 +96,23 @@ export const TemplateWidget = observer((
   const { t } = useTranslation();
   const p = useParseLangMessage();
   const prefix = usePrefix('resource')
+  const items: MenuProps['items'] = [
+    {
+      label: <a href="https://www.antgroup.com">1st menu item</a>,
+      key: '0',
+    },
+    {
+      label: <a href="https://www.aliyun.com">2nd menu item</a>,
+      key: '1',
+    },
+    {
+      type: 'divider',
+    },
+    {
+      label: '3rd menu item',
+      key: '3',
+    },
+  ];
 
   return (
     <div className="rx-material-panel">
@@ -105,15 +122,22 @@ export const TemplateWidget = observer((
         size="small"
         className="materail-tabs"
         tabBarExtraContent={
-          <TemplateDialog />
+          <Dropdown overlay={
+            <Menu
+              items={items}
+            />
+          }
+            trigger={['click']}>
+            <Button type="text" shape="circle" icon={<MoreOutlined />} onClick={e => e.preventDefault()} />
+          </Dropdown>
         }
       >
-        <TabPane tab={"公共模板"} key={"public"}>
+        <TabPane tab={t("Designer.PublicTemplates")} key={"public"}>
           <div className={"template-resources"}>
             <ResourceNodeWidget source={createResource(TestSource)[0]} />
           </div>
         </TabPane>
-        <TabPane tab={"我的模板"} key={"my"}>
+        <TabPane tab={t("Designer.LocaltTemplates")} key={"my"}>
           ddd
         </TabPane>
       </Tabs>

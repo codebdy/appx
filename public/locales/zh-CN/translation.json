@@ -151,7 +151,9 @@
     "PublishSuccess": "发布成功",
     "SaveAsTemplate": "保存为模板",
     "TemplateName": "模板名称",
-    "TemplateImage": "模板图片"
+    "TemplateImage": "模板图片",
+    "PublicTemplates":"公用模板",
+    "LocaltTemplates":"我的模板"
   },
   "Plugins": {
     "Title": "插件",
