@@ -7,13 +7,12 @@ import {
   useSelected
 } from '@designable/react'
 import { useTranslation } from "react-i18next"
-import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/view"
-import ImageUploader from "~/plugins/inputs/components/pc/ImageUploader/view"
 import { useUpsertTemplate } from "../../hooks/useUpsertTemplate"
 import { useDesignerParams } from "~/plugin-sdk"
 import { useShowError } from "~/AppDesigner/hooks/useShowError"
 import { CategoryType, TemplateType } from "~/model"
 import { transForm } from "./transform"
+import { SaveTemplateForm } from "./SaveTemplateForm"
 
 export const SaveTemplateWidget = observer((
   props: {
@@ -115,27 +114,7 @@ export const SaveTemplateWidget = observer((
           loading: loading
         }}
       >
-        <Form
-          name="saveAsTemplate"
-          labelCol={{ span: 6 }}
-          wrapperCol={{ span: 16 }}
-          form={form}
-          autoComplete="off"
-        >
-          <Form.Item
-            label={t("Designer.TemplateName")}
-            name="name"
-            rules={[{ required: true, message: t("Required") }]}
-          >
-            <MultiLangInput inline title={t("Designer.TemplateName")} />
-          </Form.Item>
-          < Form.Item
-            label={t("Designer.TemplateImage")}
-            name="imageUrl"
-          >
-            <ImageUploader title={t("Upload")} maxCount={1} />
-          </Form.Item>
-        </Form>
+        <SaveTemplateForm form={form} />
       </Modal>
     </>
   )
