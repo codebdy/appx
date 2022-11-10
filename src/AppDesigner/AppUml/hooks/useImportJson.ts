@@ -1,6 +1,7 @@
 import { message } from "antd";
 import { useCallback } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
+import { SYSTEM_APP_ID } from "~/consts";
 import { getTheFiles } from "~/shared/action/hooks/useOpenFile";
 import { MetaContent } from "../meta";
 import { classesState, relationsState, diagramsState, codesState, x6NodesState, x6EdgesState, packagesState } from "../recoil/atoms";
@@ -18,8 +19,8 @@ export function useImportJson(appId: string) {
   const [packages, setPackages] = useRecoilState(packagesState(appId))
 
   const doImport = useCallback(() => {
-    getTheFiles(".json")?.[0]?.then((fileHandle) => {
-      fileHandle.getFile().then((file: any) => {
+    getTheFiles(".json").then((fileHandles) => {
+      fileHandles?.[0]?.getFile().then((file: any) => {
         file.text().then((fileData: any) => {
           try {
             backupSnapshot();
@@ -27,8 +28,9 @@ export function useImportJson(appId: string) {
             const getPackage = (packageUuid: string) => {
               return packages?.find(pkg => pkg.uuid === packageUuid);
             }
-            const systemPackages = packages?.filter(pkg => pkg.sharable) || [];
-            const systemClasses = classes?.filter(cls => getPackage(cls.packageUuid).sharable) || []
+
+            const systemPackages = appId === SYSTEM_APP_ID ? [] : packages?.filter(pkg => pkg.sharable) || [];
+            const systemClasses = appId === SYSTEM_APP_ID ? [] : classes?.filter(cls => getPackage(cls.packageUuid).sharable) || []
             setPackages([...systemPackages, ...meta?.packages || []]);
             setClasses([...systemClasses, ...meta?.classes || []]);
             setRelations(meta?.relations || []);
