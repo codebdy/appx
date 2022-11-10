@@ -85,14 +85,6 @@ export const ImportDialog = memo((
       title={t("Designer.ImportTemplates")}
       className='template-export-modal'
       open={open}
-      //okText={t("Designer.Import")}
-      //cancelText={t("Cancel")}
-      //onOk={handleOk}
-      //onCancel={handleCancel}
-      // okButtonProps={{
-      //   disabled: selectedIds.length === 0,
-      //   loading: importing,
-      // }}
       footer={
         <div
           style={{
@@ -121,6 +113,7 @@ export const ImportDialog = memo((
         <TemplateList
           templates={templates}
           selectedIds={selectedIds}
+          onSelectChange={handleSelectChange}
         />
       </Spin>
     </Modal>

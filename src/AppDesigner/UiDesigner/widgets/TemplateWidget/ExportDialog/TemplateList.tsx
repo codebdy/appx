@@ -7,9 +7,9 @@ import { ID } from "~/shared";
 
 export const TemplateList = memo((
   props: {
-    templates?: ITemplateInfo[],
-    selectedIds?: ID[],
-    onSelectChange?: (id: ID, checked?: boolean) => void,
+    templates: ITemplateInfo[],
+    selectedIds: ID[],
+    onSelectChange: (id: ID, checked?: boolean) => void,
   }
 ) => {
   const { selectedIds, templates, onSelectChange } = props;

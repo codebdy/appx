@@ -113,6 +113,7 @@ export const ExportDialog = memo((
             children: <TemplateList
               templates={publics}
               selectedIds={publicSelects}
+              onSelectChange={handleSelectChange}
             />,
           },
           {
