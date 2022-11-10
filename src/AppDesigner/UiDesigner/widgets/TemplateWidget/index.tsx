@@ -97,7 +97,7 @@ export const TemplateWidget = observer((
           </Dropdown>
         }
       >
-        <TabPane tab={t("Designer.PublicTemplates")} key={"public"}>
+        <TabPane tab={t("Designer.PublicTemplates")} className="templates-panel" key={"public"}>
           <Row gutter={8}>
             {
               templates?.filter(template => template.categoryType === CategoryType.Public).map(template => {
