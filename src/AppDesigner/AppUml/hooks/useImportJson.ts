@@ -1,7 +1,7 @@
 import { message } from "antd";
 import { useCallback } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { getTheFile } from "~/shared/action/hooks/useOpenFile";
+import { getTheFiles } from "~/shared/action/hooks/useOpenFile";
 import { MetaContent } from "../meta";
 import { classesState, relationsState, diagramsState, codesState, x6NodesState, x6EdgesState, packagesState } from "../recoil/atoms";
 import { useBackupSnapshot } from "./useBackupSnapshot";
@@ -18,7 +18,7 @@ export function useImportJson(appId: string) {
   const [packages, setPackages] = useRecoilState(packagesState(appId))
 
   const doImport = useCallback(() => {
-    getTheFile(".json").then((fileHandle) => {
+    getTheFiles(".json")?.[0]?.then((fileHandle) => {
       fileHandle.getFile().then((file: any) => {
         file.text().then((fileData: any) => {
           try {

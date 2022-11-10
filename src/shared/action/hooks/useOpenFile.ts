@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { IOpenFileAction } from "~/plugin-sdk";
 
-export async function getTheFile(accept: string, multiple?: boolean) {
+export async function getTheFiles(accept: string, multiple?: boolean) {
   // open file picker
   const fileHandles = await (window as any).showOpenFilePicker({
     types: [{
@@ -20,7 +20,7 @@ export function useOpenFile() {
   const open = useCallback(async (palyload: IOpenFileAction, variables: any) => {
     try {
       const allFiles = await Promise.all(
-        (await getTheFile(palyload.accept, palyload.multiple)).map(async (fileHandle) => {
+        (await getTheFiles(palyload.accept, palyload.multiple)).map(async (fileHandle) => {
           const file = await fileHandle.getFile();
           return file;
         })

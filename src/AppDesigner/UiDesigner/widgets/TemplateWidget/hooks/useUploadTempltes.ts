@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useUploadZip } from "~/AppDesigner/AppPlugins/hooks/useUploadZip";
-import { getTheFile } from "~/shared/action/hooks/useOpenFile";
+import { getTheFiles } from "~/shared/action/hooks/useOpenFile";
 
 export function useUploadTempltes() {
   const uploadZip = useUploadZip("templates")
@@ -8,7 +8,7 @@ export function useUploadTempltes() {
   const doImport = useCallback(async () => {
     try {
       const files = await Promise.all(
-        (await getTheFile(".zip", false)).map(async (fileHandle) => {
+        (await getTheFiles(".zip", false)).map(async (fileHandle) => {
           const file = await fileHandle.getFile();
           return file;
         })
