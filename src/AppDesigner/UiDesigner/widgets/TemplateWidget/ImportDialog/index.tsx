@@ -1,5 +1,5 @@
 import { Button, Modal, Space, Spin } from 'antd';
-import React, { memo, useCallback, useMemo, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ITemplateInfo } from '~/model';
 import { ID } from '~/shared';
@@ -22,6 +22,30 @@ export const ImportDialog = memo((
   const handleCancel = useCallback(() => {
     onClose();
   }, [onClose])
+
+  useEffect(() => {
+    if (uploadedUrl) {
+      setFetching(true)
+      const url = uploadedUrl.substring(0, uploadedUrl.length - 4)
+      fetch(url + "/templates.json").then((resp) => {
+        resp.json().then(value => {
+          const templates: ITemplateInfo[] = value?.templates || [];
+          for (const template of templates) {
+            template.imageUrl = url + "/" + template.imageUrl;
+          }
+
+          setTemplates(templates)
+          setFetching(false)
+        }).catch(err => {
+          setFetching(false)
+          console.error(err)
+        })
+      }).catch(err => {
+        setFetching(false)
+        console.error(err)
+      })
+    }
+  }, [uploadedUrl])
 
   const handleOk = useCallback(() => {
     setImporting(true);
