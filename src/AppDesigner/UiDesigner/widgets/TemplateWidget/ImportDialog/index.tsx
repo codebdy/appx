@@ -1,4 +1,4 @@
-import { Button, Modal, Space } from 'antd';
+import { Button, Modal, Space, Spin } from 'antd';
 import React, { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ITemplateInfo } from '~/model';
@@ -16,6 +16,7 @@ export const ImportDialog = memo((
   const [selectedIds, setSelectedIds] = useState<ID[]>([]);
   const [importing, setImporting] = useState(false);
   const [templates, setTemplates] = useState<ITemplateInfo[]>([]);
+  const [fetching, setFetching] = useState(false);
   const { t } = useTranslation();
   const open = useMemo(() => !!uploadedUrl, [uploadedUrl])
   const handleCancel = useCallback(() => {
@@ -92,10 +93,12 @@ export const ImportDialog = memo((
         </div>
       }
     >
-      <TemplateList
-        templates={templates}
-        selectedIds={selectedIds}
-      />
+      <Spin spinning={fetching}>
+        <TemplateList
+          templates={templates}
+          selectedIds={selectedIds}
+        />
+      </Spin>
     </Modal>
   );
 })
