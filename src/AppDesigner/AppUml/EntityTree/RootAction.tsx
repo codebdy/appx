@@ -19,6 +19,11 @@ const RootAction = memo(() => {
   const backup = useBackupSnapshot(appId);
   const expotJson = useExportJson(appId);
   const { t } = useTranslation();
+
+  const handleNoneAction = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation()
+  }, [])
+
   const handleAddPackage = useCallback(
     () => {
       setNewPackage(createNewPackage());
@@ -38,6 +43,7 @@ const RootAction = memo(() => {
 
   const menu = useMemo(() => (
     <Menu
+      onClick={(info) => info.domEvent.stopPropagation()}
       items={[
         {
           icon: <FolderAddOutlined />,
@@ -66,7 +72,7 @@ const RootAction = memo(() => {
   return (
     <>
       <Dropdown overlay={menu} trigger={['click']}>
-        <Button shape='circle' type="text" size='small' onClick={e => e.stopPropagation()}>
+        <Button shape='circle' type="text" size='small' onClick={handleNoneAction}>
           <MoreOutlined />
         </Button>
       </Dropdown>
