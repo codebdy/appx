@@ -1,4 +1,4 @@
-import { Modal } from 'antd';
+import { Button, Modal, Space } from 'antd';
 import React, { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ITemplateInfo } from '~/model';
@@ -62,14 +62,37 @@ export const ImportDialog = memo((
       title={t("Designer.ImportTemplates")}
       className='template-export-modal'
       open={open}
-      okText={t("Designer.Import")}
-      cancelText={t("Cancel")}
-      onOk={handleOk}
-      onCancel={handleCancel}
-      okButtonProps={{
-        disabled: selectedIds.length === 0,
-        loading: importing,
-      }}
+      //okText={t("Designer.Import")}
+      //cancelText={t("Cancel")}
+      //onOk={handleOk}
+      //onCancel={handleCancel}
+      // okButtonProps={{
+      //   disabled: selectedIds.length === 0,
+      //   loading: importing,
+      // }}
+      footer={
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <div>选中5条</div>
+          <Space>
+            <Button onClick={handleCancel}>
+              {t("Cancel")}
+            </Button>
+            <Button
+              type="primary"
+              disabled={selectedIds.length === 0}
+              loading={importing}
+              onClick={handleOk}
+            >
+              {t("Designer.Import")}
+            </Button>
+          </Space>
+        </div>
+      }
     >
       <TemplateList
         templates={templates}
