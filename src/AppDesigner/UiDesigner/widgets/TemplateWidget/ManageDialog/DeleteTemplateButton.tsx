@@ -18,10 +18,11 @@ export const DeleteTemplateButton = memo((
 
   const handleClick = useCallback(() => {
     doDelete(template.id)
-  }, [doDelete])
+  }, [doDelete, template])
 
   return (
     <Button
+      key={template.id}
       type="text"
       shape="circle"
       icon={<DeleteOutlined />}
