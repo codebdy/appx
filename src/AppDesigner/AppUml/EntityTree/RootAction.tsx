@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
 import { PackageDialog } from "./PackageLabel/PackageDialog";
 import { PackageMeta } from "../meta/PackageMeta";
+import { useImportJson } from "../hooks/useImportJson";
 
 const RootAction = memo(() => {
   const appId = useEdittingAppId();
@@ -18,6 +19,7 @@ const RootAction = memo(() => {
   const createNewPackage = useCreateNewPackage(appId);
   const backup = useBackupSnapshot(appId);
   const expotJson = useExportJson(appId);
+  const importJson = useImportJson(appId);
   const { t } = useTranslation();
 
   const handleNoneAction = useCallback((e: React.MouseEvent) => {
@@ -64,10 +66,11 @@ const RootAction = memo(() => {
           icon: <ImportOutlined />,
           label: t("AppUml.ImportModel"),
           key: '2',
+          onClick: importJson,
         },
       ]}
     />
-  ), [expotJson, handleAddPackage, t]);
+  ), [expotJson, importJson, handleAddPackage, t]);
 
   return (
     <>
