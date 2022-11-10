@@ -18,10 +18,11 @@ const { TabPane } = Tabs;
 
 export const TemplateWidget = observer((
   props: {
-    templates?: ITemplateInfo[]
+    templates: ITemplateInfo[],
+    templateType: TemplateType,
   }
 ) => {
-  const { templates } = props;
+  const { templates, templateType } = props;
   const [manageDialogOpen, setManageDialogOpen] = useState(false);
   const [exportDialogOpen, setExportDialogOpen] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -132,7 +133,7 @@ export const TemplateWidget = observer((
       </Tabs>
       <ManageDialog open={manageDialogOpen} onClose={handleManageClose} templates={templates} />
       <ExportDialog open={exportDialogOpen} onClose={handleExportClose} templates={templates} />
-      <ImportDialog uploadedUrl={uploadedUrl} onClose={handelImportClose} />
+      <ImportDialog uploadedUrl={uploadedUrl} onClose={handelImportClose} templateType={templateType} />
     </div>
   )
 })

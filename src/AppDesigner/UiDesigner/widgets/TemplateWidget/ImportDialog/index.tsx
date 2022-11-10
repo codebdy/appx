@@ -1,4 +1,4 @@
-import { Button, Modal, Space, Spin } from 'antd';
+import { Button, message, Modal, Space, Spin } from 'antd';
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useShowError } from '~/AppDesigner/hooks/useShowError';
@@ -12,9 +12,10 @@ export const ImportDialog = memo((
   props: {
     uploadedUrl?: string,
     onClose?: () => void,
+    templateType: TemplateType
   }
 ) => {
-  const { uploadedUrl, onClose } = props;
+  const { uploadedUrl, onClose, templateType } = props;
   const [selectedIds, setSelectedIds] = useState<ID[]>([]);
   const [templates, setTemplates] = useState<ITemplateInfo[]>([]);
   const [fetching, setFetching] = useState(false);
@@ -42,6 +43,11 @@ export const ImportDialog = memo((
             const template = templates[i]
             template.imageUrl = url + "/" + template.imageUrl;
             template.id = "" + i
+            if (template.templateType !== templateType) {
+              message.error(t("Designer.TemplateTypeError"))
+              onClose();
+              return;
+            }
           }
 
           setTemplates(templates)
@@ -55,7 +61,7 @@ export const ImportDialog = memo((
         console.error(err)
       })
     }
-  }, [uploadedUrl])
+  }, [uploadedUrl, templateType, onClose, t])
 
   const handleOk = useCallback(() => {
     save(selectedIds.map(id => templates.find(template => template.id === id)).map(template => ({ ...template, id: undefined })), TemplateType.Page)

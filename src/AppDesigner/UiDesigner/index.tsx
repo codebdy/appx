@@ -58,7 +58,7 @@ export const UiDesigner = memo(() => {
   const { pages, loading: pagesLoading, error: pagesError } = useQueryPages();
   const { error: metaError, loading: metaLoading } = useBuildMeta();
   const { templates, loading: templateLoading, error: templateError } = useQueryTemplates(TemplateType.Page);
-  
+
   useEffect(() => {
     setPages(pages || []);
   }, [pages, setPages])
@@ -142,7 +142,7 @@ export const UiDesigner = memo(() => {
                   </svg>
                 }
               >
-                <TemplateWidget templates = {templates}/>
+                <TemplateWidget templates={templates || []} templateType={TemplateType.Page} />
               </CompositePanel.Item>
               <CompositePanel.Item
                 key={DesignerRoutes.OutlinedTree}

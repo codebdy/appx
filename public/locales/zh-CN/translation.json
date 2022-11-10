@@ -159,7 +159,8 @@
     "ImportTemplates": "导入模板",
     "ExportTemplates": "导出模板",
     "ManageTemplates": "管理模板",
-    "SelecteMessage": "已选择 {{count}} 项"
+    "SelecteMessage": "已选择 {{count}} 项",
+    "TemplateTypeError": "模板类型错误"
   },
   "Plugins": {
     "Title": "插件",

@@ -16,6 +16,9 @@ import { FrameWorkSpace } from "./FrameWorkSpace"
 import { useQueryPageFrames } from "./hooks/useQueryPageFrames"
 import { DesignerRoutes } from "../UiDesigner"
 import { useBuildMeta } from "~/datasource"
+import { useQueryTemplates } from "../UiDesigner/hooks/useQueryTemplates"
+import { TemplateType } from "~/model"
+import { TemplateWidget } from "../UiDesigner/widgets/TemplateWidget"
 
 export const FrameDesigner = memo(() => {
   const [activeKey, setActiveKey] = useState<string>(DesignerRoutes.Templates);
@@ -23,7 +26,9 @@ export const FrameDesigner = memo(() => {
   const { t } = useTranslation();
   const { pageFrames, error, loading } = useQueryPageFrames();
   const { error: metaError, loading: metaLoading } = useBuildMeta();
-  useShowError(error || metaError);
+  const { templates, loading: templateLoading, error: templateError } = useQueryTemplates(TemplateType.Frame);
+
+  useShowError(error || metaError || templateError);
   const hanclePannelChange = useCallback((activeKey: string) => {
     setActiveKey(activeKey)
   }, []);
@@ -50,7 +55,7 @@ export const FrameDesigner = memo(() => {
     setSeletedId(selectedId)
   }, [])
   return (
-    <Spin spinning={loading || metaLoading}>
+    <Spin spinning={loading || metaLoading || templateLoading}>
       <Designer engine={engine}>
         <StudioPanel logo={<NavigationWidget />}
           actions={
@@ -80,6 +85,17 @@ export const FrameDesigner = memo(() => {
               icon="Component"
             >
               <MaterialWidget withFrameMaterials />
+            </CompositePanel.Item>
+            <CompositePanel.Item
+              key={DesignerRoutes.Templates}
+              title={t("Panels.Templates")}
+              icon={
+                <svg className='nav-icon' viewBox="0 0 24 24">
+                  <path fill="currentColor" d="M12,18.54L19.37,12.8L21,14.07L12,21.07L3,14.07L4.62,12.81L12,18.54M12,16L3,9L12,2L21,9L12,16M12,4.53L6.26,9L12,13.47L17.74,9L12,4.53Z" />
+                </svg>
+              }
+            >
+              <TemplateWidget templates={templates||[]} templateType={TemplateType.Frame}  />
             </CompositePanel.Item>
             <CompositePanel.Item
               key={DesignerRoutes.OutlinedTree}
