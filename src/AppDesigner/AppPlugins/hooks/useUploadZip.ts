@@ -9,12 +9,12 @@ const gql = `
   }
 `
 
-export function useUploadZip() {
+export function useUploadZip(folder: string) {
   const endpoint = useEndpoint();
   const token = useToken();
   const appId = useEnthooksAppId();
 
-  const upload = useCallback((file: File, folder: string) => {
+  const upload = useCallback((file: File) => {
     const p = new Promise<string>((resolve, reject) => {
       const graphQLClient = new AwesomeGraphQLClient({ endpoint })
       graphQLClient

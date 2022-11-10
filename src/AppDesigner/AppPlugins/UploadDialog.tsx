@@ -39,7 +39,7 @@ export const UploadDialog: React.FC = memo(() => {
 
   const load = useLoadPlugin();
   const multipleLoad = useLoadPlugins();
-  const upload = useUploadZip();
+  const upload = useUploadZip("plugins");
 
   useShowError(error || multiError);
 
@@ -162,7 +162,7 @@ export const UploadDialog: React.FC = memo(() => {
             >
               <Dragger
                 name='file'
-                action={(file) => upload(file, "plugins")}
+                action={upload}
                 accept={".zip"}
                 multiple
                 headers={{

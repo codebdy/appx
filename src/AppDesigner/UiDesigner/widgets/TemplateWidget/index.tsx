@@ -11,7 +11,8 @@ import { ExportOutlined, ImportOutlined, MoreOutlined, SettingOutlined } from "@
 import { CategoryType, ITemplateInfo, TemplateType } from "~/model";
 import { useParseLangMessage } from "~/plugin-sdk";
 import { ExportDialog } from "./ExportDialog";
-import { useImportTempltes } from "./hooks/useImportTemplates";
+import { useUploadTempltes } from "./hooks/useUploadTempltes";
+import { ImportDialog } from "./ImportDialog";
 
 const { TabPane } = Tabs;
 
@@ -23,10 +24,19 @@ export const TemplateWidget = observer((
   const { templates } = props;
   const [manageDialogOpen, setManageDialogOpen] = useState(false);
   const [exportDialogOpen, setExportDialogOpen] = useState(false);
+  const [uploadedUrl, setUploadeUrl] = useState<string>()
   const { t } = useTranslation();
   const p = useParseLangMessage();
 
-  const doImport = useImportTempltes();
+  const upload = useUploadTempltes();
+
+  const doImport = useCallback(() => {
+    upload().then(url => {
+      setUploadeUrl(url)
+    }).catch(err => {
+      console.error(err)
+    })
+  }, [upload])
 
   const handleOpenManageDialog = useCallback(() => {
     setManageDialogOpen(true);
@@ -53,13 +63,17 @@ export const TemplateWidget = observer((
       icon: <SettingOutlined />,
       onClick: handleOpenManageDialog,
     },
-  ], [t, handleOpenExportDialog, handleOpenManageDialog, doImport]);
+  ], [t, handleOpenExportDialog, handleOpenManageDialog, upload]);
 
   const handleManageClose = useCallback(() => {
     setManageDialogOpen(false)
   }, [])
   const handleExportClose = useCallback(() => {
     setExportDialogOpen(false)
+  }, [])
+
+  const handelImportClose = useCallback(() => {
+    setUploadeUrl(undefined)
   }, [])
   return (
     <div className="rx-template-panel">
@@ -114,6 +128,7 @@ export const TemplateWidget = observer((
       </Tabs>
       <ManageDialog open={manageDialogOpen} onClose={handleManageClose} templates={templates} />
       <ExportDialog open={exportDialogOpen} onClose={handleExportClose} templates={templates} />
+      <ImportDialog uploadedUrl={uploadedUrl} onClose={handelImportClose} />
     </div>
   )
 })

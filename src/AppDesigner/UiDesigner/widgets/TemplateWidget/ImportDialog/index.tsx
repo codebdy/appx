@@ -1,39 +1,27 @@
 import { Modal } from 'antd';
 import React, { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { CategoryType, ITemplateInfo } from '~/model';
+import { ITemplateInfo } from '~/model';
 import { ID } from '~/shared';
 import "../ExportDialog/style.less"
 import { TemplateList } from '../ExportDialog/TemplateList';
 
 
-export const ExportDialog = memo((
+export const ImportDialog = memo((
   props: {
-    templates?: ITemplateInfo[],
-    open?: boolean,
+    uploadedUrl?: string,
     onClose?: () => void,
   }
 ) => {
-  const { templates, open, onClose } = props;
+  const { uploadedUrl, onClose } = props;
   const [selectedIds, setSelectedIds] = useState<ID[]>([]);
   const [importing, setImporting] = useState(false);
+  const [templates, setTemplates] = useState<ITemplateInfo[]>([]);
   const { t } = useTranslation();
-
+  const open = useMemo(() => !!uploadedUrl, [uploadedUrl])
   const handleCancel = useCallback(() => {
     onClose();
   }, [onClose])
-
-  const publics = useMemo(() => templates.filter(template => template.categoryType === CategoryType.Public), [templates])
-  const locales = useMemo(() => templates.filter(template => template.categoryType === CategoryType.Local), [templates])
-
-  const publicSelects = useMemo(() => {
-    return selectedIds.filter(id => publics.find(template => template.id === id))
-  }, [selectedIds, publics])
-
-  const localeSelects = useMemo(() => {
-    return selectedIds.filter(id => locales.find(template => template.id === id))
-  }, [selectedIds, locales])
-
 
 
   const handleOk = useCallback(() => {
@@ -84,8 +72,8 @@ export const ExportDialog = memo((
       }}
     >
       <TemplateList
-        templates={locales}
-        selectedIds={publicSelects}
+        templates={templates}
+        selectedIds={selectedIds}
       />
     </Modal>
   );
