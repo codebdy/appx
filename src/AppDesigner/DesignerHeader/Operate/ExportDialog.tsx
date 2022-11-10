@@ -36,8 +36,23 @@ export const ExportDialog = memo((
     onCompleted: (data) => {
       setExporting(true)
       //onOpenChange(false);
-      message.success(t("Designer.ExportSuccess"));
-      save((p(app.title) || ("app" + appId)), data?.exportApp);
+      //message.success(t("Designer.ExportSuccess"));
+      if (data?.exportApp) {
+        fetch(data?.exportApp).then((resp => {
+          resp.arrayBuffer().then((buffer) => {
+            save((p(app.title) || ("app" + appId)), buffer);
+          }).catch(err => {
+            message.error(err?.message)
+            console.error(err)
+            setExporting(false)
+          })
+        })).catch(err => {
+          message.error(err?.message)
+          console.error(err)
+          setExporting(false)
+        })
+      }
+
       form.resetFields()
     }
   });
