@@ -59,10 +59,10 @@ export const ImportDialog = memo((
 
   return (
     <Modal
-      title={t("Designer.ExportTemplates")}
+      title={t("Designer.ImportTemplates")}
       className='template-export-modal'
       open={open}
-      okText={t("Export")}
+      okText={t("Designer.Import")}
       cancelText={t("Cancel")}
       onOk={handleOk}
       onCancel={handleCancel}

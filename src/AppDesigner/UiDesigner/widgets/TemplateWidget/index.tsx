@@ -24,6 +24,7 @@ export const TemplateWidget = observer((
   const { templates } = props;
   const [manageDialogOpen, setManageDialogOpen] = useState(false);
   const [exportDialogOpen, setExportDialogOpen] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const [uploadedUrl, setUploadeUrl] = useState<string>()
   const { t } = useTranslation();
   const p = useParseLangMessage();
@@ -31,10 +32,13 @@ export const TemplateWidget = observer((
   const upload = useUploadTempltes();
 
   const doImport = useCallback(() => {
+    setUploading(true)
     upload().then(url => {
       setUploadeUrl(url)
+      setUploading(false)
     }).catch(err => {
       console.error(err)
+      setUploading(false)
     })
   }, [upload])
 
@@ -89,7 +93,7 @@ export const TemplateWidget = observer((
             />
           }
             trigger={['click']}>
-            <Button type="text" shape="circle" icon={<MoreOutlined />} onClick={e => e.preventDefault()} />
+            <Button type="text" shape="circle" icon={<MoreOutlined />} loading={uploading} onClick={e => e.preventDefault()} />
           </Dropdown>
         }
       >
