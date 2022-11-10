@@ -64,7 +64,7 @@ export const ImportDialog = memo((
   }, [uploadedUrl, templateType, onClose, t])
 
   const handleOk = useCallback(() => {
-    save(selectedIds.map(id => templates.find(template => template.id === id)).map(template => ({ ...template, id: undefined })), TemplateType.Page)
+    save(selectedIds.map(id => templates.find(template => template.id === id)).map(template => ({ ...template, id: undefined })), templateType)
   }, [selectedIds, templates])
 
   const handleSelectChange = useCallback((id: ID, checked?: boolean) => {
