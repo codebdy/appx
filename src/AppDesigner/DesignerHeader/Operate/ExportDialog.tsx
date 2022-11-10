@@ -1,5 +1,5 @@
-import { Form, Input, message, Modal, Select } from "antd";
-import React, { memo, useCallback, useState } from "react"
+import { Form, message, Modal, Select } from "antd";
+import React, { memo, useCallback, useRef, useState } from "react"
 import { useTranslation } from "react-i18next";
 import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
 import { useShowError } from "~/AppDesigner/hooks/useShowError";
@@ -8,6 +8,7 @@ import { useDesignerParams, useParseLangMessage } from "~/plugin-sdk";
 import { useExportApp } from "~/enthooks/hooks/useExportApp";
 import { ID } from "~/shared";
 import { useSave } from "~/AppDesigner/UiDesigner/widgets/TemplateWidget/ExportDialog/useSave";
+import { Input } from "@formily/antd";
 const { Option } = Select;
 
 export const ExportDialog = memo((
@@ -24,6 +25,7 @@ export const ExportDialog = memo((
   const [form] = Form.useForm<{ snapshotId?: ID }>();
   const { snapshots, error: queryError } = useQueryVersions(appId, appId)
   const [exporting, setExporting] = useState(false);
+  const snapshotIdRef = useRef<ID>();
 
   const save = useSave(() => {
     message.success(t("OperateSuccess"));
@@ -40,7 +42,7 @@ export const ExportDialog = memo((
       if (data?.exportApp) {
         fetch(data?.exportApp).then((resp => {
           resp.arrayBuffer().then((buffer) => {
-            save((p(app.title) || ("app" + appId)), buffer);
+            save((p(app.title) || ("app" + appId)) + (snapshots.find(sn => sn.id === snapshotIdRef.current)?.version || ""), buffer);
           }).catch(err => {
             message.error(err?.message)
             console.error(err)
@@ -61,6 +63,7 @@ export const ExportDialog = memo((
 
   const handleOk = useCallback(() => {
     form.validateFields().then((values: { snapshotId?: ID }) => {
+      snapshotIdRef.current = values?.snapshotId
       exportApp(values?.snapshotId)
     })
 
@@ -117,7 +120,7 @@ export const ExportDialog = memo((
           label={t("Description")}
           name="description"
         >
-          <Input.TextArea disabled />
+          <Input.TextArea readOnly />
         </Form.Item>
       </Form>
     </Modal>
