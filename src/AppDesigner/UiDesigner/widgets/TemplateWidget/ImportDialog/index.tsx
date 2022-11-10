@@ -6,7 +6,6 @@ import { ID } from '~/shared';
 import "../ExportDialog/style.less"
 import { TemplateList } from '../ExportDialog/TemplateList';
 
-
 export const ImportDialog = memo((
   props: {
     uploadedUrl?: string,
@@ -22,7 +21,6 @@ export const ImportDialog = memo((
   const handleCancel = useCallback(() => {
     onClose();
   }, [onClose])
-
 
   const handleOk = useCallback(() => {
     setImporting(true);
@@ -77,7 +75,7 @@ export const ImportDialog = memo((
             justifyContent: "space-between",
           }}
         >
-          <div>选中5条</div>
+          <div>{selectedIds.length > 0 && t("Designer.SelecteMessage", { count: selectedIds.length })}</div>
           <Space>
             <Button onClick={handleCancel}>
               {t("Cancel")}

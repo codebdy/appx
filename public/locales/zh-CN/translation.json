@@ -158,7 +158,8 @@
     "LocaltTemplates": "我的模板",
     "ImportTemplates": "导入模板",
     "ExportTemplates": "导出模板",
-    "ManageTemplates": "管理模板"
+    "ManageTemplates": "管理模板",
+    "SelecteMessage": "已选择 {{count}} 项"
   },
   "Plugins": {
     "Title": "插件",
