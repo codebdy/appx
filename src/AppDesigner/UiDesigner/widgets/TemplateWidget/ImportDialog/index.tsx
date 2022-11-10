@@ -1,7 +1,9 @@
 import { Button, Modal, Space, Spin } from 'antd';
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ITemplateInfo } from '~/model';
+import { useShowError } from '~/AppDesigner/hooks/useShowError';
+import { useUpsertTemplates } from '~/AppDesigner/UiDesigner/hooks/useUpsertTemplates';
+import { ITemplateInfo, TemplateType } from '~/model';
 import { ID } from '~/shared';
 import "../ExportDialog/style.less"
 import { TemplateList } from '../ExportDialog/TemplateList';
@@ -14,14 +16,20 @@ export const ImportDialog = memo((
 ) => {
   const { uploadedUrl, onClose } = props;
   const [selectedIds, setSelectedIds] = useState<ID[]>([]);
-  const [importing, setImporting] = useState(false);
   const [templates, setTemplates] = useState<ITemplateInfo[]>([]);
   const [fetching, setFetching] = useState(false);
   const { t } = useTranslation();
-  const open = useMemo(() => !!uploadedUrl, [uploadedUrl])
+  const open = useMemo(() => !!uploadedUrl, [uploadedUrl]);
+  const [save, { error, loading: importing }] = useUpsertTemplates({
+    onCompleted: () => {
+      onClose && onClose()
+    }
+  });
   const handleCancel = useCallback(() => {
     onClose();
   }, [onClose])
+
+  useShowError(error);
 
   useEffect(() => {
     if (uploadedUrl) {
@@ -30,8 +38,10 @@ export const ImportDialog = memo((
       fetch(url + "/templates.json").then((resp) => {
         resp.json().then(value => {
           const templates: ITemplateInfo[] = value?.templates || [];
-          for (const template of templates) {
+          for (let i = 0; i < templates.length; i++) {
+            const template = templates[i]
             template.imageUrl = url + "/" + template.imageUrl;
+            template.id = "" + i
           }
 
           setTemplates(templates)
@@ -48,26 +58,7 @@ export const ImportDialog = memo((
   }, [uploadedUrl])
 
   const handleOk = useCallback(() => {
-    setImporting(true);
-    // const zip = new JSZip();
-    // const temps = selectedIds.map(id => {
-    //   const template = templates?.find(template => template.id === id);
-    //   const newTemplate: ITemplateInfo = JSON.parse(JSON.stringify(template));
-    //   delete newTemplate.id;
-    //   newTemplate.categoryType = CategoryType.Public;
-    //   return newTemplate
-    // })
-
-    // getAllFiles(temps, zip).then(() => {
-    //   zip.file("templates.json", JSON.stringify({ templates: temps }, null, 2))
-    //   zip.generateAsync({ type: "blob" })
-    //     .then(function (content) {
-    //       save("templates", content);
-    //     });
-    // }).catch((err) => {
-    //   setImporting(false);
-    //   console.error(err)
-    // })
+    save(selectedIds.map(id => templates.find(template => template.id === id)).map(template => ({ ...template, id: undefined })), TemplateType.Page)
   }, [selectedIds, templates])
 
   const handleSelectChange = useCallback((id: ID, checked?: boolean) => {
@@ -85,6 +76,7 @@ export const ImportDialog = memo((
       title={t("Designer.ImportTemplates")}
       className='template-export-modal'
       open={open}
+      onCancel={handleCancel}
       footer={
         <div
           style={{

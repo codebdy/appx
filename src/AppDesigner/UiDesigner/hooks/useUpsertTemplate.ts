@@ -16,9 +16,9 @@ export function useUpsertTemplate(options?: IPostOptions<any>): [
     }
   )
 
-  const upsert = useCallback((page: ITemplateInfoInput) => {
+  const upsert = useCallback((template: ITemplateInfoInput) => {
     post({
-      ...page,
+      ...template,
       device: params.device,
       app: {
         sync: { id: params.app.id }
