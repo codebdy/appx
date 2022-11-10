@@ -13,6 +13,8 @@ import { SettingsForm } from "../../UiDesigner/SettingsForm";
 import { useMaterialDesigners } from "~/material/hooks/useMaterialDesigners";
 import { useLazyQueryPageFrame } from "../hooks/useLazyQueryPageFrame";
 import { FormDesigner } from "~/components/pc/FormDesigner";
+import { SaveTemplateWidget } from "~/AppDesigner/UiDesigner/widgets/SaveTemplateWidget";
+import { TemplateType } from "~/model";
 
 export const FrameWorkSpace = (props: {
   frameId: ID
@@ -21,7 +23,7 @@ export const FrameWorkSpace = (props: {
   const designer = useDesigner();
   const [query, { pageFrame, loading, error }] = useLazyQueryPageFrame();
   const materailDesigners = useMaterialDesigners();
-  
+
   useEffect(() => {
     query(frameId)
   }, [frameId, query]);
@@ -48,9 +50,12 @@ export const FrameWorkSpace = (props: {
           <WorkspacePanel>
             <ToolbarPanel>
               <DesignerToolsWidget />
-              <ViewToolsWidget
-                use={['DESIGNABLE', 'JSONTREE', 'PREVIEW']}
-              />
+              <div>
+                <SaveTemplateWidget templateType={TemplateType.Frame} />
+                <ViewToolsWidget
+                  use={['DESIGNABLE', 'JSONTREE', 'PREVIEW']}
+                />
+              </div>
             </ToolbarPanel>
             <ViewportPanel style={{ height: '100%' }}>
               <ViewPanel type="DESIGNABLE">
