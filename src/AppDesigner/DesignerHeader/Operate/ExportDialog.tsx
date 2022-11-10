@@ -1,5 +1,5 @@
 import { Form, Input, message, Modal, Select } from "antd";
-import React, { memo, useCallback } from "react"
+import React, { memo, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next";
 import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
 import { useShowError } from "~/AppDesigner/hooks/useShowError";
@@ -7,21 +7,8 @@ import { useQueryVersions } from "~/enthooks/hooks/useQueryVersions";
 import { useDesignerParams, useParseLangMessage } from "~/plugin-sdk";
 import { useExportApp } from "~/enthooks/hooks/useExportApp";
 import { ID } from "~/shared";
+import { useSave } from "~/AppDesigner/UiDesigner/widgets/TemplateWidget/ExportDialog/useSave";
 const { Option } = Select;
-
-export const downloadFile = function (url: string, filename: string) {
-  // 创建隐藏的可下载链接
-  var eleLink = document.createElement('a');
-  eleLink.download = filename;
-  eleLink.style.display = 'none';
-  eleLink.href = url;
-  // 触发点击
-  document.body.appendChild(eleLink);
-  eleLink.click();
-  // 然后移除
-  document.body.removeChild(eleLink);
-};
-
 
 export const ExportDialog = memo((
   props: {
@@ -36,15 +23,21 @@ export const ExportDialog = memo((
   const p = useParseLangMessage();
   const [form] = Form.useForm<{ snapshotId?: ID }>();
   const { snapshots, error: queryError } = useQueryVersions(appId, appId)
+  const [exporting, setExporting] = useState(false);
+
+  const save = useSave(() => {
+    message.success(t("OperateSuccess"));
+    setExporting(false)
+    onOpenChange(false);
+  })
+
 
   const [exportApp, { loading, error }] = useExportApp({
     onCompleted: (data) => {
-      onOpenChange(false);
+      setExporting(true)
+      //onOpenChange(false);
       message.success(t("Designer.ExportSuccess"));
-      if (data?.exportApp) {
-        downloadFile(data?.exportApp, (p(app.title) || ("app" + appId)) + ".zip")
-      }
-
+      save((p(app.title) || ("app" + appId)), data?.exportApp);
       form.resetFields()
     }
   });
@@ -77,7 +70,7 @@ export const ExportDialog = memo((
       onOk={handleOk}
       onCancel={handleCancel}
       okButtonProps={{
-        loading: loading
+        loading: loading || exporting
       }}
     >
       <Form
