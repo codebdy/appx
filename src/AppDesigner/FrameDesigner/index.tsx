@@ -21,7 +21,7 @@ import { TemplateType } from "~/model"
 import { TemplateWidget } from "../UiDesigner/widgets/TemplateWidget"
 
 export const FrameDesigner = memo(() => {
-  const [activeKey, setActiveKey] = useState<string>(DesignerRoutes.Templates);
+  const [activeKey, setActiveKey] = useState<string>(DesignerRoutes.Pages);
   const [selectedId, setSeletedId] = useState<ID>();
   const { t } = useTranslation();
   const { pageFrames, error, loading } = useQueryPageFrames();

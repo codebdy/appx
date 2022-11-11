@@ -11,9 +11,13 @@ import { Button } from 'antd'
 import { CloseOutlined, DownOutlined } from '@ant-design/icons'
 import { IDropdownProps } from '../view'
 import { PopupButton, IconView, useParseLangMessage } from '@rxdrag/plugin-sdk'
+import { IPopupPanelProps } from '../view/PopupPanel'
+import { PopupPanelDesigner } from './PopupPanelDesigner'
 
 
-const ComponentDesigner: DnFC<IDropdownProps> = observer((props) => {
+const ComponentDesigner: DnFC<IDropdownProps> & {
+  PopupPanel?: React.FC<IPopupPanelProps>
+} = observer((props) => {
   const { title, icon, showDropdownIcon, placement, children, ...other } = props;
   const [visible, setVisiable] = useState(false);
   const ref = useRef<HTMLElement>(null)
@@ -91,8 +95,9 @@ const ComponentDesigner: DnFC<IDropdownProps> = observer((props) => {
           style={{
             ...getPlacementStyle()
           }}>
-          {children}
-          哈哈哈
+          <div>
+            {children}
+          </div>
           <PopupButton
             icon={<CloseOutlined style={{ fontSize: 12 }} />}
             onToggleVisiable={handleClose}
@@ -130,5 +135,7 @@ const ComponentDesigner: DnFC<IDropdownProps> = observer((props) => {
     </>
   )
 })
+
+ComponentDesigner.PopupPanel = PopupPanelDesigner
 
 export default ComponentDesigner;

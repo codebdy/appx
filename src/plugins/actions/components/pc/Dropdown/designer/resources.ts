@@ -14,10 +14,21 @@ const resources: IResourceCreator[] = [
             type: "primary",
             title: "Dropdown",
             showDropdownIcon: true,
-            placement: "bottomLeft",
+            placement: "bottomRight",
             trigger: ['click']
           },
         },
+        children: [
+          {
+            componentName: 'Field',
+            props: {
+              type: 'void',
+              'x-component': 'Dropdown.PopupPanel',
+              'x-component-props': {
+              },
+            },
+          },
+        ],
       },
     ],
   }
