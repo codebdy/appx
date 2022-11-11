@@ -18,16 +18,17 @@ const ComponentDesigner: DnFC<ButtonProps> = observer((props) => {
   const p = useParseLangMessage();
   const { visible, setVisible } = useDropdownDesignerParams()
   const tree = useTree();
+  const [clicked, setClicked] = useState(false);
 
   const node = useTreeNode()
   const selected = useSelected();
 
   const isSelected = useMemo(() => selected?.[0] === node.id, [node, selected])
   useEffect(() => {
-    if (!visible) {
+    if (!visible && clicked) {
       tree.operation.selection.select(node.id)
     }
-  }, [visible, tree, node])
+  }, [visible, tree, clicked, node])
 
   useEffect(() => {
     setCanShow(isSelected)
@@ -37,7 +38,7 @@ const ComponentDesigner: DnFC<ButtonProps> = observer((props) => {
     if (canShow) {
       setVisible(true);
     }
-
+    setClicked(true);
   }, [canShow, setVisible]);
 
   return <Button {...other} onClick={handleClick}>
