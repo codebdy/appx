@@ -1,12 +1,20 @@
+import { DownOutlined } from '@ant-design/icons';
 import { DnFC } from '@designable/react'
 import { observer } from "@formily/reactive-react";
+import { Button } from 'antd';
 import React from "react";
-import { Button, ButtonProps } from '../../view/Button';
+import { useParseLangMessage } from '~/plugin-sdk';
+import { ButtonProps } from '../../view/Button';
 
 const ComponentDesigner: DnFC<ButtonProps> = observer((props) => {
-  const {  onClick, ...other } = props;
+  const { showDropdownIcon, onClick, title, ...other } = props;
+  const p = useParseLangMessage();
 
   return <Button {...other}>
+    {p(title)}
+    {
+      showDropdownIcon && <DownOutlined />
+    }
   </Button>
 })
 
