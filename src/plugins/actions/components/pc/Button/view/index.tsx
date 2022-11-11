@@ -13,7 +13,7 @@ export type IButtonProps = ButtonProps &
   }
 
 const Component = observer((props: IButtonProps) => {
-  const { title, icon, onClick, ...other } = props;
+  const { title, icon, onClick, children, ...other } = props;
   const [loading, setLoading] = useState(false);
 
   const p = useParseLangMessage();
@@ -45,6 +45,7 @@ const Component = observer((props: IButtonProps) => {
       loading={loading}
     >
       {p(title)}
+      {children}
     </AntdButton>
   )
 })
