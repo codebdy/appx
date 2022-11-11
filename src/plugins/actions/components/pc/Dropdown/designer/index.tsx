@@ -1,19 +1,18 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
 import {
   DnFC,
-  useTree,
   TreeNodeWidget,
 } from '@designable/react'
 import { observer } from '@formily/reactive-react'
 import './styles.less'
-import { CloseOutlined } from '@ant-design/icons'
 import { IDropdownProps } from '../view'
-import { PopupButton, useFindNode } from '@rxdrag/plugin-sdk'
+import { useFindNode } from '@rxdrag/plugin-sdk'
 import { IPopupPanelProps } from '../view/PopupPanel'
 import { PopupPanelDesigner } from './PopupPanelDesigner'
 import { DropdownDesignerContext } from './context'
 import { ButtonProps } from '../view/Button'
 import ButtonDesigner from './ButtonDesigner'
+import { Dropdown } from 'antd'
 
 const ComponentDesigner: DnFC<IDropdownProps> & {
   PopupPanel?: React.FC<IPopupPanelProps>,
@@ -21,57 +20,9 @@ const ComponentDesigner: DnFC<IDropdownProps> & {
 } = observer((props) => {
   const { placement, children, ...other } = props;
   const [visible, setVisible] = useState(false);
-  const ref = useRef<HTMLElement>(null)
+  const ref = useRef<HTMLDivElement>(null)
   const pannel = useFindNode("PopupPanel");
   const button = useFindNode("Button");
-
-  const getPlacementStyle = () => {
-    const rect = ref?.current?.getBoundingClientRect();
-    switch (placement) {
-      case "bottom":
-        return {
-          top: rect?.bottom,
-          left: "auto",
-          bottom: "auto",
-          right: "auto",
-        }
-      case "bottomLeft":
-        return {
-          top: rect?.bottom,
-          left: rect?.left,
-          bottom: "auto",
-          right: "auto",
-        }
-      case "bottomRight":
-        return {
-          top: rect?.bottom,
-          right: document.documentElement.clientWidth - rect?.right,
-          left: "auto",
-          bottom: "auto",
-        }
-      case "top":
-        return {
-          bottom: document.documentElement.clientHeight - rect?.top,
-          left: "auto",
-          right: "auto",
-          top: "auto",
-        }
-      case "topLeft":
-        return {
-          bottom: document.documentElement.clientHeight - rect?.top,
-          left: rect?.left,
-          top: "auto",
-          right: "auto",
-        }
-      case "topRight":
-        return {
-          bottom: document.documentElement.clientHeight - rect?.top,
-          right: document.documentElement.clientWidth - rect?.right,
-          left: "auto",
-          top: "auto",
-        }
-    }
-  }
 
   const config = useMemo(() => {
     return {
@@ -82,17 +33,20 @@ const ComponentDesigner: DnFC<IDropdownProps> & {
 
   return (
     <DropdownDesignerContext.Provider value={config} >
-      {visible &&
-        <div
-          className='dropdown-designer'
-          style={{
-            ...getPlacementStyle()
-          }}>
-          <TreeNodeWidget node={pannel} />
-        </div>
-      }
-      <div style={{ position: "relative", display: "inline" }} {...other}>
-        <TreeNodeWidget node={button} />
+      <div ref={ref}>
+        <Dropdown
+          overlay={
+            <div>
+              <TreeNodeWidget node={pannel} />
+            </div>
+          }
+          open={visible}
+          placement={placement}
+          getPopupContainer={() => ref.current}
+          {...other}
+        >
+          <TreeNodeWidget node={button} />
+        </Dropdown>
       </div>
     </DropdownDesignerContext.Provider>
   )
