@@ -1,8 +1,7 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useMemo, useRef, useState } from 'react'
 import {
   DnFC,
-  useTreeNode,
-  useSelected,
+  useTree,
   TreeNodeWidget,
 } from '@designable/react'
 import { observer } from '@formily/reactive-react'
@@ -23,27 +22,8 @@ const ComponentDesigner: DnFC<IDropdownProps> & {
   const { placement, children, ...other } = props;
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLElement>(null)
-  const node = useTreeNode()
-  const selected = useSelected();
-
-
   const pannel = useFindNode("PopupPanel");
   const button = useFindNode("Button");
-
-  const [canShow, setCanShow] = useState(false);
-  useEffect(() => {
-    setCanShow(selected?.[0] === node.id)
-  }, [node.id, selected])
-
-  const handleShow = useCallback(() => {
-    if (canShow) {
-      setVisible(true);
-    }
-  }, [canShow])
-
-  const handleClose = useCallback(() => {
-    setVisible(false);
-  }, [])
 
   const getPlacementStyle = () => {
     const rect = ref?.current?.getBoundingClientRect();
@@ -109,10 +89,6 @@ const ComponentDesigner: DnFC<IDropdownProps> & {
             ...getPlacementStyle()
           }}>
           <TreeNodeWidget node={pannel} />
-          <PopupButton
-            icon={<CloseOutlined style={{ fontSize: 12 }} />}
-            onToggleVisiable={handleClose}
-          />
         </div>
       }
       <div style={{ position: "relative", display: "inline" }} {...other}>

@@ -1,6 +1,6 @@
 export const ButtonLocales = {
   'zh-CN': {
-    title: '按钮',
+    title: '触发按钮',
     description: "按钮，可绑定事件",
     settings: {
       'x-component-props': {
