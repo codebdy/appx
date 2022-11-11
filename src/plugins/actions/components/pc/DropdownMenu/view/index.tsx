@@ -17,6 +17,13 @@ export interface IDropdownMenuProps {
   children?: React.ReactNode,
 }
 
+export interface IDropdownMenuItemProps {
+  className?: string,
+  icon?: IIcon,
+  title?: string,
+  onClick: (e: React.MouseEvent) => void,
+}
+
 const Component: React.FC<IDropdownMenuProps> = observer((props) => {
   const { icon, title, showDropdownIcon, placement, trigger, children, ...other } = props;
   const [loading, setLoading] = useState(false);

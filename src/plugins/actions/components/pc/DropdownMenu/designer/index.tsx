@@ -11,8 +11,7 @@ import { LoadTemplate } from '@designable/formily-antd/lib/common/LoadTemplate'
 import { Button } from 'antd'
 import { CloseOutlined, DownOutlined } from '@ant-design/icons'
 import { MenuItemDesigner } from './MenuItemDesigner'
-import { IDropdownMenuProps } from '../view'
-import { IDropdownMenuItemProps } from '../view/MenuItem'
+import { IDropdownMenuItemProps, IDropdownMenuProps } from '../view'
 import { PopupButton, IconView, useParseLangMessage } from '@rxdrag/plugin-sdk'
 
 
