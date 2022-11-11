@@ -1,4 +1,4 @@
-import { DroppableWidget, useTree, useTreeNode, useSelected } from "@designable/react"
+import { DroppableWidget, useTree, useTreeNode } from "@designable/react"
 import { observer } from "@formily/react"
 import React, { useCallback, useEffect } from "react"
 import clx from "classnames"
@@ -12,19 +12,17 @@ export const PopupPanelDesigner = observer((props: IPopupPanelProps) => {
   const { visible, setVisible } = useDropdownDesignerParams()
   const tree = useTree();
   const node = useTreeNode();
-  const selected = useSelected();
-  
+
   const handleClose = useCallback(() => {
     tree.operation.selection.clear()
     setVisible(false);
   }, [setVisible, tree])
 
-  //select依赖必须要加
   useEffect(() => {
     if (visible) {
       tree.operation.selection.select(node.id)
     }
-  }, [visible, node, selected])
+  }, [visible, node])
 
   return (
     <PopupPanel {...other} className={clx(className)}>
