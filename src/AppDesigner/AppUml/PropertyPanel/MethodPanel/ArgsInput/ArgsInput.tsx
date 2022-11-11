@@ -16,6 +16,7 @@ import { createUuid } from "~/shared";
 import { LazyInput } from "./LazyInput";
 import { useGetTypeLabel } from "../../../hooks/useGetTypeLabel";
 import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
+import { ArgTypeInput } from "./ArgTypeInput";
 
 const { Option } = Select;
 
@@ -55,7 +56,7 @@ export const ArgsInput = memo((
       })
     })
   }, [])
-  const handleTypeChange = useCallback((uuid: string, type: Type) => {
+  const handleTypeChange = useCallback((uuid: string, type: Type, typeUuid?: string) => {
     setItems(items => {
       return items.map(item => {
         return item.uuid === uuid
@@ -64,6 +65,7 @@ export const ArgsInput = memo((
             ...item,
             type,
             typeLabel: getTypeLabel(type),
+            typeUuid,
           }
           : item
       })
@@ -94,45 +96,8 @@ export const ArgsInput = memo((
       dataIndex: 'type',
       className: 'drag-visible',
       width: 332,
-      render: (_, { uuid, type }) => (
-        <div style={{ display: "flex" }}>
-          <Select
-            style={{ width: 150 }}
-            value={type}
-            onChange={(value) => handleTypeChange(uuid, value)}
-          >
-            <Option value={Types.ID}>ID</Option>
-            <Option value={Types.Int}>Int</Option>
-            <Option value={Types.Float}>Float</Option>
-            <Option value={Types.Boolean}>Boolean</Option>
-            <Option value={Types.String}>String</Option>
-            <Option value={Types.Date}>Date</Option>
-            <Option value={Types.JSON}>JSON</Option>
-            <Option value={Types.IDArray}>ID {t("AppUml.Array")}</Option>
-            <Option value={Types.IntArray}>Int {t("AppUml.Array")}</Option>
-            <Option value={Types.FloatArray}>Float {t("AppUml.Array")}</Option>
-            <Option value={Types.StringArray}>String {t("AppUml.Array")}</Option>
-            <Option value={Types.DateArray}>Date {t("AppUml.Array")}</Option>
-          </Select>
-          <Select
-            style={{ width: 150, marginLeft: 16 }}
-            value={type}
-            onChange={(value) => handleTypeChange(uuid, value)}
-          >
-            <Option value={Types.ID}>ID</Option>
-            <Option value={Types.Int}>Int</Option>
-            <Option value={Types.Float}>Float</Option>
-            <Option value={Types.Boolean}>Boolean</Option>
-            <Option value={Types.String}>String</Option>
-            <Option value={Types.Date}>Date</Option>
-            <Option value={Types.JSON}>JSON</Option>
-            <Option value={Types.IDArray}>ID {t("AppUml.Array")}</Option>
-            <Option value={Types.IntArray}>Int {t("AppUml.Array")}</Option>
-            <Option value={Types.FloatArray}>Float {t("AppUml.Array")}</Option>
-            <Option value={Types.StringArray}>String {t("AppUml.Array")}</Option>
-            <Option value={Types.DateArray}>Date {t("AppUml.Array")}</Option>
-          </Select>
-        </div>
+      render: (_, { uuid, type, typeUuid }) => (
+        <ArgTypeInput uuid={uuid} type={type} typeUuid={typeUuid} onTypeChange={handleTypeChange} />
       ),
     },
 
