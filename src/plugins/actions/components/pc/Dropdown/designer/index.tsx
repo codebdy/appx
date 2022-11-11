@@ -33,7 +33,7 @@ const ComponentDesigner: DnFC<IDropdownProps> & {
 
   return (
     <DropdownDesignerContext.Provider value={config} >
-      <div ref={ref}>
+      <div className='dropdown-designer' ref={ref}>
         <Dropdown
           overlay={
             <div>
