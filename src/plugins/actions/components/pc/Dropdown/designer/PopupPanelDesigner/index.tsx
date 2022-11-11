@@ -8,7 +8,9 @@ export const PopupPanelDesigner = observer((props: IPopupPanelProps) => {
   const { className, children, ...other } = props
   return (
     <PopupPanel {...other} className={clx(className)}>
-      {children}
+      <DroppableWidget>
+        {children}
+      </DroppableWidget>
     </PopupPanel>
   )
 })
