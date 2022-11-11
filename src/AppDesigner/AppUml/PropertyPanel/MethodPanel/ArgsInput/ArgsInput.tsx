@@ -76,12 +76,6 @@ export const ArgsInput = memo((
 
   const columns: ColumnsType<ArgMeta> = useMemo(() => [
     {
-      dataIndex: 'sort',
-      width: 30,
-      className: 'drag-visible',
-      render: () => <DragHandle />,
-    },
-    {
       title: t("Name"),
       dataIndex: 'name',
       className: 'drag-visible',
