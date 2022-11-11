@@ -3,13 +3,13 @@ import {
   DnFC,
   useTreeNode,
   useSelected,
+  TreeNodeWidget,
 } from '@designable/react'
 import { observer } from '@formily/reactive-react'
 import './styles.less'
-import { Button } from 'antd'
 import { CloseOutlined, DownOutlined } from '@ant-design/icons'
 import { IDropdownProps } from '../view'
-import { PopupButton, IconView, useParseLangMessage } from '@rxdrag/plugin-sdk'
+import { PopupButton, IconView, useParseLangMessage, useFindNode } from '@rxdrag/plugin-sdk'
 import { IPopupPanelProps } from '../view/PopupPanel'
 import { PopupPanelDesigner } from './PopupPanelDesigner'
 import { DropdownDesignerContext } from './context'
@@ -20,12 +20,16 @@ const ComponentDesigner: DnFC<IDropdownProps> & {
   PopupPanel?: React.FC<IPopupPanelProps>,
   Button?: React.FC<ButtonProps>
 } = observer((props) => {
-  const { title, icon, showDropdownIcon, placement, children, ...other } = props;
+  const { placement, children, ...other } = props;
   const [visible, setVisiable] = useState(false);
   const ref = useRef<HTMLElement>(null)
   const node = useTreeNode()
-  const p = useParseLangMessage();
   const selected = useSelected();
+
+
+  const pannel = useFindNode("PopupPanel");
+  const button = useFindNode("Button");
+
   const [canShow, setCanShow] = useState(false);
   useEffect(() => {
     setCanShow(selected?.[0] === node.id)
@@ -89,12 +93,12 @@ const ComponentDesigner: DnFC<IDropdownProps> & {
     }
   }
 
-  const config = useMemo(()=>{
+  const config = useMemo(() => {
     return {
       visible,
       setVisiable
     }
-  },[visible])
+  }, [visible])
 
   return (
     <DropdownDesignerContext.Provider value={config} >
@@ -104,42 +108,15 @@ const ComponentDesigner: DnFC<IDropdownProps> & {
           style={{
             ...getPlacementStyle()
           }}>
-          <div>
-            {children}
-          </div>
+          <TreeNodeWidget node={pannel} />
           <PopupButton
             icon={<CloseOutlined style={{ fontSize: 12 }} />}
             onToggleVisiable={handleClose}
           />
         </div>
       }
-      <div style={{ position: "relative", display: "inline" }}>
-        {
-          showDropdownIcon
-            ?
-            <Button
-              icon={icon && <IconView icon={icon} />}
-              {...other}
-              ref={ref}
-              onClick={handleShow}
-            >
-              {
-                p(title)
-              }
-              <DownOutlined />
-            </Button>
-            :
-            <Button
-              icon={icon && <IconView icon={icon} />}
-              {...other}
-              ref={ref}
-              onClick={handleShow}
-            >
-              {
-                p(title)
-              }
-            </Button>
-        }
+      <div style={{ position: "relative", display: "inline" }} {...other}>
+        <TreeNodeWidget node={button} />
       </div>
     </DropdownDesignerContext.Provider>
   )
