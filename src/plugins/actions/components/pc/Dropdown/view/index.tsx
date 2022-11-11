@@ -7,7 +7,7 @@ import { DropdownContext } from "../../../../../../plugin-sdk/contexts/dropdown"
 import { Schema, useFieldSchema } from "@formily/react"
 import { useDoActions } from "~/shared/action"
 
-export interface IDropdownMenuProps {
+export interface IDropdownProps {
   title?: string,
   icon?: IIcon,
   style?: CSSProperties,
@@ -17,14 +17,7 @@ export interface IDropdownMenuProps {
   children?: React.ReactNode,
 }
 
-export interface IDropdownMenuItemProps {
-  className?: string,
-  icon?: IIcon,
-  title?: string,
-  onClick: (e: React.MouseEvent) => void,
-}
-
-const Component: React.FC<IDropdownMenuProps> = observer((props) => {
+const Component: React.FC<IDropdownProps> = observer((props) => {
   const { icon, title, showDropdownIcon, placement, trigger, children, ...other } = props;
   const [loading, setLoading] = useState(false);
   const p = useParseLangMessage();
@@ -32,7 +25,6 @@ const Component: React.FC<IDropdownMenuProps> = observer((props) => {
   const childActionsRef = useRef<any>({})
 
   const doActions = useDoActions();
-
 
   const handleAction = useCallback((onClick?: IAppxAction[]) => {
     if (!onClick) {
@@ -56,23 +48,6 @@ const Component: React.FC<IDropdownMenuProps> = observer((props) => {
     handleAction(action);
   }, [handleAction])
 
-  const items = useMemo(() => {
-    const childrenNodes = []
-    for (const child of Schema.getOrderProperties(fieldSchema)) {
-      const childSchema = child?.schema;
-      childrenNodes.push(childSchema)
-    }
-
-    return childrenNodes.map((child, index) => {
-      childActionsRef.current[index] = child["x-component-props"]?.onClick;
-      const icon = child["x-component-props"]?.icon;
-      return {
-        key: index,
-        icon: icon && <div style={{ paddingRight: 8 }}><IconView icon={icon} /></div>,
-        label: p(child["x-component-props"]?.title),
-      }
-    })
-  }, [fieldSchema, handleAction])
 
   const contextValue = useMemo(() => {
     return { loading, setLoading }
@@ -80,7 +55,11 @@ const Component: React.FC<IDropdownMenuProps> = observer((props) => {
 
   return (
     <DropdownContext.Provider value={contextValue}>
-      <Dropdown overlay={<Menu items={items} onClick={handleMenuClick} />} placement={placement} trigger={trigger}>
+      <Dropdown
+        overlay={<div>哈哈</div>}
+        placement={placement}
+        trigger={trigger}
+      >
         {
           showDropdownIcon
             ?

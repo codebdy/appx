@@ -1,7 +1,6 @@
 const locales = {
   'zh-CN': {
-    title: '下拉菜单',
-    addItem: '添加菜单项',
+    title: '下拉窗口',
     settings: {
       'x-component-props': {
         title: '标题',

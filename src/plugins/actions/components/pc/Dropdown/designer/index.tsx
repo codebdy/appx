@@ -7,18 +7,13 @@ import {
 } from '@designable/react'
 import { observer } from '@formily/reactive-react'
 import './styles.less'
-import { LoadTemplate } from '@designable/formily-antd/lib/common/LoadTemplate'
 import { Button } from 'antd'
 import { CloseOutlined, DownOutlined } from '@ant-design/icons'
-import { MenuItemDesigner } from './MenuItemDesigner'
-import { IDropdownMenuItemProps, IDropdownMenuProps } from '../view'
+import { IDropdownProps } from '../view'
 import { PopupButton, IconView, useParseLangMessage } from '@rxdrag/plugin-sdk'
 
 
-const ComponentDesigner: DnFC<IDropdownMenuProps> &
-{
-  Item?: React.FC<IDropdownMenuItemProps>
-} = observer((props) => {
+const ComponentDesigner: DnFC<IDropdownProps> = observer((props) => {
   const { title, icon, showDropdownIcon, placement, children, ...other } = props;
   const [visible, setVisiable] = useState(false);
   const ref = useRef<HTMLElement>(null)
@@ -92,32 +87,12 @@ const ComponentDesigner: DnFC<IDropdownMenuProps> &
     <>
       {visible &&
         <div
-          className='menu-designer'
+          className='dropdown-designer'
           style={{
             ...getPlacementStyle()
           }}>
           {children}
-          <LoadTemplate
-            actions={[
-              {
-                title: node.getMessage('addItem'),
-                icon: 'AddOperation',
-                onClick: () => {
-                  const item = new TreeNode({
-                    componentName: 'Field',
-                    props: {
-                      type: 'void',
-                      'x-component': 'DropdownMenu.Item',
-                      'x-component-props': {
-                        title: 'Menu Item'
-                      }
-                    },
-                  })
-                  node.append(item)
-                },
-              },
-            ]}
-          />
+          哈哈哈
           <PopupButton
             icon={<CloseOutlined style={{ fontSize: 12 }} />}
             onToggleVisiable={handleClose}
@@ -155,7 +130,5 @@ const ComponentDesigner: DnFC<IDropdownMenuProps> &
     </>
   )
 })
-
-ComponentDesigner.Item = MenuItemDesigner;
 
 export default ComponentDesigner;

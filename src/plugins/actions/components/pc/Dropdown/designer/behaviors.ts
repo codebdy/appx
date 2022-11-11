@@ -1,8 +1,6 @@
 import { IBehavior } from "@rxdrag/appx-plugin-sdk";
 import Name from "../name";
 import locales from "./locales";
-import { DropdownMenuItemLocales } from "./MenuItemDesigner/locales";
-import { DropdownMenuItemSchema } from "./MenuItemDesigner/schema";
 import schema from "./schema";
 
 const behaviors: IBehavior[] = [
@@ -15,17 +13,7 @@ const behaviors: IBehavior[] = [
     },
     designerLocales: locales,
     schema,
-  },
-  {
-    name: 'DropdownMenu.Item',
-    extends: ['Field'],
-    selector: (node) => node.props['x-component'] === 'DropdownMenu.Item',
-    designerProps: {
-      droppable: false,
-    },
-    designerLocales: DropdownMenuItemLocales,
-    schema: DropdownMenuItemSchema,
-  },
+  }
 ]
 
 export default behaviors
