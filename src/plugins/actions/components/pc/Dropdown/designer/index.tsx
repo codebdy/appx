@@ -7,9 +7,9 @@ import {
 } from '@designable/react'
 import { observer } from '@formily/reactive-react'
 import './styles.less'
-import { CloseOutlined, DownOutlined } from '@ant-design/icons'
+import { CloseOutlined } from '@ant-design/icons'
 import { IDropdownProps } from '../view'
-import { PopupButton, IconView, useParseLangMessage, useFindNode } from '@rxdrag/plugin-sdk'
+import { PopupButton, useFindNode } from '@rxdrag/plugin-sdk'
 import { IPopupPanelProps } from '../view/PopupPanel'
 import { PopupPanelDesigner } from './PopupPanelDesigner'
 import { DropdownDesignerContext } from './context'
@@ -21,7 +21,7 @@ const ComponentDesigner: DnFC<IDropdownProps> & {
   Button?: React.FC<ButtonProps>
 } = observer((props) => {
   const { placement, children, ...other } = props;
-  const [visible, setVisiable] = useState(false);
+  const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLElement>(null)
   const node = useTreeNode()
   const selected = useSelected();
@@ -37,12 +37,12 @@ const ComponentDesigner: DnFC<IDropdownProps> & {
 
   const handleShow = useCallback(() => {
     if (canShow) {
-      setVisiable(true);
+      setVisible(true);
     }
   }, [canShow])
 
   const handleClose = useCallback(() => {
-    setVisiable(false);
+    setVisible(false);
   }, [])
 
   const getPlacementStyle = () => {
@@ -96,7 +96,7 @@ const ComponentDesigner: DnFC<IDropdownProps> & {
   const config = useMemo(() => {
     return {
       visible,
-      setVisiable
+      setVisible
     }
   }, [visible])
 
