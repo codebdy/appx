@@ -81,7 +81,7 @@ export const MethodTypeInput = memo(
         {(method.type === Types.ValueObject ||
           method.type === Types.ValueObjectArray) && (
             <Form.Item
-              label={t("AppUml.ValueObject")}
+              label={t("AppUml.ValueClass")}
               name="typeUuid"
             >
               <Select>
