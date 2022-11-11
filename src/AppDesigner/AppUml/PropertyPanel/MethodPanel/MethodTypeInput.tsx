@@ -3,7 +3,6 @@ import { Form } from "antd";
 import { memo } from "react";
 import { useTranslation } from "react-i18next";
 import { MethodMeta } from "../../meta/MethodMeta";
-import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
 import { TypeSelect } from "../TypeSelect";
 import { TypeUuidSelect } from "../TypeUuidSelect";
 
@@ -14,7 +13,6 @@ export const MethodTypeInput = memo(
     }
   ) => {
     const { method } = props;
-    const appId = useEdittingAppId();
     const { t } = useTranslation();
 
     return (

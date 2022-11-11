@@ -13,9 +13,12 @@ export const TypeUuidSelect = memo((
   props: {
     type?: Type,
     withFormItem?: boolean,
+    value?: string,
+    onChange?: (value?: string) => void,
+    style?: React.CSSProperties,
   }
 ) => {
-  const { type, withFormItem } = props;
+  const { type, withFormItem, value, onChange, style } = props;
   const appId = useEdittingAppId();
   const enums = useEnums(appId);
   const valueObjects = useValueObjects(appId);
@@ -49,7 +52,7 @@ export const TypeUuidSelect = memo((
           label={title}
           name="typeUuid"
         >
-          <Select>
+          <Select style={style}>
             <Option key="" value="">
               <em>None</em>
             </Option>
@@ -61,7 +64,7 @@ export const TypeUuidSelect = memo((
           </Select>
         </Form.Item>
         :
-        <Select>
+        <Select style={style} value={value} onChange={onChange}>
           <Option key="" value="">
             <em>None</em>
           </Option>

@@ -11,9 +11,10 @@ export const TypeSelect = memo((
     value?: Type,
     onChange?: (value?: Type) => void,
     noEntity?: boolean,
+    style?: React.CSSProperties,
   }
 ) => {
-  const { value, disabled, onChange, noEntity } = props
+  const { value, disabled, onChange, noEntity, style } = props
   const { t } = useTranslation();
 
   const handleChange = useCallback((value) => {
@@ -21,7 +22,7 @@ export const TypeSelect = memo((
   }, [onChange])
 
   return (
-    <Select value={value} disabled={disabled} onChange={handleChange}>
+    <Select style={style} value={value} disabled={disabled} onChange={handleChange}>
       <Option value={Types.ID}>ID</Option>
       <Option value={Types.Int}>Int</Option>
       <Option value={Types.Float}>Float</Option>
