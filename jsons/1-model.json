@@ -19,6 +19,11 @@
       "sharable": true,
       "stereoType": "Normal",
       "uuid": "5cc3e471-b676-4759-b04e-0f5af0734681"
+    },
+    {
+      "uuid": "7b5809ae-cf2f-48c4-aac1-1d417130d5fa",
+      "name": "消息",
+      "stereoType": "Normal"
     }
   ],
   "classes": [
@@ -3838,6 +3843,154 @@
       "root": false,
       "stereoType": "Enum",
       "uuid": "e3d2317a-26a9-4ca5-94ab-554c2606c9a6"
+    },
+    {
+      "uuid": "831cc3bb-7c9d-499a-9de3-ac6a843d712d",
+      "innerId": 1023,
+      "name": "Notification",
+      "attributes": [
+        {
+          "uuid": "97564a99-0435-4293-9a5e-b39740aebb4e",
+          "name": "id",
+          "type": "ID",
+          "primary": true,
+          "typeLabel": "ID"
+        }
+      ],
+      "methods": [],
+      "stereoType": "Entity",
+      "root": true,
+      "packageUuid": "7b5809ae-cf2f-48c4-aac1-1d417130d5fa",
+      "label": "通知"
+    },
+    {
+      "uuid": "afac187a-38bf-4602-9be3-0511581f7ab8",
+      "innerId": 1024,
+      "name": "Notice",
+      "attributes": [
+        {
+          "uuid": "e3ebab2b-8f4c-415f-9ba4-abbd16b5a4b0",
+          "name": "id",
+          "type": "ID",
+          "primary": true,
+          "typeLabel": "ID"
+        },
+        {
+          "uuid": "69ce464d-6784-4e13-a59d-4dc5f9445a6e",
+          "name": "message",
+          "type": "String",
+          "typeLabel": "String",
+          "length": 2000
+        },
+        {
+          "uuid": "4f2b7cdd-a641-46a0-aa6e-add8b6d8cd85",
+          "name": "createdAt",
+          "type": "Date",
+          "typeLabel": "Date",
+          "nullable": true,
+          "createDate": true
+        },
+        {
+          "uuid": "7b79981e-f108-4bdb-b77d-130277268c04",
+          "name": "read",
+          "type": "Boolean",
+          "typeLabel": "Boolean",
+          "nullable": true
+        },
+        {
+          "uuid": "be8f9bf8-f010-485e-ac8a-08fcc730fed8",
+          "name": "title",
+          "type": "String",
+          "typeLabel": "String",
+          "nullable": true
+        }
+      ],
+      "methods": [],
+      "stereoType": "Abstract",
+      "root": false,
+      "packageUuid": "7b5809ae-cf2f-48c4-aac1-1d417130d5fa",
+      "label": ""
+    },
+    {
+      "uuid": "cc0f735b-9293-4c1c-8012-7f159ded0e8a",
+      "innerId": 1040,
+      "name": "Message",
+      "attributes": [
+        {
+          "uuid": "d1b39bf1-a463-4c20-87ce-5767b6432b5e",
+          "name": "id",
+          "type": "ID",
+          "primary": true,
+          "typeLabel": "ID"
+        }
+      ],
+      "methods": [],
+      "stereoType": "Entity",
+      "root": true,
+      "packageUuid": "7b5809ae-cf2f-48c4-aac1-1d417130d5fa",
+      "label": "消息"
+    },
+    {
+      "uuid": "5a9c9e27-8bb3-4947-b38f-d4a1d96dd45a",
+      "innerId": 1042,
+      "name": "Backlog",
+      "attributes": [
+        {
+          "uuid": "fb417847-bcaa-49e2-af39-18bf3cf27d11",
+          "name": "id",
+          "type": "ID",
+          "primary": true,
+          "typeLabel": "ID"
+        },
+        {
+          "uuid": "4cb350af-509a-4242-b01b-f5acdc1020c8",
+          "name": "deadline",
+          "type": "Date",
+          "typeLabel": "Date",
+          "nullable": true
+        },
+        {
+          "uuid": "291f9df7-86fa-4d68-855a-1b9a1751373d",
+          "name": "status",
+          "type": "Enum",
+          "typeLabel": "BacklogStatus",
+          "typeUuid": "ef3faa45-639b-44e4-be3f-b3202a131c33"
+        }
+      ],
+      "methods": [],
+      "stereoType": "Entity",
+      "root": true,
+      "packageUuid": "7b5809ae-cf2f-48c4-aac1-1d417130d5fa",
+      "label": "待办"
+    },
+    {
+      "uuid": "ef3faa45-639b-44e4-be3f-b3202a131c33",
+      "innerId": 1043,
+      "name": "BacklogStatus",
+      "attributes": [
+        {
+          "uuid": "b26ebc02-0bcd-479f-ab5a-a99a603a4f05",
+          "name": "waiting",
+          "type": "String",
+          "typeLabel": "String"
+        },
+        {
+          "uuid": "ac727c2b-d7f6-4403-9d95-51e3666b7452",
+          "name": "inprocess",
+          "type": "String",
+          "typeLabel": "String"
+        },
+        {
+          "uuid": "57a470c4-47f7-45d3-a619-50284020d8f3",
+          "name": "finished",
+          "type": "String",
+          "typeLabel": "String"
+        }
+      ],
+      "methods": [],
+      "stereoType": "Enum",
+      "root": false,
+      "packageUuid": "7b5809ae-cf2f-48c4-aac1-1d417130d5fa"
     }
   ],
   "relations": [
@@ -4476,6 +4629,44 @@
       "targetId": "0068083c-88f9-4170-8763-c6a3313bab73",
       "targetMultiplicity": "0..1",
       "uuid": "9e2abebe-8cd1-4552-b0c8-72c077738e98"
+    },
+    {
+      "uuid": "af86b890-9d5f-43df-9d32-eae6894b9e85",
+      "innerId": 0,
+      "relationType": "inherit",
+      "sourceId": "831cc3bb-7c9d-499a-9de3-ac6a843d712d",
+      "targetId": "afac187a-38bf-4602-9be3-0511581f7ab8",
+      "sourceMutiplicity": "0..1",
+      "targetMultiplicity": "0..1"
+    },
+    {
+      "uuid": "a1e30755-6cba-4e01-aecb-c9a941763d73",
+      "innerId": 0,
+      "relationType": "inherit",
+      "sourceId": "cc0f735b-9293-4c1c-8012-7f159ded0e8a",
+      "targetId": "afac187a-38bf-4602-9be3-0511581f7ab8",
+      "sourceMutiplicity": "0..1",
+      "targetMultiplicity": "0..1"
+    },
+    {
+      "uuid": "d6882a25-951a-4205-9532-cf41e82d2146",
+      "innerId": 0,
+      "relationType": "inherit",
+      "sourceId": "5a9c9e27-8bb3-4947-b38f-d4a1d96dd45a",
+      "targetId": "afac187a-38bf-4602-9be3-0511581f7ab8",
+      "sourceMutiplicity": "0..1",
+      "targetMultiplicity": "0..1"
+    },
+    {
+      "uuid": "4184b640-035d-49cf-bb7e-86fe58c70b94",
+      "innerId": 1012,
+      "relationType": "twoWayAggregation",
+      "sourceId": "APP_ENTITY_UUID",
+      "targetId": "afac187a-38bf-4602-9be3-0511581f7ab8",
+      "roleOfTarget": "notices",
+      "roleOfSource": "app",
+      "sourceMutiplicity": "0..*",
+      "targetMultiplicity": "0..1"
     }
   ],
   "diagrams": [
@@ -4534,6 +4725,13 @@
       "nodes": [],
       "packageUuid": "PACKAGE_SYSTEM_UUID",
       "uuid": "22fafc67-a7f9-4d45-9506-7aba53ffcd10"
+    },
+    {
+      "uuid": "91e4c8fc-79c0-431b-abe9-6a88bad44791",
+      "name": "通知消息",
+      "packageUuid": "7b5809ae-cf2f-48c4-aac1-1d417130d5fa",
+      "nodes": [],
+      "edges": []
     }
   ],
   "codes": [],
@@ -4905,6 +5103,54 @@
       "width": 180,
       "x": 350,
       "y": 225.0000000000001
+    },
+    {
+      "id": "831cc3bb-7c9d-499a-9de3-ac6a843d712d",
+      "x": 240,
+      "y": 280,
+      "width": 180,
+      "height": 120,
+      "diagramUuid": "91e4c8fc-79c0-431b-abe9-6a88bad44791"
+    },
+    {
+      "id": "afac187a-38bf-4602-9be3-0511581f7ab8",
+      "x": 500,
+      "y": 9.999999999999986,
+      "width": 180,
+      "height": 170,
+      "diagramUuid": "91e4c8fc-79c0-431b-abe9-6a88bad44791"
+    },
+    {
+      "id": "cc0f735b-9293-4c1c-8012-7f159ded0e8a",
+      "x": 500,
+      "y": 280,
+      "width": 180,
+      "height": 120,
+      "diagramUuid": "91e4c8fc-79c0-431b-abe9-6a88bad44791"
+    },
+    {
+      "id": "5a9c9e27-8bb3-4947-b38f-d4a1d96dd45a",
+      "x": 788,
+      "y": 280,
+      "width": 180,
+      "height": 170,
+      "diagramUuid": "91e4c8fc-79c0-431b-abe9-6a88bad44791"
+    },
+    {
+      "id": "ef3faa45-639b-44e4-be3f-b3202a131c33",
+      "x": 1066,
+      "y": 280,
+      "width": 180,
+      "height": 170,
+      "diagramUuid": "91e4c8fc-79c0-431b-abe9-6a88bad44791"
+    },
+    {
+      "id": "APP_ENTITY_UUID",
+      "x": 129.99999999999957,
+      "y": 39.999999999999986,
+      "width": 160,
+      "height": 110,
+      "diagramUuid": "91e4c8fc-79c0-431b-abe9-6a88bad44791"
     }
   ],
   "x6Edges": [
@@ -5406,6 +5652,60 @@
       "diagramUuid": "22fafc67-a7f9-4d45-9506-7aba53ffcd10",
       "id": "9e2abebe-8cd1-4552-b0c8-72c077738e98",
       "vertices": []
+    },
+    {
+      "id": "af86b890-9d5f-43df-9d32-eae6894b9e85",
+      "vertices": [
+        {
+          "x": 330,
+          "y": 240
+        },
+        {
+          "x": 590,
+          "y": 240
+        }
+      ],
+      "diagramUuid": "91e4c8fc-79c0-431b-abe9-6a88bad44791"
+    },
+    {
+      "id": "a1e30755-6cba-4e01-aecb-c9a941763d73",
+      "vertices": [],
+      "diagramUuid": "91e4c8fc-79c0-431b-abe9-6a88bad44791"
+    },
+    {
+      "id": "d6882a25-951a-4205-9532-cf41e82d2146",
+      "vertices": [
+        {
+          "x": 878,
+          "y": 240
+        },
+        {
+          "x": 590,
+          "y": 240
+        }
+      ],
+      "diagramUuid": "91e4c8fc-79c0-431b-abe9-6a88bad44791"
+    },
+    {
+      "id": "4184b640-035d-49cf-bb7e-86fe58c70b94",
+      "vertices": [],
+      "roleOnSourcePosition": {
+        "distance": 40,
+        "offset": 20
+      },
+      "sourceMultiplicityPosition": {
+        "distance": 40,
+        "offset": -20
+      },
+      "roleOnTargetPosition": {
+        "distance": -40,
+        "offset": 20
+      },
+      "targetMultiplicityPosition": {
+        "distance": -40,
+        "offset": -20
+      },
+      "diagramUuid": "91e4c8fc-79c0-431b-abe9-6a88bad44791"
     }
   ]
 }
