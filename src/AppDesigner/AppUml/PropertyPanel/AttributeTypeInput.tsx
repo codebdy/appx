@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import { AttributeMeta } from "../meta/AttributeMeta";
 import { CONST_ID } from "../meta/Meta";
 import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
+import { TypeSelect } from "./TypeSelect";
 const { Option } = Select;
 
 export const AttributeTypeInput = memo(
@@ -31,38 +32,7 @@ export const AttributeTypeInput = memo(
           label={t("Type")}
           name="type"
         >
-          <Select disabled={isId}>
-            <Option value={Types.ID}>ID</Option>
-            <Option value={Types.Int}>Int</Option>
-            <Option value={Types.Float}>Float</Option>
-            <Option value={Types.Boolean}>Boolean</Option>
-            <Option value={Types.String}>String</Option>
-            <Option value={Types.Date}>Date</Option>
-            <Option value={Types.Uuid}>UUID</Option>
-            <Option value={Types.Enum}>{t("AppUml.Enum")}</Option>
-            <Option value={Types.JSON}>JSON</Option>
-            <Option value={Types.ValueObject}>{t("AppUml.ValueClass")}</Option>
-            <Option value={Types.Entity}>{t("AppUml.Entity")}</Option>
-            <Option value={Types.File}>{t("File")}</Option>
-            <Option value={Types.Password}>{t("Password")}</Option>
-            <Option value={Types.IDArray}>ID {t("AppUml.Array")}</Option>
-            <Option value={Types.IntArray}>Int {t("AppUml.Array")}</Option>
-            <Option value={Types.FloatArray}>Float {t("AppUml.Array")}</Option>
-            <Option value={Types.StringArray}>String {t("AppUml.Array")}</Option>
-            <Option value={Types.DateArray}>Date {t("AppUml.Array")}</Option>
-            <Option value={Types.EnumArray}>
-              {t("AppUml.Enum")}
-              {t("AppUml.Array")}
-            </Option>
-            <Option value={Types.ValueObjectArray}>
-              {t("AppUml.ValueClass")}
-              {t("AppUml.Array")}
-            </Option>
-            <Option value={Types.EntityArray}>
-              {t("AppUml.Entity")}
-              {t("AppUml.Array")}
-            </Option>
-          </Select>
+          <TypeSelect disabled={isId}></TypeSelect>
         </Form.Item>
         {(attribute.type === Types.Enum ||
           attribute.type === Types.EnumArray) && (

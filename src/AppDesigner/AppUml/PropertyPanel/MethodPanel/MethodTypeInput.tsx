@@ -50,6 +50,10 @@ export const MethodTypeInput = memo(
               {t("AppUml.Enum")}
               {t("AppUml.Array")}
             </Option>
+            <Option value={Types.JSONArray}>
+              {"JSON"}
+              {t("AppUml.Array")}
+            </Option>
             <Option value={Types.ValueObjectArray}>
               {t("AppUml.ValueClass")}
               {t("AppUml.Array")}
