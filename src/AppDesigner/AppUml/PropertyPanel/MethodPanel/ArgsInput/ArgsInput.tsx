@@ -85,11 +85,10 @@ export const ArgsInput = memo((
       title: t("Name"),
       dataIndex: 'name',
       className: 'drag-visible',
-      width: 200,
       render: (_, { uuid, name }) => (
         <LazyInput
           value={name}
-          style={{ width: 200 }}
+          style={{ width: 150 }}
           onChange={
             (value) => handleNameChange(uuid, value)
           }
@@ -100,31 +99,53 @@ export const ArgsInput = memo((
       title: t("Type"),
       dataIndex: 'type',
       className: 'drag-visible',
-      width: 150,
+      width: 332,
       render: (_, { uuid, type }) => (
-        <Select
-          style={{ width: 150 }}
-          value={type}
-          onChange={(value) => handleTypeChange(uuid, value)}
-        >
-          <Option value={Types.ID}>ID</Option>
-          <Option value={Types.Int}>Int</Option>
-          <Option value={Types.Float}>Float</Option>
-          <Option value={Types.Boolean}>Boolean</Option>
-          <Option value={Types.String}>String</Option>
-          <Option value={Types.Date}>Date</Option>
-          <Option value={Types.JSON}>JSON</Option>
-          <Option value={Types.IDArray}>ID {t("AppUml.Array")}</Option>
-          <Option value={Types.IntArray}>Int {t("AppUml.Array")}</Option>
-          <Option value={Types.FloatArray}>Float {t("AppUml.Array")}</Option>
-          <Option value={Types.StringArray}>String {t("AppUml.Array")}</Option>
-          <Option value={Types.DateArray}>Date {t("AppUml.Array")}</Option>
-        </Select>
+        <div style={{ display: "flex" }}>
+          <Select
+            style={{ width: 150 }}
+            value={type}
+            onChange={(value) => handleTypeChange(uuid, value)}
+          >
+            <Option value={Types.ID}>ID</Option>
+            <Option value={Types.Int}>Int</Option>
+            <Option value={Types.Float}>Float</Option>
+            <Option value={Types.Boolean}>Boolean</Option>
+            <Option value={Types.String}>String</Option>
+            <Option value={Types.Date}>Date</Option>
+            <Option value={Types.JSON}>JSON</Option>
+            <Option value={Types.IDArray}>ID {t("AppUml.Array")}</Option>
+            <Option value={Types.IntArray}>Int {t("AppUml.Array")}</Option>
+            <Option value={Types.FloatArray}>Float {t("AppUml.Array")}</Option>
+            <Option value={Types.StringArray}>String {t("AppUml.Array")}</Option>
+            <Option value={Types.DateArray}>Date {t("AppUml.Array")}</Option>
+          </Select>
+          <Select
+            style={{ width: 150, marginLeft: 16 }}
+            value={type}
+            onChange={(value) => handleTypeChange(uuid, value)}
+          >
+            <Option value={Types.ID}>ID</Option>
+            <Option value={Types.Int}>Int</Option>
+            <Option value={Types.Float}>Float</Option>
+            <Option value={Types.Boolean}>Boolean</Option>
+            <Option value={Types.String}>String</Option>
+            <Option value={Types.Date}>Date</Option>
+            <Option value={Types.JSON}>JSON</Option>
+            <Option value={Types.IDArray}>ID {t("AppUml.Array")}</Option>
+            <Option value={Types.IntArray}>Int {t("AppUml.Array")}</Option>
+            <Option value={Types.FloatArray}>Float {t("AppUml.Array")}</Option>
+            <Option value={Types.StringArray}>String {t("AppUml.Array")}</Option>
+            <Option value={Types.DateArray}>Date {t("AppUml.Array")}</Option>
+          </Select>
+        </div>
       ),
     },
+
     {
       dataIndex: 'operate',
       className: 'drag-visible',
+      width: 80,
       render: (_, { uuid }) => (
         <Button
           shape="circle"
@@ -199,7 +220,7 @@ export const ArgsInput = memo((
       <Modal
         className="args-input-modal"
         title={t("AppUml.ConfigArgs")}
-        width={600}
+        width={700}
         open={open}
         onOk={handleOk}
         onCancel={handleCancel}
