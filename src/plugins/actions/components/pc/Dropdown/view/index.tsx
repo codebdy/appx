@@ -3,9 +3,9 @@ import React, { CSSProperties, useCallback, useMemo, useRef, useState } from "re
 import { IAppxAction, IconView, IIcon, useParseLangMessage } from '@rxdrag/plugin-sdk'
 import { Button, Dropdown, Menu, message } from "antd"
 import { DownOutlined } from "@ant-design/icons"
+import { DropdownContext } from "../../../../../../plugin-sdk/contexts/dropdown"
 import { Schema, useFieldSchema } from "@formily/react"
 import { useDoActions } from "~/shared/action"
-import { DropdownContext } from "~/plugin-sdk/contexts/dropdown"
 
 export interface IDropdownMenuProps {
   title?: string,
