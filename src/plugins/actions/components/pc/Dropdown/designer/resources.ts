@@ -11,9 +11,6 @@ const resources: IResourceCreator[] = [
           type: 'void',
           'x-component': Name,
           'x-component-props': {
-            type: "primary",
-            title: "Dropdown",
-            showDropdownIcon: true,
             placement: "bottomRight",
             trigger: ['click']
           },
@@ -25,6 +22,18 @@ const resources: IResourceCreator[] = [
               type: 'void',
               'x-component': 'Dropdown.PopupPanel',
               'x-component-props': {
+              },
+            },
+          },
+          {
+            componentName: 'Field',
+            props: {
+              type: 'void',
+              'x-component': 'Dropdown.Button',
+              'x-component-props': {
+                type: "primary",
+                title: "Dropdown",
+                showDropdownIcon: true,
               },
             },
           },

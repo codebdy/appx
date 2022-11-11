@@ -3,25 +3,6 @@ const locales = {
     title: '下拉窗口',
     settings: {
       'x-component-props': {
-        title: '标题',
-        type: {
-          title: '类型',
-          dataSource: ['填充', '透明', '虚线', '链接', '文本', '默认'],
-        },
-        block: "充满",
-        danger: "警醒",
-        disabled: "无效",
-        ghost: "透明",
-        icon: "图标",
-        showDropdownIcon: "下拉图标",
-        shape: {
-          title: '形状',
-          dataSource: ['默认', '圆圈', '圆角'],
-        },
-        size: {
-          title: '尺寸',
-          dataSource: ['大', '中', '小'],
-        },
         placement: {
           title: '位置',
           dataSource: ["底部", "左下", "右下", "顶部", "左上", "右上"],

@@ -1,8 +1,8 @@
 import { createContext, useContext } from "react";
 
 export interface IDropdownDesignerParams {
-  visiable?: boolean,
-  setVisiable?: (visiable?:boolean)=>void,
+  visible?: boolean,
+  setVisible?: (visible?:boolean)=>void,
 }
 
 export const DropdownDesignerContext = createContext<IDropdownDesignerParams>({});

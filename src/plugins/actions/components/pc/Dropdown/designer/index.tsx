@@ -1,5 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { TreeNode } from '@designable/core'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   DnFC,
   useTreeNode,
@@ -13,10 +12,13 @@ import { IDropdownProps } from '../view'
 import { PopupButton, IconView, useParseLangMessage } from '@rxdrag/plugin-sdk'
 import { IPopupPanelProps } from '../view/PopupPanel'
 import { PopupPanelDesigner } from './PopupPanelDesigner'
-
+import { DropdownDesignerContext } from './context'
+import { ButtonProps } from '../view/Button'
+import ButtonDesigner from './ButtonDesigner'
 
 const ComponentDesigner: DnFC<IDropdownProps> & {
-  PopupPanel?: React.FC<IPopupPanelProps>
+  PopupPanel?: React.FC<IPopupPanelProps>,
+  Button?: React.FC<ButtonProps>
 } = observer((props) => {
   const { title, icon, showDropdownIcon, placement, children, ...other } = props;
   const [visible, setVisiable] = useState(false);
@@ -87,8 +89,15 @@ const ComponentDesigner: DnFC<IDropdownProps> & {
     }
   }
 
+  const config = useMemo(()=>{
+    return {
+      visible,
+      setVisiable
+    }
+  },[visible])
+
   return (
-    <>
+    <DropdownDesignerContext.Provider value={config} >
       {visible &&
         <div
           className='dropdown-designer'
@@ -132,10 +141,11 @@ const ComponentDesigner: DnFC<IDropdownProps> & {
             </Button>
         }
       </div>
-    </>
+    </DropdownDesignerContext.Provider>
   )
 })
 
+ComponentDesigner.Button = ButtonDesigner
 ComponentDesigner.PopupPanel = PopupPanelDesigner
 
 export default ComponentDesigner;
