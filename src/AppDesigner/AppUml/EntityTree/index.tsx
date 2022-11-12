@@ -38,6 +38,8 @@ import { OrchestrationRootAction } from "./OrchestrationRootAction";
 import { useSelectedCode } from "../hooks/useSelectedCode";
 import { OrchestrationMeta } from "../meta/OrchestrationMeta";
 import { OrchestrationLabel } from "./OrchestrationLabel";
+import { useSelectedOrcherstration } from "../hooks/useSelectedOrcherstration";
+import { useIsOrchestration } from "../hooks/useIsOrchestration";
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
@@ -51,6 +53,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   const isDiagram = useIsDiagram(appId);
   const isElement = useIsElement(appId);
   const isCode = useIsCode(appId);
+  const isOrches = useIsOrchestration(appId);
   const parseRelationUuid = useParseRelationUuid(appId);
   const [selectedDiagramId, setSelecteDiagramId] = useRecoilState(selectedUmlDiagramState(appId));
   const [selectedElement, setSelectedElement] = useRecoilState(selectedElementState(appId));
@@ -341,12 +344,8 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
       if (isDiagram(uuid)) {
         setSelecteDiagramId(uuid);
         //setSelectedCodeId(undefined);
-      } else if (isElement(uuid)) {
+      } else if (isElement(uuid) || isCode(uuid) || isOrches(uuid)) {
         setSelectedElement(uuid);
-      } else if (isCode(uuid)) {
-        setSelectedElement(uuid);
-        //setSelectedCodeId(uuid);
-        setSelecteDiagramId(undefined);
       } else {
         const relationUuid = parseRelationUuid(uuid);
         if (relationUuid) {
@@ -354,10 +353,10 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
         }
       }
     }
-  }, [isDiagram, isElement, isCode, parseRelationUuid, setSelecteDiagramId, setSelectedElement])
+  }, [isDiagram, isElement, isCode, isOrches, parseRelationUuid, setSelecteDiagramId, setSelectedElement])
 
   const selectedCode = useSelectedCode(appId);
-
+  const selectedOrches = useSelectedOrcherstration(appId);
   return (
     <div
       style={{
@@ -368,7 +367,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     >
       <DirectoryTree
         defaultExpandedKeys={["0"]}
-        selectedKeys={[selectedDiagramId || selectedCode?.uuid]}
+        selectedKeys={[selectedDiagramId || selectedCode?.uuid || selectedOrches?.uuid]}
         onSelect={handleSelect}
         treeData={treeData}
       />
