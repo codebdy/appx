@@ -13,9 +13,9 @@ export const CodeScriptEditor = memo(() => {
   const backup = useBackupSnapshot(appId);
   const handleChange = useCallback((value: string) => {
     backup();
-    setCodes(codes => codes.map(cd => cd.uuid === code.uuid ? { ...cd, code: value } : cd))
+    setCodes(codes => codes.map(cd => cd.uuid === code.uuid ? { ...cd, script: value } : cd))
   }, [backup, setCodes, code])
   return (
-    <CodeInput key={code.uuid} value={code.code} onChange={handleChange} />
+    <CodeInput key={code.uuid} value={code.script} onChange={handleChange} />
   )
 })
