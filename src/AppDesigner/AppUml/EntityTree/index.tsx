@@ -35,6 +35,7 @@ import CodeLabel from "./CodeLabel";
 import { CodeOutlined } from "@ant-design/icons";
 import { useIsCode } from "../hooks/useIsCode";
 import { OrchestrationRootAction } from "./OrchestrationRootAction";
+import { useSelectedCode } from "../hooks/useSelectedCode";
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
@@ -314,6 +315,8 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     }
   }, [isDiagram, isElement, isCode, parseRelationUuid, setSelecteDiagramId, setSelectedElement])
 
+  const selectedCode = useSelectedCode(appId);
+
   return (
     <div
       style={{
@@ -324,7 +327,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     >
       <DirectoryTree
         defaultExpandedKeys={["0"]}
-        selectedKeys={[selectedDiagramId]}
+        selectedKeys={[selectedDiagramId || selectedCode?.uuid]}
         onSelect={handleSelect}
         treeData={treeData}
       />
