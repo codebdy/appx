@@ -5,6 +5,7 @@ import { DiagramMeta } from "./DiagramMeta";
 import { X6NodeMeta } from "./X6NodeMeta";
 import { X6EdgeMeta } from "./X6EdgeMeta";
 import { CodeMeta } from "./CodeMeta";
+import { OrchestrationMeta } from "./OrchestrationMeta";
 
 export interface MetaContent {
   packages: PackageMeta[];
@@ -12,6 +13,7 @@ export interface MetaContent {
   diagrams?: DiagramMeta[];
   relations: RelationMeta[];
   codes?: CodeMeta[];
+  orchestrations?: OrchestrationMeta[];
   x6Nodes: X6NodeMeta[];
   x6Edges: X6EdgeMeta[];
 }

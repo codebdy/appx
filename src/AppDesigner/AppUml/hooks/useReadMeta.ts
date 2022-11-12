@@ -3,7 +3,7 @@ import { useMemo, useEffect } from "react";
 import { useSetRecoilState } from "recoil";
 import { SYSTEM_APP_ID } from "~/consts";
 import { useQueryOne } from "~/enthooks/hooks/useQueryOne";
-import { classesState, relationsState, diagramsState, x6NodesState, x6EdgesState, packagesState, codesState } from "../recoil/atoms";
+import { classesState, relationsState, diagramsState, x6NodesState, x6EdgesState, packagesState, codesState, orchestrationsState } from "../recoil/atoms";
 import { IApp } from "~/model";
 import { ID } from "~/shared";
 
@@ -28,6 +28,7 @@ export function useReadMeta(appId: ID): { error?: GraphQLRequestError; loading?:
   const setRelations = useSetRecoilState(relationsState(appId));
   const setDiagrams = useSetRecoilState(diagramsState(appId));
   const setCodes = useSetRecoilState(codesState(appId));
+  const setOrchestrations = useSetRecoilState(orchestrationsState(appId));
   const setX6Nodes = useSetRecoilState(x6NodesState(appId));
   const setX6Edges = useSetRecoilState(x6EdgesState(appId));
   const setPackages = useSetRecoilState(packagesState(appId))
@@ -60,6 +61,7 @@ export function useReadMeta(appId: ID): { error?: GraphQLRequestError; loading?:
       setClasses([...systemClasses, ...meta?.classes || []]);
       setRelations(meta?.relations || []);
       setCodes(meta?.codes || []);
+      setOrchestrations(meta?.orchestrations || []);
       setDiagrams(meta?.diagrams || []);
       setX6Nodes(meta?.x6Nodes || []);
       setX6Edges(meta?.x6Edges || []);
@@ -67,6 +69,7 @@ export function useReadMeta(appId: ID): { error?: GraphQLRequestError; loading?:
   }, [
     data,
     setCodes,
+    setOrchestrations,
     setDiagrams,
     setClasses,
     setPackages,
