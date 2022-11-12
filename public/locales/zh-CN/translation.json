@@ -252,7 +252,8 @@
     "Image": "图片"
   },
   "AppUml": {
-    "DomainModel": "业务模型",
+    "DomainModel": "领域模型",
+    "ServiceOrchestration":"业务编排",
     "AddPackage": "添加包",
     "ExportModel": "导出模型",
     "ImportModel": "导入模型",

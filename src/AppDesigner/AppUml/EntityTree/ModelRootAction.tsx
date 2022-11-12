@@ -1,7 +1,7 @@
 import { FolderAddOutlined, DownloadOutlined, ImportOutlined, MoreOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo, useState } from "react"
-import { useCreateNewPackage } from './../hooks/useCreateNewPackage';
+import { useCreateNewPackage } from '../hooks/useCreateNewPackage';
 import { useSetRecoilState } from 'recoil';
 import { packagesState } from "../recoil/atoms";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
@@ -12,7 +12,7 @@ import { PackageDialog } from "./PackageLabel/PackageDialog";
 import { PackageMeta } from "../meta/PackageMeta";
 import { useImportJson } from "../hooks/useImportJson";
 
-const RootAction = memo(() => {
+export const ModelRootAction = memo(() => {
   const appId = useEdittingAppId();
   const [newPackage, setNewPackage] = useState<PackageMeta>();
   const setPackages = useSetRecoilState(packagesState(appId));
@@ -92,5 +92,3 @@ const RootAction = memo(() => {
     </>
   )
 })
-
-export default RootAction;
