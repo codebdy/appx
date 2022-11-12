@@ -28,7 +28,7 @@ const TreeNodeLabel = memo((
       {children}
       {
         (hover || fixedAction) &&
-        <div className="node-actions">
+        <div className="node-actions" onClick={e => e.stopPropagation()}>
           {action}
         </div>
       }
