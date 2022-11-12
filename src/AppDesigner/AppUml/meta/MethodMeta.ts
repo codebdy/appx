@@ -36,7 +36,7 @@ export interface MethodMeta {
   name: string;
 
   label?: string;
-
+  description?: string;
   /**
    * 字段类型
    */
