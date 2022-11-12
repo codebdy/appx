@@ -110,13 +110,13 @@ export const OrchestrationRootAction = memo(() => {
         },
         {
           icon: <DownloadOutlined />,
-          label: t("AppUml.ExportModel"),
+          label: t("AppUml.ExportOrchestration"),
           key: '2',
           onClick: expotJson
         },
         {
           icon: <ImportOutlined />,
-          label: t("AppUml.ImportModel"),
+          label: t("AppUml.ImportOrchestration"),
           key: '3',
           onClick: importJson,
         },

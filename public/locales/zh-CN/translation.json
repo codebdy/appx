@@ -257,6 +257,8 @@
     "AddPackage": "添加包",
     "ExportModel": "导出模型",
     "ImportModel": "导入模型",
+    "ExportOrchestration": "导出编排",
+    "ImportOrchestration": "导入编排",
     "AddDiagram": "添加类图",
     "AddClass": "添加类",
     "AddEntity": "添加实体类",
