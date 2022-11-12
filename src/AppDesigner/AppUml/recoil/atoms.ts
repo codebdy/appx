@@ -8,10 +8,12 @@ import { LineAction } from "./LineAction";
 import { ID } from "~/shared";
 import { PackageMeta } from "../meta/PackageMeta";
 import { CodeMeta } from "../meta/CodeMeta";
+import { OrchestrationMeta } from "../meta/OrchestrationMeta";
 
 export interface Snapshot {
   diagrams: DiagramMeta[];
   codes: CodeMeta[];
+  orchestrations: OrchestrationMeta[];
   packages: PackageMeta[];
   classes: ClassMeta[];
   relations: RelationMeta[];
@@ -44,6 +46,11 @@ export const diagramsState = atomFamily<DiagramMeta[], string>({
 
 export const codesState = atomFamily<CodeMeta[], string>({
   key: "uml.codes",
+  default: [],
+});
+
+export const orchestrationsState = atomFamily<OrchestrationMeta[], string>({
+  key: "uml.orchestrations",
   default: [],
 });
 

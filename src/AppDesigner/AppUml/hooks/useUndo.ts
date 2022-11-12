@@ -15,6 +15,7 @@ import {
   x6NodesState,
   packagesState,
   codesState,
+  orchestrationsState,
 } from "../recoil/atoms";
 
 export function useUndo(appId: ID) {
@@ -23,6 +24,7 @@ export function useUndo(appId: ID) {
   const [packages, setPackages] = useRecoilState(packagesState(appId))
   const [diagrams, setDiagrams] = useRecoilState(diagramsState(appId));
   const [codes, setCodes] = useRecoilState(codesState(appId));
+  const [orchestrations, setOrchestrations] = useRecoilState(orchestrationsState(appId))
   const [entities, setEntities] = useRecoilState(classesState(appId));
   const [relations, setRelations] = useRecoilState(relationsState(appId));
   const [x6Nodes, setX6Nodes] = useRecoilState(x6NodesState(appId));
@@ -31,7 +33,7 @@ export function useUndo(appId: ID) {
 
   const [selectedDiagram, setSelectedDiagram] =
     useRecoilState(selectedUmlDiagramState(appId));
-    
+
   const [selectedElement, setSelectedElement] =
     useRecoilState(selectedElementState(appId));
 
@@ -44,6 +46,7 @@ export function useUndo(appId: ID) {
         packages,
         diagrams,
         codes,
+        orchestrations,
         classes: entities,
         relations,
         x6Nodes,
@@ -56,6 +59,7 @@ export function useUndo(appId: ID) {
     setPackages(snapshot.packages);
     setDiagrams(snapshot.diagrams);
     setCodes(snapshot.codes);
+    setOrchestrations(snapshot.orchestrations);
     setEntities(snapshot.classes);
     setRelations(snapshot.relations);
     setX6Nodes(snapshot.x6Nodes);
@@ -73,6 +77,7 @@ export function useUndo(appId: ID) {
     setPackages,
     setDiagrams,
     setCodes,
+    setOrchestrations,
     setEntities,
     setRelations,
     setX6Nodes,
@@ -82,6 +87,7 @@ export function useUndo(appId: ID) {
     packages,
     diagrams,
     codes,
+    orchestrations,
     entities,
     relations,
     x6Nodes,

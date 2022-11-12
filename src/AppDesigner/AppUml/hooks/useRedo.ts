@@ -15,6 +15,7 @@ import {
   x6NodesState,
   packagesState,
   codesState,
+  orchestrationsState,
 } from "../recoil/atoms";
 
 export function useRedo(appId: ID) {
@@ -23,6 +24,7 @@ export function useRedo(appId: ID) {
   const [packages, setPackages] = useRecoilState(packagesState(appId))
   const [diagrams, setDiagrams] = useRecoilState(diagramsState(appId));
   const [codes, setCodes] = useRecoilState(codesState(appId));
+  const [orchestrations, setOrchestrations] = useRecoilState(orchestrationsState(appId))
   const [entities, setEntities] = useRecoilState(classesState(appId));
   const [relations, setRelations] = useRecoilState(relationsState(appId));
   const [x6Nodes, setX6Nodes] = useRecoilState(x6NodesState(appId));
@@ -46,6 +48,7 @@ export function useRedo(appId: ID) {
         packages,
         diagrams,
         codes,
+        orchestrations,
         classes: entities,
         relations,
         x6Nodes,
@@ -58,6 +61,7 @@ export function useRedo(appId: ID) {
     setPackages(snapshot.packages);
     setDiagrams(snapshot.diagrams);
     setCodes(snapshot.codes);
+    setOrchestrations(snapshot.orchestrations);
     setEntities(snapshot.classes);
     setRelations(snapshot.relations);
     setX6Nodes(snapshot.x6Nodes);
@@ -68,27 +72,29 @@ export function useRedo(appId: ID) {
       name: EVENT_UNDO_REDO,
     });
   }, [
-    redoList, 
-    setChanged, 
-    setUndoList, 
-    setRedoList, 
-    setPackages, 
+    redoList,
+    setChanged,
+    setUndoList,
+    setRedoList,
+    setPackages,
     setDiagrams,
-    setCodes, 
-    setEntities, 
-    setRelations, 
-    setX6Nodes, 
-    setX6Edges, 
-    setSelectedDiagram, 
-    setSelectedElement, 
-    packages, 
-    diagrams, 
+    setCodes,
+    setOrchestrations,
+    setEntities,
+    setRelations,
+    setX6Nodes,
+    setX6Edges,
+    setSelectedDiagram,
+    setSelectedElement,
+    packages,
+    diagrams,
     codes,
-    entities, 
-    relations, 
-    x6Nodes, 
-    x6Edges, 
-    selectedDiagram, 
+    orchestrations,
+    entities,
+    relations,
+    x6Nodes,
+    x6Edges,
+    selectedDiagram,
     selectedElement,
   ]);
   return undo;
