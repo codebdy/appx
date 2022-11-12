@@ -15,7 +15,6 @@ export function useGetMeta(appId: ID) {
   const x6Edges = useRecoilValue(x6EdgesState(appId));
   const getPackage = useClassPackage(appId);
 
-
   const getMeta = useCallback(() => {
     const pkgs = packages.filter(pgk => !pgk.sharable || appId === SYSTEM_APP_ID)
     const clses = classes.filter(cls => pkgs.find(pkg => cls.packageUuid === pkg.uuid))
