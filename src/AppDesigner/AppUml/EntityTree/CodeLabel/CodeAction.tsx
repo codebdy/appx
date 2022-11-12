@@ -1,10 +1,7 @@
-import { MoreOutlined, EditOutlined, DeleteOutlined, LockOutlined } from "@ant-design/icons";
-import { Menu, Dropdown, Button } from "antd";
-import React, { memo, useCallback, useMemo } from "react"
-import { useTranslation } from "react-i18next";
-import { useGetPackage } from "../../hooks/useGetPackage";
-import { useDeleteDiagram } from "../../hooks/useDeleteDiagram";
-import { SYSTEM_APP_ID } from "~/consts";
+import { DeleteOutlined } from "@ant-design/icons";
+import { Button } from "antd";
+import React, { memo, useCallback } from "react"
+import { useDeleteCode } from "../../hooks/useDeleteCode";
 import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
 import { CodeMeta } from "../../meta/CodeMeta";
 
@@ -17,59 +14,23 @@ const CodeAction = memo((
 ) => {
   const { code, onEdit, onVisibleChange } = props;
   const appId = useEdittingAppId();
-  const getPagcage = useGetPackage(appId)
-  const deleteDiagram = useDeleteDiagram(appId)
-  const { t } = useTranslation();
+  const deleteCode = useDeleteCode(appId)
 
   const handleDelete = useCallback(() => {
-    deleteDiagram(code.uuid)
+    deleteCode(code.uuid)
     onVisibleChange(false);
-  }, [deleteDiagram, onVisibleChange, code.uuid]);
-
-  const menu = useMemo(() => (
-    <div style={{ backgroundColor: "#000" }}>
-      <Menu
-        items={[
-          {
-            icon: <EditOutlined />,
-            label: t("Edit"),
-            key: '6',
-            onClick: e => {
-              e.domEvent.stopPropagation();
-              onEdit();
-              onVisibleChange(false);
-            }
-          },
-          {
-            icon: <DeleteOutlined />,
-            label: t("Delete"),
-            key: '7',
-            onClick: e => {
-              e.domEvent.stopPropagation();
-              handleDelete();
-              onVisibleChange(false);
-            }
-          },
-        ]}
-      />
-    </div>
-  ), [handleDelete, onEdit, onVisibleChange, t]);
+  }, [deleteCode, onVisibleChange, code.uuid]);
 
   return (
-    getPagcage(code.packageUuid)?.sharable && appId !== SYSTEM_APP_ID ?
-      <Button type="text" shape='circle' size='small'>
-        <LockOutlined />
-      </Button>
-      :
-      <Dropdown
-        overlay={menu}
-        onOpenChange={onVisibleChange}
-        trigger={['click']}
-      >
-        <Button type="text" shape='circle' size='small' onClick={e => e.stopPropagation()}>
-          <MoreOutlined />
-        </Button>
-      </Dropdown>
+    <Button
+      type="text"
+      shape='circle'
+      size='small'
+      onClick={handleDelete}
+      style={{ color: "inherit" }}
+    >
+      <DeleteOutlined />
+    </Button>
   )
 })
 

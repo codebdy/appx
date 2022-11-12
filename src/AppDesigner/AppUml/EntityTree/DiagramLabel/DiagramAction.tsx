@@ -57,7 +57,7 @@ const DiagramAction = memo((
 
   return (
     getPagcage(diagram.packageUuid)?.sharable && appId !== SYSTEM_APP_ID ?
-      <Button type="text" shape='circle' size='small'>
+      <Button type="text" shape='circle' size='small' style={{ color: "inherit" }}>
         <LockOutlined />
       </Button>
       :
@@ -66,7 +66,7 @@ const DiagramAction = memo((
         onOpenChange={onVisibleChange}
         trigger={['click']}
       >
-        <Button type="text" shape='circle' size='small' onClick={e => e.stopPropagation()}>
+        <Button type="text" shape='circle' size='small' onClick={e => e.stopPropagation()} style={{ color: "inherit" }}>
           <MoreOutlined />
         </Button>
       </Dropdown>
