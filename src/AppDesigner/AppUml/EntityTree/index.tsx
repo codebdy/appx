@@ -19,7 +19,7 @@ import { useParseRelationUuid } from "../hooks/useParseRelationUuid";
 import { useGetSourceRelations } from './../hooks/useGetSourceRelations';
 import { useGetTargetRelations } from './../hooks/useGetTargetRelations';
 import { useGetClass } from "../hooks/useGetClass";
-import { MethodMeta } from "../meta/MethodMeta";
+import { MethodMeta, MethodOperateType } from "../meta/MethodMeta";
 import AttributeLabel from "./AttributeLabel";
 import { PRIMARY_COLOR, SYSTEM_APP_ID } from "~/consts";
 import MethodLabel from "./MethodLabel";
@@ -273,17 +273,36 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     return {
       title: title,
       key: key,
-      children: orchestrations.map(orchestration => getOrchestrationNode(orchestration))
+      children: orchestrations.filter(orches => orches.operateType === MethodOperateType.Query).map(orchestration => getOrchestrationNode(orchestration))
+    }
+  }, [getOrchestrationNode, orchestrations])
+
+  const getMutationNodes = useCallback((title: string, key: string) => {
+    return {
+      title: title,
+      key: key,
+      children: orchestrations.filter(orches => orches.operateType === MethodOperateType.Query).map(orchestration => getOrchestrationNode(orchestration))
     }
   }, [getOrchestrationNode, orchestrations])
 
   const getOrchestrationNodes = useCallback(() => {
     const orchestrationChildren: DataNode[] = []
+    const queryNodes = getQueryNodes(t("AppUml.Querys"), "querys");
+    const mutationNodes = getMutationNodes(t("AppUml.Mutations"), "mutations");
+
+    if (queryNodes?.children?.length) {
+      orchestrationChildren.push(queryNodes)
+    }
+
+    if (mutationNodes?.children?.length) {
+      orchestrationChildren.push(mutationNodes)
+    }
+
     if (codes.length > 0) {
       orchestrationChildren.push(getCodesNode(t("AppUml.CustomCode"), "codes"))
     }
     return orchestrationChildren
-  }, [codes, getCodesNode]);
+  }, [codes, getQueryNodes, getMutationNodes, getCodesNode]);
 
 
   const treeData: DataNode[] = useMemo(() => [
