@@ -5,7 +5,7 @@ import { DataNode } from "antd/lib/tree";
 import SvgIcon from "~/common/SvgIcon";
 import { ModelRootAction } from "./ModelRootAction";
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { packagesState, diagramsState, classesState, selectedUmlDiagramState, selectedElementState, codesState } from './../recoil/atoms';
+import { packagesState, diagramsState, classesState, selectedUmlDiagramState, selectedElementState, codesState, orchestrationsState } from './../recoil/atoms';
 import TreeNodeLabel from "~/common/TreeNodeLabel";
 import PackageLabel from "./PackageLabel";
 import { PackageMeta, PackageStereoType } from "../meta/PackageMeta";
@@ -36,6 +36,8 @@ import { CodeOutlined } from "@ant-design/icons";
 import { useIsCode } from "../hooks/useIsCode";
 import { OrchestrationRootAction } from "./OrchestrationRootAction";
 import { useSelectedCode } from "../hooks/useSelectedCode";
+import { OrchestrationMeta } from "../meta/OrchestrationMeta";
+import { OrchestrationLabel } from "./OrchestrationLabel";
 const { DirectoryTree } = Tree;
 
 export const EntityTree = memo((props: { graph?: Graph }) => {
@@ -45,6 +47,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   const diagrams = useRecoilValue(diagramsState(appId));
   const classes = useRecoilValue(classesState(appId));
   const codes = useRecoilValue(codesState(appId));
+  const orchestrations = useRecoilValue(orchestrationsState(appId));
   const isDiagram = useIsDiagram(appId);
   const isElement = useIsElement(appId);
   const isCode = useIsCode(appId);
@@ -189,6 +192,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
       icon: <CodeOutlined />
     }
   }, [])
+
   const getCodesNode = useCallback((title: string, key: string) => {
     return {
       title: title,
@@ -255,6 +259,23 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
       }
     })
   }, [packages, getPackageChildren]);
+
+  const getOrchestrationNode = useCallback((orchestration: OrchestrationMeta) => {
+    return {
+      title: <OrchestrationLabel orchestration={orchestration} />,
+      key: orchestration.uuid,
+      isLeaf: true,
+      icon: <CodeOutlined />
+    }
+  }, [])
+
+  const getQueryNodes = useCallback((title: string, key: string) => {
+    return {
+      title: title,
+      key: key,
+      children: orchestrations.map(orchestration => getOrchestrationNode(orchestration))
+    }
+  }, [getOrchestrationNode, orchestrations])
 
   const getOrchestrationNodes = useCallback(() => {
     const orchestrationChildren: DataNode[] = []

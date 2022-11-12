@@ -1,22 +1,22 @@
 import { DeleteOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 import React, { memo, useCallback } from "react"
-import { useDeleteCode } from "../../hooks/useDeleteCode";
 import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
-import { CodeMeta } from "../../meta/CodeMeta";
+import { OrchestrationMeta } from "../../meta/OrchestrationMeta";
+import { useDeleteOrchestration } from "../../hooks/useDeleteOrchestration";
 
-const CodeAction = memo((
+export const OrchestrationAction = memo((
   props: {
-    code: CodeMeta,
+    orchestration: OrchestrationMeta,
   }
 ) => {
-  const { code } = props;
+  const { orchestration } = props;
   const appId = useEdittingAppId();
-  const deleteCode = useDeleteCode(appId)
+  const deleteOrches = useDeleteOrchestration(appId)
 
   const handleDelete = useCallback(() => {
-    deleteCode(code.uuid)
-  }, [deleteCode, code.uuid]);
+    deleteOrches(orchestration.uuid)
+  }, [deleteOrches, orchestration.uuid]);
 
   return (
     <Button
@@ -30,5 +30,3 @@ const CodeAction = memo((
     </Button>
   )
 })
-
-export default CodeAction;

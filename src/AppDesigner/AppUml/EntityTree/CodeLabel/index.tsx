@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { memo } from "react";
 import TreeNodeLabel from "~/common/TreeNodeLabel";
 import { useParseLangMessage } from "@rxdrag/plugin-sdk";
@@ -12,32 +12,17 @@ const CodeLabel = memo((
 ) => {
   const { code } = props;
   const [name, setName] = useState(code.name);
-  const [editing, setEditing] = useState(false);
-  const [visible, setVisible] = useState(false);
   const p = useParseLangMessage();
 
   useEffect(() => {
     setName(code.name)
   }, [code])
 
-  const handleVisableChange = useCallback((visible) => {
-    setVisible(visible)
-  }, []);
-
-  const handleEdit = useCallback(() => {
-    setEditing(true);
-  }, []);
-
   return (
     <TreeNodeLabel
-      fixedAction={visible}
       action={
-        !editing ?
-          <CodeAction code={code}
-            onEdit={handleEdit}
-            onVisibleChange={handleVisableChange} /> : undefined
+          <CodeAction code={code}/> 
       }
-      onClick={e => editing ? e.stopPropagation() : undefined}
     >
       <div>{p(name)}</div>
     </TreeNodeLabel>
