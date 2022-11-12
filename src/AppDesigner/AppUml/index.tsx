@@ -14,9 +14,10 @@ import { UmlToolbar } from "./UmlToolbar";
 import { GraphCanvas } from "./GraphCanvas";
 import { PropertyPanel } from "./PropertyPanel";
 import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
-import { CodeEditor } from "./CodeEditor";
+import { CodeScriptEditor } from "./CodeEditor/CodeScriptEditor";
 import { useIsCode } from "./hooks/useIsCode";
 import { useIsOrchestration } from "./hooks/useIsOrchestration";
+import { OrchestrationScriptEditor } from "./CodeEditor/OrchestrationScriptEditor";
 
 const AppUml = memo((
   props: {
@@ -63,8 +64,12 @@ const AppUml = memo((
           </div>
         }
         {
-          (isCode(selectedElement) || iseOrches(selectedElement)) &&
-          <CodeEditor />
+          isCode(selectedElement) &&
+          <CodeScriptEditor />
+        }
+        {
+          iseOrches(selectedElement) &&
+          <OrchestrationScriptEditor />
         }
       </ModelBoard>
     </Spin>
