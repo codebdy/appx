@@ -6,6 +6,8 @@ import { useTranslation } from "react-i18next";
 import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
 import { useImportJson } from "../hooks/useImportJson";
 import { useCreateNewCode } from "../hooks/useCreateNewCode";
+import { useCreateNewOrchestration } from "../hooks/useCreateNewOrchestration";
+import { MethodOperateType } from "../meta";
 
 export const OrchestrationRootAction = memo(() => {
   const appId = useEdittingAppId();
@@ -14,18 +16,11 @@ export const OrchestrationRootAction = memo(() => {
   const importJson = useImportJson(appId);
   const { t } = useTranslation();
   const createNewCode = useCreateNewCode(appId);
+  const addOrchestration = useCreateNewOrchestration(appId);
 
   const handleNoneAction = useCallback((e: React.MouseEvent) => {
     e.stopPropagation()
   }, [])
-
-  const handleAddCode = useCallback(
-    () => {
-      createNewCode();
-    },
-    [createNewCode]
-  );
-
 
   const menu = useMemo(() => (
     <Menu
@@ -41,24 +36,22 @@ export const OrchestrationRootAction = memo(() => {
               label: t("AppUml.AddQuery"),
               key: '12',
               onClick: e => {
-                e.domEvent.stopPropagation();
-                //addClass(StereoType.Abstract);
+                addOrchestration(MethodOperateType.Query);
               },
             },
             {
               label: t("AppUml.AddMutaion"),
               key: '13',
               onClick: e => {
-                e.domEvent.stopPropagation();
-                //addClass(StereoType.Enum);
+
+                addOrchestration(MethodOperateType.Mutation);
               },
             },
             {
               label: t("AppUml.AddCode"),
               key: '11',
               onClick: e => {
-                e.domEvent.stopPropagation();
-                handleAddCode();
+                createNewCode();
               }
             },
           ]
@@ -77,7 +70,7 @@ export const OrchestrationRootAction = memo(() => {
         },
       ]}
     />
-  ), [expotJson, importJson, t]);
+  ), [expotJson, importJson, addOrchestration, createNewCode, t]);
 
   return (
     <Dropdown overlay={menu} trigger={['click']}>

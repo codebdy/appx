@@ -1,26 +1,37 @@
 import { useCallback } from "react";
 import { createUuid, ID } from "~/shared";
 import { useTranslation } from "react-i18next";
+import { useBackupSnapshot } from "./useBackupSnapshot";
+import { orchestrationsState, selectedElementState, selectedUmlDiagramState } from "../recoil/atoms";
+import { useSetRecoilState } from "recoil";
 import { useGetOrchestrationByName } from "./useGetOrchestrationByName";
 import { OrchestrationMeta } from "../meta/OrchestrationMeta";
 import { MethodOperateType, Types } from "../meta";
 
 export function useCreateNewOrchestration(appId: ID) {
-  const getOrchestrationByName = useGetOrchestrationByName(appId);
+  const getByName = useGetOrchestrationByName(appId);
+  const backup = useBackupSnapshot(appId);
+  const setOrchestrations = useSetRecoilState(orchestrationsState(appId));
+  const setSelectedElement = useSetRecoilState(selectedElementState(appId));
+  const setSelectedDiagram = useSetRecoilState(
+    selectedUmlDiagramState(appId)
+  );
+
   const { t } = useTranslation();
 
   const getNewName = useCallback(() => {
-    const prefix = "newOrchestration";
+    const prefix = t("AppUml.NewCode");
     let index = 1;
-    while (getOrchestrationByName(prefix + index)) {
+    while (getByName(prefix + index)) {
       index++;
     }
 
     return prefix + index;
-  }, [getOrchestrationByName, t]);
+  }, [getByName, t]);
 
-  const createNewCode = useCallback((operateType: MethodOperateType) => {
-    const newCode: OrchestrationMeta = {
+  const createNewOrchestration = useCallback((operateType: MethodOperateType) => {
+    backup()
+    const newOrchestration: OrchestrationMeta = {
       uuid: createUuid(),
       name: getNewName(),
       script: "",
@@ -29,8 +40,10 @@ export function useCreateNewOrchestration(appId: ID) {
       args: [],
       typeLabel: "String",
     };
-    return newCode;
-  }, [getNewName]);
+    setOrchestrations(orchestrations => [...orchestrations, newOrchestration]);
+    setSelectedElement(newOrchestration.uuid);
+    setSelectedDiagram(undefined);
+  }, [backup, setOrchestrations, getNewName]);
 
-  return createNewCode;
+  return createNewOrchestration;
 }
