@@ -13,11 +13,14 @@ import { Empty } from "antd";
 import { useTranslation } from "react-i18next";
 import { PropertyBox } from "~/common/ModelBoard/PropertyBox";
 import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
+import { useSelectedCode } from "../hooks/useSelectedCode";
+import { CodePanel } from "./CodePanel";
 
 export const PropertyPanel = memo(() => {
   const appId = useEdittingAppId();
   const selectedElement = useRecoilValue(selectedElementState(appId));
   const selectedEntity = useClass(selectedElement || "", appId);
+  const slecectedCode = useSelectedCode(appId);
   const { t } = useTranslation();
   const { cls: attributeCls, attribute } = useAttribute(
     selectedElement || "",
@@ -37,6 +40,7 @@ export const PropertyPanel = memo(() => {
       )}
       {method && methodCls && <MethodPanel method={method} cls={methodCls} />}
       {relation && <RelationPanel relation={relation} />}
+      {slecectedCode && <CodePanel code={slecectedCode} />}
       {!selectedElement && (
         <div style={{ padding: "16px" }}>
           <Empty />
