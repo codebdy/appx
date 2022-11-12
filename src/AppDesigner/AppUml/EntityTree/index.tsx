@@ -32,7 +32,7 @@ import DiagramLabel from "./DiagramLabel";
 import { useParams } from "react-router-dom";
 import { CodeMeta } from "../meta/CodeMeta";
 import CodeLabel from "./CodeLabel";
-import { CodeOutlined } from "@ant-design/icons";
+import { CodeOutlined, FunctionOutlined } from "@ant-design/icons";
 import { useIsCode } from "../hooks/useIsCode";
 import { OrchestrationRootAction } from "./OrchestrationRootAction";
 import { useSelectedCode } from "../hooks/useSelectedCode";
@@ -265,7 +265,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
       title: <OrchestrationLabel orchestration={orchestration} />,
       key: orchestration.uuid,
       isLeaf: true,
-      icon: <CodeOutlined />
+      icon: <FunctionOutlined />
     }
   }, [])
 
