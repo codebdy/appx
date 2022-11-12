@@ -204,8 +204,8 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     const enums = classes.filter(cls => cls.stereoType === StereoType.Enum && cls.packageUuid === pkg.uuid)
     const valueObjects = classes.filter(cls => cls.stereoType === StereoType.ValueObject && cls.packageUuid === pkg.uuid)
     const thirdParties = classes.filter(cls => cls.stereoType === StereoType.ThirdParty && cls.packageUuid === pkg.uuid)
-    const services = classes.filter(cls => cls.stereoType === StereoType.Service && cls.packageUuid === pkg.uuid)
-    const pgkCodes = codes.filter(code => code.packageUuid === pkg.uuid)
+    // const services = classes.filter(cls => cls.stereoType === StereoType.Service && cls.packageUuid === pkg.uuid)
+    // const pgkCodes = codes.filter(code => code.packageUuid === pkg.uuid)
 
     if (abstracts.length > 0) {
       packageChildren.push(getClassCategoryNode(t("AppUml.AbstractClass"), pkg.uuid + "abstracts", abstracts))
@@ -222,13 +222,13 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     if (thirdParties.length > 0) {
       packageChildren.push(getClassCategoryNode(t("AppUml.ThirdPartyClass"), pkg.uuid + "thirdParties", thirdParties))
     }
-    if (services.length > 0) {
-      packageChildren.push(getClassCategoryNode(t("AppUml.ServiceClass"), pkg.uuid + "services", services))
-    }
+    // if (services.length > 0) {
+    //   packageChildren.push(getClassCategoryNode(t("AppUml.ServiceClass"), pkg.uuid + "services", services))
+    // }
 
-    if (pgkCodes.length > 0) {
-      packageChildren.push(getCodesNode(t("AppUml.CustomCode"), pkg.uuid + "codes", pgkCodes))
-    }
+    // if (pgkCodes.length > 0) {
+    //   packageChildren.push(getCodesNode(t("AppUml.CustomCode"), pkg.uuid + "codes", pgkCodes))
+    // }
 
     for (const diagram of diagrams.filter(diagram => diagram.packageUuid === pkg.uuid)) {
       packageChildren.push({
@@ -241,7 +241,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     return packageChildren;
   }, [classes, codes, getClassCategoryNode, t, diagrams])
 
-  const getPackageNodes = useCallback(() => {
+  const getModelPackageNodes = useCallback(() => {
     return packages.map((pkg) => {
       return {
         title: <PackageLabel pkg={pkg} />,
@@ -256,6 +256,13 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     })
   }, [packages, getPackageChildren]);
 
+  const getOrchestrationNodes = useCallback(() => {
+    const orchestrationChildren: DataNode[] = []
+
+    return orchestrationChildren
+  }, []);
+
+
   const treeData: DataNode[] = useMemo(() => [
     {
       icon: <SvgIcon>
@@ -268,7 +275,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
           <div>{t("AppUml.DomainModel")}</div>
         </TreeNodeLabel>,
       key: "0",
-      children: getPackageNodes()
+      children: getModelPackageNodes()
     },
     {
       icon: <SvgIcon>
@@ -281,10 +288,10 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
           <div>{t("AppUml.ServiceOrchestration")}</div>
         </TreeNodeLabel>,
       key: "1",
-      children: getPackageNodes()
+      children: getOrchestrationNodes()
     },
 
-  ], [getPackageNodes, t]);
+  ], [getModelPackageNodes, getOrchestrationNodes, t]);
 
   const handleSelect = useCallback((keys: string[]) => {
     for (const uuid of keys) {

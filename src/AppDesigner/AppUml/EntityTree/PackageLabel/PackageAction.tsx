@@ -2,7 +2,7 @@ import { MoreOutlined, EditOutlined, DeleteOutlined, FileAddOutlined, PlusSquare
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo, useState } from "react"
 import { useSetRecoilState } from 'recoil';
-import { classesState, codesState, diagramsState, selectedCodeState, selectedUmlDiagramState } from "../../recoil/atoms";
+import { classesState, codesState, diagramsState, selectedUmlDiagramState } from "../../recoil/atoms";
 import { PackageMeta } from "../../meta/PackageMeta";
 import { useDeletePackage } from '../../hooks/useDeletePackage';
 import { useCreateNewClass } from "../../hooks/useCreateNewClass";
@@ -15,9 +15,6 @@ import { useChangePackage } from "../../hooks/useChangePackage";
 import { SYSTEM_APP_ID } from "~/consts";
 import { DiagramMeta } from "../../meta/DiagramMeta";
 import { DiagramDialog } from "../DiagramLabel/DiagramDialog";
-import { useCreateNewCode } from "../../hooks/useCreateNewCode";
-import { CodeMeta } from "../../meta/CodeMeta";
-import { CodeDialog } from "../CodeLabel/CodeDialog";
 
 const PackageAction = memo((
   props: {
@@ -29,15 +26,12 @@ const PackageAction = memo((
   const { pkg, onEdit, onVisibleChange } = props;
   const appId = useEdittingAppId();
   const [newDiagram, setNewDiagram] = useState<DiagramMeta>();
-  const [newCode, setNewCode] = useState<CodeMeta>();
   const deletePackage = useDeletePackage(appId)
   const createNewClass = useCreateNewClass(appId);
   const createNewDiagram = useCreateNewDiagram(appId);
-  const createNewCode = useCreateNewCode(appId);
   const setClasses = useSetRecoilState(classesState(appId));
   const backupSnapshot = useBackupSnapshot(appId);
   const setDiagrams = useSetRecoilState(diagramsState(appId));
-  const setCodes = useSetRecoilState(codesState(appId));
   const { t } = useTranslation();
 
   const updatePackage = useChangePackage();
@@ -45,8 +39,6 @@ const PackageAction = memo((
   const setSelectedDiagram = useSetRecoilState(
     selectedUmlDiagramState(appId)
   );
-
-  const setSelectedCode = useSetRecoilState(selectedCodeState(appId));
 
   const handleDelete = useCallback(() => {
     deletePackage(pkg.uuid)
@@ -70,13 +62,6 @@ const PackageAction = memo((
     [createNewDiagram, pkg.uuid]
   );
 
-  const handleAddCode = useCallback(
-    () => {
-      setNewCode(createNewCode(pkg.uuid));
-    },
-    [createNewCode, pkg.uuid]
-  );
-
   const handleShare = useCallback(() => {
     backupSnapshot();
     updatePackage({ ...pkg, sharable: true });
@@ -95,21 +80,10 @@ const PackageAction = memo((
     backupSnapshot();
     setDiagrams((diams) => [...diams, diagram]);
     setSelectedDiagram(diagram.uuid);
-    setSelectedCode(undefined);
     setNewDiagram(undefined);
-  }, [backupSnapshot, setDiagrams, setSelectedDiagram, setSelectedCode]);
+  }, [backupSnapshot, setDiagrams, setSelectedDiagram]);
 
-  const handleCodeClose = useCallback(() => {
-    setNewCode(undefined)
-  }, []);
 
-  const handleCodeConfirm = useCallback((code: CodeMeta) => {
-    backupSnapshot();
-    setCodes((cods) => [...cods, code]);
-    setSelectedCode(code.uuid);
-    setSelectedDiagram(undefined);
-    setNewCode(undefined);
-  }, [backupSnapshot, setCodes, setSelectedCode, setSelectedDiagram]);
   const shareItems = useMemo(() => {
     return appId === SYSTEM_APP_ID
       ? [
@@ -192,33 +166,23 @@ const PackageAction = memo((
                   addClass(StereoType.ValueObject);
                 },
               },
-              {
-                label: t("AppUml.AddThirdParty"),
-                key: '5',
-                onClick: e => {
-                  e.domEvent.stopPropagation();
-                  addClass(StereoType.ThirdParty);
-                },
-              },
-              {
-                label: t("AppUml.AddService"),
-                key: '6',
-                onClick: e => {
-                  e.domEvent.stopPropagation();
-                  addClass(StereoType.Service);
-                },
-              },
+              // {
+              //   label: t("AppUml.AddThirdParty"),
+              //   key: '5',
+              //   onClick: e => {
+              //     e.domEvent.stopPropagation();
+              //     addClass(StereoType.ThirdParty);
+              //   },
+              // },
+              // {
+              //   label: t("AppUml.AddService"),
+              //   key: '6',
+              //   onClick: e => {
+              //     e.domEvent.stopPropagation();
+              //     addClass(StereoType.Service);
+              //   },
+              // },
             ]
-          },
-          {
-            icon: <CodeOutlined />,
-            label: t("AppUml.AddCode"),
-            key: '4',
-            onClick: e => {
-              e.domEvent.stopPropagation();
-              handleAddCode();
-              onVisibleChange(false);
-            }
           },
           ...shareItems,
           {
@@ -271,15 +235,7 @@ const PackageAction = memo((
             onConfirm={handleConfirm}
           />
         }
-        {
-          newCode &&
-          <CodeDialog
-            code={newCode}
-            open={!!newCode}
-            onClose={handleCodeClose}
-            onConfirm={handleCodeConfirm}
-          />
-        }
+
       </>
   )
 })

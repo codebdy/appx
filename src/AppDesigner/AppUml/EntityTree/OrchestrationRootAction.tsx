@@ -1,9 +1,9 @@
-import { FolderAddOutlined, DownloadOutlined, ImportOutlined, MoreOutlined } from "@ant-design/icons";
+import { DownloadOutlined, ImportOutlined, MoreOutlined, CodeOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo, useState } from "react"
 import { useCreateNewPackage } from '../hooks/useCreateNewPackage';
 import { useSetRecoilState } from 'recoil';
-import { packagesState } from "../recoil/atoms";
+import { codesState, packagesState, selectedCodeState, selectedUmlDiagramState } from "../recoil/atoms";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
 import { useExportJson } from "../hooks/useExportJson";
 import { useTranslation } from "react-i18next";
@@ -11,16 +11,26 @@ import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
 import { PackageDialog } from "./PackageLabel/PackageDialog";
 import { PackageMeta } from "../meta/PackageMeta";
 import { useImportJson } from "../hooks/useImportJson";
+import { useCreateNewCode } from "../hooks/useCreateNewCode";
+import { CodeDialog } from "./CodeLabel/CodeDialog";
+import { CodeMeta } from "../meta";
 
 export const OrchestrationRootAction = memo(() => {
   const appId = useEdittingAppId();
   const [newPackage, setNewPackage] = useState<PackageMeta>();
+  const [newCode, setNewCode] = useState<CodeMeta>();
   const setPackages = useSetRecoilState(packagesState(appId));
+  const setCodes = useSetRecoilState(codesState(appId));
   const createNewPackage = useCreateNewPackage(appId);
   const backup = useBackupSnapshot(appId);
   const expotJson = useExportJson(appId);
   const importJson = useImportJson(appId);
   const { t } = useTranslation();
+  const createNewCode = useCreateNewCode(appId);
+  const setSelectedCode = useSetRecoilState(selectedCodeState(appId));
+  const setSelectedDiagram = useSetRecoilState(
+    selectedUmlDiagramState(appId)
+  );
 
   const handleNoneAction = useCallback((e: React.MouseEvent) => {
     e.stopPropagation()
@@ -43,17 +53,36 @@ export const OrchestrationRootAction = memo(() => {
     setNewPackage(undefined);
   }, [backup, setPackages, createNewPackage])
 
+  const handleAddCode = useCallback(
+    () => {
+      setNewCode(createNewCode());
+    },
+    [createNewCode]
+  );
+
+  const handleCodeClose = useCallback(() => {
+    setNewCode(undefined)
+  }, []);
+
+  const handleCodeConfirm = useCallback((code: CodeMeta) => {
+    backup();
+    setCodes((cods) => [...cods, code]);
+    setSelectedCode(code.uuid);
+    setSelectedDiagram(undefined);
+    setNewCode(undefined);
+  }, [backup, setCodes, setSelectedCode, setSelectedDiagram]);
+
   const menu = useMemo(() => (
     <Menu
       onClick={(info) => info.domEvent.stopPropagation()}
       items={[
         {
-          icon: <FolderAddOutlined />,
-          label: t("AppUml.AddPackage"),
-          key: '0',
+          icon: <CodeOutlined />,
+          label: t("AppUml.AddCode"),
+          key: '4',
           onClick: e => {
             e.domEvent.stopPropagation();
-            handleAddPackage();
+            handleAddCode();
           }
         },
         {
@@ -88,7 +117,15 @@ export const OrchestrationRootAction = memo(() => {
           onConfirm={handleConfirm}
         />
       }
-
+      {
+        newCode &&
+        <CodeDialog
+          code={newCode}
+          open={!!newCode}
+          onClose={handleCodeClose}
+          onConfirm={handleCodeConfirm}
+        />
+      }
     </>
   )
 })

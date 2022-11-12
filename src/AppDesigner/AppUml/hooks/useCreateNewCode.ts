@@ -17,11 +17,10 @@ export function useCreateNewCode(appId: ID) {
     return prefix + index;
   }, [getCodeByName, t]);
 
-  const createNewCode = useCallback((packageUuid) => {
+  const createNewCode = useCallback(() => {
     const newCode = {
       uuid: createUuid(),
       name: getNewCodeName(),
-      packageUuid,
       code: ""
     };
     return newCode;

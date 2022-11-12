@@ -130,14 +130,14 @@ export const Toolbox = memo((props: { graph?: Graph }) => {
             <ClassRect stereoChar="V" oneBorder={true} />
             {t("AppUml.ValueClass")}
           </ToolItem>
-          <ToolItem onMouseDown={startDragFn(StereoType.ThirdParty)}>
+          {/* <ToolItem onMouseDown={startDragFn(StereoType.ThirdParty)}>
             <ClassRect stereoChar="T" oneBorder={true} />
             {t("AppUml.ThirdPartyClass")}
-          </ToolItem>
-          <ToolItem onMouseDown={startDragFn(StereoType.Service)}>
+          </ToolItem> */}
+          {/* <ToolItem onMouseDown={startDragFn(StereoType.Service)}>
             <ClassRect stereoChar="V" oneBorder={true} />
             {t("AppUml.ServiceClass")}
-          </ToolItem>
+          </ToolItem> */}
           <ToolItem
             selected={pressedLineType === RelationType.INHERIT}
             onClick={handleRelationClick(RelationType.INHERIT)}
