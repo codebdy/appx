@@ -343,9 +343,14 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     for (const uuid of keys) {
       if (isDiagram(uuid)) {
         setSelecteDiagramId(uuid);
-        //setSelectedCodeId(undefined);
-      } else if (isElement(uuid) || isCode(uuid) || isOrches(uuid)) {
+        if(isCode(selectedElement) || isOrches(selectedElement)){
+          setSelectedElement(undefined);
+        }
+      } else if (isElement(uuid)) {
         setSelectedElement(uuid);
+      } else if (isCode(uuid) || isOrches(uuid)) {
+        setSelectedElement(uuid);
+        setSelecteDiagramId(undefined);
       } else {
         const relationUuid = parseRelationUuid(uuid);
         if (relationUuid) {
@@ -353,7 +358,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
         }
       }
     }
-  }, [isDiagram, isElement, isCode, isOrches, parseRelationUuid, setSelecteDiagramId, setSelectedElement])
+  }, [isDiagram, isElement, isCode, isOrches, parseRelationUuid, setSelecteDiagramId, selectedElement, setSelectedElement])
 
   const selectedCode = useSelectedCode(appId);
   const selectedOrches = useSelectedOrcherstration(appId);

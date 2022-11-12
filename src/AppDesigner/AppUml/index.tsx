@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo, useMemo, useState } from "react";
 import { EntityTree } from "./EntityTree";
 import { Graph } from "@antv/x6";
 import "@antv/x6-react-shape";
@@ -34,6 +34,16 @@ const AppUml = memo((
   const iseOrches = useIsOrchestration(appId);
   useShowError(error);
 
+  const currentPannelId = useMemo(() => {
+    if (selectedDiagram) {
+      return selectedDiagram
+    }
+
+    if (isCode(selectedElement) || iseOrches(selectedElement)) {
+      return selectedElement;
+    }
+  }, [isCode, iseOrches, selectedDiagram, selectedElement])
+
   return (
     <Spin tip="Loading..." spinning={loading}>
       <ModelBoard
@@ -44,12 +54,13 @@ const AppUml = memo((
       >
         {
           selectedDiagram &&
-          <div style={{
-            display: "flex",
-            flex: 1,
-            flexFlow: "column",
-            overflow: "auto"
-          }}>
+          <div
+            style={{
+              display: "flex",
+              flex: 1,
+              flexFlow: "column",
+              overflow: "auto"
+            }}>
             <GraphCanvas
               graph={graph}
               onSetGraph={setGraph}
@@ -65,7 +76,7 @@ const AppUml = memo((
         }
         {
           isCode(selectedElement) &&
-          <CodeScriptEditor />
+          <CodeScriptEditor/>
         }
         {
           iseOrches(selectedElement) &&
