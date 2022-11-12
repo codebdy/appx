@@ -34,19 +34,10 @@ const AppUml = memo((
   const iseOrches = useIsOrchestration(appId);
   useShowError(error);
 
-  const currentPannelId = useMemo(() => {
-    if (selectedDiagram) {
-      return selectedDiagram
-    }
-
-    if (isCode(selectedElement) || iseOrches(selectedElement)) {
-      return selectedElement;
-    }
-  }, [isCode, iseOrches, selectedDiagram, selectedElement])
-
   return (
     <Spin tip="Loading..." spinning={loading}>
       <ModelBoard
+        listWidth={300}
         modelList={<EntityTree graph={graph}></EntityTree>}
         toolbox={selectedDiagram && <Toolbox graph={graph}></Toolbox>}
         toolbar={<UmlToolbar />}
