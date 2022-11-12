@@ -1,0 +1,48 @@
+import React, { memo, useCallback, useState } from "react";
+import { useChangeMethod } from "../hooks/useChangeMethod";
+import { useGetTypeLabel } from "../hooks/useGetTypeLabel";
+import { Form } from "antd";
+import { useTranslation } from "react-i18next";
+import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
+import { MethodFormCommonItems } from "./MethodPanel/MethodFormCommonItems";
+import { OrchestrationMeta } from "../meta/OrchestrationMeta";
+import { useChangeOrchestration } from "../hooks/useChangeOrchestration";
+
+export const OrchestrationPanel = memo((props: { orchestration: OrchestrationMeta; }) => {
+  const { orchestration } = props;
+  const [nameError, setNameError] = useState<string>();
+  const appId = useEdittingAppId();
+  const changeOrchestration = useChangeOrchestration(appId);
+  const getTypeLabel = useGetTypeLabel(appId);
+  const { t } = useTranslation();
+  const [form] = Form.useForm()
+
+  const handleChange = useCallback((form) => {
+    const errMsg = changeOrchestration(
+      {
+        ...orchestration,
+        ...form,
+        typeLabel: getTypeLabel(form.type || orchestration.type, form.typeUuid),
+      }
+    );
+    setNameError(errMsg)
+  }, [changeOrchestration, orchestration, getTypeLabel])
+
+  return (
+    <div className="property-pannel">
+      <Form
+        name="orchestrationForm"
+        form={form}
+        colon={false}
+        labelAlign="left"
+        labelCol={{ span: 9 }}
+        wrapperCol={{ span: 15 }}
+        initialValues={orchestration}
+        autoComplete="off"
+        onValuesChange={handleChange}
+      >
+        <MethodFormCommonItems nameError={nameError} method={orchestration} />
+      </Form>
+    </div>
+  );
+});
