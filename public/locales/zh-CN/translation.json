@@ -282,7 +282,7 @@
     "ValueClass": "值类",
     "ThirdPartyClass": "第三方类",
     "ServiceClass": "服务类",
-    "CustomCode": "自定代码",
+    "CustomCode": "JS代码",
     "Atrributes": "属性",
     "Relationships": "关系",
     "Methods": "方法",

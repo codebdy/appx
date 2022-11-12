@@ -189,13 +189,13 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
       icon: <CodeOutlined />
     }
   }, [])
-  const getCodesNode = useCallback((title: string, key: string, codes: CodeMeta[]) => {
+  const getCodesNode = useCallback((title: string, key: string) => {
     return {
       title: title,
       key: key,
       children: codes.map(code => getCodeNode(code))
     }
-  }, [getCodeNode])
+  }, [getCodeNode, codes])
 
   const getPackageChildren = useCallback((pkg: PackageMeta) => {
     const packageChildren: DataNode[] = []
@@ -258,9 +258,11 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
 
   const getOrchestrationNodes = useCallback(() => {
     const orchestrationChildren: DataNode[] = []
-
+    if (codes.length > 0) {
+      orchestrationChildren.push(getCodesNode(t("AppUml.CustomCode"), "codes"))
+    }
     return orchestrationChildren
-  }, []);
+  }, [codes, getCodesNode]);
 
 
   const treeData: DataNode[] = useMemo(() => [
