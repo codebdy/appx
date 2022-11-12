@@ -15,7 +15,6 @@ import {
   x6NodesState,
   packagesState,
   codesState,
-  selectedCodeState,
 } from "../recoil/atoms";
 
 export function useRedo(appId: ID) {
@@ -34,9 +33,6 @@ export function useRedo(appId: ID) {
     selectedUmlDiagramState(appId)
   );
 
-  const [selectedCode, setSelectedCode] = useRecoilState(
-    selectedCodeState(appId)
-  );
   const [selectedElement, setSelectedElement] = useRecoilState(
     selectedElementState(appId)
   );
@@ -56,7 +52,6 @@ export function useRedo(appId: ID) {
         x6Edges,
         selectedDiagram,
         selectedElement,
-        selectedCode,
       },
     ]);
     setRedoList((snapshots) => snapshots.slice(0, snapshots.length - 1));
@@ -69,7 +64,6 @@ export function useRedo(appId: ID) {
     setX6Edges(snapshot.x6Edges);
     setSelectedDiagram(snapshot.selectedDiagram);
     setSelectedElement(snapshot.selectedElement);
-    setSelectedCode(snapshot.selectedCode);
     triggerCanvasEvent({
       name: EVENT_UNDO_REDO,
     });
@@ -80,7 +74,6 @@ export function useRedo(appId: ID) {
     setRedoList, 
     setPackages, 
     setDiagrams,
-    setSelectedCode,
     setCodes, 
     setEntities, 
     setRelations, 
@@ -90,7 +83,6 @@ export function useRedo(appId: ID) {
     setSelectedElement, 
     packages, 
     diagrams, 
-    selectedCode,
     codes,
     entities, 
     relations, 

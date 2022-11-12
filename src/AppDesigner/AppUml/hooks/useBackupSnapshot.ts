@@ -14,7 +14,6 @@ import {
   x6NodesState,
   packagesState,
   codesState,
-  selectedCodeState,
 } from "../recoil/atoms";
 
 export function useBackupSnapshot(appId: ID) {
@@ -27,7 +26,6 @@ export function useBackupSnapshot(appId: ID) {
   const x6Edges = useRecoilValue(x6EdgesState(appId));
   const selectedDiagram = useRecoilValue(selectedUmlDiagramState(appId));
   const selectedElement = useRecoilValue(selectedElementState(appId));
-  const selectedCode = useRecoilValue(selectedCodeState(appId));
   const setChanged = useSetRecoilState(changedState(appId));
 
   const setUndoList = useSetRecoilState(undoListState(appId));
@@ -46,7 +44,6 @@ export function useBackupSnapshot(appId: ID) {
         x6Nodes,
         x6Edges,
         selectedDiagram,
-        selectedCode,
         selectedElement,
       },
     ]);
@@ -58,7 +55,6 @@ export function useBackupSnapshot(appId: ID) {
     entities,
     relations,
     selectedDiagram,
-    selectedCode,
     selectedElement,
     setChanged,
     setRedoList,

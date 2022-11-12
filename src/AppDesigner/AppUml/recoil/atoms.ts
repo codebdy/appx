@@ -92,12 +92,6 @@ export const selectedUmlDiagramState = atomFamily<string | undefined, string>({
   default: undefined,
 });
 
-export const selectedCodeState = atomFamily<string | undefined, string>({
-  key: "uml.selectedCode",
-  default: undefined,
-});
-
-
 export const drawingLineState = atomFamily<LineAction | undefined, string>({
   key: "uml.drawingLine",
   default: undefined,

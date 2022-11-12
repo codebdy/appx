@@ -7,7 +7,7 @@ import { useReadMeta } from "./hooks/useReadMeta";
 import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import { Spin } from "antd";
 import { ModelBoard } from "~/common/ModelBoard";
-import { minMapState, selectedCodeState, selectedUmlDiagramState } from "./recoil/atoms";
+import { minMapState, selectedElementState, selectedUmlDiagramState } from "./recoil/atoms";
 import { useRecoilValue } from "recoil";
 import { Toolbox } from "./Toolbox";
 import { UmlToolbar } from "./UmlToolbar";
@@ -15,6 +15,7 @@ import { GraphCanvas } from "./GraphCanvas";
 import { PropertyPanel } from "./PropertyPanel";
 import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
 import { CodeEditor } from "./CodeEditor";
+import { useIsCode } from "./hooks/useIsCode";
 
 const AppUml = memo((
   props: {
@@ -26,7 +27,8 @@ const AppUml = memo((
   const { loading, error } = useReadMeta(appId);
   const minMap = useRecoilValue(minMapState(appId));
   const selectedDiagram = useRecoilValue(selectedUmlDiagramState(appId));
-  const selectedCode = useRecoilValue(selectedCodeState(appId));
+  const selectedElement = useRecoilValue(selectedElementState(appId));
+  const isCode = useIsCode(appId);
   useShowError(error);
 
   return (
@@ -59,7 +61,7 @@ const AppUml = memo((
           </div>
         }
         {
-          selectedCode &&
+          isCode(selectedElement) &&
           <CodeEditor />
         }
       </ModelBoard>

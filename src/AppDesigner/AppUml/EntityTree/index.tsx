@@ -5,7 +5,7 @@ import { DataNode } from "antd/lib/tree";
 import SvgIcon from "~/common/SvgIcon";
 import { ModelRootAction } from "./ModelRootAction";
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { packagesState, diagramsState, classesState, selectedUmlDiagramState, selectedElementState, codesState, selectedCodeState } from './../recoil/atoms';
+import { packagesState, diagramsState, classesState, selectedUmlDiagramState, selectedElementState, codesState } from './../recoil/atoms';
 import TreeNodeLabel from "~/common/TreeNodeLabel";
 import PackageLabel from "./PackageLabel";
 import { PackageMeta, PackageStereoType } from "../meta/PackageMeta";
@@ -49,7 +49,6 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   const isCode = useIsCode(appId);
   const parseRelationUuid = useParseRelationUuid(appId);
   const [selectedDiagramId, setSelecteDiagramId] = useRecoilState(selectedUmlDiagramState(appId));
-  const [selectedCodeId, setSelectedCodeId] = useRecoilState(selectedCodeState(appId));
   const [selectedElement, setSelectedElement] = useRecoilState(selectedElementState(appId));
   const getSourceRelations = useGetSourceRelations(appId);
   const getTargetRelations = useGetTargetRelations(appId);
@@ -299,11 +298,12 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     for (const uuid of keys) {
       if (isDiagram(uuid)) {
         setSelecteDiagramId(uuid);
-        setSelectedCodeId(undefined);
+        //setSelectedCodeId(undefined);
       } else if (isElement(uuid)) {
         setSelectedElement(uuid);
       } else if (isCode(uuid)) {
-        setSelectedCodeId(uuid);
+        setSelectedElement(uuid);
+        //setSelectedCodeId(uuid);
         setSelecteDiagramId(undefined);
       } else {
         const relationUuid = parseRelationUuid(uuid);
@@ -312,7 +312,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
         }
       }
     }
-  }, [isDiagram, isElement, isCode, parseRelationUuid, setSelecteDiagramId, setSelectedElement, setSelectedCodeId])
+  }, [isDiagram, isElement, isCode, parseRelationUuid, setSelecteDiagramId, setSelectedElement])
 
   return (
     <div
@@ -324,7 +324,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     >
       <DirectoryTree
         defaultExpandedKeys={["0"]}
-        selectedKeys={[selectedDiagramId || selectedCodeId]}
+        selectedKeys={[selectedDiagramId]}
         onSelect={handleSelect}
         treeData={treeData}
       />

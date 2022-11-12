@@ -3,7 +3,7 @@ import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo, useState } from "react"
 import { useCreateNewPackage } from '../hooks/useCreateNewPackage';
 import { useSetRecoilState } from 'recoil';
-import { codesState, packagesState, selectedCodeState, selectedUmlDiagramState } from "../recoil/atoms";
+import { codesState, packagesState, selectedElementState, selectedUmlDiagramState } from "../recoil/atoms";
 import { useBackupSnapshot } from "../hooks/useBackupSnapshot";
 import { useExportJson } from "../hooks/useExportJson";
 import { useTranslation } from "react-i18next";
@@ -27,7 +27,7 @@ export const OrchestrationRootAction = memo(() => {
   const importJson = useImportJson(appId);
   const { t } = useTranslation();
   const createNewCode = useCreateNewCode(appId);
-  const setSelectedCode = useSetRecoilState(selectedCodeState(appId));
+  const setSelectedElement = useSetRecoilState(selectedElementState(appId));
   const setSelectedDiagram = useSetRecoilState(
     selectedUmlDiagramState(appId)
   );
@@ -67,10 +67,10 @@ export const OrchestrationRootAction = memo(() => {
   const handleCodeConfirm = useCallback((code: CodeMeta) => {
     backup();
     setCodes((cods) => [...cods, code]);
-    setSelectedCode(code.uuid);
+    setSelectedElement(code.uuid);
     setSelectedDiagram(undefined);
     setNewCode(undefined);
-  }, [backup, setCodes, setSelectedCode, setSelectedDiagram]);
+  }, [backup, setCodes, setSelectedElement, setSelectedDiagram]);
 
   const menu = useMemo(() => (
     <Menu

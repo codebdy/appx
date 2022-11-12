@@ -15,7 +15,6 @@ import {
   x6NodesState,
   packagesState,
   codesState,
-  selectedCodeState,
 } from "../recoil/atoms";
 
 export function useUndo(appId: ID) {
@@ -33,9 +32,6 @@ export function useUndo(appId: ID) {
   const [selectedDiagram, setSelectedDiagram] =
     useRecoilState(selectedUmlDiagramState(appId));
     
-  const [selectedCode, setSelectedCode] = useRecoilState(
-    selectedCodeState(appId)
-  );
   const [selectedElement, setSelectedElement] =
     useRecoilState(selectedElementState(appId));
 
@@ -54,7 +50,6 @@ export function useUndo(appId: ID) {
         x6Edges,
         selectedDiagram,
         selectedElement,
-        selectedCode,
       },
     ]);
     setUndoList((snapshots) => snapshots.slice(0, snapshots.length - 1));
@@ -67,7 +62,6 @@ export function useUndo(appId: ID) {
     setX6Edges(snapshot.x6Edges);
     setSelectedDiagram(snapshot.selectedDiagram);
     setSelectedElement(snapshot.selectedElement);
-    setSelectedCode(snapshot.selectedCode);
     triggerCanvasEvent({
       name: EVENT_UNDO_REDO,
     });
@@ -84,7 +78,6 @@ export function useUndo(appId: ID) {
     setX6Nodes,
     setX6Edges,
     setSelectedDiagram,
-    setSelectedCode,
     setSelectedElement,
     packages,
     diagrams,
@@ -95,7 +88,6 @@ export function useUndo(appId: ID) {
     x6Edges,
     selectedDiagram,
     selectedElement,
-    selectedCode
   ]);
   return undo;
 }
