@@ -20,7 +20,7 @@ export function useCreateNewOrchestration(appId: ID) {
   const { t } = useTranslation();
 
   const getNewName = useCallback(() => {
-    const prefix = t("AppUml.NewCode");
+    const prefix = "newOrchestration";
     let index = 1;
     while (getByName(prefix + index)) {
       index++;
