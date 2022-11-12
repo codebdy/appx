@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import { MethodMeta } from "../../meta/MethodMeta";
 import { ClassMeta } from "../../meta/ClassMeta";
 import { useChangeMethod } from "../../hooks/useChangeMethod";
@@ -16,7 +16,14 @@ export const MethodPanel = memo((props: { method: MethodMeta; cls: ClassMeta }) 
   const changeMethod = useChangeMethod(appId);
   const getTypeLabel = useGetTypeLabel(appId);
   const { t } = useTranslation();
-  const [form] = Form.useForm()
+  const [form] = Form.useForm();
+  
+  useEffect(
+    () => {
+      form.setFieldsValue({ ...method });
+    },
+    [method, form]
+  )
 
   const handleChange = useCallback((form) => {
     const errMsg = changeMethod(

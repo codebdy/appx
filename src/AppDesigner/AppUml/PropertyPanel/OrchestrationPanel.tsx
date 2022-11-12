@@ -1,8 +1,6 @@
-import React, { memo, useCallback, useState } from "react";
-import { useChangeMethod } from "../hooks/useChangeMethod";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import { useGetTypeLabel } from "../hooks/useGetTypeLabel";
 import { Form } from "antd";
-import { useTranslation } from "react-i18next";
 import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
 import { MethodFormCommonItems } from "./MethodPanel/MethodFormCommonItems";
 import { OrchestrationMeta } from "../meta/OrchestrationMeta";
@@ -14,8 +12,14 @@ export const OrchestrationPanel = memo((props: { orchestration: OrchestrationMet
   const appId = useEdittingAppId();
   const changeOrchestration = useChangeOrchestration(appId);
   const getTypeLabel = useGetTypeLabel(appId);
-  const { t } = useTranslation();
   const [form] = Form.useForm()
+
+  useEffect(
+    () => {
+      form.setFieldsValue({ ...orchestration });
+    },
+    [orchestration, form]
+  )
 
   const handleChange = useCallback((form) => {
     const errMsg = changeOrchestration(
