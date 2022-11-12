@@ -16,6 +16,6 @@ export const CodeScriptEditor = memo(() => {
     setCodes(codes => codes.map(cd => cd.uuid === code.uuid ? { ...cd, code: value } : cd))
   }, [backup, setCodes, code])
   return (
-    <CodeInput value={code.code} onChange={handleChange} />
+    <CodeInput key={code.uuid} value={code.code} onChange={handleChange} />
   )
 })
