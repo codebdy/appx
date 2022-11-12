@@ -16,6 +16,7 @@ import { PropertyPanel } from "./PropertyPanel";
 import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
 import { CodeEditor } from "./CodeEditor";
 import { useIsCode } from "./hooks/useIsCode";
+import { useIsOrchestration } from "./hooks/useIsOrchestration";
 
 const AppUml = memo((
   props: {
@@ -29,6 +30,7 @@ const AppUml = memo((
   const selectedDiagram = useRecoilValue(selectedUmlDiagramState(appId));
   const selectedElement = useRecoilValue(selectedElementState(appId));
   const isCode = useIsCode(appId);
+  const iseOrches = useIsOrchestration(appId);
   useShowError(error);
 
   return (
@@ -61,7 +63,7 @@ const AppUml = memo((
           </div>
         }
         {
-          isCode(selectedElement) &&
+          (isCode(selectedElement) || iseOrches(selectedElement)) &&
           <CodeEditor />
         }
       </ModelBoard>
