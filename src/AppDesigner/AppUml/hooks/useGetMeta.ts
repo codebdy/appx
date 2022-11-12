@@ -24,13 +24,12 @@ export function useGetMeta(appId: ID) {
       return !!sourceClass
     })
     const diagms = diagrams.filter(diagram => pkgs.find(pkg => pkg.uuid === diagram.packageUuid))
-    const cds = codes.filter(code => pkgs.find(pkg => pkg.uuid === code.packageUuid))
     const content = {
       packages: pkgs,
       classes: clses,
       relations: relns,
       diagrams: diagms,
-      codes: cds,
+      codes: codes,
       x6Nodes,
       x6Edges,
     };
