@@ -37,7 +37,7 @@ const AppUml = memo((
   return (
     <Spin tip="Loading..." spinning={loading}>
       <ModelBoard
-        listWidth={300}
+        listWidth={260}
         modelList={<EntityTree graph={graph}></EntityTree>}
         toolbox={selectedDiagram && <Toolbox graph={graph}></Toolbox>}
         toolbar={<UmlToolbar />}
@@ -67,7 +67,7 @@ const AppUml = memo((
         }
         {
           isCode(selectedElement) &&
-          <CodeScriptEditor/>
+          <CodeScriptEditor />
         }
         {
           iseOrches(selectedElement) &&
