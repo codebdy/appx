@@ -1,15 +1,13 @@
 import React, { memo, useCallback, useState } from "react";
-import { MethodMeta, MethodOperateType } from "../../meta/MethodMeta";
+import { MethodMeta } from "../../meta/MethodMeta";
 import { ClassMeta } from "../../meta/ClassMeta";
 import { useChangeMethod } from "../../hooks/useChangeMethod";
 import { useGetTypeLabel } from "../../hooks/useGetTypeLabel";
-import { Form, Input, Radio } from "antd";
-import { MultiLangInput } from "~/plugins/inputs/components/pc/MultiLangInput/view";
+import { Form } from "antd";
 import { useTranslation } from "react-i18next";
-import { MethodTypeInput } from "./MethodTypeInput";
 import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
 import { ScriptInput } from "../ScriptInput/ScriptInput";
-import { ArgsInput } from "./ArgsInput/ArgsInput";
+import { MethodFormCommonItems } from "./MethodFormCommonItems";
 
 export const MethodPanel = memo((props: { method: MethodMeta; cls: ClassMeta }) => {
   const { method, cls } = props;
@@ -45,46 +43,7 @@ export const MethodPanel = memo((props: { method: MethodMeta; cls: ClassMeta }) 
         autoComplete="off"
         onValuesChange={handleChange}
       >
-        <Form.Item
-          label={t("AppUml.Name")}
-          name="name"
-          validateStatus={nameError ? "error" : undefined}
-          help={nameError}
-        >
-          <Input />
-        </Form.Item>
-
-        <Form.Item
-          label={t("Label")}
-          name="label"
-        >
-          <MultiLangInput inline title={t("Label")} />
-        </Form.Item>
-        <Form.Item
-          label={t("AppUml.OperateType")}
-          name="operateType"
-        >
-          <Radio.Group
-            optionType="button"
-            options={[
-              {
-                value: MethodOperateType.Query,
-                label: t("AppUml.Query"),
-              },
-              {
-                value: MethodOperateType.Mutation,
-                label: t("AppUml.Mutation"),
-              }
-            ]}
-          />
-        </Form.Item>
-        <MethodTypeInput method={method} />
-        <Form.Item
-          label={t("AppUml.Arguments")}
-          name="args"
-        >
-          <ArgsInput />
-        </Form.Item>
+        <MethodFormCommonItems nameError={nameError} method={method} />
         <Form.Item
           label={t("AppUml.Script")}
           name="script"
