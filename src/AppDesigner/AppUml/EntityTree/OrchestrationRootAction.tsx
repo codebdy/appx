@@ -1,4 +1,4 @@
-import { DownloadOutlined, ImportOutlined, MoreOutlined, CodeOutlined } from "@ant-design/icons";
+import { DownloadOutlined, ImportOutlined, MoreOutlined, CodeOutlined, PlusSquareOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Button } from "antd";
 import React, { memo, useCallback, useMemo, useState } from "react"
 import { useCreateNewPackage } from '../hooks/useCreateNewPackage';
@@ -77,24 +77,47 @@ export const OrchestrationRootAction = memo(() => {
       onClick={(info) => info.domEvent.stopPropagation()}
       items={[
         {
-          icon: <CodeOutlined />,
-          label: t("AppUml.AddCode"),
-          key: '4',
-          onClick: e => {
-            e.domEvent.stopPropagation();
-            handleAddCode();
-          }
+          icon: <PlusSquareOutlined />,
+          label: t("AppUml.Add"),
+          key: '1',
+          onClick: e => e.domEvent.stopPropagation(),
+          children: [
+            {
+              label: t("AppUml.AddQuery"),
+              key: '12',
+              onClick: e => {
+                e.domEvent.stopPropagation();
+                //addClass(StereoType.Abstract);
+              },
+            },
+            {
+              label: t("AppUml.AddMutaion"),
+              key: '13',
+              onClick: e => {
+                e.domEvent.stopPropagation();
+                //addClass(StereoType.Enum);
+              },
+            },
+            {
+              label: t("AppUml.AddCode"),
+              key: '11',
+              onClick: e => {
+                e.domEvent.stopPropagation();
+                handleAddCode();
+              }
+            },
+          ]
         },
         {
           icon: <DownloadOutlined />,
           label: t("AppUml.ExportModel"),
-          key: '1',
+          key: '2',
           onClick: expotJson
         },
         {
           icon: <ImportOutlined />,
           label: t("AppUml.ImportModel"),
-          key: '2',
+          key: '3',
           onClick: importJson,
         },
       ]}
