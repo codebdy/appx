@@ -9,7 +9,6 @@ import { ScriptInput } from "./ScriptInput/ScriptInput";
 import { useParseLangMessage } from "~/plugin-sdk";
 import { packagesState } from "../recoil/atoms";
 import { useRecoilValue } from "recoil";
-import { SYSTEM_APP_ID } from "~/consts";
 const { Option } = Select;
 
 export const ClassPanel = (props: { cls: ClassMeta }) => {
