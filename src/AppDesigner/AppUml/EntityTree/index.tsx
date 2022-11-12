@@ -269,6 +269,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     }
   }, [])
 
+
   const getQueryNodes = useCallback((title: string, key: string) => {
     return {
       title: title,
@@ -281,7 +282,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     return {
       title: title,
       key: key,
-      children: orchestrations.filter(orches => orches.operateType === MethodOperateType.Query).map(orchestration => getOrchestrationNode(orchestration))
+      children: orchestrations.filter(orches => orches.operateType === MethodOperateType.Mutation).map(orchestration => getOrchestrationNode(orchestration))
     }
   }, [getOrchestrationNode, orchestrations])
 
