@@ -43,7 +43,6 @@ export const OrchestrationRootAction = memo(() => {
               label: t("AppUml.AddMutaion"),
               key: '13',
               onClick: e => {
-
                 addOrchestration(MethodOperateType.Mutation);
               },
             },
