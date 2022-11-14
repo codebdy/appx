@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { memo } from "react"
 import { MonacoInput } from "~/AppDesigner/UiDesigner/SettingsForm/components/MonacoInput";
 
@@ -10,6 +10,11 @@ export const CodeInput = memo((
 ) => {
   const { value, onChange } = props;
 
+  const handleChange = useCallback((newValue) => {
+    if (value != newValue && onChange) {
+      onChange(newValue)
+    }
+  }, [onChange, value])
   return (
     <div style={{ height: "100%" }}>
       <MonacoInput
@@ -25,7 +30,7 @@ export const CodeInput = memo((
         language="javascript"
         theme="dark"
         value={value}
-        onChange={onChange}
+        onChange={handleChange}
       />
     </div>
   )

@@ -16,6 +16,6 @@ export const OrchestrationScriptEditor = memo(() => {
     setOrchestrations(orchestrations => orchestrations.map(or => or.uuid === orches.uuid ? { ...or, script: value } : or))
   }, [backup, setOrchestrations, orches])
   return (
-    <CodeInput key={orches.uuid} value={orches?.script || ""} onChange={handleChange} />
+    <CodeInput key={orches.uuid} value={orches?.script} onChange={handleChange} />
   )
 })
