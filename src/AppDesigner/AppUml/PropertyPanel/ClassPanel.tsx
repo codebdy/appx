@@ -89,36 +89,40 @@ export const ClassPanel = (props: { cls: ClassMeta }) => {
             </Form.Item>
           )
         }
-        {
-          cls.stereoType === StereoType.ThirdParty &&
-          <>
-            <Form.Item
-              label={t("AppUml.QueryScript")}
-              name="queryScript"
-            >
-              <ScriptInput />
-            </Form.Item>
-            <Form.Item
-              label={t("AppUml.MutationScript")}
-              name="mutationScript"
-            >
-              <ScriptInput />
-            </Form.Item>
-          </>
-        }
         <Form.Item
           label={t("AppUml.Description")}
           name="description"
         >
           <Input.TextArea />
         </Form.Item>
-        {cls.stereoType === StereoType.Entity &&
-          <Form.Item
-            label={t("AppUml.InnerId")}
-            name="innerId"
-          >
-            <Input disabled />
-          </Form.Item>
+        {
+          cls.stereoType === StereoType.Entity &&
+          <>
+            <Form.Item
+              label={t("AppUml.OnCreated")}
+              name="onCreated"
+            >
+              <ScriptInput />
+            </Form.Item>
+            <Form.Item
+              label={t("AppUml.OnUpdated")}
+              name="onUpdated"
+            >
+              <ScriptInput />
+            </Form.Item>
+            <Form.Item
+              label={t("AppUml.OnDeleted")}
+              name="onDeleted"
+            >
+              <ScriptInput />
+            </Form.Item>
+            <Form.Item
+              label={t("AppUml.InnerId")}
+              name="innerId"
+            >
+              <Input disabled />
+            </Form.Item>
+          </>
         }
       </Form>
     </div>
