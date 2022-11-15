@@ -249,13 +249,14 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
   }, [classes, codes, getClassCategoryNode, t, diagrams])
 
   const getModelPackageNodes = useCallback(() => {
+
     return packages.map((pkg) => {
       return {
         title: <PackageLabel pkg={pkg} />,
         key: pkg.uuid,
-        icon: pkg.stereoType === PackageStereoType.ThirdParty
-          ? <svg style={{ width: 16, height: 16 }} viewBox="0 0 24 24">
-            <path fill="currentColor" d="M15 20C15 19.45 14.55 19 14 19H13V17H19C20.11 17 21 16.11 21 15V7C21 5.9 20.11 5 19 5H13L11 3H5C3.9 3 3 3.9 3 5V15C3 16.11 3.9 17 5 17H11V19H10C9.45 19 9 19.45 9 20H2V22H9C9 22.55 9.45 23 10 23H14C14.55 23 15 22.55 15 22H22V20H15M5 15V7H19V15H5Z" />
+        icon: pkg.sharable
+          ? <svg style={{ width: 16, height: 16 }} viewBox="0 0 1024 1024">
+            <path d="M970.666667 213.333333H546.586667a10.573333 10.573333 0 0 1-7.54-3.126666L429.793333 100.953333A52.986667 52.986667 0 0 0 392.08 85.333333H96a53.393333 53.393333 0 0 0-53.333333 53.333334v704a53.393333 53.393333 0 0 0 53.333333 53.333333h874.666667a53.393333 53.393333 0 0 0 53.333333-53.333333V266.666667a53.393333 53.393333 0 0 0-53.333333-53.333334z m10.666666 629.333334a10.666667 10.666667 0 0 1-10.666666 10.666666H96a10.666667 10.666667 0 0 1-10.666667-10.666666V138.666667a10.666667 10.666667 0 0 1 10.666667-10.666667h296.08a10.573333 10.573333 0 0 1 7.54 3.126667l109.253333 109.253333A52.986667 52.986667 0 0 0 546.586667 256H970.666667a10.666667 10.666667 0 0 1 10.666666 10.666667zM640 341.333333a85.333333 85.333333 0 0 0-81.826667 109.553334l-71.673333 43a85.333333 85.333333 0 1 0-6.566667 127.393333l38.506667 28.88a85.526667 85.526667 0 1 0 25.626667-34.106667l-38.506667-28.88a85.333333 85.333333 0 0 0 2.933333-56.726666l71.673334-43A85.333333 85.333333 0 1 0 640 341.333333zM426.666667 597.333333a42.666667 42.666667 0 1 1 42.666666-42.666666 42.713333 42.713333 0 0 1-42.666666 42.666666z m170.666666 42.666667a42.666667 42.666667 0 1 1-42.666666 42.666667 42.713333 42.713333 0 0 1 42.666666-42.666667z m42.666667-170.666667a42.666667 42.666667 0 1 1 42.666667-42.666666 42.713333 42.713333 0 0 1-42.666667 42.666666z"></path>
           </svg>
           : undefined,
         children: getPackageChildren(pkg),
@@ -343,7 +344,7 @@ export const EntityTree = memo((props: { graph?: Graph }) => {
     for (const uuid of keys) {
       if (isDiagram(uuid)) {
         setSelecteDiagramId(uuid);
-        if(isCode(selectedElement) || isOrches(selectedElement)){
+        if (isCode(selectedElement) || isOrches(selectedElement)) {
           setSelectedElement(undefined);
         }
       } else if (isElement(uuid)) {
