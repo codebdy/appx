@@ -114,7 +114,7 @@ export const ClassPanel = (props: { cls: ClassMeta }) => {
         </Form.Item>
         {cls.stereoType === StereoType.Entity &&
           <Form.Item
-            label={"InnerId"}
+            label={t("AppUml.InnerId")}
             name="innerId"
           >
             <Input disabled />

@@ -332,7 +332,8 @@
     "Other": "其它",
     "Type": "类型",
     "AutoIncrement": "自增长",
-    "AutoGenerate": "自动生成"
+    "AutoGenerate": "自动生成",
+    "InnerId":"内部ID"
   },
   "AppBpmn": {
     "General": "通用",
