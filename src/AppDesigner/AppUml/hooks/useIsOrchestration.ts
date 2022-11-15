@@ -6,7 +6,7 @@ import { useCallback } from 'react';
 export function useIsOrchestration(appId: ID) {
   const orchestrations = useRecoilValue(orchestrationsState(appId))
   const isOrchestration = useCallback((uuid: string) => {
-    return orchestrations.find(orches => orches.uuid === uuid)
+    return !!orchestrations.find(orches => orches.uuid === uuid)
   }, [orchestrations])
 
   return isOrchestration
