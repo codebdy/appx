@@ -10,7 +10,7 @@ export function useSubscribeNotificationCounts() {
   }, [])
 
   const handleError = useCallback((error) => {
-    setError(error)
+    setError(new Error("Subscribe error:" + error?.message))
   }, [])
 
   const handleComplate = useCallback(() => {
