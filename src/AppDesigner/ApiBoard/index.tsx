@@ -3,10 +3,11 @@ import "graphiql/graphiql.css";
 import { createGraphiQLFetcher } from "@graphiql/toolkit";
 import { memo, useMemo } from "react";
 import React from "react";
-import { HEADER_AUTHORIZATION, TOKEN_PREFIX, HEADER_APPX_APPID, SYSTEM_APP_ID } from "~/consts";
+import { HEADER_AUTHORIZATION, TOKEN_PREFIX, HEADER_APPX_APPID, SERVER_SUBSCRIPTION_URL } from "~/consts";
 import "./index.less";
 import { useEndpoint, useToken } from "~/enthooks";
 import { useEdittingAppId } from "~/AppDesigner/hooks/useEdittingAppUuid";
+import { SubscriptionClient } from "subscriptions-transport-ws";
 
 //例子連接
 //https://github.com/graphql/graphiql/blob/main/packages/graphiql-toolkit/docs/create-fetcher.md#subscriptionurl
@@ -17,7 +18,7 @@ const ApiBoard = memo(() => {
   const fetcher = useMemo(() => {
     const fetcher = createGraphiQLFetcher({
       url: endppoint,
-      // legacyWsClient: new SubscriptionClient(SERVER_SUBSCRIPTION_URL),
+      legacyWsClient: new SubscriptionClient(SERVER_SUBSCRIPTION_URL),
       headers: {
         [HEADER_AUTHORIZATION]: token ? `${TOKEN_PREFIX}${token}` : "",
         [HEADER_APPX_APPID]: realAppId,
