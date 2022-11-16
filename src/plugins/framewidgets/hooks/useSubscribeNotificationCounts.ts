@@ -1,10 +1,15 @@
 import { createClient } from 'graphql-ws';
 import { useCallback, useEffect, useState } from 'react';
-import { SERVER_SUBSCRIPTION_URL } from '~/consts';
+import { HEADER_APPX_APPID, HEADER_AUTHORIZATION, SERVER_SUBSCRIPTION_URL, TOKEN_PREFIX } from '~/consts';
+import { useToken } from '~/enthooks';
+import { useAppParams } from '~/plugin-sdk/contexts/app';
 
 export function useSubscribeNotificationCounts() {
   const [error, setError] = useState<Error>();
   const [count, setCount] = useState<number>();
+  const { app } = useAppParams();
+  const token = useToken();
+
   const onNext = useCallback((value) => {
     setCount(value)
   }, [])
@@ -18,8 +23,20 @@ export function useSubscribeNotificationCounts() {
   }, [])
 
   useEffect(() => {
+    if (!app ||!token){
+      return
+    }
+    
     const client = createClient({
       url: SERVER_SUBSCRIPTION_URL,
+      connectionParams: async () => {
+        return {
+          headers: {
+            [HEADER_AUTHORIZATION]: token ? `${TOKEN_PREFIX}${token}` : "",
+            [HEADER_APPX_APPID]: app.id,
+          },
+        };
+      },
     });
 
     const unsubscribe = client.subscribe(
@@ -33,8 +50,7 @@ export function useSubscribeNotificationCounts() {
       },
     );
     return unsubscribe
-  }, [onNext, handleError, handleComplate])
+  }, [onNext, handleError, handleComplate, app, token])
 
-
-  return {count, error}
+  return { count, error }
 }
