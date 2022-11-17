@@ -12,6 +12,7 @@ import { NavigatePanel } from "./NavigatePanel";
 import { OpenFilePanel } from "./OpenFilePanel";
 import { GraphqlPanel } from "./GraphqlPanel";
 import { WindowOpenPanel } from "./WindowOpenPanel";
+import { JavaScriptPanel } from "./JavaScriptPanel";
 
 const pannels: { [key: string]: React.FC<{ payload: any }> } = {
   [ActionType.OpenPage]: OpenPagePanel,
@@ -21,6 +22,7 @@ const pannels: { [key: string]: React.FC<{ payload: any }> } = {
   [ActionType.OpenFile]: OpenFilePanel,
   [ActionType.Graphql]: GraphqlPanel,
   [ActionType.WindowOpen]: WindowOpenPanel,
+  [ActionType.Customized]: JavaScriptPanel,
 }
 
 export const ActionPropertyBox = memo((
@@ -65,6 +67,7 @@ export const ActionPropertyBox = memo((
       wrapperCol={{ span: 16 }}
       autoComplete="off"
       onValuesChange={handleChange}
+      labelAlign="left"
     >
       <Form.Item
         label={t("Title")}

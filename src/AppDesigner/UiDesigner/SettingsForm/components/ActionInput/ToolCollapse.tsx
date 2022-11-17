@@ -50,8 +50,8 @@ export const ToolCollapse = memo(() => {
       title: t(enumToLangKey(ActionType.Graphql)),
     },
     {
-      id: ActionType.Custimized,
-      title: t(enumToLangKey(ActionType.Custimized)),
+      id: ActionType.Customized,
+      title: t(enumToLangKey(ActionType.Customized)),
     },
   ], [t]);
 

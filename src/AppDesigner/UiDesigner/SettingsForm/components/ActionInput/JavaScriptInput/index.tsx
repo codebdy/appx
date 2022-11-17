@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { MonacoInput } from "../../MonacoInput";
 
-export const GqlScriptInput = observer((
+export const JavaScriptInput = observer((
   props: {
     value?: string,
     onChange?: (value?: string) => void,
@@ -43,7 +43,7 @@ export const GqlScriptInput = observer((
         {t("Action.ScriptConfig")}
       </Button>
       <Modal
-        title={t("Action.GQLScript")}
+        title={t("Action.JavaScript")}
         open={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -68,7 +68,7 @@ export const GqlScriptInput = observer((
                 enabled: false,
               }
             }}
-            language="graphql"
+            language="javascript"
             value={expression}
             onChange={handleChange}
           />

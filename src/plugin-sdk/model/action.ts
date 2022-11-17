@@ -21,7 +21,7 @@ export enum ActionType {
   BatchUpdate = "BatchUpdate",
   BatchDelete = "BatchDelete",
   Reset = "Reset",
-  Custimized = "Custimized",
+  Customized = "Customized",
   SubmitSearch = "SubmitSearch",
   OpenFile = "OpenFile",
   Graphql = "Graphql"
