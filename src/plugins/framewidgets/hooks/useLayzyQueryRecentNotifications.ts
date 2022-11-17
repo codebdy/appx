@@ -26,7 +26,7 @@ query ($appId:ID!, $userId:ID!){
     ]
   },
   orderBy:{
-    id:asc
+    id:desc
   },
   limit:20
  ){
