@@ -1,6 +1,6 @@
 import { SettingOutlined } from "@ant-design/icons"
 import { Button, Card, List, Tabs } from "antd"
-import React from "react"
+import React, { memo } from "react"
 
 const data = [
   {
@@ -17,7 +17,7 @@ const data = [
   },
 ];
 
-export const NotificationBox = () => {
+export const NotificationBox = memo(() => {
   return (
     <Card
       className="notificaiton-box float"
@@ -42,4 +42,4 @@ export const NotificationBox = () => {
       />
     </Card>
   )
-}
+})
