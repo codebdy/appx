@@ -33,6 +33,7 @@ export const NotificationBox = memo((
       ]}
     >
       <List
+        className="notification-list"
         itemLayout="horizontal"
         loading={loading}
         dataSource={notifications}
