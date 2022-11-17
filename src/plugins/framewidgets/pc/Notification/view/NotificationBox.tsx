@@ -26,6 +26,7 @@ export const NotificationBox = memo((
   return (
     <Card
       className="notificaiton-box float"
+      title = {t("Notifications")}
       actions={[
         <div className="actions">
           <Button type="text" icon={<SettingOutlined />}>{t("Settings")}</Button>
