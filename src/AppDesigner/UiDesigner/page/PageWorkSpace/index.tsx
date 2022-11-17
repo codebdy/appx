@@ -91,7 +91,7 @@ const PageWorkSpace = (props: {
             </WorkspacePanel>
           </Workspace>
           <SettingsPanel title={t("Panels.PropertySettings")}>
-            <SettingsForm uploadAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" />
+            <SettingsForm uploadAction="#" />
           </SettingsPanel>
         </>
     )
