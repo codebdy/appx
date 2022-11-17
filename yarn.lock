@@ -6281,6 +6281,11 @@ graphql-language-service@^5.0.6:
     nullthrows "^1.0.0"
     vscode-languageserver-types "^3.15.1"
 
+graphql-ws@^5.11.2:
+  version "5.11.2"
+  resolved "https://registry.npmjs.org/graphql-ws/-/graphql-ws-5.11.2.tgz#d5e0acae8b4d4a4cf7be410a24135cfcefd7ddc0"
+  integrity sha512-4EiZ3/UXYcjm+xFGP544/yW1+DVI8ZpKASFbzrV5EDTFWJp0ZvLl4Dy2fSZAzz9imKp5pZMIcjB0x/H69Pv/6w==
+
 graphql@^16.5.0:
   version "16.5.0"
   resolved "https://registry.npmmirror.com/graphql/-/graphql-16.5.0.tgz#41b5c1182eaac7f3d47164fb247f61e4dfb69c85"

@@ -40,7 +40,7 @@ export const NotificationBox = memo((
         dataSource={notifications}
         renderItem={item => (
           <List.Item>
-            {item.text}
+            {item.read ? item.text : <b>{item.text}</b>}
             <List.Item.Meta
               description={moment(item.createdAt).format("YYYY-MM-DD HH:mm:ss")}
             />

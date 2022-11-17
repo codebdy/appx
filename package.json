@@ -90,6 +90,7 @@
     "diagram-js-minimap": "^3.0.0",
     "graphiql": "^1.10.0",
     "graphql": "^16.5.0",
+    "graphql-ws": "^5.11.2",
     "i18next": "^21.8.16",
     "i18next-browser-languagedetector": "^6.1.4",
     "i18next-http-backend": "^1.4.1",
