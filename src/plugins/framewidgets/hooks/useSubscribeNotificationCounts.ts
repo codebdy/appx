@@ -1,18 +1,22 @@
-import { createClient } from 'graphql-ws';
+//import { createClient } from 'graphql-ws'; 卸载，暂时不会用
 import { useCallback, useEffect, useState } from 'react';
-import { HEADER_APPX_APPID, HEADER_AUTHORIZATION, SERVER_SUBSCRIPTION_URL, TOKEN_PREFIX } from '~/consts';
+import { SubscriptionClient } from 'subscriptions-transport-ws';
+import { DESIGNER_TOKEN_NAME, HEADER_APPX_APPID, HEADER_AUTHORIZATION, SERVER_SUBSCRIPTION_URL, TOKEN_PREFIX } from '~/consts';
 import { useToken } from '~/enthooks';
 import { useAppParams } from '~/plugin-sdk/contexts/app';
-
+const sClident = new SubscriptionClient(SERVER_SUBSCRIPTION_URL, {
+  connectionParams: {
+    headers: {
+      [HEADER_AUTHORIZATION]: localStorage.getItem(DESIGNER_TOKEN_NAME) ? `${TOKEN_PREFIX}${localStorage.getItem(DESIGNER_TOKEN_NAME)}` : "",
+      [HEADER_APPX_APPID]: "1",
+    }
+  }
+})
 export function useSubscribeNotificationCounts() {
   const [error, setError] = useState<Error>();
   const [count, setCount] = useState<number>();
   const { app } = useAppParams();
   const token = useToken();
-
-  const onNext = useCallback((value) => {
-    setCount(value)
-  }, [])
 
   const handleError = useCallback((error) => {
     setError(new Error("Subscribe error:" + error?.message))
@@ -23,34 +27,26 @@ export function useSubscribeNotificationCounts() {
   }, [])
 
   useEffect(() => {
-    if (!app ||!token){
+    if (!app || !token) {
       return
     }
-    
-    const client = createClient({
-      url: SERVER_SUBSCRIPTION_URL,
-      connectionParams: async () => {
-        return {
-          headers: {
-            [HEADER_AUTHORIZATION]: token ? `${TOKEN_PREFIX}${token}` : "",
-            [HEADER_APPX_APPID]: app.id,
-          },
-        };
-      },
-    });
 
-    const unsubscribe = client.subscribe(
-      {
-        query: 'subscription { unreadNoticationCounts }',
+    const { unsubscribe } = sClident.request({
+      query: 'subscription { unreadNoticationCounts }',
+    }).subscribe({
+      next: (value:any) => { 
+        setCount(value?.unreadNoticationCounts)
+       },
+      error: (error: Error) => { 
+        setError(error)
+       },
+      complete: () => { 
+        console.log("useSubscribeNotificationCounts complete") 
       },
-      {
-        next: onNext,
-        error: handleError,
-        complete: handleComplate,
-      },
-    );
-    return unsubscribe
-  }, [onNext, handleError, handleComplate, app, token])
+    })
+
+    return () => unsubscribe()
+  }, [handleError, handleComplate, app, token])
 
   return { count, error }
 }
