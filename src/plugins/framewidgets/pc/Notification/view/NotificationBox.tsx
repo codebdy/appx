@@ -1,5 +1,6 @@
 import { SettingOutlined } from "@ant-design/icons"
 import { Button, Card, List } from "antd"
+import moment from "moment";
 import React, { memo, useEffect, useRef } from "react"
 import { useShowError } from "~/AppDesigner/hooks/useShowError";
 import { useLayzyQueryRecentNotifications } from "~/plugins/framewidgets/hooks/useLayzyQueryRecentNotifications";
@@ -41,7 +42,7 @@ export const NotificationBox = memo((
           <List.Item>
             {item.text}
             <List.Item.Meta
-              description="20分钟前"
+              description={moment(item.createdAt).format("YYYY-MM-DD HH:mm:ss")}
             />
           </List.Item>
         )}
