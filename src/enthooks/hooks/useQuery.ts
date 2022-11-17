@@ -29,7 +29,7 @@ export function useQuery<T>(input: IQueryInput): QueryResponse<T> {
   const endpoint = useEndpoint();
   const refreshRef = useRef<() => void>();
 
-  const [doLoad, { error, data, loading }] = useLazyRequest({
+  const [doLoad, { error, data, loading }] = useLazyRequest<QueryResult<T>>({
     onCompleted: (data) => {
       setRevalidating(false)
     },

@@ -1,4 +1,3 @@
-//import { createClient } from 'graphql-ws'; 卸载，暂时不会用
 import { useCallback, useEffect, useState } from 'react';
 import { SubscriptionClient } from 'subscriptions-transport-ws';
 import { DESIGNER_TOKEN_NAME, HEADER_APPX_APPID, HEADER_AUTHORIZATION, SERVER_SUBSCRIPTION_URL, TOKEN_PREFIX } from '~/consts';

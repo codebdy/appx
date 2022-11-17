@@ -1,39 +1,44 @@
 import { SettingOutlined } from "@ant-design/icons"
-import { Button, Card, List, Tabs } from "antd"
-import React, { memo } from "react"
+import { Button, Card, List } from "antd"
+import React, { memo, useEffect, useRef } from "react"
+import { useShowError } from "~/AppDesigner/hooks/useShowError";
+import { useLayzyQueryRecentNotifications } from "~/plugins/framewidgets/hooks/useLayzyQueryRecentNotifications";
+import { useLocalTranslations } from "./hooks/useLocalTranslations";
 
-const data = [
-  {
-    title: 'Ant Design Title 1',
-  },
-  {
-    title: 'Ant Design Title 2',
-  },
-  {
-    title: 'Ant Design Title 3',
-  },
-  {
-    title: 'Ant Design Title 4',
-  },
-];
+export const NotificationBox = memo((
+  props: {
+    count?: number;
+  }
+) => {
+  const { count } = props;
+  const [query, { notifications, error, loading }] = useLayzyQueryRecentNotifications();
+  const queryRef = useRef(query);
+  queryRef.current = query
 
-export const NotificationBox = memo(() => {
+  useShowError(error);
+
+  useEffect(() => {
+    queryRef.current && queryRef.current()
+  }, [count])
+
+  const { t } = useLocalTranslations();
   return (
     <Card
       className="notificaiton-box float"
       actions={[
         <div className="actions">
-          <Button type="text" icon={<SettingOutlined />}>设置</Button>
-          <Button type="text" >查看更多消息</Button>
+          <Button type="text" icon={<SettingOutlined />}>{t("Settings")}</Button>
+          <Button type="text" >{t("ViewAll")}</Button>
         </div>
       ]}
     >
       <List
         itemLayout="horizontal"
-        dataSource={data}
+        loading={loading}
+        dataSource={notifications}
         renderItem={item => (
           <List.Item>
-            {item.title}
+            {item.text}
             <List.Item.Meta
               description="20分钟前"
             />

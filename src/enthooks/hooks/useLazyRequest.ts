@@ -9,17 +9,17 @@ export interface RequestOptions<T> {
   onError?: (error: GraphQLRequestError) => void;
 }
 
-export function useLazyRequest<T1>(options?: RequestOptions<any>)
+export function useLazyRequest<T>(options?: RequestOptions<any>)
   : [
-    (gql: string | undefined, input?: T1) => void,
+    (gql: string | undefined, input?: any) => void,
     {
       error?: GraphQLRequestError,
       loading?: boolean,
-      data?:any,
+      data?: T,
     }
   ] {
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<any>(undefined);
+  const [data, setData] = useState<T>(undefined);
   const [error, setError] = useState<GraphQLRequestError | undefined>();
   const endpoint = useEndpoint();
   const token = useToken();
@@ -31,7 +31,7 @@ export function useLazyRequest<T1>(options?: RequestOptions<any>)
   endpointRef.current = endpoint;
 
   const request = useCallback(
-    (gql: string | undefined, params?: T1) => {
+    (gql: string | undefined, params?: any) => {
       const endpoint = endpointRef.current;
       if (!gql || !endpoint) {
         console.error("gql or endpoint is null", endpoint, gql)
@@ -39,20 +39,20 @@ export function useLazyRequest<T1>(options?: RequestOptions<any>)
       }
 
       const options = optionsRef.current;
-      
-      const headers = { 
-        [HEADER_AUTHORIZATION]: token ? `${TOKEN_PREFIX}${token}` : "" ,
+
+      const headers = {
+        [HEADER_AUTHORIZATION]: token ? `${TOKEN_PREFIX}${token}` : "",
         [HEADER_APPX_APPID]: appId,
-      } 
+      }
 
       const graphQLClient = new AwesomeGraphQLClient({ endpoint })
       setLoading(true);
       setError(undefined);
       graphQLClient
-        .request(gql, params, { 
+        .request(gql, params, {
           headers: headers
         })
-        .then((data) => {
+        .then((data: T) => {
           if (!mountRef.current) {
             return;
           }
@@ -70,5 +70,5 @@ export function useLazyRequest<T1>(options?: RequestOptions<any>)
     [endpoint, token, appId, mountRef/*, options*/]
   );
 
-  return [request, {loading, error, data}]
+  return [request, { loading, error, data }]
 }
