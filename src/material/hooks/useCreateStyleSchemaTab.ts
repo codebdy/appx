@@ -1,6 +1,6 @@
-import { AllSchemas } from "@designable/formily-antd"
 import { useCallback } from "react"
 import { IPropsSchema } from "@rxdrag/appx-plugin-sdk"
+import { CSSStyle } from "../CSSStyle"
 
 export const createStyleSchemaTab = () => {
 
@@ -17,7 +17,7 @@ export const createStyleSchemaTab = () => {
           'x-component': 'CollapseItem',
           'x-component-props': { defaultExpand: true },
           properties: {
-            'x-component-props.style': AllSchemas.CSSStyle,
+            'x-component-props.style': CSSStyle,
           },
         },
         'decorator-style-group': {
@@ -32,7 +32,7 @@ export const createStyleSchemaTab = () => {
             },
           },
           properties: {
-            'x-decorator-props.style': AllSchemas.CSSStyle,
+            'x-decorator-props.style': CSSStyle,
           },
         },
       }
