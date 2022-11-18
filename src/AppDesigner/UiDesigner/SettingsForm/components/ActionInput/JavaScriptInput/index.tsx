@@ -44,6 +44,7 @@ export const JavaScriptInput = observer((
       </Button>
       <Modal
         title={t("Action.JavaScript")}
+        width={700}
         open={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
