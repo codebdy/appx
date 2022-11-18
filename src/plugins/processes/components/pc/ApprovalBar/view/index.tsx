@@ -20,7 +20,7 @@ export const ApprovalBar = observer((props: IApprovalBarProps) => {
           <div>
             <Typography.Text type="secondary">状态</Typography.Text>
             <Typography.Title level={3} style={{ margin: 0 }}>
-              未启动
+              费用待批
             </Typography.Title>
           </div>
         </div>
