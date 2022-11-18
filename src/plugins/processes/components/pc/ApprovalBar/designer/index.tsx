@@ -5,13 +5,7 @@ import React from 'react'
 
 export const ApprovalBarDesigner: DnFC<IApprovalBarProps> = observer((props: IApprovalBarProps) => {
   return (
-    props.children
-      ?
-      <ApprovalBar {...props} />
-      :
-      <DroppableWidget>
-        {props.children}
-      </DroppableWidget>
+    <ApprovalBar {...props} />
   )
 })
 
