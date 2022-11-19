@@ -80,8 +80,6 @@
     "@formily/react": "^2.2.5",
     "@formily/reactive-react": "^2.2.5",
     "@graphiql/toolkit": "^0.6.0",
-    "@headlessui/react": "^1.7.4",
-    "@heroicons/react": "^2.0.13",
     "@rxdrag/appx-plugin-sdk": "^0.0.4",
     "antd": "^4.23.2",
     "antd-img-crop": "^4.2.4",
@@ -106,7 +104,6 @@
     "react-router-dom": "^6.3.0",
     "recoil": "^0.7.4",
     "subscriptions-transport-ws": "^0.11.0",
-    "tailwindcss": "^3.2.4",
     "uuid": "^8.3.2"
   },
   "lint-staged": {
